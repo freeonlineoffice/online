@@ -397,6 +397,8 @@ INTERMEDIATE_DIR ?= $(if $(IS_SEPARATE),$(abs_builddir)/debug,$(abs_builddir)/re
 
 EXTRA_DIST = $(shell find . -type f -not -path './.git/*' -not -path './node_modules/*' | sed 's/.\///')
 
+LOOL_JS_BUNDLE = $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER))
+
 define bundle_lool
 	$(if $(IS_SEPARATE),\
 		@touch $@,
@@ -406,7 +408,7 @@ define bundle_lool
 			-DMOBILEAPPNAME="$(APP_NAME)" \
 			-DVERSION=$(LOOL_VERSION) \
 			-DCOPYRIGHT=$(srcdir)/src/copyright.js \
-			-DLOOL_JS=$(subst $(SPACE),$(COMMA),$(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_WEBORDER))) \
+			-DLOOL_JS=$(subst $(SPACE),$(COMMA),$(patsubst src/%,$(DIST_FOLDER)/src/%,$(LOOL_JS_BUNDLE))) \
 			$(srcdir)/lool-src.js.m4 > $@)
 endef
 
