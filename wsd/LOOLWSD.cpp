@@ -1318,6 +1318,7 @@ public:
         {
             Poco::JSON::Object::Ptr aliasGroups;
             Poco::JSON::Array::Ptr groups;
+
             try
             {
                 aliasGroups = remoteJson->getObject("storage")->getObject("wopi")->getObject("alias_groups");
@@ -1899,11 +1900,6 @@ void LOOLWSD::innerInitialize(Application& self)
 
     Util::setApplicationPath(Poco::Path(Application::instance().commandPath()).parent().toString());
 
-    if (!UnitWSD::init(UnitWSD::UnitType::Wsd, UnitTestLibrary))
-    {
-        throw std::runtime_error("Failed to load wsd unit test library.");
-    }
-
     StartTime = std::chrono::steady_clock::now();
 
     LayeredConfiguration& conf = config();
@@ -2090,8 +2086,10 @@ void LOOLWSD::innerInitialize(Application& self)
     AutoPtr<AppConfigMap> overrideConfig(new AppConfigMap(_overrideSettings));
     conf.addWriteable(overrideConfig, PRIO_APPLICATION); // Highest priority
 
-    // Allow UT to manipulate before using configuration values.
-    UnitWSD::get().configure(config());
+    if (!UnitTestLibrary.empty())
+    {
+        UnitWSD::defaultConfigure(conf);
+    }
 
     // Experimental features.
     EnableExperimental = getConfigValue<bool>(conf, "experimental_features", false);
@@ -2164,6 +2162,22 @@ void LOOLWSD::innerInitialize(Application& self)
                 << LogLevel << "] until after WSD initialization.");
     }
 
+    // First log entry.
+    ServerName = config().getString("server_name");
+    LOG_INF("Initializing coolwsd server [" << ServerName << "]. Experimental features are "
+                                            << (EnableExperimental ? "enabled." : "disabled."));
+
+
+    // Initialize the UnitTest subsystem.
+    if (!UnitWSD::init(UnitWSD::UnitType::Wsd, UnitTestLibrary))
+    {
+        throw std::runtime_error("Failed to load wsd unit test library.");
+    }
+
+    // Allow UT to manipulate before using configuration values.
+    UnitWSD::get().configure(conf);
+
+    // Trace Event Logging.
     EnableTraceEventLogging = getConfigValue<bool>(conf, "trace_event[@enable]", false);
 
     if (EnableTraceEventLogging)
@@ -2189,10 +2203,6 @@ void LOOLWSD::innerInitialize(Application& self)
             }
         }
     }
-
-    ServerName = config().getString("server_name");
-    LOG_INF("Initializing loolwsd server [" << ServerName << "]. Experimental features are "
-                                            << (EnableExperimental ? "enabled." : "disabled."));
 
     // Check deprecated settings.
     bool reuseCookies = false;
