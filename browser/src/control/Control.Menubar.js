@@ -277,7 +277,9 @@ L.Control.Menubar = L.Control.extend({
 				{type: 'separator'},
 				{uno: '.uno:TransformDialog'},
 				{uno: '.uno:FormatLine'},
-				{uno: '.uno:FormatArea'}
+				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
 			]},
 			{name: _('References'), id: 'references', type: 'menu', menu: [
 				{name: _UNO('.uno:IndexesMenu', 'text'), uno: '.uno:InsertMultiIndex'},
@@ -474,6 +476,8 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:TransformDialog'},
 				{uno: '.uno:FormatLine'},
 				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
 				{type: 'separator'},
 				{uno: '.uno:OutlineBullet'},
 				{uno: '.uno:ThemeDialog'}]
@@ -610,6 +614,8 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:TransformDialog'},
 				{uno: '.uno:FormatLine'},
 				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
 				{type: 'separator'},
 				{uno: '.uno:OutlineBullet'},
 				{uno: '.uno:ThemeDialog'}]
