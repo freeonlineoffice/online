@@ -1,7 +1,7 @@
-Leaflet platform for Collabora Online
+Leaflet platform for LibreOffice Online
 ========================================
 
-This is the client part of Collabora Online.  For the server part, see the
+This is the client part of LibreOffice Online.  For the server part, see the
 ../wsd/README, and install it first.
 
 Build dependencies
@@ -75,23 +75,23 @@ Running
 
 To see an example:
 
-* run coolwsd, like:
+* run loolwsd, like:
 
-    ./coolwsd --o:sys_template_path=${SYSTEMPLATE} --o:child_root_path=${ROOTFORJAILS}
+    ./loolwsd --o:sys_template_path=${SYSTEMPLATE} --o:child_root_path=${ROOTFORJAILS}
 
-Note that this will, by default, set the coolwsd's file server's root to the parent directory of coolwsd,
+Note that this will, by default, set the loolwsd's file server's root to the parent directory of loolwsd,
 which means you can access all the files in browser using /browser/ path. It is advised to set
 file_server_root_path manually for more control. See wsd/README for more information.
 
-* open dist/cool.html through coolwsd's fileserver
+* open dist/lool.html through loolwsd's fileserver
 
-    https://localhost:9980/browser/dist/cool.html?file_path=file:///PATH/TO_DOC&host=wss://localhost:9980
+    https://localhost:9980/browser/dist/lool.html?file_path=file:///PATH/TO_DOC&host=wss://localhost:9980
 
 and you should see the document in the browser.
 Note that accessing local storage is disabled by default for security reasons. You need to explicitly enable it
-with the --o:storage.filesystem[@allow]=true option of coolwsd. In case anything goes wrong, check the coolwsd console for
+with the --o:storage.filesystem[@allow]=true option of loolwsd. In case anything goes wrong, check the loolwsd console for
 the debugging output. You might be asked to confirm the certificate if you are using self-signed certificate
-for coolwsd.
+for loolwsd.
 
 Development
 -----------
@@ -105,7 +105,7 @@ Remember to add '--enable-browsersync' argument for './configure' script and del
 
 Run server and start browser-sync:
 
-COOL_SERVE_FROM_FS=1 make run
+LOOL_SERVE_FROM_FS=1 make run
 
 and in the second terminal:
 
@@ -114,21 +114,21 @@ make sync-[writer|calc|impress]
 Your browser will open example document and now you can edit .css files and see the result without server restart.
 
 To run another document use:
-browser-sync start --config browsersync-config.js --startPath "browser/96c23f663/cool.html?file_path=file:///path/to/the/file.ods"
+browser-sync start --config browsersync-config.js --startPath "browser/96c23f663/lool.html?file_path=file:///path/to/the/file.ods"
 
 Admin Panel
 -----------
 
-You can do live monitoring of all the user sessions running on coolwsd instance. To access the admin
-console you need to ask for admin.html file from coolwsd which resides in dist/admin/admin.html.
+You can do live monitoring of all the user sessions running on loolwsd instance. To access the admin
+console you need to ask for admin.html file from loolwsd which resides in dist/admin/admin.html.
 
 For example:
 
     https://localhost:9980/browser/dist/admin/admin.html
 
-It will ask for username and password which is set by the admin_console options of coolwsd. For example you can
+It will ask for username and password which is set by the admin_console options of loolwsd. For example you can
 pass --o:admin_console.username=admin --o:admin_console.password=admin in command line, or set these values in
-coolwsd.xml. After entering the correct password you should be able to monitor the live documents opened, total
+loolwsd.xml. After entering the correct password you should be able to monitor the live documents opened, total
 users, memory consumption, document URLs with number of users viewing that document etc. You can also kill the
 documents directly from the panel which would result in closing the socket connection to the respective document.
 
@@ -220,10 +220,10 @@ Parts (like slides in presentation, or sheets in spreadsheets):
 Statusindicator (when the document is loading):
     - events
         map.on('statusindicator', function (e) {}) where:
-            + e.statusType = 'start' | 'setvalue' | 'finish' | 'coolloaded' | 'alltilesloaded'
+            + e.statusType = 'start' | 'setvalue' | 'finish' | 'loolloaded' | 'alltilesloaded'
             + e.value == a value from 0 to 100 indicating the status
               if the statusType is 'setvalue
-            + 'coolloaded' is fired when the JS code is initialized and the document
+            + 'loolloaded' is fired when the JS code is initialized and the document
                 load request is sent and we're waiting for the tiles
             + 'alltilesloaded' is fired when all newly requested (empty tiles) have been loaded
                 it is not fired during pre-fetching and during editing
