@@ -11,7 +11,7 @@ task:
     - env ASSUME_ALWAYS_YES=yes pkg install -y gmake pkgconf poco cppunit autotools coreutils git bash npm png pango
     - mkdir libreoffice-src
     - cd libreoffice-src
-    - fetch https://github.com/CollaboraOnline/online/releases/download/for-code-assets/LibreOfficeKit-includes-co-22.05.tar.gz
+    - fetch https://github.com/freeonlineoffice/online/releases/download/for-code-assets/LibreOfficeKit-includes-co-22.05.tar.gz
     - tar -xzf LibreOfficeKit-includes-co-22.05.tar.gz
   build_script:
     - mkdir .git/hooks
