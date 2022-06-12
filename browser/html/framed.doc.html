@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- Proof of concept of running cool.html in an iframe. Also
+<!-- Proof of concept of running lool.html in an iframe. Also
      shows how to, from outside the iframe, invoke Python scripting in
      the underlying LibreOffice instance that manipulates the document
      being edited.
@@ -210,7 +210,7 @@
 
     <h3>Document frame</h3>
     <h4>If the frame fails to load click <a id="link">here and accept security bits</a></h4>
-    <h4>If the frame still fails to load ensure you have <code>localhost:*</code> included in your <code>net.frame_ancestors</code> in coolwsd.xml</h4>
+    <h4>If the frame still fails to load ensure you have <code>localhost:*</code> included in your <code>net.frame_ancestors</code> in loolwsd.xml</h4>
     <iframe id="frame" height="1000" width="1000"></iframe>
 
     <script>
@@ -224,7 +224,7 @@
         query = window.location.search + '&';
       query += 'NotWOPIButIframe=true';
 
-      var path = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/') + 1) + 'cool.html';
+      var path = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/') + 1) + 'lool.html';
       var uriBase = window.location.protocol + '//' + window.location.host + path + query;
       var iframe = document.getElementById("frame");
       iframe.src = uriBase;
