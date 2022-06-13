@@ -124,7 +124,7 @@ void HTTPServerTest::testCoolGet()
 {
     constexpr auto testname = __func__;
 
-    const auto pathAndQuery = "/browser/dist/cool.html?access_token=111111111";
+    const auto pathAndQuery = "/browser/dist/lool.html?access_token=111111111";
     const std::shared_ptr<const http::Response> httpResponse
         = http::get(_uri.toString(), pathAndQuery);
 
@@ -148,7 +148,7 @@ void HTTPServerTest::testCoolPost()
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 
-    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/browser/dist/cool.html");
+    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/browser/dist/lool.html");
     Poco::Net::HTMLForm form;
     form.set("access_token", "2222222222");
     form.prepareSubmit(request);
@@ -209,7 +209,7 @@ void HTTPServerTest::testScriptsAndLinksGet()
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 
-    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, "/browser/dist/cool.html");
+    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, "/browser/dist/lool.html");
     session->sendRequest(request);
 
     Poco::Net::HTTPResponse response;
@@ -232,7 +232,7 @@ void HTTPServerTest::testScriptsAndLinksPost()
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 
-    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/browser/dist/cool.html");
+    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/browser/dist/lool.html");
     std::string body;
     request.setContentLength((int) body.length());
     session->sendRequest(request) << body;

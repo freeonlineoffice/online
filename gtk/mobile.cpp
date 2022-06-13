@@ -329,7 +329,7 @@ int main(int argc, char* argv[])
     fileURL = "file://" + FileUtil::realpath(argv[1]);
 
     std::string urlAndQuery =
-        "file://" TOPSRCDIR "/browser/dist/cool.html"
+        "file://" TOPSRCDIR "/browser/dist/lool.html"
         "?file_path=" + fileURL +
         "&closebutton=1"
         "&permission=edit"

@@ -64,7 +64,7 @@ global.console = {
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-var data = fs.readFileSync(top_builddir + '/browser/dist/cool.html', {encoding: 'utf8'});
+var data = fs.readFileSync(top_builddir + '/browser/dist/lool.html', {encoding: 'utf8'});
 
 data = data.replace(/%SERVICE_ROOT%\/browser\/%VERSION%/g, top_builddir + '/browser/dist');
 data = data.replace(/%SERVICE_ROOT%/g, '');
@@ -96,7 +96,7 @@ window = new JSDOM(data, {
 				verbose: false,
 				pretendToBeVisual: false,
 				includeNodeLocations: false,
-				url: 'file:///tmp/notthere/cool.html?file_path=file:///' + to_load,
+				url: 'file:///tmp/notthere/lool.html?file_path=file:///' + to_load,
 				resources: 'usable',
 				beforeParse(window) {
 					console.debug('Before script parsing');
