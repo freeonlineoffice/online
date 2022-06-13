@@ -76,14 +76,14 @@ var AdminSocketSettings = AdminSocketBase.extend({
 		}
 		else if (textMsg.startsWith('coolserver ')) {
 			// This must be the first message, unless we reconnect.
-			var coolwsdVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
-			var h = coolwsdVersionObj.Hash;
+			var loolwsdVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			var h = loolwsdVersionObj.Hash;
 			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
 				h = '<a target="_blank" href="https://hub.libreoffice.org/git-online/' + h + '">' + h + '</a>';
 				$('#loolwsd-version').html(loolwsdVersionObj.Version + ' (git hash: ' + h + ')');
 			}
 			else {
-				$('#coolwsd-version').text(coolwsdVersionObj.Version);
+				$('#coolwsd-version').text(loolwsdVersionObj.Version);
 			}
 		}
 		else if (textMsg.startsWith('lokitversion ')) {
