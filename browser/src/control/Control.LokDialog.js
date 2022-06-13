@@ -284,7 +284,7 @@ L.Control.LokDialog = L.Control.extend({
 		}
 
 		if (e.title && typeof brandProductName !== 'undefined') {
-			e.title = e.title.replace('Collabora Office', brandProductName);
+			e.title = e.title.replace('LibreOffice', brandProductName);
 		}
 
 		if (e.action === 'created') {

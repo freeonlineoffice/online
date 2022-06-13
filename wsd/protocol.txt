@@ -620,9 +620,9 @@ wopi: <JSON>
 
      Properties mentioned:
      + PostMessageOrigin: See WOPI specs for more information
-     + HideSaveOption: (boolean): If Collabora Online should hide the save options
-     + HidePrintOption: (boolean): If Collabora Online should hide print options
-     + HideExportOption: (boolean): If Collabora Online should hide the export options
+     + HideSaveOption: (boolean): If LibreOffice Online should hide the save options
+     + HidePrintOption: (boolean): If LibreOffice Online should hide print options
+     + HideExportOption: (boolean): If LibreOffice Online should hide the export options
        this implies 'Download as' options in file menu
 
 versionrestore: <action>
@@ -949,9 +949,9 @@ documents <pid> <filename> <number of views> <memory consumed> <elapsed time> <i
     Each set document attributes is separated by a newline.
 
 mem_consumed <memory>
-    Total memory being consumed by Collabora Online.
+    Total memory being consumed by LibreOffice Online.
 total_avail_mem <memory>
-    Total memory available to whole Collabora Online. This takes into account
+    Total memory available to whole LibreOffice Online. This takes into account
     the memproportion setting, if set by the user, when calculating the amount
     of memory available to the process.
 

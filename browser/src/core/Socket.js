@@ -53,7 +53,7 @@ app.definitions.Socket = L.Class.extend({
 			try {
 				this.socket = window.createWebSocket(this.getWebSocketBaseURI(map));
 			} catch (e) {
-				this._map.fire('error', {msg: _('Oops, there is a problem connecting to %productName: ').replace('%productName', (typeof brandProductName !== 'undefined' ? brandProductName : 'Collabora Online Development Edition')) + e, cmd: 'socket', kind: 'failed', id: 3});
+				this._map.fire('error', {msg: _('Oops, there is a problem connecting to %productName: ').replace('%productName', (typeof brandProductName !== 'undefined' ? brandProductName : 'LibreOffice Online')) + e, cmd: 'socket', kind: 'failed', id: 3});
 				return;
 			}
 		}
@@ -551,8 +551,8 @@ app.definitions.Socket = L.Class.extend({
 			$('#coolwsd-version-label').text(_('COOLWSD version:'));
 			var h = this.WSDServer.Hash;
 			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
-				h = '<a href="javascript:void(window.open(\'https://github.com/CollaboraOnline/online/commits/' + h + '\'));">' + h + '</a>';
-				$('#coolwsd-version').html(this.WSDServer.Version + ' <span>git hash:&nbsp;' + h + this.WSDServer.Options + '</span>');
+				h = '<a href="javascript:void(window.open(\'https://hub.libreoffice.org/git-online/' + h + '\'));">' + h + '</a>';
+				$('#loolwsd-version').html(this.WSDServer.Version + ' (git hash: ' + h + ')');
 			}
 			else {
 				$('#coolwsd-version').text(this.WSDServer.Version);
@@ -1085,9 +1085,9 @@ app.definitions.Socket = L.Class.extend({
 				textMsg = textMsg.replace(/{docs}/g, command.params[0]);
 				textMsg = textMsg.replace(/{connections}/g, command.params[1]);
 				textMsg = textMsg.replace(/{productname}/g, (typeof brandProductName !== 'undefined' ?
-					brandProductName : 'Collabora Online Development Edition'));
+					brandProductName : 'LibreOffice Online'));
 				var brandFAQURL = (typeof brandProductFAQURL !== 'undefined') ?
-					brandProductFAQURL : 'https://collaboraonline.github.io/post/faq/';
+						brandProductFAQURL : 'https://hub.libreoffice.org/professional-online-support';
 				this._map.fire('infobar',
 					{
 						msg: textMsg,
