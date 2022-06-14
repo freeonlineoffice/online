@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 export class CalcSplitPanesContext extends SplitPanesContext {
 
@@ -53,4 +53,4 @@ export class CalcSplitPanesContext extends SplitPanesContext {
 
 }
 
-L.CalcSplitPanesContext = cool.CalcSplitPanesContext;
+L.CalcSplitPanesContext = lool.CalcSplitPanesContext;

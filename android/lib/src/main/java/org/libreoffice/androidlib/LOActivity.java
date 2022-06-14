@@ -95,7 +95,7 @@ public class LOActivity extends AppCompatActivity {
     private static final String KEY_IS_EDITABLE = "isEditable";
     private static final String KEY_INTENT_URI = "intentUri";
     private static final String CLIPBOARD_FILE_PATH = "LibreofficeClipboardFile.data";
-    private static final String CLIPBOARD_COOL_SIGNATURE = "cool-clip-magic-4a22437e49a8-";
+    private static final String CLIPBOARD_COOL_SIGNATURE = "lool-clip-magic-4a22437e49a8-";
     public static final String RECENT_DOCUMENTS_KEY = "RECENT_DOCUMENTS_LIST";
     private static String USER_NAME_KEY = "USER_NAME";
 
@@ -838,7 +838,7 @@ public class LOActivity extends AppCompatActivity {
         createCOOLWSD(dataDir, cacheDir, apkFile, assetManager, urlToLoad, uiMode, userName);
 
         // trigger the load of the document
-        String finalUrlToLoad = "file:///android_asset/dist/cool.html?file_path=" +
+        String finalUrlToLoad = "file:///android_asset/dist/lool.html?file_path=" +
                 urlToLoad + "&closebutton=1";
 
         // set the language

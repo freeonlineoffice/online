@@ -81,10 +81,10 @@ describe('Annotation Tests',function() {
 		cy.contains('.menu-entry-with-icon', 'Comment')
 			.click();
 
-		cy.get('.cool-annotation-table')
+		cy.get('.lool-annotation-table')
 			.should('exist');
 
-		cy.get('.cool-annotation-textarea')
+		cy.get('.lool-annotation-textarea')
 			.should('have.text', '');
 
 		cy.get('.vex-dialog-button-primary')
@@ -93,10 +93,10 @@ describe('Annotation Tests',function() {
 		cy.get('.vex-dialog-button-secondary')
 			.click();
 
-		cy.get('.cool-annotation-content-wrapper.wizard-comment-box')
+		cy.get('.lool-annotation-content-wrapper.wizard-comment-box')
 			.should('not.exist');
 
-		cy.get('.wizard-comment-box .cool-annotation-content')
+		cy.get('.wizard-comment-box .lool-annotation-content')
 			.should('not.exist');
 	});
 });

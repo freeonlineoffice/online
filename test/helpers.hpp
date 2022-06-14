@@ -124,7 +124,7 @@ inline void getDocumentPathAndURL(const std::string& docFilename, std::string& d
     std::string encodedUri;
     Poco::URI::encode("file://" + Poco::Path(documentPath).makeAbsolute().toString(), ":/?",
                       encodedUri);
-    documentURL = "cool/" + encodedUri + "/ws";
+    documentURL = "lool/" + encodedUri + "/ws";
     TST_LOG("Test file: " << documentPath);
 }
 
@@ -994,7 +994,7 @@ inline void getServerVersion(COOLWebSocket& socket,
                              int& major, int& minor,
                              const std::string& testname)
 {
-    const std::string clientVersion = "coolclient 0.1";
+    const std::string clientVersion = "loolclient 0.1";
     sendTextFrame(socket, clientVersion, testname);
     std::vector<char> loVersion = getResponseMessage(socket, "lokitversion", testname);
     std::string line = COOLProtocol::getFirstLine(loVersion.data(), loVersion.size());

@@ -27,7 +27,7 @@ describe('PDF View Tests', function() {
 
 		// Insert some comment into the PDF.
 		desktopHelper.insertMultipleComment('draw', 1, true);
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 
 		// Reload to close and save. PDFs cannot really be edited,

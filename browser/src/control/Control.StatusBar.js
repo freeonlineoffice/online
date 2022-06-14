@@ -168,7 +168,7 @@ L.Control.StatusBar = L.Control.extend({
 				name: 'actionbar',
 				items: [
 					{type: 'html',  id: 'search',
-						html: '<div class="cool-font">' +
+						html: '<div class="lool-font">' +
 					'<label for="search-input" class="visuallyhidden" aria-hidden="false">Search:</label>' +
 					'<input size="15" id="search-input" placeholder="' + _('Search') + '"' +
 					'style="padding: 3px; border-radius: var(--border-radius); border: 1px solid var(--color-border)"/>' +
@@ -218,7 +218,7 @@ L.Control.StatusBar = L.Control.extend({
 					that.onClick(e, e.target, e.item, e.subItem);
 				},
 				onRefresh: function() {
-					$('#tb_actionbar_item_userlist .w2ui-tb-caption').addClass('cool-font');
+					$('#tb_actionbar_item_userlist .w2ui-tb-caption').addClass('lool-font');
 					window.setupSearchInput();
 				}
 			});
@@ -276,17 +276,17 @@ L.Control.StatusBar = L.Control.extend({
 					{type: 'break', id: 'break1'},
 					{
 						type: 'html', id: 'StatusDocPos',
-						html: '<div id="StatusDocPos" class="cool-font" title="' + _('Number of Sheets') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StatusDocPos" class="lool-font" title="' + _('Number of Sheets') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break2'},
 					{
 						type: 'html', id: 'RowColSelCount',
-						html: '<div id="RowColSelCount" class="cool-font" title="' + _('Selected range of cells') + '" style="padding: 5px 5px;line-height:0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="RowColSelCount" class="lool-font" title="' + _('Selected range of cells') + '" style="padding: 5px 5px;line-height:0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break3', tablet: false},
 					{
 						type: 'html', id: 'InsertMode', mobile: false, tablet: false,
-						html: '<div id="InsertMode" class="cool-font insert-mode-true" title="' + _('Entering text mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="InsertMode" class="lool-font insert-mode-true" title="' + _('Entering text mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break4', tablet: false},
 					{type: 'menu-radio', id: 'LanguageStatus',
@@ -295,12 +295,12 @@ L.Control.StatusBar = L.Control.extend({
 					{type: 'break', id: 'break5', tablet: false},
 					{
 						type: 'html', id: 'StatusSelectionMode', mobile: false, tablet: false,
-						html: '<div id="StatusSelectionMode" class="cool-font" title="' + _('Selection Mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StatusSelectionMode" class="lool-font" title="' + _('Selection Mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break8', mobile: false, tablet: false},
 					{
 						type: 'html', id: 'StateTableCell', mobile: false, tablet: false,
-						html: '<div id="StateTableCell" class="cool-font" title="' + _('Choice of functions') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StateTableCell" class="lool-font" title="' + _('Choice of functions') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{
 						type: 'menu-check', id: 'StateTableCellMenu', caption: '', selected: ['2', '512'], items: [
@@ -329,22 +329,22 @@ L.Control.StatusBar = L.Control.extend({
 					{type: 'break', id: 'break1'},
 					{
 						type: 'html', id: 'StatePageNumber',
-						html: '<div id="StatePageNumber" class="cool-font" title="' + _('Number of Pages') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StatePageNumber" class="lool-font" title="' + _('Number of Pages') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break2'},
 					{
 						type: 'html', id: 'StateWordCount', mobile: false, tablet: false,
-						html: '<div id="StateWordCount" class="cool-font" title="' + _('Word Counter') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StateWordCount" class="lool-font" title="' + _('Word Counter') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break5', mobile: false, tablet: false},
 					{
 						type: 'html', id: 'InsertMode', mobile: false, tablet: false,
-						html: '<div id="InsertMode" class="cool-font insert-mode-true" title="' + _('Entering text mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="InsertMode" class="lool-font insert-mode-true" title="' + _('Entering text mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break6', mobile: false, tablet: false},
 					{
 						type: 'html', id: 'StatusSelectionMode', mobile: false, tablet: false,
-						html: '<div id="StatusSelectionMode" class="cool-font" title="' + _('Selection Mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="StatusSelectionMode" class="lool-font" title="' + _('Selection Mode') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break7', mobile: false, tablet: false},
 					{type: 'menu-radio', id: 'LanguageStatus',
@@ -365,7 +365,7 @@ L.Control.StatusBar = L.Control.extend({
 					{type: 'break', id: 'break1'},
 					{
 						type: 'html', id: 'PageStatus',
-						html: '<div id="PageStatus" class="cool-font" title="' + _('Number of Slides') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="PageStatus" class="lool-font" title="' + _('Number of Slides') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break2', mobile: false, tablet: false},
 					{type: 'menu-radio', id: 'LanguageStatus',
@@ -385,7 +385,7 @@ L.Control.StatusBar = L.Control.extend({
 					{type: 'break', id: 'break1'},
 					{
 						type: 'html', id: 'PageStatus',
-						html: '<div id="PageStatus" class="cool-font" title="' + _('Number of Pages') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
+						html: '<div id="PageStatus" class="lool-font" title="' + _('Number of Pages') + '" style="padding: 5px 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</div>'
 					},
 					{type: 'break', id: 'break2', mobile: false, tablet: false},
 					{type: 'menu-radio', id: 'LanguageStatus',
@@ -436,7 +436,7 @@ L.Control.StatusBar = L.Control.extend({
 	},
 
 	_getPermissionModeHtml: function(isReadOnly) {
-		return '<div id="PermissionMode" class="cool-font ' +
+		return '<div id="PermissionMode" class="lool-font ' +
 			(isReadOnly
 				? ' status-readonly-mode" title="' + _('Permission Mode') + '" style="padding: 5px 5px;"> ' + _('Read-only') + ' </div>'
 				: ' status-edit-mode" title="' + _('Permission Mode') + '" style="padding: 5px 5px;"> ' + _('Edit') + ' </div>');
@@ -478,7 +478,7 @@ L.Control.StatusBar = L.Control.extend({
 			this.updateToolbarItem(statusbar, 'InsertMode', $('#InsertMode').html(state ? L.Styles.insertMode[state].toLocaleString() : '<span class="ToolbarStatusInactive">&nbsp;' + _('Insert mode: inactive') + '&nbsp;</span>').parent().html());
 
 			$('#InsertMode').removeClass();
-			$('#InsertMode').addClass('cool-font insert-mode-' + state);
+			$('#InsertMode').addClass('lool-font insert-mode-' + state);
 
 			if (!state && this.map.hyperlinkPopup) {
 				this.map.hyperlinkUnderCursor = null;

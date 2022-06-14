@@ -11,7 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
-"libo_online/cool-ui/ko/>\n"
+"libo_online/lool-ui/ko/>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1816,9 +1816,9 @@ msgstr "서버에 남아있는 디스크 공간이 없으므로, 계속하려면
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
-msgstr "호스트 URL이 비어 있습니다. coolwsd 서버가 잘못 구성된 것일 수 있습니다. 관리자에게 문의하십시오."
+msgstr "호스트 URL이 비어 있습니다. loolwsd 서버가 잘못 구성된 것일 수 있습니다. 관리자에게 문의하십시오."
 
 #: src/errormessages.js:15
 msgid ""
@@ -2145,7 +2145,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

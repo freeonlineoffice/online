@@ -551,7 +551,7 @@ namespace
 /// Manages the lifetime of a document.
 /// Technically, we can host multiple documents
 /// per process. But for security reasons don't.
-/// However, we could have a coolkit instance
+/// However, we could have a loolkit instance
 /// per user or group of users (a trusted circle).
 class Document final : public DocumentManagerInterface
 {
@@ -2563,7 +2563,7 @@ void lokit_main(
 
                 // tmpdir inside the jail for added sercurity.
                 const std::string tempRoot = Poco::Path(childRoot, "tmp").toString();
-                const std::string tmpSubDir = Poco::Path(tempRoot, "cool-" + jailId).toString();
+                const std::string tmpSubDir = Poco::Path(tempRoot, "lool-" + jailId).toString();
                 Poco::File(tmpSubDir).createDirectories();
                 const std::string jailTmpDir = Poco::Path(jailPath, "tmp").toString();
                 LOG_INF("Mounting random temp dir " << tmpSubDir << " -> " << jailTmpDir);
@@ -2746,7 +2746,7 @@ void lokit_main(
             SigUtil::setVersionInfo(versionString);
 
             // Add some parameters we want to pass to the client. Could not figure out how to get
-            // the configuration parameters from COOLWSD.cpp's initialize() or coolwsd.xml here, so
+            // the configuration parameters from COOLWSD.cpp's initialize() or loolwsd.xml here, so
             // oh well, just have the value hardcoded in KitHelper.hpp. It isn't really useful to
             // "tune" it at end-user installations anyway, I think.
             auto versionJSON = Poco::JSON::Parser().parse(versionString).extract<Poco::JSON::Object::Ptr>();

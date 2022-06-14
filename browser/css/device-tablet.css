@@ -55,7 +55,7 @@
 	width: 0;
 	height: 0;
 }
-.vex-content .cool-annotation-img {
+.vex-content .lool-annotation-img {
 	box-sizing: content-box !important;
 }
 
@@ -140,12 +140,12 @@
 	margin: 0;
 }
 
-#coolwsd-version span:before,
+#loolwsd-version span:before,
 #lokit-version > span:before {
 	content: ' (';
 	white-space: pre;
 }
-#coolwsd-version span:after,
+#loolwsd-version span:after,
 #lokit-version > span:after {
 	content: ')';
 }

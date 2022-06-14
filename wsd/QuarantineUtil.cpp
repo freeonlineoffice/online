@@ -144,7 +144,7 @@ namespace Quarantine
         std::string sourcefilePath;
         if(JailUtil::isBindMountingEnabled())
         {
-            sourcefilePath = COOLWSD::ChildRoot + "tmp/cool-" + docBroker->getJailId() +
+            sourcefilePath = COOLWSD::ChildRoot + "tmp/lool-" + docBroker->getJailId() +
                              "/user/docs/" + docBroker->getJailId() + '/' + docName;
         }
         else

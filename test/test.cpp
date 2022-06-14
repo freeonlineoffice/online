@@ -80,7 +80,7 @@ static bool IsDebugrun = false;
 int main(int argc, char** argv)
 {
     bool verbose = false;
-    std::string cert_path = "/etc/coolwsd/";
+    std::string cert_path = "/etc/loolwsd/";
     for (int i = 1; i < argc; ++i)
     {
         const std::string arg(argv[i]);
@@ -306,7 +306,7 @@ std::set<pid_t> getForKitPids()
     return pids;
 }
 
-/// How many live coolkit processes do we have ?
+/// How many live loolkit processes do we have ?
 int getCoolKitProcessCount()
 {
     return getKitPids().size();

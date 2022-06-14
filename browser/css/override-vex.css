@@ -48,13 +48,13 @@
 	font-size: 0.78em;
 }
 /* dialog shown when user is idle */
-.vex-open .cool-user-idle {
+.vex-open .lool-user-idle {
 	background: var(--color-background-lighter) !important;
 	font-size: xx-large !important;
 	color: var(--color-main-text) !important;
 	text-align: center !important;
 }
-.vex-open .cool-user-idle .vex-dialog-buttons {
+.vex-open .lool-user-idle .vex-dialog-buttons {
 	display: none !important;
 }
 .vex-open .loleaflet-user-idle .title {

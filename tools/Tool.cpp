@@ -100,7 +100,7 @@ public:
         else
             session = new Poco::Net::HTTPClientSession(uri.getHost(), uri.getPort());
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/cool/convert-to");
+        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/lool/convert-to");
 
         try {
             Poco::Net::HTMLForm form;
@@ -109,7 +109,7 @@ public:
             form.addPart("data", new Poco::Net::FilePartSource(document));
             form.prepareSubmit(request);
 
-            // If this results in a Poco::Net::ConnectionRefusedException, coolwsd is not running.
+            // If this results in a Poco::Net::ConnectionRefusedException, loolwsd is not running.
             form.write(session->sendRequest(request));
         }
         catch (const Poco::Exception &e)

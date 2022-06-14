@@ -329,7 +329,7 @@ public:
     std::string query(const std::string& command);
     std::string getAllHistory() const;
 
-    /// Returns memory consumed by all active coolkit processes
+    /// Returns memory consumed by all active loolkit processes
     unsigned getKitsMemoryUsage();
     size_t getKitsJiffies();
 

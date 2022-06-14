@@ -95,7 +95,7 @@ L.Control.UserList = L.Control.extend({
 		$(document).on('click', '#' + content.id, this.onUseritemClicked.bind(this));
 
 		var iconTd = L.DomUtil.create('td', 'usercolor', content);
-		var nameTd = L.DomUtil.create('td', 'username cool-font', content);
+		var nameTd = L.DomUtil.create('td', 'username lool-font', content);
 
 		iconTd.appendChild(L.control.createAvatar(viewId, userName, extraInfo, color));
 		nameTd.textContent = userName;
@@ -270,7 +270,7 @@ L.Control.UserList = L.Control.extend({
 		if (showPopup) {
 			$('#tb_actionbar_item_userlist')
 				.w2overlay({
-					class: 'cool-font',
+					class: 'lool-font',
 					html: this.options.userJoinedPopupMessage.replace('%user', username),
 					style: 'padding: 5px'
 				});
@@ -309,7 +309,7 @@ L.Control.UserList = L.Control.extend({
 		var username = this.escapeHtml(e.username);
 		$('#tb_actionbar_item_userlist')
 			.w2overlay({
-				class: 'cool-font',
+				class: 'lool-font',
 				html: this.options.userLeftPopupMessage.replace('%user', username),
 				style: 'padding: 5px'
 			});
@@ -340,7 +340,7 @@ L.control.userList = function () {
 
 L.control.createUserListWidget = function () {
 	return '<div id="userlist_container"><table id="userlist_table"><tbody></tbody></table>' +
-		'<hr><table class="cool-font" id="editor-btn">' +
+		'<hr><table class="lool-font" id="editor-btn">' +
 		'<tr>' +
 		'<td><label id="follow-container"><input type="checkbox" name="alwaysFollow" id="follow-checkbox" onclick="editorUpdate(event)"><span class="checkmark"></span></label></td>' +
 		'<td>' + _('Always follow the editor') + '</td>' +

@@ -11,7 +11,7 @@
  * The ProxyProtocol creates a web-socket like connection over HTTP
  * requests. URLs are formed like this:
  *      0              1           2      3          4         5
- *   /cool/<encoded-document-url>/ws/<session-id>/<command>/<serial>
+ *   /lool/<encoded-document-url>/ws/<session-id>/<command>/<serial>
  * <session-id> can be 'unknown'
  * <command> can be 'open', 'write', 'wait', or 'close'
  */

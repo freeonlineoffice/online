@@ -29,7 +29,7 @@ add_library(androidapp SHARED
             ../../../../../wsd/Storage.cpp
             ../../../../../wsd/TileCache.cpp)
 
-target_compile_definitions(androidapp PRIVATE COOLWSD_CONFIGDIR="/assets/etc/coolwsd")
+target_compile_definitions(androidapp PRIVATE COOLWSD_CONFIGDIR="/assets/etc/loolwsd")
 
 # According to the ABI, we need to use different source trees
 if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
@@ -58,7 +58,7 @@ target_include_directories(androidapp PRIVATE
                            .                     # path to androidapp.h
 			   @abs_top_builddir@    # path to config.h
 			   @abs_top_srcdir@
-                           ../../../../../common # the needed coolwsd includes
+                           ../../../../../common # the needed loolwsd includes
                            ../../../../../kit
                            ../../../../../net
                            ../../../../../wsd

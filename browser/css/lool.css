@@ -1,8 +1,8 @@
 :root {
 	/*All used fonts (except w2ui)
 	----------------------------------*/
-	--cool-font: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
-	/*investigate what are the drawback in consisntly use --cool-fonts
+	--lool-font: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+	/*investigate what are the drawback in consisntly use --lool-fonts
 	for vex, jquery-ui and perhaps mobile*/
 	--mobile-font: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
 	--vex-font: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
@@ -68,7 +68,7 @@
 .bucket-cursor {
 	cursor: url('images/cursors/fill.png') 4 9, auto !important;/*setting coordinates to align the tip of the bucket icon */
 }
-.cool-scrollbar-show {
+.lool-scrollbar-show {
 	opacity: 1 !important;
 	filter: 'alpha(opacity=100)' !important;
 	-ms-filter: 'alpha(opacity=100)' !important;
@@ -274,8 +274,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	transform: rotate(45deg);
 }
 
-.cool-font {
-	font-family: var(--cool-font) !important;
+.lool-font {
+	font-family: var(--lool-font) !important;
 	font-size: var(--default-font-size) !important;
 	font-weight: normal !important;
 	padding: 3px 5px 3px 3px;
@@ -293,13 +293,13 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	color: var(--color-main-text);
 }
 
-.cool-character {
+.lool-character {
 	table-layout: fixed;
 	font: 17px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	text-align: center;
 }
 
-.cool-character td {
+.lool-character td {
 	width: 20px;
 }
 
@@ -314,23 +314,23 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	outline: none;
 }
 
-.cool-scrolled {
+.lool-scrolled {
 	overflow: auto;
 }
 
-.cool-mobile-container {
+.lool-mobile-container {
 	top: 30px;
 	margin: 0;
 	width: 1px;
 	opacity: 0;
 }
 
-.cool-context-down {
+.lool-context-down {
 	border: 1px solid var(--color-border-dark);
 	background-color: var(--color-background-dark);
 }
 
-.cool-mobile-input {
+.lool-mobile-input {
 	width: 1px;
 	padding: 0px;
 	border: 0px;
@@ -339,7 +339,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 /* Important to override context-menu-icon's font-family here otherwise, jquery-contextmenu.css
  * will try to load its own font file which is not available in dist/ */
 .context-menu-icon::before {
-	font-family: var(--cool-font) !important;
+	font-family: var(--lool-font) !important;
 	content: '\2713';
 	color: var(--color-main-text) !important;
 }
@@ -360,7 +360,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-color: transparent transparent transparent var(--color-background-lighter);
 }
 
-.cool-annotation {
+.lool-annotation {
 	position: absolute;
 	text-align: center;
 	user-select: text;
@@ -370,27 +370,27 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	z-index: 10;
 }
 
-.cool-annotation:not(annotation-active) .cool-annotation-collapsed{
+.lool-annotation:not(annotation-active) .lool-annotation-collapsed{
 	position: absolute;
 	left: 24px;
 }
-.cool-annotation.annotation-active:not(.rtl) .cool-annotation-collapsed{
+.lool-annotation.annotation-active:not(.rtl) .lool-annotation-collapsed{
 	position: absolute;
 	left: 0 !important;
 }
-.cool-annotation.annotation-active.rtl .cool-annotation-collapsed{
+.lool-annotation.annotation-active.rtl .lool-annotation-collapsed{
 	position: absolute;
 	left: 48px !important;
 }
 
-#document-container > .cool-annotation:hover .cool-annotation-collapsed{
+#document-container > .lool-annotation:hover .lool-annotation-collapsed{
 	box-shadow: 0 0 3px 0 rgb(0 0 0 / 50%), 0 0 10px 4px rgb(0 0 0 / 10%);
 	cursor: pointer;
 }
 
-.cool-annotation-content-wrapper, .cool-annotation-redline-content-wrapper {
+.lool-annotation-content-wrapper, .lool-annotation-redline-content-wrapper {
 	padding: 8px;
-	font-family: var(--cool-font) !important;
+	font-family: var(--lool-font) !important;
 	font-size: var(--default-font-size);
 	text-align: left;
 	background-color: var(--color-background-lighter);
@@ -400,29 +400,29 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-radius: var(--border-radius);
 	width: var(--annotation-input-size);
 }
-.cool-annotation-content-wrapper:hover, .cool-annotation-redline-content-wrapper:hover {
+.lool-annotation-content-wrapper:hover, .lool-annotation-redline-content-wrapper:hover {
 	background-color: var(--color-background-dark);
 	color: var(--color-text-dark);
 }
 
-.annotation-active.modify-annotation-container .cool-annotation-content-wrapper,
-.annotation-active.reply-annotation-container .cool-annotation-content-wrapper,
-.cool-annotation-collapsed.modalpopup {
+.annotation-active.modify-annotation-container .lool-annotation-content-wrapper,
+.annotation-active.reply-annotation-container .lool-annotation-content-wrapper,
+.lool-annotation-collapsed.modalpopup {
 	width: var(--annotation-input-size);
 }
 
-.cool-annotation-content {
+.lool-annotation-content {
 	margin: 3px;
 	line-height: 1.4;
 	max-height: var(--annotation-input-size);
 	overflow: auto;
 }
 
-.cool-annotation-reply-count-collapsed {
+.lool-annotation-reply-count-collapsed {
 	background-color: var(--color-primary);
 	color: var(--color-primary-text);
 	font-weight: bold;
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	font-size: 20px;
 	border: 1px solid var(--color-primary);
 	border-radius: 50%;
@@ -438,7 +438,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	z-index: 0;
 }
 
-.cool-annotation-collapsed {
+.lool-annotation-collapsed {
 	background: var(--color-background-lighter);
 	border-radius: 50%;
 	width: 36px;
@@ -446,11 +446,11 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	box-shadow: 0 0 3px 5px var(--color-background-lighter), 0 0 1px 5px var(--color-box-shadow);
 }
 
-.annotation-active .cool-annotation-collapsed {
+.annotation-active .lool-annotation-collapsed {
 	box-shadow: 0 0 3px 5px var(--color-background-lighter), 0 0 1px 5px var(--color-box-shadow);
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup {
+.jsdialog-container.lool-annotation-collapsed.modalpopup {
 	border-radius: 8px !important;
 	border: 1px solid var(--color-border) !important;
 	background: var(--color-background-lighter) !important;
@@ -460,23 +460,23 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	background-color: var(--color-background-lighter) !important;
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup .lokdialog.ui-dialog-content {
+.jsdialog-container.lool-annotation-collapsed.modalpopup .lokdialog.ui-dialog-content {
 	background-color: transparent !important;
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup .cool-annotation {
+.jsdialog-container.lool-annotation-collapsed.modalpopup .lool-annotation {
 	margin-bottom: 16px;
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup .cool-annotation:last-of-type {
+.jsdialog-container.lool-annotation-collapsed.modalpopup .lool-annotation:last-of-type {
 	margin-bottom: 8px;
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup .cool-annotation:first-of-type {
+.jsdialog-container.lool-annotation-collapsed.modalpopup .lool-annotation:first-of-type {
 	margin-top: 8px;
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup .cool-annotation-content-wrapper {
+.jsdialog-container.lool-annotation-collapsed.modalpopup .lool-annotation-content-wrapper {
 	box-shadow: none;
 	border-width: 0px 0px 1px !important;
 	border-bottom: 1px solid var(--color-border) !important;
@@ -484,12 +484,12 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	background: var(--color-background-lighter);
 }
 
-.jsdialog-container.cool-annotation-collapsed.modalpopup [id^='comment-container-']:last-child > .cool-annotation-content-wrapper{
+.jsdialog-container.lool-annotation-collapsed.modalpopup [id^='comment-container-']:last-child > .lool-annotation-content-wrapper{
 	border-width: 0 !important;
 }
 
 
-.cool-dont-break {
+.lool-dont-break {
 	/* These are technically the same, but use both */
 	overflow-wrap: break-word;
 	word-wrap: break-word;
@@ -504,23 +504,23 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	hyphens: auto;
 }
 
-.cool-annotation-content-author {
+.lool-annotation-content-author {
 	margin: 0;
 	margin-top: 2px;
 	height: 18px;
 }
 
-.cool-annotation-content-resolved {
+.lool-annotation-content-resolved {
 	color: var(--color-success);
 }
 
-.cool-annotation-edit {
+.lool-annotation-edit {
 	margin: 3px;
 	line-height: 1.4;
 }
 
-.cool-annotation-textarea {
-	font-family: var(--cool-font) !important;
+.lool-annotation-textarea {
+	font-family: var(--lool-font) !important;
 	font-size: var(--default-font-size);
 	border: 1px solid var(--color-border);
 	background-color: var(--color-background-dark);
@@ -530,24 +530,24 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	box-sizing: border-box;
 }
 
-#new-mobile-comment-input-area.cool-annotation-textarea {
+#new-mobile-comment-input-area.lool-annotation-textarea {
 	height: var(--annotation-input-size);
 }
 
-.cool-div-layer {
+.lool-div-layer {
 	position: absolute;
 	left: 0;
 	top: 0;
 }
 
-.cool-annotation-table {
+.lool-annotation-table {
 	border-spacing: 0;
 	border-collapse: separate;
 	white-space: nowrap;
 	width: 100%;
 }
 
-.cool-annotation-img {
+.lool-annotation-img {
 	box-sizing: content-box !important;
 	max-width: 32px;
 	display: inline-block;
@@ -557,10 +557,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	width: 32px;
 	padding: 0;
 }
-.cool-annotation-img .avatar-img{
+.lool-annotation-img .avatar-img{
 	border: none;
 }
-.cool-annotation-img > .avatar-img{
+.lool-annotation-img > .avatar-img{
 	display: block;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -586,7 +586,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	margin: auto;
 }
 
-.cool-annotation-author {
+.lool-annotation-author {
 	padding-left: 10px;
 	padding-right: 10px;
 	vertical-align: top;
@@ -596,7 +596,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	max-width: 110px;
 }
 
-.cool-annotation-menu, .cool-annotation-menu-redline, .cool-redline-accept-button, .cool-redline-reject-button {
+.lool-annotation-menu, .lool-annotation-menu-redline, .lool-redline-accept-button, .lool-redline-reject-button {
 	margin: 0;
 	padding: 0;
 	width: 24px;
@@ -606,27 +606,27 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	display: inline-block;
 }
 
-.cool-redline-accept-button {
+.lool-redline-accept-button {
 	background: url('images/lc_accepttrackedchanges.svg') no-repeat center !important;
 }
 
-.cool-redline-reject-button {
+.lool-redline-reject-button {
 	background: url('images/lc_rejecttrackedchange.svg') no-repeat center !important;
 }
 
-.cool-annotation-menu, .cool-annotation-menu-redline {
+.lool-annotation-menu, .lool-annotation-menu-redline {
 	background: url('images/submenu.svg') no-repeat center/contain !important;
 }
 
-.cool-annotation-menu:hover, .cool-annotation-menu-redline:hover, .cool-redline-accept-button:hover, .cool-redline-reject-button:hover {
+.lool-annotation-menu:hover, .lool-annotation-menu-redline:hover, .lool-redline-accept-button:hover, .lool-redline-reject-button:hover {
 	border: 1px solid var(--color-border-darker);
 }
 
-.cool-annotation-date {
+.lool-annotation-date {
 	font-size: var(--default-font-size);
 }
 
-.cool-annotation-menubar {
+.lool-annotation-menubar {
 	margin: 0;
 	padding: 0;
 	vertical-align: top;
@@ -638,7 +638,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	transition: all 0.1s ease 0.5s;
 	visibility: visible;
 }
-.cool-annotation-collapsed [data-title]:hover:after {
+.lool-annotation-collapsed [data-title]:hover:after {
 	position: static;
 	float: right;
 	margin-top: 22px;
@@ -654,8 +654,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-color: var(--color-border-darker);
 	visibility: hidden;
 }
-.cool-ruler-left[data-title]:after,
-.cool-ruler-right[data-title]:after {
+.lool-ruler-left[data-title]:after,
+.lool-ruler-right[data-title]:after {
 	bottom: -2.8em;
 	left: auto;
 }
@@ -663,11 +663,11 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	position: relative;
 }
 
-.cool-annotation-caption {
+.lool-annotation-caption {
 	font-weight: bold;
 }
 
-.cool-bar {
+.lool-bar {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
 	border-radius: var(--border-radius);
 	display: inline-block;
@@ -675,8 +675,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	vertical-align: middle;
 }
 
-.cool-bar a,
-.cool-bar a:hover {
+.lool-bar a,
+.lool-bar a:hover {
 	background-color: var(--color-background-lighter);
 	border-bottom: 1px solid var(--color-border);
 	width: 30px;
@@ -688,28 +688,28 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	color: var(--color-main-text);
 }
 
-.cool-bar a:hover {
+.lool-bar a:hover {
 	background-color: var(--color-background-darker);
 }
 
-.cool-bar a:first-child {
+.lool-bar a:first-child {
 	border-top-left-radius: var(--border-radius);
 	border-top-right-radius: var(--border-radius);
 }
 
-.cool-bar a:last-child {
+.lool-bar a:last-child {
 	border-bottom-left-radius: var(--border-radius);
 	border-bottom-right-radius: var(--border-radius);
 	border-bottom: none;
 }
 
-.cool-bar a.leaflet-disabled {
+.lool-bar a.leaflet-disabled {
 	cursor: default;
 	background-color: var(--color-background-lighter);
 	color: var(--color-text-lighter);
 }
 
-.cool-bar a {
+.lool-bar a {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	display: block;
@@ -718,8 +718,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	line-height: 30px;
 }
 
-.cool-control-scroll-up,
-.cool-control-scroll-down {
+.lool-control-scroll-up,
+.lool-control-scroll-down {
 	font: bold 18px 'Lucida Console', Monaco, monospace;
 	text-indent: 1px;
 }

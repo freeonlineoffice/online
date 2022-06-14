@@ -17,13 +17,13 @@
 /* Default host used in the start test URI */
 #define COOLWSD_TEST_HOST "localhost"
 
-/* Default cool UI used in the admin console URI */
+/* Default lool UI used in the admin console URI */
 #define COOLWSD_TEST_ADMIN_CONSOLE "/browser/dist/admin/admin.html"
 
-/* Default cool UI used in for monitoring URI */
-#define COOLWSD_TEST_METRICS "/cool/getMetrics"
+/* Default lool UI used in for monitoring URI */
+#define COOLWSD_TEST_METRICS "/lool/getMetrics"
 
-/* Default cool UI used in the start test URI */
+/* Default lool UI used in the start test URI */
 #define COOLWSD_TEST_COOL_UI "/browser/" COOLWSD_VERSION_HASH "/debug.html"
 
 /* Default document used in the start test URI */
@@ -35,7 +35,7 @@
 /* Default ciphers used, when not specified otherwise */
 #define DEFAULT_CIPHER_SET "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
 
-// This is the main source for the coolwsd program. COOL uses several coolwsd processes: one main
+// This is the main source for the loolwsd program. COOL uses several loolwsd processes: one main
 // parent process that listens on the TCP port and accepts connections from COOL clients, and a
 // number of child processes, each which handles a viewing (editing) session for one document.
 
@@ -868,7 +868,7 @@ std::string COOLWSD::FileServerRoot;
 std::string COOLWSD::ServiceRoot;
 std::string COOLWSD::TmpFontDir;
 std::string COOLWSD::LOKitVersion;
-std::string COOLWSD::ConfigFile = COOLWSD_CONFIGDIR "/coolwsd.xml";
+std::string COOLWSD::ConfigFile = COOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string COOLWSD::ConfigDir = COOLWSD_CONFIGDIR "/conf.d";
 bool COOLWSD::EnableTraceEventLogging = false;
 FILE *COOLWSD::TraceEventFile = NULL;
@@ -989,7 +989,7 @@ void ForKitProcWSHandler::handleMessage(const std::vector<char> &data)
         if (count >= 0)
         {
             Admin::instance().addSegFaultCount(count);
-            LOG_INF(count << " coolkit processes crashed with segmentation fault.");
+            LOG_INF(count << " loolkit processes crashed with segmentation fault.");
         }
         else
         {
@@ -1047,7 +1047,7 @@ public:
         {
             if (remoteServerURI.empty())
             {
-                LOG_INF("Remote " << expectedKind << " is not specified in coolwsd.xml");
+                LOG_INF("Remote " << expectedKind << " is not specified in loolwsd.xml");
                 return; // no remote config server setup.
             }
 #if !ENABLE_DEBUG
@@ -1235,7 +1235,7 @@ public:
                 newAppConfig.insert(std::make_pair(path + "[@allow]", booleanToString(allow)));
             }
 
-            //if number of wopi host patterns defined in coolwsd.xml are greater than number of host
+            //if number of wopi host patterns defined in loolwsd.xml are greater than number of host
             //fetched from json, overwrite the remaining host from config file to empty strings and
             //set allow to false
             for (;; ++i)
@@ -1294,7 +1294,7 @@ public:
                                                    booleanToString(disabledCommands)));
             }
 
-            //if number of locked wopi host patterns defined in coolwsd.xml are greater than number of host
+            //if number of locked wopi host patterns defined in loolwsd.xml are greater than number of host
             //fetched from json, overwrite the remaining host from config file to empty strings and
             //set read_only and disabled_commands to false
             for (;; ++i)
@@ -1715,7 +1715,7 @@ void COOLWSD::innerInitialize(Application& self)
 #if !MOBILEAPP
     if (geteuid() == 0 && CheckCoolUser)
     {
-        throw std::runtime_error("Do not run as root. Please run as cool user.");
+        throw std::runtime_error("Do not run as root. Please run as lool user.");
     }
 #endif
 
@@ -1735,9 +1735,9 @@ void COOLWSD::innerInitialize(Application& self)
     // update their config files, and we are backward compatible.
     // These defaults should be the same
     // 1) here
-    // 2) in the 'default' attribute in coolwsd.xml, which is for documentation
+    // 2) in the 'default' attribute in loolwsd.xml, which is for documentation
     // 3) the default parameter of getConfigValue() call. That is used when the
-    //    setting is present in coolwsd.xml, but empty (i.e. use the default).
+    //    setting is present in loolwsd.xml, but empty (i.e. use the default).
     static const std::map<std::string, std::string> DefAppConfig = {
         { "allowed_languages", "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru" },
         { "admin_console.enable_pam", "false" },
@@ -1751,7 +1751,7 @@ void COOLWSD::innerInitialize(Application& self)
         { "logging.anonymize.usernames", "false" }, // Deprecated.
         // { "logging.anonymize.anonymize_user_data", "false" }, // Do not set to fallback on filename/username.
         { "logging.color", "true" },
-        { "logging.file.property[0]", "coolwsd.log" },
+        { "logging.file.property[0]", "loolwsd.log" },
         { "logging.file.property[0][@name]", "path" },
         { "logging.file.property[1]", "never" },
         { "logging.file.property[1][@name]", "rotation" },
@@ -1994,7 +1994,7 @@ void COOLWSD::innerInitialize(Application& self)
     }
 
     ServerName = config().getString("server_name");
-    LOG_INF("Initializing coolwsd server [" << ServerName << "]. Experimental features are "
+    LOG_INF("Initializing loolwsd server [" << ServerName << "]. Experimental features are "
                                             << (EnableExperimental ? "enabled." : "disabled."));
 
     // Get anonymization settings.
@@ -2037,11 +2037,11 @@ void COOLWSD::innerInitialize(Application& self)
         else
         {
             static const char failure[] = "Anonymization and trace-level logging are incompatible. "
-                "Please reduce logging level to debug or lower in coolwsd.xml to prevent leaking sensitive user data.";
+                "Please reduce logging level to debug or lower in loolwsd.xml to prevent leaking sensitive user data.";
             LOG_FTL(failure);
             std::cerr << '\n' << failure << std::endl;
 #if ENABLE_DEBUG
-            std::cerr << "\nIf you have used 'make run', edit coolwsd.xml and make sure you have removed "
+            std::cerr << "\nIf you have used 'make run', edit loolwsd.xml and make sure you have removed "
                          "'--o:logging.level=trace' from the command line in Makefile.am.\n" << std::endl;
 #endif
             Log::shutdown();
@@ -2082,7 +2082,7 @@ void COOLWSD::innerInitialize(Application& self)
             LOG_WRN("Invalid listen address: " << listen << ". Falling back to default: 'any'" );
     }
 
-    // Prefix for the coolwsd pages; should not end with a '/'
+    // Prefix for the loolwsd pages; should not end with a '/'
     ServiceRoot = getPathFromConfig("net.service_root");
     while (ServiceRoot.length() > 0 && ServiceRoot[ServiceRoot.length() - 1] == '/')
         ServiceRoot.pop_back();
@@ -2259,8 +2259,8 @@ void COOLWSD::innerInitialize(Application& self)
 
     if (supportKeyString.empty())
     {
-        LOG_WRN("Support key not set, please use 'coolconfig set-support-key'.");
-        std::cerr << "Support key not set, please use 'coolconfig set-support-key'." << std::endl;
+        LOG_WRN("Support key not set, please use 'loolconfig set-support-key'.");
+        std::cerr << "Support key not set, please use 'loolconfig set-support-key'." << std::endl;
         COOLWSD::OverrideWatermark = "Unsupported, the support key is missing.";
     }
     else
@@ -2269,8 +2269,8 @@ void COOLWSD::innerInitialize(Application& self)
 
         if (!key.verify())
         {
-            LOG_WRN("Invalid support key, please use 'coolconfig set-support-key'.");
-            std::cerr << "Invalid support key, please use 'coolconfig set-support-key'." << std::endl;
+            LOG_WRN("Invalid support key, please use 'loolconfig set-support-key'.");
+            std::cerr << "Invalid support key, please use 'loolconfig set-support-key'." << std::endl;
             COOLWSD::OverrideWatermark = "Unsupported, the support key is invalid.";
         }
         else
@@ -2278,8 +2278,8 @@ void COOLWSD::innerInitialize(Application& self)
             int validDays =  key.validDaysRemaining();
             if (validDays <= 0)
             {
-                LOG_WRN("Your support key has expired, please ask for a new one, and use 'coolconfig set-support-key'.");
-                std::cerr << "Your support key has expired, please ask for a new one, and use 'coolconfig set-support-key'." << std::endl;
+                LOG_WRN("Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'.");
+                std::cerr << "Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'." << std::endl;
                 COOLWSD::OverrideWatermark = "Unsupported, the support key has expired.";
             }
             else
@@ -2526,7 +2526,7 @@ void COOLWSD::defineOptions(OptionSet& optionSet)
                         .required(false)
                         .repeatable(false));
 
-    optionSet.addOption(Option("disable-cool-user-checking", "", "Don't check whether coolwsd is running under the user 'cool'.  NOTE: This is insecure, use only when you know what you are doing!")
+    optionSet.addOption(Option("disable-lool-user-checking", "", "Don't check whether loolwsd is running under the user 'lool'.  NOTE: This is insecure, use only when you know what you are doing!")
                         .required(false)
                         .repeatable(false));
 
@@ -2603,7 +2603,7 @@ void COOLWSD::handleOption(const std::string& optionName,
         ClientPortNumber = std::stoi(value);
     else if (optionName == "disable-ssl")
         _overrideSettings["ssl.enable"] = "false";
-    else if (optionName == "disable-cool-user-checking")
+    else if (optionName == "disable-lool-user-checking")
         CheckCoolUser = false;
     else if (optionName == "override")
     {
@@ -2676,7 +2676,7 @@ bool COOLWSD::checkAndRestoreForKit()
         if (!SigUtil::getShutdownRequestFlag() && !SigUtil::getTerminationFlag() && !createForKit())
         {
             // Should never fail.
-            LOG_FTL("Setting ShutdownRequestFlag: Failed to spawn coolforkit.");
+            LOG_FTL("Setting ShutdownRequestFlag: Failed to spawn loolforkit.");
             SigUtil::requestShutdown();
         }
     }
@@ -2851,7 +2851,7 @@ bool COOLWSD::createForKit()
     args.push_back("-tt");
     args.push_back("-s");
     args.push_back("256");
-    args.push_back(parentPath + "coolforkit");
+    args.push_back(parentPath + "loolforkit");
 #elif VALGRIND_COOLFORKIT
     NoCapsForKit = true;
     NoSeccomp = true;
@@ -2860,8 +2860,8 @@ bool COOLWSD::createForKit()
     args.push_back("--trace-children=yes");
     args.push_back("--error-limit=no");
     args.push_back("--num-callers=128");
-    std::string nocapsCopy = parentPath + "coolforkit-nocaps";
-    FileUtil::copy(parentPath + "coolforkit", nocapsCopy, true, true);
+    std::string nocapsCopy = parentPath + "loolforkit-nocaps";
+    FileUtil::copy(parentPath + "loolforkit", nocapsCopy, true, true);
     args.push_back(nocapsCopy);
 #endif
     args.push_back("--losubpath=" + std::string(LO_JAIL_SUBPATH));
@@ -2893,7 +2893,7 @@ bool COOLWSD::createForKit()
     args.push_back("--ui=" + UserInterface);
 
     if (!CheckCoolUser)
-        args.push_back("--disable-cool-user-checking");
+        args.push_back("--disable-lool-user-checking");
 
     if (UnattendedRun)
         args.push_back("--unattended");
@@ -2908,7 +2908,7 @@ bool COOLWSD::createForKit()
 #elif VALGRIND_COOLFORKIT
     std::string forKitPath = "/usr/bin/valgrind";
 #else
-    std::string forKitPath = parentPath + "coolforkit";
+    std::string forKitPath = parentPath + "loolforkit";
 #endif
 
     // Always reap first, in case we haven't done so yet.
@@ -3436,7 +3436,7 @@ private:
                 FileServerRequestHandler::handleRequest(request, requestDetails, message, socket);
                 socket->shutdown();
             }
-            else if (requestDetails.equals(RequestDetails::Field::Type, "cool") &&
+            else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                      requestDetails.equals(1, "adminws"))
             {
                 // Admin connections
@@ -3449,7 +3449,7 @@ private:
                         });
                 }
             }
-            else if (requestDetails.equals(RequestDetails::Field::Type, "cool") &&
+            else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                      requestDetails.equals(1, "getMetrics"))
             {
                 // See metrics.txt
@@ -3509,7 +3509,7 @@ private:
             else if (requestDetails.isGet("/robots.txt"))
                 handleRobotsTxtRequest(request, socket);
 
-            else if (requestDetails.equals(RequestDetails::Field::Type, "cool") &&
+            else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                      requestDetails.equals(1, "clipboard"))
             {
 //              Util::dumpHex(std::cerr, socket->getInBuffer(), "clipboard:\n"); // lots of data ...
@@ -3519,15 +3519,15 @@ private:
             else if (requestDetails.isProxy() && requestDetails.equals(2, "ws"))
                 handleClientProxyRequest(request, requestDetails, message, disposition);
 
-            else if (requestDetails.equals(RequestDetails::Field::Type, "cool") &&
+            else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                      requestDetails.equals(2, "ws") && requestDetails.isWebSocket())
                 handleClientWsUpgrade(request, requestDetails, disposition, socket);
 
             else if (!requestDetails.isWebSocket() &&
-                     (requestDetails.equals(RequestDetails::Field::Type, "cool") ||
+                     (requestDetails.equals(RequestDetails::Field::Type, "lool") ||
                      requestDetails.equals(RequestDetails::Field::Type, "lool")))
             {
-                // All post requests have url prefix 'cool', except when the prefix
+                // All post requests have url prefix 'lool', except when the prefix
                 // is 'lool' e.g. when integrations use the old /lool/convert-to endpoint
                 handlePostRequest(requestDetails, request, message, disposition, socket);
             }
@@ -4481,7 +4481,7 @@ private:
 
         const std::string rootUriValue = "%SRV_URI%";
         const std::string uriBaseValue = rootUriValue + "/browser/" COOLWSD_VERSION_HASH "/";
-        const std::string uriValue = uriBaseValue + "cool.html?";
+        const std::string uriValue = uriBaseValue + "lool.html?";
 
         InputSource inputSrc(discoveryPath);
         DOMParser parser;
@@ -4550,7 +4550,7 @@ private:
         Poco::Dynamic::Var available = allowConvertTo(socket->clientAddress(), request);
         convert_to->set("available", available);
         if (available)
-            convert_to->set("endpoint", "/cool/convert-to");
+            convert_to->set("endpoint", "/lool/convert-to");
 
         Poco::JSON::Object::Ptr capabilities = new Poco::JSON::Object;
         capabilities->set("convert-to", convert_to);
@@ -4642,7 +4642,7 @@ class PrisonerSocketFactory final : public SocketFactory
 
 /// The main server thread.
 ///
-/// Waits for the connections from the cools, and creates the
+/// Waits for the connections from the lools, and creates the
 /// websockethandlers accordingly.
 class COOLWSDServer
 {
@@ -4683,7 +4683,7 @@ public:
         _acceptPoll.insertNewSocket(_serverSocket);
 
 #if MOBILEAPP
-        coolwsd_server_socket_fd = _serverSocket->getFD();
+        loolwsd_server_socket_fd = _serverSocket->getFD();
 #endif
 
         _serverSocket.reset();
@@ -4991,7 +4991,7 @@ int COOLWSD::innerMain()
 #endif
 
 #if !MOBILEAPP
-    // We use the same option set for both parent and child coolwsd,
+    // We use the same option set for both parent and child loolwsd,
     // so must check options required in the parent (but not in the
     // child) separately now. Also check for options that are
     // meaningless for the parent.
@@ -5300,7 +5300,7 @@ int COOLWSD::innerMain()
     int returnValue = EX_OK;
     UnitWSD::get().returnValue(returnValue);
 
-    LOG_INF("Process [coolwsd] finished with exit status: " << returnValue);
+    LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
 
     // At least on centos7, Poco deadlocks while
     // cleaning up its SSL context singleton.
@@ -5382,7 +5382,7 @@ int COOLWSD::main(const std::vector<std::string>& /*args*/)
 
     UnitWSD::get().returnValue(returnValue);
 
-    LOG_INF("Process [coolwsd] finished with exit status: " << returnValue);
+    LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
     return returnValue;
 }
 

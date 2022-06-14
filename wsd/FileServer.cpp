@@ -87,7 +87,7 @@ bool isPamAuthOk(const std::string& userProvidedUsr, const std::string& userProv
 
     localConversation.appdata_ptr = const_cast<char *>(userProvidedPwd.c_str());
 
-    retval = pam_start("coolwsd", userProvidedUsr.c_str(), &localConversation, &localAuthHandle);
+    retval = pam_start("loolwsd", userProvidedUsr.c_str(), &localConversation, &localAuthHandle);
 
     if (retval != PAM_SUCCESS)
     {
@@ -122,7 +122,7 @@ bool isPamAuthOk(const std::string& userProvidedUsr, const std::string& userProv
     return true;
 }
 
-/// Check for user / password set in coolwsd.xml.
+/// Check for user / password set in loolwsd.xml.
 bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userProvidedPwd)
 {
     const auto& config = Application::instance().config();
@@ -140,7 +140,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
         return false;
     }
 
-    const char useCoolconfig[] = " Use coolconfig to configure the admin password.";
+    const char useCoolconfig[] = " Use loolconfig to configure the admin password.";
 
     // do we have secure_password?
     if (config.has("admin_console.secure_password"))
@@ -543,8 +543,8 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 
         if (request.getMethod() == HTTPRequest::HTTP_POST && endPoint == "logging.html")
         {
-            const std::string coolLogging = config.getString("browser_logging", "false");
-            if (coolLogging != "false")
+            const std::string loolLogging = config.getString("browser_logging", "false");
+            if (loolLogging != "false")
             {
                 LOG_ERR(message.rdbuf());
 
@@ -565,7 +565,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             return;
         }
 
-        if (endPoint == "cool.html" ||
+        if (endPoint == "lool.html" ||
             endPoint == "help-localizations.json" ||
             endPoint == "localizations.json" ||
             endPoint == "locore-localizations.json" ||
@@ -652,8 +652,8 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 #if ENABLE_DEBUG
             if (std::getenv("COOL_SERVE_FROM_FS"))
             {
-                // Useful to not serve from memory sometimes especially during cool development
-                // Avoids having to restart cool everytime you make a change in cool
+                // Useful to not serve from memory sometimes especially during lool development
+                // Avoids having to restart lool everytime you make a change in lool
                 const std::string filePath = Poco::Path(COOLWSD::FileServerRoot, relPath).absolute().toString();
                 HttpHelper::sendFileAndShutdown(socket, filePath, mimeType, &response, noCache);
                 return;
@@ -816,7 +816,7 @@ void FileServerRequestHandler::readDirToHash(const std::string &basePath, const 
 
 void FileServerRequestHandler::initialize()
 {
-    // cool files
+    // lool files
     try {
         readDirToHash(COOLWSD::FileServerRoot, "/browser/dist");
     } catch (...) {
@@ -930,9 +930,9 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     LOG_DBG("Preprocessing file: " << relPath);
     std::string preprocess = *getUncompressedFile(relPath);
 
-    // We need to pass certain parameters from the cool html GET URI
+    // We need to pass certain parameters from the lool html GET URI
     // to the embedded document URI. Here we extract those params
-    // from the GET URI and set them in the generated html (see cool.html.m4).
+    // from the GET URI and set them in the generated html (see lool.html.m4).
     HTMLForm form(request, message);
     const std::string accessToken = form.get("access_token", "");
     const std::string accessTokenTtl = form.get("access_token_ttl", "");
@@ -949,7 +949,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     LOG_TRC("theme=" << theme);
 
     // Escape bad characters in access token.
-    // This is placed directly in javascript in cool.html, we need to make sure
+    // This is placed directly in javascript in lool.html, we need to make sure
     // that no one can do anything nasty with their clever inputs.
     std::string escapedAccessToken, escapedAccessHeader, escapedPostmessageOrigin;
     Poco::URI::encode(accessToken, "'", escapedAccessToken);
@@ -1038,8 +1038,8 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     Poco::replaceInPlace(preprocess, std::string("<!--%DOCUMENT_SIGNING_DIV%-->"), documentSigningDiv);
     Poco::replaceInPlace(preprocess, std::string("%DOCUMENT_SIGNING_URL%"), escapedDocumentSigningURL);
 
-    const auto coolLogging = stringifyBoolFromConfig(config, "browser_logging", false);
-    Poco::replaceInPlace(preprocess, std::string("%BROWSER_LOGGING%"), coolLogging);
+    const auto loolLogging = stringifyBoolFromConfig(config, "browser_logging", false);
+    Poco::replaceInPlace(preprocess, std::string("%BROWSER_LOGGING%"), loolLogging);
     const auto groupDownloadAs = stringifyBoolFromConfig(config, "per_view.group_download_as", false);
     Poco::replaceInPlace(preprocess, std::string("%GROUP_DOWNLOAD_AS%"), groupDownloadAs);
     const unsigned int outOfFocusTimeoutSecs = config.getUInt("per_view.out_of_focus_timeout_secs", 60);
@@ -1101,7 +1101,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
            "font-src 'self' data:; "
            "object-src 'self' blob:; ";
 
-    // Frame ancestors: Allow coolwsd host, wopi host and anything configured.
+    // Frame ancestors: Allow loolwsd host, wopi host and anything configured.
     std::string configFrameAncestor = config.getString("net.frame_ancestors", "");
     std::string frameAncestors = configFrameAncestor;
     Poco::URI uriHost(cnxDetails.getWebSocketUrl());

@@ -12,10 +12,10 @@ CAPABILITIES = $(if @ENABLE_SETCAP@,true,false)
 
 PARALLEL_SCRIPT = $(abs_srcdir)/run_parallel.sh
 
-PID_FILE=$(abs_builddir)/workdir/coolwsd.pid
+PID_FILE=$(abs_builddir)/workdir/loolwsd.pid
 ERROR_LOG=$(abs_builddir)/workdir/error.log
-COOLWSD_LOG=$(abs_builddir)/cypress/wsd_logs/coolwsd.log
-COOLWSD_OUTPUT=$(abs_builddir)/cypress/wsd_logs/coolwsd_output.log
+COOLWSD_LOG=$(abs_builddir)/cypress/wsd_logs/loolwsd.log
+COOLWSD_OUTPUT=$(abs_builddir)/cypress/wsd_logs/loolwsd_output.log
 
 SUPPORT_FILE_ABS = $(abs_srcdir)/support/index.js
 SUPPORT_FILE = $(if $(findstring $(abs_srcdir),$(abs_builddir)),support/index.js,$(SUPPORT_FILE_ABS))
@@ -102,7 +102,7 @@ $(PID_FILE): @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
 	$(if $(HEADLESS_BUILD),$(call start_Xvfb),)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 
 $(MOBILE_TEST_FILES_DONE): $(PID_FILE) $(DESKTOP_TEST_FILES_DONE)
 	$(if $(PARALLEL_BUILD),\
@@ -150,7 +150,7 @@ define run_JS_error_check
 	@echo
 endef
 
-define start_coolwsd
+define start_loolwsd
 	$(eval FREE_PORT:=$(shell $(GET_PORT_BINARY) --host=127.0.0.1 $(ALLOWED_PORTS)))
 	$(if $(findstring php-proxy, $(CYPRESS_INTEGRATION)),\
 		$(if $(findstring $(PHP_PROXY_PORT),$(FREE_PORT)),,$(error CypressError: $(PHP_PROXY_PORT) port is unavailable!)))
@@ -158,11 +158,11 @@ define start_coolwsd
 		$(if $(findstring $(NEXTCLOUD_PORT),$(FREE_PORT)),,$(error CypressError: $(NEXTCLOUD_PORT) port is unavailable!)))
 	@echo "Found available port for testing: $(FREE_PORT)"
 	@echo
-	@echo "Launching coolwsd..."
+	@echo "Launching loolwsd..."
 	@fc-cache "@LO_PATH@"/share/fonts/truetype
 	@echo
 	@mkdir -p $(dir $(COOLWSD_OUTPUT))
-	../coolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
+	../loolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
 			--o:child_root_path="@JAILS_PATH@" --o:storage.filesystem[@allow]=true \
 			--o:security.capabilities="$(CAPABILITIES)" \
 			--disable-ssl \
@@ -226,14 +226,14 @@ clean-local:
 check-mobile: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_mobile_tests,$(spec))
 	@$(KILL_COMMAND) || true
 
 run-mobile: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_interactive_mobile,$(spec)) || true
 	@$(KILL_COMMAND) || true
 
@@ -285,14 +285,14 @@ endef
 check-desktop: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_desktop_tests,$(spec))
 	@$(KILL_COMMAND) || true
 
 run-desktop: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_interactive_desktop,$(spec)) || true
 	@$(KILL_COMMAND) || true
 
@@ -343,7 +343,7 @@ endef
 check-multi: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(if $(spec), \
 		$(call run_multiuser_test,$(spec)), \
 		$(call run_all_multiuser_tests))
@@ -352,7 +352,7 @@ check-multi: @JAILS_PATH@ $(NODE_BINS)
 run-multi: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_interactive_multiuser,$(spec)) || true
 	@$(KILL_COMMAND) || true
 
@@ -411,7 +411,7 @@ do-interfer-mobile-check-log: do-interfer-mobile-check
 do-interfer-mobile-check: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(if $(spec), \
 		$(call run_mobile_interference_test,$(spec)), \
 		$(call run_mobile_interference_tests))
@@ -420,7 +420,7 @@ do-interfer-mobile-check: @JAILS_PATH@ $(NODE_BINS)
 run-interfer-mobile: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	@echo
 	@echo "Running interfer mobile test in interactive test runner..."
 	@echo
@@ -484,7 +484,7 @@ do-interfer-desktop-check-log: do-interfer-desktop-check
 do-interfer-desktop-check: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(if $(spec), \
 		$(call run_desktop_interference_test,$(spec)), \
 		$(call run_desktop_interference_tests))
@@ -493,7 +493,7 @@ do-interfer-desktop-check: @JAILS_PATH@ $(NODE_BINS)
 run-interfer-desktop: @JAILS_PATH@ $(NODE_BINS)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	@echo
 	@echo "Running interfer desktop test in interactive test runner..."
 	@echo
@@ -565,7 +565,7 @@ do-run-cov: @JAILS_PATH@ $(NODE_BINS)
 	@echo "Run all tests..."
 	@echo
 	$(call cleanup_before_run)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 	$(call run_desktop_tests,,,COVERAGE_RUN="1")
 	$(call run_mobile_tests,,,COVERAGE_RUN="1")
 	$(call run_all_multiuser_tests,COVERAGE_RUN="1")

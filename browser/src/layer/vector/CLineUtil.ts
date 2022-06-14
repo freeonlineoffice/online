@@ -11,7 +11,7 @@ namespace CLineUtil {
 	// Simplify polyline with vertex reduction and Douglas-Peucker simplification.
 	// Improves rendering performance dramatically by lessening the number of points to draw.
 
-	export function simplify(points: Array<cool.Point>, tolerance: number): Array<cool.Point> {
+	export function simplify(points: Array<lool.Point>, tolerance: number): Array<lool.Point> {
 		if (!tolerance || !points.length) {
 			return points.slice();
 		}
@@ -28,12 +28,12 @@ namespace CLineUtil {
 	}
 
 	// distance from a point to a segment between two points
-	function pointToSegmentDistance(p: cool.Point, p1: cool.Point, p2: cool.Point) {
+	function pointToSegmentDistance(p: lool.Point, p1: lool.Point, p2: lool.Point) {
 		return Math.sqrt(_sqDistToClosestPointOnSegment(p, p1, p2));
 	}
 
 	// Douglas-Peucker simplification, see http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm
-	function _simplifyDP(points: Array<cool.Point>, sqTolerance: number): Array<cool.Point> {
+	function _simplifyDP(points: Array<lool.Point>, sqTolerance: number): Array<lool.Point> {
 
 		var len = points.length;
 		var markers = typeof Uint8Array !== undefined + '' ? new Uint8Array(len) : Array<boolean>(len);
@@ -43,7 +43,7 @@ namespace CLineUtil {
 		_simplifyDPStep(points, markers, sqTolerance, 0, len - 1);
 
 		var i: number;
-		var newPoints = Array<cool.Point>();
+		var newPoints = Array<lool.Point>();
 
 		for (i = 0; i < len; i++) {
 			if (markers[i]) {
@@ -54,7 +54,7 @@ namespace CLineUtil {
 		return newPoints;
 	}
 
-	function _simplifyDPStep(points: Array<cool.Point>, markers: Uint8Array | Array<boolean>, sqTolerance: number, first: number, last: number) {
+	function _simplifyDPStep(points: Array<lool.Point>, markers: Uint8Array | Array<boolean>, sqTolerance: number, first: number, last: number) {
 
 		var maxSqDist = 0;
 		var index: number;
@@ -79,7 +79,7 @@ namespace CLineUtil {
 	}
 
 	// reduce points that are too close to each other to a single point
-	function _reducePoints(points: Array<cool.Point>, sqTolerance: number): Array<cool.Point> {
+	function _reducePoints(points: Array<lool.Point>, sqTolerance: number): Array<lool.Point> {
 		var reducedPoints = [points[0]];
 
 		for (var i = 1, prev = 0, len = points.length; i < len; i++) {
@@ -97,11 +97,11 @@ namespace CLineUtil {
 	// Cohen-Sutherland line clipping algorithm.
 	// Used to avoid rendering parts of a polyline that are not currently visible.
 
-	export function clipSegment(a: cool.Point, b: cool.Point, bounds: cool.Bounds, useLastCode: boolean, round: boolean): Array<cool.Point> {
+	export function clipSegment(a: lool.Point, b: lool.Point, bounds: lool.Bounds, useLastCode: boolean, round: boolean): Array<lool.Point> {
 		var codeA = useLastCode ? _lastCode : _getBitCode(a, bounds);
 		var codeB = _getBitCode(b, bounds);
 		var codeOut: number;
-		var p: cool.Point;
+		var p: lool.Point;
 		var newCode: number;
 
 		// save 2nd code to avoid calculating it on the next segment
@@ -131,7 +131,7 @@ namespace CLineUtil {
 		}
 	}
 
-	function _getEdgeIntersection(a: cool.Point, b: cool.Point, code: number, bounds: cool.Bounds, round: boolean): cool.Point {
+	function _getEdgeIntersection(a: lool.Point, b: lool.Point, code: number, bounds: lool.Bounds, round: boolean): lool.Point {
 		var dx = b.x - a.x;
 		var dy = b.y - a.y;
 		var min = bounds.min;
@@ -156,10 +156,10 @@ namespace CLineUtil {
 			y = a.y + dy * (min.x - a.x) / dx;
 		}
 
-		return new cool.Point(x, y, round);
+		return new lool.Point(x, y, round);
 	}
 
-	function _getBitCode(p: cool.Point, bounds: cool.Bounds): number {
+	function _getBitCode(p: lool.Point, bounds: lool.Bounds): number {
 		var code = 0;
 
 		if (p.x < bounds.min.x) { // left
@@ -178,14 +178,14 @@ namespace CLineUtil {
 	}
 
 	// square distance (to avoid unnecessary Math.sqrt calls)
-	function _sqDist(p1: cool.Point, p2: cool.Point): number {
+	function _sqDist(p1: lool.Point, p2: lool.Point): number {
 		var dx = p2.x - p1.x;
 		var dy = p2.y - p1.y;
 		return dx * dx + dy * dy;
 	}
 
 	// return closest point on segment or distance to that point
-	function _sqClosestPointOnSegment(p: cool.Point, p1: cool.Point, p2: cool.Point): cool.Point {
+	function _sqClosestPointOnSegment(p: lool.Point, p1: lool.Point, p2: lool.Point): lool.Point {
 		var x = p1.x;
 		var y = p1.y;
 		var dx = p2.x - x;
@@ -205,11 +205,11 @@ namespace CLineUtil {
 			}
 		}
 
-		return new cool.Point(x, y);
+		return new lool.Point(x, y);
 	}
 
 	// returns distance to closest point on segment.
-	function _sqDistToClosestPointOnSegment(p: cool.Point, p1: cool.Point, p2: cool.Point): number {
+	function _sqDistToClosestPointOnSegment(p: lool.Point, p1: lool.Point, p2: lool.Point): number {
 		return _sqDist(_sqClosestPointOnSegment(p, p1, p2), p);
 	}
 }

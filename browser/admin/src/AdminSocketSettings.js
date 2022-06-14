@@ -74,7 +74,7 @@ var AdminSocketSettings = AdminSocketBase.extend({
 				}
 			}
 		}
-		else if (textMsg.startsWith('coolserver ')) {
+		else if (textMsg.startsWith('loolserver ')) {
 			// This must be the first message, unless we reconnect.
 			var loolwsdVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
 			var h = loolwsdVersionObj.Hash;
@@ -83,7 +83,7 @@ var AdminSocketSettings = AdminSocketBase.extend({
 				$('#loolwsd-version').html(loolwsdVersionObj.Version + ' (git hash: ' + h + ')');
 			}
 			else {
-				$('#coolwsd-version').text(loolwsdVersionObj.Version);
+				$('#loolwsd-version').text(loolwsdVersionObj.Version);
 			}
 		}
 		else if (textMsg.startsWith('lokitversion ')) {

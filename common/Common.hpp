@@ -46,10 +46,10 @@ constexpr long READ_BUFFER_SIZE = 64 * 1024;
 constexpr int MAX_MESSAGE_SIZE = 2 * 1024 * READ_BUFFER_SIZE;
 
 constexpr const char JAILED_DOCUMENT_ROOT[] = "/tmp/user/docs/";
-constexpr const char CHILD_URI[] = "/coolws/child?";
-constexpr const char NEW_CHILD_URI[] = "/coolws/newchild";
+constexpr const char CHILD_URI[] = "/loolws/child?";
+constexpr const char NEW_CHILD_URI[] = "/loolws/newchild";
 constexpr const char LO_JAIL_SUBPATH[] = "lo";
-constexpr const char FORKIT_URI[] = "/coolws/forkit";
+constexpr const char FORKIT_URI[] = "/loolws/forkit";
 
 constexpr const char CAPABILITIES_END_POINT[] = "/hosting/capabilities";
 
@@ -60,7 +60,7 @@ constexpr const char UPLOADING_SUFFIX[] = "ing";
 
 /// A shared threadname suffix in both the WSD and Kit processes
 /// is highly helpful for filtering the logs for the same document
-/// by simply grepping for this shared suffix+ID. e.g. 'grep "broker_123" coolwsd.log'
+/// by simply grepping for this shared suffix+ID. e.g. 'grep "broker_123" loolwsd.log'
 /// Unfortunately grepping for only "_123" would include more noise than desirable.
 /// This also makes the threadname symmetric and the entries aligned.
 /// The choice of "broker" as the suffix is historic: it implies the controller
@@ -81,7 +81,7 @@ constexpr const char UPLOADING_SUFFIX[] = "ing";
 /// The HTTP response Server. Used only in Responses.
 #define HTTP_SERVER_STRING "COOLWSD HTTP Server " COOLWSD_VERSION
 
-/// The client port number, both coolwsd and the kits have this.
+/// The client port number, both loolwsd and the kits have this.
 extern int ClientPortNumber;
 extern std::string MasterLocation;
 

@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
 "URL hosta je prazan. Coolwsd server vjerovatno je pogrešno podešen, molim "
@@ -2137,7 +2137,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

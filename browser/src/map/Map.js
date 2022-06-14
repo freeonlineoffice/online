@@ -51,7 +51,7 @@ L.Map = L.Evented.extend({
 		// 256x256 pixels tile).Unless you know what you are doing, this should not be modified;
 		// this means twips value for 256 pixels at 96dpi.
 		tileHeightTwips: window.tileSize * 15,
-		urlPrefix: 'cool',
+		urlPrefix: 'lool',
 		wopiSrc: '',
 		cursorURL: L.LOUtil.getURL('cursors'),
 		// cursorURL
@@ -1439,7 +1439,7 @@ L.Map = L.Evented.extend({
 
 		vex.open({
 			unsafeContent: message,
-			contentClassName: 'cool-user-idle',
+			contentClassName: 'lool-user-idle',
 			afterOpen: function() {
 				var $vexContent = $(this.contentEl);
 				$vexContent.bind('click.vex', function() {
@@ -1450,9 +1450,9 @@ L.Map = L.Evented.extend({
 			showCloseButton: false
 		});
 
-		$('.vex-overlay').addClass('cool-user-idle-overlay');
+		$('.vex-overlay').addClass('lool-user-idle-overlay');
 		if (message === '')
-			$('.cool-user-idle').css('display', 'none');
+			$('.lool-user-idle').css('display', 'none');
 
 		this._doclayer && this._docLayer._onMessage('textselection:', null);
 		// window.app.console.debug('_dim: sending userinactive');
@@ -1587,7 +1587,7 @@ L.Map = L.Evented.extend({
 		else if (e.statusType === 'setvalue') {
 			this._progressBar.setValue(e.value);
 		}
-		else if (e.statusType === 'finish' || e.statusType === 'coolloaded' || e.statusType === 'reconnected') {
+		else if (e.statusType === 'finish' || e.statusType === 'loolloaded' || e.statusType === 'reconnected') {
 			this.hideBusy();
 		}
 	},

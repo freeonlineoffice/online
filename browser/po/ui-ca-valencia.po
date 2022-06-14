@@ -1825,10 +1825,10 @@ msgstr ""
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"L'URL del servidor és buit. Probablement el servidor coolwsd està mal "
+"L'URL del servidor és buit. Probablement el servidor loolwsd està mal "
 "configurat. Contacteu amb l'administrador."
 
 #: src/errormessages.js:15
@@ -2186,7 +2186,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

@@ -233,12 +233,12 @@ static bool haveCapability(cap_value_t capability)
     {
         if (cap_name)
         {
-            LOG_ERR("Capability " << cap_name << " is not set for the coolforkit program.");
+            LOG_ERR("Capability " << cap_name << " is not set for the loolforkit program.");
             cap_free(cap_name);
         }
         else
         {
-            LOG_ERR("Capability " << capability << " is not set for the coolforkit program.");
+            LOG_ERR("Capability " << capability << " is not set for the loolforkit program.");
         }
         return false;
     }
@@ -380,7 +380,7 @@ static int createLibreOfficeKit(const std::string& childRoot,
     // Used to label the spare kit instances
     static size_t spareKitId = 0;
     ++spareKitId;
-    LOG_DBG("Forking a coolkit process with jailId: " << jailId << " as spare coolkit #"
+    LOG_DBG("Forking a loolkit process with jailId: " << jailId << " as spare loolkit #"
                                                       << spareKitId << '.');
 
     const pid_t pid = fork();
@@ -388,7 +388,7 @@ static int createLibreOfficeKit(const std::string& childRoot,
     {
         // Child
 
-        // Close the pipe from coolwsd
+        // Close the pipe from loolwsd
         close(0);
 
 #ifndef KIT_IN_PROCESS
@@ -470,9 +470,9 @@ void forkLibreOfficeKit(const std::string& childRoot,
 #ifndef KIT_IN_PROCESS
 static void printArgumentHelp()
 {
-    std::cout << "Usage: coolforkit [OPTION]..." << std::endl;
+    std::cout << "Usage: loolforkit [OPTION]..." << std::endl;
     std::cout << "  Single-threaded process that spawns lok instances" << std::endl;
-    std::cout << "  Note: Running this standalone is not possible. It is spawned by coolwsd" << std::endl;
+    std::cout << "  Note: Running this standalone is not possible. It is spawned by loolwsd" << std::endl;
     std::cout << "        and is controlled via a pipe." << std::endl;
     std::cout << "" << std::endl;
 }
@@ -481,20 +481,20 @@ int main(int argc, char** argv)
 {
     /*WARNING: PRIVILEGED CODE CHECKING START */
 
-    /*WARNING*/ // early check for avoiding the security check for username 'cool'
+    /*WARNING*/ // early check for avoiding the security check for username 'lool'
     /*WARNING*/ // (deliberately only this, not moving the entire parameter parsing here)
     /*WARNING*/ bool checkCoolUser = true;
-    /*WARNING*/ std::string disableCoolUserChecking("--disable-cool-user-checking");
+    /*WARNING*/ std::string disableCoolUserChecking("--disable-lool-user-checking");
     /*WARNING*/ for (int i = 1; checkCoolUser && (i < argc); ++i)
     /*WARNING*/ {
     /*WARNING*/     if (disableCoolUserChecking == argv[i])
     /*WARNING*/         checkCoolUser = false;
     /*WARNING*/ }
 
-    /*WARNING*/ if (!hasCorrectUID("coolforkit"))
+    /*WARNING*/ if (!hasCorrectUID("loolforkit"))
     /*WARNING*/ {
     /*WARNING*/     // don't allow if any capability is set (unless root; who runs this
-    /*WARNING*/     // as root or runs this in a container and provides --disable-cool-user-checking knows what they
+    /*WARNING*/     // as root or runs this in a container and provides --disable-lool-user-checking knows what they
     /*WARNING*/     // are doing)
     /*WARNING*/     if (hasUID("root"))
     /*WARNING*/     {
@@ -507,31 +507,31 @@ int main(int argc, char** argv)
     /*WARNING*/     else if (hasAnyCapability())
     /*WARNING*/     {
     /*WARNING*/         if (!checkCoolUser)
-    /*WARNING*/             LOG_FTL("Security: --disable-cool-user-checking failed, coolforkit has some capabilities set.");
+    /*WARNING*/             LOG_FTL("Security: --disable-lool-user-checking failed, loolforkit has some capabilities set.");
 
     /*WARNING*/         LOG_FTL("Aborting.");
     /*WARNING*/         return EX_SOFTWARE;
     /*WARNING*/     }
 
     /*WARNING*/     // even without the capabilities, don't run unless the user really knows
-    /*WARNING*/     // what they are doing, and provided a --disable-cool-user-checking
+    /*WARNING*/     // what they are doing, and provided a --disable-lool-user-checking
     /*WARNING*/     if (checkCoolUser)
     /*WARNING*/     {
     /*WARNING*/         LOG_FTL("Aborting.");
     /*WARNING*/         return EX_SOFTWARE;
     /*WARNING*/     }
 
-    /*WARNING*/     LOG_ERR("Security: Check for the 'cool' username overridden on the command line.");
+    /*WARNING*/     LOG_ERR("Security: Check for the 'lool' username overridden on the command line.");
     /*WARNING*/ }
 
     /*WARNING: PRIVILEGED CODE CHECKING END */
 
     // Continue in privileged mode, but only if:
-    // * the user is 'cool' (privileged user)
-    // * the user is 'root', and --disable-cool-user-checking was provided
+    // * the user is 'lool' (privileged user)
+    // * the user is 'root', and --disable-lool-user-checking was provided
     // Alternatively allow running in non-privileged mode (with --nocaps), if:
     // * the user is a non-priviled user, the binary is not privileged
-    //   either (no caps set), and --disable-cool-user-checking was provided
+    //   either (no caps set), and --disable-lool-user-checking was provided
 
     if (std::getenv("SLEEPFORDEBUGGER"))
     {
@@ -611,7 +611,7 @@ int main(int argc, char** argv)
         {
             std::string version, hash;
             Util::getVersionInfo(version, hash);
-            std::cout << "coolforkit version details: " << version << " - " << hash << std::endl;
+            std::cout << "loolforkit version details: " << version << " - " << hash << std::endl;
             DisplayVersion = true;
         }
         else if (std::strstr(cmd, "--rlimits") == cmd)
@@ -693,7 +693,7 @@ int main(int argc, char** argv)
 
     if (!NoCapsForKit && !haveCorrectCapabilities())
     {
-        LOG_FTL("Capabilities are not set for the coolforkit program.");
+        LOG_FTL("Capabilities are not set for the loolforkit program.");
         LOG_FTL("Please make sure that the current partition was *not* mounted with the 'nosuid' option.");
         LOG_FTL("If you are on SLES11, please set 'file_caps=1' as kernel boot option.");
         return EX_SOFTWARE;

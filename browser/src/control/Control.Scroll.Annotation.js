@@ -14,7 +14,7 @@ L.Control.ScrollAnnotation = L.Control.extend({
 
 	onAdd: function (map) {
 		var scrollName = 'leaflet-control-scroll',
-		    container = L.DomUtil.create('div', 'cool-bar');
+		    container = L.DomUtil.create('div', 'lool-bar');
 
 		this._map = map;
 

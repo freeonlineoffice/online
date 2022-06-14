@@ -268,7 +268,7 @@ static constexpr std::size_t skipPathPrefix(const char (&s)[N], std::size_t n = 
 #ifdef __ANDROID__
 
 #define LOG_LOG(LOG, PRIO, LVL, STR)                                                               \
-    ((void)__android_log_print(ANDROID_LOG_DEBUG, "coolwsd", "%s %s", LVL, STR.c_str()))
+    ((void)__android_log_print(ANDROID_LOG_DEBUG, "loolwsd", "%s %s", LVL, STR.c_str()))
 
 #else
 

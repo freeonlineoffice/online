@@ -123,7 +123,7 @@ COOL_CSS_LST =\
 	$(srcdir)/css/selectionMarkers.css \
 	$(srcdir)/css/color-palette.css \
 	$(srcdir)/css/color-palette-dark.css \
-	$(srcdir)/css/cool.css \
+	$(srcdir)/css/lool.css \
 	$(srcdir)/css/toolbar.css \
 	$(srcdir)/css/toolbar-mobile.css \
 	$(srcdir)/css/partsPreviewControl.css \
@@ -391,7 +391,7 @@ INTERMEDIATE_DIR ?= $(if $(IS_SEPARATE),$(abs_builddir)/debug,$(abs_builddir)/re
 
 EXTRA_DIST = $(shell find . -type f -not -path './.git/*' -not -path './node_modules/*' | sed 's/.\///')
 
-define bundle_cool
+define bundle_lool
 	$(if $(IS_SEPARATE),\
 		@touch $@,
 		@m4 -PE -DIOSAPP=$(ENABLE_IOSAPP) \
@@ -401,17 +401,17 @@ define bundle_cool
 			-DVERSION=$(COOL_VERSION) \
 			-DCOPYRIGHT=$(srcdir)/src/copyright.js \
 			-DCOOL_JS=$(subst $(SPACE),$(COMMA),$(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(COOL_JS_WEBORDER))) \
-			$(srcdir)/cool-src.js.m4 > $@)
+			$(srcdir)/lool-src.js.m4 > $@)
 endef
 
-define prereq_cool
+define prereq_lool
 	$(if $(IS_SEPARATE),$(COOL_JS_DST),$(COOL_JS_SRC))
 endef
 
 define bundle_css
 	$(if $(IS_SEPARATE),\
 		@touch $@,\
-		@echo "Uglify cool css files..."
+		@echo "Uglify lool css files..."
 		@$(NODE) node_modules/uglifycss/uglifycss $(COOL_CSS) > $@)
 endef
 
@@ -422,11 +422,11 @@ endef
 define bundle_all
 	$(if $(IS_SEPARATE),\
 		@touch $@,\
-		@echo "Uglify cool js files..."
+		@echo "Uglify lool js files..."
 		@m4 -PE -DL10N_IOS_ALL_JS=$(L10N_IOS_ALL_JS) \
 			-DNODE_MODULES_JS=$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS)) \
 			-DCOOL_LIBS_JS=$(subst $(SPACE),$(COMMA),$(COOL_LIBS_JS_SRC)) \
-			-DCOOL_JS=$(INTERMEDIATE_DIR)/cool-src.js \
+			-DCOOL_JS=$(INTERMEDIATE_DIR)/lool-src.js \
 			$(srcdir)/bundle.js.m4 > $(INTERMEDIATE_DIR)/bundle.js
 		@$(NODE) node_modules/uglify-js/bin/uglifyjs \
 			$(INTERMEDIATE_DIR)/bundle.js \
@@ -445,9 +445,9 @@ define global_file
 		@$(NODE) node_modules/uglify-js/bin/uglifyjs $< --output $@)
 endef
 
-.PHONY: build-cool
+.PHONY: build-lool
 
-all-local: build-cool
+all-local: build-lool
 
 if !ENABLE_MOBILEAPP
 ADMIN_BUNDLE = $(DIST_FOLDER)/admin-bundle.js
@@ -457,7 +457,7 @@ $(TYPESCRIPT_JS_DIR)/%.js: $(srcdir)/%.ts
 	@mkdir -p $(dir $@)
 	$(builddir)/node_modules/typescript/bin/tsc --outFile $@ $<
 
-build-cool: \
+build-lool: \
 	$(COOL_L10N_DST) \
 	$(L10N_JSON) \
 	$(SRC_TS_JS_DST) \
@@ -472,7 +472,7 @@ build-cool: \
 	$(DIST_FOLDER)/device-desktop.css \
 	$(DIST_FOLDER)/bundle.js \
 	$(DIST_FOLDER)/lool.html
-	@echo "build cool completed"
+	@echo "build lool completed"
 if ENABLE_ANDROIDAPP
 	@if test -d "$(APP_BRANDING_DIR)" ; then cp -a "$(APP_BRANDING_DIR)/branding.css" "$(APP_BRANDING_DIR)/branding.js" $(DIST_FOLDER)/ ; else touch $(DIST_FOLDER)/branding.css ; fi
 	@if test -d "$(APP_BRANDING_DIR)" ; then cp -a "$(APP_BRANDING_DIR)"/images/*.svg $(DIST_FOLDER)/images/ ; fi
@@ -496,16 +496,16 @@ $(INTERMEDIATE_DIR)/admin-src.js: $(COOL_ADMIN_TS_JS) $(COOL_ADMIN_JS)
 	@$(NODE) node_modules/eslint/bin/eslint.js --resolve-plugins-relative-to $(abs_builddir) --ignore-path $(srcdir)/.eslintignore --config $(srcdir)/.eslintrc --no-eslintrc $(srcdir)/admin/src
 	@awk 'FNR == 1 {print ""} 1' $(COOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(COOL_ADMIN_JS)) > $@
 
-$(INTERMEDIATE_DIR)/cool-src.js: tscompile.done $(call prereq_cool) $(COOL_JS_DST)
+$(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(COOL_JS_DST)
 	@mkdir -p $(dir $@)
 	$(abs_top_srcdir)/scripts/unocommands.py --check $(abs_top_srcdir)
 	@printf "Checking for obsolete JS build intermediates in this makefile... "
 	@if ! test "z$(COOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(COOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
-	@echo "Checking for cool JS errors..."
+	@echo "Checking for lool JS errors..."
 	@$(NODE) node_modules/eslint/bin/eslint.js $(srcdir)/src --resolve-plugins-relative-to $(abs_builddir) \
 		$(srcdir)/js --ignore-path $(srcdir)/.eslintignore --no-eslintrc --config $(srcdir)/.eslintrc
-	@echo "Bundling cool..."
-	$(call bundle_cool)
+	@echo "Bundling lool..."
+	$(call bundle_lool)
 
 $(DIST_FOLDER)/bundle.css: $(call prereq_css)
 	@mkdir -p $(dir $@)
@@ -513,7 +513,7 @@ $(DIST_FOLDER)/bundle.css: $(call prereq_css)
 	@$(NODE) node_modules/stylelint/bin/stylelint.js --config $(srcdir)/.stylelintrc.json $(srcdir)/css/*.css
 	$(call bundle_css)
 
-$(DIST_FOLDER)/bundle.js: $(INTERMEDIATE_DIR)/cool-src.js $(call prereq_all)
+$(DIST_FOLDER)/bundle.js: $(INTERMEDIATE_DIR)/lool-src.js $(call prereq_all)
 	@mkdir -p $(dir $@)
 	$(call bundle_all)
 
@@ -521,13 +521,13 @@ $(DIST_FOLDER)/global.js: $(srcdir)/js/global.js
 	@mkdir -p $(dir $@)
 	$(call global_file)
 
-$(DIST_FOLDER)/cool.html: $(srcdir)/html/cool.html.m4 \
+$(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 	$(COOL_HTML_DST) \
 	$(COOL_WELCOME_DST) \
 	$(DIST_FOLDER)/bundle.css \
 	$(DIST_FOLDER)/global.js \
 	$(DIST_FOLDER)/bundle.js
-	@echo "Generating cool.html..."
+	@echo "Generating lool.html..."
 	m4 -PE -DBUNDLE=$(IS_BUNDLE) \
 		-DIOSAPP=$(ENABLE_IOSAPP) \
 		-DGTKAPP=$(ENABLE_GTKAPP) \
@@ -540,7 +540,7 @@ $(DIST_FOLDER)/cool.html: $(srcdir)/html/cool.html.m4 \
 		$(COOL_LIBS_JS) \
 		$(patsubst %.ts,%.js,$(COOL_JS_WEBORDER)))" \
 		-DVENDOR="$(VENDOR)" \
-		$(srcdir)/html/cool.html.m4 > $@
+		$(srcdir)/html/lool.html.m4 > $@
 
 node_modules: package.json archived-packages
 	@npm install
@@ -657,7 +657,7 @@ libs:
 	&& $(call npm_source,$(NODE_MODULES_SRC))
 
 pot:
-	xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --output=po/templates/cool-ui.pot \
+	xgettext --from-code=UTF-8 --language=JavaScript --keyword=_ --output=po/templates/lool-ui.pot \
 		admin/admin.strings.js \
 		admin/src/AdminSocketAnalytics.js \
 		admin/src/AdminSocketBase.js \
@@ -713,15 +713,15 @@ pot:
 		src/map/handler/Map.Keyboard.js \
 		src/map/handler/Map.WOPI.js
 
-	html2po --pot --input=html/cool-help.html --output=po/templates/cool-help.pot --duplicates=merge
+	html2po --pot --input=html/lool-help.html --output=po/templates/lool-help.pot --duplicates=merge
 	html2po --pot --input=welcome/welcome.html --output=po/templates/welcome.pot --duplicates=merge
-	$(srcdir)/util/appendwelcome.py po/templates/welcome.pot po/templates/cool-ui.pot
+	$(srcdir)/util/appendwelcome.py po/templates/welcome.pot po/templates/lool-ui.pot
 	rm po/templates/welcome.pot
-	msguniq -w 78 -t UTF-8 po/templates/cool-ui.pot > po/templates/cool-ui.pot.new; mv po/templates/cool-ui.pot.new po/templates/cool-ui.pot
+	msguniq -w 78 -t UTF-8 po/templates/lool-ui.pot > po/templates/lool-ui.pot.new; mv po/templates/lool-ui.pot.new po/templates/lool-ui.pot
 
 l10n: pot
-	for i in po/ui-*.po; do pot2po --input=po/templates/cool-ui.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
-	for i in po/help-*.po; do pot2po --input=po/templates/cool-help.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
+	for i in po/ui-*.po; do pot2po --input=po/templates/lool-ui.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
+	for i in po/help-*.po; do pot2po --input=po/templates/lool-help.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
 
 clean-local:
 	@rm -rf $(DIST_FOLDER)
@@ -730,7 +730,7 @@ clean-local:
 	@rm -f $(abs_srcdir)/jsconfig.json
 	@rm -f $(abs_srcdir)/admin/jsconfig.json
 
-CLEANFILES = tscompile.done $(INTERMEDIATE_DIR)/cool-src.js $(DIST_FOLDER)/bundle.css $(DIST_FOLDER)/bundle.js $(INTERMEDIATE_DIR)/cool-src.js
+CLEANFILES = tscompile.done $(INTERMEDIATE_DIR)/lool-src.js $(DIST_FOLDER)/bundle.css $(DIST_FOLDER)/bundle.js $(INTERMEDIATE_DIR)/lool-src.js
 
 ctags:
 	@$(CTAGS) --language-force=JavaScript $(COOL_JS_SRC) $(srcdir)/js/global.js
@@ -763,7 +763,7 @@ check-local: $(MOCHA_TS_JS_FILES)
 		exit 1; \
 	fi
 
-SSL_FLAG = `xmllint --xpath 'string(/config/ssl/enable)' $(abs_top_builddir)/coolwsd.xml`
+SSL_FLAG = `xmllint --xpath 'string(/config/ssl/enable)' $(abs_top_builddir)/loolwsd.xml`
 
 # the delay (in miliseconds) between each emulated key stroke for each view
 typing_speed=100

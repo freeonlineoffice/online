@@ -20,7 +20,7 @@
 	display: block;
 }
 #toolbar-down *{
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	color: var(--color-main-text);
 }
 #toolbar-down *:hover {
@@ -455,14 +455,14 @@ button.leaflet-control-search-next
 /* select box */
 .select2-results__option {
 	padding: 5px;
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	color: var(--color-main-text);
 	font-size: var(--default-font-size);
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .select2-selection__rendered {
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	font-size: var(--default-font-size);
 }
 .select2-container--default .select2-selection--single,
@@ -1152,7 +1152,7 @@ menu-entry-with-icon.padding-left + menu-entry-icon.width */
 	display: flex !important;
 	flex-grow: 1;
 	align-items: center;
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	padding-right: 12px;
 	margin-right: 10px;
 	margin-left: 10px;

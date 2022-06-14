@@ -7,7 +7,7 @@
 # Install some more fonts (I did not find open-sans-fonts in RHEL repos)
 # dnf install -y open-sans-fonts
 
-# Install cpio (missing dependency needed by coolwsd-systemplate-setup)
+# Install cpio (missing dependency needed by loolwsd-systemplate-setup)
 dnf install -y cpio
 
 # Install gnupg2
@@ -25,7 +25,7 @@ dnf install -y curl wget
 # Add Collabora repos
 wget https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/CODE-centos8/repodata/repomd.xml.key && rpm --import repomd.xml.key
 
-if [ "$type" == "cool" ] && [ -n ${secret_key+set} ]; then
+if [ "$type" == "lool" ] && [ -n ${secret_key+set} ]; then
     echo "Based on the provided build arguments Collabora Online from customer repo will be used."
     dnf config-manager --add-repo https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/${version:-21.11}/customer-centos8-${secret_key}
 elif [ "$type" == "key" ]; then
@@ -39,15 +39,15 @@ fi
 
 # Install the Collabora packages
 
-dnf install -y coolwsd collaboraoffice-dict* collaboraofficebasis-ar collaboraofficebasis-as collaboraofficebasis-ast collaboraofficebasis-bg collaboraofficebasis-bn-IN collaboraofficebasis-br collaboraofficebasis-ca collaboraofficebasis-calc collaboraofficebasis-ca-valencia collaboraofficebasis-core collaboraofficebasis-cs collaboraofficebasis-cy collaboraofficebasis-da collaboraofficebasis-de collaboraofficebasis-draw collaboraofficebasis-el collaboraofficebasis-en-GB collaboraofficebasis-en-US collaboraofficebasis-es collaboraofficebasis-et collaboraofficebasis-eu collaboraofficebasis-extension-pdf-import collaboraofficebasis-fi collaboraofficebasis-fr collaboraofficebasis-ga collaboraofficebasis-gd collaboraofficebasis-gl collaboraofficebasis-graphicfilter collaboraofficebasis-gu collaboraofficebasis-he collaboraofficebasis-hi collaboraofficebasis-hr collaboraofficebasis-hu collaboraofficebasis-id collaboraofficebasis-images collaboraofficebasis-impress collaboraofficebasis-is collaboraofficebasis-it collaboraofficebasis-ja collaboraofficebasis-km collaboraofficebasis-kn collaboraofficebasis-ko collaboraofficebasis-lt collaboraofficebasis-lv collaboraofficebasis-ml collaboraofficebasis-mr collaboraofficebasis-nb collaboraofficebasis-nl collaboraofficebasis-nn collaboraofficebasis-oc collaboraofficebasis-ooofonts collaboraofficebasis-ooolinguistic collaboraofficebasis-or collaboraofficebasis-pa-IN collaboraofficebasis-pl collaboraofficebasis-pt collaboraofficebasis-pt-BR collaboraofficebasis-ro collaboraofficebasis-ru collaboraofficebasis-sk collaboraofficebasis-sl collaboraofficebasis-sr collaboraofficebasis-sr-Latn collaboraofficebasis-sv collaboraofficebasis-ta collaboraofficebasis-te collaboraofficebasis-tr collaboraofficebasis-uk collaboraofficebasis-vi collaboraofficebasis-writer collaboraofficebasis-zh-CN collaboraofficebasis-zh-TW
+dnf install -y loolwsd collaboraoffice-dict* collaboraofficebasis-ar collaboraofficebasis-as collaboraofficebasis-ast collaboraofficebasis-bg collaboraofficebasis-bn-IN collaboraofficebasis-br collaboraofficebasis-ca collaboraofficebasis-calc collaboraofficebasis-ca-valencia collaboraofficebasis-core collaboraofficebasis-cs collaboraofficebasis-cy collaboraofficebasis-da collaboraofficebasis-de collaboraofficebasis-draw collaboraofficebasis-el collaboraofficebasis-en-GB collaboraofficebasis-en-US collaboraofficebasis-es collaboraofficebasis-et collaboraofficebasis-eu collaboraofficebasis-extension-pdf-import collaboraofficebasis-fi collaboraofficebasis-fr collaboraofficebasis-ga collaboraofficebasis-gd collaboraofficebasis-gl collaboraofficebasis-graphicfilter collaboraofficebasis-gu collaboraofficebasis-he collaboraofficebasis-hi collaboraofficebasis-hr collaboraofficebasis-hu collaboraofficebasis-id collaboraofficebasis-images collaboraofficebasis-impress collaboraofficebasis-is collaboraofficebasis-it collaboraofficebasis-ja collaboraofficebasis-km collaboraofficebasis-kn collaboraofficebasis-ko collaboraofficebasis-lt collaboraofficebasis-lv collaboraofficebasis-ml collaboraofficebasis-mr collaboraofficebasis-nb collaboraofficebasis-nl collaboraofficebasis-nn collaboraofficebasis-oc collaboraofficebasis-ooofonts collaboraofficebasis-ooolinguistic collaboraofficebasis-or collaboraofficebasis-pa-IN collaboraofficebasis-pl collaboraofficebasis-pt collaboraofficebasis-pt-BR collaboraofficebasis-ro collaboraofficebasis-ru collaboraofficebasis-sk collaboraofficebasis-sl collaboraofficebasis-sr collaboraofficebasis-sr-Latn collaboraofficebasis-sv collaboraofficebasis-ta collaboraofficebasis-te collaboraofficebasis-tr collaboraofficebasis-uk collaboraofficebasis-vi collaboraofficebasis-writer collaboraofficebasis-zh-CN collaboraofficebasis-zh-TW
 
-if [ "$type" == "cool" ] || [ "$type" == "key" ]; then
+if [ "$type" == "lool" ] || [ "$type" == "key" ]; then
     dnf -y install collabora-online-brand
 else
     dnf -y install CODE-brand
 fi
 
-# Install inotifywait and killall to automatic restart coolwsd, if coolwsd.xml changes
+# Install inotifywait and killall to automatic restart loolwsd, if loolwsd.xml changes
 dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf install -y inotify-tools psmisc perl
 
@@ -55,12 +55,12 @@ dnf install -y inotify-tools psmisc perl
 dnf clean all
 
 # Remove WOPI Proof key generated by the package, we need unique key for each container
-rm -rf /etc/coolwsd/proof_key*
+rm -rf /etc/loolwsd/proof_key*
 
 # Fix permissions
-# cf. start-collabora-online.sh that is run by cool user
+# cf. start-collabora-online.sh that is run by lool user
 # # Fix domain name resolution from jails
-# cp /etc/resolv.conf /etc/hosts /opt/cool/systemplate/etc/
-chown cool:cool /opt/cool/systemplate/etc/hosts /opt/cool/systemplate/etc/resolv.conf
-# generated ssl cert/key and WOPI proof key go into /etc/coolwsd
-chown cool:cool /etc/coolwsd
+# cp /etc/resolv.conf /etc/hosts /opt/lool/systemplate/etc/
+chown lool:lool /opt/lool/systemplate/etc/hosts /opt/lool/systemplate/etc/resolv.conf
+# generated ssl cert/key and WOPI proof key go into /etc/loolwsd
+chown lool:lool /etc/loolwsd

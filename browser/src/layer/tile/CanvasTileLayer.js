@@ -1825,7 +1825,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_onCellAddressMsg: function (textMsg) {
 		// When the user moves the focus to a different cell, a 'cellformula'
-		// message is received from coolwsd, *then* a 'celladdress' message.
+		// message is received from loolwsd, *then* a 'celladdress' message.
 		var address = textMsg.substring(13);
 		if (this._map._clip && !this._map['wopi'].DisableCopy) {
 			this._map._clip.setTextSelectionText(this._lastFormula);
@@ -1834,10 +1834,10 @@ L.CanvasTileLayer = L.Layer.extend({
 	},
 
 	_onCellFormulaMsg: function (textMsg) {
-		// When a 'cellformula' message from coolwsd is received,
+		// When a 'cellformula' message from loolwsd is received,
 		// store the text contents of the cell, but don't push
 		// them to the clipboard container (yet).
-		// This is done because coolwsd will send several 'cellformula'
+		// This is done because loolwsd will send several 'cellformula'
 		// messages during text composition, and resetting the contents
 		// of the clipboard container mid-composition will easily break it.
 		var formula = textMsg.substring(13);
@@ -3401,14 +3401,14 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	// Given a character code and a UNO keycode, send a "key" message to coolwsd.
+	// Given a character code and a UNO keycode, send a "key" message to loolwsd.
 	//
 	// "type" is either "input" for key presses (akin to the DOM "keypress"
 	// / "beforeinput" events) and "up" for key releases (akin to the DOM
 	// "keyup" event).
 	//
 	// PageUp/PageDown and select column & row are handled as special cases for spreadsheets - in
-	// addition of sending messages to coolwsd, they move the cell cursor around.
+	// addition of sending messages to loolwsd, they move the cell cursor around.
 	postKeyboardEvent: function(type, charCode, unoKeyCode) {
 		if (!this._map._docLoaded)
 			return;
@@ -5385,7 +5385,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		map.setPermission(this.options.permission);
 
-		map.fire('statusindicator', {statusType: 'coolloaded'});
+		map.fire('statusindicator', {statusType: 'loolloaded'});
 
 		this._map.sendInitUNOCommands();
 

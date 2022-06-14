@@ -1799,10 +1799,10 @@ msgstr ""
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"URL-slóðin á hýsilvél er auð. coolwsd-vefþjónninn er líklega rangt stilltur, "
+"URL-slóðin á hýsilvél er auð. loolwsd-vefþjónninn er líklega rangt stilltur, "
 "hafðu samband við kerfisstjóra."
 
 #: src/errormessages.js:15
@@ -2179,8 +2179,8 @@ msgid "Collabora Online Welcome"
 msgstr "Velkomin í Collabora Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
-msgstr "Kynntu þér nýju útgáfuna af %coolVersion"
+msgid "Explore The New %loolVersion"
+msgstr "Kynntu þér nýju útgáfuna af %loolVersion"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
@@ -2281,8 +2281,8 @@ msgstr ""
 #~ msgstr "Hunsa"
 
 #, javascript-format
-#~ msgid "Explore the new %coolVersion"
-#~ msgstr "Kanna nýju %coolVersion"
+#~ msgid "Explore the new %loolVersion"
+#~ msgstr "Kanna nýju %loolVersion"
 
 #~ msgid "Integrate Collabora Online into your webapp"
 #~ msgstr "Samþættu Collabora Online við vefhugbúnaðinn þinn"

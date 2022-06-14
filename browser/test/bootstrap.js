@@ -44,21 +44,21 @@ if (ssl_flag === 'true')
 
 process.on('SIGUSR2', serverReady);
 
-var coolwsd_options = debug ? {} : { stdio: 'ignore'};
-const coolwsd = spawn(`${top_builddir}/coolwsd`, args, coolwsd_options);
+var loolwsd_options = debug ? {} : { stdio: 'ignore'};
+const loolwsd = spawn(`${top_builddir}/loolwsd`, args, loolwsd_options);
 
 if (debug)
 {
-	coolwsd.stdout.on('data', (data) => {
+	loolwsd.stdout.on('data', (data) => {
 		console.log(`stdout: ${data}`);
 	});
-	coolwsd.stderr.on('data', (data) => {
+	loolwsd.stderr.on('data', (data) => {
 		console.error(`stderr: ${data}`);
 	});
 }
 
-coolwsd.on('exit', (code) => {
-	console.log(`coolwsd process exited with code ${code}`);
+loolwsd.on('exit', (code) => {
+	console.log(`loolwsd process exited with code ${code}`);
 });
 
 process.env.NODE_PATH = `${top_builddir}/browser/node_modules`
@@ -66,7 +66,7 @@ let childNodes = [];
 
 function serverReady() {
     console.log('\nTest running - connect to:\n\n\t' +
-		'https://localhost:9999/browser/1234/cool.html?file_path=file://' +
+		'https://localhost:9999/browser/1234/lool.html?file_path=file://' +
 		top_builddir + '/test/data/perf-test-edit.odt\n\n');
 
     let execArgs = [];
@@ -89,7 +89,7 @@ function serverReady() {
 function vacuumCleaner(kill, message, code) {
 		console.log(message);
 		childNodes.forEach(n => n.kill(kill));
-		coolwsd.kill(kill);
+		loolwsd.kill(kill);
 		console.log(`Process exited with code ${code}`);
 }
 
@@ -137,7 +137,7 @@ function getHttpProtocol() {
 }
 
 function dumpMemoryUse() {
-	var url = (ssl_flag === 'true' ? 'https' : 'http') + '://admin:admin@localhost:' + port + '/cool/getMetrics/';
+	var url = (ssl_flag === 'true' ? 'https' : 'http') + '://admin:admin@localhost:' + port + '/lool/getMetrics/';
 	console.log('Fetching stats from ' + url);
 	var req = getHttpProtocol().request(
 		url,

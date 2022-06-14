@@ -1802,10 +1802,10 @@ msgstr "Ingen ledig plass på serveren, vennligst kontakt administator."
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Verts-URL-en er tom. coolwsd-serveren er sannsynlig vis satt opp feil. "
+"Verts-URL-en er tom. loolwsd-serveren er sannsynlig vis satt opp feil. "
 "Kontakt administrator."
 
 #: src/errormessages.js:15
@@ -2166,7 +2166,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

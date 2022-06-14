@@ -70,7 +70,7 @@ window.app = {
 		}
 	};
 
-	global.setLogging(global.coolLogging == 'true');
+	global.setLogging(global.loolLogging == 'true');
 
 	global.getParameterByName = function (name) {
 		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -703,7 +703,7 @@ window.app = {
 		}
 	};
 
-	// Some global variables are defined in cool.html, among them:
+	// Some global variables are defined in lool.html, among them:
 	// global.host: the host URL, with ws(s):// protocol
 	// global.serviceRoot: an optional root path on the server, typically blank.
 
@@ -808,7 +808,7 @@ window.app = {
 	} else {
 		// The URL may already contain a query (e.g., 'http://server.tld/foo/wopi/files/bar?desktop=baz') - then just append more params
 		var docParamsPart = docParams ? (global.docURL.includes('?') ? '&' : '?') + docParams : '';
-		var websocketURI = global.makeWsUrlWopiSrc('/cool/', global.docURL + docParamsPart);
+		var websocketURI = global.makeWsUrlWopiSrc('/lool/', global.docURL + docParamsPart);
 		try {
 			global.socket = global.createWebSocket(websocketURI);
 		} catch (err) {
@@ -830,7 +830,7 @@ window.app = {
 				var now0 = Date.now();
 				var now1 = performance.now();
 				var now2 = Date.now();
-				global.socket.send('coolclient ' + ProtocolVersionNumber + ' ' + ((now0 + now2) / 2) + ' ' + now1);
+				global.socket.send('loolclient ' + ProtocolVersionNumber + ' ' + ((now0 + now2) / 2) + ' ' + now1);
 
 				if (window.ThisIsAMobileApp) {
 					msg += ' lang=' + window.LANG;

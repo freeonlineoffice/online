@@ -18,7 +18,7 @@ describe('Annotation Tests', function() {
 	it('Insert',function() {
 		insertMultipleComment('calc');
 
-		cy.get('.cool-annotation').should('exist');
+		cy.get('.lool-annotation').should('exist');
 
 		cy.get('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';

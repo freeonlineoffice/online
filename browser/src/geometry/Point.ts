@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 export interface PointLike {
 	x: number;
@@ -198,5 +198,5 @@ export class Point {
 
 }
 
-L.Point = cool.Point;
-L.point = cool.Point.toPoint;
+L.Point = lool.Point;
+L.point = lool.Point.toPoint;

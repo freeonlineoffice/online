@@ -200,18 +200,18 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
     NSString *cacheDirectory = [userDirectory stringByAppendingPathComponent:@"cache"];
 
     NSString *coreVersionHashFile = [cacheDirectory stringByAppendingPathComponent:@"core_version_hash"];
-    NSString *coolwsdVersionHashFile = [cacheDirectory stringByAppendingPathComponent:@"coolwsd_version_hash"];
+    NSString *loolwsdVersionHashFile = [cacheDirectory stringByAppendingPathComponent:@"loolwsd_version_hash"];
 
     NSData *oldCoreVersionHash = [NSData dataWithContentsOfFile:coreVersionHashFile];
-    NSData *oldCoolwsdVersionHash = [NSData dataWithContentsOfFile:coolwsdVersionHashFile];
+    NSData *oldCoolwsdVersionHash = [NSData dataWithContentsOfFile:loolwsdVersionHashFile];
 
     NSData *coreVersionHash = [NSData dataWithBytes:CORE_VERSION_HASH length:strlen(CORE_VERSION_HASH)];
-    NSData *coolwsdVersionHash = [NSData dataWithBytes:COOLWSD_VERSION_HASH length:strlen(COOLWSD_VERSION_HASH)];
+    NSData *loolwsdVersionHash = [NSData dataWithBytes:COOLWSD_VERSION_HASH length:strlen(COOLWSD_VERSION_HASH)];
 
     if (oldCoreVersionHash == nil
         || ![oldCoreVersionHash isEqualToData:coreVersionHash]
         || oldCoolwsdVersionHash == nil
-        || ![oldCoolwsdVersionHash isEqualToData:coolwsdVersionHash]) {
+        || ![oldCoolwsdVersionHash isEqualToData:loolwsdVersionHash]) {
 
         [[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:nil];
 
@@ -221,8 +221,8 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
         if (![[NSFileManager defaultManager] createFileAtPath:coreVersionHashFile contents:coreVersionHash attributes:nil])
             NSLog(@"Could not create %@", coreVersionHashFile);
 
-        if (![[NSFileManager defaultManager] createFileAtPath:coolwsdVersionHashFile contents:coolwsdVersionHash attributes:nil])
-            NSLog(@"Could not create %@", coolwsdVersionHashFile);
+        if (![[NSFileManager defaultManager] createFileAtPath:loolwsdVersionHashFile contents:loolwsdVersionHash attributes:nil])
+            NSLog(@"Could not create %@", loolwsdVersionHashFile);
     }
 
     // Having LANG in the environment is expected to happen only when debugging from Xcode. When
@@ -315,8 +315,8 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
                        argv[0] = strdup([[NSBundle mainBundle].executablePath UTF8String]);
                        argv[1] = nullptr;
                        Util::setThreadName("app");
-                       auto coolwsd = new COOLWSD();
-                       coolwsd->run(1, argv);
+                       auto loolwsd = new COOLWSD();
+                       loolwsd->run(1, argv);
 
                        // Should never return
                        assert(false);

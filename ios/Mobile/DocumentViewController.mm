@@ -82,7 +82,7 @@ static IMP standardImpOfInputAccessoryView = nil;
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
 
     [userContentController addScriptMessageHandler:self name:@"debug"];
-    [userContentController addScriptMessageHandler:self name:@"cool"];
+    [userContentController addScriptMessageHandler:self name:@"lool"];
     [userContentController addScriptMessageHandler:self name:@"error"];
 
     configuration.userContentController = userContentController;
@@ -198,7 +198,7 @@ static IMP standardImpOfInputAccessoryView = nil;
             [self.document closeWithCompletionHandler:^(BOOL success){
                     LOG_TRC("close completion handler gets " << (success?"YES":"NO"));
                     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"debug"];
-                    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"cool"];
+                    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"lool"];
                     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"error"];
                     self.webView.configuration.userContentController = nil;
                     [self.webView removeFromSuperview];
@@ -279,7 +279,7 @@ static IMP standardImpOfInputAccessoryView = nil;
         LOG_ERR("Error from WebView: " << [message.body UTF8String]);
     } else if ([message.name isEqualToString:@"debug"]) {
         std::cerr << "==> " << [message.body UTF8String] << std::endl;
-    } else if ([message.name isEqualToString:@"cool"]) {
+    } else if ([message.name isEqualToString:@"lool"]) {
         NSString *subBody = [message.body substringToIndex:std::min(100ul, ((NSString*)message.body).length)];
         if (subBody.length < ((NSString*)message.body).length)
             subBody = [subBody stringByAppendingString:@"..."];
@@ -306,8 +306,8 @@ static IMP standardImpOfInputAccessoryView = nil;
 
             // Contact the permanently (during app lifetime) listening COOLWSD server
             // "public" socket
-            assert(coolwsd_server_socket_fd != -1);
-            rc = fakeSocketConnect(self.document->fakeClientFd, coolwsd_server_socket_fd);
+            assert(loolwsd_server_socket_fd != -1);
+            rc = fakeSocketConnect(self.document->fakeClientFd, loolwsd_server_socket_fd);
             assert(rc != -1);
 
             // Create a socket pair to notify the below thread when the document has been closed
@@ -389,7 +389,7 @@ static IMP standardImpOfInputAccessoryView = nil;
             WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
             WKUserContentController *userContentController = [[WKUserContentController alloc] init];
 
-            [userContentController addScriptMessageHandler:self name:@"cool"];
+            [userContentController addScriptMessageHandler:self name:@"lool"];
 
             configuration.userContentController = userContentController;
 

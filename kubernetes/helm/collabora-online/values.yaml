@@ -15,7 +15,7 @@ global:
     monitoring:
       activate: false
       port: 9980
-      path: "/cool/getMetrics"
+      path: "/lool/getMetrics"
     service:
       name: collabora-online
       type: ClusterIP
@@ -24,7 +24,7 @@ global:
   ingress:
     name: collabora-online
 
-replicaCount: 3 # This is the amount of how many instances of coolwsd will run
+replicaCount: 3 # This is the amount of how many instances of loolwsd will run
 
 image:
   pullPolicy: Always
@@ -75,7 +75,7 @@ hpa:
   name: collabora-online
 
 hosts:
-  host: coolwsd.public.example.com
+  host: loolwsd.public.example.com
 
 namespace:
   collabora: collabora

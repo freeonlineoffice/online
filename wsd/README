@@ -208,7 +208,7 @@ You can access the admin panel by directly accessing the admin.html file
 from browser directory. See browser/README for more details.
 
 Websocket connections to admin console can be made at path: /adminws/ on the
-same url and port as coolwsd is running on. However, one needs a JWT token to
+same url and port as loolwsd is running on. However, one needs a JWT token to
 authenticate to the admin console websocket. This is stored as a cookie with
 `Path: /adminws/` when user successfully authenticates when trying to access
 /browser/dist/admin/admin*html files (HTTP Basic authentication). Token
@@ -223,7 +223,7 @@ be obtained as described above.
 Debugging
 ---------
 
-When debugging, you want to add --o:num_prespawn_children=1 to the coolwsd parameters to
+When debugging, you want to add --o:num_prespawn_children=1 to the loolwsd parameters to
 limit the amount of concurrently running processes.
 
 When the crash happens too early, you also want to
@@ -243,10 +243,10 @@ Also, note that as the child processes run in a chroot environment,
 they see the LibreOffice shared libraries as being in a directory tree
 /lo , but your debugger does not. So in order to be able to
 effectively debug the LibreOffice code as used through LibreOfficeKit
-by a child coolwsd process, you need to symlink the "lo" subdirectory
-of a running child coolwsd process's chroot jail as /lo. Something like:
+by a child loolwsd process, you need to symlink the "lo" subdirectory
+of a running child loolwsd process's chroot jail as /lo. Something like:
 
-sudo ln -s ~/libreoffice/master/cool-child-roots/1046829984599121011/lo /lo
+sudo ln -s ~/libreoffice/master/lool-child-roots/1046829984599121011/lo /lo
 
 Use the ps command to find out exactly the path to use.
 

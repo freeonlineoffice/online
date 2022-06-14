@@ -44,7 +44,7 @@ tasks:
       ./autogen.sh
       ./configure --enable-silent-rules --with-lokit-path=/workspace/include --with-lo-path=/workspace/instdir --enable-debug -enable-cypress --disable-setcap
       gp sync-done configuring
-      cp .gitpod-files/coolwsd-gitpod.xml coolwsd.xml
+      cp .gitpod-files/loolwsd-gitpod.xml loolwsd.xml
       mkdir .vscode
       cp .gitpod-files/settings.json .vscode/settings.json
   - name: Building

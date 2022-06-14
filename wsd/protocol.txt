@@ -151,7 +151,7 @@ load [part=<partNumber>] url=<url> [timestamp=<time>] [lang=<locale>] [deviceFor
 
     options are the whole rest of the line, not URL-encoded, and must be valid JSON.
 
-coolclient <major.minor[-patch]> [ <timestamp> <perfcounter> ]
+loolclient <major.minor[-patch]> [ <timestamp> <perfcounter> ]
 
     Upon connection, a client must announce the version number it supports.
     major: an integer that must always match between client and server,
@@ -364,7 +364,7 @@ paintwindow <id> rectangle=<x>,<y>,<width>,<height> dpiscale=<scale>
 server -> client
 ================
 
-coolserver <coolwsd version> <coolwsd git hash> <major.minor[-patch]>
+loolserver <loolwsd version> <loolwsd git hash> <major.minor[-patch]>
 
     Upon connection, the server must announce the version number it supports.
     Major: an integer that must always match between client and server,
@@ -796,8 +796,8 @@ subscribe <space separated list of commands>
 
 version
 
-    Queries the server for current version of lokit and coolserver. See
-    'lokitversion' and 'coolserver' in admin -> client for the format of
+    Queries the server for current version of lokit and loolserver. See
+    'lokitversion' and 'loolserver' in admin -> client for the format of
     response message.
 
 documents
@@ -844,8 +844,8 @@ sent_bytes
 recv_bytes
 
     Queries for total memory or bandwidth being consumed by the server
-    in kilobytes. For mem_consumed this includes processes - coolwsd,
-    coolforkit, and child processes hosting various documents. For
+    in kilobytes. For mem_consumed this includes processes - loolwsd,
+    loolforkit, and child processes hosting various documents. For
     sent/recv_bytes this includes only external traffic.
 
 active_docs_count
@@ -862,7 +862,7 @@ settings
     Queries the server for configurable settings from admin console.
 
 log_lines
-    Gets last n lines from "coolwsd.log" file.
+    Gets last n lines from "loolwsd.log" file.
 
 channel_list
     Gets the log channels list with their respective log levels.
@@ -973,7 +973,7 @@ mem_stats <comma separated list of memory consumed values>
      The length of the list is equal to the value of setting
      mem_stats_size`
 
-coolserver <JSON string>
+loolserver <JSON string>
 
     The returned JSON string contains information in the following format:
     {Version: <>, Hash: <>}

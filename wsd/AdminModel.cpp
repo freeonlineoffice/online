@@ -289,7 +289,7 @@ std::string AdminModel::query(const std::string& command)
     return std::string("");
 }
 
-/// Returns memory consumed by all active coolkit processes
+/// Returns memory consumed by all active loolkit processes
 unsigned AdminModel::getKitsMemoryUsage()
 {
     assertCorrectThread();
@@ -1111,10 +1111,10 @@ void PrintKitAggregateMetrics(std::ostringstream &oss, const char* name, const c
 
 void AdminModel::getMetrics(std::ostringstream &oss)
 {
-    oss << "coolwsd_count " << getPidsFromProcName(std::regex("coolwsd"), nullptr) << std::endl;
-    oss << "coolwsd_thread_count " << Util::getStatFromPid(getpid(), 19) << std::endl;
-    oss << "coolwsd_cpu_time_seconds " << Util::getCpuUsage(getpid()) / sysconf (_SC_CLK_TCK) << std::endl;
-    oss << "coolwsd_memory_used_bytes " << Util::getMemoryUsagePSS(getpid()) * 1024 << std::endl;
+    oss << "loolwsd_count " << getPidsFromProcName(std::regex("loolwsd"), nullptr) << std::endl;
+    oss << "loolwsd_thread_count " << Util::getStatFromPid(getpid(), 19) << std::endl;
+    oss << "loolwsd_cpu_time_seconds " << Util::getCpuUsage(getpid()) / sysconf (_SC_CLK_TCK) << std::endl;
+    oss << "loolwsd_memory_used_bytes " << Util::getMemoryUsagePSS(getpid()) * 1024 << std::endl;
     oss << std::endl;
 
     oss << "forkit_count " << getPidsFromProcName(std::regex("forkit"), nullptr) << std::endl;

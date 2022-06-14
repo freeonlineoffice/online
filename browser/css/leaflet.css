@@ -855,7 +855,7 @@ input.clipboard {
 
 .leaflet-progress-label {
 	text-align: center;
-	font: var(--default-font-size)/1.5 var(--cool-font);
+	font: var(--default-font-size)/1.5 var(--lool-font);
 }
 
 .leaflet-progress-label.brand-label {
@@ -872,7 +872,7 @@ input.clipboard {
 	margin-left: 10px;
 	margin: 0px; /*Ruler styling*/
 }
-.cool-ruler {
+.lool-ruler {
 	background-color: var(--color-main-background);
 	height: 20px;
 	width: 100vw;
@@ -880,19 +880,19 @@ input.clipboard {
 	position: fixed;
 }
 
-.cool-ruler-breakcontainer {
+.lool-ruler-breakcontainer {
 	height: 100%;
 	position: absolute;
 	display: flex;
 	align-items: center;
 }
 
-.cool-ruler-tabstopcontainer {
+.lool-ruler-tabstopcontainer {
 	height: 100%;
 	position: absolute;
 }
 
-.cool-ruler-indentation-marker-down {
+.lool-ruler-indentation-marker-down {
 	width: 14px;
 	height: 10px;
 	background: url('images/indentation_marker_down.svg');
@@ -903,7 +903,7 @@ input.clipboard {
 	background-repeat: no-repeat;
 }
 
-.cool-ruler-indentation-marker-up {
+.lool-ruler-indentation-marker-up {
 	width: 14px;
 	height: 10px;
 	background: url('images/indentation_marker_up.svg');
@@ -914,7 +914,7 @@ input.clipboard {
 	background-repeat: no-repeat;
 }
 
-.cool-ruler-indentation-marker-center{
+.lool-ruler-indentation-marker-center{
 	position: fixed;
 	display: none;
 	height: 100vh;
@@ -925,14 +925,14 @@ input.clipboard {
 	z-index: 12;
 }
 
-.cool-ruler-marginwrapper {
+.lool-ruler-marginwrapper {
 	height: 100%;
 	position: absolute;
 	width: inherit;
 	z-index: 11;
 }
 
-.cool-ruler-breakwrapper {
+.lool-ruler-breakwrapper {
 	position: absolute;
 	height: 100%;
 	overflow: hidden;
@@ -940,12 +940,12 @@ input.clipboard {
 	z-index: 10;
 }
 
-.cool-ruler-face {
+.lool-ruler-face {
 	height: 100%;
 	background-color: var(--color-background-lighter);
 }
 
-.cool-ruler-maj {
+.lool-ruler-maj {
 	height: auto;
 	display: inline-block;
 	border-width: 0px .5px;
@@ -957,7 +957,7 @@ input.clipboard {
 	line-height: 7px;
 }
 
-.cool-ruler-tabstop-left {
+.lool-ruler-tabstop-left {
 	width: 20px;
 	height: 20px;
 	background: url('images/tabstop-left.svg');
@@ -965,7 +965,7 @@ input.clipboard {
 	pointer-events: none;
 }
 
-.cool-ruler-tabstop-right {
+.lool-ruler-tabstop-right {
 	width: 20px;
 	height: 20px;
 	background: url('images/tabstop-right.svg');
@@ -973,7 +973,7 @@ input.clipboard {
 	pointer-events: none;
 }
 
-.cool-ruler-tabstop-center {
+.lool-ruler-tabstop-center {
 	width: 20px;
 	height: 20px;
 	background: url('images/tabstop-center.svg');
@@ -981,7 +981,7 @@ input.clipboard {
 	pointer-events: none;
 }
 
-.cool-ruler-tabstop-decimal {
+.lool-ruler-tabstop-decimal {
 	width: 20px;
 	height: 20px;
 	background: url('images/tabstop-decimal.svg');
@@ -989,47 +989,47 @@ input.clipboard {
 	pointer-events: none;
 }
 
-.cool-ruler-margin {
+.lool-ruler-margin {
 	height: 100%;
 	background-color: var(--color-main-background);
 }
 
-.cool-ruler-left {
+.lool-ruler-left {
 	left: 0px;
 	height: 100%;
 	float: left;
 }
 
-.cool-ruler-right {
+.lool-ruler-right {
 	left: 0px;
 	height: 100%;
 	float: right;
 }
 
-.cool-ruler-drag {
+.lool-ruler-drag {
 	height: 100%;
 	width: 0px;
 }
 
-.cool-ruler-drag.cool-ruler-right {
+.lool-ruler-drag.lool-ruler-right {
 	border-left: 3px solid var(--color-border-dark);
 }
 
-.cool-ruler-drag.cool-ruler-left {
+.lool-ruler-drag.lool-ruler-left {
 	border-right: 3px solid var(--color-border-dark);
 }
 
-.cool-ruler-left.leaflet-drag-moving {
+.lool-ruler-left.leaflet-drag-moving {
 	height: 100vh;
 	border-right: 2px dotted var(--color-border-dark);
 }
 
-.cool-ruler-right.leaflet-drag-moving {
+.lool-ruler-right.leaflet-drag-moving {
 	height: 100vh;
 	border-left: 2px dotted var(--color-border-dark);
 }
 
-.cool-ruler-ltooltip, .cool-ruler-rtooltip {
+.lool-ruler-ltooltip, .lool-ruler-rtooltip {
 	display: none;
 	text-align: center;
 	width: 46px;

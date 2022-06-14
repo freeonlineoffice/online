@@ -28,7 +28,7 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-#define UNIT_URI "/coolwsd/unit-admin"
+#define UNIT_URI "/loolwsd/unit-admin"
 
 using Poco::Net::HTTPBasicCredentials;
 using Poco::Net::HTTPCookie;
@@ -127,7 +127,7 @@ private:
     {
         // try connecting without authentication; should result in NotAuthenticated
         HTTPResponse response;
-        HTTPRequest request(HTTPRequest::HTTP_GET, "/cool/adminws/");
+        HTTPRequest request(HTTPRequest::HTTP_GET, "/lool/adminws/");
         std::unique_ptr<HTTPClientSession> session(UnitHTTP::createSession());
 
         _adminWs = std::make_shared<COOLWebSocket>(*session, request, response);
@@ -158,7 +158,7 @@ private:
     {
         // try connecting with incorrect auth token; should result in InvalidToken
         HTTPResponse response;
-        HTTPRequest request(HTTPRequest::HTTP_GET, "/cool/adminws/");
+        HTTPRequest request(HTTPRequest::HTTP_GET, "/lool/adminws/");
         std::unique_ptr<HTTPClientSession> session(UnitHTTP::createSession());
 
         _adminWs = std::make_shared<COOLWebSocket>(*session, request, response);
@@ -189,7 +189,7 @@ private:
     {
         // Authenticate first
         HTTPResponse response;
-        HTTPRequest request(HTTPRequest::HTTP_GET, "/cool/adminws/");
+        HTTPRequest request(HTTPRequest::HTTP_GET, "/lool/adminws/");
         std::unique_ptr<HTTPClientSession> session(UnitHTTP::createSession());
 
         _adminWs = std::make_shared<COOLWebSocket>(*session, request, response);

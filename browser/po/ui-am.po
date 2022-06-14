@@ -1819,10 +1819,10 @@ msgstr "በ ሰርቨሩ ላይ ምንም የ ቀረ ባዶ ቦታ የለም: �
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"የ ጋባዥ URL ባዶ ነው: የ coolwsd ሰርቨር ምናልባት በ ትክክል አልተሰናዳ ይሆናል: እባክዎን አስተዳዳሪውን ያማክሩ"
+"የ ጋባዥ URL ባዶ ነው: የ loolwsd ሰርቨር ምናልባት በ ትክክል አልተሰናዳ ይሆናል: እባክዎን አስተዳዳሪውን ያማክሩ"
 
 #: src/errormessages.js:15
 msgid ""
@@ -2155,7 +2155,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

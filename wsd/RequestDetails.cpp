@@ -110,8 +110,8 @@ RequestDetails::RequestDetails(const std::string &mobileURI)
 
 void RequestDetails::dehexify()
 {
-    // For now, we only hexify cool/ URLs.
-    constexpr auto Prefix = "cool/0x";
+    // For now, we only hexify lool/ URLs.
+    constexpr auto Prefix = "lool/0x";
     constexpr auto PrefixLen = sizeof(Prefix) - 1;
 
     const auto hexPos = _uriString.find(Prefix);
@@ -174,8 +174,8 @@ void RequestDetails::processURI()
     std::string uriRes = _uriString.substr(posDocUri + 1);
 
     const auto posLastWS = uriRes.rfind("/ws");
-    // DocumentURI is the second segment in cool URIs.
-    if (_pathSegs.equals(0, "cool"))
+    // DocumentURI is the second segment in lool URIs.
+    if (_pathSegs.equals(0, "lool"))
     {
         //FIXME: For historic reasons the DocumentURI includes the WOPISrc.
         // This is problematic because decoding a URI that embedds not one, but
@@ -192,7 +192,7 @@ void RequestDetails::processURI()
         {
             end = (posLastWS != std::string::npos ? posLastWS : uriRes.find('/'));
             if (end == std::string::npos)
-                end = uriRes.find('?'); // e.g. /cool/clipboard?WOPISrc=file%3A%2F%2F%2Ftmp%2Fcopypasteef324307_empty.ods...
+                end = uriRes.find('?'); // e.g. /lool/clipboard?WOPISrc=file%3A%2F%2F%2Ftmp%2Fcopypasteef324307_empty.ods...
         }
 
         const std::string docUri = uriRes.substr(0, end);
@@ -264,7 +264,7 @@ Poco::URI RequestDetails::sanitizeURI(const std::string& uri)
         throw std::runtime_error("Invalid URI.");
     }
 
-    // We decoded access token before embedding it in cool.html
+    // We decoded access token before embedding it in lool.html
     // So, we need to decode it now to get its actual value
     Poco::URI::QueryParameters queryParams = uriPublic.getQueryParameters();
     for (auto& param : queryParams)

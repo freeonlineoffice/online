@@ -53,7 +53,7 @@ constexpr std::chrono::microseconds WebSocketHandler::PingFrequencyMicroS;
 std::atomic<bool> SocketPoll::InhibitThreadChecks(false);
 std::atomic<bool> Socket::InhibitThreadChecks(false);
 
-#define SOCKET_ABSTRACT_UNIX_NAME "0coolwsd-"
+#define SOCKET_ABSTRACT_UNIX_NAME "0loolwsd-"
 
 int Socket::createSocket(Socket::Type type)
 {
@@ -974,7 +974,7 @@ std::string LocalServerSocket::bind()
     std::string socketAbstractUnixName(SOCKET_ABSTRACT_UNIX_NAME);
     const char* snapInstanceName = std::getenv("SNAP_INSTANCE_NAME");
     if (snapInstanceName && snapInstanceName[0])
-        socketAbstractUnixName = std::string("0snap.") + snapInstanceName + ".coolwsd-";
+        socketAbstractUnixName = std::string("0snap.") + snapInstanceName + ".loolwsd-";
 
     LOG_INF("Binding to Unix socket for local server with base name: " << socketAbstractUnixName);
 

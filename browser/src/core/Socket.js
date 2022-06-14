@@ -34,7 +34,7 @@ app.definitions.Socket = L.Class.extend({
 	},
 
 	getWebSocketBaseURI: function(map) {
-		return window.makeWsUrlWopiSrc('/cool/', map.options.doc + '?' + $.param(map.options.docParams));
+		return window.makeWsUrlWopiSrc('/lool/', map.options.doc + '?' + $.param(map.options.docParams));
 	},
 
 	connect: function(socket) {
@@ -178,7 +178,7 @@ app.definitions.Socket = L.Class.extend({
 		var now0 = Date.now();
 		var now1 = performance.now();
 		var now2 = Date.now();
-		this._doSend('coolclient ' + this.ProtocolVersionNumber + ' ' + ((now0 + now2) / 2) + ' ' + now1);
+		this._doSend('loolclient ' + this.ProtocolVersionNumber + ' ' + ((now0 + now2) / 2) + ' ' + now1);
 
 		var msg = 'load url=' + encodeURIComponent(this._map.options.doc);
 		if (this._map._docLayer) {
@@ -509,7 +509,7 @@ app.definitions.Socket = L.Class.extend({
 		this._logSocket('INCOMING', textMsg);
 
 		var command = this.parseServerCmd(textMsg);
-		if (textMsg.startsWith('coolserver ')) {
+		if (textMsg.startsWith('loolserver ')) {
 			// This must be the first message, unless we reconnect.
 			var oldId = null;
 			var oldVersion = null;
@@ -548,20 +548,20 @@ app.definitions.Socket = L.Class.extend({
 				}
 			}
 
-			$('#coolwsd-version-label').text(_('COOLWSD version:'));
+			$('#loolwsd-version-label').text(_('COOLWSD version:'));
 			var h = this.WSDServer.Hash;
 			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
 				h = '<a href="javascript:void(window.open(\'https://hub.libreoffice.org/git-online/' + h + '\'));">' + h + '</a>';
 				$('#loolwsd-version').html(this.WSDServer.Version + ' (git hash: ' + h + ')');
 			}
 			else {
-				$('#coolwsd-version').text(this.WSDServer.Version);
+				$('#loolwsd-version').text(this.WSDServer.Version);
 			}
 
 			if (!window.ThisIsAMobileApp) {
 				var idUri = window.makeHttpUrl('/hosting/discovery');
 				$('#served-by-label').text(_('Served by:'));
-				$('#coolwsd-id').html('<a target="_blank" href="' + idUri + '">' + this.WSDServer.Id + '</a>');
+				$('#loolwsd-id').html('<a target="_blank" href="' + idUri + '">' + this.WSDServer.Id + '</a>');
 			}
 
 			// TODO: For now we expect perfect match in protocol versions
@@ -785,7 +785,7 @@ app.definitions.Socket = L.Class.extend({
 
 			var dialogOptions = {
 				message: message,
-				contentClassName: 'cool-user-idle'
+				contentClassName: 'lool-user-idle'
 			};
 
 			var restartConnectionFn;
@@ -806,10 +806,10 @@ app.definitions.Socket = L.Class.extend({
 				var dialogOpened = vex.dialog.open(dialogOptions);
 				this._map._textInput.hideCursor();
 				dialogOpened.contentEl.onclick = restartConnectionFn;
-				$('.vex-overlay').addClass('cool-user-idle-overlay');
+				$('.vex-overlay').addClass('lool-user-idle-overlay');
 
 				if (message === '')
-					$('.cool-user-idle').css('display', 'none');
+					$('.lool-user-idle').css('display', 'none');
 			}
 
 			if (postMsgData['Reason']) {
@@ -1721,7 +1721,7 @@ app.definitions.Socket = L.Class.extend({
 		// as directed by the SAL_LOG environment variable, and
 		// 2) all warnings on plus SAL_INFO for sc.
 		//
-		// (Note that coolwsd sets the SAL_LOG environment variable
+		// (Note that loolwsd sets the SAL_LOG environment variable
 		// to "-WARN-INFO", i.e. the default is that nothing is
 		// logged from core.)
 

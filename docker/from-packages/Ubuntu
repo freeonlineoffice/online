@@ -14,13 +14,13 @@ ARG version
 
 # type: can be
 # 'code' - Collabora Online Development Edition
-# 'cool' - Collabora Online, to build this you need to give your secret URL part from https://support.collaboraoffice.com, i.e. you have to be Collabora partner or customer
+# 'lool' - Collabora Online, to build this you need to give your secret URL part from https://support.collaboraoffice.com, i.e. you have to be Collabora partner or customer
 # 'key'  - Collabora Online, the license key enabled version.
 # Optional. The default is 'code'.
 ARG type
 
 # secret_key is the URL hash from https://support.collaboraoffice.com
-# Mandatory, when you build 'cool', otherwise not needed.
+# Mandatory, when you build 'lool', otherwise not needed.
 ARG secret_key
 
 # Environment variables
@@ -37,7 +37,7 @@ ADD /scripts/start-collabora-online.pl /
 
 EXPOSE 9980
 
-# switch to cool user (use numeric user id to be compatible with Kubernetes Pod Security Policies)
+# switch to lool user (use numeric user id to be compatible with Kubernetes Pod Security Policies)
 USER 104
 
 # Entry point

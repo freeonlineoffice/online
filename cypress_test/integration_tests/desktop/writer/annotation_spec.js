@@ -33,7 +33,7 @@ describe('Annotation Tests', function() {
 	it('Insert',function() {
 		insertMultipleComment('writer');
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 	});
@@ -41,7 +41,7 @@ describe('Annotation Tests', function() {
 	it('Modify',function() {
 		insertMultipleComment('writer');
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 
@@ -53,7 +53,7 @@ describe('Annotation Tests', function() {
 
 		cy.get('#annotation-save-1').click();
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some other text, some text0');
 	});
@@ -61,7 +61,7 @@ describe('Annotation Tests', function() {
 	it('Reply',function() {
 		insertMultipleComment('writer');
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text');
 
@@ -79,17 +79,17 @@ describe('Annotation Tests', function() {
 	it('Remove',function() {
 		insertMultipleComment('writer');
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
-		cy.get('.cool-annotation-content > div')
+		cy.get('.lool-annotation-content > div')
 			.should('contain','some text');
 
-		cy.get('.cool-annotation-menu').click();
+		cy.get('.lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Remove')
 			.click();
 
-		cy.get('.cool-annotation-content-wrapper')
+		cy.get('.lool-annotation-content-wrapper')
 			.should('not.exist');
 	});
 
@@ -109,7 +109,7 @@ describe('Collapsed Annotation Tests', function() {
 	it('Insert',function() {
 		insertMultipleComment('writer', 1, true);
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 	});
@@ -117,7 +117,7 @@ describe('Collapsed Annotation Tests', function() {
 	it('Modify',function() {
 		insertMultipleComment('writer', 1, true);
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 
@@ -129,7 +129,7 @@ describe('Collapsed Annotation Tests', function() {
 
 		cy.get('#mobile-wizard-popup  #annotation-save-1').click();
 
-		cy.get('#mobile-wizard-popup .cool-annotation-content-wrapper').should('exist');
+		cy.get('#mobile-wizard-popup .lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#mobile-wizard-popup #annotation-content-area-1').should('contain','some other text, some text0');
 	});
@@ -137,7 +137,7 @@ describe('Collapsed Annotation Tests', function() {
 	it('Reply',function() {
 		insertMultipleComment('writer', 1, true);
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
 		cy.get('#annotation-content-area-1').should('contain','some text');
 
@@ -155,17 +155,17 @@ describe('Collapsed Annotation Tests', function() {
 	it('Remove',function() {
 		insertMultipleComment('writer', 1, true);
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
-		cy.get('.cool-annotation-content > div')
+		cy.get('.lool-annotation-content > div')
 			.should('contain','some text');
 
-		cy.get('#mobile-wizard-popup .cool-annotation-menu').click();
+		cy.get('#mobile-wizard-popup .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Remove')
 			.click();
 
-		cy.get('.cool-annotation-content-wrapper')
+		cy.get('.lool-annotation-content-wrapper')
 			.should('not.exist');
 	});
 

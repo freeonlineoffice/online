@@ -126,7 +126,7 @@ private:
     COOLWebSocket& _ws;
 };
 
-/// Program for interactive or scripted testing of a cool server.
+/// Program for interactive or scripted testing of a lool server.
 class Connect: public Poco::Util::Application
 {
 public:
@@ -165,7 +165,7 @@ protected:
 #endif
         std::string encodedUri;
         URI::encode(args[0], ":/?", encodedUri);
-        HTTPRequest request(HTTPRequest::HTTP_GET, "/cool/" + encodedUri + "/ws");
+        HTTPRequest request(HTTPRequest::HTTP_GET, "/lool/" + encodedUri + "/ws");
         HTTPResponse response;
         COOLWebSocket ws(cs, request, response);
 

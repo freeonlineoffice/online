@@ -1513,7 +1513,7 @@ bool ChildSession::mouseEvent(const StringVector& tokens,
 {
     bool success = true;
 
-    // default values for compatibility reasons with older cools
+    // default values for compatibility reasons with older lools
     int buttons = 1; // left button
     int modifier = 0;
 
@@ -1549,11 +1549,11 @@ bool ChildSession::mouseEvent(const StringVector& tokens,
         success = false;
     }
 
-    // compatibility with older cools
+    // compatibility with older lools
     if (success && tokens.size() > counter && !getTokenInteger(tokens[counter++], "buttons", buttons))
         success = false;
 
-    // compatibility with older cools
+    // compatibility with older lools
     if (success && tokens.size() > counter && !getTokenInteger(tokens[counter++], "modifier", modifier))
         success = false;
 

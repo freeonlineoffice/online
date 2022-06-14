@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 export type GeometryUnit = 'corepixels' | 'tiletwips' | 'printtwips';
 
@@ -1631,4 +1631,4 @@ function _findFirstMatch(array: any[], key: any, directionProvider: DirectionPro
 
 }
 
-L.SheetGeometry = cool.SheetGeometry;
+L.SheetGeometry = lool.SheetGeometry;

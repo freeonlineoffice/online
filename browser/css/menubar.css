@@ -106,7 +106,7 @@
 }
 
 .lo-menu a, .lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active {
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	font-size: var(--default-font-size);
 	line-height: 15px;
 }

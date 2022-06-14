@@ -1806,10 +1806,10 @@ msgstr "Na poslužitelju više nema slobodnog mjesta, obrati se administratoru."
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"URL domaćina je prazan. Vjerojatno je coolwsd poslužitelj pogrešno podešen, "
+"URL domaćina je prazan. Vjerojatno je loolwsd poslužitelj pogrešno podešen, "
 "obrati se administratoru."
 
 #: src/errormessages.js:15
@@ -2177,7 +2177,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

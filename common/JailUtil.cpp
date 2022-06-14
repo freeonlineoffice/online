@@ -28,13 +28,13 @@
 
 namespace JailUtil
 {
-bool coolmount(const std::string& arg, std::string source, std::string target)
+bool loolmount(const std::string& arg, std::string source, std::string target)
 {
     source = Util::trim(source, '/');
     target = Util::trim(target, '/');
-    const std::string cmd = Poco::Path(Util::getApplicationPath(), "coolmount").toString() + ' '
+    const std::string cmd = Poco::Path(Util::getApplicationPath(), "loolmount").toString() + ' '
                             + arg + ' ' + source + ' ' + target;
-    LOG_TRC("Executing coolmount command: " << cmd);
+    LOG_TRC("Executing loolmount command: " << cmd);
     return !system(cmd.c_str());
 }
 
@@ -42,7 +42,7 @@ bool bind(const std::string& source, const std::string& target)
 {
     LOG_DBG("Mounting [" << source << "] -> [" << target << "].");
     Poco::File(target).createDirectory();
-    const bool res = coolmount("-b", source, target);
+    const bool res = loolmount("-b", source, target);
     if (res)
         LOG_TRC("Bind-mounted [" << source << "] -> [" << target << "].");
     else
@@ -54,7 +54,7 @@ bool remountReadonly(const std::string& source, const std::string& target)
 {
     LOG_DBG("Remounting [" << source << "] -> [" << target << "].");
     Poco::File(target).createDirectory();
-    const bool res = coolmount("-r", source, target);
+    const bool res = loolmount("-r", source, target);
     if (res)
         LOG_TRC("Mounted [" << source << "] -> [" << target << "] readonly.");
     else
@@ -65,7 +65,7 @@ bool remountReadonly(const std::string& source, const std::string& target)
 bool unmount(const std::string& target)
 {
     LOG_DBG("Unmounting [" << target << ']');
-    const bool res = coolmount("-u", "", target);
+    const bool res = loolmount("-u", "", target);
     if (res)
         LOG_TRC("Unmounted [" << target << "] successfully.");
     else
@@ -75,7 +75,7 @@ bool unmount(const std::string& target)
 
 // This file signifies that we copied instead of mounted.
 // NOTE: jail cleanup helpers are called from forkit and
-// coolwsd, and they may have bind-mounting enabled, but the
+// loolwsd, and they may have bind-mounting enabled, but the
 // kit could have had it removed when falling back to copying.
 // In such cases, we cannot safely know whether the jail was
 // copied or not, since the bind envar will be present and
@@ -175,7 +175,7 @@ void cleanupJails(const std::string& root)
             const Poco::Path path(root, jail);
             // Postpone deleting "tmp" directory until we clean all the jails
             // On FreeBSD the "tmp" dir contains a devfs moint point. Normally,
-            // it gets unmounted by coolmount during shutdown, but coolmount
+            // it gets unmounted by loolmount during shutdown, but loolmount
             // does nothing if it is called on the non-existing path.
             // Removing this dir there prevents clean unmounting of devfs later.
             if (jail == "tmp")
@@ -210,21 +210,21 @@ void setupJails(bool bindMount, const std::string& jailRoot, const std::string& 
     {
         // Test mounting to verify it actually works,
         // as it might not function in some systems.
-        const std::string target = Poco::Path(jailRoot, "cool_test_mount").toString();
+        const std::string target = Poco::Path(jailRoot, "lool_test_mount").toString();
         if (bind(sysTemplate, target))
         {
             enableBindMounting();
             safeRemoveDir(target);
             LOG_INF("Enabling Bind-Mounting of jail contents for better performance per "
-                    "mount_jail_tree config in coolwsd.xml.");
+                    "mount_jail_tree config in loolwsd.xml.");
         }
         else
             LOG_ERR("Bind-Mounting fails and will be disabled for this run. To disable permanently "
-                    "set mount_jail_tree config entry in coolwsd.xml to false.");
+                    "set mount_jail_tree config entry in loolwsd.xml to false.");
     }
     else
         LOG_INF("Disabling Bind-Mounting of jail contents per "
-                "mount_jail_tree config in coolwsd.xml.");
+                "mount_jail_tree config in loolwsd.xml.");
 }
 
 // This is the second stage of setting up /dev/[u]random
@@ -279,7 +279,7 @@ void setupJailDevNodes(const std::string& root)
 #else
     if (!Poco::File(root + "/dev/random").exists())
     {
-         const bool res = coolmount("-d", "", root + "/dev");
+         const bool res = loolmount("-d", "", root + "/dev");
          if (res)
             LOG_TRC("Mounted devfs hierarchy -> [" << root << "/dev].");
         else

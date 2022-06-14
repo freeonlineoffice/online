@@ -75,17 +75,17 @@ function loadTestDocNoIntegration(fileName, subFolder, noFileCopy, isMultiUser, 
 		}});
 
 	if (!isMultiUser) {
-		cy.get('iframe#coolframe')
+		cy.get('iframe#loolframe')
 			.its('0.contentDocument').should('exist')
 			.its('body').should('not.be.undefined')
-			.then(cy.wrap).as('coolIFrameGlobal');
+			.then(cy.wrap).as('loolIFrameGlobal');
 
 		Cypress.Commands.overwrite('get', function(originalFn, selector, options) {
-			if (!selector.startsWith('@') && !(selector === '#coolframe')) {
+			if (!selector.startsWith('@') && !(selector === '#loolframe')) {
 				if (selector === 'body')
-					return cy.get('@coolIFrameGlobal');
+					return cy.get('@loolIFrameGlobal');
 				else
-					return cy.get('@coolIFrameGlobal').find(selector, options);
+					return cy.get('@loolIFrameGlobal').find(selector, options);
 			} else {
 				return originalFn(selector, options);
 			}
@@ -135,7 +135,7 @@ function loadTestDocNextcloud(fileName, subFolder, subsequentLoad) {
 		.then(cy.wrap).as('richdocumentsIFrameGlobal');
 
 	cy.get('@richdocumentsIFrameGlobal')
-		.find('iframe#coolframe')
+		.find('iframe#loolframe')
 		.its('0.contentDocument').should('exist')
 		.its('body').should('not.be.undefined')
 		.then(cy.wrap).as('loleafletIFrameGlobal');
@@ -1247,14 +1247,14 @@ function getVisibleBounds(domRect) {
 }
 
 function assertFocus(selectorType, selector) {
-	cy.get('#coolframe')
+	cy.get('#loolframe')
 		.its('0.contentDocument')
 		.its('activeElement.'+selectorType)
 		.should('be.eq', selector);
 }
 
 function getCoolFrameWindow() {
-	return cy.get('#coolframe')
+	return cy.get('#loolframe')
 		.its('0.contentWindow')
 		.should('exist');
 }

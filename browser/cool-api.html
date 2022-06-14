@@ -33,14 +33,14 @@
  	<div class="toc-col last-col">
 		<h4 style="color:red;">COOL API</h4>
 		<ul>
-			<li><a href="#cool-initialization">Initialization</a></li>
-			<li><a href="#cool-general">General</a></li>
-			<li><a href="#cool-toolbar">Toolbar</a></li>
-			<li><a href="#cool-page">Page oriented</a></li>
-			<li><a href="#cool-part">Part oriented</a></li>
-			<li><a href="#cool-events">Events</a></li>
-			<li><a href="#cool-object-values">Object values</a></li>
-			<li><a href="#cool-uno-commands">Uno commands</a></li>
+			<li><a href="#lool-initialization">Initialization</a></li>
+			<li><a href="#lool-general">General</a></li>
+			<li><a href="#lool-toolbar">Toolbar</a></li>
+			<li><a href="#lool-page">Page oriented</a></li>
+			<li><a href="#lool-part">Part oriented</a></li>
+			<li><a href="#lool-events">Events</a></li>
+			<li><a href="#lool-object-values">Object values</a></li>
+			<li><a href="#lool-uno-commands">Uno commands</a></li>
 		</ul>
 	</div>
 </div>
@@ -50,9 +50,9 @@
 <hr />
 <p>This reference reflects <strong>COOL master</strong>.</p>
 
-<h2 id="cool-cool">COOL</h2>
+<h2 id="lool-lool">COOL</h2>
 
-<h3 id="cool-initialization">Initialization</h3>
+<h3 id="lool-initialization">Initialization</h3>
 
 <h4>Usage example</h4>
 
@@ -103,14 +103,14 @@ unexpected behaviour.</h5>
 		<td><code><b>server</b></code></td>
 		<td><code>String</code></td>
 		<td><code><span class="literal">undefined</span></code></td>
-		<td>The websocket server hosting coolwsd using the <code>ws:</code> protocol.
+		<td>The websocket server hosting loolwsd using the <code>ws:</code> protocol.
 		    Example: wss://localhost:9980</td>
 	</tr>
 	<tr>
 		<td><code><b>webserver</b></code></td>
 		<td><code>String</code></td>
 		<td><code><span class="literal">undefined</span></code></td>
-		<td>The webserver access to hosting coolwsd.  Normally it is
+		<td>The webserver access to hosting loolwsd.  Normally it is
 		    derived from 'server', but can be overridden with an own
 		    value in case of proxying.  Example: http://localhost:9980</td>
 	</tr>
@@ -196,7 +196,7 @@ unexpected behaviour.</h5>
 	</tr>
 </table>
 
-<h3 id="cool-general">General</h3>
+<h3 id="lool-general">General</h3>
 
 <p>General methods for document interaction.</p>
 
@@ -376,7 +376,7 @@ unexpected behaviour.</h5>
 	</tr>
 </table>
 
-<h3 id="cool-toolbar">Toolbar</h3>
+<h3 id="lool-toolbar">Toolbar</h3>
 
 <p>Toolbar methods.</p>
 
@@ -462,14 +462,14 @@ unexpected behaviour.</h5>
 	</tr>
 	<tr>
 		<td><code><b>sendUnoCommand</b>(
-			<nobr>&lt;<a href="#cool-uno-commands">String</a>&gt; <i>unoCommand</i>,</nobr>
-			<nobr>&lt;<a href="#cool-uno-commands">Object</a>&gt; <i>param</i>)</nobr></code></td>
+			<nobr>&lt;<a href="#lool-uno-commands">String</a>&gt; <i>unoCommand</i>,</nobr>
+			<nobr>&lt;<a href="#lool-uno-commands">Object</a>&gt; <i>param</i>)</nobr></code></td>
 		<td><code>undefined</code></td>
-        <td>Sends a <a href="#cool-uno-commands">uno command</a> with the given parameter to LOKit.</td>
+        <td>Sends a <a href="#lool-uno-commands">uno command</a> with the given parameter to LOKit.</td>
 	</tr>
 </table>
 
-<h3 id="cool-page">Page oriented</h3>
+<h3 id="lool-page">Page oriented</h3>
 
 <p>Methods for page oriented documents.</p>
 
@@ -498,7 +498,7 @@ unexpected behaviour.</h5>
 	</tr>
 </table>
 
-<h3 id="cool-part">Part oriented</h3>
+<h3 id="lool-part">Part oriented</h3>
 
 <p>Methods for page oriented documents.</p>
 
@@ -527,7 +527,7 @@ unexpected behaviour.</h5>
 	</tr>
 </table>
 
-<h3 id="cool-events">Events</h3>
+<h3 id="lool-events">Events</h3>
 
 <p>You can subscribe to the following events using <a href="#events">these methods</a>.</p>
 
@@ -1082,7 +1082,7 @@ The <code>id</code> property of ErrorEvent can have the following values:
 	</tr>
 </table>
 
-<h3 id="cool-object-values">Object values</h3>
+<h3 id="lool-object-values">Object values</h3>
 
 <p>A list of possible values for different event object properties.</p>
 
@@ -1308,7 +1308,7 @@ The <code>id</code> property of ErrorEvent can have the following values:
 		<td>The progress is at 100%.</td>
 	</tr>
 	<tr>
-		<td><code><b>'coolloaded'</b></code></td>
+		<td><code><b>'loolloaded'</b></code></td>
 		<td><code>String</code></td>
 		<td>Fired when the code has been initialized.</td>
 	</tr>
@@ -1348,7 +1348,7 @@ The <code>id</code> property of ErrorEvent can have the following values:
 	</tr>
 </table>
 
-<h3 id="cool-uno-commands">Uno command</h3>
+<h3 id="lool-uno-commands">Uno command</h3>
 
 <p>A list of common uno commands with their additional parameters.</p>
 <pre><code class="javascript">map.sendUnoCommand('.uno:Bold')</code></pre>

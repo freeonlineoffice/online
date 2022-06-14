@@ -77,7 +77,7 @@ div#w2ui-overlay-actionbar.w2ui-overlay{
 	margin-left: -7px;
 }
 
-/* Related to cool.css */
+/* Related to lool.css */
 #toolbar-hamburger {
 	width: 36px;
 	height: 36px;
@@ -118,7 +118,7 @@ div#w2ui-overlay-actionbar.w2ui-overlay{
 
 
 /* No ruler on mobile phones. */
-.cool-ruler {
+.lool-ruler {
 	height: 0px;
 	display: none;
 }
@@ -240,7 +240,7 @@ div#w2ui-overlay-actionbar.w2ui-overlay{
 	border-radius: 0;
 }
 /* Related to vex.css */
-.vex-open .cool-user-idle {
+.vex-open .lool-user-idle {
 	background: rgba(0, 0, 0, 0) !important;
 	font-size: xx-large !important;
 	color: #fff !important;
@@ -249,22 +249,22 @@ div#w2ui-overlay-actionbar.w2ui-overlay{
 .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input select, .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='date'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='datetime'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='datetime-local'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='email'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='month'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='number'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='password'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='search'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='tel'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='text'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='time'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='url'], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type='week']{
 	padding: 0 !important
 }
-.vex-content .cool-annotation-img {
+.vex-content .lool-annotation-img {
 	box-sizing: content-box !important;
 }
-.vex-dialog-input > textarea.cool-annotation-textarea {
+.vex-dialog-input > textarea.lool-annotation-textarea {
 	height: 150px;
 	border: 1px solid var(--color-border);
 	box-shadow: 0 0 1px 1px var(--color-box-shadow);
 	border-radius: var(--border-radius);
 }
-.vex-dialog-input > textarea.cool-annotation-textarea:focus {
+.vex-dialog-input > textarea.lool-annotation-textarea:focus {
 	height: 150px;
 	border: 1px solid var(--color-border);
 	box-shadow: 0 0 1px 1px var(--color-primary);
 }
-#mobile-wizard-popup .cool-annotation-content,
-#mobile-wizard .cool-annotation-content {
+#mobile-wizard-popup .lool-annotation-content,
+#mobile-wizard .lool-annotation-content {
 	margin: 3px 3px 3px 38px;
 	padding: 0px 10px;
 }
@@ -344,7 +344,7 @@ div#w2ui-overlay-actionbar.w2ui-overlay{
 .vex.vex-theme-plain input {
 	font-size: 1.1em !important;
 }
-textarea.cool-annotation-textarea {
+textarea.lool-annotation-textarea {
 	min-width: -moz-available !important;
 	min-width: -webkit-fill-available !important;
 	min-width: fill-available !important;
@@ -364,10 +364,10 @@ button.vex-dialog-button-secondary.vex-dialog-button.vex-last {
 	line-height: 1em !important;
 	height: auto !important;
 }
-.vex-overlay.cool-user-idle-overlay {
+.vex-overlay.lool-user-idle-overlay {
 	background-color: #05396180;
 }
-.vex-content.cool-user-idle{
+.vex-content.lool-user-idle{
 	padding-top: 160px !important;
 	padding-bottom: 160px !important;
 }
@@ -872,7 +872,7 @@ td[id^='tb_spreadsheet-toolbar_item']:focus table.w2ui-button div.w2ui-icon, td[
 	margin-top: -5px;
 }
 
-#coolwsd-version, #lokit-version {
+#loolwsd-version, #lokit-version {
 	flex-direction: column;
 }
 

@@ -2,5 +2,5 @@
 ## Description:	LibreOffice Online WebSocket Daemon settings
 ## Type:	string
 ## Default:	""
-## ServiceRestart: coolwsd
+## ServiceRestart: loolwsd
 #

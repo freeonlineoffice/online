@@ -13,12 +13,12 @@
 	margin-left: -20px !important;
 }
 
-#coolwsd-version span:before,
+#loolwsd-version span:before,
 #lokit-version > span:before {
 	content: ' (';
 	white-space: pre;
 }
-#coolwsd-version span:after,
+#loolwsd-version span:after,
 #lokit-version > span:after {
 	content: ')';
 }

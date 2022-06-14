@@ -1807,10 +1807,10 @@ msgstr ""
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"URL хоста пуст. Вероятно, ошибка настройки сервера coolwsd, свяжитесь с "
+"URL хоста пуст. Вероятно, ошибка настройки сервера loolwsd, свяжитесь с "
 "администратором."
 
 #: src/errormessages.js:15
@@ -2184,8 +2184,8 @@ msgid "Collabora Online Welcome"
 msgstr "Добро пожаловать в Collabora Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
-msgstr "Узнайте о новой %coolVersion"
+msgid "Explore The New %loolVersion"
+msgstr "Узнайте о новой %loolVersion"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7

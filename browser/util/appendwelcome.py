@@ -8,7 +8,7 @@ welcome = polib.pofile(sys.argv[1],
                   autodetect_encoding=False,
                   encoding="utf-8",
                   wrapwidth=-1)
-coolui = polib.pofile(sys.argv[2],
+loolui = polib.pofile(sys.argv[2],
                   autodetect_encoding=False,
                   encoding="utf-8",
                   wrapwidth=78)
@@ -18,6 +18,6 @@ for entry in welcome:
         continue
     if entry.msgid == '':
         continue
-    coolui.append(entry)
-coolui.metadata['Content-Type'] = 'text/plain; charset=UTF-8'
-coolui.save(sys.argv[2])
+    loolui.append(entry)
+loolui.metadata['Content-Type'] = 'text/plain; charset=UTF-8'
+loolui.save(sys.argv[2])

@@ -16,18 +16,18 @@ Examples:
 
   cd from-packages
   # Get your secret URL key from https://support.collaboraoffice.com/ (Collabora Partners/Customers)
-  docker build --no-cache --build-arg type=cool --build-arg secret_key=<....> -t mydomain/cool -f Ubuntu .
+  docker build --no-cache --build-arg type=lool --build-arg secret_key=<....> -t mydomain/lool -f Ubuntu .
 
 3. Build Collabora Online 21.11 based on RHEL8
 
   cd from-packages
   # Get your secret URL key from https://support.collaboraoffice.com/ (Collabora Partners/Customers)
-  docker build --no-cache --build-arg type=cool --build-arg secret_key=<....> -t mydomain/cool -f RHEL8 .
+  docker build --no-cache --build-arg type=lool --build-arg secret_key=<....> -t mydomain/lool -f RHEL8 .
 
 4. Build Collabora Online 21.11 license key enabled version based on Ubuntu 18.04 LTS
 
    cd from-packages
-   docker build --no-cache --build-arg type=key -t mydomain/cool -f Ubuntu .
+   docker build --no-cache --build-arg type=key -t mydomain/lool -f Ubuntu .
 
 5. Build Collabora Online from master branch (from source code)
 

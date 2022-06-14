@@ -147,11 +147,11 @@ protected:
         // that it manages it since it is the base of WOPI tests, so
         // it's a common bit of housekeeping that all WOPI tests must do.
         LOG_TST("Connecting test client to COOL (#" << (_wsList.size() + 1)
-                                                    << " connection): /cool/" << _wopiSrc << "/ws");
+                                                    << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the front.
         const auto& _ws = _wsList.emplace(
-            _wsList.begin(), Util::make_unique<UnitWebSocket>("/cool/" + _wopiSrc + "/ws"));
+            _wsList.begin(), Util::make_unique<UnitWebSocket>("/lool/" + _wopiSrc + "/ws"));
 
         assert((*_ws).get());
     }
@@ -163,11 +163,11 @@ protected:
         // that it manages it since it is the base of WOPI tests, so
         // it's a common bit of housekeeping that all WOPI tests must do.
         LOG_TST("Connecting test client to COOL (#" << (_wsList.size() + 1)
-                                                    << " connection): /cool/" << _wopiSrc << "/ws");
+                                                    << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the back.
         const auto& _ws = _wsList.emplace(
-            _wsList.end(), Util::make_unique<UnitWebSocket>("/cool/" + _wopiSrc + "/ws"));
+            _wsList.end(), Util::make_unique<UnitWebSocket>("/lool/" + _wopiSrc + "/ws"));
 
         assert((*_ws).get());
     }
@@ -457,7 +457,7 @@ protected:
         {
             return handleHttpPostRequest(request, message, socket);
         }
-        else if (!Util::startsWith(uriReq.getPath(), "/cool/")) // Skip requests to the websrv.
+        else if (!Util::startsWith(uriReq.getPath(), "/lool/")) // Skip requests to the websrv.
         {
             // Complain if we are expected to handle something that we don't.
             LOG_TST("ERROR: Fake wopi host request, cannot handle request: " << uriReq.getPath());

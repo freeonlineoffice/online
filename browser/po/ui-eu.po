@@ -1809,10 +1809,10 @@ msgstr ""
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Ostalari URLa hutsik dago. Ziur aski coolwsd zerbitzaria gaizki "
+"Ostalari URLa hutsik dago. Ziur aski loolwsd zerbitzaria gaizki "
 "konfiguratuta dago, jarri kontaktuan administratzailearekin."
 
 #: src/errormessages.js:15
@@ -2188,8 +2188,8 @@ msgid "Collabora Online Welcome"
 msgstr "Collabora Online-ren ongi etorria"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
-msgstr "Begiratu %coolVersion berria"
+msgid "Explore The New %loolVersion"
+msgstr "Begiratu %loolVersion berria"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7

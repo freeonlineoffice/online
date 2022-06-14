@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 if [ "$1" == "-h" ]; then
-    echo "Usage: coolwsd-generate-proof-key [-h] [CONFIGDIR]"
-    echo "CONFIGDIR defaults to /etc/coolwsd"
+    echo "Usage: loolwsd-generate-proof-key [-h] [CONFIGDIR]"
+    echo "CONFIGDIR defaults to /etc/loolwsd"
     exit 0
 fi
 
 if [ "$1" ]; then
     CONFIGDIR="$1"
 else
-    CONFIGDIR="/etc/coolwsd"
+    CONFIGDIR="/etc/loolwsd"
 fi
 
 SUDO=''
@@ -34,10 +34,10 @@ if hash ssh-keygen 2>/dev/null; then
     if [ $? -ne 0 ] ; then
         exit $?
     fi
-    if id -u cool >/dev/null 2>&1; then
-        $SUDO chown cool: $CONFIGDIR/proof_key
+    if id -u lool >/dev/null 2>&1; then
+        $SUDO chown lool: $CONFIGDIR/proof_key
     else
-        echo "User cool does not exist. Please reinstall coolwsd package, or in case of manual installation from source, create the cool user manually."
+        echo "User lool does not exist. Please reinstall loolwsd package, or in case of manual installation from source, create the lool user manually."
     fi
 else
     echo "ssh-keygen command not found. Please install openssh client tools."

@@ -1,7 +1,7 @@
 
 // Type of the data passed to event handlers.
 interface EventData {
-	position?: cool.Point;
+	position?: lool.Point;
 }
 
 type EventHandlerType = (data: EventData) => void;

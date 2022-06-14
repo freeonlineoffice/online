@@ -391,7 +391,7 @@ L.Control.Header = L.Class.extend({
 		var that = this;
 		$.contextMenu({
 			selector: '#document-canvas',
-			className: 'cool-font',
+			className: 'lool-font',
 			zIndex: 10,
 			items: that._menuItem,
 			callback: function() {}

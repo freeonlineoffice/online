@@ -76,7 +76,7 @@ L.Clipboard = L.Class.extend({
 	getMetaPath: function(idx) {
 		if (!idx)
 			idx = 0;
-		return '/cool/clipboard?WOPISrc=' + encodeURIComponent(this._map.options.doc) +
+		return '/lool/clipboard?WOPISrc=' + encodeURIComponent(this._map.options.doc) +
 			'&ServerId=' + app.socket.WSDServer.Id +
 			'&ViewId=' + this._map._docLayer._viewId +
 			'&Tag=' + this._accessKey[idx];
@@ -515,7 +515,7 @@ L.Clipboard = L.Class.extend({
 		if (isAnyVexDialogActive() && !(this.pasteSpecialVex && this.pasteSpecialVex.isOpen))
 			return true;
 
-		if ($('.annotation-active').length && $('.cool-annotation-edit').is(':visible'))
+		if ($('.annotation-active').length && $('.lool-annotation-edit').is(':visible'))
 		    return true;
 
 		return false;

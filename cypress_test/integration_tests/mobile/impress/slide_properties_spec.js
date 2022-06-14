@@ -343,7 +343,7 @@ describe('Changing slide properties.', function() {
 		// Blank is the default
 		// TODO: wring item is selected by default
 		//cy.get('.layout:nth-of-type(1)')
-		//	.should('have.class', 'cool-context-down');
+		//	.should('have.class', 'lool-context-down');
 
 		// Select layout with title and content shape
 		helper.clickOnIdle('.layout:nth-of-type(3)');
@@ -357,7 +357,7 @@ describe('Changing slide properties.', function() {
 		helper.clickOnIdle('#Layouts');
 
 		cy.get('.layout:nth-of-type(3)')
-			.should('have.class', 'cool-context-down');
+			.should('have.class', 'lool-context-down');
 	});
 
 	it('Change paper format in master view.', function() {

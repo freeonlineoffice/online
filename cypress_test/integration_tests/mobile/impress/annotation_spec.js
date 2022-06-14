@@ -31,7 +31,7 @@ describe('Annotation tests.', function() {
 
 		mobileHelper.openCommentWizard();
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('have.text', 'some text');
 
 		cy.get('.leaflet-marker-icon.annotation-marker')
@@ -46,22 +46,22 @@ describe('Annotation tests.', function() {
 
 		mobileHelper.selectAnnotationMenuItem('Modify');
 
-		cy.get('.cool-annotation-table')
+		cy.get('.lool-annotation-table')
 			.should('exist');
 
-		cy.get('.vex-dialog-form .cool-annotation-textarea')
+		cy.get('.vex-dialog-form .lool-annotation-textarea')
 			.should('have.text', 'some text');
 
-		cy.get('.vex-dialog-form .cool-annotation-textarea')
+		cy.get('.vex-dialog-form .lool-annotation-textarea')
 			.type('modified ');
 
 		cy.get('.vex-dialog-button-primary')
 			.click();
 
-		cy.get('#mobile-wizard .wizard-comment-box.cool-annotation-content-wrapper')
+		cy.get('#mobile-wizard .wizard-comment-box.lool-annotation-content-wrapper')
 			.should('exist');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('have.text', 'modified some text');
 	});
 
@@ -71,12 +71,12 @@ describe('Annotation tests.', function() {
 		cy.get('.leaflet-marker-icon.annotation-marker')
 			.should('be.visible');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('have.text', 'some text');
 
 		mobileHelper.selectAnnotationMenuItem('Remove');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('not.exist');
 
 		cy.get('.leaflet-marker-icon.annotation-marker')
@@ -89,10 +89,10 @@ describe('Annotation tests.', function() {
 		cy.contains('.menu-entry-with-icon', 'Comment')
 			.click();
 
-		cy.get('.cool-annotation-table')
+		cy.get('.lool-annotation-table')
 			.should('exist');
 
-		cy.get('.cool-annotation-textarea')
+		cy.get('.lool-annotation-textarea')
 			.should('have.text', '');
 
 		cy.get('.vex-dialog-button-primary')
@@ -101,10 +101,10 @@ describe('Annotation tests.', function() {
 		cy.get('.vex-dialog-button-secondary')
 			.click();
 
-		cy.get('.cool-annotation-content-wrapper.wizard-comment-box')
+		cy.get('.lool-annotation-content-wrapper.wizard-comment-box')
 			.should('not.exist');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('not.exist');
 	});
 });

@@ -87,9 +87,9 @@ ClientSession::ClientSession(
     setState(SessionState::DETACHED);
 
     // Emit metadata Trace Events for the synthetic pid used for the Trace Events coming in from the
-    // client's cool, and for its dummy thread.
+    // client's lool, and for its dummy thread.
     TraceEvent::emitOneRecordingIfEnabled("{\"name\":\"process_name\",\"ph\":\"M\",\"args\":{\"name\":\""
-                                          "cool-" + id
+                                          "lool-" + id
                                           + "\"},\"pid\":"
                                           + std::to_string(getpid() + SYNTHETIC_COOL_PID_OFFSET)
                                           + ",\"tid\":1},\n");
@@ -206,7 +206,7 @@ std::string ClientSession::getClipboardURI(bool encode)
     Poco::URI::encode(wopiSrc.toString(), encodeChars, encodedFrom);
 
     std::string meta = _serverURL.getSubURLForEndpoint(
-        "/cool/clipboard?WOPISrc=" + encodedFrom +
+        "/lool/clipboard?WOPISrc=" + encodedFrom +
         "&ServerId=" + Util::getProcessIdentifier() +
         "&ViewId=" + std::to_string(getKitViewId()) +
         "&Tag=" + _clipboardKeys[0]);
@@ -354,7 +354,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                 static bool warnedOnce = false;
                 if (!warnedOnce)
                 {
-                    LOG_WRN("For some reason the _performanceCounterEpoch is still zero, ignoring TRACEEVENT from cool as the timestamp would be garbage");
+                    LOG_WRN("For some reason the _performanceCounterEpoch is still zero, ignoring TRACEEVENT from lool as the timestamp would be garbage");
                     warnedOnce = true;
                 }
                 return false;
@@ -363,7 +363,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                 static bool warnedOnce = false;
                 if (!warnedOnce)
                 {
-                    LOG_WRN("For some reason the _performanceCounterEpoch is bogus, ignoring TRACEEVENT from cool as the timestamp would be garbage");
+                    LOG_WRN("For some reason the _performanceCounterEpoch is bogus, ignoring TRACEEVENT from lool as the timestamp would be garbage");
                     warnedOnce = true;
                 }
                 return false;
@@ -460,11 +460,11 @@ bool ClientSession::_handleInput(const char *buffer, int length)
             docBroker->updateEditingSessionId(getId());
         }
     }
-    if (tokens.equals(0, "coolclient"))
+    if (tokens.equals(0, "loolclient"))
     {
         if (tokens.size() < 2)
         {
-            sendTextFrameAndLogError("error: cmd=coolclient kind=badprotocolversion");
+            sendTextFrameAndLogError("error: cmd=loolclient kind=badprotocolversion");
             return false;
         }
 
@@ -472,7 +472,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         if (std::get<0>(versionTuple) != ProtocolMajorVersionNumber ||
             std::get<1>(versionTuple) != ProtocolMinorVersionNumber)
         {
-            sendTextFrameAndLogError("error: cmd=coolclient kind=badprotocolversion");
+            sendTextFrameAndLogError("error: cmd=loolclient kind=badprotocolversion");
             return false;
         }
 
@@ -503,12 +503,12 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         }
 
         // Send COOL version information
-        sendTextFrame("coolserver " + Util::getVersionJSON(EnableExperimental));
+        sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental));
         // Send LOKit version information
         sendTextFrame("lokitversion " + COOLWSD::LOKitVersion);
 
         // If Trace Event generation and logging is enabled (whether it can be turned on), tell it
-        // to cool
+        // to lool
         if (COOLWSD::EnableTraceEventLogging)
             sendTextFrame("enabletraceeventlogging yes");
 

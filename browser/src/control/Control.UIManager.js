@@ -454,14 +454,14 @@ L.Control.UIManager = L.Control.extend({
 	// Ruler
 
 	showRuler: function() {
-		$('.cool-ruler').show();
+		$('.lool-ruler').show();
 		$('#map').addClass('hasruler');
 		this.setSavedState('ShowRuler', true);
 		this.map.fire('rulerchanged');
 	},
 
 	hideRuler: function() {
-		$('.cool-ruler').hide();
+		$('.lool-ruler').hide();
 		$('#map').removeClass('hasruler');
 		this.setSavedState('ShowRuler', false);
 		this.map.fire('rulerchanged');
@@ -475,7 +475,7 @@ L.Control.UIManager = L.Control.extend({
 	},
 
 	isRulerVisible: function() {
-		return $('.cool-ruler').is(':visible');
+		return $('.lool-ruler').is(':visible');
 	},
 
 	isFullscreen: function() {

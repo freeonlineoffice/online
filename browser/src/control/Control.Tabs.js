@@ -108,7 +108,7 @@ L.Control.Tabs = L.Control.extend({
 
 			L.installContextMenu({
 				selector: '.spreadsheet-tab',
-				className: 'cool-font',
+				className: 'lool-font',
 				items: this._menuItem,
 				zIndex: 1000
 			});

@@ -535,7 +535,7 @@ void LockContext::initSupportsLocks()
 
     // first time token setup
     _supportsLocks = true;
-    _lockToken = "cool-lock" + Util::rng::getHexString(8);
+    _lockToken = "lool-lock" + Util::rng::getHexString(8);
 #endif
 }
 
@@ -1473,9 +1473,9 @@ WopiStorage::handleUploadToStorageResponse(const WopiUploadDetails& details,
             Poco::JSON::Object::Ptr object;
             if (JsonUtil::parseJSON(origResponseString, object))
             {
-                const unsigned coolStatusCode
+                const unsigned loolStatusCode
                     = JsonUtil::getJSONValue<unsigned>(object, "COOLStatusCode");
-                if (coolStatusCode == static_cast<unsigned>(COOLStatusCode::DOC_CHANGED) ||
+                if (loolStatusCode == static_cast<unsigned>(COOLStatusCode::DOC_CHANGED) ||
                     JsonUtil::getJSONValue<unsigned>(object, "LOOLStatusCode") ==
                         static_cast<unsigned>(COOLStatusCode::DOC_CHANGED))
                 {

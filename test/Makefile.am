@@ -2,7 +2,7 @@
 export MAX_CONCURRENCY=4
 AUTOMAKE_OPTION = serial-tests
 
-# unittest: tests that run a captive coolwsd as part of themselves.
+# unittest: tests that run a captive loolwsd as part of themselves.
 check_PROGRAMS = fakesockettest
 
 noinst_PROGRAMS = fakesockettest unittest unithttplib
@@ -285,7 +285,7 @@ else
 SYSTEM_STAMP =
 endif
 
-CLEANUP_COMMAND=if test -s ../coolwsd; then echo "Cleaning up..." && ../coolwsd --disable-cool-user-checking --cleanup --o:logging.level=trace; fi
+CLEANUP_COMMAND=if test -s ../loolwsd; then echo "Cleaning up..." && ../loolwsd --disable-lool-user-checking --cleanup --o:logging.level=trace; fi
 
 if HAVE_LO_PATH
 check-local:

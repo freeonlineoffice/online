@@ -47,7 +47,7 @@ m4_dnl# and window.ThisIsTheGtkApp
 
 m4_ifelse(MOBILEAPP,[true],
   [   window.ThisIsAMobileApp = true;
-   window.HelpFile = String.raw`m4_syscmd([cat html/cool-help.html])`;
+   window.HelpFile = String.raw`m4_syscmd([cat html/lool-help.html])`;
    window.open = function (url, windowName, windowFeatures) {
      window.postMobileMessage('HYPERLINK ' + url); /* don't call the 'normal' window.open on mobile at all */
    }
@@ -57,14 +57,14 @@ m4_ifelse(MOBILEAPP,[true],
 )
 m4_ifelse(IOSAPP,[true],
   [   window.ThisIsTheiOSApp = true;
-   window.postMobileMessage = function(msg) { window.webkit.messageHandlers.cool.postMessage(msg); };
+   window.postMobileMessage = function(msg) { window.webkit.messageHandlers.lool.postMessage(msg); };
    window.postMobileError   = function(msg) { window.webkit.messageHandlers.error.postMessage(msg); };
    window.postMobileDebug   = function(msg) { window.webkit.messageHandlers.debug.postMessage(msg); };],
   [   window.ThisIsTheiOSApp = false;]
 )
 m4_ifelse(GTKAPP,[true],
   [   window.ThisIsTheGtkApp = true;
-   window.postMobileMessage = function(msg) { window.webkit.messageHandlers.cool.postMessage(msg, '*'); };
+   window.postMobileMessage = function(msg) { window.webkit.messageHandlers.lool.postMessage(msg, '*'); };
    window.postMobileError   = function(msg) { window.webkit.messageHandlers.error.postMessage(msg, '*'); };
    window.postMobileDebug   = function(msg) { window.webkit.messageHandlers.debug.postMessage(msg, '*'); };],
   [   window.ThisIsTheGtkApp = false;]
@@ -275,12 +275,12 @@ m4_ifelse(MOBILEAPP,[true],
         </div>
         <div id="about-dialog-info-container">
           <div id="about-dialog-info">
-            <div id="coolwsd-version-label"></div>
-            <div style="margin-inline-end: auto;"><div id="coolwsd-version" dir="ltr"></div></div>
+            <div id="loolwsd-version-label"></div>
+            <div style="margin-inline-end: auto;"><div id="loolwsd-version" dir="ltr"></div></div>
             <div class="spacer"></div>
             <div id="lokit-version-label"></div>
             <div style="margin-inline-end: auto;"><div id="lokit-version" dir="ltr"></div></div>
-            m4_ifelse(MOBILEAPP,[],[<div id="served-by"><span id="served-by-label"></span>&nbsp;<span id="os-info"></span>&nbsp;<wbr><span id="coolwsd-id"></span></div>],[<p></p>])
+            m4_ifelse(MOBILEAPP,[],[<div id="served-by"><span id="served-by-label"></span>&nbsp;<span id="os-info"></span>&nbsp;<wbr><span id="loolwsd-id"></span></div>],[<p></p>])
             <div id="slow-proxy"></div>
             m4_ifelse(DEBUG,[true],[<div id="js-dialog">JSDialogs: <a href="javascript:void(function() { window.vex.closeTop(); app.socket.sendMessage('uno .uno:WidgetTestDialog') }() )">View widgets</a></div>])
             <p style="margin-inline-end: auto;"><span dir="ltr">Copyright © _YEAR_, VENDOR.</span></p>
@@ -302,7 +302,7 @@ m4_ifelse(MOBILEAPP,[true],
       window.accessTokenTTL = '';
       window.accessHeader = '';
       window.postMessageOriginExt = '';
-      window.coolLogging = 'true';
+      window.loolLogging = 'true';
       window.enableWelcomeMessage = false;
       window.outOfFocusTimeoutSecs = 1000000;
       window.idleTimeoutSecs = 1000000;
@@ -320,8 +320,8 @@ m4_ifelse(MOBILEAPP,[true],
       window.accessTokenTTL = '%ACCESS_TOKEN_TTL%';
       window.accessHeader = '%ACCESS_HEADER%';
       window.postMessageOriginExt = '%POSTMESSAGE_ORIGIN%';
-      window.coolLogging = '%BROWSER_LOGGING%';
-      window.coolwsdVersion = '%COOLWSD_VERSION%';
+      window.loolLogging = '%BROWSER_LOGGING%';
+      window.loolwsdVersion = '%COOLWSD_VERSION%';
       window.enableWelcomeMessage = %ENABLE_WELCOME_MSG%;
       window.userInterfaceMode = '%USER_INTERFACE_MODE%';
       window.useIntegrationTheme = '%USE_INTEGRATION_THEME%';

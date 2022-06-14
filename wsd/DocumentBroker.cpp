@@ -777,7 +777,7 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
 
         // Contains PostMessageOrigin property which is necessary to post messages to parent
         // frame. Important to send this message immediately and not enqueue it so that in case
-        // document load fails, cool is able to tell its parent frame via PostMessage API.
+        // document load fails, lool is able to tell its parent frame via PostMessage API.
         session->sendMessage("wopi: " + wopiInfoString);
 
         // Mark the session as 'Document owner' if WOPI hosts supports it
@@ -2221,7 +2221,7 @@ std::size_t DocumentBroker::addSessionInternal(const std::shared_ptr<ClientSessi
     {
         LOG_ERR("Out of storage while loading document with URI [" << session->getPublicUri().toString() << "].");
 
-        // We use the same message as is sent when some of cool's own locations are full,
+        // We use the same message as is sent when some of lool's own locations are full,
         // even if in this case it might be a totally different location (file system, or
         // some other type of storage somewhere). This message is not sent to all clients,
         // though, just to all sessions of this document.

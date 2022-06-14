@@ -4,15 +4,15 @@
 
 class CRectangle extends CPolygon {
 
-	constructor(bounds: cool.Bounds, options: any) {
+	constructor(bounds: lool.Bounds, options: any) {
 		super(CRectangle.boundsToPointSet(bounds), options);
 	}
 
-	setBounds(bounds: cool.Bounds) {
+	setBounds(bounds: lool.Bounds) {
 		this.setPointSet(CRectangle.boundsToPointSet(bounds));
 	}
 
-	public static boundsToPointSet(bounds: cool.Bounds): CPointSet {
+	public static boundsToPointSet(bounds: lool.Bounds): CPointSet {
 		if (!bounds.isValid()) {
 			return new CPointSet();
 		}
@@ -40,7 +40,7 @@ class CCellCursor extends CPathGroup {
 	private innerContrastBorder: CRectangle;
 	private options: any;
 
-	constructor(bounds: cool.Bounds, options: any) {
+	constructor(bounds: lool.Bounds, options: any) {
 		super([]);
 		if (options.weight != 1) {
 			this.cursorWeight = Math.round(options.weight);
@@ -55,25 +55,25 @@ class CCellCursor extends CPathGroup {
 		this.setBounds(bounds);
 	}
 
-	setBounds(bounds: cool.Bounds) {
-		const cellBounds = new cool.Bounds(
-			bounds.min.subtract(new cool.Point(0.5, 0.5)),
-			bounds.max.subtract(new cool.Point(0.5, 0.5))
+	setBounds(bounds: lool.Bounds) {
+		const cellBounds = new lool.Bounds(
+			bounds.min.subtract(new lool.Point(0.5, 0.5)),
+			bounds.max.subtract(new lool.Point(0.5, 0.5))
 		);
 
 		// Compute bounds for border path.
-		const boundsForBorder: cool.Bounds[] = [];
+		const boundsForBorder: lool.Bounds[] = [];
 		for (let idx = 0; idx < this.cursorWeight; ++idx) {
 			const pixels = idx; // device pixels from real cell-border.
-			boundsForBorder.push(new cool.Bounds(
-				cellBounds.min.add(new cool.Point(pixels, pixels)),
-				cellBounds.max.subtract(new cool.Point(pixels, pixels))
+			boundsForBorder.push(new lool.Bounds(
+				cellBounds.min.add(new lool.Point(pixels, pixels)),
+				cellBounds.max.subtract(new lool.Point(pixels, pixels))
 			));
 		}
 
-		const boundsForContrastBorder = new cool.Bounds(
-			cellBounds.min.add(new cool.Point(this.cursorWeight, this.cursorWeight)),
-			cellBounds.max.subtract(new cool.Point(this.cursorWeight, this.cursorWeight)));
+		const boundsForContrastBorder = new lool.Bounds(
+			cellBounds.min.add(new lool.Point(this.cursorWeight, this.cursorWeight)),
+			cellBounds.max.subtract(new lool.Point(this.cursorWeight, this.cursorWeight)));
 
 		if (this.borderPaths && this.innerContrastBorder) {
 			console.assert(this.borderPaths.length === this.cursorWeight);
@@ -136,18 +136,18 @@ class CCellSelection extends CPathGroup {
 	// using CPointSet data-structure.
 	setPointSet(pointSet: CPointSet) {
 		const outerPointSet = pointSet;
-		outerPointSet.applyOffset(new cool.Point(0.5, 0.5), false /* centroidSymmetry */, true /* preRound */);
+		outerPointSet.applyOffset(new lool.Point(0.5, 0.5), false /* centroidSymmetry */, true /* preRound */);
 
 		const borderPointSets: CPointSet[] = [];
 
 		for (let idx = 0; idx < this.selectionWeight; ++idx) {
 			const pixels = idx; // device pixels from real cell-border.
 			const borderPset = outerPointSet.clone();
-			borderPset.applyOffset(new cool.Point(-pixels, -pixels), true /* centroidSymmetry */, false /* preRound */);
+			borderPset.applyOffset(new lool.Point(-pixels, -pixels), true /* centroidSymmetry */, false /* preRound */);
 			borderPointSets.push(borderPset);
 		}
 		const contrastBorderPointSet = outerPointSet.clone();
-		contrastBorderPointSet.applyOffset(new cool.Point(-this.selectionWeight, -this.selectionWeight), true /* centroidSymmetry */, false /* preRound */);
+		contrastBorderPointSet.applyOffset(new lool.Point(-this.selectionWeight, -this.selectionWeight), true /* centroidSymmetry */, false /* preRound */);
 
 		if (this.borderPaths && this.innerContrastBorder) {
 			console.assert(this.borderPaths.length === this.selectionWeight);
@@ -179,13 +179,13 @@ class CCellSelection extends CPathGroup {
 		}
 	}
 
-	getBounds(): cool.Bounds {
+	getBounds(): lool.Bounds {
 		if (!this.borderPaths || !this.borderPaths.length)
-			return new cool.Bounds(undefined);
+			return new lool.Bounds(undefined);
 		return this.borderPaths[0].getBounds();
 	}
 
-	anyRingBoundContains(corePxPoint: cool.Point): boolean {
+	anyRingBoundContains(corePxPoint: lool.Point): boolean {
 		if (!this.borderPaths || !this.borderPaths.length)
 			return false;
 

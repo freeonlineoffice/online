@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 function PointConstruct(x: number, y: number, round?: boolean): Point {
 	return new L.Point(x, y, round);
@@ -259,5 +259,5 @@ export class Bounds {
 
 }
 
-L.Bounds = cool.Bounds;
-L.bounds = cool.Bounds.toBounds;
+L.Bounds = lool.Bounds;
+L.bounds = lool.Bounds.toBounds;

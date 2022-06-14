@@ -7,7 +7,7 @@ describe('Fullscreen Presentation.', function() {
 	var testFileName = 'text_fields.odp';
 
 	function getSlideShowContent() {
-		return cy.get('@coolIFrameGlobal')
+		return cy.get('@loolIFrameGlobal')
 			.find('.leaflet-slideshow').then(($iframe) =>{
 				cy.wrap($iframe.contents());
 			});

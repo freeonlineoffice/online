@@ -28,7 +28,7 @@
 
 const int SHOW_JS_MAXLEN = 70;
 
-int coolwsd_server_socket_fd = -1;
+int loolwsd_server_socket_fd = -1;
 
 const char* user_name;
 
@@ -198,7 +198,7 @@ Java_org_libreoffice_androidlib_LOActivity_postMobileMessageNative(JNIEnv *env, 
 
     if (string_value)
     {
-        LOG_DBG("From JS: cool: " << string_value);
+        LOG_DBG("From JS: lool: " << string_value);
 
         // we need a copy, because we can get a new one while we are still
         // taking down the old one
@@ -210,9 +210,9 @@ Java_org_libreoffice_androidlib_LOActivity_postMobileMessageNative(JNIEnv *env, 
 
             // Contact the permanently (during app lifetime) listening COOLWSD server
             // "public" socket
-            assert(coolwsd_server_socket_fd != -1);
+            assert(loolwsd_server_socket_fd != -1);
 
-            int rc = fakeSocketConnect(currentFakeClientFd, coolwsd_server_socket_fd);
+            int rc = fakeSocketConnect(currentFakeClientFd, loolwsd_server_socket_fd);
             assert(rc != -1);
 
             // Create a socket pair to notify the below thread when the document has been closed
@@ -297,7 +297,7 @@ Java_org_libreoffice_androidlib_LOActivity_postMobileMessageNative(JNIEnv *env, 
         }
     }
     else
-        LOG_DBG("From JS: cool: some object");
+        LOG_DBG("From JS: lool: some object");
 }
 
 extern "C" jboolean libreofficekit_initialize(JNIEnv* env, jstring dataDir, jstring cacheDir, jstring apkFile, jobject assetManager);
@@ -349,8 +349,8 @@ Java_org_libreoffice_androidlib_LOActivity_createCOOLWSD(JNIEnv *env, jobject in
                         {
                             fakeClientFd = fakeSocketSocket();
                             LOG_DBG("createCOOLWSD created fakeClientFd: " << fakeClientFd);
-                            std::unique_ptr<COOLWSD> coolwsd(new COOLWSD());
-                            coolwsd->run(1, argv);
+                            std::unique_ptr<COOLWSD> loolwsd(new COOLWSD());
+                            loolwsd->run(1, argv);
                         }
                         LOG_DBG("One run of COOLWSD completed");
                         std::this_thread::sleep_for(std::chrono::milliseconds(100));

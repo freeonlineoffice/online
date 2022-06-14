@@ -29,10 +29,10 @@
 
 const int SHOW_JS_MAXLEN = 70;
 
-int coolwsd_server_socket_fd = -1;
+int loolwsd_server_socket_fd = -1;
 
 static std::string fileURL;
-static COOLWSD *coolwsd = nullptr;
+static COOLWSD *loolwsd = nullptr;
 static int fakeClientFd;
 static int closeNotificationPipeForForwardingThread[2];
 static WebKitWebView *webView;
@@ -147,7 +147,7 @@ static void handle_message(const char * type, WebKitJavascriptResult *js_result)
     g_free(string_value);
 }
 
-static void handle_cool_message(WebKitUserContentManager *manager,
+static void handle_lool_message(WebKitUserContentManager *manager,
                                 WebKitJavascriptResult   *js_result,
                                 gpointer                  user_data)
 {
@@ -155,7 +155,7 @@ static void handle_cool_message(WebKitUserContentManager *manager,
 
     if (string_value)
     {
-        LOG_TRC_NOFILE("From JS: cool: " << string_value);
+        LOG_TRC_NOFILE("From JS: lool: " << string_value);
 
         if (strcmp(string_value, "HULLO") == 0)
         {
@@ -163,8 +163,8 @@ static void handle_cool_message(WebKitUserContentManager *manager,
 
             // Contact the permanently (during app lifetime) listening COOLWSD server
             // "public" socket
-            assert(coolwsd_server_socket_fd != -1);
-            int rc = fakeSocketConnect(fakeClientFd, coolwsd_server_socket_fd);
+            assert(loolwsd_server_socket_fd != -1);
+            int rc = fakeSocketConnect(fakeClientFd, loolwsd_server_socket_fd);
             assert(rc != -1);
 
             // Create a socket pair to notify the below thread when the document has been closed
@@ -255,7 +255,7 @@ static void handle_cool_message(WebKitUserContentManager *manager,
         g_free(string_value);
     }
     else
-        LOG_TRC_NOFILE("From JS: cool: some object");
+        LOG_TRC_NOFILE("From JS: lool: some object");
 }
 
 static void handle_debug_message(WebKitUserContentManager *manager,
@@ -290,16 +290,16 @@ int main(int argc, char* argv[])
 
     std::thread([]
                 {
-                    assert(coolwsd == nullptr);
+                    assert(loolwsd == nullptr);
                     char *argv[2];
                     argv[0] = strdup("mobile");
                     argv[1] = nullptr;
                     Util::setThreadName("app");
                     while (true)
                     {
-                        coolwsd = new COOLWSD();
-                        coolwsd->run(1, argv);
-                        delete coolwsd;
+                        loolwsd = new COOLWSD();
+                        loolwsd->run(1, argv);
+                        delete loolwsd;
                         LOG_TRC("One run of COOLWSD completed");
                     }
                 }).detach();
@@ -315,11 +315,11 @@ int main(int argc, char* argv[])
     WebKitUserContentManager *userContentManager = WEBKIT_USER_CONTENT_MANAGER(webkit_user_content_manager_new());
 
     g_signal_connect(userContentManager, "script-message-received::debug", G_CALLBACK(handle_debug_message), nullptr);
-    g_signal_connect(userContentManager, "script-message-received::cool",  G_CALLBACK(handle_cool_message), nullptr);
+    g_signal_connect(userContentManager, "script-message-received::lool",  G_CALLBACK(handle_lool_message), nullptr);
     g_signal_connect(userContentManager, "script-message-received::error", G_CALLBACK(handle_error_message), nullptr);
 
     webkit_user_content_manager_register_script_message_handler(userContentManager, "debug");
-    webkit_user_content_manager_register_script_message_handler(userContentManager, "cool");
+    webkit_user_content_manager_register_script_message_handler(userContentManager, "lool");
     webkit_user_content_manager_register_script_message_handler(userContentManager, "error");
 
     webView = WEBKIT_WEB_VIEW(webkit_web_view_new_with_user_content_manager(userContentManager));

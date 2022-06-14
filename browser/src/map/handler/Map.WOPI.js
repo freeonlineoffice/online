@@ -325,7 +325,7 @@ L.Map.WOPI = L.Handler.extend({
 		}
 
 		if (msg.MessageId === 'Host_PostmessageReady') {
-			// We already have a listener for this in cool.html, so ignore it here
+			// We already have a listener for this in lool.html, so ignore it here
 			return;
 		}
 

@@ -97,10 +97,10 @@ describe.skip('Annotation tests.', function() {
 		cy.contains('.menu-entry-with-icon', 'Comment')
 			.click();
 
-		cy.get('.cool-annotation-table')
+		cy.get('.lool-annotation-table')
 			.should('exist');
 
-		cy.get('.cool-annotation-textarea')
+		cy.get('.lool-annotation-textarea')
 			.should('have.text', '');
 
 		cy.get('.vex-dialog-button-primary')
@@ -109,10 +109,10 @@ describe.skip('Annotation tests.', function() {
 		cy.get('.vex-dialog-button-secondary')
 			.click();
 
-		cy.get('#mobile-wizard .wizard-comment-box.cool-annotation-content-wrapper')
+		cy.get('#mobile-wizard .wizard-comment-box.lool-annotation-content-wrapper')
 			.should('not.exist');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content')
 			.should('not.exist');
 	});
 
@@ -128,10 +128,10 @@ describe.skip('Annotation tests.', function() {
 
 		cy.wait(1000);
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content-resolved')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content-resolved')
 			.should('exist');
 
-		cy.get('#mobile-wizard .wizard-comment-box .cool-annotation-content-resolved')
+		cy.get('#mobile-wizard .wizard-comment-box .lool-annotation-content-resolved')
 			.should('have.text', 'Resolved');
 	});
 });

@@ -51,7 +51,7 @@ var AdminSocketBase = Base.extend({
 		if (this.pageWillBeRefreshed === false) {
 			this.vexInstance = vex.open({
 				content: _('Server has been shut down; please reload the page.'),
-				contentClassName: 'cool-user-idle',
+				contentClassName: 'lool-user-idle',
 				showCloseButton: false,
 				overlayClosesOnClick: false,
 				escapeButtonCloses: false,

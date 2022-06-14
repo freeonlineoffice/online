@@ -28,12 +28,12 @@
 #include <Protocol.hpp>
 
 #include "lokassert.hpp"
-#include <countcoolkits.hpp>
+#include <countloolkits.hpp>
 #include <helpers.hpp>
 
 using namespace helpers;
 
-/// Tests the HTTP WebSocket API of coolwsd. The server has to be started manually before running this test.
+/// Tests the HTTP WebSocket API of loolwsd. The server has to be started manually before running this test.
 class HTTPWSTest : public CPPUNIT_NS::TestFixture
 {
     const Poco::URI _uri;

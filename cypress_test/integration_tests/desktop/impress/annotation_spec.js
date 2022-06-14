@@ -32,7 +32,7 @@ describe('Annotation Tests', function() {
 	it('Insert', function() {
 		insertMultipleComment('impress');
 		cy.get('.leaflet-marker-icon').should('exist');
-		cy.get('.cool-annotation-content > div')
+		cy.get('.lool-annotation-content > div')
 			.should('contain','some text');
 	});
 
@@ -43,7 +43,7 @@ describe('Annotation Tests', function() {
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 
-		cy.get('.cool-annotation-content-wrapper:visible .cool-annotation-menu').click();
+		cy.get('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Modify').click();
 
@@ -61,9 +61,9 @@ describe('Annotation Tests', function() {
 
 		cy.get('.leaflet-marker-icon').should('exist');
 
-		cy.get('.cool-annotation-content > div').should('contain','some text');
+		cy.get('.lool-annotation-content > div').should('contain','some text');
 
-		cy.get('.cool-annotation-content-wrapper:visible .cool-annotation-menu').click();
+		cy.get('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Remove')
 			.click();
@@ -76,9 +76,9 @@ describe('Annotation Tests', function() {
 
 		cy.get('.leaflet-marker-icon').should('exist');
 
-		cy.get('.cool-annotation-content > div').should('contain','some text');
+		cy.get('.lool-annotation-content > div').should('contain','some text');
 
-		cy.get('.cool-annotation-content-wrapper:visible .cool-annotation-menu').click();
+		cy.get('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Reply').click();
 
@@ -86,7 +86,7 @@ describe('Annotation Tests', function() {
 
 		cy.get('#annotation-reply-1').click();
 
-		cy.get('.cool-annotation-content > div').should('include.text','some reply text');
+		cy.get('.lool-annotation-content > div').should('include.text','some reply text');
 	});
 });
 
@@ -115,7 +115,7 @@ describe('Collapsed Annotation Tests', function() {
 	it('Insert', function() {
 		insertMultipleComment('impress', 1, true);
 		cy.get('.leaflet-marker-icon').should('exist');
-		cy.get('.cool-annotation-content > div')
+		cy.get('.lool-annotation-content > div')
 			.should('contain','some text');
 	});
 
@@ -126,7 +126,7 @@ describe('Collapsed Annotation Tests', function() {
 
 		cy.get('#annotation-content-area-1').should('contain','some text0');
 
-		cy.get('#mobile-wizard-popup .cool-annotation-menu').click();
+		cy.get('#mobile-wizard-popup .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Modify').click();
 
@@ -144,9 +144,9 @@ describe('Collapsed Annotation Tests', function() {
 
 		cy.get('.leaflet-marker-icon').should('exist');
 
-		cy.get('.cool-annotation-content > div').should('contain','some text');
+		cy.get('.lool-annotation-content > div').should('contain','some text');
 
-		cy.get('#mobile-wizard-popup .cool-annotation-menu').click();
+		cy.get('#mobile-wizard-popup .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Remove')
 			.click();
@@ -159,9 +159,9 @@ describe('Collapsed Annotation Tests', function() {
 
 		cy.get('.leaflet-marker-icon').should('exist');
 
-		cy.get('.cool-annotation-content > div').should('contain','some text');
+		cy.get('.lool-annotation-content > div').should('contain','some text');
 
-		cy.get('#mobile-wizard-popup .cool-annotation-menu').click();
+		cy.get('#mobile-wizard-popup .lool-annotation-menu').click();
 
 		cy.contains('.context-menu-item','Reply').click();
 
@@ -169,7 +169,7 @@ describe('Collapsed Annotation Tests', function() {
 
 		cy.get('#mobile-wizard-popup #annotation-reply-1').click();
 
-		cy.get('.cool-annotation-content > div').should('include.text','some reply text');
+		cy.get('.lool-annotation-content > div').should('include.text','some reply text');
 	});
 });
 

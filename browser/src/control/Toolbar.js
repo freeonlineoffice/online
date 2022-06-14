@@ -323,7 +323,7 @@ L.Map.include({
 
 	sendUnoCommand: function (command, json) {
 		// To exercise the Trace Event functionality, uncomment this
-		// app.socket.emitInstantTraceEvent('cool-unocommand:' + command);
+		// app.socket.emitInstantTraceEvent('lool-unocommand:' + command);
 
 		var isAllowedInReadOnly = false;
 		var allowedCommands = ['.uno:Save', '.uno:WordCountDialog', '.uno:EditAnnotation',
@@ -539,7 +539,7 @@ L.Map.include({
 			map._doVexOpenHelpFile(window.HelpFile, id, map);
 			return;
 		}
-		var helpLocation = 'cool-help.html';
+		var helpLocation = 'lool-help.html';
 		if (window.socketProxy)
 			helpLocation = window.makeWsUrl('/browser/dist/' + helpLocation);
 		$.get(helpLocation, function(data) {
@@ -551,7 +551,7 @@ L.Map.include({
 
 		// Just as a test to exercise the Async Trace Event functionality, uncomment this
 		// line and the asyncTraceEvent.finish() below.
-		// var asyncTraceEvent = app.socket.createAsyncTraceEvent('cool-showLOAboutDialog');
+		// var asyncTraceEvent = app.socket.createAsyncTraceEvent('lool-showLOAboutDialog');
 
 		// Move the div sitting in 'body' as vex-content and make it visible
 		var content = $('#about-dialog').clone().css({display: 'block'});
@@ -593,9 +593,9 @@ L.Map.include({
 				map._docLayer.toggleTileDebugMode();
 			} else if (event.key === 'l') {
 				// L toggges the Online logging level between the default (whatever
-				// is set in coolwsd.xml or on the coolwsd command line) and the
+				// is set in loolwsd.xml or on the loolwsd command line) and the
 				// most verbose a client is allowed to set (which also can be set in
-				// coolwsd.xml or on the coolwsd command line).
+				// loolwsd.xml or on the loolwsd command line).
 				//
 				// In a typical developer "make run" setup, the default is "trace"
 				// so there is nothing more verbose. But presumably it is different
@@ -609,11 +609,11 @@ L.Map.include({
 
 				var logLevelInformation = newLogLevel;
 				if (newLogLevel === 'default')
-					logLevelInformation = 'default (from coolwsd.xml)';
+					logLevelInformation = 'default (from loolwsd.xml)';
 				else if (newLogLevel === 'verbose')
-					logLevelInformation = 'most verbose (from coolwsd.xml)';
+					logLevelInformation = 'most verbose (from loolwsd.xml)';
 				else if (newLogLevel === 'terse')
-					logLevelInformation = 'least verbose (from coolwsd.xml)';
+					logLevelInformation = 'least verbose (from loolwsd.xml)';
 				else
 					logLevelInformation = newLogLevel;
 

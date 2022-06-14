@@ -93,13 +93,13 @@ describe('Help dialog screenshot updation', function() {
 
 		cy.wait(1000);
 
-		cy.get('.cool-annotation-collapsed').click();
+		cy.get('.lool-annotation-collapsed').click();
 
 		cy.wait(1000);
 
-		cy.get('.cool-annotation-content-wrapper').should('exist');
+		cy.get('.lool-annotation-content-wrapper').should('exist');
 
-		cy.get('#comment .cool-annotation').screenshot('comment');
+		cy.get('#comment .lool-annotation').screenshot('comment');
 
 		copyScreenshot('comment.png');
 	});

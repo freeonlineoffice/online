@@ -392,7 +392,7 @@ class CommentSection {
 			contentClassName: 'vex-has-inputs',
 			message: '',
 			input: [
-				'<textarea name="comment" id="new-mobile-comment-input-area" class="cool-annotation-textarea" required>' + (commentData.text && isMod ? commentData.text: '') + '</textarea>'
+				'<textarea name="comment" id="new-mobile-comment-input-area" class="lool-annotation-textarea" required>' + (commentData.text && isMod ? commentData.text: '') + '</textarea>'
 			].join(''),
 			buttons: [
 				$.extend({}, vex.dialog.buttons.YES, { text: _('Save') }),
@@ -418,18 +418,18 @@ class CommentSection {
 		var tagTd = 'td',
 		empty = '',
 		tagDiv = 'div';
-		var author = L.DomUtil.create('table', 'cool-annotation-table');
+		var author = L.DomUtil.create('table', 'lool-annotation-table');
 		var tbody = L.DomUtil.create('tbody', empty, author);
 		var tr = L.DomUtil.create('tr', empty, tbody);
-		var tdImg = L.DomUtil.create(tagTd, 'cool-annotation-img', tr);
-		var tdAuthor = L.DomUtil.create(tagTd, 'cool-annotation-author', tr);
+		var tdImg = L.DomUtil.create(tagTd, 'lool-annotation-img', tr);
+		var tdAuthor = L.DomUtil.create(tagTd, 'lool-annotation-author', tr);
 		var imgAuthor = L.DomUtil.create('img', 'avatar-img', tdImg);
 		imgAuthor.setAttribute('src', L.LOUtil.getImageURL('user.svg'));
 		imgAuthor.setAttribute('width', 32);
 		imgAuthor.setAttribute('height', 32);
 		var authorAvatarImg = imgAuthor;
-		var contentAuthor = L.DomUtil.create(tagDiv, 'cool-annotation-content-author', tdAuthor);
-		var contentDate = L.DomUtil.create(tagDiv, 'cool-annotation-date', tdAuthor);
+		var contentAuthor = L.DomUtil.create(tagDiv, 'lool-annotation-content-author', tdAuthor);
+		var contentDate = L.DomUtil.create(tagDiv, 'lool-annotation-date', tdAuthor);
 
 		$(contentAuthor).text(commentData.author);
 		$(authorAvatarImg).attr('src', commentData.avatar);
@@ -793,9 +793,9 @@ class CommentSection {
 	private initializeContextMenus () {
 		var docLayer = this.sectionProperties.docLayer;
 		L.installContextMenu({
-			selector: '.cool-annotation-menu',
+			selector: '.lool-annotation-menu',
 			trigger: 'none',
-			className: 'cool-font',
+			className: 'lool-font',
 			build: function ($trigger: any) {
 				return {
 					items: {
@@ -848,9 +848,9 @@ class CommentSection {
 			}
 		});
 		L.installContextMenu({
-			selector: '.cool-annotation-menu-redline',
+			selector: '.lool-annotation-menu-redline',
 			trigger: 'none',
-			className: 'cool-font',
+			className: 'lool-font',
 			items: {
 				modify: {
 					name: _('Comment'),
@@ -1329,19 +1329,19 @@ class CommentSection {
 
 		var contentWrapperClassName, menuClassName;
 		if (this.sectionProperties.commentList[0].sectionProperties.data.trackchange) {
-			contentWrapperClassName = '.cool-annotation-redline-content-wrapper';
-			menuClassName = '.cool-annotation-menu-redline';
+			contentWrapperClassName = '.lool-annotation-redline-content-wrapper';
+			menuClassName = '.lool-annotation-menu-redline';
 		} else {
-			contentWrapperClassName = '.cool-annotation-content-wrapper';
-			menuClassName = '.cool-annotation-menu';
+			contentWrapperClassName = '.lool-annotation-content-wrapper';
+			menuClassName = '.lool-annotation-menu';
 		}
 
 		var initNeeded = (this.sectionProperties.initialLayoutData === null);
 		var contentWrapperClass = $(contentWrapperClassName);
 
 		if (initNeeded) {
-			var contentAuthor = $('.cool-annotation-content-author');
-			var dateClass = $('.cool-annotation-date');
+			var contentAuthor = $('.lool-annotation-content-author');
+			var dateClass = $('.lool-annotation-date');
 
 			this.sectionProperties.initialLayoutData = {
 				wrapperWidth: parseInt(contentWrapperClass.css('width')),

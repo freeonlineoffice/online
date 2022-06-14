@@ -220,7 +220,7 @@ class CanvasSectionObject {
 	onDraw: (frameCount?: number, elapsedTime?: number) => void;
 
 	/// Optional Parameters: (area, paneTopLeft, canvasContext) - area is the area to be painted using canvasContext.
-	onDrawArea: (area?: cool.Bounds, paneTopLeft?: cool.Point, canvasContext?: CanvasRenderingContext2D) => void;
+	onDrawArea: (area?: lool.Bounds, paneTopLeft?: lool.Point, canvasContext?: CanvasRenderingContext2D) => void;
 
 	/// frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
 	onAnimationEnded: (frameCount: number, elapsedTime: number) => void;

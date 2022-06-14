@@ -1807,9 +1807,9 @@ msgstr "伺服器上已無剩餘磁碟空間，請聯絡伺服器管理員才得
 
 #: src/errormessages.js:14
 msgid ""
-"The host URL is empty. The coolwsd server is probably misconfigured, please "
+"The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
-msgstr "主機 URL 空白。coolwsd 伺服器可能設定錯誤，請聯絡管理員。"
+msgstr "主機 URL 空白。loolwsd 伺服器可能設定錯誤，請聯絡管理員。"
 
 #: src/errormessages.js:15
 msgid ""
@@ -2132,7 +2132,7 @@ msgid "Collabora Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %coolVersion"
+msgid "Explore The New %loolVersion"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7

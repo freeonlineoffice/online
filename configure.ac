@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.63])
 
-AC_INIT([coolwsd], [22.05.0.1], [https://github.com/CollaboraOnline/online/issues], [coolwsd], [https://collaboraonline.github.io/])
+AC_INIT([loolwsd], [22.05.0.1], [https://github.com/CollaboraOnline/online/issues], [loolwsd], [https://collaboraonline.github.io/])
 LT_INIT([shared, disable-static, dlopen])
 
 AM_INIT_AUTOMAKE([1.10 foreign subdir-objects tar-pax -Wno-portability])
@@ -150,7 +150,7 @@ AC_ARG_ENABLE([gtkapp],
 AC_ARG_ENABLE(fuzzers,
     AS_HELP_STRING([--enable-fuzzers],
         [Enables building libfuzzer targets for fuzz testing. It is useful to enable this switch
-         only in a separate build tree, since the switch disables the creation of a coolwsd
+         only in a separate build tree, since the switch disables the creation of a loolwsd
          binary.])
 )
 
@@ -191,7 +191,7 @@ AC_ARG_WITH([app-name],
                              [Set the user-visible name of the app you build.]))
 
 AC_ARG_WITH([user-id],
-              AS_HELP_STRING([--with-user-id=cool],
+              AS_HELP_STRING([--with-user-id=lool],
                              [Set the account name of the user required to run the app (outside debug mode).]))
 
 AC_ARG_WITH([icon-theme],
@@ -362,8 +362,8 @@ ENABLE_DEBUG_PROTOCOL=false
 ENABLE_BUNDLE=true
 COOLWSD_LOGLEVEL="warning"
 COOLWSD_LOG_TO_FILE="false"
-COOLWSD_LOGFILE="/var/log/coolwsd.log"
-COOLWSD_TRACEEVENTFILE="/var/log/coolwsd.trace.json"
+COOLWSD_LOGFILE="/var/log/loolwsd.log"
+COOLWSD_TRACEEVENTFILE="/var/log/loolwsd.trace.json"
 COOLWSD_ANONYMIZE_USER_DATA=false
 BROWSER_LOGGING="false"
 debug_msg="secure mode: product build"
@@ -381,8 +381,8 @@ if test "$enable_debug" = "yes"; then
    ENABLE_DEBUG_PROTOCOL=true
    COOLWSD_LOGLEVEL="trace"
    COOLWSD_LOG_TO_FILE="true"
-   COOLWSD_LOGFILE="/tmp/coolwsd.log"
-   COOLWSD_TRACEEVENTFILE="/tmp/coolwsd.trace.json"
+   COOLWSD_LOGFILE="/tmp/loolwsd.log"
+   COOLWSD_TRACEEVENTFILE="/tmp/loolwsd.trace.json"
    COOLWSD_ANONYMIZE_USER_DATA=false
    BROWSER_LOGGING="true"
    debug_msg="low security debugging mode"
@@ -812,7 +812,7 @@ if test -n "$with_welcome_url"; then
     WELCOME_URL=$with_welcome_url
     ENABLE_WELCOME_MESSAGE=1
 else
-    WELCOME_CONFIG_FRAGMENT=$srcdir/coolwsd-welcome.xml
+    WELCOME_CONFIG_FRAGMENT=$srcdir/loolwsd-welcome.xml
 fi
 
 AC_SUBST_FILE([WELCOME_CONFIG_FRAGMENT])
@@ -1181,14 +1181,14 @@ AS_IF([test "$ENABLE_IOSAPP" != "true" -a "$ENABLE_ANDROIDAPP" != "true"],
 
 AS_IF([test `uname -s` = "Linux" -o `uname -s` = "FreeBSD" -o `uname -s` = "Darwin"],
       # We need npm and node unconditionally only on Linux, both in the normal Online case, and when
-      # only building cool for the iOS app. When building the iOS app itself on macOS, this is
-      # optional. If node and npm are not available, cool will have to be built on a Linux box.
+      # only building lool for the iOS app. When building the iOS app itself on macOS, this is
+      # optional. If node and npm are not available, lool will have to be built on a Linux box.
       [AC_PATH_PROG(NODE, node, no)
        if test "$NODE" = "no"; then
            if test `uname -s` = "Darwin"; then
-               AC_MSG_WARN([The cool bits will have to be built on a Linux machine and copied over])
+               AC_MSG_WARN([The lool bits will have to be built on a Linux machine and copied over])
            else
-               AC_MSG_ERROR([node required to build cool, but not installed])
+               AC_MSG_ERROR([node required to build lool, but not installed])
            fi
        else
            NODE_VER=`node --version | sed 's/^v//' | awk -F. '{ print (($1 * 100) + $2) * 100 + $3;}'`
@@ -1200,7 +1200,7 @@ AS_IF([test `uname -s` = "Linux" -o `uname -s` = "FreeBSD" -o `uname -s` = "Darw
        if test "$NODE" != "no"; then
            AC_PATH_PROG(NPM, npm, no)
            if test "$NPM" = "no"; then
-               AC_MSG_ERROR([npm required to build cool, but not installed])
+               AC_MSG_ERROR([npm required to build lool, but not installed])
            else
                NPM_VER=`npm -v | awk -F. '{ print (($1 * 100) + $2) * 100 + $3;}'`
                if test "$NPM_VER" -lt 50000; then
@@ -1225,7 +1225,7 @@ AS_IF([test `uname -s` = "FreeBSD"],
 
 # need this after the other stuff that uses the compiler because we don't want to run configure-tests with the plugins enabled
 AS_IF([test -n "$with_compiler_plugins"],
-      [CPPFLAGS="$CPPFLAGS -Xclang -load -Xclang ${with_compiler_plugins}/compilerplugins/obj/plugin.so -Xclang -add-plugin -Xclang loplugin -Xclang -plugin-arg-loplugin -Xclang --cool-base-path=\${abs_top_srcdir}"])
+      [CPPFLAGS="$CPPFLAGS -Xclang -load -Xclang ${with_compiler_plugins}/compilerplugins/obj/plugin.so -Xclang -add-plugin -Xclang loplugin -Xclang -plugin-arg-loplugin -Xclang --lool-base-path=\${abs_top_srcdir}"])
 
 COOLWSD_CONFIGDIR=${sysconfdir}/${PACKAGE}
 AC_SUBST(COOLWSD_CONFIGDIR)
@@ -1233,11 +1233,11 @@ AC_SUBST(COOLWSD_CONFIGDIR)
 COOLWSD_DATADIR=${datadir}/${PACKAGE}
 AC_SUBST(COOLWSD_DATADIR)
 
-COOL_USER_ID="cool"
+COOL_USER_ID="lool"
 if test -n "$with_user_id"; then
    COOL_USER_ID="$with_user_id"
 fi
-AC_DEFINE_UNQUOTED([COOL_USER_ID],["$COOL_USER_ID"],[The user-name which is allowed to run coolwsd and its tools])
+AC_DEFINE_UNQUOTED([COOL_USER_ID],["$COOL_USER_ID"],[The user-name which is allowed to run loolwsd and its tools])
 
 AM_CONDITIONAL([ENABLE_SETCAP], [test "$enable_setcap" != "no" -a `uname -s` = "Linux" -a "$enable_fuzzers" != "yes"])
 
@@ -1315,11 +1315,11 @@ AS_IF([test "$ENABLE_IOSAPP" = "true"],
               (cd "$APP_BRANDING_DIR" && tar cf - .) | (cd ios/Mobile/Branding && tar xf -)
           else
               # A Branding/branding.css file must exist, it is
-              # referenced unconditionally in cool.html in the
+              # referenced unconditionally in lool.html in the
               # iOS app.
               touch ios/Mobile/Branding/branding.css
           fi
-          cp coolkitconfig-mobile.xcu ios/Mobile/coolkitconfig.xcu
+          cp loolkitconfig-mobile.xcu ios/Mobile/loolkitconfig.xcu
        fi
       ])
 AC_SUBST(IOSAPP_FONTS)
@@ -1467,10 +1467,10 @@ AC_CONFIG_FILES([Makefile
                  test/Makefile
                  browser/Makefile
                  browser/npm-shrinkwrap.json
-                 coolkitconfig.xcu
-                 coolwsd.spec
-                 coolwsd.xml
-                 debian/coolwsd.postinst])
+                 loolkitconfig.xcu
+                 loolwsd.spec
+                 loolwsd.xml
+                 debian/loolwsd.postinst])
 
 if test "$enable_iosapp" = "yes"; then
     AC_CONFIG_FILES([ios/config.h
@@ -1564,7 +1564,7 @@ Configuration:
 
     \$ make # to compile"
 if test -n "$with_lo_path"; then
-echo "    \$ make run # to start coolwsd
+echo "    \$ make run # to start loolwsd
     \$ make sync-writer|calc|impress # to start browsersync with specified app
 "
 fi

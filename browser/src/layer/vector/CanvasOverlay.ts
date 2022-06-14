@@ -5,12 +5,12 @@
 // regime the renders will be incorrect. At least in Calc it is possible to have pixel
 // coordinates greater than this limit at higher zooms near the bottom of the sheet.
 class OverlayTransform {
-	private translationAmount: cool.Point;
-	private scaleAmount: cool.Point;
+	private translationAmount: lool.Point;
+	private scaleAmount: lool.Point;
 
 	constructor() {
-		this.translationAmount = new cool.Point(0, 0);
-		this.scaleAmount = new cool.Point(1, 1);
+		this.translationAmount = new lool.Point(0, 0);
+		this.scaleAmount = new lool.Point(1, 1);
 	}
 
 	translate(x: number, y: number) {
@@ -30,15 +30,15 @@ class OverlayTransform {
 		this.scaleAmount.y = 1;
 	}
 
-	applyToPoint(point: cool.Point): cool.Point {
+	applyToPoint(point: lool.Point): lool.Point {
 		// 'scale first then translation' model.
-		return new cool.Point(
+		return new lool.Point(
 			point.x * this.scaleAmount.x - this.translationAmount.x,
 			point.y * this.scaleAmount.y - this.translationAmount.y);
 	}
 
-	applyToBounds(bounds: cool.Bounds): cool.Bounds {
-		return new cool.Bounds(
+	applyToBounds(bounds: lool.Bounds): lool.Bounds {
+		return new lool.Bounds(
 			this.applyToPoint(bounds.min),
 			this.applyToPoint(bounds.max)
 		);
@@ -58,7 +58,7 @@ class TransformationsList {
 		this.list.push(tx);
 	}
 
-	public addNew(translate: cool.Point, scale: cool.Point) {
+	public addNew(translate: lool.Point, scale: lool.Point) {
 		const tx = new OverlayTransform();
 		tx.translate(translate.x, translate.y);
 		tx.scale(scale.x, scale.y);
@@ -69,7 +69,7 @@ class TransformationsList {
 		this.list = [];
 	}
 
-	applyToPoint(point: cool.Point): cool.Point {
+	applyToPoint(point: lool.Point): lool.Point {
 		let tPoint = point.clone();
 		this.list.forEach((tx) => {
 			tPoint = tx.applyToPoint(tPoint);
@@ -78,7 +78,7 @@ class TransformationsList {
 		return tPoint;
 	}
 
-	applyToBounds(bounds: cool.Bounds): cool.Bounds {
+	applyToBounds(bounds: lool.Bounds): lool.Bounds {
 		let tBounds = bounds.clone();
 		this.list.forEach((tx) => {
 			tBounds = tx.applyToBounds(tBounds);
@@ -94,7 +94,7 @@ class CanvasOverlay {
 	private map: any;
 	private ctx: CanvasRenderingContext2D;
 	private paths: Map<number, any>;
-	private bounds: cool.Bounds;
+	private bounds: lool.Bounds;
 	private tsManager: any;
 	private overlaySection: CanvasSectionObject;
 	private transformList: TransformationsList;
@@ -126,7 +126,7 @@ class CanvasOverlay {
 	}
 
 	onMouseMove(position: Array<number>) {
-		var mousePos = new cool.Point(position[0], position[1]);
+		var mousePos = new lool.Point(position[0], position[1]);
 		var overlaySectionBounds = this.bounds.clone();
 		var splitPos = this.tsManager.getSplitPos();
 		if (this.overlaySection.isCalcRTL()) {
@@ -196,15 +196,15 @@ class CanvasOverlay {
 		}.bind(this));
 	}
 
-	updatePath(path: CPath, oldBounds: cool.Bounds) {
+	updatePath(path: CPath, oldBounds: lool.Bounds) {
 		this.redraw(path, oldBounds);
 	}
 
-	updateStyle(path: CPath, oldBounds: cool.Bounds) {
+	updateStyle(path: CPath, oldBounds: lool.Bounds) {
 		this.redraw(path, oldBounds);
 	}
 
-	paintRegion(paintArea: cool.Bounds) {
+	paintRegion(paintArea: lool.Bounds) {
 		this.draw(paintArea);
 	}
 
@@ -219,7 +219,7 @@ class CanvasOverlay {
 		return this.intersectsVisible(pathBounds);
 	}
 
-	private intersectsVisible(queryBounds: cool.Bounds): boolean {
+	private intersectsVisible(queryBounds: lool.Bounds): boolean {
 		this.updateCanvasBounds();
 		var spc = this.getSplitPanesContext();
 		return spc ? spc.intersectsVisible(queryBounds) : this.bounds.intersects(queryBounds);
@@ -262,7 +262,7 @@ class CanvasOverlay {
 		return a.viewId - b.viewId;
 	}
 
-	private draw(paintArea?: cool.Bounds) {
+	private draw(paintArea?: lool.Bounds) {
 		if (this.tsManager && this.tsManager.waitForTiles()) {
 			// don't paint anything till tiles arrive for new zoom.
 			return;
@@ -282,7 +282,7 @@ class CanvasOverlay {
 		}, this);
 	}
 
-	private redraw(path: CPath, oldBounds: cool.Bounds) {
+	private redraw(path: CPath, oldBounds: lool.Bounds) {
 		if (this.tsManager && this.tsManager.waitForTiles()) {
 			// don't paint anything till tiles arrive for new zoom.
 			return;
@@ -300,16 +300,16 @@ class CanvasOverlay {
 
 	private updateCanvasBounds() {
 		var viewBounds: any = this.map.getPixelBoundsCore();
-		this.bounds = new cool.Bounds(new cool.Point(viewBounds.min.x, viewBounds.min.y), new cool.Point(viewBounds.max.x, viewBounds.max.y));
+		this.bounds = new lool.Bounds(new lool.Point(viewBounds.min.x, viewBounds.min.y), new lool.Point(viewBounds.max.x, viewBounds.max.y));
 	}
 
-	getBounds(): cool.Bounds {
+	getBounds(): lool.Bounds {
 		this.updateCanvasBounds();
 		return this.bounds;
 	}
 
 	// Applies canvas translation so that polygons/circles can be drawn using core-pixel coordinates.
-	private ctStart(clipArea?: cool.Bounds, paneBounds?: cool.Bounds, fixed?: boolean) {
+	private ctStart(clipArea?: lool.Bounds, paneBounds?: lool.Bounds, fixed?: boolean) {
 		this.updateCanvasBounds();
 		this.transformList.reset();
 		this.ctx.save();
@@ -336,14 +336,14 @@ class CanvasOverlay {
 			var leftMin = paneBounds.min.x < 0 ? -Infinity : 0;
 			var topMin = paneBounds.min.y < 0 ? -Infinity : 0;
 			// Compute the new top left in core pixels that ties with the origin of overlay canvas section.
-			var newTopLeft = new cool.Point(
+			var newTopLeft = new lool.Point(
 				Math.max(leftMin,
 					-splitPos.x - 1 + (center.x - (center.x - paneBounds.min.x) / scale)),
 				Math.max(topMin,
 					-splitPos.y - 1 + (center.y - (center.y - paneBounds.min.y) / scale)));
 
 			// Compute clip area which needs to be applied after setting the transformation.
-			var clipTopLeft = new cool.Point(0, 0);
+			var clipTopLeft = new lool.Point(0, 0);
 			// Original pane size.
 			var paneSize = paneBounds.getSize();
 			var clipSize = paneSize.clone();
@@ -359,7 +359,7 @@ class CanvasOverlay {
 				clipSize.y = (paneSize.y - splitPos.y * (scale - 1)) / scale;
 			}
 			// Force clip area to the zoom frame area of the pane specified.
-			clipArea = new cool.Bounds(
+			clipArea = new lool.Bounds(
 				clipTopLeft,
 				clipTopLeft.add(clipSize));
 
@@ -372,7 +372,7 @@ class CanvasOverlay {
 			transform.scale(scale, scale);
 
 			if (clipArea) {
-				clipArea = new cool.Bounds(
+				clipArea = new lool.Bounds(
 					clipArea.min.divideBy(scale),
 					clipArea.max.divideBy(scale)
 				);
@@ -388,7 +388,7 @@ class CanvasOverlay {
 		if (this.overlaySection.isCalcRTL()) {
 			const sectionWidth = this.overlaySection.size[0];
 			// Apply horizontal flip transformation.
-			this.transformList.addNew(new cool.Point(-sectionWidth, 0), new cool.Point(-1, 1));
+			this.transformList.addNew(new lool.Point(-sectionWidth, 0), new lool.Point(-1, 1));
 		}
 
 		if (clipArea) {
@@ -405,11 +405,11 @@ class CanvasOverlay {
 		this.ctx.restore();
 	}
 
-	updatePoly(path: CPath, closed: boolean = false, clipArea?: cool.Bounds, paneBounds?: cool.Bounds) {
+	updatePoly(path: CPath, closed: boolean = false, clipArea?: lool.Bounds, paneBounds?: lool.Bounds) {
 		var i: number;
 		var j: number;
 		var len2: number;
-		var part: cool.Point;
+		var part: lool.Point;
 		var parts = path.getParts();
 		var len: number = parts.length;
 
@@ -434,7 +434,7 @@ class CanvasOverlay {
 		this.ctEnd();
 	}
 
-	updateCircle(path: CPath, clipArea?: cool.Bounds, paneBounds?: cool.Bounds) {
+	updateCircle(path: CPath, clipArea?: lool.Bounds, paneBounds?: lool.Bounds) {
 		if (path.empty())
 			return;
 

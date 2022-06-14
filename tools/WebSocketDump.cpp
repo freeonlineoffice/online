@@ -241,7 +241,7 @@ int main (int argc, char **argv)
                     std::map<std::string, std::string>());
 
     CoolConfig config;
-    config.load("coolwsd.xml");
+    config.load("loolwsd.xml");
 
     // read the port & ssl support
     int port = 9042;

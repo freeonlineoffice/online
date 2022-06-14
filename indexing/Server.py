@@ -13,11 +13,11 @@ import xml.etree.ElementTree as ET
 import base64
 
 # Configuration
-coolServerUrl = "http://localhost:9980"
+loolServerUrl = "http://localhost:9980"
 solrServerUrl = "http://localhost:8983"
 
 documentPath = "Docs/"
-coolInstance = coolServerUrl + "/browser/f6d368a0a/cool.html"
+loolInstance = loolServerUrl + "/browser/f6d368a0a/lool.html"
 solrCollectionName = "documents"
 
 # Templates
@@ -79,7 +79,7 @@ def callConvertToIndexingXml(filename, filepath):
     filesDict = {
         'data': (filepath, open(filepath, 'rb'), None, {})
     }
-    response = requests.post("{}/cool/convert-to/xml".format(coolServerUrl), files=filesDict)
+    response = requests.post("{}/lool/convert-to/xml".format(loolServerUrl), files=filesDict)
     if response.ok:
         return response.content
     return None
@@ -116,7 +116,7 @@ def callQueryServiceOnSolr(jsonString):
         for document in responseBody['docs']:
             type = document['type'][0]
             filename = document['filename'][0]
-            href = "{}?file_path=file://{}".format(coolInstance, os.path.abspath(documentPath + filename))
+            href = "{}?file_path=file://{}".format(loolInstance, os.path.abspath(documentPath + filename))
             if type == "paragraph":
                 returnMap = {
                     'filename' : filename,
@@ -137,7 +137,7 @@ def getDocuments():
             if entry.is_file():
                 yield {
                     "name" : entry.name,
-                    "href" : "{}?file_path=file://{}".format(coolInstance, os.path.abspath(documentPath + entry.name))
+                    "href" : "{}?file_path=file://{}".format(loolInstance, os.path.abspath(documentPath + entry.name))
                 }
 
 # Calls "Render Search Result" service on COOL Server
@@ -151,7 +151,7 @@ def callRenderImageService(resultJsonString):
         "document": (filename, open(documentPath + filename, 'rb'), None, {}),
         "result" : ("json", resultJsonProcessed, None, {})
     }
-    response = requests.post("{}/cool/render-search-result".format(coolServerUrl), files=filesDict)
+    response = requests.post("{}/lool/render-search-result".format(loolServerUrl), files=filesDict)
     return base64.b64encode(response.content)
 
 # HTTP Server - Handle HTTP requests

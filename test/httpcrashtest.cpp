@@ -37,11 +37,11 @@
 #include <Protocol.hpp>
 #include <test.hpp>
 #include <helpers.hpp>
-#include <countcoolkits.hpp>
+#include <countloolkits.hpp>
 
 using namespace helpers;
 
-/// Tests the HTTP WebSocket API of coolwsd. The server has to be started manually before running this test.
+/// Tests the HTTP WebSocket API of loolwsd. The server has to be started manually before running this test.
 class HTTPCrashTest : public CPPUNIT_NS::TestFixture
 {
     const Poco::URI _uri;
@@ -147,7 +147,7 @@ void HTTPCrashTest::testCrashKit()
         TST_LOG("Allowing time for kits to spawn and connect to wsd to get cleanly killed");
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
-        TST_LOG("Killing coolkit instances.");
+        TST_LOG("Killing loolkit instances.");
 
         killLoKitProcesses();
         countCoolKitProcesses(0, std::chrono::seconds(1));
@@ -182,7 +182,7 @@ void HTTPCrashTest::testRecoverAfterKitCrash()
         TST_LOG("Allowing time for kits to spawn and connect to wsd to get cleanly killed");
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
-        TST_LOG("Killing coolkit instances.");
+        TST_LOG("Killing loolkit instances.");
 
         killLoKitProcesses();
         countCoolKitProcesses(0, std::chrono::seconds(1));
@@ -236,7 +236,7 @@ void HTTPCrashTest::testCrashForkit()
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
                            socket->waitForDisconnection(std::chrono::seconds(5)));
 
-        TST_LOG("Killing coolkit.");
+        TST_LOG("Killing loolkit.");
         killLoKitProcesses();
         countCoolKitProcesses(0);
         TST_LOG("Communicating after kill.");

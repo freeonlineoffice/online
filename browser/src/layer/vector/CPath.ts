@@ -23,11 +23,11 @@ abstract class CPath extends CEventsHandler {
 	thickness: number = 2;
 	viewId: number = -1;
 	groupType: PathGroupType = PathGroupType.Other;
-	toCompatUnits: (from: cool.PointConvertable) => any;
+	toCompatUnits: (from: lool.PointConvertable) => any;
 
 	radius: number = 0;
 	radiusY: number = 0;
-	point: cool.Point;
+	point: lool.Point;
 	zIndex: number = 0;
 
 	static countObjects: number = 0;
@@ -144,15 +144,15 @@ abstract class CPath extends CEventsHandler {
 		this.underMouse = isUnder;
 	}
 
-	onMouseEnter(position: cool.Point) {
+	onMouseEnter(position: lool.Point) {
 		this.fire('mouseenter', {position: position});
 	}
 
-	onMouseLeave(position: cool.Point) {
+	onMouseLeave(position: lool.Point) {
 		this.fire('mouseleave', {position: position});
 	}
 
-	redraw(oldBounds: cool.Bounds) {
+	redraw(oldBounds: lool.Bounds) {
 		if (this.renderer)
 			this.renderer.updatePath(this, oldBounds);
 	}
@@ -165,13 +165,13 @@ abstract class CPath extends CEventsHandler {
 		}
 	}
 
-	updatePathAllPanes(paintArea?: cool.Bounds) {
+	updatePathAllPanes(paintArea?: lool.Bounds) {
 		var viewBounds = this.renderer.getBounds().clone();
 
 		if (this.fixed) {
 			// Ignore freeze-panes.
-			var fixedMapArea = new cool.Bounds(
-				new cool.Point(0, 0),
+			var fixedMapArea = new lool.Bounds(
+				new lool.Point(0, 0),
 				viewBounds.getSize()
 			);
 			this.updatePath(fixedMapArea, fixedMapArea);
@@ -180,7 +180,7 @@ abstract class CPath extends CEventsHandler {
 		}
 
 		var splitPanesContext = this.renderer.getSplitPanesContext();
-		var paneBoundsList: Array<cool.Bounds> = splitPanesContext ?
+		var paneBoundsList: Array<lool.Bounds> = splitPanesContext ?
 			splitPanesContext.getPxBoundList() :
 			[viewBounds];
 
@@ -205,7 +205,7 @@ abstract class CPath extends CEventsHandler {
 		this.updateTestData();
 	}
 
-	updatePath(paintArea?: cool.Bounds, paneBounds?: cool.Bounds) {
+	updatePath(paintArea?: lool.Bounds, paneBounds?: lool.Bounds) {
 		// Overridden in implementations.
 	}
 
@@ -221,7 +221,7 @@ abstract class CPath extends CEventsHandler {
 		}
 	}
 
-	getBounds(): cool.Bounds {
+	getBounds(): lool.Bounds {
 		// Overridden in implementations.
 		return undefined;
 	}
@@ -231,9 +231,9 @@ abstract class CPath extends CEventsHandler {
 		return true;
 	}
 
-	getParts(): Array<Array<cool.Point>> {
+	getParts(): Array<Array<lool.Point>> {
 		// Overridden in implementations.
-		return Array<Array<cool.Point>>();
+		return Array<Array<lool.Point>>();
 	}
 
 	clickTolerance(): number {

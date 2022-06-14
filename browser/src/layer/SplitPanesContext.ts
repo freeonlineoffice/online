@@ -1,7 +1,7 @@
 declare var L: any;
 declare var app: any;
 
-namespace cool {
+namespace lool {
 
 export type SplitPanesOptions = {
 	maxHorizontalSplitPercent: number;
@@ -261,4 +261,4 @@ export class SplitPanesContext {
 
 }
 
-L.SplitPanesContext = cool.SplitPanesContext;
+L.SplitPanesContext = lool.SplitPanesContext;
