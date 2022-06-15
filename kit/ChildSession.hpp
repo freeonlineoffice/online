@@ -372,6 +372,9 @@ private:
     bool _copyToClipboard;
 
     std::vector<uint64_t> _pixmapCache;
+
+    /// How many sessions / clients we have
+    static size_t NumSessions;
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
