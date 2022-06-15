@@ -394,7 +394,6 @@ public:
 
     bool hasDuplicates() const
     {
-#if ENABLE_DEBUG
         if (_tiles.size() < 2)
             return false;
         for (size_t i = 0; i < _tiles.size() - 1; ++i)
@@ -417,9 +416,6 @@ public:
             }
         }
         return false;
-#else
-        return false;
-#endif
     }
 
     /// Serialize this instance into a string.
