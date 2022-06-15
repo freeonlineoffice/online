@@ -13,7 +13,7 @@ ARG repo
 ARG version
 
 # type: can be
-# 'code' - Collabora Online Development Edition
+# 'code' - LibreOffice Online
 # 'lool' - Collabora Online, to build this you need to give your secret URL part from https://support.collaboraoffice.com, i.e. you have to be Collabora partner or customer
 # 'key'  - Collabora Online, the license key enabled version.
 # Optional. The default is 'code'.

@@ -14,7 +14,7 @@ Name:           loolwsd
 Version:        @PACKAGE_VERSION@
 Release:        1%{?dist}
 Vendor:         %{vendor}
-Summary:        Collabora Online WebSocket Daemon
+Summary:        LibreOffice Online WebSocket Daemon
 License:        EULA
 Source0:        loolwsd-@PACKAGE_VERSION@.tar.gz
 BuildRequires:  libcap-devel libpng-devel pam-devel gcc-c++ cppunit-devel pam-devel fontconfig make
@@ -33,12 +33,12 @@ BuildRequires:  libpcap kernel-headers python3-polib python3-lxml
 BuildRequires:  libcap-progs linux-glibc-devel systemd-rpm-macros python3-polib python3-lxml
 %endif
 
-Requires:       collaboraoffice collaboraoffice-ure collaboraofficebasis-core collaboraofficebasis-writer collaboraofficebasis-impress collaboraofficebasis-graphicfilter collaboraofficebasis-en-US collaboraofficebasis-calc collaboraofficebasis-ooofonts collaboraofficebasis-images collaboraofficebasis-draw collaboraofficebasis-extension-pdf-import collaboraofficebasis-ooolinguistic collaboraofficebasis-math
+Requires:       libreoffice libreoffice-ure libreofficebasis-core libreofficebasis-writer libreofficebasis-impress libreofficebasis-graphicfilter libreofficebasis-en-US libreofficebasis-calc libreofficebasis-ooofonts libreaofficebasis-images libreofficebasis-draw libreofficebasis-extension-pdf-import libreofficebasis-ooolinguistic libreofficebasis-math
 Requires(post): coreutils grep sed cpio
 %if 0%{?rhel}
 # loolwsd dependencies
 Requires:       systemd expat keyutils-libs krb5-libs libattr libcap libcom_err libgcc libpng libselinux openssh-clients openssl-libs pcre xz-libs zlib
-# Collabora Office dependencies (unfortunately Collabora Office RPM packages do not have real dependencies)
+# LibreOffice dependencies (unfortunately LibreOffice RPM packages do not have real dependencies)
 Requires:       expat fontconfig freetype libuuid bzip2-libs
 %endif
 
@@ -46,8 +46,8 @@ Requires:       expat fontconfig freetype libuuid bzip2-libs
 # loolwsd dependencies
 Requires(post): libcap-progs
 Requires:       systemd libopenssl1_0_0 libpcre1 libz1 libcap2 libpng12-0 %{fillup_prereq}
-# Collabora Office dependencies (unfortunately Collabora Office RPM packages do not have real dependencies)
-# cd /opt/collaboraoffice/program ; for i in soffice.bin *.so ;do ldd $i | grep '=>' | sed -e "s/^.*=> //" -e "s/ [(].*$//"; done | sort | uniq | xargs rpm -qf --qf="%{NAME}\n" | sort | uniq | grep -v collaboraoffice
+# LibreOffice dependencies (unfortunately LibreOffice RPM packages do not have real dependencies)
+# cd /opt/libreoffice/program ; for i in soffice.bin *.so ;do ldd $i | grep '=>' | sed -e "s/^.*=> //" -e "s/ [(].*$//"; done | sort | uniq | xargs rpm -qf --qf="%{NAME}\n" | sort | uniq | grep -v libreaoffice
 Requires:       fontconfig libbz2-1 libexpat1 libfreetype6 libpng16-16 libuuid1 openssh
 %endif
 
@@ -66,7 +66,7 @@ Obsoletes: loolwsd
 %configure \
 	--enable-silent-rules \
 	--with-lokit-path=bundled/include \
-	--with-lo-path=/opt/collaboraoffice \
+	--with-lo-path=/opt/libreoffice \
 	--disable-setcap \
 %if 0%{?config_options:1}
 	%{config_options}
@@ -161,13 +161,13 @@ getent passwd lool >/dev/null || useradd -g lool -r lool -d /opt/lool -s /bin/ba
 echo -ne "Triggered update of loolwsd systemplate..."
 
 %if 0%{?rhel} >= 7 || 0%{?suse_version} >= 1300
-systemctl is-active -q loolwsd && COOLWSD_IS_ACTIVE=1 || COOLWSD_IS_ACTIVE=0
-if [ $COOLWSD_IS_ACTIVE == "1" ]; then systemctl stop loolwsd; fi
+systemctl is-active -q loolwsd && LOOLWSD_IS_ACTIVE=1 || LOOLWSD_IS_ACTIVE=0
+if [ $LOOLWSD_IS_ACTIVE == "1" ]; then systemctl stop loolwsd; fi
 %endif
 
 # Figure out where LO is installed, let's hope it is not a mount point
 # Create a directory for loolwsd on the same file system
-loroot=/opt/collaboraoffice
+loroot=/opt/libreoffice
 loolparent=`cd ${loroot} && cd .. && /bin/pwd`
 
 rm -rf ${loolparent}/lool
@@ -180,7 +180,7 @@ loolwsd-systemplate-setup ${loolparent}/lool/systemplate ${loroot} >/dev/null 2>
 loolwsd-generate-proof-key >/dev/null 2>&1
 
 %if 0%{?rhel} || 0%{?suse_version}
-if [ $COOLWSD_IS_ACTIVE == "1" ]; then systemctl start loolwsd; fi
+if [ $LOOLWSD_IS_ACTIVE == "1" ]; then systemctl start loolwsd; fi
 %endif
 
 echo "   Done."

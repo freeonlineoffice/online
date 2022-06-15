@@ -37,7 +37,7 @@ elif [ "$type" == "key" ]; then
     echo "Based on the provided build arguments license key enabled Collabora Online will be used."
     echo "deb [signed-by=/usr/share/keyrings/collaboraonline-release-keyring.gpg] https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/${version:-21.11}-key /" >> /etc/apt/sources.list.d/collabora.list
 else
-    echo "Based on the provided build arguments Collabora Online Development Edition will be used."
+    echo "Based on the provided build arguments LibreOffice Online will be used."
     if [ $(uname -i) == "aarch64" ]; then
         echo "deb [signed-by=/usr/share/keyrings/collaboraonline-release-keyring.gpg] https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/CODE-arm64-ubuntu1804 /" >> /etc/apt/sources.list.d/collabora.list
     else

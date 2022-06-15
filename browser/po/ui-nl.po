@@ -2198,7 +2198,7 @@ msgstr "Ontdek de nieuwe %loolVersion"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
-msgid "Collabora Online Development Edition"
+msgid "LibreOffice Online"
 msgstr "Collabora Online Ontwikkel Versie"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
@@ -2222,12 +2222,12 @@ msgstr "Ontdek veranderingen"
 msgid ""
 "Check the <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">release notes</a> and learn all about: The "
-"latest Collabora Online Development Edition, aimed at home users and small "
+"latest LibreOffice Online, aimed at home users and small "
 "teams."
 msgstr ""
 "Lees de <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">opmerkingen bij deze uitgave</a> en leer alles "
-"over: De meest recente Collabora Online Development Edition, gericht op "
+"over: De meest recente LibreOffice Online, gericht op "
 "thuisgebruikers en kleine teams."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7

@@ -2147,7 +2147,7 @@ msgstr "הנה החידושים ב־%loolVersion החדשה"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
-msgid "Collabora Online Development Edition"
+msgid "LibreOffice Online"
 msgstr "מהדורת הפיתוח של Collabora Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
@@ -2170,7 +2170,7 @@ msgstr "לגלות את כל השינויים"
 msgid ""
 "Check the <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">release notes</a> and learn all about: The "
-"latest Collabora Online Development Edition, aimed at home users and small "
+"latest LibreOffice Online, aimed at home users and small "
 "teams."
 msgstr ""
 "ב<a target=\"_blank\" href=\"https://www.collaboraoffice.com/"

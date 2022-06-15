@@ -1,6 +1,6 @@
-.TH COOLCONFIG "1" "Nov 2021" "loolconfig" "User Commands"
+.TH LOOLCONFIG "1" "Nov 2021" "loolconfig" "User Commands"
 .SH NAME
-loolconfig \- Configuration tool for Collabora Online.
+loolconfig \- Configuration tool for LibreOffice Online.
 .SH SYNOPSIS
 loolconfig COMMAND [OPTIONS]
 .SH COMMANDS AND OPTIONS
@@ -17,7 +17,7 @@ anonymize [string\-1]...[string\-n]
 \fB\-\-anonymization\-salt\fR=\fIsalt\fR Anonymize strings with the given 64-bit salt instead of the one in the config file.
 .PP
 .SS "migrateconfig"
-The \fBmigrateconfig\fR command migrates config file of Collabora Online 6.4 or older to the new format.
+The \fBmigrateconfig\fR command migrates config file of LibreOffice Online 6.4 or older to the new format.
 .PP
 migrateconfig [\-\-old\-config\-file=<path>] [\-\-config\-file=<path>] [\-\-write]
 .PP
@@ -35,7 +35,7 @@ set <key> <value>
 \fBExample:\fR loolconfig set logging.level trace
 .PP
 .SS "set\-admin\-password"
-The \fBset\-admin\-password\fR command sets the user name and password of the administrator who can access Collabora Online's admin console.
+The \fBset\-admin\-password\fR command sets the user name and password of the administrator who can access LibreOffice Online's admin console.
 .PP
 set\-admin\-password
 .PP
@@ -46,7 +46,7 @@ set\-admin\-password
 \fB\-\-pwd\-hash\-length\fR=\fInumber\fR  Length of password hash to generate.
 .PP
 .SS "update\-system\-template"
-The \fBupdate\-system\-template\fR command updates Collabora Online's system template. It is used typically when new fonts are added to the system, that need to be used with Collabora Online.
+The \fBupdate\-system\-template\fR command updates LibreOffice Online's system template. It is used typically when new fonts are added to the system, that need to be used with LibreOffice Online.
 .PP
 update\-system\-template
 .PP
