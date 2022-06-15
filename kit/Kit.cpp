@@ -1784,6 +1784,8 @@ public:
         _pngPool.dumpState(oss);
         _sessions.dumpState(oss);
 
+        _deltaGen.dumpState(oss);
+
         oss << "\tlastUpdatedAt:";
         for (const auto &it : _lastUpdatedAt)
         {
