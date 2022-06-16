@@ -2747,7 +2747,8 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
 
     assert(!tileCombined.hasDuplicates());
 
-    LOG_TRC("TileCombined request for " << tileCombined.serialize());
+    LOG_TRC("TileCombined request for " << tileCombined.serialize() << " from " <<
+            (forceKeyframe ? "client" : "wsd"));
     if (!hasTileCache())
     {
         LOG_WRN("Combined tile request without a loaded document?");
@@ -2769,6 +2770,7 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
             // case; so forget what we last sent.
             LOG_TRC("forcing a keyframe for tilecombined tile");
             session->resetTileSeq(tile);
+            tile.setOldWireId(0); // forceKeyframe in the request
         }
 
         Tile cachedTile = _tileCache->lookupTile(tile);
