@@ -1,7 +1,7 @@
 /* global cy Cypress expect */
 
 var mobileWizardIdleTime = 1250;
-// Loading the test document directly in Collabora Online.
+// Loading the test document directly in LibreOffice Online.
 // Parameters:
 // fileName - test document file name (without path)
 // subFolder - sub folder inside data folder (e.g. writer, calc, impress)
@@ -304,7 +304,7 @@ function waitForInterferingUser() {
 	cy.wait(10000);
 }
 
-// Loading the test document inside Collabora Online (directly or via some integration).
+// Loading the test document inside LibreOffice Online (directly or via some integration).
 // Parameters:
 // fileName - test document file name (without path)
 // subFolder - sub folder inside data folder (e.g. writer, calc, impress)

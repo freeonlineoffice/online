@@ -1,6 +1,6 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * Collabora Online toolbar
+ * LibreOffice Online toolbar
  */
 
 /* global app $ w2ui _ */

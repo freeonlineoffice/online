@@ -595,7 +595,7 @@ describe('Trigger hamburger menu options.', function() {
 			.should('exist');
 
 		// Check the version
-		cy.contains('#lokit-version', 'Collabora Office')
+		cy.contains('#lokit-version', 'LibreOffice')
 			.should('exist');
 
 		// Close about dialog
