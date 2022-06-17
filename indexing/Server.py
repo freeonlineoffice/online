@@ -74,7 +74,7 @@ def createSolrDeleteXml():
     ET.indent(et, space="  ", level=0)
     return ET.tostring(et.getroot(), encoding='utf-8', xml_declaration=True)
 
-# Calls "Convert To - Indexing XML" service on COOL Server
+# Calls "Convert To - Indexing XML" service on LOOL Server
 def callConvertToIndexingXml(filename, filepath):
     filesDict = {
         'data': (filepath, open(filepath, 'rb'), None, {})
@@ -140,7 +140,7 @@ def getDocuments():
                     "href" : "{}?file_path=file://{}".format(loolInstance, os.path.abspath(documentPath + entry.name))
                 }
 
-# Calls "Render Search Result" service on COOL Server
+# Calls "Render Search Result" service on LOOL Server
 # Input is search result and the document, and return the rendered image
 def callRenderImageService(resultJsonString):
     result = json.loads(resultJsonString)

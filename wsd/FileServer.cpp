@@ -44,7 +44,7 @@
 #include <Common.hpp>
 #include <Crypto.hpp>
 #include "FileServer.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "ServerURL.hpp"
 #include <Log.hpp>
 #include <Protocol.hpp>
@@ -203,7 +203,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
 bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
                                                HTTPResponse &response)
 {
-    assert(COOLWSD::AdminEnabled);
+    assert(LOOLWSD::AdminEnabled);
 
     const auto& config = Application::instance().config();
 
@@ -261,9 +261,9 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
 
     Poco::Net::HTTPCookie cookie("jwt", jwtToken);
     // bundlify appears to add an extra /dist -> dist/dist/admin
-    cookie.setPath(COOLWSD::ServiceRoot + "/browser/dist/");
-    cookie.setSecure(COOLWSD::isSSLEnabled() ||
-                     COOLWSD::isSSLTermination());
+    cookie.setPath(LOOLWSD::ServiceRoot + "/browser/dist/");
+    cookie.setSecure(LOOLWSD::isSSLEnabled() ||
+                     LOOLWSD::isSSLTermination());
     response.addCookie(cookie);
 
     return true;
@@ -291,7 +291,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
             std::chrono::system_clock::time_point fileLastModifiedTime;
 
 
-            enum class COOLStatusCode
+            enum class LOOLStatusCode
             {
                 DocChanged = 1010  // Document changed externally in storage
             };
@@ -437,7 +437,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
         else if (request.getMethod() == "POST" && Util::endsWith(path.toString(), suffix))
         {
             int i = LocalFileInfo::getIndex(localPath);
-            std::string wopiTimestamp = request.get("X-COOL-WOPI-Timestamp", std::string());
+            std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
             if (wopiTimestamp.empty())
             {
                 wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
@@ -449,10 +449,10 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
                 {
                     http::Response httpResponse(http::StatusLine(409));
                     httpResponse.setBody(
-                        "{\"COOLStatusCode\":" +
-                        std::to_string(static_cast<int>(LocalFileInfo::COOLStatusCode::DocChanged)) + ',' +
                         "{\"LOOLStatusCode\":" +
-                        std::to_string(static_cast<int>(LocalFileInfo::COOLStatusCode::DocChanged)) + '}');
+                        std::to_string(static_cast<int>(LocalFileInfo::LOOLStatusCode::DocChanged)) + ',' +
+                        "{\"LOOLStatusCode\":" +
+                        std::to_string(static_cast<int>(LocalFileInfo::LOOLStatusCode::DocChanged)) + '}');
                     socket->send(httpResponse);
                     return;
                 }
@@ -496,7 +496,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 
         // HSTS hardening. Disabled in debug builds.
 #if !ENABLE_DEBUG
-        if (COOLWSD::isSSLEnabled() || COOLWSD::isSSLTermination())
+        if (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination())
         {
             if (config.getBool("ssl.sts.enabled", false))
             {
@@ -511,9 +511,9 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
         LOG_TRC("Fileserver request: " << requestUri.toString());
         requestUri.normalize(); // avoid .'s and ..'s
 
-        if (requestUri.getPath().find("browser/" COOLWSD_VERSION_HASH "/") == std::string::npos)
+        if (requestUri.getPath().find("browser/" LOOLWSD_VERSION_HASH "/") == std::string::npos)
         {
-            LOG_WRN("client - server version mismatch, disabling browser cache. Expected: " COOLWSD_VERSION_HASH);
+            LOG_WRN("client - server version mismatch, disabling browser cache. Expected: " LOOLWSD_VERSION_HASH);
             noCache = true;
         }
 
@@ -525,7 +525,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
         const std::string relPath = getRequestPathname(request);
         const std::string endPoint = requestSegments[requestSegments.size() - 1];
 
-        static std::string etagString = "\"" COOLWSD_VERSION_HASH +
+        static std::string etagString = "\"" LOOLWSD_VERSION_HASH +
             config.getString("ver_suffix", "") + "\"";
 
 #if ENABLE_DEBUG
@@ -593,7 +593,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             {
                 noCache = true;
 
-                if (!COOLWSD::AdminEnabled)
+                if (!LOOLWSD::AdminEnabled)
                     throw Poco::FileAccessDeniedException("Admin console disabled");
 
                 if (!FileServerRequestHandler::isAdminLoggedIn(request, response))
@@ -650,11 +650,11 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             bool gzip = request.hasToken("Accept-Encoding", "gzip");
             const std::string *content;
 #if ENABLE_DEBUG
-            if (std::getenv("COOL_SERVE_FROM_FS"))
+            if (std::getenv("LOOL_SERVE_FROM_FS"))
             {
                 // Useful to not serve from memory sometimes especially during lool development
                 // Avoids having to restart lool everytime you make a change in lool
-                const std::string filePath = Poco::Path(COOLWSD::FileServerRoot, relPath).absolute().toString();
+                const std::string filePath = Poco::Path(LOOLWSD::FileServerRoot, relPath).absolute().toString();
                 HttpHelper::sendFileAndShutdown(socket, filePath, mimeType, &response, noCache);
                 return;
             }
@@ -818,9 +818,9 @@ void FileServerRequestHandler::initialize()
 {
     // lool files
     try {
-        readDirToHash(COOLWSD::FileServerRoot, "/browser/dist");
+        readDirToHash(LOOLWSD::FileServerRoot, "/browser/dist");
     } catch (...) {
-        LOG_ERR("Failed to read from directory " << COOLWSD::FileServerRoot);
+        LOG_ERR("Failed to read from directory " << LOOLWSD::FileServerRoot);
     }
 }
 
@@ -845,7 +845,7 @@ void FileServerRequestHandler::fetchExternal()
                 };
 
         sessionLogo->setFinishedHandler(logoCallback);
-        sessionLogo->asyncRequest(requestLogo, *COOLWSD::getWebServerPoll());
+        sessionLogo->asyncRequest(requestLogo, *LOOLWSD::getWebServerPoll());
     }
     catch(const Poco::Exception& exc)
     {
@@ -988,8 +988,8 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     Poco::replaceInPlace(preprocess, std::string("%ACCESS_TOKEN_TTL%"), std::to_string(tokenTtl));
     Poco::replaceInPlace(preprocess, std::string("%ACCESS_HEADER%"), escapedAccessHeader);
     Poco::replaceInPlace(preprocess, std::string("%HOST%"), cnxDetails.getWebSocketUrl());
-    Poco::replaceInPlace(preprocess, std::string("%VERSION%"), std::string(COOLWSD_VERSION_HASH));
-    Poco::replaceInPlace(preprocess, std::string("%COOLWSD_VERSION%"), std::string(COOLWSD_VERSION));
+    Poco::replaceInPlace(preprocess, std::string("%VERSION%"), std::string(LOOLWSD_VERSION_HASH));
+    Poco::replaceInPlace(preprocess, std::string("%LOOLWSD_VERSION%"), std::string(LOOLWSD_VERSION));
     Poco::replaceInPlace(preprocess, std::string("%SERVICE_ROOT%"), responseRoot);
     Poco::replaceInPlace(preprocess, std::string("%UI_DEFAULTS%"), uiDefaultsToJSON(uiDefaults, userInterfaceMode));
     Poco::replaceInPlace(preprocess, std::string("%POSTMESSAGE_ORIGIN%"), escapedPostmessageOrigin);
@@ -1000,14 +1000,14 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     Poco::replaceInPlace(preprocess, std::string("%PROTOCOL_DEBUG%"), protocolDebug);
 
     static const std::string hexifyEmbeddedUrls =
-        COOLWSD::getConfigValue<bool>("hexify_embedded_urls", false) ? "true" : "false";
+        LOOLWSD::getConfigValue<bool>("hexify_embedded_urls", false) ? "true" : "false";
     Poco::replaceInPlace(preprocess, std::string("%HEXIFY_URL%"), hexifyEmbeddedUrls);
 
 
     bool useIntegrationTheme = config.getBool("user_interface.use_integration_theme", true);
     const std::string themePreFix = (theme == "nextcloud") && useIntegrationTheme ? theme + "/" : "";
-    const std::string linkCSS("<link rel=\"stylesheet\" href=\"%s/browser/" COOLWSD_VERSION_HASH "/" + themePreFix + "%s.css\">");
-    const std::string scriptJS("<script src=\"%s/browser/" COOLWSD_VERSION_HASH "/" + themePreFix + "%s.js\"></script>");
+    const std::string linkCSS("<link rel=\"stylesheet\" href=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.css\">");
+    const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.js\"></script>");
 
     std::string brandCSS(Poco::format(linkCSS, responseRoot, std::string(BRANDING)));
     std::string brandJS(Poco::format(scriptJS, responseRoot, std::string(BRANDING)));
@@ -1153,7 +1153,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
         "Last-Modified: " << Util::getHttpTimeNow() << "\r\n"
         "User-Agent: " << WOPI_AGENT_STRING << "\r\n"
         "Cache-Control:max-age=11059200\r\n"
-        "ETag: \"" COOLWSD_VERSION_HASH "\"\r\n"
+        "ETag: \"" LOOLWSD_VERSION_HASH "\"\r\n"
         "Content-Length: " << preprocess.size() << "\r\n"
         "Content-Type: " << mimeType << "\r\n"
         "X-Content-Type-Options: nosniff\r\n"
@@ -1164,7 +1164,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     oss << cspOss.str();
 
     // Setup HTTP Public key pinning
-    if ((COOLWSD::isSSLEnabled() || COOLWSD::isSSLTermination()) && config.getBool("ssl.hpkp[@enable]", false))
+    if ((LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination()) && config.getBool("ssl.hpkp[@enable]", false))
     {
         size_t i = 0;
         std::string pinPath = "ssl.hpkp.pins.pin[" + std::to_string(i) + ']';
@@ -1292,7 +1292,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
 {
     Poco::Net::HTTPResponse response;
 
-    if (!COOLWSD::AdminEnabled)
+    if (!LOOLWSD::AdminEnabled)
         throw Poco::FileAccessDeniedException("Admin console disabled");
 
     if (!FileServerRequestHandler::isAdminLoggedIn(request, response))
@@ -1301,7 +1301,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
     ServerURL cnxDetails(requestDetails);
     std::string responseRoot = cnxDetails.getResponseRoot();
 
-    static const std::string scriptJS("<script src=\"%s/browser/" COOLWSD_VERSION_HASH "/%s.js\"></script>");
+    static const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/%s.js\"></script>");
     static const std::string footerPage("<footer class=\"footer has-text-centered\"><strong>Key:</strong> %s &nbsp;&nbsp;<strong>Expiry Date:</strong> %s</footer>");
 
     const std::string relPath = getRequestPathname(request);
@@ -1329,7 +1329,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
 
     Poco::replaceInPlace(templateFile, std::string("<!--%BRANDING_JS%-->"), brandJS);
     Poco::replaceInPlace(templateFile, std::string("<!--%FOOTER%-->"), brandFooter);
-    Poco::replaceInPlace(templateFile, std::string("%VERSION%"), std::string(COOLWSD_VERSION_HASH));
+    Poco::replaceInPlace(templateFile, std::string("%VERSION%"), std::string(LOOLWSD_VERSION_HASH));
     Poco::replaceInPlace(templateFile, std::string("%SERVICE_ROOT%"), responseRoot);
 
     // Ask UAs to block if they detect any XSS attempt

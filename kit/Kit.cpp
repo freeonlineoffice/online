@@ -86,7 +86,7 @@
 #endif
 
 #if MOBILEAPP
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #endif
 
 #ifdef IOS
@@ -106,7 +106,7 @@ using Poco::URI;
 using Poco::Path;
 #endif
 
-using namespace COOLProtocol;
+using namespace LOOLProtocol;
 
 extern "C" { void dump_kit_state(void); /* easy for gdb */ }
 
@@ -1445,7 +1445,7 @@ private:
 
         std::string name;
         std::string sessionId;
-        if (COOLProtocol::parseNameValuePair(prefix, name, sessionId, '-') && name == "child")
+        if (LOOLProtocol::parseNameValuePair(prefix, name, sessionId, '-') && name == "child")
         {
             const auto it = _sessions.find(sessionId);
             if (it != _sessions.end())
@@ -1584,7 +1584,7 @@ public:
 
                 const TileQueue::Payload input = _tileQueue->pop();
 
-                LOG_TRC("Kit handling queue message: " << COOLProtocol::getAbbreviatedMessage(input));
+                LOG_TRC("Kit handling queue message: " << LOOLProtocol::getAbbreviatedMessage(input));
 
                 const StringVector tokens = StringVector::tokenize(input.data(), input.size());
 
@@ -1626,7 +1626,7 @@ public:
                         {
                             broadcast = true;
                         }
-                        else if (COOLProtocol::matchPrefix("except-", target))
+                        else if (LOOLProtocol::matchPrefix("except-", target))
                         {
                             exceptViewId = std::stoi(target.substr(7));
                             broadcast = true;
@@ -1684,12 +1684,12 @@ public:
                     }
                     else
                     {
-                        LOG_ERR("Invalid callback message: [" << COOLProtocol::getAbbreviatedMessage(input) << "].");
+                        LOG_ERR("Invalid callback message: [" << LOOLProtocol::getAbbreviatedMessage(input) << "].");
                     }
                 }
                 else
                 {
-                    LOG_ERR("Unexpected request: [" << COOLProtocol::getAbbreviatedMessage(input) << "].");
+                    LOG_ERR("Unexpected request: [" << LOOLProtocol::getAbbreviatedMessage(input) << "].");
                 }
             }
 
@@ -1864,7 +1864,7 @@ private:
 
 #if !defined BUILDING_TESTS && !MOBILEAPP
 
-// When building the fuzzer we link COOLWSD.cpp into the same executable so the
+// When building the fuzzer we link LOOLWSD.cpp into the same executable so the
 // Protected::emitOneRecording() there gets used. When building the unit tests the one in
 // TraceEvent.cpp gets used.
 
@@ -2274,7 +2274,7 @@ protected:
         }
         else if (tokens.equals(0, "tile") || tokens.equals(0, "tilecombine") || tokens.equals(0, "canceltiles") ||
                 tokens.equals(0, "paintwindow") || tokens.equals(0, "resizewindow") ||
-                COOLProtocol::getFirstToken(tokens[0], '-') == "child")
+                LOOLProtocol::getFirstToken(tokens[0], '-') == "child")
         {
             if (_document)
             {
@@ -2463,15 +2463,15 @@ void lokit_main(
 {
 #if !MOBILEAPP
 
-    SigUtil::setFatalSignals("kit startup of " COOLWSD_VERSION " " COOLWSD_VERSION_HASH);
+    SigUtil::setFatalSignals("kit startup of " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
     SigUtil::setTerminationSignals();
 
     Util::setThreadName("kit_spare_" + Util::encodeId(numericIdentifier, 3));
 
     // Reinitialize logging when forked.
-    const bool logToFile = std::getenv("COOL_LOGFILE");
-    const char* logFilename = std::getenv("COOL_LOGFILENAME");
-    const char* logLevel = std::getenv("COOL_LOGLEVEL");
+    const bool logToFile = std::getenv("LOOL_LOGFILE");
+    const char* logFilename = std::getenv("LOOL_LOGFILENAME");
+    const char* logLevel = std::getenv("LOOL_LOGLEVEL");
     const bool logColor = config::getBool("logging.color", true) && isatty(fileno(stderr));
     std::map<std::string, std::string> logProperties;
     if (logToFile && logFilename)
@@ -2482,14 +2482,14 @@ void lokit_main(
     Util::rng::reseed();
 
     const std::string LogLevel = logLevel ? logLevel : "trace";
-    const bool bTraceStartup = (std::getenv("COOL_TRACE_STARTUP") != nullptr);
+    const bool bTraceStartup = (std::getenv("LOOL_TRACE_STARTUP") != nullptr);
     Log::initialize("kit", bTraceStartup ? "trace" : logLevel, logColor, logToFile, logProperties);
     if (bTraceStartup && LogLevel != "trace")
     {
         LOG_INF("Setting log-level to [trace] and delaying setting to configured [" << LogLevel << "] until after Kit initialization.");
     }
 
-    const char* pAnonymizationSalt = std::getenv("COOL_ANONYMIZATION_SALT");
+    const char* pAnonymizationSalt = std::getenv("LOOL_ANONYMIZATION_SALT");
     if (pAnonymizationSalt)
     {
         AnonymizationSalt = std::stoull(std::string(pAnonymizationSalt));
@@ -2746,7 +2746,7 @@ void lokit_main(
             SigUtil::setVersionInfo(versionString);
 
             // Add some parameters we want to pass to the client. Could not figure out how to get
-            // the configuration parameters from COOLWSD.cpp's initialize() or loolwsd.xml here, so
+            // the configuration parameters from LOOLWSD.cpp's initialize() or loolwsd.xml here, so
             // oh well, just have the value hardcoded in KitHelper.hpp. It isn't really useful to
             // "tune" it at end-user installations anyway, I think.
             auto versionJSON = Poco::JSON::Parser().parse(versionString).extract<Poco::JSON::Object::Ptr>();
@@ -2788,7 +2788,7 @@ void lokit_main(
         static std::shared_ptr<lok::Office> loKit = std::make_shared<lok::Office>(kit);
         assert(loKit);
 
-        COOLWSD::LOKitVersion = loKit->getVersionInfo();
+        LOOLWSD::LOKitVersion = loKit->getVersionInfo();
 
         // Dummies
         const std::string jailId = "jailid";

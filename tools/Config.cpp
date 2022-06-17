@@ -92,7 +92,7 @@ std::string Config::ConfigFile =
 #if ENABLE_DEBUG
     DEBUG_ABSSRCDIR
 #else
-    COOLWSD_CONFIGDIR
+    LOOLWSD_CONFIGDIR
 #endif
     "/loolwsd.xml";
 

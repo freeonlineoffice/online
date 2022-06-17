@@ -30,7 +30,7 @@ describe('Clipboard operations.', function() {
 		cy.contains('.context-menu-link', 'Copy')
 			.click();
 
-		// COOL code can not execute document.execCommand() when executed by cypress
+		// LOOL code can not execute document.execCommand() when executed by cypress
 		// https://github.com/cypress-io/cypress/issues/2851
 		cy.get('.vex-dialog-message p')
 			.should('have.text', 'Your browser has very limited access to the clipboard, so use these keyboard shortcuts:');

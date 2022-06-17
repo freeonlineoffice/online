@@ -94,7 +94,7 @@ public:
 
         assertPutFileCount();
 
-        const std::string wopiTimestamp = request.get("X-COOL-WOPI-Timestamp", std::string());
+        const std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
         const bool force = wopiTimestamp.empty(); // Without a timestamp we force to always store.
 
         switch (_scenario)

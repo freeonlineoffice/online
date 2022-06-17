@@ -1653,8 +1653,8 @@ msgid "RELOAD"
 msgstr "PONOVNO NALOŽI"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "Različica COOLWSD:"
+msgid "LOOLWSD version:"
+msgstr "Različica LOOLWSD:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

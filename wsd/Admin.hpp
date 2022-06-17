@@ -15,7 +15,7 @@
 #include "Log.hpp"
 
 #include "net/WebSocketHandler.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 
 class Admin;
 

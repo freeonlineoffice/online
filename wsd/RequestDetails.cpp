@@ -9,7 +9,7 @@
 
 #include <config.h>
 
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "RequestDetails.hpp"
 #include "common/Log.hpp"
 #include "HostUtil.hpp"

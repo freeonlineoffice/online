@@ -353,7 +353,7 @@ void HTTPWSTest::testInactiveClient()
         sendTextFrame(socket2, "useractive", "inactiveClient-2 ");
         SocketProcessor("Second ", socket2, [&](const std::string& msg)
                 {
-                    const auto token = COOLProtocol::getFirstToken(msg);
+                    const auto token = LOOLProtocol::getFirstToken(msg);
                     // 'window:' is e.g. 'window: {"id":"4","action":"invalidate","rectangle":"0, 0,
                     // 0, 0"}', which is probably fine, given that other invalidations are also
                     // expected.

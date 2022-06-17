@@ -31,7 +31,7 @@
 #import "Kit.hpp"
 #import "KitHelper.hpp"
 #import "Log.hpp"
-#import "COOLWSD.hpp"
+#import "LOOLWSD.hpp"
 #import "MobileApp.hpp"
 #import "Protocol.hpp"
 
@@ -89,7 +89,7 @@ static std::atomic<unsigned> appDocIdCounter(1);
 }
 
 - (void)send2JS:(const char *)buffer length:(int)length {
-    LOG_TRC("To JS: " << COOLProtocol::getAbbreviatedMessage(buffer, length).c_str());
+    LOG_TRC("To JS: " << LOOLProtocol::getAbbreviatedMessage(buffer, length).c_str());
 
     NSString *js;
 

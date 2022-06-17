@@ -24,12 +24,12 @@
 
 void TileQueue::put_impl(const Payload& value)
 {
-    const std::string firstToken = COOLProtocol::getFirstToken(value);
+    const std::string firstToken = LOOLProtocol::getFirstToken(value);
 
     if (firstToken == "canceltiles")
     {
         const std::string msg = std::string(value.data(), value.size());
-        LOG_TRC("Processing [" << COOLProtocol::getAbbreviatedMessage(msg)
+        LOG_TRC("Processing [" << LOOLProtocol::getAbbreviatedMessage(msg)
                                << "]. Before canceltiles have " << getQueue().size()
                                << " in queue.");
         const std::string seqs = msg.substr(12);
@@ -102,7 +102,7 @@ void TileQueue::put_impl(const Payload& value)
 
 void TileQueue::removeTileDuplicate(const std::string& tileMsg)
 {
-    assert(COOLProtocol::matchPrefix("tile", tileMsg, /*ignoreWhitespace*/ true));
+    assert(LOOLProtocol::matchPrefix("tile", tileMsg, /*ignoreWhitespace*/ true));
 
     // Ver is always provided at this point and it is necessary to
     // return back to clients the last rendered version of a tile
@@ -120,7 +120,7 @@ void TileQueue::removeTileDuplicate(const std::string& tileMsg)
         if (it.size() > newMsgPos &&
             strncmp(tileMsg.data(), it.data(), newMsgPos) == 0)
         {
-            LOG_TRC("Remove duplicate tile request: " << std::string(it.data(), it.size()) << " -> " << COOLProtocol::getAbbreviatedMessage(tileMsg));
+            LOG_TRC("Remove duplicate tile request: " << std::string(it.data(), it.size()) << " -> " << LOOLProtocol::getAbbreviatedMessage(tileMsg));
             getQueue().erase(getQueue().begin() + i);
             break;
         }
@@ -144,7 +144,7 @@ std::string extractViewId(const std::string& origMsg, const StringVector& tokens
 /// Extract the .uno: command ID from the potential command.
 std::string extractUnoCommand(const std::string& command)
 {
-    if (!COOLProtocol::matchPrefix(".uno:", command))
+    if (!LOOLProtocol::matchPrefix(".uno:", command))
         return std::string();
 
     size_t equalPos = command.find('=');
@@ -188,7 +188,7 @@ bool extractRectangle(const StringVector& tokens, int& x, int& y, int& w, int& h
 
 std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
 {
-    assert(COOLProtocol::matchPrefix("callback", callbackMsg, /*ignoreWhitespace*/ true));
+    assert(LOOLProtocol::matchPrefix("callback", callbackMsg, /*ignoreWhitespace*/ true));
 
     StringVector tokens = StringVector::tokenize(callbackMsg);
 
@@ -356,7 +356,7 @@ std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
                 {
                     LOG_TRC("Remove obsolete uno command: "
                             << std::string(it.data(), it.size()) << " -> "
-                            << COOLProtocol::getAbbreviatedMessage(callbackMsg));
+                            << LOOLProtocol::getAbbreviatedMessage(callbackMsg));
                     getQueue().erase(getQueue().begin() + i);
                     break;
                 }
@@ -385,7 +385,7 @@ std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
                 const auto& it = getQueue()[i];
 
                 // skip non-callbacks quickly
-                if (!COOLProtocol::matchPrefix("callback", it))
+                if (!LOOLProtocol::matchPrefix("callback", it))
                     continue;
 
                 StringVector queuedTokens = StringVector::tokenize(it.data(), it.size());
@@ -397,7 +397,7 @@ std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
                 {
                     LOG_TRC("Remove obsolete callback: "
                             << std::string(it.data(), it.size()) << " -> "
-                            << COOLProtocol::getAbbreviatedMessage(callbackMsg));
+                            << LOOLProtocol::getAbbreviatedMessage(callbackMsg));
                     getQueue().erase(getQueue().begin() + i);
                     break;
                 }
@@ -415,7 +415,7 @@ std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
                     {
                         LOG_TRC("Remove obsolete view callback: "
                                 << std::string(it.data(), it.size()) << " -> "
-                                << COOLProtocol::getAbbreviatedMessage(callbackMsg));
+                                << LOOLProtocol::getAbbreviatedMessage(callbackMsg));
                         getQueue().erase(getQueue().begin() + i);
                         break;
                     }
@@ -456,8 +456,8 @@ void TileQueue::deprioritizePreviews()
 
         // stop at the first non-tile or non-'id' (preview) message
         std::string id;
-        if (!COOLProtocol::matchPrefix("tile", message) ||
-            !COOLProtocol::getTokenStringFromMessage(message, "id", id))
+        if (!LOOLProtocol::matchPrefix("tile", message) ||
+            !LOOLProtocol::getTokenStringFromMessage(message, "id", id))
         {
             break;
         }
@@ -476,12 +476,12 @@ TileQueue::Payload TileQueue::get_impl()
     std::string msg(front.data(), front.size());
 
     std::string id;
-    bool isTile = COOLProtocol::matchPrefix("tile", msg);
-    bool isPreview = isTile && COOLProtocol::getTokenStringFromMessage(msg, "id", id);
+    bool isTile = LOOLProtocol::matchPrefix("tile", msg);
+    bool isPreview = isTile && LOOLProtocol::getTokenStringFromMessage(msg, "id", id);
     if (!isTile || isPreview)
     {
         // Don't combine non-tiles or tiles with id.
-        LOG_TRC("MessageQueue res: " << COOLProtocol::getAbbreviatedMessage(msg));
+        LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
         getQueue().erase(getQueue().begin());
 
         // de-prioritize the other tiles with id - usually the previews in
@@ -504,8 +504,8 @@ TileQueue::Payload TileQueue::get_impl()
         // avoid starving - stop the search when we reach a non-tile,
         // otherwise we may keep growing the queue of unhandled stuff (both
         // tiles and non-tiles)
-        if (!COOLProtocol::matchPrefix("tile", prio) ||
-            COOLProtocol::getTokenStringFromMessage(prio, "id", id))
+        if (!LOOLProtocol::matchPrefix("tile", prio) ||
+            LOOLProtocol::getTokenStringFromMessage(prio, "id", id))
         {
             break;
         }
@@ -535,8 +535,8 @@ TileQueue::Payload TileQueue::get_impl()
     {
         auto& it = getQueue()[i];
         msg = std::string(it.data(), it.size());
-        if (!COOLProtocol::matchPrefix("tile", msg) ||
-            COOLProtocol::getTokenStringFromMessage(msg, "id", id))
+        if (!LOOLProtocol::matchPrefix("tile", msg) ||
+            LOOLProtocol::getTokenStringFromMessage(msg, "id", id))
         {
             // Don't combine non-tiles or tiles with id.
             ++i;
@@ -544,7 +544,7 @@ TileQueue::Payload TileQueue::get_impl()
         }
 
         TileDesc tile2 = TileDesc::parse(msg);
-        LOG_TRC("Combining candidate: " << COOLProtocol::getAbbreviatedMessage(msg));
+        LOG_TRC("Combining candidate: " << LOOLProtocol::getAbbreviatedMessage(msg));
 
         // Check if it's on the same row.
         if (tiles[0].canCombine(tile2))
@@ -563,7 +563,7 @@ TileQueue::Payload TileQueue::get_impl()
     if (tiles.size() == 1)
     {
         msg = tiles[0].serialize("tile");
-        LOG_TRC("MessageQueue res: " << COOLProtocol::getAbbreviatedMessage(msg));
+        LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
         return Payload(msg.data(), msg.data() + msg.size());
     }
 
@@ -595,7 +595,7 @@ TileQueue::Payload TileQueue::get_impl()
     TileCombined combined = TileCombined::create(tiles);
     assert(!combined.hasDuplicates());
     std::string tileCombined = combined.serialize("tilecombine");
-    LOG_TRC("MessageQueue res: " << COOLProtocol::getAbbreviatedMessage(tileCombined));
+    LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(tileCombined));
     return Payload(tileCombined.data(), tileCombined.data() + tileCombined.size());
 }
 

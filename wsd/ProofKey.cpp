@@ -10,7 +10,7 @@
 #include <config.h>
 
 #include "ProofKey.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -172,7 +172,7 @@ std::string Proof::ProofKeyPath()
 #if ENABLE_DEBUG
         DEBUG_ABSSRCDIR
 #else
-        COOLWSD_CONFIGDIR
+        LOOLWSD_CONFIGDIR
 #endif
         "/proof_key";
     return keyPath;

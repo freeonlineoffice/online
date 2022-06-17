@@ -21,7 +21,7 @@
 #include "Log.hpp"
 #include "Util.hpp"
 
-using namespace COOLProtocol;
+using namespace LOOLProtocol;
 
 using Poco::Exception;
 
@@ -86,7 +86,7 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
     {
         std::string name;
         std::string value;
-        if (!COOLProtocol::parseNameValuePair(tokens[i], name, value))
+        if (!LOOLProtocol::parseNameValuePair(tokens[i], name, value))
         {
             LOG_WRN("Unexpected doc options token [" << tokens[i] << "]. Skipping.");
             continue;

@@ -11,7 +11,7 @@
 
 #include <string>
 #include "RequestDetails.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 
 /** This class helps us to build a URL that will reliably point back
  * at our service. It does very simple splitting of proxy URL
@@ -38,11 +38,11 @@ public:
     void init(const std::string &host, const std::string &proxyPrefix)
     {
         // The user can override the ServerRoot with a new prefix.
-        _pathPlus = COOLWSD::ServiceRoot;
+        _pathPlus = LOOLWSD::ServiceRoot;
 
-        _ssl = (COOLWSD::isSSLEnabled() || COOLWSD::isSSLTermination());
+        _ssl = (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination());
         _websocket = true;
-        std::string serverName = COOLWSD::ServerName.empty() ? host : COOLWSD::ServerName;
+        std::string serverName = LOOLWSD::ServerName.empty() ? host : LOOLWSD::ServerName;
         _schemeAuthority = serverName;
 
         // A well formed ProxyPrefix will override it.

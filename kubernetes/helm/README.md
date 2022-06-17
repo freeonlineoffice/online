@@ -57,7 +57,7 @@ It should return a similar output as below:
 ```
 HTTP/1.1 200 OK
 last-modified: Tue, 18 May 2021 10:46:29
-user-agent: COOLWSD WOPI Agent 6.4.8
+user-agent: LOOLWSD WOPI Agent 6.4.8
 content-length: 2
 content-type: text/plain
 ```

@@ -23,7 +23,7 @@
 
 #include "FakeSocket.hpp"
 #include "Log.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "Protocol.hpp"
 #include "Util.hpp"
 
@@ -32,7 +32,7 @@ const int SHOW_JS_MAXLEN = 70;
 int loolwsd_server_socket_fd = -1;
 
 static std::string fileURL;
-static COOLWSD *loolwsd = nullptr;
+static LOOLWSD *loolwsd = nullptr;
 static int fakeClientFd;
 static int closeNotificationPipeForForwardingThread[2];
 static WebKitWebView *webView;
@@ -46,7 +46,7 @@ static void send2JS_ready_callback(GObject      *source_object,
 
 static void send2JS(const std::vector<char>& buffer)
 {
-    LOG_TRC_NOFILE("Send to JS: " << COOLProtocol::getAbbreviatedMessage(buffer.data(), buffer.size()));
+    LOG_TRC_NOFILE("Send to JS: " << LOOLProtocol::getAbbreviatedMessage(buffer.data(), buffer.size()));
 
     std::string js;
 
@@ -161,7 +161,7 @@ static void handle_lool_message(WebKitUserContentManager *manager,
         {
             // Now we know that the JS has started completely
 
-            // Contact the permanently (during app lifetime) listening COOLWSD server
+            // Contact the permanently (during app lifetime) listening LOOLWSD server
             // "public" socket
             assert(loolwsd_server_socket_fd != -1);
             int rc = fakeSocketConnect(fakeClientFd, loolwsd_server_socket_fd);
@@ -297,10 +297,10 @@ int main(int argc, char* argv[])
                     Util::setThreadName("app");
                     while (true)
                     {
-                        loolwsd = new COOLWSD();
+                        loolwsd = new LOOLWSD();
                         loolwsd->run(1, argv);
                         delete loolwsd;
-                        LOG_TRC("One run of COOLWSD completed");
+                        LOG_TRC("One run of LOOLWSD completed");
                     }
                 }).detach();
 

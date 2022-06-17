@@ -29,7 +29,7 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 /// Test suite for /hosting, etc.
 class UnitHosting : public UnitWSD

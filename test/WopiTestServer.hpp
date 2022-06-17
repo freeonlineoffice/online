@@ -36,7 +36,7 @@ class WopiTestServer : public UnitWSD
 {
 private:
 
-    enum class COOLStatusCode
+    enum class LOOLStatusCode
     {
         DocChanged = 1010
     };
@@ -87,7 +87,7 @@ protected:
     /// Sets the file content to a given value and update the last file modified time
     void setFileContent(const std::string& fileContent)
     {
-        LOG_TST("setFileContent: [" << COOLProtocol::getAbbreviatedMessage(fileContent ) << ']');
+        LOG_TST("setFileContent: [" << LOOLProtocol::getAbbreviatedMessage(fileContent ) << ']');
         _fileContent = fileContent;
         _fileLastModifiedTime = std::chrono::system_clock::now();
     }
@@ -146,7 +146,7 @@ protected:
         // It really has nothing to do with this fake WOPI server, exept
         // that it manages it since it is the base of WOPI tests, so
         // it's a common bit of housekeeping that all WOPI tests must do.
-        LOG_TST("Connecting test client to COOL (#" << (_wsList.size() + 1)
+        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
                                                     << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the front.
@@ -162,7 +162,7 @@ protected:
         // It really has nothing to do with this fake WOPI server, exept
         // that it manages it since it is the base of WOPI tests, so
         // it's a common bit of housekeeping that all WOPI tests must do.
-        LOG_TST("Connecting test client to COOL (#" << (_wsList.size() + 1)
+        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
                                                     << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the back.
@@ -376,7 +376,7 @@ protected:
             LOG_TST("Fake wopi host request, handling PutFile (#" << _countPutFile
                                                                   << "): " << uriReq.getPath());
 
-            const std::string wopiTimestamp = request.get("X-COOL-WOPI-Timestamp", std::string());
+            const std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
             if (!wopiTimestamp.empty())
             {
                 const std::string fileModifiedTime =
@@ -385,8 +385,8 @@ protected:
                 {
                     http::Response httpResponse(http::StatusLine(409));
                     httpResponse.setBody(
-                        "{\"COOLStatusCode\":" +
-                        std::to_string(static_cast<int>(COOLStatusCode::DocChanged)) + '}');
+                        "{\"LOOLStatusCode\":" +
+                        std::to_string(static_cast<int>(LOOLStatusCode::DocChanged)) + '}');
                     socket->sendAndShutdown(httpResponse);
                     return true;
                 }
@@ -473,7 +473,7 @@ protected:
     do                                                                                             \
     {                                                                                              \
         LOG_TST("Sending from #" << INDEX << ": " << MSG);                                         \
-        helpers::sendTextFrame(*getWsAt(INDEX)->getCOOLWebSocket(), MSG, getTestname());           \
+        helpers::sendTextFrame(*getWsAt(INDEX)->getLOOLWebSocket(), MSG, getTestname());           \
         SocketPoll::wakeupWorld();                                                                 \
     } while (false)
 

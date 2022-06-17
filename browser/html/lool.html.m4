@@ -71,9 +71,9 @@ m4_ifelse(GTKAPP,[true],
 )
 m4_ifelse(ANDROIDAPP,[true],
   [   window.ThisIsTheAndroidApp = true;
-   window.postMobileMessage = function(msg) { window.COOLMessageHandler.postMobileMessage(msg); };
-   window.postMobileError   = function(msg) { window.COOLMessageHandler.postMobileError(msg); };
-   window.postMobileDebug   = function(msg) { window.COOLMessageHandler.postMobileDebug(msg); };],
+   window.postMobileMessage = function(msg) { window.LOOLMessageHandler.postMobileMessage(msg); };
+   window.postMobileError   = function(msg) { window.LOOLMessageHandler.postMobileError(msg); };
+   window.postMobileDebug   = function(msg) { window.LOOLMessageHandler.postMobileDebug(msg); };],
   [   window.ThisIsTheAndroidApp = false;]
 )
 
@@ -133,7 +133,7 @@ function onSlideClick(e){
 
 m4_ifelse(BUNDLE,[],
   <!-- Using individual CSS files -->
-  m4_foreachq([fileCSS],[COOL_CSS],[<link rel="stylesheet" href="][m4_ifelse(MOBILEAPP,[],[%SERVICE_ROOT%/browser/%VERSION%/])][fileCSS" />
+  m4_foreachq([fileCSS],[LOOL_CSS],[<link rel="stylesheet" href="][m4_ifelse(MOBILEAPP,[],[%SERVICE_ROOT%/browser/%VERSION%/])][fileCSS" />
 ]),
   [<!-- Dynamically load the bundle.css -->
 <script>
@@ -321,7 +321,7 @@ m4_ifelse(MOBILEAPP,[true],
       window.accessHeader = '%ACCESS_HEADER%';
       window.postMessageOriginExt = '%POSTMESSAGE_ORIGIN%';
       window.loolLogging = '%BROWSER_LOGGING%';
-      window.loolwsdVersion = '%COOLWSD_VERSION%';
+      window.loolwsdVersion = '%LOOLWSD_VERSION%';
       window.enableWelcomeMessage = %ENABLE_WELCOME_MSG%;
       window.userInterfaceMode = '%USER_INTERFACE_MODE%';
       window.useIntegrationTheme = '%USE_INTEGRATION_THEME%';
@@ -374,14 +374,14 @@ document.getElementsByTagName("head")[[0]].appendChild(brandingLink);
 
 m4_ifelse(MOBILEAPP,[true],
   <!-- This is for a mobile app so the script files are in the same folder -->
-  m4_ifelse(BUNDLE,[],m4_foreachq([fileJS],[COOL_JS],
+  m4_ifelse(BUNDLE,[],m4_foreachq([fileJS],[LOOL_JS],
   [    <script src="fileJS" defer></script>
   ]),
   [    <script src="bundle.js" defer></script>
   ]),
   m4_ifelse(BUNDLE,[],
       <!-- Using indivisual JS files -->
-      m4_foreachq([fileJS],[COOL_JS],
+      m4_foreachq([fileJS],[LOOL_JS],
       [ <script src="%SERVICE_ROOT%/browser/%VERSION%/fileJS" defer></script>
       ]),
   [

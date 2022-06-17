@@ -19,7 +19,7 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 /// TIFF load testcase.
 class UnitTiffLoad : public UnitWSD
@@ -41,7 +41,7 @@ void UnitTiffLoad::invokeWSDTest()
     std::string documentPath;
     std::string documentURL;
     helpers::getDocumentPathAndURL("tiff.odt", documentPath, documentURL, testname);
-    std::shared_ptr<COOLWebSocket> socket = helpers::loadDocAndGetSocket(
+    std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(
         Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
     // Select the image.

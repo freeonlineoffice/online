@@ -29,10 +29,10 @@ inline void setupKitEnvironment(const std::string& userInterface)
 #elif ENABLE_DEBUG && !defined(ANDROID) // '*' denotes non-writable.
     layers += "user:*file://" DEBUG_ABSSRCDIR "/loolkitconfig.xcu ";
 #else
-    if(::getenv("COOLKITCONFIG_XCU"))
-        layers += "user:*file://" + std::string(::getenv("COOLKITCONFIG_XCU")) + " ";
+    if(::getenv("LOOLKITCONFIG_XCU"))
+        layers += "user:*file://" + std::string(::getenv("LOOLKITCONFIG_XCU")) + " ";
     else
-        layers += "user:*file://" COOLWSD_CONFIGDIR "/loolkitconfig.xcu ";
+        layers += "user:*file://" LOOLWSD_CONFIGDIR "/loolkitconfig.xcu ";
 #endif
     ::setenv("CONFIGURATION_LAYERS", layers.c_str(),
              1 /* override */);

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Append Welcome dialog strings to COOL UI pot file"""
+"""Append Welcome dialog strings to LOOL UI pot file"""
 
 import sys
 import polib

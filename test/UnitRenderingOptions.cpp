@@ -19,7 +19,7 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 /// Rendering options testcase.
 class UnitRenderingOptions : public UnitWSD
@@ -47,7 +47,7 @@ void UnitRenderingOptions::invokeWSDTest()
 
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
         Poco::Net::HTTPResponse response;
-        std::shared_ptr<COOLWebSocket> socket = helpers::connectLOKit(
+        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
             Poco::URI(helpers::getTestServerURI()), request, response, testname);
 
         helpers::sendTextFrame(socket, "load url=" + documentURL + " options=" + options);

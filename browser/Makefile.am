@@ -42,26 +42,26 @@ JQUERY_MINIFIED_IMAGE_PATH = node_modules/jquery-ui-dist/images
 JQUERY_MINIFIED_IMAGES = $(wildcard $(JQUERY_MINIFIED_IMAGE_PATH)/*.png)
 JQUERY_MINIFIED_DIST_IMAGES = $(patsubst $(JQUERY_MINIFIED_IMAGE_PATH)/%.png,$(DIST_FOLDER)/images/%.png,$(JQUERY_MINIFIED_IMAGES))
 
-COOL_IMAGES_SRC = $(shell find $(srcdir)/images -name '*.*')
-COOL_IMAGES_DST = $(patsubst $(srcdir)/%,$(DIST_FOLDER)/%,$(COOL_IMAGES_SRC))
-COOL_IMAGES_CUSTOM_SRC = $(shell if test -n "$(CUSTOM_ICONS_DIRECTORY)"; then find $(CUSTOM_ICONS_DIRECTORY) -name '*.*'; fi)
-COOL_IMAGES_CUSTOM_DST = $(patsubst $(CUSTOM_ICONS_DIRECTORY)/%,$(DIST_FOLDER)/images/%,$(COOL_IMAGES_CUSTOM_SRC))
-COOL_L10N_SRC = $(shell find $(srcdir)/l10n -name '*.*')
+LOOL_IMAGES_SRC = $(shell find $(srcdir)/images -name '*.*')
+LOOL_IMAGES_DST = $(patsubst $(srcdir)/%,$(DIST_FOLDER)/%,$(LOOL_IMAGES_SRC))
+LOOL_IMAGES_CUSTOM_SRC = $(shell if test -n "$(CUSTOM_ICONS_DIRECTORY)"; then find $(CUSTOM_ICONS_DIRECTORY) -name '*.*'; fi)
+LOOL_IMAGES_CUSTOM_DST = $(patsubst $(CUSTOM_ICONS_DIRECTORY)/%,$(DIST_FOLDER)/images/%,$(LOOL_IMAGES_CUSTOM_SRC))
+LOOL_L10N_SRC = $(shell find $(srcdir)/l10n -name '*.*')
 if !ENABLE_MOBILEAPP
-COOL_L10N_DST =  $(patsubst $(srcdir)/l10n/%,$(DIST_FOLDER)/l10n/%,$(COOL_L10N_SRC))
+LOOL_L10N_DST =  $(patsubst $(srcdir)/l10n/%,$(DIST_FOLDER)/l10n/%,$(LOOL_L10N_SRC))
 endif
 
-COOL_HTML_SRC = $(shell find $(srcdir)/html -name '*.html')
-COOL_HTML_DST = $(patsubst $(srcdir)/html/%.html,$(DIST_FOLDER)/%.html,$(COOL_HTML_SRC))
+LOOL_HTML_SRC = $(shell find $(srcdir)/html -name '*.html')
+LOOL_HTML_DST = $(patsubst $(srcdir)/html/%.html,$(DIST_FOLDER)/%.html,$(LOOL_HTML_SRC))
 
 if ENABLE_WELCOME_MESSAGE
-COOL_WELCOME_SRC = $(shell find $(srcdir)/welcome -name '*')
-COOL_WELCOME_DST = $(patsubst $(srcdir)/welcome/%,$(DIST_FOLDER)/welcome/%,$(COOL_WELCOME_SRC))
+LOOL_WELCOME_SRC = $(shell find $(srcdir)/welcome -name '*')
+LOOL_WELCOME_DST = $(patsubst $(srcdir)/welcome/%,$(DIST_FOLDER)/welcome/%,$(LOOL_WELCOME_SRC))
 endif
 
-COOL_ADMIN_SRC = $(shell find $(srcdir)/admin -name '*.html' -or -name '*.css' -or -name '*.ttf' -or -name 'OFL.txt' -or -name '*.svg')
-COOL_ADMIN_ALL = $(shell find $(srcdir)/admin -name '*')
-COOL_ADMIN_DST = $(patsubst $(srcdir)/admin/%,$(DIST_FOLDER)/admin/%,$(COOL_ADMIN_SRC))
+LOOL_ADMIN_SRC = $(shell find $(srcdir)/admin -name '*.html' -or -name '*.css' -or -name '*.ttf' -or -name 'OFL.txt' -or -name '*.svg')
+LOOL_ADMIN_ALL = $(shell find $(srcdir)/admin -name '*')
+LOOL_ADMIN_DST = $(patsubst $(srcdir)/admin/%,$(DIST_FOLDER)/admin/%,$(LOOL_ADMIN_SRC))
 
 define file_target
 $(1): $(2)
@@ -91,12 +91,12 @@ define npm_source
 	done
 endef
 
-COOL_ADMIN_TS =\
+LOOL_ADMIN_TS =\
 	admin/src/ModalDialogCreator.ts
 
-COOL_ADMIN_TS_JS = $(patsubst %.ts,$(TYPESCRIPT_JS_DIR)/%.js,$(COOL_ADMIN_TS))
+LOOL_ADMIN_TS_JS = $(patsubst %.ts,$(TYPESCRIPT_JS_DIR)/%.js,$(LOOL_ADMIN_TS))
 
-COOL_ADMIN_JS =\
+LOOL_ADMIN_JS =\
 	admin/src/Base.js \
 	admin/src/Admin.js \
 	admin/src/AdminSocketBase.js \
@@ -115,7 +115,7 @@ NODE_MODULES_SRC =\
 	l10n-for-node@0.0.1 \
 	@braintree/sanitize-url@6.0.0
 
-COOL_CSS_LST =\
+LOOL_CSS_LST =\
 	$(builddir)/node_modules/select2/dist/css/select2.css \
 	$(srcdir)/css/w2ui-1.5.rc1.css \
 	$(srcdir)/css/leaflet.css \
@@ -153,12 +153,12 @@ COOL_CSS_LST =\
 	$(srcdir)/css/jquery-ui-lightness.css \
 	$(srcdir)/css/infobar.css
 
-COOL_CSS = $(filter %,$(COOL_CSS_LST))
+LOOL_CSS = $(filter %,$(LOOL_CSS_LST))
 
-COOL_CSS_DST = $(foreach file,$(COOL_CSS),$(DIST_FOLDER)/$(notdir $(file)))
-COOL_CSS_M4 = $(strip $(foreach file,$(COOL_CSS),$(notdir $(file))))
+LOOL_CSS_DST = $(foreach file,$(LOOL_CSS),$(DIST_FOLDER)/$(notdir $(file)))
+LOOL_CSS_M4 = $(strip $(foreach file,$(LOOL_CSS),$(notdir $(file))))
 
-$(eval $(call file_targets,$(COOL_CSS)))
+$(eval $(call file_targets,$(LOOL_CSS)))
 
 NODE_MODULES_JS =\
 	$(if $(IS_SEPARATE),node_modules/hammerjs/hammer.js,node_modules/hammerjs/hammer.min.js) \
@@ -169,7 +169,7 @@ NODE_MODULES_JS =\
 	node_modules/smartmenus/dist/jquery.smartmenus.js \
 	node_modules/pako/dist/pako_inflate.es5.js
 
-COOL_LIBS_JS =\
+LOOL_LIBS_JS =\
 	ResizeObserverPolyfill.js \
 	Autolinker.js \
 	json2.js \
@@ -178,24 +178,24 @@ COOL_LIBS_JS =\
 	sanitize-url.js
 
 if !ENABLE_MOBILEAPP
-COOL_LIBS_JS +=\
+LOOL_LIBS_JS +=\
 	l10n.js
 endif
 
-COOL_LIBS_JS +=\
+LOOL_LIBS_JS +=\
 	w2ui-1.5.rc1.js \
 	viamapi-client.js
 
 NODE_MODULES_JS_SRC = $(patsubst %.js,$(builddir)/%.js,$(NODE_MODULES_JS))
 NODE_MODULES_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(NODE_MODULES_JS))
 
-COOL_LIBS_JS_SRC = $(patsubst %.js,$(srcdir)/js/%.js,$(COOL_LIBS_JS))
-COOL_LIBS_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(COOL_LIBS_JS))
+LOOL_LIBS_JS_SRC = $(patsubst %.js,$(srcdir)/js/%.js,$(LOOL_LIBS_JS))
+LOOL_LIBS_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(LOOL_LIBS_JS))
 
 # the ordering of this is delicate to get JS initialization right,
 # this list includes both Javascript and Typescript generated files
 # in a rather precise order.
-COOL_JS_LST =\
+LOOL_JS_LST =\
 	src/docstate.js \
 	src/Leaflet.js \
 	src/errormessages.js \
@@ -372,21 +372,21 @@ COOL_JS_LST =\
 	src/control/Control.Scroll.Annotation.js \
 	src/main.js
 
-COOL_JS_WEBORDER = $(filter %,$(COOL_JS_LST))
+LOOL_JS_WEBORDER = $(filter %,$(LOOL_JS_LST))
 
-COOL_JS_SRC = $(filter %.js,$(COOL_JS_WEBORDER))
-COOL_TS_SRC = $(filter %.ts,$(COOL_JS_WEBORDER))
+LOOL_JS_SRC = $(filter %.js,$(LOOL_JS_WEBORDER))
+LOOL_TS_SRC = $(filter %.ts,$(LOOL_JS_WEBORDER))
 
 # beware these are not helpfully ordered
-COOL_TS_JS_DST = $(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(COOL_TS_SRC))
-COOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(COOL_JS_SRC)) $(COOL_TS_JS_DST)
+LOOL_TS_JS_DST = $(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_TS_SRC))
+LOOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_SRC)) $(LOOL_TS_JS_DST)
 # should be no lingering / obsolete files:
-COOL_ASSERT_INTERSECT = $(filter $(COOL_JS_SRC), $(patsubst %.ts,%.js,$(COOL_TS_SRC)))
+LOOL_ASSERT_INTERSECT = $(filter $(LOOL_JS_SRC), $(patsubst %.ts,%.js,$(LOOL_TS_SRC)))
 
 COMMA := ,
 EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
-COOL_VERSION = $(shell cd $(srcdir) && git log -1 --pretty=format:"%h")
+LOOL_VERSION = $(shell cd $(srcdir) && git log -1 --pretty=format:"%h")
 INTERMEDIATE_DIR ?= $(if $(IS_SEPARATE),$(abs_builddir)/debug,$(abs_builddir)/release)
 
 EXTRA_DIST = $(shell find . -type f -not -path './.git/*' -not -path './node_modules/*' | sed 's/.\///')
@@ -398,25 +398,25 @@ define bundle_lool
 			-DGTKAPP=$(ENABLE_GTKAPP) \
 			-DANDROIDAPP=$(ENABLE_ANDROIDAPP) \
 			-DMOBILEAPPNAME="$(APP_NAME)" \
-			-DVERSION=$(COOL_VERSION) \
+			-DVERSION=$(LOOL_VERSION) \
 			-DCOPYRIGHT=$(srcdir)/src/copyright.js \
-			-DCOOL_JS=$(subst $(SPACE),$(COMMA),$(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(COOL_JS_WEBORDER))) \
+			-DLOOL_JS=$(subst $(SPACE),$(COMMA),$(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_WEBORDER))) \
 			$(srcdir)/lool-src.js.m4 > $@)
 endef
 
 define prereq_lool
-	$(if $(IS_SEPARATE),$(COOL_JS_DST),$(COOL_JS_SRC))
+	$(if $(IS_SEPARATE),$(LOOL_JS_DST),$(LOOL_JS_SRC))
 endef
 
 define bundle_css
 	$(if $(IS_SEPARATE),\
 		@touch $@,\
 		@echo "Uglify lool css files..."
-		@$(NODE) node_modules/uglifycss/uglifycss $(COOL_CSS) > $@)
+		@$(NODE) node_modules/uglifycss/uglifycss $(LOOL_CSS) > $@)
 endef
 
 define prereq_css
-	$(if $(IS_SEPARATE),$(COOL_CSS_DST),$(COOL_CSS))
+	$(if $(IS_SEPARATE),$(LOOL_CSS_DST),$(LOOL_CSS))
 endef
 
 define bundle_all
@@ -425,8 +425,8 @@ define bundle_all
 		@echo "Uglify lool js files..."
 		@m4 -PE -DL10N_IOS_ALL_JS=$(L10N_IOS_ALL_JS) \
 			-DNODE_MODULES_JS=$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS)) \
-			-DCOOL_LIBS_JS=$(subst $(SPACE),$(COMMA),$(COOL_LIBS_JS_SRC)) \
-			-DCOOL_JS=$(INTERMEDIATE_DIR)/lool-src.js \
+			-DLOOL_LIBS_JS=$(subst $(SPACE),$(COMMA),$(LOOL_LIBS_JS_SRC)) \
+			-DLOOL_JS=$(INTERMEDIATE_DIR)/lool-src.js \
 			$(srcdir)/bundle.js.m4 > $(INTERMEDIATE_DIR)/bundle.js
 		@$(NODE) node_modules/uglify-js/bin/uglifyjs \
 			$(INTERMEDIATE_DIR)/bundle.js \
@@ -434,8 +434,8 @@ define bundle_all
 endef
 
 define prereq_all
-	$(if $(IS_SEPARATE),$(NODE_MODULES_JS_DST) $(COOL_LIBS_JS_DST),\
-		$(NODE_MODULES_JS_SRC) $(COOL_LIBS_JS_SRC))
+	$(if $(IS_SEPARATE),$(NODE_MODULES_JS_DST) $(LOOL_LIBS_JS_DST),\
+		$(NODE_MODULES_JS_SRC) $(LOOL_LIBS_JS_SRC))
 endef
 
 define global_file
@@ -458,11 +458,11 @@ $(TYPESCRIPT_JS_DIR)/%.js: $(srcdir)/%.ts
 	$(builddir)/node_modules/typescript/bin/tsc --outFile $@ $<
 
 build-lool: \
-	$(COOL_L10N_DST) \
+	$(LOOL_L10N_DST) \
 	$(L10N_JSON) \
 	$(SRC_TS_JS_DST) \
-	$(COOL_IMAGES_DST) \
-	$(COOL_IMAGES_CUSTOM_DST) \
+	$(LOOL_IMAGES_DST) \
+	$(LOOL_IMAGES_CUSTOM_DST) \
 	$(JQUERY_LIGHTNESS_DIST_IMAGES) \
 	$(JQUERY_MINIFIED_DIST_IMAGES) \
 	$(ADMIN_BUNDLE) \
@@ -486,21 +486,21 @@ if ENABLE_CYPRESS
 	@echo "Added HTML file for multiuser tests"
 endif
 
-$(DIST_FOLDER)/admin-bundle.js: $(COOL_ADMIN_DST) \
+$(DIST_FOLDER)/admin-bundle.js: $(LOOL_ADMIN_DST) \
 	$(INTERMEDIATE_DIR)/admin-src.js
 	@NODE_PATH=$(abs_builddir)/node_modules:$(INTERMEDIATE_DIR) $(NODE) node_modules/browserify/bin/cmd.js -g browserify-css $(if $(IS_SEPARATE),--debug,-g uglifyify) -o $@ $(srcdir)/admin/main-admin.js
 
-$(INTERMEDIATE_DIR)/admin-src.js: $(COOL_ADMIN_TS_JS) $(COOL_ADMIN_JS)
+$(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@mkdir -p $(dir $@)
 	@echo "Checking for admin JS errors..."
 	@$(NODE) node_modules/eslint/bin/eslint.js --resolve-plugins-relative-to $(abs_builddir) --ignore-path $(srcdir)/.eslintignore --config $(srcdir)/.eslintrc --no-eslintrc $(srcdir)/admin/src
-	@awk 'FNR == 1 {print ""} 1' $(COOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(COOL_ADMIN_JS)) > $@
+	@awk 'FNR == 1 {print ""} 1' $(LOOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(LOOL_ADMIN_JS)) > $@
 
-$(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(COOL_JS_DST)
+$(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DST)
 	@mkdir -p $(dir $@)
 	$(abs_top_srcdir)/scripts/unocommands.py --check $(abs_top_srcdir)
 	@printf "Checking for obsolete JS build intermediates in this makefile... "
-	@if ! test "z$(COOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(COOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
+	@if ! test "z$(LOOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(LOOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
 	@echo "Checking for lool JS errors..."
 	@$(NODE) node_modules/eslint/bin/eslint.js $(srcdir)/src --resolve-plugins-relative-to $(abs_builddir) \
 		$(srcdir)/js --ignore-path $(srcdir)/.eslintignore --no-eslintrc --config $(srcdir)/.eslintrc
@@ -522,8 +522,8 @@ $(DIST_FOLDER)/global.js: $(srcdir)/js/global.js
 	$(call global_file)
 
 $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
-	$(COOL_HTML_DST) \
-	$(COOL_WELCOME_DST) \
+	$(LOOL_HTML_DST) \
+	$(LOOL_WELCOME_DST) \
 	$(DIST_FOLDER)/bundle.css \
 	$(DIST_FOLDER)/global.js \
 	$(DIST_FOLDER)/bundle.js
@@ -534,11 +534,11 @@ $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 		-DDEBUG=$(ENABLE_DEBUG) \
 		-DANDROIDAPP=$(ENABLE_ANDROIDAPP) \
 		-DMOBILEAPPNAME="$(APP_NAME)" \
-		-DCOOL_CSS="$(subst $(SPACE),$(COMMA),$(COOL_CSS_M4))" \
+		-DLOOL_CSS="$(subst $(SPACE),$(COMMA),$(LOOL_CSS_M4))" \
 		-DGLOBAL_JS="$(DIST_FOLDER)/global.js" \
-		-DCOOL_JS="$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS) \
-		$(COOL_LIBS_JS) \
-		$(patsubst %.ts,%.js,$(COOL_JS_WEBORDER)))" \
+		-DLOOL_JS="$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS) \
+		$(LOOL_LIBS_JS) \
+		$(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)))" \
 		-DVENDOR="$(VENDOR)" \
 		$(srcdir)/html/lool.html.m4 > $@
 
@@ -592,11 +592,11 @@ if ENABLE_DEBUG
 SourceMap=--allowJs true --sourceMap true --inlineSources true
 endif
 
-tscompile.done: $(COOL_JS_SRC) $(COOL_TS_SRC)
+tscompile.done: $(LOOL_JS_SRC) $(LOOL_TS_SRC)
 	$(builddir)/node_modules/typescript/bin/tsc --typeRoots $(builddir)/node_modules/@types --outDir $(DIST_FOLDER)/src --rootDir $(srcdir)/src --checkJs false --project $(srcdir)/tsconfig.json $(SourceMap)
 	@touch $@
 
-$(COOL_TS_JS_DST): tscompile.done
+$(LOOL_TS_JS_DST): tscompile.done
 	@:
 
 $(DIST_FOLDER)/src/%.js: $(srcdir)/src/%.js
@@ -733,7 +733,7 @@ clean-local:
 CLEANFILES = tscompile.done $(INTERMEDIATE_DIR)/lool-src.js $(DIST_FOLDER)/bundle.css $(DIST_FOLDER)/bundle.js $(INTERMEDIATE_DIR)/lool-src.js
 
 ctags:
-	@$(CTAGS) --language-force=JavaScript $(COOL_JS_SRC) $(srcdir)/js/global.js
+	@$(CTAGS) --language-force=JavaScript $(LOOL_JS_SRC) $(srcdir)/js/global.js
 
 $(abs_srcdir)/jsconfig.json:
 	@printf "{\n \

@@ -9,7 +9,7 @@ GLOBAL
     global_memory_used_bytes – Total memory usage: PSS(loolwsd) + RSS(forkit) + Private_Dirty(all assigned loolkits).
     global_memory_free_bytes - global_memory_available_bytes - global_memory_used_bytes
 
-COOLWSD
+LOOLWSD
 
     loolwsd_count – number of running loolwsd processes.
     loolwsd_thread_count – number of threads in the current loolwsd process.

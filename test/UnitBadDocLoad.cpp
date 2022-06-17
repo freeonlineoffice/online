@@ -26,7 +26,7 @@
 // Include config.h last, so the test server URI is still HTTP, even in SSL builds.
 #include <config.h>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 /// Test suite for bad document loading, etc.
 class UnitBadDocLoad : public UnitWSD
@@ -56,7 +56,7 @@ UnitBase::TestResult UnitBadDocLoad::testBadDocLoadFail()
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
         Poco::URI uri(helpers::getTestServerURI());
         Poco::Net::HTTPResponse httpResponse;
-        std::shared_ptr<COOLWebSocket> socket
+        std::shared_ptr<LOOLWebSocket> socket
             = helpers::connectLOKit(uri, request, httpResponse, testname);
 
         // Send a load request with incorrect password
@@ -68,8 +68,8 @@ UnitBase::TestResult UnitBadDocLoad::testBadDocLoadFail()
 
         std::string errorCommand;
         std::string errorKind;
-        COOLProtocol::getTokenString(tokens[1], "cmd", errorCommand);
-        COOLProtocol::getTokenString(tokens[2], "kind", errorKind);
+        LOOLProtocol::getTokenString(tokens[1], "cmd", errorCommand);
+        LOOLProtocol::getTokenString(tokens[2], "kind", errorKind);
         LOK_ASSERT_EQUAL(std::string("load"), errorCommand);
         LOK_ASSERT_EQUAL(std::string("faileddocloading"), errorKind);
     }
@@ -95,7 +95,7 @@ UnitBase::TestResult UnitBadDocLoad::testMaxDocuments()
     try
     {
         // Load a document.
-        std::vector<std::shared_ptr<COOLWebSocket>> docs;
+        std::vector<std::shared_ptr<LOOLWebSocket>> docs;
 
         std::cerr << "Loading max number of documents: " << MAX_DOCUMENTS << std::endl;
         for (int it = 1; it <= MAX_DOCUMENTS; ++it)
@@ -115,7 +115,7 @@ UnitBase::TestResult UnitBadDocLoad::testMaxDocuments()
         Poco::URI uri(helpers::getTestServerURI());
         std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(uri));
         Poco::Net::HTTPResponse httpResponse;
-        auto socket = std::make_shared<COOLWebSocket>(*session, request, httpResponse);
+        auto socket = std::make_shared<LOOLWebSocket>(*session, request, httpResponse);
 
         // Send load request, which will fail.
         helpers::sendTextFrame(socket, "load url=" + docURL, testname);
@@ -159,15 +159,15 @@ UnitBase::TestResult UnitBadDocLoad::testMaxConnections()
         helpers::getDocumentPathAndURL("empty.odt", docPath, docURL, testname);
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, docURL);
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<COOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, docURL, testname);
+        std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, docURL, testname);
         std::cerr << "Opened connection #1 of " << MAX_CONNECTIONS << std::endl;
 
-        std::vector<std::shared_ptr<COOLWebSocket>> views;
+        std::vector<std::shared_ptr<LOOLWebSocket>> views;
         for (int it = 1; it < MAX_CONNECTIONS; ++it)
         {
             std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(uri));
             Poco::Net::HTTPResponse httpResponse;
-            auto ws = std::make_shared<COOLWebSocket>(*session, request, httpResponse);
+            auto ws = std::make_shared<LOOLWebSocket>(*session, request, httpResponse);
             views.emplace_back(ws);
             std::cerr << "Opened connection #" << (it + 1) << " of " << MAX_CONNECTIONS
                       << std::endl;
@@ -178,7 +178,7 @@ UnitBase::TestResult UnitBadDocLoad::testMaxConnections()
         // try to connect MAX_CONNECTIONS + 1
         std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(uri));
         Poco::Net::HTTPResponse httpResponse;
-        auto socketN = std::make_shared<COOLWebSocket>(*session, request, httpResponse);
+        auto socketN = std::make_shared<LOOLWebSocket>(*session, request, httpResponse);
 
         // Send load request, which will fail.
         helpers::sendTextFrame(socketN, "load url=" + docURL, testname);
@@ -220,10 +220,10 @@ UnitBase::TestResult UnitBadDocLoad::testMaxViews()
         helpers::getDocumentPathAndURL("empty.odt", docPath, docURL, testname);
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, docURL);
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<COOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, docURL, testname);
+        std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, docURL, testname);
         std::cerr << "Opened view #1 of " << MAX_CONNECTIONS << std::endl;
 
-        std::vector<std::shared_ptr<COOLWebSocket>> views;
+        std::vector<std::shared_ptr<LOOLWebSocket>> views;
         for (int it = 1; it < MAX_CONNECTIONS; ++it)
         {
             views.emplace_back(helpers::loadDocAndGetSocket(uri, docURL, testname));
@@ -235,7 +235,7 @@ UnitBase::TestResult UnitBadDocLoad::testMaxViews()
         // try to connect MAX_CONNECTIONS + 1
         std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(uri));
         Poco::Net::HTTPResponse httpResponse;
-        auto socketN = std::make_shared<COOLWebSocket>(*session, request, httpResponse);
+        auto socketN = std::make_shared<LOOLWebSocket>(*session, request, httpResponse);
 
         // Send load request, which will fail.
         helpers::sendTextFrame(socketN, "load url=" + docURL, testname);

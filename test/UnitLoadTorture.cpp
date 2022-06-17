@@ -22,7 +22,7 @@
 #include <helpers.hpp>
 #include <net/WebSocketSession.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 /// Load torture testcase.
 class UnitLoadTorture : public UnitWSD
@@ -76,10 +76,10 @@ int UnitLoadTorture::loadTorture(const std::string& name, const std::string& doc
                 // 20s is double of the default.
                 std::vector<char> message
                     = wsSession->waitForMessage("status:", std::chrono::seconds(20), name + id + ' ');
-                const std::string status = COOLProtocol::getFirstLine(message);
+                const std::string status = LOOLProtocol::getFirstLine(message);
 
                 int viewid = -1;
-                COOLProtocol::getTokenIntegerFromMessage(status, "viewid", viewid);
+                LOOLProtocol::getTokenIntegerFromMessage(status, "viewid", viewid);
                 sum_view_ids += viewid;
                 ++num_of_views;
                 --num_to_load;

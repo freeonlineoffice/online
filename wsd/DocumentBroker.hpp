@@ -783,7 +783,7 @@ private:
         SaveManager()
             : _autosaveInterval(std::chrono::seconds(30))
             , _lastAutosaveCheckTime(RequestManager::now())
-            , _isAutosaveEnabled(std::getenv("COOL_NO_AUTOSAVE") == nullptr)
+            , _isAutosaveEnabled(std::getenv("LOOL_NO_AUTOSAVE") == nullptr)
         {
         }
 
@@ -1241,7 +1241,7 @@ private:
     /// for user's command to act.
     bool _documentChangedInStorage;
 
-    /// True for file that COOLWSD::IsViewFileExtension return true.
+    /// True for file that LOOLWSD::IsViewFileExtension return true.
     /// These files, such as PDF, don't have a reliable ModifiedStatus.
     bool _isViewFileExtension;
 

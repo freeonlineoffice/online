@@ -289,7 +289,7 @@ void setupJailDevNodes(const std::string& root)
 }
 
 /// The envar name used to control bind-mounting of systemplate/jails.
-constexpr const char* BIND_MOUNTING_ENVAR_NAME = "COOL_BIND_MOUNT";
+constexpr const char* BIND_MOUNTING_ENVAR_NAME = "LOOL_BIND_MOUNT";
 
 void enableBindMounting()
 {

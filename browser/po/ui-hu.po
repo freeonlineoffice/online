@@ -1656,8 +1656,8 @@ msgid "RELOAD"
 msgstr "ÚJRATÖLTÉS"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "COOLWSD verzió:"
+msgid "LOOLWSD version:"
+msgstr "LOOLWSD verzió:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

@@ -56,7 +56,7 @@ using Poco::JSON::Object;
 using Poco::JSON::Parser;
 using Poco::URI;
 
-using namespace COOLProtocol;
+using namespace LOOLProtocol;
 
 bool ChildSession::NoCapsForKit = false;
 
@@ -148,7 +148,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
     const std::string firstLine = getFirstLine(buffer, length);
     const StringVector tokens = StringVector::tokenize(firstLine.data(), firstLine.size());
 
-    if (COOLProtocol::tokenIndicatesUserInteraction(tokens[0]))
+    if (LOOLProtocol::tokenIndicatesUserInteraction(tokens[0]))
     {
         // Keep track of timestamps of incoming client messages that indicate user activity.
         updateLastActivityTime();
@@ -1988,7 +1988,7 @@ bool ChildSession::resizeWindow(const StringVector& tokens)
     std::string size;
     if (tokens.size() > 2 && getTokenString(tokens[2], "size", size))
     {
-        const std::vector<int> sizeParts = COOLProtocol::tokenizeInts(size, ',');
+        const std::vector<int> sizeParts = LOOLProtocol::tokenizeInts(size, ',');
         if (sizeParts.size() == 2)
         {
             getLOKitDocument()->resizeWindow(winId, sizeParts[0], sizeParts[1]);
@@ -2655,7 +2655,7 @@ void ChildSession::rememberEventsForInactiveUser(const int type, const std::stri
     {
         std::string name;
         std::string value;
-        if (COOLProtocol::parseNameValuePair(payload, name, value, '='))
+        if (LOOLProtocol::parseNameValuePair(payload, name, value, '='))
         {
             _stateRecorder.recordState(name, payload);
         }

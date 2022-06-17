@@ -10,8 +10,8 @@ noinst_PROGRAMS = fakesockettest unittest unithttplib
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS) -DTDOC=\"$(abs_top_srcdir)/test/data\" \
 	-I${top_srcdir}/common -I${top_srcdir}/net -I${top_srcdir}/wsd -I${top_srcdir}/kit \
 	-I${top_srcdir} -I${top_srcdir}/test \
-	-pthread -DCOOLWSD_DATADIR='"@COOLWSD_DATADIR@"' \
-	-DCOOLWSD_CONFIGDIR='"@COOLWSD_CONFIGDIR@"' \
+	-pthread -DLOOLWSD_DATADIR='"@LOOLWSD_DATADIR@"' \
+	-DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
 	-DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
 	${include_paths}
 

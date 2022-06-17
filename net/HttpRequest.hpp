@@ -29,7 +29,7 @@
 #include "Log.hpp"
 #include "Util.hpp"
 
-#ifndef COOLWSD_VERSION
+#ifndef LOOLWSD_VERSION
 static_assert(false, "config.h must be included in the .cpp being compiled");
 #endif
 

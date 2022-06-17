@@ -1650,8 +1650,8 @@ msgid "RELOAD"
 msgstr "إعادة التحميل"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "إصدار COOLWSD:"
+msgid "LOOLWSD version:"
+msgstr "إصدار LOOLWSD:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

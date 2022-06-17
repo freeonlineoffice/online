@@ -139,7 +139,7 @@ void HTTPServerTest::testCoolGet()
     const std::string html = httpResponse->getBody();
     LOK_ASSERT(html.find(param["access_token"]) != std::string::npos);
     LOK_ASSERT(html.find(_uri.getHost()) != std::string::npos);
-    LOK_ASSERT(html.find(std::string(COOLWSD_VERSION_HASH)) != std::string::npos);
+    LOK_ASSERT(html.find(std::string(LOOLWSD_VERSION_HASH)) != std::string::npos);
 }
 
 void HTTPServerTest::testCoolPost()

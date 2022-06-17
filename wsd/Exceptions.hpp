@@ -27,7 +27,7 @@
             { type::count++; } \
     };
 
-// Generic COOL errors and base for others.
+// Generic LOOL errors and base for others.
 class CoolException : public std::runtime_error
 {
 public:

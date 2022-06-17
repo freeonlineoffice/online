@@ -10,7 +10,7 @@
 #include <Poco/Path.h>
 #include <Poco/URI.h>
 #include "ClientSession.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "DocumentBroker.hpp"
 
 #include <common/Common.hpp>
@@ -22,7 +22,7 @@ namespace Quarantine
 {
     bool isQuarantineEnabled()
     {
-        return COOLWSD::getConfigValue<bool>("quarantine_files[@enable]", false);
+        return LOOLWSD::getConfigValue<bool>("quarantine_files[@enable]", false);
     }
 
     void createQuarantineMap()
@@ -31,8 +31,8 @@ namespace Quarantine
             return;
 
         std::vector<std::string> files;
-        Poco::File(COOLWSD::QuarantinePath).list(files);
-        COOLWSD::QuarantineMap.clear();
+        Poco::File(LOOLWSD::QuarantinePath).list(files);
+        LOOLWSD::QuarantineMap.clear();
 
         std::vector<StringToken> tokens;
         std::string decoded;
@@ -43,7 +43,7 @@ namespace Quarantine
 
             StringVector::tokenize(file.c_str(), file.size(), '_', tokens);
             Poco::URI::decode(file.substr(tokens[2]._index), decoded);
-            COOLWSD::QuarantineMap[decoded].emplace_back(COOLWSD::QuarantinePath + file);
+            LOOLWSD::QuarantineMap[decoded].emplace_back(LOOLWSD::QuarantinePath + file);
 
             tokens.clear();
             decoded.clear();
@@ -55,7 +55,7 @@ namespace Quarantine
         if (!isQuarantineEnabled())
             return;
 
-        FileUtil::removeFile(COOLWSD::QuarantinePath, true);
+        FileUtil::removeFile(LOOLWSD::QuarantinePath, true);
     }
 
     // returns quarentine directory size in bytes
@@ -67,11 +67,11 @@ namespace Quarantine
             return 0;
 
         std::vector<std::string> files;
-        Poco::File(COOLWSD::QuarantinePath).list(files);
+        Poco::File(LOOLWSD::QuarantinePath).list(files);
         std::size_t size = 0;
         for (const auto& file : files)
         {
-            FileUtil::Stat f(COOLWSD::QuarantinePath + file);
+            FileUtil::Stat f(LOOLWSD::QuarantinePath + file);
 
             if (f.hardLinkCount() == 1)
                 size += f.size();
@@ -84,14 +84,14 @@ namespace Quarantine
         if (!isQuarantineEnabled())
             return;
 
-        std::size_t sizeLimit = COOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 0)*1024*1024;
+        std::size_t sizeLimit = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 0)*1024*1024;
 
         std::vector<std::string> files;
-        Poco::File(COOLWSD::QuarantinePath).list(files);
+        Poco::File(LOOLWSD::QuarantinePath).list(files);
 
         std::sort(files.begin(), files.end());
 
-        std::size_t timeLimit = COOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 30);
+        std::size_t timeLimit = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 30);
         const auto timeNow = std::chrono::system_clock::now();
         const auto ts = std::chrono::duration_cast<std::chrono::seconds>(timeNow.time_since_epoch()).count();
 
@@ -99,14 +99,14 @@ namespace Quarantine
         auto index = files.begin();
         while (index != files.end() && !files.empty())
         {
-            FileUtil::Stat file(COOLWSD::QuarantinePath + *index);
+            FileUtil::Stat file(LOOLWSD::QuarantinePath + *index);
             const auto modifyTime = std::chrono::duration_cast<std::chrono::seconds>(file.modifiedTimepoint().time_since_epoch()).count();
             bool isExpired = static_cast<std::size_t>(ts - modifyTime) > timeLimit * 60;
 
             if ( (file.hardLinkCount() == 1) && (isExpired || (currentSize >= sizeLimit)) )
             {
                 currentSize -= file.size();
-                FileUtil::removeFile(COOLWSD::QuarantinePath + *index, true);
+                FileUtil::removeFile(LOOLWSD::QuarantinePath + *index, true);
                 files.erase(index);
             }
             else
@@ -119,13 +119,13 @@ namespace Quarantine
         if (!isQuarantineEnabled())
             return;
 
-        std::size_t maxVersionCount = COOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2);
+        std::size_t maxVersionCount = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2);
         std::string decoded;
         Poco::URI::decode(Wopiscr, decoded);
-        while (COOLWSD::QuarantineMap[decoded].size() > maxVersionCount)
+        while (LOOLWSD::QuarantineMap[decoded].size() > maxVersionCount)
         {
-            FileUtil::removeFile(COOLWSD::QuarantineMap[decoded][0]);
-            COOLWSD::QuarantineMap[decoded].erase(COOLWSD::QuarantineMap[decoded].begin());
+            FileUtil::removeFile(LOOLWSD::QuarantineMap[decoded][0]);
+            LOOLWSD::QuarantineMap[decoded].erase(LOOLWSD::QuarantineMap[decoded].begin());
         }
 
     }
@@ -144,19 +144,19 @@ namespace Quarantine
         std::string sourcefilePath;
         if(JailUtil::isBindMountingEnabled())
         {
-            sourcefilePath = COOLWSD::ChildRoot + "tmp/lool-" + docBroker->getJailId() +
+            sourcefilePath = LOOLWSD::ChildRoot + "tmp/lool-" + docBroker->getJailId() +
                              "/user/docs/" + docBroker->getJailId() + '/' + docName;
         }
         else
         {
-            sourcefilePath = COOLWSD::ChildRoot + docBroker->getJailId() + "/tmp/user/docs/" +
+            sourcefilePath = LOOLWSD::ChildRoot + docBroker->getJailId() + "/tmp/user/docs/" +
                              docBroker->getJailId() + '/' + docName;
         }
 
         std::string linkedFileName = ts + '_' + std::to_string(docBroker->getPid()) + '_' + docKey + '_' + docName;
-        std::string linkedFilePath = COOLWSD::QuarantinePath + linkedFileName;
+        std::string linkedFilePath = LOOLWSD::QuarantinePath + linkedFileName;
 
-        auto& fileList = COOLWSD::QuarantineMap[docBroker->getDocKey()];
+        auto& fileList = LOOLWSD::QuarantineMap[docBroker->getDocKey()];
         if(!fileList.empty())
         {
             FileUtil::Stat sourceStat(sourcefilePath);

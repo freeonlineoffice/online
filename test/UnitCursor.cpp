@@ -22,7 +22,7 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 namespace
 {
@@ -47,7 +47,7 @@ void getCursor(const std::string& message, int& cursorX, int& cursorY, int& curs
     LOK_ASSERT(cursorHeight >= 0);
 }
 
-void limitCursor(const std::function<void(const std::shared_ptr<COOLWebSocket>& socket, int cursorX,
+void limitCursor(const std::function<void(const std::shared_ptr<LOOLWebSocket>& socket, int cursorX,
                                           int cursorY, int cursorWidth, int cursorHeight,
                                           int docWidth, int docHeight)>& keyhandler,
                  const std::function<void(int docWidth, int docHeight, int newWidth,
@@ -71,7 +71,7 @@ void limitCursor(const std::function<void(const std::shared_ptr<COOLWebSocket>& 
     std::string response;
 
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<COOLWebSocket> socket
+    std::shared_ptr<LOOLWebSocket> socket
         = helpers::loadDocAndGetSocket("empty.ods", uri, testname);
 
     // check document size
@@ -133,7 +133,7 @@ UnitBase::TestResult UnitCursor::testMaxColumn()
     {
         limitCursor(
             // move cursor to last column
-            [&](const std::shared_ptr<COOLWebSocket>& socket, int cursorX, int cursorY,
+            [&](const std::shared_ptr<LOOLWebSocket>& socket, int cursorX, int cursorY,
                int cursorWidth, int cursorHeight, int docWidth, int docHeight) {
                 LOK_ASSERT(cursorX >= 0);
                 LOK_ASSERT(cursorY >= 0);
@@ -169,7 +169,7 @@ UnitBase::TestResult UnitCursor::testMaxRow()
     {
         limitCursor(
             // move cursor to last row
-            [&](const std::shared_ptr<COOLWebSocket>& socket, int cursorX, int cursorY,
+            [&](const std::shared_ptr<LOOLWebSocket>& socket, int cursorX, int cursorY,
                int cursorWidth, int cursorHeight, int docWidth, int docHeight) {
                 LOK_ASSERT(cursorX >= 0);
                 LOK_ASSERT(cursorY >= 0);
@@ -205,7 +205,7 @@ UnitBase::TestResult UnitCursor::testInsertAnnotationWriter()
     helpers::getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
 
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<COOLWebSocket> socket
+    std::shared_ptr<LOOLWebSocket> socket
         = helpers::loadDocAndGetSocket(uri, documentURL, testname);
 
     // Insert comment.
@@ -294,7 +294,7 @@ UnitBase::TestResult UnitCursor::testEditAnnotationWriter()
     helpers::getDocumentPathAndURL("with_comment.odt", documentPath, documentURL, testname);
 
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<COOLWebSocket> socket
+    std::shared_ptr<LOOLWebSocket> socket
         = helpers::loadDocAndGetSocket(uri, documentURL, testname);
 
     // Click in the body.
@@ -365,7 +365,7 @@ UnitBase::TestResult UnitCursor::testEditAnnotationWriter()
 UnitBase::TestResult UnitCursor::testInsertAnnotationCalc()
 {
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<COOLWebSocket> socket
+    std::shared_ptr<LOOLWebSocket> socket
         = helpers::loadDocAndGetSocket("setclientpart.ods", uri, testname);
 
     // Insert comment.

@@ -99,7 +99,7 @@ public:
             {
                 initWebsocket("/wopi/files/5?access_token=anything");
 
-                helpers::sendTextFrame(*getWs()->getCOOLWebSocket(), "load url=" + getWopiSrc(), testName);
+                helpers::sendTextFrame(*getWs()->getLOOLWebSocket(), "load url=" + getWopiSrc(), testName);
                 SocketPoll::wakeupWorld();
 
                 _phase = Phase::TileRequest;
@@ -112,8 +112,8 @@ public:
             }
             case Phase::TileRequest:
             {
-                helpers::sendTextFrame(*getWs()->getCOOLWebSocket(), "tilecombine nviewid=0 part=0 width=256 height=256 tileposx=0,3840 tileposy=0,0 tilewidth=3840 tileheight=3840", testName);
-                std::string tile = helpers::getResponseString(*getWs()->getCOOLWebSocket(), "tile:", testName);
+                helpers::sendTextFrame(*getWs()->getLOOLWebSocket(), "tilecombine nviewid=0 part=0 width=256 height=256 tileposx=0,3840 tileposy=0,0 tilewidth=3840 tileheight=3840", testName);
+                std::string tile = helpers::getResponseString(*getWs()->getLOOLWebSocket(), "tile:", testName);
 
                 if(!tile.empty())
                 {

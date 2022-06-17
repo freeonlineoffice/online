@@ -620,8 +620,8 @@ namespace Util
 
     void getVersionInfo(std::string& version, std::string& hash)
     {
-        version = std::string(COOLWSD_VERSION);
-        hash = std::string(COOLWSD_VERSION_HASH);
+        version = std::string(LOOLWSD_VERSION);
+        hash = std::string(LOOLWSD_VERSION_HASH);
         hash.resize(std::min(8, (int)hash.length()));
     }
 
@@ -639,7 +639,7 @@ namespace Util
         return
             "{ \"Version\":  \"" + version + "\", "
               "\"Hash\":     \"" + hash + "\", "
-              "\"Protocol\": \"" + COOLProtocol::GetProtocolVersion() + "\", "
+              "\"Protocol\": \"" + LOOLProtocol::GetProtocolVersion() + "\", "
               "\"Id\":       \"" + Util::getProcessIdentifier() + "\", "
               "\"Options\":  \"" + std::string(enableExperimental ? " (E)" : "") + "\" }";
     }

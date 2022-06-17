@@ -548,7 +548,7 @@ app.definitions.Socket = L.Class.extend({
 				}
 			}
 
-			$('#loolwsd-version-label').text(_('COOLWSD version:'));
+			$('#loolwsd-version-label').text(_('LOOLWSD version:'));
 			var h = this.WSDServer.Hash;
 			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
 				h = '<a href="javascript:void(window.open(\'https://hub.libreoffice.org/git-online/' + h + '\'));">' + h + '</a>';

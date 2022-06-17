@@ -25,7 +25,7 @@
 #define LOK_USE_UNSTABLE_API
 #include <LibreOfficeKit/LibreOfficeKitEnums.h>
 
-namespace COOLProtocol
+namespace LOOLProtocol
 {
     // Protocol Version Number.
     // See protocol.txt.
@@ -247,7 +247,7 @@ namespace COOLProtocol
     }
 
     /// Returns an abbreviation of the message (the first line, indicating truncation). We assume
-    /// that it adhers to the COOL protocol, i.e. that there is always a first (or only) line that
+    /// that it adhers to the LOOL protocol, i.e. that there is always a first (or only) line that
     /// is in printable UTF-8. I.e. no encoding of binary bytes is done. The format of the result is
     /// not guaranteed to be stable. It is to be used for logging purposes only, not for decoding
     /// protocol frames.

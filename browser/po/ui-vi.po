@@ -1650,8 +1650,8 @@ msgid "RELOAD"
 msgstr "TẢI LẠI"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "Phiên bản COOLWSD:"
+msgid "LOOLWSD version:"
+msgstr "Phiên bản LOOLWSD:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

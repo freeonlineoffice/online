@@ -1657,8 +1657,8 @@ msgid "RELOAD"
 msgstr "BIRKARGATU"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "COOLWSD bertsioa:"
+msgid "LOOLWSD version:"
+msgstr "LOOLWSD bertsioa:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

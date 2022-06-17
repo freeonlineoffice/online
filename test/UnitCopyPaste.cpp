@@ -17,7 +17,7 @@
 #include <UnitHTTP.hpp>
 #include <helpers.hpp>
 #include <sstream>
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 #include <common/Clipboard.hpp>
 #include <wsd/ClientSession.hpp>
 #include <net/WebSocketSession.hpp>
@@ -212,7 +212,7 @@ public:
             std::shared_ptr<DocumentBroker> broker;
             std::shared_ptr<ClientSession> clientSession;
 
-            std::vector<std::shared_ptr<DocumentBroker>> brokers = COOLWSD::getBrokersTestOnly();
+            std::vector<std::shared_ptr<DocumentBroker>> brokers = LOOLWSD::getBrokersTestOnly();
             assert(brokers.size() > 0);
             broker = brokers[0];
             auto sessions = broker->getSessionsTestOnlyUnsafe();

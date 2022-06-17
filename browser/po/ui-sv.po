@@ -1651,8 +1651,8 @@ msgid "RELOAD"
 msgstr "LADDA OM"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "COOLWSD-version:"
+msgid "LOOLWSD version:"
+msgstr "LOOLWSD-version:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

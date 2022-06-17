@@ -170,7 +170,7 @@ private:
 
             // NOTE: Check _wsState to choose between HTTP response or WebSocket (app-level) error.
             LOG_INF('#' << socket->getFD() << " Exception while processing incoming request: [" <<
-                    COOLProtocol::getAbbreviatedMessage(in) << "]: " << exc.what());
+                    LOOLProtocol::getAbbreviatedMessage(in) << "]: " << exc.what());
         }
 
         // if we succeeded - remove the request from our input buffer

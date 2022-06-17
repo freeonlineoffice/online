@@ -26,7 +26,7 @@
 #include <helpers.hpp>
 #include <net/WebSocketSession.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 namespace
 {
@@ -39,7 +39,7 @@ void loadDoc(const std::string& documentURL, const std::string& testname)
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
         Poco::URI uri(helpers::getTestServerURI());
         Poco::Net::HTTPResponse response;
-        std::shared_ptr<COOLWebSocket> socket
+        std::shared_ptr<LOOLWebSocket> socket
             = helpers::connectLOKit(uri, request, response, testname);
         helpers::sendTextFrame(socket, "load url=" + documentURL, testname);
 
@@ -92,7 +92,7 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
     TST_LOG_NAME(testname1, "Connecting first to disconnect without loading.");
     Poco::Net::HTTPResponse response;
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<COOLWebSocket> socket
+    std::shared_ptr<LOOLWebSocket> socket
         = helpers::connectLOKit(uri, request, response, testname1);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket);
     TST_LOG_NAME(testname1, "Disconnecting first.");
@@ -102,7 +102,7 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
 
     // Connect and load first view.
     TST_LOG_NAME(testname2, "Connecting second to load first view.");
-    std::shared_ptr<COOLWebSocket> socket1
+    std::shared_ptr<LOOLWebSocket> socket1
         = helpers::connectLOKit(uri, request, response, testname2);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket1);
     helpers::sendTextFrame(socket1, "load url=" + documentURL, testname2);
@@ -111,7 +111,7 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
 
     // Connect but don't load second view.
     TST_LOG_NAME(testname3, "Connecting third to disconnect without loading.");
-    std::shared_ptr<COOLWebSocket> socket2
+    std::shared_ptr<LOOLWebSocket> socket2
         = helpers::connectLOKit(uri, request, response, testname3);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket2);
     TST_LOG_NAME(testname3, "Disconnecting third.");
@@ -145,7 +145,7 @@ UnitBase::TestResult UnitLoad::testBadLoad()
         Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
         Poco::URI uri(helpers::getTestServerURI());
         Poco::Net::HTTPResponse response;
-        std::shared_ptr<COOLWebSocket> socket
+        std::shared_ptr<LOOLWebSocket> socket
             = helpers::connectLOKit(uri, request, response, testname);
 
         // Before loading request status.
@@ -167,7 +167,7 @@ UnitBase::TestResult UnitLoad::testExcelLoad()
     {
         // Load a document and get status.
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<COOLWebSocket> socket
+        std::shared_ptr<LOOLWebSocket> socket
             = helpers::loadDocAndGetSocket("timeline.xlsx", uri, testname);
 
         helpers::sendTextFrame(socket, "status", testname);

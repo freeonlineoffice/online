@@ -319,7 +319,7 @@ public:
 
     std::string rewriteMessage(const std::string &msg)
     {
-        const std::string firstLine = COOLProtocol::getFirstLine(msg);
+        const std::string firstLine = LOOLProtocol::getFirstLine(msg);
         StringVector tokens = StringVector::tokenize(firstLine);
 
         std::string out = msg;
@@ -347,7 +347,7 @@ public:
     {
         const auto now = std::chrono::steady_clock::now();
 
-        const std::string firstLine = COOLProtocol::getFirstLine(data.data(), data.size());
+        const std::string firstLine = LOOLProtocol::getFirstLine(data.data(), data.size());
         StringVector tokens = StringVector::tokenize(firstLine);
         std::cerr << _logPre << "Got msg: " << firstLine << "\n";
 

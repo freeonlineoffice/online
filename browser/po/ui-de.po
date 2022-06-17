@@ -1661,8 +1661,8 @@ msgid "RELOAD"
 msgstr "NEU LADEN"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "COOLWSD Version:"
+msgid "LOOLWSD version:"
+msgstr "LOOLWSD Version:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

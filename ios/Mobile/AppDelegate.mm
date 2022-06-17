@@ -27,7 +27,7 @@
 #import "FakeSocket.hpp"
 #import "Kit.hpp"
 #import "Log.hpp"
-#import "COOLWSD.hpp"
+#import "LOOLWSD.hpp"
 #import "SetupKitEnvironment.hpp"
 #import "Util.hpp"
 
@@ -182,7 +182,7 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    auto trace = std::getenv("COOL_LOGLEVEL");
+    auto trace = std::getenv("LOOL_LOGLEVEL");
     if (!trace)
         trace = strdup("warning");
 
@@ -206,7 +206,7 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
     NSData *oldCoolwsdVersionHash = [NSData dataWithContentsOfFile:loolwsdVersionHashFile];
 
     NSData *coreVersionHash = [NSData dataWithBytes:CORE_VERSION_HASH length:strlen(CORE_VERSION_HASH)];
-    NSData *loolwsdVersionHash = [NSData dataWithBytes:COOLWSD_VERSION_HASH length:strlen(COOLWSD_VERSION_HASH)];
+    NSData *loolwsdVersionHash = [NSData dataWithBytes:LOOLWSD_VERSION_HASH length:strlen(LOOLWSD_VERSION_HASH)];
 
     if (oldCoreVersionHash == nil
         || ![oldCoreVersionHash isEqualToData:coreVersionHash]
@@ -315,7 +315,7 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
                        argv[0] = strdup([[NSBundle mainBundle].executablePath UTF8String]);
                        argv[1] = nullptr;
                        Util::setThreadName("app");
-                       auto loolwsd = new COOLWSD();
+                       auto loolwsd = new LOOLWSD();
                        loolwsd->run(1, argv);
 
                        // Should never return

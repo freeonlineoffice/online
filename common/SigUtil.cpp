@@ -335,7 +335,7 @@ namespace SigUtil
 #endif
 
 #if !ENABLE_DEBUG
-        if (std::getenv("COOL_DEBUG"))
+        if (std::getenv("LOOL_DEBUG"))
 #endif
         {
             if (UnattendedRun)

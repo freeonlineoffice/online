@@ -24,12 +24,12 @@ add_library(androidapp SHARED
             ../../../../../net/Socket.cpp
             ../../../../../wsd/ClientSession.cpp
             ../../../../../wsd/DocumentBroker.cpp
-            ../../../../../wsd/COOLWSD.cpp
+            ../../../../../wsd/LOOLWSD.cpp
             ../../../../../wsd/RequestDetails.cpp
             ../../../../../wsd/Storage.cpp
             ../../../../../wsd/TileCache.cpp)
 
-target_compile_definitions(androidapp PRIVATE COOLWSD_CONFIGDIR="/assets/etc/loolwsd")
+target_compile_definitions(androidapp PRIVATE LOOLWSD_CONFIGDIR="/assets/etc/loolwsd")
 
 # According to the ABI, we need to use different source trees
 if(${ANDROID_ABI} STREQUAL "armeabi-v7a")

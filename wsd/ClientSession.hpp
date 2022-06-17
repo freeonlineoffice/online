@@ -25,7 +25,7 @@
 
 class DocumentBroker;
 
-/// Represents a session to a COOL client, in the WSD process.
+/// Represents a session to a LOOL client, in the WSD process.
 class ClientSession final : public Session
 {
 public:

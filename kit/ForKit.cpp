@@ -161,7 +161,7 @@ protected:
         else if (tokens.size() == 2 && tokens.equals(0, "setloglevel"))
         {
             // Set environment variable so that new children will also set their log levels accordingly.
-            setenv("COOL_LOGLEVEL", tokens[1].c_str(), 1);
+            setenv("LOOL_LOGLEVEL", tokens[1].c_str(), 1);
             Log::logger().setLevel(tokens[1]);
         }
         else if (tokens.size() == 3 && tokens.equals(0, "setconfig"))
@@ -483,12 +483,12 @@ int main(int argc, char** argv)
 
     /*WARNING*/ // early check for avoiding the security check for username 'lool'
     /*WARNING*/ // (deliberately only this, not moving the entire parameter parsing here)
-    /*WARNING*/ bool checkCoolUser = true;
-    /*WARNING*/ std::string disableCoolUserChecking("--disable-lool-user-checking");
-    /*WARNING*/ for (int i = 1; checkCoolUser && (i < argc); ++i)
+    /*WARNING*/ bool checkLOOLUser = true;
+    /*WARNING*/ std::string disableLOOLUserChecking("--disable-lool-user-checking");
+    /*WARNING*/ for (int i = 1; checkLOOLUser && (i < argc); ++i)
     /*WARNING*/ {
-    /*WARNING*/     if (disableCoolUserChecking == argv[i])
-    /*WARNING*/         checkCoolUser = false;
+    /*WARNING*/     if (disableLOOLUserChecking == argv[i])
+    /*WARNING*/         checkLOOLUser = false;
     /*WARNING*/ }
 
     /*WARNING*/ if (!hasCorrectUID("loolforkit"))
@@ -506,7 +506,7 @@ int main(int argc, char** argv)
     /*WARNING*/     }
     /*WARNING*/     else if (hasAnyCapability())
     /*WARNING*/     {
-    /*WARNING*/         if (!checkCoolUser)
+    /*WARNING*/         if (!checkLOOLUser)
     /*WARNING*/             LOG_FTL("Security: --disable-lool-user-checking failed, loolforkit has some capabilities set.");
 
     /*WARNING*/         LOG_FTL("Aborting.");
@@ -515,7 +515,7 @@ int main(int argc, char** argv)
 
     /*WARNING*/     // even without the capabilities, don't run unless the user really knows
     /*WARNING*/     // what they are doing, and provided a --disable-lool-user-checking
-    /*WARNING*/     if (checkCoolUser)
+    /*WARNING*/     if (checkLOOLUser)
     /*WARNING*/     {
     /*WARNING*/         LOG_FTL("Aborting.");
     /*WARNING*/         return EX_SOFTWARE;
@@ -545,16 +545,16 @@ int main(int argc, char** argv)
         }
     }
 
-    SigUtil::setFatalSignals("forkit startup of " COOLWSD_VERSION " " COOLWSD_VERSION_HASH);
+    SigUtil::setFatalSignals("forkit startup of " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
     SigUtil::setTerminationSignals();
 
     Util::setApplicationPath(Poco::Path(argv[0]).parent().toString());
 
     // Initialization
-    const bool logToFile = std::getenv("COOL_LOGFILE");
-    const char* logFilename = std::getenv("COOL_LOGFILENAME");
-    const char* logLevel = std::getenv("COOL_LOGLEVEL");
-    const char* logColor = std::getenv("COOL_LOGCOLOR");
+    const bool logToFile = std::getenv("LOOL_LOGFILE");
+    const char* logFilename = std::getenv("LOOL_LOGFILENAME");
+    const char* logLevel = std::getenv("LOOL_LOGLEVEL");
+    const char* logColor = std::getenv("LOOL_LOGCOLOR");
     std::map<std::string, std::string> logProperties;
     if (logToFile && logFilename)
     {
@@ -718,7 +718,7 @@ int main(int argc, char** argv)
 
 #if !MOBILEAPP
     // Parse the configuration.
-    const auto conf = std::getenv("COOL_CONFIG");
+    const auto conf = std::getenv("LOOL_CONFIG");
     config::initialize(std::string(conf ? conf : std::string()));
     EnableExperimental = config::getBool("experimental_features", false);
 #endif
@@ -729,7 +729,7 @@ int main(int argc, char** argv)
 
     // We must have at least one child, more are created dynamically.
     // Ask this first child to send version information to master process and trace startup.
-    ::setenv("COOL_TRACE_STARTUP", "1", 1);
+    ::setenv("LOOL_TRACE_STARTUP", "1", 1);
     const pid_t forKitPid
         = createLibreOfficeKit(childRoot, sysTemplate, loTemplate, loSubPath, true);
     if (forKitPid < 0)
@@ -740,7 +740,7 @@ int main(int argc, char** argv)
     }
 
     // No need to trace subsequent children.
-    ::unsetenv("COOL_TRACE_STARTUP");
+    ::unsetenv("LOOL_TRACE_STARTUP");
     if (LogLevel != "trace")
     {
         LOG_INF("Forkit initialization complete: setting log-level to [" << LogLevel << "] as configured.");

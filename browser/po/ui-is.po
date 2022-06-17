@@ -1649,8 +1649,8 @@ msgid "RELOAD"
 msgstr "ENDURLESA"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "COOLWSD útgáfa:"
+msgid "LOOLWSD version:"
+msgstr "LOOLWSD útgáfa:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"

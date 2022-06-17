@@ -20,7 +20,7 @@
 #include <Poco/Version.h>
 
 #include "Common.hpp"
-#include <tools/COOLWebSocket.hpp>
+#include <tools/LOOLWebSocket.hpp>
 
 using Poco::Net::SocketAddress;
 using Poco::Net::HTTPServerParams;
@@ -124,7 +124,7 @@ namespace UnitHTTP
 class UnitWebSocket
 {
     Poco::Net::HTTPClientSession* _session;
-    COOLWebSocket* _socket;
+    LOOLWebSocket* _socket;
 
 public:
     /// Get a websocket connected for a given URL
@@ -137,7 +137,7 @@ public:
             _session = UnitHTTP::createSession();
 
             // FIXME: leaking the session - hey ho ... do we need a UnitSocket ?
-            _socket = new COOLWebSocket(*_session, request, response);
+            _socket = new LOOLWebSocket(*_session, request, response);
         } catch (const Poco::Exception &ex) {
             std::cerr << "Exception creating websocket " << ex.displayText() << std::endl;
             throw;
@@ -150,7 +150,7 @@ public:
         delete _session;
     }
 
-    COOLWebSocket* getCOOLWebSocket() const
+    LOOLWebSocket* getLOOLWebSocket() const
     {
         return _socket;
     }

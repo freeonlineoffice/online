@@ -27,5 +27,5 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
 Conflicts: loolwsd
 Replaces: loolwsd
 Description: Collabora Online WebSocket Daemon
- COOLWSD is a daemon that talks to web browser clients and provides LibreOffice
+ LOOLWSD is a daemon that talks to web browser clients and provides LibreOffice
  services.

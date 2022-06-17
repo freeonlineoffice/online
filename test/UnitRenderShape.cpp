@@ -19,7 +19,7 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class COOLWebSocket;
+class LOOLWebSocket;
 
 namespace
 {
@@ -91,7 +91,7 @@ UnitBase::TestResult UnitRenderShape::testRenderShapeSelectionImpress()
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL("shapes.odp", documentPath, documentURL, testname);
 
-        std::shared_ptr<COOLWebSocket> socket = helpers::loadDocAndGetSocket(
+        std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(
             Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         int major = 0;
@@ -133,7 +133,7 @@ UnitBase::TestResult UnitRenderShape::testRenderShapeSelectionWriterImage()
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL("non-shape-image.odt", documentPath, documentURL, testname);
 
-        std::shared_ptr<COOLWebSocket> socket = helpers::loadDocAndGetSocket(
+        std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(
             Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Select the shape with SHIFT + F4

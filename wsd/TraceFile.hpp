@@ -198,13 +198,13 @@ public:
         if (_filter.match(data))
         {
             // Remap the URL to the snapshot.
-            if (COOLProtocol::matchPrefix("load", data))
+            if (LOOLProtocol::matchPrefix("load", data))
             {
                 StringVector tokens = StringVector::tokenize(data);
                 if (tokens.size() >= 2)
                 {
                     std::string url;
-                    if (COOLProtocol::getTokenString(tokens[1], "url", url))
+                    if (LOOLProtocol::getTokenString(tokens[1], "url", url))
                     {
                         std::string decodedUrl;
                         Poco::URI::decode(url, decodedUrl);
@@ -233,7 +233,7 @@ public:
                 }
             }
 
-            if (!COOLProtocol::matchPrefix("tileprocessed ", data))
+            if (!LOOLProtocol::matchPrefix("tileprocessed ", data))
                 writeLocked(id, sessionId, data, static_cast<char>(TraceFileRecord::Direction::Incoming));
         }
     }

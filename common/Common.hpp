@@ -18,11 +18,11 @@
 constexpr int DEFAULT_CLIENT_PORT_NUMBER = 9980;
 
 // define to wrap strace around the forkit
-#define STRACE_COOLFORKIT 0
+#define STRACE_LOOLFORKIT 0
 // define to wrap valgrind around the forkit
-#define VALGRIND_COOLFORKIT 0
+#define VALGRIND_LOOLFORKIT 0
 
-#if VALGRIND_COOLFORKIT
+#if VALGRIND_LOOLFORKIT
 constexpr int TRACE_MULTIPLIER = 20;
 #else
 constexpr int TRACE_MULTIPLIER = 1;
@@ -73,13 +73,13 @@ constexpr const char UPLOADING_SUFFIX[] = "ing";
 #define SHARED_DOC_THREADNAME_SUFFIX "broker_"
 
 /// The HTTP request User-Agent. Used only in Requests.
-#define HTTP_AGENT_STRING "COOLWSD HTTP Agent " COOLWSD_VERSION
+#define HTTP_AGENT_STRING "LOOLWSD HTTP Agent " LOOLWSD_VERSION
 
 /// The WOPI User-Agent. Depricated: use HTTP_AGENT_STRING.
 #define WOPI_AGENT_STRING HTTP_AGENT_STRING
 
 /// The HTTP response Server. Used only in Responses.
-#define HTTP_SERVER_STRING "COOLWSD HTTP Server " COOLWSD_VERSION
+#define HTTP_SERVER_STRING "LOOLWSD HTTP Server " LOOLWSD_VERSION
 
 /// The client port number, both loolwsd and the kits have this.
 extern int ClientPortNumber;

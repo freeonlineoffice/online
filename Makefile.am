@@ -42,12 +42,12 @@ dist_doc_DATA = wsd/README \
                 wsd/reference.md \
                 wsd/metrics.txt
 
-loolwsddatadir = @COOLWSD_DATADIR@
+loolwsddatadir = @LOOLWSD_DATADIR@
 
 loolwsddata_DATA = discovery.xml \
                    favicon.ico
 
-loolwsdconfigdir = @COOLWSD_CONFIGDIR@
+loolwsdconfigdir = @LOOLWSD_CONFIGDIR@
 
 loolwsdconfig_DATA = loolwsd.xml \
 		     loolkitconfig.xcu
@@ -65,8 +65,8 @@ ACLOCAL_AMFLAGS = -I m4
 # quick and easy for now.
 include_paths = -I${top_srcdir}/common -I${top_srcdir}/net -I${top_srcdir}/wsd -I${top_srcdir}/kit ${ZLIB_CFLAGS}
 
-AM_CPPFLAGS = -pthread -DCOOLWSD_DATADIR='"@COOLWSD_DATADIR@"' \
-	      -DCOOLWSD_CONFIGDIR='"@COOLWSD_CONFIGDIR@"' \
+AM_CPPFLAGS = -pthread -DLOOLWSD_DATADIR='"@LOOLWSD_DATADIR@"' \
+	      -DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
 	      -DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
 	      ${include_paths}
 
@@ -121,7 +121,7 @@ loolwsd_sources = common/Crypto.cpp \
                   wsd/Auth.cpp \
                   wsd/DocumentBroker.cpp \
                   wsd/ProxyProtocol.cpp \
-                  wsd/COOLWSD.cpp \
+                  wsd/LOOLWSD.cpp \
                   wsd/ClientSession.cpp \
                   wsd/FileServer.cpp \
                   wsd/FileServerUtil.cpp \
@@ -248,7 +248,7 @@ wsd_headers = wsd/Admin.hpp \
               wsd/ProxyProtocol.hpp \
               wsd/Exceptions.hpp \
               wsd/FileServer.hpp \
-              wsd/COOLWSD.hpp \
+              wsd/LOOLWSD.hpp \
               wsd/ProofKey.hpp \
               wsd/RequestDetails.hpp \
               wsd/SenderQueue.hpp \
@@ -313,7 +313,7 @@ kit_headers = kit/ChildSession.hpp \
               kit/Watermark.hpp
 
 noinst_HEADERS = $(wsd_headers) $(shared_headers) $(kit_headers) \
-                 tools/COOLWebSocket.hpp \
+                 tools/LOOLWebSocket.hpp \
                  test/UnitHTTP.hpp \
                  test/HttpTestServer.hpp \
                  test/WopiTestServer.hpp \

@@ -1658,8 +1658,8 @@ msgid "RELOAD"
 msgstr "MUAT ULANG"
 
 #: src/core/Socket.js:551
-msgid "COOLWSD version:"
-msgstr "Versi COOLWSD:"
+msgid "LOOLWSD version:"
+msgstr "Versi LOOLWSD:"
 
 #: src/core/Socket.js:563
 msgid "Served by:"
