@@ -59,6 +59,7 @@ jsstress
 cscope*
 *.orig
 loolwsd.log
+mocha.log
 *.log.*.gz
 *.lo
 *.mo
