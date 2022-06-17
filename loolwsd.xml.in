@@ -8,8 +8,7 @@
     <!-- Note: When adding a new entry, a default must be set in WSD in case the entry is missing upon deployment. -->
 
     <allowed_languages desc="List of supported languages of Writing Aids (spell checker, grammar checker, thesaurus, hyphenation) on this instance. Allowing too many has negative effect on startup performance." default="de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru">@ALLOWED_LANGUAGES@</allowed_languages>
-    
-    
+
     <!--
         This is LanguageTool.org API settings. To turn it on, please set "enabled" property to true.
         "base_url" may be https://api.languagetoolplus.com/v2 if the cloud version is used.
@@ -101,6 +100,7 @@
             <anonymization_salt type="uint" desc="The salt used to anonymize/obfuscate user-data in logs. Use a secret 64-bit random number." default="82589933">82589933</anonymization_salt>
         </anonymize>
         <docstats type="bool" desc="Enable to see document handling information in logs." default="false">false</docstats>
+        <userstats desc="Enable user stats. i.e: logs the details of a file and user" type="bool" default="false">false</userstats>
     </logging>
 
     <!--
