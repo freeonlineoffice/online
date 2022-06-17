@@ -2136,7 +2136,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2199,8 +2199,8 @@ msgstr ""
 #~ msgid "Inactive document - please click to resume editing"
 #~ msgstr "Nofaol hujjat - tahrirlashda davom etishuchun bosing"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Obbo! Collabora Online xizmatiga ulanishda muammo yuz berdi: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Obbo! LibreOffice Online xizmatiga ulanishda muammo yuz berdi: "
 
 #~ msgid "Number of views"
 #~ msgstr "Ko‘rilgan:"

@@ -2116,7 +2116,7 @@ msgid "Creating copy..."
 msgstr "コピーの作成..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2211,8 +2211,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "サーバーは再利用中でもうじき利用可能になります"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "おっと、Collabora Onlineへの接続で問題が発生しました : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "おっと、LibreOffice Onlineへの接続で問題が発生しました : "
 
 #~ msgid "Number of views"
 #~ msgstr "ビューの数"

@@ -2182,7 +2182,7 @@ msgid "Creating copy..."
 msgstr "Luodaan kopiota..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2193,7 +2193,7 @@ msgstr "Tutki uutta %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Onlinen kehitysversio"
+msgstr "LibreOffice Onlinen kehitysversio"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2293,8 +2293,8 @@ msgstr ""
 #~ "uudistetusta avatarlistasta, taustalla tapahtuvasta tallentamisesta, "
 #~ "nopeammasta kielentarkistuksesta ja muista parannuksista."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Integroi Collabora Online web-sovellukseesi"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Integroi LibreOffice Online web-sovellukseesi"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Tai osallistu kehittämiseen"
@@ -2302,7 +2302,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2310,7 +2310,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Lue lisää web-applikaatioosi integroimisesta <a href=\"%loolSdkURL\" target="
-#~ "\"_blank\">Collabora Online SDK:sta</a>. Tai suuntaa kohti <a href=\"%"
+#~ "\"_blank\">LibreOffice Online SDK:sta</a>. Tai suuntaa kohti <a href=\"%"
 #~ "loolStepByStepURL\" target=\"_blank\">vaiheittaisia ohjeita</a> ja buildaa "
 #~ "CODE ihan itse. Voit myös auttaa <a href=\"%loolTranslationsURL\" target=\""
 #~ "_blank\">tekemällä käännöksiä</a> tai <a href=\"%loolBugreportURL\" target=\""
@@ -2367,8 +2367,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Palvelin käynnistetään uudelleen ja on käytettävissä hetken kuluttua"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Yhteydessä Collabora Onlineen tapahtui virhe: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Yhteydessä LibreOffice Onlineen tapahtui virhe: "
 
 #~ msgid "Number of views"
 #~ msgstr "Katselujen määrä"

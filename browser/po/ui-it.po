@@ -2183,7 +2183,7 @@ msgid "Creating copy..."
 msgstr "Creazione della copia..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2337,5 +2337,5 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Il server è in fase di riavvio e sarà disponibile a breve"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Oops, si è verificato un problema di connessione a Collabora Online: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Oops, si è verificato un problema di connessione a LibreOffice Online: "

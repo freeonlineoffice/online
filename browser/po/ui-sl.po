@@ -2,7 +2,7 @@
 # Martin Srebotnjak <miles@filmsi.net>, 2016, 2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: Collabora Online UI\n"
+"Project-Id-Version: LibreOffice Online UI\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-02 12:16+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
@@ -2178,8 +2178,8 @@ msgid "Creating copy..."
 msgstr "Ustvarjanje kopije ..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Dobrodošli v Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Dobrodošli v LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2189,7 +2189,7 @@ msgstr "Odkrijte novo %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
 msgstr ""
-"Razvojna različica Collabora Online (angl. Collabora Online Development "
+"Razvojna različica LibreOffice Online (angl. LibreOffice Online Development "
 "Edition oz. CODE)"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
@@ -2316,8 +2316,8 @@ msgstr ""
 #~ "avatarjev, asinhronem shranjevanju, hitrejšem preverjanju črkovanja in "
 #~ "drugem."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Integrirajte Collabora Online v svojo spletno aplikacijo"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Integrirajte LibreOffice Online v svojo spletno aplikacijo"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Ali pa se pridružite razvoju"
@@ -2325,7 +2325,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2333,7 +2333,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Pozanimajte se o integraciji v svojo spletno aplikacijo v <a href=\"%"
-#~ "loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Ali pa se namenite "
+#~ "loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Ali pa se namenite "
 #~ "k <a href=\"%loolStepByStepURL\" target=\"_blank\">napotkom korak za "
 #~ "korakom</a> ter zgradite CODE od začetka. Pomagate lahko tudi s <a href=\"%"
 #~ "loolTranslationsURL\" target=\"_blank\">prevajanjem</a> ali <a href=\"%"
@@ -2420,8 +2420,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Strežnik se ponovno zaganja in bo na voljo v kratkem."
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Pri povezovanju z Collabora Online je prišlo do težave: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Pri povezovanju z LibreOffice Online je prišlo do težave: "
 
 #~ msgid "Number of views"
 #~ msgstr "Število ogledov"

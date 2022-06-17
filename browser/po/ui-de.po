@@ -2210,8 +2210,8 @@ msgid "Creating copy..."
 msgstr "Kopie erstellen …"
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Collabora Online Begrüßung"
+msgid "LibreOffice Online Welcome"
+msgstr "LibreOffice Online Begrüßung"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2220,7 +2220,7 @@ msgstr "Entdecken Sie die neue %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online Entwicklungsedition"
+msgstr "LibreOffice Online Entwicklungsedition"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2346,8 +2346,8 @@ msgstr ""
 #~ "Dokumenten, die neue native Seitenleiste, die überarbeitete Avatarübersicht, "
 #~ "asynchrones Speichern, schnellere Rechtschreibprüfung und mehr."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Integrieren Sie Collabora Online in Ihre Webapp"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Integrieren Sie LibreOffice Online in Ihre Webapp"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Oder beteiligen Sie sich an der Entwicklung"
@@ -2355,7 +2355,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2363,7 +2363,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Erfahren Sie mehr über die Integration in Ihre Webanwendung im <a href=\"%"
-#~ "loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Oder besuchen Sie "
+#~ "loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Oder besuchen Sie "
 #~ "die <a href=\"%loolStepByStepURL\" target=\"_blank\">Schritt-für-Schritt-"
 #~ "Anleitung</a> und erstellen Sie CODE von Grund auf. Sie können auch bei <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">Übersetzungen</a> oder durch "
@@ -2450,5 +2450,5 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Der Server wird neu gestartet und ist demnächst wieder verfügbar"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Es ist ein Fehler beim Verbinden mit Collabora Online aufgetreten: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Es ist ein Fehler beim Verbinden mit LibreOffice Online aufgetreten: "

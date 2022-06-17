@@ -2168,7 +2168,7 @@ msgid "Creating copy..."
 msgstr "Vytváranie kópie..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2285,8 +2285,8 @@ msgstr ""
 #~ "paneli, prepracovanom zozname avatarov používateľov, asynchrónnom ukladaní, "
 #~ "rýchlejšej kontrole pravopisu a ďalších zmenách."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Integrujte aplikáciu Collabora Online do svojej webovej aplikácie"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Integrujte aplikáciu LibreOffice Online do svojej webovej aplikácie"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Alebo sa zapojte do vývoja"
@@ -2294,7 +2294,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2302,7 +2302,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Informácie o integrácii webovej aplikácie nájdete na stránke <a href=\"%"
-#~ "loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Prostredníctvom <a "
+#~ "loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Prostredníctvom <a "
 #~ "href=\"%loolStepByStepURL\" target=\"_blank\">názorných postupov</a> možno "
 #~ "CODE zostaviť od nuly. Pomôcť môžete aj s <a href=\"%loolTranslationsURL\" "
 #~ "target=\"_blank\">prekladmi</a> alebo <a href=\"%loolBugreportURL\" target=\""
@@ -2385,8 +2385,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Server bude reštartovaný a o chvíľu bude opäť dostupný"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Vyskytol sa problém s pripojením k Collabora Online: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Vyskytol sa problém s pripojením k LibreOffice Online: "
 
 #~ msgid "Number of views"
 #~ msgstr "Počet zobrazení"

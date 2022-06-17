@@ -2184,8 +2184,8 @@ msgid "Creating copy..."
 msgstr "Kopia sortzen..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Collabora Online-ren ongi etorria"
+msgid "LibreOffice Online Welcome"
+msgstr "LibreOffice Online-ren ongi etorria"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2194,7 +2194,7 @@ msgstr "Begiratu %loolVersion berria"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online Garapen Edizioa"
+msgstr "LibreOffice Online Garapen Edizioa"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2222,7 +2222,7 @@ msgid ""
 msgstr ""
 "Begiratu <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">argitalpen-oharrak</a> eta ikasi guztia azken "
-"Collabora Online Garapen Edizioaz, etxeko erabiltzaileei eta talde txikiei "
+"LibreOffice Online Garapen Edizioaz, etxeko erabiltzaileei eta talde txikiei "
 "zuzenduta."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7
@@ -2360,8 +2360,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Zerbitzaria birziklatzen ari da eta laster egongo da erabilgarri"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Arazo bat dago Collabora Onlinera konektatzean: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Arazo bat dago LibreOffice Onlinera konektatzean: "
 
 #~ msgid "Number of views"
 #~ msgstr "Ikuste kopurua"

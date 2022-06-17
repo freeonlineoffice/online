@@ -2204,8 +2204,8 @@ msgid "Creating copy..."
 msgstr "Δημιουργείται αντίγραφο..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Καλώς ήρθατε στο Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Καλώς ήρθατε στο LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2392,7 +2392,7 @@ msgstr ""
 #~ msgstr "Ο διακομιστής επανεκκινεί και θα είναι σύντομα διαθέσιμος"
 
 #, fuzzy
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "Όπα, υπάρχει πρόβλημα στη σύνδεση με το διαδικτυακό LibreOffice : "
 
 #~ msgid "Number of views"

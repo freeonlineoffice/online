@@ -2153,7 +2153,7 @@ msgid "Creating copy..."
 msgstr "يتم الآن إنشاء نسخة..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2269,8 +2269,8 @@ msgstr ""
 #~ "وقائمة الصور الرمزية الجديدة التي أعيد العمل بها والحفظ غير المتزامن "
 #~ "والتدقيق الإملائي الأسرع والمزيد."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "دمج Collabora Online في تطبيق الويب الخاص بك"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "دمج LibreOffice Online في تطبيق الويب الخاص بك"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "أو شارك في التطوير"
@@ -2278,7 +2278,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2286,7 +2286,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "تعرف على المزيد حول الدمج في تطبيق الويب الخاص بك في <a href=\"%loolSdkURL\" "
-#~ "target=\"_blank\"> Collabora Online SDK </a>. أو توجه إلى <a href=\"%"
+#~ "target=\"_blank\"> LibreOffice Online SDK </a>. أو توجه إلى <a href=\"%"
 #~ "loolStepByStepURL\" target=\"_blank\">تعليمات خطوه بخطوه</a>وأنشئ الكود من "
 #~ "البداية. يمكنك أيضًا المساعدة من خلال <a href=\"%loolTranslationsURL\" "
 #~ "target=\"_blank\">الترجمات</a> أو عن طريق <a href=\"%loolBugreportURL\" "
@@ -2307,7 +2307,7 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "يُعاد تشغيل الخادوم وسيتوفر مجدّدًا قريبًا"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "آخ، حدثت مشكلة بالاتصال ب‍«ليبر أوفيس أون‌لاين» : "
 
 #~ msgid "Number of views"

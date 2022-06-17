@@ -2126,7 +2126,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2182,7 +2182,7 @@ msgstr ""
 #~ msgid "Start Presentation"
 #~ msgstr "முழுத்திரை வழங்கல்"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "ஐயோ, லிப்ரெஓபிஸ் ஒன்லைனுடன் இணைவதில் சிக்கல் :  "
 
 #~ msgid "Number of views"

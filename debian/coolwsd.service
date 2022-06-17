@@ -1,5 +1,5 @@
 [Unit]
-Description=Collabora Online WebSocket Daemon
+Description=LibreOffice Online WebSocket Daemon
 After=network.target
 
 [Service]

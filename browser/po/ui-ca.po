@@ -2180,7 +2180,7 @@ msgid "Creating copy..."
 msgstr "S'està creant una còpia..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr "Benvinguda del Collabora Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2190,7 +2190,7 @@ msgstr "Doneu un cop d'ull a la nova %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online, edició de desenvolupament"
+msgstr "LibreOffice Online, edició de desenvolupament"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2218,7 +2218,7 @@ msgid ""
 msgstr ""
 "Llegiu les <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">notes de llançament</a> i apreneu-ho tot sobre "
-"la darrera versió del Collabora Online, edició de desenvolupament, dirigida "
+"la darrera versió del LibreOffice Online, edició de desenvolupament, dirigida "
 "als usuaris domèstics i als equips petits."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7
@@ -2364,9 +2364,9 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "El servidor s'està reciclant i aviat serà disponible"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr ""
-#~ "Ep! S'ha produït un problema en intentar connectar amb el Collabora Online: "
+#~ "Ep! S'ha produït un problema en intentar connectar amb el LibreOffice Online: "
 
 #~ msgid "Number of views"
 #~ msgstr "Nre. de visualitzacions"

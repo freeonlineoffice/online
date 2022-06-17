@@ -2173,7 +2173,7 @@ msgid "Creating copy..."
 msgstr "Đang tạo bản sao ..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2184,7 +2184,7 @@ msgstr "Khám phá phiên bản %loolVersion mới"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online bản Phát triển"
+msgstr "LibreOffice Online bản Phát triển"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2283,8 +2283,8 @@ msgstr ""
 #~ "các nhóm lớn làm tài liệu, thanh bên mới, danh sách ảnh đại diện mới được "
 #~ "làm lại, lưu khác thời điểm, kiểm tra chính tả nhanh hơn và hơn thế nữa."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Tích hợp Collabora Online vào ứng dụng web của bạn"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Tích hợp LibreOffice Online vào ứng dụng web của bạn"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Hoặc tham gia vào việc phát triển"
@@ -2292,7 +2292,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2300,7 +2300,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Tìm hiểu thêm về việc tích hợp vào ứng dụng web của bạn trong <a href=\"%"
-#~ "loolSdkURL\" target=\"_blank\">SDK Collabora Online</a>. Hoặc đi tới <a href="
+#~ "loolSdkURL\" target=\"_blank\">SDK LibreOffice Online</a>. Hoặc đi tới <a href="
 #~ "\"%loolStepByStepURL\" target=\"_blank\">hướng dẫn từng bước</a> và xây dựng "
 #~ "CODE từ đầu. Bạn cũng có thể giúp với việc <a href=\"%loolTranslationsURL\" "
 #~ "target=\"_blank\">phiên dịch</a> hoặc bằng cách <a href=\"%loolBugreportURL\""

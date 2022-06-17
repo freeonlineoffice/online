@@ -2099,7 +2099,7 @@ msgid "Creating copy..."
 msgstr "正在创建副本…"
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2243,8 +2243,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "服务器正在恢复，稍后即将可用"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "糟糕，连接到 Collabora Online 时出现了问题: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "糟糕，连接到 LibreOffice Online 时出现了问题: "
 
 #~ msgid "Number of views"
 #~ msgstr "视图数"

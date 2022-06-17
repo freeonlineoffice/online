@@ -2162,7 +2162,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2222,8 +2222,8 @@ msgstr ""
 #~ msgid "Reset Zoom"
 #~ msgstr "Rezeta el zoom"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "A ghe ze un problema inte ła conesion a Collabora Online:"
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "A ghe ze un problema inte ła conesion a LibreOffice Online:"
 
 #~ msgid "Number of views"
 #~ msgstr "Nùmaro de vizuałizasion"

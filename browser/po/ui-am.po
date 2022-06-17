@@ -2151,7 +2151,7 @@ msgid "Creating copy..."
 msgstr "ኮፒ በ መፍጠር ላይ..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2226,7 +2226,7 @@ msgstr ""
 #~ msgstr "ሰርቨሩ በ መጫን ላይ ነው በ አጭር ጊዜ ውስጥ ዝግጁ ይሆናል:"
 
 #, fuzzy
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "ውይ! ችግር ተፈጥሯል በ መገናኘት ላይ እንዳለ ከ LibreOffice በ መስመር ላይ : "
 
 #~ msgid "Number of views"

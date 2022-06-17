@@ -2103,8 +2103,8 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Afáyate en Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Afáyate en LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2113,7 +2113,7 @@ msgstr ""
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online, edición de desarrollu"
+msgstr "LibreOffice Online, edición de desarrollu"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""

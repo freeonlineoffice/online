@@ -2141,7 +2141,7 @@ msgid "Creating copy..."
 msgstr "복사본 만드는 중..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2246,7 +2246,7 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "서버를 재부팅하는 중으로 곧 사용이 가능합니다."
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "리브레오피스 온라인에 연결하는데 문제가 발생하였습니다. : "
 
 #~ msgid "Number of views"

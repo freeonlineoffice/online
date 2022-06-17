@@ -2180,8 +2180,8 @@ msgid "Creating copy..."
 msgstr "Создать копию..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Добро пожаловать в Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Добро пожаловать в LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2190,7 +2190,7 @@ msgstr "Узнайте о новой %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online для разработчиков"
+msgstr "LibreOffice Online для разработчиков"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2356,8 +2356,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Сервер перезапускается и вскоре будет доступен"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Сбой подключения к Collabora Online: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Сбой подключения к LibreOffice Online: "
 
 #~ msgid "Number of views"
 #~ msgstr "Количество просмотров"

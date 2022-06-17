@@ -2138,8 +2138,8 @@ msgid "Creating copy..."
 msgstr "נוצר עותק…"
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "ברוך בואך אל Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "ברוך בואך אל LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2148,7 +2148,7 @@ msgstr "הנה החידושים ב־%loolVersion החדשה"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "מהדורת הפיתוח של Collabora Online"
+msgstr "מהדורת הפיתוח של LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2175,7 +2175,7 @@ msgid ""
 msgstr ""
 "ב<a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">הערות ההפצה</a> אפשר ללמוד עוד על: מהדורת הפיתוח "
-"האחרונה של Collabora Online, שמיועדת למשתמשים ביתיים ולצוותים קטנים."
+"האחרונה של LibreOffice Online, שמיועדת למשתמשים ביתיים ולצוותים קטנים."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7
 msgid "Get Involved"
@@ -2268,8 +2268,8 @@ msgstr ""
 #~ "שעובדות על מסמכים, סרגל צד מובנה חדש, רשימת תמונות ייצוגיות שנבנתה מחדש, "
 #~ "שמירה אסינכרונית, בדיקת איות מהירה יותר ועוד."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "שילוב Collabora Online ביישום המקוון שלך"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "שילוב LibreOffice Online ביישום המקוון שלך"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "או להשתלב בפיתוח"
@@ -2277,7 +2277,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2285,7 +2285,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "אפשר ללמוד עוד על שילוב יישומי הדפדפן שלך מול <a href=\"%loolSdkURL\" target="
-#~ "\"_blank\">ה־SDK של Collabora Online</a>. או לגשת אל <a href=\"%"
+#~ "\"_blank\">ה־SDK של LibreOffice Online</a>. או לגשת אל <a href=\"%"
 #~ "loolStepByStepURL\" target=\"_blank\">ההנחיות המפורטות</a> ולבנות את CODE "
 #~ "מאפס. אפשר לסייע גם על ידי <a href=\"%loolTranslationsURL\" target=\"_blank\""
 #~ ">תרגום</a> או ב<a href=\"%loolBugreportURL\" target=\"_blank\">הגשת דוח "
@@ -2371,7 +2371,7 @@ msgstr ""
 #~ msgstr "השרת ממחזר את הפסולת ויהיה זמין תוך זמן קצר"
 
 #, fuzzy
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "אופס, אירעה תקלה בחיבור ל־‏LibreOffice המקוון: "
 
 #~ msgid "Number of views"

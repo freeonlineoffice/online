@@ -26,6 +26,6 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  collaboraofficebasis-math
 Conflicts: loolwsd
 Replaces: loolwsd
-Description: Collabora Online WebSocket Daemon
+Description: LibreOffice Online WebSocket Daemon
  LOOLWSD is a daemon that talks to web browser clients and provides LibreOffice
  services.

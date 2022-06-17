@@ -2175,8 +2175,8 @@ msgid "Creating copy..."
 msgstr "Bý til afrit..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Velkomin í Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Velkomin í LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2185,7 +2185,7 @@ msgstr "Kynntu þér nýju útgáfuna af %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "þróunarútgáfu Collabora Online"
+msgstr "þróunarútgáfu LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2213,7 +2213,7 @@ msgid ""
 msgstr ""
 "Skoðaðu <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
 "code-21-11-release-notes/\">útgáfuupplýsingarnar</a> og lærðu allt um: "
-"nýjustu þróunarútgáfu Collabora Online, sem hönnuð er fyrir heimanotendur og "
+"nýjustu þróunarútgáfu LibreOffice Online, sem hönnuð er fyrir heimanotendur og "
 "smærri teymi."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7
@@ -2284,8 +2284,8 @@ msgstr ""
 #~ msgid "Explore the new %loolVersion"
 #~ msgstr "Kanna nýju %loolVersion"
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Samþættu Collabora Online við vefhugbúnaðinn þinn"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Samþættu LibreOffice Online við vefhugbúnaðinn þinn"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Eða taktu þátt í þróuninni"
@@ -2366,8 +2366,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "Þjónninn er að keyra sig upp og verður tiltækur innan skamms"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Úbbs, það kom upp villa við að tengjast Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Úbbs, það kom upp villa við að tengjast LibreOffice Online : "
 
 #~ msgid "Number of views"
 #~ msgstr "Fjöldi skoðana"

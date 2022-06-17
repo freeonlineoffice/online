@@ -26,10 +26,10 @@ dnf install -y curl wget
 wget https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/CODE-centos8/repodata/repomd.xml.key && rpm --import repomd.xml.key
 
 if [ "$type" == "lool" ] && [ -n ${secret_key+set} ]; then
-    echo "Based on the provided build arguments Collabora Online from customer repo will be used."
+    echo "Based on the provided build arguments LibreOffice Online from customer repo will be used."
     dnf config-manager --add-repo https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/${version:-21.11}/customer-centos8-${secret_key}
 elif [ "$type" == "key" ]; then
-    echo "Based on the provided build arguments license key enabled Collabora Online was selected, but it's available only on Ubuntu. LibreOffice Online will be used."
+    echo "Based on the provided build arguments license key enabled LibreOffice Online was selected, but it's available only on Ubuntu. LibreOffice Online will be used."
     type="code"
     dnf config-manager --add-repo https://collaboraoffice.com/${repo:-repos}/CollaboraOnline/CODE-centos8
 else

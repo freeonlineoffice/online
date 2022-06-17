@@ -2129,7 +2129,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2190,7 +2190,7 @@ msgstr ""
 #~ msgstr "چوڭلۇقىنى ئەسلىگە قايتۇر"
 
 #, fuzzy
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "ئاپلا، توردىكى LibreOffice قا ئۇلىنىشتا مەسىلە كۆرۈلدى: "
 
 #~ msgid "Number of views"

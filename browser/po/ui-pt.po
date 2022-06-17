@@ -2186,8 +2186,8 @@ msgid "Creating copy..."
 msgstr "Criar uma cópia..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
-msgstr "Bem-vindo ao Collabora Online"
+msgid "LibreOffice Online Welcome"
+msgstr "Bem-vindo ao LibreOffice Online"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
@@ -2196,7 +2196,7 @@ msgstr "Explore a nova %loolVersion"
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
 msgid "LibreOffice Online"
-msgstr "Collabora Online Edição Desenvolvimento"
+msgstr "LibreOffice Online Edição Desenvolvimento"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
@@ -2321,8 +2321,8 @@ msgstr ""
 #~ "lateral nativa, nova lista de avatares, gravação assíncrona, verificação "
 #~ "ortográfica mais rápida e muito mais."
 
-#~ msgid "Integrate Collabora Online into your webapp"
-#~ msgstr "Integre o Collabora Online no seu webapp"
+#~ msgid "Integrate LibreOffice Online into your webapp"
+#~ msgstr "Integre o LibreOffice Online no seu webapp"
 
 #~ msgid "Or get involved in the development"
 #~ msgstr "Ou junte-se à comunidade de desenvolvimento"
@@ -2330,7 +2330,7 @@ msgstr ""
 #, javascript-format
 #~ msgid ""
 #~ "Learn more about integrating into your web application in the <a href="
-#~ "\"%loolSdkURL\" target=\"_blank\">Collabora Online SDK</a>. Or head over to "
+#~ "\"%loolSdkURL\" target=\"_blank\">LibreOffice Online SDK</a>. Or head over to "
 #~ "the <a href=\"%loolStepByStepURL\" target=\"_blank\">step-by-step "
 #~ "instructions</a> and build CODE from scratch. You can also help out with <a "
 #~ "href=\"%loolTranslationsURL\" target=\"_blank\">translations</a> or by <a "
@@ -2338,7 +2338,7 @@ msgstr ""
 #~ "all the essential steps on how to reproduce it."
 #~ msgstr ""
 #~ "Saiba mais sobre a integração na sua aplicação web no <a href=\"%loolSdkURL\""
-#~ " target=\"_blank\">Collabora Online SDK</a>. Ou leia as <a href=\"%"
+#~ " target=\"_blank\">LibreOffice Online SDK</a>. Ou leia as <a href=\"%"
 #~ "loolStepByStepURL\" target=\"_blank\">instruções passo a passo</a> e "
 #~ "construa CODE do nada. Também pode ajudar com <a href=\"%"
 #~ "loolTranslationsURL\" target=\"_blank\">traduções</a> ou <a href=\"%"
@@ -2424,8 +2424,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "O servidor está em manutenção e estará disponível brevemente."
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Ocorreu um problema ao estabelecer ligação ao Collabora Online: "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "Ocorreu um problema ao estabelecer ligação ao LibreOffice Online: "
 
 #~ msgid "Number of views"
 #~ msgstr "Número de visualizações"

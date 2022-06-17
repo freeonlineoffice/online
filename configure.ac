@@ -281,7 +281,7 @@ AC_ARG_ENABLE([ssl],
 
 AC_ARG_WITH([support-public-key],
             AS_HELP_STRING([--with-support-public-key=<public-key-name.pub>],
-                [Implements signed key with expiration required for support. Targeted at Collabora Online Service Providers.]))
+                [Implements signed key with expiration required for support. Targeted at LibreOffice Online Service Providers.]))
 
 AC_ARG_WITH([max-connections],
             AS_HELP_STRING([--with-max-connections],

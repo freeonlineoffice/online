@@ -2169,7 +2169,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2235,7 +2235,7 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "सर्वर पुनरावृत्त हो रहा है आैर जल्द ही उपलब्ध होगा।"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
 #~ msgstr "ओह, लिब्रेऑफिस ऑनलाइन को संपर्क करने में कुछ बाधा हो रही है "
 
 #~ msgid "Number of views"

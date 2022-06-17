@@ -2178,7 +2178,7 @@ msgid "Creating copy..."
 msgstr "प्रतिलिपि बनाउदै..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2273,8 +2273,8 @@ msgstr ""
 #~ msgid "Server is recycling and will be available shortly"
 #~ msgstr "सर्भर रिसाइक्ल हुदैछ र छिट्टै उपलब्ध हुनेछ"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "उफ्, Collabora Online सँग जोड्न त्यहाँ एउटा समस्या छ : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "उफ्, LibreOffice Online सँग जोड्न त्यहाँ एउटा समस्या छ : "
 
 #~ msgid "Number of views"
 #~ msgstr "प्रदर्शन गरिएको गन्ति"

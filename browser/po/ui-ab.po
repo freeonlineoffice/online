@@ -2131,7 +2131,7 @@ msgid "Creating copy..."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "Collabora Online Welcome"
+msgid "LibreOffice Online Welcome"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
@@ -2194,8 +2194,8 @@ msgstr ""
 #~ msgid "Inactive document - please click to resume editing"
 #~ msgstr "Иактивым адокумент - шәаӷәыӷәӷәа аредакциазура азы"
 
-#~ msgid "Oops, there is a problem connecting to Collabora Online : "
-#~ msgstr "Collabora Online ахь аимадара аан аиԥҟьара : "
+#~ msgid "Oops, there is a problem connecting to LibreOffice Online : "
+#~ msgstr "LibreOffice Online ахь аимадара аан аиԥҟьара : "
 
 #~ msgid "Number of views"
 #~ msgstr "Ахәаҧшрақәа рхыҧхьаӡара"

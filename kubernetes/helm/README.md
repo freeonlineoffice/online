@@ -1,8 +1,8 @@
-# Collabora Online for Kubernetes
+# LibreOffice Online for Kubernetes
 
 In order for Collaborative Editing to function correctly on kubernetes, it is vital to ensure that all users editing the same document end up being served by the same pod. Using the WOPI protocol, the https URL includes a unique identifier (WOPISrc) for use with this document. Thus load balancing can be done by using WOPISrc – ensuring that all URLs that contain the same WOPISrc are sent to the same pod.
 
-## Helm chart for deploying Collabora Online in Kubernetes cluster
+## Helm chart for deploying LibreOffice Online in Kubernetes cluster
 
 How to test this specific setup:
   1. Install Kubernetes cluster locally - minikube - https://minikube.sigs.k8s.io/docs/
