@@ -792,7 +792,7 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
             // using json because fetching details from json string is easier and will be consistent
             Object::Ptr userStats = new Object();
             userStats->set("PostMessageOrigin", wopifileinfo->getPostMessageOrigin());
-            userStats->set("UserID", COOLWSD::anonymizeUsername(userId));
+            userStats->set("UserID", LOOLWSD::anonymizeUsername(userId));
             userStats->set("BaseFileName", wopiStorage->getFileInfo().getFilename());
             userStats->set("UserCanWrite", wopifileinfo->getUserCanWrite());
 
