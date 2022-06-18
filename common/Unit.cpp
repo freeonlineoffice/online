@@ -27,6 +27,7 @@
 #include "Util.hpp"
 
 #include <common/SigUtil.hpp>
+#include <common/Message.hpp>
 
 UnitBase *UnitBase::Global = nullptr;
 UnitKit *GlobalKit = nullptr;
@@ -209,6 +210,11 @@ UnitBase::~UnitBase()
 //        dlclose(_dlHandle);
     _dlHandle = nullptr;
     _socketPoll->joinThread();
+}
+
+bool UnitBase::filterLOKitMessage(const std::shared_ptr<Message>& message)
+{
+    return onFilterLOKitMessage(message);
 }
 
 bool UnitBase::filterSendWebSocketMessage(const char* data, const std::size_t len,

@@ -29,6 +29,7 @@ class UnitTimeout;
 
 class WebSocketHandler;
 class ClientSession;
+class Message;
 
 // Forward declaration to avoid pulling the world here.
 namespace Poco
@@ -153,6 +154,11 @@ public:
         return false;
     }
 
+    /// Message that LOKit sent (typically upon receipt in DocBroker).
+    /// To override, handle onFilterLOKitMessage.
+    /// Returns true to stop processing the message further.
+    bool filterLOKitMessage(const std::shared_ptr<Message>& message);
+
     /// Message that is about to be sent via the websocket.
     /// To override, handle onFilterSendWebSocketMessage or any of the onDocument...() handlers.
     /// Returns true to stop processing the message further.
@@ -249,6 +255,9 @@ private:
         _socketPoll->startThread();
     }
     static UnitBase *linkAndCreateUnit(UnitType type, const std::string& unitLibPath);
+
+    /// Handles messages from LOKit.
+    virtual bool onFilterLOKitMessage(const std::shared_ptr<Message>& /*message*/) { return false; }
 
     /// Handles messages sent via WebSocket.
     virtual bool onFilterSendWebSocketMessage(const char* /*data*/, const std::size_t /*len*/,
