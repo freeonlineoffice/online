@@ -180,7 +180,8 @@ namespace RenderTiles
                                             int pixelWidth, int pixelHeight,
                                             LibreOfficeKitTileMode mode)>& blendWatermark,
                   const std::function<void (const char *buffer, size_t length)>& outputMessage,
-                  unsigned mobileAppDocId)
+                  unsigned mobileAppDocId,
+                  int canonicalViewId)
     {
         const auto& tiles = tileCombined.getTiles();
 
@@ -306,7 +307,9 @@ namespace RenderTiles
                                                          tileRect.getLeft(),
                                                          tileRect.getTop(),
                                                          tileRect.getWidth(),
-                                                         tileCombined.getPart()),
+                                                         tileCombined.getPart(),
+                                                         canonicalViewId
+                                                         ),
                                                      *data, wireId, forceKeyframe);
                         }
                         else
