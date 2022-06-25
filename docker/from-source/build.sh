@@ -7,8 +7,8 @@
 # * DOCKER_HUB_REPO - which Docker Hub repo to use
 # * DOCKER_HUB_TAG  - which Docker Hub tag to create
 # * CORE_BRANCH  - which branch to build in core
-# * COLLABORA_ONLINE_REPO - which git repo to clone online from
-# * COLLABORA_ONLINE_BRANCH - which branch to build in online
+# * LIBREOFFICE_ONLINE_REPO - which git repo to clone online from
+# * LIBREEOFFICE_ONLINE_BRANCH - which branch to build in online
 # * CORE_BUILD_TARGET - which make target to run (in core repo)
 # * ONLINE_EXTRA_BUILD_OPTIONS - extra build options for online
 # * NO_DOCKER_IMAGE - if set, don't build the docker image itself, just do all the preps
@@ -23,25 +23,25 @@ sudo echo "works"
 
 # Check env variables
 if [ -z "$DOCKER_HUB_REPO" ]; then
-  DOCKER_HUB_REPO="mydomain/collaboraonline"
+  DOCKER_HUB_REPO="libreoffice/online"
 fi;
 if [ -z "$DOCKER_HUB_TAG" ]; then
-  DOCKER_HUB_TAG="latest"
+  DOCKER_HUB_TAG="master"
 fi;
 echo "Using Docker Hub Repository: '$DOCKER_HUB_REPO' with tag '$DOCKER_HUB_TAG'."
 
 if [ -z "$CORE_BRANCH" ]; then
-  CORE_BRANCH="distro/collabora/co-22.05"
+  CORE_BRANCH="master"
 fi;
 echo "Building core branch '$CORE_BRANCH'"
 
-if [ -z "$COLLABORA_ONLINE_REPO" ]; then
-  COLLABORA_ONLINE_REPO="https://github.com/CollaboraOnline/online.git"
+if [ -z "$LIBREOFFICE_ONLINE_REPO" ]; then
+  LIBREOFFICE_ONLINE_REPO="https://github.com/freeonlineoffice/online.git"
 fi;
-if [ -z "$COLLABORA_ONLINE_BRANCH" ]; then
-  COLLABORA_ONLINE_BRANCH="master"
+if [ -z "$LIBREEOFFICE_ONLINE_BRANCH" ]; then
+  LIBREOFFICE_ONLINE_BRANCH="master"
 fi;
-echo "Building online branch '$COLLABORA_ONLINE_BRANCH' from '$COLLABORA_ONLINE_REPO'"
+echo "Building online branch '$LIBREEOFFICE_ONLINE_BRANCH' from '$LIBREOFFICE_ONLINE_REPO'"
 
 if [ -z "$CORE_BUILD_TARGET" ]; then
   CORE_BUILD_TARGET=""
@@ -98,15 +98,15 @@ fi
 
 # online repo
 if test ! -d online ; then
-  git clone "$COLLABORA_ONLINE_REPO" online || exit 1
+  git clone "$LIBREOFFICE_ONLINE_REPO" online || exit 1
 fi
 
-( cd online && git fetch --all && git checkout -f $COLLABORA_ONLINE_BRANCH && git clean -f -d && git pull -r ) || exit 1
+( cd online && git fetch --all && git checkout -f $LIBREEOFFICE_ONLINE_BRANCH && git clean -f -d && git pull -r ) || exit 1
 
 ##### LOKit (core) #####
 
 # build
-if [ "$CORE_BRANCH" == "distro/collabora/co-22.05" ]; then
+if [ "$CORE_BRANCH" == "distro/libreoffice/lo-7.4.0" ]; then
   ( cd core && ./autogen.sh --with-distro=CPLinux-LOKit --disable-epm --without-package-format ) || exit 1
 else
   ( cd core && ./autogen.sh --with-distro=LibreOfficeOnline ) || exit 1
@@ -130,8 +130,8 @@ cp -a core/instdir "$INSTDIR"/opt/lokit
 # Create new docker image
 if [ -z "$NO_DOCKER_IMAGE" ]; then
   cd "$SRCDIR"
-  cp ../from-packages/scripts/start-collabora-online.sh .
-  cp ../from-packages/scripts/start-collabora-online.pl .
+  cp ../from-packages/scripts/start-libreoffice-online.sh .
+  cp ../from-packages/scripts/start-libreoffice-online.pl .
   docker build --no-cache -t $DOCKER_HUB_REPO:$DOCKER_HUB_TAG -f $HOST_OS . || exit 1
 else
   echo "Skipping docker image build"
