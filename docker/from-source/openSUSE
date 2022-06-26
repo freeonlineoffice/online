@@ -15,8 +15,8 @@ RUN zypper ref && \
 COPY /instdir /
 
 # copy the shell script which can start LibreOffice Online (loolwsd)
-COPY /start-collabora-online.sh /
-COPY /start-collabora-online.pl /
+COPY /start-libreoffice-online.sh /
+COPY /start-libreoffice-online.pl /
 
 # set up LibreOffice Online (normally done by postinstall script of package)
 # Fix permissions
@@ -37,4 +37,4 @@ EXPOSE 9980
 # switch to lool user (use numeric user id to be compatible with Kubernetes Pod Security Policies)
 USER 498
 
-CMD ["/start-collabora-online.sh"]
+CMD ["/start-libreoffice-online.sh"]
