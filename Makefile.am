@@ -590,11 +590,11 @@ compile_commands: $(abs_srcdir)/compile_commands.json
 browser/node_modules: browser/package.json browser/archived-packages
 	@cd browser && npm install
 
-install-exec-hook:
-	cd $(DESTDIR)$(bindir) && \
-	$(LN_S) loolconfig loolconfig && \
-	$(LN_S) loolwsd loolwsd && \
-	$(LN_S) loolwsd-systemplate-setup loolwsd-systemplate-setup
+#install-exec-hook:
+#	cd $(DESTDIR)$(bindir) && \
+#	$(LN_S) loolconfig loolconfig && \
+#	$(LN_S) loolwsd loolwsd && \
+#	$(LN_S) loolwsd-systemplate-setup loolwsd-systemplate-setup
 
 stress_file=$(abs_top_srcdir)/test/data/hello-world.odt
 trace_dir=$(abs_top_srcdir)/test/traces
