@@ -108,7 +108,7 @@ LOOL_ADMIN_JS =\
 	admin/src/AdminSocketLog.js
 
 NODE_MODULES_SRC =\
-	autolinker@3.14.1 \
+	autolinker@3.15.0 \
 	json-js@1.1.2 \
 	select2@4.0.13 \
 	vex-js@4.1.0 \
