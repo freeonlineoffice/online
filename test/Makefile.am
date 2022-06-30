@@ -56,6 +56,7 @@ all_la_unit_tests = \
 	unit-wopi-async-upload-modifyclose.la \
 	unit-convert.la \
 	unit-storage.la \
+	unit-wopi-stuck-save.la \
 	unit-rendering-options.la \
 	unit-paste.la \
 	unit-large-paste.la \

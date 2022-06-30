@@ -432,6 +432,14 @@ void DocumentBroker::pollThread()
                 if (_docState.isDisconnected())
                 {
                     // We will never save. No need to wait for timeout.
+                    LOG_DBG("Doc disconnected while saving. Ending save activity.");
+                    _saveManager.setLastSaveResult(false);
+                    endActivity();
+                }
+                else
+                if (_saveManager.hasSavingTimedOut())
+                {
+                    LOG_DBG("Saving timedout. Ending save activity.");
                     _saveManager.setLastSaveResult(false);
                     endActivity();
                 }
@@ -1820,6 +1828,9 @@ void DocumentBroker::setLoaded()
         _docState.setLive();
         _loadDuration = std::chrono::duration_cast<std::chrono::milliseconds>(
                                 std::chrono::steady_clock::now() - _threadStart);
+        _saveManager.setSavingTimeout(
+            std::max(std::chrono::seconds(((_loadDuration * 2).count() + 500) / 1000),
+                     std::chrono::seconds(5)));
         LOG_TRC("Document loaded in " << _loadDuration);
     }
 }
@@ -2606,6 +2617,9 @@ bool DocumentBroker::handleInput(const std::vector<char>& payload)
     if (LOOLWSD::TraceDumper)
         LOOLWSD::dumpOutgoingTrace(getJailId(), "0", message->abbr());
 #endif
+
+    if (UnitBase::get().filterLOKitMessage(message))
+        return true;
 
     if (LOOLProtocol::getFirstToken(message->forwardToken(), '-') == "client")
     {
