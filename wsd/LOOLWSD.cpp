@@ -2414,11 +2414,6 @@ void LOOLWSD::innerInitialize(Application& self)
 
     std::cerr << std::endl;
 #endif
-    if (!UnitWSD::isUnitTesting())
-    {
-        // ---------------- from here on we start getting external messages ----------------
-        FileServerRequestHandler::fetchExternal();
-    }
 
 #endif
 }
