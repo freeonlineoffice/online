@@ -588,7 +588,7 @@ $(abs_srcdir)/compile_commands.json: $(JSON_COMPILE_SRC)
 
 compile_commands: $(abs_srcdir)/compile_commands.json
 
-browser/node_modules: browser/package.json browser/archived-packages
+browser/node_modules: browser/package.json browser/node_shrinkpack
 	@cd browser && npm install
 
 #install-exec-hook:
