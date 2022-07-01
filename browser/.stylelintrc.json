@@ -15,7 +15,6 @@
 		"declaration-block-no-duplicate-properties": [true, {
 			"ignore": ["consecutive-duplicates-with-different-values"]
 		}],
-		"function-calc-no-invalid": true,
 		"function-linear-gradient-no-nonstandard-direction": true,
 		"selector-pseudo-class-no-unknown": true,
 		"selector-pseudo-element-no-unknown": true,
