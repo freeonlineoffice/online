@@ -542,7 +542,7 @@ $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 		-DVENDOR="$(VENDOR)" \
 		$(srcdir)/html/lool.html.m4 > $@
 
-node_modules: package.json node_shrinkpack
+node_modules: package.json
 	@npm install
 	@touch node_modules
 
