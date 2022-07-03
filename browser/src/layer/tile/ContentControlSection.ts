@@ -4,13 +4,13 @@ declare var app: any;
 app.definitions.ContentControlSection =
 
 class ContentControlSection {
-    context: CanvasRenderingContext2D = null;
-    processingOrder: number = L.CSections.ContentControl.processingOrder;
+	context: CanvasRenderingContext2D = null;
+	processingOrder: number = L.CSections.ContentControl.processingOrder;
 	drawingOrder: number = L.CSections.ContentControl.drawingOrder;
 	zIndex: number = L.CSections.ContentControl.zIndex;
-    name: string = L.CSections.ContentControl.name;
+	name: string = L.CSections.ContentControl.name;
 	interactable: boolean = false;
-    documentObject: boolean = true;
+	documentObject: boolean = true;
 	sectionProperties: any = {};
 	myTopLeft: Array<number> = [0, 0];
 	position: Array<number> = [0, 0];
