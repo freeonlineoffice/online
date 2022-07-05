@@ -20,7 +20,7 @@
     "jquery-ui-dist": "1.13.1",
     "json-js": "1.1.2",
     "l10n-for-node": "0.0.1",
-    "mocha": "9.2.2",
+    "mocha": "10.0.0",
     "pako": "2.0.4",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
