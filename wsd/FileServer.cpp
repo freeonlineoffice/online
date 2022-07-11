@@ -136,7 +136,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
         return false;
     }
 
-    const char useCoolconfig[] = " Use loolconfig to configure the admin password.";
+    const char useLoolconfig[] = " Use loolconfig to configure the admin password.";
 
     // do we have secure_password?
     if (config.has("admin_console.secure_password"))
@@ -144,7 +144,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
         const std::string securePass = config.getString("admin_console.secure_password", "");
         if (securePass.empty())
         {
-            LOG_ERR("Admin Console secure password is empty, denying access." << useCoolconfig);
+            LOG_ERR("Admin Console secure password is empty, denying access." << useLoolconfig);
             return false;
         }
 
@@ -157,7 +157,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
             !tokens.equals(1, "sha512") ||
             !Util::dataFromHexString(tokens[3], saltData))
         {
-            LOG_ERR("Incorrect format detected for secure_password in config file." << useCoolconfig);
+            LOG_ERR("Incorrect format detected for secure_password in config file." << useLoolconfig);
             return false;
         }
 
@@ -187,7 +187,7 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
     const std::string pass = config.getString("admin_console.password", "");
     if (pass.empty())
     {
-        LOG_ERR("Admin Console password is empty, denying access." << useCoolconfig);
+        LOG_ERR("Admin Console password is empty, denying access." << useLoolconfig);
         return false;
     }
 
@@ -957,7 +957,8 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
 
 
     bool useIntegrationTheme = config.getBool("user_interface.use_integration_theme", true);
-    const std::string themePreFix = (theme == "nextcloud") && useIntegrationTheme ? theme + "/" : "";
+    bool hasIntegrationTheme = (theme != "") && FileUtil::Stat(LOOLWSD::FileServerRoot + "/browser/dist/" + theme).exists();
+    const std::string themePreFix = hasIntegrationTheme && useIntegrationTheme ? theme + "/" : "";
     const std::string linkCSS("<link rel=\"stylesheet\" href=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.css\">");
     const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.js\"></script>");
 
@@ -1031,7 +1032,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
         uiRtlSettings = " dir=\"rtl\" ";
     Poco::replaceInPlace(preprocess, std::string("%UI_RTL_SETTINGS%"), uiRtlSettings);
 
-    const std::string useIntegrationThemeString = useIntegrationTheme ? "true" : "false";
+    const std::string useIntegrationThemeString = useIntegrationTheme && hasIntegrationTheme ? "true" : "false";
     Poco::replaceInPlace(preprocess, std::string("%USE_INTEGRATION_THEME%"), useIntegrationThemeString);
 
     std::string enableMacrosExecution = stringifyBoolFromConfig(config, "security.enable_macros_execution", false);
