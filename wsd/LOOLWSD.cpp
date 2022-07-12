@@ -673,7 +673,7 @@ public:
         // The temporary directory is child-root/<CHILDROOT_TMP_INCOMING_PATH>.
         // Always create a random sub-directory to avoid file-name collision.
         Path tempPath = Path::forDirectory(
-            FileUtil::createRandomTmpDir(COOLWSD::ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH)
+            FileUtil::createRandomTmpDir(LOOLWSD::ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH)
             + '/');
         LOG_TRC("Created temporary convert-to/insert path: " << tempPath.toString());
 
@@ -884,7 +884,7 @@ std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
 std::string LOOLWSD::UserInterface = "default";
 bool LOOLWSD::AnonymizeUserData = false;
-bool LOOLWSD::CheckCoolUser = true;
+bool LOOLWSD::CheckLoolUser = true;
 bool LOOLWSD::CleanupOnly = false; //< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
 #if ENABLE_SSL
@@ -1720,7 +1720,7 @@ private:
 void LOOLWSD::innerInitialize(Application& self)
 {
 #if !MOBILEAPP
-    if (geteuid() == 0 && CheckCoolUser)
+    if (geteuid() == 0 && CheckLoolUser)
     {
         throw std::runtime_error("Do not run as root. Please run as lool user.");
     }
@@ -2624,7 +2624,7 @@ void LOOLWSD::handleOption(const std::string& optionName,
     else if (optionName == "disable-ssl")
         _overrideSettings["ssl.enable"] = "false";
     else if (optionName == "disable-lool-user-checking")
-        CheckCoolUser = false;
+        CheckLoolUser = false;
     else if (optionName == "override")
     {
         std::string optName;
@@ -2914,7 +2914,7 @@ bool LOOLWSD::createForKit()
 
     args.push_back("--ui=" + UserInterface);
 
-    if (!CheckCoolUser)
+    if (!CheckLoolUser)
         args.push_back("--disable-lool-user-checking");
 
     if (UnattendedRun)
@@ -4781,7 +4781,7 @@ public:
            << "\n  ConfigDir: " << LOOLWSD::ConfigDir
            << "\n  LogLevel: " << LOOLWSD::LogLevel
            << "\n  AnonymizeUserData: " << (LOOLWSD::AnonymizeUserData ? "yes" : "no")
-           << "\n  CheckCoolUser: " << (LOOLWSD::CheckCoolUser ? "yes" : "no")
+           << "\n  CheckLoolUser: " << (LOOLWSD::CheckLoolUser ? "yes" : "no")
            << "\n  IsProxyPrefixEnabled: " << (LOOLWSD::IsProxyPrefixEnabled ? "yes" : "no")
            << "\n  OverrideWatermark: " << LOOLWSD::OverrideWatermark
            << "\n  UserInterface: " << LOOLWSD::UserInterface
@@ -4993,7 +4993,7 @@ int LOOLWSD::innerMain()
 
     std::string version, hash;
     Util::getVersionInfo(version, hash);
-    LOG_INF("Coolwsd version details: " << version << " - " << hash << " - id " << Util::getProcessIdentifier() << " - on " << Util::getLinuxVersion());
+    LOG_INF("Loolwsd version details: " << version << " - " << hash << " - id " << Util::getProcessIdentifier() << " - on " << Util::getLinuxVersion());
 #endif
 
     initializeSSL();
@@ -5504,10 +5504,10 @@ void forwardSigUsr2()
 
 #if !MOBILEAPP
 #ifndef KIT_IN_PROCESS
-    if (COOLWSD::ForKitProcId > 0)
+    if (LOOLWSD::ForKitProcId > 0)
     {
-        LOG_INF("Sending SIGUSR2 to forkit " << COOLWSD::ForKitProcId);
-        ::kill(COOLWSD::ForKitProcId, SIGUSR2);
+        LOG_INF("Sending SIGUSR2 to forkit " << LOOLWSD::ForKitProcId);
+        ::kill(LOOLWSD::ForKitProcId, SIGUSR2);
     }
 #endif
 #endif

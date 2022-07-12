@@ -256,7 +256,7 @@ public:
     static std::string MostVerboseLogLevelSettableFromClient;
     static std::string LeastVerboseLogLevelSettableFromClient;
     static bool AnonymizeUserData;
-    static bool CheckCoolUser;
+    static bool CheckLoolUser;
     static bool CleanupOnly;
     static bool IsProxyPrefixEnabled;
     static std::atomic<unsigned> NumConnections;
