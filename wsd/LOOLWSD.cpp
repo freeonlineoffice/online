@@ -215,7 +215,11 @@ static std::map<std::string, std::shared_ptr<DocumentBroker> > DocBrokers;
 static std::mutex DocBrokersMutex;
 static Poco::AutoPtr<Poco::Util::XMLConfiguration> KitXmlConfig;
 
-extern "C" { void dump_state(void); /* easy for gdb */ }
+extern "C"
+{
+    void dump_state(void); /* easy for gdb */
+    void forwardSigUsr2();
+}
 
 #if ENABLE_DEBUG
 static std::chrono::milliseconds careerSpanMs(std::chrono::milliseconds::zero());
@@ -369,7 +373,6 @@ void LOOLWSD::checkDiskSpaceAndWarnClients(const bool cacheLastCheck)
 
 /// Remove dead and idle DocBrokers.
 /// The client of idle document should've greyed-out long ago.
-/// Returns true if at least one is removed.
 void cleanupDocBrokers()
 {
     Util::assertIsLocked(DocBrokersMutex);
@@ -430,8 +433,7 @@ static int forkChildren(const int number)
         LOOLWSD::checkDiskSpaceAndWarnClients(false);
 
 #ifdef KIT_IN_PROCESS
-        forkLibreOfficeKit(LOOLWSD::ChildRoot, LOOLWSD::SysTemplate, LOOLWSD::LoTemplate,
-                           LO_JAIL_SUBPATH, number);
+        forkLibreOfficeKit(LOOLWSD::ChildRoot, LOOLWSD::SysTemplate, LOOLWSD::LoTemplate, number);
 #else
         const std::string aMessage = "spawn " + std::to_string(number) + '\n';
         LOG_DBG("MasterToForKit: " << aMessage.substr(0, aMessage.length() - 1));
@@ -514,8 +516,11 @@ static bool prespawnChildren()
 
 #endif
 
-static size_t addNewChild(const std::shared_ptr<ChildProcess>& child)
+static size_t addNewChild(std::shared_ptr<ChildProcess> child)
 {
+    assert(child && "Adding null child");
+    const auto pid = child->getPid();
+
     std::unique_lock<std::mutex> lock(NewChildrenMutex);
 
     --OutstandingForks;
@@ -526,14 +531,14 @@ static size_t addNewChild(const std::shared_ptr<ChildProcess>& child)
     // Reset the child-spawn timeout to the default, now that we're set.
     ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
 
-    LOG_TRC("Adding one child to NewChildren");
-    NewChildren.emplace_back(child);
+    LOG_TRC("Adding a new child " << pid << " to NewChildren");
+    NewChildren.emplace_back(std::move(child));
     const size_t count = NewChildren.size();
-    LOG_INF("Have " << count << " spare " <<
-            (count == 1 ? "child" : "children") << " after adding [" << child->getPid() << "].");
     lock.unlock();
 
-    LOG_TRC("Notifying NewChildrenCV");
+    LOG_INF("Have " << count << " spare " << (count == 1 ? "child" : "children")
+                    << " after adding [" << pid << "]. Notifying.");
+
     NewChildrenCV.notify_one();
     return count;
 }
@@ -665,10 +670,10 @@ public:
         if (!params.has("filename"))
             return;
 
-        // The temporary directory is child-root/<JAIL_TMP_INCOMING_PATH>.
+        // The temporary directory is child-root/<CHILDROOT_TMP_INCOMING_PATH>.
         // Always create a random sub-directory to avoid file-name collision.
         Path tempPath = Path::forDirectory(
-            FileUtil::createRandomTmpDir(LOOLWSD::ChildRoot + JailUtil::JAIL_TMP_INCOMING_PATH)
+            FileUtil::createRandomTmpDir(COOLWSD::ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH)
             + '/');
         LOG_TRC("Created temporary convert-to/insert path: " << tempPath.toString());
 
@@ -737,9 +742,10 @@ public:
 
             // The temporary directory is child-root/<JAIL_TMP_INCOMING_PATH>.
             // Always create a random sub-directory to avoid file-name collision.
-            Path tempPath = Path::forDirectory(
-                FileUtil::createRandomTmpDir(LOOLWSD::ChildRoot + JailUtil::JAIL_TMP_INCOMING_PATH)
-                + '/');
+            Path tempPath =
+                Path::forDirectory(FileUtil::createRandomTmpDir(
+                                       LOOLWSD::ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH) +
+                                   '/');
 
             LOG_TRC("Created temporary render-search-result file path: " << tempPath.toString());
 
@@ -2199,8 +2205,8 @@ void LOOLWSD::innerInitialize(Application& self)
     config::initialize(&config());
 
     // Setup the jails.
-    JailUtil::setupJails(getConfigValue<bool>(conf, "mount_jail_tree", true), ChildRoot,
-                         SysTemplate);
+    JailUtil::setupChildRoot(getConfigValue<bool>(conf, "mount_jail_tree", true), ChildRoot,
+                             SysTemplate);
 
     LOG_DBG("FileServerRoot before config: " << FileServerRoot);
     FileServerRoot = getPathFromConfig("file_server_root_path");
@@ -2837,7 +2843,10 @@ void PrisonPoll::wakeupHook()
 #endif
     std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex, std::defer_lock);
     if (docBrokersLock.try_lock())
+    {
         cleanupDocBrokers();
+        SigUtil::checkForwardSigUsr2(forwardSigUsr2);
+    }
 }
 
 #if !MOBILEAPP
@@ -2878,7 +2887,6 @@ bool LOOLWSD::createForKit()
     FileUtil::copy(parentPath + "loolforkit", nocapsCopy, true, true);
     args.push_back(nocapsCopy);
 #endif
-    args.push_back("--losubpath=" + std::string(LO_JAIL_SUBPATH));
     args.push_back("--systemplate=" + SysTemplate);
     args.push_back("--lotemplate=" + LoTemplate);
     args.push_back("--childroot=" + ChildRoot);
@@ -4975,7 +4983,6 @@ int LOOLWSD::innerMain()
 #if !MOBILEAPP
     SigUtil::setUserSignals();
     SigUtil::setFatalSignals("wsd " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
-    SigUtil::setTerminationSignals();
 #endif
 
 #if !MOBILEAPP
@@ -5486,6 +5493,43 @@ void dump_state()
     const std::string msg = oss.str();
     fprintf(stderr, "%s\n", msg.c_str());
     LOG_TRC(msg);
+}
+
+void forwardSigUsr2()
+{
+    LOG_TRC("forwardSigUsr2");
+
+    Util::assertIsLocked(DocBrokersMutex);
+    std::lock_guard<std::mutex> newChildLock(NewChildrenMutex);
+
+#if !MOBILEAPP
+#ifndef KIT_IN_PROCESS
+    if (COOLWSD::ForKitProcId > 0)
+    {
+        LOG_INF("Sending SIGUSR2 to forkit " << COOLWSD::ForKitProcId);
+        ::kill(COOLWSD::ForKitProcId, SIGUSR2);
+    }
+#endif
+#endif
+
+    for (const auto& child : NewChildren)
+    {
+        if (child && child->getPid() > 0)
+        {
+            LOG_INF("Sending SIGUSR2 to child " << child->getPid());
+            ::kill(child->getPid(), SIGUSR2);
+        }
+    }
+
+    for (const auto& pair : DocBrokers)
+    {
+        std::shared_ptr<DocumentBroker> docBroker = pair.second;
+        if (docBroker)
+        {
+            LOG_INF("Sending SIGUSR2 to docBroker " << docBroker->getPid());
+            ::kill(docBroker->getPid(), SIGUSR2);
+        }
+    }
 }
 
 // Avoid this in the Util::isFuzzing() case because libfuzzer defines its own main().

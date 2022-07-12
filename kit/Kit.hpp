@@ -32,7 +32,6 @@ void lokit_main(
                 const std::string& jailId,
                 const std::string& sysTemplate,
                 const std::string& loTemplate,
-                const std::string& loSubPath,
                 bool noCapabilities,
                 bool noSeccomp,
                 bool queryVersionInfo,
@@ -132,7 +131,6 @@ private:
 void forkLibreOfficeKit(const std::string& childRoot,
                         const std::string& sysTemplate,
                         const std::string& loTemplate,
-                        const std::string& loSubPath,
                         int limit = 0);
 
 /// Anonymize the basename of filenames, preserving the path and extension.

@@ -51,6 +51,10 @@ namespace SigUtil
 
     void checkDumpGlobalState(GlobalDumpStateFn dumpState);
 
+    extern "C" { typedef void (*ForwardSigUsr2Fn)(void); }
+
+    void checkForwardSigUsr2(ForwardSigUsr2Fn forwardSigUsr2);
+
     /// Add a message to a round-robin buffer to be dumped on fatal signal
     void addActivity(const std::string &message);
 
@@ -60,6 +64,19 @@ namespace SigUtil
     void setUnattended();
 
 #if !MOBILEAPP
+
+    /// Open the signalLog file.
+    void signalLogOpen();
+    /// Close the signalLog file.
+    void signalLogClose();
+
+    /// Signal safe prefix logging
+    void signalLogPrefix();
+    /// Signal safe logging
+    void signalLog(const char* message);
+    /// Signal log number
+    void signalLogNumber(std::size_t num, int base = 10);
+
     /// Wait for the signal handler, if any,
     /// and prevent _Exit while collecting backtrace.
     void waitSigHandlerTrap();
@@ -68,9 +85,6 @@ namespace SigUtil
     const char* signalName(int signo);
 
     /// Register a wakeup function when changing
-
-    /// Trap signals to cleanup and exit the process gracefully.
-    void setTerminationSignals();
 
     /// Trap all fatal signals to assist debugging.
     void setFatalSignals(const std::string &versionInfo);
