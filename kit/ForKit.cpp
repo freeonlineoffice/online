@@ -692,8 +692,7 @@ int main(int argc, char** argv)
     if (!globalPreinit(loTemplate))
     {
         LOG_FTL("Failed to preinit lokit.");
-        Log::shutdown();
-        std::_Exit(EX_SOFTWARE);
+        Util::forcedExit(EX_SOFTWARE);
     }
 
     if (Util::getProcessThreadCount() != 1)
@@ -723,8 +722,7 @@ int main(int argc, char** argv)
     if (forKitPid < 0)
     {
         LOG_FTL("Failed to create a kit process.");
-        Log::shutdown();
-        std::_Exit(EX_SOFTWARE);
+        Util::forcedExit(EX_SOFTWARE);
     }
 
     // No need to trace subsequent children.

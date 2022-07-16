@@ -2164,8 +2164,7 @@ void LOOLWSD::innerInitialize(Application& self)
             std::cerr << "\nIf you have used 'make run', edit loolwsd.xml and make sure you have removed "
                          "'--o:logging.level=trace' from the command line in Makefile.am.\n" << std::endl;
 #endif
-            Log::shutdown();
-            _exit(EX_SOFTWARE);
+            Util::forcedExit(EX_SOFTWARE);
         }
     }
 
@@ -4989,16 +4988,14 @@ private:
         if (!location.length())
         {
             LOG_FTL("Failed to create local unix domain socket. Exiting.");
-            Log::shutdown();
-            _exit(EX_SOFTWARE);
+            Util::forcedExit(EX_SOFTWARE);
             return nullptr;
         }
 
         if (!socket->listen())
         {
             LOG_FTL("Failed to listen on local unix domain socket at " << location << ". Exiting.");
-            Log::shutdown();
-            _exit(EX_SOFTWARE);
+            Util::forcedExit(EX_SOFTWARE);
         }
 
         LOG_INF("Listening to prisoner connections on " << location);
@@ -5007,8 +5004,7 @@ private:
         if(!socket->link(LOOLWSD::SysTemplate + "/0" + MasterLocation))
         {
             LOG_FTL("Failed to hardlink local unix domain socket into a jail. Exiting.");
-            Log::shutdown();
-            _exit(EX_SOFTWARE);
+            Util::forcedExit(EX_SOFTWARE);
         }
 #endif
 #else
@@ -5056,7 +5052,7 @@ private:
         {
             LOG_FTL("Failed to listen on Server port(s) (" <<
                     ClientPortNumber << '-' << port << "). Exiting.");
-            _exit(EX_SOFTWARE);
+            Util::forcedExit(EX_SOFTWARE);
         }
 
         ClientPortNumber = port;
