@@ -119,7 +119,7 @@ public:
         if (::kill(_pid, 0) == 0)
         {
             LOG_INF("Killing child [" << _pid << "].");
-            if (!SigUtil::killChild(_pid))
+            if (!SigUtil::killChild(_pid, SIGKILL))
             {
                 LOG_ERR("Cannot terminate lokit [" << _pid << "]. Abandoning.");
             }
