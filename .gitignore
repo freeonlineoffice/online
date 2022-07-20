@@ -61,6 +61,7 @@ cscope*
 loolwsd.log
 mocha.log
 *.log.*.gz
+.log
 *.lo
 *.mo
 
