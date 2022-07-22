@@ -1841,6 +1841,8 @@ void LOOLWSD::innerInitialize(Application& self)
         { "trace.path[@snapshot]", "false" },
         { "trace[@enable]", "false" },
         { "welcome.enable", "false" },
+        { "home_mode.enable", "false" },
+        { "feedback.show", "true" },
 #ifdef ENABLE_FEATURE_LOCK
         { "feature_lock.locked_hosts[@allow]", "false"},
         { "feature_lock.locked_hosts.fallback[@read_only]", "false"},
@@ -2226,10 +2228,6 @@ void LOOLWSD::innerInitialize(Application& self)
         Quarantine::createQuarantineMap();
     }
 
-#if ENABLE_WELCOME_MESSAGE
-    conf.setString("welcome.enable", "true");
-#endif
-
     NumPreSpawnedChildren = getConfigValue<int>(conf, "num_prespawn_children", 1);
     if (NumPreSpawnedChildren < 1)
     {
@@ -2259,8 +2257,25 @@ void LOOLWSD::innerInitialize(Application& self)
     setenv("SAL_DISABLE_OPENCL", "true", 1);
 
     // Log the connection and document limits.
-    LOOLWSD::MaxConnections = MAX_CONNECTIONS;
-    LOOLWSD::MaxDocuments = MAX_DOCUMENTS;
+#if ENABLE_WELCOME_MESSAGE
+    if (getConfigValue<bool>(conf, "home_mode.enable", false))
+    {
+        LOOLWSD::MaxConnections = 20;
+        LOOLWSD::MaxDocuments = 10;
+    }
+    else
+    {
+        conf.setString("feedback.show", "true");
+        conf.setString("welcome.enable", "true");
+        LOOLWSD::MaxConnections = MAX_CONNECTIONS;
+        LOOLWSD::MaxDocuments = MAX_DOCUMENTS;
+    }
+#else
+    {
+        LOOLWSD::MaxConnections = MAX_CONNECTIONS;
+        LOOLWSD::MaxDocuments = MAX_DOCUMENTS;
+    }
+#endif
 
 #if !MOBILEAPP
     NoSeccomp = !getConfigValue<bool>(conf, "security.seccomp", true);
