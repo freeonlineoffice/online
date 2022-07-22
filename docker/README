@@ -10,29 +10,8 @@ to set the server timezone to something other than UTC.
 
 Examples:
 
-1. Build latest CODE based on Ubuntu 18.04 LTS
 
-  cd from-packages
-  docker build --no-cache -t mydomain/code -f Ubuntu .
-
-2. Build LibreOffice Online 21.11 based on Ubuntu 18.04 LTS
-
-  cd from-packages
-  # Get your secret URL key from https://support.collaboraoffice.com/ (Collabora Partners/Customers)
-  docker build --no-cache --build-arg type=lool --build-arg secret_key=<....> -t mydomain/lool -f Ubuntu .
-
-3. Build LibreOffice Online 21.11 based on RHEL8
-
-  cd from-packages
-  # Get your secret URL key from https://support.collaboraoffice.com/ (Collabora Partners/Customers)
-  docker build --no-cache --build-arg type=lool --build-arg secret_key=<....> -t mydomain/lool -f RHEL8 .
-
-4. Build LibreOffice Online 21.11 license key enabled version based on Ubuntu 18.04 LTS
-
-   cd from-packages
-   docker build --no-cache --build-arg type=key -t mydomain/lool -f Ubuntu .
-
-5. Build LibreOffice Online from master branch (from source code)
+1. Build LibreOffice Online from master branch (from source code)
 
    cd from-source
    ./build.sh
