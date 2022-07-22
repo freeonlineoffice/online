@@ -4618,6 +4618,9 @@ private:
         // Set the product name
         capabilities->set("productName", APP_NAME);
 
+        // Set the Server ID
+        capabilities->set("serverId", Util::getProcessIdentifier());
+
         std::string version, hash;
         Util::getVersionInfo(version, hash);
 
