@@ -1464,7 +1464,7 @@ AM_SUBST_NOTMAKE(LOCK_CONFIGURATION)
 
 UNLOCK_LINK_PER_HOST=
 if test "$enable_feature_lock" = "yes"; then
-    UNLOCK_LINK_PER_HOST="<unlock_link desc=\"Link from where user can unlock the features, which will get mapped with alias_group. According to hostname coolwsd will set the unlock link for feature unlock dialog. If not specified it will fallback to feature_lock.unlock_link entry\" default=\"\"></unlock_link>"
+    UNLOCK_LINK_PER_HOST="<unlock_link desc=\"Link from where user can unlock the features, which will get mapped with alias_group. According to hostname loolwsd will set the unlock link for feature unlock dialog. If not specified it will fallback to feature_lock.unlock_link entry\" default=\"\"></unlock_link>"
 fi
 
 AC_SUBST(UNLOCK_LINK_PER_HOST)
