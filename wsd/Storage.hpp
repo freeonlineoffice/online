@@ -279,13 +279,6 @@ public:
     virtual std::string downloadStorageFileToLocal(const Authorization& auth, LockContext& lockCtx,
                                                    const std::string& templateUri) = 0;
 
-    /// Writes the contents of the file back to the source.
-    /// @param savedFile When the operation was saveAs, this is the path to the file that was saved.
-    virtual UploadResult uploadLocalFileToStorage(const Authorization& auth, LockContext& lockCtx,
-                                                  const std::string& saveAsPath,
-                                                  const std::string& saveAsFilename,
-                                                  const bool isRename) = 0;
-
     /// The asynchronous upload completion callback function.
     using AsyncUploadCallback = std::function<void(const AsyncUpload&)>;
 
@@ -296,14 +289,7 @@ public:
                                                const std::string& saveAsPath,
                                                const std::string& saveAsFilename,
                                                const bool isRename, SocketPoll&,
-                                               const AsyncUploadCallback& asyncUploadCallback)
-    {
-        // By default do a synchronous save.
-        const UploadResult res =
-            uploadLocalFileToStorage(auth, lockCtx, saveAsPath, saveAsFilename, isRename);
-        if (asyncUploadCallback)
-            asyncUploadCallback(AsyncUpload(AsyncUpload::State::Complete, res));
-    }
+                                               const AsyncUploadCallback& asyncUploadCallback) = 0;
 
     /// Get the progress state of an asynchronous LocalFileToStorage upload.
     virtual AsyncUpload queryLocalFileToStorageAsyncUploadState()
@@ -434,10 +420,11 @@ public:
     std::string downloadStorageFileToLocal(const Authorization& auth, LockContext& lockCtx,
                                            const std::string& templateUri) override;
 
-    UploadResult uploadLocalFileToStorage(const Authorization& auth, LockContext& lockCtx,
-                                          const std::string& saveAsPath,
-                                          const std::string& saveAsFilename,
-                                          const bool isRename) override;
+    void uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
+                                       const std::string& saveAsPath,
+                                       const std::string& saveAsFilename, const bool isRename,
+                                       SocketPoll&,
+                                       const AsyncUploadCallback& asyncUploadCallback) override;
 
 private:
     /// True if we the source file a temporary that we own.
@@ -592,11 +579,6 @@ public:
     /// uri format: http://server/<...>/wopi*/files/<id>/content
     std::string downloadStorageFileToLocal(const Authorization& auth, LockContext& lockCtx,
                                            const std::string& templateUri) override;
-
-    UploadResult uploadLocalFileToStorage(const Authorization& auth, LockContext& lockCtx,
-                                          const std::string& saveAsPath,
-                                          const std::string& saveAsFilename,
-                                          const bool isRename) override;
 
     void uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
                                        const std::string& saveAsPath,
