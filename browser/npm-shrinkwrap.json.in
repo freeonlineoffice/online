@@ -520,7 +520,7 @@
       "dependencies": {
         "xtend": {
           "version": "4.0.2",
-          "resolved": "file:node_shrinkpack/xtend-4.0.2-2ca614d62.tar",
+          "resolved": "file:node_shrinkpack/xtend-4.0.2.tar",
           "integrity": "sha512-eKdZ9fnwYKY7adPcwWpWV8XbpwtbBlL9d6L4gnuWV8SsdKLDDHXgyVCKr9kjCeyPKym/Fkjxnx30yAMpN/XP/Q== sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
           "dev": true
         }
@@ -6892,7 +6892,7 @@
         },
         "xtend": {
           "version": "4.0.2",
-          "resolved": "file:node_shrinkpack/xtend-4.0.2-2ca614d62.tar",
+          "resolved": "file:node_shrinkpack/xtend-4.0.2.tar",
           "integrity": "sha512-eKdZ9fnwYKY7adPcwWpWV8XbpwtbBlL9d6L4gnuWV8SsdKLDDHXgyVCKr9kjCeyPKym/Fkjxnx30yAMpN/XP/Q== sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
           "dev": true
         }
@@ -8188,7 +8188,7 @@
     },
     "xtend": {
       "version": "4.0.1",
-      "resolved": "file:node_shrinkpack/xtend-4.0.1-a5c6d532b.tar",
+      "resolved": "file:node_shrinkpack/xtend-4.0.1.tar",
       "integrity": "sha1-xlh14vdZDDJlJOQFX8ZkNJlTu18= sha1-pcbVMr5lbiPbgg77lDofBJmNY68=",
       "dev": true
     },
