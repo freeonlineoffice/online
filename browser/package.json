@@ -31,7 +31,8 @@
     "uglify-js": "3.16.2",
     "uglifycss": "0.0.29",
     "uglifyify": "^5.0.0",
-    "vex-js": "4.1.0"
+    "vex-js": "4.1.0",
+    "xtend": "4.0.1"
   },
   "repository": {
     "type": "git",
