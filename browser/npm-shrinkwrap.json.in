@@ -8019,7 +8019,7 @@
     },
     "vex-js": {
       "version": "4.1.0",
-      "resolved": "file:node_shrinkpack/vex-js-4.1.0-9ff760927.tar",
+      "resolved": "file:node_shrinkpack/vex-js-4.1.0.tar",
       "integrity": "sha512-dCY//NzVfd5UmSGVLyoaIYEhZgeB8i3UoK/Ji4PfIf3OQnGs+BElehb1oYt00Gzr5XUkLv7bsHvQcGmQXdLteg==",
       "dev": true,
       "requires": {
