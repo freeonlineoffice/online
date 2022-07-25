@@ -48,13 +48,14 @@ UnitBase::TestResult UnitPasswordProtected::testPasswordProtectedDocumentWithout
         helpers::getDocumentPathAndURL("password-protected.ods", documentPath, documentURL,
                                        testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse httpResponse;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, httpResponse, testname);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("WithoutPasswordPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket = helpers::connectLOKit(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Send a load request without password first
-        helpers::sendTextFrame(socket, "load url=" + documentURL);
+        helpers::sendTextFrame(socket, "load url=" + documentURL, testname);
 
         auto response = helpers::getResponseString(socket, "error:", testname);
         StringVector tokens(StringVector::tokenize(response, ' '));
@@ -87,13 +88,14 @@ UnitBase::TestResult UnitPasswordProtected::testPasswordProtectedDocumentWithWro
         helpers::getDocumentPathAndURL("password-protected.ods", documentPath, documentURL,
                                        testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse httpResponse;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, httpResponse, testname);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("WrongPasswordPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket = helpers::connectLOKit(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Send a load request with incorrect password
-        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=2");
+        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=2", testname);
 
         const auto response = helpers::getResponseString(socket, "error:", testname);
         StringVector tokens(StringVector::tokenize(response, ' '));
@@ -122,13 +124,15 @@ UnitBase::TestResult UnitPasswordProtected::testPasswordProtectedDocumentWithCor
         helpers::getDocumentPathAndURL("password-protected.ods", documentPath, documentURL,
                                        testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse response;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, response, testname);
+        std::shared_ptr<SocketPoll> socketPoll =
+            std::make_shared<SocketPoll>("CorrectPasswordPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket = helpers::connectLOKit(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Send a load request with correct password
-        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=1");
+        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=1", testname);
 
         LOK_ASSERT_MESSAGE("cannot load the document with correct password " + documentURL,
                                helpers::isDocumentLoaded(socket, testname));
@@ -154,13 +158,14 @@ UnitBase::TestResult UnitPasswordProtected::testPasswordProtectedOOXMLDocument()
         helpers::getDocumentPathAndURL("password-protected.docx", documentPath, documentURL,
                                        testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse response;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, response, testname);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("PasswordOOXMLPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket = helpers::connectLOKit(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Send a load request with correct password
-        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=abc");
+        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=abc", testname);
 
         LOK_ASSERT_MESSAGE("cannot load the document with correct password " + documentURL,
                                helpers::isDocumentLoaded(socket, testname));
@@ -181,13 +186,15 @@ UnitBase::TestResult UnitPasswordProtected::testPasswordProtectedBinaryMSOfficeD
         helpers::getDocumentPathAndURL("password-protected.doc", documentPath, documentURL,
                                        testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse response;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, response, testname);
+        std::shared_ptr<SocketPoll> socketPoll =
+            std::make_shared<SocketPoll>("PasswordMSOfficePoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket = helpers::connectLOKit(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Send a load request with correct password
-        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=abc");
+        helpers::sendTextFrame(socket, "load url=" + documentURL + " password=abc", testname);
 
         LOK_ASSERT_MESSAGE("cannot load the document with correct password " + documentURL,
                                helpers::isDocumentLoaded(socket, testname));

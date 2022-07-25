@@ -158,14 +158,11 @@ UnitBase::TestResult UnitSession::testSlideShow()
         std::string response;
         helpers::getDocumentPathAndURL("setclientpart.odp", documentPath, documentURL, testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-        Poco::Net::HTTPResponse httpResponse;
-        std::shared_ptr<LOOLWebSocket> socket = helpers::connectLOKit(
-            Poco::URI(helpers::getTestServerURI()), request, httpResponse, testname);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>(testname);
+        socketPoll->startThread();
 
-        helpers::sendTextFrame(socket, "load url=" + documentURL, testname);
-        LOK_ASSERT_MESSAGE("cannot load the document " + documentURL,
-                               helpers::isDocumentLoaded(socket, testname));
+        std::shared_ptr<http::WebSocketSession> socket = helpers::loadDocAndGetSession(
+            socketPoll, Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // request slide show
         helpers::sendTextFrame(
@@ -187,7 +184,7 @@ UnitBase::TestResult UnitSession::testSlideShow()
         std::string encodedDoc;
         Poco::URI::encode(documentPath, ":/?", encodedDoc);
         const std::string ignoredSuffix = "%3FWOPISRC=madness"; // cf. iPhone.
-        const std::string path = "/lool/" + encodedDoc + "/download/" + downloadId + '/' + ignoredSuffix;
+        const std::string path = "/cool/" + encodedDoc + "/download/" + downloadId + '/' + ignoredSuffix;
         std::unique_ptr<Poco::Net::HTTPClientSession> session(
             helpers::createSession(Poco::URI(helpers::getTestServerURI())));
         Poco::Net::HTTPRequest requestSVG(Poco::Net::HTTPRequest::HTTP_GET, path);

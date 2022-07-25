@@ -22,6 +22,7 @@
 #include <LOOLWSD.hpp>
 
 #include <wsd/TileDesc.hpp>
+#include <net/WebSocketSession.hpp>
 
 using namespace ::helpers;
 
@@ -55,8 +56,7 @@ public:
 
     TestResult testWriterTyping()
     {
-        std::string serverURL = LOOLWSD::getServerURL();
-        const Poco::URI uri(serverURL);
+        Poco::URI uri(helpers::getTestServerURI());
 
         LOG_TRC("test writer typing");
 
@@ -65,7 +65,11 @@ public:
         helpers::getDocumentPathAndURL(
             "empty.odt", documentPath, documentURL, testname);
 
-        std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("TypingPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
         // We input two Bopomofo (Mandarin Phonetic Symbols) characters and a grave accent using
         // textinput messages and then delete them and then input a fourth character. Apparently
@@ -226,26 +230,30 @@ public:
 
     TestResult testCalcTyping()
     {
-        std::string serverURL = LOOLWSD::getServerURL();
-        const Poco::URI uri(serverURL);
+        Poco::URI uri(helpers::getTestServerURI());
 
         // Load a doc with the cursor saved at a top row.
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL("empty.ods", documentPath, documentURL, testname);
 
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("TypingPoll");
+        socketPoll->startThread();
+
         const int numRender = 2;
         const int numTyping = 6;
         const int numSocket = numRender + numTyping;
-        std::vector<std::shared_ptr<LOOLWebSocket>> sockets;
+        std::vector<std::shared_ptr<http::WebSocketSession>> sockets;
 
-        LOG_TRC("Connecting first client to " << serverURL << " doc: " << documentURL);
-        sockets.push_back(helpers::loadDocAndGetSocket(uri, documentURL, testname));
+        LOG_TRC("Connecting first client to " << uri.toString() << " doc: " << documentURL);
+        sockets.emplace_back(helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname));
 
         for (int i = 1; i < numSocket; ++i)
         {
             LOG_TRC("Connecting client " << i);
-            std::shared_ptr<LOOLWebSocket> socket = helpers::loadDocAndGetSocket(uri, documentURL, testname);
-            sockets.push_back(socket);
+            std::shared_ptr<http::WebSocketSession> socket =
+                helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
+            sockets.emplace_back(
+                helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname));
             for (int j = 0; j < i * 3; ++j)
             {
                 // cursor down some multiple of times
@@ -297,7 +305,7 @@ public:
         for (int i = 0; i < numRender; ++i)
             threads.emplace_back([&,i] {
                     std::mt19937 randDev(numRender * 257);
-                    std::shared_ptr<LOOLWebSocket> sock = sockets[numTyping + i];
+                    std::shared_ptr<http::WebSocketSession> sock = sockets[numTyping + i];
                     while (!started || liveTyping > 0)
                     {
                         std::ostringstream oss;
@@ -320,7 +328,7 @@ public:
         {
             threads.emplace_back([&,which] {
                     std::mt19937 randDev(which * 16);
-                    std::shared_ptr<LOOLWebSocket> sock = sockets[which];
+                    std::shared_ptr<http::WebSocketSession> sock = sockets[which];
                     liveTyping++;
                     started = true;
                     for (size_t i = 0; i < messages[which].size(); ++i)

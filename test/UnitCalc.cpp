@@ -23,6 +23,7 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 #include <kit/Delta.hpp>
+#include <net/WebSocketSession.hpp>
 
 class LOOLWebSocket;
 
@@ -50,7 +51,7 @@ double getColRowSize(const std::string& property, const std::string& message, in
     return item->getValue<double>("size");
 }
 
-double getColRowSize(const std::shared_ptr<LOOLWebSocket>& socket, const std::string& item,
+double getColRowSize(const std::shared_ptr<http::WebSocketSession>& socket, const std::string& item,
                      int index, const std::string& testname)
 {
     std::vector<char> response;
@@ -85,8 +86,12 @@ public:
 UnitBase::TestResult UnitCalc::testCalcEditRendering()
 {
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<LOOLWebSocket> socket
-        = helpers::loadDocAndGetSocket("calc_render.xls", uri, testname);
+
+    std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("CalcPoll");
+    socketPoll->startThread();
+
+    std::shared_ptr<http::WebSocketSession> socket =
+        helpers::loadDocAndGetSession(socketPoll, "calc_render.xls", uri, testname);
 
     helpers::sendTextFrame(socket, "mouse type=buttondown x=5000 y=5 count=1 buttons=1 modifier=0",
                            testname);
@@ -165,8 +170,12 @@ UnitBase::TestResult UnitCalc::testCalcRenderAfterNewView51()
     helpers::getDocumentPathAndURL("empty.ods", documentPath, documentURL, testname);
 
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<LOOLWebSocket> socket
-        = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+
+    std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("CalcPoll");
+    socketPoll->startThread();
+
+    std::shared_ptr<http::WebSocketSession> socket =
+        helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
     int major = 0;
     int minor = 0;
@@ -196,8 +205,8 @@ UnitBase::TestResult UnitCalc::testCalcRenderAfterNewView51()
 
     // Connect second client, which will load at the top.
     TST_LOG("Connecting second client.");
-    std::shared_ptr<LOOLWebSocket> socket2
-        = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+    std::shared_ptr<http::WebSocketSession> socket2 =
+        helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
     // Up one row on the first view to trigger the bug.
     TST_LOG("Up.");
@@ -219,8 +228,12 @@ UnitBase::TestResult UnitCalc::testCalcRenderAfterNewView53()
     helpers::getDocumentPathAndURL("calc-render.ods", documentPath, documentURL, testname);
 
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<LOOLWebSocket> socket
-        = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+
+    std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("CalcPoll");
+    socketPoll->startThread();
+
+    std::shared_ptr<http::WebSocketSession> socket =
+        helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
     int major = 0;
     int minor = 0;
@@ -244,8 +257,8 @@ UnitBase::TestResult UnitCalc::testCalcRenderAfterNewView53()
 
     // Connect second client, which will load at the top.
     TST_LOG("Connecting second client.");
-    std::shared_ptr<LOOLWebSocket> socket2
-        = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+    std::shared_ptr<http::WebSocketSession> socket2 =
+        helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
     TST_LOG("Waiting for cellviewcursor of second on first.");
     helpers::assertResponseString(socket, "cellviewcursor:", testname);
@@ -257,8 +270,8 @@ UnitBase::TestResult UnitCalc::testCalcRenderAfterNewView53()
     LOK_ASSERT(tile1 == tile2);
 
     // Don't let them go out of scope and disconnect.
-    socket2->shutdown();
-    socket->shutdown();
+    socket2->shutdownWS();
+    socket->shutdownWS();
     return TestResult::Ok;
 }
 
@@ -272,11 +285,15 @@ UnitBase::TestResult UnitCalc::testColumnRowResize()
 
         helpers::getDocumentPathAndURL("setclientpart.ods", documentPath, documentURL, testname);
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<LOOLWebSocket> socket
-            = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("CalcPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
         const std::string commandValues = "commandvalues command=.uno:ViewRowColumnHeaders";
-        helpers::sendTextFrame(socket, commandValues);
+        helpers::sendTextFrame(socket, commandValues, testname);
         response = helpers::getResponseMessage(socket, "commandvalues:", testname);
         LOK_ASSERT_MESSAGE("did not receive a commandvalues: message as expected",
                                !response.empty());
@@ -378,8 +395,12 @@ UnitBase::TestResult UnitCalc::testOptimalResize()
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL("empty.ods", documentPath, documentURL, testname);
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<LOOLWebSocket> socket
-            = helpers::loadDocAndGetSocket(uri, documentURL, testname);
+
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("CalcPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
         const std::string commandValues = "commandvalues command=.uno:ViewRowColumnHeaders";
         // send new column width

@@ -34,13 +34,15 @@ void loadDoc(const std::string& documentURL, const std::string& testname)
 {
     try
     {
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>(testname + "Poll");
+        socketPoll->startThread();
+
         // Load a document and wait for the status.
         // Don't replace with helpers, so we catch status.
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
         Poco::URI uri(helpers::getTestServerURI());
-        Poco::Net::HTTPResponse response;
-        std::shared_ptr<LOOLWebSocket> socket
-            = helpers::connectLOKit(uri, request, response, testname);
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::connectLOKit(socketPoll, uri, documentURL, testname);
+
         helpers::sendTextFrame(socket, "load url=" + documentURL, testname);
 
         helpers::assertResponseString(socket, "status:", testname);
@@ -87,13 +89,15 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
     std::string documentPath, documentURL;
     helpers::getDocumentPathAndURL("hello.odt", documentPath, documentURL, "connectNoLoad ");
 
-    // Connect and disconnect without loading.
-    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
-    TST_LOG_NAME(testname1, "Connecting first to disconnect without loading.");
-    Poco::Net::HTTPResponse response;
+    std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>(testname + "Poll");
+    socketPoll->startThread();
+
     Poco::URI uri(helpers::getTestServerURI());
-    std::shared_ptr<LOOLWebSocket> socket
-        = helpers::connectLOKit(uri, request, response, testname1);
+
+    // Connect and disconnect without loading.
+    TST_LOG_NAME(testname1, "Connecting first to disconnect without loading.");
+    std::shared_ptr<http::WebSocketSession> socket =
+        helpers::connectLOKit(socketPoll, uri, documentURL, testname1);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket);
     TST_LOG_NAME(testname1, "Disconnecting first.");
     socket.reset();
@@ -102,8 +106,8 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
 
     // Connect and load first view.
     TST_LOG_NAME(testname2, "Connecting second to load first view.");
-    std::shared_ptr<LOOLWebSocket> socket1
-        = helpers::connectLOKit(uri, request, response, testname2);
+    std::shared_ptr<http::WebSocketSession> socket1 =
+        helpers::connectLOKit(socketPoll, uri, documentURL, testname2);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket1);
     helpers::sendTextFrame(socket1, "load url=" + documentURL, testname2);
     LOK_ASSERT_MESSAGE("cannot load the document " + documentURL,
@@ -111,8 +115,8 @@ UnitBase::TestResult UnitLoad::testConnectNoLoad()
 
     // Connect but don't load second view.
     TST_LOG_NAME(testname3, "Connecting third to disconnect without loading.");
-    std::shared_ptr<LOOLWebSocket> socket2
-        = helpers::connectLOKit(uri, request, response, testname3);
+    std::shared_ptr<http::WebSocketSession> socket2 =
+        helpers::connectLOKit(socketPoll, uri, documentURL, testname3);
     LOK_ASSERT_MESSAGE("Failed to connect.", socket2);
     TST_LOG_NAME(testname3, "Disconnecting third.");
     socket2.reset();
@@ -142,14 +146,15 @@ UnitBase::TestResult UnitLoad::testBadLoad()
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_GET, documentURL);
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>(testname + "Poll");
+        socketPoll->startThread();
+
         Poco::URI uri(helpers::getTestServerURI());
-        Poco::Net::HTTPResponse response;
-        std::shared_ptr<LOOLWebSocket> socket
-            = helpers::connectLOKit(uri, request, response, testname);
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::connectLOKit(socketPoll, uri, documentURL, testname);
 
         // Before loading request status.
-        helpers::sendTextFrame(socket, "status");
+        helpers::sendTextFrame(socket, "status", testname);
 
         const auto line = helpers::assertResponseString(socket, "error:", testname);
         LOK_ASSERT_EQUAL(std::string("error: cmd=status kind=nodocloaded"), line);
@@ -167,8 +172,12 @@ UnitBase::TestResult UnitLoad::testExcelLoad()
     {
         // Load a document and get status.
         Poco::URI uri(helpers::getTestServerURI());
-        std::shared_ptr<LOOLWebSocket> socket
-            = helpers::loadDocAndGetSocket("timeline.xlsx", uri, testname);
+
+        std::shared_ptr<SocketPoll> socketPoll = std::make_shared<SocketPoll>("ExcelLoadPoll");
+        socketPoll->startThread();
+
+        std::shared_ptr<http::WebSocketSession> socket =
+            helpers::loadDocAndGetSession(socketPoll, "timeline.xlsx", uri, testname);
 
         helpers::sendTextFrame(socket, "status", testname);
         const auto status = helpers::assertResponseString(socket, "status:", testname);
@@ -201,7 +210,7 @@ UnitBase::TestResult UnitLoad::testLoad()
     std::string documentPath, documentURL;
     helpers::getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
 
-    std::shared_ptr<SocketPoll> socketPollPtr = std::make_shared<SocketPoll>("UnitLoadPoll");
+    std::shared_ptr<SocketPoll> socketPollPtr = std::make_shared<SocketPoll>("LoadPoll");
     socketPollPtr->startThread();
 
     auto wsSession

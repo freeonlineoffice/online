@@ -135,10 +135,10 @@ void sendTextFrame(LOOLWebSocket& socket, const std::string& string, const std::
     socket.sendFrame(string.data(), string.size());
 }
 
-inline
-void sendTextFrame(const std::shared_ptr<LOOLWebSocket>& socket, const std::string& string, const std::string& name = "")
+inline void sendTextFrame(const std::shared_ptr<CLOOLWebSocket>& socket, const std::string& string,
+                          const std::string& testname)
 {
-    sendTextFrame(*socket, string, name);
+    sendTextFrame(*socket, string, testname);
 }
 
 inline void sendTextFrame(const std::shared_ptr<http::WebSocketSession>& ws,
@@ -968,10 +968,9 @@ inline void saveTileAs(const std::vector<char> &tileResponse,
     TST_LOG("Saved [" << firstLine << "] to [" << filename << ']');
 }
 
-inline std::vector<char> getTileAndSave(std::shared_ptr<LOOLWebSocket>& socket,
-                                        const std::string& req,
-                                        const std::string& filename,
-                                        const std::string& testname)
+template <typename T>
+std::vector<char> getTileAndSave(T& socket, const std::string& req, const std::string& filename,
+                                 const std::string& testname)
 {
     TST_LOG("Requesting: " << req);
     sendTextFrame(socket, req, testname);
@@ -990,9 +989,8 @@ inline std::vector<char> getTileAndSave(std::shared_ptr<LOOLWebSocket>& socket,
     return res;
 }
 
-inline void getServerVersion(LOOLWebSocket& socket,
-                             int& major, int& minor,
-                             const std::string& testname)
+template <typename T>
+inline void getServerVersion(T& socket, int& major, int& minor, const std::string& testname)
 {
     const std::string clientVersion = "loolclient 0.1";
     sendTextFrame(socket, clientVersion, testname);
