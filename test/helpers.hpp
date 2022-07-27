@@ -135,7 +135,7 @@ void sendTextFrame(LOOLWebSocket& socket, const std::string& string, const std::
     socket.sendFrame(string.data(), string.size());
 }
 
-inline void sendTextFrame(const std::shared_ptr<CLOOLWebSocket>& socket, const std::string& string,
+inline void sendTextFrame(const std::shared_ptr<LOOLWebSocket>& socket, const std::string& string,
                           const std::string& testname)
 {
     sendTextFrame(*socket, string, testname);
