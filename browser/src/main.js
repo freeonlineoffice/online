@@ -20,7 +20,7 @@ var permission = getParameterByName('permission') || 'edit';
 var timestamp = getParameterByName('timestamp');
 // Should the document go inactive or not
 var alwaysActive = getParameterByName('alwaysactive');
-// Cool Debug mode
+// Lool Debug mode
 var debugMode = getParameterByName('debug');
 if (wopiSrc === '' && filePath === '' && !window.ThisIsAMobileApp) {
 	vex.dialog.alert(errorMessages.wrongwopisrc);
