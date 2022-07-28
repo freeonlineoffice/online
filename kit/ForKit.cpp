@@ -718,7 +718,7 @@ int main(int argc, char** argv)
 
     // We must have at least one child, more are created dynamically.
     // Ask this first child to send version information to master process and trace startup.
-    ::setenv("COOL_TRACE_STARTUP", "1", 1);
+    ::setenv("LOOL_TRACE_STARTUP", "1", 1);
     const pid_t forKitPid = createLibreOfficeKit(childRoot, sysTemplate, loTemplate, true);
     if (forKitPid < 0)
     {
