@@ -136,7 +136,11 @@ public:
         _httpSocket = helpers::connectLOKit(socketPoll, uri, documentURL, "UnitWebSocket ");
     }
 
-~UnitWebSocket() { _httpSocket->asyncShutdown(); }
+    /// Destroy the WS.
+    /// Here, we can't do IO as we don't own the socket (SocketPoll does).
+    /// In fact, we can't destroy it (it's referenced by SocketPoll).
+    /// Instead, we can only flag for shutting down.
+    ~UnitWebSocket() { _httpSocket->asyncShutdown(); }
 
     const std::shared_ptr<http::WebSocketSession>& getWebSocket() { return _httpSocket; }
 };
