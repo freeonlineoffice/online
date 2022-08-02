@@ -44,6 +44,9 @@ private:
     /// The WOPISrc URL.
     std::string _wopiSrc;
 
+    /// The SocketPoll thread.
+    std::shared_ptr<SocketPoll> _socketPoll;
+
     /// Websockets to communicate.
     std::vector< std::unique_ptr<UnitWebSocket> > _wsList;
 
@@ -99,6 +102,7 @@ protected:
 
     WopiTestServer(const std::string& name, const std::string& filenameOrContents = "Hello, world")
         : UnitWSD(name)
+        , _socketPoll(std::make_shared<SocketPoll>(name + "ServerPoll"))
         , _filename(DefaultFilename)
         , _countCheckFileInfo(0)
         , _countGetFile(0)
@@ -106,6 +110,8 @@ protected:
         , _countPutFile(0)
     {
         LOG_TST("WopiTestServer created for [" << getTestname() << ']');
+
+        _socketPoll->startThread();
 
         // Read the document data and store as string in memory.
         const auto data = helpers::readDataFromFile(filenameOrContents);
@@ -151,7 +157,8 @@ protected:
 
         // Insert at the front.
         const auto& _ws = _wsList.emplace(
-            _wsList.begin(), Util::make_unique<UnitWebSocket>("/lool/" + _wopiSrc + "/ws"));
+            _wsList.begin(),
+            Util::make_unique<UnitWebSocket>(_socketPoll, "/lool/" + _wopiSrc + "/ws"));
 
         assert((*_ws).get());
     }
@@ -167,7 +174,8 @@ protected:
 
         // Insert at the back.
         const auto& _ws = _wsList.emplace(
-            _wsList.end(), Util::make_unique<UnitWebSocket>("/lool/" + _wopiSrc + "/ws"));
+            _wsList.end(),
+            Util::make_unique<UnitWebSocket>(_socketPoll, "/lool/" + _wopiSrc + "/ws"));
 
         assert((*_ws).get());
     }
@@ -473,7 +481,7 @@ protected:
     do                                                                                             \
     {                                                                                              \
         LOG_TST("Sending from #" << INDEX << ": " << MSG);                                         \
-        helpers::sendTextFrame(*getWsAt(INDEX)->getLOOLWebSocket(), MSG, getTestname());           \
+        helpers::sendTextFrame(getWsAt(INDEX)->getWebSocket(), MSG, getTestname());                \
         SocketPoll::wakeupWorld();                                                                 \
     } while (false)
 
