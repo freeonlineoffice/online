@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 21:28+0200\n"
+"POT-Creation-Date: 2022-08-02 21:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,6 +221,7 @@ msgstr ""
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Parts.js:428 src/control/Signing.js:611
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr ""
 
@@ -530,21 +531,21 @@ msgstr ""
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3054
+#: src/control/Control.JSDialogBuilder.js:3047
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3265
+#: src/control/Control.JSDialogBuilder.js:3258
 #: src/control/Control.Menubar.js:725
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3266
+#: src/control/Control.JSDialogBuilder.js:3259
 #: src/control/Control.Menubar.js:728
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3286
+#: src/control/Control.JSDialogBuilder.js:3279
 msgid "Insert Table"
 msgstr ""
 
@@ -2133,4 +2134,58 @@ msgstr ""
 
 #: src/map/handler/Map.WOPI.js:424
 msgid "Creating copy..."
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.head.title:9-3
+msgid "LibreOffice Online Welcome"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
+msgid "Explore The New %loolVersion"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
+msgid "LibreOfice Online"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
+msgid ""
+"Enjoy the latest developments in online productivity, free for you to use, "
+"to explore and to use with others in the browser. Various <a target=\"_blank"
+"\" href=\"https://www.libreoffice.org/\">apps</a> are also available for "
+"mobile."
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:37-7
+msgid "Discover All The Changes"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
+msgid "LibreOffice Online"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:39-7
+msgid ""
+"Check the <a target=\"_blank\" href=\"https://www.libreoffice.org\">release "
+"notes</a> and learn all about: The latest LibreOffice Online, aimed at home "
+"users and teams."
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:48-7
+msgid "Get Involved"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:49-7
+msgid "https://libreoffice.org/"
+msgstr ""
+
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:50-7
+msgid ""
+"Are you interested in contributing but don’t know where to start? Head over "
+"to the <a target=\"_blank\" href=\"https://libreoffice.org/\">step-by-step "
+"instructions</a> and build LibreOffice Online from scratch. You can also "
+"help out with <a target=\"_blank\" href=\"https://libreoffice.org/"
+"\">translations</a> or by <a target=\"_blank\" href=\"https://libreoffice."
+"org/\">filing a bug report</a> with all the essential steps on how to "
+"reproduce it."
 msgstr ""
