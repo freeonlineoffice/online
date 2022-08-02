@@ -607,4 +607,4 @@ stress:
 		$(stress_file) $(trace_dir)/writer-quick.txt
 
 czech: check
-	@echo "This should do something much looler"
+	@echo "This should do something much cooler"
