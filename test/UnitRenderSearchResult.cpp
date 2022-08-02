@@ -17,8 +17,6 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class LOOLWebSocket;
-
 class UnitRenderSearchResult : public UnitWSD
 {
 public:

@@ -22,8 +22,6 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 
-class LOOLWebSocket;
-
 namespace
 {
 void testStateChanged(const std::string& filename, std::set<std::string>& commands)

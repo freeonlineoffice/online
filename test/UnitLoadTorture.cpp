@@ -9,20 +9,14 @@
 
 #include <config.h>
 
-#include "Protocol.hpp"
-
-#include <memory>
 #include <string>
 
-#include <Poco/URI.h>
 #include <test/lokassert.hpp>
 
 #include <Unit.hpp>
 #include <Util.hpp>
 #include <helpers.hpp>
 #include <net/WebSocketSession.hpp>
-
-class LOOLWebSocket;
 
 /// Load torture testcase.
 class UnitLoadTorture : public UnitWSD
