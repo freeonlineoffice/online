@@ -751,7 +751,7 @@ int main(int argc, char** argv)
     const int parentPid = getppid();
     LOG_INF("ForKit process is ready. Parent: " << parentPid);
 
-    while (!SigUtil::getTerminationFlag())
+    while (!SigUtil::getShutdownRequestFlag() && !SigUtil::getTerminationFlag())
     {
         UnitKit::get().invokeForKitTest();
 

@@ -319,6 +319,10 @@ namespace SigUtil
             SocketPoll::wakeupWorld();
         else
         {
+#if CODE_COVERAGE
+            __gcov_dump();
+#endif
+
             ::signal (signal, SIG_DFL);
             ::raise (signal);
         }
