@@ -1510,9 +1510,9 @@ void DocumentBroker::uploadToStorageInternal(const std::string& sessionId,
                 broadcastSaveResult(false, "Could not upload document to storage");
         }
 
-        //FIXME: flag the failure so we retry.
         LOG_WRN("Failed to upload [" << _docKey << "] asynchronously. "
                                      << DocumentState::toString(_docState.activity()));
+        _storageManager.setLastUploadResult(false);
 
         switch (_docState.activity())
         {
