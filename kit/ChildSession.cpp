@@ -300,7 +300,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
     }
     else if (tokens.equals(0, "blockingcommandstatus"))
     {
-#if defined(ENABLE_FEATURE_LOCK) || defined(ENABLE_FEATURE_RESTRICTION)
+#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
         return updateBlockingCommandStatus(tokens);
 #endif
     }
@@ -708,7 +708,7 @@ bool ChildSession::loadDocument(const StringVector& tokens)
     assert(!getDocURL().empty());
     assert(!getJailedFilePath().empty());
 
-#if defined(ENABLE_DEBUG) && !MOBILEAPP
+#if ENABLE_DEBUG && !MOBILEAPP
     if (std::getenv("PAUSEFORDEBUGGER"))
     {
         std::cerr << getDocURL() << " paused waiting for a debugger to attach: " << getpid() << std::endl;
@@ -2728,7 +2728,7 @@ int ChildSession::getSpeed()
     return _cursorInvalidatedEvent.size();
 }
 
-#if defined(ENABLE_FEATURE_LOCK) || defined(ENABLE_FEATURE_RESTRICTION)
+#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
 bool ChildSession::updateBlockingCommandStatus(const StringVector& tokens)
 {
     std::string lockStatus, restrictedStatus;
@@ -3091,7 +3091,7 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         break;
     case LOK_COMMAND_BLOCKED:
         {
-#if defined(ENABLE_FEATURE_LOCK) || defined(ENABLE_FEATURE_RESTRICTION)
+#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
             LOG_INF("COMMAND_BLOCKED: " << payload);
             Parser parser;
             Poco::Dynamic::Var var = parser.parse(payload);

@@ -1144,7 +1144,7 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
         {
             oss << " batch=" << getBatchMode();
         }
-#ifdef ENABLE_FEATURE_LOCK
+#if ENABLE_FEATURE_LOCK
         sendLockedInfo();
 #endif
         return forwardToChild(oss.str(), docBroker);
@@ -1157,7 +1157,7 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
     return false;
 }
 
-#ifdef ENABLE_FEATURE_LOCK
+#if ENABLE_FEATURE_LOCK
 void ClientSession::sendLockedInfo()
 {
     Poco::JSON::Object::Ptr lockInfo = new Poco::JSON::Object();

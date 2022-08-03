@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <config.h>
+
 #include <cassert>
 #include <cerrno>
 #include <chrono>
