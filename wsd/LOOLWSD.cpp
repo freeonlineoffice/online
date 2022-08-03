@@ -528,8 +528,12 @@ static size_t addNewChild(std::shared_ptr<ChildProcess> child)
     if (OutstandingForks < 0)
         ++OutstandingForks;
 
-    // Reset the child-spawn timeout to the default, now that we're set.
-    ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
+    if (LOOLWSD::IsBindMountingEnabled)
+    {
+        // Reset the child-spawn timeout to the default, now that we're set.
+        // But only when mounting is enabled. Otherwise, copying is always slow.
+        ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
+    }
 
     LOG_TRC("Adding a new child " << pid << " to NewChildren");
     NewChildren.emplace_back(std::move(child));
@@ -896,6 +900,7 @@ unsigned LOOLWSD::MaxDocuments;
 std::string LOOLWSD::OverrideWatermark;
 std::set<const Poco::Util::AbstractConfiguration*> LOOLWSD::PluginConfigurations;
 std::chrono::steady_clock::time_point LOOLWSD::StartTime;
+bool LOOLWSD::IsBindMountingEnabled = true;
 
 // If you add global state please update dumpState below too
 
@@ -2313,18 +2318,18 @@ void LOOLWSD::innerInitialize(Application& self)
     // Initialize the config subsystem too.
     config::initialize(&config());
 
-    bool bindMount = getConfigValue<bool>(conf, "mount_jail_tree", true);
+    IsBindMountingEnabled = getConfigValue<bool>(conf, "mount_jail_tree", true);
 #if CODE_COVERAGE
     // Code coverage is not supported with bind-mounting.
-    if (bindMount)
+    if (IsBindMountingEnabled)
     {
         LOG_WRN("Mounting is not compatible with code-coverage. Disabling.");
-        bindMount = false;
+        IsBindMountingEnabled = false;
     }
 #endif // CODE_COVERAGE
 
     // Setup the jails.
-    JailUtil::setupChildRoot(bindMount, ChildRoot, SysTemplate);
+    JailUtil::setupChildRoot(IsBindMountingEnabled, ChildRoot, SysTemplate);
 
     LOG_DBG("FileServerRoot before config: " << FileServerRoot);
     FileServerRoot = getPathFromConfig("file_server_root_path");
