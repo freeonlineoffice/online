@@ -65,6 +65,11 @@ mocha.log
 *.lo
 *.mo
 
+gcov/*
+*.gcno
+*.gcda
+*.gcov
+
 # browser
 browser/debug
 browser/release
@@ -86,8 +91,7 @@ loolconvert
 loolsocketdump
 loolstress
 loolconfig
-loolconfig
-loolforkit-nocaps
+coolforkit-nocaps
 loadtest
 unittest
 clientnb
