@@ -26,7 +26,7 @@ if [ -z "$DOCKER_HUB_REPO" ]; then
   DOCKER_HUB_REPO="libreoffice/online"
 fi;
 if [ -z "$DOCKER_HUB_TAG" ]; then
-  DOCKER_HUB_TAG="master"
+  DOCKER_HUB_TAG="latest"
 fi;
 echo "Using Docker Hub Repository: '$DOCKER_HUB_REPO' with tag '$DOCKER_HUB_TAG'."
 
