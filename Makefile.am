@@ -614,8 +614,8 @@ stress:
 if ENABLE_CODE_COVERAGE
 GEN_COVERAGE_COMMAND=mkdir -p ${abs_top_srcdir}/gcov && \
 lcov --no-external --capture --rc 'lcov_excl_line=' --rc 'lcov_excl_br_line=LOG_|TST_|LOK_|WSD_|TRANSITION|assert' \
---compat libtool=on --directory ${abs_top_srcdir}/. --output-file ${abs_top_srcdir}/gcov/cool.coverage.test.info && \
-genhtml --prefix ${abs_top_srcdir}/. --ignore-errors source ${abs_top_srcdir}/gcov/cool.coverage.test.info \
+--compat libtool=on --directory ${abs_top_srcdir}/. --output-file ${abs_top_srcdir}/gcov/lool.coverage.test.info && \
+genhtml --prefix ${abs_top_srcdir}/. --ignore-errors source ${abs_top_srcdir}/gcov/lool.coverage.test.info \
 --legend --title "${GIT_BRANCH} @ ${GIT_HASH}" --output-directory=${abs_top_srcdir}/gcov/html && \
 echo "Code-Coverage report generated in ${abs_top_srcdir}/gcov/html"
 else
