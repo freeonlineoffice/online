@@ -121,10 +121,12 @@ DocumentBroker::DocumentBroker(ChildType type, const std::string& uri, const Poc
     , _docId(Util::encodeId(DocBrokerId++, 3))
     , _documentChangedInStorage(false)
     , _isViewFileExtension(false)
-    , _saveManager(std::chrono::seconds(
-          std::getenv("LOOL_NO_AUTOSAVE") != nullptr
-              ? 0
-              : COOLWSD::getConfigValueNonZero<int>("per_document.autosave_duration_secs", 300)))
+    , _saveManager(std::chrono::seconds(std::getenv("LOOL_NO_AUTOSAVE") != nullptr
+                                            ? 0
+                                            : LOOLWSD::getConfigValueNonZero<int>(
+                                                  "per_document.autosave_duration_secs", 300)),
+                   std::chrono::milliseconds(LOOLWSD::getConfigValueNonZero<int>(
+                       "per_document.min_time_between_saves_ms", 500)))
     , _isModified(false)
     , _cursorPosX(0)
     , _cursorPosY(0)
@@ -1373,8 +1375,7 @@ void DocumentBroker::uploadToStorage(const std::string& sessionId, bool force)
     static const auto minTimeBetweenUploads = std::chrono::milliseconds(
         COOLWSD::getConfigValue<int>("per_document.min_time_between_uploads_ms", 5000));
 
-    if (force || _storageManager.lastUploadSuccessful() ||
-        _storageManager.canUploadNow(minTimeBetweenUploads))
+    if (force || _storageManager.lastUploadSuccessful() || _storageManager.canUploadNow())
     {
         constexpr bool isRename = false;
         uploadToStorageInternal(sessionId, /*saveAsPath*/ std::string(),
@@ -2066,7 +2067,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
         COOLWSD::getConfigValue<int>("per_document.min_time_between_saves_ms", 500));
 
     // Don't hammer on saving.
-    if (!canStop && _saveManager.canSaveNow(minTimeBetweenSaves))
+    if (!canStop && _saveManager.canSaveNow())
     {
         // Stop if there is nothing to save.
         const bool possiblyModified = isPossiblyModified();
@@ -2108,7 +2109,8 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
         LOG_TRC("Too soon to issue another save on ["
                 << getDocKey() << "]: " << _saveManager.timeSinceLastSaveRequest()
                 << " since last save request and " << _saveManager.timeSinceLastSaveRequest()
-                << " since last save response. Min time between saves: " << minTimeBetweenSaves);
+                << " since last save response. Min time between saves: "
+                << _saveManager.minTimeBetweenSaves());
     }
 
     if (canStop)
