@@ -1110,12 +1110,6 @@ private:
         }
 
         /// True if we aren't uploading and the minimum time since last upload has elapsed.
-        bool canUploadNow(std::chrono::milliseconds minTime) const
-        {
-            return _request.canRequestNow(minTime);
-        }
-
-        /// True if we aren't uploading and the minimum time since last upload has elapsed.
         bool canUploadNow() const { return _request.canRequestNow(); }
 
         void dumpState(std::ostream& os, const std::string& indent = "\n  ")

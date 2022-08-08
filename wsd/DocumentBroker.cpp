@@ -128,7 +128,7 @@ DocumentBroker::DocumentBroker(ChildType type, const std::string& uri, const Poc
                    std::chrono::milliseconds(LOOLWSD::getConfigValueNonZero<int>(
                        "per_document.min_time_between_saves_ms", 500)))
     , _storageManager(std::chrono::milliseconds(
-          COOLWSD::getConfigValueNonZero<int>("per_document.min_time_between_uploads_ms", 5000)))
+          LOOLWSD::getConfigValueNonZero<int>("per_document.min_time_between_uploads_ms", 5000)))
     , _isModified(false)
     , _cursorPosX(0)
     , _cursorPosY(0)
@@ -2063,7 +2063,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
     }
 
     static const auto minTimeBetweenSaves = std::chrono::milliseconds(
-        COOLWSD::getConfigValue<int>("per_document.min_time_between_saves_ms", 500));
+        LOOLWSD::getConfigValue<int>("per_document.min_time_between_saves_ms", 500));
 
     // Don't hammer on saving.
     if (!canStop && _saveManager.canSaveNow())
