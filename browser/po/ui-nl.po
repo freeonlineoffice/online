@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-03 18:30+0200\n"
+"POT-Creation-Date: 2022-08-08 16:42+0200\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -213,7 +213,7 @@ msgstr "Aanmelding vernieuwen"
 msgid "Channel Filter:"
 msgstr "Kanaal filter:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:429
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:428
 #: src/control/Control.StatusBar.js:314
 msgid "None"
 msgstr "Geen"
@@ -393,7 +393,7 @@ msgid "Index"
 msgstr "Index"
 
 #: src/control/Control.DocumentRepair.js:48
-#: src/control/Control.JSDialogBuilder.js:2373
+#: src/control/Control.JSDialogBuilder.js:2372
 #: src/layer/tile/CanvasTileLayer.js:5008
 #: src/layer/tile/CanvasTileLayer.js:5018
 #: src/layer/tile/CommentListSection.ts:857
@@ -442,100 +442,100 @@ msgstr ""
 msgid "Accept"
 msgstr "Accepteren"
 
-#: src/control/Control.JSDialogBuilder.js:144
+#: src/control/Control.JSDialogBuilder.js:143
 #: src/control/Control.StatusBar.js:312
 msgid "Sum"
 msgstr "Som"
 
-#: src/control/Control.JSDialogBuilder.js:145
+#: src/control/Control.JSDialogBuilder.js:144
 #: src/control/Control.StatusBar.js:307
 msgid "Average"
 msgstr "Gemiddelde"
 
-#: src/control/Control.JSDialogBuilder.js:146
+#: src/control/Control.JSDialogBuilder.js:145
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:147
+#: src/control/Control.JSDialogBuilder.js:146
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:148
+#: src/control/Control.JSDialogBuilder.js:147
 #: src/control/Control.StatusBar.js:309
 msgid "Count"
 msgstr "Aantal"
 
-#: src/control/Control.JSDialogBuilder.js:432
+#: src/control/Control.JSDialogBuilder.js:431
 msgid "Solid"
 msgstr "Vast"
 
-#: src/control/Control.JSDialogBuilder.js:435
+#: src/control/Control.JSDialogBuilder.js:434
 msgid "Linear"
 msgstr "Lineair"
 
-#: src/control/Control.JSDialogBuilder.js:438
+#: src/control/Control.JSDialogBuilder.js:437
 msgid "Axial"
 msgstr "Axiaal"
 
-#: src/control/Control.JSDialogBuilder.js:441
+#: src/control/Control.JSDialogBuilder.js:440
 msgid "Radial"
 msgstr "Radiaal"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:443
 msgid "Ellipsoid"
 msgstr "Ellipsoide"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Quadratic"
 msgstr "Kwadratisch"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Square"
 msgstr "Vierkant"
 
-#: src/control/Control.JSDialogBuilder.js:454
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Fixed size"
 msgstr "Vaste afmeting"
 
-#: src/control/Control.JSDialogBuilder.js:1330
+#: src/control/Control.JSDialogBuilder.js:1329
 msgid "From"
 msgstr "Van"
 
-#: src/control/Control.JSDialogBuilder.js:1333
+#: src/control/Control.JSDialogBuilder.js:1332
 msgid "To"
 msgstr "tot"
 
-#: src/control/Control.JSDialogBuilder.js:1336
+#: src/control/Control.JSDialogBuilder.js:1335
 msgid "Color"
 msgstr "Kleur"
 
-#: src/control/Control.JSDialogBuilder.js:1624
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "Bereik selecteren"
 
-#: src/control/Control.JSDialogBuilder.js:1673
+#: src/control/Control.JSDialogBuilder.js:1672
 #: src/control/Control.NotebookbarBuilder.js:238
 msgid "Font Name"
 msgstr "Naam lettertype"
 
-#: src/control/Control.JSDialogBuilder.js:1675 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1674 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Lettergrootte"
 
-#: src/control/Control.JSDialogBuilder.js:1677
+#: src/control/Control.JSDialogBuilder.js:1676
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Opmaakprofiel"
 
-#: src/control/Control.JSDialogBuilder.js:2359
+#: src/control/Control.JSDialogBuilder.js:2358
 msgid "reply"
 msgstr "Beantwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2362
+#: src/control/Control.JSDialogBuilder.js:2361
 msgid "replies"
 msgstr "Antwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2435
+#: src/control/Control.JSDialogBuilder.js:2434
 msgid "Insert Comment"
 msgstr "Notitie invoegen"
 
@@ -675,8 +675,8 @@ msgstr "Herstellen"
 #: src/control/Control.Menubar.js:365 src/control/Control.Menubar.js:371
 #: src/control/Control.Menubar.js:500 src/control/Control.Menubar.js:506
 #: src/control/Control.Menubar.js:618 src/control/Control.Menubar.js:624
-#: src/control/Control.NotebookbarCalc.js:930
-#: src/control/Control.NotebookbarCalc.js:931
+#: src/control/Control.NotebookbarCalc.js:936
+#: src/control/Control.NotebookbarCalc.js:937
 #: src/control/Control.NotebookbarDraw.js:237
 #: src/control/Control.NotebookbarDraw.js:238
 #: src/control/Control.NotebookbarImpress.js:327
@@ -689,7 +689,7 @@ msgstr "Zoom herstellen"
 
 #: src/control/Control.Menubar.js:117 src/control/Control.Menubar.js:374
 #: src/control/Control.Menubar.js:509 src/control/Control.Menubar.js:627
-#: src/control/Control.NotebookbarCalc.js:965
+#: src/control/Control.NotebookbarCalc.js:971
 #: src/control/Control.NotebookbarDraw.js:272
 #: src/control/Control.NotebookbarImpress.js:362
 #: src/control/Control.NotebookbarWriter.js:1058
@@ -703,7 +703,7 @@ msgstr "Toon liniaal"
 
 #: src/control/Control.Menubar.js:119 src/control/Control.Menubar.js:376
 #: src/control/Control.Menubar.js:511 src/control/Control.Menubar.js:628
-#: src/control/Control.NotebookbarCalc.js:971
+#: src/control/Control.NotebookbarCalc.js:977
 #: src/control/Control.NotebookbarDraw.js:278
 #: src/control/Control.NotebookbarImpress.js:368
 #: src/control/Control.NotebookbarWriter.js:1081
@@ -1087,82 +1087,82 @@ msgstr "Booleaanse waarde"
 msgid "Text"
 msgstr "Tekst"
 
-#: src/control/Control.NotebookbarCalc.js:641
+#: src/control/Control.NotebookbarCalc.js:642
 msgid "Default"
 msgstr "Standaard"
 
-#: src/control/Control.NotebookbarCalc.js:646
+#: src/control/Control.NotebookbarCalc.js:648
 msgid "Heading 1"
 msgstr "Kop 1"
 
-#: src/control/Control.NotebookbarCalc.js:651
+#: src/control/Control.NotebookbarCalc.js:654
 msgid "Heading 2"
 msgstr "Kop 2"
 
-#: src/control/Control.NotebookbarCalc.js:662
+#: src/control/Control.NotebookbarCalc.js:666
 msgid "Good"
 msgstr "Goed"
 
-#: src/control/Control.NotebookbarCalc.js:667
+#: src/control/Control.NotebookbarCalc.js:672
 msgid "Neutral"
 msgstr "Neutraal"
 
-#: src/control/Control.NotebookbarCalc.js:672
+#: src/control/Control.NotebookbarCalc.js:678
 msgid "Bad"
 msgstr "Fout"
 
-#: src/control/Control.NotebookbarCalc.js:735
-msgid "Row Width"
-msgstr "Rijbreedte"
-
 #: src/control/Control.NotebookbarCalc.js:741
+msgid "Row Height"
+msgstr ""
+
+#: src/control/Control.NotebookbarCalc.js:747
 msgid "Column Width"
 msgstr "Kolombreedte"
 
-#: src/control/Control.NotebookbarCalc.js:752
+#: src/control/Control.NotebookbarCalc.js:758
 msgid "Insert Rows Above"
 msgstr "Rijen boven invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:757
+#: src/control/Control.NotebookbarCalc.js:763
 msgid "Insert Columns Before"
 msgstr "Kolommen ervoor invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:762
+#: src/control/Control.NotebookbarCalc.js:768
 msgid "Delete Rows"
 msgstr "Rijen verwijderen"
 
-#: src/control/Control.NotebookbarCalc.js:772
+#: src/control/Control.NotebookbarCalc.js:778
 msgid "Insert Rows Below"
 msgstr "Rijen onder invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:777
+#: src/control/Control.NotebookbarCalc.js:783
 msgid "Insert Columns After"
 msgstr "Kolommen erna invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:782
+#: src/control/Control.NotebookbarCalc.js:788
 msgid "Delete Columns"
 msgstr "Kolommen verwijderen"
 
-#: src/control/Control.NotebookbarCalc.js:964
+#: src/control/Control.NotebookbarCalc.js:970
 #: src/control/Control.NotebookbarDraw.js:271
 #: src/control/Control.NotebookbarImpress.js:361
 #: src/control/Control.NotebookbarWriter.js:1057
 msgid "Compact view"
 msgstr "Compacte weergave"
 
-#: src/control/Control.NotebookbarCalc.js:970
+#: src/control/Control.NotebookbarCalc.js:976
 #: src/control/Control.NotebookbarDraw.js:277
 #: src/control/Control.NotebookbarImpress.js:367
 #: src/control/Control.NotebookbarWriter.js:1080
 msgid "Status Bar"
 msgstr "Statusbalk"
 
-#: src/control/Control.NotebookbarCalc.js:1026
+#: src/control/Control.NotebookbarCalc.js:1032
 msgid "Sparkline"
 msgstr "Sparkline"
 
-#: src/control/Control.NotebookbarCalc.js:1105
-#: src/control/Control.NotebookbarCalc.js:1752
+#: src/control/Control.NotebookbarCalc.js:1111
+#: src/control/Control.NotebookbarCalc.js:1758
 #: src/control/Control.NotebookbarDraw.js:602
 #: src/control/Control.NotebookbarDraw.js:972
 #: src/control/Control.NotebookbarImpress.js:697
@@ -2307,6 +2307,9 @@ msgstr ""
 ">vertalen</a> of met het <a target=\"_blank\" href=\""
 "https://collaboraonline.github.io/post/filebugs/\">rapporteren van fouten</a>"
 " met alle essentiële stappen om het te reproduceren."
+
+#~ msgid "Row Width"
+#~ msgstr "Rijbreedte"
 
 #~ msgid "https://collaboraonline.github.io/"
 #~ msgstr "https://collaboraonline.github.io/"

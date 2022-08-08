@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-03 18:30+0200\n"
+"POT-Creation-Date: 2022-08-08 16:42+0200\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -212,7 +212,7 @@ msgstr "أنعش السجل"
 msgid "Channel Filter:"
 msgstr "مرشح القناة:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:429
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:428
 #: src/control/Control.StatusBar.js:314
 msgid "None"
 msgstr "بلا"
@@ -391,7 +391,7 @@ msgid "Index"
 msgstr "المُدخلة"
 
 #: src/control/Control.DocumentRepair.js:48
-#: src/control/Control.JSDialogBuilder.js:2373
+#: src/control/Control.JSDialogBuilder.js:2372
 #: src/layer/tile/CanvasTileLayer.js:5008
 #: src/layer/tile/CanvasTileLayer.js:5018
 #: src/layer/tile/CommentListSection.ts:857
@@ -440,100 +440,100 @@ msgstr ""
 msgid "Accept"
 msgstr "اقبل"
 
-#: src/control/Control.JSDialogBuilder.js:144
+#: src/control/Control.JSDialogBuilder.js:143
 #: src/control/Control.StatusBar.js:312
 msgid "Sum"
 msgstr "المجموع"
 
-#: src/control/Control.JSDialogBuilder.js:145
+#: src/control/Control.JSDialogBuilder.js:144
 #: src/control/Control.StatusBar.js:307
 msgid "Average"
 msgstr "المتوسّط"
 
-#: src/control/Control.JSDialogBuilder.js:146
+#: src/control/Control.JSDialogBuilder.js:145
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:147
+#: src/control/Control.JSDialogBuilder.js:146
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:148
+#: src/control/Control.JSDialogBuilder.js:147
 #: src/control/Control.StatusBar.js:309
 msgid "Count"
 msgstr "الحساب"
 
-#: src/control/Control.JSDialogBuilder.js:432
+#: src/control/Control.JSDialogBuilder.js:431
 msgid "Solid"
 msgstr "صلب"
 
-#: src/control/Control.JSDialogBuilder.js:435
+#: src/control/Control.JSDialogBuilder.js:434
 msgid "Linear"
 msgstr "خطي"
 
-#: src/control/Control.JSDialogBuilder.js:438
+#: src/control/Control.JSDialogBuilder.js:437
 msgid "Axial"
 msgstr "محوري"
 
-#: src/control/Control.JSDialogBuilder.js:441
+#: src/control/Control.JSDialogBuilder.js:440
 msgid "Radial"
 msgstr "شعاعي"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:443
 msgid "Ellipsoid"
 msgstr "بيضاوي"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Quadratic"
 msgstr "تربيعي"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Square"
 msgstr "مربع"
 
-#: src/control/Control.JSDialogBuilder.js:454
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Fixed size"
 msgstr "حجم ثابت"
 
-#: src/control/Control.JSDialogBuilder.js:1330
+#: src/control/Control.JSDialogBuilder.js:1329
 msgid "From"
 msgstr "من"
 
-#: src/control/Control.JSDialogBuilder.js:1333
+#: src/control/Control.JSDialogBuilder.js:1332
 msgid "To"
 msgstr "إلى"
 
-#: src/control/Control.JSDialogBuilder.js:1336
+#: src/control/Control.JSDialogBuilder.js:1335
 msgid "Color"
 msgstr "لون"
 
-#: src/control/Control.JSDialogBuilder.js:1624
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "اختر نطاقا"
 
-#: src/control/Control.JSDialogBuilder.js:1673
+#: src/control/Control.JSDialogBuilder.js:1672
 #: src/control/Control.NotebookbarBuilder.js:238
 msgid "Font Name"
 msgstr "اسم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1675 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1674 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "حجم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1677
+#: src/control/Control.JSDialogBuilder.js:1676
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "النمط"
 
-#: src/control/Control.JSDialogBuilder.js:2359
+#: src/control/Control.JSDialogBuilder.js:2358
 msgid "reply"
 msgstr "رد"
 
-#: src/control/Control.JSDialogBuilder.js:2362
+#: src/control/Control.JSDialogBuilder.js:2361
 msgid "replies"
 msgstr "ردود"
 
-#: src/control/Control.JSDialogBuilder.js:2435
+#: src/control/Control.JSDialogBuilder.js:2434
 msgid "Insert Comment"
 msgstr "إدراج تعليق"
 
@@ -673,8 +673,8 @@ msgstr "أصلح"
 #: src/control/Control.Menubar.js:365 src/control/Control.Menubar.js:371
 #: src/control/Control.Menubar.js:500 src/control/Control.Menubar.js:506
 #: src/control/Control.Menubar.js:618 src/control/Control.Menubar.js:624
-#: src/control/Control.NotebookbarCalc.js:930
-#: src/control/Control.NotebookbarCalc.js:931
+#: src/control/Control.NotebookbarCalc.js:936
+#: src/control/Control.NotebookbarCalc.js:937
 #: src/control/Control.NotebookbarDraw.js:237
 #: src/control/Control.NotebookbarDraw.js:238
 #: src/control/Control.NotebookbarImpress.js:327
@@ -687,7 +687,7 @@ msgstr "صفّر مستوى التكبير"
 
 #: src/control/Control.Menubar.js:117 src/control/Control.Menubar.js:374
 #: src/control/Control.Menubar.js:509 src/control/Control.Menubar.js:627
-#: src/control/Control.NotebookbarCalc.js:965
+#: src/control/Control.NotebookbarCalc.js:971
 #: src/control/Control.NotebookbarDraw.js:272
 #: src/control/Control.NotebookbarImpress.js:362
 #: src/control/Control.NotebookbarWriter.js:1058
@@ -701,7 +701,7 @@ msgstr "أظهر المسطرة"
 
 #: src/control/Control.Menubar.js:119 src/control/Control.Menubar.js:376
 #: src/control/Control.Menubar.js:511 src/control/Control.Menubar.js:628
-#: src/control/Control.NotebookbarCalc.js:971
+#: src/control/Control.NotebookbarCalc.js:977
 #: src/control/Control.NotebookbarDraw.js:278
 #: src/control/Control.NotebookbarImpress.js:368
 #: src/control/Control.NotebookbarWriter.js:1081
@@ -1085,82 +1085,82 @@ msgstr "القيمة المنطقية"
 msgid "Text"
 msgstr "نص"
 
-#: src/control/Control.NotebookbarCalc.js:641
+#: src/control/Control.NotebookbarCalc.js:642
 msgid "Default"
 msgstr "افتراضي"
 
-#: src/control/Control.NotebookbarCalc.js:646
+#: src/control/Control.NotebookbarCalc.js:648
 msgid "Heading 1"
 msgstr "العنوان 1"
 
-#: src/control/Control.NotebookbarCalc.js:651
+#: src/control/Control.NotebookbarCalc.js:654
 msgid "Heading 2"
 msgstr "العنوان 2"
 
-#: src/control/Control.NotebookbarCalc.js:662
+#: src/control/Control.NotebookbarCalc.js:666
 msgid "Good"
 msgstr "جيد"
 
-#: src/control/Control.NotebookbarCalc.js:667
+#: src/control/Control.NotebookbarCalc.js:672
 msgid "Neutral"
 msgstr "محايد"
 
-#: src/control/Control.NotebookbarCalc.js:672
+#: src/control/Control.NotebookbarCalc.js:678
 msgid "Bad"
 msgstr "سيئ"
 
-#: src/control/Control.NotebookbarCalc.js:735
-msgid "Row Width"
+#: src/control/Control.NotebookbarCalc.js:741
+msgid "Row Height"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:741
+#: src/control/Control.NotebookbarCalc.js:747
 msgid "Column Width"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:752
+#: src/control/Control.NotebookbarCalc.js:758
 msgid "Insert Rows Above"
 msgstr "إدراج صفوف أعلاه"
 
-#: src/control/Control.NotebookbarCalc.js:757
+#: src/control/Control.NotebookbarCalc.js:763
 msgid "Insert Columns Before"
 msgstr "إدراج أعمدة قبل"
 
-#: src/control/Control.NotebookbarCalc.js:762
+#: src/control/Control.NotebookbarCalc.js:768
 msgid "Delete Rows"
 msgstr "حذف الصفوف"
 
-#: src/control/Control.NotebookbarCalc.js:772
+#: src/control/Control.NotebookbarCalc.js:778
 msgid "Insert Rows Below"
 msgstr "إدراج صفوف أدناه"
 
-#: src/control/Control.NotebookbarCalc.js:777
+#: src/control/Control.NotebookbarCalc.js:783
 msgid "Insert Columns After"
 msgstr "إدراج أعمدة بعد"
 
-#: src/control/Control.NotebookbarCalc.js:782
+#: src/control/Control.NotebookbarCalc.js:788
 msgid "Delete Columns"
 msgstr "حذف الأعمدة"
 
-#: src/control/Control.NotebookbarCalc.js:964
+#: src/control/Control.NotebookbarCalc.js:970
 #: src/control/Control.NotebookbarDraw.js:271
 #: src/control/Control.NotebookbarImpress.js:361
 #: src/control/Control.NotebookbarWriter.js:1057
 msgid "Compact view"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:970
+#: src/control/Control.NotebookbarCalc.js:976
 #: src/control/Control.NotebookbarDraw.js:277
 #: src/control/Control.NotebookbarImpress.js:367
 #: src/control/Control.NotebookbarWriter.js:1080
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1026
+#: src/control/Control.NotebookbarCalc.js:1032
 msgid "Sparkline"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1105
-#: src/control/Control.NotebookbarCalc.js:1752
+#: src/control/Control.NotebookbarCalc.js:1111
+#: src/control/Control.NotebookbarCalc.js:1758
 #: src/control/Control.NotebookbarDraw.js:602
 #: src/control/Control.NotebookbarDraw.js:972
 #: src/control/Control.NotebookbarImpress.js:697

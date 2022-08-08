@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-03 18:30+0200\n"
+"POT-Creation-Date: 2022-08-08 16:42+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/"
@@ -212,7 +212,7 @@ msgstr "Napló frissítése"
 msgid "Channel Filter:"
 msgstr "Csatornaszűrő:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:429
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:428
 #: src/control/Control.StatusBar.js:314
 msgid "None"
 msgstr "Nincs"
@@ -393,7 +393,7 @@ msgid "Index"
 msgstr "Index"
 
 #: src/control/Control.DocumentRepair.js:48
-#: src/control/Control.JSDialogBuilder.js:2373
+#: src/control/Control.JSDialogBuilder.js:2372
 #: src/layer/tile/CanvasTileLayer.js:5008
 #: src/layer/tile/CanvasTileLayer.js:5018
 #: src/layer/tile/CommentListSection.ts:857
@@ -442,100 +442,100 @@ msgstr "Képlet"
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: src/control/Control.JSDialogBuilder.js:144
+#: src/control/Control.JSDialogBuilder.js:143
 #: src/control/Control.StatusBar.js:312
 msgid "Sum"
 msgstr "Összeg"
 
-#: src/control/Control.JSDialogBuilder.js:145
+#: src/control/Control.JSDialogBuilder.js:144
 #: src/control/Control.StatusBar.js:307
 msgid "Average"
 msgstr "Átlag"
 
-#: src/control/Control.JSDialogBuilder.js:146
+#: src/control/Control.JSDialogBuilder.js:145
 msgid "Min"
 msgstr "Min"
 
-#: src/control/Control.JSDialogBuilder.js:147
+#: src/control/Control.JSDialogBuilder.js:146
 msgid "Max"
 msgstr "Max"
 
-#: src/control/Control.JSDialogBuilder.js:148
+#: src/control/Control.JSDialogBuilder.js:147
 #: src/control/Control.StatusBar.js:309
 msgid "Count"
 msgstr "Darab"
 
-#: src/control/Control.JSDialogBuilder.js:432
+#: src/control/Control.JSDialogBuilder.js:431
 msgid "Solid"
 msgstr "Homogén"
 
-#: src/control/Control.JSDialogBuilder.js:435
+#: src/control/Control.JSDialogBuilder.js:434
 msgid "Linear"
 msgstr "Lineáris"
 
-#: src/control/Control.JSDialogBuilder.js:438
+#: src/control/Control.JSDialogBuilder.js:437
 msgid "Axial"
 msgstr "Axiális"
 
-#: src/control/Control.JSDialogBuilder.js:441
+#: src/control/Control.JSDialogBuilder.js:440
 msgid "Radial"
 msgstr "Radiális"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:443
 msgid "Ellipsoid"
 msgstr "Ellipszoid"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Quadratic"
 msgstr "Kvadratikus"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Square"
 msgstr "Négyzet"
 
-#: src/control/Control.JSDialogBuilder.js:454
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Fixed size"
 msgstr "Fix méret"
 
-#: src/control/Control.JSDialogBuilder.js:1330
+#: src/control/Control.JSDialogBuilder.js:1329
 msgid "From"
 msgstr "Kezdet"
 
-#: src/control/Control.JSDialogBuilder.js:1333
+#: src/control/Control.JSDialogBuilder.js:1332
 msgid "To"
 msgstr "Vég"
 
-#: src/control/Control.JSDialogBuilder.js:1336
+#: src/control/Control.JSDialogBuilder.js:1335
 msgid "Color"
 msgstr "Szín"
 
-#: src/control/Control.JSDialogBuilder.js:1624
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "Tartomány kijelölése"
 
-#: src/control/Control.JSDialogBuilder.js:1673
+#: src/control/Control.JSDialogBuilder.js:1672
 #: src/control/Control.NotebookbarBuilder.js:238
 msgid "Font Name"
 msgstr "Betűkészlet"
 
-#: src/control/Control.JSDialogBuilder.js:1675 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1674 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Betűméret"
 
-#: src/control/Control.JSDialogBuilder.js:1677
+#: src/control/Control.JSDialogBuilder.js:1676
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Stílus"
 
-#: src/control/Control.JSDialogBuilder.js:2359
+#: src/control/Control.JSDialogBuilder.js:2358
 msgid "reply"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:2362
+#: src/control/Control.JSDialogBuilder.js:2361
 msgid "replies"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:2435
+#: src/control/Control.JSDialogBuilder.js:2434
 msgid "Insert Comment"
 msgstr "Megjegyzés beszúrása"
 
@@ -675,8 +675,8 @@ msgstr "Helyreállítás"
 #: src/control/Control.Menubar.js:365 src/control/Control.Menubar.js:371
 #: src/control/Control.Menubar.js:500 src/control/Control.Menubar.js:506
 #: src/control/Control.Menubar.js:618 src/control/Control.Menubar.js:624
-#: src/control/Control.NotebookbarCalc.js:930
-#: src/control/Control.NotebookbarCalc.js:931
+#: src/control/Control.NotebookbarCalc.js:936
+#: src/control/Control.NotebookbarCalc.js:937
 #: src/control/Control.NotebookbarDraw.js:237
 #: src/control/Control.NotebookbarDraw.js:238
 #: src/control/Control.NotebookbarImpress.js:327
@@ -689,7 +689,7 @@ msgstr "Alaphelyzet"
 
 #: src/control/Control.Menubar.js:117 src/control/Control.Menubar.js:374
 #: src/control/Control.Menubar.js:509 src/control/Control.Menubar.js:627
-#: src/control/Control.NotebookbarCalc.js:965
+#: src/control/Control.NotebookbarCalc.js:971
 #: src/control/Control.NotebookbarDraw.js:272
 #: src/control/Control.NotebookbarImpress.js:362
 #: src/control/Control.NotebookbarWriter.js:1058
@@ -703,7 +703,7 @@ msgstr "Vonalzó megjelenítése"
 
 #: src/control/Control.Menubar.js:119 src/control/Control.Menubar.js:376
 #: src/control/Control.Menubar.js:511 src/control/Control.Menubar.js:628
-#: src/control/Control.NotebookbarCalc.js:971
+#: src/control/Control.NotebookbarCalc.js:977
 #: src/control/Control.NotebookbarDraw.js:278
 #: src/control/Control.NotebookbarImpress.js:368
 #: src/control/Control.NotebookbarWriter.js:1081
@@ -1087,82 +1087,82 @@ msgstr "Logikai érték"
 msgid "Text"
 msgstr "Szöveg"
 
-#: src/control/Control.NotebookbarCalc.js:641
+#: src/control/Control.NotebookbarCalc.js:642
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: src/control/Control.NotebookbarCalc.js:646
+#: src/control/Control.NotebookbarCalc.js:648
 msgid "Heading 1"
 msgstr "Címsor 1"
 
-#: src/control/Control.NotebookbarCalc.js:651
+#: src/control/Control.NotebookbarCalc.js:654
 msgid "Heading 2"
 msgstr "Címsor 2"
 
-#: src/control/Control.NotebookbarCalc.js:662
+#: src/control/Control.NotebookbarCalc.js:666
 msgid "Good"
 msgstr "Jó"
 
-#: src/control/Control.NotebookbarCalc.js:667
+#: src/control/Control.NotebookbarCalc.js:672
 msgid "Neutral"
 msgstr "Semleges"
 
-#: src/control/Control.NotebookbarCalc.js:672
+#: src/control/Control.NotebookbarCalc.js:678
 msgid "Bad"
 msgstr "Rossz"
 
-#: src/control/Control.NotebookbarCalc.js:735
-msgid "Row Width"
-msgstr "Sorszélesség"
-
 #: src/control/Control.NotebookbarCalc.js:741
+msgid "Row Height"
+msgstr ""
+
+#: src/control/Control.NotebookbarCalc.js:747
 msgid "Column Width"
 msgstr "Oszlopszélesség"
 
-#: src/control/Control.NotebookbarCalc.js:752
+#: src/control/Control.NotebookbarCalc.js:758
 msgid "Insert Rows Above"
 msgstr "Sorok beszúrása ez elé"
 
-#: src/control/Control.NotebookbarCalc.js:757
+#: src/control/Control.NotebookbarCalc.js:763
 msgid "Insert Columns Before"
 msgstr "Oszlopok beszúrása ez elé"
 
-#: src/control/Control.NotebookbarCalc.js:762
+#: src/control/Control.NotebookbarCalc.js:768
 msgid "Delete Rows"
 msgstr "Sorok törlése"
 
-#: src/control/Control.NotebookbarCalc.js:772
+#: src/control/Control.NotebookbarCalc.js:778
 msgid "Insert Rows Below"
 msgstr "Sorok beszúrása ez alá"
 
-#: src/control/Control.NotebookbarCalc.js:777
+#: src/control/Control.NotebookbarCalc.js:783
 msgid "Insert Columns After"
 msgstr "Oszlopok beszúrása ez után"
 
-#: src/control/Control.NotebookbarCalc.js:782
+#: src/control/Control.NotebookbarCalc.js:788
 msgid "Delete Columns"
 msgstr "Oszlopok törlése"
 
-#: src/control/Control.NotebookbarCalc.js:964
+#: src/control/Control.NotebookbarCalc.js:970
 #: src/control/Control.NotebookbarDraw.js:271
 #: src/control/Control.NotebookbarImpress.js:361
 #: src/control/Control.NotebookbarWriter.js:1057
 msgid "Compact view"
 msgstr "Kompakt nézet"
 
-#: src/control/Control.NotebookbarCalc.js:970
+#: src/control/Control.NotebookbarCalc.js:976
 #: src/control/Control.NotebookbarDraw.js:277
 #: src/control/Control.NotebookbarImpress.js:367
 #: src/control/Control.NotebookbarWriter.js:1080
 msgid "Status Bar"
 msgstr "Állapotsor"
 
-#: src/control/Control.NotebookbarCalc.js:1026
+#: src/control/Control.NotebookbarCalc.js:1032
 msgid "Sparkline"
 msgstr "Értékgörbe"
 
-#: src/control/Control.NotebookbarCalc.js:1105
-#: src/control/Control.NotebookbarCalc.js:1752
+#: src/control/Control.NotebookbarCalc.js:1111
+#: src/control/Control.NotebookbarCalc.js:1758
 #: src/control/Control.NotebookbarDraw.js:602
 #: src/control/Control.NotebookbarDraw.js:972
 #: src/control/Control.NotebookbarImpress.js:697
@@ -2301,6 +2301,9 @@ msgstr ""
 ">fordításban</a> vagy a <a target=\"_blank\" href=\""
 "https://collaboraonline.github.io/post/filebugs/\">hibabejelentésben</a>, ha "
 "megadja a hiba reprodukálásához szükséges lépéseket."
+
+#~ msgid "Row Width"
+#~ msgstr "Sorszélesség"
 
 #~ msgid "https://collaboraonline.github.io/"
 #~ msgstr "https://collaboraonline.github.io/"
