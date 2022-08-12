@@ -13,7 +13,7 @@ ARG repo
 ARG version
 
 # type: can be
-# 'code' - LibreOffice Online
+# 'liboonline' - LibreOffice Online
 # 'lool' - LibreOffice Online, to build this you need to give your secret URL part from https://support.collaboraoffice.com, i.e. you have to be Collabora partner or customer
 # 'key'  - LibreOffice Online, the license key enabled version.
 # Optional. The default is 'code'.
@@ -27,13 +27,13 @@ ARG secret_key
 ENV LC_CTYPE C.UTF-8
 
 # Setup scripts for LibreOffice Online
-ADD /scripts/install-collabora-online-ubuntu.sh /
-RUN bash install-collabora-online-ubuntu.sh
-RUN rm -rf /install-collabora-online-ubuntu.sh
+ADD /scripts/install-libreoffice-online-ubuntu.sh /
+RUN bash install-libreoffice-online-ubuntu.sh
+RUN rm -rf /install-libreoffice-online-ubuntu.sh
 
 # Start script for LibreOffice Online
-ADD /scripts/start-collabora-online.sh /
-ADD /scripts/start-collabora-online.pl /
+ADD /scripts/start-libreoffice-online.sh /
+ADD /scripts/start-libreoffice-online.pl /
 
 EXPOSE 9980
 
@@ -41,4 +41,4 @@ EXPOSE 9980
 USER 104
 
 # Entry point
-CMD ["/start-collabora-online.sh"]
+CMD ["/start-libreoffice-online.sh"]

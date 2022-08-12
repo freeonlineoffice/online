@@ -10,20 +10,20 @@ Section: web
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  adduser, expat, fontconfig, cpio, libcap2-bin, openssh-client, systemd,
- collaboraofficebasis-calc,
- collaboraofficebasis-core,
- collaboraofficebasis-graphicfilter,
- collaboraofficebasis-images,
- collaboraofficebasis-impress,
- collaboraofficebasis-ooofonts,
- collaboraofficebasis-writer,
- collaboraoffice,
- collaboraoffice-ure,
- collaboraofficebasis-en-us,
- collaboraofficebasis-draw,
- collaboraofficebasis-extension-pdf-import,
- collaboraofficebasis-ooolinguistic,
- collaboraofficebasis-math
+ libobasis-calc,
+ libobasis-core,
+ libobasis-graphicfilter,
+ libobasis-images,
+ libobasis-impress,
+ libobasis-ooofonts,
+ libobasis-writer,
+ libreoffice,
+ libreoffice-ure,
+ libobasis-en-us,
+ libobasis-draw,
+ libobasis-extension-pdf-import,
+ libobasis-ooolinguistic,
+ libobasis-math
 Conflicts: loolwsd
 Replaces: loolwsd
 Description: LibreOffice Online WebSocket Daemon
