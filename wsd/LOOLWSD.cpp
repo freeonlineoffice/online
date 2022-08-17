@@ -306,6 +306,7 @@ void LOOLWSD::writeTraceEventRecording(const std::string &recording)
     writeTraceEventRecording(recording.data(), recording.length());
 }
 
+#if !LIBFUZZER
 // FIXME: Somewhat idiotically, the parameter to emitOneRecordingIfEnabled() should end with a
 // newline, while the paramter to emitOneRecording() should not.
 
@@ -327,6 +328,8 @@ void TraceEvent::emitOneRecording(const std::string &recording)
 
     LOOLWSD::writeTraceEventRecording(recording + "\n");
 }
+
+#endif //!LIBFUZZER
 
 void LOOLWSD::checkSessionLimitsAndWarnClients()
 {
