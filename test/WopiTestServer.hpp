@@ -188,7 +188,7 @@ protected:
     {
     }
 
-    /// Assert the PutFile request is valid and optinally return a response.
+    /// Assert the PutFile request is valid and optionally return a response.
     virtual std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& /*request*/)
     {
