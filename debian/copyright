@@ -1,0 +1,7 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: loolwsd
+Upstream-Contact: Andreas Mantke <maand@gmx.de>
+Source: https://github.com/freeonlineoffice/online
+
+copyright: 2022 FreeOnlineOffice <maand@gmx.de>
+License: MPL-2
