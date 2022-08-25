@@ -397,7 +397,7 @@ void LocalStorage::uploadLocalFileToStorageAsync(const Authorization& /*auth*/,
                                                  LockContext& /*lockCtx*/,
                                                  const std::string& /*saveAsPath*/,
                                                  const std::string& /*saveAsFilename*/,
-                                                 bool /*isRename*/, SocketPoll&,
+                                                 bool /*isRename*/, const Attributes&, SocketPoll&,
                                                  const AsyncUploadCallback& asyncUploadCallback)
 {
     const std::string path = getUri().getPath();
@@ -923,7 +923,8 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo &fileInfo,
         _disableExport = true;
 }
 
-bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCtx, bool lock)
+bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCtx, bool lock,
+                                  const Attributes& attribs)
 {
     lockCtx._lockFailureReason.clear();
     if (!lockCtx._supportsLocks)
@@ -950,10 +951,9 @@ bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCt
 
         request.set("X-WOPI-Override", lock ? "LOCK" : "UNLOCK");
         request.set("X-WOPI-Lock", lockCtx._lockToken);
-        if (!getExtendedData().empty())
+        if (!attribs.getExtendedData().empty())
         {
-            request.set("X-LOOL-WOPI-ExtendedData", getExtendedData());
-            request.set("X-LOOL-WOPI-ExtendedData", getExtendedData());
+            request.set("X-LOOL-WOPI-ExtendedData", attribs.getExtendedData());
         }
 
         // IIS requires content-length for POST requests: see https://forums.iis.net/t/1119456.aspx
@@ -1187,7 +1187,8 @@ private:
 void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
                                                 const std::string& saveAsPath,
                                                 const std::string& saveAsFilename,
-                                                const bool isRename, SocketPoll& socketPoll,
+                                                const bool isRename, const Attributes& attribs,
+                                                SocketPoll& socketPoll,
                                                 const AsyncUploadCallback& asyncUploadCallback)
 {
     ProfileZone profileZone("WopiStorage::uploadLocalFileToStorage", { {"url", _fileUrl} });
@@ -1249,21 +1250,17 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
         {
             // normal save
             httpHeader.set("X-WOPI-Override", "PUT");
-            httpHeader.set("X-LOOL-WOPI-IsModifiedByUser", isUserModified() ? "true" : "false");
-            httpHeader.set("X-LOOL-WOPI-IsModifiedByUser", isUserModified() ? "true" : "false");
-            httpHeader.set("X-LOOL-WOPI-IsAutosave", isAutosave() ? "true" : "false");
-            httpHeader.set("X-LOOL-WOPI-IsAutosave", isAutosave() ? "true" : "false");
-            httpHeader.set("X-LOOL-WOPI-IsExitSave", isExitSave() ? "true" : "false");
-            httpHeader.set("X-LOOL-WOPI-IsExitSave", isExitSave() ? "true" : "false");
-            if (isExitSave())
+            httpHeader.set("X-LOOL-WOPI-IsModifiedByUser", attribs.isUserModified() ? "true" : "false");
+            httpHeader.set("X-LOOL-WOPI-IsAutosave", attribs.isAutosave() ? "true" : "false");
+            httpHeader.set("X-LOOL-WOPI-IsExitSave", attribs.isExitSave() ? "true" : "false");
+            if (attribs.isExitSave())
                 httpHeader.set("Connection", "close"); // Don't maintain the socket if we are exiting.
-            if (!getExtendedData().empty())
+            if (!attribs.getExtendedData().empty())
             {
-                httpHeader.set("X-LOOL-WOPI-ExtendedData", getExtendedData());
-                httpHeader.set("X-LOOL-WOPI-ExtendedData", getExtendedData());
+                httpHeader.set("X-LOOL-WOPI-ExtendedData", attribs.getExtendedData());
             }
 
-            if (!getForceSave())
+            if (!attribs.isForced())
             {
                 // Request WOPI host to not overwrite if timestamps mismatch
                 httpHeader.set("X-LOOL-WOPI-Timestamp", getFileInfo().getLastModifiedTime());
@@ -1452,9 +1449,6 @@ WopiStorage::handleUploadToStorageResponse(const WopiUploadDetails& details,
 
                     result.setSaveAsResult(name, url);
                 }
-                // Reset the force save flag now, if any, since we are done saving
-                // Next saves shouldn't be saved forcefully unless commanded
-                forceSave(false);
             }
             else
             {
