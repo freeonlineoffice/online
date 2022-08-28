@@ -2507,7 +2507,7 @@ void DocumentBroker::finalRemoveSession(const std::string& id)
                 for (const auto& pair : _sessions)
                     logger << pair.second->getId() << ' ';
 
-                LOG_END(logger);
+                LOG_END_FLUSH(logger);
             }
 
             if (UnitWSD::isUnitTesting())
