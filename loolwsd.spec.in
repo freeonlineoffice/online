@@ -102,13 +102,10 @@ echo "account    required     pam_unix.so" >>  %{buildroot}/etc/pam.d/loolwsd
 %files
 %defattr(-,root,root,-)
 /usr/bin/loolwsd
-/usr/bin/loolwsd
-/usr/bin/loolwsd-systemplate-setup
 /usr/bin/loolwsd-systemplate-setup
 /usr/bin/loolwsd-generate-proof-key
 /usr/bin/loolforkit
 /usr/bin/loolconvert
-/usr/bin/loolconfig
 /usr/bin/loolconfig
 /usr/bin/loolmount
 /usr/share/loolwsd/discovery.xml
