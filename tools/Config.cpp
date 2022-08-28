@@ -40,10 +40,10 @@ using Poco::Util::XMLConfiguration;
 #define MIN_PWD_ITERATIONS 1000
 #define MIN_PWD_HASH_LENGTH 20
 
-class CoolConfig final: public XMLConfiguration
+class LoolConfig final: public XMLConfiguration
 {
 public:
-    CoolConfig()
+    LoolConfig()
         {}
 };
 
@@ -69,7 +69,7 @@ class Config: public Application
     // Display help information on the console
     void displayHelp();
 
-    CoolConfig _loolConfig;
+    LoolConfig _loolConfig;
 
     AdminConfig _adminConfig;
 
