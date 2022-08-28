@@ -3167,7 +3167,7 @@ void DocumentBroker::setInitialSetting(const std::string& name)
     _isInitialStateSet.emplace(name);
 }
 
-bool DocumentBroker::forwardToChild(const std::string& viewId, const std::string& message)
+bool DocumentBroker::forwardToChild(const std::string& viewId, const std::string& message, bool binary)
 {
     assertCorrectThread();
 
@@ -3199,7 +3199,8 @@ bool DocumentBroker::forwardToChild(const std::string& viewId, const std::string
             msg += ' ' + tokens.cat(' ', 3);
         }
 
-        _childProcess->sendTextFrame(msg);
+        _childProcess->sendFrame(msg, binary);
+
         return true;
     }
 
