@@ -83,7 +83,6 @@ browser/typescript_js
 connect
 lokitclient
 loolwsd
-loolwsd
 loolforkit
 loolmount
 loolmap
@@ -92,7 +91,6 @@ loolsocketdump
 loolstress
 loolconfig
 loolforkit-nocaps
-coolforkit-nocaps
 loadtest
 unittest
 clientnb
