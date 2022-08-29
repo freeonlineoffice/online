@@ -32,6 +32,7 @@ public:
              int tileHeight, int ver, int imgSize, int id, bool broadcast)
         : _normalizedViewId(normalizedViewId)
         , _part(part)
+        , _mode(0) // TODO
         , _width(width)
         , _height(height)
         , _tilePosX(tilePosX)
@@ -47,6 +48,7 @@ public:
     {
         if (_normalizedViewId < 0 ||
             _part < 0 ||
+            _mode < 0 ||
             _width <= 0 ||
             _height <= 0 ||
             _tilePosX < 0 ||
@@ -62,6 +64,7 @@ public:
     int getNormalizedViewId() const { return _normalizedViewId; }
     void setNormalizedViewId(const int normalizedViewId) { _normalizedViewId = normalizedViewId; }
     int getPart() const { return _part; }
+    int getEditMode() const { return _mode; }
     int getWidth() const { return _width; }
     int getHeight() const { return _height; }
     int getTilePosX() const { return _tilePosX; }
@@ -201,7 +204,7 @@ public:
     std::string debugName() const
     {
         std::ostringstream oss;
-        oss << '(' << getNormalizedViewId() << ',' << getPart() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
+        oss << '(' << getNormalizedViewId() << ',' << getPart() << ',' << getEditMode() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
         return oss.str();
     }
 
@@ -260,14 +263,15 @@ public:
     std::string generateID() const
     {
         std::ostringstream tileID;
-        tileID << getPart() << ':' << getTilePosX() << ':' << getTilePosY() << ':'
-               << getTileWidth() << ':' << getTileHeight() << ':' << getNormalizedViewId();
+        tileID << getPart() << ':' << getEditMode() << ':' << getTilePosX() << ':' << getTilePosY()
+                << ':' << getTileWidth() << ':' << getTileHeight() << ':' << getNormalizedViewId();
         return tileID.str();
     }
 
 private:
     int _normalizedViewId;
     int _part;
+    int _mode;
     int _width;
     int _height;
     int _tilePosX;
