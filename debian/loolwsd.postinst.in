@@ -6,7 +6,6 @@ case "$1" in
     configure)
 	setcap cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep /usr/bin/loolforkit || true
 	setcap cap_sys_admin=ep /usr/bin/loolmount || true
-	if [ -f /etc/loolwsd/loolwsd.xml ]; then /usr/bin/loolconfig migrateconfig --write || true; fi
 
 	adduser --quiet --system --group --home /opt/lool lool
 	chown lool: /etc/loolwsd/loolwsd.xml
