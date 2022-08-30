@@ -55,7 +55,7 @@ describe('Annotation tests.', function() {
 		cy.get('.vex-dialog-form .lool-annotation-textarea')
 			.type('modified ');
 
-		cy.get('.vex-dialog-button-primary')
+		cy.get('.vex-dialog-buttons .button-primary')
 			.click();
 
 		cy.get('#mobile-wizard .wizard-comment-box.lool-annotation-content-wrapper')
@@ -95,10 +95,10 @@ describe('Annotation tests.', function() {
 		cy.get('.lool-annotation-textarea')
 			.should('have.text', '');
 
-		cy.get('.vex-dialog-button-primary')
+		cy.get('.button-primary')
 			.click();
 
-		cy.get('.vex-dialog-button-secondary')
+		cy.get('.button-secondary')
 			.click();
 
 		cy.get('.lool-annotation-content-wrapper.wizard-comment-box')
