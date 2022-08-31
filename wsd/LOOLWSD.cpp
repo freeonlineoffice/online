@@ -3733,11 +3733,9 @@ private:
                 handleClientWsUpgrade(request, requestDetails, disposition, socket);
 
             else if (!requestDetails.isWebSocket() &&
-                     (requestDetails.equals(RequestDetails::Field::Type, "lool") ||
-                     requestDetails.equals(RequestDetails::Field::Type, "lool")))
+                     requestDetails.equals(RequestDetails::Field::Type, "lool"))
             {
-                // All post requests have url prefix 'lool', except when the prefix
-                // is 'lool' e.g. when integrations use the old /lool/convert-to endpoint
+                // All post requests have url prefix 'lool'.
                 handlePostRequest(requestDetails, request, message, disposition, socket);
             }
             else
