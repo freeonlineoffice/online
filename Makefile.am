@@ -17,6 +17,7 @@ export ENABLE_DEBUG
 bin_PROGRAMS = \
 	loolforkit \
 	loolmount \
+        loolstress \
 	loolconvert loolconfig
 
 if ENABLE_LIBFUZZER
@@ -31,6 +32,7 @@ man_MANS = man/loolwsd.1 \
            man/loolforkit.1 \
            man/loolconvert.1 \
            man/loolconfig.1 \
+           man/loolstress.1 \
            man/loolwsd-systemplate-setup.1 \
            man/loolwsd-generate-proof-key.1 \
            man/loolmount.1
@@ -144,7 +146,6 @@ noinst_PROGRAMS = clientnb \
                   connect \
                   lokitclient \
                   loolmap \
-                  loolstress \
                   loolsocketdump
 
 if ENABLE_LIBFUZZER
