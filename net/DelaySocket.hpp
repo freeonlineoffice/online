@@ -11,8 +11,6 @@
 
 #include <Socket.hpp>
 
-#include <mutex>
-
 /// Simulates network latency for local debugging.
 ///
 /// We are lifecycle managed internally based on the physical /

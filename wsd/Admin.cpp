@@ -11,7 +11,6 @@
 #include <config.h>
 
 #include <cassert>
-#include <mutex>
 #include <sys/poll.h>
 #include <unistd.h>
 
