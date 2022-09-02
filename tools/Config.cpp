@@ -20,7 +20,6 @@
 #include <openssl/evp.h>
 
 #include <Poco/Exception.h>
-#include <Poco/File.h>
 #include <Poco/Util/Application.h>
 #include <Poco/Util/HelpFormatter.h>
 #include <Poco/Util/Option.h>
