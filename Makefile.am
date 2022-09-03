@@ -243,7 +243,6 @@ loolstress_SOURCES = tools/Stress.cpp \
                      $(shared_sources)
 
 loolconfig_SOURCES = tools/Config.cpp \
-		     tools/ConfigMigrationAssistant.cpp \
 		     common/DummyTraceEventEmitter.cpp \
 		     common/Crypto.cpp \
 		     common/Log.cpp \
