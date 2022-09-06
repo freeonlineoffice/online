@@ -1,4 +1,4 @@
-# LibreOffice Online.
+# FreeOnlineOffice
 
 This project has several components:
 
