@@ -11,6 +11,8 @@
 # * LIBREOFFICE_ONLINE_BRANCH - which branch to build in online
 # * CORE_BUILD_TARGET - which make target to run (in core repo)
 # * ONLINE_EXTRA_BUILD_OPTIONS - extra build options for online
+# * NO_DEFAULT_ONLINE_BUILD_OPTS - do not apply some standard build options
+# * GIT_MITIGATIONS - set options for all git clone commands
 # * NO_DOCKER_IMAGE - if set, don't build the docker image itself, just do all the preps
 
 # check we can sudo without asking a pwd
