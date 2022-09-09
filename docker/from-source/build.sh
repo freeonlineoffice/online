@@ -30,23 +30,30 @@ if [ -z "$DOCKER_HUB_TAG" ]; then
 fi;
 echo "Using Docker Hub Repository: '$DOCKER_HUB_REPO' with tag '$DOCKER_HUB_TAG'."
 
+if [ -z "$CORE_SOURCE" ]; then
+  CORE_SOURCE="https://github.com/LibreOffice/core"
+fi;
 if [ -z "$CORE_BRANCH" ]; then
   CORE_BRANCH="master"
 fi;
-echo "Building core branch '$CORE_BRANCH'"
+echo "Building core branch '$CORE_BRANCH' from '$CORE_SOURCE'"
 
 if [ -z "$LIBREOFFICE_ONLINE_REPO" ]; then
   LIBREOFFICE_ONLINE_REPO="https://github.com/freeonlineoffice/online.git"
 fi;
-if [ -z "$LIBREEOFFICE_ONLINE_BRANCH" ]; then
+if [ -z "$LIBREOFFICE_ONLINE_BRANCH" ]; then
   LIBREOFFICE_ONLINE_BRANCH="master"
 fi;
-echo "Building online branch '$LIBREEOFFICE_ONLINE_BRANCH' from '$LIBREOFFICE_ONLINE_REPO'"
+echo "Building online branch '$LIBREOFFICE_ONLINE_BRANCH' from '$LIBREOFFICE_ONLINE_REPO'"
 
 if [ -z "$CORE_BUILD_TARGET" ]; then
   CORE_BUILD_TARGET=""
 fi;
 echo "LOKit (core) build target: '$CORE_BUILD_TARGET'"
+
+if [ -z "$GIT_MITIGATIONS" ]; then
+  GIT_MITIGATIONS="--depth=1 -c protocol.version=2"
+fi
 
 
 SRCDIR=$(realpath `dirname $0`)
@@ -75,6 +82,7 @@ mkdir -p "$INSTDIR"
 
 ##### build static poco #####
 
+# FIXME: Gracefully manage Poco updates
 if test ! -f poco/lib/libPocoFoundation.a ; then
     wget https://github.com/pocoproject/poco/archive/poco-1.11.1-release.tar.gz
     tar -xzf poco-1.11.1-release.tar.gz
@@ -90,7 +98,7 @@ fi
 
 # core repo
 if test ! -d core ; then
-  git clone https://git.libreoffice.org/core || exit 1
+  git clone $GIT_MITIGATIONS $CORE_SOURCE || exit 1
 fi
 
 ( cd core && git fetch --all && git checkout $CORE_BRANCH && ./g pull -r ) || exit 1
@@ -98,10 +106,10 @@ fi
 
 # online repo
 if test ! -d online ; then
-  git clone "$LIBREOFFICE_ONLINE_REPO" online || exit 1
+  git clone $GIT_MITIGATIONS "$LIBREOFFICE_ONLINE_REPO" online || exit 1
 fi
 
-( cd online && git fetch --all && git checkout -f $LIBREEOFFICE_ONLINE_BRANCH && git clean -f -d && git pull -r ) || exit 1
+( cd online && git fetch --all && git checkout -f "$LIBREOFFICE_ONLINE_BRANCH" && git clean -f -d && git pull -r ) || exit 1
 
 ##### LOKit (core) #####
 
