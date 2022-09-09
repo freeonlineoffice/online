@@ -1,7 +1,7 @@
-LibreOffice Online docker
+FreeOnlineOffice docker
 
 This directory contains everything needed to compile a
-working docker container with LibreOffice Online.
+working docker container with FreeOnlineOffice.
 
 Docker image can be built from packages or from source code.
 
