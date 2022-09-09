@@ -53,7 +53,10 @@ echo "LOKit (core) build target: '$CORE_BUILD_TARGET'"
 
 if [ -z "$GIT_MITIGATIONS" ]; then
   GIT_MITIGATIONS="--depth=1 -c protocol.version=2"
-fi
+fi;
+if [ -z "$NO_DEFAULT_ONLINE_BUILD_OPTS" ]; then
+  ONLINE_EXTRA_BUILD_OPTIONS="--enable-anonymization --with-max-connections=100000 --with-max-documents=100000 --disable-werror $ONLINE_EXTRA_BUILD_OPTIONS"
+fi;
 
 
 SRCDIR=$(realpath `dirname $0`)
