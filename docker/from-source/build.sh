@@ -8,7 +8,7 @@
 # * DOCKER_HUB_TAG  - which Docker Hub tag to create
 # * CORE_BRANCH  - which branch to build in core
 # * LIBREOFFICE_ONLINE_REPO - which git repo to clone online from
-# * LIBREEOFFICE_ONLINE_BRANCH - which branch to build in online
+# * LIBREOFFICE_ONLINE_BRANCH - which branch to build in online
 # * CORE_BUILD_TARGET - which make target to run (in core repo)
 # * ONLINE_EXTRA_BUILD_OPTIONS - extra build options for online
 # * NO_DOCKER_IMAGE - if set, don't build the docker image itself, just do all the preps
