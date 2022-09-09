@@ -130,8 +130,8 @@ cp -a core/instdir "$INSTDIR"/opt/lokit
 # Create new docker image
 if [ -z "$NO_DOCKER_IMAGE" ]; then
   cd "$SRCDIR"
-  cp ../from-packages/scripts/start-libreoffice-online.sh .
-  cp ../from-packages/scripts/start-libreoffice-online.pl .
+  cp ../scripts/start-libreoffice-online.sh .
+  cp ../scripts/start-libreoffice-online.pl .
   docker build --no-cache -t $DOCKER_HUB_REPO:$DOCKER_HUB_TAG -f $HOST_OS . || exit 1
 else
   echo "Skipping docker image build"
