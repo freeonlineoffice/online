@@ -12,23 +12,23 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.webkit.WebView;
 
-public class COWebView extends WebView {
+public class LOWebView extends WebView {
     private Context mContext;
 
-    public COWebView(Context context) {
+    public LOWebView(Context context) {
         super(context);
         mContext = context;
     }
 
-    public COWebView(Context context, AttributeSet attrs) {
+    public LOWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public COWebView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LOWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public COWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LOWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
