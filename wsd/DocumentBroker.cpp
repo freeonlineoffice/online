@@ -2760,7 +2760,7 @@ void DocumentBroker::handleTileRequest(const StringVector &tokens, bool forceKey
 
     // Forward to child to render.
     LOG_DBG("Sending render request for tile (" << tile.getPart() << ',' <<
-            tile.getTilePosX() << ',' << tile.getTilePosY() << ").");
+            tile.getEditMode() << ',' << tile.getTilePosX() << ',' << tile.getTilePosY() << ").");
     const std::string request = "tile " + tileMsg;
     _childProcess->sendTextFrame(request);
     _debugRenderedTileCount++;
