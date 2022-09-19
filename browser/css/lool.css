@@ -626,13 +626,14 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 .lool-annotation-menu, .lool-annotation-menu-redline, .lool-redline-accept-button, .lool-redline-reject-button {
-	margin: 0;
-	padding: 0;
-	width: 24px;
-	height: 24px;
+	margin: 0 !important;
+	padding: 0 !important;
+	min-width: initial !important;
+	width: 24px !important;
+	height: 24px !important;
 	vertical-align: top;
-	border: 1px solid transparent;
-	display: inline-block;
+	border: 1px solid transparent !important;
+	display: inline-block !important;
 }
 
 .lool-redline-accept-button {
