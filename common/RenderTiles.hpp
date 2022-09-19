@@ -232,6 +232,7 @@ namespace RenderTiles
         LOG_TRC("Calling paintPartTile(" << (void*)pixmap.data() << ')');
         document->paintPartTile(pixmap.data(),
                                 tileCombined.getPart(),
+                                tileCombined.getEditMode(),
                                 pixmapWidth, pixmapHeight,
                                 renderArea.getLeft(), renderArea.getTop(),
                                 renderArea.getWidth(), renderArea.getHeight());

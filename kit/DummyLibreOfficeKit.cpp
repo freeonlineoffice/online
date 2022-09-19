@@ -52,6 +52,7 @@ static int doc_getPart(LibreOfficeKitDocument* pThis);
 static void doc_setPart(LibreOfficeKitDocument* pThis, int nPart);
 static char* doc_getPartName(LibreOfficeKitDocument* pThis, int nPart);
 static void doc_setPartMode(LibreOfficeKitDocument* pThis, int nPartMode);
+static int doc_getEditMode(LibreOfficeKitDocument* pThis);
 static void doc_paintTile(LibreOfficeKitDocument* pThis,
                           unsigned char* pBuffer,
                           const int nCanvasWidth, const int nCanvasHeight,
@@ -154,6 +155,7 @@ LibLODocument_Impl::LibLODocument_Impl()
         m_pDocumentClass->setPart = doc_setPart;
         m_pDocumentClass->getPartName = doc_getPartName;
         m_pDocumentClass->setPartMode = doc_setPartMode;
+        m_pDocumentClass->getEditMode = doc_getEditMode;
         m_pDocumentClass->paintTile = doc_paintTile;
         m_pDocumentClass->paintPartTile = doc_paintPartTile;
         m_pDocumentClass->getTileMode = doc_getTileMode;
@@ -317,6 +319,11 @@ static void doc_setPartMode(LibreOfficeKitDocument* pThis,
 {
     (void) pThis;
     (void) nPartMode;
+}
+
+static int doc_getEditMode(LibreOfficeKitDocument* pThis)
+{
+    (void) pThis;
 }
 
 static void doc_paintTile(LibreOfficeKitDocument* pThis,
