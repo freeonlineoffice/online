@@ -2284,6 +2284,10 @@ void LOOLWSD::innerInitialize(Application& self)
     // Initialize the config subsystem too.
     config::initialize(&config());
 
+    // For some reason I can't get at this setting in ChildSession::loKitCallback().
+    std::string fontsMissingHandling = config::getString("fonts_missing.handling", "log");
+    setenv("FONTS_MISSING_HANDLING", fontsMissingHandling.c_str(), 1);
+
     IsBindMountingEnabled = getConfigValue<bool>(conf, "mount_jail_tree", true);
 #if CODE_COVERAGE
     // Code coverage is not supported with bind-mounting.
