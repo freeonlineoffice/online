@@ -7,12 +7,12 @@
 # * DOCKER_HUB_REPO - which Docker Hub repo to use
 # * DOCKER_HUB_TAG  - which Docker Hub tag to create
 # * CORE_BRANCH  - which branch to build in core
-# * LIBREOFFICE_ONLINE_REPO - which git repo to clone online from
-# * LIBREOFFICE_ONLINE_BRANCH - which branch to build in online
+# * FREEONLINEOFFICE_REPO - which git repo to clone online from
+# * FREEONLINEOFFICE_BRANCH - which branch to build in online
 # * CORE_BUILD_TARGET - which make target to run (in core repo)
 # * ONLINE_EXTRA_BUILD_OPTIONS - extra build options for online
 # * NO_DEFAULT_ONLINE_BUILD_OPTS - do not apply some standard build options
-# * GIT_MITIGATIONS - set options for all git clone commands
+# * GIT_MITIGATIONS - set options for all "git clone" commands
 # * NO_DOCKER_IMAGE - if set, don't build the docker image itself, just do all the preps
 
 # check we can sudo without asking a pwd
@@ -40,13 +40,13 @@ if [ -z "$CORE_BRANCH" ]; then
 fi;
 echo "Building core branch '$CORE_BRANCH' from '$CORE_SOURCE'"
 
-if [ -z "$LIBREOFFICE_ONLINE_REPO" ]; then
-  LIBREOFFICE_ONLINE_REPO="https://github.com/freeonlineoffice/online.git"
+if [ -z "$FREEONLINEOFFICE_REPO" ]; then
+  FREEONLINEOFFICE_REPO="https://github.com/freeonlineoffice/online.git"
 fi;
-if [ -z "$LIBREOFFICE_ONLINE_BRANCH" ]; then
-  LIBREOFFICE_ONLINE_BRANCH="master"
+if [ -z "$FREEONLINEOFFICE_BRANCH" ]; then
+  FREEONLINEOFFICE_BRANCH="master"
 fi;
-echo "Building online branch '$LIBREOFFICE_ONLINE_BRANCH' from '$LIBREOFFICE_ONLINE_REPO'"
+echo "Building online branch '$FREEONLINEOFFICE_BRANCH' from '$FREEONLINEOFFICE_REPO'"
 
 if [ -z "$CORE_BUILD_TARGET" ]; then
   CORE_BUILD_TARGET=""
@@ -61,7 +61,7 @@ if [ -z "$NO_DEFAULT_ONLINE_BUILD_OPTS" ]; then
 fi;
 
 
-SRCDIR=$(realpath `dirname $0`)
+SRCDIR="$(realpath `dirname $0`)"
 INSTDIR="$SRCDIR/instdir"
 
 if [ -z "$(lsb_release -si)" ]; then
@@ -111,10 +111,10 @@ fi
 
 # online repo
 if test ! -d online ; then
-  git clone $GIT_MITIGATIONS "$LIBREOFFICE_ONLINE_REPO" online || exit 1
+  git clone $GIT_MITIGATIONS "$FREEONLINEOFFICE_REPO" online || exit 1
 fi
 
-( cd online && git fetch --all && git checkout -f "$LIBREOFFICE_ONLINE_BRANCH" && git clean -f -d && git pull -r ) || exit 1
+( cd online && git fetch --all && git checkout -f "$FREEONLINEOFFICE_BRANCH" && git clean -f -d && git pull -r ) || exit 1
 
 ##### LOKit (core) #####
 
