@@ -39,6 +39,16 @@
 	justify-content: center;
 }
 
+/* Space */
+.m-v-0 {
+	margin-block: 0;
+}
+
+/* Border */
+.border-0 {
+	border: 0 !important;
+}
+
 /* clip technique: hide visually but keep it available to screen readers */
 .visuallyhidden {
 	border: 0;
@@ -626,13 +636,14 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 .lool-annotation-menu, .lool-annotation-menu-redline, .lool-redline-accept-button, .lool-redline-reject-button {
-	margin: 0;
-	padding: 0;
-	width: 24px;
-	height: 24px;
+	margin: 0 !important;
+	padding: 0 !important;
+	min-width: initial !important;
+	width: 24px !important;
+	height: 24px !important;
 	vertical-align: top;
-	border: 1px solid transparent;
-	display: inline-block;
+	border: 1px solid transparent !important;
+	display: inline-block !important;
 }
 
 .lool-redline-accept-button {
@@ -663,6 +674,9 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 /*Tooltips
 ----------------------------------*/
 [data-title]:hover:after {
+	padding: 7px 9px;
+	font-size: 1em;
+	line-height: 1;
 	opacity: 1;
 	transition: all 0.1s ease 0.5s;
 	visibility: visible;
@@ -970,4 +984,12 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 
 #datepicker .ui-icon-circle-triangle-w {
 	background-position: 0;
+}
+
+#mentionPopup .lokdialog.ui-dialog-content.ui-widget-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100px;
+	min-width: 100px;
 }

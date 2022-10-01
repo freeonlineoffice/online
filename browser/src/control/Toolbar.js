@@ -322,6 +322,28 @@ L.Map.include({
 	},
 
 	sendUnoCommand: function (command, json) {
+		if ((command.startsWith('.uno:Sidebar') && !command.startsWith('.uno:SidebarShow')) ||
+			command.startsWith('.uno:SlideMasterPage') || command.startsWith('.uno:SlideChangeWindow') ||
+			command.startsWith('.uno:CustomAnimation') || command.startsWith('.uno:MasterSlidesPanel') ||
+			command.startsWith('.uno:ModifyPage')) {
+
+			// sidebar control is present only in desktop/tablet case
+			if (this.sidebar) {
+				if (this.sidebar.isVisible()) {
+					this.sidebar.setupTargetDeck(command);
+				} else {
+					// we don't know which deck was active last, show first then switch if needed
+					app.socket.sendMessage('uno .uno:SidebarShow');
+
+					if (this.sidebar.getTargetDeck() == null)
+						app.socket.sendMessage('uno ' + command);
+
+					this.sidebar.setupTargetDeck(command);
+					return;
+				}
+			}
+		}
+
 		// To exercise the Trace Event functionality, uncomment this
 		// app.socket.emitInstantTraceEvent('lool-unocommand:' + command);
 
@@ -752,9 +774,9 @@ L.Map.include({
 		var map = this;
 		map.fire('postMessage', {msgId: 'UI_Share'});
 	},
-	openSaveAs: function () {
+	openSaveAs: function (format) {
 		var map = this;
-		map.fire('postMessage', {msgId: 'UI_SaveAs'});
+		map.fire('postMessage', {msgId: 'UI_SaveAs', args: {format: format}});
 	},
 
 	formulabarBlur: function() {

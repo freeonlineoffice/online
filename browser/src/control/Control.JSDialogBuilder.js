@@ -170,6 +170,8 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		];
 		this._menus['MenuPrintRanges'] = [
 			{text: _UNO('.uno:DefinePrintArea', 'spreadsheet'), uno: '.uno:DefinePrintArea'},
+			{text: _UNO('.uno:AddPrintArea', 'spreadsheet'), uno: '.uno:AddPrintArea'},
+			{text: _UNO('.uno:EditPrintArea', 'spreadsheet'), uno: '.uno:EditPrintArea'},
 			{text: _UNO('.uno:DeletePrintArea', 'spreadsheet'), uno: '.uno:DeletePrintArea'}
 		];
 		this._menus['MenuRowHeight'] = [
@@ -974,7 +976,10 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		};
 	},
 
-	_tabsControlHandler: function(parentContainer, data, builder) {
+	_tabsControlHandler: function(parentContainer, data, builder, tabTooltip) {
+		if (tabTooltip === undefined) {
+			tabTooltip = '';
+		}
 		if (data.tabs) {
 			var tabs = 0;
 			for (var tabIdx = 0; data.children && tabIdx < data.children.length; tabIdx++) {
@@ -1003,6 +1008,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				var isSelectedTab = data.selected == item.id;
 				if (isSelectedTab) {
 					$(tab).addClass('selected');
+					tab.title = tabTooltip;
 					singleTabId = tabIdx;
 				}
 
@@ -1590,18 +1596,28 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 				if (currentText.indexOf('\n') >= 0) {
 					var currentPos = 0;
-					while (startPos >= currentPos + currentText.indexOf('\n', currentPos)) {
-						currentPos += currentText.indexOf('\n', currentPos) + 1;
-						startPos -= currentPos;
+					var found = currentText.indexOf('\n', currentPos);
+					while (startPos > found) {
+						if (found === -1)
+							break;
+						currentPos = found + 1;
 						startPara++;
+						found = currentText.indexOf('\n', currentPos);
 					}
 
+					startPos -= currentPos;
+
 					currentPos = 0;
-					while (endPos >= currentPos + currentText.indexOf('\n', currentPos)) {
-						currentPos += currentText.indexOf('\n', currentPos) + 1;
-						endPos -= currentPos;
+					found = currentText.indexOf('\n', currentPos);
+					while (endPos > found) {
+						if (found === -1)
+							break;
+						currentPos = found + 1;
 						endPara++;
+						found = currentText.indexOf('\n', currentPos);
 					}
+
+					endPos -= currentPos;
 				}
 
 				var selection = startPos + ';' + endPos + ';' + startPara + ';' + endPara;
@@ -1916,9 +1932,34 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			};
 
 			text.addEventListener('click', clickFunction);
-			text.addEventListener('keypress', function onEvent(event) {
-				if (event.key === 'Enter')
+			text.addEventListener('keydown', function onEvent(event) {
+				var preventDef = false;
+				var listElements = $('#' + treeViewData.id + ' li');
+				var currIndex = parseInt(entry.row);
+				var treeLength = treeViewData.entries.length;
+				var spanElement = 'span.ui-treeview-cell';
+				if (event.key === 'Enter') {
 					clickFunction();
+					preventDef = true;
+				} else if (event.key === 'ArrowDown') {
+					if (currIndex === treeLength - 1)
+						listElements.eq(0).find(spanElement).focus();
+					else
+						listElements.eq(currIndex + 1).find(spanElement).focus();
+					preventDef = true;
+				} else if (event.key === 'ArrowUp') {
+					if (currIndex === 0)
+						listElements.eq(treeLength - 1).find(spanElement).focus();
+					else
+						listElements.eq(currIndex - 1).find(spanElement).focus();
+					preventDef = true;
+				} else if (builder.callback('treeview', 'keydown', { treeViewData: treeViewData, key: event.key }, entry.row, builder)) {
+					preventDef = true;
+				}
+				if (preventDef) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
 			});
 
 			if (!singleClick) {
@@ -1956,7 +1997,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 	_treelistboxControl: function (parentContainer, data, builder) {
 		var table = L.DomUtil.create('table', builder.options.cssClass + ' ui-treeview', parentContainer);
 		table.id = data.id;
-
 		var disabled = data.enabled === 'false' || data.enabled === false;
 		if (disabled)
 			L.DomUtil.addClass(table, 'disabled');
@@ -3164,7 +3204,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		if (commandName && commandName.length && L.LOUtil.existsIconForCommand(commandName, builder.map.getDocType())) {
 			var iconName = builder._generateMenuIconName(commandName);
 			var iconSpan = L.DomUtil.create('span', 'menu-entry-icon ' + iconName, menuEntry);
-			var iconURL = L.LOUtil.getImageURL('lc_' + iconName + '.svg');
+			var iconURL = builder._createIconURL(iconName, true);
 			icon = L.DomUtil.create('img', '', iconSpan);
 			icon.src = iconURL;
 			icon.alt = '';
@@ -3339,7 +3379,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 						var found = currentText.indexOf('\n', start);
 						if (found === -1)
 							break;
-						start += found + 1;
+						start = found + 1;
 					}
 
 					start += startPos;
@@ -3349,7 +3389,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 						found = currentText.indexOf('\n', end);
 						if (found === -1)
 							break;
-						end += found + 1;
+						end = found + 1;
 					}
 
 					end += endPos;

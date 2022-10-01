@@ -17,12 +17,14 @@ L.Control.JSDialog = L.Control.extend({
 		this.map.on('jsdialog', this.onJSDialog, this);
 		this.map.on('jsdialogupdate', this.onJSUpdate, this);
 		this.map.on('jsdialogaction', this.onJSAction, this);
+		this.map.on('zoomend', this.onZoomEnd, this);
 	},
 
 	onRemove: function() {
 		this.map.off('jsdialog', this.onJSDialog, this);
 		this.map.off('jsdialogupdate', this.onJSUpdate, this);
 		this.map.off('jsdialogaction', this.onJSAction, this);
+		this.map.off('zoomend', this.onZoomEnd, this);
 	},
 
 	hasDialogOpened: function() {
@@ -136,8 +138,9 @@ L.Control.JSDialog = L.Control.extend({
 		var callback = e.callback;
 		var isSnackbar = data.type === 'snackbar';
 		var isModalPopup = data.type === 'modalpopup' || isSnackbar;
-		var canHaveFocus = !isSnackbar && data.id !== 'busypopup';
+		var canHaveFocus = !isSnackbar && data.id !== 'busypopup' && !data.isMention;
 		var focusWidgetId = data.init_focus_id;
+		var isOnlyChild = false;
 
 		if (data.action === 'fadeout')
 		{
@@ -224,6 +227,10 @@ L.Control.JSDialog = L.Control.extend({
 
 		var defaultButtonId = this._getDefaultButtonId(data.children);
 
+		if (data.children[0].children.length === 1) {
+			isOnlyChild = true;
+		}
+
 		// it has to be first button in the form
 		var defaultButton = L.DomUtil.createWithId('button', 'default-button', container);
 		defaultButton.style.display = 'none';
@@ -260,7 +267,7 @@ L.Control.JSDialog = L.Control.extend({
 				windowId: data.id,
 				mobileWizard: this,
 				map: this.map,
-				cssClass: 'jsdialog' + (isAutofilter ? ' autofilter' : ''),
+				cssClass: 'jsdialog' + (isAutofilter ? ' autofilter' : '') + (isOnlyChild ? ' one-child-popup' : ''),
 				callback: callback
 			});
 
@@ -322,9 +329,13 @@ L.Control.JSDialog = L.Control.extend({
 
 		var popupParent = data.popupParent ? L.DomUtil.get(data.popupParent) : null;
 
-		var setupPosition = function(force) {
+		var setupPosition = function(force, updatedPos) {
 			if (isModalPopup && data.popupParent) {
 				// in case of toolbox we want to create popup positioned by toolitem not toolbox
+				if (updatedPos) {
+					data.posx = updatedPos.x;
+					data.posy = updatedPos.y;
+				}
 				var parent = L.DomUtil.get(data.popupParent);
 
 				if (clickToCloseId && parent) {
@@ -383,6 +394,11 @@ L.Control.JSDialog = L.Control.extend({
 
 		setupPosition();
 		this.updatePosition(container, posX, posY);
+		var that = this;
+		var updatePos = function(force, updatedPos) {
+			setupPosition(force, updatedPos);
+			that.updatePosition(container, posX, posY);
+		};
 
 		if (isModalPopup) {
 			// close when focus goes out using 'tab' key
@@ -401,9 +417,7 @@ L.Control.JSDialog = L.Control.extend({
 		}
 
 		// after some updates, eg. drawing areas window can be bigger than initially
-		// update possition according to that with small delay
-
-		var that = this;
+		// update position according to that with small delay
 		var initialPositionSetup = function (force) {
 			setupPosition(force);
 			that.updatePosition(container, posX, posY);
@@ -452,7 +466,8 @@ L.Control.JSDialog = L.Control.extend({
 			overlay: overlay,
 			isPopup: isModalPopup,
 			invalidated: false,
-			setupPosFunc: initialPositionSetup
+			setupPosFunc: initialPositionSetup,
+			updatePos: updatePos
 		};
 
 		setTimeout(initialPositionSetup, 200);
@@ -508,6 +523,10 @@ L.Control.JSDialog = L.Control.extend({
 			dialog.querySelector('[id=\'' + focusedId + '\']').focus();
 
 		var dialogInfo = this.dialogs[data.id];
+		if (dialogInfo.isPopup && data.posx && data.posy) {
+			dialogInfo.updatePos(false, new L.Point(data.posx, data.posy));
+		}
+
 		if (!dialogInfo.invalidated && dialogInfo.setupPosFunc) {
 			setTimeout(function () { dialogInfo.setupPosFunc(true); }, 100);
 			dialogInfo.invalidated = true;
@@ -573,6 +592,19 @@ L.Control.JSDialog = L.Control.extend({
 		}
 
 		return false;
+	},
+
+	onZoomEnd: function () {
+		var dialogs = Object.keys(this.dialogs);
+		if (dialogs.length) {
+			var lastKey = dialogs[dialogs.length - 1];
+			var dialogInfo = this.dialogs[lastKey];
+			if (dialogInfo.isPopup) {
+				this.close(lastKey, true);
+				this.map.focus();
+			}
+		}
+
 	}
 });
 

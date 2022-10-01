@@ -295,7 +295,7 @@ preBuild.dependsOn 'createRCfiles',
         'createFullConfig',
         'copyBrandTheme'
 
-task generateCoolDebugAssets {
+task generateLoolDebugAssets {
     doLast {
         exec {
             commandLine 'make', '-C', "${rootProject.getBuildDir()}/../../browser", 'clean'
@@ -306,7 +306,7 @@ task generateCoolDebugAssets {
     }
 }
 
-task generateCoolReleaseAssets {
+task generateLoolReleaseAssets {
     doLast {
         exec {
             commandLine 'make', '-C', "${rootProject.getBuildDir()}/../../browser", 'clean'
@@ -321,6 +321,6 @@ afterEvaluate {
 	if (!file("${liboBrandingDir}").exists()) {
 		copyBrandTheme.enabled = false
 	}
-	generateDebugAssets.dependsOn copyDocTemplates, copyKitConfig, generateCoolDebugAssets
-	generateReleaseAssets.dependsOn copyDocTemplates, copyKitConfig, generateCoolReleaseAssets
+	generateDebugAssets.dependsOn copyDocTemplates, copyKitConfig, generateLoolDebugAssets
+	generateReleaseAssets.dependsOn copyDocTemplates, copyKitConfig, generateLoolReleaseAssets
 }

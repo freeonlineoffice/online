@@ -408,7 +408,7 @@ void cleanupDocBrokers()
                 logger << "DocumentBroker [" << pair.first << "].\n";
             }
 
-            LOG_END(logger);
+            LOG_END_FLUSH(logger);
         }
 
 #if !MOBILEAPP && ENABLE_DEBUG
@@ -1381,14 +1381,17 @@ public:
 #endif
                 Poco::JSON::Array::Ptr aliases = group->getArray("aliases");
 
-                auto it = aliases->begin();
 
-                size_t j;
-                for (j = 0; j < aliases->size(); j++)
-                {
-                    const std::string aliasPath = path + ".alias[" + std::to_string(j) + ']';
-                    newAppConfig.insert(std::make_pair(aliasPath, it->toString()));
-                    it++;
+                size_t j = 0;
+                if (aliases) {
+                    auto it = aliases->begin();
+
+                    for (; j < aliases->size(); j++)
+                    {
+                        const std::string aliasPath = path + ".alias[" + std::to_string(j) + ']';
+                        newAppConfig.insert(std::make_pair(aliasPath, it->toString()));
+                        it++;
+                    }
                 }
                 for (;; j++)
                 {
@@ -3492,7 +3495,7 @@ public:
         }
         else
         {
-            LOG_INF("convert-to: Requesting address is allowed: " << addressToCheck);
+            LOG_TRC("convert-to: Requesting address is allowed: " << addressToCheck);
         }
 
         // Handle forwarded header and make sure all participating IPs are allowed
@@ -3708,13 +3711,13 @@ private:
             else if (requestDetails.isGet("/favicon.ico"))
                 handleFaviconRequest(requestDetails, socket);
 
-            else if (requestDetails.isGet("/hosting/discovery") ||
-                     requestDetails.isGet("/hosting/discovery/"))
-                handleWopiDiscoveryRequest(requestDetails, socket);
-
-            else if (requestDetails.isGet(CAPABILITIES_END_POINT))
-                handleCapabilitiesRequest(request, socket);
-
+            else if (requestDetails.equals(0, "hosting"))
+            {
+                if (requestDetails.equals(1, "discovery"))
+                    handleWopiDiscoveryRequest(requestDetails, socket);
+                else if (requestDetails.equals(1, "capabilities"))
+                    handleCapabilitiesRequest(request, socket);
+            }
             else if (requestDetails.isGet("/robots.txt"))
                 handleRobotsTxtRequest(request, socket);
 

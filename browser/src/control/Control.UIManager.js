@@ -83,6 +83,8 @@ L.Control.UIManager = L.Control.extend({
 			this.map.addControl(this.map.sidebar);
 
 			this.map.addControl(L.control.mobileWizardPopup());
+
+			this.map.addControl(L.control.mention());
 		}
 
 		setupToolbar(this.map);
@@ -221,7 +223,27 @@ L.Control.UIManager = L.Control.extend({
 		if (window.mode.isDesktop() && !window.ThisIsAMobileApp) {
 			var showSidebar = this.getSavedStateOrDefault('ShowSidebar');
 
-			if (showSidebar === false)
+			if (this.getSavedStateOrDefault('PropertyDeck')) {
+				app.socket.sendMessage('uno .uno:SidebarShow');
+			}
+
+			if (this.map.getDocType() === 'presentation') {
+				if (this.getSavedStateOrDefault('SdSlideTransitionDeck', false)) {
+					app.socket.sendMessage('uno .uno:SidebarShow');
+					app.socket.sendMessage('uno .uno:SlideChangeWindow');
+					this.map.sidebar.setupTargetDeck('.uno:SlideChangeWindow');
+				} else if (this.getSavedStateOrDefault('SdCustomAnimationDeck', false)) {
+					app.socket.sendMessage('uno .uno:SidebarShow');
+					app.socket.sendMessage('uno .uno:CustomAnimation');
+					this.map.sidebar.setupTargetDeck('.uno:CustomAnimation');
+				} else if (this.getSavedStateOrDefault('SdMasterPagesDeck', false)) {
+					app.socket.sendMessage('uno .uno:SidebarShow');
+					app.socket.sendMessage('uno .uno:MasterSlidesPanel');
+					this.map.sidebar.setupTargetDeck('.uno:MasterSlidesPanel');
+				}
+			}
+
+			if (!showSidebar)
 				app.socket.sendMessage('uno .uno:SidebarHide');
 		}
 		else if (window.mode.isChromebook()) {

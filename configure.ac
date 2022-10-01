@@ -706,7 +706,7 @@ AC_SUBST(ENABLE_ANDROIDAPP)
 AM_CONDITIONAL([ENABLE_ANDROIDAPP], [test "$ENABLE_ANDROIDAPP" = "true"])
 AC_SUBST(ANDROID_PACKAGE_NAME)
 
-APP_NAME="LibreOffice Online"
+APP_NAME="Free Online Office"
 if test -n "$with_app_name"; then
    APP_NAME="$with_app_name"
 fi
@@ -736,7 +736,7 @@ else
 fi
 AC_SUBST(VENDOR)
 
-INFO_URL='https://collaboraonline.github.io/'
+INFO_URL='https://freeonlineoffice.github.io/'
 if test -n "$with_info_url" -a "$with_info_url" != "no"; then
     INFO_URL="$with_info_url"
 fi

@@ -363,7 +363,7 @@ private:
                     LOG_TRC("SSL error: UNKNOWN (" << sslError << ") " << getBioError(rc));
 
                 // The error is coming from BIO. Find out what happened.
-                const long bioError = ERR_get_error();
+                const long bioError = ERR_peek_error();
 
                 std::ostringstream oss;
                 oss << '#' << getFD();
@@ -387,9 +387,14 @@ private:
                         oss << ": unknown. ";
                     }
                 }
+                else
+                {
+                    oss << ": unknown. ";
+                }
 
                 oss << getBioError(rc);
-                std::string msg = oss.str();
+                const std::string msg = oss.str();
+                LOG_TRC("Throwing SSL Error: " << msg); // Locate the source of the exception.
                 errno = last_errno; // Restore errno.
                 throw std::runtime_error(msg);
             }
@@ -403,7 +408,7 @@ private:
     std::string getBioError(const int rc) const
     {
         // The error is coming from BIO. Find out what happened.
-        const long bioError = ERR_get_error();
+        const long bioError = ERR_peek_error();
 
         std::ostringstream oss;
         oss << "BIO error: " << bioError << ", rc: " << rc;

@@ -28,10 +28,11 @@ using TileBinaryHash = uint64_t;
 class TileDesc final
 {
 public:
-    TileDesc(int normalizedViewId, int part, int width, int height, int tilePosX, int tilePosY, int tileWidth,
+    TileDesc(int normalizedViewId, int part, int mode, int width, int height, int tilePosX, int tilePosY, int tileWidth,
              int tileHeight, int ver, int imgSize, int id, bool broadcast)
         : _normalizedViewId(normalizedViewId)
         , _part(part)
+        , _mode(mode)
         , _width(width)
         , _height(height)
         , _tilePosX(tilePosX)
@@ -47,6 +48,7 @@ public:
     {
         if (_normalizedViewId < 0 ||
             _part < 0 ||
+            _mode < 0 ||
             _width <= 0 ||
             _height <= 0 ||
             _tilePosX < 0 ||
@@ -62,6 +64,7 @@ public:
     int getNormalizedViewId() const { return _normalizedViewId; }
     void setNormalizedViewId(const int normalizedViewId) { _normalizedViewId = normalizedViewId; }
     int getPart() const { return _part; }
+    int getEditMode() const { return _mode; }
     int getWidth() const { return _width; }
     int getHeight() const { return _height; }
     int getTilePosX() const { return _tilePosX; }
@@ -93,7 +96,8 @@ public:
                _tileHeight == other._tileHeight &&
                _id == other._id &&
                _broadcast == other._broadcast &&
-               _normalizedViewId == other._normalizedViewId;
+               _normalizedViewId == other._normalizedViewId &&
+               _mode == other._mode;
     }
 
     static bool rectanglesIntersect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
@@ -118,6 +122,7 @@ public:
     bool isAdjacent(const TileDesc& other) const
     {
         if (other.getPart() != getPart() ||
+            other.getEditMode() != getEditMode() ||
             other.getWidth() != getWidth() ||
             other.getHeight() != getHeight() ||
             other.getTileWidth() != getTileWidth() ||
@@ -132,6 +137,7 @@ public:
     bool onSameRow(const TileDesc& other) const
     {
         if (other.getPart() != getPart() ||
+            other.getEditMode() != getEditMode() ||
             other.getWidth() != getWidth() ||
             other.getHeight() != getHeight() ||
             other.getTileWidth() != getTileWidth() ||
@@ -193,6 +199,11 @@ public:
             oss << " broadcast=yes";
         }
 
+        if (_mode)
+        {
+            oss << " mode=" << _mode;
+        }
+
         oss << suffix;
         return oss.str();
     }
@@ -201,7 +212,7 @@ public:
     std::string debugName() const
     {
         std::ostringstream oss;
-        oss << '(' << getNormalizedViewId() << ',' << getPart() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
+        oss << '(' << getNormalizedViewId() << ',' << getPart() << ',' << getEditMode() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
         return oss.str();
     }
 
@@ -216,6 +227,7 @@ public:
         pairs["ver"] = -1;
         pairs["imgsize"] = 0;
         pairs["id"] = -1;
+        pairs["mode"] = 0;
 
         TileWireId oldWireId = 0;
         TileWireId wireId = 0;
@@ -240,7 +252,8 @@ public:
         const bool broadcast = (LOOLProtocol::getTokenString(tokens, "broadcast", s) &&
                                 s == "yes");
 
-        TileDesc result(pairs["nviewid"], pairs["part"], pairs["width"], pairs["height"],
+        TileDesc result(pairs["nviewid"], pairs["part"], pairs["mode"],
+                        pairs["width"], pairs["height"],
                         pairs["tileposx"], pairs["tileposy"],
                         pairs["tilewidth"], pairs["tileheight"],
                         pairs["ver"],
@@ -260,14 +273,15 @@ public:
     std::string generateID() const
     {
         std::ostringstream tileID;
-        tileID << getPart() << ':' << getTilePosX() << ':' << getTilePosY() << ':'
-               << getTileWidth() << ':' << getTileHeight() << ':' << getNormalizedViewId();
+        tileID << getPart() << ':' << getEditMode() << ':' << getTilePosX() << ':' << getTilePosY()
+                << ':' << getTileWidth() << ':' << getTileHeight() << ':' << getNormalizedViewId();
         return tileID.str();
     }
 
 private:
     int _normalizedViewId;
     int _part;
+    int _mode; //< Used in Impress for EditMode::(Page|MasterPage), 0 = default
     int _width;
     int _height;
     int _tilePosX;
@@ -288,7 +302,7 @@ private:
 class TileCombined final
 {
 private:
-    TileCombined(int normalizedViewId, int part, int width, int height,
+    TileCombined(int normalizedViewId, int part, int mode, int width, int height,
                  const std::string& tilePositionsX, const std::string& tilePositionsY,
                  int tileWidth, int tileHeight, const std::string& vers,
                  const std::string& imgSizes,
@@ -296,12 +310,14 @@ private:
                  const std::string& wireIds) :
         _normalizedViewId(normalizedViewId),
         _part(part),
+        _mode(mode),
         _width(width),
         _height(height),
         _tileWidth(tileWidth),
         _tileHeight(tileHeight)
     {
         if (_part < 0 ||
+            _mode < 0 ||
             _width <= 0 ||
             _height <= 0 ||
             _tileWidth <= 0 ||
@@ -367,7 +383,7 @@ private:
                 throw BadArgumentException("Invalid tilecombine descriptor.");
             }
 
-            _tiles.emplace_back(_normalizedViewId, _part, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1, false);
+            _tiles.emplace_back(_normalizedViewId, _part, _mode, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1, false);
             _tiles.back().setOldWireId(oldWireId);
             _tiles.back().setWireId(wireId);
         }
@@ -376,6 +392,7 @@ private:
 public:
     int getNormalizedViewId() const { return _normalizedViewId; }
     int getPart() const { return _part; }
+    int getEditMode() const { return _mode; }
     int getWidth() const { return _width; }
     int getHeight() const { return _height; }
     int getTileWidth() const { return _tileWidth; }
@@ -400,6 +417,7 @@ public:
         {
             const auto &a = _tiles[i];
             assert(a.getPart() == _part);
+            assert(a.getEditMode() == _mode);
             assert(a.getWidth() == _width);
             assert(a.getHeight() == _height);
             assert(a.getTileWidth() == _tileWidth);
@@ -482,6 +500,9 @@ public:
             comma = true;
         }
 
+        if (_mode)
+            oss << " mode=" << _mode;
+
         oss << suffix;
         return oss.str();
     }
@@ -541,7 +562,8 @@ public:
             }
         }
 
-        return TileCombined(pairs["nviewid"], pairs["part"], pairs["width"], pairs["height"],
+        return TileCombined(pairs["nviewid"], pairs["part"], pairs["mode"],
+                            pairs["width"], pairs["height"],
                             tilePositionsX, tilePositionsY,
                             pairs["tilewidth"], pairs["tileheight"],
                             versions, imgSizes, oldwireIds, wireIds);
@@ -573,7 +595,8 @@ public:
         }
 
         vers.seekp(-1, std::ios_base::cur); // Remove last comma.
-        return TileCombined(tiles[0].getNormalizedViewId(), tiles[0].getPart(), tiles[0].getWidth(), tiles[0].getHeight(),
+        return TileCombined(tiles[0].getNormalizedViewId(), tiles[0].getPart(), tiles[0].getEditMode(),
+                            tiles[0].getWidth(), tiles[0].getHeight(),
                             xs.str(), ys.str(), tiles[0].getTileWidth(), tiles[0].getTileHeight(),
                             vers.str(), "", oldhs.str(), hs.str());
     }
@@ -582,6 +605,7 @@ public:
     explicit TileCombined(const TileDesc &desc)
     {
         _part = desc.getPart();
+        _mode = desc.getEditMode();
         _width = desc.getWidth();
         _height = desc.getHeight();
         _tileWidth = desc.getTileWidth();
@@ -594,6 +618,7 @@ private:
     std::vector<TileDesc> _tiles;
     int _normalizedViewId;
     int _part;
+    int _mode;
     int _width;
     int _height;
     int _tileWidth;
