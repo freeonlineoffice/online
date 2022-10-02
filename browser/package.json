@@ -11,7 +11,7 @@
     "autolinker": "3.16.0",
     "browserify": "17.0.0",
     "browserify-css": "0.15.0",
-    "d3": "^7.6.1",
+    "d3": "6.7.0",
     "eslint": "8.24.0",
     "hammerjs": "2.0.8",
     "jquery": "^3.6.0",
