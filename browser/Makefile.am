@@ -117,7 +117,7 @@ NODE_MODULES_SRC =\
 
 LOOL_CSS_LST =\
 	$(builddir)/node_modules/select2/dist/css/select2.css \
-	$(srcdir)/css/w2ui-1.5.rc1.css \
+	$(srcdir)/css/w2ui-1.5.css \
 	$(srcdir)/css/leaflet.css \
 	$(srcdir)/css/leaflet-spinner.css \
 	$(srcdir)/css/selectionMarkers.css \
@@ -181,7 +181,7 @@ LOOL_LIBS_JS +=\
 endif
 
 LOOL_LIBS_JS +=\
-	w2ui-1.5.rc1.js \
+	w2ui-1.5.js \
 	viamapi-client.js
 
 NODE_MODULES_JS_SRC = $(patsubst %.js,$(builddir)/%.js,$(NODE_MODULES_JS))
@@ -663,7 +663,7 @@ pot:
 		admin/src/AdminSocketOverview.js \
 		admin/src/AdminSocketSettings.js \
 		admin/src/Util.js \
-		js/w2ui-1.5.rc1.js \
+		js/w2ui-1.5.js \
 		src/control/ColorPicker.js \
 		src/control/Control.AlertDialog.js \
 		src/control/Control.Command.js \
