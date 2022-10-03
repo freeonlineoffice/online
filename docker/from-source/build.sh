@@ -7,17 +7,19 @@
 # * DOCKER_HUB_REPO - which Docker Hub repo to use
 # * DOCKER_HUB_TAG  - which Docker Hub tag to create
 # * CORE_BRANCH  - which branch to build in core
-# * LIBREOFFICE_ONLINE_REPO - which git repo to clone online from
-# * LIBREEOFFICE_ONLINE_BRANCH - which branch to build in online
+# * FREEONLINEOFFICE_REPO - which git repo to clone online from
+# * FREEONLINEOFFICE_BRANCH - which branch to build in online
 # * CORE_BUILD_TARGET - which make target to run (in core repo)
 # * ONLINE_EXTRA_BUILD_OPTIONS - extra build options for online
+# * NO_DEFAULT_ONLINE_BUILD_OPTS - do not apply some standard build options
+# * GIT_MITIGATIONS - set options for all "git clone" commands
 # * NO_DOCKER_IMAGE - if set, don't build the docker image itself, just do all the preps
 
 # check we can sudo without asking a pwd
 echo "Trying if sudo works without a password"
 echo
 echo "If you get a password prompt now, break, and fix your setup using 'sudo visudo'; add something like:"
-echo "yourusername ALL=(ALL) NOPASSWD: /sbin/setcap"
+echo "$(whoami) ALL=(ALL) NOPASSWD: $(which setcap), $(which echo)"
 echo
 sudo echo "works"
 
@@ -26,30 +28,40 @@ if [ -z "$DOCKER_HUB_REPO" ]; then
   DOCKER_HUB_REPO="freeonlineoffice/online"
 fi;
 if [ -z "$DOCKER_HUB_TAG" ]; then
-  DOCKER_HUB_TAG="latest"
+  DOCKER_HUB_TAG="nightly"
 fi;
 echo "Using Docker Hub Repository: '$DOCKER_HUB_REPO' with tag '$DOCKER_HUB_TAG'."
 
+if [ -z "$CORE_SOURCE" ]; then
+  CORE_SOURCE="https://github.com/LibreOffice/core"
+fi;
 if [ -z "$CORE_BRANCH" ]; then
   CORE_BRANCH="master"
 fi;
-echo "Building core branch '$CORE_BRANCH'"
+echo "Building core branch '$CORE_BRANCH' from '$CORE_SOURCE'"
 
-if [ -z "$LIBREOFFICE_ONLINE_REPO" ]; then
-  LIBREOFFICE_ONLINE_REPO="https://github.com/freeonlineoffice/online.git"
+if [ -z "$FREEONLINEOFFICE_REPO" ]; then
+  FREEONLINEOFFICE_REPO="https://github.com/freeonlineoffice/online.git"
 fi;
-if [ -z "$LIBREEOFFICE_ONLINE_BRANCH" ]; then
-  LIBREOFFICE_ONLINE_BRANCH="master"
+if [ -z "$FREEONLINEOFFICE_BRANCH" ]; then
+  FREEONLINEOFFICE_BRANCH="master"
 fi;
-echo "Building online branch '$LIBREEOFFICE_ONLINE_BRANCH' from '$LIBREOFFICE_ONLINE_REPO'"
+echo "Building online branch '$FREEONLINEOFFICE_BRANCH' from '$FREEONLINEOFFICE_REPO'"
 
 if [ -z "$CORE_BUILD_TARGET" ]; then
   CORE_BUILD_TARGET=""
 fi;
 echo "LOKit (core) build target: '$CORE_BUILD_TARGET'"
 
+if [ -z "$GIT_MITIGATIONS" ]; then
+  GIT_MITIGATIONS="--depth=1 -c protocol.version=2"
+fi;
+if [ -z "$NO_DEFAULT_ONLINE_BUILD_OPTS" ]; then
+  ONLINE_EXTRA_BUILD_OPTIONS="--enable-anonymization --with-max-connections=100000 --with-max-documents=100000 --disable-werror $ONLINE_EXTRA_BUILD_OPTIONS"
+fi;
 
-SRCDIR=$(realpath `dirname $0`)
+
+SRCDIR="$(realpath `dirname $0`)"
 INSTDIR="$SRCDIR/instdir"
 
 if [ -z "$(lsb_release -si)" ]; then
@@ -75,6 +87,7 @@ mkdir -p "$INSTDIR"
 
 ##### build static poco #####
 
+# FIXME: Gracefully manage Poco updates
 if test ! -f poco/lib/libPocoFoundation.a ; then
     wget https://github.com/pocoproject/poco/archive/poco-1.11.1-release.tar.gz
     tar -xzf poco-1.11.1-release.tar.gz
@@ -90,7 +103,7 @@ fi
 
 # core repo
 if test ! -d core ; then
-  git clone https://git.libreoffice.org/core || exit 1
+  git clone $GIT_MITIGATIONS $CORE_SOURCE || exit 1
 fi
 
 ( cd core && git fetch --all && git checkout $CORE_BRANCH && ./g pull -r ) || exit 1
@@ -98,10 +111,10 @@ fi
 
 # online repo
 if test ! -d online ; then
-  git clone "$LIBREOFFICE_ONLINE_REPO" online || exit 1
+  git clone $GIT_MITIGATIONS "$FREEONLINEOFFICE_REPO" online || exit 1
 fi
 
-( cd online && git fetch --all && git checkout -f $LIBREEOFFICE_ONLINE_BRANCH && git clean -f -d && git pull -r ) || exit 1
+( cd online && git fetch --all && git checkout -f "$FREEONLINEOFFICE_BRANCH" && git clean -f -d && git pull -r ) || exit 1
 
 ##### LOKit (core) #####
 
@@ -130,8 +143,8 @@ cp -a core/instdir "$INSTDIR"/opt/lokit
 # Create new docker image
 if [ -z "$NO_DOCKER_IMAGE" ]; then
   cd "$SRCDIR"
-  cp ../from-packages/scripts/start-libreoffice-online.sh .
-  cp ../from-packages/scripts/start-libreoffice-online.pl .
+  cp ../scripts/start-libreoffice-online.sh .
+  cp ../scripts/start-libreoffice-online.pl .
   docker build --no-cache -t $DOCKER_HUB_REPO:$DOCKER_HUB_TAG -f $HOST_OS . || exit 1
 else
   echo "Skipping docker image build"
