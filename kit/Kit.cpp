@@ -1901,13 +1901,6 @@ public:
                 << " readOnly: " << it.second.isReadOnly();
         }
         oss << "\n";
-
-        char *pState = nullptr;
-        _loKit->dumpState("", &pState);
-        oss << "lok state:\n";
-        if (pState)
-            oss << pState;
-        oss << "\n";
     }
 
 private:
