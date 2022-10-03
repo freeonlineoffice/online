@@ -15,7 +15,7 @@ on:
     # the action at all; but to actually avoid scanning the content of these,
     # see the .github/codeql/codeql-config.yml configuration file
     paths-ignore:
-      - '**/*w2ui-1.5.rc1.js'
+      - '**/*w2ui-1.5.js'
       - 'loleaflet'
 
   schedule:
