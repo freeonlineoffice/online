@@ -40,10 +40,7 @@
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "parserOptions": {
-           "sourceType": "module"
-        }
+        "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",

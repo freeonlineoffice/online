@@ -7,3 +7,4 @@ queries:
 paths-ignore:
   - '**/*w2ui-1.5.js'
   - 'loleaflet'
+  - '**/node_modules/d3'
