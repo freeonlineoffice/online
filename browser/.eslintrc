@@ -41,10 +41,6 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "parserOptions": {
-            "sourceType": "module",
-            "ecmaVersion": 8
-        }
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
@@ -54,7 +50,11 @@
         "@typescript-eslint/no-namespace": "off",
         "no-inner-declarations": "off",
         "no-constant-condition": "off",
-        "@typescript-eslint/triple-slash-reference": "off"
+        "@typescript-eslint/triple-slash-reference": "off",
+        "parserOptions": {
+            "sourceType": "module",
+            "ecmaVersion": 8
+            }
       }
     }
   ]
