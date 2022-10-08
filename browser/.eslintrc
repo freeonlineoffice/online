@@ -34,7 +34,6 @@
     {
       "files": ["**/*.ts"],
       "parser": "@typescript-eslint/parser",
-      },
       "plugins": [
         "@typescript-eslint"
       ],
@@ -43,7 +42,7 @@
         "parserOptions": {
             "sourceType": "module",
             "ecmaVersion": 8
-        },
+      },
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
       ],
@@ -57,6 +56,6 @@
         "no-constant-condition": "off",
         "@typescript-eslint/triple-slash-reference": "off"
       }
-    },
+    }
   ]
 }
