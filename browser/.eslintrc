@@ -57,6 +57,6 @@
         "no-constant-condition": "off",
         "@typescript-eslint/triple-slash-reference": "off"
       }
-    }
+    },
   ]
 }
