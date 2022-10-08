@@ -7,10 +7,10 @@ name: "CodeQL scanning - action"
 
 on:
   push:
-    branches: [master]
+    branches: [master, d3-update]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [master]
+    branches: [master, d3-update]
     # The paths-ignore here only defines that changes in these will not trigger
     # the action at all; but to actually avoid scanning the content of these,
     # see the .github/codeql/codeql-config.yml configuration file
