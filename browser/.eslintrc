@@ -2,7 +2,8 @@
   "extends": "eslint:recommended",
   "parserOptions": {
       "sourceType": "module",
-      "ecmaVersion": 8
+      "ecmaVersion": 8,
+      "allowImportExportEverywhere": true
       },
   "rules": {
       "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
