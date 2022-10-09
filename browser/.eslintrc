@@ -16,4 +16,13 @@
   "env": {
       "browser": true
       },
+  "settings": {
+      "import/resolver": {
+           "node": {
+                "paths": [
+                    "src",
+                ],
+            },
+        },
+    },
 }
