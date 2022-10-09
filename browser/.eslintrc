@@ -4,4 +4,12 @@
       "sourceType": "module",
       "ecmaVersion": 8
       },
+  "globals": {
+      "L": true,
+      "module": true,
+      "define": false
+      },
+  "env": {
+      "browser": true
+      },
 }
