@@ -21,6 +21,10 @@
     "no-useless-escape": 0,
     "semi": 2,
     "no-redeclare": 0
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8
+        },
   },
   "globals": {
     "L": true,
@@ -42,10 +46,6 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
       ],
-      "parserOptions": {
-            "sourceType": "module",
-            "ecmaVersion": 8
-            },
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-inferrable-types": "off",
