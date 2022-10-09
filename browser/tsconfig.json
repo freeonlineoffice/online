@@ -1,9 +1,9 @@
 {
   "compileOnSave": false,
     "compilerOptions": {
-      "target": "es5",
+      "target": "es8",
       "module": "none",
-      "lib": ["dom", "es2016"],
+      "lib": ["dom", "es2018"],
       "sourceMap": false,
       "incremental": true,
 
