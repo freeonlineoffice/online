@@ -16,7 +16,7 @@ RUN apt-get update && \
                libcap2-bin openssl openssh-client inotify-tools procps \
                libxcb-shm0 libxcb-render0 libxrender1 libxext6 \
                fonts-wqy-zenhei fonts-wqy-microhei fonts-droid-fallback \
-               fonts-noto-cjk
+               fonts-noto-cjk libnss3-dev
 
 # copy freshly built LOKit and LibreOffice Online
 COPY /instdir /
@@ -28,6 +28,7 @@ COPY /start-libreoffice-online.pl /
 # set up LibreOffice Online (normally done by postinstall script of package)
 # Fix permissions
 RUN setcap cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep /usr/bin/loolforkit && \
+    chmod +x /usr/bin/loolmount && \
     setcap cap_sys_admin=ep /usr/bin/loolmount && \
     adduser --quiet --system --group --home /opt/lool lool && \
     rm -rf /opt/lool && \
