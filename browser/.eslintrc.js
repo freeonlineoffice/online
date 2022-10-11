@@ -1,4 +1,7 @@
 module.exports = {
+    "rules": {
+        "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+    },
     "env": {
         "browser": true,
         "es2021": true
