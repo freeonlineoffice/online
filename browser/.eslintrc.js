@@ -26,6 +26,6 @@ module.exports = {
         "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
         "@typescript-eslint/no-unused-vars": "off",
         "no-empty-function": "off",
-        "@typescript-eslint/no-empty-function": "info",
+        "@typescript-eslint/no-empty-function": "off",
     }
 }
