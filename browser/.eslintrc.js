@@ -1,5 +1,6 @@
 module.exports = {
     "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "info",
     "env": {
         "browser": true,
         "es2021": true
