@@ -1,6 +1,4 @@
 module.exports = {
-    "no-empty-function": "off",
-    "@typescript-eslint/no-empty-function": "info",
     "env": {
         "browser": true,
         "es2021": true
@@ -27,5 +25,7 @@ module.exports = {
     "rules": {
         "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
         "@typescript-eslint/no-unused-vars": "off",
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "info",
     }
 }
