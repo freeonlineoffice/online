@@ -62,7 +62,7 @@ var AdminSocketLog = AdminSocketBase.extend({
 		// We will create items for them. User will be able to set the log level for each channel.
 		var channelForm = document.getElementById('form-channel-list');
 		channelForm.innerHTML = ''; // Clear and refill it.
-		var optionList = Array('none', 'fatal', 'critical', 'error', 'warning', 'notice', 'information', 'debug', 'trace');
+		var optionList = ['none', 'fatal', 'critical', 'error', 'warning', 'notice', 'information', 'debug', 'trace'];
 		var innerHTML = ''; // Of select elements.
 		for (var i = 0; i < optionList.length; i++) {
 			innerHTML += '<option value="' + optionList[i] + '">' + optionList[i] + '</option>';
