@@ -10,4 +10,4 @@
 **/js/viamapi-client.js
 node_modules
 dist/src
-**/admin/main-admin.js
+node_modules/d3/src/index.js
