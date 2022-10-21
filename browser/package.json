@@ -3,7 +3,7 @@
   "version": "0.8.0-dev",
   "description": "LibreOffice Online front-end",
   "devDependencies": {
-    "@braintree/sanitize-url": "6.0.0",
+    "@braintree/sanitize-url": "6.0.1",
     "@types/mocha": "10.0.0",
     "@types/node": "18.11.3",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
@@ -21,7 +21,7 @@
     "jquery-ui-dist": "1.13.2",
     "json-js": "1.1.2",
     "l10n-for-node": "0.0.1",
-    "mocha": "10.0.0",
+    "mocha": "10.1.0",
     "pako": "2.0.4",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
