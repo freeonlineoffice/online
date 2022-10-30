@@ -5,7 +5,7 @@
   "devDependencies": {
     "@braintree/sanitize-url": "6.0.1",
     "@types/mocha": "10.0.0",
-    "@types/node": "18.11.6",
+    "@types/node": "18.11.7",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "autolinker": "3.16.0",
@@ -13,7 +13,7 @@
     "browserify-css": "0.15.0",
     "canvas": "^2.6.1",
     "d3": "6.7.0",
-    "eslint": "8.24.0",
+    "eslint": "8.26.0",
     "hammerjs": "2.0.8",
     "jquery": "^3.6.0",
     "jquery-contextmenu": "2.9.2",
