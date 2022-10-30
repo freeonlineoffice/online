@@ -78,8 +78,10 @@ jobs:
         cd .. && wget https://github.com/freeonlineoffice/online/releases/download/Core-LibreOffice-Assets/core-lo-7.5-alpha-2022-10-30-assets.tar.gz
         tar xvf core-lo-7.5-alpha-2022-10-30-assets.tar.gz && rm core-lo-7.5-alpha-2022-10-30-assets.tar.gz && export LOCOREPATH=$(pwd)
         cd online && ./autogen.sh
+        echo 'LOCOREPATH = ' LOCOREPATH
         ./configure --enable-silent-rules --with-lokit-path=${LOCOREPATH}/include --with-lo-path=${LOCOREPATH}/instdir --enable-debug --disable-setcap
         cd browser && npm update
+        echo 'lokit-path = ${LOCOREPATH}/include
 
     - if: matrix.language == 'cpp'
       name: Build
