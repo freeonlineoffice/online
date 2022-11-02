@@ -14,6 +14,7 @@
     "canvas": "^2.6.1",
     "d3": "6.7.0",
     "eslint": "8.26.0",
+    "fzstd": "0.0.4",
     "hammerjs": "2.0.8",
     "jquery": "^3.6.0",
     "jquery-contextmenu": "2.9.2",
