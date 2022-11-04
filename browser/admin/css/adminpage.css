@@ -3,3 +3,13 @@
      background-color:#17191E;
      line-height:50px;
 }
+
+.admintopleft {
+    margin-left:12px;
+    color:#9D998D;
+}
+
+.admintopright {
+    margin-right:12px;
+    color:#9D998D;
+}
