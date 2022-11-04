@@ -62,9 +62,9 @@
     <div id="admintop" class="is-fullwidth has-text-white">
         <a class="admintopleft"><script>document.write(l10nstrings.strProductName + ' - ' + l10nstrings.strAdminConsole)</script></a>
         <a id="a-settings-tablet" href="adminSettings.html" class="is-hidden-mobile is-pulled-right admintopright"><script>document.write(l10nstrings.strSettings)</script></a>
-        <div class="dropdown is-hoverable is-right is-pulled-right is-hidden-tablet" style="margin-right:12px;">
+        <div class="adminoptions dropdown is-hoverable is-right is-pulled-right is-hidden-tablet">
             <div class="dropdown-trigger">
-                <button class="button has-text-white" aria-haspopup="true" aria-controls="dropdown-menu1" style="width:40px;background-color:#17191E;border:none;">
+                <button class="adminoptions button has-text-white" aria-haspopup="true" aria-controls="dropdown-menu1">
                 <span>&#9776;</span>
                 <span class="icon is-small">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
             <div class="dropdown-menu" id="dropdown-menu1" role="menu">
                 <div class="dropdown-content">
                     <div class="dropdown-item">
-                        <div class="list is-hoverable" style="height:100%;">
+                        <div class="menu1-list list is-hoverable">
                             <a id="a-overwiew-mobile" class="list-item" href="admin.html"><script>document.write(l10nstrings.strOverview)</script></a>
                             <a id="a-analytics-mobile" class="list-item" href="adminAnalytics.html"><script>document.write(l10nstrings.strAnalytics)</script></a>
                             <a id="a-history-mobile" class="list-item" href="adminHistory.html"><script>document.write(l10nstrings.strHistory)</script></a>
@@ -88,7 +88,7 @@
     </div>
 
     <div class="columns is-fullwidth" style="height:calc(100vh - 70px);background-color: #F5F5F5;">
-        <nav class="column is-hidden-mobile is-narrow" id="column-admin-panel" style="width:225px;">
+        <nav class="column is-hidden-mobile is-narrow" id="column-admin-panel">
             <div class="list is-hoverable" style="height:100%;">
                 <a class="list-item" id="button-admin-panel-collapse" href="#">&larr;</a>
                 <a id="a-overwiew-tablet" class="list-item" href="admin.html"><script>document.write(l10nstrings.strOverview)</script></a>

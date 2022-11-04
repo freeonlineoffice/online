@@ -13,3 +13,21 @@
     margin-right:12px;
     color:#9D998D;
 }
+
+div.adminoptions {
+    margin-right:12px;
+}
+
+button.adminoptions {
+    width:40px;
+    background-color:#17191E;
+    border:none;
+}
+
+div.menu1-list {
+    height:100%;
+}
+
+#column-admin-panel {
+    width:225px;
+}
