@@ -45,3 +45,15 @@ div.list-admin-panel {
    width:70px;
    display:none;
 }
+
+#tab-content-documents-opened {
+   display:grid;
+}
+
+tr.adminoverview {
+   height:40px;
+}
+
+#tab-content-users-online {
+   display:none;
+}
