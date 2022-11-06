@@ -28,6 +28,20 @@ div.menu1-list {
     height:100%;
 }
 
+div.admin-columns {
+    height:calc(100vh - 70px);
+    background-color: #F5F5F5;
+}
+
 #column-admin-panel {
     width:225px;
+}
+
+div.list-admin-panel {
+    height:100%;
+}
+
+#column-admin-panel-expand {
+   width:70px;
+   display:none;
 }
