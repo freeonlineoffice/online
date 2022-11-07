@@ -57,3 +57,32 @@ tr.adminoverview {
 #tab-content-users-online {
    display:none;
 }
+
+#refreshHistory {
+   min-width:120px;
+}
+
+textarea.ex-current-docs {
+   width: 100%;
+   resize: vertical;
+}
+
+#refresh-log, #button-open-log-list-modal {
+   min-width:120px;
+}
+
+label.label-channel-filter {
+   vertical-align: middle;
+   line-height:30px;
+}
+
+#log-lines {
+   width:100%;
+   height:100%;
+   min-height: calc(100vh - 250px);
+   resize:vertical;
+}
+
+#update-log-levels {
+   min-width:140px;
+}
