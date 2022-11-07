@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 // SheetSwitchViewRestore is used to store the last view position of a sheet
 // before a sheet switch so that when the user switches back to previously used
@@ -93,6 +93,6 @@ export class SheetSwitchViewRestore {
 
 }
 
-L.SheetSwitchViewRestore = cool.SheetSwitchViewRestore;
+L.SheetSwitchViewRestore = lool.SheetSwitchViewRestore;
 
 
