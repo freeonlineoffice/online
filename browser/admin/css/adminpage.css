@@ -67,7 +67,10 @@ textarea.ex-current-docs {
    resize: vertical;
 }
 
-#refresh-log, #button-open-log-list-modal {
+#refresh-log,
+#button-open-log-list-modal,
+#button-save-admin-settings
+{
    min-width:120px;
 }
 
@@ -85,4 +88,21 @@ label.label-channel-filter {
 
 #update-log-levels {
    min-width:140px;
+}
+
+#btnShutdown {
+   min-width:140px;
+   margin-inline-end:14px;
+}
+
+#mem_stats_size,
+#mem_stats_interval,
+#cpu_stats_size,
+#cpu_stats_interval,
+#limit_virt_mem_mb,
+#limit_stack_mem_kb,
+#limit_file_size_mb,
+#mem_stats_size
+{
+   max-width:200px;
 }
