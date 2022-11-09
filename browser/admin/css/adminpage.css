@@ -107,7 +107,8 @@ textarea.ex-current-docs {
 
 #refresh-log,
 #button-open-log-list-modal,
-#button-save-admin-settings
+#button-save-admin-settings,
+#button-update-loglevel
 {
    min-width:120px;
 }
