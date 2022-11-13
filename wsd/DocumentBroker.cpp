@@ -728,16 +728,20 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
         if (CommandControl::LockManager::isLockedReadOnlyUser() ||
             !wopifileinfo->getUserCanWrite() || _isViewFileExtension)
         {
-            LOG_DBG("Setting the session as readonly");
+            LOG_DBG("Setting session [" << sessionId << "] as readonly");
             session->setReadOnly(true);
             if (LOOLWSD::IsViewWithCommentsFileExtension(wopiStorage->getFileExtension()))
             {
-                LOG_DBG("Allow session to change comments");
+                LOG_DBG("Allow session [" << sessionId
+                                          << "] to change comments on document with extension ["
+                                          << wopiStorage->getFileExtension() << ']');
                 session->setAllowChangeComments(true);
             }
         }
         else if (wopifileinfo->getUserCanWrite())
         {
+            LOG_DBG("Setting session [" << sessionId
+                                        << "] as writable since WOPI has UserCanWrite=true");
             session->setReadOnly(false);
             session->setAllowChangeComments(true);
         }
@@ -844,11 +848,13 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
 
             if (LOOLWSD::IsViewFileExtension(localStorage->getFileExtension()))
             {
-                LOG_DBG("Setting the session as readonly");
+                LOG_DBG("Setting session [" << sessionId << "] as readonly");
                 session->setReadOnly(true);
                 if (LOOLWSD::IsViewWithCommentsFileExtension(localStorage->getFileExtension()))
                 {
-                    LOG_DBG("Allow session to change comments");
+                    LOG_DBG("Allow session [" << sessionId
+                                              << "] to change comments on document with extension ["
+                                              << localStorage->getFileExtension() << ']');
                     session->setAllowChangeComments(true);
                 }
             }
@@ -1836,7 +1842,7 @@ void DocumentBroker::setLoaded()
         const auto minTimeoutSecs = ((_loadDuration * 4).count() + 500) / 1000;
         _saveManager.setSavingTimeout(
             std::max(std::chrono::seconds(minTimeoutSecs), std::chrono::seconds(5)));
-        LOG_TRC("Document loaded in " << _loadDuration << ", saving-timeout set to "
+        LOG_DBG("Document loaded in " << _loadDuration << ", saving-timeout set to "
                                       << _saveManager.getSavingTimeout());
     }
 }
