@@ -39,9 +39,7 @@ app.definitions.Socket = L.Class.extend({
 
 	connect: function(socket) {
 		var map = this._map;
-		if (map.options.permission) {
-			map.options.docParams['permission'] = map.options.permission;
-		}
+		map.options.docParams['permission'] = app.file.permission;
 		if (this.socket) {
 			this.close();
 		}
@@ -598,33 +596,30 @@ app.definitions.Socket = L.Class.extend({
 			var perm = textMsg.substring('perm:'.length).trim();
 
 			// Never make the permission more permissive than it originally was.
-			if (this._map.options.permission == 'edit')
-			{
-				this._map.options.permission = perm;
-			}
+			if (app.file.permission == 'edit')
+				app.file.permission = perm;
 
-			if (this._map._docLayer) {
-				this._map.setPermission(this._map.options.permission);
-			}
+			if (this._map._docLayer)
+				this._map.setPermission(app.file.permission);
 
 			app.file.disableSidebar = perm !== 'edit';
-			app.file.readOnly = this._map.options.permission === 'readonly';
+			app.file.readOnly = app.file.permission === 'readonly';
 			return;
 		}
 		else if (textMsg.startsWith('filemode:')) {
 			var json = JSON.parse(textMsg.substring('filemode:'.length).trim());
 
 			// Never make the permission more permissive than it originally was.
-			if (this._map.options.permission == 'edit' && json.readOnly)
+			if (app.file.permission == 'edit' && json.readOnly)
 			{
-				this._map.options.permission = 'readonly';
+				app.file.permission = 'readonly';
 			}
 
 			if (this._map._docLayer) {
-				this._map.setPermission(this._map.options.permission);
+				this._map.setPermission(app.file.permission);
 			}
 
-			app.file.readOnly = this._map.options.permission === 'readonly';
+			app.file.readOnly = app.file.permission === 'readonly';
 			app.file.editComment = json.editComment; // Allowed even in readonly mode.
 		}
 		else if (textMsg.startsWith('lockfailed:')) {
@@ -1283,7 +1278,7 @@ app.definitions.Socket = L.Class.extend({
 				// if this is save-as, we need to load the document with edit permission
 				// otherwise the user has to close the doc then re-open it again
 				// in order to be able to edit.
-				this._map.options.permission = 'edit';
+				app.file.permission = 'edit';
 				this.close();
 				this._map.loadDocument();
 				this._map.sendInitUNOCommands();
@@ -1375,7 +1370,6 @@ app.definitions.Socket = L.Class.extend({
 			var docLayer = null;
 			if (command.type === 'text') {
 				docLayer = new L.WriterTileLayer('', {
-					permission: this._map.options.permission,
 					tileWidthTwips: tileWidthTwips / app.dpiScale,
 					tileHeightTwips: tileHeightTwips / app.dpiScale,
 					docType: command.type
@@ -1383,7 +1377,6 @@ app.definitions.Socket = L.Class.extend({
 			}
 			else if (command.type === 'spreadsheet') {
 				docLayer = new L.CalcTileLayer('', {
-					permission: this._map.options.permission,
 					tileWidthTwips: tileWidthTwips / app.dpiScale,
 					tileHeightTwips: tileHeightTwips / app.dpiScale,
 					docType: command.type
@@ -1391,7 +1384,6 @@ app.definitions.Socket = L.Class.extend({
 			}
 			else if (command.type === 'presentation' || command.type === 'drawing') {
 				docLayer = new L.ImpressTileLayer('', {
-					permission: this._map.options.permission,
 					tileWidthTwips: tileWidthTwips / app.dpiScale,
 					tileHeightTwips: tileHeightTwips / app.dpiScale,
 					docType: command.type
@@ -1411,7 +1403,7 @@ app.definitions.Socket = L.Class.extend({
 			this._map._isNotebookbarLoadedOnCore = false;
 			var uiMode = this._map.uiManager.getCurrentMode();
 			this._map.fire('changeuimode', {mode: uiMode, force: true});
-			this._map.setPermission(this._map.options.permission);
+			this._map.setPermission(app.file.permission);
 		}
 
 		this._map.fire('docloaded', {status: true});
