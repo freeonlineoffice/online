@@ -18,15 +18,10 @@
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Version.h>
-#include <Poco/URI.h>
 
 #include "Common.hpp"
-#include <tools/LOOLWebSocket.hpp>
 #include <helpers.hpp>
 #include <net/WebSocketSession.hpp>
-
-using Poco::Net::SocketAddress;
-using Poco::Net::HTTPServerParams;
 
 /// Unit test stub for a server response
 class UnitHTTPServerResponse : public Poco::Net::HTTPServerResponse
@@ -96,15 +91,15 @@ public:
         return true;
     }
 #endif
-    virtual const SocketAddress& clientAddress() const override
+    virtual const Poco::Net::SocketAddress& clientAddress() const override
     {
         return _clientAddress;
     }
-    virtual const SocketAddress& serverAddress() const override
+    virtual const Poco::Net::SocketAddress& serverAddress() const override
     {
         return _serverAddress;
     }
-    virtual const HTTPServerParams& serverParams() const override
+    virtual const Poco::Net::HTTPServerParams& serverParams() const override
     {
         return _dummyParams;
     }

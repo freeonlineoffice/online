@@ -26,8 +26,6 @@
 #include <helpers.hpp>
 #include <net/WebSocketSession.hpp>
 
-class LOOLWebSocket;
-
 namespace
 {
 void loadDoc(const std::string& documentURL, const std::string& testname)

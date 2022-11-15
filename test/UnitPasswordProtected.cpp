@@ -19,8 +19,6 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class LOOLWebSocket;
-
 /// Password protected testcase.
 class UnitPasswordProtected : public UnitWSD
 {

@@ -24,8 +24,6 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 
-class LOOLWebSocket;
-
 namespace
 {
 void getPartHashCodes(const std::string& testname, const std::string& response,

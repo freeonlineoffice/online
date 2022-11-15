@@ -19,8 +19,6 @@
 #include <Util.hpp>
 #include <helpers.hpp>
 
-class LOOLWebSocket;
-
 /// Rendering options testcase.
 class UnitRenderingOptions : public UnitWSD
 {
