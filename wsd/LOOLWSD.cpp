@@ -4742,6 +4742,7 @@ private:
         const std::string uriBaseValue = rootUriValue + "/browser/" LOOLWSD_VERSION_HASH "/";
         const std::string uriValue = uriBaseValue + "lool.html?";
 
+        LOG_DBG("Processing discovery.xml from " << discoveryPath);
         InputSource inputSrc(discoveryPath);
         DOMParser parser;
         AutoPtr<Poco::XML::Document> docXML = parser.parse(&inputSrc);
@@ -4762,10 +4763,16 @@ private:
 
             // Set the View extensions cache as well.
             if (elem->getAttribute("name") == "edit")
-                LOOLWSD::EditFileExtensions.insert(elem->getAttribute("ext"));
+            {
+                const std::string ext = elem->getAttribute("ext");
+                if (LOOLWSD::EditFileExtensions.insert(ext).second) // Skip duplicates.
+                    LOG_DBG("Enabling editing of [" << ext << "] extension files");
+            }
             else if (elem->getAttribute("name") == "view_comment")
             {
-                LOOLWSD::ViewWithCommentsFileExtensions.insert(elem->getAttribute("ext"));
+                const std::string ext = elem->getAttribute("ext");
+                if (LOOLWSD::ViewWithCommentsFileExtensions.insert(ext).second) // Skip duplicates.
+                    LOG_DBG("Enabling commenting on [" << ext << "] extension files");
             }
         }
 
