@@ -252,6 +252,14 @@ void UnitBase::uninit()
 
 }
 
+void UnitBase::initialize()
+{
+    assert(DlHandle != nullptr && "Invalid handle to set");
+    LOG_TST(getTestname() << ">>> initialize: " << this
+                          << " starting thread: " << _socketPoll.get());
+    _socketPoll->startThread();
+}
+
 bool UnitBase::isUnitTesting()
 {
     return DlHandle;
@@ -433,7 +441,7 @@ void UnitBase::exitTest(TestResult result)
 
         LOG_TST("Starting test #" << GlobalIndex + 1 << ": "
                                   << GlobalArray[GlobalIndex]->getTestname());
-        GlobalArray[GlobalIndex]->setHandle();
+        GlobalArray[GlobalIndex]->initialize();
         return;
     }
 
