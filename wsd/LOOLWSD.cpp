@@ -5570,8 +5570,7 @@ int LOOLWSD::innerMain()
     JailUtil::cleanupJails(ChildRoot);
 #endif // !MOBILEAPP
 
-    int returnValue = EX_OK;
-    UnitWSD::get().returnValue(returnValue);
+    const int returnValue = UnitBase::uninit();
 
     UnitBase::uninit();
     LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
@@ -5654,9 +5653,7 @@ int LOOLWSD::main(const std::vector<std::string>& /*args*/)
 
     cleanup();
 
-    UnitWSD::get().returnValue(returnValue);
-
-    UnitBase::uninit();
+    returnValue = UnitBase::uninit();
 
     LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
 

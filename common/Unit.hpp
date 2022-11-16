@@ -53,6 +53,7 @@ class StorageBase;
 
 typedef UnitBase *(CreateUnitHooksFunction)();
 extern "C" { UnitBase *unit_create_wsd(void); }
+extern "C" { UnitBase *unit_create_wsd_multi(void); }
 extern "C" { UnitBase *unit_create_kit(void); }
 extern "C" { typedef struct _LibreOfficeKit LibreOfficeKit; }
 
@@ -133,7 +134,9 @@ public:
     /// Load unit test hook shared library from this path
     static bool init(UnitType type, const std::string& unitLibPath);
 
-    static void uninit();
+    /// Uninitialize the unit-test and return the global exit code.
+    /// Returns 0 on success.
+    static int uninit();
 
     /// Do we have a unit test library hooking things & loaded
     static bool isUnitTesting();
@@ -248,11 +251,8 @@ public:
     std::shared_ptr<SocketPoll> socketPoll() { return _socketPoll; }
 
 private:
-    void setHandle()
-    {
-        assert(DlHandle != nullptr && "Invalid handle to set");
-        _socketPoll->startThread();
-    }
+    /// Initialize the test.
+    virtual void initialize();
 
     /// Dynamically load the unit-test .so.
     static UnitBase** linkAndCreateUnit(UnitType type, const std::string& unitLibPath);
@@ -277,6 +277,7 @@ private:
     static char *UnitLibPath;
     static UnitBase** GlobalArray; //< All the tests.
     static int GlobalIndex; //< The index of the current test.
+    static TestResult GlobalResult; //< The result of all tests. Latches at first failure.
 
     bool _setRetValue;
     int _retValue;
