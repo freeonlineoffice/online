@@ -34,7 +34,7 @@ UnitWSD *GlobalWSD = nullptr;
 UnitTool *GlobalTool = nullptr;
 UnitBase** UnitBase::GlobalArray = nullptr;
 int UnitBase::GlobalIndex = -1;
-char * UnitBase::UnitLibPath;
+char* UnitBase::UnitLibPath = nullptr;
 static std::thread TimeoutThread;
 static std::atomic<bool> TimeoutThreadRunning(false);
 std::timed_mutex TimeoutThreadMutex;
@@ -45,8 +45,8 @@ bool EnableExperimental = false;
 UnitBase** UnitBase::linkAndCreateUnit(UnitType type, const std::string& unitLibPath)
 {
 #if !MOBILEAPP
-    void *dlHandle = dlopen(unitLibPath.c_str(), RTLD_GLOBAL|RTLD_NOW);
-    if (!dlHandle)
+    DlHandle = dlopen(unitLibPath.c_str(), RTLD_GLOBAL|RTLD_NOW);
+    if (!DlHandle)
     {
         LOG_ERR("Failed to load " << unitLibPath << ": " << dlerror());
         return nullptr;
@@ -69,7 +69,7 @@ UnitBase** UnitBase::linkAndCreateUnit(UnitType type, const std::string& unitLib
             break;
     }
     CreateUnitHooksFunction* createHooks;
-    createHooks = reinterpret_cast<CreateUnitHooksFunction *>(dlsym(dlHandle, symbol));
+    createHooks = reinterpret_cast<CreateUnitHooksFunction *>(dlsym(DlHandle, symbol));
     if (!createHooks)
     {
         LOG_ERR("No " << symbol << " symbol in " << unitLibPath);
@@ -78,7 +78,7 @@ UnitBase** UnitBase::linkAndCreateUnit(UnitType type, const std::string& unitLib
     UnitBase* hooks = createHooks();
     if (hooks)
     {
-        hooks->setHandle(dlHandle);
+        hooks->setHandle();
         return new UnitBase* [1] { hooks };
     }
 #endif
@@ -206,11 +206,38 @@ void UnitBase::rememberInstance(UnitType type, UnitBase* instance)
     }
 }
 
+void UnitBase::uninit()
+{
+    if (GlobalArray)
+    {
+        for (; GlobalIndex >= 0; --GlobalIndex)
+        {
+            delete GlobalArray[GlobalIndex];
+        }
+
+        delete[] GlobalArray;
+        GlobalArray = nullptr;
+    }
+
+    GlobalIndex = -1;
+
+    free(UnitBase::UnitLibPath);
+    UnitBase::UnitLibPath = nullptr;
+
+    GlobalKit = nullptr;
+    GlobalWSD = nullptr;
+    GlobalTool = nullptr;
+
+    // Close the DLL last, after deleting the test instances.
+    if (DlHandle)
+        dlclose(DlHandle);
+    DlHandle = nullptr;
+
+}
+
 bool UnitBase::isUnitTesting()
 {
-    return GlobalArray && GlobalIndex >= 0 && GlobalArray[GlobalIndex] &&
-           GlobalArray[GlobalIndex]->_dlHandle;
-}
+return DlHandle && GlobalArray && GlobalArray[GlobalIndex];
 
 void UnitBase::setTimeout(std::chrono::milliseconds timeoutMilliSeconds)
 {
@@ -223,10 +250,6 @@ UnitBase::~UnitBase()
 {
     LOG_TST(getTestname() << ": ~UnitBase: " << (_retValue ? "FAILED" : "SUCCESS"));
 
-// FIXME: we should really clean-up properly.
-//    if (_dlHandle)
-//        dlclose(_dlHandle);
-    _dlHandle = nullptr;
     _socketPoll->joinThread();
 }
 
@@ -417,7 +440,6 @@ void UnitKit::returnValue(int &retValue)
 {
     UnitBase::returnValue(retValue);
 
-    delete GlobalKit;
     GlobalKit = nullptr;
 }
 
@@ -425,7 +447,6 @@ void UnitWSD::returnValue(int &retValue)
 {
     UnitBase::returnValue(retValue);
 
-    delete GlobalWSD;
     GlobalWSD = nullptr;
 }
 
