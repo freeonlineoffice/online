@@ -270,8 +270,7 @@ int UnitBase::uninit()
 void UnitBase::initialize()
 {
     assert(DlHandle != nullptr && "Invalid handle to set");
-    LOG_TST(getTestname() << ">>> initialize: " << this
-                          << " starting thread: " << _socketPoll.get());
+    LOG_TST("==================== Starting [" << getTestname() << "] ====================");
     _socketPoll->startThread();
 }
 
@@ -501,6 +500,8 @@ void UnitBase::returnValue(int &retValue)
     TimeoutThreadMutex.unlock();
     if (TimeoutThread.joinable())
         TimeoutThread.join();
+
+    LOG_TST("==================== Finished [" << getTestname() << "] ====================");
 }
 
 void UnitKit::returnValue(int &retValue)
