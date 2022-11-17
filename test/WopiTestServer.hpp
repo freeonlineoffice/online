@@ -69,18 +69,6 @@ private:
 
 protected:
 
-    const std::string& getWopiSrc() const { return _wopiSrc; }
-
-    const std::unique_ptr<UnitWebSocket>& getWs() const { return _wsList.at(0); }
-
-    const std::unique_ptr<UnitWebSocket>& getWsAt(int index) { return _wsList.at(index); }
-
-    void deleteSocketAt(int index)
-    {
-        std::unique_ptr<UnitWebSocket>& socket = _wsList.at(index);
-        socket.reset();
-    }
-
     const std::string& getFileContent() const { return _fileContent; }
 
     /// Sets the file content to a given value and update the last file modified time
@@ -461,6 +449,5 @@ protected:
     }
 
 };
-
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
