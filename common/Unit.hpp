@@ -316,8 +316,6 @@ public:
 
     static UnitWSD& get();
 
-    virtual void returnValue(int& /* retValue */);
-
     enum class TestRequest
     {
         Client,
@@ -463,8 +461,6 @@ public:
     explicit UnitKit(const std::string& testname);
     virtual ~UnitKit();
     static UnitKit& get();
-
-    virtual void returnValue(int& /* retValue */);
 
     // ---------------- ForKit hooks ----------------
 
