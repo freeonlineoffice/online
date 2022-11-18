@@ -458,7 +458,7 @@ UnitKit& UnitKit::get()
     return *GlobalKit;
 }
 
-void UnitBase::exitTest(TestResult result)
+void UnitBase::exitTest(TestResult result, const std::string& reason)
 {
     if (isFinished())
     {
@@ -471,11 +471,14 @@ void UnitBase::exitTest(TestResult result)
 
     if (result == TestResult::Ok)
     {
-        LOG_TST(getTestname() << ": SUCCESS: exitTest: " << testResultAsString(result));
+        LOG_TST(getTestname() << ": SUCCESS: exitTest: " << testResultAsString(result)
+                              << (reason.empty() ? "" : ": " + reason));
     }
     else
     {
-        LOG_TST("ERROR " << getTestname() << ": FAILURE: exitTest: " << testResultAsString(result));
+        LOG_TST("ERROR " << getTestname() << ": FAILURE: exitTest: " << testResultAsString(result)
+                         << (reason.empty() ? "" : ": " + reason));
+
         _retValue = EX_SOFTWARE;
         if (GlobalResult == TestResult::Ok)
             GlobalResult = result;
