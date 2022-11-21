@@ -3284,7 +3284,7 @@ bool DocumentBroker::forwardToClient(const std::shared_ptr<Message>& payload)
 
     std::string name;
     std::string sid;
-    if (LOOLProtocol::parseNameValuePair(payload->forwardToken(), name, sid, '-') && name == "client")
+    if (LOOLProtocol::parseNameValuePair(prefix, name, sid, '-') && name == "client")
     {
         if (sid == "all")
         {
