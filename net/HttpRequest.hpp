@@ -1012,6 +1012,7 @@ public:
                                                        const std::string& saveToFilePath)
     {
         TerminatingPoll poller("HttpSynReqPoll");
+        poller.runOnClientThread();
         return syncDownload(req, saveToFilePath, poller);
     }
 
@@ -1032,6 +1033,7 @@ public:
     const std::shared_ptr<const Response> syncRequest(const Request& req)
     {
         TerminatingPoll poller("HttpSynReqPoll");
+        poller.runOnClientThread();
         return syncRequest(req, poller);
     }
 

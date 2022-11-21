@@ -808,6 +808,7 @@ public:
 
         if (!_threadStarted)
         {
+            // TODO: should avoid wakeup resource creation too.
             _runOnClientThread = true;
             return true;
         }
