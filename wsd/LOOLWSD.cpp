@@ -3720,7 +3720,7 @@ private:
         catch (const BadRequestException& ex)
         {
             LOG_ERR('#' << socket->getFD() << " bad request: ["
-                        << COOLProtocol::getAbbreviatedMessage(socket->getInBuffer())
+                        << LOOLProtocol::getAbbreviatedMessage(socket->getInBuffer())
                         << "]: " << ex.what());
 
             // Bad request.
