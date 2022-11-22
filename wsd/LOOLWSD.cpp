@@ -887,6 +887,7 @@ std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
 bool LOOLWSD::EnableTraceEventLogging = false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
+std::string LOOLWSD::LogLevelStartup = "trace";
 std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
 std::string LOOLWSD::UserInterface = "default";
@@ -1848,6 +1849,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "logging.file.property[7][@name]", "archive" },
         { "logging.file[@enable]", "false" },
         { "logging.level", "trace" },
+        { "logging.level_startup", "trace" },
         { "logging.lokit_sal_log", "-INFO-WARN" },
         { "logging.docstats", "false" },
         { "logging.userstats", "false" },
@@ -2053,10 +2055,13 @@ void LOOLWSD::innerInitialize(Application& self)
     }
 
     // Log at trace level until we complete the initialization.
-    Log::initialize("wsd", "trace", withColor, logToFile, logProperties);
-    if (LogLevel != "trace")
+    LogLevelStartup = getConfigValue<std::string>(conf, "logging.level_startup", "trace");
+    setenv("LOOL_LOGLEVEL_STARTUP", LogLevelStartup.c_str(), true);
+
+    Log::initialize("wsd", LogLevelStartup, withColor, logToFile, logProperties);
+    if (LogLevel != LogLevelStartup)
     {
-        LOG_INF("Setting log-level to [trace] and delaying setting to configured ["
+        LOG_INF("Setting log-level to [" << LogLevelStartup << "] and delaying setting to ["
                 << LogLevel << "] until after WSD initialization.");
     }
 

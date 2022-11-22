@@ -2583,6 +2583,7 @@ void lokit_main(
     const bool logToFile = std::getenv("LOOL_LOGFILE");
     const char* logFilename = std::getenv("LOOL_LOGFILENAME");
     const char* logLevel = std::getenv("LOOL_LOGLEVEL");
+    const char* logLevelStartup = std::getenv("LOOL_LOGLEVEL_STARTUP");
     const bool logColor = config::getBool("logging.color", true) && isatty(fileno(stderr));
     std::map<std::string, std::string> logProperties;
     if (logToFile && logFilename)
@@ -2593,11 +2594,13 @@ void lokit_main(
     Util::rng::reseed();
 
     const std::string LogLevel = logLevel ? logLevel : "trace";
+    const std::string LogLevelStartup = logLevelStartup ? logLevelStartup : "trace";
     const bool bTraceStartup = (std::getenv("LOOL_TRACE_STARTUP") != nullptr);
-    Log::initialize("kit", bTraceStartup ? "trace" : logLevel, logColor, logToFile, logProperties);
-    if (bTraceStartup && LogLevel != "trace")
+    Log::initialize("kit", bTraceStartup ? LogLevelStartup : logLevel, logColor, logToFile, logProperties);
+    if (bTraceStartup && LogLevel != LogLevelStartup)
     {
-        LOG_INF("Setting log-level to [trace] and delaying setting to configured [" << LogLevel << "] until after Kit initialization.");
+        LOG_INF("Setting log-level to [" << LogLevelStartup << "] and delaying "
+                "setting to [" << LogLevel << "] until after Kit initialization.");
     }
 
     const char* pAnonymizationSalt = std::getenv("LOOL_ANONYMIZATION_SALT");
@@ -2933,7 +2936,7 @@ void lokit_main(
         LOG_INF("New kit client websocket inserted.");
 
 #if !MOBILEAPP
-        if (bTraceStartup && LogLevel != "trace")
+        if (bTraceStartup && LogLevel != LogLevelStartup)
         {
             LOG_INF("Kit initialization complete: setting log-level to [" << LogLevel << "] as configured.");
             Log::logger().setLevel(LogLevel);
