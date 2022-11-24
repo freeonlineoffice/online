@@ -8,5 +8,6 @@
  */
 
 extern int loolwsd_server_socket_fd;
+extern const char *user_name;
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

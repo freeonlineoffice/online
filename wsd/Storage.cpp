@@ -61,6 +61,8 @@
 #include <ios.h>
 #elif defined(__ANDROID__)
 #include "androidapp.hpp"
+#elif defined(GTKAPP)
+#include "gtk.hpp"
 #endif
 
 bool StorageBase::FilesystemEnabled;
