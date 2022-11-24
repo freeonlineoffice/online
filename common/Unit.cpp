@@ -508,6 +508,9 @@ void UnitBase::exitTest(TestResult result, const std::string& reason)
             if (GlobalWSD)
                 GlobalWSD->configure(Poco::Util::Application::instance().config());
             GlobalArray[GlobalIndex]->initialize();
+
+            // Wake-up so the previous test stops.
+            SocketPoll::wakeupWorld();
             return;
         }
     }
