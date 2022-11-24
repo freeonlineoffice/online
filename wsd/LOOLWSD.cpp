@@ -1240,7 +1240,7 @@ public:
                 return;
             }
 
-            //use feature_lock.locked_hosts[@allow] entry from coolwsd.xml if feature_lock.locked_hosts.allow key doesnot exist in json
+            //use feature_lock.locked_hosts[@allow] entry from loolwsd.xml if feature_lock.locked_hosts.allow key doesnot exist in json
             Poco::Dynamic::Var allow = false;
             if (!lockedHost->has("allow"))
             {
