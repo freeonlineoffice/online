@@ -1188,7 +1188,7 @@ public:
     {
         constexpr int PRIO_JSON = -200; // highest priority
         _persistConfig = new AppConfigMap(std::map<std::string, std::string>{});
-        _conf.addWriteable(_persistConfig, PRIO_JSON);
+        conf.addWriteable(_persistConfig, PRIO_JSON);
     }
 
     virtual ~RemoteConfigPoll() { }
@@ -1244,7 +1244,7 @@ public:
             Poco::Dynamic::Var allow = false;
             if (!lockedHost->has("allow"))
             {
-                allow = _conf.getBool("feature_lock.locked_hosts[@allow]");
+                allow = conf.getBool("feature_lock.locked_hosts[@allow]");
             }
             else
             {
