@@ -1079,7 +1079,7 @@ public:
             LOG_ASSERT_MSG(_socket.lock(), "Connect must set the _socket member.");
             LOG_ASSERT_MSG(_socket.lock()->getFD() == socket->getFD(),
                            "Socket FD's mismatch after connect().");
-            LOG_TRC('#' << socket->getFD() << ": Connected");
+            LOG_TRC('#' << socket->getFD() << ": inserting in poller after connecting");
             poll.insertNewSocket(socket);
         }
         else
@@ -1204,7 +1204,7 @@ private:
     {
         if (socket)
         {
-            LOG_TRC('#' << socket->getFD() << " Connected.");
+            LOG_TRC('#' << socket->getFD() << ": Connected");
             _connected = true;
         }
         else
