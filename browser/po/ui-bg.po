@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/"
@@ -908,15 +908,15 @@ msgstr "Показване на лентата за търсене"
 msgid "Borders"
 msgstr "Кантове"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr "Цвят на фона"
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr "Начало на градиента"
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr "Край на градиента"
 
@@ -1839,18 +1839,18 @@ msgstr "Протича свързване..."
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Не е възможно свързване с документа. Моля, опитайте отново."
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Протича свързване..."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr ""
 

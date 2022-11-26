@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2020-12-08 13:30+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Amharic <https://hosted.weblate.org/projects/collabora-online/"
@@ -921,15 +921,15 @@ msgstr "ፍለጋውን መሰረዣ"
 msgid "Borders"
 msgstr "ድንበሮች"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr ""
 
@@ -1857,18 +1857,18 @@ msgstr "በ መገናኘት ላይ..."
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "ውይ! ይህ አሳፋሪ ነው: ከ እርስዎ ሰነድ ጋር መገናኘት አልቻልንም: እባክዎን ትንሽ ቆይተው እንደገና ይሞክሩ"
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "በ መገናኘት ላይ..."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr ""
 

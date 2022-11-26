@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (South Africa) <https://hosted.weblate.org/projects/"
@@ -905,15 +905,15 @@ msgstr "Show the search bar"
 msgid "Borders"
 msgstr "Borders"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr "Background Colour"
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr "Gradient Start"
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr "Gradient End"
 
@@ -1831,7 +1831,7 @@ msgstr "Connecting..."
 msgid "The document is being renamed and will reload shortly"
 msgstr "The document is being renamed and will reload shortly"
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -1839,11 +1839,11 @@ msgstr ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 msgid "Reconnecting..."
 msgstr "Reconnecting..."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr "The server has been disconnected."
 

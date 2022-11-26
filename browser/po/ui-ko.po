@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
@@ -918,15 +918,15 @@ msgstr "검색바를 보기"
 msgid "Borders"
 msgstr "테두리"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr ""
 
@@ -1854,18 +1854,18 @@ msgstr "연결하는 중.."
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "문서에 연결할 수 없습니다. 다시 시도하십시오."
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "연결하는 중.."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr ""
 

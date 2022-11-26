@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2022-04-14 19:15+0000\n"
 "Last-Translator: Pedro Silva <pedro.silva@collabora.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/collabora-online/"
@@ -912,15 +912,15 @@ msgstr "Zobrazit vyhledávací lištu"
 msgid "Borders"
 msgstr "Ohraničení"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr "Barva pozadí"
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr "Začátek přechodu"
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr "Konec přechodu"
 
@@ -1843,18 +1843,18 @@ msgstr "Připojování…"
 msgid "The document is being renamed and will reload shortly"
 msgstr "Dokument se právě přejmenovává a brzy se znovu načte"
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 "Toto je nepříjemné, nepodařilo se připojit k dokumentu. Zkuste to znovu."
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 msgid "Reconnecting..."
 msgstr "Opětovné připojování…"
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr "Server byl odpojen."
 

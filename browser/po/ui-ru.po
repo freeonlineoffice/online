@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 20:24+0100\n"
+"POT-Creation-Date: 2022-11-26 22:15+0100\n"
 "PO-Revision-Date: 2022-05-15 11:51+0000\n"
 "Last-Translator: Mikhail Pershin <mikhail@frcdr.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/collabora-online/"
@@ -913,15 +913,15 @@ msgstr "Показать панель поиска"
 msgid "Borders"
 msgstr "Обрамления"
 
-#: src/control/Control.MobileWizardBuilder.js:505
+#: src/control/Control.MobileWizardBuilder.js:555
 msgid "Background Color"
 msgstr "Фоновый цвет"
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:557
 msgid "Gradient Start"
 msgstr "Начало градиента"
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:559
 msgid "Gradient End"
 msgstr "Конец градиента"
 
@@ -1844,17 +1844,17 @@ msgstr "Соединение..."
 msgid "The document is being renamed and will reload shortly"
 msgstr "Документ переименовывается и вскоре перезагрузится"
 
-#: src/core/Socket.js:1539
+#: src/core/Socket.js:1540
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Не удалось подключиться к документу. Попробуйте снова."
 
-#: src/core/Socket.js:1556
+#: src/core/Socket.js:1557
 msgid "Reconnecting..."
 msgstr "Переподключение..."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1567
 msgid "The server has been disconnected."
 msgstr "Сервер был отключен."
 
