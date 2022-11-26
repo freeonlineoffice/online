@@ -46,6 +46,14 @@ private:
     unsigned char _lastFlags; //< The flags in the last frame.
     const bool _isClient;
 
+    // Last member.
+#ifdef ENABLE_DEBUG
+    /// The UnitBase instance. We capture it here since
+    /// this is our instance, but the test framework
+    /// has a single global instance via UnitWSD::get().
+    UnitBase& _unit;
+#endif
+
 protected:
     struct WSFrameMask
     {
@@ -77,6 +85,9 @@ public:
         _shuttingDown(false)
         , _lastFlags(0)
         , _isClient(isClient)
+#ifdef ENABLE_DEBUG
+        , _unit(UnitBase::get())
+#endif
     {
     }
 
@@ -646,8 +657,7 @@ public:
         if (!Util::isFuzzing())
         {
             int unitReturn = -1;
-            static auto& unit = UnitBase::get();
-            if (unit.filterSendWebSocketMessage(data, len, code, flush, unitReturn))
+            if (_unit.filterSendWebSocketMessage(data, len, code, flush, unitReturn))
                 return unitReturn;
         }
 
