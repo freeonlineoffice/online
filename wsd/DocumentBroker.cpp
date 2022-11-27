@@ -1535,7 +1535,10 @@ void DocumentBroker::checkAndUploadToStorage(const std::shared_ptr<ClientSession
                     LOG_DBG("Renaming in storage as there is no new version to upload first");
                     std::string uploadAsPath;
                     constexpr bool isRename = true;
-                    uploadAsToStorage(it->second, uploadAsPath, _renameFilename, isRename, /*isExport*/false);
+                    constexpr bool isExport = false;
+                    constexpr bool force = false;
+                    uploadToStorageInternal(it->second, uploadAsPath, _renameFilename, isRename,
+                                            isExport, force);
                 }
 
                 return;
@@ -1598,8 +1601,9 @@ void DocumentBroker::uploadToStorage(const std::shared_ptr<ClientSession>& sessi
     if (force || _storageManager.lastUploadSuccessful() || _storageManager.canUploadNow())
     {
         constexpr bool isRename = false;
+        constexpr bool isExport = false;
         uploadToStorageInternal(session, /*saveAsPath*/ std::string(),
-                                /*saveAsFilename*/ std::string(), isRename, /*isExport*/false, force);
+                                /*saveAsFilename*/ std::string(), isRename, isExport, force);
     }
     else
     {
@@ -1742,9 +1746,9 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
                 const std::string renameSessionId = _renameSessionId;
                 endRenameFileCommand();
 
-                auto pair = _sessions.find(renameSessionId);
-                if (pair != _sessions.end() && pair->second)
-                    pair->second->sendTextFrameAndLogError("error: cmd=renamefile kind=failed");
+                auto it = _sessions.find(renameSessionId);
+                if (it != _sessions.end() && it->second)
+                    it->second->sendTextFrameAndLogError("error: cmd=renamefile kind=failed");
             }
             break;
 
@@ -1849,10 +1853,13 @@ void DocumentBroker::handleUploadToStorageResponse(const StorageBase::UploadResu
                     }
                     else
                     {
-                        LOG_DBG("Renaming in storage as there is no new version to upload first.");
+                        LOG_DBG("Renaming in storage as we just finished pending upload");
                         std::string uploadAsPath;
                         constexpr bool isRename = true;
-                        uploadAsToStorage(it->second, uploadAsPath, _renameFilename, isRename, /*isExport*/false);
+                        constexpr bool isExport = false;
+                        constexpr bool force = false;
+                        uploadToStorageInternal(it->second, uploadAsPath, _renameFilename, isRename,
+                                                isExport, force);
                     }
                 }
                 break;
