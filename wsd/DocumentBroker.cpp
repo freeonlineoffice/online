@@ -1234,7 +1234,7 @@ std::string DocumentBroker::handleRenameFileCommand(std::string sessionId,
 
 void DocumentBroker::startRenameFileCommand()
 {
-    LOG_TRC("Starting renamefile command execution.");
+    LOG_DBG("Starting renamefile command execution");
 
     if (_renameSessionId.empty() || _renameFilename.empty())
     {
@@ -1270,7 +1270,7 @@ void DocumentBroker::startRenameFileCommand()
 
 void DocumentBroker::endRenameFileCommand()
 {
-    LOG_TRC("Ending renamefile command execution.");
+    LOG_DBG("Ending renamefile command execution");
 
     _renameSessionId.clear();
     _renameFilename.clear();
