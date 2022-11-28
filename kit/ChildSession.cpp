@@ -3125,7 +3125,7 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
     case LOK_CALLBACK_FONTS_MISSING:
 #if !MOBILEAPP
         {
-            // This environment variable is always set in COOLWSD::innerInitialize().
+            // This environment variable is always set in LOOLWSD::innerInitialize().
             static std::string fontsMissingHandling = std::string(std::getenv("FONTS_MISSING_HANDLING"));
             if (fontsMissingHandling == "report" || fontsMissingHandling == "both")
                 sendTextFrame("fontsmissing: " + payload);

@@ -668,9 +668,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                 if (attr.size() == 2)
                 {
                     if (attr[0] == "dontTerminateEdit")
-                        COOLProtocol::stringToInteger(attr[1], dontTerminateEdit);
+                        LOOLProtocol::stringToInteger(attr[1], dontTerminateEdit);
                     else if (attr[0] == "dontSaveIfUnmodified")
-                        COOLProtocol::stringToInteger(attr[1], dontSaveIfUnmodified);
+                        LOOLProtocol::stringToInteger(attr[1], dontSaveIfUnmodified);
                     else if (attr[0] == "extendedData")
                     {
                         std::string decoded;
