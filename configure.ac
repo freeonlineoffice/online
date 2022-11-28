@@ -1098,10 +1098,8 @@ AS_IF([test `uname -s` != Darwin],
                       [AC_MSG_ERROR([dlopen not found])])])
 
 AS_IF([test "$ENABLE_IOSAPP" != "true" -a "$ENABLE_ANDROIDAPP" != "true"],
-      [AC_SEARCH_LIBS([png_create_write_struct],
-                      [png],
-                      [],
-                      [AC_MSG_ERROR([libpng not available?])])
+      [PKG_CHECK_MODULES([PNG], [libpng])
+
 dnl    deflated HTTP / web-page serving
        PKG_CHECK_MODULES([ZLIB], [zlib])
 dnl    tile compression
@@ -1198,6 +1196,7 @@ AS_IF([test "$ENABLE_IOSAPP" != "true" -a "$ENABLE_ANDROIDAPP" != "true"],
            AC_DEFINE([DISABLE_SECCOMP],1,[Whether to disable SECCOMP])
        fi
 
+       PKG_CHECK_MODULES([OPENSSL], [openssl])
        AC_MSG_CHECKING([Whether OpenSSL has PKCS5_PBKDF2_HMAC()])
        AC_COMPILE_IFELSE([AC_LANG_SOURCE([
        #include <openssl/opensslv.h>
