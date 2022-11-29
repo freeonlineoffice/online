@@ -1255,7 +1255,7 @@ function assertFocus(selectorType, selector) {
 		.should('be.eq', selector);
 }
 
-function getCoolFrameWindow() {
+function getLoolFrameWindow() {
 	return cy.get('#loolframe')
 		.its('0.contentWindow')
 		.should('exist');
@@ -1304,5 +1304,5 @@ module.exports.overlayItemHasDifferentBoundsThan = overlayItemHasDifferentBounds
 module.exports.typeIntoInputField = typeIntoInputField;
 module.exports.getVisibleBounds = getVisibleBounds;
 module.exports.assertFocus = assertFocus;
-module.exports.getCoolFrameWindow = getCoolFrameWindow;
+module.exports.getLoolFrameWindow = getLoolFrameWindow;
 module.exports.loadTestDocNoIntegration = loadTestDocNoIntegration;

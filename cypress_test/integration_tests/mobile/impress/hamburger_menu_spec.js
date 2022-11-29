@@ -60,14 +60,14 @@ describe('Trigger hamburger menu options.', function() {
 		before('hamburger_menu.odp');
 
 		// A new window should be opened with the PDF.
-		helper.getCoolFrameWindow()
+		helper.getLoolFrameWindow()
 			.then(function(win) {
 				cy.stub(win, 'open');
 			});
 
 		mobileHelper.selectHamburgerMenuItem(['File', 'Print']);
 
-		helper.getCoolFrameWindow()
+		helper.getLoolFrameWindow()
 			.then(function(win) {
 				cy.wrap(win).its('open').should('be.called');
 			});

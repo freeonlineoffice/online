@@ -69,7 +69,7 @@ describe('Top toolbar tests.', function() {
 
 	it('Print', function() {
 		// A new window should be opened with the PDF.
-		helper.getCoolFrameWindow()
+		helper.getLoolFrameWindow()
 			.then(function(win) {
 				cy.stub(win, 'open');
 			});
@@ -77,7 +77,7 @@ describe('Top toolbar tests.', function() {
 		cy.get('#tb_editbar_item_print')
 		    .click();
 
-		helper.getCoolFrameWindow()
+		helper.getLoolFrameWindow()
 			.then(function(win) {
 				cy.wrap(win).its('open').should('be.called');
 			});
