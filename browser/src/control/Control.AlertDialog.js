@@ -55,8 +55,8 @@ L.Control.AlertDialog = L.Control.extend({
 
 			this._map.uiManager.showInfoModal('openlink', _('Open link'), messageText, url,
 				_('Open link'), function() {
-					if ('processCoolUrl' in window) {
-						url = window.processCoolUrl({ url: url, type: 'doc' });
+					if ('processLoolUrl' in window) {
+						url = window.processLoolUrl({ url: url, type: 'doc' });
 					}
 
 					window.open(url, '_blank');
