@@ -237,8 +237,8 @@ L.Clipboard = L.Class.extend({
 				}
 			}, false);
 
-			if ('processCoolUrl' in window) {
-				url = window.processCoolUrl({ url: url, type: 'clipboard' });
+			if ('processLoolUrl' in window) {
+				url = window.processLoolUrl({ url: url, type: 'clipboard' });
 			}
 
 			request.open(type, url, true /* isAsync */);
