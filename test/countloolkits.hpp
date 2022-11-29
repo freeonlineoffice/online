@@ -23,12 +23,12 @@
 #include "test.hpp"
 #include "helpers.hpp"
 
-static int countCoolKitProcesses(const int expected,
+static int countLoolKitProcesses(const int expected,
                                  std::chrono::milliseconds timeoutMs
                                  = std::chrono::milliseconds(COMMAND_TIMEOUT_MS * 8))
 {
-    const auto testname = "countCoolKitProcesses ";
-    TST_LOG_BEGIN("Waiting until loolkit processes are exactly " << expected << ". Coolkits: ");
+    const auto testname = "countLoolKitProcesses ";
+    TST_LOG_BEGIN("Waiting until loolkit processes are exactly " << expected << ". Loolkits: ");
 
     // This does not need to depend on any constant from Common.hpp.
     // The shorter the better (the quicker the test runs).
@@ -36,7 +36,7 @@ static int countCoolKitProcesses(const int expected,
 
     // This has to cause waiting for at least COMMAND_TIMEOUT_MS. Tolerate more for safety.
     const std::size_t repeat = (timeoutMs.count() / sleepMs);
-    int count = getCoolKitProcessCount();
+    int count = getLoolKitProcessCount();
     for (std::size_t i = 0; i < repeat; ++i)
     {
         TST_LOG_APPEND(count << ' ');
@@ -48,7 +48,7 @@ static int countCoolKitProcesses(const int expected,
         // Give polls in the lool processes time to time out etc
         std::this_thread::sleep_for(std::chrono::milliseconds(sleepMs));
 
-        const int newCount = getCoolKitProcessCount();
+        const int newCount = getLoolKitProcessCount();
         if (count != newCount)
         {
             // Allow more time until the number settles.
@@ -85,28 +85,28 @@ static int countCoolKitProcesses(const int expected,
 // and reuse it. As it stands now, it is per
 // translation unit, which isn't desirable if
 // (in the non-ideal event that) it's not 1,
-// it will cause testNoExtraCoolKitsLeft to
+// it will cause testNoExtraLoolKitsLeft to
 // wait unnecessarily and fail.
-static int InitialCoolKitCount = 1;
+static int InitialLoolKitCount = 1;
 static std::chrono::steady_clock::time_point TestStartTime;
 
-static void testCountHowManyCoolkits()
+static void testCountHowManyLoolkits()
 {
-    const char testname[] = "countHowManyCoolkits ";
+    const char testname[] = "countHowManyLoolkits ";
     TestStartTime = std::chrono::steady_clock::now();
 
-    InitialCoolKitCount = countCoolKitProcesses(InitialCoolKitCount);
-    TST_LOG("Initial loolkit count is " << InitialCoolKitCount);
-    LOK_ASSERT(InitialCoolKitCount > 0);
+    InitialLoolKitCount = countLoolKitProcesses(InitialLoolKitCount);
+    TST_LOG("Initial loolkit count is " << InitialLoolKitCount);
+    LOK_ASSERT(InitialLoolKitCount > 0);
 
     TestStartTime = std::chrono::steady_clock::now();
 }
 
-static void testNoExtraCoolKitsLeft()
+static void testNoExtraLoolKitsLeft()
 {
-    const char testname[] = "noExtraCoolKitsLeft ";
-    const int countNow = countCoolKitProcesses(InitialCoolKitCount);
-    LOK_ASSERT_EQUAL(InitialCoolKitCount, countNow);
+    const char testname[] = "noExtraLoolKitsLeft ";
+    const int countNow = countLoolKitProcesses(InitialLoolKitCount);
+    LOK_ASSERT_EQUAL(InitialLoolKitCount, countNow);
 
     const auto duration = (std::chrono::steady_clock::now() - TestStartTime);
     const auto durationMs = std::chrono::duration_cast<std::chrono::milliseconds>(duration);

@@ -91,7 +91,7 @@ public:
     void setUp()
     {
         resetTestStartTime();
-        testCountHowManyCoolkits();
+        testCountHowManyLoolkits();
         resetTestStartTime();
         _socketPoll->startThread();
     }
@@ -100,7 +100,7 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        testNoExtraCoolKitsLeft();
+        testNoExtraLoolKitsLeft();
         resetTestStartTime();
     }
 };
@@ -113,7 +113,7 @@ void HTTPCrashTest::testBarren()
     try
     {
         killLoKitProcesses();
-        countCoolKitProcesses(0);
+        countLoolKitProcesses(0);
 
         TST_LOG("Loading after kill.");
 
@@ -150,7 +150,7 @@ void HTTPCrashTest::testCrashKit()
         TST_LOG("Killing loolkit instances.");
 
         killLoKitProcesses();
-        countCoolKitProcesses(0, std::chrono::seconds(1));
+        countLoolKitProcesses(0, std::chrono::seconds(1));
 
         TST_LOG("Reading the error code from the socket.");
         //FIXME: implement in WebSocketSession.
@@ -185,7 +185,7 @@ void HTTPCrashTest::testRecoverAfterKitCrash()
         TST_LOG("Killing loolkit instances.");
 
         killLoKitProcesses();
-        countCoolKitProcesses(0, std::chrono::seconds(1));
+        countLoolKitProcesses(0, std::chrono::seconds(1));
 
         // We expect the client connection to close.
         TST_LOG("Reconnect after kill.");
@@ -238,7 +238,7 @@ void HTTPCrashTest::testCrashForkit()
 
         TST_LOG("Killing loolkit.");
         killLoKitProcesses();
-        countCoolKitProcesses(0);
+        countLoolKitProcesses(0);
         TST_LOG("Communicating after kill.");
         socket = loadDocAndGetSession(_socketPoll, "empty.odt", _uri, testname);
         socket->asyncShutdown();
@@ -267,7 +267,7 @@ static void killPids(const std::set<pid_t> &pids, const std::string& testname)
 void HTTPCrashTest::killLoKitProcesses()
 {
     killPids(getKitPids(), "killLoKitProcesses ");
-    InitialCoolKitCount = 1; // non-intuitive but it will arrive soon.
+    InitialLoolKitCount = 1; // non-intuitive but it will arrive soon.
 }
 
 void HTTPCrashTest::killForkitProcess()

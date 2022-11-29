@@ -39,8 +39,8 @@ class HTTPServerTest : public CPPUNIT_NS::TestFixture
 
     CPPUNIT_TEST_SUITE(HTTPServerTest);
 
-    CPPUNIT_TEST(testCoolGet);
-    CPPUNIT_TEST(testCoolPost);
+    CPPUNIT_TEST(testLoolGet);
+    CPPUNIT_TEST(testLoolPost);
     CPPUNIT_TEST(testScriptsAndLinksGet);
     CPPUNIT_TEST(testScriptsAndLinksPost);
     CPPUNIT_TEST(testConvertTo);
@@ -52,8 +52,8 @@ class HTTPServerTest : public CPPUNIT_NS::TestFixture
 
     CPPUNIT_TEST_SUITE_END();
 
-    void testCoolGet();
-    void testCoolPost();
+    void testLoolGet();
+    void testLoolPost();
     void testScriptsAndLinksGet();
     void testScriptsAndLinksPost();
     void testConvertTo();
@@ -94,14 +94,14 @@ public:
     void setUp()
     {
         helpers::resetTestStartTime();
-        testCountHowManyCoolkits();
+        testCountHowManyLoolkits();
         helpers::resetTestStartTime();
     }
 
     void tearDown()
     {
         helpers::resetTestStartTime();
-        testNoExtraCoolKitsLeft();
+        testNoExtraLoolKitsLeft();
         helpers::resetTestStartTime();
     }
 
@@ -120,7 +120,7 @@ public:
     }
 };
 
-void HTTPServerTest::testCoolGet()
+void HTTPServerTest::testLoolGet()
 {
     constexpr auto testname = __func__;
 
@@ -142,7 +142,7 @@ void HTTPServerTest::testCoolGet()
     LOK_ASSERT(html.find(std::string(LOOLWSD_VERSION_HASH)) != std::string::npos);
 }
 
-void HTTPServerTest::testCoolPost()
+void HTTPServerTest::testLoolPost()
 {
     constexpr auto testname = __func__;
 

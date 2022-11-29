@@ -175,7 +175,7 @@ public:
     void setUp()
     {
         resetTestStartTime();
-        testCountHowManyCoolkits();
+        testCountHowManyLoolkits();
         resetTestStartTime();
         _socketPoll->startThread();
     }
@@ -184,7 +184,7 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        testNoExtraCoolKitsLeft();
+        testNoExtraLoolKitsLeft();
         resetTestStartTime();
     }
 };
@@ -354,7 +354,7 @@ void TileCacheTests::testCancelTiles()
         TST_LOG("cancelTiles try #" << i);
 
         // Wait to clear previous sessions.
-        countCoolKitProcesses(InitialCoolKitCount);
+        countLoolKitProcesses(InitialLoolKitCount);
 
         std::shared_ptr<http::WebSocketSession> socket
             = loadDocAndGetSession(_socketPoll, "setclientpart.ods", _uri, testname);
@@ -399,7 +399,7 @@ void TileCacheTests::testCancelTilesMultiView()
         TST_LOG("cancelTilesMultiView try #" << j);
 
         // Wait to clear previous sessions.
-        countCoolKitProcesses(InitialCoolKitCount);
+        countLoolKitProcesses(InitialLoolKitCount);
 
         // Request a huge tile, and cancel immediately.
         std::shared_ptr<http::WebSocketSession> socket1
@@ -481,7 +481,7 @@ void TileCacheTests::testDisconnectMultiView()
         TST_LOG("disconnectMultiView try #" << j);
 
         // Wait to clear previous sessions.
-        countCoolKitProcesses(InitialCoolKitCount);
+        countLoolKitProcesses(InitialLoolKitCount);
 
         // Request a huge tile, and cancel immediately.
         std::shared_ptr<http::WebSocketSession> socket1

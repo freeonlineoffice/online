@@ -19,7 +19,7 @@ class RequestDetailsTests : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST_SUITE(RequestDetailsTests);
 
     CPPUNIT_TEST(testDownloadURI);
-    CPPUNIT_TEST(testCoolURI);
+    CPPUNIT_TEST(testLoolURI);
     CPPUNIT_TEST(testLocal);
     CPPUNIT_TEST(testLocalHexified);
     CPPUNIT_TEST(testRequestDetails);
@@ -28,7 +28,7 @@ class RequestDetailsTests : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST_SUITE_END();
 
     void testDownloadURI();
-    void testCoolURI();
+    void testLoolURI();
     void testLocal();
     void testLocalHexified();
     void testRequestDetails();
@@ -84,7 +84,7 @@ void RequestDetailsTests::testDownloadURI()
     }
 }
 
-void RequestDetailsTests::testCoolURI()
+void RequestDetailsTests::testLoolURI()
 {
     constexpr auto testname = __func__;
 

@@ -221,10 +221,10 @@ namespace Util
     }
 }
 
-class CoolConfig final: public Poco::Util::XMLConfiguration
+class LoolConfig final: public Poco::Util::XMLConfiguration
 {
 public:
-    CoolConfig()
+    LoolConfig()
         {}
 };
 
@@ -240,7 +240,7 @@ int main (int argc, char **argv)
     Log::initialize("WebSocketDump", "trace", true, false,
                     std::map<std::string, std::string>());
 
-    CoolConfig config;
+    LoolConfig config;
     config.load("loolwsd.xml");
 
     // read the port & ssl support

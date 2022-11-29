@@ -34,6 +34,6 @@ std::set<pid_t> getForKitPids();
 int getClientPort();
 
 /// How many live loolkit processes do we have ?
-int getCoolKitProcessCount();
+int getLoolKitProcessCount();
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

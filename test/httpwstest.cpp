@@ -86,7 +86,7 @@ public:
     void setUp()
     {
         resetTestStartTime();
-        testCountHowManyCoolkits();
+        testCountHowManyLoolkits();
         resetTestStartTime();
         _socketPoll->startThread();
     }
@@ -95,7 +95,7 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        testNoExtraCoolKitsLeft();
+        testNoExtraLoolKitsLeft();
         resetTestStartTime();
     }
 };
@@ -155,7 +155,7 @@ void HTTPWSTest::testSaveOnDisconnect()
         // the socket is closed, when the doc is not even modified yet.
         getResponseMessage(socket1, "statechanged", testname);
 
-        kitcount = getCoolKitProcessCount();
+        kitcount = getLoolKitProcessCount();
 
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
@@ -174,7 +174,7 @@ void HTTPWSTest::testSaveOnDisconnect()
     }
 
     // Allow time to save and destroy before we connect again.
-    testNoExtraCoolKitsLeft();
+    testNoExtraLoolKitsLeft();
     TST_LOG("Loading again.");
     try
     {
@@ -183,7 +183,7 @@ void HTTPWSTest::testSaveOnDisconnect()
             = loadDocAndGetSession(_socketPoll, _uri, documentURL, testname + "3 ");
 
         // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countCoolKitProcesses(kitcount));
+        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
         // Check if the document contains the pasted text.
         const std::string selection = getAllText(socket, testname, text);
@@ -234,7 +234,7 @@ void HTTPWSTest::testSavePassiveOnDisconnect()
         // the socket is closed, when the doc is not even modified yet.
         getResponseMessage(socket1, "statechanged", testname);
 
-        kitcount = getCoolKitProcessCount();
+        kitcount = getLoolKitProcessCount();
 
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
@@ -252,7 +252,7 @@ void HTTPWSTest::testSavePassiveOnDisconnect()
     }
 
     // Allow time to save and destroy before we connect again.
-    testNoExtraCoolKitsLeft();
+    testNoExtraLoolKitsLeft();
     TST_LOG("Loading again.");
     try
     {
@@ -262,7 +262,7 @@ void HTTPWSTest::testSavePassiveOnDisconnect()
         getResponseMessage(socket, "textselection", testname);
 
         // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countCoolKitProcesses(kitcount));
+        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
         // Check if the document contains the pasted text.
         const std::string selection = getAllText(socket, testname);
@@ -298,7 +298,7 @@ void HTTPWSTest::testReloadWhileDisconnecting()
         // the socket is closed, when the doc is not even modified yet.
         getResponseMessage(socket, "statechanged", testname);
 
-        const int kitcount = getCoolKitProcessCount();
+        const int kitcount = getLoolKitProcessCount();
 
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
@@ -311,7 +311,7 @@ void HTTPWSTest::testReloadWhileDisconnecting()
         socket = loadDocAndGetSession(_socketPoll, _uri, documentURL, testname);
 
         // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countCoolKitProcesses(kitcount));
+        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
         // Check if the document contains the pasted text.
         const std::string expected = "aaa bbb ccc";
