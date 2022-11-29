@@ -97,8 +97,8 @@ L.Map.FileInserter = L.Handler.extend({
 		var sectionContainer = app.sectionContainer;
 		var url = this.getWopiUrl(map);
 
-		if ('processCoolUrl' in window) {
-			url = window.processCoolUrl({ url: url, type: 'insertfile' });
+		if ('processLoolUrl' in window) {
+			url = window.processLoolUrl({ url: url, type: 'insertfile' });
 		}
 
 		if (!(file.filename && file.url) && (file.name === '' || file.size === 0)) {
