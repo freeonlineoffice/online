@@ -1978,15 +1978,15 @@ L.CanvasTileLayer = L.Layer.extend({
 					this._map.options.doc, '/download/' + command.downloadid,
 					'attachment=0');
 
-				if ('processCoolUrl' in window) {
-					url = window.processCoolUrl({ url: url, type: 'print' });
+				if ('processLoolUrl' in window) {
+					url = window.processLoolUrl({ url: url, type: 'print' });
 				}
 
 				window.open(url, '_blank');
 			}
 			else {
-				if ('processCoolUrl' in window) {
-					url = window.processCoolUrl({ url: url, type: 'print' });
+				if ('processLoolUrl' in window) {
+					url = window.processLoolUrl({ url: url, type: 'print' });
 				}
 
 				this._map.fire('filedownloadready', {url: url});
@@ -1996,8 +1996,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._map.fire('slidedownloadready', {url: url});
 		}
 		else if (command.id === 'export') {
-			if ('processCoolUrl' in window) {
-				url = window.processCoolUrl({ url: url, type: 'export' });
+			if ('processLoolUrl' in window) {
+				url = window.processLoolUrl({ url: url, type: 'export' });
 			}
 
 			// Don't do a real download during testing
