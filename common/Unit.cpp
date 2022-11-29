@@ -15,6 +15,7 @@
 #include <cassert>
 #include <dlfcn.h>
 #include <fstream>
+#include <mutex>
 #include <sstream>
 #include <sysexits.h>
 #include <thread>
@@ -462,6 +463,10 @@ UnitKit& UnitKit::get()
 
 void UnitBase::exitTest(TestResult result, const std::string& reason)
 {
+    // We could be called from either a SocketPoll (websrv_poll)
+    // or from invokeTest (coolwsd main).
+    std::lock_guard<std::mutex> guard(_lock);
+
     if (isFinished())
     {
         if (result != _result)
