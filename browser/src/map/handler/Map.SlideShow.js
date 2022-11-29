@@ -78,14 +78,14 @@ L.Map.SlideShow = L.Handler.extend({
 	},
 
 	_onSlideDownloadReady: function (e) {
-		if ('processCoolUrl' in window) {
-			e.url = window.processCoolUrl({ url: e.url, type: 'slideshow' });
+		if ('processLoolUrl' in window) {
+			e.url = window.processLoolUrl({ url: e.url, type: 'slideshow' });
 		}
 
 		this._slideURL = e.url;
 		window.app.console.debug('slide file url : ', this._slideURL);
 
-		if ('processCoolUrl' in window) {
+		if ('processLoolUrl' in window) {
 			this._processSlideshowLinks();
 		}
 
@@ -118,7 +118,7 @@ L.Map.SlideShow = L.Handler.extend({
 				});
 
 			var setAttributeNs = function(el, link) {
-				link = window.processCoolUrl({ url: link, type: 'slide' });
+				link = window.processLoolUrl({ url: link, type: 'slide' });
 
 				el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', link);
 				el.setAttribute('target', '_blank');
