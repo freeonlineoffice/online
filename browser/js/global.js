@@ -45,7 +45,7 @@ window.app = {
 					continue;
 				}
 				(function(method) {
-					window.app.console[method] = function logWithCool() {
+					window.app.console[method] = function logWithLool() {
 						var args = Array.prototype.slice.call(arguments);
 
 						return window.console[method].apply(console, args);
@@ -676,8 +676,8 @@ window.app = {
 	}
 
 	global.createWebSocket = function(uri) {
-		if ('processCoolUrl' in window) {
-			uri = window.processCoolUrl({ url: uri, type: 'ws' });
+		if ('processLoolUrl' in window) {
+			uri = window.processLoolUrl({ url: uri, type: 'ws' });
 		}
 
 		if (global.socketProxy) {
