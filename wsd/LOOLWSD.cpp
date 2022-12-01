@@ -1977,6 +1977,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "deepl.api_url", ""},
         { "deepl.auth_key", ""},
         { "deepl.enabled", "false"},
+        { "zotero.enable", "true"},
     };
 
     // Set default values, in case they are missing from the config file.
