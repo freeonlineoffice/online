@@ -203,15 +203,15 @@ static void updateTemplates(NSData *data, NSURLResponse *response)
     NSString *loolwsdVersionHashFile = [cacheDirectory stringByAppendingPathComponent:@"loolwsd_version_hash"];
 
     NSData *oldCoreVersionHash = [NSData dataWithContentsOfFile:coreVersionHashFile];
-    NSData *oldCoolwsdVersionHash = [NSData dataWithContentsOfFile:loolwsdVersionHashFile];
+    NSData *oldLoolwsdVersionHash = [NSData dataWithContentsOfFile:loolwsdVersionHashFile];
 
     NSData *coreVersionHash = [NSData dataWithBytes:CORE_VERSION_HASH length:strlen(CORE_VERSION_HASH)];
     NSData *loolwsdVersionHash = [NSData dataWithBytes:LOOLWSD_VERSION_HASH length:strlen(LOOLWSD_VERSION_HASH)];
 
     if (oldCoreVersionHash == nil
         || ![oldCoreVersionHash isEqualToData:coreVersionHash]
-        || oldCoolwsdVersionHash == nil
-        || ![oldCoolwsdVersionHash isEqualToData:loolwsdVersionHash]) {
+        || oldLoolwsdVersionHash == nil
+        || ![oldLoolwsdVersionHash isEqualToData:loolwsdVersionHash]) {
 
         [[NSFileManager defaultManager] removeItemAtPath:cacheDirectory error:nil];
 
