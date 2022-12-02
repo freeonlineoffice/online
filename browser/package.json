@@ -4,8 +4,8 @@
   "description": "LibreOffice Online front-end",
   "devDependencies": {
     "@braintree/sanitize-url": "6.0.2",
-    "@types/mocha": "10.0.0",
-    "@types/node": "18.11.9",
+    "@types/mocha": "10.0.1",
+    "@types/node": "18.11.10",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "autolinker": "3.16.0",
