@@ -17,8 +17,6 @@
 #include <sstream>
 #include <string>
 
-#include <Poco/URI.h>
-
 #include <Protocol.hpp>
 #include <net/WebSocketHandler.hpp>
 #include <Log.hpp>
@@ -508,10 +506,10 @@ void AdminModel::modificationAlert(const std::string& docKey, pid_t pid, bool va
 void AdminModel::addDocument(const std::string& docKey, pid_t pid,
                              const std::string& filename, const std::string& sessionId,
                              const std::string& userName, const std::string& userId,
-                             const int smapsFD, const std::string& wopiHost)
+                             const int smapsFD, const Poco::URI& wopiSrc)
 {
     assertCorrectThread();
-    const auto ret = _documents.emplace(docKey, std::unique_ptr<Document>(new Document(docKey, pid, filename, wopiHost)));
+    const auto ret = _documents.emplace(docKey, std::unique_ptr<Document>(new Document(docKey, pid, filename, wopiSrc)));
     ret.first->second->setProcSMapsFD(smapsFD);
     ret.first->second->takeSnapshot();
     ret.first->second->addView(sessionId, userName, userId);
@@ -553,6 +551,7 @@ void AdminModel::addDocument(const std::string& docKey, pid_t pid,
         memoryAllocated = std::to_string(_documents.begin()->second->getMemoryDirty());
     }
 
+    const std::string wopiHost = wopiSrc.getHost();
     oss << memoryAllocated << ' ' << wopiHost;
     if (LOOLWSD::getConfigValue<bool>("logging.docstats", false))
     {
@@ -590,6 +589,10 @@ void AdminModel::removeDocument(const std::string& docKey, const std::string& se
             << docIt->second->getPid() << ' '
             << sessionId;
         notify(oss.str());
+
+        std::ostringstream ostream;
+        ostream << "routing_rmdoc " << docIt->second->getWopiSrc();
+        notify(ostream.str());
 
         // The idea is to only expire the document and keep the history
         // of documents open and close, to be able to give a detailed summary
