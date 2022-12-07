@@ -225,9 +225,9 @@ public:
             TRANSITION_STATE(_phase, Phase::Done);
 
             // We requested the save.
-            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-COOL-WOPI-IsAutosave"));
+            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
 
-            LOK_ASSERT_EQUAL(std::string("true"), request.get("X-COOL-WOPI-IsModifiedByUser"));
+            LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
 
             // File unknown/User unauthorized.
             return Util::make_unique<http::Response>(http::StatusLine(404));
