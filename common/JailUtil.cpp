@@ -45,7 +45,7 @@ bool bind(const std::string& source, const std::string& target)
     try
     {
         Poco::File(target).createDirectory();
-        const bool res = coolmount("-b", source, target);
+        const bool res = loolmount("-b", source, target);
         if (res)
             LOG_TRC("Bind-mounted [" << source << "] -> [" << target << ']');
         else
@@ -66,7 +66,7 @@ bool remountReadonly(const std::string& source, const std::string& target)
     try
     {
         Poco::File(target).createDirectory();
-        const bool res = coolmount("-r", source, target);
+        const bool res = loolmount("-r", source, target);
         if (res)
             LOG_TRC("Mounted [" << source << "] -> [" << target << "] readonly");
         else
