@@ -77,8 +77,7 @@ ClientSession::ClientSession(
     _tileHeightTwips(0),
     _kitViewId(-1),
     _serverURL(requestDetails),
-    _isTextDocument(false),
-    _lastSentFormFielButtonMessage("")
+    _isTextDocument(false)
 {
     const std::size_t curConnections = ++LOOLWSD::NumConnections;
     LOG_INF("ClientSession ctor [" << getName() << "] for URI: [" << _uriPublic.toString()
