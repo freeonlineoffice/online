@@ -1073,7 +1073,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     std::ostringstream cspOss;
     cspOss << "Content-Security-Policy: default-src 'none'; "
         "frame-src 'self' " << WELCOME_URL << " " << FEEDBACK_URL << " blob: " << documentSigningURL << "; "
-           "connect-src 'self' https://www.zotero.org " << cnxDetails.getWebSocketUrl() << "; "
+           "connect-src 'self' https://www.zotero.org https://api.zotero.org " << cnxDetails.getWebSocketUrl() << "; "
            "script-src 'unsafe-inline' 'self'; "
            "style-src 'self' 'unsafe-inline'; "
            "font-src 'self' data:; "

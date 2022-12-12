@@ -150,7 +150,6 @@ using Poco::Net::PartHandler;
 #include <common/SigUtil.hpp>
 
 #include <ServerSocket.hpp>
-#include <Zotero.hpp>
 
 #if MOBILEAPP
 #ifdef IOS
@@ -4894,7 +4893,7 @@ private:
         capabilities->set("hasProxyPrefix", LOOLWSD::IsProxyPrefixEnabled);
 
         // Set if this instance supports Zotero
-        capabilities->set("hasZoteroSupport", Zotero::ZoteroConfig::isEnabled());
+        capabilities->set("hasZoteroSupport", config::getBool("zotero.enable", true));
 
         std::ostringstream ostrJSON;
         capabilities->stringify(ostrJSON);
