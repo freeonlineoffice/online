@@ -2228,7 +2228,8 @@ L.Control.Menubar = L.Control.extend({
 			item.uno === '.uno:ShowTrackedChanges' ||
 			item.uno === '.uno:ControlCodes' ||
 			item.uno === '.uno:SpellOnline' ||
-			item.uno === '.uno:ShowResolvedAnnotations') {
+			item.uno === '.uno:ShowResolvedAnnotations' ||
+			item.uno === '.uno:FreezePanes') {
 			if (this._map['stateChangeHandler'].getItemValue(item.uno) === 'true') {
 				menuStructure['checked'] = true;
 			}
