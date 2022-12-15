@@ -745,7 +745,7 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
         {
             LOG_DBG("Setting session [" << sessionId << "] as readonly");
             session->setReadOnly(true);
-            if (LOOLWSD::IsViewWithCommentsFileExtension(wopiStorage->getFileExtension()))
+            if (_isViewFileExtension)
             {
                 LOG_DBG("Allow session [" << sessionId
                                           << "] to change comments on document with extension ["
@@ -862,11 +862,12 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
             userId = localfileinfo->getUserId();
             username = localfileinfo->getUsername();
 
-            if (LOOLWSD::IsViewFileExtension(localStorage->getFileExtension()))
+            _isViewFileExtension = LOOLWSD::IsViewFileExtension(localStorage->getFileExtension());
+            if (_isViewFileExtension)
             {
                 LOG_DBG("Setting session [" << sessionId << "] as readonly");
                 session->setReadOnly(true);
-                if (LOOLWSD::IsViewWithCommentsFileExtension(localStorage->getFileExtension()))
+                if (_isViewFileExtension)
                 {
                     LOG_DBG("Allow session [" << sessionId
                                               << "] to change comments on document with extension ["
