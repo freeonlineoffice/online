@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-17 15:29+0100\n"
+"POT-Creation-Date: 2022-12-17 18:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,7 +262,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1802
 #: src/control/Control.PresentationBar.js:110 src/control/Control.Tabs.js:306
 #: src/control/Control.Tabs.js:320 src/control/Toolbar.js:744
-#: src/core/Socket.js:1042
+#: src/core/Socket.js:1042 src/map/handler/Map.Feedback.js:83
 msgid "OK"
 msgstr ""
 
@@ -1534,6 +1534,34 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
+#: src/control/Control.Zotero.js:76
+msgid "Search:"
+msgstr ""
+
+#: src/control/Control.Zotero.js:179 src/control/Control.Zotero.js:249
+msgid "My Library"
+msgstr ""
+
+#: src/control/Control.Zotero.js:180
+msgid "Group Libraries"
+msgstr ""
+
+#: src/control/Control.Zotero.js:250
+msgid "Loading"
+msgstr ""
+
+#: src/control/Control.Zotero.js:259 src/control/Control.Zotero.js:324
+msgid "Your library is empty"
+msgstr ""
+
+#: src/control/Control.Zotero.js:301
+msgid "Citation Style"
+msgstr ""
+
+#: src/control/Control.Zotero.js:304
+msgid "An error occurred while fetching style list"
+msgstr ""
+
 #: src/control/Parts.js:432
 msgid "Show Selected Sheets"
 msgstr ""
@@ -2214,6 +2242,10 @@ msgstr ""
 
 #: src/map/Map.js:1444
 msgid "Please click to resume editing"
+msgstr ""
+
+#: src/map/handler/Map.Feedback.js:82
+msgid "Please send us your feedback"
 msgstr ""
 
 #: src/map/handler/Map.FileInserter.js:105
