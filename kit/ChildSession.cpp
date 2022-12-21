@@ -3146,7 +3146,6 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         }
 #endif
         break;
-/*
     case LOK_CALLBACK_EXPORT_FILE:
     {
         // Register download id -> URL mapping in the DocumentBroker
@@ -3158,7 +3157,6 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         sendTextFrame(message);
         break;
     }
-*/
     default:
         LOG_ERR("Unknown callback event (" << lokCallbackTypeToString(type) << "): " << payload);
     }
