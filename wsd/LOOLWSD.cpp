@@ -3238,7 +3238,7 @@ public:
         // Notify the broker that we're done.
         // Note: since this class is the default WebScoketHandler
         // for all incoming connections, for ForKit we have to
-        // replace it (once we receive 'GET /coolws/forkit') with
+        // replace it (once we receive 'GET /loolws/forkit') with
         // ForKitProcWSHandler (see ForKitProcess) and nothing to disconnect.
         if (_childProcess.lock())
             onDisconnect();
