@@ -1397,7 +1397,7 @@ private:
         const std::string& batchMode = session->getBatchMode();
         const std::string& enableMacrosExecution = session->getEnableMacrosExecution();
         const std::string& macroSecurityLevel = session->getMacroSecurityLevel();
-        std::string spellOnline;
+        const std::string& userTimezone = session->getTimezone();
 
         std::string options;
         if (!lang.empty())
@@ -1415,6 +1415,10 @@ private:
         if (!macroSecurityLevel.empty())
             options += ",MacroSecurityLevel=" + macroSecurityLevel;
 
+        if (!userTimezone.empty())
+            options += ",Timezone=" + userTimezone;
+
+        std::string spellOnline;
         if (!_loKitDocument)
         {
             // This is the first time we are loading the document
@@ -1534,6 +1538,7 @@ private:
                                             session->isReadOnly());
 
         _loKitDocument->setViewLanguage(viewId, lang.c_str());
+        _loKitDocument->setViewTimezone(viewId, userTimezone.c_str());
 
         // viewId's monotonically increase, and CallbackDescriptors are never freed.
         _viewIdToCallbackDescr.emplace(viewId,

@@ -1136,6 +1136,11 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
             oss << " deviceFormFactor=" << getDeviceFormFactor();
         }
 
+        if (!getTimezone().empty())
+        {
+            oss << " timezone=" << getTimezone();
+        }
+
         if (!getSpellOnline().empty())
         {
             oss << " spellOnline=" << getSpellOnline();
