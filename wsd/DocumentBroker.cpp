@@ -648,7 +648,7 @@ DocumentBroker::~DocumentBroker()
 
     if (UnitWSD::isUnitTesting())
     {
-        _unitWsd.onDocBrokerDestroy(_docKey);
+        _unitWsd.DocBrokerDestroy(_docKey);
     }
 }
 
