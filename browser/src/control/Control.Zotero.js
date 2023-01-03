@@ -142,13 +142,9 @@ L.Control.Zotero = L.Control.extend({
 									layoutstyle: 'end'
 								},
 								{
-									type: 'fixedtext',
-									id: 'zoterosearch-label',
-									text: _('Search:')
-								},
-								{
 									type: 'edit',
 									id: 'zoterosearch',
+									placeholder: _('Search'),
 									text: ''
 								}
 							]
