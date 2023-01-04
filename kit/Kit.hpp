@@ -91,10 +91,12 @@ struct UserInfo
     UserInfo(const std::string& userId,
              const std::string& userName,
              const std::string& userExtraInfo,
+             const std::string& userPrivateInfo,
              bool readOnly) :
         _userId(userId),
         _userName(userName),
         _userExtraInfo(userExtraInfo),
+        _userPrivateInfo(userPrivateInfo),
         _readOnly(readOnly)
     {
     }
@@ -114,6 +116,11 @@ struct UserInfo
         return _userExtraInfo;
     }
 
+    const std::string& getUserPrivateInfo() const
+    {
+        return _userPrivateInfo;
+    }
+
     bool isReadOnly() const
     {
         return _readOnly;
@@ -123,6 +130,7 @@ private:
     std::string _userId;
     std::string _userName;
     std::string _userExtraInfo;
+    std::string _userPrivateInfo;
     bool _readOnly;
 };
 
