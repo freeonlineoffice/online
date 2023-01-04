@@ -32,7 +32,7 @@
 
 const char *user_name = "Dummy";
 
-const int SHOW_JS_MAXLEN = 70;
+const int SHOW_JS_MAXLEN = 300;
 
 int loolwsd_server_socket_fd = -1;
 
@@ -89,10 +89,9 @@ static void send2JS(const std::vector<char>& buffer)
                 data.push_back(ubufp[i]);
             }
         }
-        data.push_back(0);
 
         js = "window.TheFakeWebSocket.onmessage({'data': '";
-        js = js + std::string(buffer.data(), buffer.size());
+        js = js + std::string(data.data(), data.size());
         js = js + "'});";
     }
 
