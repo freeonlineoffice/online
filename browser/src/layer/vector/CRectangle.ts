@@ -66,14 +66,14 @@ class CCellCursor extends CPathGroup {
 		for (let idx = 0; idx < this.cursorWeight; ++idx) {
 			const pixels = idx; // device pixels from real cell-border.
 			boundsForBorder.push(new lool.Bounds(
-				cellBounds.min.add(new lool.Point(pixels, pixels)),
-				cellBounds.max.subtract(new lool.Point(pixels, pixels))
+				cellBounds.min.subtract(new lool.Point(pixels, pixels)),
+				cellBounds.max.add(new lool.Point(pixels, pixels))
 			));
 		}
 
 		const boundsForContrastBorder = new lool.Bounds(
-			cellBounds.min.add(new lool.Point(this.cursorWeight, this.cursorWeight)),
-			cellBounds.max.subtract(new lool.Point(this.cursorWeight, this.cursorWeight)));
+			cellBounds.min.add(new lool.Point(1.0, 1.0)),
+			cellBounds.max.subtract(new lool.Point(1.0, 1.0)));
 
 		if (this.borderPaths && this.innerContrastBorder) {
 			console.assert(this.borderPaths.length === this.cursorWeight);
