@@ -23,7 +23,7 @@ libonline_a_SOURCES = \
 	../net/Socket.cpp \
 	../wsd/ClientSession.cpp \
 	../wsd/DocumentBroker.cpp \
-	../wsd/COOLWSD.cpp \
+	../wsd/LOOLWSD.cpp \
 	../wsd/RequestDetails.cpp \
 	../wsd/Storage.cpp \
 	../wsd/TileCache.cpp \
@@ -37,6 +37,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/wsd \
 	-I@LOBUILDDIR@/workdir/UnpackedTarball/libpng \
 	-I@LOBUILDDIR@/workdir/UnpackedTarball/zlib \
-	-DCOOLWSD_CONFIGDIR='"@COOLWSD_CONFIGDIR@"' \
+	-DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
 	-DMOBILEAPP=1
 

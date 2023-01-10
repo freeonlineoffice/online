@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-int coolwsd_server_socket_fd = -1;
+int loolwsd_server_socket_fd = -1;
 const char *user_name = nullptr;
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab cinoptions=b1,g0,N-s cinkeys+=0=break: */
