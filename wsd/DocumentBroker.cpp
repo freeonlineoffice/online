@@ -1461,12 +1461,6 @@ void DocumentBroker::uploadToStorage(const std::shared_ptr<ClientSession>& sessi
     assertCorrectThread();
 
     LOG_TRC("uploadToStorage [" << session->getId() << "]: " << (force ? "" : "not") << " forced");
-    if (force)
-    {
-        // Don't reset the force flag if it was set
-        // (which would imply we failed to upload).
-        _currentStorageAttrs.setForced(force);
-    }
 
     // Upload immediately if forced or had no failures. Otherwise, throttle (on failure).
     if (force || _storageManager.lastUploadSuccessful() || _storageManager.canUploadNow())
@@ -1626,6 +1620,13 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
                 break;
         }
     };
+
+    if (force)
+    {
+        // Don't reset the force flag if it was set
+        // (which would imply we failed to upload).
+        _currentStorageAttrs.setForced(true);
+    }
 
     _storage->uploadLocalFileToStorageAsync(session->getAuthorization(), *_lockCtx, saveAsPath,
                                             saveAsFilename, isRename, _currentStorageAttrs, *_poll,
