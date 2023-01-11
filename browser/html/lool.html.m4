@@ -22,9 +22,9 @@ m4_ifelse(GTKAPP,[true],[m4_define([MOBILEAPP],[true])])
 m4_ifelse(ANDROIDAPP,[true],[m4_define([MOBILEAPP],[true])])
 
 m4_dnl FIXME: This is wrong. We don't want a separate HTML file (produced with M4 conditionals on the
-m4_dnl below EMSCRIPTENAPP) for a "WASM app". What we want is that the same cool.html page adapts on
-m4_dnl demand to instead run locally using WASM, if the connection to the COOL server breaks. (And then
-m4_dnl re-connects to the COOL server when possible.)
+m4_dnl below EMSCRIPTENAPP) for a "WASM app". What we want is that the same lool.html page adapts on
+m4_dnl demand to instead run locally using WASM, if the connection to the LOOL server breaks. (And then
+m4_dnl re-connects to the LOOL server when possible.)
 m4_ifelse(EMSCRIPTENAPP,[true],[m4_define([MOBILEAPP],[true])])
 
 m4_ifelse(MOBILEAPP,[],
@@ -85,7 +85,7 @@ m4_ifelse(ANDROIDAPP,[true],
 )
 m4_ifelse(EMSCRIPTENAPP,[true],
   [   window.ThisIsTheEmscriptenApp = true;
-   window.postMobileMessage = function(msg) { _handle_cool_message(allocateUTF8(msg)); };
+   window.postMobileMessage = function(msg) { _handle_lool_message(allocateUTF8(msg)); };
    window.postMobileError   = function(msg) { _handle_error_message(allocateUTF8(msg)); };
    window.postMobileDebug   = function(msg) { _handle_debug_message(allocateUTF8(msg)); };],
   [   window.ThisIsTheEmscriptenApp = false;]
