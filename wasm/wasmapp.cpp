@@ -19,7 +19,7 @@ static int closeNotificationPipeForForwardingThread[2] = {-1, -1};
 
 static void send2JS(const std::vector<char>& buffer)
 {
-    LOG_TRC_NOFILE("Send to JS: " << COOLProtocol::getAbbreviatedMessage(buffer.data(), buffer.size()));
+    LOG_TRC_NOFILE("Send to JS: " << LOOLProtocol::getAbbreviatedMessage(buffer.data(), buffer.size()));
 
     std::string js;
 
@@ -71,16 +71,16 @@ static void send2JS(const std::vector<char>& buffer)
     emscripten_run_script(js.c_str());
 }
 
-void handle_cool_message(const char *string_value)
+void handle_lool_message(const char *string_value)
 {
     if (strcmp(string_value, "HULLO") == 0)
     {
         // Now we know that the JS has started completely
 
-        // Contact the permanently (during app lifetime) listening COOLWSD server
+        // Contact the permanently (during app lifetime) listening LOOLWSD server
         // "public" socket
-        assert(coolwsd_server_socket_fd != -1);
-        int rc = fakeSocketConnect(fakeClientFd, coolwsd_server_socket_fd);
+        assert(loolwsd_server_socket_fd != -1);
+        int rc = fakeSocketConnect(fakeClientFd, loolwsd_server_socket_fd);
         assert(rc != -1);
 
         // Create a socket pair to notify the below thread when the document has been closed
