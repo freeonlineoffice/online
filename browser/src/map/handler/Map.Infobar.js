@@ -46,7 +46,7 @@ L.Map.Infobar = L.Handler.extend({
 		if (e && e.loolwsd_version) {
 			var latestVersion = e.loolwsd_version.split('.');
 			var currentVersion = app.socket.WSDServer.Version.split('.');
-			var snackbarMessage = _('Your LibreOffice Online server needs updating. Version %0 is available.');
+			var snackbarMessage = _('Your Free Online Office server needs updating. Version %0 is available.');
 			var length = Math.max(latestVersion.length, currentVersion.length);
 			for (var i = 0; i < length; i++) {
 				var v1 = i < latestVersion.length ? parseInt(latestVersion[i]) : 0;

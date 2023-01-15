@@ -419,7 +419,7 @@ L.Map.include({
 		if (window.ThisIsAMobileApp) {
 			productName = window.MobileAppName;
 		} else {
-			productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'LibreOffice Online';
+			productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'Free Online Office';
 		}
 		var w;
 		var iw = window.innerWidth;
@@ -593,7 +593,7 @@ L.Map.include({
 		if (window.ThisIsAMobileApp) {
 			productName = window.MobileAppName;
 		} else {
-			productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'LibreOffice Online';
+			productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'Free Online Office';
 		}
 		var productURL = (typeof brandProductURL !== 'undefined') ? brandProductURL : 'https://libreoffice.org';
 		content.find('#product-name').text(productName);

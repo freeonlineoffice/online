@@ -1,6 +1,6 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * LibreOffice Online toolbar
+ * Free Online Office toolbar
  */
 
 /* global app $ w2ui _ */

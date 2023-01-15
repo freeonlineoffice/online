@@ -292,7 +292,7 @@ L.Control.LokDialog = L.Control.extend({
 		}
 
 		if (e.title && typeof brandProductName !== 'undefined') {
-			e.title = e.title.replace('LibreOffice', brandProductName);
+			e.title = e.title.replace('Free Online Office', brandProductName);
 		}
 
 		if (e.action === 'created') {
