@@ -2823,7 +2823,7 @@ void LOOLWSD::displayHelp()
     HelpFormatter helpFormatter(options());
     helpFormatter.setCommand(commandName());
     helpFormatter.setUsage("OPTIONS");
-    helpFormatter.setHeader("LibreOffice Online WebSocket server.");
+    helpFormatter.setHeader("Free Online Office WebSocket server.");
     helpFormatter.format(std::cout);
 }
 

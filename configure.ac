@@ -44,7 +44,7 @@ AC_SUBST([LOOLWSD_VERSION_MICRO])
 AC_SUBST([LOOLWSD_VERSION_NANO])
 AC_SUBST([LOOLWSD_VERSION])
 
-AC_DEFINE_UNQUOTED([LOOLWSD_VERSION],[["$LOOLWSD_VERSION"]],[LibreOffice Online WebSocket server version])
+AC_DEFINE_UNQUOTED([LOOLWSD_VERSION],[["$LOOLWSD_VERSION"]],[Free Online Office WebSocket server version])
 
 # try to add a git hash for a version if we're developing
 LOOLWSD_VERSION_HASH="$LOOLWSD_VERSION"
@@ -699,7 +699,7 @@ AC_SUBST(ZSTDLIB_X86)
 AC_SUBST(ZSTDLIB_X86_64)
 AC_SUBST([CORE_VERSION_HASH])
 
-AC_DEFINE_UNQUOTED([CORE_VERSION_HASH],[["$CORE_VERSION_HASH"]],[LibreOffice core git hash if present])
+AC_DEFINE_UNQUOTED([CORE_VERSION_HASH],[["$CORE_VERSION_HASH"]],[Free Online Office core git hash if present])
 
 LIBPNG_INCLUDES="$with_libpng_includes"
 LIBPNG_LIBS="$with_libpng_libs"
