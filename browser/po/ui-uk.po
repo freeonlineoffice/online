@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-13 16:48+0100\n"
+"POT-Creation-Date: 2023-01-15 17:06+0100\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
@@ -191,7 +191,7 @@ msgstr "Документи:"
 msgid "Expired:"
 msgstr "Вийшов термін:"
 
-#: admin/admin.strings.js:46 src/control/Control.Zotero.js:149
+#: admin/admin.strings.js:46 src/control/Control.Zotero.js:128
 msgid "Refresh"
 msgstr "Оновити"
 
@@ -266,8 +266,8 @@ msgstr "Ви справді бажаєте закінчити цей сеанс?
 #: src/control/Control.DocumentRepair.js:67
 #: src/control/Control.Menubar.js:1804
 #: src/control/Control.PresentationBar.js:110 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:214
-#: src/control/Control.Zotero.js:252 src/control/Toolbar.js:741
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:253
+#: src/control/Control.Zotero.js:291 src/control/Toolbar.js:741
 #: src/core/Socket.js:1042 src/map/handler/Map.Feedback.js:83
 msgid "OK"
 msgstr "OK"
@@ -277,7 +277,7 @@ msgstr "OK"
 #: src/control/Control.LanguageDialog.js:86
 #: src/control/Control.Menubar.js:1803 src/control/Control.MobileTopBar.js:41
 #: src/control/Control.PresentationBar.js:109 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:209 src/control/Toolbar.js:740
+#: src/control/Control.Zotero.js:248 src/control/Toolbar.js:740
 #: src/core/Socket.js:901 src/core/Socket.js:911 src/core/Socket.js:1041
 #: src/layer/tile/CommentListSection.ts:398
 #: src/layer/tile/CommentSection.ts:125 src/layer/tile/CommentSection.ts:128
@@ -931,7 +931,7 @@ msgstr "Файл CSV (.csv)"
 
 #: src/control/Control.Menubar.js:855 src/control/Control.Menubar.js:911
 #: src/control/Control.Menubar.js:968 src/control/Control.Menubar.js:1015
-#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:158
+#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:137
 msgid "Search"
 msgstr "Пошук"
 
@@ -1149,7 +1149,7 @@ msgstr "Валюта"
 
 #: src/control/Control.NotebookbarCalc.js:524
 #: src/control/Control.NotebookbarWriter.js:1013
-#: src/control/Control.Zotero.js:823
+#: src/control/Control.Zotero.js:891
 msgid "Date"
 msgstr "Дата"
 
@@ -1548,88 +1548,100 @@ msgstr "Лише читання"
 msgid "Current"
 msgstr "Поточний"
 
-#: src/control/Control.Zotero.js:177 src/core/Socket.js:1133
+#: src/control/Control.Zotero.js:163 src/core/Socket.js:1133
 msgid "Loading..."
 msgstr "Завантаження…"
 
-#: src/control/Control.Zotero.js:188
+#: src/control/Control.Zotero.js:181
 msgid "Language:"
 msgstr ""
 
-#: src/control/Control.Zotero.js:321
+#: src/control/Control.Zotero.js:196
+msgid "Store as:"
+msgstr ""
+
+#: src/control/Control.Zotero.js:202
+msgid "Fields"
+msgstr ""
+
+#: src/control/Control.Zotero.js:203
+msgid "Bookmarks"
+msgstr ""
+
+#: src/control/Control.Zotero.js:360
 msgid "My Publications"
 msgstr ""
 
-#: src/control/Control.Zotero.js:327 src/control/Control.Zotero.js:522
+#: src/control/Control.Zotero.js:366 src/control/Control.Zotero.js:561
 msgid "My Library"
 msgstr ""
 
-#: src/control/Control.Zotero.js:328
+#: src/control/Control.Zotero.js:367
 msgid "Group Libraries"
 msgstr ""
 
-#: src/control/Control.Zotero.js:538
+#: src/control/Control.Zotero.js:577
 msgid "Failed to load groups"
 msgstr ""
 
-#: src/control/Control.Zotero.js:556 src/control/Control.Zotero.js:795
+#: src/control/Control.Zotero.js:595 src/control/Control.Zotero.js:863
 msgid "Failed to load collections"
 msgstr ""
 
-#: src/control/Control.Zotero.js:565
+#: src/control/Control.Zotero.js:604
 msgid "Citation Style"
 msgstr ""
 
-#: src/control/Control.Zotero.js:570
+#: src/control/Control.Zotero.js:609
 #, fuzzy
 msgid "Styles"
 msgstr "Стиль"
 
-#: src/control/Control.Zotero.js:570
+#: src/control/Control.Zotero.js:609
 msgid "An error occurred while fetching style list"
 msgstr ""
 
-#: src/control/Control.Zotero.js:576
+#: src/control/Control.Zotero.js:616
 msgid "Failed to load styles"
 msgstr ""
 
-#: src/control/Control.Zotero.js:823
+#: src/control/Control.Zotero.js:891
 msgid "Title"
 msgstr "Заголовок"
 
-#: src/control/Control.Zotero.js:823
+#: src/control/Control.Zotero.js:891
 msgid "Creator(s)"
 msgstr ""
 
-#: src/control/Control.Zotero.js:823
+#: src/control/Control.Zotero.js:891
 msgid "Your library is empty"
 msgstr ""
 
-#: src/control/Control.Zotero.js:827
+#: src/control/Control.Zotero.js:895
 msgid "Failed to load items"
 msgstr ""
 
-#: src/control/Control.Zotero.js:939
+#: src/control/Control.Zotero.js:1017
 msgid "Add Note"
 msgstr ""
 
-#: src/control/Control.Zotero.js:942
+#: src/control/Control.Zotero.js:1020
 msgid "Notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:942
+#: src/control/Control.Zotero.js:1020
 msgid "An error occurred while fetching notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1030
+#: src/control/Control.Zotero.js:1107
 msgid "Updated citations"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1032
+#: src/control/Control.Zotero.js:1109
 msgid "Citations update failed"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1036
+#: src/control/Control.Zotero.js:1113
 msgid "Updating citations"
 msgstr ""
 
@@ -2419,17 +2431,17 @@ msgid "Creating copy..."
 msgstr "Створення копії..."
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
-msgid "LibreOffice Online Welcome"
-msgstr "Вітаємо в LibreOffice Online"
+msgid "Free Online Office Welcome"
+msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
 msgid "Explore The New %loolVersion"
 msgstr "Ознайомтеся з новою %loolVersion"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
-#, fuzzy
-msgid "LibreOfice Online"
-msgstr "LibreOffice Online"
+#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
+msgid "Free Online Office"
+msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 #, fuzzy
@@ -2449,15 +2461,11 @@ msgstr ""
 msgid "Discover All The Changes"
 msgstr "Дізнайтеся про всі зміни"
 
-#: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
-msgid "LibreOffice Online"
-msgstr "LibreOffice Online"
-
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:39-7
 #, fuzzy
 msgid ""
 "Check the <a target=\"_blank\" href=\"https://www.libreoffice.org\">release "
-"notes</a> and learn all about: The latest LibreOffice Online, aimed at home "
+"notes</a> and learn all about: The latest Free Online Office, aimed at home "
 "users and teams."
 msgstr ""
 "Перегляньте <a target=\"_blank\" href=\"https://www.collaboraoffice.com/"
@@ -2474,23 +2482,41 @@ msgid "https://libreoffice.org/"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:50-7
-#, fuzzy
 msgid ""
 "Are you interested in contributing but don’t know where to start? Head over "
 "to the <a target=\"_blank\" href=\"https://libreoffice.org/\">step-by-step "
-"instructions</a> and build LibreOffice Online from scratch. You can also "
-"help out with <a target=\"_blank\" href=\"https://libreoffice.org/"
-"\">translations</a> or by <a target=\"_blank\" href=\"https://libreoffice."
-"org/\">filing a bug report</a> with all the essential steps on how to "
-"reproduce it."
+"instructions</a> and build Free Online Office from scratch. You can also "
+"help out with translations or by filing a bug report with all the essential "
+"steps on how to reproduce it."
 msgstr ""
-"Ви хочете зробити внесок, але не знаєте, з чого почати? Перейдіть до <a "
-"target=\"_blank\" href=\"https://collaboraonline.github.io/post/build-code/\""
-">покрокових інструкцій</a> і створіть КОД з нуля. Ви також можете допомогти "
-"з <a target=\"_blank\" href=\"https://collaboraonline.github.io/post/"
-"translate/\">перекладом</a> або <a target=\"_blank\" href=\""
-"https://collaboraonline.github.io/post/filebugs/\">повідомте про помилку</a> "
-"вказавши всі важливі кроки для її відтворення."
+
+#, fuzzy
+#~ msgid ""
+#~ "Are you interested in contributing but don’t know where to start? Head over "
+#~ "to the <a target=\"_blank\" href=\"https://libreoffice.org/\">step-by-step "
+#~ "instructions</a> and build Free Online Office from scratch. You can also "
+#~ "help out with <a target=\"_blank\" href=\"https://libreoffice.org/"
+#~ "\">translations</a> or by <a target=\"_blank\" href=\"https://libreoffice."
+#~ "org/\">filing a bug report</a> with all the essential steps on how to "
+#~ "reproduce it."
+#~ msgstr ""
+#~ "Ви хочете зробити внесок, але не знаєте, з чого почати? Перейдіть до <a "
+#~ "target=\"_blank\" href=\"https://collaboraonline.github.io/post/build-code/\""
+#~ ">покрокових інструкцій</a> і створіть КОД з нуля. Ви також можете допомогти "
+#~ "з <a target=\"_blank\" href=\"https://collaboraonline.github.io/post/"
+#~ "translate/\">перекладом</a> або <a target=\"_blank\" href=\""
+#~ "https://collaboraonline.github.io/post/filebugs/\">повідомте про помилку</a> "
+#~ "вказавши всі важливі кроки для її відтворення."
+
+#~ msgid "LibreOffice Online Welcome"
+#~ msgstr "Вітаємо в LibreOffice Online"
+
+#, fuzzy
+#~ msgid "LibreOfice Online"
+#~ msgstr "LibreOffice Online"
+
+#~ msgid "LibreOffice Online"
+#~ msgstr "LibreOffice Online"
 
 #, fuzzy
 #~ msgid "Search:"
