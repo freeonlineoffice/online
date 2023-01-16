@@ -171,7 +171,7 @@ m4_ifelse(EMSCRIPTENAPP,[true],[
       window.socket.onopen();
       console.log('================ onRuntimeInitialized: Done');
     }
-  console.log('================ End if second inline script in cool.html');
+  console.log('================ End if second inline script in lool.html');
   </script>
 ])
 
