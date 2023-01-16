@@ -263,6 +263,8 @@ int loadDoc(bool url, const char * input, const char * options)
 
 int main(int, char*[])
 {
+    std::cout << "================ Here is main()" << std::endl;
+
     lok_init();
 
     Log::initialize("WASM", "trace", false, false, {});
@@ -285,11 +287,14 @@ int main(int, char*[])
 
     while (true)
     {
+        std::cout << "================ Creating a LOOLWSD object and calling its run()" << std::endl;
         loolwsd = new LOOLWSD();
         loolwsd->run(1, argv);
         delete loolwsd;
         LOG_TRC("One run of LOOLWSD completed");
     }
+
+    std::cout << "================ main() is returning" << std::endl;
     return 0;
 }
 
