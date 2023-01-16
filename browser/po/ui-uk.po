@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 17:06+0100\n"
+"POT-Creation-Date: 2023-01-16 18:55+0100\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
@@ -191,7 +191,7 @@ msgstr "Документи:"
 msgid "Expired:"
 msgstr "Вийшов термін:"
 
-#: admin/admin.strings.js:46 src/control/Control.Zotero.js:128
+#: admin/admin.strings.js:46 src/control/Control.Zotero.js:127
 msgid "Refresh"
 msgstr "Оновити"
 
@@ -225,7 +225,8 @@ msgid "Log Levels"
 msgstr "Рівні журналювання"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Parts.js:431 src/control/Signing.js:611
+#: src/control/Parts.js:431 src/control/Signing.js:611 src/core/Socket.js:1090
+#: src/core/Socket.js:1095
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Закрити"
@@ -264,10 +265,10 @@ msgstr "Ви справді бажаєте закінчити цей сеанс?
 
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:67
-#: src/control/Control.Menubar.js:1804
+#: src/control/Control.Menubar.js:1802
 #: src/control/Control.PresentationBar.js:110 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:253
-#: src/control/Control.Zotero.js:291 src/control/Toolbar.js:741
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:252
+#: src/control/Control.Zotero.js:290 src/control/Toolbar.js:741
 #: src/core/Socket.js:1042 src/map/handler/Map.Feedback.js:83
 msgid "OK"
 msgstr "OK"
@@ -275,9 +276,9 @@ msgstr "OK"
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
 #: src/control/Control.Command.js:92 src/control/Control.DocumentRepair.js:61
 #: src/control/Control.LanguageDialog.js:86
-#: src/control/Control.Menubar.js:1803 src/control/Control.MobileTopBar.js:41
+#: src/control/Control.Menubar.js:1801 src/control/Control.MobileTopBar.js:41
 #: src/control/Control.PresentationBar.js:109 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:248 src/control/Toolbar.js:740
+#: src/control/Control.Zotero.js:247 src/control/Toolbar.js:740
 #: src/core/Socket.js:901 src/core/Socket.js:911 src/core/Socket.js:1041
 #: src/layer/tile/CommentListSection.ts:398
 #: src/layer/tile/CommentSection.ts:125 src/layer/tile/CommentSection.ts:128
@@ -748,27 +749,27 @@ msgid "Update Index"
 msgstr ""
 
 #: src/control/Control.Menubar.js:276
-#: src/control/Control.NotebookbarWriter.js:1482
+#: src/control/Control.NotebookbarWriter.js:1479
 msgid "Add Citation"
 msgstr ""
 
 #: src/control/Control.Menubar.js:277
-#: src/control/Control.NotebookbarWriter.js:1493
+#: src/control/Control.NotebookbarWriter.js:1490
 msgid "Add Citation Note"
 msgstr ""
 
 #: src/control/Control.Menubar.js:278
-#: src/control/Control.NotebookbarWriter.js:1470
+#: src/control/Control.NotebookbarWriter.js:1467
 msgid "Add Bibliography"
 msgstr ""
 
 #: src/control/Control.Menubar.js:280
-#: src/control/Control.NotebookbarWriter.js:1510
+#: src/control/Control.NotebookbarWriter.js:1507
 msgid "Refresh Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:281
-#: src/control/Control.NotebookbarWriter.js:1521
+#: src/control/Control.NotebookbarWriter.js:1518
 msgid "Unlink Citations"
 msgstr ""
 
@@ -931,7 +932,7 @@ msgstr "Файл CSV (.csv)"
 
 #: src/control/Control.Menubar.js:855 src/control/Control.Menubar.js:911
 #: src/control/Control.Menubar.js:968 src/control/Control.Menubar.js:1015
-#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:137
+#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:136
 msgid "Search"
 msgstr "Пошук"
 
@@ -951,25 +952,25 @@ msgstr "Застосувати компактне подання"
 msgid "Use Tabbed view"
 msgstr "Застосувати подання вкладками"
 
-#: src/control/Control.Menubar.js:1656 src/control/Control.Menubar.js:1669
+#: src/control/Control.Menubar.js:1654 src/control/Control.Menubar.js:1667
 msgid "Read-only mode"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1683
+#: src/control/Control.Menubar.js:1681
 msgid "Insert Shape"
 msgstr "Вставити фігуру"
 
-#: src/control/Control.Menubar.js:1795
+#: src/control/Control.Menubar.js:1793
 #: src/control/Control.PresentationBar.js:101
 msgid "Are you sure you want to delete this slide?"
 msgstr "Ви дійсно бажаєте видалити цей слайд?"
 
-#: src/control/Control.Menubar.js:1798
+#: src/control/Control.Menubar.js:1796
 #: src/control/Control.PresentationBar.js:104
 msgid "Are you sure you want to delete this page?"
 msgstr "Ви дійсно бажаєте видалити цю сторінку?"
 
-#: src/control/Control.Menubar.js:1917
+#: src/control/Control.Menubar.js:1915
 msgid "file type icon"
 msgstr "піктограма типу файлу"
 
@@ -1149,7 +1150,7 @@ msgstr "Валюта"
 
 #: src/control/Control.NotebookbarCalc.js:524
 #: src/control/Control.NotebookbarWriter.js:1013
-#: src/control/Control.Zotero.js:891
+#: src/control/Control.Zotero.js:929
 msgid "Date"
 msgstr "Дата"
 
@@ -1255,7 +1256,7 @@ msgstr "Мінідіаграма"
 #: src/control/Control.NotebookbarImpress.js:985
 #: src/control/Control.NotebookbarImpress.js:1819
 #: src/control/Control.NotebookbarWriter.js:906
-#: src/control/Control.NotebookbarWriter.js:2293
+#: src/control/Control.NotebookbarWriter.js:2290
 msgid "Shapes"
 msgstr ""
 
@@ -1324,7 +1325,7 @@ msgstr ""
 msgid "Ruler"
 msgstr "Лінійка"
 
-#: src/control/Control.NotebookbarWriter.js:1532
+#: src/control/Control.NotebookbarWriter.js:1529
 msgid "Citation Preferences"
 msgstr ""
 
@@ -1548,100 +1549,104 @@ msgstr "Лише читання"
 msgid "Current"
 msgstr "Поточний"
 
-#: src/control/Control.Zotero.js:163 src/core/Socket.js:1133
+#: src/control/Control.Zotero.js:87
+msgid "Zotero API key not configured"
+msgstr ""
+
+#: src/control/Control.Zotero.js:162 src/core/Socket.js:1142
 msgid "Loading..."
 msgstr "Завантаження…"
 
-#: src/control/Control.Zotero.js:181
+#: src/control/Control.Zotero.js:180
 msgid "Language:"
 msgstr ""
 
-#: src/control/Control.Zotero.js:196
+#: src/control/Control.Zotero.js:195
 msgid "Store as:"
 msgstr ""
 
-#: src/control/Control.Zotero.js:202
+#: src/control/Control.Zotero.js:201
 msgid "Fields"
 msgstr ""
 
-#: src/control/Control.Zotero.js:203
+#: src/control/Control.Zotero.js:202
 msgid "Bookmarks"
 msgstr ""
 
-#: src/control/Control.Zotero.js:360
+#: src/control/Control.Zotero.js:359
 msgid "My Publications"
 msgstr ""
 
-#: src/control/Control.Zotero.js:366 src/control/Control.Zotero.js:561
+#: src/control/Control.Zotero.js:365 src/control/Control.Zotero.js:590
 msgid "My Library"
 msgstr ""
 
-#: src/control/Control.Zotero.js:367
+#: src/control/Control.Zotero.js:366
 msgid "Group Libraries"
 msgstr ""
 
-#: src/control/Control.Zotero.js:577
+#: src/control/Control.Zotero.js:606
 msgid "Failed to load groups"
 msgstr ""
 
-#: src/control/Control.Zotero.js:595 src/control/Control.Zotero.js:863
+#: src/control/Control.Zotero.js:624 src/control/Control.Zotero.js:901
 msgid "Failed to load collections"
 msgstr ""
 
-#: src/control/Control.Zotero.js:604
+#: src/control/Control.Zotero.js:638
 msgid "Citation Style"
 msgstr ""
 
-#: src/control/Control.Zotero.js:609
+#: src/control/Control.Zotero.js:643
 #, fuzzy
 msgid "Styles"
 msgstr "Стиль"
 
-#: src/control/Control.Zotero.js:609
+#: src/control/Control.Zotero.js:643
 msgid "An error occurred while fetching style list"
 msgstr ""
 
-#: src/control/Control.Zotero.js:616
+#: src/control/Control.Zotero.js:650
 msgid "Failed to load styles"
 msgstr ""
 
-#: src/control/Control.Zotero.js:891
+#: src/control/Control.Zotero.js:929
 msgid "Title"
 msgstr "Заголовок"
 
-#: src/control/Control.Zotero.js:891
+#: src/control/Control.Zotero.js:929
 msgid "Creator(s)"
 msgstr ""
 
-#: src/control/Control.Zotero.js:891
+#: src/control/Control.Zotero.js:929
 msgid "Your library is empty"
 msgstr ""
 
-#: src/control/Control.Zotero.js:895
+#: src/control/Control.Zotero.js:933
 msgid "Failed to load items"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1017
+#: src/control/Control.Zotero.js:1060
 msgid "Add Note"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1020
+#: src/control/Control.Zotero.js:1063
 msgid "Notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1020
+#: src/control/Control.Zotero.js:1063
 msgid "An error occurred while fetching notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1107
+#: src/control/Control.Zotero.js:1182
 msgid "Updated citations"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1109
+#: src/control/Control.Zotero.js:1184
 msgid "Citations update failed"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1113
+#: src/control/Control.Zotero.js:1188
 msgid "Updating citations"
 msgstr ""
 
@@ -1990,31 +1995,31 @@ msgstr "Натисніть Скасувати для відкриття у ре�
 msgid "Wrong password provided. Please try again."
 msgstr "Надано неправильний пароль. Спробуйте знову."
 
-#: src/core/Socket.js:1080
-msgid "Missing fonts:"
+#: src/core/Socket.js:1090 src/core/Socket.js:1095
+msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1122
+#: src/core/Socket.js:1131
 msgid "Someone"
 msgstr "Хтось"
 
-#: src/core/Socket.js:1124
+#: src/core/Socket.js:1133
 msgid " saved this document as "
 msgstr " зберігає цей документ як "
 
-#: src/core/Socket.js:1124
+#: src/core/Socket.js:1133
 msgid ". Do you want to join?"
 msgstr ". Бажаєте приєднатися?"
 
-#: src/core/Socket.js:1133
+#: src/core/Socket.js:1142
 msgid "Connecting..."
 msgstr "З'єднання..."
 
-#: src/core/Socket.js:1151
+#: src/core/Socket.js:1160
 msgid "The document is being renamed and will reload shortly"
 msgstr "Документ перейменовується і незабаром перезавантажиться"
 
-#: src/core/Socket.js:1540
+#: src/core/Socket.js:1549
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2022,15 +2027,15 @@ msgstr ""
 "Нам ганьба, бо ми не можемо під'єднатися до вашого документа. Будь ласка, "
 "спробуйте знову."
 
-#: src/core/Socket.js:1557
+#: src/core/Socket.js:1566
 msgid "Reconnecting..."
 msgstr "Повторне з'єднання..."
 
-#: src/core/Socket.js:1567
+#: src/core/Socket.js:1576
 msgid "The server has been disconnected."
 msgstr "Сервер від'єднано."
 
-#: src/errormessages.js:13
+#: src/errormessages.js:15
 msgid ""
 "No disk space left on server, please contact the server administrator to "
 "continue."
@@ -2038,7 +2043,7 @@ msgstr ""
 "Не лишилося вільного простору на сервері. Будь ласка, зв'яжіться з "
 "адміністратором сервера для продовження."
 
-#: src/errormessages.js:14
+#: src/errormessages.js:16
 msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
@@ -2046,7 +2051,7 @@ msgstr ""
 "URL вузла порожній. Ймовірно, помилка налаштування сервера loolwsd, "
 "зв'яжіться з адміністратором."
 
-#: src/errormessages.js:15
+#: src/errormessages.js:17
 #, fuzzy
 msgid ""
 "This is an unsupported version of {productname}. To avoid the impression "
@@ -2059,11 +2064,11 @@ msgstr ""
 "з'являється, якщо одночасно використовується більше, ніж {docs} документів "
 "або {connections} з'єднань"
 
-#: src/errormessages.js:16
+#: src/errormessages.js:18
 msgid "More information and support"
 msgstr "Більше інформації та підтримки"
 
-#: src/errormessages.js:17
+#: src/errormessages.js:19
 msgid ""
 "This service is limited to %0 documents, and %1 connections total by the "
 "admin. This limit has been reached. Please try again later."
@@ -2071,7 +2076,7 @@ msgstr ""
 "Адміністратор обмежив цей сервіс %0 документом(ами) та %1 з'єднанням(и). Ці "
 "обмеження вже досягнуті. Будь ласка, спробуйте знову пізніше."
 
-#: src/errormessages.js:18
+#: src/errormessages.js:20
 msgid ""
 "Service is unavailable. Please try again later and report to your "
 "administrator if the issue persists."
@@ -2079,7 +2084,7 @@ msgstr ""
 "Сервіс - недоступний. Будь ласка, спробуйте пізніше та повідомте вашому "
 "адміністраторові, якщо проблема не зникає."
 
-#: src/errormessages.js:19
+#: src/errormessages.js:21
 msgid ""
 "Unauthorized WOPI host. Please try again later and report to your "
 "administrator if the issue persists."
@@ -2087,13 +2092,13 @@ msgstr ""
 "Недозволений вузол WOPI. Будь ласка, спробуйте пізніше та повідомте вашому "
 "адміністраторові, якщо проблема не зникає."
 
-#: src/errormessages.js:20
+#: src/errormessages.js:22
 msgid "Wrong or missing WOPISrc parameter, please contact support."
 msgstr ""
 "Неправильний або відсутній параметр WOPISrc, будь ласка зв'яжіться зі "
 "службою підтримки."
 
-#: src/errormessages.js:21
+#: src/errormessages.js:23
 msgid ""
 "Your session will expire in %time. Please save your work and refresh the "
 "session (or webpage) to continue."
@@ -2101,7 +2106,7 @@ msgstr ""
 "Ваш сеанс завершиться через %time. Будь ласка, збережіть вашу роботу та "
 "оновіть цей сеанс (чи веб-сторінку) для продовження."
 
-#: src/errormessages.js:22
+#: src/errormessages.js:24
 msgid ""
 "Your session has been expired. Further changes to document might not be "
 "saved. Please refresh the session (or webpage) to continue."
@@ -2109,7 +2114,7 @@ msgstr ""
 "Ваш сеанс завершився. Подальші зміни у документі не збережуться. Будь ласка, "
 "оновіть цей сеанс (чи веб-сторінку) для продовження."
 
-#: src/errormessages.js:23
+#: src/errormessages.js:25
 msgid ""
 "Failed to load the document. Please ensure the file type is supported and "
 "not corrupted, and try again."
@@ -2117,17 +2122,17 @@ msgstr ""
 "Не вдалося відкрити цей документ. Будь ласка, переконайтеся, що тип файлу "
 "підтримується і файл не пошкоджений, а тоді спробуйте знову."
 
-#: src/errormessages.js:24
+#: src/errormessages.js:26
 msgid "Invalid link: '%url'"
 msgstr "Неправильне посилання: '%url'"
 
-#: src/errormessages.js:25
+#: src/errormessages.js:27
 msgid ""
 "You are leaving the editor, are you sure you want to visit the following "
 "URL?"
 msgstr "Ви виходите з редактора, ви впевнені, що бажаєте перейти до URL-адреси?"
 
-#: src/errormessages.js:26
+#: src/errormessages.js:28
 msgid ""
 "Failed to load the document. This document is either malformed or is taking "
 "more resources than allowed. Please contact the administrator."
@@ -2135,11 +2140,11 @@ msgstr ""
 "Не вдалося завантажити документ. Цей документ пошкоджений або вимагає "
 "занадто багато ресурсів. Будь ласка, зверніться до адміністратора."
 
-#: src/errormessages.js:27
+#: src/errormessages.js:29
 msgid "Cleaning up the document from the last session."
 msgstr "Очищення документа з останнього сеансу."
 
-#: src/errormessages.js:28
+#: src/errormessages.js:30
 msgid ""
 "We are in the process of cleaning up this document from the last session, "
 "please try again later."
@@ -2147,37 +2152,37 @@ msgstr ""
 "Ми зараз очищуємо цей документ від останнього сеансу. Повторіть спробу "
 "пізніше."
 
-#: src/errormessages.js:32
+#: src/errormessages.js:34
 msgid "Failed to load document."
 msgstr "Не вдалося завантажити документ."
 
-#: src/errormessages.js:33
+#: src/errormessages.js:35
 msgid "Save failed due to no disk space left. Document will now be read-only."
 msgstr ""
 "Не вдалося зберегти документ із-за вичерпання дискового простору. Документ "
 "переведено в режим \"Тільки для читання\"."
 
-#: src/errormessages.js:34
+#: src/errormessages.js:36
 msgid ""
 "The document is too large or no disk space left to save. Document will now "
 "be read-only."
 msgstr ""
 
-#: src/errormessages.js:35 src/errormessages.js:44
+#: src/errormessages.js:37 src/errormessages.js:46
 msgid "Document cannot be saved due to expired or invalid access token."
 msgstr ""
 "Документ не може бути збережений через маркер доступу, що застарів або "
 "недійсний."
 
-#: src/errormessages.js:36
+#: src/errormessages.js:38
 msgid "Document cannot be saved."
 msgstr "Документ неможливо зберегти."
 
-#: src/errormessages.js:37
+#: src/errormessages.js:39
 msgid "Document cannot be renamed."
 msgstr "Документ неможливо перейменувати."
 
-#: src/errormessages.js:41
+#: src/errormessages.js:43
 #, javascript-format
 msgid ""
 "Failed to read document from storage. Please contact your storage server "
@@ -2186,7 +2191,7 @@ msgstr ""
 "Не вдалося зчитати документ зі сховища. Будь ласка, зв'яжіться з "
 "адміністратором сервера (%storageserver)."
 
-#: src/errormessages.js:42
+#: src/errormessages.js:44
 #, javascript-format
 msgid ""
 "Save failed due to no disk space left on storage server. Document will now "
@@ -2197,7 +2202,7 @@ msgstr ""
 "стає доступним лише для читання. Зв'яжіться з адміністратором сервера "
 "(%storageserver), щоб продовжити редагування."
 
-#: src/errormessages.js:43
+#: src/errormessages.js:45
 #, javascript-format
 msgid ""
 "Save failed because the document is too large or disk quota exceeded. "
@@ -2206,7 +2211,7 @@ msgid ""
 "administrator to resolve the issue."
 msgstr ""
 
-#: src/errormessages.js:45
+#: src/errormessages.js:47
 msgid ""
 "Document cannot be saved. Check your permissions or contact the storage "
 "server administrator."
@@ -2214,7 +2219,7 @@ msgstr ""
 "Документ не можна зберегти на носії. Перевірте ваші права або зв'яжіться з "
 "адміністратором сервера."
 
-#: src/errormessages.js:46
+#: src/errormessages.js:48
 msgid ""
 "Document cannot be renamed. Check your permissions or contact the storage "
 "server administrator."
@@ -2222,7 +2227,7 @@ msgstr ""
 "Документ неможливо перейменувати. Перевірте ваші права або зверніться до "
 "адміністратора сервера."
 
-#: src/errormessages.js:47
+#: src/errormessages.js:49
 msgid ""
 "Document cannot be exported. Please contact the storage server "
 "administrator."
@@ -2230,11 +2235,11 @@ msgstr ""
 "Не вдалося експортувати документ. Зверніться до адміністратора сервера "
 "зберігання."
 
-#: src/errormessages.js:52
+#: src/errormessages.js:54
 msgid "Uploading file to server failed, file not found."
 msgstr "Не вдалося завантажити файл на сервер, файл не знайдено."
 
-#: src/errormessages.js:53
+#: src/errormessages.js:55
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Не вдалося завантажити файл на сервер, занадто великий файл."
 
@@ -2385,15 +2390,15 @@ msgstr ""
 msgid "Initializing..."
 msgstr "Започаткування…"
 
-#: src/map/Map.js:426 src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435
+#: src/map/Map.js:427 src/map/Map.js:430 src/map/Map.js:433 src/map/Map.js:436
 msgid "Last saved:"
 msgstr "Востаннє збережено:"
 
-#: src/map/Map.js:1444
+#: src/map/Map.js:1445
 msgid "Inactive document"
 msgstr "Неактивний документ"
 
-#: src/map/Map.js:1445
+#: src/map/Map.js:1446
 msgid "Please click to resume editing"
 msgstr "Клацніть, щоб відновити редагування"
 
