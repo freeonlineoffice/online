@@ -433,6 +433,7 @@ define bundle_all
 			-DLOOL_JS=$(INTERMEDIATE_DIR)/lool-src.js \
 			$(srcdir)/bundle.js.m4 > $(INTERMEDIATE_DIR)/bundle.js
 		@$(NODE) node_modules/uglify-js/bin/uglifyjs \
+			-O max_line_len=100 \
 			$(INTERMEDIATE_DIR)/bundle.js \
 			--output $@)
 endef
