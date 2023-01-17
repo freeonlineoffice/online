@@ -1232,7 +1232,7 @@ L.Control.Zotero = L.Control.extend({
 
 	unlinkCitations: function() {
 		this.map.uiManager.showInfoModal('zoterounlinkwarn', _('Unlink Citations'),
-			_('Unlinking citations will prevent Collabora Online from updating citations and bibliographies in this document.'),
+			_('Unlinking citations will prevent Free Online Office from updating citations and bibliographies in this document.'),
 			null, _('Confirm'), this.handleUnlinkCitations.bind(this));
 	},
 	refreshCitationsAndBib: function() {
