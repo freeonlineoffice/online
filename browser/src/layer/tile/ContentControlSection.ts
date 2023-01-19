@@ -214,7 +214,7 @@ export class ContentControlSection extends CanvasSectionObject {
 		var size = frameArea.getSize();
 		var origin = this.map.getPixelOrigin();
 		var panePos = this.map._getMapPanePos();
-		this.sectionProperties.framePos = new clol.Point(Math.round(frameArea.min.x + panePos.x - origin.x), Math.round(frameArea.min.y + panePos.y - origin.y));
+		this.sectionProperties.framePos = new lool.Point(Math.round(frameArea.min.x + panePos.x - origin.x), Math.round(frameArea.min.y + panePos.y - origin.y));
 		this.sectionProperties.frameWidth = Math.round(size.x);
 		this.sectionProperties.frameHeight = Math.round(size.y);
 
