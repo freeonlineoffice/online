@@ -4,7 +4,7 @@
 declare var L: any;
 declare var app: any;
 
-namespace cool {
+namespace lool {
 
 export class ScrollSection extends CanvasSectionObject {
 
@@ -1018,5 +1018,5 @@ export class ScrollSection extends CanvasSectionObject {
 }
 
 L.getNewScrollSection = function () {
-	return new cool.ScrollSection();
+	return new lool.ScrollSection();
 };

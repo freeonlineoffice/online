@@ -9,7 +9,7 @@
 
 /* global $ app */
 
-namespace cool {
+namespace lool {
 
 export class CornerHeader extends CanvasSectionObject {
 
@@ -70,7 +70,7 @@ export class CornerHeader extends CanvasSectionObject {
 
 }
 
-L.Control.CornerHeader = cool.CornerHeader;
+L.Control.CornerHeader = lool.CornerHeader;
 
 L.control.cornerHeader = function () {
 	return new L.Control.CornerHeader();

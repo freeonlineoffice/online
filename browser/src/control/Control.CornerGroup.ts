@@ -10,7 +10,7 @@
 
 	This class is an extended version of "CanvasSectionObject".
 */
-namespace cool {
+namespace lool {
 
 export class CornerGroup extends CanvasSectionObject {
 	_map: any;
@@ -86,7 +86,7 @@ export class CornerGroup extends CanvasSectionObject {
 }
 }
 
-L.Control.CornerGroup = cool.CornerGroup;
+L.Control.CornerGroup = lool.CornerGroup;
 
 L.control.cornerGroup = function () {
 	return new L.Control.CornerGroup();

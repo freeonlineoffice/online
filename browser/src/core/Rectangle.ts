@@ -1,6 +1,6 @@
 declare var L: any;
 
-namespace cool {
+namespace lool {
 
 /**
  * Represents a rectangle object which works with core pixels.
@@ -251,5 +251,5 @@ export function createRectangle(x: number, y: number, width: number, height: num
 
 }
 
-L.LOUtil.Rectangle = cool.Rectangle;
-L.LOUtil.createRectangle = cool.createRectangle;
+L.LOUtil.Rectangle = lool.Rectangle;
+L.LOUtil.createRectangle = lool.createRectangle;

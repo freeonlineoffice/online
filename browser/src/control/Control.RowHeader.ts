@@ -8,9 +8,9 @@
 declare var _UNO: any;
 declare var UNOModifier: any;
 
-namespace cool {
+namespace lool {
 
-export class RowHeader extends cool.Header {
+export class RowHeader extends lool.Header {
 
 	_current: number;
 	_resizeHandleSize: number;
@@ -84,7 +84,7 @@ export class RowHeader extends cool.Header {
 		};
 
 		this._menuData = L.Control.JSDialogBuilder.getMenuStructureForMobileWizard(this._menuItem, true, '');
-		this._headerInfo = new cool.HeaderInfo(this._map, false /* isCol */);
+		this._headerInfo = new lool.HeaderInfo(this._map, false /* isCol */);
 	}
 
 	drawHeaderEntry (entry: HeaderEntryData): void {
@@ -261,19 +261,19 @@ export class RowHeader extends cool.Header {
 		}
 	}
 
-	_getParallelPos (point: cool.Point): number {
+	_getParallelPos (point: lool.Point): number {
 		return point.y;
 	}
 
-	_getOrthogonalPos (point: cool.Point): number {
+	_getOrthogonalPos (point: lool.Point): number {
 		return point.x;
 	}
 }
 
 }
 
-L.Control.RowHeader = cool.RowHeader;
+L.Control.RowHeader = lool.RowHeader;
 
-L.control.rowHeader = function (options?: cool.HeaderExtraProperties) {
+L.control.rowHeader = function (options?: lool.HeaderExtraProperties) {
 	return new L.Control.RowHeader(options);
 };

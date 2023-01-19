@@ -7,7 +7,7 @@
 */
 /* global $ L app */
 
-namespace cool {
+namespace lool {
 
 export type HeaderExtraProperties = { cursor: string };
 export interface HeaderInitProperties extends SectionInitProperties, HeaderExtraProperties {}
@@ -594,7 +594,7 @@ export interface PointEntryQueryResult {
 export class HeaderInfo {
 	_map: any;
 	_isColumn: boolean;
-	_dimGeom: cool.SheetDimension;
+	_dimGeom: lool.SheetDimension;
 	_docVisStart: number;
 	_elements: HeaderEntryData[];
 	_startIndex: number;
@@ -609,11 +609,11 @@ export class HeaderInfo {
 		this._map = map;
 		this._isColumn = _isColumn;
 		window.app.console.assert(this._map._docLayer.sheetGeometry, 'no sheet geometry data-structure found!');
-		const sheetGeom = this._map._docLayer.sheetGeometry as cool.SheetGeometry;
+		const sheetGeom = this._map._docLayer.sheetGeometry as lool.SheetGeometry;
 		this._dimGeom = this._isColumn ? sheetGeom.getColumnsGeometry() : sheetGeom.getRowsGeometry();
 	}
 
-	findXInCellSelections (cellSelections: cool.Rectangle[], ordinate: number): boolean {
+	findXInCellSelections (cellSelections: lool.Rectangle[], ordinate: number): boolean {
 		for (let i = 0; i < cellSelections.length; i++) {
 			if (cellSelections[i].containsPixelOrdinateX(ordinate))
 				return true;
@@ -621,7 +621,7 @@ export class HeaderInfo {
 		return false;
 	}
 
-	findYInCellSelections (cellSelections: cool.Rectangle[], ordinate: number): boolean {
+	findYInCellSelections (cellSelections: lool.Rectangle[], ordinate: number): boolean {
 		for (let i = 0; i < cellSelections.length; i++) {
 			if (cellSelections[i].containsPixelOrdinateY(ordinate))
 				return true;
@@ -629,7 +629,7 @@ export class HeaderInfo {
 		return false;
 	}
 
-	isHeaderEntryHighLighted (cellSelections: cool.Rectangle[], ordinate: number): boolean {
+	isHeaderEntryHighLighted (cellSelections: lool.Rectangle[], ordinate: number): boolean {
 		if (this._isColumn && this._map.wholeRowSelected)
 			return true;
 		else if (!this._isColumn && this._map.wholeColumnSelected)
@@ -645,7 +645,7 @@ export class HeaderInfo {
 	}
 
 	update(section: CanvasSectionObject): void {
-		const cellSelections: cool.Rectangle[] = this._map._docLayer._cellSelections;
+		const cellSelections: lool.Rectangle[] = this._map._docLayer._cellSelections;
 		let currentIndex = -1;
 
 		if (this._map._docLayer._cellCursorXY) {
@@ -828,5 +828,5 @@ export class HeaderInfo {
 
 }
 
-L.Control.Header = cool.Header;
-L.Control.Header.HeaderInfo = cool.HeaderInfo;
+L.Control.Header = lool.Header;
+L.Control.Header.HeaderInfo = lool.HeaderInfo;

@@ -12,14 +12,14 @@
 
 	This class is an extended version of "CanvasSectionObject".
 */
-namespace cool {
+namespace lool {
 
 export class RowGroup extends GroupBase {
 
 	_map: any;
-	_sheetGeometry: cool.SheetGeometry;
+	_sheetGeometry: lool.SheetGeometry;
 	_cornerHeaderHeight: number;
-	_splitPos: cool.Point;
+	_splitPos: lool.Point;
 
 	constructor() {
 		super({
@@ -66,7 +66,7 @@ export class RowGroup extends GroupBase {
 
 		this._cornerHeaderHeight = this.containerObject.getSectionWithName(L.CSections.CornerHeader.name).size[1];
 
-		this._splitPos = (this._map._docLayer._splitPanesContext as cool.SplitPanesContext).getSplitPos();
+		this._splitPos = (this._map._docLayer._splitPanesContext as lool.SplitPanesContext).getSplitPos();
 
 		this._collectGroupsData(this._sheetGeometry.getRowGroupsDataInView());
 	}
@@ -224,7 +224,7 @@ export class RowGroup extends GroupBase {
 
 }
 
-L.Control.RowGroup = cool.RowGroup;
+L.Control.RowGroup = lool.RowGroup;
 
 L.control.rowGroup = function () {
 	return new L.Control.RowGroup();

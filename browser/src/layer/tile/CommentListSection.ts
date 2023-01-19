@@ -34,7 +34,7 @@ declare var vex: any;
 declare var $: any;
 declare var _: any;
 
-namespace cool {
+namespace lool {
 
 export class CommentSection extends CanvasSectionObject {
 	map: any;
@@ -563,7 +563,7 @@ export class CommentSection extends CanvasSectionObject {
 					anchorPos: [annotation.sectionProperties.data.anchorPos[0], annotation.sectionProperties.data.anchorPos[1]],
 				};
 
-				var replyAnnotationSection = new cool.Comment(replyAnnotation, replyAnnotation.id === 'new' ? {noMenu: true} : {}, this);
+				var replyAnnotationSection = new lool.Comment(replyAnnotation, replyAnnotation.id === 'new' ? {noMenu: true} : {}, this);
 				replyAnnotationSection.name += '-reply';
 
 				this.newAnnotationVex(replyAnnotationSection, annotation.onReplyClick, /* isMod */ false);
@@ -927,8 +927,8 @@ export class CommentSection extends CanvasSectionObject {
 		}
 	}
 
-	public add (comment: any, mobileReply: boolean = false): cool.Comment {
-		var annotation = new cool.Comment(comment, comment.id === 'new' ? {noMenu: true} : {}, this);
+	public add (comment: any, mobileReply: boolean = false): lool.Comment {
+		var annotation = new lool.Comment(comment, comment.id === 'new' ? {noMenu: true} : {}, this);
 		if (mobileReply)
 			annotation.name += '-reply'; // Section name.
 
@@ -1732,7 +1732,7 @@ export class CommentSection extends CanvasSectionObject {
 				if (comment.author in this.map._viewInfoByUserName) {
 					comment.avatar = this.map._viewInfoByUserName[comment.author].userextrainfo.avatar;
 				}
-				var commentSection = new cool.Comment(comment, {}, this);
+				var commentSection = new lool.Comment(comment, {}, this);
 				if (!this.containerObject.addSection(commentSection))
 					continue;
 				this.sectionProperties.commentList.push(commentSection);
@@ -1765,7 +1765,7 @@ export class CommentSection extends CanvasSectionObject {
 				if (changeComment.author in this.map._viewInfoByUserName) {
 					changeComment.avatar = this.map._viewInfoByUserName[changeComment.author].userextrainfo.avatar;
 				}
-				var commentSection = new cool.Comment(changeComment, {}, this);
+				var commentSection = new lool.Comment(changeComment, {}, this);
 				if (!this.containerObject.addSection(commentSection))
 					continue;
 				this.sectionProperties.commentList.push(commentSection);
@@ -1825,4 +1825,4 @@ export class CommentSection extends CanvasSectionObject {
 
 }
 
-app.definitions.CommentSection = cool.CommentSection;
+app.definitions.CommentSection = lool.CommentSection;

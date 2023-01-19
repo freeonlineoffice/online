@@ -4,7 +4,7 @@
 */
 
 /* global _UNO app UNOModifier */
-namespace cool {
+namespace lool {
 
 export class ColumnHeader extends Header {
 
@@ -80,7 +80,7 @@ export class ColumnHeader extends Header {
 		};
 
 		this._menuData = L.Control.JSDialogBuilder.getMenuStructureForMobileWizard(this._menuItem, true, '');
-		this._headerInfo = new cool.HeaderInfo(this._map, true /* isCol */);
+		this._headerInfo = new lool.HeaderInfo(this._map, true /* isCol */);
 	}
 
 	drawHeaderEntry (entry: HeaderEntryData): void {
@@ -273,19 +273,19 @@ export class ColumnHeader extends Header {
 		}
 	}
 
-	_getParallelPos (point: cool.Point): number {
+	_getParallelPos (point: lool.Point): number {
 		return point.x;
 	}
 
-	_getOrthogonalPos (point: cool.Point): number {
+	_getOrthogonalPos (point: lool.Point): number {
 		return point.y;
 	}
 }
 
 }
 
-L.Control.ColumnHeader = cool.ColumnHeader;
+L.Control.ColumnHeader = lool.ColumnHeader;
 
-L.control.columnHeader = function (options?: cool.HeaderExtraProperties) {
+L.control.columnHeader = function (options?: lool.HeaderExtraProperties) {
 	return new L.Control.ColumnHeader(options);
 };

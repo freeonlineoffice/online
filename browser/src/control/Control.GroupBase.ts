@@ -3,7 +3,7 @@
  * L.Control.GroupBase
 */
 
-namespace cool {
+namespace lool {
 
 export interface GroupEntry {
 	level: number,
@@ -282,4 +282,4 @@ export class GroupBase extends CanvasSectionObject {
 }
 }
 
-L.Control.GroupBase = cool.GroupBase;
+L.Control.GroupBase = lool.GroupBase;
