@@ -1003,6 +1003,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
              tokens.equals(0, "requestloksession") ||
              tokens.equals(0, "resetselection") ||
              tokens.equals(0, "saveas") ||
+             tokens.equals(0, "exportas") ||
              tokens.equals(0, "selectgraphic") ||
              tokens.equals(0, "selecttext") ||
              tokens.equals(0, "windowselecttext") ||
@@ -1340,7 +1341,8 @@ bool ClientSession::filterMessage(const std::string& message) const
     {
         // By default, don't allow anything
         allowed = false;
-        if (tokens.equals(0, "userinactive") || tokens.equals(0, "useractive") || tokens.equals(0, "saveas") || tokens.equals(0, "rendersearchresult"))
+        if (tokens.equals(0, "userinactive") || tokens.equals(0, "useractive") || tokens.equals(0, "saveas")
+            || tokens.equals(0, "rendersearchresult") || tokens.equals(0, "exportas"))
         {
             allowed = true;
         }
@@ -1607,8 +1609,9 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
          }
     }
 #if !MOBILEAPP
-    else if (tokens.size() == 3 && tokens.equals(0, "saveas:"))
+    else if (tokens.size() == 3 && (tokens.equals(0, "saveas:") || tokens.equals(0, "exportas:")))
     {
+        bool isExportAs = tokens.equals(0, "exportas:");
 
         std::string encodedURL;
         if (!getTokenString(tokens[1], "url", encodedURL))
@@ -1685,7 +1688,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
                 // this also sends the saveas: result
                 LOG_TRC("Save-as path: " << resultURL.getPath());
                 docBroker->uploadAsToStorage(client_from_this(), resultURL.getPath(), wopiFilename,
-                                             false);
+                                             false, isExportAs);
             }
             else
                 sendTextFrameAndLogError("error: cmd=storage kind=savefailed");
