@@ -30,7 +30,7 @@ interface ExpectedRectangle {
 	eps: number,
 }
 
-function assertRectangle(actual: cool.Rectangle, expected: ExpectedRectangle) {
+function assertRectangle(actual: lool.Rectangle, expected: ExpectedRectangle) {
 
 	// x-coordinate
 
@@ -82,21 +82,21 @@ const eps = 0.01;
 
 describe('Validity of Rectangle', function () {
 	it('Invalid rectangle', function () {
-		let invalidRect = new cool.Rectangle(3, 4, -1, 10);
+		let invalidRect = new lool.Rectangle(3, 4, -1, 10);
 		assert.ok(!invalidRect.isValid(), 'Rectangle should be invalid');
-		invalidRect = new cool.Rectangle(3, 4, 1, -10);
+		invalidRect = new lool.Rectangle(3, 4, 1, -10);
 		assert.ok(!invalidRect.isValid(), 'Rectangle should be invalid');
 	});
 
 	it('Valid rectangle', function () {
-		const validRect = new cool.Rectangle(3, 4, 1, 10);
+		const validRect = new lool.Rectangle(3, 4, 1, 10);
 		assert.ok(validRect.isValid(), 'Rectangle should be valid');
 	});
 });
 
 describe('construction test', function () {
 	it('construct', function () {
-		const rect = cool.createRectangle(x1, y1, width, height);
+		const rect = lool.createRectangle(x1, y1, width, height);
 		assertRectangle(rect, {
 			x1: x1,
 			x2: x1 + width,
@@ -131,7 +131,7 @@ describe('coordinate API tests', function () {
 		describe(coord + '-coordinate API tests', function () {
 
 			it(isX ? 'setX1' : 'setY1', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const newC1 = 1.3;
 				const newSize = (isX ? width + x1: height + y1) - newC1;
 
@@ -169,7 +169,7 @@ describe('coordinate API tests', function () {
 
 
 			it(isX ? 'setX2' : 'setY2', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const newC2 = 10.3;
 				const newSize = newC2 - (isX ? x1 : y1);
 
@@ -206,7 +206,7 @@ describe('coordinate API tests', function () {
 
 
 			it(isX ? 'setWidth' : 'setHeight', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const newSize = 1.4;
 				const newC2 = (isX ? x1 : y1) + newSize;
 
@@ -243,7 +243,7 @@ describe('coordinate API tests', function () {
 
 
 			it('setArea (Preserve ' + (isX ? 'height' : 'width') + ')', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const newArea = 20.4;
 				const newWidth = isX ? (newArea / height) : width;
 				const newHeight = isY ? (newArea / width) : height;
@@ -277,7 +277,7 @@ describe('coordinate API tests', function () {
 
 
 			it('moveBy', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const dc = 1.3;
 				const newX1 = isX ? (x1 + dc) : x1;
 				const newX2 = isX ? (x1 + width + dc) : (x1 + width);
@@ -310,7 +310,7 @@ describe('coordinate API tests', function () {
 
 
 			it('moveTo', function () {
-				const rect = cool.createRectangle(x1, y1, width, height);
+				const rect = lool.createRectangle(x1, y1, width, height);
 				const newC1 = 50.3;
 
 				const newX1 = isX ? newC1 : x1;
