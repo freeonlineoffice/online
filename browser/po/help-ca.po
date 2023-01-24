@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-16 18:55+0200\n"
+"POT-Creation-Date: 2023-01-24 18:29+0200\n"
 "PO-Revision-Date: 2022-03-13 21:44+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/collabora-online/"
@@ -2758,7 +2758,8 @@ msgstr ""
 "suggeriment més adient per a canviar el text."
 
 #: html/lool-help.html%2Bdiv.h4:547-5
-msgid "Is here a thesaurus?"
+#, fuzzy
+msgid "Is there a thesaurus?"
 msgstr "Hi ha un tesaurus?"
 
 #: html/lool-help.html%2Bdiv.p:548-5

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreOffice Online - Help\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-16 18:55+0200\n"
+"POT-Creation-Date: 2023-01-24 18:29+0200\n"
 "PO-Revision-Date: 2021-11-18 08:06+0000\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/"
@@ -2723,7 +2723,8 @@ msgstr ""
 "ustrezni predlog za spremembo besedila."
 
 #: html/lool-help.html%2Bdiv.h4:547-5
-msgid "Is here a thesaurus?"
+#, fuzzy
+msgid "Is there a thesaurus?"
 msgstr "Ali obstaja slovar sopomenk?"
 
 #: html/lool-help.html%2Bdiv.p:548-5

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-16 18:55+0100\n"
-"PO-Revision-Date: 2023-01-16 18:59+0100\n"
+"POT-Creation-Date: 2023-01-24 18:29+0100\n"
+"PO-Revision-Date: 2023-01-24 18:44+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -147,7 +147,7 @@ msgstr "Netzwerkgrafik"
 #: src/control/Control.NotebookbarImpress.js:20
 #: src/control/Control.NotebookbarImpress.js:153
 #: src/control/Control.NotebookbarWriter.js:115
-#: src/layer/tile/CommentListSection.ts:399 src/layer/tile/CommentSection.ts:126
+#: src/layer/tile/CommentListSection.ts:389 src/layer/tile/CommentSection.ts:114
 msgid "Save"
 msgstr "Speichern"
 
@@ -194,7 +194,7 @@ msgstr "Dokumente:"
 msgid "Expired:"
 msgstr "Abgelaufen:"
 
-#: admin/admin.strings.js:46 src/control/Control.Zotero.js:127
+#: admin/admin.strings.js:46 src/control/Control.Zotero.js:130
 msgid "Refresh"
 msgstr "Aktualisieren"
 
@@ -214,7 +214,7 @@ msgstr "Logging aktualisieren"
 msgid "Channel Filter:"
 msgstr "Kanalfilter:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:429
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:433
 #: src/control/Control.StatusBar.js:329
 msgid "None"
 msgstr "Keine"
@@ -267,23 +267,23 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
-#: src/control/Control.DocumentRepair.js:67 src/control/Control.Menubar.js:1802
+#: src/control/Control.DocumentRepair.js:67 src/control/Control.Menubar.js:1806
 #: src/control/Control.PresentationBar.js:110 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:252
-#: src/control/Control.Zotero.js:290 src/control/Toolbar.js:741
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:255
+#: src/control/Control.Zotero.js:293 src/control/Toolbar.js:741
 #: src/core/Socket.js:1042 src/map/handler/Map.Feedback.js:83
 msgid "OK"
 msgstr "OK"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
 #: src/control/Control.Command.js:92 src/control/Control.DocumentRepair.js:61
-#: src/control/Control.LanguageDialog.js:86 src/control/Control.Menubar.js:1801
+#: src/control/Control.LanguageDialog.js:86 src/control/Control.Menubar.js:1805
 #: src/control/Control.MobileTopBar.js:41
 #: src/control/Control.PresentationBar.js:109 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:247 src/control/Toolbar.js:740
+#: src/control/Control.Zotero.js:250 src/control/Toolbar.js:740
 #: src/core/Socket.js:901 src/core/Socket.js:911 src/core/Socket.js:1041
-#: src/layer/tile/CommentListSection.ts:398 src/layer/tile/CommentSection.ts:125
-#: src/layer/tile/CommentSection.ts:128
+#: src/layer/tile/CommentListSection.ts:388 src/layer/tile/CommentSection.ts:113
+#: src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -443,119 +443,119 @@ msgstr "Formel"
 msgid "Accept"
 msgstr "Übernehmen"
 
-#: src/control/Control.JSDialogBuilder.js:142 src/control/Control.StatusBar.js:327
+#: src/control/Control.JSDialogBuilder.js:146 src/control/Control.StatusBar.js:327
 msgid "Sum"
 msgstr "Summe"
 
-#: src/control/Control.JSDialogBuilder.js:143 src/control/Control.StatusBar.js:322
+#: src/control/Control.JSDialogBuilder.js:147 src/control/Control.StatusBar.js:322
 msgid "Average"
 msgstr "Mittelwert"
 
-#: src/control/Control.JSDialogBuilder.js:144
+#: src/control/Control.JSDialogBuilder.js:148
 msgid "Min"
 msgstr "Minimum"
 
-#: src/control/Control.JSDialogBuilder.js:145
+#: src/control/Control.JSDialogBuilder.js:149
 msgid "Max"
 msgstr "Maximum"
 
-#: src/control/Control.JSDialogBuilder.js:146 src/control/Control.StatusBar.js:324
+#: src/control/Control.JSDialogBuilder.js:150 src/control/Control.StatusBar.js:324
 msgid "Count"
 msgstr "Anzahl"
 
-#: src/control/Control.JSDialogBuilder.js:432
+#: src/control/Control.JSDialogBuilder.js:436
 msgid "Solid"
 msgstr "Stabil"
 
-#: src/control/Control.JSDialogBuilder.js:435
+#: src/control/Control.JSDialogBuilder.js:439
 msgid "Linear"
 msgstr "Linear"
 
-#: src/control/Control.JSDialogBuilder.js:438
+#: src/control/Control.JSDialogBuilder.js:442
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:441
+#: src/control/Control.JSDialogBuilder.js:445
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:448
 msgid "Ellipsoid"
 msgstr "Elliptisch"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:452
 msgid "Quadratic"
 msgstr "Quadratisch"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:455
 msgid "Square"
 msgstr "Rechteckig"
 
-#: src/control/Control.JSDialogBuilder.js:454
+#: src/control/Control.JSDialogBuilder.js:458
 msgid "Fixed size"
 msgstr "Festen Größe"
 
-#: src/control/Control.JSDialogBuilder.js:1358
+#: src/control/Control.JSDialogBuilder.js:1371
 msgid "From"
 msgstr "Von"
 
-#: src/control/Control.JSDialogBuilder.js:1361
+#: src/control/Control.JSDialogBuilder.js:1374
 msgid "To"
 msgstr "Bis"
 
-#: src/control/Control.JSDialogBuilder.js:1364
+#: src/control/Control.JSDialogBuilder.js:1377
 msgid "Color"
 msgstr "Farbe"
 
-#: src/control/Control.JSDialogBuilder.js:1665
+#: src/control/Control.JSDialogBuilder.js:1678
 msgid "Select range"
 msgstr "Bereich auswählen"
 
-#: src/control/Control.JSDialogBuilder.js:1714
+#: src/control/Control.JSDialogBuilder.js:1727
 #: src/control/Control.NotebookbarBuilder.js:237
 msgid "Font Name"
 msgstr "Schriftart"
 
-#: src/control/Control.JSDialogBuilder.js:1716 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1729 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: src/control/Control.JSDialogBuilder.js:1718
+#: src/control/Control.JSDialogBuilder.js:1731
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Aussehen"
 
-#: src/control/Control.JSDialogBuilder.js:2233
+#: src/control/Control.JSDialogBuilder.js:2244
 msgid "reply"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2236
+#: src/control/Control.JSDialogBuilder.js:2247
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2247
-#: src/layer/tile/CanvasTileLayer.js:5131 src/layer/tile/CanvasTileLayer.js:5142
-#: src/layer/tile/CommentListSection.ts:861
+#: src/control/Control.JSDialogBuilder.js:2258
+#: src/layer/tile/CanvasTileLayer.js:5112 src/layer/tile/CanvasTileLayer.js:5123
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Comment"
 msgstr "Kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2310
+#: src/control/Control.JSDialogBuilder.js:2321
 msgid "Insert Comment"
 msgstr "Kommentar einfügen"
 
-#: src/control/Control.JSDialogBuilder.js:2939
+#: src/control/Control.JSDialogBuilder.js:2949
 msgid "Cell borders"
 msgstr "Zellumrandung"
 
-#: src/control/Control.JSDialogBuilder.js:3150 src/control/Control.Menubar.js:759
+#: src/control/Control.JSDialogBuilder.js:3160 src/control/Control.Menubar.js:759
 msgid "Rows"
 msgstr "Zeilen"
 
-#: src/control/Control.JSDialogBuilder.js:3151 src/control/Control.Menubar.js:762
+#: src/control/Control.JSDialogBuilder.js:3161 src/control/Control.Menubar.js:762
 msgid "Columns"
 msgstr "Spalten"
 
-#: src/control/Control.JSDialogBuilder.js:3171
+#: src/control/Control.JSDialogBuilder.js:3181
 msgid "Insert Table"
 msgstr "Tabelle einfügen"
 
@@ -685,8 +685,8 @@ msgstr "Reparieren"
 #: src/control/Control.NotebookbarDraw.js:239
 #: src/control/Control.NotebookbarImpress.js:335
 #: src/control/Control.NotebookbarImpress.js:336
-#: src/control/Control.NotebookbarWriter.js:1042
-#: src/control/Control.NotebookbarWriter.js:1043
+#: src/control/Control.NotebookbarWriter.js:1047
+#: src/control/Control.NotebookbarWriter.js:1048
 #: src/control/Control.StatusBar.js:203
 msgid "Reset zoom"
 msgstr "Maßstab zurücksetzen"
@@ -696,12 +696,12 @@ msgstr "Maßstab zurücksetzen"
 #: src/control/Control.NotebookbarCalc.js:992
 #: src/control/Control.NotebookbarDraw.js:273
 #: src/control/Control.NotebookbarImpress.js:370
-#: src/control/Control.NotebookbarWriter.js:1077
+#: src/control/Control.NotebookbarWriter.js:1082
 msgid "Toggle UI Mode"
 msgstr "Benutzeroberflächenmodus umschalten"
 
 #: src/control/Control.Menubar.js:124 src/control/Control.Menubar.js:401
-#: src/control/Control.NotebookbarWriter.js:1089
+#: src/control/Control.NotebookbarWriter.js:1094
 msgid "Show Ruler"
 msgstr "Lineal anzeigen"
 
@@ -710,7 +710,7 @@ msgstr "Lineal anzeigen"
 #: src/control/Control.NotebookbarCalc.js:998
 #: src/control/Control.NotebookbarDraw.js:279
 #: src/control/Control.NotebookbarImpress.js:376
-#: src/control/Control.NotebookbarWriter.js:1100
+#: src/control/Control.NotebookbarWriter.js:1105
 msgid "Show Status Bar"
 msgstr "Statusleiste anzeigen"
 
@@ -734,32 +734,33 @@ msgstr "Textausrichtung"
 msgid "References"
 msgstr "Quellangabe"
 
-#: src/control/Control.Menubar.js:267 src/control/Control.NotebookbarWriter.js:1396
+#: src/control/Control.Menubar.js:267 src/control/Control.NotebookbarWriter.js:1401
 msgid "Update Index"
 msgstr "Verzeichnis aktualisieren"
 
-#: src/control/Control.Menubar.js:276 src/control/Control.NotebookbarWriter.js:1479
+#: src/control/Control.Menubar.js:276 src/control/Control.NotebookbarWriter.js:1484
 msgid "Add Citation"
 msgstr "Zitat hinzufügen"
 
-#: src/control/Control.Menubar.js:277 src/control/Control.NotebookbarWriter.js:1490
+#: src/control/Control.Menubar.js:277 src/control/Control.NotebookbarWriter.js:1495
 msgid "Add Citation Note"
 msgstr "Zitat Hinweis hinzufügen"
 
-#: src/control/Control.Menubar.js:278 src/control/Control.NotebookbarWriter.js:1467
+#: src/control/Control.Menubar.js:278 src/control/Control.NotebookbarWriter.js:1472
 msgid "Add Bibliography"
 msgstr "Literaturverzeichnis hinzufügen"
 
-#: src/control/Control.Menubar.js:280 src/control/Control.NotebookbarWriter.js:1507
+#: src/control/Control.Menubar.js:280 src/control/Control.NotebookbarWriter.js:1512
 msgid "Refresh Citations"
 msgstr "Quellangaben aktualisieren"
 
-#: src/control/Control.Menubar.js:281 src/control/Control.NotebookbarWriter.js:1518
+#: src/control/Control.Menubar.js:281 src/control/Control.NotebookbarWriter.js:1523
+#: src/control/Control.Zotero.js:1267
 msgid "Unlink Citations"
 msgstr "Quellangabe trennen"
 
-#: src/control/Control.Menubar.js:282
-msgid "Citations Preferences"
+#: src/control/Control.Menubar.js:282 src/control/Control.NotebookbarWriter.js:1534
+msgid "Citation Preferences"
 msgstr "Zitierweise"
 
 #: src/control/Control.Menubar.js:310 src/control/Control.Menubar.js:1121
@@ -787,9 +788,14 @@ msgstr "Datum einfügen"
 #: src/control/Control.NotebookbarDraw.js:218
 #: src/control/Control.NotebookbarImpress.js:310
 #: src/control/Control.NotebookbarWriter.js:273
-#: src/control/Control.NotebookbarWriter.js:1018
+#: src/control/Control.NotebookbarWriter.js:1023
 msgid "Properties"
 msgstr "Eigenschaften"
+
+#: src/control/Control.Menubar.js:324 src/control/Control.Menubar.js:326
+#: src/control/Control.Toolbar.js:244 src/control/Control.Toolbar.js:272
+msgid "More..."
+msgstr "Weitere …"
 
 #: src/control/Control.Menubar.js:343 src/control/Control.NotebookbarWriter.js:297
 msgid "Forum"
@@ -911,7 +917,7 @@ msgstr "CSV-Datei (.csv)"
 
 #: src/control/Control.Menubar.js:855 src/control/Control.Menubar.js:911
 #: src/control/Control.Menubar.js:968 src/control/Control.Menubar.js:1015
-#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:136
+#: src/control/Control.StatusBar.js:188 src/control/Control.Zotero.js:139
 msgid "Search"
 msgstr "Suchen"
 
@@ -923,31 +929,31 @@ msgstr "Seiten-Einstellungen"
 msgid "Reset to Default Language"
 msgstr "Auf Standardsprache zurücksetzen"
 
-#: src/control/Control.Menubar.js:1616
+#: src/control/Control.Menubar.js:1620
 msgid "Use Compact view"
 msgstr "Kompaktansicht verwenden"
 
-#: src/control/Control.Menubar.js:1618
+#: src/control/Control.Menubar.js:1622
 msgid "Use Tabbed view"
 msgstr "Registerkartenansicht verwenden"
 
-#: src/control/Control.Menubar.js:1654 src/control/Control.Menubar.js:1667
+#: src/control/Control.Menubar.js:1658 src/control/Control.Menubar.js:1671
 msgid "Read-only mode"
 msgstr "Schreibgeschützter Modus"
 
-#: src/control/Control.Menubar.js:1681
+#: src/control/Control.Menubar.js:1685
 msgid "Insert Shape"
 msgstr "Form einfügen"
 
-#: src/control/Control.Menubar.js:1793 src/control/Control.PresentationBar.js:101
+#: src/control/Control.Menubar.js:1797 src/control/Control.PresentationBar.js:101
 msgid "Are you sure you want to delete this slide?"
 msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 
-#: src/control/Control.Menubar.js:1796 src/control/Control.PresentationBar.js:104
+#: src/control/Control.Menubar.js:1800 src/control/Control.PresentationBar.js:104
 msgid "Are you sure you want to delete this page?"
 msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 
-#: src/control/Control.Menubar.js:1915
+#: src/control/Control.Menubar.js:1919
 msgid "file type icon"
 msgstr "Dateitypen-Symbol"
 
@@ -1125,7 +1131,8 @@ msgid "Currency"
 msgstr "Währung"
 
 #: src/control/Control.NotebookbarCalc.js:524
-#: src/control/Control.NotebookbarWriter.js:1013 src/control/Control.Zotero.js:929
+#: src/control/Control.NotebookbarWriter.js:1018 src/control/Control.Zotero.js:931
+#: src/control/Control.Zotero.js:1335
 msgid "Date"
 msgstr "Datum"
 
@@ -1208,14 +1215,14 @@ msgstr "Spalten löschen"
 #: src/control/Control.NotebookbarCalc.js:991
 #: src/control/Control.NotebookbarDraw.js:272
 #: src/control/Control.NotebookbarImpress.js:369
-#: src/control/Control.NotebookbarWriter.js:1076
+#: src/control/Control.NotebookbarWriter.js:1081
 msgid "Compact view"
 msgstr "Kompaktansicht"
 
 #: src/control/Control.NotebookbarCalc.js:997
 #: src/control/Control.NotebookbarDraw.js:278
 #: src/control/Control.NotebookbarImpress.js:375
-#: src/control/Control.NotebookbarWriter.js:1099
+#: src/control/Control.NotebookbarWriter.js:1104
 msgid "Status Bar"
 msgstr "Statusleiste"
 
@@ -1230,8 +1237,8 @@ msgstr "Sparkline"
 #: src/control/Control.NotebookbarImpress.js:708
 #: src/control/Control.NotebookbarImpress.js:985
 #: src/control/Control.NotebookbarImpress.js:1819
-#: src/control/Control.NotebookbarWriter.js:906
-#: src/control/Control.NotebookbarWriter.js:2290
+#: src/control/Control.NotebookbarWriter.js:911
+#: src/control/Control.NotebookbarWriter.js:2295
 msgid "Shapes"
 msgstr "Formen"
 
@@ -1279,29 +1286,25 @@ msgstr "ODF-Textdokument (.odt)"
 msgid "EPUB Document (.epub)"
 msgstr "EPUB-Dokument (.epub)"
 
-#: src/control/Control.NotebookbarWriter.js:993
+#: src/control/Control.NotebookbarWriter.js:998
 msgid "Rich Text"
 msgstr "Rich Text"
 
-#: src/control/Control.NotebookbarWriter.js:998
+#: src/control/Control.NotebookbarWriter.js:1003
 msgid "Checkbox"
 msgstr "Markierfeld"
 
-#: src/control/Control.NotebookbarWriter.js:1003
+#: src/control/Control.NotebookbarWriter.js:1008
 msgid "Dropdown"
 msgstr "Listenfeld"
 
-#: src/control/Control.NotebookbarWriter.js:1008
+#: src/control/Control.NotebookbarWriter.js:1013
 msgid "Picture"
 msgstr "Bild"
 
-#: src/control/Control.NotebookbarWriter.js:1088
+#: src/control/Control.NotebookbarWriter.js:1093
 msgid "Ruler"
 msgstr "Lineal"
-
-#: src/control/Control.NotebookbarWriter.js:1529
-msgid "Citation Preferences"
-msgstr "Zitierweise"
 
 #: src/control/Control.PartsPreview.js:180
 msgid "preview of page "
@@ -1451,10 +1454,6 @@ msgstr "Blatt umbenennen"
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
-#: src/control/Control.Toolbar.js:244 src/control/Control.Toolbar.js:272
-msgid "More..."
-msgstr "Weitere …"
-
 #: src/control/Control.Toolbar.js:969
 msgid "Previous slide"
 msgstr "Vorherige Folie"
@@ -1522,105 +1521,121 @@ msgstr "Schreibgeschützt"
 msgid "Current"
 msgstr "Aktuell"
 
-#: src/control/Control.Zotero.js:87
-msgid "Zotero API key not configured"
-msgstr "Zotero API Schlüssel nicht konfiguriert"
+#: src/control/Control.Zotero.js:90
+msgid "Zotero API key is not configured"
+msgstr "Zotero API Schlüssel ist nicht konfiguriert"
 
-#: src/control/Control.Zotero.js:162 src/core/Socket.js:1142
+#: src/control/Control.Zotero.js:113
+msgid "Zotero API key is incorrect"
+msgstr "Zotero API Schlüssel ist nicht korrekt"
+
+#: src/control/Control.Zotero.js:165 src/core/Socket.js:1140
 msgid "Loading..."
 msgstr "Lade …"
 
-#: src/control/Control.Zotero.js:180
+#: src/control/Control.Zotero.js:183
 msgid "Language:"
 msgstr "Sprache:"
 
-#: src/control/Control.Zotero.js:195
+#: src/control/Control.Zotero.js:198
 msgid "Store as:"
 msgstr "Speichern als:"
 
-#: src/control/Control.Zotero.js:201
+#: src/control/Control.Zotero.js:204
 msgid "Fields"
 msgstr "Felder"
 
-#: src/control/Control.Zotero.js:202
+#: src/control/Control.Zotero.js:205
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
-#: src/control/Control.Zotero.js:359
+#: src/control/Control.Zotero.js:362
 msgid "My Publications"
 msgstr "Meine Veröffentlichungen"
 
-#: src/control/Control.Zotero.js:365 src/control/Control.Zotero.js:590
+#: src/control/Control.Zotero.js:368 src/control/Control.Zotero.js:592
 msgid "My Library"
 msgstr "Meine Bibliography"
 
-#: src/control/Control.Zotero.js:366
+#: src/control/Control.Zotero.js:369
 msgid "Group Libraries"
 msgstr "Gruppen-Bibliotheken"
 
-#: src/control/Control.Zotero.js:606
+#: src/control/Control.Zotero.js:608
 msgid "Failed to load groups"
 msgstr "Laden der Gruppen fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:624 src/control/Control.Zotero.js:901
+#: src/control/Control.Zotero.js:626 src/control/Control.Zotero.js:903
 msgid "Failed to load collections"
 msgstr "Laden der Sammlung fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:638
+#: src/control/Control.Zotero.js:640
 msgid "Citation Style"
 msgstr "Zitierstil"
 
-#: src/control/Control.Zotero.js:643
+#: src/control/Control.Zotero.js:645
 msgid "Styles"
 msgstr "Stile"
 
-#: src/control/Control.Zotero.js:643
+#: src/control/Control.Zotero.js:645
 msgid "An error occurred while fetching style list"
 msgstr "Es trat ein Fehler während des Abrufens der Stil-Liste auf"
 
-#: src/control/Control.Zotero.js:650
+#: src/control/Control.Zotero.js:652
 msgid "Failed to load styles"
 msgstr "Laden des Stils fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:929
+#: src/control/Control.Zotero.js:931 src/control/Control.Zotero.js:1335
 msgid "Title"
 msgstr "Titel"
 
-#: src/control/Control.Zotero.js:929
+#: src/control/Control.Zotero.js:931 src/control/Control.Zotero.js:1335
 msgid "Creator(s)"
 msgstr "Urheber"
 
-#: src/control/Control.Zotero.js:929
+#: src/control/Control.Zotero.js:931 src/control/Control.Zotero.js:1335
 msgid "Your library is empty"
 msgstr "Ihre Bibliothek ist leer"
 
-#: src/control/Control.Zotero.js:933
+#: src/control/Control.Zotero.js:942
 msgid "Failed to load items"
 msgstr "Laden des Elements fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1060
+#: src/control/Control.Zotero.js:1085
 msgid "Add Note"
 msgstr "Anmerkung hinzufügen"
 
-#: src/control/Control.Zotero.js:1063
+#: src/control/Control.Zotero.js:1088
 msgid "Notes"
 msgstr "Anmerkungen"
 
-#: src/control/Control.Zotero.js:1063
+#: src/control/Control.Zotero.js:1088
 msgid "An error occurred while fetching notes"
 msgstr "Es trat ein Fehler während des Abrufens der Anmerkungen auf"
 
-#: src/control/Control.Zotero.js:1182
+#: src/control/Control.Zotero.js:1207
 msgid "Updated citations"
 msgstr "Aktualisierte Zitate"
 
-#: src/control/Control.Zotero.js:1184
+#: src/control/Control.Zotero.js:1209
 msgid "Citations update failed"
 msgstr "Aktualisieren des Zitats fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1188
+#: src/control/Control.Zotero.js:1213
 msgid "Updating citations"
 msgstr "Zitate aktualisieren"
+
+#: src/control/Control.Zotero.js:1268
+msgid ""
+"Unlinking citations will prevent Free Online Office from updating citations and "
+"bibliography in this document."
+msgstr ""
+"Aufheben der Verknüpfung der Zitate vermeidet, dass Free Online Office die "
+"Zitate und die Bibliographie in diesem Dokument aktualisiert."
+
+#: src/control/Control.Zotero.js:1269
+msgid "Confirm"
+msgstr "Bestätigen"
 
 #: src/control/Parts.js:432
 msgid "Show Selected Sheets"
@@ -1976,38 +1991,35 @@ msgstr "Sie haben ein falsches Kennwort eingegeben. Bitte versuchen Sie es erneu
 msgid "Missing Fonts"
 msgstr "Fehlende Schriftarten"
 
-#: src/core/Socket.js:1131
+#: src/core/Socket.js:1129
 msgid "Someone"
 msgstr "Jemand"
 
-#: src/core/Socket.js:1133
-msgid " saved this document as "
-msgstr " dieses Dokument gespeichert unter "
+#: src/core/Socket.js:1131
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+"%userName speicherte dieses Dokument als %fileName. Wollen Sie mitbearbeiten?"
 
-#: src/core/Socket.js:1133
-msgid ". Do you want to join?"
-msgstr ". Willst du mitmachen?"
-
-#: src/core/Socket.js:1142
+#: src/core/Socket.js:1140
 msgid "Connecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1160
+#: src/core/Socket.js:1158
 msgid "The document is being renamed and will reload shortly"
 msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 
-#: src/core/Socket.js:1549
+#: src/core/Socket.js:1547
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen "
 "Sie es erneut."
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1564
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1576
+#: src/core/Socket.js:1574
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 
@@ -2231,71 +2243,71 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1878
+#: src/layer/tile/CanvasTileLayer.js:1859
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2420
+#: src/layer/tile/CanvasTileLayer.js:2401
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2428
+#: src/layer/tile/CanvasTileLayer.js:2409
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2436
+#: src/layer/tile/CanvasTileLayer.js:2417
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5159
+#: src/layer/tile/CanvasTileLayer.js:5140
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
-#: src/layer/tile/CommentListSection.ts:808
+#: src/layer/tile/CommentListSection.ts:798
 msgid "Modify"
 msgstr "Ändern"
 
-#: src/layer/tile/CommentListSection.ts:814 src/layer/tile/CommentSection.ts:129
+#: src/layer/tile/CommentListSection.ts:804 src/layer/tile/CommentSection.ts:117
 msgid "Reply"
 msgstr "Antworten"
 
-#: src/layer/tile/CommentListSection.ts:820
+#: src/layer/tile/CommentListSection.ts:810
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/layer/tile/CommentListSection.ts:826
+#: src/layer/tile/CommentListSection.ts:816
 msgid "Remove Thread"
 msgstr "Thread entfernen"
 
-#: src/layer/tile/CommentListSection.ts:832
+#: src/layer/tile/CommentListSection.ts:822
 msgid "Resolve"
 msgstr "Auflösen"
 
-#: src/layer/tile/CommentListSection.ts:832
+#: src/layer/tile/CommentListSection.ts:822
 msgid "Unresolve"
 msgstr "Ungelöst"
 
-#: src/layer/tile/CommentListSection.ts:838
+#: src/layer/tile/CommentListSection.ts:828
 msgid "Unresolve Thread"
 msgstr "Thread als ungelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:838
+#: src/layer/tile/CommentListSection.ts:828
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentSection.ts:260
+#: src/layer/tile/CommentSection.ts:248
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: src/layer/tile/CommentSection.ts:277 src/layer/tile/CommentSection.ts:278
+#: src/layer/tile/CommentSection.ts:266 src/layer/tile/CommentSection.ts:267
 msgid "Accept change"
 msgstr "Änderung annehmen"
 
-#: src/layer/tile/CommentSection.ts:284 src/layer/tile/CommentSection.ts:285
+#: src/layer/tile/CommentSection.ts:273 src/layer/tile/CommentSection.ts:274
 msgid "Reject change"
 msgstr "Änderung verwerfen"
 
-#: src/layer/tile/CommentSection.ts:306
+#: src/layer/tile/CommentSection.ts:297
 msgid "Resolved"
 msgstr "Erledigt"
 
@@ -2485,6 +2497,15 @@ msgstr ""
 "Schritt-Anleitung</a> und erzeugen Sie einen Free-Online-Office-Build. Sie "
 "können auch mit Übersetzungen oder durch Meldung eines Fehlers mit allen "
 "wichtigen Schritten zur Reproduktion des Fehlers helfen."
+
+#~ msgid "Citations Preferences"
+#~ msgstr "Zitierweise"
+
+#~ msgid " saved this document as "
+#~ msgstr " dieses Dokument gespeichert unter "
+
+#~ msgid ". Do you want to join?"
+#~ msgstr ". Willst du mitmachen?"
 
 #~ msgid ""
 #~ "Are you interested in contributing but don’t know where to start? Head over "

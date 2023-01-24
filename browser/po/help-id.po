@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-16 18:55+0200\n"
+"POT-Creation-Date: 2023-01-24 18:29+0200\n"
 "PO-Revision-Date: 2022-02-27 21:06+0000\n"
 "Last-Translator: Rizal Muttaqin <riz_17_oke@yahoo.co.id>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
@@ -2505,7 +2505,8 @@ msgid ""
 msgstr ""
 
 #: html/lool-help.html%2Bdiv.h4:547-5
-msgid "Is here a thesaurus?"
+#, fuzzy
+msgid "Is there a thesaurus?"
 msgstr "Apakah di sini ada tesaurus?"
 
 #: html/lool-help.html%2Bdiv.p:548-5
