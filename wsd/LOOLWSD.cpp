@@ -5418,6 +5418,10 @@ int LOOLWSD::innerMain()
     // Start the server.
     Server->start();
 
+#if defined(__EMSCRIPTEN__)
+    handle_lool_message("HULLO");
+#endif
+
     /// The main-poll does next to nothing:
     SocketPoll mainWait("main");
 
