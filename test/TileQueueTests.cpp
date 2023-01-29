@@ -18,6 +18,8 @@
 #include <SenderQueue.hpp>
 #include <Util.hpp>
 
+#include <cppunit/extensions/HelperMacros.h>
+
 /// TileQueue unit-tests.
 class TileQueueTests : public CPPUNIT_NS::TestFixture
 {

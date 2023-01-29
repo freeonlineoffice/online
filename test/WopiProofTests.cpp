@@ -24,6 +24,8 @@
 #include <openssl/buffer.h>
 #include <openssl/opensslv.h>
 
+#include <cppunit/extensions/HelperMacros.h>
+
 /// Delta unit-tests.
 class WopiProofTests : public CPPUNIT_NS::TestFixture
 {

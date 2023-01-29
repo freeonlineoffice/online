@@ -13,6 +13,8 @@
 #include <common/Authorization.hpp>
 #include <RequestDetails.hpp>
 
+#include <cppunit/extensions/HelperMacros.h>
+
 /// RequestDetails unit-tests.
 class RequestDetailsTests : public CPPUNIT_NS::TestFixture
 {
