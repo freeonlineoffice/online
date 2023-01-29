@@ -7,10 +7,12 @@
 
 #include "wasmapp.hpp"
 
+#include "base64.hpp"
+
 int loolwsd_server_socket_fd = -1;
 
 const char* user_name;
-const int SHOW_JS_MAXLEN = 70;
+const int SHOW_JS_MAXLEN = 200;
 
 static std::string fileURL = "file:///android/default-document/example.odt";
 static LOOLWSD *loolwsd = nullptr;
@@ -20,7 +22,10 @@ static lok::Office * llo = NULL;
 
 static void send2JS(const std::vector<char>& buffer)
 {
-    LOG_TRC_NOFILE("Send to JS: " << LOOLProtocol::getAbbreviatedMessage(buffer.data(), buffer.size()));
+    if (buffer.size() < SHOW_JS_MAXLEN)
+        LOG_TRC_NOFILE("Send to JS: " << std::string(buffer.data(), buffer.size()));
+    else
+        LOG_TRC_NOFILE("Send to JS: " << std::string(buffer.data(), SHOW_JS_MAXLEN) << "...");
 
     std::string js;
 
@@ -35,7 +40,7 @@ static void send2JS(const std::vector<char>& buffer)
     {
         // The data needs to be an ArrayBuffer
         js = "window.TheFakeWebSocket.onmessage({'data': Base64ToArrayBuffer('";
-        js = js + std::string(buffer.data(), buffer.size());
+        js = js + macaron::Base64::Encode(std::string(buffer.data(), buffer.size()));
         js = js + "')});";
     }
     else
@@ -56,10 +61,9 @@ static void send2JS(const std::vector<char>& buffer)
                 data.push_back(ubufp[i]);
             }
         }
-        data.push_back(0);
 
         js = "window.TheFakeWebSocket.onmessage({'data': '";
-        js = js + std::string(buffer.data(), buffer.size());
+        js = js + std::string(data.data(), data.size());
         js = js + "'});";
     }
 
@@ -259,14 +263,13 @@ int main(int, char*[])
 
     fakeClientFd = fakeSocketSocket();
 
-    while (true)
-    {
-        std::cout << "================ Creating a LOOLWSD object and calling its run()" << std::endl;
-        loolwsd = new LOOLWSD();
-        loolwsd->run(1, argv);
-        delete loolwsd;
-        LOG_TRC("One run of LOOLWSD completed");
-    }
+    // We run LOOOLWSD::run() in a thread of its own so that main() can return.
+    std::thread([&]
+                {
+                    loolwsd = new LOOLWSD();
+                    loolwsd->run(1, argv);
+                    delete loolwsd;
+                }).detach();
 
     std::cout << "================ main() is returning" << std::endl;
     return 0;

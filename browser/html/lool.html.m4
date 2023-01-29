@@ -88,7 +88,7 @@ m4_ifelse(ANDROIDAPP,[true],
 )
 m4_ifelse(EMSCRIPTENAPP,[true],
   [   window.ThisIsTheEmscriptenApp = true;
-   window.postMobileMessage = function(msg) { _handle_lool_message(allocateUTF8(msg)); };
+   window.postMobileMessage = function(msg) { app.HandleLOOLMessage(app.AllocateUTF8(msg)); };
    window.postMobileError   = function(msg) { console.log('LOOL Error: ' + msg); };
    window.postMobileDebug   = function(msg) { console.log('LOOL Debug: ' + msg); };],
   [   window.ThisIsTheEmscriptenApp = false;]

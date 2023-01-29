@@ -5421,7 +5421,10 @@ int LOOLWSD::innerMain()
     Server->start();
 
 #if defined(__EMSCRIPTEN__)
+    // It is not at all obvious that this is the ideal place to do the HULLO thing and call onopen
+    // on TheFakeWebSocket. But it seems to work.
     handle_lool_message("HULLO");
+    MAIN_THREAD_EM_ASM(window.TheFakeWebSocket.onopen(););
 #endif
 
     /// The main-poll does next to nothing:
