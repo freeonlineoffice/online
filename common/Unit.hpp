@@ -297,6 +297,9 @@ private:
     /// Self-test.
     static void selfTest();
 
+    /// Called when a test is finished with the given result and reason.
+    virtual void onExitTest(TestResult result, const std::string& reason = std::string()) = 0;
+
     /// Handles messages from LOKit.
     virtual bool onFilterLOKitMessage(const std::shared_ptr<Message>& /*message*/) { return false; }
 
@@ -493,6 +496,8 @@ public:
 private:
     /// The actual test implementation.
     virtual void invokeWSDTest() {}
+
+    void onExitTest(TestResult result, const std::string& reason = std::string()) override;
 };
 
 /// Derive your Kit unit test / hooks from me.
@@ -534,6 +539,9 @@ public:
     {
         return nullptr;
     }
+
+private:
+    void onExitTest(TestResult result, const std::string& reason = std::string()) override;
 };
 
 /// Derive your Tool unit test / hooks from me.
@@ -544,6 +552,9 @@ public:
         : UnitBase(name, UnitType::Tool)
     {
     }
+
+private:
+    void onExitTest(TestResult, const std::string& = std::string()) override {}
 };
 
 /// Transition the test state of VAR to STATE, with a prefix message, and resume the test.
