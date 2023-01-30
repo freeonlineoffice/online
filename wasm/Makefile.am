@@ -1,9 +1,26 @@
 
 EXEEXT = .js
 
-noinst_LIBRARIES = libonline.a
+AM_CXXFLAGS = \
+	-pthread -s USE_PTHREADS=1 \
+	-s DISABLE_EXCEPTION_CATCHING=0
 
-libonline_a_SOURCES = \
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/common \
+	-I$(top_srcdir)/kit \
+	-I$(top_srcdir)/net \
+	-I$(top_srcdir)/wsd \
+	-I@LOBUILDDIR@/workdir/UnpackedTarball/libpng \
+	-I@LOBUILDDIR@/workdir/UnpackedTarball/zlib \
+	-DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
+	-DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
+	-DMOBILEAPP=1
+
+bin_PROGRAMS = online
+
+online_SOURCES = \
+	wasmapp.cpp \
 	../common/Authorization.cpp \
 	../common/ConfigUtil.cpp \
 	../common/FileUtil.cpp \
@@ -18,7 +35,6 @@ libonline_a_SOURCES = \
 	../common/SpookyV2.cpp \
 	../common/Unit.cpp \
 	../common/Util.cpp \
-	../common/CommandControl.cpp \
 	../kit/ChildSession.cpp \
 	../kit/Kit.cpp \
 	../net/FakeSocket.cpp \
@@ -30,35 +46,13 @@ libonline_a_SOURCES = \
 	../wsd/Storage.cpp \
 	../wsd/TileCache.cpp
 
-AM_CXXFLAGS = \
-	-pthread -s USE_PTHREADS=1 \
-	-s DISABLE_EXCEPTION_CATCHING=0
-
-AM_CPPFLAGS = \
-	-I$(top_srcdir) \
-	-I$(top_srcdir)/common \
-	-I$(top_srcdir)/kit \
-	-I$(top_srcdir)/net \
-	-I$(top_srcdir)/wsd \
-	-I@LOBUILDDIR@/workdir/UnpackedTarball/libpng \
-	-I@LOBUILDDIR@/workdir/UnpackedTarball/zlib \
-	-DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
-        -DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
-	-DMOBILEAPP=1
-
-bin_PROGRAMS = online
-
-online_SOURCES = wasmapp.cpp
-
 online_DEPENDENCIES = \
 	@LOBUILDDIR@/instdir/program/soffice.html.linkdeps \
 	soffice.data \
-	soffice.data.js.metadata \
-	libonline.a
+	soffice.data.js.metadata
 
 # note cannot add content of .linkdeps to DEPENDENCIES because it contains -lFoo
 online_LDADD = \
-	libonline.a \
 	${POCOLIB}/libPocoEncodings@POCODEBUG@.a \
 	${POCOLIB}/libPocoNet@POCODEBUG@.a \
 	${POCOLIB}/libPocoUtil@POCODEBUG@.a \
