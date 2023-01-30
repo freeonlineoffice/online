@@ -479,8 +479,16 @@ public:
         // Triggered manually or during closing, not auto-save.
         LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
 
-        // Certainly not exiting yet.
-        LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsExitSave"));
+        if (getCountPutFile() < 3)
+        {
+            // Certainly not exiting yet.
+            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsExitSave"));
+        }
+        else
+        {
+            // Only on the last (third) attempt we exit.
+            LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsExitSave"));
+        }
 
         LOK_ASSERT_MESSAGE("Unexpected phase", _phase == Phase::WaitModifiedStatus ||
                                                    _phase == Phase::WaitUnmodifiedStatus);
