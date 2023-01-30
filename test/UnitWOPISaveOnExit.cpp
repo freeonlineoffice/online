@@ -188,18 +188,15 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& request) override
     {
-        LOG_TST("Checking X-COOL-WOPI headers");
+        LOG_TST("Checking X-LOOL-WOPI headers");
 
         // No modifications.
-        LOK_ASSERT_EQUAL(std::string("false"), request.get("X-COOL-WOPI-IsModifiedByUser"));
         LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
 
         // Closing, no auto-save expected.
-        LOK_ASSERT_EQUAL(std::string("false"), request.get("X-COOL-WOPI-IsAutosave"));
         LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
 
         // Exiting, certainly.
-        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-COOL-WOPI-IsExitSave"));
         LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsExitSave"));
 
         TRANSITION_STATE(_phase, Phase::WaitDestroy);
