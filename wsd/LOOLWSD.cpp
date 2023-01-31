@@ -872,6 +872,7 @@ bool LOOLWSD::NoSeccomp = false;
 bool LOOLWSD::AdminEnabled = true;
 bool LOOLWSD::UnattendedRun = false;
 bool LOOLWSD::SignalParent = false;
+std::string LOOLWSD::RouteToken;
 #if ENABLE_DEBUG
 bool LOOLWSD::SingleKit = false;
 #endif
@@ -5136,6 +5137,7 @@ public:
            << "\n  Security " << (LOOLWSD::NoCapsForKit ? "no" : "") << " chroot, "
            << (LOOLWSD::NoSeccomp ? "no" : "") << " api lockdown"
            << "\n  Admin: " << (LOOLWSD::AdminEnabled ? "enabled" : "disabled")
+           << "\n  RouteToken: " << LOOLWSD::RouteToken
 #endif
            << "\n  TerminationFlag: " << SigUtil::getTerminationFlag()
            << "\n  isShuttingDown: " << SigUtil::getShutdownRequestFlag()
