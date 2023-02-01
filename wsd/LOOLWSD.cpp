@@ -1591,7 +1591,7 @@ public:
         {
             const std::string path =
                 "monitors.monitor[" + std::to_string(i) + ']';
-            if (!_conf.has(path))
+            if (!conf.has(path))
             {
                 break;
             }
