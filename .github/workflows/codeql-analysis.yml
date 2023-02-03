@@ -31,7 +31,7 @@ jobs:
         # Override automatic language detection by changing the below list
         # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
         language: ['cpp', 'javascript', 'python']
-        version: [16]
+        node-version: [16]
         # Learn more...
         # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
 
@@ -48,7 +48,7 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-        node-version: ${{ matrix.version }}
+        node-version: ${{ matrix.node-version }}
         config-file: ./.github/codeql/codeql-config.yml
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
