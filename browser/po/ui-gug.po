@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 18:36+0100\n"
+"POT-Creation-Date: 2023-02-06 17:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:433
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:434
 #: src/control/Control.StatusBar.js:329
 msgid "None"
 msgstr ""
@@ -262,16 +262,16 @@ msgid "Are you sure you want to terminate this session?"
 msgstr ""
 
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
-#: src/control/Control.DocumentRepair.js:67 src/control/Control.Tabs.js:306
+#: src/control/Control.DocumentRepair.js:68 src/control/Control.Tabs.js:306
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:332
 #: src/control/Control.Zotero.js:370 src/control/Toolbar.js:749
-#: src/control/Toolbar.js:944 src/core/Socket.js:1052 src/core/Socket.js:1273
+#: src/control/Toolbar.js:947 src/core/Socket.js:1052 src/core/Socket.js:1273
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:440
 msgid "OK"
 msgstr ""
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
-#: src/control/Control.Command.js:92 src/control/Control.DocumentRepair.js:61
+#: src/control/Control.Command.js:92 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:86
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
 #: src/control/Control.Zotero.js:327 src/control/Toolbar.js:748
@@ -361,7 +361,7 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:943
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:946
 msgid "Delete"
 msgstr ""
 
@@ -378,36 +378,36 @@ msgstr ""
 msgid "Repair Document"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:114
+#: src/control/Control.DocumentRepair.js:115
 #: src/control/Control.UserList.js:295
 msgid "You"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:130
+#: src/control/Control.DocumentRepair.js:131
 msgid "Type"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:130
+#: src/control/Control.DocumentRepair.js:131
 msgid "What?"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:130
+#: src/control/Control.DocumentRepair.js:131
 msgid "Who?"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:130
+#: src/control/Control.DocumentRepair.js:131
 msgid "When?"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:149
+#: src/control/Control.DocumentRepair.js:150
 msgid "You have not done anything to rollback yet..."
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:159
+#: src/control/Control.DocumentRepair.js:160
 msgid "Redo"
 msgstr ""
 
-#: src/control/Control.DocumentRepair.js:160
+#: src/control/Control.DocumentRepair.js:161
 msgid "Undo"
 msgstr ""
 
@@ -437,127 +437,127 @@ msgstr ""
 msgid "Accept"
 msgstr "Moneĩ"
 
-#: src/control/Control.JSDialogBuilder.js:146
+#: src/control/Control.JSDialogBuilder.js:147
 #: src/control/Control.StatusBar.js:327
 msgid "Sum"
 msgstr "Suma"
 
-#: src/control/Control.JSDialogBuilder.js:147
+#: src/control/Control.JSDialogBuilder.js:148
 #: src/control/Control.StatusBar.js:322
 msgid "Average"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:148
+#: src/control/Control.JSDialogBuilder.js:149
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:149
+#: src/control/Control.JSDialogBuilder.js:150
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:150
+#: src/control/Control.JSDialogBuilder.js:151
 #: src/control/Control.StatusBar.js:324
 msgid "Count"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:436
+#: src/control/Control.JSDialogBuilder.js:437
 msgid "Solid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:439
+#: src/control/Control.JSDialogBuilder.js:440
 msgid "Linear"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:442
+#: src/control/Control.JSDialogBuilder.js:443
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:445
+#: src/control/Control.JSDialogBuilder.js:446
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:449
 msgid "Ellipsoid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:452
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Quadratic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:455
+#: src/control/Control.JSDialogBuilder.js:456
 msgid "Square"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:458
+#: src/control/Control.JSDialogBuilder.js:459
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1371
+#: src/control/Control.JSDialogBuilder.js:1372
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1374
+#: src/control/Control.JSDialogBuilder.js:1375
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1377
+#: src/control/Control.JSDialogBuilder.js:1378
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1477
+#: src/control/Control.JSDialogBuilder.js:1478
 msgid "Select range"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1526
+#: src/control/Control.JSDialogBuilder.js:1527
 #: src/control/Control.NotebookbarBuilder.js:237
 #, fuzzy
 msgid "Font Name"
 msgstr "Letra Háicha"
 
-#: src/control/Control.JSDialogBuilder.js:1528 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1529 src/control/Toolbar.js:123
 #, fuzzy
 msgid "Font Size"
 msgstr "Letra Háicha"
 
-#: src/control/Control.JSDialogBuilder.js:1530
+#: src/control/Control.JSDialogBuilder.js:1531
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Estilo"
 
-#: src/control/Control.JSDialogBuilder.js:2043
+#: src/control/Control.JSDialogBuilder.js:2044
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2046
+#: src/control/Control.JSDialogBuilder.js:2047
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2057
+#: src/control/Control.JSDialogBuilder.js:2058
 #: src/layer/tile/CanvasTileLayer.js:5112
 #: src/layer/tile/CanvasTileLayer.js:5123
 #: src/layer/tile/CommentListSection.ts:851
 msgid "Comment"
 msgstr "Oje'éva"
 
-#: src/control/Control.JSDialogBuilder.js:2120
+#: src/control/Control.JSDialogBuilder.js:2121
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2757
+#: src/control/Control.JSDialogBuilder.js:2758
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2968
+#: src/control/Control.JSDialogBuilder.js:2969
 #: src/control/Control.Menubar.js:773
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2969
+#: src/control/Control.JSDialogBuilder.js:2970
 #: src/control/Control.Menubar.js:776
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2989
+#: src/control/Control.JSDialogBuilder.js:2990
 #, fuzzy
 msgid "Insert Table"
 msgstr "Moinge tabla"
@@ -1937,11 +1937,11 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: src/control/Toolbar.js:938
+#: src/control/Toolbar.js:941
 msgid "Are you sure you want to delete this slide?"
 msgstr ""
 
-#: src/control/Toolbar.js:941
+#: src/control/Toolbar.js:944
 msgid "Are you sure you want to delete this page?"
 msgstr ""
 
