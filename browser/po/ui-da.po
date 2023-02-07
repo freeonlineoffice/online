@@ -2119,7 +2119,7 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Værtens URL er tom. Coolwsd-serveren er sandsynligvis fejlkonfigureret, "
+"Værtens URL er tom. Loolwsd-serveren er sandsynligvis fejlkonfigureret, "
 "kontakt venligst administratoren."
 
 #: src/errormessages.js:17

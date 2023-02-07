@@ -2112,7 +2112,7 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Ana makine URL'si boş. Coolwsd sunucusu muhtemelen yanlış "
+"Ana makine URL'si boş. Loolwsd sunucusu muhtemelen yanlış "
 "yapılandırılmıştır, lütfen sistem yöneticiniz ile görüşün."
 
 #: src/errormessages.js:17

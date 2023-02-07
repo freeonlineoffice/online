@@ -2141,7 +2141,7 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"होस्ट URL खाली छ। Coolwsd सर्भर शायद गलत कन्फिगर गरिएको छ, कृपया प्रशासकलाई "
+"होस्ट URL खाली छ। Loolwsd सर्भर शायद गलत कन्फिगर गरिएको छ, कृपया प्रशासकलाई "
 "सम्पर्क गर्नुहोस्।"
 
 #: src/errormessages.js:17

@@ -2116,7 +2116,7 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Hostitelská URL je prázdná. Coolwsd server je pravděpodobně nesprávně "
+"Hostitelská URL je prázdná. Loolwsd server je pravděpodobně nesprávně "
 "nakonfigurován, obraťte se na správce."
 
 #: src/errormessages.js:17

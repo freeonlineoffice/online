@@ -2121,7 +2121,7 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"URL hosta je prazan. Coolwsd server vjerovatno je pogrešno podešen, molim "
+"URL hosta je prazan. Loolwsd server vjerovatno je pogrešno podešen, molim "
 "vas kontaktirajte administratora."
 
 #: src/errormessages.js:17
