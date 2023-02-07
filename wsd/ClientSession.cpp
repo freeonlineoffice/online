@@ -494,13 +494,13 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         _performanceCounterEpoch = 0;
         if (tokens.size() >= 4)
         {
-            std::string timestamp = tokens[2];
+            const std::string timestamp = tokens[2];
             const char* str = timestamp.c_str();
             char* endptr = nullptr;
             uint64_t ts = strtoull(str, &endptr, 10);
             if (*endptr == '\0')
             {
-                std::string perfcounter = tokens[3].data();
+                const std::string perfcounter = tokens[3];
                 str = perfcounter.data();
                 endptr = nullptr;
                 double counter = strtod(str, &endptr);
