@@ -4167,15 +4167,15 @@ private:
             else if (it.first == "MimeType")
                 mime = it.second;
         }
-        LOG_TRC("Media request for us: " << serverId << " with tag " << tag);
+
+        LOG_TRC("Media request for us: [" << serverId << "] with tag [" << tag << "] and viewId ["
+                                          << viewId << ']');
 
         if (serverId != Util::getProcessIdentifier())
         {
-            const std::string errMsg = "Cluster configuration error: mis-matching "
-                                       "serverid ["
-                                       + serverId + "] vs. [" + Util::getProcessIdentifier()
-                                       + "] on request to URL: " + request.getURI();
-            LOG_ERR(errMsg);
+            LOG_ERR("Cluster configuration error: mis-matching serverid ["
+                    << serverId << "] vs. [" << Util::getProcessIdentifier()
+                    << "] on request to URL: " << request.getURI());
 
             // we got the wrong request.
             http::Response httpResponse(http::StatusCode::BadRequest);
@@ -4186,6 +4186,9 @@ private:
         }
 
         const auto docKey = RequestDetails::getDocKey(WOPISrc);
+        LOG_TRC("Looking up DocBroker with docKey [" << docKey << "] referenced in WOPISrc ["
+                                                     << WOPISrc
+                                                     << "] in media URL: " + request.getURI());
 
         std::shared_ptr<DocumentBroker> docBroker;
         {
@@ -4193,9 +4196,9 @@ private:
             auto it = DocBrokers.find(docKey);
             if (it == DocBrokers.end())
             {
-                const std::string errMsg =
-                    "Unknown DocBroker reference in media URL: " + request.getURI();
-                LOG_ERR(errMsg);
+                LOG_ERR("Unknown DocBroker with docKey [" << docKey << "] referenced in WOPISrc ["
+                                                          << WOPISrc
+                                                          << "] in media URL: " + request.getURI());
 
                 http::Response httpResponse(http::StatusCode::BadRequest);
                 httpResponse.set("Content-Length", "0");
