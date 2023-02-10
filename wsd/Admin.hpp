@@ -167,6 +167,9 @@ public:
 
     void getMetrics(std::ostringstream &metrics);
 
+    // delete entry from _monitorSocket map
+    void deleteMonitorSocket(const std::string &uriWithoutParam);
+
 private:
     /// Notify Forkit of changed settings.
     void notifyForkit();
