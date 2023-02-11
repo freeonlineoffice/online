@@ -1829,7 +1829,7 @@ L.Control.Menubar = L.Control.extend({
 		} else if (id === 'report-an-issue') {
 			window.open('https://bugs.documentfoundation.org/enter_bug.cgi?product=Free%20%20Online%20Office', '_blank');
 		} else if (id === 'inserthyperlink') {
-			this._map.showHyperlinkDialog();
+			this._map.dispatch('hyperlinkdialog');
 		} else if (id === 'keyboard-shortcuts' || id === 'online-help') {
 			this._map.showHelp(id);
 		} else if (L.Params.revHistoryEnabled && (id === 'rev-history' || id === 'Rev-History' || id === 'last-mod')) {
