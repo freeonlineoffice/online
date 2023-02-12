@@ -516,7 +516,7 @@ endif
 
 $(DIST_FOLDER)/admin-bundle.js: $(LOOL_ADMIN_DST) \
 	$(INTERMEDIATE_DIR)/admin-src.js
-	@NODE_PATH=$(abs_builddir)/node_modules:$(INTERMEDIATE_DIR) $(NODE) node_modules/browserify/bin/cmd.js -g browserify-css $(if $(IS_SEPARATE),--debug,-g uglifyify) -o $@ $(srcdir)/admin/main-admin.js
+	@NODE_PATH=$(abs_builddir)/node_modules:$(INTERMEDIATE_DIR) $(NODE) node_modules/browserify/bin/cmd.js -g browserify-css $(if $(IS_SEPARATE),--debug,-g @browserify/uglifyify) -o $@ $(srcdir)/admin/main-admin.js
 
 $(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@mkdir -p $(dir $@)
