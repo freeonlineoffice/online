@@ -19,5 +19,5 @@ global._ = function (string) {
 
 global.l10nstrings = require('./admin.strings.js');
 
-global.d3 = require('d3');
+global.d3 = require('d3/dist/d3');
 global.Admin = require('admin-src.js');
