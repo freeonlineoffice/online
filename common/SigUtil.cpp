@@ -42,9 +42,11 @@
 
 #ifndef IOS
 static std::atomic<bool> TerminationFlag(false);
+static std::atomic<bool> ShutdownRequestFlag(false);
+#if !MOBILEAPP
 static std::atomic<bool> DumpGlobalState(false);
 static std::atomic<bool> ForwardSigUsr2Flag(false); //< Flags to forward SIG_USR2 to children.
-static std::atomic<bool> ShutdownRequestFlag(false);
+#endif
 #endif
 
 static size_t ActivityStringIndex = 0;
@@ -101,6 +103,8 @@ namespace SigUtil
             DumpGlobalState = false;
             dumpState();
         }
+#else
+        (void) dumpState;
 #endif
     }
 
@@ -113,6 +117,8 @@ namespace SigUtil
             ForwardSigUsr2Flag = false;
             forwardSigUsr2();
         }
+#else
+        (void) forwardSigUsr2;
 #endif
     }
 

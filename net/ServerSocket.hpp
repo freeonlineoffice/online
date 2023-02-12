@@ -66,6 +66,7 @@ public:
 #if !MOBILEAPP
         const int rc = ::listen(getFD(), backlog);
 #else
+        (void) backlog;
         const int rc = fakeSocketListen(getFD());
 #endif
         if (rc)
