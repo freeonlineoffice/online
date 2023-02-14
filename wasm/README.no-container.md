@@ -1,11 +1,11 @@
 <!---
-NOTE: This file describes how to build Collabora Online as WASM
+NOTE: This file describes how to build LibreOffice Online as WASM
 without using the Allotropia container.
 -->
 
-# Collabora Online as WASM (COWASM)
+# LibreOffice Online as WASM (COWASM)
 
-Before building Collabora Online as WASM you need to build three
+Before building LibreOffice Online as WASM you need to build three
 dependencies: LibreOffice core, Poco, and zstd.
 
 The toolchain used is Emscripten. Versions 2.0.31 and 3.1.30 are known
@@ -62,5 +62,5 @@ This will install into `/opt/poco.emsc.3.1.30`.
 ## Build Online itself
 
     ./autogen.sh
-	./configure --disable-werror --with-lokit-path=/home/tml/lo/core-cool-wasm/include --with-lo-path=/home/tml/lo/core-cool-wasm/instdir --with-lo-builddir=/home/tml/lo/core-cool-wasm --with-zstd-includes=/opt/zstd.emsc.3.1.30/include --with-zstd-libs=/opt/zstd.emsc.3.1.30/lib --with-poco-includes=/opt/poco.emsc.3.1.30/include --with-poco-libs=/opt/poco.emsc.3.1.30/lib --host=wasm32-local-emscripten --with-wasm-additional-files=/home/tml/lo/online-hacking/my-sample-docs
+	./configure --disable-werror --with-lokit-path=/home/tml/lo/core-lool-wasm/include --with-lo-path=/home/tml/lo/core-lool-wasm/instdir --with-lo-builddir=/home/tml/lo/core-lool-wasm --with-zstd-includes=/opt/zstd.emsc.3.1.30/include --with-zstd-libs=/opt/zstd.emsc.3.1.30/lib --with-poco-includes=/opt/poco.emsc.3.1.30/include --with-poco-libs=/opt/poco.emsc.3.1.30/lib --host=wasm32-local-emscripten --with-wasm-additional-files=/home/tml/lo/online-hacking/my-sample-docs
     make
