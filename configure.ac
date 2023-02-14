@@ -141,7 +141,7 @@ AC_ARG_WITH([wasm-fallback],
 AC_ARG_WITH([wasm-additional-files],
               AS_HELP_STRING([--with-wasm-additional-files=<path>],
                              [Add more files to the in-memory WASM file system in online.wasm in addition to the ones from the WASM
-                              build of Collabora Office. The files will be available in the WASM in-memory file system as pathnames
+                              build of Free Online Office. The files will be available in the WASM in-memory file system as pathnames
                               stripping the initial prefix <path> where they are on the build system. For instance, if you give
                               --with-wasm-additional-files=$HOME/our-sample-docs, and there is a file $HOME/our-sample-docs/temp/test.docx,
                               that will be available in the online.wasm as /temp/test.docx.
