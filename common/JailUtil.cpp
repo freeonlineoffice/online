@@ -395,7 +395,9 @@ void setupDynamicFiles(const std::string& sysTemplate)
 
 bool updateDynamicFilesImpl(const std::string& sysTemplate)
 {
-    LOG_INF("Updating systemplate dynamic files in [" << sysTemplate << "].");
+    LOG_INF("Updating systemplate dynamic files in [" << sysTemplate << ']');
+
+    bool checkWritableSysTemplate = true;
     for (const auto& dynFilename : DynamicFilePaths)
     {
         if (!FileUtil::Stat(dynFilename).exists())
@@ -427,8 +429,7 @@ bool updateDynamicFilesImpl(const std::string& sysTemplate)
             continue;
         }
 
-        // Check that sysTemplate is in fact writable to avoid predictable errors.
-        if (!FileUtil::isWritable(sysTemplate))
+        if (checkWritableSysTemplate && !FileUtil::isWritable(sysTemplate))
         {
             disableBindMounting(); // We can't mount from incomplete systemplate that can't be updated.
             LinkDynamicFiles = false;
@@ -439,6 +440,8 @@ bool updateDynamicFilesImpl(const std::string& sysTemplate)
                     << sysTemplate << "/etc] are up-to-date.");
             return false;
         }
+
+        checkWritableSysTemplate = false; // We've checked and is writable.
 
         LOG_INF("File [" << dstFilename << "] needs to be updated.");
         if (LinkDynamicFiles)
@@ -473,7 +476,7 @@ bool updateDynamicFilesImpl(const std::string& sysTemplate)
         // Linking failed, just copy.
         if (!LinkDynamicFiles)
         {
-            LOG_INF("Copying [" << srcFilename << "] -> [" << dstFilename << "].");
+            LOG_INF("Copying [" << srcFilename << "] -> [" << dstFilename << ']');
             if (!FileUtil::copyAtomic(srcFilename, dstFilename, true))
             {
                 FileUtil::Stat dstStat2(dstFilename); // Stat again.
