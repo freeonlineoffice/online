@@ -930,12 +930,13 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo &fileInfo,
         _disableExport = true;
 }
 
-bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCtx, bool lock,
-                                  const Attributes& attribs)
+StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& auth,
+                                                           LockContext& lockCtx, bool lock,
+                                                           const Attributes& attribs)
 {
     lockCtx._lockFailureReason.clear();
     if (!lockCtx._supportsLocks)
-        return true;
+        return LockUpdateResult::UNSUPPORTED;
 
     Poco::URI uriObject(getUri());
     auth.authorizeURI(uriObject);
@@ -981,7 +982,7 @@ bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCt
         {
             lockCtx._isLocked = lock;
             lockCtx._lastLockTime = std::chrono::steady_clock::now();
-            return true;
+            return LockUpdateResult::OK;
         }
         else
         {
@@ -991,8 +992,21 @@ bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCt
                 lockCtx._lockFailureReason = sMoreInfo;
                 sMoreInfo = ", failure reason: \"" + sMoreInfo + "\"";
             }
-            LOG_ERR("Un-successful " << wopiLog << " with status " << response.getStatus() <<
-                    sMoreInfo << " and response: " << responseString);
+
+            if (response.getStatus() == Poco::Net::HTTPResponse::HTTP_UNAUTHORIZED ||
+                response.getStatus() == Poco::Net::HTTPResponse::HTTP_FORBIDDEN ||
+                response.getStatus() == Poco::Net::HTTPResponse::HTTP_NOT_FOUND)
+            {
+                LOG_ERR("Un-successful " << wopiLog << " with expired token, HTTP status "
+                                         << response.getStatus() << sMoreInfo
+                                         << " and response: " << responseString);
+
+                return LockUpdateResult::UNAUTHORIZED;
+            }
+
+            LOG_ERR("Un-successful " << wopiLog << " with HTTP status " << response.getStatus()
+                                     << sMoreInfo << " and response: " << responseString);
+            return LockUpdateResult::FAILED;
         }
     }
     catch (const Poco::Exception& pexc)
@@ -1004,7 +1018,9 @@ bool WopiStorage::updateLockState(const Authorization& auth, LockContext& lockCt
     {
         LOG_ERR("Cannot " << wopiLog << " uri [" << uriAnonym << "]. Error: " << exc.what());
     }
-    return false;
+
+    lockCtx._lockFailureReason = "Request failed";
+    return LockUpdateResult::FAILED;
 }
 
 /// uri format: http://server/<...>/wopi*/files/<id>/content
