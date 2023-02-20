@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 19:21+0100\n"
+"POT-Creation-Date: 2023-02-20 14:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgstr "ਦਸਤਾਵੇਜ਼:"
 msgid "Expired:"
 msgstr "ਮਿਆਦ ਪੁੱਗੀ:"
 
-#: admin/admin.strings.js:46 src/control/Control.Zotero.js:206
+#: admin/admin.strings.js:46 src/control/Control.Zotero.js:192
 msgid "Refresh"
 msgstr "ਤਾਜ਼ਾ ਕਰੋ"
 
@@ -225,7 +225,7 @@ msgid "Log Levels"
 msgstr ""
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:186 src/control/Parts.js:431
+#: src/control/Control.Zotero.js:172 src/control/Parts.js:431
 #: src/control/Signing.js:611 src/core/Socket.js:1100 src/core/Socket.js:1105
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -266,8 +266,8 @@ msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨਾ 
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:332
-#: src/control/Control.Zotero.js:370 src/control/Toolbar.js:749
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:318
+#: src/control/Control.Zotero.js:356 src/control/Toolbar.js:749
 #: src/control/Toolbar.js:947 src/core/Socket.js:1052 src/core/Socket.js:1273
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:440
 msgid "OK"
@@ -277,7 +277,7 @@ msgstr ""
 #: src/control/Control.Command.js:93 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:327 src/control/Toolbar.js:748
+#: src/control/Control.Zotero.js:313 src/control/Toolbar.js:748
 #: src/core/Socket.js:911 src/core/Socket.js:921 src/core/Socket.js:1051
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
@@ -538,8 +538,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2058
-#: src/layer/tile/CanvasTileLayer.js:5119
-#: src/layer/tile/CanvasTileLayer.js:5130
+#: src/layer/tile/CanvasTileLayer.js:5120
+#: src/layer/tile/CanvasTileLayer.js:5131
 #: src/layer/tile/CommentListSection.ts:851
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
@@ -682,7 +682,7 @@ msgstr "ਦਸਤਾਵੇਜ਼ ਲਈ ਦਸਤਖਤ ਕਰੋ"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:382
 #: src/control/Control.Menubar.js:521 src/control/Control.Menubar.js:647
-#: src/control/Control.Toolbar.js:1160
+#: src/control/Control.Toolbar.js:1161
 msgid "Close document"
 msgstr "ਦਸਤਾਵੇਜ਼ ਬੰਦ ਕਰੋ"
 
@@ -791,7 +791,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:286
 #: src/control/Control.NotebookbarWriter.js:1531
-#: src/control/Control.Zotero.js:1437
+#: src/control/Control.Zotero.js:1423
 msgid "Unlink Citations"
 msgstr ""
 
@@ -957,7 +957,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:872 src/control/Control.Menubar.js:932
 #: src/control/Control.Menubar.js:992 src/control/Control.Menubar.js:1042
-#: src/control/Control.StatusBar.js:191 src/control/Control.Zotero.js:215
+#: src/control/Control.StatusBar.js:191 src/control/Control.Zotero.js:201
 msgid "Search"
 msgstr "ਖੋਜੋ"
 
@@ -983,16 +983,16 @@ msgstr ""
 msgid "Use Tabbed view"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1692 src/control/Control.Menubar.js:1705
+#: src/control/Control.Menubar.js:1698 src/control/Control.Menubar.js:1711
 msgid "Read-only mode"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1719
+#: src/control/Control.Menubar.js:1725
 #, fuzzy
 msgid "Insert Shape"
 msgstr "ਸ਼ਕਲਾਂ ਜੋੜੋ"
 
-#: src/control/Control.Menubar.js:1922
+#: src/control/Control.Menubar.js:1928
 msgid "file type icon"
 msgstr ""
 
@@ -1183,7 +1183,7 @@ msgstr "ਮੌਜੂਦਾ"
 
 #: src/control/Control.NotebookbarCalc.js:542
 #: src/control/Control.NotebookbarWriter.js:1026
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Date"
 msgstr ""
 
@@ -1518,15 +1518,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "ਨਵੀਂ ਸ਼ੀਟ ਦਾ ਨਾਂ ਦਿਓ"
 
-#: src/control/Control.Toolbar.js:958
+#: src/control/Control.Toolbar.js:959
 msgid "Previous slide"
 msgstr ""
 
-#: src/control/Control.Toolbar.js:959
+#: src/control/Control.Toolbar.js:960
 msgid "Next slide"
 msgstr ""
 
-#: src/control/Control.Toolbar.js:1020
+#: src/control/Control.Toolbar.js:1021
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -1584,144 +1584,144 @@ msgstr "ਪੜ੍ਹਨ ਲਈ ਹੀ"
 msgid "Current"
 msgstr "ਮੌਜੂਦਾ"
 
-#: src/control/Control.Zotero.js:133
+#: src/control/Control.Zotero.js:128
 msgid "Zotero API key is not configured"
 msgstr ""
 
-#: src/control/Control.Zotero.js:157
+#: src/control/Control.Zotero.js:143
 msgid "Zotero API key is incorrect"
 msgstr ""
 
-#: src/control/Control.Zotero.js:184
+#: src/control/Control.Zotero.js:170
 msgid "Zotero Warning"
 msgstr ""
 
-#: src/control/Control.Zotero.js:185
+#: src/control/Control.Zotero.js:171
 msgid ""
 "The document contains some citations which may be unreachable through web "
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:241 src/core/Socket.js:1153
+#: src/control/Control.Zotero.js:227 src/core/Socket.js:1153
 msgid "Loading..."
 msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/control/Control.Zotero.js:259
+#: src/control/Control.Zotero.js:245
 msgid "Language:"
 msgstr ""
 
-#: src/control/Control.Zotero.js:274
+#: src/control/Control.Zotero.js:260
 msgid "Store as:"
 msgstr ""
 
-#: src/control/Control.Zotero.js:280 src/control/Control.Zotero.js:404
+#: src/control/Control.Zotero.js:266 src/control/Control.Zotero.js:390
 msgid "Fields"
 msgstr ""
 
-#: src/control/Control.Zotero.js:281 src/control/Control.Zotero.js:404
+#: src/control/Control.Zotero.js:267 src/control/Control.Zotero.js:390
 msgid "Bookmarks"
 msgstr ""
 
-#: src/control/Control.Zotero.js:402
+#: src/control/Control.Zotero.js:388
 msgid "Footnotes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:402
+#: src/control/Control.Zotero.js:388
 msgid "Endnotes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:466
+#: src/control/Control.Zotero.js:452
 msgid "My Publications"
 msgstr ""
 
-#: src/control/Control.Zotero.js:472 src/control/Control.Zotero.js:697
+#: src/control/Control.Zotero.js:458 src/control/Control.Zotero.js:683
 msgid "My Library"
 msgstr ""
 
-#: src/control/Control.Zotero.js:473
+#: src/control/Control.Zotero.js:459
 msgid "Group Libraries"
 msgstr ""
 
-#: src/control/Control.Zotero.js:713
+#: src/control/Control.Zotero.js:699
 msgid "Failed to load groups"
 msgstr ""
 
-#: src/control/Control.Zotero.js:731 src/control/Control.Zotero.js:1049
+#: src/control/Control.Zotero.js:717 src/control/Control.Zotero.js:1035
 msgid "Failed to load collections"
 msgstr ""
 
-#: src/control/Control.Zotero.js:745
+#: src/control/Control.Zotero.js:731
 msgid "Citation Style"
 msgstr ""
 
-#: src/control/Control.Zotero.js:750
+#: src/control/Control.Zotero.js:736
 #, fuzzy
 msgid "Styles"
 msgstr "ਸਟਾਈਲ"
 
-#: src/control/Control.Zotero.js:750
+#: src/control/Control.Zotero.js:736
 msgid "An error occurred while fetching style list"
 msgstr ""
 
-#: src/control/Control.Zotero.js:758
+#: src/control/Control.Zotero.js:744
 msgid "Failed to load styles"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Title"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Creator(s)"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Your library is empty"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1088
+#: src/control/Control.Zotero.js:1074
 msgid "Failed to load items"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1138
+#: src/control/Control.Zotero.js:1124
 msgid "Citation warning"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1139
+#: src/control/Control.Zotero.js:1125
 msgid ""
 "Once citations are entered their storage and display type can not be "
 "changed."
 msgstr ""
 
-#: src/control/Control.Zotero.js:1140 src/control/Control.Zotero.js:1439
+#: src/control/Control.Zotero.js:1126 src/control/Control.Zotero.js:1425
 msgid "Confirm"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1246
+#: src/control/Control.Zotero.js:1232
 msgid "Add Note"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1249
+#: src/control/Control.Zotero.js:1235
 msgid "Notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1249
+#: src/control/Control.Zotero.js:1235
 msgid "An error occurred while fetching notes"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1377
+#: src/control/Control.Zotero.js:1363
 msgid "Updated citations"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1379
+#: src/control/Control.Zotero.js:1365
 msgid "Citations update failed"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1383
+#: src/control/Control.Zotero.js:1369
 msgid "Updating citations"
 msgstr ""
 
-#: src/control/Control.Zotero.js:1438
+#: src/control/Control.Zotero.js:1424
 msgid ""
 "Unlinking citations will prevent Free Online Office from updating citations "
 "and bibliography in this document."
@@ -2288,19 +2288,19 @@ msgstr ""
 msgid "Functions"
 msgstr "ਫੰਕਸ਼ਨ"
 
-#: src/layer/tile/CanvasTileLayer.js:2408
+#: src/layer/tile/CanvasTileLayer.js:2409
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2416
+#: src/layer/tile/CanvasTileLayer.js:2417
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2424
+#: src/layer/tile/CanvasTileLayer.js:2425
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5147
+#: src/layer/tile/CanvasTileLayer.js:5148
 msgid "No Comments"
 msgstr ""
 

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-14 19:21+0100\n"
-"PO-Revision-Date: 2023-02-14 19:31+0100\n"
+"POT-Creation-Date: 2023-02-20 14:23+0100\n"
+"PO-Revision-Date: 2023-02-20 14:24+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -194,7 +194,7 @@ msgstr "Dokumente:"
 msgid "Expired:"
 msgstr "Abgelaufen:"
 
-#: admin/admin.strings.js:46 src/control/Control.Zotero.js:206
+#: admin/admin.strings.js:46 src/control/Control.Zotero.js:192
 msgid "Refresh"
 msgstr "Aktualisieren"
 
@@ -228,7 +228,7 @@ msgid "Log Levels"
 msgstr "Logging-Level"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:186 src/control/Parts.js:431
+#: src/control/Control.Zotero.js:172 src/control/Parts.js:431
 #: src/control/Signing.js:611 src/core/Socket.js:1100 src/core/Socket.js:1105
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -269,8 +269,8 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:332
-#: src/control/Control.Zotero.js:370 src/control/Toolbar.js:749
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:318
+#: src/control/Control.Zotero.js:356 src/control/Toolbar.js:749
 #: src/control/Toolbar.js:947 src/core/Socket.js:1052 src/core/Socket.js:1273
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:440
 msgid "OK"
@@ -279,7 +279,7 @@ msgstr "OK"
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
 #: src/control/Control.Command.js:93 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103 src/control/Control.MobileTopBar.js:41
-#: src/control/Control.Tabs.js:305 src/control/Control.Zotero.js:327
+#: src/control/Control.Tabs.js:305 src/control/Control.Zotero.js:313
 #: src/control/Toolbar.js:748 src/core/Socket.js:911 src/core/Socket.js:921
 #: src/core/Socket.js:1051 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
@@ -533,7 +533,7 @@ msgid "replies"
 msgstr "Antworten"
 
 #: src/control/Control.JSDialogBuilder.js:2058
-#: src/layer/tile/CanvasTileLayer.js:5119 src/layer/tile/CanvasTileLayer.js:5130
+#: src/layer/tile/CanvasTileLayer.js:5120 src/layer/tile/CanvasTileLayer.js:5131
 #: src/layer/tile/CommentListSection.ts:851
 msgid "Comment"
 msgstr "Kommentar"
@@ -668,7 +668,7 @@ msgstr "Dokument signieren"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:382
 #: src/control/Control.Menubar.js:521 src/control/Control.Menubar.js:647
-#: src/control/Control.Toolbar.js:1160
+#: src/control/Control.Toolbar.js:1161
 msgid "Close document"
 msgstr "Dokument schließen"
 
@@ -771,7 +771,7 @@ msgid "Refresh Citations"
 msgstr "Quellangaben aktualisieren"
 
 #: src/control/Control.Menubar.js:286 src/control/Control.NotebookbarWriter.js:1531
-#: src/control/Control.Zotero.js:1437
+#: src/control/Control.Zotero.js:1423
 msgid "Unlink Citations"
 msgstr "Quellangabe trennen"
 
@@ -929,7 +929,7 @@ msgstr "CSV-Datei (.csv)"
 
 #: src/control/Control.Menubar.js:872 src/control/Control.Menubar.js:932
 #: src/control/Control.Menubar.js:992 src/control/Control.Menubar.js:1042
-#: src/control/Control.StatusBar.js:191 src/control/Control.Zotero.js:215
+#: src/control/Control.StatusBar.js:191 src/control/Control.Zotero.js:201
 msgid "Search"
 msgstr "Suchen"
 
@@ -955,15 +955,15 @@ msgstr "Kompaktansicht verwenden"
 msgid "Use Tabbed view"
 msgstr "Registerkartenansicht verwenden"
 
-#: src/control/Control.Menubar.js:1692 src/control/Control.Menubar.js:1705
+#: src/control/Control.Menubar.js:1698 src/control/Control.Menubar.js:1711
 msgid "Read-only mode"
 msgstr "Schreibgeschützter Modus"
 
-#: src/control/Control.Menubar.js:1719
+#: src/control/Control.Menubar.js:1725
 msgid "Insert Shape"
 msgstr "Form einfügen"
 
-#: src/control/Control.Menubar.js:1922
+#: src/control/Control.Menubar.js:1928
 msgid "file type icon"
 msgstr "Dateitypen-Symbol"
 
@@ -1148,8 +1148,8 @@ msgid "Currency"
 msgstr "Währung"
 
 #: src/control/Control.NotebookbarCalc.js:542
-#: src/control/Control.NotebookbarWriter.js:1026 src/control/Control.Zotero.js:1077
-#: src/control/Control.Zotero.js:1510
+#: src/control/Control.NotebookbarWriter.js:1026 src/control/Control.Zotero.js:1063
+#: src/control/Control.Zotero.js:1496
 msgid "Date"
 msgstr "Datum"
 
@@ -1471,15 +1471,15 @@ msgstr "Blatt umbenennen"
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
-#: src/control/Control.Toolbar.js:958
+#: src/control/Control.Toolbar.js:959
 msgid "Previous slide"
 msgstr "Vorherige Folie"
 
-#: src/control/Control.Toolbar.js:959
+#: src/control/Control.Toolbar.js:960
 msgid "Next slide"
 msgstr "Nächste Folie"
 
-#: src/control/Control.Toolbar.js:1020
+#: src/control/Control.Toolbar.js:1021
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to resolve"
 msgstr ""
@@ -1538,19 +1538,19 @@ msgstr "Schreibgeschützt"
 msgid "Current"
 msgstr "Aktuell"
 
-#: src/control/Control.Zotero.js:133
+#: src/control/Control.Zotero.js:128
 msgid "Zotero API key is not configured"
 msgstr "Zotero API Schlüssel ist nicht konfiguriert"
 
-#: src/control/Control.Zotero.js:157
+#: src/control/Control.Zotero.js:143
 msgid "Zotero API key is incorrect"
 msgstr "Zotero API Schlüssel ist nicht korrekt"
 
-#: src/control/Control.Zotero.js:184
+#: src/control/Control.Zotero.js:170
 msgid "Zotero Warning"
 msgstr "Zotero-Warnung"
 
-#: src/control/Control.Zotero.js:185
+#: src/control/Control.Zotero.js:171
 msgid ""
 "The document contains some citations which may be unreachable through web API. "
 "It may cause some problems while editing citations or bibliography."
@@ -1559,126 +1559,126 @@ msgstr ""
 "erreicht werden können. Dies könnte einige Probleme während der Bearbeitung von "
 "Zitaten und die Literaturliste verursachen."
 
-#: src/control/Control.Zotero.js:241 src/core/Socket.js:1153
+#: src/control/Control.Zotero.js:227 src/core/Socket.js:1153
 msgid "Loading..."
 msgstr "Lade …"
 
-#: src/control/Control.Zotero.js:259
+#: src/control/Control.Zotero.js:245
 msgid "Language:"
 msgstr "Sprache:"
 
-#: src/control/Control.Zotero.js:274
+#: src/control/Control.Zotero.js:260
 msgid "Store as:"
 msgstr "Speichern als:"
 
-#: src/control/Control.Zotero.js:280 src/control/Control.Zotero.js:404
+#: src/control/Control.Zotero.js:266 src/control/Control.Zotero.js:390
 msgid "Fields"
 msgstr "Felder"
 
-#: src/control/Control.Zotero.js:281 src/control/Control.Zotero.js:404
+#: src/control/Control.Zotero.js:267 src/control/Control.Zotero.js:390
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
-#: src/control/Control.Zotero.js:402
+#: src/control/Control.Zotero.js:388
 msgid "Footnotes"
 msgstr "Fußnoten"
 
-#: src/control/Control.Zotero.js:402
+#: src/control/Control.Zotero.js:388
 msgid "Endnotes"
 msgstr "Endnoten"
 
-#: src/control/Control.Zotero.js:466
+#: src/control/Control.Zotero.js:452
 msgid "My Publications"
 msgstr "Meine Veröffentlichungen"
 
-#: src/control/Control.Zotero.js:472 src/control/Control.Zotero.js:697
+#: src/control/Control.Zotero.js:458 src/control/Control.Zotero.js:683
 msgid "My Library"
 msgstr "Meine Bibliography"
 
-#: src/control/Control.Zotero.js:473
+#: src/control/Control.Zotero.js:459
 msgid "Group Libraries"
 msgstr "Gruppen-Bibliotheken"
 
-#: src/control/Control.Zotero.js:713
+#: src/control/Control.Zotero.js:699
 msgid "Failed to load groups"
 msgstr "Laden der Gruppen fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:731 src/control/Control.Zotero.js:1049
+#: src/control/Control.Zotero.js:717 src/control/Control.Zotero.js:1035
 msgid "Failed to load collections"
 msgstr "Laden der Sammlung fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:745
+#: src/control/Control.Zotero.js:731
 msgid "Citation Style"
 msgstr "Zitierstil"
 
-#: src/control/Control.Zotero.js:750
+#: src/control/Control.Zotero.js:736
 msgid "Styles"
 msgstr "Stile"
 
-#: src/control/Control.Zotero.js:750
+#: src/control/Control.Zotero.js:736
 msgid "An error occurred while fetching style list"
 msgstr "Es trat ein Fehler während des Abrufens der Stil-Liste auf"
 
-#: src/control/Control.Zotero.js:758
+#: src/control/Control.Zotero.js:744
 msgid "Failed to load styles"
 msgstr "Laden des Stils fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Title"
 msgstr "Titel"
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Creator(s)"
 msgstr "Urheber"
 
-#: src/control/Control.Zotero.js:1077 src/control/Control.Zotero.js:1510
+#: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Your library is empty"
 msgstr "Ihre Bibliothek ist leer"
 
-#: src/control/Control.Zotero.js:1088
+#: src/control/Control.Zotero.js:1074
 msgid "Failed to load items"
 msgstr "Laden des Elements fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1138
+#: src/control/Control.Zotero.js:1124
 msgid "Citation warning"
 msgstr "Zitierwarnung"
 
-#: src/control/Control.Zotero.js:1139
+#: src/control/Control.Zotero.js:1125
 msgid ""
 "Once citations are entered their storage and display type can not be changed."
 msgstr ""
 "Sobald Zitate eingetragen sind, kann ihr Speicherort und Anzeigetyp nicht "
 "geändert werden."
 
-#: src/control/Control.Zotero.js:1140 src/control/Control.Zotero.js:1439
+#: src/control/Control.Zotero.js:1126 src/control/Control.Zotero.js:1425
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: src/control/Control.Zotero.js:1246
+#: src/control/Control.Zotero.js:1232
 msgid "Add Note"
 msgstr "Anmerkung hinzufügen"
 
-#: src/control/Control.Zotero.js:1249
+#: src/control/Control.Zotero.js:1235
 msgid "Notes"
 msgstr "Anmerkungen"
 
-#: src/control/Control.Zotero.js:1249
+#: src/control/Control.Zotero.js:1235
 msgid "An error occurred while fetching notes"
 msgstr "Es trat ein Fehler während des Abrufens der Anmerkungen auf"
 
-#: src/control/Control.Zotero.js:1377
+#: src/control/Control.Zotero.js:1363
 msgid "Updated citations"
 msgstr "Aktualisierte Zitate"
 
-#: src/control/Control.Zotero.js:1379
+#: src/control/Control.Zotero.js:1365
 msgid "Citations update failed"
 msgstr "Aktualisieren des Zitats fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1383
+#: src/control/Control.Zotero.js:1369
 msgid "Updating citations"
 msgstr "Zitate aktualisieren"
 
-#: src/control/Control.Zotero.js:1438
+#: src/control/Control.Zotero.js:1424
 msgid ""
 "Unlinking citations will prevent Free Online Office from updating citations and "
 "bibliography in this document."
@@ -2312,19 +2312,19 @@ msgstr ""
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2408
+#: src/layer/tile/CanvasTileLayer.js:2409
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2416
+#: src/layer/tile/CanvasTileLayer.js:2417
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2424
+#: src/layer/tile/CanvasTileLayer.js:2425
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5147
+#: src/layer/tile/CanvasTileLayer.js:5148
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
