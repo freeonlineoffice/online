@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-22 18:54+0100\n"
+"POT-Creation-Date: 2023-02-24 22:16+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/"
@@ -708,8 +708,8 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:247
 #: src/control/Control.NotebookbarImpress.js:346
 #: src/control/Control.NotebookbarImpress.js:347
-#: src/control/Control.NotebookbarWriter.js:1060
-#: src/control/Control.NotebookbarWriter.js:1061
+#: src/control/Control.NotebookbarWriter.js:1062
+#: src/control/Control.NotebookbarWriter.js:1063
 #: src/control/Control.StatusBar.js:206
 msgid "Reset zoom"
 msgstr ""
@@ -719,12 +719,12 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1017
 #: src/control/Control.NotebookbarDraw.js:281
 #: src/control/Control.NotebookbarImpress.js:381
-#: src/control/Control.NotebookbarWriter.js:1095
+#: src/control/Control.NotebookbarWriter.js:1097
 msgid "Toggle UI Mode"
 msgstr ""
 
 #: src/control/Control.Menubar.js:128 src/control/Control.Menubar.js:409
-#: src/control/Control.NotebookbarWriter.js:1107
+#: src/control/Control.NotebookbarWriter.js:1109
 msgid "Show Ruler"
 msgstr ""
 
@@ -733,7 +733,7 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1023
 #: src/control/Control.NotebookbarDraw.js:287
 #: src/control/Control.NotebookbarImpress.js:387
-#: src/control/Control.NotebookbarWriter.js:1118
+#: src/control/Control.NotebookbarWriter.js:1120
 msgid "Show Status Bar"
 msgstr ""
 
@@ -758,38 +758,38 @@ msgid "References"
 msgstr ""
 
 #: src/control/Control.Menubar.js:272
-#: src/control/Control.NotebookbarWriter.js:1414
+#: src/control/Control.NotebookbarWriter.js:1416
 msgid "Update Index"
 msgstr ""
 
 #: src/control/Control.Menubar.js:281
-#: src/control/Control.NotebookbarWriter.js:1497
+#: src/control/Control.NotebookbarWriter.js:1499
 msgid "Add Citation"
 msgstr ""
 
 #: src/control/Control.Menubar.js:282
-#: src/control/Control.NotebookbarWriter.js:1508
+#: src/control/Control.NotebookbarWriter.js:1510
 msgid "Add Citation Note"
 msgstr ""
 
 #: src/control/Control.Menubar.js:283
-#: src/control/Control.NotebookbarWriter.js:1485
+#: src/control/Control.NotebookbarWriter.js:1487
 msgid "Add Bibliography"
 msgstr ""
 
 #: src/control/Control.Menubar.js:285
-#: src/control/Control.NotebookbarWriter.js:1525
+#: src/control/Control.NotebookbarWriter.js:1527
 msgid "Refresh Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:286
-#: src/control/Control.NotebookbarWriter.js:1536
+#: src/control/Control.NotebookbarWriter.js:1538
 #: src/control/Control.Zotero.js:1423
 msgid "Unlink Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:287
-#: src/control/Control.NotebookbarWriter.js:1547
+#: src/control/Control.NotebookbarWriter.js:1549
 msgid "Citation Preferences"
 msgstr ""
 
@@ -818,30 +818,30 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:226
 #: src/control/Control.NotebookbarImpress.js:320
 #: src/control/Control.NotebookbarWriter.js:283
-#: src/control/Control.NotebookbarWriter.js:1036
+#: src/control/Control.NotebookbarWriter.js:1038
 msgid "Properties"
 msgstr ""
 
 #: src/control/Control.Menubar.js:348
-#: src/control/Control.NotebookbarWriter.js:307
+#: src/control/Control.NotebookbarWriter.js:308
 msgid "Forum"
 msgstr ""
 
 #: src/control/Control.Menubar.js:349 src/control/Control.Menubar.js:494
 #: src/control/Control.Menubar.js:615 src/control/Control.Menubar.js:862
-#: src/control/Control.NotebookbarWriter.js:318
+#: src/control/Control.NotebookbarWriter.js:319
 msgid "Online Help"
 msgstr ""
 
 #: src/control/Control.Menubar.js:350 src/control/Control.Menubar.js:495
 #: src/control/Control.Menubar.js:616 src/control/Control.Menubar.js:863
-#: src/control/Control.NotebookbarWriter.js:329
+#: src/control/Control.NotebookbarWriter.js:330
 msgid "Keyboard shortcuts"
 msgstr ""
 
 #: src/control/Control.Menubar.js:351 src/control/Control.Menubar.js:496
 #: src/control/Control.Menubar.js:617 src/control/Control.Menubar.js:864
-#: src/control/Control.NotebookbarWriter.js:345
+#: src/control/Control.NotebookbarWriter.js:347
 msgid "Report an issue"
 msgstr ""
 
@@ -849,7 +849,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:618 src/control/Control.Menubar.js:865
 #: src/control/Control.Menubar.js:927 src/control/Control.Menubar.js:987
 #: src/control/Control.Menubar.js:1037 src/control/Control.Menubar.js:1107
-#: src/control/Control.NotebookbarWriter.js:357
+#: src/control/Control.NotebookbarWriter.js:359
 msgid "Latest Updates"
 msgstr ""
 
@@ -857,7 +857,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:619 src/control/Control.Menubar.js:866
 #: src/control/Control.Menubar.js:928 src/control/Control.Menubar.js:988
 #: src/control/Control.Menubar.js:1038 src/control/Control.Menubar.js:1108
-#: src/control/Control.NotebookbarWriter.js:369
+#: src/control/Control.NotebookbarWriter.js:371
 msgid "Send Feedback"
 msgstr ""
 
@@ -865,7 +865,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:620 src/control/Control.Menubar.js:867
 #: src/control/Control.Menubar.js:929 src/control/Control.Menubar.js:989
 #: src/control/Control.Menubar.js:1039 src/control/Control.Menubar.js:1109
-#: src/control/Control.NotebookbarWriter.js:381
+#: src/control/Control.NotebookbarWriter.js:383
 msgid "About"
 msgstr ""
 
@@ -1176,7 +1176,7 @@ msgid "Currency"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:544
-#: src/control/Control.NotebookbarWriter.js:1031
+#: src/control/Control.NotebookbarWriter.js:1033
 #: src/control/Control.Zotero.js:1063 src/control/Control.Zotero.js:1496
 msgid "Date"
 msgstr ""
@@ -1260,14 +1260,14 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1016
 #: src/control/Control.NotebookbarDraw.js:280
 #: src/control/Control.NotebookbarImpress.js:380
-#: src/control/Control.NotebookbarWriter.js:1094
+#: src/control/Control.NotebookbarWriter.js:1096
 msgid "Compact view"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1022
 #: src/control/Control.NotebookbarDraw.js:286
 #: src/control/Control.NotebookbarImpress.js:386
-#: src/control/Control.NotebookbarWriter.js:1117
+#: src/control/Control.NotebookbarWriter.js:1119
 msgid "Status Bar"
 msgstr ""
 
@@ -1282,8 +1282,8 @@ msgstr "Іскраграфік"
 #: src/control/Control.NotebookbarImpress.js:719
 #: src/control/Control.NotebookbarImpress.js:997
 #: src/control/Control.NotebookbarImpress.js:1832
-#: src/control/Control.NotebookbarWriter.js:923
-#: src/control/Control.NotebookbarWriter.js:2308
+#: src/control/Control.NotebookbarWriter.js:925
+#: src/control/Control.NotebookbarWriter.js:2310
 msgid "Shapes"
 msgstr ""
 
@@ -1331,23 +1331,23 @@ msgstr ""
 msgid "EPUB Document (.epub)"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1011
+#: src/control/Control.NotebookbarWriter.js:1013
 msgid "Rich Text"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1016
+#: src/control/Control.NotebookbarWriter.js:1018
 msgid "Checkbox"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1021
+#: src/control/Control.NotebookbarWriter.js:1023
 msgid "Dropdown"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1026
+#: src/control/Control.NotebookbarWriter.js:1028
 msgid "Picture"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1106
+#: src/control/Control.NotebookbarWriter.js:1108
 msgid "Ruler"
 msgstr ""
 
