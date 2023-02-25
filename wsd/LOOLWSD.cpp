@@ -565,12 +565,13 @@ std::mutex LOOLWSD::lokit_main_mutex;
 
 std::shared_ptr<ChildProcess> getNewChild_Blocks(unsigned mobileAppDocId)
 {
+    (void)mobileAppDocId;
     const auto startTime = std::chrono::steady_clock::now();
 
     std::unique_lock<std::mutex> lock(NewChildrenMutex);
 
 #if !MOBILEAPP
-    (void) mobileAppDocId;
+    assert(mobileAppDocId == 0 && "Unexpected to have mobileAppDocId in the non-mobile build");
 
     int numPreSpawn = LOOLWSD::NumPreSpawnedChildren;
     ++numPreSpawn; // Replace the one we'll dispatch just now.
@@ -589,6 +590,10 @@ std::shared_ptr<ChildProcess> getNewChild_Blocks(unsigned mobileAppDocId)
     LOG_TRC("Waiting for a new child for a max of " << timeout);
 #else
     const auto timeout = std::chrono::hours(100);
+
+#ifdef IOS
+    assert(mobileAppDocId > 0 && "Unexpected to have no mobileAppDocId in the iOS build");
+#endif
 
     std::thread([&]
                 {
@@ -3646,7 +3651,7 @@ public:
         std::string hostToCheck = request.getHost();
         bool allow = allowPostFrom(addressToCheck) || HostUtil::allowedWopiHost(hostToCheck);
 
-        if (!allow)
+        if(!allow)
         {
             LOG_WRN_S("convert-to: Requesting address is denied: " << addressToCheck);
             return false;
@@ -3657,7 +3662,7 @@ public:
         }
 
         // Handle forwarded header and make sure all participating IPs are allowed
-        if (request.has("X-Forwarded-For"))
+        if(request.has("X-Forwarded-For"))
         {
             const std::string fowardedData = request.get("X-Forwarded-For");
             StringVector tokens = StringVector::tokenize(fowardedData, ',');
@@ -3680,7 +3685,7 @@ public:
                     // We can't find out the hostname, and it already failed the IP check
                     allow = false;
                 }
-                if (!allow)
+                if(!allow)
                 {
                     LOG_WRN_S("convert-to: Requesting address is denied: " << addressToCheck);
                     return false;
