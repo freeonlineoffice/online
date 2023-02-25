@@ -296,6 +296,7 @@ protected:
             return handleGetFileRequest(request, socket);
         }
 
+        LOG_TST("FakeWOPIHost: not a wopi request, skipping: " << uriReq.getPath());
         return false;
     }
 
