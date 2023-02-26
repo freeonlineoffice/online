@@ -70,6 +70,9 @@ ACLOCAL_AMFLAGS = -I m4
 
 # quick and easy for now.
 include_paths = -I${top_srcdir}/common -I${top_srcdir}/net -I${top_srcdir}/wsd -I${top_srcdir}/kit ${ZLIB_CFLAGS} ${ZSTD_CFLAGS} ${PNG_CFLAGS}
+if ENABLE_SSL
+include_paths += ${OPENSSL_CFLAGS}
+endif
 
 AM_CPPFLAGS = -pthread -DLOOLWSD_DATADIR='"@LOOLWSD_DATADIR@"' \
 	      -DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
