@@ -959,7 +959,6 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
     session->setUserExtraInfo(userExtraInfo);
     session->setUserPrivateInfo(userPrivateInfo);
     session->setWatermarkText(watermarkText);
-    session->createCanonicalViewId(_sessions);
 
     LOG_DBG("Setting username [" << LOOLWSD::anonymizeUsername(username) << "] and userId [" <<
             LOOLWSD::anonymizeUsername(userId) << "] for session [" << sessionId <<
@@ -2449,8 +2448,7 @@ std::size_t DocumentBroker::addSessionInternal(const std::shared_ptr<ClientSessi
     const std::string id = session->getId();
 
     // Request a new session from the child kit.
-    const std::string aMessage = "session " + id + ' ' + _docKey + ' ' +
-        _docId + ' ' + std::to_string(session->getCanonicalViewId());
+    const std::string aMessage = "session " + id + ' ' + _docKey + ' ' + _docId;
     _childProcess->sendTextFrame(aMessage);
 
 #if !MOBILEAPP
