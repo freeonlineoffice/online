@@ -26,7 +26,6 @@
 #include <Poco/URI.h>
 #include <Poco/BinaryReader.h>
 #include <Poco/Base64Decoder.h>
-#include <Poco/Base64Encoder.h>
 #if !MOBILEAPP
 #include <Poco/Net/HTTPResponse.h>
 #include <Poco/Net/HTTPSClientSession.h>
@@ -317,25 +316,17 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         {
             std::ostringstream oss;
             oss << "sendthumbnail:\n";
+            oss.write(pngThumbnail.data(), pngThumbnail.size());
 
-            // encode PNG to base64
-            try
-            {
-                Poco::Base64Encoder encoder(oss);
-                encoder.rdbuf()->setLineLength(0);
-                encoder.write(pngThumbnail.data(), pngThumbnail.size());
-                encoder.close();
-
-                std::string sendThumbnailCommand = oss.str();
-                success = sendTextFrame(sendThumbnailCommand.data(), sendThumbnailCommand.size());
-            }
-            catch (const std::exception& e)
-            {
-                LOG_ERR("Encoding thumbnail failed: " << e.what());
-                std::string error = "sendthumbnail: error";
-                sendTextFrame(error.data(), error.size());
-                success = false;
-            }
+            std::string sendThumbnailCommand = oss.str();
+            success = sendBinaryFrame(sendThumbnailCommand.data(), sendThumbnailCommand.size());
+        }
+        else
+        {
+            LOG_ERR("Encoding thumbnail failed.");
+            std::string error = "sendthumbnail: error";
+            sendTextFrame(error.data(), error.size());
+            success = false;
         }
 
         return success;
