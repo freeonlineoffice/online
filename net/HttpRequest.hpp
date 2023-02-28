@@ -961,6 +961,7 @@ private:
         : _host(std::move(hostname))
         , _port(std::to_string(portNumber))
         , _protocol(protocolType)
+        , _fd(-1)
         , _timeout(getDefaultTimeout())
         , _connected(false)
     {
@@ -1017,7 +1018,7 @@ public:
         std::string portString;
         if (!net::parseUri(uri, scheme, hostname, portString))
         {
-            LOG_ERR("Invalid URI [" << uri << "] to http::Session::create.");
+            LOG_ERR_S("Invalid URI [" << uri << "] to http::Session::create");
             return nullptr;
         }
 
@@ -1031,8 +1032,8 @@ public:
         if (portPair.second && portPair.first > 0)
             return create(hostname, protocol, portPair.first);
 
-        LOG_ERR("Invalid port [" << portString << "] in URI [" << uri
-                                 << "] to http::Session::create.");
+        LOG_ERR_S("Invalid port [" << portString << "] in URI [" << uri
+                                   << "] to http::Session::create");
         return nullptr;
     }
 
@@ -1173,7 +1174,7 @@ public:
             LOG_ASSERT_MSG(_socket.lock(), "Connect must set the _socket member.");
             LOG_ASSERT_MSG(_socket.lock()->getFD() == socket->getFD(),
                            "Socket FD's mismatch after connect().");
-            LOG_TRC('#' << socket->getFD() << ": inserting in poller after connecting");
+            LOG_TRC("Inserting in poller after connecting");
             poll.insertNewSocket(socket);
         }
         else
@@ -1209,6 +1210,8 @@ public:
 
 
 private:
+    inline void logPrefix(std::ostream& os) const { os << '#' << _fd << ": "; }
+
     /// Make a synchronous request.
     bool syncRequestImpl(SocketPoll& poller)
     {
@@ -1298,12 +1301,14 @@ private:
     {
         if (socket)
         {
-            LOG_TRC('#' << socket->getFD() << ": Connected");
+            _fd = socket->getFD();
+            LOG_TRC("Connected");
             _connected = true;
         }
         else
         {
             LOG_DBG("Error: onConnect without a valid socket");
+            _fd = -1;
             _connected = false;
         }
     }
@@ -1346,7 +1351,7 @@ private:
         }
 
         assert(socket && "No valid socket to handleIncomingMessage.");
-        LOG_TRC('#' << socket->getFD() << " handleIncomingMessage.");
+        LOG_TRC("handleIncomingMessage");
 
         bool close = false;
         Buffer& data = socket->getInBuffer();
@@ -1379,12 +1384,12 @@ private:
         if (socket)
         {
             Buffer& out = socket->getOutBuffer();
-            LOG_TRC('#' << socket->getFD() << ": performWrites: sending request (buffered: "
-                        << out.size() << " bytes, capacity: " << capacity << ')');
+            LOG_TRC("performWrites: sending request (buffered: "
+                    << out.size() << " bytes, capacity: " << capacity << ')');
 
             if (!socket->send(_request))
             {
-                LOG_ERR('#' << socket->getFD() << ": Error while writing to socket.");
+                LOG_ERR("Error while writing to socket");
             }
         }
     }
@@ -1395,7 +1400,7 @@ private:
         std::shared_ptr<StreamSocket> socket = _socket.lock();
         if (socket)
         {
-            LOG_TRC('#' << socket->getFD() << ": onDisconnect");
+            LOG_TRC("onDisconnect");
 
             socket->shutdown(); // Flag for shutdown for housekeeping in SocketPoll.
             socket->closeConnection(); // Immediately disconnect.
@@ -1405,6 +1410,8 @@ private:
         _connected = false;
         if (_response)
             _response->finish();
+
+        _fd = -1; // No longer our socket fd.
     }
 
     std::shared_ptr<StreamSocket> connect()
@@ -1412,6 +1419,7 @@ private:
         _socket.reset(); // Reset to make sure we are disconnected.
         std::shared_ptr<StreamSocket> socket =
             net::connect(_host, _port, isSecure(), shared_from_this());
+        assert(_fd == socket->getFD() && "The socket FD must have been set in onConnect");
 
         // When used with proxy.php we may indeed get nullptr here.
         // assert(socket && "Unexpected nullptr returned from net::connect");
@@ -1428,10 +1436,8 @@ private:
             std::chrono::duration_cast<std::chrono::milliseconds>(now - _startTime);
         if (now < _startTime || duration > getTimeout() || SigUtil::getTerminationFlag())
         {
-            std::shared_ptr<StreamSocket> socket = _socket.lock();
-            const int fd = socket ? socket->getFD() : 0;
-            LOG_WRN('#' << fd << " has timed out while requesting [" << _request.getVerb() << ' '
-                        << _host << _request.getUrl() << "] after " << duration);
+            LOG_WRN("Timed out while requesting [" << _request.getVerb() << ' ' << _host
+                                                   << _request.getUrl() << "] after " << duration);
 
             // Flag that we timed out.
             _response->timeout();
@@ -1451,6 +1457,7 @@ private:
     const std::string _host;
     const std::string _port;
     const Protocol _protocol;
+    int _fd; //< The socket file-descriptor.
     std::chrono::microseconds _timeout;
     std::chrono::steady_clock::time_point _startTime;
     bool _connected;
