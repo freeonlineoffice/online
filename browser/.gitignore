@@ -26,4 +26,4 @@ coverage/
 *.tar.gz
 dist/l10n/ui-*json
 dist/l10n/help-*.json
-node_shrinkpack
+node_shrinkpack/*.tar
