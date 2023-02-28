@@ -28,6 +28,7 @@ add_library(androidapp SHARED
             ../../../../../wsd/LOOLWSD.cpp
             ../../../../../wsd/ClientRequestDispatcher.cpp
             ../../../../../wsd/RequestDetails.cpp
+            ../../../../../wsd/RequestVettingStation.cpp
             ../../../../../wsd/Storage.cpp
             ../../../../../wsd/TileCache.cpp
             ../../../../../wsd/loolwsd-fork.cpp)
