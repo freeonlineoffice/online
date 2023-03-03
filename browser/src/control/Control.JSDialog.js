@@ -398,6 +398,9 @@ L.Control.JSDialog = L.Control.extend({
 		if (left < 0)
 			left = -1 * left;
 
+		var splitPanesContext = this.map.getSplitPanesContext();
+		var splitPos = new L.Point(0, 0);
+
 		if (splitPanesContext)
 			splitPos = splitPanesContext.getSplitPos();
 
