@@ -621,8 +621,11 @@ L.Map.include({
 		} else {
 			productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'Free Online Office';
 		}
-		var productURL = (typeof brandProductURL !== 'undefined') ? brandProductURL : 'https://libreoffice.org';
-		content.find('#product-name').text(productName);
+		var productURL = (typeof brandProductURL !== 'undefined') ? brandProductURL : 'https://freeonlineoffice.github.io/';
+
+		content.querySelector('#product-name').innerText = productName;
+		content.classList.add('product-' + productName.split(/[ ()]+/).join('-').toLowerCase());
+
 		var productString = _('This version of %productName is powered by');
 		var productNameWithURL;
 		if (!window.ThisIsAMobileApp)
