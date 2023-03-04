@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.63])
 
-AC_INIT([loolwsd], [7.5.0.0-a], [https://github.com/freeonlineoffice/online/issues], [loolwsd], [https://freeonlineoffice.github.io/])
+AC_INIT([loolwsd], [7.6.0.0-a], [https://github.com/freeonlineoffice/online/issues], [loolwsd], [https://freeonlineoffice.github.io/])
 LT_INIT([shared, disable-static, dlopen])
 
 AM_INIT_AUTOMAKE([1.10 foreign subdir-objects tar-pax -Wno-portability])
