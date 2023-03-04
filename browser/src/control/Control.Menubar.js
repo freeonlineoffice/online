@@ -1839,6 +1839,8 @@ L.Control.Menubar = L.Control.extend({
 			this._map.feedback.showFeedbackDialog();
 		} else if (id === 'report-an-issue') {
 			window.open('https://bugs.documentfoundation.org/enter_bug.cgi?product=Free%20%20Online%20Office', '_blank');
+		} else if (id === 'forum') {
+			window.open('https://ask.libreoffice.org/', '_blank');
 		} else if (id === 'inserthyperlink') {
 			this._map.dispatch('hyperlinkdialog');
 		} else if (id === 'keyboard-shortcuts' || id === 'online-help') {
