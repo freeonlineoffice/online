@@ -480,7 +480,9 @@ static int rebalanceChildren(int balance)
 {
     Util::assertIsLocked(NewChildrenMutex);
 
-    LOG_TRC("rebalance children to " << balance);
+    const size_t available = NewChildren.size();
+    LOG_TRC("Rebalance children to " << balance << ", have " << available << " and "
+                                     << OutstandingForks << " outstanding requests");
 
     // Do the cleanup first.
     const bool rebalance = cleanupChildren();
@@ -496,15 +498,15 @@ static int rebalanceChildren(int balance)
         OutstandingForks = 0;
     }
 
-    const size_t available = NewChildren.size();
     balance -= available;
     balance -= OutstandingForks;
 
     if (balance > 0 && (rebalance || OutstandingForks == 0))
     {
-        LOG_DBG("prespawnChildren: Have " << available << " spare " <<
-                (available == 1 ? "child" : "children") << ", and " <<
-                OutstandingForks << " outstanding, forking " << balance << " more.");
+        LOG_DBG("prespawnChildren: Have " << available << " spare "
+                                          << (available == 1 ? "child" : "children") << ", and "
+                                          << OutstandingForks << " outstanding, forking " << balance
+                                          << " more. Time since last request: " << durationMs);
         return forkChildren(balance);
     }
 
@@ -542,7 +544,8 @@ static size_t addNewChild(std::shared_ptr<ChildProcess> child)
         ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
     }
 
-    LOG_TRC("Adding a new child " << pid << " to NewChildren");
+    LOG_TRC("Adding a new child " << pid << " to NewChildren, have " << OutstandingForks
+                                  << " outstanding requests");
     NewChildren.emplace_back(std::move(child));
     const size_t count = NewChildren.size();
     lock.unlock();
@@ -562,16 +565,16 @@ std::mutex LOOLWSD::lokit_main_mutex;
 
 std::shared_ptr<ChildProcess> getNewChild_Blocks(unsigned mobileAppDocId)
 {
-    std::unique_lock<std::mutex> lock(NewChildrenMutex);
-
     const auto startTime = std::chrono::steady_clock::now();
+
+    std::unique_lock<std::mutex> lock(NewChildrenMutex);
 
 #if !MOBILEAPP
     (void) mobileAppDocId;
 
-    LOG_DBG("getNewChild: Rebalancing children.");
     int numPreSpawn = LOOLWSD::NumPreSpawnedChildren;
     ++numPreSpawn; // Replace the one we'll dispatch just now.
+    LOG_DBG("getNewChild: Rebalancing children to " << numPreSpawn);
     if (rebalanceChildren(numPreSpawn) < 0)
     {
         LOG_DBG("getNewChild: rebalancing of children failed. Scheduling housekeeping to recover.");
@@ -3420,13 +3423,17 @@ private:
 #endif
             if (requestURI.getPath() != NEW_CHILD_URI)
             {
-                LOG_ERR("Invalid incoming URI.");
+                LOG_ERR("Invalid incoming child URI [" << requestURI.getPath() << ']');
                 return;
             }
 
+            const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTime);
+            const auto durationMs = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+            LOG_TRC("New child spawned after " << durationMs << " of requesting");
+
             // New Child is spawned.
             const Poco::URI::QueryParameters params = requestURI.getQueryParameters();
-            int pid = socket->getPid();
+            const int pid = socket->getPid();
             std::string jailId;
             for (const auto& param : params)
             {
