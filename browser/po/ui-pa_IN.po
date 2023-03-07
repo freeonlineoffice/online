@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-04 12:36+0100\n"
+"POT-Creation-Date: 2023-03-07 18:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgid "Documents open"
 msgstr "ਖੋਲ੍ਹੇ ਗਏ ਦਸਤਾਵੇਜ਼"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:341
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
 #, fuzzy
 msgid " user(s)."
 msgstr "0 ਵਰਤੋਂਕਾਰ"
@@ -212,7 +212,7 @@ msgstr "ਤਾਜ਼ਾ ਕਰੋ"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:436
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:438
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr ""
@@ -227,7 +227,7 @@ msgstr ""
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:431
-#: src/control/Signing.js:611 src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
@@ -253,12 +253,13 @@ msgid "Server has been shut down; please reload the page."
 msgstr ""
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:702
-#: src/control/Toolbar.js:921 src/core/Socket.js:1052 src/core/Socket.js:1273
+#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
+#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr ""
@@ -275,23 +276,28 @@ msgstr ""
 msgid "Are you sure you want to terminate this session?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
-#: src/control/Control.Command.js:93 src/control/Control.DocumentRepair.js:62
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:697
-#: src/core/Socket.js:911 src/core/Socket.js:921 src/core/Socket.js:1051
+#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
+#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
 
-#: admin/src/AdminSocketOverview.js:390
+#: admin/src/AdminSocketOverview.js:387
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr ""
 
-#: admin/src/AdminSocketOverview.js:394
+#: admin/src/AdminSocketOverview.js:391
 msgid "Failed to authenticate this session over protocol %0"
+msgstr ""
+
+#: admin/src/AdminSocketOverview.js:396
+msgid "Warning"
 msgstr ""
 
 #: admin/src/AdminSocketSettings.js:35
@@ -370,7 +376,7 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:920
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:933
 msgid "Delete"
 msgstr ""
 
@@ -446,130 +452,130 @@ msgstr ""
 msgid "Accept"
 msgstr "ਮਨਜ਼ੂਰ"
 
-#: src/control/Control.JSDialogBuilder.js:149
+#: src/control/Control.JSDialogBuilder.js:151
 #: src/control/Control.StatusBar.js:330
 msgid "Sum"
 msgstr "ਜੋੜ"
 
-#: src/control/Control.JSDialogBuilder.js:150
+#: src/control/Control.JSDialogBuilder.js:152
 #: src/control/Control.StatusBar.js:325
 msgid "Average"
 msgstr "ਔਸਤ"
 
-#: src/control/Control.JSDialogBuilder.js:151
+#: src/control/Control.JSDialogBuilder.js:153
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:152
+#: src/control/Control.JSDialogBuilder.js:154
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:153
+#: src/control/Control.JSDialogBuilder.js:155
 #: src/control/Control.StatusBar.js:327
 msgid "Count"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:439
+#: src/control/Control.JSDialogBuilder.js:441
 msgid "Solid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:442
+#: src/control/Control.JSDialogBuilder.js:444
 msgid "Linear"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:445
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Ellipsoid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:455
+#: src/control/Control.JSDialogBuilder.js:457
 msgid "Quadratic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:458
+#: src/control/Control.JSDialogBuilder.js:460
 msgid "Square"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:461
+#: src/control/Control.JSDialogBuilder.js:463
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1380
+#: src/control/Control.JSDialogBuilder.js:1394
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1383
+#: src/control/Control.JSDialogBuilder.js:1397
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1386
+#: src/control/Control.JSDialogBuilder.js:1400
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1486
+#: src/control/Control.JSDialogBuilder.js:1500
 #, fuzzy
 msgid "Select range"
 msgstr "ਤਬਦੀਲੀ ਰੱਦ ਕਰੋ"
 
-#: src/control/Control.JSDialogBuilder.js:1535
+#: src/control/Control.JSDialogBuilder.js:1549
 #: src/control/Control.NotebookbarBuilder.js:232
 #, fuzzy
 msgid "Font Name"
 msgstr "ਫੋਂਟ"
 
-#: src/control/Control.JSDialogBuilder.js:1537 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
 #, fuzzy
 msgid "Font Size"
 msgstr "ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੇ"
 
-#: src/control/Control.JSDialogBuilder.js:1539
+#: src/control/Control.JSDialogBuilder.js:1553
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "ਸਟਾਈਲ"
 
-#: src/control/Control.JSDialogBuilder.js:2052
+#: src/control/Control.JSDialogBuilder.js:2066
 #, fuzzy
 msgid "reply"
 msgstr "ਜਵਾਬ ਦਿਓ"
 
-#: src/control/Control.JSDialogBuilder.js:2055
+#: src/control/Control.JSDialogBuilder.js:2069
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2080
 #: src/layer/tile/CanvasTileLayer.js:5129
 #: src/layer/tile/CanvasTileLayer.js:5140
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
 
-#: src/control/Control.JSDialogBuilder.js:2129
+#: src/control/Control.JSDialogBuilder.js:2143
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2775
+#: src/control/Control.JSDialogBuilder.js:2789
 #, fuzzy
 msgid "Cell borders"
 msgstr "ਹਾਸ਼ੀਏ"
 
-#: src/control/Control.JSDialogBuilder.js:2986
+#: src/control/Control.JSDialogBuilder.js:3000
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2987
+#: src/control/Control.JSDialogBuilder.js:3001
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3007
+#: src/control/Control.JSDialogBuilder.js:3021
 #, fuzzy
 msgid "Insert Table"
 msgstr "ਸਾਰਣੀ ਜੋੜੋ"
@@ -1015,7 +1021,7 @@ msgstr ""
 msgid "Insert Shape"
 msgstr "ਸ਼ਕਲਾਂ ਜੋੜੋ"
 
-#: src/control/Control.Menubar.js:1939
+#: src/control/Control.Menubar.js:1941
 msgid "file type icon"
 msgstr ""
 
@@ -1226,7 +1232,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:673
+#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:678
 msgid "Text"
 msgstr ""
 
@@ -1632,7 +1638,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1153
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
 msgid "Loading..."
 msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
@@ -1968,27 +1974,27 @@ msgstr "...ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 msgid "Renaming..."
 msgstr "...ਨਾਂ ਬਦਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/control/Toolbar.js:626
+#: src/control/Toolbar.js:631
 msgid "This version of %productName is powered by"
 msgstr "%productName ਦਾ ਇਹ ਵਰਜ਼ਨ ਇਸ ਦੇ ਸਹਿਯੋਗ ਨਾਲ ਹੈ"
 
-#: src/control/Toolbar.js:638
+#: src/control/Toolbar.js:643
 msgid "\"Slow Proxy\""
 msgstr ""
 
-#: src/control/Toolbar.js:666
+#: src/control/Toolbar.js:671
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:683
+#: src/control/Toolbar.js:688
 msgid "Link"
 msgstr ""
 
-#: src/control/Toolbar.js:915
+#: src/control/Toolbar.js:928
 msgid "Are you sure you want to delete this slide?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਸਲਾਈਡ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: src/control/Toolbar.js:918
+#: src/control/Toolbar.js:931
 msgid "Are you sure you want to delete this page?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
@@ -2064,23 +2070,23 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:882
+#: src/core/Socket.js:858
 msgid "Discard"
 msgstr "ਅਣਡਿੱਠ ਕਰੋ"
 
-#: src/core/Socket.js:889
+#: src/core/Socket.js:865
 msgid "Overwrite"
 msgstr "ਉੱਤੇ ਲਿਖੋ"
 
-#: src/core/Socket.js:904
+#: src/core/Socket.js:880
 msgid "Save to new file"
 msgstr "ਨਵੀਂ ਫ਼ਾਇਲ 'ਚ ਸੰਭਾਲੋ"
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2088,62 +2094,62 @@ msgstr ""
 "ਦਸਤਾਵੇਜ਼਼ ਨੂੰ ਸੰਭਾਲਣ ਦੇ ਦੌਰਾਨ ਬਦਲਿਆ ਗਿਆ ਸੀ। ਤੁਸੀਂ ਆਪਣੀਆਂ ਨਾ-ਸੰਭਾਲੀਆਂ ਤਬਦੀਲੀਆਂ "
 "ਨਾਲ ਕੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:978
 msgid "Document requires password to view."
 msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਵੇਖਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
 
-#: src/core/Socket.js:1005
+#: src/core/Socket.js:981
 msgid "Document requires password to modify."
 msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਸੋਧਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
 
-#: src/core/Socket.js:1007
+#: src/core/Socket.js:983
 msgid "Hit Cancel to open in view-only mode."
 msgstr "ਸਿਰਫ਼ ਪੜ੍ਹਨ ਲਈ ਢੰਗ ਵਿੱਚ ਖੋਲ੍ਹਣ ਲਈ ਰੱਦ ਕਰੋ ਨੂੰ ਕਲਿੱਕ ਕਰੋ।"
 
-#: src/core/Socket.js:1011
+#: src/core/Socket.js:987
 msgid "Wrong password provided. Please try again."
 msgstr "ਗਲਤ ਪਾਸਵਰਡ ਦਿੱਤਾ ਗਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-#: src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/core/Socket.js:1075 src/core/Socket.js:1080
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1142
+#: src/core/Socket.js:1117
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1144
+#: src/core/Socket.js:1119
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1153
+#: src/core/Socket.js:1128
 msgid "Connecting..."
 msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/core/Socket.js:1171
+#: src/core/Socket.js:1146
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1568
+#: src/core/Socket.js:1543
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 
-#: src/core/Socket.js:1585
+#: src/core/Socket.js:1560
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/core/Socket.js:1595
+#: src/core/Socket.js:1570
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2196,13 +2202,14 @@ msgstr ""
 #: src/errormessages.js:23
 msgid ""
 "Your session will expire in %time. Please save your work and refresh the "
-"session (or webpage) to continue."
+"session (or webpage) to continue. You might need to login again."
 msgstr ""
 
 #: src/errormessages.js:24
 msgid ""
-"Your session has been expired. Further changes to document might not be "
-"saved. Please refresh the session (or webpage) to continue."
+"Your session has expired. Further changes to the document might not be "
+"saved. Please refresh the session (or webpage) to continue. You might need "
+"to login again."
 msgstr ""
 
 #: src/errormessages.js:25
@@ -2383,7 +2390,7 @@ msgstr "ਤਬਦੀਲੀ ਰੱਦ ਕਰੋ"
 msgid "Resolved"
 msgstr ""
 
-#: src/main.js:102
+#: src/main.js:103
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2438,20 +2445,12 @@ msgid ""
 "special</p>"
 msgstr ""
 
-#: src/map/Map.js:232
+#: src/map/Map.js:228
 msgid "Initializing..."
 msgstr "...ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452
+#: src/map/Map.js:439 src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448
 msgid "Last saved:"
-msgstr ""
-
-#: src/map/Map.js:1461
-msgid "Inactive document"
-msgstr ""
-
-#: src/map/Map.js:1462
-msgid "Please click to resume editing"
 msgstr ""
 
 #: src/map/handler/Map.Feedback.js:82

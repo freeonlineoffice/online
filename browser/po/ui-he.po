@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-04 12:36+0100\n"
+"POT-Creation-Date: 2023-03-07 18:46+0100\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -65,7 +65,7 @@ msgid "Documents open"
 msgstr "מסמכים פתוחים"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:341
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
 msgid " user(s)."
 msgstr " משתמשים."
 
@@ -210,7 +210,7 @@ msgstr "רענון היומן"
 msgid "Channel Filter:"
 msgstr "מסנן ערוצים:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:436
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:438
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "ללא"
@@ -225,7 +225,7 @@ msgstr "רמות תיעוד ביומן"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:431
-#: src/control/Signing.js:611 src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "סגירה"
@@ -251,12 +251,13 @@ msgid "Server has been shut down; please reload the page."
 msgstr "השרת נכבה, נא לרענן את העמוד."
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:702
-#: src/control/Toolbar.js:921 src/core/Socket.js:1052 src/core/Socket.js:1273
+#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
+#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "אישור"
@@ -273,24 +274,29 @@ msgstr "אישור"
 msgid "Are you sure you want to terminate this session?"
 msgstr "לסיים את הפעילות הנוכחית?"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
-#: src/control/Control.Command.js:93 src/control/Control.DocumentRepair.js:62
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:697
-#: src/core/Socket.js:911 src/core/Socket.js:921 src/core/Socket.js:1051
+#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
+#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ביטול"
 
-#: admin/src/AdminSocketOverview.js:390
+#: admin/src/AdminSocketOverview.js:387
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr "הגדרת עוגיית אימות jwt נכשלה עקב חיבור בלתי מאובטח"
 
-#: admin/src/AdminSocketOverview.js:394
+#: admin/src/AdminSocketOverview.js:391
 msgid "Failed to authenticate this session over protocol %0"
 msgstr "אימות ההפעלה הזו על גבי פרוטוקול %0 נכשלה"
+
+#: admin/src/AdminSocketOverview.js:396
+msgid "Warning"
+msgstr ""
 
 #: admin/src/AdminSocketSettings.js:35
 msgid "Are you sure you want to shut down the server?"
@@ -368,7 +374,7 @@ msgstr "השרת נתקל בשגיאת %0 בעת פענוח הפקודה %1."
 msgid "Unlock"
 msgstr "שחרור"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:920
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:933
 msgid "Delete"
 msgstr "מחיקה"
 
@@ -443,125 +449,125 @@ msgstr "נוסחה"
 msgid "Accept"
 msgstr "אישור"
 
-#: src/control/Control.JSDialogBuilder.js:149
+#: src/control/Control.JSDialogBuilder.js:151
 #: src/control/Control.StatusBar.js:330
 msgid "Sum"
 msgstr "סכום"
 
-#: src/control/Control.JSDialogBuilder.js:150
+#: src/control/Control.JSDialogBuilder.js:152
 #: src/control/Control.StatusBar.js:325
 msgid "Average"
 msgstr "ממוצע"
 
-#: src/control/Control.JSDialogBuilder.js:151
+#: src/control/Control.JSDialogBuilder.js:153
 msgid "Min"
 msgstr "מזערי"
 
-#: src/control/Control.JSDialogBuilder.js:152
+#: src/control/Control.JSDialogBuilder.js:154
 msgid "Max"
 msgstr "מרבי"
 
-#: src/control/Control.JSDialogBuilder.js:153
+#: src/control/Control.JSDialogBuilder.js:155
 #: src/control/Control.StatusBar.js:327
 msgid "Count"
 msgstr "כמות"
 
-#: src/control/Control.JSDialogBuilder.js:439
+#: src/control/Control.JSDialogBuilder.js:441
 msgid "Solid"
 msgstr "אחיד"
 
-#: src/control/Control.JSDialogBuilder.js:442
+#: src/control/Control.JSDialogBuilder.js:444
 msgid "Linear"
 msgstr "קווי"
 
-#: src/control/Control.JSDialogBuilder.js:445
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Axial"
 msgstr "צירי"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Radial"
 msgstr "מעגלי"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Ellipsoid"
 msgstr "סגלגלי"
 
-#: src/control/Control.JSDialogBuilder.js:455
+#: src/control/Control.JSDialogBuilder.js:457
 msgid "Quadratic"
 msgstr "ריבועי"
 
-#: src/control/Control.JSDialogBuilder.js:458
+#: src/control/Control.JSDialogBuilder.js:460
 msgid "Square"
 msgstr "ריבוע"
 
-#: src/control/Control.JSDialogBuilder.js:461
+#: src/control/Control.JSDialogBuilder.js:463
 msgid "Fixed size"
 msgstr "גודל קבוע"
 
-#: src/control/Control.JSDialogBuilder.js:1380
+#: src/control/Control.JSDialogBuilder.js:1394
 msgid "From"
 msgstr "מ־"
 
-#: src/control/Control.JSDialogBuilder.js:1383
+#: src/control/Control.JSDialogBuilder.js:1397
 msgid "To"
 msgstr "עד"
 
-#: src/control/Control.JSDialogBuilder.js:1386
+#: src/control/Control.JSDialogBuilder.js:1400
 msgid "Color"
 msgstr "צבע"
 
-#: src/control/Control.JSDialogBuilder.js:1486
+#: src/control/Control.JSDialogBuilder.js:1500
 msgid "Select range"
 msgstr "בחירת טווח"
 
-#: src/control/Control.JSDialogBuilder.js:1535
+#: src/control/Control.JSDialogBuilder.js:1549
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "שם הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1537 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "גודל הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1539
+#: src/control/Control.JSDialogBuilder.js:1553
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "סגנון"
 
-#: src/control/Control.JSDialogBuilder.js:2052
+#: src/control/Control.JSDialogBuilder.js:2066
 msgid "reply"
 msgstr "תגובה"
 
-#: src/control/Control.JSDialogBuilder.js:2055
+#: src/control/Control.JSDialogBuilder.js:2069
 msgid "replies"
 msgstr "תגובות"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2080
 #: src/layer/tile/CanvasTileLayer.js:5129
 #: src/layer/tile/CanvasTileLayer.js:5140
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "הערה"
 
-#: src/control/Control.JSDialogBuilder.js:2129
+#: src/control/Control.JSDialogBuilder.js:2143
 msgid "Insert Comment"
 msgstr "הוספת הערה"
 
-#: src/control/Control.JSDialogBuilder.js:2775
+#: src/control/Control.JSDialogBuilder.js:2789
 msgid "Cell borders"
 msgstr "גבולות התא"
 
-#: src/control/Control.JSDialogBuilder.js:2986
+#: src/control/Control.JSDialogBuilder.js:3000
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "שורות"
 
-#: src/control/Control.JSDialogBuilder.js:2987
+#: src/control/Control.JSDialogBuilder.js:3001
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/control/Control.JSDialogBuilder.js:3007
+#: src/control/Control.JSDialogBuilder.js:3021
 msgid "Insert Table"
 msgstr "הוספת טבלה"
 
@@ -1004,7 +1010,7 @@ msgstr ""
 msgid "Insert Shape"
 msgstr "הוספת צורה"
 
-#: src/control/Control.Menubar.js:1939
+#: src/control/Control.Menubar.js:1941
 msgid "file type icon"
 msgstr "סמל סוג קובץ"
 
@@ -1212,7 +1218,7 @@ msgstr "שבר"
 msgid "Boolean Value"
 msgstr "ערך בוליאני"
 
-#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:673
+#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:678
 msgid "Text"
 msgstr "טקסט"
 
@@ -1607,7 +1613,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1153
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
 msgid "Loading..."
 msgstr "בטעינה…"
 
@@ -1940,27 +1946,27 @@ msgstr "מתבצעת שמירה…"
 msgid "Renaming..."
 msgstr "ניתן שם אחר…"
 
-#: src/control/Toolbar.js:626
+#: src/control/Toolbar.js:631
 msgid "This version of %productName is powered by"
 msgstr "גרסה זו של %productName מופעלת על גבי"
 
-#: src/control/Toolbar.js:638
+#: src/control/Toolbar.js:643
 msgid "\"Slow Proxy\""
 msgstr "„מתווך אטי”"
 
-#: src/control/Toolbar.js:666
+#: src/control/Toolbar.js:671
 msgid "Insert hyperlink"
 msgstr "הוספת קישור"
 
-#: src/control/Toolbar.js:683
+#: src/control/Toolbar.js:688
 msgid "Link"
 msgstr "קישור"
 
-#: src/control/Toolbar.js:915
+#: src/control/Toolbar.js:928
 msgid "Are you sure you want to delete this slide?"
 msgstr "למחוק את השקופית הזו?"
 
-#: src/control/Toolbar.js:918
+#: src/control/Toolbar.js:931
 msgid "Are you sure you want to delete this page?"
 msgstr "למחוק עמוד זה?"
 
@@ -2036,83 +2042,83 @@ msgstr "מהדורה ישנה משוחזרת. שינויים שלא יישמרו
 msgid "Reloading the document after rename"
 msgstr "רענון המסמך אחרי שינוי שם"
 
-#: src/core/Socket.js:882
+#: src/core/Socket.js:858
 msgid "Discard"
 msgstr "התעלמות"
 
-#: src/core/Socket.js:889
+#: src/core/Socket.js:865
 msgid "Overwrite"
 msgstr "דריסה"
 
-#: src/core/Socket.js:904
+#: src/core/Socket.js:880
 msgid "Save to new file"
 msgstr "שמירה לקובץ חדש"
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid "Document has been changed"
 msgstr "המסמך נערך"
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr "המסמך נערך באחסון. מה ברצונך לעשות בנוגע לשינויים שלא שמרת?"
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:978
 msgid "Document requires password to view."
 msgstr "נדרשת ססמה כדי לצפות במסמך."
 
-#: src/core/Socket.js:1005
+#: src/core/Socket.js:981
 msgid "Document requires password to modify."
 msgstr "נדרשת ססמה כדי לערוך את המסמך."
 
-#: src/core/Socket.js:1007
+#: src/core/Socket.js:983
 msgid "Hit Cancel to open in view-only mode."
 msgstr "יש ללחוץ על ביטול כדי לפתוח במצב צפייה בלבד."
 
-#: src/core/Socket.js:1011
+#: src/core/Socket.js:987
 msgid "Wrong password provided. Please try again."
 msgstr "הססמה שסופקה שגויה. נא לנסות שוב."
 
-#: src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/core/Socket.js:1075 src/core/Socket.js:1080
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1142
+#: src/core/Socket.js:1117
 msgid "Someone"
 msgstr "מישהו"
 
-#: src/core/Socket.js:1144
+#: src/core/Socket.js:1119
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1153
+#: src/core/Socket.js:1128
 msgid "Connecting..."
 msgstr "מתבצעת התחברות…"
 
-#: src/core/Socket.js:1171
+#: src/core/Socket.js:1146
 msgid "The document is being renamed and will reload shortly"
 msgstr "שם המסמך נערך והוא ירוענן בעוד זמן קצר"
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1568
+#: src/core/Socket.js:1543
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "ובכן, לא נעים, לא הצלחנו להתחבר למסמך שלך. נא לנסות שוב מאוחר יותר."
 
-#: src/core/Socket.js:1585
+#: src/core/Socket.js:1560
 msgid "Reconnecting..."
 msgstr "התחברות מחדש…"
 
-#: src/core/Socket.js:1595
+#: src/core/Socket.js:1570
 msgid "The server has been disconnected."
 msgstr "השרת התנתק."
 
@@ -2174,17 +2180,20 @@ msgid "Wrong or missing WOPISrc parameter, please contact support."
 msgstr "המשתנים של WOPISrc חסרים או שגויים, נא ליצור קשר עם התמיכה."
 
 #: src/errormessages.js:23
+#, fuzzy
 msgid ""
 "Your session will expire in %time. Please save your work and refresh the "
-"session (or webpage) to continue."
+"session (or webpage) to continue. You might need to login again."
 msgstr ""
 "ההפעלה שלך תפוג בעוד %time. נא לשמור את העבודה שלך ולרענן את ההפעלה (או את "
 "דף האינטרנט) כדי להמשיך."
 
 #: src/errormessages.js:24
+#, fuzzy
 msgid ""
-"Your session has been expired. Further changes to document might not be "
-"saved. Please refresh the session (or webpage) to continue."
+"Your session has expired. Further changes to the document might not be "
+"saved. Please refresh the session (or webpage) to continue. You might need "
+"to login again."
 msgstr ""
 "הזמן שהוקצב להפעלה שלך פג. ייתכן ששינויים נוספים למסמך לא יישמרו. נא לרענן "
 "את ההפעלה (או את עמוד האינטרנט) כדי להמשיך."
@@ -2376,7 +2385,7 @@ msgstr "דחיית השינוי"
 msgid "Resolved"
 msgstr "נפתר"
 
-#: src/main.js:102
+#: src/main.js:103
 msgid "Warning! The browser you are using is not supported."
 msgstr "אזהרה! הדפדפן שלך אינו נתמך."
 
@@ -2447,21 +2456,13 @@ msgstr ""
 "אפשרויות נוספות</p><p class=\"vex-footnote\">אפשר לסגור את החלונית הקופצת כי "
 "להתעלם מהדבקה מיוחדת</p>"
 
-#: src/map/Map.js:232
+#: src/map/Map.js:228
 msgid "Initializing..."
 msgstr "באתחול…"
 
-#: src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452
+#: src/map/Map.js:439 src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448
 msgid "Last saved:"
 msgstr "שמירה אחרונה:"
-
-#: src/map/Map.js:1461
-msgid "Inactive document"
-msgstr "מסמך בלתי פעיל"
-
-#: src/map/Map.js:1462
-msgid "Please click to resume editing"
-msgstr "לא ללחוץ כדי להמשיך לערוך"
 
 #: src/map/handler/Map.Feedback.js:82
 msgid "Please send us your feedback"
@@ -2560,6 +2561,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Inactive document"
+#~ msgstr "מסמך בלתי פעיל"
+
+#~ msgid "Please click to resume editing"
+#~ msgstr "לא ללחוץ כדי להמשיך לערוך"
 
 #~ msgid ""
 #~ "You are leaving the editor, are you sure you want to visit the following "

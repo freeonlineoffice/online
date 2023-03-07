@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-04 12:36+0100\n"
+"POT-Creation-Date: 2023-03-07 18:46+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/"
@@ -64,7 +64,7 @@ msgid "Documents open"
 msgstr "Documentos abertos"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:341
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
 msgid " user(s)."
 msgstr " usuario(s)."
 
@@ -215,7 +215,7 @@ msgstr "Actualizar rexistro"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:436
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:438
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "Ningún"
@@ -230,7 +230,7 @@ msgstr "Niveis de rexistro"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:431
-#: src/control/Signing.js:611 src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Pechar"
@@ -256,12 +256,13 @@ msgid "Server has been shut down; please reload the page."
 msgstr ""
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketSettings.js:36
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:702
-#: src/control/Toolbar.js:921 src/core/Socket.js:1052 src/core/Socket.js:1273
+#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
+#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "Aceptar"
@@ -278,26 +279,31 @@ msgstr "Confirmación"
 msgid "Are you sure you want to terminate this session?"
 msgstr "Confirma que desexa terminar esta sesión?"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketSettings.js:37
-#: src/control/Control.Command.js:93 src/control/Control.DocumentRepair.js:62
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:697
-#: src/core/Socket.js:911 src/core/Socket.js:921 src/core/Socket.js:1051
+#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
+#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: admin/src/AdminSocketOverview.js:390
+#: admin/src/AdminSocketOverview.js:387
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr ""
 "Non foi posíbel estabelecer a cookie de autenticación jwt a través dunha "
 "conexión insegura."
 
-#: admin/src/AdminSocketOverview.js:394
+#: admin/src/AdminSocketOverview.js:391
 msgid "Failed to authenticate this session over protocol %0"
 msgstr "Non foi posíbel autenticar esta sesión a través do protocolo %0"
+
+#: admin/src/AdminSocketOverview.js:396
+msgid "Warning"
+msgstr ""
 
 #: admin/src/AdminSocketSettings.js:35
 msgid "Are you sure you want to shut down the server?"
@@ -375,7 +381,7 @@ msgstr "O servidor atopou un erro %0 ao procesar a orde %1."
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:920
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:933
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -450,126 +456,126 @@ msgstr ""
 msgid "Accept"
 msgstr "Aceptar"
 
-#: src/control/Control.JSDialogBuilder.js:149
+#: src/control/Control.JSDialogBuilder.js:151
 #: src/control/Control.StatusBar.js:330
 msgid "Sum"
 msgstr "Suma"
 
-#: src/control/Control.JSDialogBuilder.js:150
+#: src/control/Control.JSDialogBuilder.js:152
 #: src/control/Control.StatusBar.js:325
 msgid "Average"
 msgstr "Media"
 
-#: src/control/Control.JSDialogBuilder.js:151
+#: src/control/Control.JSDialogBuilder.js:153
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:152
+#: src/control/Control.JSDialogBuilder.js:154
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:153
+#: src/control/Control.JSDialogBuilder.js:155
 #: src/control/Control.StatusBar.js:327
 msgid "Count"
 msgstr "Conta"
 
-#: src/control/Control.JSDialogBuilder.js:439
+#: src/control/Control.JSDialogBuilder.js:441
 msgid "Solid"
 msgstr "Sólido"
 
-#: src/control/Control.JSDialogBuilder.js:442
+#: src/control/Control.JSDialogBuilder.js:444
 msgid "Linear"
 msgstr "Lineal"
 
-#: src/control/Control.JSDialogBuilder.js:445
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:448
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:451
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Ellipsoid"
 msgstr "Elipsoide"
 
-#: src/control/Control.JSDialogBuilder.js:455
+#: src/control/Control.JSDialogBuilder.js:457
 msgid "Quadratic"
 msgstr "Cuadrática"
 
-#: src/control/Control.JSDialogBuilder.js:458
+#: src/control/Control.JSDialogBuilder.js:460
 msgid "Square"
 msgstr "Cadrado"
 
-#: src/control/Control.JSDialogBuilder.js:461
+#: src/control/Control.JSDialogBuilder.js:463
 msgid "Fixed size"
 msgstr "Tamaño fixo"
 
-#: src/control/Control.JSDialogBuilder.js:1380
+#: src/control/Control.JSDialogBuilder.js:1394
 msgid "From"
 msgstr "De"
 
-#: src/control/Control.JSDialogBuilder.js:1383
+#: src/control/Control.JSDialogBuilder.js:1397
 msgid "To"
 msgstr "Até"
 
-#: src/control/Control.JSDialogBuilder.js:1386
+#: src/control/Control.JSDialogBuilder.js:1400
 msgid "Color"
 msgstr "Cor"
 
-#: src/control/Control.JSDialogBuilder.js:1486
+#: src/control/Control.JSDialogBuilder.js:1500
 msgid "Select range"
 msgstr "Seleccionar intervalo"
 
-#: src/control/Control.JSDialogBuilder.js:1535
+#: src/control/Control.JSDialogBuilder.js:1549
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Nome do tipo de letra"
 
-#: src/control/Control.JSDialogBuilder.js:1537 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Tamaño do tipo de letra"
 
-#: src/control/Control.JSDialogBuilder.js:1539
+#: src/control/Control.JSDialogBuilder.js:1553
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Estilo"
 
-#: src/control/Control.JSDialogBuilder.js:2052
+#: src/control/Control.JSDialogBuilder.js:2066
 #, fuzzy
 msgid "reply"
 msgstr "Responder"
 
-#: src/control/Control.JSDialogBuilder.js:2055
+#: src/control/Control.JSDialogBuilder.js:2069
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2080
 #: src/layer/tile/CanvasTileLayer.js:5129
 #: src/layer/tile/CanvasTileLayer.js:5140
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Comentario"
 
-#: src/control/Control.JSDialogBuilder.js:2129
+#: src/control/Control.JSDialogBuilder.js:2143
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2775
+#: src/control/Control.JSDialogBuilder.js:2789
 msgid "Cell borders"
 msgstr "Bordos de cela"
 
-#: src/control/Control.JSDialogBuilder.js:2986
+#: src/control/Control.JSDialogBuilder.js:3000
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Filas"
 
-#: src/control/Control.JSDialogBuilder.js:2987
+#: src/control/Control.JSDialogBuilder.js:3001
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Columnas"
 
-#: src/control/Control.JSDialogBuilder.js:3007
+#: src/control/Control.JSDialogBuilder.js:3021
 #, fuzzy
 msgid "Insert Table"
 msgstr "Inserir táboa"
@@ -1013,7 +1019,7 @@ msgstr ""
 msgid "Insert Shape"
 msgstr "Inserir forma"
 
-#: src/control/Control.Menubar.js:1939
+#: src/control/Control.Menubar.js:1941
 msgid "file type icon"
 msgstr ""
 
@@ -1223,7 +1229,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:673
+#: src/control/Control.NotebookbarCalc.js:549 src/control/Toolbar.js:678
 msgid "Text"
 msgstr "Texto"
 
@@ -1622,7 +1628,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1153
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
 msgid "Loading..."
 msgstr "Cargando…"
 
@@ -1958,27 +1964,27 @@ msgstr "Gardando..."
 msgid "Renaming..."
 msgstr "A renomear..."
 
-#: src/control/Toolbar.js:626
+#: src/control/Toolbar.js:631
 msgid "This version of %productName is powered by"
 msgstr "Esta versión do %productName funciona grazas a"
 
-#: src/control/Toolbar.js:638
+#: src/control/Toolbar.js:643
 msgid "\"Slow Proxy\""
 msgstr "«Proxy lento»"
 
-#: src/control/Toolbar.js:666
+#: src/control/Toolbar.js:671
 msgid "Insert hyperlink"
 msgstr "Inserir hiperligazón"
 
-#: src/control/Toolbar.js:683
+#: src/control/Toolbar.js:688
 msgid "Link"
 msgstr "Ligazón"
 
-#: src/control/Toolbar.js:915
+#: src/control/Toolbar.js:928
 msgid "Are you sure you want to delete this slide?"
 msgstr "Confirma que desexa eliminar esta diapositiva?"
 
-#: src/control/Toolbar.js:918
+#: src/control/Toolbar.js:931
 msgid "Are you sure you want to delete this page?"
 msgstr "Confirma que desexa eliminar esta páxina?"
 
@@ -2059,23 +2065,23 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:882
+#: src/core/Socket.js:858
 msgid "Discard"
 msgstr "Desbotar"
 
-#: src/core/Socket.js:889
+#: src/core/Socket.js:865
 msgid "Overwrite"
 msgstr "Substituír"
 
-#: src/core/Socket.js:904
+#: src/core/Socket.js:880
 msgid "Save to new file"
 msgstr "Gardar con outro nome"
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:931
+#: src/core/Socket.js:907
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2083,62 +2089,62 @@ msgstr ""
 "O documento foi cambiado no almacenamento. Que desexa facer cos cambios que "
 "están sen gardar?"
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:978
 msgid "Document requires password to view."
 msgstr "O documento require dun contrasinal para ser visto."
 
-#: src/core/Socket.js:1005
+#: src/core/Socket.js:981
 msgid "Document requires password to modify."
 msgstr "O documento require dun contrasinal para ser modificado."
 
-#: src/core/Socket.js:1007
+#: src/core/Socket.js:983
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Prema Cancelar para abrir no modo de só lectura."
 
-#: src/core/Socket.js:1011
+#: src/core/Socket.js:987
 msgid "Wrong password provided. Please try again."
 msgstr "O contrasinal é incorrecto. Ténteo de novo."
 
-#: src/core/Socket.js:1100 src/core/Socket.js:1105
+#: src/core/Socket.js:1075 src/core/Socket.js:1080
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1142
+#: src/core/Socket.js:1117
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1144
+#: src/core/Socket.js:1119
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1153
+#: src/core/Socket.js:1128
 msgid "Connecting..."
 msgstr "Conectando..."
 
-#: src/core/Socket.js:1171
+#: src/core/Socket.js:1146
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1273
+#: src/core/Socket.js:1248
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1568
+#: src/core/Socket.js:1543
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Non é posíbel conectar co seu documento. Ténteo de novo."
 
-#: src/core/Socket.js:1585
+#: src/core/Socket.js:1560
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Conectando..."
 
-#: src/core/Socket.js:1595
+#: src/core/Socket.js:1570
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2204,17 +2210,20 @@ msgid "Wrong or missing WOPISrc parameter, please contact support."
 msgstr "Parámetro WOPISrc erróneo ou ausente. Contacte con mantemento."
 
 #: src/errormessages.js:23
+#, fuzzy
 msgid ""
 "Your session will expire in %time. Please save your work and refresh the "
-"session (or webpage) to continue."
+"session (or webpage) to continue. You might need to login again."
 msgstr ""
 "A súa sesión vai caducar en %time. Garde o seu traballo e actualice a sesión "
 "(ou páxina web) para continuar."
 
 #: src/errormessages.js:24
+#, fuzzy
 msgid ""
-"Your session has been expired. Further changes to document might not be "
-"saved. Please refresh the session (or webpage) to continue."
+"Your session has expired. Further changes to the document might not be "
+"saved. Please refresh the session (or webpage) to continue. You might need "
+"to login again."
 msgstr ""
 "A súa sesión caducou. Os cambios futuros poderían non ser gardados. "
 "Actualice a sesión (ou páxina web) para continuar."
@@ -2415,7 +2424,7 @@ msgstr "Rexeitar o cambio"
 msgid "Resolved"
 msgstr "Resolvido"
 
-#: src/main.js:102
+#: src/main.js:103
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2478,20 +2487,12 @@ msgid ""
 "special</p>"
 msgstr ""
 
-#: src/map/Map.js:232
+#: src/map/Map.js:228
 msgid "Initializing..."
 msgstr "Inicializando..."
 
-#: src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452
+#: src/map/Map.js:439 src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448
 msgid "Last saved:"
-msgstr ""
-
-#: src/map/Map.js:1461
-msgid "Inactive document"
-msgstr ""
-
-#: src/map/Map.js:1462
-msgid "Please click to resume editing"
 msgstr ""
 
 #: src/map/handler/Map.Feedback.js:82
