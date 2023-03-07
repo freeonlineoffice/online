@@ -3326,7 +3326,7 @@ public:
     PrisonerRequestDispatcher()
         : WebSocketHandler(/* isClient = */ false, /* isMasking = */ true)
     {
-        LOG_TRC("PrisonerRequestDispatcher");
+        LOG_TRC_S("PrisonerRequestDispatcher");
     }
     ~PrisonerRequestDispatcher()
     {
@@ -3345,17 +3345,13 @@ private:
     /// Keep our socket around ...
     void onConnect(const std::shared_ptr<StreamSocket>& socket) override
     {
-        setSocket(socket);
-        LOG_TRC('#' << socket->getFD() << " Prisoner connected.");
+        WebSocketHandler::onConnect(socket);
+        LOG_TRC("Prisoner connected");
     }
 
     void onDisconnect() override
     {
-        std::shared_ptr<StreamSocket> socket = getSocket().lock();
-        if (socket)
-            LOG_TRC('#' << socket->getFD() << " Prisoner connection disconnected.");
-        else
-            LOG_WRN("Prisoner connection disconnected but without valid socket.");
+        LOG_DBG("Prisoner connection disconnected");
 
         // Notify the broker that we're done.
         std::shared_ptr<ChildProcess> child = _childProcess.lock();
@@ -3501,7 +3497,7 @@ private:
         auto message = std::make_shared<Message>(data.data(), data.size(), Message::Dir::Out);
         std::shared_ptr<StreamSocket> socket = getSocket().lock();
         if (socket)
-            LOG_TRC('#' << socket->getFD() << " Prisoner message [" << message->abbr() << ']');
+            LOG_TRC("Prisoner message [" << message->abbr() << ']');
         else
             LOG_WRN("Message handler called but without valid socket.");
 
