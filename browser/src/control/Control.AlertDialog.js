@@ -22,7 +22,7 @@ L.Control.AlertDialog = L.Control.extend({
 
 		if (e.msg) {
 			if (window.ThisIsAMobileApp && this._map._fatal) {
-				this._map.uiManager.showConfirmModal('cool_alert', '', e.msg, _('Close'), function() {
+				this._map.uiManager.showConfirmModal('lool_alert', '', e.msg, _('Close'), function() {
 					window.postMobileMessage('BYE');
 					vex.closeAll();
 					if (this._map.jsdialog)
@@ -30,7 +30,7 @@ L.Control.AlertDialog = L.Control.extend({
 				}.bind(this), true /* Hide cancel button */);
 			}
 			else
-				this._map.uiManager.showConfirmModal('cool_alert', '', e.msg, _('Close'), function() { /* Do nothing. */ }, true);
+				this._map.uiManager.showConfirmModal('lool_alert', '', e.msg, _('Close'), function() { /* Do nothing. */ }, true);
 		}
 		else if (e.cmd == 'load' && e.kind == 'docunloading') {
 			// Handled by transparently retrying.
@@ -59,7 +59,7 @@ L.Control.AlertDialog = L.Control.extend({
 			var msg = _('The server encountered a %0 error while parsing the %1 command.');
 			msg = msg.replace('%0', e.kind);
 			msg = msg.replace('%1', e.cmd);
-			this._map.uiManager.showInfoModal('cool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
+			this._map.uiManager.showInfoModal('lool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
 		}
 	}
 });
