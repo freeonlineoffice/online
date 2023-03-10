@@ -416,7 +416,7 @@ void cleanupDocBrokers()
         }
 
 #if !MOBILEAPP && ENABLE_DEBUG
-        if (LOOLWSD::SingleKit && DocBrokers.size() == 0)
+        if (LOOLWSD::SingleKit && DocBrokers.empty())
         {
             LOG_DBG("Setting ShutdownRequestFlag: No more docs left in single-kit mode.");
             SigUtil::requestShutdown();

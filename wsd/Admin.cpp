@@ -1032,7 +1032,7 @@ void Admin::startMonitors()
 
 void Admin::updateMonitors(std::vector<std::string>& oldMonitors)
 {
-    if (oldMonitors.size() == 0)
+    if (oldMonitors.empty())
     {
         startMonitors();
         return;
