@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 18:46+0100\n"
+"POT-Creation-Date: 2023-03-11 17:40+0100\n"
 "PO-Revision-Date: 2022-05-15 11:51+0000\n"
 "Last-Translator: Mikhail Pershin <mikhail@frcdr.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/collabora-online/"
@@ -230,7 +230,8 @@ msgid "Log Levels"
 msgstr "Уровни логирования"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:173 src/control/Parts.js:431
+#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: src/control/Control.Zotero.js:173 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -260,10 +261,12 @@ msgstr "Сервер был выключен; пожалуйста, переза
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
 #: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:319
+#: src/control/Control.Zotero.js:357 src/control/Permission.js:76
+#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Toolbar.js:707 src/control/Toolbar.js:934
+#: src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "ОК"
@@ -281,13 +284,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Действительно завершить сеанс?"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
-#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
+#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
+#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Отклонить"
@@ -365,19 +367,19 @@ msgstr "Нет цвета"
 msgid "Automatic color"
 msgstr "Автоматический цвет"
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:48
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:57
+#: src/control/Control.AlertDialog.js:49
 msgid "Open link"
 msgstr "Открыть ссылку"
 
-#: src/control/Control.AlertDialog.js:67
+#: src/control/Control.AlertDialog.js:59
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Сервер столкнулся с ошибкой %0 при анализе команды %1."
 
-#: src/control/Control.Command.js:94
+#: src/control/Control.Command.js:80
 msgid "Unlock"
 msgstr "Разблокировать"
 
@@ -443,15 +445,16 @@ msgstr "Подтвердить копирование в буфер обмена
 msgid "cell address"
 msgstr "адрес ячейки"
 
-#: src/control/Control.FormulaBarJSDialog.js:42
+#: src/control/Control.FormulaBarJSDialog.js:43
+#: src/control/Control.FormulaBarJSDialog.js:91
 msgid "Function Wizard"
 msgstr "Мастер функций"
 
-#: src/control/Control.FormulaBarJSDialog.js:55
+#: src/control/Control.FormulaBarJSDialog.js:54
 msgid "Formula"
 msgstr ""
 
-#: src/control/Control.FormulaBarJSDialog.js:62
+#: src/control/Control.FormulaBarJSDialog.js:60
 #: src/control/Control.MobileTopBar.js:40
 msgid "Accept"
 msgstr "Принять"
@@ -511,70 +514,70 @@ msgstr "Прямоугольный"
 msgid "Fixed size"
 msgstr "Фиксированный размер"
 
-#: src/control/Control.JSDialogBuilder.js:1394
+#: src/control/Control.JSDialogBuilder.js:1405
 msgid "From"
 msgstr "От"
 
-#: src/control/Control.JSDialogBuilder.js:1397
+#: src/control/Control.JSDialogBuilder.js:1408
 msgid "To"
 msgstr "До"
 
-#: src/control/Control.JSDialogBuilder.js:1400
+#: src/control/Control.JSDialogBuilder.js:1411
 msgid "Color"
 msgstr "Цвет"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1511
 msgid "Select range"
 msgstr "Выбрать диапазон"
 
-#: src/control/Control.JSDialogBuilder.js:1549
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Шрифт"
 
-#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Кегль"
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1564
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Стиль"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2077
 msgid "reply"
 msgstr "ответить"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2080
 msgid "replies"
 msgstr "ответы"
 
-#: src/control/Control.JSDialogBuilder.js:2080
-#: src/layer/tile/CanvasTileLayer.js:5129
-#: src/layer/tile/CanvasTileLayer.js:5140
+#: src/control/Control.JSDialogBuilder.js:2091
+#: src/layer/tile/CanvasTileLayer.js:5137
+#: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Примечание"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2154
 msgid "Insert Comment"
 msgstr "Вставить комментарий"
 
-#: src/control/Control.JSDialogBuilder.js:2789
+#: src/control/Control.JSDialogBuilder.js:2800
 msgid "Cell borders"
 msgstr "Обрамление ячеек"
 
-#: src/control/Control.JSDialogBuilder.js:3000
+#: src/control/Control.JSDialogBuilder.js:3011
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Строки"
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3012
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Столбцы"
 
-#: src/control/Control.JSDialogBuilder.js:3021
+#: src/control/Control.JSDialogBuilder.js:3032
 msgid "Insert Table"
 msgstr "Вставить таблицу"
 
@@ -692,7 +695,7 @@ msgstr "Подписать документ"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:386
 #: src/control/Control.Menubar.js:526 src/control/Control.Menubar.js:653
-#: src/control/Control.Toolbar.js:1161
+#: src/control/Control.Toolbar.js:1166
 msgid "Close document"
 msgstr "Закрыть документ"
 
@@ -1523,15 +1526,15 @@ msgstr "Переместить лист вправо"
 msgid "Copy Sheet..."
 msgstr "Копировать лист..."
 
-#: src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:301
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Действительно удалить лист %sheet% ?"
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Enter new sheet name"
 msgstr "Введите новое имя листа"
 
@@ -1746,43 +1749,35 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:432
-msgid "Show Selected Sheets"
-msgstr "Показать выделенные листы"
-
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr "Не удалось заблокировать файл; он открыт в режиме только для чтения."
 
-#: src/control/Permission.js:74 src/control/Permission.js:91
+#: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
 msgstr "Сообщение сервера:"
 
-#: src/control/Permission.js:89
+#: src/control/Permission.js:82
 msgid "The document could not be locked."
 msgstr "Не удалось заблокировать файл."
 
-#: src/control/Permission.js:143
+#: src/control/Permission.js:136
 msgid "Enter a file name"
 msgstr "Введите имя файла"
 
-#: src/control/Permission.js:144
-msgid "filename"
-msgstr "имя файла"
-
-#: src/control/Permission.js:166
+#: src/control/Permission.js:158
 msgid "Save as ODF format"
 msgstr "Сохранить в формате ODF"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "Продолжить редактирование"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "Продолжить только для чтения"
 
-#: src/control/Permission.js:171
+#: src/control/Permission.js:163
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2370,7 +2365,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5157
+#: src/layer/tile/CanvasTileLayer.js:5165
 msgid "No Comments"
 msgstr "Нет комментариев"
 
@@ -2423,7 +2418,7 @@ msgstr "Отклонить изменение"
 msgid "Resolved"
 msgstr "Решено"
 
-#: src/main.js:103
+#: src/main.js:108
 msgid "Warning! The browser you are using is not supported."
 msgstr "Внимание! Используемый вами браузер не поддерживается."
 
@@ -2604,6 +2599,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Show Selected Sheets"
+#~ msgstr "Показать выделенные листы"
+
+#~ msgid "filename"
+#~ msgstr "имя файла"
 
 #~ msgid "Inactive document"
 #~ msgstr "Неактивный документ"

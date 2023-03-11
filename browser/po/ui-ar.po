@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 18:46+0100\n"
+"POT-Creation-Date: 2023-03-11 17:40+0100\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -227,7 +227,8 @@ msgid "Log Levels"
 msgstr "مستويات السجل"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:173 src/control/Parts.js:431
+#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: src/control/Control.Zotero.js:173 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -257,10 +258,12 @@ msgstr "تم إغلاق الخادم؛ يرجى إعادة تحميل الصفح
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
 #: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:319
+#: src/control/Control.Zotero.js:357 src/control/Permission.js:76
+#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Toolbar.js:707 src/control/Toolbar.js:934
+#: src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "موافق"
@@ -278,13 +281,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "أمتأكد من إنهاء هذه الجلسة؟"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
-#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
+#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
+#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ألغِ"
@@ -361,19 +363,19 @@ msgstr "لا لون"
 msgid "Automatic color"
 msgstr "لون تلقائي"
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:48
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:57
+#: src/control/Control.AlertDialog.js:49
 msgid "Open link"
 msgstr "افتح الرابط"
 
-#: src/control/Control.AlertDialog.js:67
+#: src/control/Control.AlertDialog.js:59
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "واجه الخادوم خطأ %0 أثناء تحليل الأمر %1."
 
-#: src/control/Control.Command.js:94
+#: src/control/Control.Command.js:80
 msgid "Unlock"
 msgstr "الغاء القفل"
 
@@ -439,15 +441,16 @@ msgstr "تأكيد النسخ إلى الحافظة"
 msgid "cell address"
 msgstr "عنوان الخلية"
 
-#: src/control/Control.FormulaBarJSDialog.js:42
+#: src/control/Control.FormulaBarJSDialog.js:43
+#: src/control/Control.FormulaBarJSDialog.js:91
 msgid "Function Wizard"
 msgstr "معالج الوظائف"
 
-#: src/control/Control.FormulaBarJSDialog.js:55
+#: src/control/Control.FormulaBarJSDialog.js:54
 msgid "Formula"
 msgstr ""
 
-#: src/control/Control.FormulaBarJSDialog.js:62
+#: src/control/Control.FormulaBarJSDialog.js:60
 #: src/control/Control.MobileTopBar.js:40
 msgid "Accept"
 msgstr "اقبل"
@@ -507,70 +510,70 @@ msgstr "مربع"
 msgid "Fixed size"
 msgstr "حجم ثابت"
 
-#: src/control/Control.JSDialogBuilder.js:1394
+#: src/control/Control.JSDialogBuilder.js:1405
 msgid "From"
 msgstr "من"
 
-#: src/control/Control.JSDialogBuilder.js:1397
+#: src/control/Control.JSDialogBuilder.js:1408
 msgid "To"
 msgstr "إلى"
 
-#: src/control/Control.JSDialogBuilder.js:1400
+#: src/control/Control.JSDialogBuilder.js:1411
 msgid "Color"
 msgstr "لون"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1511
 msgid "Select range"
 msgstr "اختر نطاقا"
 
-#: src/control/Control.JSDialogBuilder.js:1549
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "اسم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "حجم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1564
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "النمط"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2077
 msgid "reply"
 msgstr "رد"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2080
 msgid "replies"
 msgstr "ردود"
 
-#: src/control/Control.JSDialogBuilder.js:2080
-#: src/layer/tile/CanvasTileLayer.js:5129
-#: src/layer/tile/CanvasTileLayer.js:5140
+#: src/control/Control.JSDialogBuilder.js:2091
+#: src/layer/tile/CanvasTileLayer.js:5137
+#: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "التعليق"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2154
 msgid "Insert Comment"
 msgstr "إدراج تعليق"
 
-#: src/control/Control.JSDialogBuilder.js:2789
+#: src/control/Control.JSDialogBuilder.js:2800
 msgid "Cell borders"
 msgstr "حدود الخلية"
 
-#: src/control/Control.JSDialogBuilder.js:3000
+#: src/control/Control.JSDialogBuilder.js:3011
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "صفوف"
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3012
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "أعمدة"
 
-#: src/control/Control.JSDialogBuilder.js:3021
+#: src/control/Control.JSDialogBuilder.js:3032
 msgid "Insert Table"
 msgstr "إدراج جدول"
 
@@ -688,7 +691,7 @@ msgstr "وقع المستند"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:386
 #: src/control/Control.Menubar.js:526 src/control/Control.Menubar.js:653
-#: src/control/Control.Toolbar.js:1161
+#: src/control/Control.Toolbar.js:1166
 msgid "Close document"
 msgstr "أغلق المستند"
 
@@ -1519,15 +1522,15 @@ msgstr "تحريك الورقة إلى اليمين"
 msgid "Copy Sheet..."
 msgstr "نسخ الورقة..."
 
-#: src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:301
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "أمتأكّد من حذف الورقة، %الورقة% ؟"
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Enter new sheet name"
 msgstr "أدخل اسم جديد للورقة"
 
@@ -1742,43 +1745,35 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:432
-msgid "Show Selected Sheets"
-msgstr "إظهار الأوراق المحددة"
-
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr "تعذر تأمين المستند، وفُتح في وضع القراءة فقط."
 
-#: src/control/Permission.js:74 src/control/Permission.js:91
+#: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
 msgstr "الخادم أعاد هذا السبب:"
 
-#: src/control/Permission.js:89
+#: src/control/Permission.js:82
 msgid "The document could not be locked."
 msgstr "تعذر تأمين المستند."
 
-#: src/control/Permission.js:143
+#: src/control/Permission.js:136
 msgid "Enter a file name"
 msgstr "أدخل اسم الملف"
 
-#: src/control/Permission.js:144
-msgid "filename"
-msgstr "اسم الملف"
-
-#: src/control/Permission.js:166
+#: src/control/Permission.js:158
 msgid "Save as ODF format"
 msgstr "حفظ بتنسيق ODF"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "متابعة التحرير"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "متابعة القراءة فقط"
 
-#: src/control/Permission.js:171
+#: src/control/Permission.js:163
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2344,7 +2339,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5157
+#: src/layer/tile/CanvasTileLayer.js:5165
 msgid "No Comments"
 msgstr "لا تعليقات"
 
@@ -2398,7 +2393,7 @@ msgstr "ارفض التغيير"
 msgid "Resolved"
 msgstr "حل"
 
-#: src/main.js:103
+#: src/main.js:108
 msgid "Warning! The browser you are using is not supported."
 msgstr "تحذير! المتصفح الذي تستخدمه غير مدعوم."
 
@@ -2569,6 +2564,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Show Selected Sheets"
+#~ msgstr "إظهار الأوراق المحددة"
+
+#~ msgid "filename"
+#~ msgstr "اسم الملف"
 
 #~ msgid "Inactive document"
 #~ msgstr "مستند غير نشط"

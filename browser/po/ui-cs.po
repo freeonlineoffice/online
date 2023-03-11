@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 18:46+0100\n"
+"POT-Creation-Date: 2023-03-11 17:40+0100\n"
 "PO-Revision-Date: 2022-04-14 19:15+0000\n"
 "Last-Translator: Pedro Silva <pedro.silva@collabora.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/collabora-online/"
@@ -229,7 +229,8 @@ msgid "Log Levels"
 msgstr "Úrovně podrobností protokolu"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:173 src/control/Parts.js:431
+#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: src/control/Control.Zotero.js:173 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -259,10 +260,12 @@ msgstr "Server byl vypnut, prosím načtěte stránku znovu."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
 #: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:319
+#: src/control/Control.Zotero.js:357 src/control/Permission.js:76
+#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Toolbar.js:707 src/control/Toolbar.js:934
+#: src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "OK"
@@ -280,13 +283,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Opravdu si přejete ukončit tuto relaci?"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
-#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
+#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
+#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Zrušit"
@@ -364,19 +366,19 @@ msgstr "Automatická"
 msgid "Automatic color"
 msgstr "Automatická barva"
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:48
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:57
+#: src/control/Control.AlertDialog.js:49
 msgid "Open link"
 msgstr "Otevřít hypertextový odkaz"
 
-#: src/control/Control.AlertDialog.js:67
+#: src/control/Control.AlertDialog.js:59
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Server zaznamenal během zpracovávání příkazu %1 chybu %0."
 
-#: src/control/Control.Command.js:94
+#: src/control/Control.Command.js:80
 msgid "Unlock"
 msgstr "Odemknout"
 
@@ -442,15 +444,16 @@ msgstr "Potvrdit kopírování do schránky"
 msgid "cell address"
 msgstr "adresa buňky"
 
-#: src/control/Control.FormulaBarJSDialog.js:42
+#: src/control/Control.FormulaBarJSDialog.js:43
+#: src/control/Control.FormulaBarJSDialog.js:91
 msgid "Function Wizard"
 msgstr "Průvodce funkcí"
 
-#: src/control/Control.FormulaBarJSDialog.js:55
+#: src/control/Control.FormulaBarJSDialog.js:54
 msgid "Formula"
 msgstr ""
 
-#: src/control/Control.FormulaBarJSDialog.js:62
+#: src/control/Control.FormulaBarJSDialog.js:60
 #: src/control/Control.MobileTopBar.js:40
 msgid "Accept"
 msgstr "Přijmout"
@@ -510,70 +513,70 @@ msgstr "Čtvercový"
 msgid "Fixed size"
 msgstr "Neměnná velikost"
 
-#: src/control/Control.JSDialogBuilder.js:1394
+#: src/control/Control.JSDialogBuilder.js:1405
 msgid "From"
 msgstr "Od"
 
-#: src/control/Control.JSDialogBuilder.js:1397
+#: src/control/Control.JSDialogBuilder.js:1408
 msgid "To"
 msgstr "Do"
 
-#: src/control/Control.JSDialogBuilder.js:1400
+#: src/control/Control.JSDialogBuilder.js:1411
 msgid "Color"
 msgstr "Barva"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1511
 msgid "Select range"
 msgstr "Vybrat rozsah"
 
-#: src/control/Control.JSDialogBuilder.js:1549
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Název písma"
 
-#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Velikost písma"
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1564
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Styl"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2077
 msgid "reply"
 msgstr "odpověď"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2080
 msgid "replies"
 msgstr "odpovědí"
 
-#: src/control/Control.JSDialogBuilder.js:2080
-#: src/layer/tile/CanvasTileLayer.js:5129
-#: src/layer/tile/CanvasTileLayer.js:5140
+#: src/control/Control.JSDialogBuilder.js:2091
+#: src/layer/tile/CanvasTileLayer.js:5137
+#: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Komentář"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2154
 msgid "Insert Comment"
 msgstr "Vložit komentář"
 
-#: src/control/Control.JSDialogBuilder.js:2789
+#: src/control/Control.JSDialogBuilder.js:2800
 msgid "Cell borders"
 msgstr "Ohraničení buněk"
 
-#: src/control/Control.JSDialogBuilder.js:3000
+#: src/control/Control.JSDialogBuilder.js:3011
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Řádky"
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3012
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Sloupce"
 
-#: src/control/Control.JSDialogBuilder.js:3021
+#: src/control/Control.JSDialogBuilder.js:3032
 msgid "Insert Table"
 msgstr "Vložit tabulku"
 
@@ -691,7 +694,7 @@ msgstr "Podepsat dokument"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:386
 #: src/control/Control.Menubar.js:526 src/control/Control.Menubar.js:653
-#: src/control/Control.Toolbar.js:1161
+#: src/control/Control.Toolbar.js:1166
 msgid "Close document"
 msgstr "Zavřít dokument"
 
@@ -1522,15 +1525,15 @@ msgstr "Přesunout list doprava"
 msgid "Copy Sheet..."
 msgstr "Kopírovat list…"
 
-#: src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:301
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Opravdu si přejete smazat list, %sheet%?"
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Enter new sheet name"
 msgstr "Zadejte nový název listu"
 
@@ -1745,43 +1748,35 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:432
-msgid "Show Selected Sheets"
-msgstr "Zobrazit vybrané listy"
-
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr "Dokument nelze uzamknout a je otevřen v režimu jen pro čtení."
 
-#: src/control/Permission.js:74 src/control/Permission.js:91
+#: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
 msgstr "Server vrátil tento důvod:"
 
-#: src/control/Permission.js:89
+#: src/control/Permission.js:82
 msgid "The document could not be locked."
 msgstr "Dokument nelze uzamknout."
 
-#: src/control/Permission.js:143
+#: src/control/Permission.js:136
 msgid "Enter a file name"
 msgstr "Zadejte název souboru"
 
-#: src/control/Permission.js:144
-msgid "filename"
-msgstr "název souboru"
-
-#: src/control/Permission.js:166
+#: src/control/Permission.js:158
 msgid "Save as ODF format"
 msgstr "Uložit jako formát ODF"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "Pokračovat v úpravách"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "Pokračovat v režimu jen pro čtení"
 
-#: src/control/Permission.js:171
+#: src/control/Permission.js:163
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2363,7 +2358,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5157
+#: src/layer/tile/CanvasTileLayer.js:5165
 msgid "No Comments"
 msgstr "Bez komentářů"
 
@@ -2416,7 +2411,7 @@ msgstr "Odmítnout změnu"
 msgid "Resolved"
 msgstr "Vyřešit"
 
-#: src/main.js:103
+#: src/main.js:108
 msgid "Warning! The browser you are using is not supported."
 msgstr "Pozor! Používáte nepodporovaný prohlížeč."
 
@@ -2598,6 +2593,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Show Selected Sheets"
+#~ msgstr "Zobrazit vybrané listy"
+
+#~ msgid "filename"
+#~ msgstr "název souboru"
 
 #~ msgid "Inactive document"
 #~ msgstr "Neaktivní dokument"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 18:46+0100\n"
+"POT-Creation-Date: 2023-03-11 17:40+0100\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -228,7 +228,8 @@ msgid "Log Levels"
 msgstr "Inlogniveaus"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:173 src/control/Parts.js:431
+#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: src/control/Control.Zotero.js:173 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -258,10 +259,12 @@ msgstr "De server is gestopt; laad de pagina ajb opnieuw."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
 #: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:319
+#: src/control/Control.Zotero.js:357 src/control/Permission.js:76
+#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Toolbar.js:707 src/control/Toolbar.js:934
+#: src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "OK"
@@ -279,13 +282,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Weet u zeker dat u deze sessie wilt afbreken?"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
-#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
+#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
+#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Annuleren"
@@ -362,20 +364,20 @@ msgstr "Geen kleur"
 msgid "Automatic color"
 msgstr "Automatische kleur"
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:48
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:57
+#: src/control/Control.AlertDialog.js:49
 msgid "Open link"
 msgstr "Koppeling openen"
 
-#: src/control/Control.AlertDialog.js:67
+#: src/control/Control.AlertDialog.js:59
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr ""
 "De server ondervond een %0-fout tijdens het uitvoeren van de %1-opdracht."
 
-#: src/control/Control.Command.js:94
+#: src/control/Control.Command.js:80
 msgid "Unlock"
 msgstr "Ontgrendelen"
 
@@ -441,15 +443,16 @@ msgstr "Bevestig kopiëren naar het klembord"
 msgid "cell address"
 msgstr "Cel adres"
 
-#: src/control/Control.FormulaBarJSDialog.js:42
+#: src/control/Control.FormulaBarJSDialog.js:43
+#: src/control/Control.FormulaBarJSDialog.js:91
 msgid "Function Wizard"
 msgstr "Functie-assistent"
 
-#: src/control/Control.FormulaBarJSDialog.js:55
+#: src/control/Control.FormulaBarJSDialog.js:54
 msgid "Formula"
 msgstr ""
 
-#: src/control/Control.FormulaBarJSDialog.js:62
+#: src/control/Control.FormulaBarJSDialog.js:60
 #: src/control/Control.MobileTopBar.js:40
 msgid "Accept"
 msgstr "Accepteren"
@@ -509,70 +512,70 @@ msgstr "Vierkant"
 msgid "Fixed size"
 msgstr "Vaste afmeting"
 
-#: src/control/Control.JSDialogBuilder.js:1394
+#: src/control/Control.JSDialogBuilder.js:1405
 msgid "From"
 msgstr "Van"
 
-#: src/control/Control.JSDialogBuilder.js:1397
+#: src/control/Control.JSDialogBuilder.js:1408
 msgid "To"
 msgstr "tot"
 
-#: src/control/Control.JSDialogBuilder.js:1400
+#: src/control/Control.JSDialogBuilder.js:1411
 msgid "Color"
 msgstr "Kleur"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1511
 msgid "Select range"
 msgstr "Bereik selecteren"
 
-#: src/control/Control.JSDialogBuilder.js:1549
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Naam lettertype"
 
-#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Lettergrootte"
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1564
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Opmaakprofiel"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2077
 msgid "reply"
 msgstr "Beantwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2080
 msgid "replies"
 msgstr "Antwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2080
-#: src/layer/tile/CanvasTileLayer.js:5129
-#: src/layer/tile/CanvasTileLayer.js:5140
+#: src/control/Control.JSDialogBuilder.js:2091
+#: src/layer/tile/CanvasTileLayer.js:5137
+#: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Opmerking"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2154
 msgid "Insert Comment"
 msgstr "Notitie invoegen"
 
-#: src/control/Control.JSDialogBuilder.js:2789
+#: src/control/Control.JSDialogBuilder.js:2800
 msgid "Cell borders"
 msgstr "Celranden"
 
-#: src/control/Control.JSDialogBuilder.js:3000
+#: src/control/Control.JSDialogBuilder.js:3011
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Rijen"
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3012
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Kolommen"
 
-#: src/control/Control.JSDialogBuilder.js:3021
+#: src/control/Control.JSDialogBuilder.js:3032
 msgid "Insert Table"
 msgstr "Tabel invoegen"
 
@@ -690,7 +693,7 @@ msgstr "Document ondertekenen"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:386
 #: src/control/Control.Menubar.js:526 src/control/Control.Menubar.js:653
-#: src/control/Control.Toolbar.js:1161
+#: src/control/Control.Toolbar.js:1166
 msgid "Close document"
 msgstr "Document sluiten"
 
@@ -1521,15 +1524,15 @@ msgstr "Blad naar rechts verplaatsen"
 msgid "Copy Sheet..."
 msgstr "Kopieer blad..."
 
-#: src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:301
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Weet u zeker dat u blad %sheet% wilt verwijderen?"
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Enter new sheet name"
 msgstr "Voer een nieuwe bladnaam in"
 
@@ -1744,45 +1747,37 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:432
-msgid "Show Selected Sheets"
-msgstr "Toon geslecteerde bladen"
-
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr ""
 "Het document kon niet worden beveiligd en wordt geopend in alleen-lezen "
 "modus."
 
-#: src/control/Permission.js:74 src/control/Permission.js:91
+#: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
 msgstr "De server gaf deze reden terug:"
 
-#: src/control/Permission.js:89
+#: src/control/Permission.js:82
 msgid "The document could not be locked."
 msgstr "Document kan niet worden beveiligd."
 
-#: src/control/Permission.js:143
+#: src/control/Permission.js:136
 msgid "Enter a file name"
 msgstr "Geef een bestandsnaam op"
 
-#: src/control/Permission.js:144
-msgid "filename"
-msgstr "Bestandsnaam"
-
-#: src/control/Permission.js:166
+#: src/control/Permission.js:158
 msgid "Save as ODF format"
 msgstr "Opslaan als ODF formaat"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "Doorgaan met bewerken"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "Alleen lezen voortzetten"
 
-#: src/control/Permission.js:171
+#: src/control/Permission.js:163
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2376,7 +2371,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5157
+#: src/layer/tile/CanvasTileLayer.js:5165
 msgid "No Comments"
 msgstr "Geen notities"
 
@@ -2429,7 +2424,7 @@ msgstr "Ongedaan maken"
 msgid "Resolved"
 msgstr "Opgelost"
 
-#: src/main.js:103
+#: src/main.js:108
 msgid "Warning! The browser you are using is not supported."
 msgstr "Waarschuwing! De browser die u gebruikt wordt niet ondersteund."
 
@@ -2614,6 +2609,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Show Selected Sheets"
+#~ msgstr "Toon geslecteerde bladen"
+
+#~ msgid "filename"
+#~ msgstr "Bestandsnaam"
 
 #~ msgid "Inactive document"
 #~ msgstr "Inactief document"

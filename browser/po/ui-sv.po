@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-07 18:46+0100\n"
+"POT-Creation-Date: 2023-03-11 17:40+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Leif-Jöran Olsson <info@friprogramvarusyndikatet.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/collabora-online/"
@@ -225,7 +225,8 @@ msgid "Log Levels"
 msgstr "Loggnivåer"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.Zotero.js:173 src/control/Parts.js:431
+#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: src/control/Control.Zotero.js:173 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -255,10 +256,12 @@ msgstr "Tjänsten har stängts av eller startas om, ladda om sidan."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
 #: admin/src/AdminSocketSettings.js:36
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:306
-#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:319
-#: src/control/Control.Zotero.js:357 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:934 src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:319
+#: src/control/Control.Zotero.js:357 src/control/Permission.js:76
+#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Toolbar.js:707 src/control/Toolbar.js:934
+#: src/core/Socket.js:1027 src/core/Socket.js:1248
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "OK"
@@ -276,13 +279,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Är du säker på att du vill avsluta sessionen?"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.Command.js:93
+#: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.js:41 src/control/Control.Tabs.js:305
-#: src/control/Control.Zotero.js:314 src/control/Toolbar.js:702
-#: src/core/Socket.js:887 src/core/Socket.js:897 src/core/Socket.js:1026
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
+#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
+#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Avbryt"
@@ -360,19 +362,19 @@ msgstr "Ingen färg"
 msgid "Automatic color"
 msgstr "Automatisk färg"
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:48
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:57
+#: src/control/Control.AlertDialog.js:49
 msgid "Open link"
 msgstr "Öppna länk"
 
-#: src/control/Control.AlertDialog.js:67
+#: src/control/Control.AlertDialog.js:59
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Servern stötte på ett %0-fel vid utförandet av kommandot %1."
 
-#: src/control/Control.Command.js:94
+#: src/control/Control.Command.js:80
 msgid "Unlock"
 msgstr "Lås upp"
 
@@ -438,15 +440,16 @@ msgstr "Bekräfta kopiering till urklipp"
 msgid "cell address"
 msgstr "celladress"
 
-#: src/control/Control.FormulaBarJSDialog.js:42
+#: src/control/Control.FormulaBarJSDialog.js:43
+#: src/control/Control.FormulaBarJSDialog.js:91
 msgid "Function Wizard"
 msgstr "Funktionsguide"
 
-#: src/control/Control.FormulaBarJSDialog.js:55
+#: src/control/Control.FormulaBarJSDialog.js:54
 msgid "Formula"
 msgstr ""
 
-#: src/control/Control.FormulaBarJSDialog.js:62
+#: src/control/Control.FormulaBarJSDialog.js:60
 #: src/control/Control.MobileTopBar.js:40
 msgid "Accept"
 msgstr "Acceptera"
@@ -506,70 +509,70 @@ msgstr "Kvadrat"
 msgid "Fixed size"
 msgstr "Fixerad storlek"
 
-#: src/control/Control.JSDialogBuilder.js:1394
+#: src/control/Control.JSDialogBuilder.js:1405
 msgid "From"
 msgstr "Från"
 
-#: src/control/Control.JSDialogBuilder.js:1397
+#: src/control/Control.JSDialogBuilder.js:1408
 msgid "To"
 msgstr "Till"
 
-#: src/control/Control.JSDialogBuilder.js:1400
+#: src/control/Control.JSDialogBuilder.js:1411
 msgid "Color"
 msgstr "Färg"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1511
 msgid "Select range"
 msgstr "Välj intervall"
 
-#: src/control/Control.JSDialogBuilder.js:1549
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Teckensnitt"
 
-#: src/control/Control.JSDialogBuilder.js:1551 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Teckensnittsstorlek"
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1564
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Format"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2077
 msgid "reply"
 msgstr "svara"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2080
 msgid "replies"
 msgstr "svar"
 
-#: src/control/Control.JSDialogBuilder.js:2080
-#: src/layer/tile/CanvasTileLayer.js:5129
-#: src/layer/tile/CanvasTileLayer.js:5140
+#: src/control/Control.JSDialogBuilder.js:2091
+#: src/layer/tile/CanvasTileLayer.js:5137
+#: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2154
 msgid "Insert Comment"
 msgstr "Infoga kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2789
+#: src/control/Control.JSDialogBuilder.js:2800
 msgid "Cell borders"
 msgstr "Kantlinjer"
 
-#: src/control/Control.JSDialogBuilder.js:3000
+#: src/control/Control.JSDialogBuilder.js:3011
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Rader"
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3012
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Kolumner"
 
-#: src/control/Control.JSDialogBuilder.js:3021
+#: src/control/Control.JSDialogBuilder.js:3032
 msgid "Insert Table"
 msgstr "Infoga Tabell"
 
@@ -687,7 +690,7 @@ msgstr "Signera dokument"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:386
 #: src/control/Control.Menubar.js:526 src/control/Control.Menubar.js:653
-#: src/control/Control.Toolbar.js:1161
+#: src/control/Control.Toolbar.js:1166
 msgid "Close document"
 msgstr "Stäng dokument"
 
@@ -1518,15 +1521,15 @@ msgstr "Flytta blad åt höger"
 msgid "Copy Sheet..."
 msgstr "Kopiera blad ..."
 
-#: src/control/Control.Tabs.js:303
+#: src/control/Control.Tabs.js:301
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Är du säker på att du vill ta bort bladet, %sheet%?"
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:320
+#: src/control/Control.Tabs.js:312
 msgid "Enter new sheet name"
 msgstr "Ange nytt bladnamn"
 
@@ -1741,43 +1744,35 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:432
-msgid "Show Selected Sheets"
-msgstr "Visa valda blad"
-
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr "Dokumentet kunde inte låsas och öppnas i skrivskyddat läge."
 
-#: src/control/Permission.js:74 src/control/Permission.js:91
+#: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
 msgstr "Servern returnerade denna anledning:"
 
-#: src/control/Permission.js:89
+#: src/control/Permission.js:82
 msgid "The document could not be locked."
 msgstr "Dokumentet kunde inte låsas."
 
-#: src/control/Permission.js:143
+#: src/control/Permission.js:136
 msgid "Enter a file name"
 msgstr "Ange ett filnamn"
 
-#: src/control/Permission.js:144
-msgid "filename"
-msgstr "filnamn"
-
-#: src/control/Permission.js:166
+#: src/control/Permission.js:158
 msgid "Save as ODF format"
 msgstr "Spara som ODF format"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "Fortsätt redigera"
 
-#: src/control/Permission.js:168
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "Fortsätt skrivskyddat"
 
-#: src/control/Permission.js:171
+#: src/control/Permission.js:163
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2357,7 +2352,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5157
+#: src/layer/tile/CanvasTileLayer.js:5165
 msgid "No Comments"
 msgstr "Inga kommentarer"
 
@@ -2410,7 +2405,7 @@ msgstr "Avslå ändring"
 msgid "Resolved"
 msgstr "Löst"
 
-#: src/main.js:103
+#: src/main.js:108
 msgid "Warning! The browser you are using is not supported."
 msgstr "Varning! Den webbläsare du använder stöds inte."
 
@@ -2594,6 +2589,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Show Selected Sheets"
+#~ msgstr "Visa valda blad"
+
+#~ msgid "filename"
+#~ msgstr "filnamn"
 
 #~ msgid "Inactive document"
 #~ msgstr "Inaktivt dokument"
