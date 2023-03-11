@@ -114,20 +114,20 @@ namespace Quarantine
         }
     }
 
-    void clearOldQuarantineVersions(const std::string& Wopiscr)
+    void clearOldQuarantineVersions(const std::string& docKey)
     {
         if (!isQuarantineEnabled())
             return;
 
-        std::size_t maxVersionCount = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2);
+        std::size_t maxVersionCount =
+            std::max<size_t>(LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2), 1);
         std::string decoded;
-        Poco::URI::decode(Wopiscr, decoded);
+        Poco::URI::decode(docKey, decoded);
         while (LOOLWSD::QuarantineMap[decoded].size() > maxVersionCount)
         {
             FileUtil::removeFile(LOOLWSD::QuarantineMap[decoded][0]);
             LOOLWSD::QuarantineMap[decoded].erase(LOOLWSD::QuarantineMap[decoded].begin());
         }
-
     }
 
     bool quarantineFile(DocumentBroker* docBroker, const std::string& docName)
