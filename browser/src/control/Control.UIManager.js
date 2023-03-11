@@ -27,6 +27,7 @@ L.Control.UIManager = L.Control.extend({
 		this.map.toolbarUpTemplate = $('#toolbar-up')[0].cloneNode(true);
 		this.map.mainMenuTemplate = $('#main-menu')[0].cloneNode(true);
 
+		map.on('infobar', this.showInfoBar, this);
 		map.on('updatepermission', this.onUpdatePermission, this);
 
 		if (window.mode.isMobile()) {
@@ -115,7 +116,6 @@ L.Control.UIManager = L.Control.extend({
 		this.map.dialog = L.control.lokDialog();
 		this.map.addControl(this.map.dialog);
 		this.map.addControl(L.control.contextMenu());
-		this.map.addControl(L.control.infobar());
 		this.map.userList = L.control.userList();
 		this.map.addControl(this.map.userList);
 
@@ -799,13 +799,13 @@ L.Control.UIManager = L.Control.extend({
 	/// shows modal dialog
 	/// json - JSON for building the dialog
 	/// callbacks - array of { id: widgetId, type: eventType, func: functionToCall }
-	showModal: function(json, callbacks, cancelButtonId) {
+	showModal: function(json, callbacks) {
 		var that = this;
 		var builderCallback = function(objectType, eventType, object, data) {
 			window.app.console.debug('modal action: \'' + objectType + '\' id:\'' + object.id + '\' event: \'' + eventType + '\' state: \'' + data + '\'');
 
 			// default close methods
-			callbacks.push({id: (cancelButtonId ? cancelButtonId: 'response-cancel'), func: function() { that.closeModal(json.id); }});
+			callbacks.push({id: 'response-cancel', func: function() { that.closeModal(json.id); }});
 			callbacks.push({id: '__POPOVER__', func: function() { that.closeModal(json.id); }});
 
 			for (var i in callbacks) {
@@ -914,7 +914,7 @@ L.Control.UIManager = L.Control.extend({
 					callback();
 				that.closeModal(dialogId);
 			}}
-		], cancelButtonId);
+		]);
 	},
 
 	/// shows simple input modal (message + input + (cancel + ok) button)
@@ -972,13 +972,47 @@ L.Control.UIManager = L.Control.extend({
 		]);
 	},
 
+	/// Shows an info bar at the bottom right of the view.
+	/// This is called by map.fire('infobar', {data}).
+	showInfoBar: function(e) {
+
+		var message = e.msg;
+		var link = e.action;
+		var linkText = e.actionLabel;
+
+		var id = 'infobar' + Math.round(Math.random() * 10);
+		var dialogId = this.generateModalId(id);
+		var json = this._modalDialogJSON(id, ' ', !window.mode.isDesktop(), [
+			{
+				id: dialogId + '-text',
+				type: 'fixedtext',
+				text: message
+			},
+		]);
+
+		this.showModal(json);
+
+		if (!window.mode.isMobile()) {
+			document.getElementById(dialogId).style.marginRight = '0';
+			document.getElementById(dialogId).style.marginBottom = '0';
+		}
+
+		if (link && linkText) {
+			document.getElementById(dialogId + '-text').style.textDecoration = 'underline';
+			document.getElementById(dialogId + '-text').onclick = function() {
+				var win = window.open(link, '_blank');
+				win.focus();
+			};
+		}
+	},
+
 	/// shows simple confirm modal (message + (cancel + ok) button)
 	/// id - id of a dialog
 	/// title - title of a dialog
 	/// message - message
 	/// buttonText - text inside OK button
 	/// callback - callback on button press
-	showConfirmModal: function(id, title, message, buttonText, callback, hideCancelButton) {
+	showConfirmModal: function(id, title, message, buttonText, callback) {
 		var dialogId = this.generateModalId(id);
 		var json = this._modalDialogJSON(id, title, !window.mode.isDesktop(), [
 			{
@@ -996,7 +1030,6 @@ L.Control.UIManager = L.Control.extend({
 						id: 'response-cancel',
 						type: 'pushbutton',
 						text: _('Cancel'),
-						hidden: hideCancelButton === true ? true: false
 					},
 					{
 						id: 'response-ok',
