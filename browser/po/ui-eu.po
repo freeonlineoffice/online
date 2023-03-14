@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -229,7 +229,7 @@ msgstr "Egunkari-mailak"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Itxi"
@@ -263,7 +263,8 @@ msgstr "Zerbitzaria itzali egin da; kargatu orria berriro mesedez."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "Ados"
@@ -285,8 +286,8 @@ msgstr "Ziur zaude saio hau itxi nahi duzula?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Utzi"
@@ -510,70 +511,70 @@ msgstr "Karratua"
 msgid "Fixed size"
 msgstr "Tamaina finkoa"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "Hemendik:"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "Hona:"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "Kolorea"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "Hautatu barrutia"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Letra-izena"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Letra-tamaina"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Estiloa"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "erantzuna"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "erantzunak"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "Txertatu iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "Gelaxka-ertzak"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Errenkadak"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Zutabeak"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "Txertatu taula"
 
@@ -685,7 +686,7 @@ msgid "Download as"
 msgstr "Deskargatu honela"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "Sinatu dokumentua"
 
@@ -1031,15 +1032,15 @@ msgstr "Erakutsi bilaketa-barra"
 msgid "Borders"
 msgstr "Ertzak"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "Atzeko planoaren kolorea"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "Gradientearen hasiera"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "Gradientearen amaiera"
 
@@ -1622,7 +1623,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -1764,19 +1765,19 @@ msgstr "Dokumentua ezin izan da blokeatu."
 msgid "Enter a file name"
 msgstr "Sartu fitxategi izena"
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr "Gorde ODF formatu gisa"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr "Jarraitu editatzen"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr "Jarraitu soilik irakurtzeko"
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1800,143 +1801,35 @@ msgstr "Txertatu tabulazioa"
 msgid "Delete tabstop"
 msgstr "Ezabatu tabulazioa"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "Sartu PIN kodea"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "Errorea saioa hastean."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "Eskaneatu kodea"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "Ezin izan da QR kodearen irudia atzitu."
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "Errorea nortasuna atzitzeko eskubideak leheneratzean."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "PIN kodea"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "Sartu posta elektronikoko edo SMSko PIN kodea"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "Hasi saioa posta bidez edo sakelakoaren zenbakiaren bidez"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "Hautatu kargatuko den dokumentu mota"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "Mota:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "Dokumentua kargatu da."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "Hautatu nortasuna:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "Hasi saioa sakelakotik"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "Berreskuratu posta elektroniko bidez"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "Hautatu pasaportea"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "Pasaportea: N/A"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "Sinatu"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "Egoera:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "E/E"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "Saio-hasiera"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "Sinatu gabea"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "Dokumentu honek sinadura digitala du eta sinadura baliozkoa da."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "Sinatua eta balioztatua"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "Dokumentu honek baliogabeko sinadura du."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "Sinadura hautsia"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 #, fuzzy
 msgid "The signature was valid, but the document has been modified."
 msgstr "Sinadura baliozkoa da, baina dokumentua aldatua izan da"
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "Sinatua baina dokumentua aldatua"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "Sinadura ongi dago, baina ziurtagiria ezin izan da balioztatu."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "Sinatua baina balioztatu gabea"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 #, fuzzy
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "Sinadura ondo dago, baina dokumentua partzialki sinatuta dago."
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "Sinatua baina fitxategi guztiak ez daude sinatuta"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr ""
 "Sinadura ondo dago, baina ziurtagiria ezin izan da balioztatu eta dokumentua "
 "partzialki sinatuta dago."
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
-msgstr "Sinatuta baina balioztatu gabe eta fitxategi guztiak ez daude sinatuta"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -2057,23 +1950,67 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr "Dokumentua birkargatu izena aldatu ondoren"
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "Dokumentua ikusteko pasahitza behar da."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "Dokumentua aldatzeko pasahitza behar da."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Sakatu utzi soilik-ikusi moduan irekitzeko."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "Pasahitz okerra. Saiatu berriro."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr "Norbaitek"
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "Konektatzen..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr "Dokumentua izena aldatzen ari da eta laster berriro kargatuko da"
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "Baztertu"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "Gainidatzi"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "Gorde fitxategi berrian"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr "Dokumentu aldatu egin da"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2081,51 +2018,7 @@ msgstr ""
 "Dokumentua aldatu egin da biltegian. Ez egin nahi duzu gorde ez diren "
 "aldaketekin?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "Dokumentua ikusteko pasahitza behar da."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "Dokumentua aldatzeko pasahitza behar da."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Sakatu utzi soilik-ikusi moduan irekitzeko."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "Pasahitz okerra. Saiatu berriro."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr "Norbaitek"
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "Konektatzen..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr "Dokumentua izena aldatzen ari da eta laster berriro kargatuko da"
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2133,11 +2026,11 @@ msgstr ""
 "Tira, hau lotsagarria da, ezin dugu zure dokumentuarekin konektatu. Saiatu "
 "berriro."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "Birkonektatzen..."
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr "Zerbitzaria deskonektatu da."
 
@@ -2421,7 +2314,7 @@ msgstr "Ukatu aldaketa"
 msgid "Resolved"
 msgstr "Ebatzia"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr "Abisua! Erabiltzen ari zaren nabigatzailea ez da onartzen."
 
@@ -2603,6 +2496,87 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "Sartu PIN kodea"
+
+#~ msgid "Error at login."
+#~ msgstr "Errorea saioa hastean."
+
+#~ msgid "Please scan the code"
+#~ msgstr "Eskaneatu kodea"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "Ezin izan da QR kodearen irudia atzitu."
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "Errorea nortasuna atzitzeko eskubideak leheneratzean."
+
+#~ msgid "PIN Code"
+#~ msgstr "PIN kodea"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "Sartu posta elektronikoko edo SMSko PIN kodea"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "Hasi saioa posta bidez edo sakelakoaren zenbakiaren bidez"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "Hautatu kargatuko den dokumentu mota"
+
+#~ msgid "Type:"
+#~ msgstr "Mota:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "Dokumentua kargatu da."
+
+#~ msgid "Select identity:"
+#~ msgstr "Hautatu nortasuna:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "Hasi saioa sakelakotik"
+
+#~ msgid "Recover from email"
+#~ msgstr "Berreskuratu posta elektroniko bidez"
+
+#~ msgid "Select passport"
+#~ msgstr "Hautatu pasaportea"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "Pasaportea: N/A"
+
+#~ msgid "Sign"
+#~ msgstr "Sinatu"
+
+#~ msgid "Status:"
+#~ msgstr "Egoera:"
+
+#~ msgid "N/A"
+#~ msgstr "E/E"
+
+#~ msgid "Login"
+#~ msgstr "Saio-hasiera"
+
+#~ msgid "Not Signed"
+#~ msgstr "Sinatu gabea"
+
+#~ msgid "Signed and validated"
+#~ msgstr "Sinatua eta balioztatua"
+
+#~ msgid "Signature broken"
+#~ msgstr "Sinadura hautsia"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "Sinatua baina dokumentua aldatua"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "Sinatua baina balioztatu gabea"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "Sinatua baina fitxategi guztiak ez daude sinatuta"
+
+#~ msgid "Signed but not validated and not all files are signed"
+#~ msgstr "Sinatuta baina balioztatu gabe eta fitxategi guztiak ez daude sinatuta"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Erakutsi orri hautatuak"

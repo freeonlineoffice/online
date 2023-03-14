@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -229,7 +229,7 @@ msgstr "مستويات السجل"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "غلق"
@@ -263,7 +263,8 @@ msgstr "تم إغلاق الخادم؛ يرجى إعادة تحميل الصفح
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "موافق"
@@ -285,8 +286,8 @@ msgstr "أمتأكد من إنهاء هذه الجلسة؟"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ألغِ"
@@ -510,70 +511,70 @@ msgstr "مربع"
 msgid "Fixed size"
 msgstr "حجم ثابت"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "من"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "إلى"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "لون"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "اختر نطاقا"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "اسم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "حجم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "النمط"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "رد"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "ردود"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "التعليق"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "إدراج تعليق"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "حدود الخلية"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "صفوف"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "أعمدة"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "إدراج جدول"
 
@@ -685,7 +686,7 @@ msgid "Download as"
 msgstr "نزّل ك‍"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "وقع المستند"
 
@@ -1031,15 +1032,15 @@ msgstr "إظهار شريط البحث"
 msgid "Borders"
 msgstr "الحدود"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "لون الخلفية"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "بدء التدرج"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "نهاية التدرج"
 
@@ -1620,7 +1621,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "يحمّل..."
 
@@ -1761,19 +1762,19 @@ msgstr "تعذر تأمين المستند."
 msgid "Enter a file name"
 msgstr "أدخل اسم الملف"
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr "حفظ بتنسيق ODF"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr "متابعة التحرير"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr "متابعة القراءة فقط"
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1796,140 +1797,32 @@ msgstr "إدراج علامة وقف التبويب"
 msgid "Delete tabstop"
 msgstr "حذف علامة وقف التبويب"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "الرجاء إدخال رمز PIN"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "خطأ عند تسجيل الدخول."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "الرجاء مسح الرمز"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "تعذر الحصول على صورة رمز الاستجابة السريعة."
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "خطأ عند محاولة استعادة الوصول إلى الهوية."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "رمز PIN"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "الرجاء إدخال رمز PIN من البريد الإلكتروني أو الرسائل القصيرة"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "تسجيل الدخول من البريد الإلكتروني أو رقم الهاتف المحمول"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "حدد نوع المستند لتحميله"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "النوع:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "تم تحميل المستند."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "اختر الهوية:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "تسجيل الدخول من الهاتف المحمول"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "استرداد من البريد الإلكتروني"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "اختر جواز السفر"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "جواز السفر: غير متوفر"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "وقع"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "الحالة:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "غير متوفر"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "غير موقع"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "هذا المستند موقع رقميا والتوقيع صحيح."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "موقع ومعتمد"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "يحتوي هذا المستند على توقيع غير صالح."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "التوقيع مكسور"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr "كان التوقيع صحيحا، ولكن تم تعديل المستند."
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "موقع ولكن تم تعديل المستند"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "التوقيع جيد، ولكن تعذر التحقق من صحة الشهادة."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "موقع ولكن لم يتم التحقق من صحته"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "التوقيع جيد، ولكن المستند موقع جزئيا فقط."
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "موقع ولكن لم يتم توقيع جميع الملفات"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr ""
 "التوقيع جيد، ولكن تعذر التحقق من صحة الشهادة وتم توقيع المستند جزئيا فقط."
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
-msgstr "موقع ولكن لم يتم التحقق من صحته وليست جميع الملفات موقعة"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -2044,84 +1937,84 @@ msgstr "استعادة النسخة القديمة. ستتوفر أي تغيير
 msgid "Reloading the document after rename"
 msgstr "إعادة تحميل المستند بعد إعادة تسميته"
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "يتطلب المستند كلمة سر لعرضه."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "يتطلب المستند كلمة سر لتعديله."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "انقر ”ألغِ“ للفتح في وضع العرض فقط."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "وُفّرت كلمة سر خاطئة. رجاءً أعد المحاولة."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr "شخصا ما"
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "يتصل..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr "تتم إعادة تسمية المستند وسيعاد تحميله قريبًا"
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "أهمِلها"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "اكتبها فوق التخزين"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "احفظها في ملف جديد"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr "تم تغيير المستند"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr ""
 "تغيّر المستند في التخزين. ما الذي تريد فعله حيال التغييرات هنا غير المحفوظة؟"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "يتطلب المستند كلمة سر لعرضه."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "يتطلب المستند كلمة سر لتعديله."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "انقر ”ألغِ“ للفتح في وضع العرض فقط."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "وُفّرت كلمة سر خاطئة. رجاءً أعد المحاولة."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr "شخصا ما"
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "يتصل..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr "تتم إعادة تسمية المستند وسيعاد تحميله قريبًا"
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "هذا محرج. تعذر الاتصال بالمستند. رجاءً أعد المحاولة لاحقًا."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "جاري إعادة الاتصال ..."
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr "تم قطع اتصال الخادم."
 
@@ -2393,7 +2286,7 @@ msgstr "ارفض التغيير"
 msgid "Resolved"
 msgstr "حل"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr "تحذير! المتصفح الذي تستخدمه غير مدعوم."
 
@@ -2564,6 +2457,87 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "الرجاء إدخال رمز PIN"
+
+#~ msgid "Error at login."
+#~ msgstr "خطأ عند تسجيل الدخول."
+
+#~ msgid "Please scan the code"
+#~ msgstr "الرجاء مسح الرمز"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "تعذر الحصول على صورة رمز الاستجابة السريعة."
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "خطأ عند محاولة استعادة الوصول إلى الهوية."
+
+#~ msgid "PIN Code"
+#~ msgstr "رمز PIN"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "الرجاء إدخال رمز PIN من البريد الإلكتروني أو الرسائل القصيرة"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "تسجيل الدخول من البريد الإلكتروني أو رقم الهاتف المحمول"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "حدد نوع المستند لتحميله"
+
+#~ msgid "Type:"
+#~ msgstr "النوع:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "تم تحميل المستند."
+
+#~ msgid "Select identity:"
+#~ msgstr "اختر الهوية:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "تسجيل الدخول من الهاتف المحمول"
+
+#~ msgid "Recover from email"
+#~ msgstr "استرداد من البريد الإلكتروني"
+
+#~ msgid "Select passport"
+#~ msgstr "اختر جواز السفر"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "جواز السفر: غير متوفر"
+
+#~ msgid "Sign"
+#~ msgstr "وقع"
+
+#~ msgid "Status:"
+#~ msgstr "الحالة:"
+
+#~ msgid "N/A"
+#~ msgstr "غير متوفر"
+
+#~ msgid "Login"
+#~ msgstr "تسجيل الدخول"
+
+#~ msgid "Not Signed"
+#~ msgstr "غير موقع"
+
+#~ msgid "Signed and validated"
+#~ msgstr "موقع ومعتمد"
+
+#~ msgid "Signature broken"
+#~ msgstr "التوقيع مكسور"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "موقع ولكن تم تعديل المستند"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "موقع ولكن لم يتم التحقق من صحته"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "موقع ولكن لم يتم توقيع جميع الملفات"
+
+#~ msgid "Signed but not validated and not all files are signed"
+#~ msgstr "موقع ولكن لم يتم التحقق من صحته وليست جميع الملفات موقعة"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "إظهار الأوراق المحددة"

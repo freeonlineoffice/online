@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Lower Sorbian <https://hosted.weblate.org/projects/"
@@ -230,7 +230,7 @@ msgstr "Protokolowe rowniny"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Zacyniś"
@@ -264,7 +264,8 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "W pórěźe"
@@ -286,8 +287,8 @@ msgstr "Cośo toś to pósejźenje napšawdu skóńcyś?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Pśetergnuś"
@@ -511,71 +512,71 @@ msgstr "Kwadrat"
 msgid "Fixed size"
 msgstr "Kšuta wjelikosć"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "Wót"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "Do"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "Barwa"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "Wobceŕk wubraś"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Mě pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Wjelikosć pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 #, fuzzy
 msgid "reply"
 msgstr "Wótegroniś"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Komentar"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "Kšomy cele"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Smužki"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Słupy"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 #, fuzzy
 msgid "Insert Table"
 msgstr "Tabelu zasajźiś"
@@ -688,7 +689,7 @@ msgid "Download as"
 msgstr "Ześěgnuś ako"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "Dokument signěrowaś"
 
@@ -1034,15 +1035,15 @@ msgstr "Pytańsku rědku pokazaś"
 msgid "Borders"
 msgstr "Ramiki"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "Slězynowa barwa"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "Zachopjeńk pśeběga"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "Kóńc pśeběga"
 
@@ -1628,7 +1629,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "Cyta se..."
 
@@ -1769,19 +1770,19 @@ msgstr "Dokument njedajo se zastajiś."
 msgid "Enter a file name"
 msgstr ""
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr ""
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1803,140 +1804,32 @@ msgstr "Tabulator zasajźiś"
 msgid "Delete tabstop"
 msgstr "Tabulator wulašowaś"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "Pšosym zapódajśo PIN-kod"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "Zmólka pśi přizjawjenju."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "Pšosym skannujśo kod"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "Wobraz QR-koda njedajo se wobstaraś"
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "Zmólka pśi wopyśe, pśistup na identitu wótnowiś."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "PIN-kod"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "Pšosym zapódajśo PIN-kod z mejlki abo SMS"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "Pśizjawjenje z e-mailu abo numerom mobilnego telefona"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "Wubjeŕśo dokumentowy typ za nagraśe"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "Typ:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "Dokument jo se nagrał."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "Wubjeŕśo identitu:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "Pśizjawjenje wót mobilnego telefona"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "Z e-maile wótnowiś"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "Pas wubraś"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "Pas: ND"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "Signěrowaś"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "Status:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "ND"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "Pśizjawjenje"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "Njesigněrowany"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "Dokument jo digitalnje signěrowany a signatura jo płaśiwa."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "Signěrowany a wobkšuśony"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "Toś ten dokument ma njepłaśiwu signaturu."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "Signatura jo wobškóźona"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 #, fuzzy
 msgid "The signature was valid, but the document has been modified."
 msgstr "Signatura jo była płaśiwa, ale dokument jo se změnił"
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "Signěrowany, ale dokument jo změnjony"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "Signatura jo w pórěźe, ale certifikat njedajo se pśeglědowaś."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "Signěrowany, ale njewobkšuśony"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 #, fuzzy
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "Signatura jo w pórědku, ale dokument jo jano signěrowany pó źělach"
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "Signěrowany, ale nic wšykne dataje su signěrowane"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
-msgstr ""
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
 msgstr ""
 
 #: src/control/Toolbar.js:45
@@ -2060,23 +1953,67 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "Dokument se gronidło pomina, aby se pokazał."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "Dokument se gronidło pomina, aby se změnił."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Klikniśo na Pśetergnuś, aby dokument we woglědańskem modusu wócynił."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "Wopacne gronidło pódane. Pšosym wopytajśo hyšći raz."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr ""
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "Zwězujo se..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "Zachyśiś"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "Pśepisaś"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "Do noweje dataje składowaś"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2084,62 +2021,18 @@ msgstr ""
 "Dokument jo se změnił w składowaku. Co cośo ze swójimi njeskłaźonymi změnami "
 "cyniś?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "Dokument se gronidło pomina, aby se pokazał."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "Dokument se gronidło pomina, aby se změnił."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Klikniśo na Pśetergnuś, aby dokument we woglědańskem modusu wócynił."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "Wopacne gronidło pódane. Pšosym wopytajśo hyšći raz."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr ""
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "Zwězujo se..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Bóžko njamóžomy z wašym dokumentom zwězaś. Pšosym wopytajśo hyšći raz."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Zwězujo se..."
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2419,7 +2312,7 @@ msgstr "Změnu wotpokazaś"
 msgid "Resolved"
 msgstr "Rozwězany"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2582,6 +2475,84 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "Pšosym zapódajśo PIN-kod"
+
+#~ msgid "Error at login."
+#~ msgstr "Zmólka pśi přizjawjenju."
+
+#~ msgid "Please scan the code"
+#~ msgstr "Pšosym skannujśo kod"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "Wobraz QR-koda njedajo se wobstaraś"
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "Zmólka pśi wopyśe, pśistup na identitu wótnowiś."
+
+#~ msgid "PIN Code"
+#~ msgstr "PIN-kod"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "Pšosym zapódajśo PIN-kod z mejlki abo SMS"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "Pśizjawjenje z e-mailu abo numerom mobilnego telefona"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "Wubjeŕśo dokumentowy typ za nagraśe"
+
+#~ msgid "Type:"
+#~ msgstr "Typ:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "Dokument jo se nagrał."
+
+#~ msgid "Select identity:"
+#~ msgstr "Wubjeŕśo identitu:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "Pśizjawjenje wót mobilnego telefona"
+
+#~ msgid "Recover from email"
+#~ msgstr "Z e-maile wótnowiś"
+
+#~ msgid "Select passport"
+#~ msgstr "Pas wubraś"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "Pas: ND"
+
+#~ msgid "Sign"
+#~ msgstr "Signěrowaś"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "N/A"
+#~ msgstr "ND"
+
+#~ msgid "Login"
+#~ msgstr "Pśizjawjenje"
+
+#~ msgid "Not Signed"
+#~ msgstr "Njesigněrowany"
+
+#~ msgid "Signed and validated"
+#~ msgstr "Signěrowany a wobkšuśony"
+
+#~ msgid "Signature broken"
+#~ msgstr "Signatura jo wobškóźona"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "Signěrowany, ale dokument jo změnjony"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "Signěrowany, ale njewobkšuśony"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "Signěrowany, ale nic wšykne dataje su signěrowane"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Wubrane tabele pokazaś"

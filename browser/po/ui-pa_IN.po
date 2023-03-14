@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,7 +228,7 @@ msgstr ""
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
@@ -262,7 +262,8 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr ""
@@ -284,8 +285,8 @@ msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨਾ 
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
@@ -510,75 +511,75 @@ msgstr ""
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 #, fuzzy
 msgid "Select range"
 msgstr "ਤਬਦੀਲੀ ਰੱਦ ਕਰੋ"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 #, fuzzy
 msgid "Font Name"
 msgstr "ਫੋਂਟ"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 #, fuzzy
 msgid "Font Size"
 msgstr "ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੇ"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "ਸਟਾਈਲ"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 #, fuzzy
 msgid "reply"
 msgstr "ਜਵਾਬ ਦਿਓ"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 #, fuzzy
 msgid "Cell borders"
 msgstr "ਹਾਸ਼ੀਏ"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 #, fuzzy
 msgid "Insert Table"
 msgstr "ਸਾਰਣੀ ਜੋੜੋ"
@@ -691,7 +692,7 @@ msgid "Download as"
 msgstr "ਇੰਝ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "ਦਸਤਾਵੇਜ਼ ਲਈ ਦਸਤਖਤ ਕਰੋ"
 
@@ -1040,15 +1041,15 @@ msgstr "ਖੋਜ ਨੂੰ ਰੱਦ ਕਰੋ"
 msgid "Borders"
 msgstr "ਹਾਸ਼ੀਏ"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr ""
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr ""
 
@@ -1641,7 +1642,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
@@ -1782,19 +1783,19 @@ msgstr ""
 msgid "Enter a file name"
 msgstr ""
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr ""
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1818,139 +1819,30 @@ msgstr "ਸਾਰਣੀ ਜੋੜੋ"
 msgid "Delete tabstop"
 msgstr "ਸਾਰਣੀ ਜੋੜੋ"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "ਪਿੰਨ ਕੋਡ ਦਰਜ ਕਰੋ"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "ਲਾਗਇਨ ਸਮੇਂ ਗਲਤੀ ਹੈ।"
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "ਕੋਡ ਸਕੈਨ ਕਰੋ ਜੀ"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr ""
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr ""
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "ਪਿੰਨ ਕੋਡ"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "ਈਮੇਲ ਜਾਂ SMS ਤੋਂ ਪਿੰਨ ਕੋਡ ਦਰਜ ਕਰੋ"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "ਈਮੇਲ ਜਾਂ ਮੋਬਾਈਲ ਨੰਬਰ ਰਾਹੀਂ ਲਾਗਇਨ ਕਰੋ"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਦਸਤਾਵੇਜ਼ ਦੀ ਕਿਸਮ ਚੁਣੋ"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "ਕਿਸਮ:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "ਦਸਤਾਵੇਜ਼ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ।"
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "ਪਛਾਣ ਚੁਣੋ:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "ਮੋਬਾਈਲ ਤੋਂ ਲਾਗਇਨ ਕਰੋ"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "ਈਮੇਲ ਰਾਹੀਂ ਬਹਾਲੀ"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "ਪਾਸਪੋਰਟ ਚੁਣੋ"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "ਪਾਸਪੋਰਟ: ਲਾਗੂ ਨਹੀਂ"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "ਦਸਤਖਤ"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "ਹਾਲਤ:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "ਲਾਗੂ ਨਹੀਂ"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "ਲਾਗਇਨ"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੇ"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "ਇਹ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਡਿਜ਼ਿਟਲ ਰੂਪ ਵਿੱਚ ਦਸਤਖਤ ਹੈ ਅਤੇ ਦਸਤਖਤ ਠੀਕ ਹਨ।"
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "ਦਸਤਖਤ ਕੀਤੇ ਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "ਇਹ ਦਸਤਾਵੇਜ਼ ਲਈ ਦਸਤਖਤ ਗਲਤ ਹਨ।"
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "ਦਸਤਖ਼ਤ ਖ਼ਰਾਬ ਹਨ"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr ""
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr ""
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr ""
 
-#: src/control/Signing.js:640
-#, fuzzy
-msgid "Signed but not validated"
-msgstr "ਦਸਤਖਤ ਕੀਤੇ ਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr ""
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr ""
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
-msgstr ""
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
 msgstr ""
 
 #: src/control/Toolbar.js:45
@@ -2065,23 +1957,67 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਵੇਖਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਸੋਧਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "ਸਿਰਫ਼ ਪੜ੍ਹਨ ਲਈ ਢੰਗ ਵਿੱਚ ਖੋਲ੍ਹਣ ਲਈ ਰੱਦ ਕਰੋ ਨੂੰ ਕਲਿੱਕ ਕਰੋ।"
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "ਗਲਤ ਪਾਸਵਰਡ ਦਿੱਤਾ ਗਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr ""
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "ਅਣਡਿੱਠ ਕਰੋ"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "ਉੱਤੇ ਲਿਖੋ"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "ਨਵੀਂ ਫ਼ਾਇਲ 'ਚ ਸੰਭਾਲੋ"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2089,62 +2025,18 @@ msgstr ""
 "ਦਸਤਾਵੇਜ਼਼ ਨੂੰ ਸੰਭਾਲਣ ਦੇ ਦੌਰਾਨ ਬਦਲਿਆ ਗਿਆ ਸੀ। ਤੁਸੀਂ ਆਪਣੀਆਂ ਨਾ-ਸੰਭਾਲੀਆਂ ਤਬਦੀਲੀਆਂ "
 "ਨਾਲ ਕੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਵੇਖਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "ਦਸਤਾਵੇਜ਼ ਨੂੰ ਸੋਧਣ ਲਈ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ।"
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "ਸਿਰਫ਼ ਪੜ੍ਹਨ ਲਈ ਢੰਗ ਵਿੱਚ ਖੋਲ੍ਹਣ ਲਈ ਰੱਦ ਕਰੋ ਨੂੰ ਕਲਿੱਕ ਕਰੋ।"
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "ਗਲਤ ਪਾਸਵਰਡ ਦਿੱਤਾ ਗਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr ""
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2385,7 +2277,7 @@ msgstr "ਤਬਦੀਲੀ ਰੱਦ ਕਰੋ"
 msgid "Resolved"
 msgstr ""
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2536,6 +2428,73 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "ਪਿੰਨ ਕੋਡ ਦਰਜ ਕਰੋ"
+
+#~ msgid "Error at login."
+#~ msgstr "ਲਾਗਇਨ ਸਮੇਂ ਗਲਤੀ ਹੈ।"
+
+#~ msgid "Please scan the code"
+#~ msgstr "ਕੋਡ ਸਕੈਨ ਕਰੋ ਜੀ"
+
+#~ msgid "PIN Code"
+#~ msgstr "ਪਿੰਨ ਕੋਡ"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "ਈਮੇਲ ਜਾਂ SMS ਤੋਂ ਪਿੰਨ ਕੋਡ ਦਰਜ ਕਰੋ"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "ਈਮੇਲ ਜਾਂ ਮੋਬਾਈਲ ਨੰਬਰ ਰਾਹੀਂ ਲਾਗਇਨ ਕਰੋ"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਦਸਤਾਵੇਜ਼ ਦੀ ਕਿਸਮ ਚੁਣੋ"
+
+#~ msgid "Type:"
+#~ msgstr "ਕਿਸਮ:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "ਦਸਤਾਵੇਜ਼ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ।"
+
+#~ msgid "Select identity:"
+#~ msgstr "ਪਛਾਣ ਚੁਣੋ:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "ਮੋਬਾਈਲ ਤੋਂ ਲਾਗਇਨ ਕਰੋ"
+
+#~ msgid "Recover from email"
+#~ msgstr "ਈਮੇਲ ਰਾਹੀਂ ਬਹਾਲੀ"
+
+#~ msgid "Select passport"
+#~ msgstr "ਪਾਸਪੋਰਟ ਚੁਣੋ"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "ਪਾਸਪੋਰਟ: ਲਾਗੂ ਨਹੀਂ"
+
+#~ msgid "Sign"
+#~ msgstr "ਦਸਤਖਤ"
+
+#~ msgid "Status:"
+#~ msgstr "ਹਾਲਤ:"
+
+#~ msgid "N/A"
+#~ msgstr "ਲਾਗੂ ਨਹੀਂ"
+
+#~ msgid "Login"
+#~ msgstr "ਲਾਗਇਨ"
+
+#~ msgid "Not Signed"
+#~ msgstr "ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੇ"
+
+#~ msgid "Signed and validated"
+#~ msgstr "ਦਸਤਖਤ ਕੀਤੇ ਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ"
+
+#~ msgid "Signature broken"
+#~ msgstr "ਦਸਤਖ਼ਤ ਖ਼ਰਾਬ ਹਨ"
+
+#, fuzzy
+#~ msgid "Signed but not validated"
+#~ msgstr "ਦਸਤਖਤ ਕੀਤੇ ਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ"
 
 #, fuzzy
 #~ msgid "Search:"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -233,7 +233,7 @@ msgstr "Níveis de registro"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Fechar"
@@ -267,7 +267,8 @@ msgstr "O servidor foi desligado; por favor, recarregue a página."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "OK"
@@ -289,8 +290,8 @@ msgstr "Encerrar esta sessão?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Cancelar"
@@ -516,70 +517,70 @@ msgstr "Quadrado"
 msgid "Fixed size"
 msgstr "Tamanho fixo"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "De"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "Para"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "Cor"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "Selecionar intervalo"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Fonte"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Tamanho de Fonte"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Estilo"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "Responder"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "respostas"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Comentário"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "Inserir Comentário"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "Bordas da célula"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Linhas"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Colunas"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "Inserir Tabela"
 
@@ -691,7 +692,7 @@ msgid "Download as"
 msgstr "Baixar como"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "Assinar documento"
 
@@ -1037,15 +1038,15 @@ msgstr "Mostrar barra de pesquisa"
 msgid "Borders"
 msgstr "Bordas"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "Cor de plano de fundo"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "Início do gradiente"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "Final do gradiente"
 
@@ -1626,7 +1627,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "Carregando..."
 
@@ -1768,19 +1769,19 @@ msgstr "Não foi possível bloquear o documento."
 msgid "Enter a file name"
 msgstr "Insira nome de arquivo"
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr "Salvar como ODF"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr "Continue editando"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr "Continuar em modo de leitura"
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1804,141 +1805,33 @@ msgstr "Inserir tabulação"
 msgid "Delete tabstop"
 msgstr "Excluir tabulação"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "Insira o código PIN"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "Ocorreu um erro no login."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "Digitalize o código"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "Não foi possível obter a imagem do código QR."
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "Ocorreu um erro ao tentar restaurar o acesso à identidade."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "Código PIN"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "Digite o código IN vindo do e-mail ou SMS"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "Login por e-mail ou número do celular"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "Selecione o tipo de documento a gravar"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "Tipo:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "Documento carregado."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "Selecionar identidade:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "Login do celular"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "Recuperar por e-mail"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "Selecionar passaporte"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "Passaporte: N/D"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "Assinar"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "Status:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "N/D"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "Login"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "Não assinado"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "Este documento está assinado digitalmente e a assinatura é válida."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "Assinado e validado"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "Este documento contém uma assinatura inválida."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "Assinatura corrompida"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr "A assinatura era válida, mas o documento foi modificado."
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "Assinado porém com modificações"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "A assinatura está correta, mas o certificado não pode ser validado."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "Assinado mas não validado"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "A assinatura está correta, mas apenas parte do documento está assinado."
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "Assinado mas em todos os arquivos estão assinados"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr ""
 "A assinatura está OK, mas o certificado não pôde ser validado e o documento "
 "está apenas parcialmente assinado."
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
-msgstr "Assinado mas não validado e nem todos os ficheiros estão assinados"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -2057,23 +1950,67 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr "Recarregar o documento após renomear"
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "O documento exige uma senha de abertura."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "O documento exige uma senha para modificação."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Pressione Cancelar para abrir no modo de só leitura."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "Senha inválida. Tente novamente."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr "Alguém"
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "Conectando..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr "O documento está sendo renomeado e será recarregado em breve"
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "Substituir"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "Salvar com outro nome"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr "O documento foi alterado"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2081,61 +2018,17 @@ msgstr ""
 "O documento foi alterado no armazenamento. O que deseja fazer com as "
 "alterações não salvas?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "O documento exige uma senha de abertura."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "O documento exige uma senha para modificação."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Pressione Cancelar para abrir no modo de só leitura."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "Senha inválida. Tente novamente."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr "Alguém"
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "Conectando..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr "O documento está sendo renomeado e será recarregado em breve"
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Ocorreu um erro de conexão com seu documento. Tente novamente."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "A reconectar..."
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr "O servidor foi desconectado."
 
@@ -2416,7 +2309,7 @@ msgstr "Rejeitar a alteração"
 msgid "Resolved"
 msgstr "Resolvido"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr "Atenção! O navegador que você está usando não é suportado."
 
@@ -2601,6 +2494,87 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "Insira o código PIN"
+
+#~ msgid "Error at login."
+#~ msgstr "Ocorreu um erro no login."
+
+#~ msgid "Please scan the code"
+#~ msgstr "Digitalize o código"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "Não foi possível obter a imagem do código QR."
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "Ocorreu um erro ao tentar restaurar o acesso à identidade."
+
+#~ msgid "PIN Code"
+#~ msgstr "Código PIN"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "Digite o código IN vindo do e-mail ou SMS"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "Login por e-mail ou número do celular"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "Selecione o tipo de documento a gravar"
+
+#~ msgid "Type:"
+#~ msgstr "Tipo:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "Documento carregado."
+
+#~ msgid "Select identity:"
+#~ msgstr "Selecionar identidade:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "Login do celular"
+
+#~ msgid "Recover from email"
+#~ msgstr "Recuperar por e-mail"
+
+#~ msgid "Select passport"
+#~ msgstr "Selecionar passaporte"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "Passaporte: N/D"
+
+#~ msgid "Sign"
+#~ msgstr "Assinar"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "N/A"
+#~ msgstr "N/D"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Not Signed"
+#~ msgstr "Não assinado"
+
+#~ msgid "Signed and validated"
+#~ msgstr "Assinado e validado"
+
+#~ msgid "Signature broken"
+#~ msgstr "Assinatura corrompida"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "Assinado porém com modificações"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "Assinado mas não validado"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "Assinado mas em todos os arquivos estão assinados"
+
+#~ msgid "Signed but not validated and not all files are signed"
+#~ msgstr "Assinado mas não validado e nem todos os ficheiros estão assinados"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Exibir as planilhas selecionadas"
