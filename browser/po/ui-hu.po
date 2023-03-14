@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/"
@@ -229,7 +229,7 @@ msgstr "Naplózási szintek"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Bezárás"
@@ -263,7 +263,8 @@ msgstr "A kiszolgáló leállt, töltse be újra az oldalt."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "OK"
@@ -285,8 +286,8 @@ msgstr "Biztosan be szeretné zárni ezt a munkamenetet?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Mégse"
@@ -512,70 +513,70 @@ msgstr "Négyzet"
 msgid "Fixed size"
 msgstr "Fix méret"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "Kezdet"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "Vég"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "Szín"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "Tartomány kijelölése"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Betűkészlet"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Betűméret"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Stílus"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Megjegyzés"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "Megjegyzés beszúrása"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "Cellaszegélyek"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Sorok"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "Táblázat beszúrása"
 
@@ -687,7 +688,7 @@ msgid "Download as"
 msgstr "Letöltés másként"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "Dokumentum aláírása"
 
@@ -1033,15 +1034,15 @@ msgstr "Keresősáv megjelenítése"
 msgid "Borders"
 msgstr "Szegélyek"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "Háttérszín"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "Kezdőszín"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "Végszín"
 
@@ -1623,7 +1624,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "Betöltés…"
 
@@ -1764,19 +1765,19 @@ msgstr "A dokumentumot nem lehet zárolni."
 msgid "Enter a file name"
 msgstr "Fájlnév megadása"
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr "Mentés ODF formátumban"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr "Szerkesztés folytatása"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr "Folytatás csak olvasható módban"
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1800,142 +1801,33 @@ msgstr "Tabulátorpozíció beszúrása"
 msgid "Delete tabstop"
 msgstr "Tabulátorpozíció törlése"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "Adja meg a PIN kódot"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "Hiba a bejelentkezéskor."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "Olvassa be a kódot"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "A QR kód nem elérhető."
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr ""
-"Hiba történt a személyazonossághoz való hozzáférés helyreállítása közben."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "PIN-kód"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "Adja meg a PIN kódot az emailből vagy SMS-ből"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "Bejelentkezés e-mail vagy mobilszám alapján"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "Válassza ki a feltöltendő dokumentum típusát"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "Típus:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "A dokumentum feltöltve."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "Válasszon identitást:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "Bejelentkezés mobillal"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "Visszaállítás emailből"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "Passport választása"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "Passport: nincs"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "Aláírás"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "Állapot:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "Nincs"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "Bejelentkezés"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "Nincs aláírva"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "A dokumentum alá van írva, és az aláírás érvényes."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "Aláírt és érvényes"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "A dokumentum aláírása nem érvényes."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "Rossz aláírás"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr "Az aláírás érvényes, de a dokumentum módosítva lett."
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "Aláírt, de módosított dokumentum"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "Az aláírás rendben van, de a tanúsítványt nem lehet érvényesíteni."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "Aláírt, de nem érvényes"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "Az aláírás rendben van, de a dokumentum csak részben van aláírva."
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "Aláírt, de nem minden fájlon van aláírás"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr ""
 "Az aláírás rendben van, de a tanúsítványt nem sikerült érvényesíteni, és a "
 "dokumentum csak részben van aláírva."
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
-msgstr "Aláírt, de nem hitelesített, és nem minden fájl van aláírva"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -2055,75 +1947,75 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr "A dokumentum újratöltése az átnevezés után"
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "A dokumentum megnyitásához jelszó szükséges."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "A dokumentum módosításához jelszó szükséges."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr ""
+"A Mégse gombra kattintva a dokumentum csak olvasható módban fog megnyílni."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "A megadott jelszó nem jó. Próbálja újra."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr "Valaki"
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "Kapcsolódás..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr "A dokumentum átnevezése folyamatban van, és hamarosan újratöltődik"
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "Elvetés"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "Felülírás"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "Új fájlba mentés"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr "A dokumentum megváltozott"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr ""
 "A dokumentum megváltozott a tárhelyen. Mi legyen a nem mentett változásokkal?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "A dokumentum megnyitásához jelszó szükséges."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "A dokumentum módosításához jelszó szükséges."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr ""
-"A Mégse gombra kattintva a dokumentum csak olvasható módban fog megnyílni."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "A megadott jelszó nem jó. Próbálja újra."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr "Valaki"
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "Kapcsolódás..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr "A dokumentum átnevezése folyamatban van, és hamarosan újratöltődik"
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2131,11 +2023,11 @@ msgstr ""
 "Nagyon sajnáljuk, de nem lehet kapcsolódni a dokumentumhoz. Próbálja meg "
 "később."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "Újrakapcsolódás..."
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr "Megszűnt a kapcsolat a kiszolgálóval."
 
@@ -2419,7 +2311,7 @@ msgstr "Változás elvetése"
 msgid "Resolved"
 msgstr "Megoldva"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr "Figyelem! Az Ön által használt böngésző nem támogatott."
 
@@ -2604,6 +2496,88 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "Adja meg a PIN kódot"
+
+#~ msgid "Error at login."
+#~ msgstr "Hiba a bejelentkezéskor."
+
+#~ msgid "Please scan the code"
+#~ msgstr "Olvassa be a kódot"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "A QR kód nem elérhető."
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr ""
+#~ "Hiba történt a személyazonossághoz való hozzáférés helyreállítása közben."
+
+#~ msgid "PIN Code"
+#~ msgstr "PIN-kód"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "Adja meg a PIN kódot az emailből vagy SMS-ből"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "Bejelentkezés e-mail vagy mobilszám alapján"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "Válassza ki a feltöltendő dokumentum típusát"
+
+#~ msgid "Type:"
+#~ msgstr "Típus:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "A dokumentum feltöltve."
+
+#~ msgid "Select identity:"
+#~ msgstr "Válasszon identitást:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "Bejelentkezés mobillal"
+
+#~ msgid "Recover from email"
+#~ msgstr "Visszaállítás emailből"
+
+#~ msgid "Select passport"
+#~ msgstr "Passport választása"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "Passport: nincs"
+
+#~ msgid "Sign"
+#~ msgstr "Aláírás"
+
+#~ msgid "Status:"
+#~ msgstr "Állapot:"
+
+#~ msgid "N/A"
+#~ msgstr "Nincs"
+
+#~ msgid "Login"
+#~ msgstr "Bejelentkezés"
+
+#~ msgid "Not Signed"
+#~ msgstr "Nincs aláírva"
+
+#~ msgid "Signed and validated"
+#~ msgstr "Aláírt és érvényes"
+
+#~ msgid "Signature broken"
+#~ msgstr "Rossz aláírás"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "Aláírt, de módosított dokumentum"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "Aláírt, de nem érvényes"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "Aláírt, de nem minden fájlon van aláírás"
+
+#~ msgid "Signed but not validated and not all files are signed"
+#~ msgstr "Aláírt, de nem hitelesített, és nem minden fájl van aláírva"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Kijelölt munkalapok megjelenítése"

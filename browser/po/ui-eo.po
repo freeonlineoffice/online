@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/"
@@ -225,7 +225,7 @@ msgstr "Protokolaj niveloj"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Fermi"
@@ -259,7 +259,8 @@ msgstr "La servilo malŝaltiĝis; bonvolu reŝargi la paĝon."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "Bone"
@@ -281,8 +282,8 @@ msgstr "Ĉe vi certe volas fini ĉi tiun seancon?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Rezigni"
@@ -506,70 +507,70 @@ msgstr "Kvadrato"
 msgid "Fixed size"
 msgstr "Fiksita grando"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "El"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "Al"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "Koloro"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "Elekti amplekson"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Tiparnomo"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Tipargrando"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Stilo"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "respondo"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "respondoj"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Komento"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "Enmeti Komenton"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "Ĉelaj borderoj"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Vicoj"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Kolumnoj"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "Enmeti tabelon"
 
@@ -681,7 +682,7 @@ msgid "Download as"
 msgstr "Elŝuti kiel"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "Subskribi dokumenton"
 
@@ -1027,15 +1028,15 @@ msgstr "Vidigi serĉo-breton"
 msgid "Borders"
 msgstr "Borderoj"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "Fona koloro"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "Kolortransira komenco"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "Kolortransira fino"
 
@@ -1615,7 +1616,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "Ŝargas..."
 
@@ -1757,19 +1758,19 @@ msgstr "Ne povas ŝlosi la dokumenton."
 msgid "Enter a file name"
 msgstr "Tajpu dosiernomon"
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr "Konservi kiel ODF-dosieron"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr "Rekomenci redaktadon"
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr ""
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1792,139 +1793,31 @@ msgstr "Enmeti tabeligan signon"
 msgid "Delete tabstop"
 msgstr "Forigi tabeligan signon"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "Enigu la PIN-kodon"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "Eraro je ensaluto."
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "Bonvolu skani la kodon"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "Ne povis kapti la bildon de QR-kodo."
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "Eraris dum provo restaŭri aliron al identeco."
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "PIN-kodo"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "Bonvolu enigi la PIN-kodon el la retpoŝto aŭ SMS"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "Ensaluti el retpoŝto aŭ poŝtelefona numero"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "Eleku tipon de dokumento alŝutota"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "Tipo:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "Alŝutis dokumenton."
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "Elektu identecon:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "Alsaluti el poŝtelefono"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "Restaŭri el retpoŝto"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "Elekti pasporton"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "Pasporto: neaplikebla"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "Subskribi"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "Stato:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "neaplikebla"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "Ensaluti"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "Ne subskribita"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "La dokumento estas cifere subskribita kaj la subskribo estas valida."
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "Subskribita kaj validigita"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "La dokumento havas nevalidan subskribon."
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "Difektita subskribo"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr "La subskribo validas, sed la dokumento estas ŝanĝita."
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "Dokumento subskribita sed ŝanĝita"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "La subskribo estas en ordo, sed ne eblis validigi la atestilon."
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "Subskribita sed ne validigita"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr ""
 "La subskribo estas en ordo, sed la dokumento estas nur parte subskribita."
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "Subskribita, sed ne ĉiuj dosieroj estas subskribitaj"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
-msgstr ""
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
 msgstr ""
 
 #: src/control/Toolbar.js:45
@@ -2043,23 +1936,68 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "Pasvorto necesas por vidi dokumenton."
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "Pasvorto necesas por ŝanĝi dokumenton."
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Alklaku al Nuligi por malfermi en nurlega reĝimo."
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "Malĝusta pasvorto. Bonvolu reprovi."
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr "Iu"
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "Konektas..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr ""
+"La nomo de ĉi tiu dokumento estas ŝanĝata; la dokumento baldaŭ reŝargiĝos"
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "Forĵeti"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "Anstataŭigi"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "Konservi al nova dosiero"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2067,62 +2005,17 @@ msgstr ""
 "Dokumento estas ŝanĝita en konservejo. Kion faru pri viaj nekonservitaj "
 "ŝanĝoj?"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "Pasvorto necesas por vidi dokumenton."
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "Pasvorto necesas por ŝanĝi dokumenton."
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Alklaku al Nuligi por malfermi en nurlega reĝimo."
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "Malĝusta pasvorto. Bonvolu reprovi."
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr "Iu"
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "Konektas..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr ""
-"La nomo de ĉi tiu dokumento estas ŝanĝata; la dokumento baldaŭ reŝargiĝos"
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Bedaŭrinde ni ne povas konekti al via dokumento. Bonvolu reprovi."
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "Rekonektante…"
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2397,7 +2290,7 @@ msgstr "Malakcepti ŝanĝon"
 msgid "Resolved"
 msgstr "Solvita"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2565,6 +2458,84 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "Enigu la PIN-kodon"
+
+#~ msgid "Error at login."
+#~ msgstr "Eraro je ensaluto."
+
+#~ msgid "Please scan the code"
+#~ msgstr "Bonvolu skani la kodon"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "Ne povis kapti la bildon de QR-kodo."
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "Eraris dum provo restaŭri aliron al identeco."
+
+#~ msgid "PIN Code"
+#~ msgstr "PIN-kodo"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "Bonvolu enigi la PIN-kodon el la retpoŝto aŭ SMS"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "Ensaluti el retpoŝto aŭ poŝtelefona numero"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "Eleku tipon de dokumento alŝutota"
+
+#~ msgid "Type:"
+#~ msgstr "Tipo:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "Alŝutis dokumenton."
+
+#~ msgid "Select identity:"
+#~ msgstr "Elektu identecon:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "Alsaluti el poŝtelefono"
+
+#~ msgid "Recover from email"
+#~ msgstr "Restaŭri el retpoŝto"
+
+#~ msgid "Select passport"
+#~ msgstr "Elekti pasporton"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "Pasporto: neaplikebla"
+
+#~ msgid "Sign"
+#~ msgstr "Subskribi"
+
+#~ msgid "Status:"
+#~ msgstr "Stato:"
+
+#~ msgid "N/A"
+#~ msgstr "neaplikebla"
+
+#~ msgid "Login"
+#~ msgstr "Ensaluti"
+
+#~ msgid "Not Signed"
+#~ msgstr "Ne subskribita"
+
+#~ msgid "Signed and validated"
+#~ msgstr "Subskribita kaj validigita"
+
+#~ msgid "Signature broken"
+#~ msgstr "Difektita subskribo"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "Dokumento subskribita sed ŝanĝita"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "Subskribita sed ne validigita"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "Subskribita, sed ne ĉiuj dosieroj estas subskribitaj"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Montri elektitajn foliojn"

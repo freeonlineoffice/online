@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 17:40+0100\n"
+"POT-Creation-Date: 2023-03-14 22:03+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -225,7 +225,7 @@ msgstr "日志级别"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1075 src/core/Socket.js:1080
+#: src/core/Socket.js:973 src/core/Socket.js:978
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "关闭"
@@ -259,7 +259,8 @@ msgstr "服务器已关闭，请刷新该页面。"
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1027 src/core/Socket.js:1248
+#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
 msgstr "确定"
@@ -281,8 +282,8 @@ msgstr "您确定要停止此次会话吗？"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:887 src/core/Socket.js:897
-#: src/core/Socket.js:1026 src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "取消"
@@ -506,70 +507,70 @@ msgstr "方形"
 msgid "Fixed size"
 msgstr "固定大小"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1338
 msgid "From"
 msgstr "从"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1341
 msgid "To"
 msgstr "到"
 
-#: src/control/Control.JSDialogBuilder.js:1411
+#: src/control/Control.JSDialogBuilder.js:1344
 msgid "Color"
 msgstr "颜色"
 
-#: src/control/Control.JSDialogBuilder.js:1511
+#: src/control/Control.JSDialogBuilder.js:1444
 msgid "Select range"
 msgstr "选择范围"
 
-#: src/control/Control.JSDialogBuilder.js:1560
+#: src/control/Control.JSDialogBuilder.js:1493
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "字体名称"
 
-#: src/control/Control.JSDialogBuilder.js:1562 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "字体大小"
 
-#: src/control/Control.JSDialogBuilder.js:1564
+#: src/control/Control.JSDialogBuilder.js:1497
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "样式"
 
-#: src/control/Control.JSDialogBuilder.js:2077
+#: src/control/Control.JSDialogBuilder.js:2010
 msgid "reply"
 msgstr "回复"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2013
 msgid "replies"
 msgstr "回复"
 
-#: src/control/Control.JSDialogBuilder.js:2091
+#: src/control/Control.JSDialogBuilder.js:2024
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "批注"
 
-#: src/control/Control.JSDialogBuilder.js:2154
+#: src/control/Control.JSDialogBuilder.js:2087
 msgid "Insert Comment"
 msgstr "插入评论"
 
-#: src/control/Control.JSDialogBuilder.js:2800
+#: src/control/Control.JSDialogBuilder.js:2733
 msgid "Cell borders"
 msgstr "单元格边框"
 
-#: src/control/Control.JSDialogBuilder.js:3011
+#: src/control/Control.JSDialogBuilder.js:2944
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "行"
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2945
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "列"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:2965
 msgid "Insert Table"
 msgstr "插入表格"
 
@@ -681,7 +682,7 @@ msgid "Download as"
 msgstr "下载为"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
+#: src/control/Control.NotebookbarWriter.js:270
 msgid "Sign document"
 msgstr "签名文档"
 
@@ -1027,15 +1028,15 @@ msgstr "显示搜索栏"
 msgid "Borders"
 msgstr "边框"
 
-#: src/control/Control.MobileWizardBuilder.js:555
+#: src/control/Control.MobileWizardBuilder.js:507
 msgid "Background Color"
 msgstr "背景颜色"
 
-#: src/control/Control.MobileWizardBuilder.js:557
+#: src/control/Control.MobileWizardBuilder.js:509
 msgid "Gradient Start"
 msgstr "渐变起点"
 
-#: src/control/Control.MobileWizardBuilder.js:559
+#: src/control/Control.MobileWizardBuilder.js:511
 msgid "Gradient End"
 msgstr "渐变终点"
 
@@ -1613,7 +1614,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1128
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
 msgid "Loading..."
 msgstr "正在载入..."
 
@@ -1754,19 +1755,19 @@ msgstr "无法锁定文档。"
 msgid "Enter a file name"
 msgstr ""
 
-#: src/control/Permission.js:158
+#: src/control/Permission.js:155
 msgid "Save as ODF format"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue editing"
 msgstr ""
 
-#: src/control/Permission.js:160
+#: src/control/Permission.js:156
 msgid "Continue read only"
 msgstr ""
 
-#: src/control/Permission.js:163
+#: src/control/Permission.js:169
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -1788,138 +1789,30 @@ msgstr "插入制表位"
 msgid "Delete tabstop"
 msgstr "删除制表位"
 
-#: src/control/Signing.js:196
-msgid "Please enter the PIN Code"
-msgstr "请输入验证码"
-
-#: src/control/Signing.js:215
-msgid "Error at login."
-msgstr "登录时出错。"
-
-#: src/control/Signing.js:228
-msgid "Please scan the code"
-msgstr "请扫码"
-
-#: src/control/Signing.js:243
-msgid "Couldn't get the QR code image."
-msgstr "无法获取二维码图像。"
-
-#: src/control/Signing.js:270
-msgid "Error when trying to restore access to identity."
-msgstr "尝试恢复身份权限时出错。"
-
-#: src/control/Signing.js:276
-msgid "PIN Code"
-msgstr "验证码"
-
-#: src/control/Signing.js:277
-msgid "Please enter the PIN code from the EMail or SMS"
-msgstr "请输入电子邮件或短信中的验证码"
-
-#: src/control/Signing.js:298
-msgid "Login from email or mobile number"
-msgstr "通过电子邮箱或手机号码登录"
-
-#: src/control/Signing.js:332
-msgid "Select document type to upload"
-msgstr "选择要上传的文档类型"
-
-#: src/control/Signing.js:333
-msgid "Type:"
-msgstr "类型:"
-
-#: src/control/Signing.js:364 src/control/Signing.js:673
-msgid "Document uploaded."
-msgstr "文档已上传。"
-
-#: src/control/Signing.js:491
-msgid "Select identity:"
-msgstr "选择身份:"
-
-#: src/control/Signing.js:492
-msgid "Login from mobile"
-msgstr "通过手机登录"
-
-#: src/control/Signing.js:493
-msgid "Recover from email"
-msgstr "通过电子邮箱恢复"
-
-#: src/control/Signing.js:601
-msgid "Select passport"
-msgstr "选择通行证"
-
-#: src/control/Signing.js:602
-msgid "Passport: N/A"
-msgstr "通行证: N/A"
-
-#: src/control/Signing.js:604
-msgid "Sign"
-msgstr "签名"
-
-#: src/control/Signing.js:606
-msgid "Status:"
-msgstr "状态:"
-
-#: src/control/Signing.js:607
-msgid "N/A"
-msgstr "N/A"
-
-#: src/control/Signing.js:610
-msgid "Login"
-msgstr "登录"
-
-#: src/control/Signing.js:620
-msgid "Not Signed"
-msgstr "未签名"
-
-#: src/control/Signing.js:623
+#: src/control/Signing.js:18
 msgid "This document is digitally signed and the signature is valid."
 msgstr "此文档已经数字签名，且签名有效。"
 
-#: src/control/Signing.js:625
-msgid "Signed and validated"
-msgstr "已签名并验证"
-
-#: src/control/Signing.js:628
+#: src/control/Signing.js:22
 msgid "This document has an invalid signature."
 msgstr "此文档的签名无效。"
 
-#: src/control/Signing.js:630
-msgid "Signature broken"
-msgstr "签名损坏"
-
-#: src/control/Signing.js:633
+#: src/control/Signing.js:26
 msgid "The signature was valid, but the document has been modified."
 msgstr "签名有效，但文档已被修改。"
 
-#: src/control/Signing.js:635
-msgid "Signed but document modified"
-msgstr "已签名但文档已修改"
-
-#: src/control/Signing.js:638
+#: src/control/Signing.js:30
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "签名没有问题，但无法验证证书。"
 
-#: src/control/Signing.js:640
-msgid "Signed but not validated"
-msgstr "已签名未验证"
-
-#: src/control/Signing.js:643
+#: src/control/Signing.js:34
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "签名没有问题，但文档仅被部分签名。"
 
-#: src/control/Signing.js:645
-msgid "Signed but not all files are signed"
-msgstr "已签名但不是所有文件都有签名"
-
-#: src/control/Signing.js:648
+#: src/control/Signing.js:38
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
-msgstr ""
-
-#: src/control/Signing.js:650
-msgid "Signed but not validated and not all files are signed"
 msgstr ""
 
 #: src/control/Toolbar.js:45
@@ -2034,83 +1927,83 @@ msgstr "恢复老版本。任何未保存的更改可在版本历史中查看"
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:858
+#: src/core/Socket.js:900
+msgid "Document requires password to view."
+msgstr "文档需要密码才能查看。"
+
+#: src/core/Socket.js:903
+msgid "Document requires password to modify."
+msgstr "文档需要密码才能修改。"
+
+#: src/core/Socket.js:905
+msgid "Hit Cancel to open in view-only mode."
+msgstr "点击“取消”在只读模式下打开。"
+
+#: src/core/Socket.js:909
+msgid "Wrong password provided. Please try again."
+msgstr "密码错误。请重试。"
+
+#: src/core/Socket.js:973 src/core/Socket.js:978
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1015
+msgid "Someone"
+msgstr ""
+
+#: src/core/Socket.js:1016
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1025
+msgid "Connecting..."
+msgstr "正在连接..."
+
+#: src/core/Socket.js:1043
+msgid "The document is being renamed and will reload shortly"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1145
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1173
 msgid "Discard"
 msgstr "丢弃"
 
-#: src/core/Socket.js:865
+#: src/core/Socket.js:1174
 msgid "Overwrite"
 msgstr "覆盖"
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:1185
 msgid "Save to new file"
 msgstr "保存为新文档"
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1195
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:907
+#: src/core/Socket.js:1196
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr "文档已在存储位置被更改。对于您尚未保存更改的文档，您打算怎么做？"
 
-#: src/core/Socket.js:978
-msgid "Document requires password to view."
-msgstr "文档需要密码才能查看。"
-
-#: src/core/Socket.js:981
-msgid "Document requires password to modify."
-msgstr "文档需要密码才能修改。"
-
-#: src/core/Socket.js:983
-msgid "Hit Cancel to open in view-only mode."
-msgstr "点击“取消”在只读模式下打开。"
-
-#: src/core/Socket.js:987
-msgid "Wrong password provided. Please try again."
-msgstr "密码错误。请重试。"
-
-#: src/core/Socket.js:1075 src/core/Socket.js:1080
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1117
-msgid "Someone"
-msgstr ""
-
-#: src/core/Socket.js:1119
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1128
-msgid "Connecting..."
-msgstr "正在连接..."
-
-#: src/core/Socket.js:1146
-msgid "The document is being renamed and will reload shortly"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1248
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1543
+#: src/core/Socket.js:1493
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "很抱歉，无法连接到您的文档。请重试。"
 
-#: src/core/Socket.js:1560
+#: src/core/Socket.js:1510
 msgid "Reconnecting..."
 msgstr "正在重连…"
 
-#: src/core/Socket.js:1570
+#: src/core/Socket.js:1520
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2355,7 +2248,7 @@ msgstr "拒绝更改"
 msgid "Resolved"
 msgstr "已解决"
 
-#: src/main.js:108
+#: src/main.js:109
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2508,6 +2401,84 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Please enter the PIN Code"
+#~ msgstr "请输入验证码"
+
+#~ msgid "Error at login."
+#~ msgstr "登录时出错。"
+
+#~ msgid "Please scan the code"
+#~ msgstr "请扫码"
+
+#~ msgid "Couldn't get the QR code image."
+#~ msgstr "无法获取二维码图像。"
+
+#~ msgid "Error when trying to restore access to identity."
+#~ msgstr "尝试恢复身份权限时出错。"
+
+#~ msgid "PIN Code"
+#~ msgstr "验证码"
+
+#~ msgid "Please enter the PIN code from the EMail or SMS"
+#~ msgstr "请输入电子邮件或短信中的验证码"
+
+#~ msgid "Login from email or mobile number"
+#~ msgstr "通过电子邮箱或手机号码登录"
+
+#~ msgid "Select document type to upload"
+#~ msgstr "选择要上传的文档类型"
+
+#~ msgid "Type:"
+#~ msgstr "类型:"
+
+#~ msgid "Document uploaded."
+#~ msgstr "文档已上传。"
+
+#~ msgid "Select identity:"
+#~ msgstr "选择身份:"
+
+#~ msgid "Login from mobile"
+#~ msgstr "通过手机登录"
+
+#~ msgid "Recover from email"
+#~ msgstr "通过电子邮箱恢复"
+
+#~ msgid "Select passport"
+#~ msgstr "选择通行证"
+
+#~ msgid "Passport: N/A"
+#~ msgstr "通行证: N/A"
+
+#~ msgid "Sign"
+#~ msgstr "签名"
+
+#~ msgid "Status:"
+#~ msgstr "状态:"
+
+#~ msgid "N/A"
+#~ msgstr "N/A"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Not Signed"
+#~ msgstr "未签名"
+
+#~ msgid "Signed and validated"
+#~ msgstr "已签名并验证"
+
+#~ msgid "Signature broken"
+#~ msgstr "签名损坏"
+
+#~ msgid "Signed but document modified"
+#~ msgstr "已签名但文档已修改"
+
+#~ msgid "Signed but not validated"
+#~ msgstr "已签名未验证"
+
+#~ msgid "Signed but not all files are signed"
+#~ msgstr "已签名但不是所有文件都有签名"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "显示选定的工作表"
