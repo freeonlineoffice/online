@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 22:03+0100\n"
+"POT-Creation-Date: 2023-03-15 23:01+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -226,7 +226,7 @@ msgstr "Loggnivåer"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/core/Socket.js:973 src/core/Socket.js:978
+#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Steng"
@@ -260,7 +260,7 @@ msgstr "Tjeneren har blitt avskrudd; gjeninnlast siden"
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -283,7 +283,7 @@ msgstr "Er du sikker på at du vil avslutte denne økten?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
@@ -685,7 +685,7 @@ msgid "Download as"
 msgstr "Last ned som"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270
+#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
 msgid "Sign document"
 msgstr "Signer dokumentet …"
 
@@ -1626,7 +1626,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
 msgid "Loading..."
 msgstr "Laster …"
 
@@ -1803,32 +1803,140 @@ msgstr "Sett inn tabulatorstopp"
 msgid "Delete tabstop"
 msgstr "Slett tab stopp"
 
-#: src/control/Signing.js:18
+#: src/control/Signing.js:196
+msgid "Please enter the PIN Code"
+msgstr "Vennligs skriv inn PIN koden"
+
+#: src/control/Signing.js:215
+msgid "Error at login."
+msgstr "Feil ved logginn"
+
+#: src/control/Signing.js:228
+msgid "Please scan the code"
+msgstr "Vennligst skann koden"
+
+#: src/control/Signing.js:243
+msgid "Couldn't get the QR code image."
+msgstr "Kunne ikke lese QR-kodebildet."
+
+#: src/control/Signing.js:270
+msgid "Error when trying to restore access to identity."
+msgstr "Feil ved forsøk på å gjenopprette tilgang til identitet."
+
+#: src/control/Signing.js:276
+msgid "PIN Code"
+msgstr "PIN kode"
+
+#: src/control/Signing.js:277
+msgid "Please enter the PIN code from the EMail or SMS"
+msgstr "Vennligst skriv inn PIN-koden fra E-post eller SMS"
+
+#: src/control/Signing.js:298
+msgid "Login from email or mobile number"
+msgstr "Logg inn med e-post eller mobilnummer"
+
+#: src/control/Signing.js:332
+msgid "Select document type to upload"
+msgstr "Velg dokumenttype for opplasting"
+
+#: src/control/Signing.js:333
+msgid "Type:"
+msgstr "Type:"
+
+#: src/control/Signing.js:364 src/control/Signing.js:673
+msgid "Document uploaded."
+msgstr "Dokument lastet opp."
+
+#: src/control/Signing.js:491
+msgid "Select identity:"
+msgstr "Velg identitet:"
+
+#: src/control/Signing.js:492
+msgid "Login from mobile"
+msgstr "Logg inn fra mobil"
+
+#: src/control/Signing.js:493
+msgid "Recover from email"
+msgstr "Gjenopprett fra e--post"
+
+#: src/control/Signing.js:601
+msgid "Select passport"
+msgstr "Velg pass"
+
+#: src/control/Signing.js:602
+msgid "Passport: N/A"
+msgstr "Pass ikke tilgjengelig"
+
+#: src/control/Signing.js:604
+msgid "Sign"
+msgstr "Signer"
+
+#: src/control/Signing.js:606
+msgid "Status:"
+msgstr "Status:"
+
+#: src/control/Signing.js:607
+msgid "N/A"
+msgstr "N/A"
+
+#: src/control/Signing.js:610
+msgid "Login"
+msgstr "Logg inn"
+
+#: src/control/Signing.js:620
+msgid "Not Signed"
+msgstr "Ikke signert"
+
+#: src/control/Signing.js:623
 msgid "This document is digitally signed and the signature is valid."
 msgstr "Dette dokumentet er signert digitalt og signaturen er gyldig."
 
-#: src/control/Signing.js:22
+#: src/control/Signing.js:625
+msgid "Signed and validated"
+msgstr "Signert og validert"
+
+#: src/control/Signing.js:628
 msgid "This document has an invalid signature."
 msgstr "Dette dokumentet har en ugyldig signatur."
 
-#: src/control/Signing.js:26
+#: src/control/Signing.js:630
+msgid "Signature broken"
+msgstr "Signaturen er brutt"
+
+#: src/control/Signing.js:633
 #, fuzzy
 msgid "The signature was valid, but the document has been modified."
 msgstr "Signaturen var gyldig, men dokumentet har blitt endret"
 
-#: src/control/Signing.js:30
+#: src/control/Signing.js:635
+msgid "Signed but document modified"
+msgstr "Signert, men dokumentet er modifisert"
+
+#: src/control/Signing.js:638
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "Signaturen er OK, men sertifikatet kan ikke valideres."
 
-#: src/control/Signing.js:34
+#: src/control/Signing.js:640
+msgid "Signed but not validated"
+msgstr "Signert, men ikke validert"
+
+#: src/control/Signing.js:643
 #, fuzzy
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "Signaturen er OK, men dokumentet er bare delvis signert."
 
-#: src/control/Signing.js:38
+#: src/control/Signing.js:645
+msgid "Signed but not all files are signed"
+msgstr "Dokumentet er signert, men ikke alle filene er signert."
+
+#: src/control/Signing.js:648
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
+msgstr ""
+
+#: src/control/Signing.js:650
+msgid "Signed but not validated and not all files are signed"
 msgstr ""
 
 #: src/control/Toolbar.js:45
@@ -1875,59 +1983,59 @@ msgstr "Er du sikker på at du vil slette denne siden?"
 msgid "Oops, there is a problem connecting to %productName: "
 msgstr "Oops, problem med å koble dokumentet til %productName: "
 
-#: src/core/Socket.js:548
+#: src/core/Socket.js:563
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr ""
 
-#: src/core/Socket.js:550
+#: src/core/Socket.js:565
 msgid "Server is now reachable..."
 msgstr ""
 
-#: src/core/Socket.js:554
+#: src/core/Socket.js:569
 msgid "RELOAD"
 msgstr ""
 
-#: src/core/Socket.js:561
+#: src/core/Socket.js:576
 msgid "LOOLWSD version:"
 msgstr ""
 
-#: src/core/Socket.js:573
+#: src/core/Socket.js:588
 msgid "Served by:"
 msgstr "Servert av:"
 
-#: src/core/Socket.js:579
+#: src/core/Socket.js:594
 msgid "Unsupported server version."
 msgstr "Denne serverversjonen støttes ikke"
 
-#: src/core/Socket.js:583
+#: src/core/Socket.js:598
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:695
+#: src/core/Socket.js:710
 msgid "Session terminated by document owner"
 msgstr "Sesjonen er avsluttet av dokumenteier."
 
-#: src/core/Socket.js:700
+#: src/core/Socket.js:715
 msgid "Idle document - please click to reload and resume editing"
 msgstr "Inaktivt dokument, vennligst klikk for å fortsette redigering"
 
-#: src/core/Socket.js:702
+#: src/core/Socket.js:717
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Inaktivt dokument, vennligst klikk for å fortsette redigering"
 
-#: src/core/Socket.js:711
+#: src/core/Socket.js:726
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Serveren tas ned for vedlikehold (autolagring)"
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:730
 msgid "Oops, there is a problem connecting the document"
 msgstr "Oops, problem med å koble til dokumentet"
 
-#: src/core/Socket.js:719
+#: src/core/Socket.js:734
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Tjeneren er nede. Vent mens den starter på nytt automatisk."
 
-#: src/core/Socket.js:747
+#: src/core/Socket.js:762
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -1935,7 +2043,7 @@ msgstr ""
 "Dokumentet har blitt endret på serveren. Laster det nye dokumentet. Din "
 "versjon er tilgjengelig som en revisjon."
 
-#: src/core/Socket.js:753
+#: src/core/Socket.js:768
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -1943,71 +2051,27 @@ msgstr ""
 "Gjenoppretter en eldre versjon. Alle endringer som ikke er lagret er "
 "tilgjengelige i versjonsloggen"
 
-#: src/core/Socket.js:759
+#: src/core/Socket.js:774
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:900
-msgid "Document requires password to view."
-msgstr "Passord kreves for å se dokumentet."
-
-#: src/core/Socket.js:903
-msgid "Document requires password to modify."
-msgstr "Passord kreves for å endre dokumentet."
-
-#: src/core/Socket.js:905
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Trykk avbryt for å åpne som skrivebeskyttet."
-
-#: src/core/Socket.js:909
-msgid "Wrong password provided. Please try again."
-msgstr "Feil passord. Prøv igjen:"
-
-#: src/core/Socket.js:973 src/core/Socket.js:978
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1015
-msgid "Someone"
-msgstr ""
-
-#: src/core/Socket.js:1016
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1025
-msgid "Connecting..."
-msgstr "Kobler til …"
-
-#: src/core/Socket.js:1043
-msgid "The document is being renamed and will reload shortly"
-msgstr ""
-
-#: src/core/Socket.js:1145
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1145
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1173
+#: src/core/Socket.js:873
 msgid "Discard"
 msgstr "Forkast"
 
-#: src/core/Socket.js:1174
+#: src/core/Socket.js:880
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: src/core/Socket.js:1185
+#: src/core/Socket.js:895
 msgid "Save to new file"
 msgstr "Lagre til ny fil"
 
-#: src/core/Socket.js:1195
+#: src/core/Socket.js:922
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:1196
+#: src/core/Socket.js:922
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2015,18 +2079,62 @@ msgstr ""
 "Dokumentet i lageret er endret. Hva vil du gjøre med endringene som ikke er "
 "lagret?"
 
-#: src/core/Socket.js:1493
+#: src/core/Socket.js:993
+msgid "Document requires password to view."
+msgstr "Passord kreves for å se dokumentet."
+
+#: src/core/Socket.js:996
+msgid "Document requires password to modify."
+msgstr "Passord kreves for å endre dokumentet."
+
+#: src/core/Socket.js:998
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Trykk avbryt for å åpne som skrivebeskyttet."
+
+#: src/core/Socket.js:1002
+msgid "Wrong password provided. Please try again."
+msgstr "Feil passord. Prøv igjen:"
+
+#: src/core/Socket.js:1066 src/core/Socket.js:1071
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1108
+msgid "Someone"
+msgstr ""
+
+#: src/core/Socket.js:1109
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1118
+msgid "Connecting..."
+msgstr "Kobler til …"
+
+#: src/core/Socket.js:1136
+msgid "The document is being renamed and will reload shortly"
+msgstr ""
+
+#: src/core/Socket.js:1239
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1239
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Vi kan ikke koble til ditt dokument nå. Prøv å koble til på nytt."
 
-#: src/core/Socket.js:1510
+#: src/core/Socket.js:1569
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Kobler til …"
 
-#: src/core/Socket.js:1520
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2464,84 +2572,6 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
-
-#~ msgid "Please enter the PIN Code"
-#~ msgstr "Vennligs skriv inn PIN koden"
-
-#~ msgid "Error at login."
-#~ msgstr "Feil ved logginn"
-
-#~ msgid "Please scan the code"
-#~ msgstr "Vennligst skann koden"
-
-#~ msgid "Couldn't get the QR code image."
-#~ msgstr "Kunne ikke lese QR-kodebildet."
-
-#~ msgid "Error when trying to restore access to identity."
-#~ msgstr "Feil ved forsøk på å gjenopprette tilgang til identitet."
-
-#~ msgid "PIN Code"
-#~ msgstr "PIN kode"
-
-#~ msgid "Please enter the PIN code from the EMail or SMS"
-#~ msgstr "Vennligst skriv inn PIN-koden fra E-post eller SMS"
-
-#~ msgid "Login from email or mobile number"
-#~ msgstr "Logg inn med e-post eller mobilnummer"
-
-#~ msgid "Select document type to upload"
-#~ msgstr "Velg dokumenttype for opplasting"
-
-#~ msgid "Type:"
-#~ msgstr "Type:"
-
-#~ msgid "Document uploaded."
-#~ msgstr "Dokument lastet opp."
-
-#~ msgid "Select identity:"
-#~ msgstr "Velg identitet:"
-
-#~ msgid "Login from mobile"
-#~ msgstr "Logg inn fra mobil"
-
-#~ msgid "Recover from email"
-#~ msgstr "Gjenopprett fra e--post"
-
-#~ msgid "Select passport"
-#~ msgstr "Velg pass"
-
-#~ msgid "Passport: N/A"
-#~ msgstr "Pass ikke tilgjengelig"
-
-#~ msgid "Sign"
-#~ msgstr "Signer"
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
-
-#~ msgid "N/A"
-#~ msgstr "N/A"
-
-#~ msgid "Login"
-#~ msgstr "Logg inn"
-
-#~ msgid "Not Signed"
-#~ msgstr "Ikke signert"
-
-#~ msgid "Signed and validated"
-#~ msgstr "Signert og validert"
-
-#~ msgid "Signature broken"
-#~ msgstr "Signaturen er brutt"
-
-#~ msgid "Signed but document modified"
-#~ msgstr "Signert, men dokumentet er modifisert"
-
-#~ msgid "Signed but not validated"
-#~ msgstr "Signert, men ikke validert"
-
-#~ msgid "Signed but not all files are signed"
-#~ msgstr "Dokumentet er signert, men ikke alle filene er signert."
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Vis valgte ark"

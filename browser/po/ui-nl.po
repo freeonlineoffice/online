@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 22:03+0100\n"
+"POT-Creation-Date: 2023-03-15 23:01+0100\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -230,7 +230,7 @@ msgstr "Inlogniveaus"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/core/Socket.js:973 src/core/Socket.js:978
+#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Sluiten"
@@ -264,7 +264,7 @@ msgstr "De server is gestopt; laad de pagina ajb opnieuw."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -287,7 +287,7 @@ msgstr "Weet u zeker dat u deze sessie wilt afbreken?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
@@ -688,7 +688,7 @@ msgid "Download as"
 msgstr "Downloaden als"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270
+#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
 msgid "Sign document"
 msgstr "Document ondertekenen"
 
@@ -1623,7 +1623,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
 msgid "Loading..."
 msgstr "Laden…"
 
@@ -1802,35 +1802,144 @@ msgstr "Tabstop invoegen"
 msgid "Delete tabstop"
 msgstr "Tabstop verwijderen"
 
-#: src/control/Signing.js:18
+#: src/control/Signing.js:196
+msgid "Please enter the PIN Code"
+msgstr "De pincode invullen aub"
+
+#: src/control/Signing.js:215
+msgid "Error at login."
+msgstr "Fout bij inloggen."
+
+#: src/control/Signing.js:228
+msgid "Please scan the code"
+msgstr "Scan a.u.b. de code"
+
+#: src/control/Signing.js:243
+msgid "Couldn't get the QR code image."
+msgstr "Het beeld van de QR-code kon niet worden ontvangen."
+
+#: src/control/Signing.js:270
+msgid "Error when trying to restore access to identity."
+msgstr "Fout bij herstellen van toegang tot de identiteit."
+
+#: src/control/Signing.js:276
+msgid "PIN Code"
+msgstr "PIN-code"
+
+#: src/control/Signing.js:277
+msgid "Please enter the PIN code from the EMail or SMS"
+msgstr "Voer de pincode in van de e-mail of sms"
+
+#: src/control/Signing.js:298
+msgid "Login from email or mobile number"
+msgstr "Aanmelden via e-mail of mobiel nummer"
+
+#: src/control/Signing.js:332
+msgid "Select document type to upload"
+msgstr "Selecteer documenttype voor uploaden"
+
+#: src/control/Signing.js:333
+msgid "Type:"
+msgstr "Type:"
+
+#: src/control/Signing.js:364 src/control/Signing.js:673
+msgid "Document uploaded."
+msgstr "Document ge-upload."
+
+#: src/control/Signing.js:491
+msgid "Select identity:"
+msgstr "Selecteer een identiteit:"
+
+#: src/control/Signing.js:492
+msgid "Login from mobile"
+msgstr "Aanmelden via mobiel"
+
+#: src/control/Signing.js:493
+msgid "Recover from email"
+msgstr "Herstellen van e-mail"
+
+#: src/control/Signing.js:601
+msgid "Select passport"
+msgstr "Selecteer wachtwoord"
+
+#: src/control/Signing.js:602
+msgid "Passport: N/A"
+msgstr "Wachtwoord: NVT"
+
+#: src/control/Signing.js:604
+msgid "Sign"
+msgstr "Ondertekenen"
+
+#: src/control/Signing.js:606
+msgid "Status:"
+msgstr "Status:"
+
+#: src/control/Signing.js:607
+msgid "N/A"
+msgstr "NVT"
+
+#: src/control/Signing.js:610
+msgid "Login"
+msgstr "Aanmelden"
+
+#: src/control/Signing.js:620
+msgid "Not Signed"
+msgstr "Niet ondertekend"
+
+#: src/control/Signing.js:623
 msgid "This document is digitally signed and the signature is valid."
 msgstr "Het document is digitaal ondertekend en de handtekening is geldig."
 
-#: src/control/Signing.js:22
+#: src/control/Signing.js:625
+msgid "Signed and validated"
+msgstr "Ondertekend en gevalideerd"
+
+#: src/control/Signing.js:628
 msgid "This document has an invalid signature."
 msgstr "Dit document heeft een ongeldige ondertekening."
 
-#: src/control/Signing.js:26
+#: src/control/Signing.js:630
+msgid "Signature broken"
+msgstr "Handtekening beschadigd"
+
+#: src/control/Signing.js:633
 msgid "The signature was valid, but the document has been modified."
 msgstr "De handtekening is geldig, maar het document is gewijzigd."
 
-#: src/control/Signing.js:30
+#: src/control/Signing.js:635
+msgid "Signed but document modified"
+msgstr "Ondertekend maar document aangepast"
+
+#: src/control/Signing.js:638
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr ""
 "De handtekening is OK, maar het certificaat kon niet worden gevalideerd."
 
-#: src/control/Signing.js:34
+#: src/control/Signing.js:640
+msgid "Signed but not validated"
+msgstr "Ondertekend maar niet gevalideerd"
+
+#: src/control/Signing.js:643
 msgid "The signature is OK, but the document is only partially signed."
 msgstr ""
 "De ondertekening is OK, maar het document is maar gedeeltelijk ondertekend."
 
-#: src/control/Signing.js:38
+#: src/control/Signing.js:645
+msgid "Signed but not all files are signed"
+msgstr "Ondertekend, maar niet alle bestanden zijn ondertekend"
+
+#: src/control/Signing.js:648
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr ""
 "De handtekening is OK, maar het certificaat kon niet gevalideerd worden en "
 "het document is slechts gedeeltelijk ondertekend."
+
+#: src/control/Signing.js:650
+msgid "Signed but not validated and not all files are signed"
+msgstr ""
+"Ondertekend maar niet gevalideerd en niet alle bestanden zijn ondertekend"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -1876,59 +1985,59 @@ msgstr "Weet u zeker dat u deze pagina wilt verwijderen?"
 msgid "Oops, there is a problem connecting to %productName: "
 msgstr "Oeps, er is een probleem met het verbinden met %productName: "
 
-#: src/core/Socket.js:548
+#: src/core/Socket.js:563
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "Server is nu bereikbaar. We moeten de pagina nu bijwerken."
 
-#: src/core/Socket.js:550
+#: src/core/Socket.js:565
 msgid "Server is now reachable..."
 msgstr "Server is nu bereikbaar..."
 
-#: src/core/Socket.js:554
+#: src/core/Socket.js:569
 msgid "RELOAD"
 msgstr "OPNIEUW LADEN"
 
-#: src/core/Socket.js:561
+#: src/core/Socket.js:576
 msgid "LOOLWSD version:"
 msgstr "LOOLWSD versie:"
 
-#: src/core/Socket.js:573
+#: src/core/Socket.js:588
 msgid "Served by:"
 msgstr "Bediend door:"
 
-#: src/core/Socket.js:579
+#: src/core/Socket.js:594
 msgid "Unsupported server version."
 msgstr "Niet-ondersteunde serverversie."
 
-#: src/core/Socket.js:583
+#: src/core/Socket.js:598
 msgid "LOKit version:"
 msgstr "LOKit versie:"
 
-#: src/core/Socket.js:695
+#: src/core/Socket.js:710
 msgid "Session terminated by document owner"
 msgstr "Sessie beëindigd door document-eigenaar"
 
-#: src/core/Socket.js:700
+#: src/core/Socket.js:715
 msgid "Idle document - please click to reload and resume editing"
 msgstr "Niet actief document - klik om het bewerken te hervatten"
 
-#: src/core/Socket.js:702
+#: src/core/Socket.js:717
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Niet actief document - tap om het bewerken te hervatten"
 
-#: src/core/Socket.js:711
+#: src/core/Socket.js:726
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Server wordt afgesloten voor onderhoud (automatische-opslag)"
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:730
 msgid "Oops, there is a problem connecting the document"
 msgstr "Oeps, er is een probleem met de toegang tot het document"
 
-#: src/core/Socket.js:719
+#: src/core/Socket.js:734
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Server niet beschikbaar, automatisch herstarten. Even geduld a.u.b."
 
-#: src/core/Socket.js:747
+#: src/core/Socket.js:762
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -1936,7 +2045,7 @@ msgstr ""
 "Het document is in de opslag gewijzigd. Het document opnieuw laden. Uw "
 "versie is beschikbaar als revisie."
 
-#: src/core/Socket.js:753
+#: src/core/Socket.js:768
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -1944,71 +2053,27 @@ msgstr ""
 "Oudere revisie herstellen. Niet-opgeslagen wijzigingen zijn beschikbaar in "
 "de versiegeschiedenis"
 
-#: src/core/Socket.js:759
+#: src/core/Socket.js:774
 msgid "Reloading the document after rename"
 msgstr "Document opnieuw laden na hernoemen"
 
-#: src/core/Socket.js:900
-msgid "Document requires password to view."
-msgstr "Er is een wachtwoord nodig om dit document te bekijken."
-
-#: src/core/Socket.js:903
-msgid "Document requires password to modify."
-msgstr "Er is een wachtwoord nodig om dit document te bewerken."
-
-#: src/core/Socket.js:905
-msgid "Hit Cancel to open in view-only mode."
-msgstr "Klik Cancel om het in alleen-lezen modus te openen."
-
-#: src/core/Socket.js:909
-msgid "Wrong password provided. Please try again."
-msgstr "Verkeer wachtwoord ingevoerd. Probeer aub opnieuw."
-
-#: src/core/Socket.js:973 src/core/Socket.js:978
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1015
-msgid "Someone"
-msgstr "Iemand"
-
-#: src/core/Socket.js:1016
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1025
-msgid "Connecting..."
-msgstr "Bezig met verbinden..."
-
-#: src/core/Socket.js:1043
-msgid "The document is being renamed and will reload shortly"
-msgstr "Het document wordt hernoemd en zal binnenkort opnieuw worden geladen"
-
-#: src/core/Socket.js:1145
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1145
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1173
+#: src/core/Socket.js:873
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: src/core/Socket.js:1174
+#: src/core/Socket.js:880
 msgid "Overwrite"
 msgstr "Overschrijven"
 
-#: src/core/Socket.js:1185
+#: src/core/Socket.js:895
 msgid "Save to new file"
 msgstr "Als nieuw bestand opslaan"
 
-#: src/core/Socket.js:1195
+#: src/core/Socket.js:922
 msgid "Document has been changed"
 msgstr "Document is gewijzigd"
 
-#: src/core/Socket.js:1196
+#: src/core/Socket.js:922
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -2016,7 +2081,51 @@ msgstr ""
 "Document is gewijzigd tijdens opslag. Wat zou wilt u doen met uw niet-"
 "opgeslagen wijzigingen?"
 
-#: src/core/Socket.js:1493
+#: src/core/Socket.js:993
+msgid "Document requires password to view."
+msgstr "Er is een wachtwoord nodig om dit document te bekijken."
+
+#: src/core/Socket.js:996
+msgid "Document requires password to modify."
+msgstr "Er is een wachtwoord nodig om dit document te bewerken."
+
+#: src/core/Socket.js:998
+msgid "Hit Cancel to open in view-only mode."
+msgstr "Klik Cancel om het in alleen-lezen modus te openen."
+
+#: src/core/Socket.js:1002
+msgid "Wrong password provided. Please try again."
+msgstr "Verkeer wachtwoord ingevoerd. Probeer aub opnieuw."
+
+#: src/core/Socket.js:1066 src/core/Socket.js:1071
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1108
+msgid "Someone"
+msgstr "Iemand"
+
+#: src/core/Socket.js:1109
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1118
+msgid "Connecting..."
+msgstr "Bezig met verbinden..."
+
+#: src/core/Socket.js:1136
+msgid "The document is being renamed and will reload shortly"
+msgstr "Het document wordt hernoemd en zal binnenkort opnieuw worden geladen"
+
+#: src/core/Socket.js:1239
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1239
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2024,11 +2133,11 @@ msgstr ""
 "Ach, dit is vervelend. We kunnen geen verbinding maken met uw document. "
 "Probeer het aub opnieuw."
 
-#: src/core/Socket.js:1510
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "Opnieuw verbinden..."
 
-#: src/core/Socket.js:1520
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "De verbinding met de server is verbroken."
 
@@ -2501,88 +2610,6 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
-
-#~ msgid "Please enter the PIN Code"
-#~ msgstr "De pincode invullen aub"
-
-#~ msgid "Error at login."
-#~ msgstr "Fout bij inloggen."
-
-#~ msgid "Please scan the code"
-#~ msgstr "Scan a.u.b. de code"
-
-#~ msgid "Couldn't get the QR code image."
-#~ msgstr "Het beeld van de QR-code kon niet worden ontvangen."
-
-#~ msgid "Error when trying to restore access to identity."
-#~ msgstr "Fout bij herstellen van toegang tot de identiteit."
-
-#~ msgid "PIN Code"
-#~ msgstr "PIN-code"
-
-#~ msgid "Please enter the PIN code from the EMail or SMS"
-#~ msgstr "Voer de pincode in van de e-mail of sms"
-
-#~ msgid "Login from email or mobile number"
-#~ msgstr "Aanmelden via e-mail of mobiel nummer"
-
-#~ msgid "Select document type to upload"
-#~ msgstr "Selecteer documenttype voor uploaden"
-
-#~ msgid "Type:"
-#~ msgstr "Type:"
-
-#~ msgid "Document uploaded."
-#~ msgstr "Document ge-upload."
-
-#~ msgid "Select identity:"
-#~ msgstr "Selecteer een identiteit:"
-
-#~ msgid "Login from mobile"
-#~ msgstr "Aanmelden via mobiel"
-
-#~ msgid "Recover from email"
-#~ msgstr "Herstellen van e-mail"
-
-#~ msgid "Select passport"
-#~ msgstr "Selecteer wachtwoord"
-
-#~ msgid "Passport: N/A"
-#~ msgstr "Wachtwoord: NVT"
-
-#~ msgid "Sign"
-#~ msgstr "Ondertekenen"
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
-
-#~ msgid "N/A"
-#~ msgstr "NVT"
-
-#~ msgid "Login"
-#~ msgstr "Aanmelden"
-
-#~ msgid "Not Signed"
-#~ msgstr "Niet ondertekend"
-
-#~ msgid "Signed and validated"
-#~ msgstr "Ondertekend en gevalideerd"
-
-#~ msgid "Signature broken"
-#~ msgstr "Handtekening beschadigd"
-
-#~ msgid "Signed but document modified"
-#~ msgstr "Ondertekend maar document aangepast"
-
-#~ msgid "Signed but not validated"
-#~ msgstr "Ondertekend maar niet gevalideerd"
-
-#~ msgid "Signed but not all files are signed"
-#~ msgstr "Ondertekend, maar niet alle bestanden zijn ondertekend"
-
-#~ msgid "Signed but not validated and not all files are signed"
-#~ msgstr ""
-#~ "Ondertekend maar niet gevalideerd en niet alle bestanden zijn ondertekend"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Toon geslecteerde bladen"

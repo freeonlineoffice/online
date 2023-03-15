@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 22:03+0100\n"
+"POT-Creation-Date: 2023-03-15 23:01+0100\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -226,7 +226,7 @@ msgstr "רמות תיעוד ביומן"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
 #: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/core/Socket.js:973 src/core/Socket.js:978
+#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "סגירה"
@@ -260,7 +260,7 @@ msgstr "השרת נכבה, נא לרענן את העמוד."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1018 src/core/Socket.js:1145 src/core/Socket.js:1149
+#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -283,7 +283,7 @@ msgstr "לסיים את הפעילות הנוכחית?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:1170
+#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
 #: src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
@@ -683,7 +683,7 @@ msgid "Download as"
 msgstr "הורדה בתור"
 
 #: src/control/Control.Menubar.js:85 src/control/Control.Menubar.js:890
-#: src/control/Control.NotebookbarWriter.js:270
+#: src/control/Control.NotebookbarWriter.js:270 src/control/Signing.js:604
 msgid "Sign document"
 msgstr "חתימה על מסמך"
 
@@ -1617,7 +1617,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1025
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
 msgid "Loading..."
 msgstr "בטעינה…"
 
@@ -1792,31 +1792,139 @@ msgstr "הוספת טאב עצירה"
 msgid "Delete tabstop"
 msgstr "מחיקת טאב עצירה"
 
-#: src/control/Signing.js:18
+#: src/control/Signing.js:196
+msgid "Please enter the PIN Code"
+msgstr "נא להקליד את קוד ה־PIN"
+
+#: src/control/Signing.js:215
+msgid "Error at login."
+msgstr "שגיאה בכניסה."
+
+#: src/control/Signing.js:228
+msgid "Please scan the code"
+msgstr "נא לסרוק את הקוד"
+
+#: src/control/Signing.js:243
+msgid "Couldn't get the QR code image."
+msgstr "לא ניתן לקבל את תמונת קוד ה־QR."
+
+#: src/control/Signing.js:270
+msgid "Error when trying to restore access to identity."
+msgstr "אירעה שגיאה בעת הניסיון לשחזר את הגישה לזהות."
+
+#: src/control/Signing.js:276
+msgid "PIN Code"
+msgstr "קוד PIN"
+
+#: src/control/Signing.js:277
+msgid "Please enter the PIN code from the EMail or SMS"
+msgstr "נא להקליד את קוד ה־PIN מהדוא״ל או מהמסרון (SMS)"
+
+#: src/control/Signing.js:298
+msgid "Login from email or mobile number"
+msgstr "כניסה עם דוא״ל או מספר סלולרי"
+
+#: src/control/Signing.js:332
+msgid "Select document type to upload"
+msgstr "בחירת מסמך להעלאה"
+
+#: src/control/Signing.js:333
+msgid "Type:"
+msgstr "סוג:"
+
+#: src/control/Signing.js:364 src/control/Signing.js:673
+msgid "Document uploaded."
+msgstr "מסמך הועלה."
+
+#: src/control/Signing.js:491
+msgid "Select identity:"
+msgstr "בחירת זהות:"
+
+#: src/control/Signing.js:492
+msgid "Login from mobile"
+msgstr "כניסה מנייד"
+
+#: src/control/Signing.js:493
+msgid "Recover from email"
+msgstr "שחזור מדוא״ל"
+
+#: src/control/Signing.js:601
+msgid "Select passport"
+msgstr "בחירת דרכון"
+
+#: src/control/Signing.js:602
+msgid "Passport: N/A"
+msgstr "דרכון: לא זמין"
+
+#: src/control/Signing.js:604
+msgid "Sign"
+msgstr "חתום"
+
+#: src/control/Signing.js:606
+msgid "Status:"
+msgstr "מצב:"
+
+#: src/control/Signing.js:607
+msgid "N/A"
+msgstr "לא זמין"
+
+#: src/control/Signing.js:610
+msgid "Login"
+msgstr "כניסה"
+
+#: src/control/Signing.js:620
+msgid "Not Signed"
+msgstr "לא חתום"
+
+#: src/control/Signing.js:623
 msgid "This document is digitally signed and the signature is valid."
 msgstr "המסמך חתום דיגיטלית והחתימה תקינה."
 
-#: src/control/Signing.js:22
+#: src/control/Signing.js:625
+msgid "Signed and validated"
+msgstr "חתום ומאומת"
+
+#: src/control/Signing.js:628
 msgid "This document has an invalid signature."
 msgstr "למסמך זה יש חתימה שגויה."
 
-#: src/control/Signing.js:26
+#: src/control/Signing.js:630
+msgid "Signature broken"
+msgstr "חתימה פגומה"
+
+#: src/control/Signing.js:633
 msgid "The signature was valid, but the document has been modified."
 msgstr "החתימה תקינה אך המסמך נערך."
 
-#: src/control/Signing.js:30
+#: src/control/Signing.js:635
+msgid "Signed but document modified"
+msgstr "חתום אבל המסמך נערך"
+
+#: src/control/Signing.js:638
 msgid "The signature is OK, but the certificate could not be validated."
 msgstr "החתימה תקינה אך לא ניתן לאמת את האישור."
 
-#: src/control/Signing.js:34
+#: src/control/Signing.js:640
+msgid "Signed but not validated"
+msgstr "חתום אך לא מאומת"
+
+#: src/control/Signing.js:643
 msgid "The signature is OK, but the document is only partially signed."
 msgstr "החתימה תקינה אך המסמך חתום באופן חלקי בלבד."
 
-#: src/control/Signing.js:38
+#: src/control/Signing.js:645
+msgid "Signed but not all files are signed"
+msgstr "חתום אבל לא כל הקבצים חתומים"
+
+#: src/control/Signing.js:648
 msgid ""
 "The signature is OK, but the certificate could not be validated and the "
 "document is only partially signed."
 msgstr "החתימה בסדר אך לא ניתן לתקף את האישור והמסמך חתום חלקית בלבד."
+
+#: src/control/Signing.js:650
+msgid "Signed but not validated and not all files are signed"
+msgstr "חתום אך לא תוקף ולא כל הקבצים חתומים"
 
 #: src/control/Toolbar.js:45
 msgid "Font"
@@ -1862,151 +1970,151 @@ msgstr "למחוק עמוד זה?"
 msgid "Oops, there is a problem connecting to %productName: "
 msgstr "אופס, אירעה תקלה בעת התחברות אל %productName: "
 
-#: src/core/Socket.js:548
+#: src/core/Socket.js:563
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "השרת זמין כעת. עלינו לרענן את העמוד."
 
-#: src/core/Socket.js:550
+#: src/core/Socket.js:565
 msgid "Server is now reachable..."
 msgstr "השרת נגיש כרגע…"
 
-#: src/core/Socket.js:554
+#: src/core/Socket.js:569
 msgid "RELOAD"
 msgstr "רענון"
 
-#: src/core/Socket.js:561
+#: src/core/Socket.js:576
 msgid "LOOLWSD version:"
 msgstr "גרסת LOOLWSD:"
 
-#: src/core/Socket.js:573
+#: src/core/Socket.js:588
 msgid "Served by:"
 msgstr "מוגש על ידי:"
 
-#: src/core/Socket.js:579
+#: src/core/Socket.js:594
 msgid "Unsupported server version."
 msgstr "גרסת השרת אינה נתמכת."
 
-#: src/core/Socket.js:583
+#: src/core/Socket.js:598
 msgid "LOKit version:"
 msgstr "גרסת LOKit:"
 
-#: src/core/Socket.js:695
+#: src/core/Socket.js:710
 msgid "Session terminated by document owner"
 msgstr "ההפעלה נסגרה על ידי בעלי המסמך"
 
-#: src/core/Socket.js:700
+#: src/core/Socket.js:715
 msgid "Idle document - please click to reload and resume editing"
 msgstr "מסמך מושהה - יש ללחוץ כדי לטעון מחדש ולהמשיך בעריכה"
 
-#: src/core/Socket.js:702
+#: src/core/Socket.js:717
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "מסמך מושהה - יש לגעת כדי לטעון מחדש ולהמשיך בעריכה"
 
-#: src/core/Socket.js:711
+#: src/core/Socket.js:726
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "השרת נכבה לצורכי תחזוקה (מתבצעת שמירה אוטומטית)"
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:730
 msgid "Oops, there is a problem connecting the document"
 msgstr "אופס, אירעה תקלה בעת התחברות למסמך"
 
-#: src/core/Socket.js:719
+#: src/core/Socket.js:734
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "השרת מושבת, תתבצע הפעלה אוטומטית מחדש. נא להמתין."
 
-#: src/core/Socket.js:747
+#: src/core/Socket.js:762
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
 msgstr "המסמך השתנה באחסון. המסמך החדש נטען. הגרסה שלך זמינה לסקירה."
 
-#: src/core/Socket.js:753
+#: src/core/Socket.js:768
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
 msgstr "מהדורה ישנה משוחזרת. שינויים שלא יישמרו יהיו זמינים בהיסטוריית הגרסאות"
 
-#: src/core/Socket.js:759
+#: src/core/Socket.js:774
 msgid "Reloading the document after rename"
 msgstr "רענון המסמך אחרי שינוי שם"
 
-#: src/core/Socket.js:900
-msgid "Document requires password to view."
-msgstr "נדרשת ססמה כדי לצפות במסמך."
-
-#: src/core/Socket.js:903
-msgid "Document requires password to modify."
-msgstr "נדרשת ססמה כדי לערוך את המסמך."
-
-#: src/core/Socket.js:905
-msgid "Hit Cancel to open in view-only mode."
-msgstr "יש ללחוץ על ביטול כדי לפתוח במצב צפייה בלבד."
-
-#: src/core/Socket.js:909
-msgid "Wrong password provided. Please try again."
-msgstr "הססמה שסופקה שגויה. נא לנסות שוב."
-
-#: src/core/Socket.js:973 src/core/Socket.js:978
-msgid "Missing Fonts"
-msgstr ""
-
-#: src/core/Socket.js:1015
-msgid "Someone"
-msgstr "מישהו"
-
-#: src/core/Socket.js:1016
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr ""
-
-#: src/core/Socket.js:1025
-msgid "Connecting..."
-msgstr "מתבצעת התחברות…"
-
-#: src/core/Socket.js:1043
-msgid "The document is being renamed and will reload shortly"
-msgstr "שם המסמך נערך והוא ירוענן בעוד זמן קצר"
-
-#: src/core/Socket.js:1145
-msgid "Exported to storage"
-msgstr ""
-
-#: src/core/Socket.js:1145
-msgid "Successfully exported: "
-msgstr ""
-
-#: src/core/Socket.js:1173
+#: src/core/Socket.js:873
 msgid "Discard"
 msgstr "התעלמות"
 
-#: src/core/Socket.js:1174
+#: src/core/Socket.js:880
 msgid "Overwrite"
 msgstr "דריסה"
 
-#: src/core/Socket.js:1185
+#: src/core/Socket.js:895
 msgid "Save to new file"
 msgstr "שמירה לקובץ חדש"
 
-#: src/core/Socket.js:1195
+#: src/core/Socket.js:922
 msgid "Document has been changed"
 msgstr "המסמך נערך"
 
-#: src/core/Socket.js:1196
+#: src/core/Socket.js:922
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr "המסמך נערך באחסון. מה ברצונך לעשות בנוגע לשינויים שלא שמרת?"
 
-#: src/core/Socket.js:1493
+#: src/core/Socket.js:993
+msgid "Document requires password to view."
+msgstr "נדרשת ססמה כדי לצפות במסמך."
+
+#: src/core/Socket.js:996
+msgid "Document requires password to modify."
+msgstr "נדרשת ססמה כדי לערוך את המסמך."
+
+#: src/core/Socket.js:998
+msgid "Hit Cancel to open in view-only mode."
+msgstr "יש ללחוץ על ביטול כדי לפתוח במצב צפייה בלבד."
+
+#: src/core/Socket.js:1002
+msgid "Wrong password provided. Please try again."
+msgstr "הססמה שסופקה שגויה. נא לנסות שוב."
+
+#: src/core/Socket.js:1066 src/core/Socket.js:1071
+msgid "Missing Fonts"
+msgstr ""
+
+#: src/core/Socket.js:1108
+msgid "Someone"
+msgstr "מישהו"
+
+#: src/core/Socket.js:1109
+msgid "%userName saved this document as %fileName. Do you want to join?"
+msgstr ""
+
+#: src/core/Socket.js:1118
+msgid "Connecting..."
+msgstr "מתבצעת התחברות…"
+
+#: src/core/Socket.js:1136
+msgid "The document is being renamed and will reload shortly"
+msgstr "שם המסמך נערך והוא ירוענן בעוד זמן קצר"
+
+#: src/core/Socket.js:1239
+msgid "Exported to storage"
+msgstr ""
+
+#: src/core/Socket.js:1239
+msgid "Successfully exported: "
+msgstr ""
+
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "ובכן, לא נעים, לא הצלחנו להתחבר למסמך שלך. נא לנסות שוב מאוחר יותר."
 
-#: src/core/Socket.js:1510
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "התחברות מחדש…"
 
-#: src/core/Socket.js:1520
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "השרת התנתק."
 
@@ -2449,87 +2557,6 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
-
-#~ msgid "Please enter the PIN Code"
-#~ msgstr "נא להקליד את קוד ה־PIN"
-
-#~ msgid "Error at login."
-#~ msgstr "שגיאה בכניסה."
-
-#~ msgid "Please scan the code"
-#~ msgstr "נא לסרוק את הקוד"
-
-#~ msgid "Couldn't get the QR code image."
-#~ msgstr "לא ניתן לקבל את תמונת קוד ה־QR."
-
-#~ msgid "Error when trying to restore access to identity."
-#~ msgstr "אירעה שגיאה בעת הניסיון לשחזר את הגישה לזהות."
-
-#~ msgid "PIN Code"
-#~ msgstr "קוד PIN"
-
-#~ msgid "Please enter the PIN code from the EMail or SMS"
-#~ msgstr "נא להקליד את קוד ה־PIN מהדוא״ל או מהמסרון (SMS)"
-
-#~ msgid "Login from email or mobile number"
-#~ msgstr "כניסה עם דוא״ל או מספר סלולרי"
-
-#~ msgid "Select document type to upload"
-#~ msgstr "בחירת מסמך להעלאה"
-
-#~ msgid "Type:"
-#~ msgstr "סוג:"
-
-#~ msgid "Document uploaded."
-#~ msgstr "מסמך הועלה."
-
-#~ msgid "Select identity:"
-#~ msgstr "בחירת זהות:"
-
-#~ msgid "Login from mobile"
-#~ msgstr "כניסה מנייד"
-
-#~ msgid "Recover from email"
-#~ msgstr "שחזור מדוא״ל"
-
-#~ msgid "Select passport"
-#~ msgstr "בחירת דרכון"
-
-#~ msgid "Passport: N/A"
-#~ msgstr "דרכון: לא זמין"
-
-#~ msgid "Sign"
-#~ msgstr "חתום"
-
-#~ msgid "Status:"
-#~ msgstr "מצב:"
-
-#~ msgid "N/A"
-#~ msgstr "לא זמין"
-
-#~ msgid "Login"
-#~ msgstr "כניסה"
-
-#~ msgid "Not Signed"
-#~ msgstr "לא חתום"
-
-#~ msgid "Signed and validated"
-#~ msgstr "חתום ומאומת"
-
-#~ msgid "Signature broken"
-#~ msgstr "חתימה פגומה"
-
-#~ msgid "Signed but document modified"
-#~ msgstr "חתום אבל המסמך נערך"
-
-#~ msgid "Signed but not validated"
-#~ msgstr "חתום אך לא מאומת"
-
-#~ msgid "Signed but not all files are signed"
-#~ msgstr "חתום אבל לא כל הקבצים חתומים"
-
-#~ msgid "Signed but not validated and not all files are signed"
-#~ msgstr "חתום אך לא תוקף ולא כל הקבצים חתומים"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "הצגת הגיליונות הנבחרים"
