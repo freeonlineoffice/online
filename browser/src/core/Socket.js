@@ -856,88 +856,10 @@ app.definitions.Socket = L.Class.extend({
 			}
 			else if (command.errorKind === 'documentconflict')
 			{
-				var that = this;
-				storageError = errorMessages.storage.documentconflict;
-
-				vex.closeAll();
-
-				var dialogButtons = [
-					$.extend({}, vex.dialog.buttons.YES, {
-						text: _('Discard'),
-						className: 'button-secondary',
-						click: function() {
-							this.value = 'discard';
-							this.close();
-						}}),
-					$.extend({}, vex.dialog.buttons.YES, {
-						text: _('Overwrite'),
-						className: 'button-secondary',
-						click: function() {
-							this.value = 'overwrite';
-							this.close();
-						}}),
-					$.extend({}, vex.dialog.buttons.YES, {
-						text: '',
-						className: 'vex-dialog-button-spacer'
-					})
-				];
-
-				if (!that._map['wopi'].UserCanNotWriteRelative) {
-					dialogButtons.push(
-						$.extend({}, vex.dialog.buttons.YES, {
-							text: _('Save to new file'),
-							className: 'button-primary',
-							click: function() {
-								this.value = 'saveas';
-								this.close();
-							}}),
-						$.extend({}, vex.dialog.buttons.YES, {
-							text: _('Cancel'),
-							className: 'button-secondary vex-dialog-button-cancel',
-							click: function() {
-								this.value = 'cancel';
-								this.close();
-							}})
-					);
-				} else {
-					dialogButtons.push(
-						$.extend({}, vex.dialog.buttons.YES, {
-							text: _('Cancel'),
-							className: 'button-primary vex-dialog-button-cancel',
-							click: function() {
-								this.value = 'cancel';
-								this.close();
-							}})
-					);
-				}
-				if (!this._map.isReadOnlyMode()) {
-					vex.dialog.open({
-						unsafeMessage: '<h1 class="vex-dialog-title">' + vex._escapeHtml(_('Document has been changed')) + '</h1><p class="vex-dialog-message">' + vex._escapeHtml(_('Document has been changed in storage. What would you like to do with your unsaved changes?')) + '</p>',
-						escapeButtonCloses: false,
-						overlayClosesOnClick: false,
-						contentClassName: 'vex-content vex-3btns',
-						buttons: dialogButtons,
-						showCloseButton: true,
-						callback: function(value) {
-							if (value === 'discard') {
-								// They want to refresh the page and load document again for all
-								that.sendMessage('closedocument');
-							} else if (value === 'overwrite') {
-								// They want to overwrite
-								that.sendMessage('savetostorage force=1');
-							} else if (value === 'saveas') {
-								var filename = that._map['wopi'].BaseFileName;
-								if (filename) {
-									filename = L.LOUtil.generateNewFileName(filename, '_new');
-									that._map.saveAs(filename);
-								}
-							}
-						},
-						afterOpen: function() {
-							this.contentEl.style.width = '600px';
-						}
-					});
-				}
+				if (this._map.isReadOnlyMode())
+					return;
+				else
+					this._showDocumentConflictPopUp();
 
 				return;
 			}
