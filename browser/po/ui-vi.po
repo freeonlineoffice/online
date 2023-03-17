@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 23:01+0100\n"
+"POT-Creation-Date: 2023-03-17 13:24+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
@@ -222,10 +222,10 @@ msgstr "Đặt cấp độ nhật kí"
 msgid "Log Levels"
 msgstr "Cấp độ nhật kí"
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/control/Signing.js:611 src/core/Socket.js:981 src/core/Socket.js:986
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Đóng"
@@ -259,7 +259,7 @@ msgstr "Máy chủ đã bị tắt; vui lòng tải lại trang."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
+#: src/core/Socket.js:1026 src/core/Socket.js:1153 src/core/Socket.js:1157
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -282,8 +282,7 @@ msgstr "Bạn có chắc chắn muốn kết thúc phiên này không?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Hủy"
@@ -360,15 +359,15 @@ msgstr "Không màu"
 msgid "Automatic color"
 msgstr "Màu tự động"
 
-#: src/control/Control.AlertDialog.js:48
+#: src/control/Control.AlertDialog.js:42
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:49
+#: src/control/Control.AlertDialog.js:43
 msgid "Open link"
 msgstr "Mở đường dẫn"
 
-#: src/control/Control.AlertDialog.js:59
+#: src/control/Control.AlertDialog.js:53
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Máy chủ gặp lỗi %0 khi phân tích cú pháp lệnh %1."
 
@@ -507,70 +506,70 @@ msgstr "Ô vuông"
 msgid "Fixed size"
 msgstr "Kích thước cố định"
 
-#: src/control/Control.JSDialogBuilder.js:1338
+#: src/control/Control.JSDialogBuilder.js:1328
 msgid "From"
 msgstr "Từ"
 
-#: src/control/Control.JSDialogBuilder.js:1341
+#: src/control/Control.JSDialogBuilder.js:1331
 msgid "To"
 msgstr "Đến"
 
-#: src/control/Control.JSDialogBuilder.js:1344
+#: src/control/Control.JSDialogBuilder.js:1334
 msgid "Color"
 msgstr "Màu"
 
-#: src/control/Control.JSDialogBuilder.js:1444
+#: src/control/Control.JSDialogBuilder.js:1434
 msgid "Select range"
 msgstr "Chọn phạm vi"
 
-#: src/control/Control.JSDialogBuilder.js:1493
+#: src/control/Control.JSDialogBuilder.js:1483
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Tên phông chữ"
 
-#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1485 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Cỡ phông chữ"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1487
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Kiểu"
 
-#: src/control/Control.JSDialogBuilder.js:2010
+#: src/control/Control.JSDialogBuilder.js:1905
 msgid "reply"
 msgstr "Phản hồi"
 
-#: src/control/Control.JSDialogBuilder.js:2013
+#: src/control/Control.JSDialogBuilder.js:1908
 msgid "replies"
 msgstr "Phản hồi"
 
-#: src/control/Control.JSDialogBuilder.js:2024
+#: src/control/Control.JSDialogBuilder.js:1919
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Chú thích"
 
-#: src/control/Control.JSDialogBuilder.js:2087
+#: src/control/Control.JSDialogBuilder.js:1982
 msgid "Insert Comment"
 msgstr "Chèn bình luận"
 
-#: src/control/Control.JSDialogBuilder.js:2733
+#: src/control/Control.JSDialogBuilder.js:2644
 msgid "Cell borders"
 msgstr "Đường viền ô"
 
-#: src/control/Control.JSDialogBuilder.js:2944
+#: src/control/Control.JSDialogBuilder.js:2855
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Hàng"
 
-#: src/control/Control.JSDialogBuilder.js:2945
+#: src/control/Control.JSDialogBuilder.js:2856
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Cột"
 
-#: src/control/Control.JSDialogBuilder.js:2965
+#: src/control/Control.JSDialogBuilder.js:2876
 msgid "Insert Table"
 msgstr "Chèn bảng"
 
@@ -1617,7 +1616,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1033
 msgid "Loading..."
 msgstr "Đang tải..."
 
@@ -2004,33 +2003,33 @@ msgstr "Phiên bản máy chủ không được hỗ trợ."
 msgid "LOKit version:"
 msgstr "Phiên bản LOKit:"
 
-#: src/core/Socket.js:710
+#: src/core/Socket.js:705
 msgid "Session terminated by document owner"
 msgstr "Phiên bị chấm dứt bởi chủ sở hữu tài liệu"
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:710
 msgid "Idle document - please click to reload and resume editing"
 msgstr ""
 "Tài liệu không hoạt động - vui lòng nhấp để tải lại và tiếp tục chỉnh sửa"
 
-#: src/core/Socket.js:717
+#: src/core/Socket.js:712
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 "Tài liệu không hoạt động - vui lòng nhấn để tải lại và tiếp tục chỉnh sửa"
 
-#: src/core/Socket.js:726
+#: src/core/Socket.js:721
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Máy chủ đang ngừng hoạt động để bảo trì (tự động lưu)"
 
-#: src/core/Socket.js:730
+#: src/core/Socket.js:725
 msgid "Oops, there is a problem connecting the document"
 msgstr "Rất tiếc, đã xảy ra sự cố khi kết nối tài liệu"
 
-#: src/core/Socket.js:734
+#: src/core/Socket.js:729
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Máy chủ không hoạt động, tự động khởi động lại. Xin vui lòng chờ đợi."
 
-#: src/core/Socket.js:762
+#: src/core/Socket.js:756
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2038,7 +2037,7 @@ msgstr ""
 "Tài liệu đã thay đổi trong bộ nhớ. Đang tải tài liệu mới. Phiên bản của bạn "
 "có sẵn dưới dạng bản sửa đổi."
 
-#: src/core/Socket.js:768
+#: src/core/Socket.js:762
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2046,89 +2045,65 @@ msgstr ""
 "Khôi phục bản sửa đổi cũ hơn. Mọi thay đổi chưa được lưu sẽ có sẵn trong "
 "lịch sử phiên bản"
 
-#: src/core/Socket.js:774
+#: src/core/Socket.js:768
 msgid "Reloading the document after rename"
 msgstr "Đang tải lại tài liệu sau khi đổi tên"
 
-#: src/core/Socket.js:873
-msgid "Discard"
-msgstr "Hủy bỏ"
-
-#: src/core/Socket.js:880
-msgid "Overwrite"
-msgstr "Ghi đè"
-
-#: src/core/Socket.js:895
-msgid "Save to new file"
-msgstr "Lưu vào tệp mới"
-
-#: src/core/Socket.js:922
-msgid "Document has been changed"
-msgstr "Tài liệu đã được thay đổi"
-
-#: src/core/Socket.js:922
-msgid ""
-"Document has been changed in storage. What would you like to do with your "
-"unsaved changes?"
-msgstr ""
-"Tài liệu đã được thay đổi trong bộ nhớ. Bạn muốn làm gì với những thay đổi "
-"chưa được lưu của mình?"
-
-#: src/core/Socket.js:993
+#: src/core/Socket.js:908
 msgid "Document requires password to view."
 msgstr "Tài liệu yêu cầu mật khẩu để xem."
 
-#: src/core/Socket.js:996
+#: src/core/Socket.js:911
 msgid "Document requires password to modify."
 msgstr "Tài liệu yêu cầu mật khẩu để sửa đổi."
 
-#: src/core/Socket.js:998
+#: src/core/Socket.js:913
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Nhấn Hủy để mở ở chế độ chỉ xem."
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:917
 msgid "Wrong password provided. Please try again."
 msgstr "Đã cung cấp sai mật khẩu. Vui lòng thử lại."
 
-#: src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/core/Socket.js:981 src/core/Socket.js:986
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1108
+#: src/core/Socket.js:1023
 msgid "Someone"
 msgstr "Ai đó"
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1024
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1118
+#: src/core/Socket.js:1033
 msgid "Connecting..."
 msgstr "Đang kết nối..."
 
-#: src/core/Socket.js:1136
+#: src/core/Socket.js:1050
 msgid "The document is being renamed and will reload shortly"
 msgstr "Tài liệu đang được đổi tên và sắp tải lại"
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1552
+#: src/core/Socket.js:1466
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Chúng tôi không thể kết nối với tài liệu của bạn. Vui lòng thử lại."
 
-#: src/core/Socket.js:1569
+#: src/core/Socket.js:1483
 msgid "Reconnecting..."
 msgstr "Đang kết nối lại..."
 
-#: src/core/Socket.js:1579
+#: src/core/Socket.js:1493
 msgid "The server has been disconnected."
 msgstr "Máy chủ đã bị ngắt kết nối."
 
@@ -2583,6 +2558,25 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Discard"
+#~ msgstr "Hủy bỏ"
+
+#~ msgid "Overwrite"
+#~ msgstr "Ghi đè"
+
+#~ msgid "Save to new file"
+#~ msgstr "Lưu vào tệp mới"
+
+#~ msgid "Document has been changed"
+#~ msgstr "Tài liệu đã được thay đổi"
+
+#~ msgid ""
+#~ "Document has been changed in storage. What would you like to do with your "
+#~ "unsaved changes?"
+#~ msgstr ""
+#~ "Tài liệu đã được thay đổi trong bộ nhớ. Bạn muốn làm gì với những thay đổi "
+#~ "chưa được lưu của mình?"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Hiển thị Trang tính đã Chọn"

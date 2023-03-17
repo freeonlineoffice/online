@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 23:01+0100\n"
+"POT-Creation-Date: 2023-03-17 13:24+0100\n"
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
@@ -227,10 +227,10 @@ msgstr ""
 msgid "Log Levels"
 msgstr ""
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/control/Signing.js:611 src/core/Socket.js:981 src/core/Socket.js:986
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "닫기"
@@ -264,7 +264,7 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
+#: src/core/Socket.js:1026 src/core/Socket.js:1153 src/core/Socket.js:1157
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -287,8 +287,7 @@ msgstr "이 세션을 정말 종료하겠습니까?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "취소"
@@ -366,15 +365,15 @@ msgstr "색 없음"
 msgid "Automatic color"
 msgstr "색 없음"
 
-#: src/control/Control.AlertDialog.js:48
+#: src/control/Control.AlertDialog.js:42
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:49
+#: src/control/Control.AlertDialog.js:43
 msgid "Open link"
 msgstr "링크 열기"
 
-#: src/control/Control.AlertDialog.js:59
+#: src/control/Control.AlertDialog.js:53
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "서버에서 %1 명령을 구문 분석하는 동안 %0 오류가 발생했습니다."
 
@@ -513,73 +512,73 @@ msgstr "정방형"
 msgid "Fixed size"
 msgstr "고정 크기"
 
-#: src/control/Control.JSDialogBuilder.js:1338
+#: src/control/Control.JSDialogBuilder.js:1328
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1341
+#: src/control/Control.JSDialogBuilder.js:1331
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1344
+#: src/control/Control.JSDialogBuilder.js:1334
 msgid "Color"
 msgstr "색"
 
-#: src/control/Control.JSDialogBuilder.js:1444
+#: src/control/Control.JSDialogBuilder.js:1434
 #, fuzzy
 msgid "Select range"
 msgstr "변경 사항 거부"
 
-#: src/control/Control.JSDialogBuilder.js:1493
+#: src/control/Control.JSDialogBuilder.js:1483
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "글꼴 이름"
 
-#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1485 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "글꼴 크기"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1487
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "스타일"
 
-#: src/control/Control.JSDialogBuilder.js:2010
+#: src/control/Control.JSDialogBuilder.js:1905
 #, fuzzy
 msgid "reply"
 msgstr "답변"
 
-#: src/control/Control.JSDialogBuilder.js:2013
+#: src/control/Control.JSDialogBuilder.js:1908
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2024
+#: src/control/Control.JSDialogBuilder.js:1919
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "추가 설명"
 
-#: src/control/Control.JSDialogBuilder.js:2087
+#: src/control/Control.JSDialogBuilder.js:1982
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2733
+#: src/control/Control.JSDialogBuilder.js:2644
 #, fuzzy
 msgid "Cell borders"
 msgstr "테두리"
 
-#: src/control/Control.JSDialogBuilder.js:2944
+#: src/control/Control.JSDialogBuilder.js:2855
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "열"
 
-#: src/control/Control.JSDialogBuilder.js:2945
+#: src/control/Control.JSDialogBuilder.js:2856
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "행"
 
-#: src/control/Control.JSDialogBuilder.js:2965
+#: src/control/Control.JSDialogBuilder.js:2876
 #, fuzzy
 msgid "Insert Table"
 msgstr "표 삽입"
@@ -1641,7 +1640,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1033
 msgid "Loading..."
 msgstr "불러오는 중..."
 
@@ -2028,125 +2027,103 @@ msgstr "지원하지 않는 서버 버전"
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:710
+#: src/core/Socket.js:705
 msgid "Session terminated by document owner"
 msgstr "문서 소유자에 의해 세션이 만료되었습니다."
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:710
 msgid "Idle document - please click to reload and resume editing"
 msgstr "대기중인 문서 - 편집을 계속하려면 클릭하십시오.(새로 고침됨)"
 
-#: src/core/Socket.js:717
+#: src/core/Socket.js:712
 #, fuzzy
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "대기중인 문서 - 편집을 계속하려면 클릭하십시오.(새로 고침됨)"
 
-#: src/core/Socket.js:726
+#: src/core/Socket.js:721
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "유지보수를 위해 서버가 종료됩니다.(자동 저장됨)"
 
-#: src/core/Socket.js:730
+#: src/core/Socket.js:725
 msgid "Oops, there is a problem connecting the document"
 msgstr "문서를 여는데 문제가 발생했습니다."
 
-#: src/core/Socket.js:734
+#: src/core/Socket.js:729
 msgid "Server is down, restarting automatically. Please wait."
 msgstr ""
 
-#: src/core/Socket.js:762
+#: src/core/Socket.js:756
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
 msgstr "저장소의 문서가 변경되었습니다. 새 문서를 불러 옵니다. 작업한 내용은 개정 이력에서 확인할 수 있습니다."
 
-#: src/core/Socket.js:768
+#: src/core/Socket.js:762
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
 msgstr "이전 버전으로 복구합니다. 저장되지 않은 변경 사항은 개정 내역에서 확인할 수 있습니다."
 
-#: src/core/Socket.js:774
+#: src/core/Socket.js:768
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:873
-msgid "Discard"
-msgstr "버리기"
-
-#: src/core/Socket.js:880
-msgid "Overwrite"
-msgstr "덮어쓰기"
-
-#: src/core/Socket.js:895
-msgid "Save to new file"
-msgstr "새 파일로 저장"
-
-#: src/core/Socket.js:922
-msgid "Document has been changed"
-msgstr ""
-
-#: src/core/Socket.js:922
-msgid ""
-"Document has been changed in storage. What would you like to do with your "
-"unsaved changes?"
-msgstr "저장소에 있는 문서가 변경되었습니다. 변경 사항을 어떻게 처리하겠습니까?"
-
-#: src/core/Socket.js:993
+#: src/core/Socket.js:908
 msgid "Document requires password to view."
 msgstr "문서를 보려면 암호를 입력해야 합니다."
 
-#: src/core/Socket.js:996
+#: src/core/Socket.js:911
 msgid "Document requires password to modify."
 msgstr "문서를 수정하려면 암호를 입력해야 합니다."
 
-#: src/core/Socket.js:998
+#: src/core/Socket.js:913
 msgid "Hit Cancel to open in view-only mode."
 msgstr "보기 전용 모드로 열려면 [취소]를 클릭하십시오."
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:917
 msgid "Wrong password provided. Please try again."
 msgstr "암호가 틀렸습니다. 다시 시도하십시오"
 
-#: src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/core/Socket.js:981 src/core/Socket.js:986
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1108
+#: src/core/Socket.js:1023
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1024
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1118
+#: src/core/Socket.js:1033
 msgid "Connecting..."
 msgstr "연결하는 중.."
 
-#: src/core/Socket.js:1136
+#: src/core/Socket.js:1050
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1552
+#: src/core/Socket.js:1466
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "문서에 연결할 수 없습니다. 다시 시도하십시오."
 
-#: src/core/Socket.js:1569
+#: src/core/Socket.js:1483
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "연결하는 중.."
 
-#: src/core/Socket.js:1579
+#: src/core/Socket.js:1493
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2549,6 +2526,20 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Discard"
+#~ msgstr "버리기"
+
+#~ msgid "Overwrite"
+#~ msgstr "덮어쓰기"
+
+#~ msgid "Save to new file"
+#~ msgstr "새 파일로 저장"
+
+#~ msgid ""
+#~ "Document has been changed in storage. What would you like to do with your "
+#~ "unsaved changes?"
+#~ msgstr "저장소에 있는 문서가 변경되었습니다. 변경 사항을 어떻게 처리하겠습니까?"
 
 #, fuzzy
 #~ msgid ""

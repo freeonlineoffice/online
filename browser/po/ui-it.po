@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 23:01+0100\n"
+"POT-Creation-Date: 2023-03-17 13:24+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/collabora-online/"
@@ -232,10 +232,10 @@ msgstr "Imposta livelli del registro"
 msgid "Log Levels"
 msgstr "Livelli del registro"
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:25
-#: src/control/Control.AlertDialog.js:33 src/control/Control.AlertDialog.js:62
+#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
 #: src/control/Control.Zotero.js:173 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/control/Signing.js:611 src/core/Socket.js:981 src/core/Socket.js:986
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Chiudi"
@@ -269,7 +269,7 @@ msgstr "Il server è stato chiuso; si prega di ricaricare la pagina."
 #: src/control/Control.Zotero.js:357 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:707 src/control/Toolbar.js:934
-#: src/core/Socket.js:1111 src/core/Socket.js:1239 src/core/Socket.js:1243
+#: src/core/Socket.js:1026 src/core/Socket.js:1153 src/core/Socket.js:1157
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:481
 msgid "OK"
@@ -292,8 +292,7 @@ msgstr "Vuoi davvero terminare questa sessione?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:314
-#: src/control/Toolbar.js:702 src/core/Socket.js:902 src/core/Socket.js:912
-#: src/layer/tile/CommentListSection.ts:388
+#: src/control/Toolbar.js:702 src/layer/tile/CommentListSection.ts:388
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Annulla"
@@ -372,15 +371,15 @@ msgstr "Nessun colore"
 msgid "Automatic color"
 msgstr "Colore automatico"
 
-#: src/control/Control.AlertDialog.js:48
+#: src/control/Control.AlertDialog.js:42
 msgid "External link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:49
+#: src/control/Control.AlertDialog.js:43
 msgid "Open link"
 msgstr "Apri collegamento"
 
-#: src/control/Control.AlertDialog.js:59
+#: src/control/Control.AlertDialog.js:53
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Il server ha riscontrato un errore %0 durante l'analisi del comando %1."
 
@@ -519,70 +518,70 @@ msgstr "Quadrato"
 msgid "Fixed size"
 msgstr "Dimensione fissa"
 
-#: src/control/Control.JSDialogBuilder.js:1338
+#: src/control/Control.JSDialogBuilder.js:1328
 msgid "From"
 msgstr "Da"
 
-#: src/control/Control.JSDialogBuilder.js:1341
+#: src/control/Control.JSDialogBuilder.js:1331
 msgid "To"
 msgstr "A"
 
-#: src/control/Control.JSDialogBuilder.js:1344
+#: src/control/Control.JSDialogBuilder.js:1334
 msgid "Color"
 msgstr "Colore"
 
-#: src/control/Control.JSDialogBuilder.js:1444
+#: src/control/Control.JSDialogBuilder.js:1434
 msgid "Select range"
 msgstr "Seleziona intervallo"
 
-#: src/control/Control.JSDialogBuilder.js:1493
+#: src/control/Control.JSDialogBuilder.js:1483
 #: src/control/Control.NotebookbarBuilder.js:232
 msgid "Font Name"
 msgstr "Nome del carattere"
 
-#: src/control/Control.JSDialogBuilder.js:1495 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1485 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Dimensione carattere"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1487
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Stile"
 
-#: src/control/Control.JSDialogBuilder.js:2010
+#: src/control/Control.JSDialogBuilder.js:1905
 msgid "reply"
 msgstr "risposta"
 
-#: src/control/Control.JSDialogBuilder.js:2013
+#: src/control/Control.JSDialogBuilder.js:1908
 msgid "replies"
 msgstr "risposte"
 
-#: src/control/Control.JSDialogBuilder.js:2024
+#: src/control/Control.JSDialogBuilder.js:1919
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:855
 msgid "Comment"
 msgstr "Commento"
 
-#: src/control/Control.JSDialogBuilder.js:2087
+#: src/control/Control.JSDialogBuilder.js:1982
 msgid "Insert Comment"
 msgstr "Inserisci un commento"
 
-#: src/control/Control.JSDialogBuilder.js:2733
+#: src/control/Control.JSDialogBuilder.js:2644
 msgid "Cell borders"
 msgstr "Bordi delle celle"
 
-#: src/control/Control.JSDialogBuilder.js:2944
+#: src/control/Control.JSDialogBuilder.js:2855
 #: src/control/Control.Menubar.js:783
 msgid "Rows"
 msgstr "Righe"
 
-#: src/control/Control.JSDialogBuilder.js:2945
+#: src/control/Control.JSDialogBuilder.js:2856
 #: src/control/Control.Menubar.js:786
 msgid "Columns"
 msgstr "Colonne"
 
-#: src/control/Control.JSDialogBuilder.js:2965
+#: src/control/Control.JSDialogBuilder.js:2876
 msgid "Insert Table"
 msgstr "Inserisci tabella"
 
@@ -1628,7 +1627,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:228 src/core/Socket.js:1118
+#: src/control/Control.Zotero.js:228 src/core/Socket.js:1033
 msgid "Loading..."
 msgstr "Caricamento in corso..."
 
@@ -2015,31 +2014,31 @@ msgstr "Versione del server non supportata."
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:710
+#: src/core/Socket.js:705
 msgid "Session terminated by document owner"
 msgstr "Sessione terminata dal possessore del documento"
 
-#: src/core/Socket.js:715
+#: src/core/Socket.js:710
 msgid "Idle document - please click to reload and resume editing"
 msgstr "Documento inattivo - fai clic per ricaricare e riprendere le modifiche"
 
-#: src/core/Socket.js:717
+#: src/core/Socket.js:712
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Documento inattivo - tocca per ricaricare e riprendere le modifiche"
 
-#: src/core/Socket.js:726
+#: src/core/Socket.js:721
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Il server si sta fermando per manutenzione (salvataggio automatico)"
 
-#: src/core/Socket.js:730
+#: src/core/Socket.js:725
 msgid "Oops, there is a problem connecting the document"
 msgstr "Si è verificato un problema di connessione con il documento"
 
-#: src/core/Socket.js:734
+#: src/core/Socket.js:729
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Il server è giù, si riavvia automaticamente. Si prega di attendere."
 
-#: src/core/Socket.js:762
+#: src/core/Socket.js:756
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2047,7 +2046,7 @@ msgstr ""
 "Il documento è stato modificato nello spazio di archiviazione. Sto caricando "
 "il nuovo documento. La tua versione è disponibile come revisione."
 
-#: src/core/Socket.js:768
+#: src/core/Socket.js:762
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2055,89 +2054,65 @@ msgstr ""
 "Ripristino di una versione anteriore. Tutte le modifiche non salvate saranno "
 "disponibili nella cronologia delle versioni"
 
-#: src/core/Socket.js:774
+#: src/core/Socket.js:768
 msgid "Reloading the document after rename"
 msgstr "Ricarica il documento dopo aver rinominato"
 
-#: src/core/Socket.js:873
-msgid "Discard"
-msgstr "Scarta"
-
-#: src/core/Socket.js:880
-msgid "Overwrite"
-msgstr "Sovrascrivi"
-
-#: src/core/Socket.js:895
-msgid "Save to new file"
-msgstr "Salva in un nuovo file"
-
-#: src/core/Socket.js:922
-msgid "Document has been changed"
-msgstr ""
-
-#: src/core/Socket.js:922
-msgid ""
-"Document has been changed in storage. What would you like to do with your "
-"unsaved changes?"
-msgstr ""
-"Il documento memorizzato è stato modificato. Che cosa vuoi fare delle "
-"modifiche non salvate?"
-
-#: src/core/Socket.js:993
+#: src/core/Socket.js:908
 msgid "Document requires password to view."
 msgstr "È necessaria una password per visualizzare il documento."
 
-#: src/core/Socket.js:996
+#: src/core/Socket.js:911
 msgid "Document requires password to modify."
 msgstr "È necessaria una password per modificare il documento."
 
-#: src/core/Socket.js:998
+#: src/core/Socket.js:913
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Scegli Annulla per aprire in modalità sola lettura."
 
-#: src/core/Socket.js:1002
+#: src/core/Socket.js:917
 msgid "Wrong password provided. Please try again."
 msgstr "La password è errata. Riprova."
 
-#: src/core/Socket.js:1066 src/core/Socket.js:1071
+#: src/core/Socket.js:981 src/core/Socket.js:986
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1108
+#: src/core/Socket.js:1023
 msgid "Someone"
 msgstr "Qualcuno"
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1024
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1118
+#: src/core/Socket.js:1033
 msgid "Connecting..."
 msgstr "Connessione..."
 
-#: src/core/Socket.js:1136
+#: src/core/Socket.js:1050
 msgid "The document is being renamed and will reload shortly"
 msgstr "Il documento è stato rinominato e verrà ricaricato a breve"
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1239
+#: src/core/Socket.js:1153
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1552
+#: src/core/Socket.js:1466
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "È imbarazzante, non riusciamo a collegarti al tuo documento. Riprova."
 
-#: src/core/Socket.js:1569
+#: src/core/Socket.js:1483
 msgid "Reconnecting..."
 msgstr "Connessione…"
 
-#: src/core/Socket.js:1579
+#: src/core/Socket.js:1493
 msgid "The server has been disconnected."
 msgstr "Il server è stato disconnesso."
 
@@ -2592,6 +2567,22 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Discard"
+#~ msgstr "Scarta"
+
+#~ msgid "Overwrite"
+#~ msgstr "Sovrascrivi"
+
+#~ msgid "Save to new file"
+#~ msgstr "Salva in un nuovo file"
+
+#~ msgid ""
+#~ "Document has been changed in storage. What would you like to do with your "
+#~ "unsaved changes?"
+#~ msgstr ""
+#~ "Il documento memorizzato è stato modificato. Che cosa vuoi fare delle "
+#~ "modifiche non salvate?"
 
 #~ msgid "Show Selected Sheets"
 #~ msgstr "Mostra i fogli selezionati"
