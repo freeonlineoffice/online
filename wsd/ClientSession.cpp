@@ -1058,7 +1058,6 @@ bool ClientSession::_handleInput(const char *buffer, int length)
              tokens.equals(0, "mouse") ||
              tokens.equals(0, "windowmouse") ||
              tokens.equals(0, "windowgesture") ||
-             tokens.equals(0, "requestloksession") ||
              tokens.equals(0, "resetselection") ||
              tokens.equals(0, "saveas") ||
              tokens.equals(0, "exportas") ||
@@ -1093,14 +1092,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
             const std::string dummyFrame = "dummymsg";
             return forwardToChild(dummyFrame, docBroker);
         }
-        else if (tokens[0] != "requestloksession")
-        {
-            return forwardToChild(std::string(buffer, length), docBroker);
-        }
         else
         {
-            assert(tokens.equals(0, "requestloksession"));
-            return true;
+            return forwardToChild(std::string(buffer, length), docBroker);
         }
     }
     else if (tokens.equals(0, "attemptlock"))
