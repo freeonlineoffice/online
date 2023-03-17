@@ -3142,6 +3142,13 @@ bool LOOLWSD::createForKit()
     NoSeccomp = true;
 //    args.push_back("--log-file=valgrind.log");
 //    args.push_back("--track-fds=all");
+
+//  for massif: can connect with (gdb) target remote | vgdb
+//  and then monitor snapshot <filename> before kit exit
+//    args.push_back("--tool=massif");
+//    args.push_back("--vgdb=yes");
+//    args.push_back("--vgdb-error=0");
+
     args.push_back("--trace-children=yes");
     args.push_back("--error-limit=no");
     args.push_back("--num-callers=128");
@@ -5761,7 +5768,7 @@ int LOOLWSD::innerMain()
 #if !defined(KIT_IN_PROCESS) && !MOBILEAPP
     // Terminate child processes
     LOG_INF("Requesting forkit process " << ForKitProcId << " to terminate.");
-#if CODE_COVERAGE
+#if CODE_COVERAGE || VALGRIND_COOLFORKIT
     constexpr auto signal = SIGTERM;
 #else
     constexpr auto signal = SIGKILL;
