@@ -441,7 +441,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	color: var(--color-main-text);
 	border: none;
 	border-radius: var(--border-radius);
-	width: var(--annotation-input-size);
+	width: auto;
 }
 .lool-annotation-content-wrapper:hover, .lool-annotation-redline-content-wrapper:hover {
 	background-color: var(--color-background-dark);
@@ -451,7 +451,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 .annotation-active.modify-annotation-container .lool-annotation-content-wrapper,
 .annotation-active.reply-annotation-container .lool-annotation-content-wrapper,
 .lool-annotation-collapsed.modalpopup {
-	width: var(--annotation-input-size);
+	width: auto;
 }
 
 .lool-annotation-content {
@@ -573,7 +573,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	box-sizing: border-box;
 }
 
-#new-mobile-comment-input-area.lool-annotation-textarea {
+#input-modal-input.lool-annotation-textarea {
 	height: var(--annotation-input-size);
 }
 
