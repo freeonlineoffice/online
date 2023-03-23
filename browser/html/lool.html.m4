@@ -301,7 +301,7 @@ m4_ifelse(MOBILEAPP,[true],
     </div>
 
     <!-- Remove if you don't want the About dialog -->
-    <div id="about-dialog" style="display:none; user-select: text">
+    <div id="about-dialog" style="display:none; user-select: text" tabIndex="0">
       <div id="about-dialog-header">
         <fig id="integrator-logo"></fig>
         <h1 id="product-name">LibreOffice Online</h1>
