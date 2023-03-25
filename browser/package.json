@@ -34,7 +34,7 @@
     "typescript": "^5.0.2",
     "uglify-js": "3.17.4",
     "uglifycss": "0.0.29",
-    "vex-js": "4.1.0",
+    "uglifyify": "5.0.2",
     "xtend": "4.0.2"
   },
   "repository": {
