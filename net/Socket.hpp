@@ -1315,8 +1315,6 @@ protected:
     {
         ASSERT_CORRECT_SOCKET_THREAD(this);
 
-        LOG_TRC("Revents: 0x" << std::hex << events << std::dec);
-
         _socketHandler->checkTimeout(now);
 
         if (!events && _inBuffer.empty())
