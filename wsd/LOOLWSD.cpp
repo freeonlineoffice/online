@@ -5768,7 +5768,7 @@ int LOOLWSD::innerMain()
 #if !defined(KIT_IN_PROCESS) && !MOBILEAPP
     // Terminate child processes
     LOG_INF("Requesting forkit process " << ForKitProcId << " to terminate.");
-#if CODE_COVERAGE || VALGRIND_COOLFORKIT
+#if CODE_COVERAGE || VALGRIND_LOOLFORKIT
     constexpr auto signal = SIGTERM;
 #else
     constexpr auto signal = SIGKILL;
