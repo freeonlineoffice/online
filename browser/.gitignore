@@ -27,3 +27,4 @@ coverage/
 dist/l10n/ui-*json
 dist/l10n/help-*.json
 node_shrinkpack/*.tar
+!/**/.gitkeep
