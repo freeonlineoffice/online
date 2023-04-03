@@ -1205,6 +1205,7 @@ public:
     /// Replace the existing SocketHandler with a new one.
     void setHandler(std::shared_ptr<ProtocolHandlerInterface> handler)
     {
+        LOG_TRC("setHandler");
         _socketHandler = std::move(handler);
         _socketHandler->onConnect(shared_from_this());
     }
@@ -1336,6 +1337,7 @@ protected:
                     << (!_inBuffer.empty() ? Util::dumpHex(_inBuffer, ":\n") : std::string())
 #endif
             );
+
             if (read > 0 && closed)
             {
                 // We might have outstanding data to read, wait until readIncomingData returns closed state.
