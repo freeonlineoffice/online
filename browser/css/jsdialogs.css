@@ -196,7 +196,7 @@ td.jsdialog > [id^='table-box']:not(.sidebar) {
 .ui-tab.jsdialog {
 	float: left !important;
 	font-size: var(--default-font-size) !important;
-	font-family: var(--cool-font) !important;
+	font-family: var(--lool-font) !important;
 	line-height: normal !important;
 	color: dimgray !important;
 	color: var(--color-text-dark) !important;
