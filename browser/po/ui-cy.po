@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-03 19:20+0200\n"
+"POT-Creation-Date: 2023-04-06 22:39+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Welsh <https://hosted.weblate.org/projects/collabora-online/"
@@ -210,7 +210,7 @@ msgstr "Adnewyddu'r Cofnod"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:438
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:441
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "Dim"
@@ -259,7 +259,7 @@ msgstr ""
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
-#: src/control/Toolbar.js:707 src/control/Toolbar.js:932
+#: src/control/Toolbar.js:711 src/control/Toolbar.js:936
 #: src/core/Socket.js:1026 src/core/Socket.js:1153 src/core/Socket.js:1157
 #: src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:483
@@ -283,7 +283,7 @@ msgstr "Ydych chi'n siŵr eich bod eisiau dileu'r sesiwn hwn?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:702 src/layer/tile/CommentListSection.ts:413
+#: src/control/Toolbar.js:706 src/layer/tile/CommentListSection.ts:413
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Diddymu"
@@ -376,7 +376,7 @@ msgstr "Profodd y gweinydd wall %0 wrth ddidoli'r gorchymyn %1."
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:931
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:935
 msgid "Delete"
 msgstr "Dileu:"
 
@@ -475,35 +475,35 @@ msgstr ""
 msgid "Count"
 msgstr "Cyfrif"
 
-#: src/control/Control.JSDialogBuilder.js:441
+#: src/control/Control.JSDialogBuilder.js:444
 msgid "Solid"
 msgstr "Solet"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:447
 msgid "Linear"
 msgstr "Llinol"
 
-#: src/control/Control.JSDialogBuilder.js:447
+#: src/control/Control.JSDialogBuilder.js:450
 msgid "Axial"
 msgstr "Echelinol"
 
-#: src/control/Control.JSDialogBuilder.js:450
+#: src/control/Control.JSDialogBuilder.js:453
 msgid "Radial"
 msgstr "Rheiddiol"
 
-#: src/control/Control.JSDialogBuilder.js:453
+#: src/control/Control.JSDialogBuilder.js:456
 msgid "Ellipsoid"
 msgstr "Elipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:457
+#: src/control/Control.JSDialogBuilder.js:460
 msgid "Quadratic"
 msgstr "Cwadratig"
 
-#: src/control/Control.JSDialogBuilder.js:460
+#: src/control/Control.JSDialogBuilder.js:463
 msgid "Square"
 msgstr "Sgwâr"
 
-#: src/control/Control.JSDialogBuilder.js:463
+#: src/control/Control.JSDialogBuilder.js:466
 msgid "Fixed size"
 msgstr "Maint gosodedig"
 
@@ -524,7 +524,7 @@ msgid "Select range"
 msgstr "Dewis ystod"
 
 #: src/control/Control.JSDialogBuilder.js:1498
-#: src/control/Control.NotebookbarBuilder.js:232
+#: src/control/Control.NotebookbarBuilder.js:231
 msgid "Font Name"
 msgstr "Enw Ffont"
 
@@ -537,41 +537,41 @@ msgstr "Maint Ffont"
 msgid "Style"
 msgstr "Arddull"
 
-#: src/control/Control.JSDialogBuilder.js:1920
+#: src/control/Control.JSDialogBuilder.js:1923
 #, fuzzy
 msgid "reply"
 msgstr "Ateb"
 
-#: src/control/Control.JSDialogBuilder.js:1923
+#: src/control/Control.JSDialogBuilder.js:1926
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1934
+#: src/control/Control.JSDialogBuilder.js:1937
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:888
 msgid "Comment"
 msgstr "Sylw"
 
-#: src/control/Control.JSDialogBuilder.js:1997
+#: src/control/Control.JSDialogBuilder.js:2000
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2659
+#: src/control/Control.JSDialogBuilder.js:2665
 msgid "Cell borders"
 msgstr "Borderi celloedd"
 
-#: src/control/Control.JSDialogBuilder.js:2870
+#: src/control/Control.JSDialogBuilder.js:2876
 #: src/control/Control.Menubar.js:787
 msgid "Rows"
 msgstr "Rhesi"
 
-#: src/control/Control.JSDialogBuilder.js:2871
+#: src/control/Control.JSDialogBuilder.js:2877
 #: src/control/Control.Menubar.js:790
 msgid "Columns"
 msgstr "Colofnau"
 
-#: src/control/Control.JSDialogBuilder.js:2891
+#: src/control/Control.JSDialogBuilder.js:2897
 #, fuzzy
 msgid "Insert Table"
 msgstr "Mewnosod tudalen"
@@ -593,31 +593,31 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:67 src/control/Control.Menubar.js:80
 #: src/control/Control.Menubar.js:902
-#: src/control/Control.NotebookbarBuilder.js:493
-#: src/control/Control.NotebookbarBuilder.js:582
+#: src/control/Control.NotebookbarBuilder.js:492
+#: src/control/Control.NotebookbarBuilder.js:581
 msgid "ODF text document (.odt)"
 msgstr "Dogfen testun ODF (.odt)"
 
 #: src/control/Control.Menubar.js:68 src/control/Control.Menubar.js:81
 #: src/control/Control.Menubar.js:903
-#: src/control/Control.NotebookbarBuilder.js:505
-#: src/control/Control.NotebookbarBuilder.js:594
+#: src/control/Control.NotebookbarBuilder.js:504
+#: src/control/Control.NotebookbarBuilder.js:593
 #: src/control/Control.NotebookbarWriter.js:224
 msgid "Word 2003 Document (.doc)"
 msgstr "Dogfen Word 2003 (.doc)"
 
 #: src/control/Control.Menubar.js:69 src/control/Control.Menubar.js:82
 #: src/control/Control.Menubar.js:904
-#: src/control/Control.NotebookbarBuilder.js:501
-#: src/control/Control.NotebookbarBuilder.js:590
+#: src/control/Control.NotebookbarBuilder.js:500
+#: src/control/Control.NotebookbarBuilder.js:589
 #: src/control/Control.NotebookbarWriter.js:230
 msgid "Word Document (.docx)"
 msgstr "Dogfen Word (.docx)"
 
 #: src/control/Control.Menubar.js:70 src/control/Control.Menubar.js:83
 #: src/control/Control.Menubar.js:905
-#: src/control/Control.NotebookbarBuilder.js:497
-#: src/control/Control.NotebookbarBuilder.js:586
+#: src/control/Control.NotebookbarBuilder.js:496
+#: src/control/Control.NotebookbarBuilder.js:585
 #: src/control/Control.NotebookbarWriter.js:212
 msgid "Rich Text (.rtf)"
 msgstr "Testun Cyfoethog (.rtf)"
@@ -641,13 +641,13 @@ msgstr "Allforio fel:"
 #: src/control/Control.Menubar.js:949 src/control/Control.Menubar.js:958
 #: src/control/Control.Menubar.js:1009 src/control/Control.Menubar.js:1017
 #: src/control/Control.Menubar.js:1059 src/control/Control.Menubar.js:1070
-#: src/control/Control.NotebookbarBuilder.js:514
-#: src/control/Control.NotebookbarBuilder.js:538
-#: src/control/Control.NotebookbarBuilder.js:562
-#: src/control/Control.NotebookbarBuilder.js:643
-#: src/control/Control.NotebookbarBuilder.js:654
-#: src/control/Control.NotebookbarBuilder.js:661
-#: src/control/Control.NotebookbarBuilder.js:668
+#: src/control/Control.NotebookbarBuilder.js:513
+#: src/control/Control.NotebookbarBuilder.js:537
+#: src/control/Control.NotebookbarBuilder.js:561
+#: src/control/Control.NotebookbarBuilder.js:642
+#: src/control/Control.NotebookbarBuilder.js:653
+#: src/control/Control.NotebookbarBuilder.js:660
+#: src/control/Control.NotebookbarBuilder.js:667
 #: src/control/Control.NotebookbarCalc.js:247
 #: src/control/Control.NotebookbarDraw.js:206
 #: src/control/Control.NotebookbarImpress.js:299
@@ -657,8 +657,8 @@ msgstr "Dogfen PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:74 src/control/Control.Menubar.js:84
 #: src/control/Control.Menubar.js:890 src/control/Control.Menubar.js:906
-#: src/control/Control.NotebookbarBuilder.js:509
-#: src/control/Control.NotebookbarBuilder.js:647
+#: src/control/Control.NotebookbarBuilder.js:508
+#: src/control/Control.NotebookbarBuilder.js:646
 msgid "EPUB (.epub)"
 msgstr "EPUB (.epub)"
 
@@ -759,13 +759,9 @@ msgstr ""
 #: src/control/Control.Menubar.js:130 src/control/Control.Menubar.js:416
 #: src/control/Control.Menubar.js:555 src/control/Control.Menubar.js:684
 #: src/control/Control.NotebookbarCalc.js:1050
-#: src/control/Control.NotebookbarCalc.js:1051
 #: src/control/Control.NotebookbarDraw.js:301
-#: src/control/Control.NotebookbarDraw.js:302
 #: src/control/Control.NotebookbarImpress.js:419
-#: src/control/Control.NotebookbarImpress.js:420
 #: src/control/Control.NotebookbarWriter.js:1149
-#: src/control/Control.NotebookbarWriter.js:1150
 msgid "Dark Mode"
 msgstr ""
 
@@ -783,9 +779,9 @@ msgstr "Y Cyfan"
 
 #: src/control/Control.Menubar.js:171 src/control/Control.Menubar.js:436
 #: src/control/Control.Menubar.js:567 src/control/Control.Menubar.js:705
-#: src/control/Control.NotebookbarCalc.js:1147
-#: src/control/Control.NotebookbarDraw.js:939
-#: src/control/Control.NotebookbarImpress.js:963
+#: src/control/Control.NotebookbarCalc.js:1146
+#: src/control/Control.NotebookbarDraw.js:938
+#: src/control/Control.NotebookbarImpress.js:962
 #: src/control/Control.NotebookbarWriter.js:853
 msgid "Pick Link"
 msgstr ""
@@ -800,38 +796,38 @@ msgid "References"
 msgstr "C~yfeirnodau"
 
 #: src/control/Control.Menubar.js:274
-#: src/control/Control.NotebookbarWriter.js:1441
+#: src/control/Control.NotebookbarWriter.js:1440
 msgid "Update Index"
 msgstr ""
 
 #: src/control/Control.Menubar.js:283
-#: src/control/Control.NotebookbarWriter.js:1524
+#: src/control/Control.NotebookbarWriter.js:1523
 msgid "Add Citation"
 msgstr ""
 
 #: src/control/Control.Menubar.js:284
-#: src/control/Control.NotebookbarWriter.js:1535
+#: src/control/Control.NotebookbarWriter.js:1534
 msgid "Add Citation Note"
 msgstr ""
 
 #: src/control/Control.Menubar.js:285
-#: src/control/Control.NotebookbarWriter.js:1512
+#: src/control/Control.NotebookbarWriter.js:1511
 msgid "Add Bibliography"
 msgstr ""
 
 #: src/control/Control.Menubar.js:287
-#: src/control/Control.NotebookbarWriter.js:1552
+#: src/control/Control.NotebookbarWriter.js:1551
 msgid "Refresh Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:288
-#: src/control/Control.NotebookbarWriter.js:1563
+#: src/control/Control.NotebookbarWriter.js:1562
 #: src/control/Control.Zotero.js:1436
 msgid "Unlink Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:289
-#: src/control/Control.NotebookbarWriter.js:1574
+#: src/control/Control.NotebookbarWriter.js:1573
 msgid "Citation Preferences"
 msgstr ""
 
@@ -919,23 +915,23 @@ msgstr "Newid diwethaf"
 
 #: src/control/Control.Menubar.js:368 src/control/Control.Menubar.js:380
 #: src/control/Control.Menubar.js:959
-#: src/control/Control.NotebookbarBuilder.js:546
-#: src/control/Control.NotebookbarBuilder.js:616
+#: src/control/Control.NotebookbarBuilder.js:545
+#: src/control/Control.NotebookbarBuilder.js:615
 msgid "ODF presentation (.odp)"
 msgstr "Cyflwyno ODF (.odp)"
 
 #: src/control/Control.Menubar.js:369 src/control/Control.Menubar.js:381
 #: src/control/Control.Menubar.js:960
-#: src/control/Control.NotebookbarBuilder.js:558
-#: src/control/Control.NotebookbarBuilder.js:624
+#: src/control/Control.NotebookbarBuilder.js:557
+#: src/control/Control.NotebookbarBuilder.js:623
 #: src/control/Control.NotebookbarImpress.js:280
 msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "Cyflwyniad PowerPoint 2003 (.ppt)"
 
 #: src/control/Control.Menubar.js:370 src/control/Control.Menubar.js:382
 #: src/control/Control.Menubar.js:961
-#: src/control/Control.NotebookbarBuilder.js:554
-#: src/control/Control.NotebookbarBuilder.js:620
+#: src/control/Control.NotebookbarBuilder.js:553
+#: src/control/Control.NotebookbarBuilder.js:619
 #: src/control/Control.NotebookbarImpress.js:286
 msgid "PowerPoint Presentation (.pptx)"
 msgstr "Cyflwyniad PowerPoint (.pptx)"
@@ -955,7 +951,7 @@ msgstr "Cyflwyno'r sleid gyfredol"
 
 #: src/control/Control.Menubar.js:524 src/control/Control.Menubar.js:962
 #: src/control/Control.Menubar.js:1018
-#: src/control/Control.NotebookbarBuilder.js:550
+#: src/control/Control.NotebookbarBuilder.js:549
 #: src/control/Control.NotebookbarDraw.js:187
 #: src/control/Control.NotebookbarImpress.js:267
 msgid "ODF Drawing (.odg)"
@@ -963,23 +959,23 @@ msgstr "Lluniadu ODF (.odg)"
 
 #: src/control/Control.Menubar.js:638 src/control/Control.Menubar.js:649
 #: src/control/Control.Menubar.js:1071
-#: src/control/Control.NotebookbarBuilder.js:522
-#: src/control/Control.NotebookbarBuilder.js:601
+#: src/control/Control.NotebookbarBuilder.js:521
+#: src/control/Control.NotebookbarBuilder.js:600
 msgid "ODF spreadsheet (.ods)"
 msgstr "Taenlen ODF (.ods)"
 
 #: src/control/Control.Menubar.js:639 src/control/Control.Menubar.js:650
 #: src/control/Control.Menubar.js:1072
-#: src/control/Control.NotebookbarBuilder.js:530
-#: src/control/Control.NotebookbarBuilder.js:609
+#: src/control/Control.NotebookbarBuilder.js:529
+#: src/control/Control.NotebookbarBuilder.js:608
 #: src/control/Control.NotebookbarCalc.js:228
 msgid "Excel 2003 Spreadsheet (.xls)"
 msgstr "Taenlen Excel 2003 (.xls)"
 
 #: src/control/Control.Menubar.js:640 src/control/Control.Menubar.js:651
 #: src/control/Control.Menubar.js:1073
-#: src/control/Control.NotebookbarBuilder.js:526
-#: src/control/Control.NotebookbarBuilder.js:605
+#: src/control/Control.NotebookbarBuilder.js:525
+#: src/control/Control.NotebookbarBuilder.js:604
 #: src/control/Control.NotebookbarCalc.js:234
 msgid "Excel Spreadsheet (.xlsx)"
 msgstr "Taenlen Excel (.xlsx)"
@@ -1032,7 +1028,7 @@ msgstr ""
 msgid "Insert Shape"
 msgstr "Mewnosod siapiau"
 
-#: src/control/Control.Menubar.js:1951
+#: src/control/Control.Menubar.js:1950
 msgid "file type icon"
 msgstr ""
 
@@ -1047,54 +1043,54 @@ msgstr "Dangos y bar chwilio"
 msgid "Borders"
 msgstr "Borderi"
 
-#: src/control/Control.MobileWizardBuilder.js:507
+#: src/control/Control.MobileWizardBuilder.js:510
 msgid "Background Color"
 msgstr "Lliw Cefndir"
 
-#: src/control/Control.MobileWizardBuilder.js:509
+#: src/control/Control.MobileWizardBuilder.js:512
 msgid "Gradient Start"
 msgstr "Cychwyn Graddiant"
 
-#: src/control/Control.MobileWizardBuilder.js:511
+#: src/control/Control.MobileWizardBuilder.js:514
 msgid "Gradient End"
 msgstr "Diwedd Graddiant"
 
-#: src/control/Control.NotebookbarBuilder.js:346
+#: src/control/Control.NotebookbarBuilder.js:345
 msgid "Tap to expand"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:347
-#: src/control/Control.NotebookbarBuilder.js:385
+#: src/control/Control.NotebookbarBuilder.js:346
+#: src/control/Control.NotebookbarBuilder.js:384
 msgid "Tap to collapse"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:534
+#: src/control/Control.NotebookbarBuilder.js:533
 #: src/control/Control.NotebookbarCalc.js:215
 msgid "CSV File (.csv)"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:856
+#: src/control/Control.NotebookbarBuilder.js:842
 #: src/control/Control.TopToolbar.js:226
 msgid "Insert Local Image"
 msgstr "Mewnosod Delwedd Leol"
 
-#: src/control/Control.NotebookbarBuilder.js:938
+#: src/control/Control.NotebookbarBuilder.js:924
 msgid "Very Tight"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:939
+#: src/control/Control.NotebookbarBuilder.js:925
 msgid "Tight"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:940
+#: src/control/Control.NotebookbarBuilder.js:926
 msgid "Normal"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:941
+#: src/control/Control.NotebookbarBuilder.js:927
 msgid "Loose"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:942
+#: src/control/Control.NotebookbarBuilder.js:928
 msgid "Very Loose"
 msgstr ""
 
@@ -1323,24 +1319,24 @@ msgstr ""
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1107
+#: src/control/Control.NotebookbarCalc.js:1106
 msgid "Sparkline"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1192
-#: src/control/Control.NotebookbarCalc.js:1843
-#: src/control/Control.NotebookbarDraw.js:629
-#: src/control/Control.NotebookbarDraw.js:1006
-#: src/control/Control.NotebookbarImpress.js:747
-#: src/control/Control.NotebookbarImpress.js:1030
-#: src/control/Control.NotebookbarImpress.js:1865
+#: src/control/Control.NotebookbarCalc.js:1191
+#: src/control/Control.NotebookbarCalc.js:1842
+#: src/control/Control.NotebookbarDraw.js:628
+#: src/control/Control.NotebookbarDraw.js:1005
+#: src/control/Control.NotebookbarImpress.js:746
+#: src/control/Control.NotebookbarImpress.js:1029
+#: src/control/Control.NotebookbarImpress.js:1864
 #: src/control/Control.NotebookbarWriter.js:936
-#: src/control/Control.NotebookbarWriter.js:2335
+#: src/control/Control.NotebookbarWriter.js:2334
 msgid "Shapes"
 msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:32
-#: src/control/Control.NotebookbarDraw.js:771
+#: src/control/Control.NotebookbarDraw.js:770
 msgid "Page layout"
 msgstr ""
 
@@ -1364,7 +1360,7 @@ msgid "ODF Presentation (.odp)"
 msgstr "Cyflwyno ODF (.odp)"
 
 #: src/control/Control.NotebookbarImpress.js:356
-#: src/control/Control.NotebookbarImpress.js:835
+#: src/control/Control.NotebookbarImpress.js:834
 msgid "Presentation"
 msgstr ""
 
@@ -1982,15 +1978,15 @@ msgstr "\"Dirprwy Araf\""
 msgid "Insert hyperlink"
 msgstr "Mewnosod Dolen"
 
-#: src/control/Toolbar.js:688
+#: src/control/Toolbar.js:690
 msgid "Link"
 msgstr "Cyswllt"
 
-#: src/control/Toolbar.js:926
+#: src/control/Toolbar.js:930
 msgid "Are you sure you want to delete this slide?"
 msgstr "Ydych chi'n siŵr eich bod eisiau dileu'r sleid hwn?"
 
-#: src/control/Toolbar.js:929
+#: src/control/Toolbar.js:933
 msgid "Are you sure you want to delete this page?"
 msgstr "Ydych chi'n siŵr eich bod eisiau dileu'r dudalen hon?"
 
