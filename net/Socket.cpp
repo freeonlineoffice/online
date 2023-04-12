@@ -428,8 +428,9 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
 
         // We use the _pollStartIndex to start the polling at a different index each time. Do some
         // sanity check first to handle the case where we removed one or several sockets last time.
+        ++_pollStartIndex;
         if (_pollStartIndex > size - 1)
-            _pollStartIndex = size - 1;
+            _pollStartIndex = 0;
 
         std::vector<int> toErase;
 
@@ -479,10 +480,6 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
                 _pollSockets.erase(_pollSockets.begin() + eraseIndex);
             }
         }
-
-        // In case we removed sockets the new _pollStartIndex might be out of bounds, but we check it
-        // before using it above anyway.
-        _pollStartIndex = (_pollStartIndex + 1) % size;
     }
 
     return rc;
