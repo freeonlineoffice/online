@@ -658,15 +658,6 @@ public:
     /// Executed inside the poll in case of a wakeup
     virtual void wakeupHook() {}
 
-    /// The default implementation of our polling thread
-    virtual void pollingThread()
-    {
-        while (continuePolling())
-        {
-            poll(DefaultPollTimeoutMicroS);
-        }
-    }
-
     const std::thread::id &getThreadOwner()
     {
         return _owner;
@@ -853,6 +844,15 @@ protected:
     }
 
 private:
+    /// The default implementation of our polling thread
+    virtual void pollingThread()
+    {
+        while (continuePolling())
+        {
+            poll(DefaultPollTimeoutMicroS);
+        }
+    }
+
     /// Actual poll implementation
     int poll(int64_t timeoutMaxMicroS);
 
