@@ -270,10 +270,6 @@ void SocketPoll::joinThread()
 {
     if (isAlive())
     {
-        addCallback([this]()
-                    {
-                        removeSockets();
-                    });
         stop();
     }
 
@@ -287,6 +283,13 @@ void SocketPoll::joinThread()
             _threadStarted = 0;
         }
     }
+
+    if (_runOnClientThread)
+    {
+        removeSockets();
+    }
+
+    assert(_pollSockets.empty());
 }
 
 void SocketPoll::pollingThreadEntry()
@@ -302,8 +305,7 @@ void SocketPoll::pollingThreadEntry()
         pollingThread();
 
         // Release sockets.
-        _pollSockets.clear();
-        _newSockets.clear();
+        removeSockets();
     }
     catch (const std::exception& exc)
     {
@@ -491,6 +493,35 @@ void SocketPoll::wakeupWorld()
 {
     for (const auto& fd : getWakeupsArray())
         wakeup(fd);
+}
+
+void SocketPoll::removeSockets()
+{
+    LOG_DBG("Removing all " << _pollSockets.size() + _newSockets.size()
+                            << " sockets from SocketPoll thread " << _name);
+    assertCorrectThread();
+
+    while (!_pollSockets.empty())
+    {
+        const std::shared_ptr<Socket>& socket = _pollSockets.back();
+        assert(socket);
+
+        LOG_DBG("Removing socket #" << socket->getFD() << " from " << _name);
+        ASSERT_CORRECT_SOCKET_THREAD(socket);
+        socket->resetThreadOwner();
+
+        _pollSockets.pop_back();
+    }
+
+    while (!_newSockets.empty())
+    {
+        const std::shared_ptr<Socket>& socket = _newSockets.back();
+        assert(socket);
+
+        LOG_DBG("Removing socket #" << socket->getFD() << " from newSockets of " << _name);
+
+        _newSockets.pop_back();
+    }
 }
 
 #if !MOBILEAPP

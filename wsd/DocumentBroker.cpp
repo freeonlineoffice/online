@@ -241,7 +241,6 @@ void DocumentBroker::pollThread()
 
         // Stop to mark it done and cleanup.
         _poll->stop();
-        _poll->removeSockets();
 
         // Async cleanup.
         LOOLWSD::doHousekeeping();
@@ -602,7 +601,6 @@ void DocumentBroker::pollThread()
 
     // Stop to mark it done and cleanup.
     _poll->stop();
-    _poll->removeSockets();
 
 #if !MOBILEAPP
     // Async cleanup.
