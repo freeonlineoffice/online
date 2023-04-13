@@ -467,7 +467,13 @@ protected:
                 oss << '\t' << pair.first << ": " << pair.second << " / ";
             }
 
+            if (UnitBase::get().isFinished())
+                oss << "\nIgnoring as test has finished";
+
             LOG_TST(oss.str());
+
+            if (UnitBase::get().isFinished())
+                return false;
         }
 
         assertTargetTest(uriReq);
