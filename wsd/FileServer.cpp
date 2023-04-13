@@ -262,8 +262,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
     Poco::Net::HTTPCookie cookie("jwt", jwtToken);
     // bundlify appears to add an extra /dist -> dist/dist/admin
     cookie.setPath(LOOLWSD::ServiceRoot + "/browser/dist/");
-    cookie.setSecure(LOOLWSD::isSSLEnabled() ||
-                     LOOLWSD::isSSLTermination());
+    cookie.setSecure(LOOLWSD::isSSLEnabled());
     response.addCookie(cookie);
 
     return true;
