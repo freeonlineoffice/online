@@ -2657,28 +2657,6 @@ void LOOLWSD::innerInitialize(Application& self)
 
     Admin::instance().setDefDocProcSettings(docProcSettings, false);
 
-#if ENABLE_DEBUG
-    std::string postMessageURI =
-        getServiceURI("/browser/dist/framed.doc.html?file_path="
-                      DEBUG_ABSSRCDIR "/" LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER);
-    std::cerr << "\nLaunch one of these in your browser:\n\n"
-              << "    Writer:      " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER) << '\n'
-              << "    Calc:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_CALC) << '\n'
-              << "    Impress:     " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_IMPRESS) << '\n'
-              << "    Draw:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_DRAW) << '\n'
-              << "    postMessage: " << postMessageURI << std::endl;
-
-    const std::string adminURI = getServiceURI(LOOLWSD_TEST_ADMIN_CONSOLE, true);
-    if (!adminURI.empty())
-        std::cerr << "\nOr for the admin, monitoring, capabilities & discovery:\n\n"
-                  << adminURI << '\n'
-                  << getServiceURI(LOOLWSD_TEST_METRICS, true) << '\n'
-                  << getServiceURI("/hosting/capabilities") << '\n'
-                  << getServiceURI("/hosting/discovery") << '\n';
-
-    std::cerr << std::endl;
-#endif
-
 #else
     (void) self;
 #endif
@@ -5587,6 +5565,19 @@ int LOOLWSD::innerMain()
     if (Log::logger().getLevel() >= Poco::Message::Priority::PRIO_INFORMATION)
         LOG_ERR("Log level is set very high to '" << LogLevel << "' this will have a "
                 "significant performance impact. Do not use this in production.");
+
+    // Start the remote font downloading polling thread.
+    std::unique_ptr<RemoteFontConfigPoll> remoteFontConfigThread;
+    try
+    {
+        // Fetch font settings from server if configured
+        remoteFontConfigThread = Util::make_unique<RemoteFontConfigPoll>(config());
+        remoteFontConfigThread->start();
+    }
+    catch (const Poco::Exception&)
+    {
+        LOG_DBG("No remote_font_config");
+    }
 #endif
 
     // URI with /contents are public and we don't need to anonymize them.
@@ -5613,19 +5604,28 @@ int LOOLWSD::innerMain()
     }
 #endif
 
-#if !MOBILEAPP
-    // Start the remote font downloading polling thread.
-    std::unique_ptr<RemoteFontConfigPoll> remoteFontConfigThread;
-    try
-    {
-        // Fetch font settings from server if configured
-        remoteFontConfigThread = Util::make_unique<RemoteFontConfigPoll>(config());
-        remoteFontConfigThread->start();
-    }
-    catch (const Poco::Exception&)
-    {
-        LOG_DBG("No remote_font_config");
-    }
+#if ENABLE_DEBUG
+    const std::string postMessageURI =
+        getServiceURI("/browser/dist/framed.doc.html?file_path=" DEBUG_ABSSRCDIR
+                      "/" LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER);
+    std::ostringstream oss;
+    oss << "\nLaunch one of these in your browser:\n\n"
+        << "    Writer:      " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER) << '\n'
+        << "    Calc:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_CALC) << '\n'
+        << "    Impress:     " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_IMPRESS) << '\n'
+        << "    Draw:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_DRAW) << '\n'
+        << "    postMessage: " << postMessageURI << std::endl;
+
+    const std::string adminURI = getServiceURI(LOOLWSD_TEST_ADMIN_CONSOLE, true);
+    if (!adminURI.empty())
+        oss << "\nOr for the admin, monitoring, capabilities & discovery:\n\n"
+            << adminURI << '\n'
+            << getServiceURI(LOOLWSD_TEST_METRICS, true) << '\n'
+            << getServiceURI("/hosting/capabilities") << '\n'
+            << getServiceURI("/hosting/discovery") << '\n';
+
+    oss << std::endl;
+    std::cerr << oss.str();
 #endif
 
     const auto startStamp = std::chrono::steady_clock::now();
