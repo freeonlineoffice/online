@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-06 22:39+0200\n"
+"POT-Creation-Date: 2023-04-16 18:36+0200\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -213,7 +213,7 @@ msgstr "Freskatu egunkaria"
 msgid "Channel Filter:"
 msgstr "Kanalaren iragazkia:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:441
+#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:491
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "Bat ere ez"
@@ -229,7 +229,7 @@ msgstr "Egunkari-mailak"
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
-#: src/control/Signing.js:611 src/core/Socket.js:981 src/core/Socket.js:986
+#: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Itxi"
@@ -263,9 +263,9 @@ msgstr "Zerbitzaria itzali egin da; kargatu orria berriro mesedez."
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:711 src/control/Toolbar.js:936
-#: src/core/Socket.js:1026 src/core/Socket.js:1153 src/core/Socket.js:1157
-#: src/main.js:70 src/main.js:73 src/main.js:109
-#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:483
+#: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
+#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:109
+#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Ados"
 
@@ -478,102 +478,102 @@ msgstr ""
 msgid "Count"
 msgstr "Zenbatu"
 
-#: src/control/Control.JSDialogBuilder.js:444
+#: src/control/Control.JSDialogBuilder.js:494
 msgid "Solid"
 msgstr "Solidoa"
 
-#: src/control/Control.JSDialogBuilder.js:447
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Linear"
 msgstr "Lineala"
 
-#: src/control/Control.JSDialogBuilder.js:450
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Axial"
 msgstr "Axiala"
 
-#: src/control/Control.JSDialogBuilder.js:453
+#: src/control/Control.JSDialogBuilder.js:503
 msgid "Radial"
 msgstr "Erradiala"
 
-#: src/control/Control.JSDialogBuilder.js:456
+#: src/control/Control.JSDialogBuilder.js:506
 msgid "Ellipsoid"
 msgstr "Elipsoidea"
 
-#: src/control/Control.JSDialogBuilder.js:460
+#: src/control/Control.JSDialogBuilder.js:510
 msgid "Quadratic"
 msgstr "Kuadratikoa"
 
-#: src/control/Control.JSDialogBuilder.js:463
+#: src/control/Control.JSDialogBuilder.js:513
 msgid "Square"
 msgstr "Karratua"
 
-#: src/control/Control.JSDialogBuilder.js:466
+#: src/control/Control.JSDialogBuilder.js:516
 msgid "Fixed size"
 msgstr "Tamaina finkoa"
 
-#: src/control/Control.JSDialogBuilder.js:1343
+#: src/control/Control.JSDialogBuilder.js:1395
 msgid "From"
 msgstr "Hemendik:"
 
-#: src/control/Control.JSDialogBuilder.js:1346
+#: src/control/Control.JSDialogBuilder.js:1398
 msgid "To"
 msgstr "Hona:"
 
-#: src/control/Control.JSDialogBuilder.js:1349
+#: src/control/Control.JSDialogBuilder.js:1401
 msgid "Color"
 msgstr "Kolorea"
 
-#: src/control/Control.JSDialogBuilder.js:1449
+#: src/control/Control.JSDialogBuilder.js:1501
 msgid "Select range"
 msgstr "Hautatu barrutia"
 
-#: src/control/Control.JSDialogBuilder.js:1498
+#: src/control/Control.JSDialogBuilder.js:1556
 #: src/control/Control.NotebookbarBuilder.js:231
 msgid "Font Name"
 msgstr "Letra-izena"
 
-#: src/control/Control.JSDialogBuilder.js:1500 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1558 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Letra-tamaina"
 
-#: src/control/Control.JSDialogBuilder.js:1502
+#: src/control/Control.JSDialogBuilder.js:1560
 #: src/control/Control.TopToolbar.js:497
 msgid "Style"
 msgstr "Estiloa"
 
-#: src/control/Control.JSDialogBuilder.js:1923
+#: src/control/Control.JSDialogBuilder.js:1981
 msgid "reply"
 msgstr "erantzuna"
 
-#: src/control/Control.JSDialogBuilder.js:1926
+#: src/control/Control.JSDialogBuilder.js:1984
 msgid "replies"
 msgstr "erantzunak"
 
-#: src/control/Control.JSDialogBuilder.js:1937
+#: src/control/Control.JSDialogBuilder.js:1995
 #: src/layer/tile/CanvasTileLayer.js:5137
 #: src/layer/tile/CanvasTileLayer.js:5148
 #: src/layer/tile/CommentListSection.ts:888
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2000
+#: src/control/Control.JSDialogBuilder.js:2058
 msgid "Insert Comment"
 msgstr "Txertatu iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2665
+#: src/control/Control.JSDialogBuilder.js:2728
 msgid "Cell borders"
 msgstr "Gelaxka-ertzak"
 
-#: src/control/Control.JSDialogBuilder.js:2876
+#: src/control/Control.JSDialogBuilder.js:2939
 #: src/control/Control.Menubar.js:787
 msgid "Rows"
 msgstr "Errenkadak"
 
-#: src/control/Control.JSDialogBuilder.js:2877
+#: src/control/Control.JSDialogBuilder.js:2940
 #: src/control/Control.Menubar.js:790
 msgid "Columns"
 msgstr "Zutabeak"
 
-#: src/control/Control.JSDialogBuilder.js:2897
+#: src/control/Control.JSDialogBuilder.js:2960
 msgid "Insert Table"
 msgstr "Txertatu taula"
 
@@ -628,9 +628,9 @@ msgstr "Testu aberatsa (.rtf)"
 #: src/control/Control.Menubar.js:515 src/control/Control.Menubar.js:522
 #: src/control/Control.Menubar.js:642 src/control/Control.Menubar.js:647
 #: src/control/Control.Menubar.js:888 src/control/Control.Menubar.js:900
-#: src/control/Control.Menubar.js:948 src/control/Control.Menubar.js:957
-#: src/control/Control.Menubar.js:1008 src/control/Control.Menubar.js:1016
-#: src/control/Control.Menubar.js:1058 src/control/Control.Menubar.js:1069
+#: src/control/Control.Menubar.js:952 src/control/Control.Menubar.js:961
+#: src/control/Control.Menubar.js:1012 src/control/Control.Menubar.js:1020
+#: src/control/Control.Menubar.js:1062 src/control/Control.Menubar.js:1073
 msgid "Export as"
 msgstr "Esportatu honela:"
 
@@ -639,9 +639,9 @@ msgstr "Esportatu honela:"
 #: src/control/Control.Menubar.js:516 src/control/Control.Menubar.js:523
 #: src/control/Control.Menubar.js:643 src/control/Control.Menubar.js:648
 #: src/control/Control.Menubar.js:889 src/control/Control.Menubar.js:901
-#: src/control/Control.Menubar.js:949 src/control/Control.Menubar.js:958
-#: src/control/Control.Menubar.js:1009 src/control/Control.Menubar.js:1017
-#: src/control/Control.Menubar.js:1059 src/control/Control.Menubar.js:1070
+#: src/control/Control.Menubar.js:953 src/control/Control.Menubar.js:962
+#: src/control/Control.Menubar.js:1013 src/control/Control.Menubar.js:1021
+#: src/control/Control.Menubar.js:1063 src/control/Control.Menubar.js:1074
 #: src/control/Control.NotebookbarBuilder.js:513
 #: src/control/Control.NotebookbarBuilder.js:537
 #: src/control/Control.NotebookbarBuilder.js:561
@@ -665,22 +665,22 @@ msgstr "EPUB (.epub)"
 
 #: src/control/Control.Menubar.js:76 src/control/Control.Menubar.js:376
 #: src/control/Control.Menubar.js:519 src/control/Control.Menubar.js:645
-#: src/control/Control.Menubar.js:892 src/control/Control.Menubar.js:951
-#: src/control/Control.Menubar.js:1011 src/control/Control.Menubar.js:1061
+#: src/control/Control.Menubar.js:892 src/control/Control.Menubar.js:955
+#: src/control/Control.Menubar.js:1015 src/control/Control.Menubar.js:1065
 msgid "Share..."
 msgstr "Partekatu..."
 
 #: src/control/Control.Menubar.js:77 src/control/Control.Menubar.js:377
 #: src/control/Control.Menubar.js:521 src/control/Control.Menubar.js:646
-#: src/control/Control.Menubar.js:893 src/control/Control.Menubar.js:952
-#: src/control/Control.Menubar.js:1013 src/control/Control.Menubar.js:1062
+#: src/control/Control.Menubar.js:893 src/control/Control.Menubar.js:956
+#: src/control/Control.Menubar.js:1017 src/control/Control.Menubar.js:1066
 msgid "See revision history"
 msgstr "Ikusi berrikuspenen historia"
 
 #: src/control/Control.Menubar.js:78 src/control/Control.Menubar.js:378
 #: src/control/Control.Menubar.js:522 src/control/Control.Menubar.js:647
-#: src/control/Control.Menubar.js:900 src/control/Control.Menubar.js:957
-#: src/control/Control.Menubar.js:1016 src/control/Control.Menubar.js:1069
+#: src/control/Control.Menubar.js:900 src/control/Control.Menubar.js:961
+#: src/control/Control.Menubar.js:1020 src/control/Control.Menubar.js:1073
 msgid "Download as"
 msgstr "Deskargatu honela"
 
@@ -697,8 +697,8 @@ msgstr "Itxi dokumentua"
 
 #: src/control/Control.Menubar.js:94 src/control/Control.Menubar.js:392
 #: src/control/Control.Menubar.js:533 src/control/Control.Menubar.js:661
-#: src/control/Control.Menubar.js:911 src/control/Control.Menubar.js:967
-#: src/control/Control.Menubar.js:1023 src/control/Control.Menubar.js:1078
+#: src/control/Control.Menubar.js:911 src/control/Control.Menubar.js:971
+#: src/control/Control.Menubar.js:1027 src/control/Control.Menubar.js:1082
 #: src/control/Control.NotebookbarCalc.js:193
 #: src/control/Control.NotebookbarCalc.js:194
 #: src/control/Control.NotebookbarCalc.js:254
@@ -768,13 +768,13 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:137 src/control/Control.Menubar.js:426
 #: src/control/Control.Menubar.js:560 src/control/Control.Menubar.js:693
-#: src/control/Control.Menubar.js:1126 src/control/Control.Menubar.js:1176
-#: src/control/Control.Menubar.js:1190 src/control/Control.Menubar.js:1213
+#: src/control/Control.Menubar.js:1130 src/control/Control.Menubar.js:1180
+#: src/control/Control.Menubar.js:1194 src/control/Control.Menubar.js:1217
 msgid "Local Image..."
 msgstr "Irudi lokala..."
 
 #: src/control/Control.Menubar.js:160 src/control/Control.Menubar.js:162
-#: src/control/Control.Menubar.js:1143 src/control/Control.Menubar.js:1145
+#: src/control/Control.Menubar.js:1147 src/control/Control.Menubar.js:1149
 msgid "All"
 msgstr "Dena"
 
@@ -784,7 +784,7 @@ msgstr "Dena"
 #: src/control/Control.NotebookbarDraw.js:938
 #: src/control/Control.NotebookbarImpress.js:962
 #: src/control/Control.NotebookbarWriter.js:853
-msgid "Pick Link"
+msgid "Smart Picker"
 msgstr ""
 
 #: src/control/Control.Menubar.js:210
@@ -832,28 +832,28 @@ msgstr ""
 msgid "Citation Preferences"
 msgstr ""
 
-#: src/control/Control.Menubar.js:317 src/control/Control.Menubar.js:1165
+#: src/control/Control.Menubar.js:317 src/control/Control.Menubar.js:1169
 msgid "Insert Rich Text"
 msgstr ""
 
-#: src/control/Control.Menubar.js:318 src/control/Control.Menubar.js:1166
+#: src/control/Control.Menubar.js:318 src/control/Control.Menubar.js:1170
 msgid "Insert Checkbox"
 msgstr ""
 
-#: src/control/Control.Menubar.js:319 src/control/Control.Menubar.js:1167
+#: src/control/Control.Menubar.js:319 src/control/Control.Menubar.js:1171
 msgid "Insert Dropdown"
 msgstr ""
 
-#: src/control/Control.Menubar.js:320 src/control/Control.Menubar.js:1168
+#: src/control/Control.Menubar.js:320 src/control/Control.Menubar.js:1172
 msgid "Insert Picture"
 msgstr ""
 
-#: src/control/Control.Menubar.js:321 src/control/Control.Menubar.js:1169
+#: src/control/Control.Menubar.js:321 src/control/Control.Menubar.js:1173
 #, fuzzy
 msgid "Insert Date"
 msgstr "Txertatu taula"
 
-#: src/control/Control.Menubar.js:322 src/control/Control.Menubar.js:1170
+#: src/control/Control.Menubar.js:322 src/control/Control.Menubar.js:1174
 #: src/control/Control.NotebookbarCalc.js:282
 #: src/control/Control.NotebookbarDraw.js:227
 #: src/control/Control.NotebookbarImpress.js:334
@@ -887,24 +887,24 @@ msgstr "Jakinarazi akatsa"
 
 #: src/control/Control.Menubar.js:357 src/control/Control.Menubar.js:504
 #: src/control/Control.Menubar.js:627 src/control/Control.Menubar.js:876
-#: src/control/Control.Menubar.js:938 src/control/Control.Menubar.js:998
-#: src/control/Control.Menubar.js:1048 src/control/Control.Menubar.js:1118
+#: src/control/Control.Menubar.js:942 src/control/Control.Menubar.js:1002
+#: src/control/Control.Menubar.js:1052 src/control/Control.Menubar.js:1122
 #: src/control/Control.NotebookbarWriter.js:360
 msgid "Latest Updates"
 msgstr "Azken eguneraketak"
 
 #: src/control/Control.Menubar.js:358 src/control/Control.Menubar.js:505
 #: src/control/Control.Menubar.js:628 src/control/Control.Menubar.js:877
-#: src/control/Control.Menubar.js:939 src/control/Control.Menubar.js:999
-#: src/control/Control.Menubar.js:1049 src/control/Control.Menubar.js:1119
+#: src/control/Control.Menubar.js:943 src/control/Control.Menubar.js:1003
+#: src/control/Control.Menubar.js:1053 src/control/Control.Menubar.js:1123
 #: src/control/Control.NotebookbarWriter.js:372
 msgid "Send Feedback"
 msgstr "Bidali iruzkinak"
 
 #: src/control/Control.Menubar.js:359 src/control/Control.Menubar.js:506
 #: src/control/Control.Menubar.js:629 src/control/Control.Menubar.js:878
-#: src/control/Control.Menubar.js:940 src/control/Control.Menubar.js:1000
-#: src/control/Control.Menubar.js:1050 src/control/Control.Menubar.js:1120
+#: src/control/Control.Menubar.js:944 src/control/Control.Menubar.js:1004
+#: src/control/Control.Menubar.js:1054 src/control/Control.Menubar.js:1124
 #: src/control/Control.NotebookbarWriter.js:384
 msgid "About"
 msgstr "Honi buruz"
@@ -915,14 +915,14 @@ msgid "Last modification"
 msgstr "Azken aldaketa"
 
 #: src/control/Control.Menubar.js:368 src/control/Control.Menubar.js:380
-#: src/control/Control.Menubar.js:959
+#: src/control/Control.Menubar.js:963
 #: src/control/Control.NotebookbarBuilder.js:545
 #: src/control/Control.NotebookbarBuilder.js:615
 msgid "ODF presentation (.odp)"
 msgstr "ODF aurkezpena (.odp)"
 
 #: src/control/Control.Menubar.js:369 src/control/Control.Menubar.js:381
-#: src/control/Control.Menubar.js:960
+#: src/control/Control.Menubar.js:964
 #: src/control/Control.NotebookbarBuilder.js:557
 #: src/control/Control.NotebookbarBuilder.js:623
 #: src/control/Control.NotebookbarImpress.js:280
@@ -930,7 +930,7 @@ msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "PowerPoint 2003 aurkezpena (.ppt)"
 
 #: src/control/Control.Menubar.js:370 src/control/Control.Menubar.js:382
-#: src/control/Control.Menubar.js:961
+#: src/control/Control.Menubar.js:965
 #: src/control/Control.NotebookbarBuilder.js:553
 #: src/control/Control.NotebookbarBuilder.js:619
 #: src/control/Control.NotebookbarImpress.js:286
@@ -941,7 +941,7 @@ msgstr "PowerPoint aurkezpena (.pptx)"
 msgid "Save Comments"
 msgstr "Gorde iruzkinak"
 
-#: src/control/Control.Menubar.js:488 src/control/Control.Menubar.js:996
+#: src/control/Control.Menubar.js:488 src/control/Control.Menubar.js:1000
 #: src/control/Control.PresentationBar.js:57
 msgid "Fullscreen presentation"
 msgstr "Pantaila osoko aurkezpena"
@@ -950,8 +950,8 @@ msgstr "Pantaila osoko aurkezpena"
 msgid "Present current slide"
 msgstr "Aurkeztu uneko diapositiba"
 
-#: src/control/Control.Menubar.js:524 src/control/Control.Menubar.js:962
-#: src/control/Control.Menubar.js:1018
+#: src/control/Control.Menubar.js:524 src/control/Control.Menubar.js:966
+#: src/control/Control.Menubar.js:1022
 #: src/control/Control.NotebookbarBuilder.js:549
 #: src/control/Control.NotebookbarDraw.js:187
 #: src/control/Control.NotebookbarImpress.js:267
@@ -959,14 +959,14 @@ msgid "ODF Drawing (.odg)"
 msgstr "ODF marrazkia (.odg)"
 
 #: src/control/Control.Menubar.js:638 src/control/Control.Menubar.js:649
-#: src/control/Control.Menubar.js:1071
+#: src/control/Control.Menubar.js:1075
 #: src/control/Control.NotebookbarBuilder.js:521
 #: src/control/Control.NotebookbarBuilder.js:600
 msgid "ODF spreadsheet (.ods)"
 msgstr "ODF kalkulu-orria (.ods)"
 
 #: src/control/Control.Menubar.js:639 src/control/Control.Menubar.js:650
-#: src/control/Control.Menubar.js:1072
+#: src/control/Control.Menubar.js:1076
 #: src/control/Control.NotebookbarBuilder.js:529
 #: src/control/Control.NotebookbarBuilder.js:608
 #: src/control/Control.NotebookbarCalc.js:228
@@ -974,7 +974,7 @@ msgid "Excel 2003 Spreadsheet (.xls)"
 msgstr "Excel 2003 kalkulu-orria (.xls)"
 
 #: src/control/Control.Menubar.js:640 src/control/Control.Menubar.js:651
-#: src/control/Control.Menubar.js:1073
+#: src/control/Control.Menubar.js:1077
 #: src/control/Control.NotebookbarBuilder.js:525
 #: src/control/Control.NotebookbarBuilder.js:604
 #: src/control/Control.NotebookbarCalc.js:234
@@ -985,8 +985,8 @@ msgstr "Excel kalkulu-orria (.xlsx)"
 msgid "CSV file (.csv)"
 msgstr "CSV fitxategia (.csv)"
 
-#: src/control/Control.Menubar.js:884 src/control/Control.Menubar.js:944
-#: src/control/Control.Menubar.js:1004 src/control/Control.Menubar.js:1054
+#: src/control/Control.Menubar.js:884 src/control/Control.Menubar.js:948
+#: src/control/Control.Menubar.js:1008 src/control/Control.Menubar.js:1058
 #: src/control/Control.StatusBar.js:191 src/control/Control.Zotero.js:211
 msgid "Search"
 msgstr "Bilatu"
@@ -995,41 +995,41 @@ msgstr "Bilatu"
 msgid "Page Setup"
 msgstr "Orrialde-konfigurazioa"
 
-#: src/control/Control.Menubar.js:1065
+#: src/control/Control.Menubar.js:1069
 msgid "Define print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1066
+#: src/control/Control.Menubar.js:1070
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1339 src/control/Control.StatusBar.js:553
+#: src/control/Control.Menubar.js:1343 src/control/Control.StatusBar.js:553
 msgid "Reset to Default Language"
 msgstr "Leheneratu hizkuntza lehenetsira"
 
-#: src/control/Control.Menubar.js:1370 src/control/Control.Menubar.js:1371
-#: src/control/Control.Menubar.js:1372 src/control/Control.StatusBar.js:575
+#: src/control/Control.Menubar.js:1374 src/control/Control.Menubar.js:1375
+#: src/control/Control.Menubar.js:1376 src/control/Control.StatusBar.js:575
 #: src/control/Control.Toolbar.js:241 src/control/Control.Toolbar.js:269
 msgid "More..."
 msgstr "Gehiago..."
 
-#: src/control/Control.Menubar.js:1673
+#: src/control/Control.Menubar.js:1677
 msgid "Use Compact view"
 msgstr "Erabili ikuspegi trinkoa"
 
-#: src/control/Control.Menubar.js:1675
+#: src/control/Control.Menubar.js:1679
 msgid "Use Tabbed view"
 msgstr "Erabili fitxen ikuspegia"
 
-#: src/control/Control.Menubar.js:1716 src/control/Control.Menubar.js:1729
+#: src/control/Control.Menubar.js:1720 src/control/Control.Menubar.js:1733
 msgid "Read-only mode"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1743
+#: src/control/Control.Menubar.js:1747
 msgid "Insert Shape"
 msgstr "Txertatu forma"
 
-#: src/control/Control.Menubar.js:1950
+#: src/control/Control.Menubar.js:1954
 msgid "file type icon"
 msgstr "fitxategi motaren ikonoa"
 
@@ -1106,8 +1106,8 @@ msgstr "~Fitxategia"
 #: src/control/Control.NotebookbarDraw.js:49
 #: src/control/Control.NotebookbarImpress.js:61
 #: src/control/Control.NotebookbarWriter.js:17
-msgid "~Home"
-msgstr "~Hasiera"
+msgid "Hom~e"
+msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:23
 #: src/control/Control.NotebookbarDraw.js:55
@@ -1138,14 +1138,15 @@ msgstr "~Berrikusi"
 #: src/control/Control.NotebookbarDraw.js:70
 #: src/control/Control.NotebookbarImpress.js:82
 #: src/control/Control.NotebookbarWriter.js:43
-msgid "Format"
+#, fuzzy
+msgid "F~ormat"
 msgstr "Formatua"
 
 #: src/control/Control.NotebookbarCalc.js:48
 #: src/control/Control.NotebookbarDraw.js:81
 #: src/control/Control.NotebookbarWriter.js:59
-msgid "~Draw"
-msgstr "~Marraztu"
+msgid "Dra~w"
+msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:54
 #: src/control/Control.NotebookbarDraw.js:87
@@ -1368,7 +1369,7 @@ msgstr "E~rreferentziak"
 
 #: src/control/Control.NotebookbarWriter.js:48
 #, fuzzy
-msgid "Form"
+msgid "For~m"
 msgstr "Foroa"
 
 #: src/control/Control.NotebookbarWriter.js:206
@@ -1635,7 +1636,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1033
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1038
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -2086,35 +2087,39 @@ msgstr "Sakatu utzi soilik-ikusi moduan irekitzeko."
 msgid "Wrong password provided. Please try again."
 msgstr "Pasahitz okerra. Saiatu berriro."
 
-#: src/core/Socket.js:981 src/core/Socket.js:986
+#: src/core/Socket.js:955
+msgid "Only the document owner can change the password."
+msgstr ""
+
+#: src/core/Socket.js:986 src/core/Socket.js:991
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1023
+#: src/core/Socket.js:1028
 msgid "Someone"
 msgstr "Norbaitek"
 
-#: src/core/Socket.js:1024
+#: src/core/Socket.js:1029
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1033
+#: src/core/Socket.js:1038
 msgid "Connecting..."
 msgstr "Konektatzen..."
 
-#: src/core/Socket.js:1050
+#: src/core/Socket.js:1055
 msgid "The document is being renamed and will reload shortly"
 msgstr "Dokumentua izena aldatzen ari da eta laster berriro kargatuko da"
 
-#: src/core/Socket.js:1153
+#: src/core/Socket.js:1158
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1153
+#: src/core/Socket.js:1158
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1466
+#: src/core/Socket.js:1471
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2122,11 +2127,11 @@ msgstr ""
 "Tira, hau lotsagarria da, ezin dugu zure dokumentuarekin konektatu. Saiatu "
 "berriro."
 
-#: src/core/Socket.js:1483
+#: src/core/Socket.js:1488
 msgid "Reconnecting..."
 msgstr "Birkonektatzen..."
 
-#: src/core/Socket.js:1493
+#: src/core/Socket.js:1498
 msgid "The server has been disconnected."
 msgstr "Zerbitzaria deskonektatu da."
 
@@ -2517,19 +2522,19 @@ msgstr "Kargatzen..."
 msgid "Uploading file to server failed with status: %0"
 msgstr "Fitxategia zerbitzarira kargatzeak huts egin du honako egoerarekin: %0"
 
-#: src/map/handler/Map.WOPI.js:146
+#: src/map/handler/Map.WOPI.js:147
 msgid "Creating new file from template..."
 msgstr "Fitxategi berria sortzen txantiloitik..."
 
-#: src/map/handler/Map.WOPI.js:483
+#: src/map/handler/Map.WOPI.js:484
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:483
+#: src/map/handler/Map.WOPI.js:484
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:491
+#: src/map/handler/Map.WOPI.js:492
 msgid "Creating copy..."
 msgstr "Kopia sortzen..."
 
@@ -2592,6 +2597,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "~Home"
+#~ msgstr "~Hasiera"
+
+#~ msgid "~Draw"
+#~ msgstr "~Marraztu"
 
 #~ msgid "Discard"
 #~ msgstr "Baztertu"
