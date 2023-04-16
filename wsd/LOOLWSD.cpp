@@ -880,6 +880,7 @@ bool LOOLWSD::SignalParent = false;
 std::string LOOLWSD::RouteToken;
 #if ENABLE_DEBUG
 bool LOOLWSD::SingleKit = false;
+bool LOOLWSD::ForceCaching = false;
 #endif
 #endif
 std::string LOOLWSD::SysTemplate;
@@ -2826,6 +2827,10 @@ void LOOLWSD::defineOptions(OptionSet& optionSet)
     optionSet.addOption(Option("singlekit", "", "Spawn one libreoffice kit.")
                         .required(false)
                         .repeatable(false));
+
+    optionSet.addOption(Option("forcecaching", "", "Force HTML & asset caching even in debug mode: accelerates cypress.")
+                        .required(false)
+                        .repeatable(false));
 #endif
 
 #else
@@ -2892,6 +2897,8 @@ void LOOLWSD::handleOption(const std::string& optionName,
         SingleKit = true;
         NumPreSpawnedChildren = 1;
     }
+    else if (optionName == "forcecaching")
+        ForceCaching = true;
 
     static const char* latencyMs = std::getenv("LOOL_DELAY_SOCKET_MS");
     if (latencyMs)
