@@ -953,7 +953,7 @@ app.definitions.Socket = L.Class.extend({
 		}
 		else if (textMsg.startsWith('error:') && command.errorCmd === 'dialogevent' && command.errorKind === 'cantchangepass') {
 			var msg = _('Only the document owner can change the password.');
-			this._map.uiManager.showInfoModal('cool_alert', '', msg, '', _('OK'));
+			this._map.uiManager.showInfoModal('lool_alert', '', msg, '', _('OK'));
 			return;
 		}
 		else if (textMsg.startsWith('error:') && !this._map._docLayer) {
