@@ -246,6 +246,7 @@ export class Comment extends CanvasSectionObject {
 		var tdMenu = L.DomUtil.create('td', 'lool-annotation-menubar', this.sectionProperties.authorRow);
 		this.sectionProperties.menu = L.DomUtil.create('div', this.sectionProperties.data.trackchange ? 'lool-annotation-menu-redline' : 'lool-annotation-menu', tdMenu);
 		this.sectionProperties.menu.id = 'comment-annotation-menu-' + this.sectionProperties.data.id;
+		this.sectionProperties.menu.tabIndex = 0;
 		this.sectionProperties.menu.onclick = this.menuOnMouseClick.bind(this);
 		var divMenuTooltipText = _('Open menu');
 		this.sectionProperties.menu.dataset.title = divMenuTooltipText;
