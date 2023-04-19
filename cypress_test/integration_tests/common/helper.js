@@ -75,20 +75,13 @@ function loadTestDocNoIntegration(fileName, subFolder, noFileCopy, isMultiUser, 
 		}});
 
 	if (!isMultiUser) {
-		cy.get('iframe#loolframe')
-			.its('0.contentDocument').should('exist')
-			.its('body').should('not.be.undefined')
-			.then(cy.wrap).as('loolIFrameGlobal');
-
 		Cypress.Commands.overwrite('get', function(originalFn, selector, options) {
-			if (!selector.startsWith('@') && !(selector === '#loolframe')) {
-				if (selector === 'body')
-					return cy.get('@loolIFrameGlobal');
-				else
-					return cy.get('@loolIFrameGlobal').find(selector, options);
-			} else {
-				return originalFn(selector, options);
+			if (selector === '@loolIFrameGlobal' || selector == 'body')
+				return cy.iframe('#loolframe');
+			if (!selector.startsWith('@') && !selector.includes('#loolframe')) {
+				return cy.iframe('#loolframe').find(selector, options);
 			}
+			return originalFn(selector, options);
 		});
 
 		Cypress.Commands.overwrite('contains', function(originalFn, selector, content, options) {
@@ -629,8 +622,8 @@ function closeDocument(fileName, testState) {
 			return;
 		}
 
-		cy.get('#uptime')
-			.should('not.have.text', '0');
+		cy.get('#uptime').its('text')
+			.should('not.eq', '0');
 
 		// We have all lines of document infos as one long string.
 		// We have PID number before the file names, with matching
@@ -641,8 +634,9 @@ function closeDocument(fileName, testState) {
 		cy.log('closeDocument - waiting not.match: ' + rexname);
 		// Saving may take much longer now to ensure no unsaved data exists.
 		// This is not an issue on a fast machine, but on the CI we do timeout often.
-		cy.get('#docview', { timeout: Cypress.config('defaultCommandTimeout') * 2.0 })
-			.invoke('text')
+		const options = {timeout : Cypress.config('defaultCommandTimeout') * 2.0};
+		cy.get('#docview', options)
+			.invoke(options, 'text')
 			.should('not.match', regex);
 	}
 
