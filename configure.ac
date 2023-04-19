@@ -1079,6 +1079,18 @@ else
     AC_DEFINE([HAVE_STD_FILESYSTEM_EXPERIMENTAL],0,[Whether the std::filesystem is in the experimental header.])
 fi
 
+AC_LINK_IFELSE(
+    [AC_LANG_SOURCE([[
+    #include <unistd.h>
+    int main()
+    {
+        char buffer[8];
+        getentropy(buffer, sizeof(buffer));
+    }
+    ]])],
+    [AC_DEFINE([HAVE_GETENTROPY],1,[Define to 1 if you have getentropy() function in <unistd.h> header file.])],
+    [AC_DEFINE([HAVE_GETENTROPY],0,[Define to 1 if you have getentropy() function in <unistd.h> header file.])])
+
 AS_IF([test -n "$LOKIT_PATH"],
       [CPPFLAGS="$CPPFLAGS -I${LOKIT_PATH}"])
 lokit_msg="$LOKIT_PATH"
