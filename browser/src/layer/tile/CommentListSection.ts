@@ -598,6 +598,10 @@ export class CommentSection extends CanvasSectionObject {
 
 	public select (annotation: any): void {
 		if (annotation && annotation !== this.sectionProperties.selectedComment) {
+			// Unselect first if there anything selected.
+			if (this.sectionProperties.selectedComment)
+				this.unselect();
+
 			// Select the root comment
 			var idx = this.getRootIndexOf(annotation.sectionProperties.data.id);
 
@@ -1078,7 +1082,6 @@ export class CommentSection extends CanvasSectionObject {
 			id = obj[dataroot].id;
 			var removed = this.getComment(id);
 			if (removed) {
-				var parent = this.sectionProperties.commentList[this.getRootIndexOf(removed.sectionProperties.data.id)];
 				this.adjustParentRemove(removed);
 				this.removeItem(id);
 				if (this.sectionProperties.selectedComment === removed) {
