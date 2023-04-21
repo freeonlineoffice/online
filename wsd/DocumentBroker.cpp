@@ -540,11 +540,13 @@ void DocumentBroker::pollThread()
 
     // Check for data-loss.
     std::string reason;
+    bool dataLoss = false;
     if (isModified() || isStorageOutdated())
     {
         // If we are exiting because the owner discarded conflict changes, don't detect data loss.
         if (!(_docState.isCloseRequested() && _documentChangedInStorage))
         {
+            dataLoss = true;
             reason = isModified() ? "flagged as modified" : "not uploaded to storage";
 
             // The test may override (if it was expected).
@@ -603,6 +605,20 @@ void DocumentBroker::pollThread()
     _poll->stop();
 
 #if !MOBILEAPP
+    if (dataLoss)
+    {
+        // Quarantine the last copy, if different.
+        LOG_DBG("Data loss detected, will quarantine last version of [" << getDocKey()
+                                                                        << "] if necessary");
+        Quarantine::quarantineFile(this, _filename);
+    }
+    else
+    {
+        // Gracefully unloaded.
+        LOG_DBG("Cleaning up quarantined files for [" << getDocKey() << ']');
+        Quarantine::removeQuarantinedFiles(getDocKey());
+    }
+
     // Async cleanup.
     LOOLWSD::doHousekeeping();
 #endif
@@ -3563,10 +3579,6 @@ void DocumentBroker::shutdownClients(const std::string& closeReason)
 void DocumentBroker::terminateChild(const std::string& closeReason)
 {
     assertCorrectThread();
-
-#if !MOBILEAPP
-    Quarantine::quarantineFile(this, _filename);
-#endif
 
     LOG_INF("Terminating doc [" << _docKey << "] with reason: " << closeReason);
 
