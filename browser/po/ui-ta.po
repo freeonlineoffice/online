@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 21:11+0200\n"
+"POT-Creation-Date: 2023-04-21 16:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -259,7 +259,8 @@ msgstr ""
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
-#: src/control/Toolbar.js:711 src/control/Toolbar.js:936
+#: src/control/Toolbar.js:551 src/control/Toolbar.js:650
+#: src/control/Toolbar.js:717 src/control/Toolbar.js:942
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
@@ -284,7 +285,7 @@ msgstr "உறுதியாக இப்படவில்லையை அழ�
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:706 src/layer/tile/CommentListSection.ts:413
+#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:413
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "ரத்து"
@@ -377,7 +378,7 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:935
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:941
 msgid "Delete"
 msgstr ""
 
@@ -1245,7 +1246,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:678
+#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:684
 msgid "Text"
 msgstr ""
 
@@ -1976,27 +1977,27 @@ msgstr "சேமிக்கிறது..."
 msgid "Renaming..."
 msgstr ""
 
-#: src/control/Toolbar.js:631
+#: src/control/Toolbar.js:634
 msgid "This version of %productName is powered by"
 msgstr "%productName இன் இப்பதிப்பை இயக்குவது"
 
-#: src/control/Toolbar.js:643
+#: src/control/Toolbar.js:646
 msgid "\"Slow Proxy\""
 msgstr ""
 
-#: src/control/Toolbar.js:671
+#: src/control/Toolbar.js:677
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:690
+#: src/control/Toolbar.js:696
 msgid "Link"
 msgstr ""
 
-#: src/control/Toolbar.js:930
+#: src/control/Toolbar.js:936
 msgid "Are you sure you want to delete this slide?"
 msgstr "உறுதியாக இப்படவில்லையை அழிக்க வேண்டுகிறீரா?"
 
-#: src/control/Toolbar.js:933
+#: src/control/Toolbar.js:939
 msgid "Are you sure you want to delete this page?"
 msgstr "உறுதியாக இப்பக்கத்தை அழிக்க வேண்டுகிறீரா?"
 

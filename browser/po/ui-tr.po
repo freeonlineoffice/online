@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 21:11+0200\n"
+"POT-Creation-Date: 2023-04-21 16:18+0200\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -265,7 +265,8 @@ msgstr "Sunucu kapatıldı; lütfen sayfayı yeniden yükleyin."
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
-#: src/control/Toolbar.js:711 src/control/Toolbar.js:936
+#: src/control/Toolbar.js:551 src/control/Toolbar.js:650
+#: src/control/Toolbar.js:717 src/control/Toolbar.js:942
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:109
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
@@ -289,7 +290,7 @@ msgstr "Bu oturumu kapatmak istediğinizden emin misiniz?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:706 src/layer/tile/CommentListSection.ts:413
+#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:413
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "İptal"
@@ -382,7 +383,7 @@ msgstr "Sunucu %1 komutunu ayrıştırırken %0 hatasıyla karşılaştı."
 msgid "Unlock"
 msgstr "Kilidi Aç"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:935
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:941
 msgid "Delete"
 msgstr "Sil"
 
@@ -1241,7 +1242,7 @@ msgstr "Kesir"
 msgid "Boolean Value"
 msgstr "Boole Değeri"
 
-#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:678
+#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:684
 msgid "Text"
 msgstr "Metin"
 
@@ -1966,27 +1967,27 @@ msgstr "Kaydediyor..."
 msgid "Renaming..."
 msgstr "Yeniden adlandırılıyor..."
 
-#: src/control/Toolbar.js:631
+#: src/control/Toolbar.js:634
 msgid "This version of %productName is powered by"
 msgstr "Bu %productName sürümüne güç verenler"
 
-#: src/control/Toolbar.js:643
+#: src/control/Toolbar.js:646
 msgid "\"Slow Proxy\""
 msgstr "\"Yavaş Vekil Sunucu\""
 
-#: src/control/Toolbar.js:671
+#: src/control/Toolbar.js:677
 msgid "Insert hyperlink"
 msgstr "Köprü Ekle"
 
-#: src/control/Toolbar.js:690
+#: src/control/Toolbar.js:696
 msgid "Link"
 msgstr "Köprü"
 
-#: src/control/Toolbar.js:930
+#: src/control/Toolbar.js:936
 msgid "Are you sure you want to delete this slide?"
 msgstr "Bu slaytı silmek istediğinizden emin misiniz?"
 
-#: src/control/Toolbar.js:933
+#: src/control/Toolbar.js:939
 msgid "Are you sure you want to delete this page?"
 msgstr "Bu sayfayı silmek istediğinizden emin misiniz?"
 
