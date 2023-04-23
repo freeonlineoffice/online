@@ -3184,7 +3184,7 @@ void consistencyCheckJail()
 
         if (failedTmp || failedLo || failedUser)
         {
-            LOG_ERR("A fatal system error indicates that, outside the control of COOL "
+            LOG_ERR("A fatal system error indicates that, outside the control of LOOL "
                     "major structural changes have occured in our filesystem. These are "
                     "potentially indicative of an operator damaging the system, and will "
                     "inevitably cause document data-loss and/or malfunction.");
