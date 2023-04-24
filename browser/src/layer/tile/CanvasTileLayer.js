@@ -2353,12 +2353,6 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		// Remove input help if there is any:
 		this._removeInputHelpMarker();
-
-		var commentHasFocus = app.view.commentHasFocus;
-		// unselect if anything is selected already
-		if (!commentHasFocus && app.sectionContainer.doesSectionExist(L.CSections.CommentList.name)) {
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).unselect();
-		}
 	},
 
 	_removeInputHelpMarker: function() {
