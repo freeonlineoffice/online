@@ -40,8 +40,10 @@ L.Control.AlertDialog = L.Control.extend({
 			}
 
 			this._map.uiManager.showInfoModal('openlink', _('External link'), messageText, url,
-				_('Open link'), function() {
-					if ('processLoolUrl' in window) {
+				isLinkValid ? _('Open link') : _('OK'), function() {
+					if (!isLinkValid)
+						return;
+					if ('procesLoolUrl' in window) {
 						url = window.processLoolUrl({ url: url, type: 'doc' });
 					}
 
