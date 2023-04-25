@@ -432,6 +432,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-color: transparent var(--color-background-lighter) transparent transparent;
 }
 
+.mobile-wizard-content .lool-annotation {
+	max-width: none;
+}
+
 .lool-annotation {
 	position: absolute;
 	text-align: center;
