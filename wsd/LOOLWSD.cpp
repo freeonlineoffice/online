@@ -885,6 +885,7 @@ bool LOOLWSD::ForceCaching = false;
 #endif
 std::string LOOLWSD::SysTemplate;
 std::string LOOLWSD::LoTemplate = LO_PATH;
+std::string LOOLWSD::CleanupChildRoot;
 std::string LOOLWSD::ChildRoot;
 std::string LOOLWSD::ServerName;
 std::string LOOLWSD::FileServerRoot;
@@ -1933,7 +1934,6 @@ void LOOLWSD::innerInitialize(Application& self)
         { "file_server_root_path", "browser/.." },
         { "hexify_embedded_urls", "false" },
         { "experimental_features", "false" },
-        { "lo_jail_subpath", "lo" },
         { "logging.protocol", "false" },
         { "logging.anonymize.filenames", "false" }, // Deprecated.
         { "logging.anonymize.usernames", "false" }, // Deprecated.
@@ -2368,14 +2368,13 @@ void LOOLWSD::innerInitialize(Application& self)
         ::setenv("BASE_CHILD_ROOT", Poco::Path(ChildRoot).absolute().toString().c_str(), 1);
 #endif
 
-        // Create a custom sub-path for parallelized unit tests.
-        if (UnitBase::isUnitTesting())
-        {
-            ChildRoot += Util::rng::getHardRandomHexString(8) + '/';
-            LOG_INF("Creating sub-childroot: " + ChildRoot);
-        }
-        else
-            LOG_INF("Creating childroot: " + ChildRoot);
+        // We need to cleanup other people's expired jails
+        CleanupChildRoot = ChildRoot;
+
+        // Encode the process id into the path for parallel re-use of jails/
+        ChildRoot += std::to_string(getpid()) + '-' + Util::rng::getHardRandomHexString(8) + '/';
+
+        LOG_INF("Creating childroot: " + ChildRoot);
     }
 
 #if !MOBILEAPP
@@ -2422,6 +2421,7 @@ void LOOLWSD::innerInitialize(Application& self)
 #endif // CODE_COVERAGE
 
     // Setup the jails.
+    JailUtil::cleanupJails(CleanupChildRoot);
     JailUtil::setupChildRoot(IsBindMountingEnabled, ChildRoot, SysTemplate);
 
     LOG_DBG("FileServerRoot before config: " << FileServerRoot);
@@ -5822,7 +5822,7 @@ int LOOLWSD::innerMain()
     ForKitProc.reset();
 #endif
 
-    JailUtil::cleanupJails(ChildRoot);
+    JailUtil::cleanupJails(CleanupChildRoot);
 #endif // !MOBILEAPP
 
     const int returnValue = UnitBase::uninit();
