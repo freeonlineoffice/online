@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 16:18+0200\n"
+"POT-Creation-Date: 2023-04-26 20:17+0200\n"
 "PO-Revision-Date: 2022-04-14 19:15+0000\n"
 "Last-Translator: Pedro Silva <pedro.silva@collabora.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/collabora-online/"
@@ -148,7 +148,7 @@ msgstr "Graf sítě"
 #: src/control/Control.NotebookbarImpress.js:20
 #: src/control/Control.NotebookbarImpress.js:154
 #: src/control/Control.NotebookbarWriter.js:116
-#: src/layer/tile/CommentListSection.ts:418
+#: src/layer/tile/CommentListSection.ts:379
 #: src/layer/tile/CommentSection.ts:114
 msgid "Save"
 msgstr "Uložit"
@@ -229,7 +229,7 @@ msgid "Log Levels"
 msgstr "Úrovně podrobností protokolu"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
@@ -258,7 +258,7 @@ msgstr "Server byl vypnut, prosím načtěte stránku znovu."
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
-#: admin/src/AdminSocketSettings.js:36
+#: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
@@ -267,7 +267,8 @@ msgstr "Server byl vypnut, prosím načtěte stránku znovu."
 #: src/control/Toolbar.js:551 src/control/Toolbar.js:650
 #: src/control/Toolbar.js:717 src/control/Toolbar.js:942
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
-#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:109
+#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
+#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -289,7 +290,7 @@ msgstr "Opravdu si přejete ukončit tuto relaci?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:413
+#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:374
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Zrušit"
@@ -375,7 +376,7 @@ msgstr ""
 msgid "Open link"
 msgstr "Otevřít hypertextový odkaz"
 
-#: src/control/Control.AlertDialog.js:53
+#: src/control/Control.AlertDialog.js:55
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Server zaznamenal během zpracovávání příkazu %1 chybu %0."
 
@@ -553,9 +554,9 @@ msgid "replies"
 msgstr "odpovědí"
 
 #: src/control/Control.JSDialogBuilder.js:2062
-#: src/layer/tile/CanvasTileLayer.js:5137
-#: src/layer/tile/CanvasTileLayer.js:5148
-#: src/layer/tile/CommentListSection.ts:888
+#: src/layer/tile/CanvasTileLayer.js:5135
+#: src/layer/tile/CanvasTileLayer.js:5146
+#: src/layer/tile/CommentListSection.ts:874
 msgid "Comment"
 msgstr "Komentář"
 
@@ -2341,93 +2342,93 @@ msgstr "Nepodařilo se nahrát soubor na server, soubor je příliš velký."
 msgid "Functions"
 msgstr "Funkce"
 
-#: src/layer/tile/CanvasTileLayer.js:2410
+#: src/layer/tile/CanvasTileLayer.js:2399
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2418
+#: src/layer/tile/CanvasTileLayer.js:2407
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2426
+#: src/layer/tile/CanvasTileLayer.js:2415
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5165
+#: src/layer/tile/CanvasTileLayer.js:5163
 msgid "No Comments"
 msgstr "Bez komentářů"
 
-#: src/layer/tile/CommentListSection.ts:835
+#: src/layer/tile/CommentListSection.ts:821
 msgid "Modify"
 msgstr "Změnit"
 
-#: src/layer/tile/CommentListSection.ts:841
+#: src/layer/tile/CommentListSection.ts:827
 #: src/layer/tile/CommentSection.ts:117
 msgid "Reply"
 msgstr "Odpovědět"
 
-#: src/layer/tile/CommentListSection.ts:847
+#: src/layer/tile/CommentListSection.ts:833
 msgid "Remove"
 msgstr "Odstranit"
 
-#: src/layer/tile/CommentListSection.ts:853
+#: src/layer/tile/CommentListSection.ts:839
 msgid "Remove Thread"
 msgstr "Odebrat vlákno"
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Resolve"
 msgstr "Vyřešit"
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Unresolve"
 msgstr "Zrušit vyřešení"
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Unresolve Thread"
 msgstr "Zrušit vyřešení vlákna"
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Resolve Thread"
 msgstr "Vyřešit vlákno"
 
-#: src/layer/tile/CommentSection.ts:248
+#: src/layer/tile/CommentSection.ts:245
 msgid "Open menu"
 msgstr "Otevřít nabídku"
 
-#: src/layer/tile/CommentSection.ts:266 src/layer/tile/CommentSection.ts:267
+#: src/layer/tile/CommentSection.ts:263 src/layer/tile/CommentSection.ts:264
 msgid "Accept change"
 msgstr "Přijmout změnu"
 
-#: src/layer/tile/CommentSection.ts:273 src/layer/tile/CommentSection.ts:274
+#: src/layer/tile/CommentSection.ts:270 src/layer/tile/CommentSection.ts:271
 msgid "Reject change"
 msgstr "Odmítnout změnu"
 
-#: src/layer/tile/CommentSection.ts:297
+#: src/layer/tile/CommentSection.ts:294
 msgid "Resolved"
 msgstr "Vyřešit"
 
-#: src/main.js:109
+#: src/main.js:110
 msgid "Warning! The browser you are using is not supported."
 msgstr "Pozor! Používáte nepodporovaný prohlížeč."
 
-#: src/map/Clipboard.js:126
+#: src/map/Clipboard.js:125
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr "Při vkládání mimo %productName nejprve klikněte na tlačítko Stáhnout"
 
-#: src/map/Clipboard.js:136
+#: src/map/Clipboard.js:135
 msgid "Copying from the document disabled"
 msgstr "Kopírování z dokumentu zakázáno"
 
-#: src/map/Clipboard.js:297
+#: src/map/Clipboard.js:296
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Nepodařilo se stáhnout schránku, zkuste zkopírovat znovu"
 
-#: src/map/Clipboard.js:862
+#: src/map/Clipboard.js:861
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Použijte tlačítka kopírovat/vložit na klávesnici na obrazovce.</p>"
 
-#: src/map/Clipboard.js:864
+#: src/map/Clipboard.js:863
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2444,7 +2445,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Copy</td><td>Cut</td><td>Paste</td></tr></tab"
 "le>"
 
-#: src/map/Clipboard.js:883
+#: src/map/Clipboard.js:884
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2458,7 +2459,7 @@ msgstr ""
 "kopírování do schránky“.</p><p>Jestliže kopírujete a vkládáte mezi dokumenty "
 "v rámci %productName, nic stahovat nepotřebujete.</p>"
 
-#: src/map/Clipboard.js:897
+#: src/map/Clipboard.js:898
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2467,7 +2468,7 @@ msgstr ""
 "<p>Stahování za účelem rozsáhlého kopírování/vkládání již začalo. Počkejte "
 "na jeho dokončení, nebo ho před zahájením nového nejprve zrušte.</p>"
 
-#: src/map/Clipboard.js:906
+#: src/map/Clipboard.js:907
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "

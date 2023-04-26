@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 16:18+0200\n"
+"POT-Creation-Date: 2023-04-26 20:17+0200\n"
 "PO-Revision-Date: 2021-04-26 23:46+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
 "Language-Team: Sinhala <https://hosted.weblate.org/projects/collabora-online/"
@@ -143,7 +143,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:20
 #: src/control/Control.NotebookbarImpress.js:154
 #: src/control/Control.NotebookbarWriter.js:116
-#: src/layer/tile/CommentListSection.ts:418
+#: src/layer/tile/CommentListSection.ts:379
 #: src/layer/tile/CommentSection.ts:114
 msgid "Save"
 msgstr ""
@@ -224,7 +224,7 @@ msgid "Log Levels"
 msgstr ""
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
@@ -253,7 +253,7 @@ msgstr ""
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
-#: admin/src/AdminSocketSettings.js:36
+#: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
@@ -262,7 +262,8 @@ msgstr ""
 #: src/control/Toolbar.js:551 src/control/Toolbar.js:650
 #: src/control/Toolbar.js:717 src/control/Toolbar.js:942
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
-#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:109
+#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
+#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr ""
@@ -284,7 +285,7 @@ msgstr ""
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:413
+#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:374
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr ""
@@ -369,7 +370,7 @@ msgstr ""
 msgid "Open link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:53
+#: src/control/Control.AlertDialog.js:55
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr ""
 
@@ -547,9 +548,9 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2062
-#: src/layer/tile/CanvasTileLayer.js:5137
-#: src/layer/tile/CanvasTileLayer.js:5148
-#: src/layer/tile/CommentListSection.ts:888
+#: src/layer/tile/CanvasTileLayer.js:5135
+#: src/layer/tile/CanvasTileLayer.js:5146
+#: src/layer/tile/CommentListSection.ts:874
 msgid "Comment"
 msgstr ""
 
@@ -2278,93 +2279,93 @@ msgstr ""
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2410
+#: src/layer/tile/CanvasTileLayer.js:2399
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2418
+#: src/layer/tile/CanvasTileLayer.js:2407
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2426
+#: src/layer/tile/CanvasTileLayer.js:2415
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5165
+#: src/layer/tile/CanvasTileLayer.js:5163
 msgid "No Comments"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:835
+#: src/layer/tile/CommentListSection.ts:821
 msgid "Modify"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:841
+#: src/layer/tile/CommentListSection.ts:827
 #: src/layer/tile/CommentSection.ts:117
 msgid "Reply"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:847
+#: src/layer/tile/CommentListSection.ts:833
 msgid "Remove"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:853
+#: src/layer/tile/CommentListSection.ts:839
 msgid "Remove Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Resolve"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Unresolve"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:248
+#: src/layer/tile/CommentSection.ts:245
 msgid "Open menu"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:266 src/layer/tile/CommentSection.ts:267
+#: src/layer/tile/CommentSection.ts:263 src/layer/tile/CommentSection.ts:264
 msgid "Accept change"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:273 src/layer/tile/CommentSection.ts:274
+#: src/layer/tile/CommentSection.ts:270 src/layer/tile/CommentSection.ts:271
 msgid "Reject change"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:297
+#: src/layer/tile/CommentSection.ts:294
 msgid "Resolved"
 msgstr ""
 
-#: src/main.js:109
+#: src/main.js:110
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
-#: src/map/Clipboard.js:126
+#: src/map/Clipboard.js:125
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr ""
 
-#: src/map/Clipboard.js:136
+#: src/map/Clipboard.js:135
 msgid "Copying from the document disabled"
 msgstr ""
 
-#: src/map/Clipboard.js:297
+#: src/map/Clipboard.js:296
 msgid "Failed to download clipboard, please re-copy"
 msgstr ""
 
-#: src/map/Clipboard.js:862
+#: src/map/Clipboard.js:861
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:864
+#: src/map/Clipboard.js:863
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2374,7 +2375,7 @@ msgid ""
 "td><td>Cut</td><td>Paste</td></tr></table>"
 msgstr ""
 
-#: src/map/Clipboard.js:883
+#: src/map/Clipboard.js:884
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2383,14 +2384,14 @@ msgid ""
 "documents inside %productName, there is no need to download.</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:897
+#: src/map/Clipboard.js:898
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
 "one</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:906
+#: src/map/Clipboard.js:907
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
 "now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "

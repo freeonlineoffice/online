@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Andras Timar <andras.timar@collabora.com>, 2020
 # Marc Rodrigues <info@sustain-release.de>, 2020
 # Andreas Mantke <maand@gmx.de>, 2022
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 16:18+0200\n"
+"POT-Creation-Date: 2023-04-26 20:17+0200\n"
 "PO-Revision-Date: 2023-04-21 16:50+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
-"Language: de\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,7 +147,8 @@ msgstr "Netzwerkgrafik"
 #: src/control/Control.NotebookbarImpress.js:20
 #: src/control/Control.NotebookbarImpress.js:154
 #: src/control/Control.NotebookbarWriter.js:116
-#: src/layer/tile/CommentListSection.ts:418 src/layer/tile/CommentSection.ts:114
+#: src/layer/tile/CommentListSection.ts:379
+#: src/layer/tile/CommentSection.ts:114
 msgid "Save"
 msgstr "Speichern"
 
@@ -229,7 +230,7 @@ msgid "Log Levels"
 msgstr "Logging-Level"
 
 #: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
@@ -258,16 +259,18 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
-#: admin/src/AdminSocketSettings.js:36 src/control/Control.DocumentRepair.js:68
+#: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
+#: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
-#: src/control/Toolbar.js:551 src/control/Toolbar.js:650 src/control/Toolbar.js:717
-#: src/control/Toolbar.js:942 src/core/Socket.js:956 src/core/Socket.js:1031
-#: src/core/Socket.js:1158 src/core/Socket.js:1162 src/main.js:70 src/main.js:73
-#: src/main.js:109 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:484
+#: src/control/Toolbar.js:551 src/control/Toolbar.js:650
+#: src/control/Toolbar.js:717 src/control/Toolbar.js:942
+#: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
+#: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
+#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
 
@@ -284,11 +287,12 @@ msgid "Are you sure you want to terminate this session?"
 msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
-#: admin/src/AdminSocketSettings.js:37 src/control/Control.DocumentRepair.js:62
-#: src/control/Control.LanguageDialog.js:103 src/control/Control.MobileTopBar.js:41
-#: src/control/Control.Zotero.js:323 src/control/Toolbar.js:712
-#: src/layer/tile/CommentListSection.ts:413 src/layer/tile/CommentSection.ts:113
-#: src/layer/tile/CommentSection.ts:116
+#: admin/src/AdminSocketSettings.js:37
+#: src/control/Control.DocumentRepair.js:62
+#: src/control/Control.LanguageDialog.js:103
+#: src/control/Control.MobileTopBar.js:41 src/control/Control.Zotero.js:323
+#: src/control/Toolbar.js:712 src/layer/tile/CommentListSection.ts:374
+#: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -374,9 +378,10 @@ msgstr "Externer Link"
 msgid "Open link"
 msgstr "Verknüpfung öffnen"
 
-#: src/control/Control.AlertDialog.js:53
+#: src/control/Control.AlertDialog.js:55
 msgid "The server encountered a %0 error while parsing the %1 command."
-msgstr "Der Server ist auf einen Fehler %0 beim Ausführen des Befehls %1 gestoßen."
+msgstr ""
+"Der Server ist auf einen Fehler %0 beim Ausführen des Befehls %1 gestoßen."
 
 #: src/control/Control.Command.js:80
 msgid "Unlock"
@@ -399,7 +404,8 @@ msgstr "Pfad"
 msgid "Repair Document"
 msgstr "Dokument reparieren"
 
-#: src/control/Control.DocumentRepair.js:115 src/control/Control.UserList.js:309
+#: src/control/Control.DocumentRepair.js:115
+#: src/control/Control.UserList.js:309
 msgid "You"
 msgstr "Sie"
 
@@ -457,11 +463,13 @@ msgstr "Formel"
 msgid "Accept"
 msgstr "Übernehmen"
 
-#: src/control/Control.JSDialogBuilder.js:151 src/control/Control.StatusBar.js:330
+#: src/control/Control.JSDialogBuilder.js:151
+#: src/control/Control.StatusBar.js:330
 msgid "Sum"
 msgstr "Summe"
 
-#: src/control/Control.JSDialogBuilder.js:152 src/control/Control.StatusBar.js:325
+#: src/control/Control.JSDialogBuilder.js:152
+#: src/control/Control.StatusBar.js:325
 msgid "Average"
 msgstr "Mittelwert"
 
@@ -473,7 +481,8 @@ msgstr "Minimum"
 msgid "Max"
 msgstr "Maximum"
 
-#: src/control/Control.JSDialogBuilder.js:155 src/control/Control.StatusBar.js:327
+#: src/control/Control.JSDialogBuilder.js:155
+#: src/control/Control.StatusBar.js:327
 msgid "Count"
 msgstr "Anzahl"
 
@@ -548,8 +557,9 @@ msgid "replies"
 msgstr "Antworten"
 
 #: src/control/Control.JSDialogBuilder.js:2062
-#: src/layer/tile/CanvasTileLayer.js:5137 src/layer/tile/CanvasTileLayer.js:5148
-#: src/layer/tile/CommentListSection.ts:888
+#: src/layer/tile/CanvasTileLayer.js:5135
+#: src/layer/tile/CanvasTileLayer.js:5146
+#: src/layer/tile/CommentListSection.ts:874
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -561,11 +571,13 @@ msgstr "Kommentar einfügen"
 msgid "Cell borders"
 msgstr "Zellumrandung"
 
-#: src/control/Control.JSDialogBuilder.js:3006 src/control/Control.Menubar.js:787
+#: src/control/Control.JSDialogBuilder.js:3006
+#: src/control/Control.Menubar.js:787
 msgid "Rows"
 msgstr "Zeilen"
 
-#: src/control/Control.JSDialogBuilder.js:3007 src/control/Control.Menubar.js:790
+#: src/control/Control.JSDialogBuilder.js:3007
+#: src/control/Control.Menubar.js:790
 msgid "Columns"
 msgstr "Spalten"
 
@@ -589,27 +601,31 @@ msgid "Language"
 msgstr "Sprache"
 
 #: src/control/Control.Menubar.js:67 src/control/Control.Menubar.js:80
-#: src/control/Control.Menubar.js:902 src/control/Control.NotebookbarBuilder.js:496
+#: src/control/Control.Menubar.js:902
+#: src/control/Control.NotebookbarBuilder.js:496
 #: src/control/Control.NotebookbarBuilder.js:585
 msgid "ODF text document (.odt)"
 msgstr "ODF-Textdokument (.odt)"
 
 #: src/control/Control.Menubar.js:68 src/control/Control.Menubar.js:81
-#: src/control/Control.Menubar.js:903 src/control/Control.NotebookbarBuilder.js:508
+#: src/control/Control.Menubar.js:903
+#: src/control/Control.NotebookbarBuilder.js:508
 #: src/control/Control.NotebookbarBuilder.js:597
 #: src/control/Control.NotebookbarWriter.js:224
 msgid "Word 2003 Document (.doc)"
 msgstr "Word 2003-Dokument (.doc)"
 
 #: src/control/Control.Menubar.js:69 src/control/Control.Menubar.js:82
-#: src/control/Control.Menubar.js:904 src/control/Control.NotebookbarBuilder.js:504
+#: src/control/Control.Menubar.js:904
+#: src/control/Control.NotebookbarBuilder.js:504
 #: src/control/Control.NotebookbarBuilder.js:593
 #: src/control/Control.NotebookbarWriter.js:230
 msgid "Word Document (.docx)"
 msgstr "Word-Dokument (.docx)"
 
 #: src/control/Control.Menubar.js:70 src/control/Control.Menubar.js:83
-#: src/control/Control.Menubar.js:905 src/control/Control.NotebookbarBuilder.js:500
+#: src/control/Control.Menubar.js:905
+#: src/control/Control.NotebookbarBuilder.js:500
 #: src/control/Control.NotebookbarBuilder.js:589
 #: src/control/Control.NotebookbarWriter.js:212
 msgid "Rich Text (.rtf)"
@@ -787,32 +803,39 @@ msgstr "Textausrichtung"
 msgid "References"
 msgstr "Quellangabe"
 
-#: src/control/Control.Menubar.js:274 src/control/Control.NotebookbarWriter.js:1440
+#: src/control/Control.Menubar.js:274
+#: src/control/Control.NotebookbarWriter.js:1440
 msgid "Update Index"
 msgstr "Verzeichnis aktualisieren"
 
-#: src/control/Control.Menubar.js:283 src/control/Control.NotebookbarWriter.js:1523
+#: src/control/Control.Menubar.js:283
+#: src/control/Control.NotebookbarWriter.js:1523
 msgid "Add Citation"
 msgstr "Zitat hinzufügen"
 
-#: src/control/Control.Menubar.js:284 src/control/Control.NotebookbarWriter.js:1534
+#: src/control/Control.Menubar.js:284
+#: src/control/Control.NotebookbarWriter.js:1534
 msgid "Add Citation Note"
 msgstr "Zitat Hinweis hinzufügen"
 
-#: src/control/Control.Menubar.js:285 src/control/Control.NotebookbarWriter.js:1511
+#: src/control/Control.Menubar.js:285
+#: src/control/Control.NotebookbarWriter.js:1511
 msgid "Add Bibliography"
 msgstr "Literaturverzeichnis hinzufügen"
 
-#: src/control/Control.Menubar.js:287 src/control/Control.NotebookbarWriter.js:1551
+#: src/control/Control.Menubar.js:287
+#: src/control/Control.NotebookbarWriter.js:1551
 msgid "Refresh Citations"
 msgstr "Quellangaben aktualisieren"
 
-#: src/control/Control.Menubar.js:288 src/control/Control.NotebookbarWriter.js:1562
+#: src/control/Control.Menubar.js:288
+#: src/control/Control.NotebookbarWriter.js:1562
 #: src/control/Control.Zotero.js:1436
 msgid "Unlink Citations"
 msgstr "Quellangabe trennen"
 
-#: src/control/Control.Menubar.js:289 src/control/Control.NotebookbarWriter.js:1573
+#: src/control/Control.Menubar.js:289
+#: src/control/Control.NotebookbarWriter.js:1573
 msgid "Citation Preferences"
 msgstr "Zitierweise"
 
@@ -845,7 +868,8 @@ msgstr "Datum einfügen"
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: src/control/Control.Menubar.js:353 src/control/Control.NotebookbarWriter.js:309
+#: src/control/Control.Menubar.js:353
+#: src/control/Control.NotebookbarWriter.js:309
 msgid "Forum"
 msgstr "Forum"
 
@@ -897,20 +921,23 @@ msgid "Last modification"
 msgstr "Letzte Bearbeitung"
 
 #: src/control/Control.Menubar.js:368 src/control/Control.Menubar.js:380
-#: src/control/Control.Menubar.js:963 src/control/Control.NotebookbarBuilder.js:549
+#: src/control/Control.Menubar.js:963
+#: src/control/Control.NotebookbarBuilder.js:549
 #: src/control/Control.NotebookbarBuilder.js:619
 msgid "ODF presentation (.odp)"
 msgstr "ODF Präsentation (.odp)"
 
 #: src/control/Control.Menubar.js:369 src/control/Control.Menubar.js:381
-#: src/control/Control.Menubar.js:964 src/control/Control.NotebookbarBuilder.js:561
+#: src/control/Control.Menubar.js:964
+#: src/control/Control.NotebookbarBuilder.js:561
 #: src/control/Control.NotebookbarBuilder.js:627
 #: src/control/Control.NotebookbarImpress.js:280
 msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "PowerPoint 2003-Präsentation (.ppt)"
 
 #: src/control/Control.Menubar.js:370 src/control/Control.Menubar.js:382
-#: src/control/Control.Menubar.js:965 src/control/Control.NotebookbarBuilder.js:557
+#: src/control/Control.Menubar.js:965
+#: src/control/Control.NotebookbarBuilder.js:557
 #: src/control/Control.NotebookbarBuilder.js:623
 #: src/control/Control.NotebookbarImpress.js:286
 msgid "PowerPoint Presentation (.pptx)"
@@ -1018,7 +1045,8 @@ msgstr "Dateitypen-Symbol"
 msgid "Show the search bar"
 msgstr "Suchleiste anzeigen"
 
-#: src/control/Control.MobileBottomBar.js:37 src/control/Control.TopToolbar.js:159
+#: src/control/Control.MobileBottomBar.js:37
+#: src/control/Control.TopToolbar.js:159
 msgid "Borders"
 msgstr "Ränder"
 
@@ -1193,8 +1221,8 @@ msgid "Currency"
 msgstr "Währung"
 
 #: src/control/Control.NotebookbarCalc.js:558
-#: src/control/Control.NotebookbarWriter.js:1044 src/control/Control.Zotero.js:1073
-#: src/control/Control.Zotero.js:1509
+#: src/control/Control.NotebookbarWriter.js:1044
+#: src/control/Control.Zotero.js:1073 src/control/Control.Zotero.js:1509
 msgid "Date"
 msgstr "Datum"
 
@@ -1533,10 +1561,11 @@ msgstr "Nächste Folie"
 
 #: src/control/Control.Toolbar.js:1021
 msgid ""
-"Conflict Undo/Redo with multiple users. Please use document repair to resolve"
+"Conflict Undo/Redo with multiple users. Please use document repair to "
+"resolve"
 msgstr ""
-"Konflikt beim Rückgängigmachen/Wiederherstellen mit mehreren Benutzern. Bitte "
-"verwenden Sie die Dokumentwiederherstellung zur Lösung"
+"Konflikt beim Rückgängigmachen/Wiederherstellen mit mehreren Benutzern. "
+"Bitte verwenden Sie die Dokumentwiederherstellung zur Lösung"
 
 #: src/control/Control.TopToolbar.js:105
 msgid "Default Style"
@@ -1604,12 +1633,12 @@ msgstr "Zotero-Warnung"
 
 #: src/control/Control.Zotero.js:181
 msgid ""
-"The document contains some citations which may be unreachable through web API. "
-"It may cause some problems while editing citations or bibliography."
+"The document contains some citations which may be unreachable through web "
+"API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 "Das Dokument enthält einige Zitate, die über das Web-API eventuell nicht "
-"erreicht werden können. Dies könnte einige Probleme während der Bearbeitung von "
-"Zitaten und die Literaturliste verursachen."
+"erreicht werden können. Dies könnte einige Probleme während der Bearbeitung "
+"von Zitaten und die Literaturliste verursachen."
 
 #: src/control/Control.Zotero.js:237 src/core/Socket.js:1038
 msgid "Loading..."
@@ -1697,7 +1726,8 @@ msgstr "Zitierwarnung"
 
 #: src/control/Control.Zotero.js:1135
 msgid ""
-"Once citations are entered their storage and display type can not be changed."
+"Once citations are entered their storage and display type can not be "
+"changed."
 msgstr ""
 "Sobald Zitate eingetragen sind, kann ihr Speicherort und Anzeigetyp nicht "
 "geändert werden."
@@ -1732,8 +1762,8 @@ msgstr "Zitate aktualisieren"
 
 #: src/control/Control.Zotero.js:1437
 msgid ""
-"Unlinking citations will prevent Free Online Office from updating citations and "
-"bibliography in this document."
+"Unlinking citations will prevent Free Online Office from updating citations "
+"and bibliography in this document."
 msgstr ""
 "Aufheben der Verknüpfung der Zitate vermeidet, dass Free Online Office die "
 "Zitate und die Bibliographie in diesem Dokument aktualisiert."
@@ -1741,8 +1771,8 @@ msgstr ""
 #: src/control/Permission.js:72
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr ""
-"Das Dokument konnte nicht gesperrt werden und wird im schreibgeschützten Modus "
-"geöffnet."
+"Das Dokument konnte nicht gesperrt werden und wird im schreibgeschützten "
+"Modus geöffnet."
 
 #: src/control/Permission.js:74 src/control/Permission.js:84
 msgid "Server returned this reason:"
@@ -1773,8 +1803,8 @@ msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
 msgstr ""
-"Dieses Dokument enthält möglicherweise Formatierungen oder Inhalte, die nicht im "
-"aktuellen Dateiformat gespeichert werden können."
+"Dieses Dokument enthält möglicherweise Formatierungen oder Inhalte, die "
+"nicht im aktuellen Dateiformat gespeichert werden können."
 
 #: src/control/Ruler.js:364
 msgid "Left Margin"
@@ -1918,11 +1948,11 @@ msgstr "Signiert aber nicht alle Dateien sind signiert"
 
 #: src/control/Signing.js:648
 msgid ""
-"The signature is OK, but the certificate could not be validated and the document "
-"is only partially signed."
+"The signature is OK, but the certificate could not be validated and the "
+"document is only partially signed."
 msgstr ""
-"Die Signatur ist OK, aber das Zertifikat konnte nicht validiert werden und das "
-"Dokument ist nur teilweise signiert."
+"Die Signatur ist OK, aber das Zertifikat konnte nicht validiert werden und "
+"das Dokument ist nur teilweise signiert."
 
 #: src/control/Signing.js:650
 msgid "Signed but not validated and not all files are signed"
@@ -1974,7 +2004,8 @@ msgstr "Es besteht ein Problem bei der Verbindung zum %productName: "
 
 #: src/core/Socket.js:563
 msgid "Server is now reachable. We have to refresh the page now."
-msgstr "Der Server ist jetzt erreichbar. Wir müssen die Seite jetzt aktualisieren."
+msgstr ""
+"Der Server ist jetzt erreichbar. Wir müssen die Seite jetzt aktualisieren."
 
 #: src/core/Socket.js:565
 msgid "Server is now reachable..."
@@ -2007,7 +2038,8 @@ msgstr "Sitzung durch Dokumenteigentümer beendet"
 #: src/core/Socket.js:710
 msgid "Idle document - please click to reload and resume editing"
 msgstr ""
-"Leeres Dokument - zum Neuladen und Fortsetzen der Bearbeitung klicken Sie bitte"
+"Leeres Dokument - zum Neuladen und Fortsetzen der Bearbeitung klicken Sie "
+"bitte"
 
 #: src/core/Socket.js:712
 msgid "Idle document - please tap to reload and resume editing"
@@ -2025,24 +2057,24 @@ msgstr "Es besteht ein Problem bei der Verbindung zum Dokument"
 #: src/core/Socket.js:729
 msgid "Server is down, restarting automatically. Please wait."
 msgstr ""
-"Der Server ist heruntergefahren und wird automatisch neu gestartet. Bitte haben "
-"Sie einen Moment Geduld."
+"Der Server ist heruntergefahren und wird automatisch neu gestartet. Bitte "
+"haben Sie einen Moment Geduld."
 
 #: src/core/Socket.js:756
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
 msgstr ""
-"Das Dokument auf dem Speicher wurde geändert. Öffnen Sie das neue Dokument. Ihre "
-"Version steht als Revision zur Verfügung."
+"Das Dokument auf dem Speicher wurde geändert. Öffnen Sie das neue Dokument. "
+"Ihre Version steht als Revision zur Verfügung."
 
 #: src/core/Socket.js:762
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
 msgstr ""
-"Ältere Version wiederherstellen. Alle ungespeicherten Änderungen bleiben in der "
-"Versionshistorie erhalten"
+"Ältere Version wiederherstellen. Alle ungespeicherten Änderungen bleiben in "
+"der Versionshistorie erhalten"
 
 #: src/core/Socket.js:768
 msgid "Reloading the document after rename"
@@ -2062,7 +2094,8 @@ msgstr "Klicken Sie auf Abbrechen, um das Dokument im Ansichtsmodus zu öffnen."
 
 #: src/core/Socket.js:917
 msgid "Wrong password provided. Please try again."
-msgstr "Sie haben ein falsches Kennwort eingegeben. Bitte versuchen Sie es erneut."
+msgstr ""
+"Sie haben ein falsches Kennwort eingegeben. Bitte versuchen Sie es erneut."
 
 #: src/core/Socket.js:955
 msgid "Only the document owner can change the password."
@@ -2099,10 +2132,11 @@ msgstr "Erfolgreich exportiert: "
 
 #: src/core/Socket.js:1471
 msgid ""
-"Well, this is embarrassing, we cannot connect to your document. Please try again."
+"Well, this is embarrassing, we cannot connect to your document. Please try "
+"again."
 msgstr ""
-"Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen "
-"Sie es erneut."
+"Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte "
+"versuchen Sie es erneut."
 
 #: src/core/Socket.js:1488
 msgid "Reconnecting..."
@@ -2125,19 +2159,20 @@ msgid ""
 "The host URL is empty. The loolwsd server is probably misconfigured, please "
 "contact the administrator."
 msgstr ""
-"Die Host-URL ist leer. Der loolwsd-Server ist vermutlich falsch konfiguriert, "
-"bitte wenden Sie sich an den Administrator."
+"Die Host-URL ist leer. Der loolwsd-Server ist vermutlich falsch "
+"konfiguriert, bitte wenden Sie sich an den Administrator."
 
 #: src/errormessages.js:15
 msgid ""
-"This is an unsupported version of {productname}. To avoid the impression that it "
-"is suitable for deployment in enterprises, this message appears when more than "
-"{docs} documents or {connections} connections are in use concurrently."
+"This is an unsupported version of {productname}. To avoid the impression "
+"that it is suitable for deployment in enterprises, this message appears "
+"when more than {docs} documents or {connections} connections are in use "
+"concurrently."
 msgstr ""
 "Dies ist eine nicht unterstützte {productname} Version. Um den Eindruck zu "
-"vermeiden, dass sie sich für den Einsatz in Unternehmen eignet, erscheint diese "
-"Nachricht, wenn mehr als {docs} Dokumente oder {connections} Verbindungen "
-"gleichzeitig verwendet werden."
+"vermeiden, dass sie sich für den Einsatz in Unternehmen eignet, erscheint "
+"diese Nachricht, wenn mehr als {docs} Dokumente oder {connections} "
+"Verbindungen gleichzeitig verwendet werden."
 
 #: src/errormessages.js:16
 msgid "More information and support"
@@ -2145,28 +2180,29 @@ msgstr "Weitere Informationen und Unterstützung"
 
 #: src/errormessages.js:17
 msgid ""
-"This service is limited to %0 documents, and %1 connections total by the admin. "
-"This limit has been reached. Please try again later."
+"This service is limited to %0 documents, and %1 connections total by the "
+"admin. This limit has been reached. Please try again later."
 msgstr ""
-"Dieser Service ist durch den Administrator auf %0 Dokumente und %1 Verbindungen "
-"insgesamt begrenzt. Diese Begrenzung wurde erreicht. Bitte versuchen Sie es "
-"später erneut."
+"Dieser Service ist durch den Administrator auf %0 Dokumente und %1 "
+"Verbindungen insgesamt begrenzt. Diese Begrenzung wurde erreicht. Bitte "
+"versuchen Sie es später erneut."
 
 #: src/errormessages.js:18
 msgid ""
-"Service is unavailable. Please try again later and report to your administrator "
-"if the issue persists."
+"Service is unavailable. Please try again later and report to your "
+"administrator if the issue persists."
 msgstr ""
-"Der Dienst ist nicht verfügbar. Bitte versuchen Sie es später noch einmal und "
-"melden Sie sich bei Ihrem Administrator, falls das Problem weiterhin besteht."
+"Der Dienst ist nicht verfügbar. Bitte versuchen Sie es später noch einmal "
+"und melden Sie sich bei Ihrem Administrator, falls das Problem weiterhin "
+"besteht."
 
 #: src/errormessages.js:19
 msgid ""
-"Unauthorized WOPI host. Please try again later and report to your administrator "
-"if the issue persists."
+"Unauthorized WOPI host. Please try again later and report to your "
+"administrator if the issue persists."
 msgstr ""
-"Unautorisierter WOPI-Host. Bitte versuchen Sie es später noch einmal und melden "
-"Sie sich bei Ihrem Administrator, falls das Problem weiterhin besteht."
+"Unautorisierter WOPI-Host. Bitte versuchen Sie es später noch einmal und "
+"melden Sie sich bei Ihrem Administrator, falls das Problem weiterhin besteht."
 
 #: src/errormessages.js:20
 msgid "Wrong or missing WOPISrc parameter, please contact support."
@@ -2175,8 +2211,8 @@ msgstr ""
 
 #: src/errormessages.js:21
 msgid ""
-"Your session will expire in %time. Please save your work and refresh the session "
-"(or webpage) to continue. You might need to login again."
+"Your session will expire in %time. Please save your work and refresh the "
+"session (or webpage) to continue. You might need to login again."
 msgstr ""
 "Ihre Sitzung wird in %time ablaufen. Bitte speichern Sie Ihre Arbeit und "
 "erneuern Sie die Sitzung (oder Webseite), um fortzufahren. Sie müssen sich "
@@ -2184,9 +2220,9 @@ msgstr ""
 
 #: src/errormessages.js:22
 msgid ""
-"Your session has expired. Further changes to the document might not be saved. "
-"Please refresh the session (or webpage) to continue. You might need to login "
-"again."
+"Your session has expired. Further changes to the document might not be "
+"saved. Please refresh the session (or webpage) to continue. You might need "
+"to login again."
 msgstr ""
 "Ihre Sitzung ist abgelaufen. Neuerliche Änderungen am Dokument werden "
 "möglicherweise nicht gespeichert. Bitte erneuern Sie die Sitzung (oder "
@@ -2194,12 +2230,12 @@ msgstr ""
 
 #: src/errormessages.js:23
 msgid ""
-"Failed to load the document. Please ensure the file type is supported and not "
-"corrupted, and try again."
+"Failed to load the document. Please ensure the file type is supported and "
+"not corrupted, and try again."
 msgstr ""
-"Das Laden des Dokuments ist fehlgeschlagen. Bitte vergewissern Sie sich, dass "
-"der Dateityp unterstützt und die Datei nicht defekt ist, und versuchen Sie es "
-"dann erneut."
+"Das Laden des Dokuments ist fehlgeschlagen. Bitte vergewissern Sie sich, "
+"dass der Dateityp unterstützt und die Datei nicht defekt ist, und versuchen "
+"Sie es dann erneut."
 
 #: src/errormessages.js:24
 msgid "Invalid link: '%url'"
@@ -2207,18 +2243,19 @@ msgstr "Ungültiger Link: '%url'"
 
 #: src/errormessages.js:25
 msgid ""
-"You are leaving the document. The following web page will open in a new tab: "
+"You are leaving the document. The following web page will open in a new "
+"tab: "
 msgstr ""
 "Sie verlassen das Dokument. Die folgende Webseite wird in einer neuen "
 "Registerkarte geöffnet: "
 
 #: src/errormessages.js:26
 msgid ""
-"Failed to load the document. This document is either malformed or is taking more "
-"resources than allowed. Please contact the administrator."
+"Failed to load the document. This document is either malformed or is taking "
+"more resources than allowed. Please contact the administrator."
 msgstr ""
-"Fehler beim Laden des Dokuments. Dieses Dokument ist entweder fehlerhaft oder "
-"beansprucht mehr Ressourcen als zulässig. Bitte wenden Sie sich an den "
+"Fehler beim Laden des Dokuments. Dieses Dokument ist entweder fehlerhaft "
+"oder beansprucht mehr Ressourcen als zulässig. Bitte wenden Sie sich an den "
 "Administrator."
 
 #: src/errormessages.js:27
@@ -2227,11 +2264,11 @@ msgstr "Das Dokument der letzten Sitzung wird bereinigt."
 
 #: src/errormessages.js:28
 msgid ""
-"We are in the process of cleaning up this document from the last session, please "
-"try again later."
+"We are in the process of cleaning up this document from the last session, "
+"please try again later."
 msgstr ""
-"Wir bereinigen gerade dieses Dokument der letzten Sitzung, bitte versuchen Sie "
-"es später noch einmal."
+"Wir bereinigen gerade dieses Dokument der letzten Sitzung, bitte versuchen "
+"Sie es später noch einmal."
 
 #: src/errormessages.js:32
 msgid "Failed to load document."
@@ -2240,13 +2277,13 @@ msgstr "Dokument konnte nicht geladen werden."
 #: src/errormessages.js:33
 msgid "Save failed due to no disk space left. Document will now be read-only."
 msgstr ""
-"Speichern fehlgeschlagen, da kein Speicherplatz mehr vorhanden ist. Das Dokument "
-"ist jetzt schreibgeschützt."
+"Speichern fehlgeschlagen, da kein Speicherplatz mehr vorhanden ist. Das "
+"Dokument ist jetzt schreibgeschützt."
 
 #: src/errormessages.js:34
 msgid ""
-"The document is too large or no disk space left to save. Document will now be "
-"read-only."
+"The document is too large or no disk space left to save. Document will now "
+"be read-only."
 msgstr ""
 "Das Dokument ist zu groß oder es ist kein Plattenplatz mehr zum Speichern "
 "verfügbar. Das Dokument wird nun nur lesbar sein."
@@ -2277,22 +2314,22 @@ msgstr ""
 #: src/errormessages.js:42
 #, javascript-format
 msgid ""
-"Save failed due to no disk space left on storage server. Document will now be "
-"read-only. Please contact the server (%storageserver) administrator to continue "
-"editing."
+"Save failed due to no disk space left on storage server. Document will now "
+"be read-only. Please contact the server (%storageserver) administrator to "
+"continue editing."
 msgstr ""
 "Das Speichern auf dem Speicherserver schlug aufgrund fehlenden "
 "Festplattenplatzes fehl. Das Dokument wird jetzt schreibgeschützt. Bitte "
-"kontaktieren Sie den Administrator Ihres Speicherservers (%storageserver), um "
-"mit der Bearbeitung fortzufahren."
+"kontaktieren Sie den Administrator Ihres Speicherservers (%storageserver), "
+"um mit der Bearbeitung fortzufahren."
 
 #: src/errormessages.js:43
 #, javascript-format
 msgid ""
-"Save failed because the document is too large or disk quota exceeded. Document "
-"will now be read-only but you may still download it now to preserve a copy "
-"locally. Please contact the server (%storageserver) administrator to resolve the "
-"issue."
+"Save failed because the document is too large or disk quota exceeded. "
+"Document will now be read-only but you may still download it now to "
+"preserve a copy locally. Please contact the server (%storageserver) "
+"administrator to resolve the issue."
 msgstr ""
 "Das Speichern ist fehlgeschlagen, da das Dokument zu groß ist oder das "
 "Speicherplatzkontingent überschritten wurde. Das Dokument ist jetzt im Nur-"
@@ -2302,180 +2339,186 @@ msgstr ""
 
 #: src/errormessages.js:45
 msgid ""
-"Document cannot be saved. Check your permissions or contact the storage server "
-"administrator."
+"Document cannot be saved. Check your permissions or contact the storage "
+"server administrator."
 msgstr ""
-"Das Dokument kann nicht gespeichert werden. Prüfen Sie Ihre Berechtigungen oder "
-"kontaktieren Sie den Administrator des Speicherservers."
+"Das Dokument kann nicht gespeichert werden. Prüfen Sie Ihre Berechtigungen "
+"oder kontaktieren Sie den Administrator des Speicherservers."
 
 #: src/errormessages.js:46
 msgid ""
-"Document cannot be renamed. Check your permissions or contact the storage server "
-"administrator."
+"Document cannot be renamed. Check your permissions or contact the storage "
+"server administrator."
 msgstr ""
-"Das Dokument kann nicht umbenannt werden. Prüfen Sie Ihre Berechtigungen oder "
-"kontaktieren Sie den Administrator des Speicherservers."
+"Das Dokument kann nicht umbenannt werden. Prüfen Sie Ihre Berechtigungen "
+"oder kontaktieren Sie den Administrator des Speicherservers."
 
 #: src/errormessages.js:47
 msgid ""
-"Document cannot be exported. Please contact the storage server administrator."
+"Document cannot be exported. Please contact the storage server "
+"administrator."
 msgstr ""
-"Das Dokument kann nicht exportiert werden. Kontaktieren Sie den Administrator "
-"des Speicherservers."
+"Das Dokument kann nicht exportiert werden. Kontaktieren Sie den "
+"Administrator des Speicherservers."
 
 #: src/errormessages.js:52
 msgid "Uploading file to server failed, file not found."
 msgstr ""
-"Das Hochladen der Datei auf den Server ist fehlgeschlagen, die Datei wurde nicht "
-"gefunden."
+"Das Hochladen der Datei auf den Server ist fehlgeschlagen, die Datei wurde "
+"nicht gefunden."
 
 #: src/errormessages.js:53
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
-"Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
+"Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu "
+"groß."
 
 #: src/layer/tile/CanvasTileLayer.js:1856
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2410
+#: src/layer/tile/CanvasTileLayer.js:2399
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2418
+#: src/layer/tile/CanvasTileLayer.js:2407
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2426
+#: src/layer/tile/CanvasTileLayer.js:2415
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5165
+#: src/layer/tile/CanvasTileLayer.js:5163
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
-#: src/layer/tile/CommentListSection.ts:835
+#: src/layer/tile/CommentListSection.ts:821
 msgid "Modify"
 msgstr "Ändern"
 
-#: src/layer/tile/CommentListSection.ts:841 src/layer/tile/CommentSection.ts:117
+#: src/layer/tile/CommentListSection.ts:827
+#: src/layer/tile/CommentSection.ts:117
 msgid "Reply"
 msgstr "Antworten"
 
-#: src/layer/tile/CommentListSection.ts:847
+#: src/layer/tile/CommentListSection.ts:833
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/layer/tile/CommentListSection.ts:853
+#: src/layer/tile/CommentListSection.ts:839
 msgid "Remove Thread"
 msgstr "Thread entfernen"
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Resolve"
 msgstr "Auflösen"
 
-#: src/layer/tile/CommentListSection.ts:859
+#: src/layer/tile/CommentListSection.ts:845
 msgid "Unresolve"
 msgstr "Ungelöst"
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Unresolve Thread"
 msgstr "Thread als ungelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:865
+#: src/layer/tile/CommentListSection.ts:851
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentSection.ts:248
+#: src/layer/tile/CommentSection.ts:245
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: src/layer/tile/CommentSection.ts:266 src/layer/tile/CommentSection.ts:267
+#: src/layer/tile/CommentSection.ts:263 src/layer/tile/CommentSection.ts:264
 msgid "Accept change"
 msgstr "Änderung annehmen"
 
-#: src/layer/tile/CommentSection.ts:273 src/layer/tile/CommentSection.ts:274
+#: src/layer/tile/CommentSection.ts:270 src/layer/tile/CommentSection.ts:271
 msgid "Reject change"
 msgstr "Änderung verwerfen"
 
-#: src/layer/tile/CommentSection.ts:297
+#: src/layer/tile/CommentSection.ts:294
 msgid "Resolved"
 msgstr "Erledigt"
 
-#: src/main.js:109
+#: src/main.js:110
 msgid "Warning! The browser you are using is not supported."
 msgstr "Achtung! Der von Ihnen benutzte Browser wird nicht unterstützt."
 
-#: src/map/Clipboard.js:126
-msgid "To paste outside %productName, please first click the 'download' button"
+#: src/map/Clipboard.js:125
+msgid ""
+"To paste outside %productName, please first click the 'download' button"
 msgstr ""
 "Um außerhalb von %productName einzufügen, klicken Sie bitte zunächst auf die "
 "Schaltfläche „Herunterladen“"
 
-#: src/map/Clipboard.js:136
+#: src/map/Clipboard.js:135
 msgid "Copying from the document disabled"
 msgstr "Kopieren aus dem Dokument deaktiviert"
 
-#: src/map/Clipboard.js:297
+#: src/map/Clipboard.js:296
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:862
+#: src/map/Clipboard.js:861
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Bitte verwenden Sie die Schaltflächen Kopieren/ Einfügen auf Ihrer "
 "Bildschirmtastatur.</p>"
 
-#: src/map/Clipboard.js:864
+#: src/map/Clipboard.js:863
 msgid ""
-"<p>Your browser has very limited access to the clipboard, so use these keyboard "
-"shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</kbd><span "
-"class=\"kbd--plus\">+</span><kbd>C</kbd></td><td><kbd>Ctrl</kbd><span class="
-"\"kbd--plus\">+</span><kbd>X</kbd></td><td><kbd>Ctrl</kbd><span class=\"kbd--plus"
-"\">+</span><kbd>V</kbd></td></tr><tr><td>Copy</td><td>Cut</td><td>Paste</td></"
-"tr></table>"
+"<p>Your browser has very limited access to the clipboard, so use these "
+"keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
+"kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd></td><td><kbd>Ctrl</"
+"kbd><span class=\"kbd--plus\">+</span><kbd>X</kbd></td><td><kbd>Ctrl</"
+"kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd></td></tr><tr><td>Copy</"
+"td><td>Cut</td><td>Paste</td></tr></table>"
 msgstr ""
 "<p>Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage, "
-"verwenden Sie daher diese Tastenkombinationen:</p><table class=\"warn-copy-paste"
-"\"><tr><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd></"
-"td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>X</kbd></"
-"td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd></td></"
-"tr><tr><td>Kopieren</td><td>Ausschneiden</td><td>Einfügen</td></tr></table>"
+"verwenden Sie daher diese Tastenkombinationen:</p><table class=\"warn-copy-"
+"paste\"><tr><td><kbd>Strg</kbd><span class=\"kbd--plus\""
+">+</span><kbd>C</kbd></td><td><kbd>Strg</kbd><span class=\"kbd--plus\""
+">+</span><kbd>X</kbd></td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</spa"
+"n><kbd>V</kbd></td></tr><tr><td>Kopieren</td><td>Ausschneiden</td><td>Einfüge"
+"n</td></tr></table>"
 
-#: src/map/Clipboard.js:883
+#: src/map/Clipboard.js:884
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
-"applications it is necessary to first download them onto your device. To do that "
-"press the \"Start download\" button below, and when complete click \"Confirm "
-"copy to clipboard\".</p><p>If you are copy and pasting between documents inside "
-"%productName, there is no need to download.</p>"
+"applications it is necessary to first download them onto your device. To do "
+"that press the \"Start download\" button below, and when complete click "
+"\"Confirm copy to clipboard\".</p><p>If you are copy and pasting between "
+"documents inside %productName, there is no need to download.</p>"
 msgstr ""
-"<p>Wenn Sie größere Elemente Ihres Dokuments für andere Anwendungen freigeben "
-"möchten, müssen Sie diese zuerst auf Ihr Gerät herunterladen. Klicken Sie dazu "
-"unten auf die Schaltfläche „Herunterladen starten“ und anschließend auf „Kopie "
-"in Zwischenablage bestätigen“.</p><p>Wenn Sie zwischen Dokumenten in "
-"%productName hin- und her kopieren möchten, brauchen Sie nichts herunterladen.</"
-"p>"
+"<p>Wenn Sie größere Elemente Ihres Dokuments für andere Anwendungen "
+"freigeben möchten, müssen Sie diese zuerst auf Ihr Gerät herunterladen. "
+"Klicken Sie dazu unten auf die Schaltfläche „Herunterladen starten“ und "
+"anschließend auf „Kopie in Zwischenablage bestätigen“.</p><p>Wenn Sie "
+"zwischen Dokumenten in %productName hin- und her kopieren möchten, brauchen "
+"Sie nichts herunterladen.</p>"
 
-#: src/map/Clipboard.js:897
+#: src/map/Clipboard.js:898
 msgid ""
-"<p>A download due to a large copy/paste operation has already started. Please, "
-"wait for the current download or cancel it before starting a new one</p>"
+"<p>A download due to a large copy/paste operation has already started. "
+"Please, wait for the current download or cancel it before starting a new "
+"one</p>"
 msgstr ""
 "<p>Ein Download wurde bereits aufgrund eines großen Kopier-/Einfügevorgangs "
-"gestartet. Bitte warten Sie auf den aktuellen Download oder brechen Sie ihn ab, "
-"bevor Sie einen neuen starten.</p>"
+"gestartet. Bitte warten Sie auf den aktuellen Download oder brechen Sie ihn "
+"ab, bevor Sie einen neuen starten.</p>"
 
-#: src/map/Clipboard.js:906
+#: src/map/Clipboard.js:907
 msgid ""
-"<p>Your browser has very limited access to the clipboard</p><p>Please press now: "
-"<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see more "
-"options</p><p>Close popup to ignore paste special</p>"
+"<p>Your browser has very limited access to the clipboard</p><p>Please press "
+"now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
+"more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
-"<p>Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage</"
-"p><p>Bitte drücken Sie jetzt: <kbd>Strg</kbd><span class=\"kbd--plus\">+</"
-"span><kbd>V</kbd>, um weitere Optionen zu sehen</p><p>Popup schließen, um "
-"Einfüge-Spezial zu ignorieren</p>"
+"<p>Ihr Browser hat nur sehr eingeschränkten Zugriff auf die "
+"Zwischenablage</p><p>Bitte drücken Sie jetzt: <kbd>Strg</kbd><span class=\""
+"kbd--plus\">+</span><kbd>V</kbd>, um weitere Optionen zu sehen</p><p>Popup "
+"schließen, um Einfüge-Spezial zu ignorieren</p>"
 
 #: src/map/Map.js:218
 msgid "Initializing..."
@@ -2494,15 +2537,16 @@ msgstr "Bitte senden Sie uns Ihr Feedback"
 msgid ""
 "The file of type: %0 cannot be uploaded to server since the file has no name"
 msgstr ""
-"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die Datei "
-"keinen Namen hat"
+"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die "
+"Datei keinen Namen hat"
 
 #: src/map/handler/Map.FileInserter.js:107
 #, javascript-format
-msgid "The file of type: %0 cannot be uploaded to server since the file is empty"
+msgid ""
+"The file of type: %0 cannot be uploaded to server since the file is empty"
 msgstr ""
-"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die Datei "
-"leer ist"
+"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die "
+"Datei leer ist"
 
 #: src/map/handler/Map.FileInserter.js:138
 msgid "Uploading..."
@@ -2544,14 +2588,15 @@ msgstr "Free Online Office"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
-"Enjoy the latest developments in online productivity, free for you to use, to "
-"explore and to use with others in the browser. Various <a target=\"_blank\" href="
-"\"https://www.libreoffice.org/\">apps</a> are also available for mobile."
+"Enjoy the latest developments in online productivity, free for you to use, "
+"to explore and to use with others in the browser. Various <a target=\"_blank"
+"\" href=\"https://www.libreoffice.org/\">apps</a> are also available for "
+"mobile."
 msgstr ""
-"Profitieren Sie von den neuesten Entwicklungen in der Online-Produktivität, die "
-"Sie kostenlos nutzen, erkunden und mit anderen im Browser verwenden können. "
-"Verschiedene <a target=\"_blank\" href=\"https://www.libreoffice.org/\">Apps</a> "
-"sind auch für Mobiltelefone verfügbar."
+"Profitieren Sie von den neuesten Entwicklungen in der Online-Produktivität, "
+"die Sie kostenlos nutzen, erkunden und mit anderen im Browser verwenden "
+"können. Verschiedene <a target=\"_blank\" href=\"https://www.libreoffice.org/"
+"\">Apps</a> sind auch für Mobiltelefone verfügbar."
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:37-7
 msgid "Discover All The Changes"
@@ -2577,17 +2622,17 @@ msgstr "https://libreoffice.org/"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:50-7
 msgid ""
-"Are you interested in contributing but don’t know where to start? Head over to "
-"the <a target=\"_blank\" href=\"https://libreoffice.org/\">step-by-step "
-"instructions</a> and build Free Online Office from scratch. You can also help "
-"out with translations or by filing a bug report with all the essential steps on "
-"how to reproduce it."
+"Are you interested in contributing but don’t know where to start? Head over "
+"to the <a target=\"_blank\" href=\"https://libreoffice.org/\">step-by-step "
+"instructions</a> and build Free Online Office from scratch. You can also "
+"help out with translations or by filing a bug report with all the essential "
+"steps on how to reproduce it."
 msgstr ""
-"Sie möchten sich einbringen, wissen aber nicht, wo Sie anfangen sollen? Besuchen "
-"Sie die <a target=\"_blank\" href=\"https://libreoffice.org/\">Schritt-für-"
-"Schritt-Anleitung</a> und erzeugen Sie einen Free-Online-Office-Build. Sie "
-"können auch mit Übersetzungen oder durch Meldung eines Fehlers mit allen "
-"wichtigen Schritten zur Reproduktion des Fehlers helfen."
+"Sie möchten sich einbringen, wissen aber nicht, wo Sie anfangen sollen? "
+"Besuchen Sie die <a target=\"_blank\" href=\"https://libreoffice.org/\""
+">Schritt-für-Schritt-Anleitung</a> und erzeugen Sie einen Free-Online-Office-"
+"Build. Sie können auch mit Übersetzungen oder durch Meldung eines Fehlers "
+"mit allen wichtigen Schritten zur Reproduktion des Fehlers helfen."
 
 #~ msgid "Pick Link"
 #~ msgstr "Link auswählen"
