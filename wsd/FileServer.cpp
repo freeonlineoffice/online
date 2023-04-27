@@ -949,6 +949,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     bool hasIntegrationTheme = (theme != "") && FileUtil::Stat(LOOLWSD::FileServerRoot + "/browser/dist/" + theme).exists();
     std::string escapedTheme;
     Poco::URI::encode(theme, "'", escapedTheme);
+    const std::string themePreFix = hasIntegrationTheme && useIntegrationTheme ? escapedTheme + "/" : "";
     const std::string linkCSS("<link rel=\"stylesheet\" href=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.css\">");
     const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/" + themePreFix + "%s.js\"></script>");
 
