@@ -160,6 +160,7 @@ public:
         , _hasMemDirtyChanged(true)
         , _badBehaviorDetectionTime(0)
         , _abortTime(0)
+        , _isUploaded(0)
     {
     }
 
@@ -207,6 +208,9 @@ public:
 
     void setModified(bool value) { _isModified = value; }
     bool getModifiedStatus() const { return _isModified; }
+
+    void setUploaded(bool value) { _isUploaded = value; }
+    bool getUploadedStatus() const { return _isUploaded; }
 
     void addBytes(uint64_t sent, uint64_t recv)
     {
@@ -270,6 +274,8 @@ private:
 
     std::time_t _badBehaviorDetectionTime;
     std::time_t _abortTime;
+
+    bool _isUploaded;
 };
 
 /// An Admin session subscriber.
@@ -343,6 +349,8 @@ public:
     void unsubscribe(int sessionId, const std::string& command);
 
     void modificationAlert(const std::string& docKey, pid_t pid, bool value);
+
+    void uploadedAlert(const std::string& docKey, pid_t pid, bool value);
 
     void clearMemStats() { _memStats.clear(); }
 
