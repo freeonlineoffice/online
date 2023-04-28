@@ -52,7 +52,7 @@ if test -n "${dictionaries}"; then
 fi
 
 # Restart when /etc/loolwsd/loolwsd.xml changes
-[ -x /usr/bin/inotifywait -a /usr/bin/killall ] && (
+[ -x /usr/bin/inotifywait -a -x /usr/bin/killall ] && (
   /usr/bin/inotifywait -e modify /etc/loolwsd/loolwsd.xml
   echo "$(ls -l /etc/loolwsd/loolwsd.xml) modified --> restarting"
   /usr/bin/killall -1 loolwsd
