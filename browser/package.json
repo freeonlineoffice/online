@@ -4,6 +4,7 @@
   "description": "LibreOffice Online front-end",
   "devDependencies": {
     "@braintree/sanitize-url": "6.0.2",
+    "@browserify/uglifyify": "6.0.0",
     "@types/mocha": "10.0.1",
     "@types/node": "18.11.12",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
@@ -32,7 +33,6 @@
     "typescript": "^5.0.4",
     "uglify-js": "3.17.4",
     "uglifycss": "0.0.29",
-    "uglifyify": "^5.0.0",
     "vex-js": "4.1.0",
     "xtend": "4.0.2"
   },
