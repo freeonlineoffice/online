@@ -11,6 +11,7 @@
 
 #include <config.h>
 
+#include "HttpRequest.hpp"
 #include "lokassert.hpp"
 
 #include <Unit.hpp>
@@ -61,8 +62,8 @@ public:
         return httpResponse->getBody();
     }
 
-    std::shared_ptr<ClipboardData> getClipboard(const std::string &clipURIstr,
-                                                HTTPResponse::HTTPStatus expected)
+    std::shared_ptr<ClipboardData> getClipboard(const std::string& clipURIstr,
+                                                http::StatusCode expected)
     {
         LOG_TST("getClipboard: connect to " << clipURIstr);
         Poco::URI clipURI(clipURIstr);
@@ -79,8 +80,7 @@ public:
 
             if (httpResponse->statusLine().statusCode() != expected)
             {
-                LOK_ASSERT_EQUAL_MESSAGE("clipboard status mismatches expected",
-                                         static_cast<unsigned int>(expected),
+                LOK_ASSERT_EQUAL_MESSAGE("clipboard status mismatches expected", expected,
                                          httpResponse->statusLine().statusCode());
                 exitTest(TestResult::Failed);
                 return std::shared_ptr<ClipboardData>();
@@ -135,10 +135,9 @@ public:
         return true;
     }
 
-    bool fetchClipboardAssert(const std::string &clipURI,
-                              const std::string &mimeType,
-                              const std::string &content,
-                              HTTPResponse::HTTPStatus expected = HTTPResponse::HTTP_OK)
+    bool fetchClipboardAssert(const std::string& clipURI, const std::string& mimeType,
+                              const std::string& content,
+                              http::StatusCode expected = http::StatusCode::OK)
     {
         try
         {
