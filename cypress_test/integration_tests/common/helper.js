@@ -72,26 +72,17 @@ function checkLoolFrameGlobal() {
 	cy.log('checkLoolFrameGlobal - end.');
 }
 
+
 function checkFirstLoolFrameGlobal() {
 	cy.log('checkFirstLoolFrameGlobal - start.');
-	cy.get('#iframe1').its('0.contentDocument').should('exist').its('body').should('not.be.undefined')
-		.find('#loolframe').should('exist');
+	cy.get('#iframe1').its('0.contentDocument').should('exist').its('body').should('not.be.undefined');
 	cy.log('checkFirstLoolFrameGlobal - end.');
 }
 
 function checkSecondLoolFrameGlobal() {
 	cy.log('checkSecondLoolFrameGlobal - start.');
-	cy.get('#iframe2').its('0.contentDocument').should('exist').its('body').should('not.be.undefined')
-		.find('#loolframe').should('exist');
+	cy.get('#iframe2').its('0.contentDocument').should('exist').its('body').should('not.be.undefined');
 	cy.log('checkSecondLoolFrameGlobal - end.');
-}
-
-function cFrame() {
-	if (cy.cActiveFrame === '#loolframe')
-		return cy.get(cy.cActiveFrame).its('0.contentDocument').then(cy.wrap);
-	else {
-		return cy.get(cy.cActiveFrame).its('0.contentDocument').find('#loolframe').its('0.contentDocument').then(cy.wrap);
-	}
 }
 
 /*
@@ -360,7 +351,7 @@ function documentChecks() {
 			// Check also that the inputbar is drawn in Calc.
 			doIfInCalc(function() {
 				cy.cGet('#sc_input_window.formulabar').should('exist');
-			}, cFrame());
+			});
 		});
 	}
 
@@ -523,6 +514,10 @@ function reload(fileName, subFolder, noFileCopy, subsequentLoad) {
 
 // noRename - whether or not to give the file a unique name, if noFileCopy is false.
 function beforeAll(fileName, subFolder, noFileCopy, isMultiUser, subsequentLoad, hasInteractionBeforeLoad, noRename) {
+	// Set defaults here in order to remove checks from cy.cGet function.
+	cy.cSetActiveFrame('#loolframe');
+	cy.cSetLevel('1');
+
 	return loadTestDoc(fileName, subFolder, noFileCopy, isMultiUser, subsequentLoad, hasInteractionBeforeLoad, noRename);
 }
 
