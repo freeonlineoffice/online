@@ -122,8 +122,6 @@ if ENABLE_SSL
 shared_sources += net/Ssl.cpp
 endif
 
-shared_json = $(patsubst %.cpp,%.cmd,$(shared_sources))
-
 loolwsd_sources = common/Crypto.cpp \
                   wsd/Admin.cpp \
                   wsd/AdminModel.cpp \
@@ -141,8 +139,6 @@ loolwsd_sources = common/Crypto.cpp \
                   wsd/TileCache.cpp \
                   wsd/ProofKey.cpp \
                   wsd/QuarantineUtil.cpp
-
-loolwsd_json = $(patsubst %.cpp,%.cmd,$(loolwsd_sources))
 
 loolwsd_SOURCES = $(loolwsd_sources) \
                   $(shared_sources)
@@ -181,8 +177,6 @@ lokitclient_SOURCES = common/Log.cpp \
 loolforkit_sources = kit/ChildSession.cpp \
                      kit/ForKit.cpp \
                      kit/Kit.cpp
-
-loolforkit_json = $(patsubst %.cpp,%.cmd,$(loolforkit_sources))
 
 loolforkit_SOURCES = $(loolforkit_sources) \
                      $(shared_sources)
@@ -593,7 +587,7 @@ CLANGXX_COMPILE_FLAGS=clang++ $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 
 JSON_COMPILE_FLAGS=$(subst ",\",$(subst \,\\,$(CLANGXX_COMPILE_FLAGS)))
 
-JSON_COMPILE_SRC = $(loolwsd_json) $(loolforkit_json) $(shared_json)
+JSON_COMPILE_SRC = $(patsubst %.cpp,%.cmd,$(wildcard **/*.cpp))
 
 $(eval $(call file_targets,$(JSON_COMPILE_SRC)))
 
