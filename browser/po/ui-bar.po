@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 20:42+0200\n"
+"POT-Creation-Date: 2023-05-03 21:40+0200\n"
 "PO-Revision-Date: 2020-01-28 16:49+0000\n"
 "Last-Translator: Florian <1234567890@hotmail.de>\n"
 "Language-Team: Bavarian <https://weblate.documentfoundation.org/projects/"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Network Graph"
 msgstr ""
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:259
+#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132

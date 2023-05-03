@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 20:42+0200\n"
+"POT-Creation-Date: 2023-05-03 21:40+0200\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -138,7 +138,7 @@ msgstr "رسم بياني للمعالج"
 msgid "Network Graph"
 msgstr "رسم بياني للشبكة"
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:259
+#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132

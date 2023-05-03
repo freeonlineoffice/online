@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 20:42+0200\n"
+"POT-Creation-Date: 2023-05-03 21:40+0200\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -142,7 +142,7 @@ msgstr "İşlemci Grafiği"
 msgid "Network Graph"
 msgstr "Ağ Grafiği"
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:259
+#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132
