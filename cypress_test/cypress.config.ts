@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import plugin from './plugins/index.js';
+import 'process';
 
 export default defineConfig({
   video: false,
