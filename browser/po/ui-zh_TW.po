@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-03 21:40+0200\n"
+"POT-Creation-Date: 2023-05-04 20:06+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -65,12 +65,12 @@ msgid "Documents open"
 msgstr "開啟的文件"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:349
 #, fuzzy
 msgid " user(s)."
 msgstr "0 位使用者"
 
-#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:195
+#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:205
 #, fuzzy
 msgid " document(s) open."
 msgstr "開啟的文件"
@@ -116,30 +116,34 @@ msgid "Modified"
 msgstr "最後修改"
 
 #: admin/admin.strings.js:29
-msgid "WOPI host"
+msgid "Uploaded"
 msgstr ""
 
 #: admin/admin.strings.js:30
+msgid "WOPI host"
+msgstr ""
+
+#: admin/admin.strings.js:31
 msgid "Kill"
 msgstr "截殺"
 
-#: admin/admin.strings.js:31
+#: admin/admin.strings.js:32
 msgid "Graphs"
 msgstr "圖表"
 
-#: admin/admin.strings.js:32
+#: admin/admin.strings.js:33
 msgid "Memory Graph"
 msgstr "記憶體圖表"
 
-#: admin/admin.strings.js:33
+#: admin/admin.strings.js:34
 msgid "CPU Graph"
 msgstr "CPU 圖表"
 
-#: admin/admin.strings.js:34
+#: admin/admin.strings.js:35
 msgid "Network Graph"
 msgstr "網路圖表"
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132
@@ -151,81 +155,81 @@ msgstr "網路圖表"
 msgid "Save"
 msgstr "儲存"
 
-#: admin/admin.strings.js:36
+#: admin/admin.strings.js:37
 msgid "Cache size of memory statistics"
 msgstr "記憶體統計資料的快取大小"
 
-#: admin/admin.strings.js:37
+#: admin/admin.strings.js:38
 msgid "Time interval of memory statistics (in ms)"
 msgstr "記憶體統計的時間間隔（單位毫秒）"
 
-#: admin/admin.strings.js:38
+#: admin/admin.strings.js:39
 msgid "Cache size of CPU statistics"
 msgstr "CPU 統計資料的快取大小"
 
-#: admin/admin.strings.js:39
+#: admin/admin.strings.js:40
 msgid "Time interval of CPU statistics (in ms)"
 msgstr "CPU 統計資料的時間間隔（單位毫秒）"
 
-#: admin/admin.strings.js:40 admin/src/AdminSocketOverview.js:91
+#: admin/admin.strings.js:41 admin/src/AdminSocketOverview.js:91
 msgid "Kill session."
 msgstr ""
 
-#: admin/admin.strings.js:41
+#: admin/admin.strings.js:42
 msgid "Maximum Document process virtual memory (in MB) - reduce only"
 msgstr "最大文件的程序虛擬記憶 (單位 MB) - 僅能減少"
 
-#: admin/admin.strings.js:42
+#: admin/admin.strings.js:43
 msgid "Maximum Document process stack memory (in KB) - reduce only"
 msgstr "最大文件的程序堆疊記憶 (單位 KB) - 僅能減少"
 
-#: admin/admin.strings.js:43
+#: admin/admin.strings.js:44
 msgid "Maximum file size allowed to write to disk (in MB) - reduce only"
 msgstr "寫入磁碟的最大允許檔案大小 (單位 MB) - 僅能減少"
 
-#: admin/admin.strings.js:44
+#: admin/admin.strings.js:45
 msgid "Documents:"
 msgstr "文件："
 
-#: admin/admin.strings.js:45
+#: admin/admin.strings.js:46
 msgid "Expired:"
 msgstr "逾期："
 
-#: admin/admin.strings.js:46 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr "重整"
 
-#: admin/admin.strings.js:47
+#: admin/admin.strings.js:48
 msgid "Shutdown Server"
 msgstr "關閉伺服器"
 
-#: admin/admin.strings.js:48
+#: admin/admin.strings.js:49
 msgid "Server uptime"
 msgstr "伺服器 uptime"
 
-#: admin/admin.strings.js:49
+#: admin/admin.strings.js:50
 msgid "Refresh Log"
 msgstr "重新整理紀錄"
 
-#: admin/admin.strings.js:50
+#: admin/admin.strings.js:51
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:469
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:469
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "無"
 
-#: admin/admin.strings.js:52
+#: admin/admin.strings.js:53
 msgid "Set Log Levels"
 msgstr "設定紀錄層級"
 
-#: admin/admin.strings.js:53
+#: admin/admin.strings.js:54
 msgid "Log Levels"
 msgstr "紀錄層級"
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
@@ -233,11 +237,11 @@ msgstr "紀錄層級"
 msgid "Close"
 msgstr "關閉"
 
-#: admin/admin.strings.js:55
+#: admin/admin.strings.js:56
 msgid "Update Log Levels"
 msgstr "更新紀錄層級"
 
-#: admin/admin.strings.js:56
+#: admin/admin.strings.js:57
 msgid "Version Information"
 msgstr ""
 
@@ -254,7 +258,7 @@ msgid "Server has been shut down; please reload the page."
 msgstr ""
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
@@ -282,7 +286,7 @@ msgstr "確認"
 msgid "Are you sure you want to terminate this session?"
 msgstr "您確定要終止本次的作業階段？"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:423
 #: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
@@ -292,15 +296,15 @@ msgstr "您確定要終止本次的作業階段？"
 msgid "Cancel"
 msgstr "取消"
 
-#: admin/src/AdminSocketOverview.js:387
+#: admin/src/AdminSocketOverview.js:411
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr "無法透過不安全的連線設定 jwt 身分核對 Cookie"
 
-#: admin/src/AdminSocketOverview.js:391
+#: admin/src/AdminSocketOverview.js:415
 msgid "Failed to authenticate this session over protocol %0"
 msgstr "無法透過 %0 協定進行此作業階段的身分核對"
 
-#: admin/src/AdminSocketOverview.js:396
+#: admin/src/AdminSocketOverview.js:420
 msgid "Warning"
 msgstr ""
 

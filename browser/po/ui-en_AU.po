@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-03 21:40+0200\n"
+"POT-Creation-Date: 2023-05-04 20:06+0200\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (Australia) <https://hosted.weblate.org/projects/"
@@ -64,11 +64,11 @@ msgid "Documents open"
 msgstr "Documents open"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:349
 msgid " user(s)."
 msgstr " user(s)."
 
-#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:195
+#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:205
 msgid " document(s) open."
 msgstr " document(s) open."
 
@@ -113,30 +113,34 @@ msgid "Modified"
 msgstr "Modified"
 
 #: admin/admin.strings.js:29
+msgid "Uploaded"
+msgstr ""
+
+#: admin/admin.strings.js:30
 msgid "WOPI host"
 msgstr "WOPI host"
 
-#: admin/admin.strings.js:30
+#: admin/admin.strings.js:31
 msgid "Kill"
 msgstr "Kill"
 
-#: admin/admin.strings.js:31
+#: admin/admin.strings.js:32
 msgid "Graphs"
 msgstr "Graphs"
 
-#: admin/admin.strings.js:32
+#: admin/admin.strings.js:33
 msgid "Memory Graph"
 msgstr "Memory Graph"
 
-#: admin/admin.strings.js:33
+#: admin/admin.strings.js:34
 msgid "CPU Graph"
 msgstr "CPU Graph"
 
-#: admin/admin.strings.js:34
+#: admin/admin.strings.js:35
 msgid "Network Graph"
 msgstr "Network Graph"
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132
@@ -148,81 +152,81 @@ msgstr "Network Graph"
 msgid "Save"
 msgstr "Save"
 
-#: admin/admin.strings.js:36
+#: admin/admin.strings.js:37
 msgid "Cache size of memory statistics"
 msgstr "Cache size of memory statistics"
 
-#: admin/admin.strings.js:37
+#: admin/admin.strings.js:38
 msgid "Time interval of memory statistics (in ms)"
 msgstr "Time interval of memory statistics (in ms)"
 
-#: admin/admin.strings.js:38
+#: admin/admin.strings.js:39
 msgid "Cache size of CPU statistics"
 msgstr "Cache size of CPU statistics"
 
-#: admin/admin.strings.js:39
+#: admin/admin.strings.js:40
 msgid "Time interval of CPU statistics (in ms)"
 msgstr "Time interval of CPU statistics (in ms)"
 
-#: admin/admin.strings.js:40 admin/src/AdminSocketOverview.js:91
+#: admin/admin.strings.js:41 admin/src/AdminSocketOverview.js:91
 msgid "Kill session."
 msgstr "Kill session."
 
-#: admin/admin.strings.js:41
+#: admin/admin.strings.js:42
 msgid "Maximum Document process virtual memory (in MB) - reduce only"
 msgstr "Maximum Document process virtual memory (in MB) - reduce only"
 
-#: admin/admin.strings.js:42
+#: admin/admin.strings.js:43
 msgid "Maximum Document process stack memory (in KB) - reduce only"
 msgstr "Maximum Document process stack memory (in KB) - reduce only"
 
-#: admin/admin.strings.js:43
+#: admin/admin.strings.js:44
 msgid "Maximum file size allowed to write to disk (in MB) - reduce only"
 msgstr "Maximum file size allowed to write to disk (in MB) - reduce only"
 
-#: admin/admin.strings.js:44
+#: admin/admin.strings.js:45
 msgid "Documents:"
 msgstr "Documents:"
 
-#: admin/admin.strings.js:45
+#: admin/admin.strings.js:46
 msgid "Expired:"
 msgstr "Expired:"
 
-#: admin/admin.strings.js:46 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr "Refresh"
 
-#: admin/admin.strings.js:47
+#: admin/admin.strings.js:48
 msgid "Shutdown Server"
 msgstr "Shutdown Server"
 
-#: admin/admin.strings.js:48
+#: admin/admin.strings.js:49
 msgid "Server uptime"
 msgstr "Server uptime"
 
-#: admin/admin.strings.js:49
+#: admin/admin.strings.js:50
 msgid "Refresh Log"
 msgstr "Refresh Log"
 
-#: admin/admin.strings.js:50
+#: admin/admin.strings.js:51
 msgid "Channel Filter:"
 msgstr "Channel Filter:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:469
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:469
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "None"
 
-#: admin/admin.strings.js:52
+#: admin/admin.strings.js:53
 msgid "Set Log Levels"
 msgstr "Set Log Levels"
 
-#: admin/admin.strings.js:53
+#: admin/admin.strings.js:54
 msgid "Log Levels"
 msgstr "Log Levels"
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
@@ -230,11 +234,11 @@ msgstr "Log Levels"
 msgid "Close"
 msgstr "Close"
 
-#: admin/admin.strings.js:55
+#: admin/admin.strings.js:56
 msgid "Update Log Levels"
 msgstr "Update Log Levels"
 
-#: admin/admin.strings.js:56
+#: admin/admin.strings.js:57
 msgid "Version Information"
 msgstr "Version Information"
 
@@ -251,7 +255,7 @@ msgid "Server has been shut down; please reload the page."
 msgstr "Server has been shut down; please reload the page."
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
@@ -279,7 +283,7 @@ msgstr "Confirmation"
 msgid "Are you sure you want to terminate this session?"
 msgstr "Are you sure you want to terminate this session?"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:423
 #: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
@@ -289,15 +293,15 @@ msgstr "Are you sure you want to terminate this session?"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: admin/src/AdminSocketOverview.js:387
+#: admin/src/AdminSocketOverview.js:411
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr "Failed to set jwt authentication cookie over insecure connection"
 
-#: admin/src/AdminSocketOverview.js:391
+#: admin/src/AdminSocketOverview.js:415
 msgid "Failed to authenticate this session over protocol %0"
 msgstr "Failed to authenticate this session over protocol %0"
 
-#: admin/src/AdminSocketOverview.js:396
+#: admin/src/AdminSocketOverview.js:420
 msgid "Warning"
 msgstr ""
 

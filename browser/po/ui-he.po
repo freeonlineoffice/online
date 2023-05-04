@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-03 21:40+0200\n"
+"POT-Creation-Date: 2023-05-04 20:06+0200\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -65,11 +65,11 @@ msgid "Documents open"
 msgstr "מסמכים פתוחים"
 
 #: admin/admin.strings.js:17 admin/src/AdminSocketOverview.js:73
-#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:338
+#: admin/src/AdminSocketOverview.js:122 admin/src/AdminSocketOverview.js:349
 msgid " user(s)."
 msgstr " משתמשים."
 
-#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:195
+#: admin/admin.strings.js:18 admin/src/AdminSocketOverview.js:205
 msgid " document(s) open."
 msgstr " מסמכים פתוחים."
 
@@ -114,30 +114,34 @@ msgid "Modified"
 msgstr "עודכן"
 
 #: admin/admin.strings.js:29
+msgid "Uploaded"
+msgstr ""
+
+#: admin/admin.strings.js:30
 msgid "WOPI host"
 msgstr "מארח WOPI"
 
-#: admin/admin.strings.js:30
+#: admin/admin.strings.js:31
 msgid "Kill"
 msgstr "להרוג (Kill)"
 
-#: admin/admin.strings.js:31
+#: admin/admin.strings.js:32
 msgid "Graphs"
 msgstr "תרשימים"
 
-#: admin/admin.strings.js:32
+#: admin/admin.strings.js:33
 msgid "Memory Graph"
 msgstr "תרשים זכרון"
 
-#: admin/admin.strings.js:33
+#: admin/admin.strings.js:34
 msgid "CPU Graph"
 msgstr "תרשים מעבד"
 
-#: admin/admin.strings.js:34
+#: admin/admin.strings.js:35
 msgid "Network Graph"
 msgstr "תרשים רשת"
 
-#: admin/admin.strings.js:35 src/control/Control.Notebookbar.js:260
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:260
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:20
 #: src/control/Control.NotebookbarDraw.js:132
@@ -149,81 +153,81 @@ msgstr "תרשים רשת"
 msgid "Save"
 msgstr "שמירה"
 
-#: admin/admin.strings.js:36
+#: admin/admin.strings.js:37
 msgid "Cache size of memory statistics"
 msgstr "גודל מטמון של סטטיסטיקת זכרון"
 
-#: admin/admin.strings.js:37
+#: admin/admin.strings.js:38
 msgid "Time interval of memory statistics (in ms)"
 msgstr "הפרש זמן של סטטיסטיקת זיכרון (במילישניות)"
 
-#: admin/admin.strings.js:38
+#: admin/admin.strings.js:39
 msgid "Cache size of CPU statistics"
 msgstr "גודל מטמון של סטטיסטיקת מעבד"
 
-#: admin/admin.strings.js:39
+#: admin/admin.strings.js:40
 msgid "Time interval of CPU statistics (in ms)"
 msgstr "הפרש זמן של סטטיסטיקת מעבד (במילישניות)"
 
-#: admin/admin.strings.js:40 admin/src/AdminSocketOverview.js:91
+#: admin/admin.strings.js:41 admin/src/AdminSocketOverview.js:91
 msgid "Kill session."
 msgstr "חיסול הפעלה."
 
-#: admin/admin.strings.js:41
+#: admin/admin.strings.js:42
 msgid "Maximum Document process virtual memory (in MB) - reduce only"
 msgstr "זיכרון וירטואלי מרבי לעיבוד מסמכים (במגה בתים) - להפחית בלבד"
 
-#: admin/admin.strings.js:42
+#: admin/admin.strings.js:43
 msgid "Maximum Document process stack memory (in KB) - reduce only"
 msgstr "זיכרון מערום מרבי לעיבוד מסמכים (בקילו בתים) - להפחית בלבד"
 
-#: admin/admin.strings.js:43
+#: admin/admin.strings.js:44
 msgid "Maximum file size allowed to write to disk (in MB) - reduce only"
 msgstr "גודל הקובץ המרבי שמותר לכתוב לכונן (במגה בתים) - להפחית בלבד"
 
-#: admin/admin.strings.js:44
+#: admin/admin.strings.js:45
 msgid "Documents:"
 msgstr "מסמכים:"
 
-#: admin/admin.strings.js:45
+#: admin/admin.strings.js:46
 msgid "Expired:"
 msgstr "תפוגה:"
 
-#: admin/admin.strings.js:46 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr "רענון"
 
-#: admin/admin.strings.js:47
+#: admin/admin.strings.js:48
 msgid "Shutdown Server"
 msgstr "כיבוי השרת"
 
-#: admin/admin.strings.js:48
+#: admin/admin.strings.js:49
 msgid "Server uptime"
 msgstr "זמן מאז ההדלקה האחרונה של השרת"
 
-#: admin/admin.strings.js:49
+#: admin/admin.strings.js:50
 msgid "Refresh Log"
 msgstr "רענון היומן"
 
-#: admin/admin.strings.js:50
+#: admin/admin.strings.js:51
 msgid "Channel Filter:"
 msgstr "מסנן ערוצים:"
 
-#: admin/admin.strings.js:51 src/control/Control.JSDialogBuilder.js:469
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:469
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "ללא"
 
-#: admin/admin.strings.js:52
+#: admin/admin.strings.js:53
 msgid "Set Log Levels"
 msgstr "הגדרת רמות תיעוד היומן"
 
-#: admin/admin.strings.js:53
+#: admin/admin.strings.js:54
 msgid "Log Levels"
 msgstr "רמות תיעוד ביומן"
 
-#: admin/admin.strings.js:54 src/control/Control.AlertDialog.js:21
+#: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:438
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
@@ -231,11 +235,11 @@ msgstr "רמות תיעוד ביומן"
 msgid "Close"
 msgstr "סגירה"
 
-#: admin/admin.strings.js:55
+#: admin/admin.strings.js:56
 msgid "Update Log Levels"
 msgstr "עדכון רמות תיעוד ביומן"
 
-#: admin/admin.strings.js:56
+#: admin/admin.strings.js:57
 msgid "Version Information"
 msgstr "פרטי גרסה"
 
@@ -252,7 +256,7 @@ msgid "Server has been shut down; please reload the page."
 msgstr "השרת נכבה, נא לרענן את העמוד."
 
 #: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
-#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:398
+#: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
@@ -280,7 +284,7 @@ msgstr "אישור"
 msgid "Are you sure you want to terminate this session?"
 msgstr "לסיים את הפעילות הנוכחית?"
 
-#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:399
+#: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:423
 #: admin/src/AdminSocketSettings.js:37
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
@@ -290,15 +294,15 @@ msgstr "לסיים את הפעילות הנוכחית?"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: admin/src/AdminSocketOverview.js:387
+#: admin/src/AdminSocketOverview.js:411
 msgid "Failed to set jwt authentication cookie over insecure connection"
 msgstr "הגדרת עוגיית אימות jwt נכשלה עקב חיבור בלתי מאובטח"
 
-#: admin/src/AdminSocketOverview.js:391
+#: admin/src/AdminSocketOverview.js:415
 msgid "Failed to authenticate this session over protocol %0"
 msgstr "אימות ההפעלה הזו על גבי פרוטוקול %0 נכשלה"
 
-#: admin/src/AdminSocketOverview.js:396
+#: admin/src/AdminSocketOverview.js:420
 msgid "Warning"
 msgstr ""
 
