@@ -638,14 +638,7 @@ WopiStorage::getWOPIFileInfoForUri(Poco::URI uriObject, const Authorization& aut
         const auto startTime = std::chrono::steady_clock::now();
 
         LOG_TRC("WOPI::CheckFileInfo request header for URI [" << uriAnonym << "]:\n"
-                                                               <<
-                [&](auto& log)
-                {
-                    for (const auto& pair : httpRequest.header())
-                    {
-                        log << '\t' << pair.first << ": " << pair.second << " / ";
-                    }
-                });
+                                                               << httpRequest.header());
 
         const std::shared_ptr<const http::Response> httpResponse
             = httpSession->syncRequest(httpRequest);
@@ -683,11 +676,8 @@ WopiStorage::getWOPIFileInfoForUri(Poco::URI uriObject, const Authorization& aut
         {
             logRes << "WOPI::CheckFileInfo " << (failed ? "failed" : "returned") << " for URI ["
                    << uriAnonym << "]: " << httpResponse->statusLine().statusCode() << ' '
-                   << httpResponse->statusLine().reasonPhrase() << ". Headers: ";
-            for (const auto& pair : httpResponse->header())
-            {
-                logRes << '\t' << pair.first << ": " << pair.second << " / ";
-            }
+                   << httpResponse->statusLine().reasonPhrase()
+                   << ". Headers: " << httpResponse->header();
 
             if (failed)
                 logRes << "\tBody: [" << wopiResponse << "]";
@@ -1123,7 +1113,7 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
     }
 
     LOG_TRC("Downloading from [" << uriAnonym << "] to [" << getRootFilePath()
-                                 << "]: " << httpRequest.header().toString());
+                                 << "]: " << httpRequest.header());
     const std::shared_ptr<const http::Response> httpResponse
         = httpSession->syncDownload(httpRequest, getRootFilePath());
 
@@ -1134,14 +1124,7 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
     {
         // Log the response header.
         LOG_TRC("WOPI::GetFile response header for URI [" << uriAnonym << "]:\n"
-                                                          <<
-                [&](auto& log)
-                {
-                    for (const auto& pair : httpResponse->header())
-                    {
-                        log << '\t' << pair.first << ": " << pair.second << " / ";
-                    }
-                });
+                                                          << httpResponse->header());
     }
     else if (httpResponse->statusLine().statusCode() == Poco::Net::HTTPResponse::HTTP_FOUND ||
             httpResponse->statusLine().statusCode() == Poco::Net::HTTPResponse::HTTP_MOVED_PERMANENTLY ||
