@@ -3326,7 +3326,7 @@ static std::shared_ptr<DocumentBroker>
 }
 
 /// Handles the socket that the prisoner kit connected to WSD on.
-class PrisonerRequestDispatcher : public WebSocketHandler
+class PrisonerRequestDispatcher final : public WebSocketHandler
 {
     std::weak_ptr<ChildProcess> _childProcess;
 public:
@@ -3335,6 +3335,7 @@ public:
     {
         LOG_TRC_S("PrisonerRequestDispatcher");
     }
+
     ~PrisonerRequestDispatcher()
     {
         LOG_TRC("~PrisonerRequestDispatcher");
