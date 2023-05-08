@@ -82,8 +82,8 @@ jobs:
     - if: matrix.language == 'cpp'
       name: Configure
       run: |
-        cd .. && wget https://github.com/freeonlineoffice/online/releases/download/Core-LibreOffice-Assets/core-lo-7.6-alpha-2023-03-17-assets.tar.gz
-        tar xvf core-lo-7.6-alpha-2023-03-17-assets.tar.gz && rm core-lo-7.6-alpha-2023-03-17-assets.tar.gz && export LOCOREPATH=$(pwd)
+        cd .. && wget https://github.com/freeonlineoffice/online/releases/download/Core-LibreOffice-Assets/core-lo-7.6-alpha-2023-05-08-assets.tar.gz
+        tar xvf core-lo-7.6-alpha-2023-05-08-assets.tar.gz && rm core-lo-7.6-alpha-2023-05-08-assets.tar.gz && export LOCOREPATH=$(pwd)
         cd online && ./autogen.sh
         ./configure --enable-silent-rules --with-lokit-path=${LOCOREPATH}/include --with-lo-path=${LOCOREPATH}/instdir --enable-debug --disable-setcap
         cd browser && npm update
