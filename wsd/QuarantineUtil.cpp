@@ -22,7 +22,8 @@ std::string Quarantine::QuarantinePath;
 
 void Quarantine::initialize(const std::string& path)
 {
-    if (!LOOLWSD::getConfigValue<bool>("quarantine_files[@enable]", false) || isQuarantineEnabled())
+    if (!LOOLWSD::getConfigValue<bool>("quarantine_files[@enable]", false) ||
+        !QuarantinePath.empty())
         return;
 
     std::vector<std::string> files;
@@ -130,13 +131,13 @@ void Quarantine::clearOldQuarantineVersions(const std::string& docKey)
     }
 }
 
-bool Quarantine::quarantineFile(DocumentBroker* docBroker, const std::string& docName)
+bool Quarantine::quarantineFile(const std::string& docName)
 {
     if (!isQuarantineEnabled())
         return false;
 
     std::string docKey;
-    Poco::URI::encode(docBroker->getDocKey(), "?#/", docKey);
+    Poco::URI::encode(_docBroker.getDocKey(), "?#/", docKey);
 
     const auto timeNow = std::chrono::system_clock::now();
     const std::string ts = std::to_string(
@@ -145,20 +146,20 @@ bool Quarantine::quarantineFile(DocumentBroker* docBroker, const std::string& do
     std::string sourcefilePath;
     if (JailUtil::isBindMountingEnabled())
     {
-        sourcefilePath = LOOLWSD::ChildRoot + "tmp/lool-" + docBroker->getJailId() + "/user/docs/" +
-                         docBroker->getJailId() + '/' + docName;
+        sourcefilePath = LOOLWSD::ChildRoot + "tmp/lool-" + _docBroker.getJailId() + "/user/docs/" +
+                         _docBroker.getJailId() + '/' + docName;
     }
     else
     {
-        sourcefilePath = LOOLWSD::ChildRoot + docBroker->getJailId() + "/tmp/user/docs/" +
-                         docBroker->getJailId() + '/' + docName;
+        sourcefilePath = LOOLWSD::ChildRoot + _docBroker.getJailId() + "/tmp/user/docs/" +
+                         _docBroker.getJailId() + '/' + docName;
     }
 
     std::string linkedFileName =
-        ts + '_' + std::to_string(docBroker->getPid()) + '_' + docKey + '_' + docName;
+        ts + '_' + std::to_string(_docBroker.getPid()) + '_' + docKey + '_' + docName;
     std::string linkedFilePath = QuarantinePath + linkedFileName;
 
-    auto& fileList = LOOLWSD::QuarantineMap[docBroker->getDocKey()];
+    auto& fileList = LOOLWSD::QuarantineMap[_docBroker.getDocKey()];
     if (!fileList.empty())
     {
         FileUtil::Stat sourceStat(sourcefilePath);
@@ -198,8 +199,9 @@ bool Quarantine::quarantineFile(DocumentBroker* docBroker, const std::string& do
     return false;
 }
 
-void Quarantine::removeQuarantinedFiles(const std::string& docKey)
+void Quarantine::removeQuarantinedFiles()
 {
+    const std::string& docKey = _docBroker.getDocKey();
     for (const auto& file : LOOLWSD::QuarantineMap[docKey])
     {
         FileUtil::removeFile(file);
