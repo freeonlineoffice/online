@@ -1156,7 +1156,7 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
 
         _filename = fileInfo.getFilename();
 #if !MOBILEAPP
-        _quarantine.quarantineFile(_filename);
+        _quarantine.setDocumentName(_filename);
 #endif
         if (!templateSource.empty())
         {
