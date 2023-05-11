@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-09 18:48+0200\n"
+"POT-Creation-Date: 2023-05-11 19:33+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/collabora-online/"
@@ -524,70 +524,70 @@ msgstr "Quadrato"
 msgid "Fixed size"
 msgstr "Dimensione fissa"
 
-#: src/control/Control.JSDialogBuilder.js:1459
+#: src/control/Control.JSDialogBuilder.js:1460
 msgid "From"
 msgstr "Da"
 
-#: src/control/Control.JSDialogBuilder.js:1462
+#: src/control/Control.JSDialogBuilder.js:1463
 msgid "To"
 msgstr "A"
 
-#: src/control/Control.JSDialogBuilder.js:1465
+#: src/control/Control.JSDialogBuilder.js:1466
 msgid "Color"
 msgstr "Colore"
 
-#: src/control/Control.JSDialogBuilder.js:1565
+#: src/control/Control.JSDialogBuilder.js:1566
 msgid "Select range"
 msgstr "Seleziona intervallo"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1621
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "Nome del carattere"
 
-#: src/control/Control.JSDialogBuilder.js:1622 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1623 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Dimensione carattere"
 
-#: src/control/Control.JSDialogBuilder.js:1624
+#: src/control/Control.JSDialogBuilder.js:1625
 #: src/control/Control.TopToolbar.js:498
 msgid "Style"
 msgstr "Stile"
 
-#: src/control/Control.JSDialogBuilder.js:2066
+#: src/control/Control.JSDialogBuilder.js:2067
 msgid "reply"
 msgstr "risposta"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2070
 msgid "replies"
 msgstr "risposte"
 
-#: src/control/Control.JSDialogBuilder.js:2080
+#: src/control/Control.JSDialogBuilder.js:2081
 #: src/layer/tile/CanvasTileLayer.js:5169
 #: src/layer/tile/CanvasTileLayer.js:5180
 #: src/layer/tile/CommentListSection.ts:874
 msgid "Comment"
 msgstr "Commento"
 
-#: src/control/Control.JSDialogBuilder.js:2143
+#: src/control/Control.JSDialogBuilder.js:2144
 msgid "Insert Comment"
 msgstr "Inserisci un commento"
 
-#: src/control/Control.JSDialogBuilder.js:2819
+#: src/control/Control.JSDialogBuilder.js:2820
 msgid "Cell borders"
 msgstr "Bordi delle celle"
 
-#: src/control/Control.JSDialogBuilder.js:3030
+#: src/control/Control.JSDialogBuilder.js:3031
 #: src/control/Control.Menubar.js:788
 msgid "Rows"
 msgstr "Righe"
 
-#: src/control/Control.JSDialogBuilder.js:3031
+#: src/control/Control.JSDialogBuilder.js:3032
 #: src/control/Control.Menubar.js:791
 msgid "Columns"
 msgstr "Colonne"
 
-#: src/control/Control.JSDialogBuilder.js:3051
+#: src/control/Control.JSDialogBuilder.js:3052
 msgid "Insert Table"
 msgstr "Inserisci tabella"
 
