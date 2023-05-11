@@ -920,7 +920,6 @@ static std::string UnitTestLibrary;
 
 unsigned int LOOLWSD::NumPreSpawnedChildren = 0;
 std::unique_ptr<TraceFileWriter> LOOLWSD::TraceDumper;
-std::unordered_map<std::string, std::vector<std::string>> LOOLWSD::QuarantineMap;
 #if !MOBILEAPP
 std::unique_ptr<ClipboardCache> LOOLWSD::SavedClipboards;
 #endif

@@ -22,6 +22,7 @@
 #include <common/Log.hpp>
 
 std::string Quarantine::QuarantinePath;
+std::unordered_map<std::string, std::vector<std::string>> Quarantine::QuarantineMap;
 
 namespace
 {
@@ -55,7 +56,8 @@ void Quarantine::initialize(const std::string& path)
 
     std::vector<std::string> files;
     Poco::File(path).list(files);
-    LOOLWSD::QuarantineMap.clear();
+
+    QuarantineMap.clear();
 
     std::vector<StringToken> tokens;
     std::string decoded;
@@ -65,7 +67,7 @@ void Quarantine::initialize(const std::string& path)
     {
         StringVector::tokenize(file.c_str(), file.size(), '_', tokens);
         Poco::URI::decode(file.substr(tokens[2]._index), decoded);
-        LOOLWSD::QuarantineMap[decoded].emplace_back(path + file);
+        QuarantineMap[decoded].emplace_back(path + file);
 
         tokens.clear();
         decoded.clear();
@@ -146,10 +148,10 @@ void Quarantine::clearOldQuarantineVersions()
 
     std::string decoded;
     Poco::URI::decode(_docKey, decoded);
-    while (LOOLWSD::QuarantineMap[decoded].size() > _maxVersions)
+    while (QuarantineMap[decoded].size() > _maxVersions)
     {
-        FileUtil::removeFile(LOOLWSD::QuarantineMap[decoded][0]);
-        LOOLWSD::QuarantineMap[decoded].erase(LOOLWSD::QuarantineMap[decoded].begin());
+        FileUtil::removeFile(QuarantineMap[decoded][0]);
+        QuarantineMap[decoded].erase(QuarantineMap[decoded].begin());
     }
 }
 
@@ -165,7 +167,7 @@ bool Quarantine::quarantineFile(const std::string& docPath)
     const std::string linkedFilePath =
         QuarantinePath + std::to_string(ts) + _quarantinedFilenamePrefix + _docName;
 
-    auto& fileList = LOOLWSD::QuarantineMap[_docKey];
+    auto& fileList = QuarantineMap[_docKey];
     if (!fileList.empty())
     {
         FileUtil::Stat sourceStat(docPath);
@@ -198,10 +200,10 @@ bool Quarantine::quarantineFile(const std::string& docPath)
 
 void Quarantine::removeQuarantinedFiles()
 {
-    for (const auto& file : LOOLWSD::QuarantineMap[_docKey])
+    for (const auto& file : QuarantineMap[_docKey])
     {
         FileUtil::removeFile(file);
     }
 
-    LOOLWSD::QuarantineMap.erase(_docKey);
+    QuarantineMap.erase(_docKey);
 }
