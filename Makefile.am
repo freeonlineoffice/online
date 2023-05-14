@@ -361,7 +361,6 @@ EXTRA_DIST = discovery.xml \
              loolwsd.spec \
              loolwsd.xml.in \
              loolwsd.service \
-             sysconfig.loolwsd \
              debian/compat \
              debian/copyright \
              debian/loolwsd.preinst \
