@@ -412,7 +412,7 @@ export class CommentSection extends CanvasSectionObject {
 		var tdImg = L.DomUtil.create(tagTd, 'lool-annotation-img', tr);
 		var tdAuthor = L.DomUtil.create(tagTd, 'lool-annotation-author', tr);
 		var imgAuthor = L.DomUtil.create('img', 'avatar-img', tdImg);
-		imgAuthor.setAttribute('src', L.LOUtil.getImageURL('user.svg'));
+		L.LOUtil.setImage(imgAuthor, 'user.svg', this.sectionProperties.docLayer._docType);
 		imgAuthor.setAttribute('width', 32);
 		imgAuthor.setAttribute('height', 32);
 		var authorAvatarImg = imgAuthor;
