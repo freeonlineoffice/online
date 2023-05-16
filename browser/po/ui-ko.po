@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 20:35+0200\n"
+"POT-Creation-Date: 2023-05-16 20:52+0200\n"
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
@@ -569,22 +569,22 @@ msgstr "추가 설명"
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2821
+#: src/control/Control.JSDialogBuilder.js:2826
 #, fuzzy
 msgid "Cell borders"
 msgstr "테두리"
 
-#: src/control/Control.JSDialogBuilder.js:3032
+#: src/control/Control.JSDialogBuilder.js:3037
 #: src/control/Control.Menubar.js:791
 msgid "Rows"
 msgstr "열"
 
-#: src/control/Control.JSDialogBuilder.js:3033
+#: src/control/Control.JSDialogBuilder.js:3038
 #: src/control/Control.Menubar.js:794
 msgid "Columns"
 msgstr "행"
 
-#: src/control/Control.JSDialogBuilder.js:3053
+#: src/control/Control.JSDialogBuilder.js:3058
 #, fuzzy
 msgid "Insert Table"
 msgstr "표 삽입"
