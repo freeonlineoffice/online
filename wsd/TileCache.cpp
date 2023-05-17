@@ -136,7 +136,7 @@ bool TileCache::hasTileBeingRendered(const TileDesc& tileDesc, const std::chrono
 
 std::shared_ptr<TileCache::TileBeingRendered> TileCache::findTileBeingRendered(const TileDesc& tileDesc)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
 
     const auto tile = _tilesBeingRendered.find(tileDesc);
     return tile != _tilesBeingRendered.end() ? tile->second : nullptr;
@@ -145,7 +145,7 @@ std::shared_ptr<TileCache::TileBeingRendered> TileCache::findTileBeingRendered(c
 void TileCache::forgetTileBeingRendered(const TileDesc &descForKitReply,
                                         const std::shared_ptr<TileCache::TileBeingRendered>& tileBeingRendered)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
     assert(tileBeingRendered);
     assert(hasTileBeingRendered(tileBeingRendered->getTile()));
 
@@ -182,7 +182,7 @@ Tile TileCache::lookupTile(const TileDesc& tile)
 
 void TileCache::saveTileAndNotify(const TileDesc& desc, const char *data, const size_t size)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
 
     std::shared_ptr<TileBeingRendered> tileBeingRendered = findTileBeingRendered(desc);
 
@@ -297,7 +297,7 @@ void TileCache::invalidateTiles(int part, int mode, int x, int y, int width, int
             ", height: " << height <<
             ", viewid: " << normalizedViewId);
 
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
 
     for (auto it = _cache.begin(); it != _cache.end();)
     {
@@ -438,7 +438,7 @@ bool TileCache::intersectsTile(const TileDesc &tileDesc, int part, int mode, int
 void TileCache::subscribeToTileRendering(const TileDesc& tile, const std::shared_ptr<ClientSession>& subscriber,
                                          const std::chrono::steady_clock::time_point &now)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
 
     std::shared_ptr<TileBeingRendered> tileBeingRendered = findTileBeingRendered(tile);
 
@@ -480,7 +480,7 @@ std::string TileCache::cancelTiles(const std::shared_ptr<ClientSession> &subscri
     assert(subscriber && "cancelTiles expects valid subscriber");
     LOG_TRC("Cancelling tiles for " << subscriber->getName());
 
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
 
     const ClientSession* sub = subscriber.get();
 
@@ -519,18 +519,6 @@ std::string TileCache::cancelTiles(const std::shared_ptr<ClientSession> &subscri
 
     const std::string canceltiles = oss.str();
     return canceltiles.empty() ? canceltiles : "canceltiles " + canceltiles;
-}
-
-void TileCache::assertCorrectThread()
-{
-    const bool correctThread = _owner == std::thread::id() || std::this_thread::get_id() == _owner;
-    if (!correctThread)
-    {
-        LOG_ERR("TileCache method invoked from foreign thread. Expected: "
-                << Log::to_string(_owner) << " but called from " << std::this_thread::get_id()
-                << " (" << Util::getThreadId() << ").");
-    }
-    assert (correctThread);
 }
 
 Tile TileCache::findTile(const TileDesc &desc)

@@ -321,7 +321,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
     if (_runOnClientThread)
         checkAndReThread();
     else
-        assertCorrectThread();
+        ASSERT_CORRECT_SOCKET_THREAD(this);
 
 #if ENABLE_DEBUG
     // perturb - to rotate errors among several busy sockets.
@@ -516,7 +516,7 @@ void SocketPoll::removeSockets()
 {
     LOG_DBG("Removing all " << _pollSockets.size() + _newSockets.size()
                             << " sockets from SocketPoll thread " << _name);
-    assertCorrectThread();
+    ASSERT_CORRECT_SOCKET_THREAD(this);
 
     while (!_pollSockets.empty())
     {
@@ -683,7 +683,7 @@ void ServerSocket::dumpState(std::ostream& os)
 void SocketDisposition::execute()
 {
     // We should have hard ownership of this socket.
-    assert(_socket->getThreadOwner() == std::this_thread::get_id());
+    ASSERT_CORRECT_SOCKET_THREAD(_socket);
     if (_socketMove)
     {
         // Drop pretentions of ownership before _socketMove.

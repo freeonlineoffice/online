@@ -627,19 +627,19 @@ size_t Admin::getTotalCpuUsage()
 
 unsigned Admin::getMemStatsInterval()
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
     return _memStatsTaskIntervalMs;
 }
 
 unsigned Admin::getCpuStatsInterval()
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
     return _cpuStatsTaskIntervalMs;
 }
 
 unsigned Admin::getNetStatsInterval()
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
     return _netStatsTaskIntervalMs;
 }
 
@@ -655,7 +655,7 @@ std::string Admin::getChannelLogLevels()
 
 void Admin::setChannelLogLevel(const std::string& channelName, std::string level)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
 
     // Get the list of channels..
     std::vector<std::string> nameList;
@@ -676,7 +676,7 @@ void Admin::setChannelLogLevel(const std::string& channelName, std::string level
 
 std::string Admin::getLogLines()
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
 
     try {
         int lineCount = 500;
@@ -957,7 +957,7 @@ void Admin::connectToMonitorSync(const std::string &uri)
 
 void Admin::scheduleMonitorConnect(const std::string &uri, std::chrono::steady_clock::time_point when)
 {
-    assertCorrectThread();
+    ASSERT_CORRECT_THREAD();
 
     MonitorConnectRecord todo;
     todo.setWhen(when);
