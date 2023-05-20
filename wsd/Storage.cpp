@@ -813,11 +813,9 @@ void WopiStorage::WOPIFileInfo::init()
 WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo,
                                         const Poco::JSON::Object::Ptr& object,
                                         const Poco::URI& uriObject)
+    : FileInfo(fileInfo)
 {
     init();
-
-    const std::string &filename = fileInfo.getFilename();
-    const std::string &ownerId = fileInfo.getOwnerId();
 
     JsonUtil::findJSONValue(object, "UserId", _userId);
     JsonUtil::findJSONValue(object, "UserFriendlyName", _username);
@@ -846,7 +844,7 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo,
         JsonUtil::findJSONValue(object, "ObfuscatedUserId", _obfuscatedUserId);
         if (!_obfuscatedUserId.empty())
         {
-            Util::mapAnonymized(ownerId, _obfuscatedUserId);
+            Util::mapAnonymized(getOwnerId(), _obfuscatedUserId);
             Util::mapAnonymized(_userId, _obfuscatedUserId);
             Util::mapAnonymized(_username, _obfuscatedUserId);
         }
@@ -856,12 +854,12 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo,
         // Set anonymized version of the above fields before logging.
         // Note: anonymization caches the result, so we don't need to store here.
         if (LOOLWSD::AnonymizeUserData)
-            anonObject->set("BaseFileName", LOOLWSD::anonymizeUrl(filename));
+            anonObject->set("BaseFileName", LOOLWSD::anonymizeUrl(getFilename()));
 
         // If obfuscatedUserId is provided, then don't log the originals and use it.
         if (LOOLWSD::AnonymizeUserData && _obfuscatedUserId.empty())
         {
-            anonObject->set("OwnerId", LOOLWSD::anonymizeUsername(ownerId));
+            anonObject->set("OwnerId", LOOLWSD::anonymizeUsername(getOwnerId()));
             anonObject->set("UserId", LOOLWSD::anonymizeUsername(_userId));
             anonObject->set("UserFriendlyName", LOOLWSD::anonymizeUsername(_username));
         }
@@ -960,7 +958,7 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo,
         = LOOLWSD::getConfigValue<std::string>("watermark.text", "");
     if (!overrideWatermarks.empty())
         _watermarkText = overrideWatermarks;
-    if (isTemplate(filename))
+    if (isTemplate(getFilename()))
         _disableExport = true;
 }
 
