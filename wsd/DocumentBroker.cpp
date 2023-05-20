@@ -850,15 +850,6 @@ bool DocumentBroker::download(const std::shared_ptr<ClientSession>& session, con
         Object::Ptr wopiInfo = new Object();
         if (!wopiFileInfo->getPostMessageOrigin().empty())
         {
-            // Update the scheme to https if ssl or ssl termination is on
-            if (wopiFileInfo->getPostMessageOrigin().substr(0, 7) == "http://" &&
-                (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination()))
-            {
-                wopiFileInfo->getPostMessageOrigin().replace(0, 4, "https");
-                LOG_DBG("Updating PostMessageOrigin scheme to HTTPS. Updated origin is ["
-                        << wopiFileInfo->getPostMessageOrigin() << "].");
-            }
-
             wopiInfo->set("PostMessageOrigin", wopiFileInfo->getPostMessageOrigin());
         }
 
