@@ -1816,7 +1816,7 @@ void DocumentBroker::handleUploadToStorageResponse(const StorageBase::UploadResu
             _saveManager.setLastModifiedTime(_uploadRequest->newFileModifiedTime());
 
             // Save the storage timestamp.
-            _storageManager.setLastModifiedTime(_storage->getFileInfo().getLastModifiedTime());
+            _storageManager.setLastModifiedTime(_storage->getLastModifiedTime());
 
             // Set the timestamp of the file we uploaded, to detect changes.
             _storageManager.setLastUploadedFileModifiedTime(_uploadRequest->newFileModifiedTime());
