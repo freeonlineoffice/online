@@ -44,6 +44,7 @@ class UnitCopyPaste : public UnitWSD
 public:
     UnitCopyPaste()
         : UnitWSD("UnitCopyPaste")
+        , _phase(Phase::RunTest)
     {
     }
 
