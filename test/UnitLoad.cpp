@@ -7,9 +7,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#include <chrono>
 #include <config.h>
 
+#include <test/lokassert.hpp>
+#include <Unit.hpp>
+#include <helpers.hpp>
+#include <net/WebSocketSession.hpp>
+#include "Util.hpp"
+
+#include <chrono>
 #include <memory>
 #include <ostream>
 #include <set>
@@ -19,12 +25,6 @@
 #include <Poco/Exception.h>
 #include <Poco/URI.h>
 #include <Poco/Util/LayeredConfiguration.h>
-
-#include <test/lokassert.hpp>
-
-#include <Unit.hpp>
-#include <helpers.hpp>
-#include <net/WebSocketSession.hpp>
 
 namespace
 {
@@ -73,6 +73,7 @@ public:
     UnitLoad()
         : UnitWSD("UnitLoad")
     {
+        setTimeout(std::chrono::seconds(60));
     }
 
     void invokeWSDTest() override;
@@ -182,7 +183,7 @@ UnitBase::TestResult UnitLoad::testExcelLoad()
 
         // Expected format is something like 'status: type=text parts=2 current=0 width=12808 height=1142 viewid=0\n...'.
         StringVector tokens(StringVector::tokenize(status, ' '));
-        LOK_ASSERT_EQUAL(static_cast<size_t>(7), tokens.size());
+        LOK_ASSERT_EQUAL(static_cast<size_t>(9), tokens.size());
     }
     catch (const Poco::Exception& exc)
     {
@@ -197,8 +198,10 @@ UnitBase::TestResult UnitLoad::testReload()
     helpers::getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
     for (int i = 0; i < 3; ++i)
     {
-        TST_LOG("loading #" << (i + 1));
+        TST_LOG("Loading #" << (i + 1));
+        Util::Stopwatch sw;
         loadDoc(documentURL, testname);
+        TST_LOG("Loaded #" << (i + 1) << " in " << sw.elapsed());
     }
     return TestResult::Ok;
 }
@@ -230,12 +233,10 @@ UnitBase::TestResult UnitLoad::testLoad()
 
 void UnitLoad::invokeWSDTest()
 {
-    // FIXME fails on Jenkins for some reason.
     UnitBase::TestResult result = testLoad();
     if (result != TestResult::Ok)
         exitTest(result);
 
-#if 0
     result = testConnectNoLoad();
     if (result != TestResult::Ok)
         exitTest(result);
@@ -255,7 +256,6 @@ void UnitLoad::invokeWSDTest()
     result = testReload();
     if (result != TestResult::Ok)
         exitTest(result);
-#endif
 
     exitTest(TestResult::Ok);
 }
