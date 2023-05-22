@@ -32,6 +32,7 @@
 #include <thread>
 
 #include "Common.hpp"
+#include <common/StateEnum.hpp>
 #include "FakeSocket.hpp"
 #include "Log.hpp"
 #include "Util.hpp"
@@ -72,7 +73,7 @@ class SocketPoll;
 /// between polls to clarify thread ownership.
 class SocketDisposition final
 {
-    enum class Type { CONTINUE, CLOSED, MOVE, TRANSFER };
+    STATE_ENUM(Type, CONTINUE, CLOSED, MOVE, TRANSFER);
 
 public:
     typedef std::function<void(const std::shared_ptr<Socket> &)> MoveFunction;
