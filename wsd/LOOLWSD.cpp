@@ -3289,8 +3289,9 @@ static std::shared_ptr<DocumentBroker>
                           const Poco::URI& uriPublic,
                           unsigned mobileAppDocId = 0)
 {
-    LOG_INF("Find or create DocBroker for docKey [" << docKey <<
-            "] for session [" << id << "] on url [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "].");
+    LOG_INF("Find or create DocBroker for docKey ["
+            << docKey << "] for session [" << id << "] on url ["
+            << LOOLWSD::anonymizeUrl(uriPublic.toString()) << ']');
 
     std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex);
 
@@ -3299,8 +3300,8 @@ static std::shared_ptr<DocumentBroker>
     if (SigUtil::getShutdownRequestFlag())
     {
         // TerminationFlag implies ShutdownRequested.
-        LOG_ERR((SigUtil::getTerminationFlag() ? "TerminationFlag" : "ShudownRequestedFlag")
-                << " set. Not loading new session [" << id << ']');
+        LOG_WRN((SigUtil::getTerminationFlag() ? "TerminationFlag" : "ShudownRequestedFlag")
+                << " set. Not loading new session [" << id << "] for docKey [" << docKey << ']');
         return nullptr;
     }
 
@@ -3311,33 +3312,36 @@ static std::shared_ptr<DocumentBroker>
     if (it != DocBrokers.end() && it->second)
     {
         // Get the DocumentBroker from the Cache.
-        LOG_DBG("Found DocumentBroker with docKey [" << docKey << "].");
+        LOG_DBG("Found DocumentBroker with docKey [" << docKey << ']');
         docBroker = it->second;
 
         // Destroying the document? Let the client reconnect.
         if (docBroker->isUnloading())
         {
-            LOG_WRN("DocBroker with docKey ["
-                    << docKey << "] is unloading. Rejecting client request to load.");
+            LOG_WRN("DocBroker [" << docKey
+                                  << "] is unloading. Rejecting client request to load session ["
+                                  << id << ']');
             if (proto)
             {
                 const std::string msg("error: cmd=load kind=docunloading");
                 proto->sendTextMessage(msg.data(), msg.size());
                 proto->shutdown(true, msg);
             }
+
             return nullptr;
         }
     }
     else
     {
-        LOG_DBG("No DocumentBroker with docKey [" << docKey << "] found. New Child and Document.");
+        LOG_DBG("No DocumentBroker with docKey [" << docKey
+                                                  << "] found. Creating new Child and Document");
     }
 
     if (SigUtil::getShutdownRequestFlag())
     {
         // TerminationFlag implies ShutdownRequested.
         LOG_ERR((SigUtil::getTerminationFlag() ? "TerminationFlag" : "ShudownRequestedFlag")
-                << " set. Not loading new session [" << id << ']');
+                << " set. Not loading new session [" << id << "] for docKey [" << docKey << ']');
         return nullptr;
     }
 
@@ -3345,17 +3349,18 @@ static std::shared_ptr<DocumentBroker>
     if (proto)
     {
         const std::string statusConnect = "statusindicator: connect";
-        LOG_TRC("Sending to Client [" << statusConnect << "].");
+        LOG_TRC("Sending to Client [" << statusConnect << ']');
         proto->sendTextMessage(statusConnect.data(), statusConnect.size());
     }
 
     if (!docBroker)
     {
         Util::assertIsLocked(DocBrokersMutex);
-
         if (DocBrokers.size() + 1 > LOOLWSD::MaxDocuments)
         {
-            LOG_INF("Maximum number of open documents of " << LOOLWSD::MaxDocuments << " reached.");
+            LOG_WRN("Maximum number of open documents of "
+                    << LOOLWSD::MaxDocuments << " reached while loading new session [" << id
+                    << "] for docKey [" << docKey << ']');
 #if ENABLE_SUPPORT_KEY
             shutdownLimitReached(proto);
             return nullptr;
@@ -3363,10 +3368,10 @@ static std::shared_ptr<DocumentBroker>
         }
 
         // Set the one we just created.
-        LOG_DBG("New DocumentBroker for docKey [" << docKey << "].");
+        LOG_DBG("New DocumentBroker for docKey [" << docKey << ']');
         docBroker = std::make_shared<DocumentBroker>(type, uri, uriPublic, docKey, mobileAppDocId);
         DocBrokers.emplace(docKey, docBroker);
-        LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey << "].");
+        LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey << ']');
     }
 
     return docBroker;
