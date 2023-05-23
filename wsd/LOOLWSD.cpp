@@ -2054,7 +2054,11 @@ void LOOLWSD::innerInitialize(Application& self)
         { "deepl.auth_key", "" },
         { "deepl.enabled", "false" },
         { "zotero.enable", "true" },
-        { "indirection_endpoint.url", "" }
+        { "indirection_endpoint.url", "" },
+#if !MOBILEAPP
+        { "help_url", HELP_URL },
+#endif
+        { "product_name", APP_NAME}
     };
 
     // Set default values, in case they are missing from the config file.
