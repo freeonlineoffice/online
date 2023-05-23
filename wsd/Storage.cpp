@@ -249,7 +249,7 @@ StorageBase::StorageType StorageBase::validate(const Poco::URI& uri, bool takeOw
         }
 
         LOG_DBG("No acceptable WOPI hosts found matching the target host ["
-                << targetHost << "] in config for URI [" << lOOLWSD::anonymizeUrl(uri.toString())
+                << targetHost << "] in config for URI [" << LOOLWSD::anonymizeUrl(uri.toString())
                 << ']');
         return StorageBase::StorageType::Unauthorized;
     }
