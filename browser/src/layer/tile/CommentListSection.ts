@@ -862,6 +862,7 @@ export class CommentSection extends CanvasSectionObject {
 				},
 				hide: function (options: any) {
 					options.$trigger[0].annotation.sectionProperties.contextMenu = false;
+					docLayer._map.focus();
 				}
 			}
 		});
