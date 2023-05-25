@@ -922,6 +922,8 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
 
     std::string responseRoot = cnxDetails.getResponseRoot();
     std::string userInterfaceMode;
+    std::string userInterfaceTheme;
+
 
     Poco::replaceInPlace(preprocess, std::string("%ACCESS_TOKEN%"), escapedAccessToken);
     Poco::replaceInPlace(preprocess, std::string("%ACCESS_TOKEN_TTL%"), std::to_string(tokenTtl));
@@ -930,7 +932,8 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     Poco::replaceInPlace(preprocess, std::string("%VERSION%"), std::string(LOOLWSD_VERSION_HASH));
     Poco::replaceInPlace(preprocess, std::string("%LOOLWSD_VERSION%"), std::string(LOOLWSD_VERSION));
     Poco::replaceInPlace(preprocess, std::string("%SERVICE_ROOT%"), responseRoot);
-    Poco::replaceInPlace(preprocess, std::string("%UI_DEFAULTS%"), uiDefaultsToJSON(uiDefaults, userInterfaceMode));
+    Poco::replaceInPlace(preprocess, std::string("%UI_DEFAULTS%"), uiDefaultsToJSON(uiDefaults, userInterfaceMode, userInterfaceTheme));
+    Poco::replaceInPlace(preprocess, std::string("%UI_THEME%"), userInterfaceTheme);
     Poco::replaceInPlace(preprocess, std::string("%POSTMESSAGE_ORIGIN%"), escapedPostmessageOrigin);
     Poco::replaceInPlace(preprocess, std::string("%CHECK_FILE_INFO_OVERRIDE%"),
                          checkFileInfoToJSON(checkfileinfo_override));

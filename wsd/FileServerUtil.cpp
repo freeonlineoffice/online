@@ -15,7 +15,7 @@
 
 #include <Poco/JSON/Object.h>
 
-std::string FileServerRequestHandler::uiDefaultsToJSON(const std::string& uiDefaults, std::string& uiMode)
+std::string FileServerRequestHandler::uiDefaultsToJSON(const std::string& uiDefaults, std::string& uiMode, std::string& uiTheme)
 {
     static std::string previousUIDefaults;
     static std::string previousJSON("{}");
@@ -35,6 +35,7 @@ std::string FileServerRequestHandler::uiDefaultsToJSON(const std::string& uiDefa
     Poco::JSON::Object drawingDefs;
 
     uiMode = "";
+    uiTheme = "light";
     StringVector tokens(StringVector::tokenize(uiDefaults, ';'));
     for (const auto& token : tokens)
     {
@@ -59,6 +60,13 @@ std::string FileServerRequestHandler::uiDefaultsToJSON(const std::string& uiDefa
                 LOG_ERR("unknown UIMode value " << keyValue[1]);
 
             continue;
+        }
+
+        // detect the UITheme default, light or dark
+        if (keyValue.equals(0, "UITheme"))
+        {
+                json.set("darkTheme", keyValue.equals(1, "dark"));
+                uiTheme = keyValue[1];
         }
         if (keyValue.equals(0, "SaveAsMode"))
         {

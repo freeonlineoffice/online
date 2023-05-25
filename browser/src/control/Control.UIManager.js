@@ -1256,6 +1256,10 @@ L.Control.UIManager = L.Control.extend({
 			if (window.uiDefaults && window.uiDefaults[docType])
 				retval = window.uiDefaults[docType][name];
 
+			// check UIDefaults root without limiting to the doctype
+			if (retval === undefined || retval === null)
+				retval = window.uiDefaults[name];
+
 			if (retval === undefined || retval === null) {
 				if (forcedDefault !== undefined)
 					return forcedDefault;
