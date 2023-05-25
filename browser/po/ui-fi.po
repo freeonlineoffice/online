@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 20:52+0200\n"
+"POT-Creation-Date: 2023-05-25 18:59+0200\n"
 "PO-Revision-Date: 2022-01-16 22:54+0000\n"
 "Last-Translator: Petri Heinämäki <heinamakipetri@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/collabora-online/"
@@ -514,70 +514,70 @@ msgstr "Neliö"
 msgid "Fixed size"
 msgstr "Kiinteämittainen"
 
-#: src/control/Control.JSDialogBuilder.js:1461
+#: src/control/Control.JSDialogBuilder.js:1457
 msgid "From"
 msgstr "Aloitus"
 
-#: src/control/Control.JSDialogBuilder.js:1464
+#: src/control/Control.JSDialogBuilder.js:1460
 msgid "To"
 msgstr "Loppu"
 
-#: src/control/Control.JSDialogBuilder.js:1467
+#: src/control/Control.JSDialogBuilder.js:1463
 msgid "Color"
 msgstr "Väri"
 
-#: src/control/Control.JSDialogBuilder.js:1567
+#: src/control/Control.JSDialogBuilder.js:1563
 msgid "Select range"
 msgstr "Valitse väli"
 
-#: src/control/Control.JSDialogBuilder.js:1622
+#: src/control/Control.JSDialogBuilder.js:1617
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "Kirjasinlaji"
 
-#: src/control/Control.JSDialogBuilder.js:1624 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1619 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Kirjasinkoko"
 
-#: src/control/Control.JSDialogBuilder.js:1626
+#: src/control/Control.JSDialogBuilder.js:1621
 #: src/control/Control.TopToolbar.js:498
 msgid "Style"
 msgstr "Tyyli"
 
-#: src/control/Control.JSDialogBuilder.js:2068
+#: src/control/Control.JSDialogBuilder.js:2063
 msgid "reply"
 msgstr "vastaa"
 
-#: src/control/Control.JSDialogBuilder.js:2071
+#: src/control/Control.JSDialogBuilder.js:2066
 msgid "replies"
 msgstr "vastaukset"
 
-#: src/control/Control.JSDialogBuilder.js:2082
+#: src/control/Control.JSDialogBuilder.js:2077
 #: src/layer/tile/CanvasTileLayer.js:5169
 #: src/layer/tile/CanvasTileLayer.js:5180
 #: src/layer/tile/CommentListSection.ts:874
 msgid "Comment"
 msgstr "Huomautus"
 
-#: src/control/Control.JSDialogBuilder.js:2145
+#: src/control/Control.JSDialogBuilder.js:2141
 msgid "Insert Comment"
 msgstr "Lisää Kommentti"
 
-#: src/control/Control.JSDialogBuilder.js:2826
+#: src/control/Control.JSDialogBuilder.js:2822
 msgid "Cell borders"
 msgstr "Solun reunat"
 
-#: src/control/Control.JSDialogBuilder.js:3037
+#: src/control/Control.JSDialogBuilder.js:3033
 #: src/control/Control.Menubar.js:791
 msgid "Rows"
 msgstr "Rivejä"
 
-#: src/control/Control.JSDialogBuilder.js:3038
+#: src/control/Control.JSDialogBuilder.js:3034
 #: src/control/Control.Menubar.js:794
 msgid "Columns"
 msgstr "Sarakkeita"
 
-#: src/control/Control.JSDialogBuilder.js:3058
+#: src/control/Control.JSDialogBuilder.js:3054
 msgid "Insert Table"
 msgstr "Lisää taulukko"
 
@@ -2391,19 +2391,19 @@ msgstr "Jatka lankaa"
 msgid "Resolve Thread"
 msgstr "Päätä lanka"
 
-#: src/layer/tile/CommentSection.ts:245
+#: src/layer/tile/CommentSection.ts:244
 msgid "Open menu"
 msgstr "Avaa valikko"
 
-#: src/layer/tile/CommentSection.ts:263 src/layer/tile/CommentSection.ts:264
+#: src/layer/tile/CommentSection.ts:262 src/layer/tile/CommentSection.ts:263
 msgid "Accept change"
 msgstr "Hyväksy muutos"
 
-#: src/layer/tile/CommentSection.ts:270 src/layer/tile/CommentSection.ts:271
+#: src/layer/tile/CommentSection.ts:269 src/layer/tile/CommentSection.ts:270
 msgid "Reject change"
 msgstr "Hylkää muutos"
 
-#: src/layer/tile/CommentSection.ts:294
+#: src/layer/tile/CommentSection.ts:293
 #, fuzzy
 msgid "Resolved"
 msgstr "Ratkaise"
