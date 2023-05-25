@@ -582,12 +582,25 @@ export class CommentSection extends CanvasSectionObject {
 			}.bind(this), /* isMod */ true);
 		}
 		else {
-			if (this.sectionProperties.docLayer._docType !== 'spreadsheet')
+			if (this.sectionProperties.docLayer._docType !== 'spreadsheet' && this.sectionProperties.selectedComment !== annotation) {
 				this.unselect();
+				this.select(annotation);
+			}
 
-			annotation.edit();
-			this.select(annotation);
-			annotation.focus();
+			// Make sure that comment is not transitioning and comment menu is not open.
+			var tempFunction = function() {
+				setTimeout(function() {
+					if (String(annotation.sectionProperties.container.dataset.transitioning) === 'true' || annotation.sectionProperties.contextMenu === true) {
+						tempFunction();
+					}
+					else {
+						annotation.edit();
+						this.select(annotation);
+						annotation.focus();
+					}
+				}.bind(this), 1);
+			}.bind(this);
+			tempFunction();
 		}
 	}
 
@@ -816,6 +829,7 @@ export class CommentSection extends CanvasSectionObject {
 			className: 'lool-font',
 			build: function ($trigger: any) {
 				return {
+					autoHide: true,
 					items: {
 						modify: {
 							name: _('Modify'),
@@ -859,10 +873,13 @@ export class CommentSection extends CanvasSectionObject {
 			events: {
 				show: function (options: any) {
 					options.$trigger[0].annotation.sectionProperties.contextMenu = true;
+					setTimeout(function() {
+						options.items.modify.$node[0].tabIndex = 0;
+						options.items.modify.$node[0].focus();
+					}.bind(this), 10);
 				},
 				hide: function (options: any) {
 					options.$trigger[0].annotation.sectionProperties.contextMenu = false;
-					docLayer._map.focus();
 				}
 			}
 		});
