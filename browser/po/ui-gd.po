@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 18:59+0200\n"
+"POT-Creation-Date: 2023-05-27 19:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -411,7 +411,7 @@ msgid "Repair Document"
 msgstr "Càraich an sgrìobhainn"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.js:309
+#: src/control/Control.UserList.js:324
 msgid "You"
 msgstr "Thusa"
 
@@ -1632,19 +1632,19 @@ msgstr "1 chleachdaiche"
 msgid "0 users"
 msgstr "0 cleachdaiche"
 
-#: src/control/Control.UserList.js:173
+#: src/control/Control.UserList.js:188
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.js:201 src/control/Control.UserList.js:367
+#: src/control/Control.UserList.js:216 src/control/Control.UserList.js:382
 msgid "Always follow the editor"
 msgstr "Lean ris an deasaiche an-còmhaidh"
 
-#: src/control/Control.UserList.js:315
+#: src/control/Control.UserList.js:330
 msgid "Readonly"
 msgstr "Ri leughadh a-mhàin"
 
-#: src/control/Control.UserList.js:370
+#: src/control/Control.UserList.js:385
 msgid "Current"
 msgstr "Làithreach"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 18:59+0200\n"
+"POT-Creation-Date: 2023-05-27 19:15+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Welsh <https://hosted.weblate.org/projects/collabora-online/"
@@ -400,7 +400,7 @@ msgid "Repair Document"
 msgstr "Trwsio Dogfen"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.js:309
+#: src/control/Control.UserList.js:324
 msgid "You"
 msgstr "Chi"
 
@@ -1605,19 +1605,19 @@ msgstr "1 defnyddiwr"
 msgid "0 users"
 msgstr "0 defnyddwyr"
 
-#: src/control/Control.UserList.js:173
+#: src/control/Control.UserList.js:188
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.js:201 src/control/Control.UserList.js:367
+#: src/control/Control.UserList.js:216 src/control/Control.UserList.js:382
 msgid "Always follow the editor"
 msgstr "Dilyn y golygydd bob tro"
 
-#: src/control/Control.UserList.js:315
+#: src/control/Control.UserList.js:330
 msgid "Readonly"
 msgstr "Darllen y unig"
 
-#: src/control/Control.UserList.js:370
+#: src/control/Control.UserList.js:385
 msgid "Current"
 msgstr "Cyfredol"
 
