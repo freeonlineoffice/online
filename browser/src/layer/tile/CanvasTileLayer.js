@@ -5024,6 +5024,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._debugTyper = new L.LayerGroup();
 			this._debugTrace = new L.LayerGroup();
 			this._debugLogging = new L.LayerGroup();
+			this._debugTileDumping = new L.LayerGroup();
 			this._map.addLayer(this._debugInfo);
 			this._map.addLayer(this._debugInfo2);
 			var overlayMaps = {
@@ -5036,6 +5037,7 @@ L.CanvasTileLayer = L.Layer.extend({
 				'Sidebar Rerendering': this._debugSidebar,
 				'Performance Tracing': this._debugTrace,
 				'Protocol logging': this._debugLogging,
+				'Tile dumping': this._debugTileDumping
 			};
 			L.control.layers({}, overlayMaps, {collapsed: false}).addTo(this._map);
 
@@ -5059,6 +5061,8 @@ L.CanvasTileLayer = L.Layer.extend({
 					app.socket.setTraceEventLogging(true);
 				} else if (e.layer === this._debugLogging) {
 					window.setLogging(true);
+				} else if (e.layer === this._debugTileDumping) {
+					app.socket.sendMessage('toggletiledumping true');
 				}
 			}, this);
 			this._map.on('layerremove', function(e) {
@@ -5081,6 +5085,8 @@ L.CanvasTileLayer = L.Layer.extend({
 					app.socket.setTraceEventLogging(false);
 				} else if (e.layer === this._debugLogging) {
 					window.setLogging(false);
+				} else if (e.layer === this._debugTileDumping) {
+					app.socket.sendMessage('toggletiledumping false');
 				}
 			}, this);
 		}
