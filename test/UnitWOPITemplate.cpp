@@ -72,8 +72,7 @@ public:
 
             http::Response httpResponse(http::StatusCode::OK);
             httpResponse.set("Allow", "GET");
-            socket->send(httpResponse);
-            socket->shutdown();
+            socket->sendAndShutdown(httpResponse);
 
             return true;
         }
