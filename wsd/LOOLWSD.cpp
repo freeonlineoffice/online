@@ -2164,7 +2164,7 @@ void LOOLWSD::innerInitialize(Application& self)
 
     // First log entry.
     ServerName = config().getString("server_name");
-    LOG_INF("Initializing coolwsd server [" << ServerName << "]. Experimental features are "
+    LOG_INF("Initializing loolwsd server [" << ServerName << "]. Experimental features are "
                                             << (EnableExperimental ? "enabled." : "disabled."));
 
 
