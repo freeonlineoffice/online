@@ -458,28 +458,25 @@ setup-wsd: all @JAILS_PATH@
 	@cp $(abs_top_srcdir)/test/data/hello.odp $(abs_top_srcdir)/test/data/hello-world.odp
 	@echo
 
+COMMON_PARAMS = \
+	--o:sys_template_path="@SYSTEMPLATE_PATH@" \
+	--o:security.capabilities="$(CAPABILITIES)" \
+	--o:child_root_path="@JAILS_PATH@" --o:storage.filesystem[@allow]=true \
+	--o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
+	--o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
+	--o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
+	--o:admin_console.username=admin --o:admin_console.password=admin
+
 run: setup-wsd
-	./loolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
-			  --o:security.capabilities="$(CAPABILITIES)" \
-			  --o:child_root_path="@JAILS_PATH@" --o:storage.filesystem[@allow]=true \
-			  --o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
-			  --o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
-			  --o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
-			  --o:admin_console.username=admin --o:admin_console.password=admin \
-			  --o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
-			  --o:trace_event[@enable]=true
+	./loolwsd $(COMMON_PARAMS) \
+		--o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
+		--o:trace_event[@enable]=true
 
 if ENABLE_DEBUG
 run-one: setup-wsd
-	./loolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
-			  --o:security.capabilities="$(CAPABILITIES)" \
-			  --o:child_root_path="@JAILS_PATH@" --o:storage.filesystem[@allow]=true \
-			  --o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
-			  --o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
-			  --o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
-			  --o:admin_console.username=admin --o:admin_console.password=admin \
-			  --o:logging.file[@enable]=true --o:logging.level=trace \
-			  --singlekit
+	./loolwsd $(COMMON_PARAMS) \
+		--o:logging.file[@enable]=true --o:logging.level=trace \
+		--singlekit
 endif
 
 sync-writer:
