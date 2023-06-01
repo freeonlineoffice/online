@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 18:44+0200\n"
+"POT-Creation-Date: 2023-06-01 18:57+0200\n"
 "PO-Revision-Date: 2022-04-14 19:15+0000\n"
 "Last-Translator: Pedro Silva <pedro.silva@collabora.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/collabora-online/"
@@ -272,7 +272,7 @@ msgstr "Server byl vypnut, prosím načtěte stránku znovu."
 #: src/control/Toolbar.js:718 src/control/Toolbar.js:943
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -558,8 +558,8 @@ msgid "replies"
 msgstr "odpovědí"
 
 #: src/control/Control.JSDialogBuilder.js:2077
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5232
+#: src/layer/tile/CanvasTileLayer.js:5243
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Komentář"
@@ -2123,18 +2123,18 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1471
+#: src/core/Socket.js:1474
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 "Toto je nepříjemné, nepodařilo se připojit k dokumentu. Zkuste to znovu."
 
-#: src/core/Socket.js:1488
+#: src/core/Socket.js:1491
 msgid "Reconnecting..."
 msgstr "Opětovné připojování…"
 
-#: src/core/Socket.js:1498
+#: src/core/Socket.js:1501
 msgid "The server has been disconnected."
 msgstr "Server byl odpojen."
 
@@ -2316,23 +2316,23 @@ msgstr "Nepodařilo se nahrát soubor na server, soubor nebyl nalezen."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Nepodařilo se nahrát soubor na server, soubor je příliš velký."
 
-#: src/layer/tile/CanvasTileLayer.js:1908
+#: src/layer/tile/CanvasTileLayer.js:1929
 msgid "Functions"
 msgstr "Funkce"
 
-#: src/layer/tile/CanvasTileLayer.js:2474
+#: src/layer/tile/CanvasTileLayer.js:2495
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2482
+#: src/layer/tile/CanvasTileLayer.js:2503
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2490
+#: src/layer/tile/CanvasTileLayer.js:2511
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5260
 msgid "No Comments"
 msgstr "Bez komentářů"
 
@@ -2402,11 +2402,11 @@ msgstr "Kopírování z dokumentu zakázáno"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Nepodařilo se stáhnout schránku, zkuste zkopírovat znovu"
 
-#: src/map/Clipboard.js:861
+#: src/map/Clipboard.js:867
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Použijte tlačítka kopírovat/vložit na klávesnici na obrazovce.</p>"
 
-#: src/map/Clipboard.js:863
+#: src/map/Clipboard.js:869
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2423,7 +2423,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Copy</td><td>Cut</td><td>Paste</td></tr></tab"
 "le>"
 
-#: src/map/Clipboard.js:884
+#: src/map/Clipboard.js:890
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2437,7 +2437,7 @@ msgstr ""
 "kopírování do schránky“.</p><p>Jestliže kopírujete a vkládáte mezi dokumenty "
 "v rámci %productName, nic stahovat nepotřebujete.</p>"
 
-#: src/map/Clipboard.js:898
+#: src/map/Clipboard.js:904
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2446,7 +2446,7 @@ msgstr ""
 "<p>Stahování za účelem rozsáhlého kopírování/vkládání již začalo. Počkejte "
 "na jeho dokončení, nebo ho před zahájením nového nejprve zrušte.</p>"
 
-#: src/map/Clipboard.js:907
+#: src/map/Clipboard.js:913
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
@@ -2458,11 +2458,11 @@ msgstr ""
 "další možnosti</p><p class=\"vex-footnote\">Zavřením vyskakovacího okna "
 "vložení jinak zrušíte</p>"
 
-#: src/map/Map.js:218
+#: src/map/Map.js:215
 msgid "Initializing..."
 msgstr "Inicializace…"
 
-#: src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438
+#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
 msgid "Last saved:"
 msgstr "Naposledy uloženo:"
 

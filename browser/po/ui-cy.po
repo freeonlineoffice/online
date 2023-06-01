@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 18:44+0200\n"
+"POT-Creation-Date: 2023-06-01 18:57+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Welsh <https://hosted.weblate.org/projects/collabora-online/"
@@ -267,7 +267,7 @@ msgstr ""
 #: src/control/Toolbar.js:718 src/control/Toolbar.js:943
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Iawn"
@@ -553,8 +553,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2077
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5232
+#: src/layer/tile/CanvasTileLayer.js:5243
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Sylw"
@@ -2121,19 +2121,19 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1471
+#: src/core/Socket.js:1474
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 "Mae'n ddrwg gennym, nid ydym yn gallu cysylltu â'ch dogfen. Ceisiwch eto."
 
-#: src/core/Socket.js:1488
+#: src/core/Socket.js:1491
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Cysylltu..."
 
-#: src/core/Socket.js:1498
+#: src/core/Socket.js:1501
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2315,23 +2315,23 @@ msgstr "Methuwd llwytho dogfen i weinydd, heb ganfod y ffeil."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Methwyd llwytho ffeil i weinydd, mae'r ffeil yn rhy fawr"
 
-#: src/layer/tile/CanvasTileLayer.js:1908
+#: src/layer/tile/CanvasTileLayer.js:1929
 msgid "Functions"
 msgstr "Swyddogaeth"
 
-#: src/layer/tile/CanvasTileLayer.js:2474
+#: src/layer/tile/CanvasTileLayer.js:2495
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2482
+#: src/layer/tile/CanvasTileLayer.js:2503
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2490
+#: src/layer/tile/CanvasTileLayer.js:2511
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5260
 msgid "No Comments"
 msgstr ""
 
@@ -2402,12 +2402,12 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Methu llwytho'r clipfwrdd i lawr, ail gopïwch"
 
-#: src/map/Clipboard.js:861
+#: src/map/Clipboard.js:867
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Defnyddiwch y botymau copïo a gludo ar eich bysellfwrdd ar-sgrin.</p>"
 
-#: src/map/Clipboard.js:863
+#: src/map/Clipboard.js:869
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2417,7 +2417,7 @@ msgid ""
 "td><td>Cut</td><td>Paste</td></tr></table>"
 msgstr ""
 
-#: src/map/Clipboard.js:884
+#: src/map/Clipboard.js:890
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2431,7 +2431,7 @@ msgstr ""
 "clicio \"Cadarnhau copïo i'r clipfwrdd\". </p><p>Os ydych yn copïo a gludo "
 "rhwng dogfennau o fewn %productName, nid oes angen llwytho i lawr.</p>"
 
-#: src/map/Clipboard.js:898
+#: src/map/Clipboard.js:904
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2441,18 +2441,18 @@ msgstr ""
 "Arhoswch i'r llwytho i lawr cyfredol orffen neu ei ddiddymu cyn cychwyn un "
 "newydd</p>"
 
-#: src/map/Clipboard.js:907
+#: src/map/Clipboard.js:913
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
 "now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
 "more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 
-#: src/map/Map.js:218
+#: src/map/Map.js:215
 msgid "Initializing..."
 msgstr "Cychwyn..."
 
-#: src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438
+#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
 msgid "Last saved:"
 msgstr ""
 

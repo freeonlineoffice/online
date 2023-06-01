@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 18:44+0200\n"
+"POT-Creation-Date: 2023-06-01 18:57+0200\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/collabora-online/"
@@ -270,7 +270,7 @@ msgstr "El servidor ha caigut. Torneu a carregar la pàgina."
 #: src/control/Toolbar.js:718 src/control/Toolbar.js:943
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "D'acord"
@@ -557,8 +557,8 @@ msgid "replies"
 msgstr "respostes"
 
 #: src/control/Control.JSDialogBuilder.js:2077
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5232
+#: src/layer/tile/CanvasTileLayer.js:5243
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Comentari"
@@ -2124,7 +2124,7 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1471
+#: src/core/Socket.js:1474
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2132,11 +2132,11 @@ msgstr ""
 "Això no hauria de passar. No podem connectar amb el vostre document. Torneu-"
 "ho a intentar."
 
-#: src/core/Socket.js:1488
+#: src/core/Socket.js:1491
 msgid "Reconnecting..."
 msgstr "S'està tornant a connectar…"
 
-#: src/core/Socket.js:1498
+#: src/core/Socket.js:1501
 msgid "The server has been disconnected."
 msgstr "S'ha desconnectat el servidor."
 
@@ -2321,23 +2321,23 @@ msgstr "Ha fallat la pujada al servidor perquè no s'ha trobat el fitxer."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Ha fallat la pujada al servidor perquè el fitxer és massa gran."
 
-#: src/layer/tile/CanvasTileLayer.js:1908
+#: src/layer/tile/CanvasTileLayer.js:1929
 msgid "Functions"
 msgstr "Funcions"
 
-#: src/layer/tile/CanvasTileLayer.js:2474
+#: src/layer/tile/CanvasTileLayer.js:2495
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2482
+#: src/layer/tile/CanvasTileLayer.js:2503
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2490
+#: src/layer/tile/CanvasTileLayer.js:2511
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5260
 msgid "No Comments"
 msgstr "Cap comentari"
 
@@ -2407,11 +2407,11 @@ msgstr "S'ha desactivat la còpia des del document"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "No s'ha pogut baixar el porta-retalls; torneu a copiar"
 
-#: src/map/Clipboard.js:861
+#: src/map/Clipboard.js:867
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Useu els botons de copiar i enganxar en el teclat de pantalla.</p>"
 
-#: src/map/Clipboard.js:863
+#: src/map/Clipboard.js:869
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2428,7 +2428,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Copia</td><td>Retalla</td><td>Enganxa</td></t"
 "r></table>"
 
-#: src/map/Clipboard.js:884
+#: src/map/Clipboard.js:890
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2442,7 +2442,7 @@ msgstr ""
 "la còpia al porta-retalls».</p><p>Si esteu copiant i baixant entre documents "
 "del %productName, no cal baixar-los.</p>"
 
-#: src/map/Clipboard.js:898
+#: src/map/Clipboard.js:904
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2452,7 +2452,7 @@ msgstr ""
 "Espereu que la baixada actual finalitzi o cancel·leu-la abans de començar-ne "
 "una altra</p>"
 
-#: src/map/Clipboard.js:907
+#: src/map/Clipboard.js:913
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
@@ -2464,11 +2464,11 @@ msgstr ""
 "a veure més opcions</p><p class=\"vex-footnote\">Tanqueu la finestra "
 "emergent per a ignorar l'enganxament especial</p>"
 
-#: src/map/Map.js:218
+#: src/map/Map.js:215
 msgid "Initializing..."
 msgstr "S'està iniciant..."
 
-#: src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438
+#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
 msgid "Last saved:"
 msgstr "Desat per darrer cop:"
 

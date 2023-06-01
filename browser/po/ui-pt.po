@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 18:44+0200\n"
+"POT-Creation-Date: 2023-06-01 18:57+0200\n"
 "PO-Revision-Date: 2022-05-24 10:17+0000\n"
 "Last-Translator: SC <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/"
@@ -270,7 +270,7 @@ msgstr "O servidor foi desligado; por favor, recarregue a página."
 #: src/control/Toolbar.js:718 src/control/Toolbar.js:943
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Aceitar"
@@ -556,8 +556,8 @@ msgid "replies"
 msgstr "respostas"
 
 #: src/control/Control.JSDialogBuilder.js:2077
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5232
+#: src/layer/tile/CanvasTileLayer.js:5243
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Comentário"
@@ -2118,7 +2118,7 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1471
+#: src/core/Socket.js:1474
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2126,11 +2126,11 @@ msgstr ""
 "Ocorre um problema ao tentar estabelecer a ligação ao documento. Por favor "
 "tente novamente."
 
-#: src/core/Socket.js:1488
+#: src/core/Socket.js:1491
 msgid "Reconnecting..."
 msgstr "A reconectar..."
 
-#: src/core/Socket.js:1498
+#: src/core/Socket.js:1501
 msgid "The server has been disconnected."
 msgstr "O servidor foi desconectado."
 
@@ -2319,23 +2319,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Não foi possível enviar para o servidor porque o ficheiro é demasiado grande."
 
-#: src/layer/tile/CanvasTileLayer.js:1908
+#: src/layer/tile/CanvasTileLayer.js:1929
 msgid "Functions"
 msgstr "Funções"
 
-#: src/layer/tile/CanvasTileLayer.js:2474
+#: src/layer/tile/CanvasTileLayer.js:2495
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2482
+#: src/layer/tile/CanvasTileLayer.js:2503
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2490
+#: src/layer/tile/CanvasTileLayer.js:2511
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5260
 msgid "No Comments"
 msgstr "Sem comentários"
 
@@ -2407,12 +2407,12 @@ msgstr "Cópia a partir do documento desativada"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Falha ao transferir a área de transferência. Por favor copie novamente"
 
-#: src/map/Clipboard.js:861
+#: src/map/Clipboard.js:867
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Por favor utilize os botões de copiar/colar no seu teclado de ecrã.</p>"
 
-#: src/map/Clipboard.js:863
+#: src/map/Clipboard.js:869
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2429,7 +2429,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Copiar</td><td>Cortar</td><td>Colar</td></tr>"
 "</table>"
 
-#: src/map/Clipboard.js:884
+#: src/map/Clipboard.js:890
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2444,7 +2444,7 @@ msgstr ""
 "entre documentos do %productName, não há necessidade de descarregar os "
 "elementos.</p>"
 
-#: src/map/Clipboard.js:898
+#: src/map/Clipboard.js:904
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2454,7 +2454,7 @@ msgstr ""
 "colar. Por favor espere pela transferência atual, ou cancele-a antes de "
 "iniciar uma nova</p>"
 
-#: src/map/Clipboard.js:907
+#: src/map/Clipboard.js:913
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
@@ -2466,11 +2466,11 @@ msgstr ""
 "plus\">+</span><kbd>V</kbd> para ver mais opções</p><p class=\"vex-footnote\""
 ">Fechar popup para ignorar colar especial</p>"
 
-#: src/map/Map.js:218
+#: src/map/Map.js:215
 msgid "Initializing..."
 msgstr "A iniciar..."
 
-#: src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438
+#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
 msgid "Last saved:"
 msgstr "Última vez guardado:"
 

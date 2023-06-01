@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 18:44+0200\n"
+"POT-Creation-Date: 2023-06-01 18:57+0200\n"
 "PO-Revision-Date: 2022-06-02 09:20+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/"
@@ -267,7 +267,7 @@ msgstr "Slökkt hefur verið á netþjóninum, þú ættir að hlaða síðunni 
 #: src/control/Toolbar.js:718 src/control/Toolbar.js:943
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1158
 #: src/core/Socket.js:1162 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:868 src/map/Clipboard.js:914
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Í lagi"
@@ -552,8 +552,8 @@ msgid "replies"
 msgstr "svör"
 
 #: src/control/Control.JSDialogBuilder.js:2077
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5232
+#: src/layer/tile/CanvasTileLayer.js:5243
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Athugasemd"
@@ -2114,7 +2114,7 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1471
+#: src/core/Socket.js:1474
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2122,11 +2122,11 @@ msgstr ""
 "Jæja, þetta er vandræðalegt; við náum ekki að tengjast skjalinu þínu. Reyndu "
 "aftur síðar."
 
-#: src/core/Socket.js:1488
+#: src/core/Socket.js:1491
 msgid "Reconnecting..."
 msgstr "Endurtengist..."
 
-#: src/core/Socket.js:1498
+#: src/core/Socket.js:1501
 msgid "The server has been disconnected."
 msgstr "Netþjónninn hefur verið aftengdur."
 
@@ -2311,23 +2311,23 @@ msgstr "Sending á skrá til þjónsins mistókst, skráin fannst ekki."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Sending á skrá til þjónsins mistókst, skráin er of stór."
 
-#: src/layer/tile/CanvasTileLayer.js:1908
+#: src/layer/tile/CanvasTileLayer.js:1929
 msgid "Functions"
 msgstr "Föll"
 
-#: src/layer/tile/CanvasTileLayer.js:2474
+#: src/layer/tile/CanvasTileLayer.js:2495
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2482
+#: src/layer/tile/CanvasTileLayer.js:2503
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2490
+#: src/layer/tile/CanvasTileLayer.js:2511
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5260
 msgid "No Comments"
 msgstr "Engar athugasemdir"
 
@@ -2397,11 +2397,11 @@ msgstr "Afritun úr skjalinu er ekki virk"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Tókst ekki að sækja klippispjald, afritaðu aftur"
 
-#: src/map/Clipboard.js:861
+#: src/map/Clipboard.js:867
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Notaðu afrita/líma hnappana á skjályklaborðinu þínu.</p>"
 
-#: src/map/Clipboard.js:863
+#: src/map/Clipboard.js:869
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2418,7 +2418,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Afrita</td><td>Klippa</td><td>Líma</td></tr><"
 "/table>"
 
-#: src/map/Clipboard.js:884
+#: src/map/Clipboard.js:890
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2432,7 +2432,7 @@ msgstr ""
 "á \"Staðfesta afritun á klippispjald\".</p><p>Ef þú ert að afrita og líma "
 "milli skjala innan %productName, er ekki þörf á að sækja skjölin.</p>"
 
-#: src/map/Clipboard.js:898
+#: src/map/Clipboard.js:904
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2442,7 +2442,7 @@ msgstr ""
 "bíða eftir að því sé lokið eða hætta við aðgerðina áður en þú hefur nýja "
 "slíka aðgerð</p>"
 
-#: src/map/Clipboard.js:907
+#: src/map/Clipboard.js:913
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
@@ -2454,11 +2454,11 @@ msgstr ""
 "fleiri valkosti</p><p class=\"vex-footnote\">Lokaðu sprettglugganum til að "
 "hunsa sérstaka límingu</p>"
 
-#: src/map/Map.js:218
+#: src/map/Map.js:215
 msgid "Initializing..."
 msgstr "Frumstilli..."
 
-#: src/map/Map.js:429 src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438
+#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
 msgid "Last saved:"
 msgstr "Síðast vistað:"
 
