@@ -553,7 +553,7 @@ void AdminModel::addDocument(const std::string& docKey, pid_t pid,
         memoryAllocated = std::to_string(_documents.begin()->second->getMemoryDirty());
     }
 
-    const std::string wopiHost = wopiSrc.getHost();
+    const std::string& wopiHost = wopiSrc.getHost();
     oss << memoryAllocated << ' ' << wopiHost << ' ' << isViewReadOnly << ' ' << wopiSrc.toString();
     if (LOOLWSD::getConfigValue<bool>("logging.docstats", false))
     {
@@ -823,6 +823,7 @@ std::string AdminModel::getDocuments() const
             separator1 = ',';
         }
     }
+
     oss << ']' << '}';
     return oss.str();
 }
