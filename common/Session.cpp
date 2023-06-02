@@ -207,6 +207,11 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
             _macroSecurityLevel = value;
             ++offset;
         }
+        else if (name == "enableAccessibility")
+        {
+            _enableAccessibility = value == "true";
+            ++offset;
+        }
     }
 
     Util::mapAnonymized(_userId, _userIdAnonym);
