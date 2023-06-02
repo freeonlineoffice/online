@@ -3562,8 +3562,6 @@ private:
             socket->getInBuffer().clear();
 
             LOG_INF("New child [" << pid << "], jailId: " << jailId);
-
-            UnitWSD::get().newChild(*this);
 #else
             pid_t pid = 100;
             std::string jailId = "jail";
@@ -3573,6 +3571,12 @@ private:
 
             auto child = std::make_shared<ChildProcess>(pid, jailId, socket, request);
 
+#if !MOBILEAPP
+            UnitWSD::get().newChild(child);
+#endif
+
+            _pid = pid;
+            _socketFD = socket->getFD();
             child->setSMapsFD(socket->getIncomingFD());
             _childProcess = child; // weak
 
