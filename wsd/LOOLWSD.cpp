@@ -6112,7 +6112,6 @@ int LOOLWSD::innerMain()
 
     const int returnValue = UnitBase::uninit();
 
-    UnitBase::uninit();
     LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
 
     // At least on centos7, Poco deadlocks while
