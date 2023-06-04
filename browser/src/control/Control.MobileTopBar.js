@@ -28,7 +28,7 @@ L.Control.MobileTopBar = L.Control.extend({
 				{type: 'button',  id: 'undo',  img: 'undo', hint: _UNO('.uno:Undo'), uno: 'Undo', disabled: true},
 				{type: 'button',  id: 'redo',  img: 'redo', hint: _UNO('.uno:Redo'), uno: 'Redo', disabled: true},
 				{type: 'spacer', id: 'before-PermissionMode'},
-				{type: 'html', id: 'PermissionMode', html:'<div id="PermissionMode" class="cool-font  status-readonly-mode" ""style="padding: 3px 10px;"> ' + _('Read-only') + '</div>', hidden: true},
+				{type: 'html', id: 'PermissionMode', html:'<div id="PermissionMode" class="lool-font  status-readonly-mode" ""style="padding: 3px 10px;"> ' + _('Read-only') + '</div>', hidden: true},
 				{type: 'spacer', id: 'after-PermissionMode', hidden: true},
 				{type: 'button',  id: 'mobile_wizard', img: 'mobile_wizard', disabled: true},
 				{type: 'button',  id: 'insertion_mobile_wizard', img: 'insertion_mobile_wizard', disabled: true},
