@@ -288,7 +288,8 @@ void HTTPWSTest::testInactiveClient()
                                             token == "context:" ||
                                             token == "window:" ||
                                             token == "rulerupdate:" ||
-                                            token == "tableselected:");
+                                            token == "tableselected:" ||
+                                            token == "colorpalettes:");
 
                     // End when we get state changed.
                     return (token != "statechanged:");
