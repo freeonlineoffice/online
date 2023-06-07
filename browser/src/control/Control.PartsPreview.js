@@ -225,7 +225,7 @@ L.Control.PartsPreview = L.Control.extend({
 			that._setPart(e);
 			$.contextMenu({
 				selector: '#' + img.id,
-				className: 'cool-font',
+				className: 'lool-font',
 				items: {
 					copy: {
 						name: _('Copy'),
