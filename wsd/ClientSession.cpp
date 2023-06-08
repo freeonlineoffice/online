@@ -1194,10 +1194,10 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
             oss << " macroSecurityLevel=" << LOOLWSD::getConfigValue<int>("security.macro_security_level", 1);
         }
 
-        if (COOLWSD::hasProperty("accessibility.enable"))
+        if (LOOLWSD::hasProperty("accessibility.enable"))
         {
             oss << " enableAccessibility=" << std::boolalpha
-                << COOLWSD::getConfigValue<bool>("accessibility.enable", false);
+                << LOOLWSD::getConfigValue<bool>("accessibility.enable", false);
         }
 
         if (!getDocOptions().empty())
