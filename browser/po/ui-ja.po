@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 19:50+0200\n"
+"POT-Creation-Date: 2023-06-08 18:07+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/"
@@ -231,7 +231,7 @@ msgstr ""
 
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
-#: src/control/Control.Zotero.js:182 src/control/Parts.js:438
+#: src/control/Control.Zotero.js:182 src/control/Parts.js:436
 #: src/control/Signing.js:611 src/core/Socket.js:986 src/core/Socket.js:991
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -569,17 +569,21 @@ msgstr ""
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3043
+#: src/control/Control.JSDialogBuilder.js:2951
+msgid "Automatic"
+msgstr ""
+
+#: src/control/Control.JSDialogBuilder.js:3068
 #: src/control/Control.Menubar.js:791
 msgid "Rows"
 msgstr "行"
 
-#: src/control/Control.JSDialogBuilder.js:3044
+#: src/control/Control.JSDialogBuilder.js:3069
 #: src/control/Control.Menubar.js:794
 msgid "Columns"
 msgstr "列"
 
-#: src/control/Control.JSDialogBuilder.js:3064
+#: src/control/Control.JSDialogBuilder.js:3089
 msgid "Insert Table"
 msgstr "表の挿入"
 
@@ -1336,7 +1340,7 @@ msgid "Sparkline"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1222
-#: src/control/Control.NotebookbarCalc.js:1873
+#: src/control/Control.NotebookbarCalc.js:1874
 #: src/control/Control.NotebookbarDraw.js:638
 #: src/control/Control.NotebookbarDraw.js:1015
 #: src/control/Control.NotebookbarImpress.js:751
@@ -1408,8 +1412,16 @@ msgstr ""
 msgid "Ruler"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:180
+#: src/control/Control.PartsPreview.js:181
 msgid "preview of page "
+msgstr ""
+
+#: src/control/Control.PartsPreview.js:231
+msgid "Copy"
+msgstr ""
+
+#: src/control/Control.PartsPreview.js:240
+msgid "Paste"
 msgstr ""
 
 #: src/control/Control.Scroll.Annotation.js:10
@@ -2416,7 +2428,7 @@ msgstr ""
 msgid "Initializing..."
 msgstr "初期化しています..."
 
-#: src/map/Map.js:431 src/map/Map.js:434 src/map/Map.js:437 src/map/Map.js:440
+#: src/map/Map.js:432 src/map/Map.js:435 src/map/Map.js:438 src/map/Map.js:441
 msgid "Last saved:"
 msgstr ""
 
