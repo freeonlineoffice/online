@@ -49,7 +49,8 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "jsdom": "^21.1.2",
-    "tmp": "^0.2.1"
+    "tmp": "^0.2.1",
+    "uglifyify": "^5.0.2"
   },
   "scripts": {
     "test": "mocha 'mocha_tests/**/*.js'",
