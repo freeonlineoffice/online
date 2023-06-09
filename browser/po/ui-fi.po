@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 18:07+0200\n"
+"POT-Creation-Date: 2023-06-09 19:47+0200\n"
 "PO-Revision-Date: 2022-01-16 22:54+0000\n"
 "Last-Translator: Petri Heinämäki <heinamakipetri@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/collabora-online/"
@@ -553,8 +553,8 @@ msgid "replies"
 msgstr "vastaukset"
 
 #: src/control/Control.JSDialogBuilder.js:2091
-#: src/layer/tile/CanvasTileLayer.js:5219
-#: src/layer/tile/CanvasTileLayer.js:5230
+#: src/layer/tile/CanvasTileLayer.js:5223
+#: src/layer/tile/CanvasTileLayer.js:5234
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Huomautus"
@@ -2331,23 +2331,23 @@ msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedostoa ei löytynyt."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedosto on liian iso."
 
-#: src/layer/tile/CanvasTileLayer.js:1910
+#: src/layer/tile/CanvasTileLayer.js:1914
 msgid "Functions"
 msgstr "Funktiot"
 
-#: src/layer/tile/CanvasTileLayer.js:2476
+#: src/layer/tile/CanvasTileLayer.js:2480
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2484
+#: src/layer/tile/CanvasTileLayer.js:2488
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2492
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5247
+#: src/layer/tile/CanvasTileLayer.js:5251
 msgid "No Comments"
 msgstr "Ei kommentteja"
 

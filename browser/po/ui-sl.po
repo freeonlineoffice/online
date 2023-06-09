@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreOffice Online UI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 18:07+0200\n"
+"POT-Creation-Date: 2023-06-09 19:47+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/"
@@ -556,8 +556,8 @@ msgid "replies"
 msgstr "odgovorov"
 
 #: src/control/Control.JSDialogBuilder.js:2091
-#: src/layer/tile/CanvasTileLayer.js:5219
-#: src/layer/tile/CanvasTileLayer.js:5230
+#: src/layer/tile/CanvasTileLayer.js:5223
+#: src/layer/tile/CanvasTileLayer.js:5234
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Komentar"
@@ -2327,23 +2327,23 @@ msgstr "Nalaganje datoteke na strežnik je spodletelo, datoteke ni mogoče najti
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Nalaganje datoteke na strežnik je spodletelo, datoteka je prevelika."
 
-#: src/layer/tile/CanvasTileLayer.js:1910
+#: src/layer/tile/CanvasTileLayer.js:1914
 msgid "Functions"
 msgstr "Funkcije"
 
-#: src/layer/tile/CanvasTileLayer.js:2476
+#: src/layer/tile/CanvasTileLayer.js:2480
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2484
+#: src/layer/tile/CanvasTileLayer.js:2488
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2492
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5247
+#: src/layer/tile/CanvasTileLayer.js:5251
 msgid "No Comments"
 msgstr "Ni komentarjev"
 
