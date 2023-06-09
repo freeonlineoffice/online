@@ -48,7 +48,7 @@ namespace LOOLProtocol
         return std::make_tuple(major, minor, patch);
     }
 
-    bool getTokenInteger(const std::string& token, const std::string& name, int& value)
+    bool getTokenInteger(const std::string& token, const std::string_view name, int& value)
     {
         if (token.size() > (name.size() + 1) &&
             token.compare(0, name.size(), name) == 0 &&
@@ -63,7 +63,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenUInt64(const std::string& token, const std::string& name, uint64_t& value)
+    bool getTokenUInt64(const std::string& token, const std::string_view name, uint64_t& value)
     {
         if (token.size() > (name.size() + 1) &&
             token.compare(0, name.size(), name) == 0 &&
@@ -78,7 +78,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenUInt32(const std::string& token, const std::string& name, uint32_t& value)
+    bool getTokenUInt32(const std::string& token, const std::string_view name, uint32_t& value)
     {
         if (token.size() > (name.size() + 1) &&
             token.compare(0, name.size(), name) == 0 &&
@@ -93,7 +93,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenString(const std::string& token, const std::string& name, std::string& value)
+    bool getTokenString(const std::string& token, const std::string_view name, std::string& value)
     {
         if (token.size() >= (name.size() + 1) &&
             token.compare(0, name.size(), name) == 0 &&
@@ -106,7 +106,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenKeyword(const std::string& token, const std::string& name,
+    bool getTokenKeyword(const std::string& token, const std::string_view name,
                          const std::map<std::string, int>& map, int& value)
     {
         std::string t;
@@ -128,7 +128,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenInteger(const StringVector& tokens, const std::string& name, int& value)
+    bool getTokenInteger(const StringVector& tokens, const std::string_view name, int& value)
     {
         for (size_t i = 0; i < tokens.size(); i++)
         {
@@ -138,7 +138,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenKeyword(const StringVector& tokens, const std::string& name, const std::map<std::string, int>& map, int& value)
+    bool getTokenKeyword(const StringVector& tokens, const std::string_view name, const std::map<std::string, int>& map, int& value)
     {
         for (size_t i = 0; i < tokens.size(); i++)
         {
@@ -148,7 +148,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenStringFromMessage(const std::string& message, const std::string& name, std::string& value)
+    bool getTokenStringFromMessage(const std::string& message, const std::string_view name, std::string& value)
     {
         if (message.size() > name.size() + 1)
         {
@@ -171,7 +171,7 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenKeywordFromMessage(const std::string& message, const std::string& name, const std::map<std::string, int>& map, int& value)
+    bool getTokenKeywordFromMessage(const std::string& message, const std::string_view name, const std::map<std::string, int>& map, int& value)
     {
         return getTokenKeyword(StringVector::tokenize(message), name, map, value);
     }

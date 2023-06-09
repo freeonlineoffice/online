@@ -77,15 +77,15 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenInteger(const std::string& token, const std::string& name, int& value);
-    bool getTokenUInt32(const std::string& token, const std::string& name, uint32_t& value);
-    bool getTokenUInt64(const std::string& token, const std::string& name, uint64_t& value);
-    bool getTokenString(const std::string& token, const std::string& name, std::string& value);
-    bool getTokenKeyword(const std::string& token, const std::string& name, const std::map<std::string, int>& map, int& value);
+    bool getTokenInteger(const std::string& token, const std::string_view name, int& value);
+    bool getTokenUInt32(const std::string& token, const std::string_view name, uint32_t& value);
+    bool getTokenUInt64(const std::string& token, const std::string_view name, uint64_t& value);
+    bool getTokenString(const std::string& token, const std::string_view name, std::string& value);
+    bool getTokenKeyword(const std::string& token, const std::string_view name, const std::map<std::string, int>& map, int& value);
 
-    bool getTokenKeyword(const StringVector& tokens, const std::string& name, const std::map<std::string, int>& map, int& value);
+    bool getTokenKeyword(const StringVector& tokens, const std::string_view name, const std::map<std::string, int>& map, int& value);
 
-    bool getTokenInteger(const StringVector& tokens, const std::string& name, int& value);
+    bool getTokenInteger(const StringVector& tokens, const std::string_view name, int& value);
 
     /// Literal-string token names.
     template <std::size_t N>
@@ -112,7 +112,7 @@ namespace LOOLProtocol
     }
 
     inline bool getTokenString(const StringVector& tokens,
-                               const std::string& name,
+                               const std::string_view name,
                                std::string& value)
     {
         for (const auto& token : tokens)
@@ -126,8 +126,8 @@ namespace LOOLProtocol
         return false;
     }
 
-    bool getTokenStringFromMessage(const std::string& message, const std::string& name, std::string& value);
-    bool getTokenKeywordFromMessage(const std::string& message, const std::string& name, const std::map<std::string, int>& map, int& value);
+    bool getTokenStringFromMessage(const std::string& message, const std::string_view name, std::string& value);
+    bool getTokenKeywordFromMessage(const std::string& message, const std::string_view name, const std::map<std::string, int>& map, int& value);
 
     inline
     std::vector<int> tokenizeInts(const char* data, const size_t size, const char delimiter = ',')
@@ -163,7 +163,7 @@ namespace LOOLProtocol
         return tokenizeInts(s.data(), s.size(), delimiter);
     }
 
-    inline bool getTokenIntegerFromMessage(const std::string& message, const std::string& name, int& value)
+    inline bool getTokenIntegerFromMessage(const std::string& message, const std::string_view name, int& value)
     {
         return getTokenInteger(StringVector::tokenize(message), name, value);
     }
@@ -217,7 +217,7 @@ namespace LOOLProtocol
     /// Notice that this doesn't guarantee editing activity,
     /// rather just user interaction with the UI.
     inline
-    bool tokenIndicatesUserInteraction(const std::string& token)
+    bool tokenIndicatesUserInteraction(const std::string_view token)
     {
         // Exclude tokens that include these keywords, such as canceltiles statusindicator.
 
