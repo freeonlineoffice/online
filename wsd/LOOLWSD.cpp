@@ -893,6 +893,7 @@ std::string LOOLWSD::LOKitVersion;
 std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
 bool LOOLWSD::EnableTraceEventLogging = false;
+bool LOOLWSD::EnableAccessibility = false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
 std::string LOOLWSD::LogLevelStartup = "trace";
@@ -2095,6 +2096,8 @@ void LOOLWSD::innerInitialize(Application& self)
     // Experimental features.
     EnableExperimental = getConfigValue<bool>(conf, "experimental_features", false);
 
+    EnableAccessibility = getConfigValue<bool>(conf, "accessibility.enable", false);
+
     // Setup user interface mode
     UserInterface = getConfigValue<std::string>(conf, "user_interface.mode", "default");
 
@@ -2102,6 +2105,9 @@ void LOOLWSD::innerInitialize(Application& self)
         UserInterface = "classic";
 
     if (UserInterface == "tabbed")
+        UserInterface = "notebookbar";
+
+    if (EnableAccessibility)
         UserInterface = "notebookbar";
 
     // Set the log-level after complete initialization to force maximum details at startup.
