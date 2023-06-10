@@ -493,7 +493,9 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-radius: var(--border-radius);
 	width: auto;
 }
-.lool-annotation-content-wrapper:hover, .lool-annotation-redline-content-wrapper:hover {
+
+.lool-annotation:not(.annotation-active) .lool-annotation-content-wrapper:hover, 
+.lool-annotation:not(.annotation-active) .lool-annotation-redline-content-wrapper:hover {
 	background-color: var(--color-background-dark);
 	color: var(--color-text-dark);
 }
