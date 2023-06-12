@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 19:47+0200\n"
+"POT-Creation-Date: 2023-06-12 18:36+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/collabora-online/"
@@ -268,7 +268,7 @@ msgstr "Server bol vypnutý, prosím načítajte stránku znova."
 #: src/control/Toolbar.js:720 src/control/Toolbar.js:945
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1159
 #: src/core/Socket.js:1163 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:925
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -2455,7 +2455,7 @@ msgstr ""
 "<p>Sťahovanie za účelom rozsiahleho kopírovania / vkladania začalo. Počkajte "
 "na jeho dokončenie alebo ho pred začatím nového najprv zrušte.</p>"
 
-#: src/map/Clipboard.js:913
+#: src/map/Clipboard.js:918
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "

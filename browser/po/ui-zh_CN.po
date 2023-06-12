@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 19:47+0200\n"
+"POT-Creation-Date: 2023-06-12 18:36+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -266,7 +266,7 @@ msgstr "服务器已关闭，请刷新该页面。"
 #: src/control/Toolbar.js:720 src/control/Toolbar.js:945
 #: src/core/Socket.js:956 src/core/Socket.js:1031 src/core/Socket.js:1159
 #: src/core/Socket.js:1163 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:920
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:925
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "确定"
@@ -2403,7 +2403,7 @@ msgid ""
 "one</p>"
 msgstr "<p>大型复制／粘贴操作所需的下载已经开始。请等待下载完成之后或将其取消后，再开始新的下载</p>"
 
-#: src/map/Clipboard.js:913
+#: src/map/Clipboard.js:918
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
 "now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
