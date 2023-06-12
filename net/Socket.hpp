@@ -556,7 +556,8 @@ class InputProcessingManager
 {
 public:
     InputProcessingManager(const std::shared_ptr<ProtocolHandlerInterface> &protocol, bool inputProcess)
-    : _protocol(protocol)
+        : _protocol(protocol)
+        , _prevInputProcess(false)
     {
         if (_protocol)
         {
