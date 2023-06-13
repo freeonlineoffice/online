@@ -88,9 +88,9 @@ public:
 
     void startMonitors();
 
-    void updateMonitors(std::vector<std::string>& oldMonitors);
+    void updateMonitors(std::vector<std::pair<std::string, int>>& oldMonitors);
 
-    std::vector<std::string> getMonitorList();
+    std::vector<std::pair<std::string, int>> getMonitorList();
 
     /// Custom poll thread function
     void pollingThread() override;
