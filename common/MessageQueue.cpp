@@ -156,7 +156,7 @@ std::string extractUnoCommand(const std::string& command)
 
 bool containsUnoCommand(const std::string_view token, const std::string_view command)
 {
-    if (!COOLProtocol::matchPrefix(".uno:", token))
+    if (!LOOLProtocol::matchPrefix(".uno:", token))
         return false;
 
     size_t equalPos = token.find('=');
