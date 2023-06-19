@@ -40,7 +40,7 @@ Session::Session(const std::shared_ptr<ProtocolHandlerInterface> &protocol,
     _haveDocPassword(false),
     _isDocPasswordProtected(false),
     _watermarkOpacity(0.2),
-    _enableAccessibility(false)
+    _accessibilityState(false)
 {
 }
 
@@ -208,9 +208,9 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
             _macroSecurityLevel = value;
             ++offset;
         }
-        else if (name == "enableAccessibility")
+        else if (name == "accessibilityState")
         {
-            _enableAccessibility = value == "true";
+            _accessibilityState = value == "true";
             ++offset;
         }
     }
