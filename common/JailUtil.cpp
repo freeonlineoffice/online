@@ -335,7 +335,7 @@ bool createRandomDeviceInJail(const std::string& root, const std::string& device
                 << strerror(mknodErrno));
 
         Poco::File(absPath).createFile();
-        if (coolmount("-b", devicePath, absPath))
+        if (loolmount("-b", devicePath, absPath))
         {
             LOG_DBG("Bind mounted [" << devicePath << "] -> [" << absPath << ']');
             return true;
