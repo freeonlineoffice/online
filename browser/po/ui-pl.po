@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 18:20+0200\n"
+"POT-Creation-Date: 2023-06-20 19:28+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/collabora-online/"
@@ -570,25 +570,25 @@ msgstr "Komentarz"
 msgid "Insert Comment"
 msgstr "Wstaw komentarz"
 
-#: src/control/Control.JSDialogBuilder.js:2879
+#: src/control/Control.JSDialogBuilder.js:2880
 msgid "Cell borders"
 msgstr "Krawędzie komórek"
 
-#: src/control/Control.JSDialogBuilder.js:2994
+#: src/control/Control.JSDialogBuilder.js:2995
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3111
+#: src/control/Control.JSDialogBuilder.js:3112
 #: src/control/Control.Menubar.js:793
 msgid "Rows"
 msgstr "Wiersze"
 
-#: src/control/Control.JSDialogBuilder.js:3112
+#: src/control/Control.JSDialogBuilder.js:3113
 #: src/control/Control.Menubar.js:796
 msgid "Columns"
 msgstr "Kolumny"
 
-#: src/control/Control.JSDialogBuilder.js:3132
+#: src/control/Control.JSDialogBuilder.js:3133
 msgid "Insert Table"
 msgstr "Wstaw tabelę"
 
