@@ -314,6 +314,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
             {
                 return obj->localPath == lpath;
             });
+
             if (it != fileInfoVec.end())
                 return *it;
 
@@ -377,20 +378,12 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
 
             std::ostringstream jsonStream;
             fileInfo->stringify(jsonStream);
-            std::string responseString = jsonStream.str();
 
-            const std::string mimeType = "application/json; charset=utf-8";
+            http::Response httpResponse(http::StatusCode::OK);
+            httpResponse.set("Last-Modified", Util::getHttpTime(localFile->fileLastModifiedTime));
+            httpResponse.setBody(jsonStream.str(), "application/json; charset=utf-8");
+            socket->send(httpResponse);
 
-            std::ostringstream oss;
-            oss << "HTTP/1.1 200 OK\r\n"
-                "Last-Modified: " << Util::getHttpTime(localFile->fileLastModifiedTime) << "\r\n"
-                "User-Agent: " WOPI_AGENT_STRING "\r\n"
-                "Content-Length: " << responseString.size() << "\r\n"
-                "Content-Type: " << mimeType << "\r\n"
-                "\r\n"
-                << responseString;
-
-            socket->send(oss.str());
             return;
         }
         else if(request.getMethod() == "GET" && Util::endsWith(path.toString(), suffix))
@@ -400,18 +393,11 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
             auto ss = std::ostringstream{};
             std::ifstream inputFile(localFile->localPath);
             ss << inputFile.rdbuf();
-            const std::string content = ss.str();
-            const std::string mimeType = "text/plain; charset=utf-8";
-            std::ostringstream oss;
-            oss << "HTTP/1.1 200 OK\r\n"
-                "Last-Modified: " << Util::getHttpTime(localFile->fileLastModifiedTime) << "\r\n"
-                "User-Agent: " WOPI_AGENT_STRING "\r\n"
-                "Content-Length: " << localFile->size << "\r\n"
-                "Content-Type: " << mimeType << "\r\n"
-                "\r\n"
-                << content;
 
-            socket->send(oss.str());
+            http::Response httpResponse(http::StatusCode::OK);
+            httpResponse.set("Last-Modified", Util::getHttpTime(localFile->fileLastModifiedTime));
+            httpResponse.setBody(ss.str(), "text/plain; charset=utf-8");
+            socket->send(httpResponse);
             return;
         }
         else if (request.getMethod() == "POST" && Util::endsWith(path.toString(), suffix))
@@ -419,7 +405,6 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
             std::shared_ptr<LocalFileInfo> localFile =
                 LocalFileInfo::getOrCreateFile(localPath,path.getFileName());
             std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
-
             if (wopiTimestamp.empty())
                 wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
 
@@ -428,16 +413,18 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
                 if (wopiTimestamp != localFile->getLastModifiedTime())
                 {
                     http::Response httpResponse(http::StatusCode::Conflict);
-                    httpResponse.setBody(
-                        "{\"LOOLStatusCode\":" +
-                        std::to_string(static_cast<int>(LocalFileInfo::LOOLStatusCode::DocChanged)) + ',' +
-                        "{\"LOOLStatusCode\":" +
-                        std::to_string(static_cast<int>(LocalFileInfo::LOOLStatusCode::DocChanged)) + '}');
+                    httpResponse.setBody("{\"LOOLStatusCode\":" +
+                                             std::to_string(static_cast<int>(
+                                                 LocalFileInfo::LOOLStatusCode::DocChanged)) +
+                                             ',' + "{\"LOOLStatusCode\":" +
+                                             std::to_string(static_cast<int>(
+                                                 LocalFileInfo::LOOLStatusCode::DocChanged)) +
+                                             '}',
+                                         "application/json; charset=utf-8");
                     socket->send(httpResponse);
                     return;
                 }
             }
-
 
             std::streamsize size = request.getContentLength();
             std::vector<char> buffer(size);
@@ -452,7 +439,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
             const std::string body = "{\"LastModifiedTime\": \"" +
                 localFile->getLastModifiedTime() + "\" }";
             http::Response httpResponse(http::StatusCode::OK);
-            httpResponse.setBody(body);
+            httpResponse.setBody(body, "application/json; charset=utf-8");
             socket->send(httpResponse);
             return;
         }
