@@ -2670,7 +2670,7 @@ void LOOLWSD::innerInitialize(Application& self)
     SavedClipboards = Util::make_unique<ClipboardCache>();
 
     LOG_TRC("Initialize FileServerRequestHandler");
-    FileServerRequestHandler::initialize();
+    FileServerRequestHandler::initialize(COOLWSD::FileServerRoot);
 #endif
 
     WebServerPoll = Util::make_unique<TerminatingPoll>("websrv_poll");
