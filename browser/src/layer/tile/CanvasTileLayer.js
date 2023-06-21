@@ -6270,6 +6270,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		var tileRanges = this._pxBoundsToTileRanges(pixelBounds);
 		var queue = [];
 
+		// mark tiles not matching our part & mode as not being current
 		for (key in this._tiles) {
 			var thiscoords = this._keyToTileCoords(key);
 			if (thiscoords.z !== zoom ||
@@ -6374,6 +6375,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
+	// create tiles if needed for queued coordinates, and build a
+	// tilecombined request for any tiles we need to fetch.
 	_addTiles: function (coordsQueue) {
 		var coords, key, tile;
 
