@@ -6549,7 +6549,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		return new L.LatLngBounds(nw, se);
 	},
 
-	// Fix for cool#5876 allow immediate reuse of canvas context memory
+	// Fix for lool#5876 allow immediate reuse of canvas context memory
 	// WKWebView has a hard limit on the number of bytes of canvas
 	// context memory that can be allocated. Reducing the canvas
 	// size to zero is a way to reduce the number of bytes counted
