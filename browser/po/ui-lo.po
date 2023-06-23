@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 19:28+0200\n"
+"POT-Creation-Date: 2023-06-23 20:18+0200\n"
 "PO-Revision-Date: 2020-12-08 13:30+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/collabora-online/ui/"
@@ -220,7 +220,7 @@ msgstr "ລີເຟລສ"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:521
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:524
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "ບໍ່ມີ"
@@ -488,106 +488,106 @@ msgstr ""
 msgid "Count"
 msgstr "ນັບ"
 
-#: src/control/Control.JSDialogBuilder.js:524
+#: src/control/Control.JSDialogBuilder.js:527
 msgid "Solid"
 msgstr "ແຂງ"
 
-#: src/control/Control.JSDialogBuilder.js:527
+#: src/control/Control.JSDialogBuilder.js:530
 msgid "Linear"
 msgstr "ເສັ້ນ"
 
-#: src/control/Control.JSDialogBuilder.js:530
+#: src/control/Control.JSDialogBuilder.js:533
 msgid "Axial"
 msgstr "ແກນ"
 
-#: src/control/Control.JSDialogBuilder.js:533
+#: src/control/Control.JSDialogBuilder.js:536
 msgid "Radial"
 msgstr "ລັດສະຫມີ"
 
-#: src/control/Control.JSDialogBuilder.js:536
+#: src/control/Control.JSDialogBuilder.js:539
 msgid "Ellipsoid"
 msgstr "ວົງກົມ"
 
-#: src/control/Control.JSDialogBuilder.js:540
+#: src/control/Control.JSDialogBuilder.js:543
 msgid "Quadratic"
 msgstr "ສົມຜົນກຳລັງສອງ"
 
-#: src/control/Control.JSDialogBuilder.js:543
+#: src/control/Control.JSDialogBuilder.js:546
 msgid "Square"
 msgstr "ຈະຕຸລັດ"
 
-#: src/control/Control.JSDialogBuilder.js:546
+#: src/control/Control.JSDialogBuilder.js:549
 msgid "Fixed size"
 msgstr "ຂະຫນາດຄົງທີ່"
 
-#: src/control/Control.JSDialogBuilder.js:1507
+#: src/control/Control.JSDialogBuilder.js:1510
 msgid "From"
 msgstr "ຈາກ"
 
-#: src/control/Control.JSDialogBuilder.js:1510
+#: src/control/Control.JSDialogBuilder.js:1513
 msgid "To"
 msgstr "ໄປຫາ"
 
-#: src/control/Control.JSDialogBuilder.js:1513
+#: src/control/Control.JSDialogBuilder.js:1516
 msgid "Color"
 msgstr "ສີ"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "ເລືອກຊ່ວງ"
 
-#: src/control/Control.JSDialogBuilder.js:1674
+#: src/control/Control.JSDialogBuilder.js:1677
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "ຊືຟັອນ"
 
-#: src/control/Control.JSDialogBuilder.js:1676 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1679 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "ຂະຫນາດຟັອນ"
 
-#: src/control/Control.JSDialogBuilder.js:1678
+#: src/control/Control.JSDialogBuilder.js:1681
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "ສະຕາຍ"
 
-#: src/control/Control.JSDialogBuilder.js:2120
+#: src/control/Control.JSDialogBuilder.js:2123
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2123
+#: src/control/Control.JSDialogBuilder.js:2126
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2134
-#: src/layer/tile/CanvasTileLayer.js:5240
-#: src/layer/tile/CanvasTileLayer.js:5251
+#: src/control/Control.JSDialogBuilder.js:2137
+#: src/layer/tile/CanvasTileLayer.js:5225
+#: src/layer/tile/CanvasTileLayer.js:5236
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "ຄຳເຫັນ"
 
-#: src/control/Control.JSDialogBuilder.js:2198
+#: src/control/Control.JSDialogBuilder.js:2201
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2880
+#: src/control/Control.JSDialogBuilder.js:2883
 msgid "Cell borders"
 msgstr "ຂອບເຊລ"
 
-#: src/control/Control.JSDialogBuilder.js:2995
+#: src/control/Control.JSDialogBuilder.js:2998
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3112
+#: src/control/Control.JSDialogBuilder.js:3115
 #: src/control/Control.Menubar.js:793
 msgid "Rows"
 msgstr "ແຖວ"
 
-#: src/control/Control.JSDialogBuilder.js:3113
+#: src/control/Control.JSDialogBuilder.js:3116
 #: src/control/Control.Menubar.js:796
 msgid "Columns"
 msgstr "ຖັນ"
 
-#: src/control/Control.JSDialogBuilder.js:3133
+#: src/control/Control.JSDialogBuilder.js:3136
 #, fuzzy
 msgid "Insert Table"
 msgstr "ປ້ອນເຂົ້າໃສ່ຕາຕະລາງ"
@@ -1434,11 +1434,15 @@ msgstr ""
 msgid "preview of page "
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:235
+#: src/control/Control.PartsPreview.js:237
+msgid "Paste Slide"
+msgstr ""
+
+#: src/control/Control.PartsPreview.js:264
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:244
+#: src/control/Control.PartsPreview.js:273
 msgid "Paste"
 msgstr ""
 
@@ -2311,23 +2315,23 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1931
+#: src/layer/tile/CanvasTileLayer.js:1930
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2497
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2505
+#: src/layer/tile/CanvasTileLayer.js:2504
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2513
+#: src/layer/tile/CanvasTileLayer.js:2512
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5268
+#: src/layer/tile/CanvasTileLayer.js:5253
 msgid "No Comments"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 19:28+0200\n"
+"POT-Creation-Date: 2023-06-23 20:18+0200\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -214,7 +214,7 @@ msgstr "רענון היומן"
 msgid "Channel Filter:"
 msgstr "מסנן ערוצים:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:521
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:524
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "ללא"
@@ -481,106 +481,106 @@ msgstr "מרבי"
 msgid "Count"
 msgstr "כמות"
 
-#: src/control/Control.JSDialogBuilder.js:524
+#: src/control/Control.JSDialogBuilder.js:527
 msgid "Solid"
 msgstr "אחיד"
 
-#: src/control/Control.JSDialogBuilder.js:527
+#: src/control/Control.JSDialogBuilder.js:530
 msgid "Linear"
 msgstr "קווי"
 
-#: src/control/Control.JSDialogBuilder.js:530
+#: src/control/Control.JSDialogBuilder.js:533
 msgid "Axial"
 msgstr "צירי"
 
-#: src/control/Control.JSDialogBuilder.js:533
+#: src/control/Control.JSDialogBuilder.js:536
 msgid "Radial"
 msgstr "מעגלי"
 
-#: src/control/Control.JSDialogBuilder.js:536
+#: src/control/Control.JSDialogBuilder.js:539
 msgid "Ellipsoid"
 msgstr "סגלגלי"
 
-#: src/control/Control.JSDialogBuilder.js:540
+#: src/control/Control.JSDialogBuilder.js:543
 msgid "Quadratic"
 msgstr "ריבועי"
 
-#: src/control/Control.JSDialogBuilder.js:543
+#: src/control/Control.JSDialogBuilder.js:546
 msgid "Square"
 msgstr "ריבוע"
 
-#: src/control/Control.JSDialogBuilder.js:546
+#: src/control/Control.JSDialogBuilder.js:549
 msgid "Fixed size"
 msgstr "גודל קבוע"
 
-#: src/control/Control.JSDialogBuilder.js:1507
+#: src/control/Control.JSDialogBuilder.js:1510
 msgid "From"
 msgstr "מ־"
 
-#: src/control/Control.JSDialogBuilder.js:1510
+#: src/control/Control.JSDialogBuilder.js:1513
 msgid "To"
 msgstr "עד"
 
-#: src/control/Control.JSDialogBuilder.js:1513
+#: src/control/Control.JSDialogBuilder.js:1516
 msgid "Color"
 msgstr "צבע"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "בחירת טווח"
 
-#: src/control/Control.JSDialogBuilder.js:1674
+#: src/control/Control.JSDialogBuilder.js:1677
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "שם הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1676 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1679 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "גודל הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1678
+#: src/control/Control.JSDialogBuilder.js:1681
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "סגנון"
 
-#: src/control/Control.JSDialogBuilder.js:2120
+#: src/control/Control.JSDialogBuilder.js:2123
 msgid "reply"
 msgstr "תגובה"
 
-#: src/control/Control.JSDialogBuilder.js:2123
+#: src/control/Control.JSDialogBuilder.js:2126
 msgid "replies"
 msgstr "תגובות"
 
-#: src/control/Control.JSDialogBuilder.js:2134
-#: src/layer/tile/CanvasTileLayer.js:5240
-#: src/layer/tile/CanvasTileLayer.js:5251
+#: src/control/Control.JSDialogBuilder.js:2137
+#: src/layer/tile/CanvasTileLayer.js:5225
+#: src/layer/tile/CanvasTileLayer.js:5236
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "הערה"
 
-#: src/control/Control.JSDialogBuilder.js:2198
+#: src/control/Control.JSDialogBuilder.js:2201
 msgid "Insert Comment"
 msgstr "הוספת הערה"
 
-#: src/control/Control.JSDialogBuilder.js:2880
+#: src/control/Control.JSDialogBuilder.js:2883
 msgid "Cell borders"
 msgstr "גבולות התא"
 
-#: src/control/Control.JSDialogBuilder.js:2995
+#: src/control/Control.JSDialogBuilder.js:2998
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3112
+#: src/control/Control.JSDialogBuilder.js:3115
 #: src/control/Control.Menubar.js:793
 msgid "Rows"
 msgstr "שורות"
 
-#: src/control/Control.JSDialogBuilder.js:3113
+#: src/control/Control.JSDialogBuilder.js:3116
 #: src/control/Control.Menubar.js:796
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/control/Control.JSDialogBuilder.js:3133
+#: src/control/Control.JSDialogBuilder.js:3136
 msgid "Insert Table"
 msgstr "הוספת טבלה"
 
@@ -1410,11 +1410,16 @@ msgstr "סרגל"
 msgid "preview of page "
 msgstr "תצוגה מקדימה של עמוד "
 
-#: src/control/Control.PartsPreview.js:235
+#: src/control/Control.PartsPreview.js:237
+#, fuzzy
+msgid "Paste Slide"
+msgstr "שקופיות ראשיות"
+
+#: src/control/Control.PartsPreview.js:264
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:244
+#: src/control/Control.PartsPreview.js:273
 msgid "Paste"
 msgstr ""
 
@@ -2302,23 +2307,23 @@ msgstr "העלאת הקובץ לשרת נכשלה, הקובץ לא נמצא."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "העלאת הקובץ לשרת נכשלה, הקובץ גדול מדי."
 
-#: src/layer/tile/CanvasTileLayer.js:1931
+#: src/layer/tile/CanvasTileLayer.js:1930
 msgid "Functions"
 msgstr "פונקציות"
 
-#: src/layer/tile/CanvasTileLayer.js:2497
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2505
+#: src/layer/tile/CanvasTileLayer.js:2504
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2513
+#: src/layer/tile/CanvasTileLayer.js:2512
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5268
+#: src/layer/tile/CanvasTileLayer.js:5253
 msgid "No Comments"
 msgstr "אין הערות"
 
@@ -2895,6 +2900,3 @@ msgstr ""
 
 #~ msgid "<p>Your browser has very limited access to the clipboard</p>"
 #~ msgstr "<p>הגישה של הדפדפן שלך ללוח הגזירים היא מוגבלת מאוד</p>"
-
-#~ msgid "Master Slides"
-#~ msgstr "שקופיות ראשיות"

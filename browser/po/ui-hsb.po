@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 19:28+0200\n"
+"POT-Creation-Date: 2023-06-23 20:18+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Upper Sorbian <https://hosted.weblate.org/projects/"
@@ -218,7 +218,7 @@ msgstr "Protokol wobnowić"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:521
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:524
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "Žadyn"
@@ -485,107 +485,107 @@ msgstr ""
 msgid "Count"
 msgstr "Ličba"
 
-#: src/control/Control.JSDialogBuilder.js:524
+#: src/control/Control.JSDialogBuilder.js:527
 msgid "Solid"
 msgstr "Połny"
 
-#: src/control/Control.JSDialogBuilder.js:527
+#: src/control/Control.JSDialogBuilder.js:530
 msgid "Linear"
 msgstr "Linearny"
 
-#: src/control/Control.JSDialogBuilder.js:530
+#: src/control/Control.JSDialogBuilder.js:533
 msgid "Axial"
 msgstr "Aksialny"
 
-#: src/control/Control.JSDialogBuilder.js:533
+#: src/control/Control.JSDialogBuilder.js:536
 msgid "Radial"
 msgstr "Radialny"
 
-#: src/control/Control.JSDialogBuilder.js:536
+#: src/control/Control.JSDialogBuilder.js:539
 msgid "Ellipsoid"
 msgstr "Elipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:540
+#: src/control/Control.JSDialogBuilder.js:543
 msgid "Quadratic"
 msgstr "Kwadratiski"
 
-#: src/control/Control.JSDialogBuilder.js:543
+#: src/control/Control.JSDialogBuilder.js:546
 msgid "Square"
 msgstr "Kwadrat"
 
-#: src/control/Control.JSDialogBuilder.js:546
+#: src/control/Control.JSDialogBuilder.js:549
 msgid "Fixed size"
 msgstr "Kruta wulkosć"
 
-#: src/control/Control.JSDialogBuilder.js:1507
+#: src/control/Control.JSDialogBuilder.js:1510
 msgid "From"
 msgstr "Wot"
 
-#: src/control/Control.JSDialogBuilder.js:1510
+#: src/control/Control.JSDialogBuilder.js:1513
 msgid "To"
 msgstr "Do"
 
-#: src/control/Control.JSDialogBuilder.js:1513
+#: src/control/Control.JSDialogBuilder.js:1516
 msgid "Color"
 msgstr "Barba"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "Wobłuk wubrać"
 
-#: src/control/Control.JSDialogBuilder.js:1674
+#: src/control/Control.JSDialogBuilder.js:1677
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "Mjeno pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1676 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1679 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Wulkosć pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1678
+#: src/control/Control.JSDialogBuilder.js:1681
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:2120
+#: src/control/Control.JSDialogBuilder.js:2123
 #, fuzzy
 msgid "reply"
 msgstr "Wotmołwić"
 
-#: src/control/Control.JSDialogBuilder.js:2123
+#: src/control/Control.JSDialogBuilder.js:2126
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2134
-#: src/layer/tile/CanvasTileLayer.js:5240
-#: src/layer/tile/CanvasTileLayer.js:5251
+#: src/control/Control.JSDialogBuilder.js:2137
+#: src/layer/tile/CanvasTileLayer.js:5225
+#: src/layer/tile/CanvasTileLayer.js:5236
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Komentar"
 
-#: src/control/Control.JSDialogBuilder.js:2198
+#: src/control/Control.JSDialogBuilder.js:2201
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2880
+#: src/control/Control.JSDialogBuilder.js:2883
 msgid "Cell borders"
 msgstr "Kromy cele"
 
-#: src/control/Control.JSDialogBuilder.js:2995
+#: src/control/Control.JSDialogBuilder.js:2998
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3112
+#: src/control/Control.JSDialogBuilder.js:3115
 #: src/control/Control.Menubar.js:793
 msgid "Rows"
 msgstr "Linki"
 
-#: src/control/Control.JSDialogBuilder.js:3113
+#: src/control/Control.JSDialogBuilder.js:3116
 #: src/control/Control.Menubar.js:796
 msgid "Columns"
 msgstr "Špalty"
 
-#: src/control/Control.JSDialogBuilder.js:3133
+#: src/control/Control.JSDialogBuilder.js:3136
 #, fuzzy
 msgid "Insert Table"
 msgstr "Tabelu zasadźić"
@@ -1420,11 +1420,16 @@ msgstr ""
 msgid "preview of page "
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:235
+#: src/control/Control.PartsPreview.js:237
+#, fuzzy
+msgid "Paste Slide"
+msgstr "Folijowy wuhotowak"
+
+#: src/control/Control.PartsPreview.js:264
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:244
+#: src/control/Control.PartsPreview.js:273
 msgid "Paste"
 msgstr ""
 
@@ -2334,23 +2339,23 @@ msgstr "Nahrawanje na serwer njeje so poradźiło, dataja njeje so namakała."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Nahrawanje na serwer njeje so poradźiło, dataja je přewulka."
 
-#: src/layer/tile/CanvasTileLayer.js:1931
+#: src/layer/tile/CanvasTileLayer.js:1930
 msgid "Functions"
 msgstr "Funkcije"
 
-#: src/layer/tile/CanvasTileLayer.js:2497
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2505
+#: src/layer/tile/CanvasTileLayer.js:2504
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2513
+#: src/layer/tile/CanvasTileLayer.js:2512
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5268
+#: src/layer/tile/CanvasTileLayer.js:5253
 msgid "No Comments"
 msgstr ""
 
@@ -2785,6 +2790,3 @@ msgstr ""
 
 #~ msgid "<p>Your browser has very limited access to the clipboard</p>"
 #~ msgstr "<p>Waš wobhladowak ma jara wobmjezowany přistup na mjezyskład</p>"
-
-#~ msgid "Master Slides"
-#~ msgstr "Folijowy wuhotowak"

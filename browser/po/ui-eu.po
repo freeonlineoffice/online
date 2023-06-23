@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 19:28+0200\n"
+"POT-Creation-Date: 2023-06-23 20:18+0200\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -217,7 +217,7 @@ msgstr "Freskatu egunkaria"
 msgid "Channel Filter:"
 msgstr "Kanalaren iragazkia:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:521
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:524
 #: src/control/Control.StatusBar.js:332
 msgid "None"
 msgstr "Bat ere ez"
@@ -484,106 +484,106 @@ msgstr ""
 msgid "Count"
 msgstr "Zenbatu"
 
-#: src/control/Control.JSDialogBuilder.js:524
+#: src/control/Control.JSDialogBuilder.js:527
 msgid "Solid"
 msgstr "Solidoa"
 
-#: src/control/Control.JSDialogBuilder.js:527
+#: src/control/Control.JSDialogBuilder.js:530
 msgid "Linear"
 msgstr "Lineala"
 
-#: src/control/Control.JSDialogBuilder.js:530
+#: src/control/Control.JSDialogBuilder.js:533
 msgid "Axial"
 msgstr "Axiala"
 
-#: src/control/Control.JSDialogBuilder.js:533
+#: src/control/Control.JSDialogBuilder.js:536
 msgid "Radial"
 msgstr "Erradiala"
 
-#: src/control/Control.JSDialogBuilder.js:536
+#: src/control/Control.JSDialogBuilder.js:539
 msgid "Ellipsoid"
 msgstr "Elipsoidea"
 
-#: src/control/Control.JSDialogBuilder.js:540
+#: src/control/Control.JSDialogBuilder.js:543
 msgid "Quadratic"
 msgstr "Kuadratikoa"
 
-#: src/control/Control.JSDialogBuilder.js:543
+#: src/control/Control.JSDialogBuilder.js:546
 msgid "Square"
 msgstr "Karratua"
 
-#: src/control/Control.JSDialogBuilder.js:546
+#: src/control/Control.JSDialogBuilder.js:549
 msgid "Fixed size"
 msgstr "Tamaina finkoa"
 
-#: src/control/Control.JSDialogBuilder.js:1507
+#: src/control/Control.JSDialogBuilder.js:1510
 msgid "From"
 msgstr "Hemendik:"
 
-#: src/control/Control.JSDialogBuilder.js:1510
+#: src/control/Control.JSDialogBuilder.js:1513
 msgid "To"
 msgstr "Hona:"
 
-#: src/control/Control.JSDialogBuilder.js:1513
+#: src/control/Control.JSDialogBuilder.js:1516
 msgid "Color"
 msgstr "Kolorea"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "Hautatu barrutia"
 
-#: src/control/Control.JSDialogBuilder.js:1674
+#: src/control/Control.JSDialogBuilder.js:1677
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "Letra-izena"
 
-#: src/control/Control.JSDialogBuilder.js:1676 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1679 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Letra-tamaina"
 
-#: src/control/Control.JSDialogBuilder.js:1678
+#: src/control/Control.JSDialogBuilder.js:1681
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Estiloa"
 
-#: src/control/Control.JSDialogBuilder.js:2120
+#: src/control/Control.JSDialogBuilder.js:2123
 msgid "reply"
 msgstr "erantzuna"
 
-#: src/control/Control.JSDialogBuilder.js:2123
+#: src/control/Control.JSDialogBuilder.js:2126
 msgid "replies"
 msgstr "erantzunak"
 
-#: src/control/Control.JSDialogBuilder.js:2134
-#: src/layer/tile/CanvasTileLayer.js:5240
-#: src/layer/tile/CanvasTileLayer.js:5251
+#: src/control/Control.JSDialogBuilder.js:2137
+#: src/layer/tile/CanvasTileLayer.js:5225
+#: src/layer/tile/CanvasTileLayer.js:5236
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2198
+#: src/control/Control.JSDialogBuilder.js:2201
 msgid "Insert Comment"
 msgstr "Txertatu iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2880
+#: src/control/Control.JSDialogBuilder.js:2883
 msgid "Cell borders"
 msgstr "Gelaxka-ertzak"
 
-#: src/control/Control.JSDialogBuilder.js:2995
+#: src/control/Control.JSDialogBuilder.js:2998
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3112
+#: src/control/Control.JSDialogBuilder.js:3115
 #: src/control/Control.Menubar.js:793
 msgid "Rows"
 msgstr "Errenkadak"
 
-#: src/control/Control.JSDialogBuilder.js:3113
+#: src/control/Control.JSDialogBuilder.js:3116
 #: src/control/Control.Menubar.js:796
 msgid "Columns"
 msgstr "Zutabeak"
 
-#: src/control/Control.JSDialogBuilder.js:3133
+#: src/control/Control.JSDialogBuilder.js:3136
 msgid "Insert Table"
 msgstr "Txertatu taula"
 
@@ -1414,11 +1414,16 @@ msgstr "Erregela"
 msgid "preview of page "
 msgstr "orriaren aurreikuspena "
 
-#: src/control/Control.PartsPreview.js:235
+#: src/control/Control.PartsPreview.js:237
+#, fuzzy
+msgid "Paste Slide"
+msgstr "Diapositiba maisuak"
+
+#: src/control/Control.PartsPreview.js:264
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:244
+#: src/control/Control.PartsPreview.js:273
 msgid "Paste"
 msgstr ""
 
@@ -2336,23 +2341,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Huts egin du fitxategia zerbitzarira kargatzeak, fitxategia handiegia da."
 
-#: src/layer/tile/CanvasTileLayer.js:1931
+#: src/layer/tile/CanvasTileLayer.js:1930
 msgid "Functions"
 msgstr "Funtzioak"
 
-#: src/layer/tile/CanvasTileLayer.js:2497
+#: src/layer/tile/CanvasTileLayer.js:2496
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2505
+#: src/layer/tile/CanvasTileLayer.js:2504
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2513
+#: src/layer/tile/CanvasTileLayer.js:2512
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5268
+#: src/layer/tile/CanvasTileLayer.js:5253
 msgid "No Comments"
 msgstr "Iruzkinik gabe"
 
@@ -2882,6 +2887,3 @@ msgstr ""
 
 #~ msgid "<p>Your browser has very limited access to the clipboard</p>"
 #~ msgstr "<p>Zure nabigatzaileak arbela atzitzeko sarbide mugatua du</p>"
-
-#~ msgid "Master Slides"
-#~ msgstr "Diapositiba maisuak"
