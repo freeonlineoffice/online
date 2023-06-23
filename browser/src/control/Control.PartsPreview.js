@@ -231,7 +231,7 @@ L.Control.PartsPreview = L.Control.extend({
 			that._setPart(e);
 			$.contextMenu({
 				selector: '#presentation-controls-wrapper',
-				className: 'cool-font',
+				className: 'lool-font',
 				items: {
 					paste: {
 						name: _('Paste Slide'),
