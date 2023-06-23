@@ -27,7 +27,7 @@
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
-    "stylelint": "15.8.0",
+    "stylelint": "15.9.0",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
     "uglify-js": "3.17.4",
