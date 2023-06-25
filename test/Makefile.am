@@ -49,13 +49,13 @@ all_la_unit_tests = \
 	unit-password-protected.la \
 	unit-uno-command.la \
 	unit-wopi-httpredirect.la \
+	unit-wopi-watermark.la \
+	unit-wopi-lock.la \
 	unit-calc.la \
 	unit-http.la \
 	unit-wopi-temp.la \
-	unit_wopi_watermark.la \
 	unit-session.la \
 	unit-render-shape.la \
-	unit-wopi-lock.la \
 	unit-wopi-ownertermination.la \
 	unit-wopi-httpheaders.la \
 	unit-wopi.la \
@@ -68,7 +68,6 @@ all_la_unit_tests = \
 	unit-large-paste.la \
 	unit-typing.la \
 	unit-cursor.la \
-	unit-wopi-unlock.la \
 	unit-render-search-result.la \
 	unit-tiff-load.la \
 	unit-wopi-saveas-with-encoded-file-name.la \
@@ -239,8 +238,6 @@ unit_wopi_languages_la_SOURCES = UnitWOPILanguages.cpp
 unit_wopi_languages_la_LIBADD = $(CPPUNIT_LIBS)
 unit_wopi_lock_la_SOURCES = UnitWOPILock.cpp
 unit_wopi_lock_la_LIBADD = $(CPPUNIT_LIBS)
-unit_wopi_unlock_la_SOURCES = UnitWOPIUnlock.cpp
-unit_wopi_unlock_la_LIBADD = $(CPPUNIT_LIBS)
 unit_wopi_watermark_la_SOURCES = UnitWOPIWatermark.cpp
 unit_wopi_watermark_la_LIBADD = $(CPPUNIT_LIBS)
 unit_wopi_loadencoded_la_SOURCES = UnitWOPILoadEncoded.cpp
