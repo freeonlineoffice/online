@@ -42,8 +42,7 @@ public:
 
         _ssl = (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination());
         _websocket = true;
-        std::string serverName = LOOLWSD::ServerName.empty() ? host : LOOLWSD::ServerName;
-        _schemeAuthority = serverName;
+        _schemeAuthority = LOOLWSD::ServerName.empty() ? host : COOLWSD::ServerName;
 
         // A well formed ProxyPrefix will override it.
         const std::string& url = proxyPrefix;
