@@ -3165,29 +3165,35 @@ w2utils.event = {
         }
     };
 
-    $.fn.w2color = function (options, callBack) {
-        var obj = this;
-        var $el = $(this);
-        var el  = $el[0];
-        // no need to init
-        if ($el.data('skipInit')) {
-            $el.removeData('skipInit');
-            return;
+    var toW2Palette = function (corePalette) {
+        var pal = [];
+        for (var i = 0; i < corePalette.length; i++) {
+            var row = [];
+            for (var j = 0; j < corePalette[i].length; j++) {
+                row.push(corePalette[i][j].Value);
+            }
+            pal.push(row);
         }
-        // needed for keyboard navigation
-        var index = [-1, -1];
-        if ($.fn.w2colorPalette == null) {
-            $.fn.w2colorPalette = [
-                ['000000', '333333', '555555', '777777', '888888', '999999', 'AAAAAA', 'CCCCCC', 'DDDDDD', 'EEEEEE', 'F7F7F7', 'FFFFFF'],
-                ['FF011B', 'FF9838', 'FFC300',  'FFFD59', '86FF14', '14FF7A', '2EFFFC', '2693FF', '006CE7', '9B24F4', 'FF21F5', 'FF0099'],
-                ['FFEAEA', 'FCEFE1', 'FCF4DC',  'FFFECF', 'EBFFD9', 'D9FFE9', 'E0FFFF', 'E8F4FF', 'ECF4FC', 'EAE6F4', 'FFF5FE', 'FCF0F7'],
-                ['F4CCCC', 'FCE5CD', 'FFF1C2',  'FFFDA1', 'D5FCB1', 'B5F7D0', 'BFFFFF', 'D6ECFF', 'CFE2F3', 'D9D1E9', 'FFE3FD', 'FFD9F0'],
-                ['EA9899', 'F9CB9C', 'FFE48C',  'F7F56F', 'B9F77E', '84F0B1', '83F7F7', 'B5DAFF', '9FC5E8', 'B4A7D6', 'FAB9F6', 'FFADDE'],
-                ['E06666', 'F6B26B', 'DEB737',  'E0DE51', '8FDB48', '52D189', '4EDEDB', '76ACE3', '6FA8DC', '8E7CC3', 'E07EDA', 'F26DBD'],
-                ['CC0814', 'E69138', 'AB8816',  'B5B20E', '6BAB30', '27A85F', '1BA8A6', '3C81C7', '3D85C6', '674EA7', 'A14F9D', 'BF4990'],
-                ['99050C', 'B45F17', '80650E',  '737103', '395E14', '10783D', '13615E', '094785', '0A5394', '351C75', '780172', '782C5A']
-            ];
+        return pal;
+    };
+
+    var generatePalette = function (paletteName, options) {
+        $.fn.w2colorPalette = toW2Palette(window.app.colorPalettes[paletteName].colors);
+        var customColorRow = localStorage.customColor;
+        var recentRow = localStorage.recentColor;
+
+        if (typeof customColorRow !== 'undefined') {
+            $.fn.w2colorPalette.push(JSON.parse(customColorRow));
+        } else {
+            $.fn.w2colorPalette.push(['F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2']);  // custom colors (up to 4)
         }
+
+        if (typeof recentRow !== 'undefined') {
+            $.fn.w2colorPalette.push(JSON.parse(recentRow));
+        } else {
+            $.fn.w2colorPalette.push(['F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2', 'F2F2F2']); // recent colors (up to 8)
+        }
+
         var pal = $.fn.w2colorPalette;
         if (typeof options === 'string') options = {
             color: options,
@@ -3207,225 +3213,104 @@ w2utils.event = {
         if (typeof options.color === 'string' && options.color.substr(0,1) === '#') options.color = options.color.substr(1);
         if (options.fireChange == null) options.fireChange = true;
 
-        if ($('#w2ui-overlay').length === 0) {
-            $(el).w2overlay(getColorHTML(options), options);
-        } else { // only refresh contents
-            $('#w2ui-overlay .w2ui-colors').parent().html(getColorHTML(options));
-            $('#w2ui-overlay').show();
-        }
-        // bind events
-        $('#w2ui-overlay .w2ui-color')
-            .off('.w2color')
-            .on('mousedown.w2color', function (event) {
-                var color = $(event.originalEvent.target).attr('name'); // should not have #
-                index = $(event.originalEvent.target).attr('index').split(':');
-                if (el.tagName.toUpperCase() === 'INPUT') {
-                    if (options.fireChange) $(el).change();
-                    $(el).next().find('>div').css('background-color', color);
-                } else {
+        return pal;
+    };
+
+    $.fn.w2color = function (options, callBack) {
+        var el    = $(this)[0];
+        var index = [-1, -1];
+
+        function bindEvents(pal) {
+            $('#w2ui-overlay .color')
+                .off('.w2color')
+                .on('mousedown.w2color', function (event) {
+                    var color = $(event.originalEvent.target).attr('name');
+                    index = $(event.originalEvent.target).attr('index').split(':');
+                    var theme = $(event.originalEvent.target).attr('theme');
                     $(el).data('_color', color);
-                }
-                if (typeof options.onSelect === 'function') options.onSelect(color);
-            })
-            .on('mouseup.w2color', function () {
-                setTimeout(function () {
-                    if ($("#w2ui-overlay").length > 0) $('#w2ui-overlay').removeData('keepOpen')[0].hide();
-                }, 10);
-            });
-        $('#w2ui-overlay .color-original')
-            .off('.w2color')
-            .on('click.w2color', function (event) {
-                // restore original color
-                var tmp = w2utils.parseColor($(event.target).css('background-color'));
-                if (tmp != null) {
-                    rgb = tmp;
-                    hsv = w2utils.rgb2hsv(rgb);
-                    setColor(hsv);
-                    updateSlides();
-                    refreshPalette();
-                }
-            });
-        $('#w2ui-overlay input')
-            .off('.w2color')
-            .on('mousedown.w2color', function (event) {
-                $('#w2ui-overlay').data('keepOpen', true);
-                setTimeout(function () { $('#w2ui-overlay').data('keepOpen', true); }, 10);
-                event.stopPropagation();
-            })
-            .on('change.w2color', function () {
-                var $el = $(this);
-                var val = parseFloat($el.val());
-                var max = parseFloat($el.attr('max'));
-                if (isNaN(val)) val = 0;
-                if (max > 1) val = parseInt(val);
-                if (max > 0 && val > max) {
-                    $el.val(max);
-                    val = max;
-                }
-                if (val < 0) {
-                    $el.val(0);
-                    val = 0;
-                }
-                var name  = $el.attr('name');
-                var color = {};
-                if (['r', 'g', 'b', 'a'].indexOf(name) !== -1) {
-                    rgb[name] = val;
-                    hsv = w2utils.rgb2hsv(rgb);
-                } else if (['h', 's', 'v'].indexOf(name) !== -1) {
-                    color[name] = val;
-                }
-                setColor(color);
-                updateSlides();
-                refreshPalette();
-            });
-        // advanced color events
-        var initial;
-        var hsv, rgb = w2utils.parseColor(options.color);
-        if (rgb == null) {
-            rgb = { r: 140, g: 150, b: 160, a: 1 };
-            hsv = w2utils.rgb2hsv(rgb);
+                    $(el).data('_theme', theme);
+                    var recentRow = $.fn.w2colorPalette[pal.length - 1];
+                    if (recentRow.indexOf(color) !== -1) {
+                        recentRow.splice(recentRow.indexOf(color), 1);
+                    }
+                    recentRow.unshift(color);
+                    localStorage.setItem('recentColor', JSON.stringify(recentRow));
+                })
+                .on('mouseup.w2color', function () {
+                    setTimeout(function () {
+                        if ($("#w2ui-overlay").length > 0) $('#w2ui-overlay').removeData('keepOpen')[0].hide();
+                    }, 10);
+                });
+            $('#w2ui-overlay input')
+                .off('.w2color')
+                .on('mousedown.w2color', function (event) {
+                    $('#w2ui-overlay').data('keepOpen', true);
+                    setTimeout(function () { $('#w2ui-overlay').data('keepOpen', true); }, 10);
+                    event.stopPropagation();
+                })
+                .on('keyup.w2color', function (event) {
+                    if (this.value !== '' && this.value[0] !== '#') this.value = '#' + this.value;
+                })
+                .on('change.w2color', function (event) {
+                    var tmp = this.value;
+                    if (tmp.substr(0, 1) == '#') tmp = tmp.substr(1);
+                    if (tmp.length != 6) {
+                        $(this).w2tag('Invalid color.');
+                        return;
+                    }
+                    var customColorRow = $.fn.w2colorPalette[pal.length - 2];
+                    if (customColorRow.indexOf(tmp) !== -1) {
+                        customColorRow.splice(customColorRow.indexOf(tmp), 1);
+                    }
+                    customColorRow.unshift(tmp.toUpperCase());
+                    localStorage.setItem('customColor', JSON.stringify(customColorRow));
+                    $(el).w2color(options, callBack);
+                    setTimeout(function() { $('#w2ui-overlay input')[0].focus(); }, 100);
+                })
+                .w2field('hex');
         }
         hsv = w2utils.rgb2hsv(rgb);
 
-        var setColor = function (color, silent) {
-            if (color.h != null) hsv.h = color.h;
-            if (color.s != null) hsv.s = color.s;
-            if (color.v != null) hsv.v = color.v;
-            if (color.a != null) { rgb.a = color.a; hsv.a = color.a; }
-            rgb = w2utils.hsv2rgb(hsv);
-            // console.log(rgb)
-            var newColor = 'rgba('+ rgb.r +','+ rgb.g +','+ rgb.b +','+ rgb.a +')';
-            var cl = [
-                Number(rgb.r).toString(16).toUpperCase(),
-                Number(rgb.g).toString(16).toUpperCase(),
-                Number(rgb.b).toString(16).toUpperCase(),
-                (Math.round(Number(rgb.a)*255)).toString(16).toUpperCase()
-            ];
-            cl.forEach(function (item, ind) { if (item.length === 1) cl[ind] = '0' + item; });
-            newColor = cl[0] + cl[1] + cl[2] + cl[3];
-            if (rgb.a === 1) {
-                newColor = cl[0] + cl[1] + cl[2];
-            }
-            $('#w2ui-overlay .color-preview').css('background-color', '#'+newColor);
-            $('#w2ui-overlay input').each(function (index, el) {
-                if (el.name) {
-                    if (rgb[el.name] != null) el.value = rgb[el.name];
-                    if (hsv[el.name] != null) el.value = hsv[el.name];
-                    if (el.name === 'a') el.value = rgb.a;
+        var currentPalette = (localStorage && localStorage.colorPalette) ? localStorage.colorPalette : 'StandardColors';
+
+        var pal = generatePalette(currentPalette, options);
+
+        if (options.color) options.color = String(options.color).toUpperCase();
+
+        if ($('#w2ui-overlay').length === 0) {
+            $(el).w2overlay(getColorHTML(pal, options), {
+                onHide: function () {
+                    var data = $(el).data('_color');
+                    var theme = $(el).data('_theme');
+                    if (typeof callBack == 'function') 
+                        callBack(data, theme);
+                    $(el).removeData('_color');
+                    $(el).removeData('_theme');
                 }
             });
-            if (!silent) {
-                if (el.tagName.toUpperCase() === 'INPUT') {
-                    $(el).val(newColor).data('skipInit', true);
-                    if (options.fireChange) $(el).change();
-                    $(el).next().find('>div').css('background-color', '#'+newColor);
-                } else {
-                    $(el).data('_color', newColor);
-                }
-                if (typeof options.onSelect === 'function') options.onSelect(newColor);
-            } else {
-                $('#w2ui-overlay .color-original').css('background-color', '#'+newColor);
-            }
+        } else { // only refresh contents
+            $('#w2ui-overlay .w2ui-color').parent().html(getColorHTML(pal, options));
         }
-        var updateSlides = function () {
-            var $el1 = $('#w2ui-overlay .palette .value1');
-            var $el2 = $('#w2ui-overlay .rainbow .value2');
-            var $el3 = $('#w2ui-overlay .alpha .value2');
-            var offset1 = parseInt($el1.width()) / 2;
-            var offset2 = parseInt($el2.width()) / 2;
-            $el1.css({ 'left': hsv.s * 150 / 100 - offset1, 'top': (100 - hsv.v) * 125 / 100 - offset1});
-            $el2.css('left', hsv.h/(360/150) - offset2);
-            $el3.css('left', rgb.a*150 - offset2);
-        }
-        var refreshPalette = function() {
-            var cl  = w2utils.hsv2rgb(hsv.h, 100, 100);
-            var rgb = cl.r + ',' + cl.g + ',' + cl.b;
-            $('#w2ui-overlay .palette').css('background-image',
-                'linear-gradient(90deg, rgba('+ rgb +',0) 0%, rgba(' + rgb + ',1) 100%)');
-        }
-        var mouseDown = function (event) {
-            var $el = $(this).find('.value1, .value2');
-            var offset = parseInt($el.width()) / 2;
-            if ($el.hasClass('move-x')) $el.css({ left: (event.offsetX - offset) + 'px' });
-            if ($el.hasClass('move-y')) $el.css({ top: (event.offsetY - offset) + 'px' });
-            initial = {
-                $el    : $el,
-                x      : event.pageX,
-                y      : event.pageY,
-                width  : $el.parent().width(),
-                height : $el.parent().height(),
-                left   : parseInt($el.css('left')),
-                top    : parseInt($el.css('top'))
+
+        bindEvents(pal);
+
+        var hasPaletteSelector = window.app.map._docLayer._docType === 'text';
+
+        if (hasPaletteSelector) {
+            var updatePalette = function () {
+                var palette = $('#w2ui-overlay .color-palette-selector option:selected').get(0).value;
+                localStorage.setItem('colorPalette', palette);
+                var pal = generatePalette(palette, options);
+                $('#w2ui-overlay .w2ui-color').parent().html(getColorHTML(pal, options));
+                bindEvents(pal);
+                $('#w2ui-overlay .color-palette-selector')
+                    .on('change', updatePalette);
             };
-            mouseMove(event);
-            $('body').off('.w2color')
-                .on(mMove, mouseMove)
-                .on(mUp, mouseUp);
-        };
-        var mouseUp = function(event) {
-            $('body').off('.w2color');
-        };
-        var mouseMove = function(event) {
-            var $el    = initial.$el;
-            var divX   = event.pageX - initial.x;
-            var divY   = event.pageY - initial.y;
-            var newX   = initial.left + divX;
-            var newY   = initial.top + divY;
-            var offset = parseInt($el.width()) / 2;
-            if (newX < -offset) newX = -offset;
-            if (newY < -offset) newY = -offset;
-            if (newX > initial.width - offset)  newX = initial.width - offset;
-            if (newY > initial.height - offset) newY = initial.height - offset
-            if ($el.hasClass('move-x')) $el.css({ left : newX + 'px' });
-            if ($el.hasClass('move-y')) $el.css({ top : newY + 'px' });
 
-            // move
-            var name = $el.parent().attr('name');
-            var x = parseInt($el.css('left')) + offset;
-            var y = parseInt($el.css('top')) + offset;
-            if (name === 'palette') {
-                setColor({
-                    s: Math.round(x / initial.width * 100),
-                    v: Math.round(100 - (y / initial.height * 100))
-                });
-            }
-            if (name === 'rainbow') {
-                var h = Math.round(360 / 150 * x);
-                setColor({ h: h });
-                refreshPalette();
-            }
-            if (name === 'alpha') {
-                setColor({ a: parseFloat(Number(x / 150).toFixed(2)) });
-            }
+            $('#w2ui-overlay .color-palette-selector')
+                .on('change', updatePalette);
         }
-        if ($.fn._colorAdvanced === true || options.advanced === true) {
-            $('#w2ui-overlay .w2ui-color-tabs :nth-child(2)').click();
-            $('#w2ui-overlay').removeData('keepOpen');
-        }
-        setColor({}, true);
-        refreshPalette();
-        updateSlides();
 
-        // Events of iOS
-        var mDown = 'mousedown.w2color';
-        var mUp   = 'mouseup.w2color';
-        var mMove = 'mousemove.w2color';
-        if (w2utils.isIOS) {
-            mDown = 'touchstart.w2color';
-            mUp   = 'touchend.w2color';
-            mMove = 'touchmove.w2color  ';
-        }
-        $('#w2ui-overlay .palette')
-            .off('.w2color')
-            .on('mousedown.w2color', mouseDown);
-        $('#w2ui-overlay .rainbow')
-            .off('.w2color')
-            .on('mousedown.w2color', mouseDown);
-        $('#w2ui-overlay .alpha')
-            .off('.w2color')
-            .on('mousedown.w2color', mouseDown);
-
-        // keyboard navigation
         el.nav = function (direction) {
             switch (direction) {
                 case 'up':
@@ -3451,10 +3336,22 @@ w2utils.event = {
             return color;
         };
 
-        function getColorHTML(options) {
-            var color = options.color, bor;
-            var html  = '<div class="w2ui-colors" onmousedown="jQuery(this).parents(\'.w2ui-overlay\').data(\'keepOpen\', true)">'+
-                        '<div class="w2ui-color-palette">'+
+        function getColorHTML(pal, options) {
+            var html = '';
+
+            var hasPaletteSelector = window.app.map._docLayer._docType === 'text';
+            var currentPalette = localStorage && localStorage.colorPalette ? localStorage.colorPalette : 'StandardColors';
+
+            if (hasPaletteSelector) {
+                html += '<select class="color-palette-selector">';
+                for (var i in window.app.colorPalettes)
+                    html += '<option value="' + i + '" ' + (i === currentPalette ? 'selected="selected"' : '') + '>' + window.app.colorPalettes[i].name + '</option>';
+                html += '</select>';
+            }
+
+            var detailedPalette = window.app.colorPalettes[currentPalette].colors
+
+            html += '<div class="w2ui-color" onmousedown="event.stopPropagation(); event.preventDefault()">'+ // prevent default is needed otherwiser selection gets unselected
                         '<table cellspacing="5"><tbody>';
             for (var i = 0; i < pal.length; i++) {
                 html += '<tr>';
