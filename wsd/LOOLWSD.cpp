@@ -3096,9 +3096,8 @@ void LOOLWSD::autoSave(const std::string& docKey)
     if (docBrokerIt != DocBrokers.end())
     {
         std::shared_ptr<DocumentBroker> docBroker = docBrokerIt->second;
-        docBroker->addCallback([docBroker]() {
-                docBroker->autoSave(true);
-            });
+        docBroker->addCallback(
+            [docBroker]() { docBroker->autoSave(/*force=*/true, /*dontSaveIfUnmodified=*/true); });
     }
 }
 
