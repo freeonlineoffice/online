@@ -5749,7 +5749,7 @@ int LOOLWSD::innerMain()
         // This timeout affects the recovery time of prespawned children.
         std::chrono::microseconds waitMicroS = SocketPoll::DefaultPollTimeoutMicroS * 4;
 
-        if (UnitWSD::isUnitTesting())
+        if (UnitWSD::isUnitTesting() && !SigUtil::getShutdownRequestFlag())
         {
             UnitWSD::get().invokeTest();
 
@@ -5768,7 +5768,7 @@ int LOOLWSD::innerMain()
         const std::chrono::milliseconds timeSinceStartMs
             = std::chrono::duration_cast<std::chrono::milliseconds>(timeNow - startStamp);
         // Unit test timeout
-        if (UnitWSD::isUnitTesting())
+        if (UnitWSD::isUnitTesting() && !SigUtil::getShutdownRequestFlag())
         {
             UnitWSD::get().checkTimeout(timeSinceStartMs);
         }
