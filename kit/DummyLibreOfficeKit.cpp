@@ -359,7 +359,7 @@ static void doc_paintPartTile(LibreOfficeKitDocument* pThis,
 
 static int doc_getTileMode(LibreOfficeKitDocument* /*pThis*/)
 {
-    return LOK_TILEMODE_BGRA;
+    return LOK_TILEMODE_RGBA;
 }
 
 static void doc_getDocumentSize(LibreOfficeKitDocument* pThis,
