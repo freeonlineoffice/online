@@ -337,7 +337,7 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
             oss << "\"afterSave\"" << ":false,";
             if (docStatus == "unsaved" && !model.isDocSaved(dockey))
             {
-                COOLWSD::autoSave(dockey);
+                LOOLWSD::autoSave(dockey);
                 oss << "\"saved\"" << ":false,";
             }
             else if ((docStatus == "readonly" && model.isDocReadOnly(dockey)) ||
@@ -346,7 +346,7 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
                 oss << "\"saved\"" << ":true,";
             }
             oss << "\"routeToken\"" << ':' << "\"" << routeToken << "\"" << '}';
-            COOLWSD::alertUserInternal(dockey, oss.str());
+            LOOLWSD::alertUserInternal(dockey, oss.str());
         }
         else
         {
@@ -1038,7 +1038,7 @@ std::vector<std::pair<std::string, int>> Admin::getMonitorList()
     {
         const std::string path = "monitors.monitor[" + std::to_string(i) + ']';
         const std::string uri = config.getString(path, "");
-        const auto retryInterval = COOLWSD::getConfigValue<int>(path + "[@retryInterval]", 20);
+        const auto retryInterval = LOOLWSD::getConfigValue<int>(path + "[@retryInterval]", 20);
         if (!config.has(path))
             break;
         if (!uri.empty())
