@@ -1284,14 +1284,14 @@ void AdminModel::sendMigrateMsgAfterSave(bool lastSaveSuccessful, const std::str
     oss << "\"saved\":" << saveSuccessful << ',';
     oss << "\"routeToken\"" << ':' << "\"" << getCurrentMigToken()
         << "\"" << '}';
-    COOLWSD::alertUserInternal(docKey, oss.str());
+    LOOLWSD::alertUserInternal(docKey, oss.str());
 }
 
 std::string AdminModel::getWopiSrcMap()
 {
     std::ostringstream oss;
     oss << "wopiSrcMap: {";
-    oss << "\"routeToken\": \"" << COOLWSD::RouteToken << "\",";
+    oss << "\"routeToken\": \"" << LOOLWSD::RouteToken << "\",";
     oss << "\"wopiSrc\": [";
     size_t count = 0;
     for (const auto& it : _documents)

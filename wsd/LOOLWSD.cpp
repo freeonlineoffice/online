@@ -293,7 +293,7 @@ void LOOLWSD::alertAllUsersInternal(const std::string& msg)
     }
 }
 
-void COOLWSD::alertUserInternal(const std::string& dockey, const std::string& msg)
+void LOOLWSD::alertUserInternal(const std::string& dockey, const std::string& msg)
 {
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
 
