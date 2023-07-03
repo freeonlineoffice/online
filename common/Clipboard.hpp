@@ -92,9 +92,7 @@ class ClipboardCache
     // clipboard key -> data
     std::unordered_map<std::string, Entry> _cache;
 public:
-    ClipboardCache()
-    {
-    }
+    ClipboardCache() = default;
 
     void insertClipboard(const std::string key[2],
                          const char *data, std::size_t size)
@@ -115,12 +113,11 @@ public:
 
     std::shared_ptr<std::string> getClipboard(const std::string &key)
     {
+        LOG_TRC("Looking up cached clipboard with key [" << key << ']');
+
         std::lock_guard<std::mutex> lock(_mutex);
-        std::shared_ptr<std::string> data;
-        auto it = _cache.find(key);
-        if (it != _cache.end())
-            data = it->second._rawData;
-        return data;
+        const auto it = _cache.find(key);
+        return (it != _cache.end()) ? it->second._rawData : nullptr;
     }
 
     void checkexpiry()
