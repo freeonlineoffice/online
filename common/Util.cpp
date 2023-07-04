@@ -128,7 +128,16 @@ namespace Util
                 (len = read(fd, random.data(), length)) < 0 ||
                 std::size_t(len) < length)
             {
-                LOG_ERR("failed to read " << length << " hard random bytes, got " << len << " for hash: " << errno);
+
+                const int fd = open("/dev/urandom", O_RDONLY);
+                if (fd < 0 ||
+                    (len = read(fd, random.data(), length)) < 0 ||
+                    std::size_t(len) < length)
+                {
+                    LOG_ERR("failed to read " << length << " hard random bytes, got " << len << " for hash: " << errno);
+                }
+                if (fd >= 0)
+                    close(fd);
             }
             close(fd);
 
