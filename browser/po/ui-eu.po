@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-02 18:47+0200\n"
+"POT-Creation-Date: 2023-07-04 20:51+0200\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -218,7 +218,7 @@ msgid "Channel Filter:"
 msgstr "Kanalaren iragazkia:"
 
 #: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:550
-#: src/control/Control.StatusBar.js:338
+#: src/control/Control.StatusBar.js:339
 msgid "None"
 msgstr "Bat ere ez"
 
@@ -267,7 +267,7 @@ msgstr "Zerbitzaria itzali egin da; kargatu orria berriro mesedez."
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:553 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:761 src/control/Toolbar.js:996
+#: src/control/Toolbar.js:778 src/control/Toolbar.js:1013
 #: src/core/Socket.js:987 src/core/Socket.js:1062 src/core/Socket.js:1190
 #: src/core/Socket.js:1194 src/main.js:70 src/main.js:73 src/main.js:110
 #: src/map/Clipboard.js:874 src/map/Clipboard.js:925
@@ -292,7 +292,7 @@ msgstr "Ziur zaude saio hau itxi nahi duzula?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:756 src/layer/tile/CommentListSection.ts:374
+#: src/control/Toolbar.js:773 src/layer/tile/CommentListSection.ts:374
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Utzi"
@@ -385,7 +385,7 @@ msgstr "Zerbitzariak %0 errore bat aurkitu du %1 komandoa analizatzean."
 msgid "Unlock"
 msgstr "Desblokeatu"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:995
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1012
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -448,7 +448,7 @@ msgid "cell address"
 msgstr "gelaxkaren helbidea"
 
 #: src/control/Control.FormulaBarJSDialog.js:43
-#: src/control/Control.FormulaBarJSDialog.js:91
+#: src/control/Control.FormulaBarJSDialog.js:89
 msgid "Function Wizard"
 msgstr "Funtzioen morroia"
 
@@ -462,12 +462,12 @@ msgid "Accept"
 msgstr "Onartu"
 
 #: src/control/Control.JSDialogBuilder.js:153
-#: src/control/Control.StatusBar.js:336
+#: src/control/Control.StatusBar.js:337
 msgid "Sum"
 msgstr "Batuketa"
 
 #: src/control/Control.JSDialogBuilder.js:154
-#: src/control/Control.StatusBar.js:331
+#: src/control/Control.StatusBar.js:332
 msgid "Average"
 msgstr "Batez bestekoa"
 
@@ -480,7 +480,7 @@ msgid "Max"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:157
-#: src/control/Control.StatusBar.js:333
+#: src/control/Control.StatusBar.js:334
 msgid "Count"
 msgstr "Zenbatu"
 
@@ -555,8 +555,8 @@ msgid "replies"
 msgstr "erantzunak"
 
 #: src/control/Control.JSDialogBuilder.js:2163
-#: src/layer/tile/CanvasTileLayer.js:5228
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5193
+#: src/layer/tile/CanvasTileLayer.js:5204
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Iruzkina"
@@ -590,7 +590,7 @@ msgstr "Txertatu taula"
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:335
 #: src/control/Control.Menubar.js:337 src/control/Control.Menubar.js:339
 #: src/control/Control.Menubar.js:499 src/control/Control.Menubar.js:626
-#: src/control/Control.Menubar.js:873 src/control/Control.StatusBar.js:559
+#: src/control/Control.Menubar.js:873 src/control/Control.StatusBar.js:565
 msgid "None (Do not check spelling)"
 msgstr "Bat ere ez (ez zuzendu ortografia)"
 
@@ -696,7 +696,7 @@ msgstr "Deskargatu honela"
 
 #: src/control/Control.Menubar.js:88 src/control/Control.Menubar.js:388
 #: src/control/Control.Menubar.js:532 src/control/Control.Menubar.js:661
-#: src/control/Control.Toolbar.js:1172
+#: src/control/Control.Toolbar.js:1169
 msgid "Close document"
 msgstr "Itxi dokumentua"
 
@@ -1013,12 +1013,12 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1348 src/control/Control.StatusBar.js:558
+#: src/control/Control.Menubar.js:1348 src/control/Control.StatusBar.js:564
 msgid "Reset to Default Language"
 msgstr "Leheneratu hizkuntza lehenetsira"
 
 #: src/control/Control.Menubar.js:1379 src/control/Control.Menubar.js:1380
-#: src/control/Control.Menubar.js:1381 src/control/Control.StatusBar.js:580
+#: src/control/Control.Menubar.js:1381 src/control/Control.StatusBar.js:586
 #: src/control/Control.Toolbar.js:241 src/control/Control.Toolbar.js:269
 msgid "More..."
 msgstr "Gehiago..."
@@ -1054,7 +1054,7 @@ msgstr "Erakutsi bilaketa-barra"
 msgid "Borders"
 msgstr "Ertzak"
 
-#: src/control/Control.MobileTopBar.js:31 src/control/Control.StatusBar.js:462
+#: src/control/Control.MobileTopBar.js:31 src/control/Control.StatusBar.js:463
 #, fuzzy
 msgid "Read-only"
 msgstr "Irakurtzeko soilik"
@@ -1258,7 +1258,7 @@ msgstr "Zatikia"
 msgid "Boolean Value"
 msgstr "Balio boolearra"
 
-#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:728
+#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:745
 msgid "Text"
 msgstr "Testua"
 
@@ -1472,71 +1472,71 @@ msgstr "Txertatu orria"
 msgid "Cancel the search"
 msgstr "Utzi bilaketa"
 
-#: src/control/Control.StatusBar.js:303
+#: src/control/Control.StatusBar.js:304
 msgid "Number of Sheets"
 msgstr "Orri kopurua"
 
-#: src/control/Control.StatusBar.js:308
+#: src/control/Control.StatusBar.js:309
 msgid "Selected range of cells"
 msgstr "Hautatutako gelaxka-area"
 
-#: src/control/Control.StatusBar.js:313 src/control/Control.StatusBar.js:366
+#: src/control/Control.StatusBar.js:314 src/control/Control.StatusBar.js:367
 msgid "Entering text mode"
 msgstr "Testu modura sartzen"
 
-#: src/control/Control.StatusBar.js:322 src/control/Control.StatusBar.js:371
+#: src/control/Control.StatusBar.js:323 src/control/Control.StatusBar.js:372
 msgid "Selection Mode"
 msgstr "Hautapen modua"
 
-#: src/control/Control.StatusBar.js:327
+#: src/control/Control.StatusBar.js:328
 msgid "Choice of functions"
 msgstr "Funtzioen aukera"
 
-#: src/control/Control.StatusBar.js:332
+#: src/control/Control.StatusBar.js:333
 msgid "CountA"
 msgstr "KontagailuaA"
 
-#: src/control/Control.StatusBar.js:334
+#: src/control/Control.StatusBar.js:335
 msgid "Maximum"
 msgstr "Gehienezkoa"
 
-#: src/control/Control.StatusBar.js:335
+#: src/control/Control.StatusBar.js:336
 msgid "Minimum"
 msgstr "Gutxienekoa"
 
-#: src/control/Control.StatusBar.js:337
+#: src/control/Control.StatusBar.js:338
 msgid "Selection count"
 msgstr "Hautapenaren kontaketa"
 
-#: src/control/Control.StatusBar.js:356 src/control/Control.StatusBar.js:412
+#: src/control/Control.StatusBar.js:357 src/control/Control.StatusBar.js:413
 msgid "Number of Pages"
 msgstr "Orrialde kopurua"
 
-#: src/control/Control.StatusBar.js:361
+#: src/control/Control.StatusBar.js:362
 msgid "Word Counter"
 msgstr "Hitz kontatzailea"
 
-#: src/control/Control.StatusBar.js:392
+#: src/control/Control.StatusBar.js:393
 msgid "Number of Slides"
 msgstr "Diapositiba kopurua"
 
-#: src/control/Control.StatusBar.js:462 src/control/Control.StatusBar.js:463
+#: src/control/Control.StatusBar.js:463 src/control/Control.StatusBar.js:467
 msgid "Permission Mode"
 msgstr "Baimen modua"
 
-#: src/control/Control.StatusBar.js:463
+#: src/control/Control.StatusBar.js:467
 msgid "Edit"
 msgstr "Editatu"
 
-#: src/control/Control.StatusBar.js:501
+#: src/control/Control.StatusBar.js:507
 msgid "Select multiple cells"
 msgstr "Hautatu gelaxka anitz"
 
-#: src/control/Control.StatusBar.js:504
+#: src/control/Control.StatusBar.js:510
 msgid "Insert mode: inactive"
 msgstr "Txertatzeko modua: inaktiboa"
 
-#: src/control/Control.StatusBar.js:517
+#: src/control/Control.StatusBar.js:523
 msgid "Selection mode: inactive"
 msgstr "Hautaketa modua: inaktiboa"
 
@@ -1573,15 +1573,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Sartu orriaren izen berria"
 
-#: src/control/Control.Toolbar.js:965
+#: src/control/Control.Toolbar.js:962
 msgid "Previous slide"
 msgstr "Aurreko diapositiba"
 
-#: src/control/Control.Toolbar.js:966
+#: src/control/Control.Toolbar.js:963
 msgid "Next slide"
 msgstr "Hurrengo diapositiba"
 
-#: src/control/Control.Toolbar.js:1027
+#: src/control/Control.Toolbar.js:1024
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -2007,19 +2007,19 @@ msgstr "\"Proxy motela\""
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:721
+#: src/control/Toolbar.js:738
 msgid "Insert hyperlink"
 msgstr "Txertatu hiperesteka"
 
-#: src/control/Toolbar.js:740
+#: src/control/Toolbar.js:757
 msgid "Link"
 msgstr "Esteka"
 
-#: src/control/Toolbar.js:990
+#: src/control/Toolbar.js:1007
 msgid "Are you sure you want to delete this slide?"
 msgstr "Ziur zaude diapositiba hau ezabatu nahi duzula?"
 
-#: src/control/Toolbar.js:993
+#: src/control/Toolbar.js:1010
 msgid "Are you sure you want to delete this page?"
 msgstr "Ziur orri hau ezabatu nahi duzula?"
 
@@ -2354,23 +2354,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Huts egin du fitxategia zerbitzarira kargatzeak, fitxategia handiegia da."
 
-#: src/layer/tile/CanvasTileLayer.js:1933
+#: src/layer/tile/CanvasTileLayer.js:1898
 msgid "Functions"
 msgstr "Funtzioak"
 
-#: src/layer/tile/CanvasTileLayer.js:2499
+#: src/layer/tile/CanvasTileLayer.js:2464
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2507
+#: src/layer/tile/CanvasTileLayer.js:2472
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2515
+#: src/layer/tile/CanvasTileLayer.js:2480
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5256
+#: src/layer/tile/CanvasTileLayer.js:5221
 msgid "No Comments"
 msgstr "Iruzkinik gabe"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-02 18:47+0200\n"
+"POT-Creation-Date: 2023-07-04 20:51+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Uzbek <https://hosted.weblate.org/projects/collabora-online/"
@@ -219,7 +219,7 @@ msgid "Channel Filter:"
 msgstr ""
 
 #: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:550
-#: src/control/Control.StatusBar.js:338
+#: src/control/Control.StatusBar.js:339
 msgid "None"
 msgstr "Yo‘q"
 
@@ -268,7 +268,7 @@ msgstr ""
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:553 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:761 src/control/Toolbar.js:996
+#: src/control/Toolbar.js:778 src/control/Toolbar.js:1013
 #: src/core/Socket.js:987 src/core/Socket.js:1062 src/core/Socket.js:1190
 #: src/core/Socket.js:1194 src/main.js:70 src/main.js:73 src/main.js:110
 #: src/map/Clipboard.js:874 src/map/Clipboard.js:925
@@ -293,7 +293,7 @@ msgstr "Bu seansni to‘xtatmoqchimisiz?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:756 src/layer/tile/CommentListSection.ts:374
+#: src/control/Toolbar.js:773 src/layer/tile/CommentListSection.ts:374
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Bekor qilish"
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:995
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1012
 msgid "Delete"
 msgstr ""
 
@@ -449,7 +449,7 @@ msgid "cell address"
 msgstr ""
 
 #: src/control/Control.FormulaBarJSDialog.js:43
-#: src/control/Control.FormulaBarJSDialog.js:91
+#: src/control/Control.FormulaBarJSDialog.js:89
 #, fuzzy
 msgid "Function Wizard"
 msgstr "Funksiya"
@@ -464,12 +464,12 @@ msgid "Accept"
 msgstr "Qabul qilish"
 
 #: src/control/Control.JSDialogBuilder.js:153
-#: src/control/Control.StatusBar.js:336
+#: src/control/Control.StatusBar.js:337
 msgid "Sum"
 msgstr "Sum"
 
 #: src/control/Control.JSDialogBuilder.js:154
-#: src/control/Control.StatusBar.js:331
+#: src/control/Control.StatusBar.js:332
 msgid "Average"
 msgstr "O‘rtacha"
 
@@ -482,7 +482,7 @@ msgid "Max"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:157
-#: src/control/Control.StatusBar.js:333
+#: src/control/Control.StatusBar.js:334
 msgid "Count"
 msgstr "Hisob"
 
@@ -560,8 +560,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2163
-#: src/layer/tile/CanvasTileLayer.js:5228
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5193
+#: src/layer/tile/CanvasTileLayer.js:5204
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Sharh"
@@ -596,7 +596,7 @@ msgstr "Jadval kiritish"
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:335
 #: src/control/Control.Menubar.js:337 src/control/Control.Menubar.js:339
 #: src/control/Control.Menubar.js:499 src/control/Control.Menubar.js:626
-#: src/control/Control.Menubar.js:873 src/control/Control.StatusBar.js:559
+#: src/control/Control.Menubar.js:873 src/control/Control.StatusBar.js:565
 msgid "None (Do not check spelling)"
 msgstr ""
 
@@ -702,7 +702,7 @@ msgstr "Yuklab olish"
 
 #: src/control/Control.Menubar.js:88 src/control/Control.Menubar.js:388
 #: src/control/Control.Menubar.js:532 src/control/Control.Menubar.js:661
-#: src/control/Control.Toolbar.js:1172
+#: src/control/Control.Toolbar.js:1169
 msgid "Close document"
 msgstr "Hujatni yopish"
 
@@ -1021,12 +1021,12 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1348 src/control/Control.StatusBar.js:558
+#: src/control/Control.Menubar.js:1348 src/control/Control.StatusBar.js:564
 msgid "Reset to Default Language"
 msgstr ""
 
 #: src/control/Control.Menubar.js:1379 src/control/Control.Menubar.js:1380
-#: src/control/Control.Menubar.js:1381 src/control/Control.StatusBar.js:580
+#: src/control/Control.Menubar.js:1381 src/control/Control.StatusBar.js:586
 #: src/control/Control.Toolbar.js:241 src/control/Control.Toolbar.js:269
 msgid "More..."
 msgstr ""
@@ -1064,7 +1064,7 @@ msgstr "Izlashni bekor qilish"
 msgid "Borders"
 msgstr ""
 
-#: src/control/Control.MobileTopBar.js:31 src/control/Control.StatusBar.js:462
+#: src/control/Control.MobileTopBar.js:31 src/control/Control.StatusBar.js:463
 msgid "Read-only"
 msgstr ""
 
@@ -1268,7 +1268,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:728
+#: src/control/Control.NotebookbarCalc.js:563 src/control/Toolbar.js:745
 msgid "Text"
 msgstr ""
 
@@ -1489,71 +1489,71 @@ msgstr "Jadval kiritish"
 msgid "Cancel the search"
 msgstr "Izlashni bekor qilish"
 
-#: src/control/Control.StatusBar.js:303
+#: src/control/Control.StatusBar.js:304
 msgid "Number of Sheets"
 msgstr "Varaqlar soni"
 
-#: src/control/Control.StatusBar.js:308
+#: src/control/Control.StatusBar.js:309
 msgid "Selected range of cells"
 msgstr "Kataklarning tanlangan oralig‘i"
 
-#: src/control/Control.StatusBar.js:313 src/control/Control.StatusBar.js:366
+#: src/control/Control.StatusBar.js:314 src/control/Control.StatusBar.js:367
 msgid "Entering text mode"
 msgstr "Matn rejimiga kirilmoqda"
 
-#: src/control/Control.StatusBar.js:322 src/control/Control.StatusBar.js:371
+#: src/control/Control.StatusBar.js:323 src/control/Control.StatusBar.js:372
 msgid "Selection Mode"
 msgstr "Tanlash rejimi"
 
-#: src/control/Control.StatusBar.js:327
+#: src/control/Control.StatusBar.js:328
 msgid "Choice of functions"
 msgstr "Funksiyalar tanlovi"
 
-#: src/control/Control.StatusBar.js:332
+#: src/control/Control.StatusBar.js:333
 msgid "CountA"
 msgstr "A hisob"
 
-#: src/control/Control.StatusBar.js:334
+#: src/control/Control.StatusBar.js:335
 msgid "Maximum"
 msgstr "Maksimal"
 
-#: src/control/Control.StatusBar.js:335
+#: src/control/Control.StatusBar.js:336
 msgid "Minimum"
 msgstr "Minimal"
 
-#: src/control/Control.StatusBar.js:337
+#: src/control/Control.StatusBar.js:338
 msgid "Selection count"
 msgstr "Tanlanganlar soni"
 
-#: src/control/Control.StatusBar.js:356 src/control/Control.StatusBar.js:412
+#: src/control/Control.StatusBar.js:357 src/control/Control.StatusBar.js:413
 msgid "Number of Pages"
 msgstr "Sahifalar soni"
 
-#: src/control/Control.StatusBar.js:361
+#: src/control/Control.StatusBar.js:362
 msgid "Word Counter"
 msgstr "So‘z hisoblagich"
 
-#: src/control/Control.StatusBar.js:392
+#: src/control/Control.StatusBar.js:393
 msgid "Number of Slides"
 msgstr "Slaydlar soni"
 
-#: src/control/Control.StatusBar.js:462 src/control/Control.StatusBar.js:463
+#: src/control/Control.StatusBar.js:463 src/control/Control.StatusBar.js:467
 msgid "Permission Mode"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:463
+#: src/control/Control.StatusBar.js:467
 msgid "Edit"
 msgstr "Tahrirlash"
 
-#: src/control/Control.StatusBar.js:501
+#: src/control/Control.StatusBar.js:507
 msgid "Select multiple cells"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:504
+#: src/control/Control.StatusBar.js:510
 msgid "Insert mode: inactive"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:517
+#: src/control/Control.StatusBar.js:523
 msgid "Selection mode: inactive"
 msgstr ""
 
@@ -1590,15 +1590,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Yangi varaq nomini kiriting"
 
-#: src/control/Control.Toolbar.js:965
+#: src/control/Control.Toolbar.js:962
 msgid "Previous slide"
 msgstr "Oldingi slayd"
 
-#: src/control/Control.Toolbar.js:966
+#: src/control/Control.Toolbar.js:963
 msgid "Next slide"
 msgstr "Keyingi slayd"
 
-#: src/control/Control.Toolbar.js:1027
+#: src/control/Control.Toolbar.js:1024
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -2020,19 +2020,19 @@ msgstr ""
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:721
+#: src/control/Toolbar.js:738
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:740
+#: src/control/Toolbar.js:757
 msgid "Link"
 msgstr ""
 
-#: src/control/Toolbar.js:990
+#: src/control/Toolbar.js:1007
 msgid "Are you sure you want to delete this slide?"
 msgstr "Bu slaydni o‘chirishni xohlaysizmi?"
 
-#: src/control/Toolbar.js:993
+#: src/control/Toolbar.js:1010
 msgid "Are you sure you want to delete this page?"
 msgstr "Bu sahifani o‘chirishni xohlaysizmi?"
 
@@ -2332,24 +2332,24 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1933
+#: src/layer/tile/CanvasTileLayer.js:1898
 #, fuzzy
 msgid "Functions"
 msgstr "Funksiya"
 
-#: src/layer/tile/CanvasTileLayer.js:2499
+#: src/layer/tile/CanvasTileLayer.js:2464
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2507
+#: src/layer/tile/CanvasTileLayer.js:2472
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2515
+#: src/layer/tile/CanvasTileLayer.js:2480
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5256
+#: src/layer/tile/CanvasTileLayer.js:5221
 msgid "No Comments"
 msgstr ""
 
