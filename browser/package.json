@@ -27,7 +27,7 @@
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
-    "stylelint": "15.9.0",
+    "stylelint": "15.10.0",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
     "uglify-js": "3.17.4",
@@ -46,7 +46,7 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "jsdom": "^21.1.0",
+    "jsdom": "^22.1.0",
     "tmp": "^0.2.1"
   },
   "scripts": {
