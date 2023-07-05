@@ -122,13 +122,14 @@ namespace Util
 
             // a poor fallback but something.
             std::vector<char> random = getBytes(length);
-            int fd = open("/dev/urandom", O_RDONLY);
             int len = 0;
-            if (fd < 0 ||
-                (len = read(fd, random.data(), length)) < 0 ||
-                std::size_t(len) < length)
-            {
+#ifdef HAVE_SYS_RANDOM_H
+            len = getrandom(random.data(), length, GRND_NONBLOCK);
 
+            // if getrandom() fails, we fall back to "/dev/[u]random" approach.
+            if (len != length)
+#endif
+            {
                 const int fd = open("/dev/urandom", O_RDONLY);
                 if (fd < 0 ||
                     (len = read(fd, random.data(), length)) < 0 ||
@@ -139,7 +140,6 @@ namespace Util
                 if (fd >= 0)
                     close(fd);
             }
-            close(fd);
 
             hex.rdbuf()->setLineLength(0); // Don't insert line breaks.
             hex.write(random.data(), length);
