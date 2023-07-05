@@ -97,7 +97,8 @@ class DeltaGenerator {
             void next()
             {
                 _x++;
-                if (!(_row._rleMask[_x >> 6] & (uint64_t(1) << (_x & 63))))
+                size_t rleMaskIndex = _x >> 6;
+                if (rleMaskIndex >= _rleMaskUnits || !(_row._rleMask[rleMaskIndex] & (uint64_t(1) << (_x & 63))))
                     _rlePtr++;
             }
         };
