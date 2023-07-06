@@ -7033,6 +7033,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		tile.viewId = tileMsgObj.nviewid;
 		// update monotonic timestamp
 		tile.wireId = +tileMsgObj.wireId;
+		if (tile.invalidFrom == tile.wireId)
+			window.app.console.debug('Nasty - updated wireId matches old one');
 
 		if (this._debug) {
 			if (tile._debugLoadTile === undefined) {
