@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 19:41+0200\n"
+"POT-Creation-Date: 2023-07-06 21:08+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Leif-Jöran Olsson <info@friprogramvarusyndikatet.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/collabora-online/"
@@ -564,25 +564,25 @@ msgstr "Kommentar"
 msgid "Insert Comment"
 msgstr "Infoga kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2921
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Cell borders"
 msgstr "Kantlinjer"
 
-#: src/control/Control.JSDialogBuilder.js:3036
+#: src/control/Control.JSDialogBuilder.js:3039
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3153
+#: src/control/Control.JSDialogBuilder.js:3156
 #: src/control/Control.Menubar.js:797
 msgid "Rows"
 msgstr "Rader"
 
-#: src/control/Control.JSDialogBuilder.js:3154
+#: src/control/Control.JSDialogBuilder.js:3157
 #: src/control/Control.Menubar.js:800
 msgid "Columns"
 msgstr "Kolumner"
 
-#: src/control/Control.JSDialogBuilder.js:3174
+#: src/control/Control.JSDialogBuilder.js:3177
 msgid "Insert Table"
 msgstr "Infoga Tabell"
 

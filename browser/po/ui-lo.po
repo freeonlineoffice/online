@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 19:41+0200\n"
+"POT-Creation-Date: 2023-07-06 21:08+0200\n"
 "PO-Revision-Date: 2020-12-08 13:30+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/collabora-online/ui/"
@@ -569,25 +569,25 @@ msgstr "ຄຳເຫັນ"
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2921
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Cell borders"
 msgstr "ຂອບເຊລ"
 
-#: src/control/Control.JSDialogBuilder.js:3036
+#: src/control/Control.JSDialogBuilder.js:3039
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3153
+#: src/control/Control.JSDialogBuilder.js:3156
 #: src/control/Control.Menubar.js:797
 msgid "Rows"
 msgstr "ແຖວ"
 
-#: src/control/Control.JSDialogBuilder.js:3154
+#: src/control/Control.JSDialogBuilder.js:3157
 #: src/control/Control.Menubar.js:800
 msgid "Columns"
 msgstr "ຖັນ"
 
-#: src/control/Control.JSDialogBuilder.js:3174
+#: src/control/Control.JSDialogBuilder.js:3177
 #, fuzzy
 msgid "Insert Table"
 msgstr "ປ້ອນເຂົ້າໃສ່ຕາຕະລາງ"

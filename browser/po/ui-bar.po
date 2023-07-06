@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 19:41+0200\n"
+"POT-Creation-Date: 2023-07-06 21:08+0200\n"
 "PO-Revision-Date: 2020-01-28 16:49+0000\n"
 "Last-Translator: Florian <1234567890@hotmail.de>\n"
 "Language-Team: Bavarian <https://weblate.documentfoundation.org/projects/"
@@ -563,25 +563,25 @@ msgstr ""
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2921
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3036
+#: src/control/Control.JSDialogBuilder.js:3039
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3153
+#: src/control/Control.JSDialogBuilder.js:3156
 #: src/control/Control.Menubar.js:797
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3154
+#: src/control/Control.JSDialogBuilder.js:3157
 #: src/control/Control.Menubar.js:800
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3174
+#: src/control/Control.JSDialogBuilder.js:3177
 msgid "Insert Table"
 msgstr ""
 

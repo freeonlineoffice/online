@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 19:41+0200\n"
+"POT-Creation-Date: 2023-07-06 21:08+0200\n"
 "PO-Revision-Date: 2021-04-02 19:46+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/"
@@ -565,25 +565,25 @@ msgstr "Koment"
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2921
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3036
+#: src/control/Control.JSDialogBuilder.js:3039
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3153
+#: src/control/Control.JSDialogBuilder.js:3156
 #: src/control/Control.Menubar.js:797
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3154
+#: src/control/Control.JSDialogBuilder.js:3157
 #: src/control/Control.Menubar.js:800
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3174
+#: src/control/Control.JSDialogBuilder.js:3177
 #, fuzzy
 msgid "Insert Table"
 msgstr "Fut tabelë"
