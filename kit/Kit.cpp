@@ -70,7 +70,6 @@
 #include <Log.hpp>
 #include <Png.hpp>
 #include <Rectangle.hpp>
-#include <TileDesc.hpp>
 #include <Unit.hpp>
 #include <UserMessages.hpp>
 #include <Util.hpp>
@@ -1175,8 +1174,7 @@ public:
         {
             // no point in handling invalidations or page resizes per-view,
             // all views have to be in sync
-            tileQueue->put("callback all " + std::to_string(type) + ' ' + payload +
-                           " wid=" + std::to_string(RenderTiles::getCurrentWireId()));
+            tileQueue->put("callback all " + std::to_string(type) + ' ' + payload);
         }
         else
             tileQueue->put("callback " + std::to_string(descriptor->getViewId()) + ' ' + std::to_string(type) + ' ' + payload);
@@ -3216,6 +3214,12 @@ void consistencyCheckJail()
 }
 
 #endif // !MOBILEAPP
+
+/// Fetch the latest montonically incrementing wire-id
+TileWireId getCurrentWireId(bool increment)
+{
+    return RenderTiles::getCurrentWireId(increment);
+}
 
 std::string anonymizeUrl(const std::string& url)
 {
