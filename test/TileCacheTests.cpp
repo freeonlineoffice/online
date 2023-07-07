@@ -196,7 +196,7 @@ bool TileCacheTests::getPartFromInvalidateMessage(const std::string& message, in
         part = -1;
         return true;
     }
-    if ((tokens.size() == 3 || tokens.size() == 4) && tokens.equals(1, "EMPTY,"))
+    if (tokens.size() > 2 && tokens.equals(1, "EMPTY,"))
         return LOOLProtocol::stringToInteger(tokens[2], part);
     return LOOLProtocol::getTokenInteger(tokens, "part", part);
 }
