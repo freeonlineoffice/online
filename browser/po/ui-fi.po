@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 16:42+0200\n"
+"POT-Creation-Date: 2023-07-08 21:33+0200\n"
 "PO-Revision-Date: 2022-01-16 22:54+0000\n"
 "Last-Translator: Petri Heinämäki <heinamakipetri@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/collabora-online/"
@@ -514,74 +514,74 @@ msgstr "Neliö"
 msgid "Fixed size"
 msgstr "Kiinteämittainen"
 
-#: src/control/Control.JSDialogBuilder.js:1536
+#: src/control/Control.JSDialogBuilder.js:1546
 msgid "From"
 msgstr "Aloitus"
 
-#: src/control/Control.JSDialogBuilder.js:1539
+#: src/control/Control.JSDialogBuilder.js:1549
 msgid "To"
 msgstr "Loppu"
 
-#: src/control/Control.JSDialogBuilder.js:1542
+#: src/control/Control.JSDialogBuilder.js:1552
 msgid "Color"
 msgstr "Väri"
 
-#: src/control/Control.JSDialogBuilder.js:1649
+#: src/control/Control.JSDialogBuilder.js:1659
 msgid "Select range"
 msgstr "Valitse väli"
 
-#: src/control/Control.JSDialogBuilder.js:1703
+#: src/control/Control.JSDialogBuilder.js:1713
 #: src/control/Control.NotebookbarBuilder.js:230
 msgid "Font Name"
 msgstr "Kirjasinlaji"
 
-#: src/control/Control.JSDialogBuilder.js:1705 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1715 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Kirjasinkoko"
 
-#: src/control/Control.JSDialogBuilder.js:1707
+#: src/control/Control.JSDialogBuilder.js:1717
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr "Tyyli"
 
-#: src/control/Control.JSDialogBuilder.js:2149
+#: src/control/Control.JSDialogBuilder.js:2159
 msgid "reply"
 msgstr "vastaa"
 
-#: src/control/Control.JSDialogBuilder.js:2152
+#: src/control/Control.JSDialogBuilder.js:2162
 msgid "replies"
 msgstr "vastaukset"
 
-#: src/control/Control.JSDialogBuilder.js:2163
-#: src/layer/tile/CanvasTileLayer.js:5193
-#: src/layer/tile/CanvasTileLayer.js:5204
+#: src/control/Control.JSDialogBuilder.js:2173
+#: src/layer/tile/CanvasTileLayer.js:5211
+#: src/layer/tile/CanvasTileLayer.js:5222
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Huomautus"
 
-#: src/control/Control.JSDialogBuilder.js:2227
+#: src/control/Control.JSDialogBuilder.js:2237
 msgid "Insert Comment"
 msgstr "Lisää Kommentti"
 
-#: src/control/Control.JSDialogBuilder.js:2932
+#: src/control/Control.JSDialogBuilder.js:2942
 msgid "Cell borders"
 msgstr "Solun reunat"
 
-#: src/control/Control.JSDialogBuilder.js:3047
+#: src/control/Control.JSDialogBuilder.js:3057
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3164
+#: src/control/Control.JSDialogBuilder.js:3174
 #: src/control/Control.Menubar.js:797
 msgid "Rows"
 msgstr "Rivejä"
 
-#: src/control/Control.JSDialogBuilder.js:3165
+#: src/control/Control.JSDialogBuilder.js:3175
 #: src/control/Control.Menubar.js:800
 msgid "Columns"
 msgstr "Sarakkeita"
 
-#: src/control/Control.JSDialogBuilder.js:3185
+#: src/control/Control.JSDialogBuilder.js:3195
 msgid "Insert Table"
 msgstr "Lisää taulukko"
 
@@ -2359,23 +2359,23 @@ msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedostoa ei löytynyt."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedosto on liian iso."
 
-#: src/layer/tile/CanvasTileLayer.js:1898
+#: src/layer/tile/CanvasTileLayer.js:1926
 msgid "Functions"
 msgstr "Funktiot"
 
-#: src/layer/tile/CanvasTileLayer.js:2464
+#: src/layer/tile/CanvasTileLayer.js:2492
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2472
+#: src/layer/tile/CanvasTileLayer.js:2500
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2480
+#: src/layer/tile/CanvasTileLayer.js:2508
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5221
+#: src/layer/tile/CanvasTileLayer.js:5239
 msgid "No Comments"
 msgstr "Ei kommentteja"
 
