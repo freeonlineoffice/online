@@ -178,7 +178,7 @@ bool tryRemoveJail(const std::string& root)
     unmount(Poco::Path(root, "lo").toString());
 
     // Unmount the test-mount directory too.
-    const std::string testMountPath = Poco::Path(root, "cool_test_mount").toString();
+    const std::string testMountPath = Poco::Path(root, "lool_test_mount").toString();
     if (FileUtil::Stat(testMountPath).exists())
         unmount(testMountPath);
 
