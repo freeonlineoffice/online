@@ -3394,9 +3394,14 @@ static std::shared_ptr<DocumentBroker>
 class PrisonerRequestDispatcher final : public WebSocketHandler
 {
     std::weak_ptr<ChildProcess> _childProcess;
+    int _pid; //< The Kit's PID (for logging).
+    int _socketFD; //< The socket FD to the Kit (for logging).
+
 public:
     PrisonerRequestDispatcher()
         : WebSocketHandler(/* isClient = */ false, /* isMasking = */ true)
+        , _pid(0)
+        , _socketFD(0)
     {
         LOG_TRC_S("PrisonerRequestDispatcher");
     }
