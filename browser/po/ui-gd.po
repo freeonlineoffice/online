@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 21:33+0200\n"
+"POT-Creation-Date: 2023-07-08 22:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -568,8 +568,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2173
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5204
+#: src/layer/tile/CanvasTileLayer.js:5215
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Beachd"
@@ -2395,24 +2395,24 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1926
+#: src/layer/tile/CanvasTileLayer.js:1928
 #, fuzzy
 msgid "Functions"
 msgstr "Foincsean"
 
-#: src/layer/tile/CanvasTileLayer.js:2492
+#: src/layer/tile/CanvasTileLayer.js:2494
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2500
+#: src/layer/tile/CanvasTileLayer.js:2502
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2508
+#: src/layer/tile/CanvasTileLayer.js:2510
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5232
 msgid "No Comments"
 msgstr ""
 

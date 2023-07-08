@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 21:33+0200\n"
+"POT-Creation-Date: 2023-07-08 22:46+0200\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -552,8 +552,8 @@ msgid "replies"
 msgstr "תגובות"
 
 #: src/control/Control.JSDialogBuilder.js:2173
-#: src/layer/tile/CanvasTileLayer.js:5211
-#: src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5204
+#: src/layer/tile/CanvasTileLayer.js:5215
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "הערה"
@@ -2331,23 +2331,23 @@ msgstr "העלאת הקובץ לשרת נכשלה, הקובץ לא נמצא."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "העלאת הקובץ לשרת נכשלה, הקובץ גדול מדי."
 
-#: src/layer/tile/CanvasTileLayer.js:1926
+#: src/layer/tile/CanvasTileLayer.js:1928
 msgid "Functions"
 msgstr "פונקציות"
 
-#: src/layer/tile/CanvasTileLayer.js:2492
+#: src/layer/tile/CanvasTileLayer.js:2494
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2500
+#: src/layer/tile/CanvasTileLayer.js:2502
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2508
+#: src/layer/tile/CanvasTileLayer.js:2510
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5232
 msgid "No Comments"
 msgstr "אין הערות"
 

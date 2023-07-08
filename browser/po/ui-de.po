@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 21:33+0200\n"
-"PO-Revision-Date: 2023-07-08 21:59+0200\n"
+"POT-Creation-Date: 2023-07-08 22:46+0200\n"
+"PO-Revision-Date: 2023-07-08 22:49+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -553,7 +553,7 @@ msgid "replies"
 msgstr "Antworten"
 
 #: src/control/Control.JSDialogBuilder.js:2173
-#: src/layer/tile/CanvasTileLayer.js:5211 src/layer/tile/CanvasTileLayer.js:5222
+#: src/layer/tile/CanvasTileLayer.js:5204 src/layer/tile/CanvasTileLayer.js:5215
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Kommentar"
@@ -2357,23 +2357,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1926
+#: src/layer/tile/CanvasTileLayer.js:1928
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2492
+#: src/layer/tile/CanvasTileLayer.js:2494
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2500
+#: src/layer/tile/CanvasTileLayer.js:2502
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2508
+#: src/layer/tile/CanvasTileLayer.js:2510
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5239
+#: src/layer/tile/CanvasTileLayer.js:5232
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
