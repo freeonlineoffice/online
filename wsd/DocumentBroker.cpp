@@ -1610,7 +1610,8 @@ void DocumentBroker::uploadToStorage(const std::shared_ptr<ClientSession>& sessi
     LOG_TRC("uploadToStorage [" << session->getId() << "]: " << (force ? "" : "not") << " forced");
 
     // Upload immediately if forced or had no failures. Otherwise, throttle (on failure).
-    if (force || _storageManager.lastUploadSuccessful() || _storageManager.canUploadNow())
+    if (force || _storageManager.lastUploadSuccessful() ||
+        _storageManager.canUploadNow(isUnloading()))
     {
         constexpr bool isRename = false;
         constexpr bool isExport = false;
@@ -2426,7 +2427,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
         LOOLWSD::getConfigValue<int>("per_document.min_time_between_saves_ms", 500));
 
     // Don't hammer on saving.
-    if (!canStop && _saveManager.canSaveNow())
+    if (!canStop && _saveManager.canSaveNow(isUnloading()))
     {
         // Stop if there is nothing to save.
         const bool possiblyModified = isPossiblyModified();
