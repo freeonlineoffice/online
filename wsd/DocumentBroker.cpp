@@ -2352,7 +2352,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
         if (_alwaysSaveOnExit && !_storageManager.lastUploadSuccessful())
         {
             const auto limStoreFailures =
-                COOLWSD::getConfigValue<int>("per_document.limit_store_failures", 5);
+                LOOLWSD::getConfigValue<int>("per_document.limit_store_failures", 5);
 
             if (limStoreFailures > 0 &&
                 _storageManager.uploadFailureCount() >= static_cast<std::size_t>(limStoreFailures))
