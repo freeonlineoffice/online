@@ -394,6 +394,8 @@ else
 CLEANUP_COMMAND=if test -s ./loolwsd; then echo "Cleaning up..." && ./loolwsd --disable-lool-user-checking --cleanup --o:logging.level=trace || rm ./loolwsd; fi
 endif
 
+CLEANUP_COVERAGE=rm -rf ${abs_top_srcdir}/gcov; find . -iname "*.gc??" -delete
+
 if HAVE_LO_PATH
 
 SYSTEM_STAMP = @SYSTEMPLATE_PATH@/system_stamp
@@ -437,9 +439,8 @@ clean-local:
 	if test "z@JAILS_PATH@" != "z"; then rm -rf "@JAILS_PATH@" || echo "WARNING: failed to remove all jails cleanly"; fi
 	rm -rf "${top_srcdir}/loleaflet"
 	rm -rf loolconfig loolconvert loolforkit loolmap loolmount # kill old binaries
-	rm -rf loolwsd loolwsd_fuzzer loolstress loolsocketdump
-	rm -rf ${abs_top_srcdir}/gcov
-	find . -iname "*.gc??" -delete
+	rm -rf loolwsd loolwsd_fuzzer loolwsd_fuzzer loolstress loolsocketdump
+	$(CLEANUP_COVERAGE)
 
 if ENABLE_DEBUG
 # can write to /tmp/loolwsd.log
@@ -628,6 +629,9 @@ check: check-for-system-nss check-recursive
 
 coverage-report:
 	$(GEN_COVERAGE_COMMAND)
+
+coverage-clean:
+	$(CLEANUP_COVERAGE)
 
 czech: check
 	@echo "This should do something much cooler"
