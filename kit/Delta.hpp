@@ -20,8 +20,6 @@
 #include <FileUtil.hpp>
 #include <Png.hpp>
 
-#define ENABLE_DELTAS 1
-
 #ifndef TILE_WIRE_ID
 #  define TILE_WIRE_ID
    typedef uint32_t TileWireId;
@@ -457,10 +455,6 @@ class DeltaGenerator {
             outStream.push_back('D');
             return true;
         }
-
-#if !ENABLE_DELTAS
-        return false; // Disable transmission for now; just send keyframes.
-#endif
 
         // terminating this delta so we can detect the next one.
         output.push_back('t');
