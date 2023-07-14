@@ -647,7 +647,7 @@ void UnitWSD::onExitTest(TestResult result, const std::string&)
             LOG_TST("Failing fast per options, even though there are more tests");
 #if !MOBILEAPP
             LOG_TST("Setting TerminationFlag as the Test Suite failed");
-            SigUtil::setTerminationFlag(); // And wakupWorld.
+            SigUtil::setTerminationFlag(); // and wake-up world.
 #else
             SocketPoll::wakeupWorld();
 #endif
@@ -665,7 +665,7 @@ void UnitWSD::onExitTest(TestResult result, const std::string&)
 
 #if !MOBILEAPP
     LOG_TST("Setting TerminationFlag as there are no more tests");
-    SigUtil::setTerminationFlag(); // And wakupWorld.
+    SigUtil::setTerminationFlag(); // and wake-up world.
 #else
     SocketPoll::wakeupWorld();
 #endif
@@ -701,7 +701,7 @@ void UnitKit::onExitTest(TestResult, const std::string&)
 
 #if !MOBILEAPP
     // LOG_TST("Setting TerminationFlag as there are no more tests");
-    SigUtil::setTerminationFlag(); // And wakupWorld.
+    SigUtil::setTerminationFlag(); // and wake-up world.
 #else
     SocketPoll::wakeupWorld();
 #endif
