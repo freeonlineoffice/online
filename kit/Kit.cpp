@@ -682,12 +682,6 @@ namespace
 class Document final : public DocumentManagerInterface
 {
 public:
-    /// We have two types of password protected documents
-    /// 1) Documents which require password to view
-    /// 2) Document which require password to modify
-    enum class PasswordType { ToView, ToModify };
-
-public:
     Document(const std::shared_ptr<lok::Office>& loKit,
              const std::string& jailId,
              const std::string& docKey,
@@ -706,7 +700,7 @@ public:
         _websocketHandler(websocketHandler),
         _haveDocPassword(false),
         _isDocPasswordProtected(false),
-        _docPasswordType(PasswordType::ToView),
+        _docPasswordType(DocumentPasswordType::ToView),
         _stop(false),
         _editorId(-1),
         _editorChangeWarning(false),
@@ -865,9 +859,9 @@ public:
         // One thing for sure, this is a password protected document
         _isDocPasswordProtected = true;
         if (passwordType == LOK_CALLBACK_DOCUMENT_PASSWORD)
-            _docPasswordType = PasswordType::ToView;
+            _docPasswordType = DocumentPasswordType::ToView;
         else if (passwordType == LOK_CALLBACK_DOCUMENT_PASSWORD_TO_MODIFY)
-            _docPasswordType = PasswordType::ToModify;
+            _docPasswordType = DocumentPasswordType::ToModify;
 
         LOG_INF("Calling _loKit->setDocumentPassword");
         if (_haveDocPassword)
@@ -1167,7 +1161,7 @@ public:
                 document->_haveDocPassword = document->_isDocPasswordProtected;
                 document->_docPassword = password;
                 document->_docPasswordType =
-                    isToModify ? PasswordType::ToModify : PasswordType::ToView;
+                    isToModify ? DocumentPasswordType::ToModify : DocumentPasswordType::ToView;
             }
             return;
         }
@@ -1323,6 +1317,26 @@ private:
     int getEditorId() const override
     {
         return _editorId;
+    }
+
+    bool isDocPasswordProtected() const override
+    {
+        return _isDocPasswordProtected;
+    }
+
+    bool haveDocPassword() const override
+    {
+        return _haveDocPassword;
+    }
+
+    std::string getDocPassword() const override
+    {
+        return _docPassword;
+    }
+
+    DocumentPasswordType getDocPasswordType() const override
+    {
+        return _docPasswordType;
     }
 
     /// Notify all views with the given message
@@ -1615,9 +1629,9 @@ private:
                     {
                         LOG_INF("No password provided for password-protected document [" << uriAnonym << "].");
                         std::string passwordFrame = "passwordrequired:";
-                        if (_docPasswordType == PasswordType::ToView)
+                        if (_docPasswordType == DocumentPasswordType::ToView)
                             passwordFrame += "to-view";
-                        else if (_docPasswordType == PasswordType::ToModify)
+                        else if (_docPasswordType == DocumentPasswordType::ToModify)
                             passwordFrame += "to-modify";
                         session->sendTextFrameAndLogError("error: cmd=load kind=" + passwordFrame);
                     }
@@ -1652,9 +1666,9 @@ private:
                 if (!haveDocPassword)
                 {
                     std::string passwordFrame = "passwordrequired:";
-                    if (_docPasswordType == PasswordType::ToView)
+                    if (_docPasswordType == DocumentPasswordType::ToView)
                         passwordFrame += "to-view";
-                    else if (_docPasswordType == PasswordType::ToModify)
+                    else if (_docPasswordType == DocumentPasswordType::ToModify)
                         passwordFrame += "to-modify";
                     session->sendTextFrameAndLogError("error: cmd=load kind=" + passwordFrame);
                     return nullptr;
@@ -2121,7 +2135,7 @@ private:
     // Whether document is password protected
     bool _isDocPasswordProtected;
     // Whether password is required to view the document, or modify it
-    PasswordType _docPasswordType;
+    DocumentPasswordType _docPasswordType;
 
     std::atomic<bool> _stop;
 
