@@ -1056,6 +1056,45 @@ L.Control.UIManager = L.Control.extend({
 					callback();
 				that.closeModal(dialogId);
 			}}
+		], cancelButtonId);
+		if (!buttonText && !withCancel) {
+			// if no buttons better to set tabIndex to negative so the element is not reachable via sequential keyboard navigation but can be focused programatically
+			document.getElementById(dialogId).tabIndex = -1;
+			// We hid the OK button, we need to set focus manually on the popup.
+			document.getElementById(dialogId).focus();
+			document.getElementById(dialogId).className += ' focus-hidden';
+		}
+	},
+
+	/// buttonObjectList: [{id: button's id, text: button's text, ..other properties if needed}, ...]
+	/// callbackList: [{id: button's id, func_: function}, ...]
+	showModalWithCustomButtons: function(id, title, message, cancellable, buttonObjectList, callbackList) {
+		var dialogId = this.generateModalId(id);
+
+		for (var i = 0; i < buttonObjectList.length; i++)
+			buttonObjectList[i].type = 'pushbutton';
+
+		var json = this._modalDialogJSON(id, title, !!cancellable, [
+			{
+				id: 'info-modal-tile-m',
+				type: 'fixedtext',
+				text: title,
+				hidden: !window.mode.isMobile()
+			},
+			{
+				id: 'info-modal-label1',
+				type: 'fixedtext',
+				text: message
+			},
+			{
+				id: '',
+				type: 'buttonbox',
+				text: '',
+				enabled: true,
+				children: buttonObjectList,
+				vertical: false,
+				layoutstyle: 'end'
+			},
 		]);
 	},
 
