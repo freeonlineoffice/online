@@ -876,7 +876,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		// Tile garbage collection counter
 		this._gcCounter = 0;
 
-		// Queue of tiles which were GC'd earlier than coolwsd expected
+		// Queue of tiles which were GC'd earlier than loolwsd expected
 		this._fetchKeyframeQueue = [];
 
 		// Position and size of the selection start (as if there would be a cursor caret there).
@@ -7060,7 +7060,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		var hasContent = true;
 
 		// obscure case: we could have garbage collected the
-		// keyframe content in JS but coolwsd still thinks we have
+		// keyframe content in JS but loolwsd still thinks we have
 		// it and now we just have a delta with nothing to apply
 		// it to; if so, mark it bad to re-fetch.
 		if (img && !img.isKeyframe && !tile.hasKeyframe())
