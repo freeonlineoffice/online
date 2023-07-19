@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-14 22:42+0200\n"
+"POT-Creation-Date: 2023-07-19 20:21+0200\n"
 "PO-Revision-Date: 2022-01-16 22:54+0000\n"
 "Last-Translator: Petri Heinämäki <heinamakipetri@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/collabora-online/"
@@ -266,7 +266,7 @@ msgstr "Palvelin on sammutettu, ole hyvä ja lataa sivu uudelleen."
 #: src/control/Toolbar.js:778 src/control/Toolbar.js:1028
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:925
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:923
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -553,8 +553,8 @@ msgid "replies"
 msgstr "vastaukset"
 
 #: src/control/Control.JSDialogBuilder.js:2181
-#: src/layer/tile/CanvasTileLayer.js:5234
-#: src/layer/tile/CanvasTileLayer.js:5245
+#: src/layer/tile/CanvasTileLayer.js:5242
+#: src/layer/tile/CanvasTileLayer.js:5253
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Huomautus"
@@ -2376,23 +2376,23 @@ msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedostoa ei löytynyt."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Asiakirjan lähetys palvelimelle epäonnistui, tiedosto on liian iso."
 
-#: src/layer/tile/CanvasTileLayer.js:1957
+#: src/layer/tile/CanvasTileLayer.js:1960
 msgid "Functions"
 msgstr "Funktiot"
 
-#: src/layer/tile/CanvasTileLayer.js:2523
+#: src/layer/tile/CanvasTileLayer.js:2531
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2531
+#: src/layer/tile/CanvasTileLayer.js:2539
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2539
+#: src/layer/tile/CanvasTileLayer.js:2547
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5262
+#: src/layer/tile/CanvasTileLayer.js:5270
 msgid "No Comments"
 msgstr "Ei kommentteja"
 
@@ -2500,7 +2500,7 @@ msgstr ""
 ".</p><p>Jos leikkaat ja liität asiakirjojen välissä %productName-tuotteen "
 "sisällä, latausta ei tarvita.</p>"
 
-#: src/map/Clipboard.js:904
+#: src/map/Clipboard.js:902
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2509,7 +2509,7 @@ msgstr ""
 "<p>Suuren kopiointi- tai liittämisoperaation aiheuttama lataus on jo "
 "käynnissä. Odota että se päättyy, tai peru se, ennen kuin aloitat uuden.</p>"
 
-#: src/map/Clipboard.js:918
+#: src/map/Clipboard.js:916
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "

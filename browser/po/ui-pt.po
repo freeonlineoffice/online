@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-14 22:42+0200\n"
+"POT-Creation-Date: 2023-07-19 20:21+0200\n"
 "PO-Revision-Date: 2022-05-24 10:17+0000\n"
 "Last-Translator: SC <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/"
@@ -270,7 +270,7 @@ msgstr "O servidor foi desligado; por favor, recarregue a página."
 #: src/control/Toolbar.js:778 src/control/Toolbar.js:1028
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:925
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:923
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Aceitar"
@@ -556,8 +556,8 @@ msgid "replies"
 msgstr "respostas"
 
 #: src/control/Control.JSDialogBuilder.js:2181
-#: src/layer/tile/CanvasTileLayer.js:5234
-#: src/layer/tile/CanvasTileLayer.js:5245
+#: src/layer/tile/CanvasTileLayer.js:5242
+#: src/layer/tile/CanvasTileLayer.js:5253
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Comentário"
@@ -2377,23 +2377,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Não foi possível enviar para o servidor porque o ficheiro é demasiado grande."
 
-#: src/layer/tile/CanvasTileLayer.js:1957
+#: src/layer/tile/CanvasTileLayer.js:1960
 msgid "Functions"
 msgstr "Funções"
 
-#: src/layer/tile/CanvasTileLayer.js:2523
+#: src/layer/tile/CanvasTileLayer.js:2531
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2531
+#: src/layer/tile/CanvasTileLayer.js:2539
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2539
+#: src/layer/tile/CanvasTileLayer.js:2547
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5262
+#: src/layer/tile/CanvasTileLayer.js:5270
 msgid "No Comments"
 msgstr "Sem comentários"
 
@@ -2502,7 +2502,7 @@ msgstr ""
 "entre documentos do %productName, não há necessidade de descarregar os "
 "elementos.</p>"
 
-#: src/map/Clipboard.js:904
+#: src/map/Clipboard.js:902
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2512,7 +2512,7 @@ msgstr ""
 "colar. Por favor espere pela transferência atual, ou cancele-a antes de "
 "iniciar uma nova</p>"
 
-#: src/map/Clipboard.js:918
+#: src/map/Clipboard.js:916
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "

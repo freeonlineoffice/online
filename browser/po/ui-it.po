@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-14 22:42+0200\n"
+"POT-Creation-Date: 2023-07-19 20:21+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/collabora-online/"
@@ -276,7 +276,7 @@ msgstr "Il server è stato chiuso; si prega di ricaricare la pagina."
 #: src/control/Toolbar.js:778 src/control/Toolbar.js:1028
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:925
+#: src/map/Clipboard.js:874 src/map/Clipboard.js:923
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -563,8 +563,8 @@ msgid "replies"
 msgstr "risposte"
 
 #: src/control/Control.JSDialogBuilder.js:2181
-#: src/layer/tile/CanvasTileLayer.js:5234
-#: src/layer/tile/CanvasTileLayer.js:5245
+#: src/layer/tile/CanvasTileLayer.js:5242
+#: src/layer/tile/CanvasTileLayer.js:5253
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Commento"
@@ -2379,23 +2379,23 @@ msgstr "Caricamento sul server non riuscito, file non trovato."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Caricamento sul server non riuscito, il file è troppo grande."
 
-#: src/layer/tile/CanvasTileLayer.js:1957
+#: src/layer/tile/CanvasTileLayer.js:1960
 msgid "Functions"
 msgstr "Funzioni"
 
-#: src/layer/tile/CanvasTileLayer.js:2523
+#: src/layer/tile/CanvasTileLayer.js:2531
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2531
+#: src/layer/tile/CanvasTileLayer.js:2539
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2539
+#: src/layer/tile/CanvasTileLayer.js:2547
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5262
+#: src/layer/tile/CanvasTileLayer.js:5270
 msgid "No Comments"
 msgstr "Nessun commento"
 
@@ -2501,7 +2501,7 @@ msgstr ""
 "Conferma copia negli appunti».</p><p>Stai copiando e incollando tra "
 "documenti all'interno di %productName, non hai bisogno di scaricare.</p>"
 
-#: src/map/Clipboard.js:904
+#: src/map/Clipboard.js:902
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2511,7 +2511,7 @@ msgstr ""
 "già avviato uno scaricamento. Attendi che lo scaricamento in corso termini "
 "oppure annullalo prima di iniziarne un altro</p>"
 
-#: src/map/Clipboard.js:918
+#: src/map/Clipboard.js:916
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
