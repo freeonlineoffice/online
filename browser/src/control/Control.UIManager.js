@@ -1096,6 +1096,23 @@ L.Control.UIManager = L.Control.extend({
 				layoutstyle: 'end'
 			},
 		]);
+
+		buttonObjectList.forEach(function(button) {
+			callbackList.forEach(function(callback) {
+				if (button.id === callback.id) {
+					if (typeof callback.func_ === 'function') {
+						callback.func = function() {
+							callback.func_();
+							this.closeModal(dialogId);
+						}.bind(this);
+					}
+					else
+						callback.func = function() { this.closeModal(dialogId); }.bind(this);
+				}
+			}.bind(this));
+		}.bind(this));
+
+		this.showModal(json, callbackList);
 	},
 
 	/// shows simple input modal (message + input + (cancel + ok) button)
