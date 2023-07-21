@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 20:21+0200\n"
+"POT-Creation-Date: 2023-07-21 19:09+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/collabora-online/"
@@ -554,44 +554,44 @@ msgstr "Dimensione carattere"
 msgid "Style"
 msgstr "Stile"
 
-#: src/control/Control.JSDialogBuilder.js:2167
+#: src/control/Control.JSDialogBuilder.js:2155
 msgid "reply"
 msgstr "risposta"
 
-#: src/control/Control.JSDialogBuilder.js:2170
+#: src/control/Control.JSDialogBuilder.js:2158
 msgid "replies"
 msgstr "risposte"
 
-#: src/control/Control.JSDialogBuilder.js:2181
+#: src/control/Control.JSDialogBuilder.js:2169
 #: src/layer/tile/CanvasTileLayer.js:5242
 #: src/layer/tile/CanvasTileLayer.js:5253
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Commento"
 
-#: src/control/Control.JSDialogBuilder.js:2245
+#: src/control/Control.JSDialogBuilder.js:2233
 msgid "Insert Comment"
 msgstr "Inserisci un commento"
 
-#: src/control/Control.JSDialogBuilder.js:2950
+#: src/control/Control.JSDialogBuilder.js:2938
 msgid "Cell borders"
 msgstr "Bordi delle celle"
 
-#: src/control/Control.JSDialogBuilder.js:3065
+#: src/control/Control.JSDialogBuilder.js:3053
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3182
+#: src/control/Control.JSDialogBuilder.js:3170
 #: src/control/Control.Menubar.js:800
 msgid "Rows"
 msgstr "Righe"
 
-#: src/control/Control.JSDialogBuilder.js:3183
+#: src/control/Control.JSDialogBuilder.js:3171
 #: src/control/Control.Menubar.js:803
 msgid "Columns"
 msgstr "Colonne"
 
-#: src/control/Control.JSDialogBuilder.js:3203
+#: src/control/Control.JSDialogBuilder.js:3191
 msgid "Insert Table"
 msgstr "Inserisci tabella"
 
