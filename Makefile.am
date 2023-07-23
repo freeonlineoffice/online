@@ -29,8 +29,7 @@ else
 bin_PROGRAMS += loolwsd
 endif
 
-dist_bin_SCRIPTS = loolwsd-systemplate-setup \
-                   loolwsd-generate-proof-key
+dist_bin_SCRIPTS = loolwsd-systemplate-setup
 
 man_MANS = man/loolwsd.1 \
            man/loolforkit.1 \
@@ -38,7 +37,6 @@ man_MANS = man/loolwsd.1 \
            man/loolconfig.1 \
            man/loolstress.1 \
            man/loolwsd-systemplate-setup.1 \
-           man/loolwsd-generate-proof-key.1 \
            man/loolmount.1
 
 

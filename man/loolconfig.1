@@ -1,4 +1,4 @@
-.TH LOOLCONFIG "1" "Nov 2021" "loolconfig" "User Commands"
+.TH LOOLCONFIG "1" "Jul 2023" "loolconfig" "User Commands"
 .SH NAME
 loolconfig \- Configuration tool for LibreOffice Online.
 .SH SYNOPSIS
@@ -50,5 +50,7 @@ The \fBupdate\-system\-template\fR command updates LibreOffice Online's system t
 .PP
 update\-system\-template
 .PP
+.SS "generate\-proof\-key"
+The \fBgenerate\-proof\-key\fR command creates an RSA key pair in /etc/loolwsd for the WOPI Proof headers. The postinstall script of coolwsd package usually creates this RSA key pair in case of new installation.
 .SH "SEE ALSO"
-loolforkit(1), loolconvert(1), loolwsd(1), loolwsd-systemplate-setup(1), loolwsd-generate-proof-key(1), loolmount(1)
+loolforkit(1), loolconvert(1), loolwsd(1), loolwsd-systemplate-setup(1), loolmount(1)
