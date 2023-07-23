@@ -6,7 +6,7 @@
     "@braintree/sanitize-url": "6.0.2",
     "@browserify/uglifyify": "6.0.0",
     "@types/mocha": "10.0.1",
-    "@types/node": "20.4.2",
+    "@types/node": "20.4.4",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "autolinker": "4.0.0",
