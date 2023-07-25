@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-21 19:09+0200\n"
-"PO-Revision-Date: 2023-07-21 19:17+0200\n"
+"POT-Creation-Date: 2023-07-25 19:37+0200\n"
+"PO-Revision-Date: 2023-07-25 19:39+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -553,7 +553,7 @@ msgid "replies"
 msgstr "Antworten"
 
 #: src/control/Control.JSDialogBuilder.js:2169
-#: src/layer/tile/CanvasTileLayer.js:5242 src/layer/tile/CanvasTileLayer.js:5253
+#: src/layer/tile/CanvasTileLayer.js:5245 src/layer/tile/CanvasTileLayer.js:5256
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Kommentar"
@@ -2390,7 +2390,7 @@ msgstr "Link bearbeiten"
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5270
+#: src/layer/tile/CanvasTileLayer.js:5273
 msgid "No Comments"
 msgstr "Keine Kommentare"
 

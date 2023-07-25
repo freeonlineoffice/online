@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-21 19:09+0200\n"
+"POT-Creation-Date: 2023-07-25 19:37+0200\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/collabora-online/"
@@ -557,8 +557,8 @@ msgid "replies"
 msgstr "respuestas"
 
 #: src/control/Control.JSDialogBuilder.js:2169
-#: src/layer/tile/CanvasTileLayer.js:5242
-#: src/layer/tile/CanvasTileLayer.js:5253
+#: src/layer/tile/CanvasTileLayer.js:5245
+#: src/layer/tile/CanvasTileLayer.js:5256
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Comentario"
@@ -2394,7 +2394,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5270
+#: src/layer/tile/CanvasTileLayer.js:5273
 msgid "No Comments"
 msgstr "Sin comentarios"
 

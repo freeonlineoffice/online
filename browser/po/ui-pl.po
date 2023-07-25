@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-21 19:09+0200\n"
+"POT-Creation-Date: 2023-07-25 19:37+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/collabora-online/"
@@ -560,8 +560,8 @@ msgid "replies"
 msgstr "odpowiedzi"
 
 #: src/control/Control.JSDialogBuilder.js:2169
-#: src/layer/tile/CanvasTileLayer.js:5242
-#: src/layer/tile/CanvasTileLayer.js:5253
+#: src/layer/tile/CanvasTileLayer.js:5245
+#: src/layer/tile/CanvasTileLayer.js:5256
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Komentarz"
@@ -2396,7 +2396,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5270
+#: src/layer/tile/CanvasTileLayer.js:5273
 msgid "No Comments"
 msgstr "Bez komentarzy"
 
