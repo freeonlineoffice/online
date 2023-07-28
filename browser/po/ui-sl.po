@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreOffice Online UI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-25 19:37+0200\n"
+"POT-Creation-Date: 2023-07-28 23:13+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/"
@@ -267,7 +267,7 @@ msgstr "Strežnik je izklopljen; prosimo, ponovno naložite stran."
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:76
 #: src/control/Permission.js:86 src/control/Permission.js:136
 #: src/control/Toolbar.js:553 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:778 src/control/Toolbar.js:1028
+#: src/control/Toolbar.js:790 src/control/Toolbar.js:1040
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
 #: src/map/Clipboard.js:874 src/map/Clipboard.js:923
@@ -292,7 +292,7 @@ msgstr "Ste prepričani, da želite zaključiti to sejo?"
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:773 src/layer/tile/CommentListSection.ts:374
+#: src/control/Toolbar.js:785 src/layer/tile/CommentListSection.ts:374
 #: src/layer/tile/CommentSection.ts:113 src/layer/tile/CommentSection.ts:116
 msgid "Cancel"
 msgstr "Prekliči"
@@ -386,7 +386,7 @@ msgstr "Strežnik je naletel na napako %0 pri razčlenjevanju ukaza %1."
 msgid "Unlock"
 msgstr "Odkleni"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1027
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1039
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -1274,7 +1274,7 @@ msgstr "Ulomek"
 msgid "Boolean Value"
 msgstr "Logična vrednost"
 
-#: src/control/Control.NotebookbarCalc.js:551 src/control/Toolbar.js:745
+#: src/control/Control.NotebookbarCalc.js:551 src/control/Toolbar.js:757
 msgid "Text"
 msgstr "Besedilo"
 
@@ -2030,19 +2030,19 @@ msgstr "»Počasno posredovanje«"
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:738
+#: src/control/Toolbar.js:750
 msgid "Insert hyperlink"
 msgstr "Vstavi hiperpovezavo"
 
-#: src/control/Toolbar.js:757
+#: src/control/Toolbar.js:769
 msgid "Link"
 msgstr "Povezava"
 
-#: src/control/Toolbar.js:1022
+#: src/control/Toolbar.js:1034
 msgid "Are you sure you want to delete this slide?"
 msgstr "Ali ste prepričani, da želite izbrisati to prosojnico?"
 
-#: src/control/Toolbar.js:1025
+#: src/control/Toolbar.js:1037
 msgid "Are you sure you want to delete this page?"
 msgstr "Ali ste prepričani, da želite izbrisati to stran?"
 
