@@ -797,7 +797,7 @@ protected:
                     croplen = std::min<size_t>(len - cropstart, 128);
                     assert (cropstart + croplen <= len);
                     raw = std::string(data + cropstart, croplen);
-                    hex = "msg: "+ COOLProtocol::getAbbreviatedMessage(data, len) +
+                    hex = "msg: "+ LOOLProtocol::getAbbreviatedMessage(data, len) +
                         " string region error at byte " + std::to_string(offset - cropstart) + ": " + Util::dumpHex(raw);
                 };
                 std::cerr << "attempting to send invalid UTF-8 message '" << raw << "' "
