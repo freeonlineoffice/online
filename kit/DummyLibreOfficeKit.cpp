@@ -142,7 +142,7 @@ LibLODocument_Impl::LibLODocument_Impl()
 {
     if (!(m_pDocumentClass = gDocumentClass.lock()))
     {
-        m_pDocumentClass.reset(new LibreOfficeKitDocumentClass);
+        m_pDocumentClass = std::make_shared<LibreOfficeKitDocumentClass>();
 
         m_pDocumentClass->nSize = sizeof(LibreOfficeKitDocument);
 

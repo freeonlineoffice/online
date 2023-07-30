@@ -83,8 +83,8 @@ public:
     {
         assert(!isServerContextInitialized() &&
                "Cannot initialize the server context more than once");
-        ServerInstance.reset(
-            new SslContext(certFilePath, keyFilePath, caFilePath, cipherList, verification));
+        ServerInstance = std::make_unique<SslContext>(certFilePath, keyFilePath, caFilePath,
+                                                      cipherList, verification);
     }
 
     static void uninitializeServerContext() { ServerInstance.reset(); }
@@ -107,8 +107,8 @@ public:
     {
         assert(!isClientContextInitialized() &&
                "Cannot initialize the client context more than once");
-        ClientInstance.reset(
-            new SslContext(certFilePath, keyFilePath, caFilePath, cipherList, verification));
+        ClientInstance = std::make_unique<SslContext>(certFilePath, keyFilePath, caFilePath,
+                                                      cipherList, verification);
     }
 
     static void uninitializeClientContext() { ClientInstance.reset(); }

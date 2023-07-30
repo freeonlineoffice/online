@@ -349,7 +349,7 @@ Java_org_libreoffice_androidlib_LOActivity_createLOOLWSD(JNIEnv *env, jobject in
                         {
                             fakeClientFd = fakeSocketSocket();
                             LOG_DBG("createLOOLWSD created fakeClientFd: " << fakeClientFd);
-                            std::unique_ptr<LOOLWSD> loolwsd(new LOOLWSD());
+                            std::unique_ptr<LOOLWSD> loolwsd = std::make_unique<LOOLWSD>();
                             loolwsd->run(1, argv);
                         }
                         LOG_DBG("One run of LOOLWSD completed");
