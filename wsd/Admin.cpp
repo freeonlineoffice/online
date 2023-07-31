@@ -79,6 +79,7 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
         std::string jwtToken;
         LOOLProtocol::getTokenString(tokens[1], "jwt", jwtToken);
 
+        jwtToken = Util::decodeURIComponent(jwtToken);
         LOG_INF("Verifying JWT token: " << jwtToken);
         JWTAuth authAgent("admin", "admin", "admin");
         if (authAgent.verify(jwtToken))
