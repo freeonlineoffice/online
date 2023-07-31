@@ -2039,6 +2039,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "admin_console.enable_pam", "false" },
         { "child_root_path", "jails" },
         { "file_server_root_path", "browser/.." },
+        { "enable_websocket_urp", "false" },
         { "hexify_embedded_urls", "false" },
         { "experimental_features", "false" },
         { "logging.protocol", "false" },
@@ -2403,6 +2404,12 @@ void LOOLWSD::innerInitialize(Application& self)
         setenv("LOOL_ANONYMIZATION_SALT", anonymizationSaltStr.c_str(), true);
     }
     FileUtil::setUrlAnonymization(AnonymizeUserData, anonymizationSalt);
+
+    {
+        bool enableWebsocketURP =
+            COOLWSD::getConfigValue<bool>("security.enable_websocket_urp", false);
+        setenv("ENABLE_WEBSOCKET_URP", enableWebsocketURP ? "true" : "false", 1);
+    }
 
     {
         std::string proto = getConfigValue<std::string>(conf, "net.proto", "");
