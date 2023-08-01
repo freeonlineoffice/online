@@ -752,7 +752,7 @@ WopiStorage::getWOPIFileInfoForUri(Poco::URI uriObject, const Authorization& aut
         if (LOOLWSD::AnonymizeUserData)
             Util::mapAnonymized(Util::getFilenameFromURL(filename), Util::getFilenameFromURL(getUri().toString()));
 
-        auto wopiInfo = Util::make_unique<WopiStorage::WOPIFileInfo>(fileInfo, object, uriObject);
+        auto wopiInfo = std::make_unique<WopiStorage::WOPIFileInfo>(fileInfo, object, uriObject);
         if (wopiInfo->getSupportsLocks())
             lockCtx.initSupportsLocks();
 

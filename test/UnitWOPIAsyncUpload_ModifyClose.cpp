@@ -47,7 +47,7 @@ public:
 
             TRANSITION_STATE(_phase, Phase::WaitDestroy);
 
-            return Util::make_unique<http::Response>(http::StatusCode::OK);
+            return std::make_unique<http::Response>(http::StatusCode::OK);
         }
 
         // This during closing the document.

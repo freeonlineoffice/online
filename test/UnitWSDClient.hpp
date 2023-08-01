@@ -91,7 +91,7 @@ protected:
 
         // Insert at the front.
         const auto& _ws = _wsList.emplace(
-            _wsList.begin(), Util::make_unique<UnitWebSocket>(
+            _wsList.begin(), std::make_unique<UnitWebSocket>(
                                  socketPoll(), "/lool/" + _wopiSrc + "/ws", getTestname()));
 
         assert((*_ws).get());
@@ -107,13 +107,13 @@ protected:
         std::string wopiSrc = Util::encodeURIComponent(wopiURL.toString());
 
         // This is just a client connection that is used from the tests.
-        LOG_TST("Connecting test client to COOL (#" << (_wsList.size() + 1)
-                                                    << " connection): /cool/" << wopiSrc << "/ws");
+        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
+                                                    << " connection): /lool/" << wopiSrc << "/ws");
 
         // Insert at the back.
         const auto& _ws = _wsList.emplace(
-            _wsList.end(), Util::make_unique<UnitWebSocket>(
-                               socketPoll(), "/cool/" + wopiSrc + "/ws", getTestname()));
+            _wsList.end(), std::make_unique<UnitWebSocket>(socketPoll(), "/lool/" + wopiSrc + "/ws",
+                                                           getTestname()));
         assert((*_ws).get());
 
         return wopiSrc;
@@ -127,7 +127,7 @@ protected:
 
         // Insert at the back.
         const auto& _ws = _wsList.emplace(
-            _wsList.end(), Util::make_unique<UnitWebSocket>(
+            _wsList.end(), std::make_unique<UnitWebSocket>(
                                socketPoll(), "/lool/" + _wopiSrc + "/ws", getTestname()));
 
         assert((*_ws).get());
@@ -157,7 +157,7 @@ protected:
 
         LOG_TST("Connecting to local document [" << docFilename << "] with URL: " << documentURL);
         _wsList.emplace_back(
-            Util::make_unique<UnitWebSocket>(socketPoll(), documentURL, getTestname()));
+            std::make_unique<UnitWebSocket>(socketPoll(), documentURL, getTestname()));
 
         return documentURL;
     }
