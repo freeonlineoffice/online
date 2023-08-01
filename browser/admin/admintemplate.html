@@ -17,76 +17,21 @@
 </head>
 <body>
     <!--%BRANDING_JS%-->
+    <!--%BODY%-->
+    <!--%FOOTER%-->
     <script>
         window.accessToken = '%ACCESS_TOKEN%';
-        if (typeof brandProductName !== 'undefined') {l10nstrings.strProductName = brandProductName}
-        document.title = l10nstrings.strProductName + ' - ' + l10nstrings.strAdminConsole;
-        var host = (window.location.protocol === 'https:' ? 'wss://': 'ws://') + window.location.host + '%SERVICE_ROOT%/lool/adminws/';
+        window.addEventListener('load', function () {
+            document.getElementById('button-admin-panel-expand').onclick = function () {
+                document.getElementById('column-admin-panel').style.display = 'block';
+                document.getElementById('column-admin-panel-expand').style.display = 'none';
+            };
+
+            document.getElementById('button-admin-panel-collapse').onclick = function () {
+                document.getElementById('column-admin-panel').style.display = 'none';
+                document.getElementById('column-admin-panel-expand').style.display = 'block';
+            };
+        });
     </script>
-
-    <div id="admintop" class="is-fullwidth has-text-white">
-        <a class="admintopleft"><script>document.write(l10nstrings.strProductName + ' - ' + l10nstrings.strAdminConsole)</script></a>
-        <a id="a-settings-tablet" href="adminSettings.html" class="is-hidden-mobile is-pulled-right admintopright"><script>document.write(l10nstrings.strSettings)</script></a>
-        <div class="adminoptions dropdown is-hoverable is-right is-pulled-right is-hidden-tablet">
-            <div class="dropdown-trigger">
-                <button class="adminoptions button has-text-white" aria-haspopup="true" aria-controls="dropdown-menu1">
-                <span>&#9776;</span>
-                <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu1" role="menu">
-                <div class="dropdown-content">
-                    <div class="dropdown-item">
-                        <div class="menu1-list list is-hoverable">
-                            <a id="a-overwiew-mobile" class="list-item" href="admin.html"><script>document.write(l10nstrings.strOverview)</script></a>
-                            <a id="a-analytics-mobile" class="list-item" href="adminAnalytics.html"><script>document.write(l10nstrings.strAnalytics)</script></a>
-                            <a id="a-history-mobile" class="list-item" href="adminHistory.html"><script>document.write(l10nstrings.strHistory)</script></a>
-                            <a id="a-log-mobile" class="list-item" href="adminLog.html"><script>document.write(l10nstrings.strLog)</script></a>
-                            <a id="a-settingsmenu-mobile" class="list-item" href="adminSettings.html"><script>document.write(l10nstrings.strSettings)</script></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="admin-columns columns is-fullwidth">
-        <nav class="column is-hidden-mobile is-narrow" id="column-admin-panel">
-            <div class="list-admin-panel list is-hoverable">
-                <a class="list-item" id="button-admin-panel-collapse" href="#">&larr;</a>
-                <a id="a-overwiew-tablet" class="list-item" href="admin.html"><script>document.write(l10nstrings.strOverview)</script></a>
-                <a id="a-analytics-tablet" class="list-item" href="adminAnalytics.html"><script>document.write(l10nstrings.strAnalytics)</script></a>
-                <a id="a-history-tablet" class="list-item" href="adminHistory.html"><script>document.write(l10nstrings.strHistory)</script></a>
-                <a id="a-log-tablet" class="list-item" href="adminLog.html"><script>document.write(l10nstrings.strLog)</script></a>
-                <a id="a-settingsmenu-tablet" class="list-item" href="adminSettings.html"><script>document.write(l10nstrings.strSettings)</script></a>
-            </div>
-        </nav>
-        <div class="column is-narrow is-hidden-mobile" id="column-admin-panel-expand">
-            <div class="list is-hoverable">
-                <a class="list-item" id="button-admin-panel-expand" href="#">&rarr;</a>
-            </div>
-        </div>
-        <div class="column">
-            <!--%MAIN_CONTENT%-->
-        </div>
-    </div>
-
-<script>
-    window.addEventListener('load', function() {
-        document.getElementById('button-admin-panel-expand').onclick = function() {
-            document.getElementById('column-admin-panel').style.display = 'block';
-            document.getElementById('column-admin-panel-expand').style.display = 'none';
-        };
-
-        document.getElementById('button-admin-panel-collapse').onclick = function() {
-            document.getElementById('column-admin-panel').style.display = 'none';
-            document.getElementById('column-admin-panel-expand').style.display = 'block';
-        };
-    });
-</script>
-
-    <!--%FOOTER%-->
 </body>
 </html>
