@@ -3,7 +3,7 @@
   "version": "0.8.0-dev",
   "description": "LibreOffice Online front-end",
   "devDependencies": {
-    "@braintree/sanitize-url": "6.0.2",
+    "@braintree/sanitize-url": "6.0.3",
     "@browserify/uglifyify": "6.0.0",
     "@types/mocha": "10.0.1",
     "@types/node": "20.4.5",
