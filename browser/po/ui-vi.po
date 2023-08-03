@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 19:44+0200\n"
+"POT-Creation-Date: 2023-08-03 21:36+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
@@ -266,7 +266,7 @@ msgstr "Máy chủ đã bị tắt; vui lòng tải lại trang."
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1040
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:923
+#: src/map/Clipboard.js:879 src/map/Clipboard.js:928
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "Đồng ý"
@@ -2470,16 +2470,20 @@ msgstr ""
 msgid "Copying from the document disabled"
 msgstr "Việc sao chép từ tài liệu đã bị tắt"
 
-#: src/map/Clipboard.js:296
+#: src/map/Clipboard.js:238
+msgid "warning: copy/paste request timed out"
+msgstr ""
+
+#: src/map/Clipboard.js:301
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Không tải xuống được khay nhớ tạm, vui lòng sao chép lại"
 
-#: src/map/Clipboard.js:867
+#: src/map/Clipboard.js:872
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p> Vui lòng sử dụng các nút sao chép / dán trên bàn phím ảo của bạn. </p>"
 
-#: src/map/Clipboard.js:869
+#: src/map/Clipboard.js:874
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2496,7 +2500,7 @@ msgstr ""
 ">+</span><kbd>V</kbd></td></tr><tr><td>Sao "
 "chép</td><td>Cắt</td><td>Dán</td></tr></table>"
 
-#: src/map/Clipboard.js:890
+#: src/map/Clipboard.js:895
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2511,7 +2515,7 @@ msgstr ""
 "chép và dán giữa các tài liệu bên trong %productName, thì không cần tải "
 "xuống. </p>"
 
-#: src/map/Clipboard.js:902
+#: src/map/Clipboard.js:907
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2520,7 +2524,7 @@ msgstr ""
 "<p> Quá trình tải xuống do thao tác sao chép / dán lớn đã bắt đầu. Vui lòng "
 "đợi tải xuống hiện tại hoặc hủy trước khi bắt đầu tải xuống mới </p>"
 
-#: src/map/Clipboard.js:916
+#: src/map/Clipboard.js:921
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "

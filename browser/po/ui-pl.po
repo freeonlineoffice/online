@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 19:44+0200\n"
+"POT-Creation-Date: 2023-08-03 21:36+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/collabora-online/"
@@ -273,7 +273,7 @@ msgstr "Serwer został wyłączony, załaduj ponownie stronę."
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1040
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
 #: src/core/Socket.js:1198 src/main.js:70 src/main.js:73 src/main.js:110
-#: src/map/Clipboard.js:874 src/map/Clipboard.js:923
+#: src/map/Clipboard.js:879 src/map/Clipboard.js:928
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:484
 msgid "OK"
 msgstr "OK"
@@ -2481,15 +2481,19 @@ msgstr "Aby wkleić poza %productName, najpierw kliknij przycisk 'Pobierz'"
 msgid "Copying from the document disabled"
 msgstr "Kopiowanie z dokumentu wyłączone"
 
-#: src/map/Clipboard.js:296
+#: src/map/Clipboard.js:238
+msgid "warning: copy/paste request timed out"
+msgstr ""
+
+#: src/map/Clipboard.js:301
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Nie udało się pobrać schowka, proszę ponownie skopiować"
 
-#: src/map/Clipboard.js:867
+#: src/map/Clipboard.js:872
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Użyj przycisków kopiuj/wklej na klawiaturze ekranowej.</p>"
 
-#: src/map/Clipboard.js:869
+#: src/map/Clipboard.js:874
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2506,7 +2510,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Kopiuj</td><td>Wytnij</td><td>Wklej</td></tr>"
 "</table>"
 
-#: src/map/Clipboard.js:890
+#: src/map/Clipboard.js:895
 msgid ""
 "<p>If you would like to share larger elements of your document with other "
 "applications it is necessary to first download them onto your device. To do "
@@ -2520,7 +2524,7 @@ msgstr ""
 "Potwierdź kopiowanie do schowka\".</p><p>Jeśli kopiujesz i wklejasz "
 "dokumenty wewnątrz %productName, nie musisz pobierać.</p>"
 
-#: src/map/Clipboard.js:902
+#: src/map/Clipboard.js:907
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2530,7 +2534,7 @@ msgstr ""
 "rozpoczęło. Poczekaj na bieżące pobieranie lub anuluj przed rozpoczęciem "
 "nowego</p>"
 
-#: src/map/Clipboard.js:916
+#: src/map/Clipboard.js:921
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
