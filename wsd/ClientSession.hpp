@@ -324,6 +324,8 @@ private:
     /// ClientSession::postProcessCopyPayload().
     void preProcessSetClipboardPayload(std::string& payload);
 
+    void onTileProcessed(const std::string& tileID);
+
 private:
     std::weak_ptr<DocumentBroker> _docBroker;
 
