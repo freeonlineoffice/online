@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-03 21:36+0200\n"
+"POT-Creation-Date: 2023-08-05 13:44+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -236,7 +236,7 @@ msgstr "Níveis de registro"
 
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
-#: src/control/Control.Zotero.js:182 src/control/Parts.js:440
+#: src/control/Control.Zotero.js:182 src/control/Parts.js:450
 #: src/control/Signing.js:611 src/core/Socket.js:1021 src/core/Socket.js:1026
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -268,8 +268,8 @@ msgstr "O servidor foi desligado; por favor, recarregue a página."
 #: src/control/Control.DocumentRepair.js:68
 #: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:303
 #: src/control/Control.Tabs.js:312 src/control/Control.Zotero.js:328
-#: src/control/Control.Zotero.js:366 src/control/Permission.js:76
-#: src/control/Permission.js:86 src/control/Permission.js:136
+#: src/control/Control.Zotero.js:366 src/control/Permission.js:80
+#: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:553 src/control/Toolbar.js:654
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1040
 #: src/core/Socket.js:991 src/core/Socket.js:1066 src/core/Socket.js:1194
@@ -561,8 +561,8 @@ msgid "replies"
 msgstr "respostas"
 
 #: src/control/Control.JSDialogBuilder.js:2169
-#: src/layer/tile/CanvasTileLayer.js:5246
-#: src/layer/tile/CanvasTileLayer.js:5257
+#: src/layer/tile/CanvasTileLayer.js:5250
+#: src/layer/tile/CanvasTileLayer.js:5261
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Comentário"
@@ -1834,36 +1834,40 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Permission.js:72
+#: src/control/Permission.js:18 src/control/Permission.js:19
+msgid "Enter editing"
+msgstr ""
+
+#: src/control/Permission.js:76
 msgid "The document could not be locked, and is opened in read-only mode."
 msgstr ""
 "Não foi possível bloquear o documento e está aberto em modo somente leitura."
 
-#: src/control/Permission.js:74 src/control/Permission.js:84
+#: src/control/Permission.js:78 src/control/Permission.js:88
 msgid "Server returned this reason:"
 msgstr "O servidor retornou esta razão:"
 
-#: src/control/Permission.js:82
+#: src/control/Permission.js:86
 msgid "The document could not be locked."
 msgstr "Não foi possível bloquear o documento."
 
-#: src/control/Permission.js:136
+#: src/control/Permission.js:140
 msgid "Enter a file name"
 msgstr "Insira nome de arquivo"
 
-#: src/control/Permission.js:155
+#: src/control/Permission.js:159
 msgid "Save as ODF format"
 msgstr "Salvar como ODF"
 
-#: src/control/Permission.js:156
+#: src/control/Permission.js:160
 msgid "Continue editing"
 msgstr "Continue editando"
 
-#: src/control/Permission.js:156
+#: src/control/Permission.js:160
 msgid "Continue read only"
 msgstr "Continuar em modo de leitura"
 
-#: src/control/Permission.js:169
+#: src/control/Permission.js:173
 msgid ""
 "This document may contain formatting or content that cannot be saved in the "
 "current file format."
@@ -2395,23 +2399,23 @@ msgstr "Falha ao fazer upload, arquivo não encontrado."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Falhou ao fazer upload, arquivo demasiado grande."
 
-#: src/layer/tile/CanvasTileLayer.js:1960
+#: src/layer/tile/CanvasTileLayer.js:1976
 msgid "Functions"
 msgstr "Funções"
 
-#: src/layer/tile/CanvasTileLayer.js:2531
+#: src/layer/tile/CanvasTileLayer.js:2547
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2539
+#: src/layer/tile/CanvasTileLayer.js:2555
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2547
+#: src/layer/tile/CanvasTileLayer.js:2563
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5274
+#: src/layer/tile/CanvasTileLayer.js:5278
 msgid "No Comments"
 msgstr "0 Comentários"
 
@@ -2546,7 +2550,7 @@ msgstr ""
 msgid "Initializing..."
 msgstr "Inicializando..."
 
-#: src/map/Map.js:438 src/map/Map.js:441 src/map/Map.js:444 src/map/Map.js:447
+#: src/map/Map.js:440 src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449
 msgid "Last saved:"
 msgstr "Documento salvo:"
 
