@@ -122,6 +122,7 @@ test_base_sources = \
 	TileQueueTests.cpp \
 	RequestDetailsTests.cpp \
 	StringVectorTests.cpp \
+	FileServeWhiteBoxTests.cpp \
 	WhiteBoxTests.cpp \
 	HttpWhiteBoxTests.cpp \
 	DeltaTests.cpp \
