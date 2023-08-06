@@ -37,6 +37,7 @@ class ChildProcess;
 class TraceFileWriter;
 class DocumentBroker;
 class ClipboardCache;
+class FileServerRequestHandler;
 
 std::shared_ptr<ChildProcess> getNewChild_Blocks(unsigned mobileAppDocId = 0);
 
@@ -289,6 +290,9 @@ public:
     static std::unique_ptr<TraceFileWriter> TraceDumper;
 #if !MOBILEAPP
     static std::unique_ptr<ClipboardCache> SavedClipboards;
+
+    /// The file request handler used for file-serving.
+    static std::unique_ptr<FileServerRequestHandler> FileRequestHandler;
 #endif
 
     static std::unordered_set<std::string> EditFileExtensions;
