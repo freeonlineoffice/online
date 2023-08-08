@@ -10,6 +10,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
 
 #include <HttpRequest.hpp>
 #include <Socket.hpp>
@@ -37,6 +38,9 @@ public:
 
     const std::string& filename() const { return _filename; }
     std::size_t size() const { return _size; }
+
+    /// Substitute variables per the given map.
+    std::string substitute(const std::unordered_map<std::string, std::string>& values);
 
 private:
     const std::string _filename; //< Filename on disk, with extension.
