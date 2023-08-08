@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-05 13:44+0200\n"
+"POT-Creation-Date: 2023-08-08 20:02+0200\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (South Africa) <https://hosted.weblate.org/projects/"
@@ -192,7 +192,7 @@ msgstr "Documents:"
 msgid "Expired:"
 msgstr "Expired:"
 
-#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:52
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr "Refresh"
@@ -250,11 +250,11 @@ msgstr "Received"
 msgid "Sent"
 msgstr "Sent"
 
-#: admin/src/AdminSocketBase.js:54
+#: admin/src/AdminSocketBase.js:53
 msgid "Server has been shut down; please reload the page."
 msgstr "Server has been shut down; please reload the page."
 
-#: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
+#: admin/src/AdminSocketBase.js:54 admin/src/AdminSocketBase.js:65
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
@@ -271,7 +271,7 @@ msgstr "Server has been shut down; please reload the page."
 msgid "OK"
 msgstr "OK"
 
-#: admin/src/AdminSocketBase.js:64 admin/src/AdminSocketBase.js:65
+#: admin/src/AdminSocketBase.js:63 admin/src/AdminSocketBase.js:64
 msgid "Connection error"
 msgstr "Connection error"
 
@@ -703,7 +703,7 @@ msgstr "PDF Document (.pdf)"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:394
 #: src/control/Control.Menubar.js:540 src/control/Control.Menubar.js:671
-#: src/control/Control.Toolbar.js:1169
+#: src/control/Control.Toolbar.js:1372
 msgid "Close document"
 msgstr "Close document"
 
@@ -1613,15 +1613,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Enter new sheet name"
 
-#: src/control/Control.Toolbar.js:962
+#: src/control/Control.Toolbar.js:1165
 msgid "Previous slide"
 msgstr "Previous slide"
 
-#: src/control/Control.Toolbar.js:963
+#: src/control/Control.Toolbar.js:1166
 msgid "Next slide"
 msgstr "Next slide"
 
-#: src/control/Control.Toolbar.js:1024
+#: src/control/Control.Toolbar.js:1227
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"

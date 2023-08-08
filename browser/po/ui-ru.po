@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-05 13:44+0200\n"
+"POT-Creation-Date: 2023-08-08 20:02+0200\n"
 "PO-Revision-Date: 2022-05-15 11:51+0000\n"
 "Last-Translator: Mikhail Pershin <mikhail@frcdr.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/collabora-online/"
@@ -199,7 +199,7 @@ msgstr "Документы:"
 msgid "Expired:"
 msgstr "Истекают:"
 
-#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:52
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr "Обновить"
@@ -257,11 +257,11 @@ msgstr "Получено"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: admin/src/AdminSocketBase.js:54
+#: admin/src/AdminSocketBase.js:53
 msgid "Server has been shut down; please reload the page."
 msgstr "Сервер был выключен; пожалуйста, перезагрузите страницу."
 
-#: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
+#: admin/src/AdminSocketBase.js:54 admin/src/AdminSocketBase.js:65
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
@@ -278,7 +278,7 @@ msgstr "Сервер был выключен; пожалуйста, переза
 msgid "OK"
 msgstr "ОК"
 
-#: admin/src/AdminSocketBase.js:64 admin/src/AdminSocketBase.js:65
+#: admin/src/AdminSocketBase.js:63 admin/src/AdminSocketBase.js:64
 msgid "Connection error"
 msgstr "Сбой подключения"
 
@@ -711,7 +711,7 @@ msgstr "Документ PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:394
 #: src/control/Control.Menubar.js:540 src/control/Control.Menubar.js:671
-#: src/control/Control.Toolbar.js:1169
+#: src/control/Control.Toolbar.js:1372
 msgid "Close document"
 msgstr "Закрыть документ"
 
@@ -1621,15 +1621,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Введите новое имя листа"
 
-#: src/control/Control.Toolbar.js:962
+#: src/control/Control.Toolbar.js:1165
 msgid "Previous slide"
 msgstr "Предыдущий слайд"
 
-#: src/control/Control.Toolbar.js:963
+#: src/control/Control.Toolbar.js:1166
 msgid "Next slide"
 msgstr "Следующий слайд"
 
-#: src/control/Control.Toolbar.js:1024
+#: src/control/Control.Toolbar.js:1227
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"

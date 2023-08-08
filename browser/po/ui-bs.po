@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-05 13:44+0200\n"
+"POT-Creation-Date: 2023-08-08 20:02+0200\n"
 "PO-Revision-Date: 2021-11-18 08:06+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Bosnian <https://hosted.weblate.org/projects/collabora-online/"
@@ -196,7 +196,7 @@ msgstr "Dokument"
 msgid "Expired:"
 msgstr ""
 
-#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:53
+#: admin/admin.strings.js:47 admin/src/AdminSocketBase.js:52
 #: src/control/Control.Zotero.js:202
 msgid "Refresh"
 msgstr ""
@@ -254,11 +254,11 @@ msgstr ""
 msgid "Sent"
 msgstr ""
 
-#: admin/src/AdminSocketBase.js:54
+#: admin/src/AdminSocketBase.js:53
 msgid "Server has been shut down; please reload the page."
 msgstr ""
 
-#: admin/src/AdminSocketBase.js:55 admin/src/AdminSocketBase.js:66
+#: admin/src/AdminSocketBase.js:54 admin/src/AdminSocketBase.js:65
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
@@ -275,7 +275,7 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: admin/src/AdminSocketBase.js:64 admin/src/AdminSocketBase.js:65
+#: admin/src/AdminSocketBase.js:63 admin/src/AdminSocketBase.js:64
 msgid "Connection error"
 msgstr "Greška pri spajanju"
 
@@ -711,7 +711,7 @@ msgstr "PDF Dokument (.pdf)"
 
 #: src/control/Control.Menubar.js:89 src/control/Control.Menubar.js:394
 #: src/control/Control.Menubar.js:540 src/control/Control.Menubar.js:671
-#: src/control/Control.Toolbar.js:1169
+#: src/control/Control.Toolbar.js:1372
 msgid "Close document"
 msgstr "Zatvori dokument"
 
@@ -1638,15 +1638,15 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Unesite novo ime lista"
 
-#: src/control/Control.Toolbar.js:962
+#: src/control/Control.Toolbar.js:1165
 msgid "Previous slide"
 msgstr "Prethodni slajd"
 
-#: src/control/Control.Toolbar.js:963
+#: src/control/Control.Toolbar.js:1166
 msgid "Next slide"
 msgstr "Sljedeći slajd"
 
-#: src/control/Control.Toolbar.js:1024
+#: src/control/Control.Toolbar.js:1227
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
