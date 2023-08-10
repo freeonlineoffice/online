@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-08 20:02+0200\n"
+"POT-Creation-Date: 2023-08-10 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -510,74 +510,74 @@ msgstr ""
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1547
+#: src/control/Control.JSDialogBuilder.js:1548
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1550
+#: src/control/Control.JSDialogBuilder.js:1551
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1553
+#: src/control/Control.JSDialogBuilder.js:1554
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1667
+#: src/control/Control.JSDialogBuilder.js:1668
 msgid "Select range"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1721
+#: src/control/Control.JSDialogBuilder.js:1722
 #: src/control/Control.NotebookbarBuilder.js:231
 msgid "Font Name"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1723 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1724 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1725
+#: src/control/Control.JSDialogBuilder.js:1726
 #: src/control/Control.TopToolbar.js:499
 msgid "Style"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2155
+#: src/control/Control.JSDialogBuilder.js:2156
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2158
+#: src/control/Control.JSDialogBuilder.js:2159
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2169
-#: src/layer/tile/CanvasTileLayer.js:5250
-#: src/layer/tile/CanvasTileLayer.js:5261
+#: src/control/Control.JSDialogBuilder.js:2170
+#: src/layer/tile/CanvasTileLayer.js:5260
+#: src/layer/tile/CanvasTileLayer.js:5271
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2233
+#: src/control/Control.JSDialogBuilder.js:2234
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2942
+#: src/control/Control.JSDialogBuilder.js:2943
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3060
+#: src/control/Control.JSDialogBuilder.js:3061
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3199
+#: src/control/Control.JSDialogBuilder.js:3200
 #: src/control/Control.Menubar.js:804
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3200
+#: src/control/Control.JSDialogBuilder.js:3201
 #: src/control/Control.Menubar.js:807
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3220
+#: src/control/Control.JSDialogBuilder.js:3221
 msgid "Insert Table"
 msgstr ""
 
@@ -2340,23 +2340,23 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1976
+#: src/layer/tile/CanvasTileLayer.js:1986
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2547
+#: src/layer/tile/CanvasTileLayer.js:2557
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2555
+#: src/layer/tile/CanvasTileLayer.js:2565
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2563
+#: src/layer/tile/CanvasTileLayer.js:2573
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5278
+#: src/layer/tile/CanvasTileLayer.js:5288
 msgid "No Comments"
 msgstr ""
 
