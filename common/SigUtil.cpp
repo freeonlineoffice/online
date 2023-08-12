@@ -40,6 +40,8 @@
 #include "Common.hpp"
 #include "Log.hpp"
 
+namespace
+{
 #ifndef IOS
 static std::atomic<bool> TerminationFlag(false);
 static std::atomic<bool> ShutdownRequestFlag(false);
@@ -50,8 +52,13 @@ static std::atomic<bool> ForwardSigUsr2Flag(false); //< Flags to forward SIG_USR
 #endif
 
 static size_t ActivityStringIndex = 0;
-static std::array<std::string,8> ActivityStrings;
+static std::array<std::string, 8> ActivityStrings;
 static bool UnattendedRun = false;
+static int SignalLogFD = STDERR_FILENO; //< The FD where signalLogs are dumped.
+static char* VersionInfo = nullptr;
+static char FatalGdbString[256] = { '\0' };
+
+} // namespace
 
 namespace SigUtil
 {
@@ -133,8 +140,6 @@ namespace SigUtil
     }
 
 #if !MOBILEAPP
-
-    static int SignalLogFD(STDERR_FILENO); //< The FD where signalLogs are dumped.
 
     /// Open the signalLog file.
     void signalLogOpen()
@@ -345,9 +350,6 @@ namespace SigUtil
         ShutdownRequestFlag = true;
         SocketPoll::wakeupWorld();
     }
-
-    static char *VersionInfo = nullptr;
-    static char FatalGdbString[256] = { '\0' };
 
     static
     void handleFatalSignal(const int signal, siginfo_t *info, void * /* uctxt */)
@@ -589,6 +591,5 @@ namespace SigUtil
     }
 #endif // !MOBILEAPP
 }
-
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
