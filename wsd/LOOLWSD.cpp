@@ -1110,7 +1110,7 @@ public:
 
     void pollingThread()
     {
-        while (!isStop() && !SigUtil::getTerminationFlag() && !SigUtil::getShutdownRequestFlag())
+        while (!isStop() && !SigUtil::getShutdownRequestFlag())
         {
             Poco::URI remoteServerURI(conf.getString(configKey));
 
@@ -2978,7 +2978,7 @@ bool LOOLWSD::checkAndRestoreForKit()
     if (ForKitProcId == -1)
     {
         // Fire the ForKit process for the first time.
-        if (!SigUtil::getShutdownRequestFlag() && !SigUtil::getTerminationFlag() && !createForKit())
+        if (!SigUtil::getShutdownRequestFlag() && !createForKit())
         {
             // Should never fail.
             LOG_FTL("Setting ShutdownRequestFlag: Failed to spawn loolforkit.");
@@ -3007,7 +3007,7 @@ bool LOOLWSD::checkAndRestoreForKit()
                 }
 
                 // Spawn a new forkit and try to dust it off and resume.
-                if (!SigUtil::getShutdownRequestFlag() && !SigUtil::getTerminationFlag() && !createForKit())
+                if (!SigUtil::getShutdownRequestFlag() && !createForKit())
                 {
                     LOG_FTL("Setting ShutdownRequestFlag: Failed to spawn forkit instance.");
                     SigUtil::requestShutdown();
@@ -3041,7 +3041,7 @@ bool LOOLWSD::checkAndRestoreForKit()
         {
             // No child processes.
             // Spawn a new forkit and try to dust it off and resume.
-            if (!SigUtil::getShutdownRequestFlag() && !SigUtil::getTerminationFlag() && !createForKit())
+            if (!SigUtil::getShutdownRequestFlag()  && !createForKit())
             {
                 LOG_FTL("Setting ShutdownRequestFlag: Failed to spawn forkit instance.");
                 SigUtil::requestShutdown();
@@ -5744,7 +5744,7 @@ int LOOLWSD::innerMain()
     auto stampFetch = startStamp - (fetchUpdateCheck - std::chrono::milliseconds(60000));
 #endif
 
-    while (!SigUtil::getTerminationFlag() && !SigUtil::getShutdownRequestFlag())
+    while (!SigUtil::getShutdownRequestFlag())
     {
         // This timeout affects the recovery time of prespawned children.
         std::chrono::microseconds waitMicroS = SocketPoll::DefaultPollTimeoutMicroS * 4;
