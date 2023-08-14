@@ -37,6 +37,7 @@ static int fakeClientFd;
 static int closeNotificationPipeForForwardingThread[2] = {-1, -1};
 static JavaVM* javaVM = nullptr;
 static bool lokInitialized = false;
+static std::mutex loolwsdRunningMutex;
 
 // Remember the reference to the LOActivity
 jclass g_loActivityClz = nullptr;
@@ -184,9 +185,11 @@ void closeDocument()
 {
     // Close one end of the socket pair, that will wake up the forwarding thread that was constructed in HULLO
     fakeSocketClose(closeNotificationPipeForForwardingThread[0]);
-
+    LOG_DBG("Waiting for Lokit to finish...");
+    std::unique_lock<std::mutex> lokitLock(LOOLWSD::lokit_main_mutex);
+    LOG_DBG("Lokit has finished.");
     LOG_DBG("Waiting for LOOLWSD to finish...");
-    std::unique_lock<std::mutex> lock(LOOLWSD::lokit_main_mutex);
+    std::unique_lock<std::mutex> loolwsdLock(loolwsdRunningMutex);
     LOG_DBG("LOOLWSD has finished.");
 }
 
@@ -347,6 +350,7 @@ Java_org_libreoffice_androidlib_LOActivity_createLOOLWSD(JNIEnv *env, jobject in
                     {
                         LOG_DBG("Creating LOOLWSD");
                         {
+                            std::unique_lock<std::mutex> lock(loolwsdRunningMutex);
                             fakeClientFd = fakeSocketSocket();
                             LOG_DBG("createLOOLWSD created fakeClientFd: " << fakeClientFd);
                             std::unique_ptr<LOOLWSD> loolwsd = std::make_unique<LOOLWSD>();
