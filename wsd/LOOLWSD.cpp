@@ -1270,7 +1270,7 @@ public:
             }
 
             //use feature_lock.locked_hosts[@allow] entry from loolwsd.xml if feature_lock.locked_hosts.allow key doesnot exist in json
-            Poco::Dynamic::Var allow = !lockedHost->has("allow") ? Poco::Dynamic::Var(_conf.getBool("feature_lock.locked_hosts[@allow]"))
+            Poco::Dynamic::Var allow = !lockedHost->has("allow") ? Poco::Dynamic::Var(conf.getBool("feature_lock.locked_hosts[@allow]"))
                                                                  : lockedHost->get("allow");
             newAppConfig.insert(std::make_pair("feature_lock.locked_hosts[@allow]", booleanToString(allow)));
 
