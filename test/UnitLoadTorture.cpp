@@ -73,7 +73,7 @@ int UnitLoadTorture::loadTorture(const std::string& name, const std::string& doc
                 const std::string status = LOOLProtocol::getFirstLine(message);
 
                 int viewid = -1;
-                LOOLProtocol::getTokenIntegerFromMessage(status, "viewid", viewid);
+                LOK_ASSERT(LOOLProtocol::getTokenIntegerFromMessage(status, "viewid", viewid));
                 sum_view_ids += viewid;
                 ++num_of_views;
                 --num_to_load;
