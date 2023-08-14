@@ -1080,7 +1080,7 @@ public:
 
     virtual ~RemoteJSONPoll() { }
 
-    virtual void handleJSON(Poco::JSON::Object::Ptr json) = 0;
+    virtual void handleJSON(const Poco::JSON::Object::Ptr& json) = 0;
 
     virtual void handleUnchangedJSON()
     { }
@@ -1213,7 +1213,7 @@ public:
 
     virtual ~RemoteConfigPoll() { }
 
-    void handleJSON(Poco::JSON::Object::Ptr remoteJson) override
+    void handleJSON(const Poco::JSON::Object::Ptr& remoteJson) override
     {
         std::map<std::string, std::string> newAppConfig;
 
@@ -1320,7 +1320,7 @@ public:
     }
 
     void fetchAliasGroups(std::map<std::string, std::string>& newAppConfig,
-                          Poco::JSON::Object::Ptr remoteJson)
+                          const Poco::JSON::Object::Ptr& remoteJson)
     {
         try
         {
@@ -1411,7 +1411,7 @@ public:
     }
 
     void fetchRemoteFontConfig(std::map<std::string, std::string>& newAppConfig,
-                               Poco::JSON::Object::Ptr remoteJson)
+                               const Poco::JSON::Object::Ptr& remoteJson)
     {
         try
         {
@@ -1432,7 +1432,7 @@ public:
     }
 
     void fetchLockedTranslations(std::map<std::string, std::string>& newAppConfig,
-                                 Poco::JSON::Object::Ptr remoteJson)
+                                 const Poco::JSON::Object::Ptr& remoteJson)
     {
         try
         {
@@ -1519,7 +1519,7 @@ public:
     }
 
     void fetchUnlockImageUrl(std::map<std::string, std::string>& newAppConfig,
-                             Poco::JSON::Object::Ptr remoteJson)
+                             const Poco::JSON::Object::Ptr& remoteJson)
     {
         try
         {
@@ -1543,7 +1543,7 @@ public:
     }
 
     void fetchIndirectionEndpoint(std::map<std::string, std::string>& newAppConfig,
-                                  Poco::JSON::Object::Ptr remoteJson)
+                                  const Poco::JSON::Object::Ptr& remoteJson)
     {
         try
         {
@@ -1570,7 +1570,7 @@ public:
     }
 
     void fetchMonitors(std::map<std::string, std::string>& newAppConfig,
-                       Poco::JSON::Object::Ptr remoteJson)
+                       const Poco::JSON::Object::Ptr& remoteJson)
     {
         Poco::JSON::Array::Ptr monitors;
         try
@@ -1637,7 +1637,7 @@ public:
 
     virtual ~RemoteFontConfigPoll() { }
 
-    void handleJSON(Poco::JSON::Object::Ptr remoteJson) override
+    void handleJSON(const Poco::JSON::Object::Ptr& remoteJson) override
     {
         // First mark all fonts we have downloaded previously as "inactive" to be able to check if
         // some font gets deleted from the list in the JSON file.
