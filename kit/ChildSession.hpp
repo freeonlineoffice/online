@@ -287,6 +287,9 @@ public:
     void setDumpTiles(bool dumpTiles) { _isDumpingTiles = dumpTiles; }
 
     std::string getViewRenderState() { return _viewRenderState; }
+
+    bool isTileInsideVisibleArea(const TileDesc& tile) const;
+
 private:
     bool loadDocument(const StringVector& tokens);
 
@@ -413,6 +416,8 @@ private:
 
     /// whether we are dumping tiles as they are being drawn
     bool _isDumpingTiles;
+
+    Util::Rectangle _clientVisibleArea;
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
