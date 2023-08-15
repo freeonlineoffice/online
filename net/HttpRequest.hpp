@@ -1292,7 +1292,7 @@ private:
     }
 
     /// Set up a new request and response.
-    void newRequest(Request req)
+    void newRequest(const Request& req)
     {
         _startTime = std::chrono::steady_clock::now();
 
@@ -1335,7 +1335,7 @@ private:
         _response.reset();
         _response = std::make_shared<Response>(onFinished, _fd);
 
-        _request = std::move(req);
+        _request = req;
 
         std::string host = _host;
 
