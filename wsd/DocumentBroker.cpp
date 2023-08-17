@@ -204,7 +204,6 @@ void DocumentBroker::pollThread()
     LOG_INF("Starting docBroker polling thread for docKey [" << _docKey << ']');
 
     // Request a kit process for this doc.
-#if !MOBILEAPP
     do
     {
         static constexpr std::chrono::milliseconds timeoutMs(COMMAND_TIMEOUT_MS * 5);
