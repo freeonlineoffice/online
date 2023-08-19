@@ -1271,7 +1271,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
     Poco::replaceInPlace(templateFile, std::string("%JWT_TOKEN%"), escapedJwtToken);
     if (relPath == "/browser/dist/admin/adminClusterOverview.html") {
         Poco::replaceInPlace(templateFile, std::string("<!--%BODY%-->"), adminFile);
-        Poco::replaceInPlace(templateFile, std::string("%ROUTE_TOKEN%"), COOLWSD::RouteToken);
+        Poco::replaceInPlace(templateFile, std::string("%ROUTE_TOKEN%"), LOOLWSD::RouteToken);
     } else {
         std::string bodyPath = Poco::Path(relPath).setFileName("adminBody.html").toString();
         std::string bodyFile = *getUncompressedFile(bodyPath);
