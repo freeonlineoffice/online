@@ -11,8 +11,15 @@
 
     <title>Free Online Office - Admin console</title>
     <link rel=StyleSheet href="%SERVICE_ROOT%/browser/%VERSION%/admin/css/bulma.min.css" type="text/css" />
-    <link rel=StyleSheet href="%SERVICE_ROOT%/browser/%VERSION%/admin/css/adminpage.css" type="text/css" />
-    <script src="%SERVICE_ROOT%/browser/%VERSION%/admin-bundle.js"></script>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var routeToken = params.get('RouteToken');
+        var adminBundleSrc = '%SERVICE_ROOT%/browser/%VERSION%/admin-bundle.js';
+        if (routeToken) {
+            adminBundleSrc += '?RouteToken=' + routeToken
+        }
+        document.write('<script src="' + adminBundleSrc + '"><\/script>');
+    </script>
 
 </head>
 <body>
