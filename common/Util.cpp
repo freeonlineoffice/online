@@ -1131,6 +1131,7 @@ namespace Util
             LOG_FTL("Forced Exit with code: " << code);
         else
             LOG_INF("Forced Exit with code: " << code);
+
         Log::shutdown();
 
 #if CODE_COVERAGE
