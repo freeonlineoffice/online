@@ -499,7 +499,8 @@ export class CommentSection extends CanvasSectionObject {
 				this.map.sendUnoCommand('.uno:InsertAnnotation', comment, true /* force */);
 			}
 
-			this.removeItem(annotation.sectionProperties.data.id);
+			if (!app.view.commentAutoSave)
+				this.removeItem(annotation.sectionProperties.data.id);
 		} else if (annotation.sectionProperties.data.trackchange) {
 			comment = {
 				ChangeTrackingId: {
@@ -528,7 +529,11 @@ export class CommentSection extends CanvasSectionObject {
 				}
 			};
 			this.map.sendUnoCommand('.uno:EditAnnotation', comment, true /* force */);
+			if (app.view.commentAutoAdded && !app.view.commentAutoSave)
+				this.removeItem(annotation.sectionProperties.data.id);
 		}
+		if (app.view.commentAutoSave)
+			return;
 		this.unselect();
 		this.map.focus();
 	}
@@ -616,7 +621,9 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public select (annotation: any): void {
-		if (annotation && annotation !== this.sectionProperties.selectedComment) {
+		var selectedComment = this.sectionProperties.selectedComment;
+		if (annotation && annotation !== selectedComment
+			&& !(selectedComment && selectedComment.isEdit())) {
 			// Unselect first if there anything selected.
 			if (this.sectionProperties.selectedComment)
 				this.unselect();
@@ -643,7 +650,7 @@ export class CommentSection extends CanvasSectionObject {
 
 			if (this.isCollapsed) {
 				this.showCollapsedReplies(idx, annotation.sectionProperties.data.id);
-				if (this.sectionProperties.docLayer._docType === 'text')
+				if (this.sectionProperties.docLayer._docType === 'text' && this.sectionProperties.selectedComment)
 					this.sectionProperties.selectedComment.sectionProperties.replyCountNode.style.display = 'none';
 			}
 
@@ -667,6 +674,9 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public unselect (): void {
+		var selectedComment = this.sectionProperties.selectedComment;
+		if (app.view.commentAutoSave || (selectedComment && selectedComment.isAnyEdit()))
+			return;
 		if (this.sectionProperties.selectedComment && this.sectionProperties.selectedComment.sectionProperties.data.id != 'new') {
 			if (this.sectionProperties.selectedComment && $(this.sectionProperties.selectedComment.sectionProperties.container).hasClass('annotation-active'))
 				$(this.sectionProperties.selectedComment.sectionProperties.container).removeClass('annotation-active');
@@ -701,6 +711,8 @@ export class CommentSection extends CanvasSectionObject {
 		else if (this.sectionProperties.docLayer._docType === 'presentation')
 			this.map.sendUnoCommand('.uno:ReplyToAnnotation', comment);
 
+		if (app.view.commentAutoSave)
+			return;
 		this.unselect();
 		this.map.focus();
 	}
@@ -1080,6 +1092,13 @@ export class CommentSection extends CanvasSectionObject {
 				annotation = this.sectionProperties.commentList[this.getRootIndexOf(obj[dataroot].parent)]; //this is required for reload after reply in writer
 		}
 		if (action === 'Add') {
+			if (app.view.commentAutoSave) {
+				app.view.commentAutoSave.sectionProperties.data.id = obj.comment.id;
+				app.view.commentAutoSave.sectionProperties.autoSave.innerText = _('Autosaved') ;
+				app.view.commentAutoSave = null;
+				app.view.commentAutoAdded = true;
+				return;
+			}
 			if (changetrack) {
 				if (!this.adjustRedLine(obj.redline)) {
 					// something wrong in this redline
@@ -1116,6 +1135,11 @@ export class CommentSection extends CanvasSectionObject {
 				}
 			}
 		} else if (action === 'Modify') {
+			if (app.view.commentAutoSave) {
+				app.view.commentAutoSave.sectionProperties.autoSave.innerText = _('Autosaved');
+				app.view.commentAutoSave = null;
+				return;
+			}
 			id = obj[dataroot].id;
 			var modified = this.getComment(id);
 			if (modified) {
@@ -1133,6 +1157,14 @@ export class CommentSection extends CanvasSectionObject {
 				modified.setData(modifiedObj);
 				modified.update();
 				this.update();
+			} else if (app.view.commentAutoAdded) {
+				app.view.commentAutoAdded = false;
+				if (changetrack)
+					obj.redline.action = 'Add';
+				else
+					obj.comment.action = 'Add';
+				this.onACKComment(obj);
+				return;
 			}
 		} else if (action === 'Resolve') {
 			id = obj[dataroot].id;
@@ -1176,7 +1208,8 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public stringToRectangles (str: string): number[][] {
-		var matches = str.match(/\d+/g);
+		var strString = typeof str !== 'string' ? String(str) : str;
+		var matches = strString.match(/\d+/g);
 		var rectangles: number[][] = [];
 		if (matches !== null) {
 			for (var i: number = 0; i < matches.length; i += 4) {
