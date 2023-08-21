@@ -1,12 +1,12 @@
 /* -*- js-indent-level: 8 -*- */
-/* global errorMessages getParameterByName accessToken accessTokenTTL accessHeader createOnlineModule */
+/* global errorMessages accessToken accessTokenTTL accessHeader createOnlineModule */
 /* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 (function (global) {
 
 
 var wopiParams = {};
-var wopiSrc = getParameterByName('WOPISrc');
+var wopiSrc = global.loolParams.get('WOPISrc');
 
 if (wopiSrc !== '' && accessToken !== '') {
 	wopiParams = { 'access_token': accessToken, 'access_token_ttl': accessTokenTTL };
@@ -19,16 +19,16 @@ if (window.ThisIsTheEmscriptenApp)
 	// Temporary hack
 	var filePath = 'file:///sample.docx';
 else
-	var filePath = getParameterByName('file_path');
+	var filePath = global.loolParams.get('file_path');
 
-app.file.permission = getParameterByName('permission') || 'edit';
+app.file.permission = global.loolParams.get('permission') || 'edit';
 
-var timestamp = getParameterByName('timestamp');
-var target = getParameterByName('target') || '';
+var timestamp = global.loolParams.get('timestamp');
+var target = global.loolParams.get('target') || '';
 // Should the document go inactive or not
-var alwaysActive = getParameterByName('alwaysactive');
+var alwaysActive = global.loolParams.get('alwaysactive');
 // Lool Debug mode
-var debugMode = getParameterByName('debug');
+var debugMode = global.loolParams.get('debug');
 
 var docURL, docParams;
 var isWopi = false;
@@ -41,7 +41,7 @@ if (wopiSrc != '') {
 	docParams = {};
 }
 
-var notWopiButIframe = getParameterByName('NotWOPIButIframe') != '';
+var notWopiButIframe = global.loolParams.get('NotWOPIButIframe') != '';
 var map = L.map('map', {
 	server: host,
 	doc: docURL,
