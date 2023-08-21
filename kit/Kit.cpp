@@ -963,11 +963,12 @@ public:
         // FIXME: be more clever - detect if we rendered recently,
         // measure memory pressure etc.
         LOG_WRN("Sessions are all inactive - trim memory");
+        SigUtil::addActivity("trimIfInactive");
         _loKit->trimMemory(4096);
         _deltaGen.dropCache();
     }
 
-    void trimIfExcessive()
+    void trimAfterInactivity()
     {
         LOG_TRC("Should we trim our caches ?");
         if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() -
@@ -986,6 +987,7 @@ public:
         if (minInactivityMs >= 9999)
         {
             LOG_DBG("Trimming Core caches");
+            SigUtil::addActivity("trimAfterInactivity");
             _loKit->trimMemory(4096);
 
             _lastMemTrimTime = std::chrono::steady_clock::now();
@@ -2403,9 +2405,7 @@ public:
         drainQueue();
 
         if (_document)
-        {
-            _document->trimIfExcessive();
-        }
+            _document->trimAfterInactivity();
 
 #if !MOBILEAPP
         flushTraceEventRecordings();
