@@ -277,6 +277,8 @@ namespace LOOLProtocol
         return getFirstLine(message.data(), message.size());
     }
 
+    constexpr int maxNonAbbreviatedMsgLen = 500;
+
     /// Returns an abbreviation of the message (the first line, indicating truncation). We assume
     /// that it adhers to the LOOL protocol, i.e. that there is always a first (or only) line that
     /// is in printable UTF-8. I.e. no encoding of binary bytes is done. The format of the result is
@@ -290,7 +292,7 @@ namespace LOOLProtocol
             return std::string();
         }
 
-        const std::string firstLine = getFirstLine(message, std::min(length, 500));
+        const std::string firstLine = getFirstLine(message, std::min(length, maxNonAbbreviatedMsgLen));
 
         // If first line is less than the length (minus newline), add ellipsis.
         if (firstLine.size() < static_cast<std::string::size_type>(length) - 1)
@@ -303,7 +305,8 @@ namespace LOOLProtocol
 
     inline std::string getAbbreviatedMessage(const std::string& message)
     {
-        const size_t pos = Util::getDelimiterPosition(message.data(), std::min<size_t>(message.size(), 501), '\n');
+        const size_t pos = Util::getDelimiterPosition(message.data(),
+            std::min<size_t>(message.size(), maxNonAbbreviatedMsgLen + 1), '\n');
 
         // If first line is less than the length (minus newline), add ellipsis.
         if (pos < static_cast<std::string::size_type>(message.size()) - 1)
