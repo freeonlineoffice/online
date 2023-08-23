@@ -33,6 +33,8 @@
 using Poco::TemporaryFile;
 using Poco::Util::Application;
 
+bool EnableExperimental = false;
+
 extern "C"
 {
     static void myCallback(int type, const char* payload, void*)
