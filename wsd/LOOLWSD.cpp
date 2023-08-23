@@ -984,18 +984,19 @@ std::string LOOLWSD::FileServerRoot;
 std::string LOOLWSD::ServiceRoot;
 std::string LOOLWSD::TmpFontDir;
 std::string LOOLWSD::LOKitVersion;
-std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
+std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/coolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
 bool LOOLWSD::EnableTraceEventLogging = false;
 bool LOOLWSD::EnableAccessibility = false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
 std::string LOOLWSD::LogLevelStartup = "trace";
+std::string LOOLWSD::LogToken;
 std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
 std::string LOOLWSD::UserInterface = "default";
 bool LOOLWSD::AnonymizeUserData = false;
-bool LOOLWSD::CheckLoolUser = true;
+bool LOOLWSD::CheckCoolUser = true;
 bool LOOLWSD::CleanupOnly = false; //< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
 #if ENABLE_SSL
@@ -2391,6 +2392,11 @@ void LOOLWSD::innerInitialize(Application& self)
     {
         LOG_INF("Setting log-level to [" << LogLevelStartup << "] and delaying setting to ["
                 << LogLevel << "] until after WSD initialization.");
+    }
+
+    if (getConfigValue<bool>(conf, "browser_logging", "false"))
+    {
+        LogToken = Util::rng::getHardRandomHexString(16);
     }
 
     // First log entry.
