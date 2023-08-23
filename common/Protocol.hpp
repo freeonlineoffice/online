@@ -279,6 +279,16 @@ namespace LOOLProtocol
 
     constexpr int maxNonAbbreviatedMsgLen = 500;
 
+    inline bool shouldEllipse(const char* message, const size_t length, const size_t spanLen)
+    {
+        // If first line is less than the length (ignoring possible final newline), add ellipsis.
+        if (spanLen == length)
+            return false;
+        if (spanLen < length - 1)
+            return true;
+        return message[length - 1] != '\n';
+    }
+
     /// Returns an abbreviation of the message (the first line, indicating truncation). We assume
     /// that it adhers to the LOOL protocol, i.e. that there is always a first (or only) line that
     /// is in printable UTF-8. I.e. no encoding of binary bytes is done. The format of the result is
@@ -292,30 +302,26 @@ namespace LOOLProtocol
             return std::string();
         }
 
-        const size_t pos = Util::getDelimiterPosition(message,
+        const size_t spanLen = Util::getDelimiterPosition(message,
             std::min(length, maxNonAbbreviatedMsgLen), '\n');
 
         // If first line is less than the length (minus newline), add ellipsis.
-        if (pos < static_cast<std::string::size_type>(length) - 1)
-        {
-            return std::string(message, pos) + "...";
-        }
+        if (shouldEllipse(message, length, spanLen))
+            return std::string(message, spanLen) + "...";
 
-        return std::string(message, pos);
+        return std::string(message, spanLen);
     }
 
     inline std::string getAbbreviatedMessage(const std::string& message)
     {
-        const size_t pos = Util::getDelimiterPosition(message.data(),
+        const size_t spanLen = Util::getDelimiterPosition(message.data(),
             std::min<size_t>(message.size(), maxNonAbbreviatedMsgLen), '\n');
 
         // If first line is less than the length (minus newline), add ellipsis.
-        if (pos < static_cast<std::string::size_type>(message.size()) - 1)
-        {
-            return message.substr(0, pos) + "...";
-        }
+        if (shouldEllipse(message.data(), message.size(), spanLen))
+            return message.substr(0, spanLen) + "...";
 
-        return message.substr(0, pos);
+        return message.substr(0, spanLen);
     }
 
     template <typename T>
