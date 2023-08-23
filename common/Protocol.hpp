@@ -289,6 +289,24 @@ namespace LOOLProtocol
         return message[length - 1] != '\n';
     }
 
+    /// Given a well-formed utf-8 string 'message' of messageLen bytes and a
+    /// desire to truncate to approximately abbrevLen bytes return the shortest
+    /// string greater of equal to abbrevLen that does not split a utf-8
+    /// sequence.
+    inline std::string truncateUtf8(const char* message, size_t messageLen, size_t abbrevLen)
+    {
+        std::string ret(message, abbrevLen);
+        for (size_t i = abbrevLen; i < messageLen; ++i)
+        {
+            const uint8_t unit = message[i];
+            const bool continuation = (unit & 0xC0) == 0x80;
+            if (!continuation) // likely
+                break;
+            ret.push_back(unit);
+        }
+        return ret;
+    }
+
     /// Returns an abbreviation of the message (the first line, indicating truncation). We assume
     /// that it adhers to the LOOL protocol, i.e. that there is always a first (or only) line that
     /// is in printable UTF-8. I.e. no encoding of binary bytes is done. The format of the result is
@@ -307,7 +325,7 @@ namespace LOOLProtocol
 
         // If first line is less than the length (minus newline), add ellipsis.
         if (shouldEllipse(message, length, spanLen))
-            return std::string(message, spanLen) + "...";
+            return truncateUtf8(message, length, spanLen) + "...";
 
         return std::string(message, spanLen);
     }
@@ -319,7 +337,7 @@ namespace LOOLProtocol
 
         // If first line is less than the length (minus newline), add ellipsis.
         if (shouldEllipse(message.data(), message.size(), spanLen))
-            return message.substr(0, spanLen) + "...";
+            return truncateUtf8(message.data(), message.size(), spanLen) + "...";
 
         return message.substr(0, spanLen);
     }
