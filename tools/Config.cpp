@@ -221,6 +221,7 @@ void Config::handleOption(const std::string& optionName, const std::string& opti
     }
 }
 
+// coverity[root_function] : don't warn about uncaught exceptions
 int Config::main(const std::vector<std::string>& args)
 {
     if (args.empty())
@@ -454,6 +455,7 @@ int Config::main(const std::vector<std::string>& args)
     return retval;
 }
 
+// coverity[root_function] : don't warn about uncaught exceptions
 POCO_APP_MAIN(Config);
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
