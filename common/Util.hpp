@@ -44,6 +44,8 @@
 
 #include <StringVector.hpp>
 
+#define STRINGIFY(X) #X
+
 #if CODE_COVERAGE
 extern "C"
 {
