@@ -5718,11 +5718,6 @@ std::string LOOLWSD::getServerURL()
 int LOOLWSD::innerMain()
 {
 #if !MOBILEAPP
-    SigUtil::setUserSignals();
-    SigUtil::setFatalSignals("wsd " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
-#endif
-
-#if !MOBILEAPP
 #  ifdef __linux__
     // down-pay all the forkit linking cost once & early.
     setenv("LD_BIND_NOW", "1", 1);
@@ -6317,7 +6312,22 @@ void forwardSigUsr2()
 // Avoid this in the Util::isFuzzing() case because libfuzzer defines its own main().
 #if !MOBILEAPP && !LIBFUZZER
 
-POCO_SERVER_MAIN(LOOLWSD)
+int main(int argc, char** argv)
+{
+    SigUtil::setUserSignals();
+    SigUtil::setFatalSignals("wsd " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
+
+    try
+    {
+        LOOLWSD app;
+        return app.run(argc, argv);
+    }
+    catch (Poco::Exception& exc)
+    {
+        std::cerr << exc.displayText() << std::endl;
+        return EX_SOFTWARE;
+    }
+}
 
 #endif
 
