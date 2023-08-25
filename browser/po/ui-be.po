@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 18:26+0200\n"
+"POT-Creation-Date: 2023-08-25 20:42+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/"
@@ -543,44 +543,44 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2223
+#: src/control/Control.JSDialogBuilder.js:2162
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2226
+#: src/control/Control.JSDialogBuilder.js:2165
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2237
+#: src/control/Control.JSDialogBuilder.js:2176
 #: src/layer/tile/CanvasTileLayer.js:5260
 #: src/layer/tile/CanvasTileLayer.js:5271
 #: src/layer/tile/CommentListSection.ts:892
 msgid "Comment"
 msgstr "Заўвага"
 
-#: src/control/Control.JSDialogBuilder.js:2301
+#: src/control/Control.JSDialogBuilder.js:2240
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3012
+#: src/control/Control.JSDialogBuilder.js:2951
 msgid "Cell borders"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3133
+#: src/control/Control.JSDialogBuilder.js:3072
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3272
+#: src/control/Control.JSDialogBuilder.js:3211
 #: src/control/Control.Menubar.js:805
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3273
+#: src/control/Control.JSDialogBuilder.js:3212
 #: src/control/Control.Menubar.js:808
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3293
+#: src/control/Control.JSDialogBuilder.js:3232
 msgid "Insert Table"
 msgstr ""
 
