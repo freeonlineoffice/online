@@ -3820,11 +3820,19 @@ private:
         std::shared_ptr<DocumentBroker> docBroker = child ? child->getDocumentBroker() : nullptr;
         if (docBroker)
             docBroker->handleInput(message);
-        else if (child)
+        }
+        else if (child && child->getPid() > 0)
+        {
+            const std::string abbreviatedMessage = LOOLWSD::AnonymizeUserData ? "..." : message->abbr();
             LOG_WRN("Child " << child->getPid() << " has no DocBroker to handle message: ["
-                             << message->abbr() << ']');
+                             << abbreviatedMessage << ']');
+        }
         else
-            LOG_WRN("Cannot handle message with unassociated Kit: [" << message->abbr() << ']');
+        {
+            const std::string abbreviatedMessage = LOOLWSD::AnonymizeUserData ? "..." : message->abbr();
+            LOG_ERR("Cannot handle message with unassociated Kit (PID " << _pid << "): ["
+                                                                        << abbreviatedMessage);
+        }
     }
 
     int getPollEvents(std::chrono::steady_clock::time_point /* now */,
