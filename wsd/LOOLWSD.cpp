@@ -3873,7 +3873,7 @@ private:
                         {
                             const std::string& serverUri =
                                 unlockImageUri.getScheme() + "://" + unlockImageUri.getAuthority();
-                            ProxyRequestHandler::handleRequest(uri.substr(pos + ProxyRemoteLen),
+                            ProxyRequestHandler::handleRequest(uri.substr(pos + sizeof("/remote/static") - 1),
                                                                socket, serverUri);
                         }
                     }
