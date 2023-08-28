@@ -115,6 +115,7 @@ shared_sources = common/FileUtil.cpp \
                  common/ConfigUtil.cpp \
                  common/Authorization.cpp \
                  common/CommandControl.cpp \
+		 common/Simd.cpp \
                  net/DelaySocket.cpp \
                  net/HttpRequest.cpp \
                  net/HttpHelper.cpp \
@@ -177,12 +178,19 @@ lokitclient_SOURCES = common/Log.cpp \
                       common/TraceEvent.cpp \
                       common/Util.cpp
 
+noinst_LIBRARIES = libsimd.a
+libsimd_a_SOURCES = kit/DeltaSimd.c
+# FIXME: x86_only etc.
+libsimd_a_CFLAGS = @SIMD_CFLAGS@
+
 loolforkit_sources = kit/ChildSession.cpp \
                      kit/ForKit.cpp \
                      kit/Kit.cpp
 
 loolforkit_SOURCES = $(loolforkit_sources) \
                      $(shared_sources)
+
+loolforkit_LDADD = libsimd.a
 
 if ENABLE_LIBFUZZER
 loolforkit_SOURCES += \
@@ -307,6 +315,7 @@ shared_headers = common/Common.hpp \
                  common/security.h \
                  common/SpookyV2.h \
                  common/CommandControl.hpp \
+		 common/Simd.hpp \
                  net/Buffer.hpp \
                  net/DelaySocket.hpp \
                  net/FakeSocket.hpp \
@@ -325,6 +334,7 @@ endif
 
 kit_headers = kit/ChildSession.hpp \
               kit/Delta.hpp \
+              kit/DeltaSimd.h \
               kit/DummyLibreOfficeKit.hpp \
               kit/Kit.hpp \
               kit/KitHelper.hpp \
