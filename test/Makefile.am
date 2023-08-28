@@ -144,7 +144,6 @@ common_sources = \
 	../common/StringVector.cpp \
 	../common/TraceEvent.cpp \
 	../common/Simd.cpp \
-	../kit/DeltaSimd.c \
 	../wsd/Exceptions.cpp \
 	../net/HttpRequest.cpp \
 	../net/Socket.cpp \
