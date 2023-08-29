@@ -367,7 +367,7 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
             sendTextFrame("InvalidAuthToken");
         }
         std::string jwtToken;
-        COOLProtocol::getTokenString(tokens[1], "jwt", jwtToken);
+        LOOLProtocol::getTokenString(tokens[1], "jwt", jwtToken);
 
         jwtToken = Util::decodeURIComponent(jwtToken);
         LOG_INF("Verifying JWT token: " << jwtToken);
