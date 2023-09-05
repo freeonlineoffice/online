@@ -580,8 +580,7 @@ void AdminModel::doRemove(std::map<std::string, std::unique_ptr<Document>>::iter
     }
     else
     {
-        setCurrentMigDoc(std::string());
-        setCurrentMigToken(std::string());
+        resetMigratingInfo();
     }
 
     std::unique_ptr<Document> doc;
@@ -1274,18 +1273,21 @@ void AdminModel::sendMigrateMsgAfterSave(bool lastSaveSuccessful, const std::str
     {
         return;
     }
-    if (!lastSaveSuccessful)
-    {
-        setCurrentMigToken(std::string());
-        setCurrentMigDoc(std::string());
-    }
-    std::string saveSuccessful = lastSaveSuccessful ? "true" : "false";
     std::ostringstream oss;
+    std::string saveSuccessful = lastSaveSuccessful ? "true" : "false";
     oss << "migrate: {";
-    oss << "\"afterSave\"" << ":true,";
+    oss << "\"afterSave\""
+        << ":true,";
     oss << "\"saved\":" << saveSuccessful << ',';
-    oss << "\"routeToken\"" << ':' << "\"" << getCurrentMigToken()
-        << "\"" << '}';
+    if (lastSaveSuccessful)
+    {
+        oss << "\"routeToken\"" << ':' << '"' << getCurrentMigToken() << '"' << ',';
+        oss << "\"serverId\"" << ':' << '"' << getTargetMigServerId() << '"' << '}';
+    }
+    else
+    {
+        resetMigratingInfo();
+    }
     LOOLWSD::alertUserInternal(docKey, oss.str());
 }
 
@@ -1310,6 +1312,20 @@ std::string AdminModel::getWopiSrcMap()
     }
     oss << "]}";
     return oss.str();
+}
+
+void AdminModel::setMigratingInfo(const std::string& docKey, const std::string& routeToken, const std::string& serverId)
+{
+    _currentMigDoc = docKey;
+    _currentMigToken = routeToken;
+    _targetMigServerId = serverId;
+}
+
+void AdminModel::resetMigratingInfo()
+{
+    _currentMigDoc = std::string();
+    _currentMigToken = std::string();
+    _targetMigServerId = std::string();
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
