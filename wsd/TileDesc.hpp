@@ -29,7 +29,7 @@ class TileDesc final
 {
 public:
     TileDesc(int normalizedViewId, int part, int mode, int width, int height, int tilePosX, int tilePosY, int tileWidth,
-             int tileHeight, int ver, int imgSize, int id, bool broadcast)
+             int tileHeight, int ver, int imgSize, int id)
         : _normalizedViewId(normalizedViewId)
         , _part(part)
         , _mode(mode)
@@ -42,7 +42,6 @@ public:
         , _ver(ver)
         , _imgSize(imgSize)
         , _id(id)
-        , _broadcast(broadcast)
         , _oldWireId(0)
         , _wireId(0)
     {
@@ -78,7 +77,6 @@ public:
     /// if non-zero: a preview.
     int getId() const { return _id; }
     void setId(TileWireId id) { _id = id; }
-    bool getBroadcast() const { return _broadcast; }
     void setOldWireId(TileWireId id) { _oldWireId = id; }
     void forceKeyframe() { setOldWireId(0); }
     TileWireId getOldWireId() const { return _oldWireId; }
@@ -95,7 +93,6 @@ public:
                _tileWidth == other._tileWidth &&
                _tileHeight == other._tileHeight &&
                _id == other._id &&
-               _broadcast == other._broadcast &&
                _normalizedViewId == other._normalizedViewId &&
                _mode == other._mode;
     }
@@ -194,11 +191,6 @@ public:
             oss << " imgsize=" << _imgSize;
         }
 
-        if (_broadcast)
-        {
-            oss << " broadcast=yes";
-        }
-
         if (_mode)
         {
             oss << " mode=" << _mode;
@@ -289,7 +281,6 @@ public:
 
         TileWireId oldWireId = 0;
         TileWireId wireId = 0;
-        bool broadcast = false;
         for (std::size_t i = 0; i < tokens.size(); ++i)
         {
             if (tokens.getUInt32(i, "oldwid", oldWireId))
@@ -298,12 +289,10 @@ public:
                 ;
             else
             {
-                std::string temp;
+                std::string name;
                 int value = -1;
-                if (tokens.getNameIntegerPair(i, temp, value))
-                    pairs.set(temp, value);
-                else if (LOOLProtocol::getTokenString(tokens[i], "broadcast", temp))
-                    broadcast = temp == "yes";
+                if (tokens.getNameIntegerPair(i, name, value))
+                    pairs.set(name, value);
             }
         }
 
@@ -312,7 +301,7 @@ public:
                         pairs[tileposx], pairs[tileposy],
                         pairs[tilewidth], pairs[tileheight],
                         pairs[ver],
-                        pairs[imgsize], pairs[id], broadcast);
+                        pairs[imgsize], pairs[id]);
         result.setOldWireId(oldWireId);
         result.setWireId(wireId);
 
@@ -346,7 +335,6 @@ private:
     int _ver; //< Versioning support.
     int _imgSize; //< Used for responses.
     int _id;
-    bool _broadcast;
     TileWireId _oldWireId;
     TileWireId _wireId;
 };
@@ -439,7 +427,7 @@ private:
                 throw BadArgumentException("Invalid tilecombine descriptor.");
             }
 
-            _tiles.emplace_back(_normalizedViewId, _part, _mode, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1, false);
+            _tiles.emplace_back(_normalizedViewId, _part, _mode, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1);
             _tiles.back().setOldWireId(oldWireId);
             _tiles.back().setWireId(wireId);
         }
