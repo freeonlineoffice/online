@@ -37,6 +37,13 @@
 #include "Log.hpp"
 #include "Util.hpp"
 
+namespace
+{
+/// Tracks the number of thread-local buffers (for debugging purposes).
+std::atomic_int32_t ThreadLocalBufferCount(0);
+
+} // namespace
+
 namespace Log
 {
     using namespace Poco;
@@ -121,9 +128,14 @@ namespace Log
                 : _size(0)
                 , _oldest_time_us(0)
             {
+                ++ThreadLocalBufferCount;
             }
 
-            ~ThreadLocalBuffer() { flush(); }
+            ~ThreadLocalBuffer()
+            {
+                flush();
+                --ThreadLocalBufferCount;
+            }
 
             std::size_t size() const { return _size; }
             std::size_t available() const { return BufferSize - _size; }
@@ -597,6 +609,9 @@ namespace Log
     void shutdown()
     {
 #if !MOBILEAPP
+        assert(ThreadLocalBufferCount <= 1 &&
+               "Unstopped threads may have unflushed buffered log entries");
+
         IsShutdown = true;
 
         Poco::Logger::shutdown();
