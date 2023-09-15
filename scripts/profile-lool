@@ -17,19 +17,19 @@ if ! which flamegraph.pl > /dev/null 2>&1; then
 fi
 # a deployment will log to journal, take current time to grep logs from that time point
 date=`date +%s`
-# a local dev build dumps to /tmp/coolwsd.log by default, take current size to grep from that size point
-if [ -e /tmp/coolwsd.log ]; then
-  locallogsize=`du -b /tmp/coolwsd.log|cut -f1`
+# a local dev build dumps to /tmp/loolwsd.log by default, take current size to grep from that size point
+if [ -e /tmp/loolwsd.log ]; then
+  locallogsize=`du -b /tmp/loolwsd.log|cut -f1`
 fi
 echo using pkill -SIGUSR1 kitbroker to dump info
 pkill -SIGUSR1 kitbroker
 echo Waiting 1 second for results
 sleep 1
 echo ---systemd journal---
-journalctl --since @$date -u coolwsd --output=cat | grep -P "\Wpid:|\WjailedUrl:|\WviewId:.*userExtraInfo:"
-if [ -e /tmp/coolwsd.log ]; then
+journalctl --since @$date -u loolwsd --output=cat | grep -P "\Wpid:|\WjailedUrl:|\WviewId:.*userExtraInfo:"
+if [ -e /tmp/loolwsd.log ]; then
   echo ---local dev log---
-  tail -c +$locallogsize /tmp/coolwsd.log | grep -P "\Wpid:|\WjailedUrl:|\WviewId:.*userExtraInfo:"
+  tail -c +$locallogsize /tmp/loolwsd.log | grep -P "\Wpid:|\WjailedUrl:|\WviewId:.*userExtraInfo:"
 fi
 echo -n "enter pid to measure performance of: "
 read kitpid
