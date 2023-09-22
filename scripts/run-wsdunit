@@ -21,7 +21,7 @@ do
     count=$((count+1))
 
     (cd test; ./run_unit.sh --test-name $name.la --log-file $name.log --trs-file $name.trs --color-tests yes --enable-hard-errors yes --expect-failure no -- ./$name.la)
-    ./coolwsd --disable-cool-user-checking --cleanup
+    ./loolwsd --disable-lool-user-checking --cleanup
     if ! grep -q FAIL test/$name.trs; then
         RET=0
         break
