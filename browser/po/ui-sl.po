@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreOffice Online UI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 21:48+0200\n"
+"POT-Creation-Date: 2023-09-23 23:21+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/"
@@ -616,31 +616,31 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:67 src/control/Control.Menubar.js:82
 #: src/control/Control.Menubar.js:927
-#: src/control/Control.NotebookbarBuilder.js:517
-#: src/control/Control.NotebookbarBuilder.js:621
+#: src/control/Control.NotebookbarBuilder.js:519
+#: src/control/Control.NotebookbarBuilder.js:623
 msgid "ODF text document (.odt)"
 msgstr "Besedilni dokument ODF (.odt)"
 
 #: src/control/Control.Menubar.js:68 src/control/Control.Menubar.js:83
 #: src/control/Control.Menubar.js:928
-#: src/control/Control.NotebookbarBuilder.js:529
-#: src/control/Control.NotebookbarBuilder.js:633
+#: src/control/Control.NotebookbarBuilder.js:531
+#: src/control/Control.NotebookbarBuilder.js:635
 #: src/control/Control.NotebookbarWriter.js:250
 msgid "Word 2003 Document (.doc)"
 msgstr "Dokument Word 2003 (.doc)"
 
 #: src/control/Control.Menubar.js:69 src/control/Control.Menubar.js:84
 #: src/control/Control.Menubar.js:929
-#: src/control/Control.NotebookbarBuilder.js:525
-#: src/control/Control.NotebookbarBuilder.js:629
+#: src/control/Control.NotebookbarBuilder.js:527
+#: src/control/Control.NotebookbarBuilder.js:631
 #: src/control/Control.NotebookbarWriter.js:256
 msgid "Word Document (.docx)"
 msgstr "Dokument Word (.docx)"
 
 #: src/control/Control.Menubar.js:70 src/control/Control.Menubar.js:85
 #: src/control/Control.Menubar.js:930
-#: src/control/Control.NotebookbarBuilder.js:521
-#: src/control/Control.NotebookbarBuilder.js:625
+#: src/control/Control.NotebookbarBuilder.js:523
+#: src/control/Control.NotebookbarBuilder.js:627
 #: src/control/Control.NotebookbarWriter.js:238
 msgid "Rich Text (.rtf)"
 msgstr "Obogateno besedilo (.rtf)"
@@ -664,13 +664,13 @@ msgstr "Izvozi kot"
 #: src/control/Control.Menubar.js:981 src/control/Control.Menubar.js:990
 #: src/control/Control.Menubar.js:1043 src/control/Control.Menubar.js:1051
 #: src/control/Control.Menubar.js:1095 src/control/Control.Menubar.js:1106
-#: src/control/Control.NotebookbarBuilder.js:538
-#: src/control/Control.NotebookbarBuilder.js:567
-#: src/control/Control.NotebookbarBuilder.js:596
-#: src/control/Control.NotebookbarBuilder.js:682
-#: src/control/Control.NotebookbarBuilder.js:693
-#: src/control/Control.NotebookbarBuilder.js:700
-#: src/control/Control.NotebookbarBuilder.js:707
+#: src/control/Control.NotebookbarBuilder.js:540
+#: src/control/Control.NotebookbarBuilder.js:569
+#: src/control/Control.NotebookbarBuilder.js:598
+#: src/control/Control.NotebookbarBuilder.js:684
+#: src/control/Control.NotebookbarBuilder.js:695
+#: src/control/Control.NotebookbarBuilder.js:702
+#: src/control/Control.NotebookbarBuilder.js:709
 #: src/control/Control.NotebookbarCalc.js:232
 #: src/control/Control.NotebookbarDraw.js:229
 #: src/control/Control.NotebookbarImpress.js:324
@@ -680,8 +680,8 @@ msgstr "Dokument PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:74 src/control/Control.Menubar.js:86
 #: src/control/Control.Menubar.js:915 src/control/Control.Menubar.js:931
-#: src/control/Control.NotebookbarBuilder.js:533
-#: src/control/Control.NotebookbarBuilder.js:686
+#: src/control/Control.NotebookbarBuilder.js:535
+#: src/control/Control.NotebookbarBuilder.js:688
 msgid "EPUB (.epub)"
 msgstr "EPUB (.epub)"
 
@@ -715,9 +715,9 @@ msgstr "Prenesi kot"
 #: src/control/Control.Menubar.js:538 src/control/Control.Menubar.js:667
 #: src/control/Control.Menubar.js:926 src/control/Control.Menubar.js:991
 #: src/control/Control.Menubar.js:1052 src/control/Control.Menubar.js:1107
-#: src/control/Control.NotebookbarBuilder.js:543
-#: src/control/Control.NotebookbarBuilder.js:572
-#: src/control/Control.NotebookbarBuilder.js:601
+#: src/control/Control.NotebookbarBuilder.js:545
+#: src/control/Control.NotebookbarBuilder.js:574
+#: src/control/Control.NotebookbarBuilder.js:603
 #, fuzzy
 msgid "PDF Document (.pdf) as..."
 msgstr "Dokument PDF (.pdf)"
@@ -964,23 +964,23 @@ msgstr "Zadnja sprememba"
 
 #: src/control/Control.Menubar.js:376 src/control/Control.Menubar.js:389
 #: src/control/Control.Menubar.js:992
-#: src/control/Control.NotebookbarBuilder.js:580
-#: src/control/Control.NotebookbarBuilder.js:655
+#: src/control/Control.NotebookbarBuilder.js:582
+#: src/control/Control.NotebookbarBuilder.js:657
 msgid "ODF presentation (.odp)"
 msgstr "Predstavitev ODF (.odp)"
 
 #: src/control/Control.Menubar.js:377 src/control/Control.Menubar.js:390
 #: src/control/Control.Menubar.js:993
-#: src/control/Control.NotebookbarBuilder.js:592
-#: src/control/Control.NotebookbarBuilder.js:663
+#: src/control/Control.NotebookbarBuilder.js:594
+#: src/control/Control.NotebookbarBuilder.js:665
 #: src/control/Control.NotebookbarImpress.js:301
 msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "Predstavitev PowerPoint 2003 (.ppt)"
 
 #: src/control/Control.Menubar.js:378 src/control/Control.Menubar.js:391
 #: src/control/Control.Menubar.js:994
-#: src/control/Control.NotebookbarBuilder.js:588
-#: src/control/Control.NotebookbarBuilder.js:659
+#: src/control/Control.NotebookbarBuilder.js:590
+#: src/control/Control.NotebookbarBuilder.js:661
 #: src/control/Control.NotebookbarImpress.js:309
 msgid "PowerPoint Presentation (.pptx)"
 msgstr "Predstavitev PowerPoint (.pptx)"
@@ -1005,7 +1005,7 @@ msgstr "Predstavi trenutno prosojnico"
 
 #: src/control/Control.Menubar.js:539 src/control/Control.Menubar.js:995
 #: src/control/Control.Menubar.js:1053
-#: src/control/Control.NotebookbarBuilder.js:584
+#: src/control/Control.NotebookbarBuilder.js:586
 #: src/control/Control.NotebookbarDraw.js:206
 #: src/control/Control.NotebookbarImpress.js:286
 msgid "ODF Drawing (.odg)"
@@ -1013,23 +1013,23 @@ msgstr "Risba ODF (.odg)"
 
 #: src/control/Control.Menubar.js:656 src/control/Control.Menubar.js:668
 #: src/control/Control.Menubar.js:1108
-#: src/control/Control.NotebookbarBuilder.js:551
-#: src/control/Control.NotebookbarBuilder.js:640
+#: src/control/Control.NotebookbarBuilder.js:553
+#: src/control/Control.NotebookbarBuilder.js:642
 msgid "ODF spreadsheet (.ods)"
 msgstr "Preglednica ODF (.ods)"
 
 #: src/control/Control.Menubar.js:657 src/control/Control.Menubar.js:669
 #: src/control/Control.Menubar.js:1109
-#: src/control/Control.NotebookbarBuilder.js:559
-#: src/control/Control.NotebookbarBuilder.js:648
+#: src/control/Control.NotebookbarBuilder.js:561
+#: src/control/Control.NotebookbarBuilder.js:650
 #: src/control/Control.NotebookbarCalc.js:211
 msgid "Excel 2003 Spreadsheet (.xls)"
 msgstr "Preglednica Excel 2003 (.xls)"
 
 #: src/control/Control.Menubar.js:658 src/control/Control.Menubar.js:670
 #: src/control/Control.Menubar.js:1110
-#: src/control/Control.NotebookbarBuilder.js:555
-#: src/control/Control.NotebookbarBuilder.js:644
+#: src/control/Control.NotebookbarBuilder.js:557
+#: src/control/Control.NotebookbarBuilder.js:646
 #: src/control/Control.NotebookbarCalc.js:218
 msgid "Excel Spreadsheet (.xlsx)"
 msgstr "Preglednica Excel (.xslx)"
@@ -1117,42 +1117,42 @@ msgstr "Začetek preliva"
 msgid "Gradient End"
 msgstr "Konec preliva"
 
-#: src/control/Control.NotebookbarBuilder.js:298
+#: src/control/Control.NotebookbarBuilder.js:300
 msgid "Tap to expand"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:299
-#: src/control/Control.NotebookbarBuilder.js:343
+#: src/control/Control.NotebookbarBuilder.js:301
+#: src/control/Control.NotebookbarBuilder.js:345
 msgid "Tap to collapse"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:563
+#: src/control/Control.NotebookbarBuilder.js:565
 #: src/control/Control.NotebookbarCalc.js:197
 msgid "CSV File (.csv)"
 msgstr "Datoteka CSV (.csv)"
 
-#: src/control/Control.NotebookbarBuilder.js:885
+#: src/control/Control.NotebookbarBuilder.js:887
 #: src/control/Control.TopToolbar.js:232
 msgid "Insert Local Image"
 msgstr "Vstavi krajevno sliko"
 
-#: src/control/Control.NotebookbarBuilder.js:976
+#: src/control/Control.NotebookbarBuilder.js:978
 msgid "Very Tight"
 msgstr "Zelo ozko"
 
-#: src/control/Control.NotebookbarBuilder.js:977
+#: src/control/Control.NotebookbarBuilder.js:979
 msgid "Tight"
 msgstr "Ozko"
 
-#: src/control/Control.NotebookbarBuilder.js:978
+#: src/control/Control.NotebookbarBuilder.js:980
 msgid "Normal"
 msgstr "Navadno"
 
-#: src/control/Control.NotebookbarBuilder.js:979
+#: src/control/Control.NotebookbarBuilder.js:981
 msgid "Loose"
 msgstr "Široko"
 
-#: src/control/Control.NotebookbarBuilder.js:980
+#: src/control/Control.NotebookbarBuilder.js:982
 msgid "Very Loose"
 msgstr "Zelo široko"
 
