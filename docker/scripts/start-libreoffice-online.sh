@@ -29,11 +29,6 @@ mv certs/servers/localhost/cert.pem /etc/loolwsd/cert.pem
 mv certs/ca/root.crt.pem /etc/loolwsd/ca-chain.cert.pem
 fi
 
-# Disable warning/info messages of LOKit by default
-if test "${SAL_LOG-set}" = set; then
-SAL_LOG="-INFO-WARN"
-fi
-
 # Replace trusted host and set admin username and password - only if they are set
 if test -n "${aliasgroup1}" -o -n "${domain}" -o -n "${remoteconfigurl}"; then
     perl -w /start-libreoffice-online.pl || { exit 1; }
