@@ -225,11 +225,11 @@ public:
                             std::string wopiSrc = Util::encodeURIComponent(wopiURL.toString());
 
                             // This is just a client connection that is used from the tests.
-                            LOG_TST("Connecting test client to COOL (#"
-                                    << _count << " connection): /cool/" << wopiSrc << "/ws");
+                            LOG_TST("Connecting test client to LOOL (#"
+                                    << _count << " connection): /lool/" << wopiSrc << "/ws");
 
                             Poco::URI uri(helpers::getTestServerURI());
-                            const std::string documentURL = "/cool/" + wopiSrc + "/ws";
+                            const std::string documentURL = "/lool/" + wopiSrc + "/ws";
 
                             std::shared_ptr<http::WebSocketSession> ws =
                                 http::WebSocketSession::create(uri.toString());
