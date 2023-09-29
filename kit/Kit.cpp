@@ -3333,6 +3333,7 @@ bool globalPreinit(const std::string &loTemplate)
     if (!preInit)
     {
         LOG_FTL("No lok_preinit_2 symbol in " << loadedLibrary << ": " << dlerror());
+        dlclose(handle);
         return false;
     }
 
@@ -3359,6 +3360,7 @@ bool globalPreinit(const std::string &loTemplate)
     if (preInit((loTemplate + "/program").c_str(), "file:///tmp/user", &loKitPtr) != 0)
     {
         LOG_FTL("lok_preinit() in " << loadedLibrary << " failed");
+        dlclose(handle);
         return false;
     }
 
