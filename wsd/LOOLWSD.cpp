@@ -2407,7 +2407,7 @@ void LOOLWSD::innerInitialize(Application& self)
 
     {
         bool enableWebsocketURP =
-            COOLWSD::getConfigValue<bool>("security.enable_websocket_urp", false);
+            LOOLWSD::getConfigValue<bool>("security.enable_websocket_urp", false);
         setenv("ENABLE_WEBSOCKET_URP", enableWebsocketURP ? "true" : "false", 1);
     }
 
