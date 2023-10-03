@@ -12,7 +12,7 @@
 #include "Kit.hpp"
 #include "ChildSession.hpp"
 #include "MobileApp.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 
 #include <climits>
 #include <fstream>
