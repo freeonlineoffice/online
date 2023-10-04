@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-29 19:33+0200\n"
+"POT-Creation-Date: 2023-10-04 21:55+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/collabora-online/"
@@ -264,8 +264,8 @@ msgstr "Le serveur a été arrêté, veuillez recharger la page."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:304
-#: src/control/Control.Tabs.js:313 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:311
+#: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:553 src/control/Toolbar.js:654
@@ -274,7 +274,7 @@ msgstr "Le serveur a été arrêté, veuillez recharger la page."
 #: src/core/Socket.js:1210 src/core/Socket.js:1214 src/main.js:70
 #: src/main.js:73 src/main.js:110 src/map/Clipboard.js:879
 #: src/map/Clipboard.js:928 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:484
+#: src/map/handler/Map.WOPI.js:485
 msgid "OK"
 msgstr "OK"
 
@@ -571,8 +571,8 @@ msgid "replies"
 msgstr "réponses"
 
 #: src/control/Control.JSDialogBuilder.js:2141
-#: src/layer/tile/CanvasTileLayer.js:5263
-#: src/layer/tile/CanvasTileLayer.js:5274
+#: src/layer/tile/CanvasTileLayer.js:5264
+#: src/layer/tile/CanvasTileLayer.js:5275
 #: src/layer/tile/CommentListSection.ts:931
 msgid "Comment"
 msgstr "Commentaire"
@@ -1650,15 +1650,15 @@ msgstr "Déplacer la feuille à droite"
 msgid "Copy Sheet..."
 msgstr "Copier la feuille de calcul…"
 
-#: src/control/Control.Tabs.js:302
+#: src/control/Control.Tabs.js:309
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Voulez-vous vraiment supprimer la feuille, %sheet% ?"
 
-#: src/control/Control.Tabs.js:313
+#: src/control/Control.Tabs.js:320
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:313
+#: src/control/Control.Tabs.js:320
 msgid "Enter new sheet name"
 msgstr "Saisissez un nouveau nom de feuille"
 
@@ -2475,23 +2475,23 @@ msgstr ""
 "Le téléversement du fichier sur le serveur a échoué, le fichier est trop "
 "volumineux."
 
-#: src/layer/tile/CanvasTileLayer.js:1989
+#: src/layer/tile/CanvasTileLayer.js:1990
 msgid "Functions"
 msgstr "Fonctions"
 
-#: src/layer/tile/CanvasTileLayer.js:2560
+#: src/layer/tile/CanvasTileLayer.js:2561
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2568
+#: src/layer/tile/CanvasTileLayer.js:2569
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2576
+#: src/layer/tile/CanvasTileLayer.js:2577
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5291
+#: src/layer/tile/CanvasTileLayer.js:5292
 msgid "No Comments"
 msgstr "Aucun commentaire"
 
@@ -2671,15 +2671,15 @@ msgstr "Le téléversement sur le serveur a échoué avec le statut : %0"
 msgid "Creating new file from template..."
 msgstr "Création d'un nouveau fichier à partir d'un modèle..."
 
-#: src/map/handler/Map.WOPI.js:484
+#: src/map/handler/Map.WOPI.js:485
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:484
+#: src/map/handler/Map.WOPI.js:485
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:492
+#: src/map/handler/Map.WOPI.js:493
 msgid "Creating copy..."
 msgstr "Création d'une copie..."
 
