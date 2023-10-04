@@ -3604,7 +3604,10 @@ private:
         std::shared_ptr<DocumentBroker> docBroker = child ? child->getDocumentBroker() : nullptr;
         if (docBroker)
         {
-            if (!docBroker->isUnloading())
+            assert(child->getPid() == _pid && "Child PID changed unexpectedly");
+            const bool unexpected = !docBroker->isUnloading() && !SigUtil::getShutdownRequestFlag();
+            if (unexpected)
+            {
                 LOG_WRN("DocBroker [" << docBroker->getDocKey()
                                       << "] got disconnected from its Kit (" << child->getPid()
                                       << ") unexpectedly. Closing");
@@ -3613,7 +3616,7 @@ private:
                                       << child->getPid() << ") as expected");
 
             std::unique_lock<std::mutex> lock = docBroker->getLock();
-            docBroker->disconnectedFromKit();
+            docBroker->disconnectedFromKit(unexpected);
         }
         else if (child)
             LOG_WRN("Kit (" << child->getPid() << ") disconnected. No DocBroker associated.");
