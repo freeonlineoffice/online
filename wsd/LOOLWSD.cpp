@@ -3601,7 +3601,8 @@ private:
 
         // Notify the broker that we're done.
         std::shared_ptr<ChildProcess> child = _childProcess.lock();
-        std::shared_ptr<DocumentBroker> docBroker = child ? child->getDocumentBroker() : nullptr;
+        std::shared_ptr<DocumentBroker> docBroker =
+            child && child->getPid() > 0 ? child->getDocumentBroker() : nullptr;
         if (docBroker)
         {
             assert(child->getPid() == _pid && "Child PID changed unexpectedly");
@@ -3611,9 +3612,12 @@ private:
                 LOG_WRN("DocBroker [" << docBroker->getDocKey()
                                       << "] got disconnected from its Kit (" << child->getPid()
                                       << ") unexpectedly. Closing");
+            }
             else
+            {
                 LOG_DBG("DocBroker [" << docBroker->getDocKey() << "] disconnected from its Kit ("
                                       << child->getPid() << ") as expected");
+            }
 
             std::unique_lock<std::mutex> lock = docBroker->getLock();
             docBroker->disconnectedFromKit(unexpected);
