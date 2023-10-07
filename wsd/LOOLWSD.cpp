@@ -3104,7 +3104,7 @@ void LOOLWSD::initializeEnvOptions()
             {
                 const std::string path = "storage.wopi.alias_groups.group[" + std::to_string(n) + "].host";
                 _overrideSettings[path] = alias;
-                _overrideSettings[path + "[@allow]"] = true;
+                _overrideSettings[path + "[@allow]"] = "true";
                 first = false;
             }
             else
