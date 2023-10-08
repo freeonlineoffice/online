@@ -103,6 +103,7 @@ loolforkit-nocaps
 loadtest
 unittest
 clientnb
+libsimd.a
 
 # Fuzzer
 *_fuzzer
