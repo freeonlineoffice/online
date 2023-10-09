@@ -367,8 +367,9 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
             LOG_DBG("Auth command without any token");
             sendTextFrame("InvalidAuthToken");
         }
-        std::string jwtToken;
+        std::string jwtToken, id;
         LOOLProtocol::getTokenString(tokens[1], "jwt", jwtToken);
+        LOOLProtocol::getTokenString(tokens[2], "id", id);
 
         jwtToken = Util::decodeURIComponent(jwtToken);
         LOG_INF("Verifying JWT token: " << jwtToken);
@@ -376,12 +377,12 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
         if (authAgent.verify(jwtToken))
         {
             LOG_TRC("JWT token is valid");
-            sendTextFrame("ValidAuthToken");
+            sendTextFrame("ValidAuthToken " + id);
         }
         else
         {
             LOG_DBG("Invalid auth token");
-            sendTextFrame("InvalidAuthToken");
+            sendTextFrame("InvalidAuthToken " + id);
         }
     }
 }
