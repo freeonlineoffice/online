@@ -47,6 +47,7 @@ private:
     Admin* _admin;
     int _sessionId;
     bool _isAuthenticated;
+    std::string _clientIPAdress;
 };
 
 class MonitorSocketHandler : public AdminSocketHandler
@@ -172,6 +173,11 @@ public:
 
     // delete entry from _monitorSocket map
     void deleteMonitorSocket(const std::string &uriWithoutParam);
+
+    bool logAdminAction()
+    {
+        return COOLWSD::getConfigValue<bool>("admin_console.logging.admin_action", true);
+    }
 
 private:
     /// Notify Forkit of changed settings.
