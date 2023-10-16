@@ -215,7 +215,9 @@ export class CommentSection extends CanvasSectionObject {
 				}
 			}
 		}
-		this.containerObject.applyDrawingOrders();
+
+		if (this.sectionProperties.docLayer._docType === 'spreadsheet')
+			this.containerObject.applyDrawingOrders();
 	}
 
 	// Mobile.
