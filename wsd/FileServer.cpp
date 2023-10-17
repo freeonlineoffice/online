@@ -1267,7 +1267,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
             // when response contains the jwt we can determine that admin console is
             // accessed for the first time by a specific client
             bool showLog =
-                COOLWSD::getConfigValue<bool>("admin_console.logging.admin_login", true);
+                LOOLWSD::getConfigValue<bool>("admin_console.logging.admin_login", true);
             if (showLog)
             {
                 LOG_ANY("Admin logged in with source IPAddress [" << socket->clientAddress()

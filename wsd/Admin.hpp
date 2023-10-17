@@ -176,7 +176,7 @@ public:
 
     bool logAdminAction()
     {
-        return COOLWSD::getConfigValue<bool>("admin_console.logging.admin_action", true);
+        return LOOLWSD::getConfigValue<bool>("admin_console.logging.admin_action", true);
     }
 
 private:
