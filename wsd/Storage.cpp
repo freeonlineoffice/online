@@ -834,6 +834,8 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo,
             anonObject->set("UserFriendlyName", LOOLWSD::anonymizeUsername(_username));
         }
         anonObject->stringify(wopiResponse);
+
+        // coverity[freed_arg] - object/anonObject's nRefCount is > 1 here
     }
     else
         object->stringify(wopiResponse);
