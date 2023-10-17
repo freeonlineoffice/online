@@ -165,7 +165,9 @@ public:
         return intersects(other);
     }
 
-    bool onSameRow(const TileDesc& other) const
+    // return false if the TileDesc cannot appear in the same TileCombine
+    // because their fields differ for the shared tilecombine case
+    bool sameTileCombineParams(const TileDesc& other) const
     {
         if (other.getPart() != getPart() ||
             other.getEditMode() != getEditMode() ||
@@ -177,6 +179,13 @@ public:
         {
             return false;
         }
+        return true;
+    }
+
+    bool onSameRow(const TileDesc& other) const
+    {
+        if (!sameTileCombineParams(other))
+            return false;
 
         return other.getTilePosY() + other.getTileHeight() >= getTilePosY() &&
                other.getTilePosY() <= getTilePosY() + getTileHeight();
