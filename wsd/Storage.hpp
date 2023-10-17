@@ -439,7 +439,7 @@ public:
 protected:
 
     /// Sanitize a URI by removing authorization tokens.
-    Poco::URI sanitizeUri(Poco::URI uri)
+    void sanitizeUri(Poco::URI& uri)
     {
         static const std::string access_token("access_token");
 
@@ -455,12 +455,14 @@ protected:
                 break;
             }
         }
-
-        return uri;
     }
 
     /// Saves new URI when resource was moved
-    void setUri(const Poco::URI& uri) { _uri = sanitizeUri(uri); }
+    void setUri(const Poco::URI& uri)
+    {
+        _uri = uri;
+        sanitizeUri(_uri);
+    }
 
     /// Returns the root path of the jail directory of docs.
     std::string getLocalRootPath() const;
