@@ -5460,8 +5460,11 @@ class LOOLWSDServer
     // allocate port & hold temporarily.
     std::shared_ptr<ServerSocket> _serverSocket;
 public:
-    LOOLWSDServer() :
-        _acceptPoll("accept_poll")
+    LOOLWSDServer()
+        : _acceptPoll("accept_poll")
+#if !MOBILEAPP
+        , _admin(Admin::instance())
+#endif
     {
     }
 
@@ -5499,7 +5502,7 @@ public:
         WebServerPoll->startThread();
 
 #if !MOBILEAPP
-        Admin::instance().start();
+        _admin.start();
 #endif
     }
 
@@ -5509,7 +5512,7 @@ public:
         if (WebServerPoll)
             WebServerPoll->joinThread();
 #if !MOBILEAPP
-        Admin::instance().stop();
+        _admin.stop();
 #endif
     }
 
@@ -5574,7 +5577,7 @@ public:
 
 #if !MOBILEAPP
         os << "Admin poll:\n";
-        Admin::instance().dumpState(os);
+        _admin.dumpState(os);
 
         // If we have any delaying work going on.
         Delay::dumpState(os);
@@ -5606,6 +5609,10 @@ private:
     };
     /// This thread & poll accepts incoming connections.
     AcceptPoll _acceptPoll;
+
+#if !MOBILEAPP
+    Admin& _admin;
+#endif
 
     /// Create the internal only, local socket for forkit / kits prisoners to talk to.
     std::shared_ptr<ServerSocket> findPrisonerServerPort()
