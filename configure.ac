@@ -1491,6 +1491,15 @@ else
 fi
 AM_CONDITIONAL([ENABLE_CYPRESS], [$ENABLE_CYPRESS])
 
+ENABLE_TESTS=true
+if test "$enable_tests" = "no"; then
+    ENABLE_TESTS=false
+else
+    ENABLE_TESTS=true
+fi
+AM_CONDITIONAL([ENABLE_TESTS], [$ENABLE_TESTS])
+
+
 AC_MSG_CHECKING([for URL of online help])
 if test -n "$with_help_url" -a "$with_help_url" != "no"; then
     HELP_URL="$with_help_url"
@@ -1503,6 +1512,7 @@ else
     AC_MSG_RESULT([default: $HELP_URL])
 fi
 AC_SUBST(HELP_URL)
+AC_DEFINE_UNQUOTED([HELP_URL],["$HELP_URL"],[Default value of help root URL])
 
 AC_MSG_CHECKING([for allowed languages for Writing Aids])
 if test -n "$with_dictionaries" -a "$with_dictionaries" != "no"; then
