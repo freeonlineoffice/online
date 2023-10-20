@@ -3587,12 +3587,14 @@ class PrisonerRequestDispatcher final : public WebSocketHandler
     std::weak_ptr<ChildProcess> _childProcess;
     int _pid; //< The Kit's PID (for logging).
     int _socketFD; //< The socket FD to the Kit (for logging).
+    bool _associatedWithDoc; //< True when/if we get a DocBroker.
 
 public:
     PrisonerRequestDispatcher()
         : WebSocketHandler(/* isClient = */ false, /* isMasking = */ true)
         , _pid(0)
         , _socketFD(0)
+        , _associatedWithDoc(false)
     {
         LOG_TRC_S("PrisonerRequestDispatcher");
     }
@@ -3644,10 +3646,10 @@ private:
             std::unique_lock<std::mutex> lock = docBroker->getLock();
             docBroker->disconnectedFromKit(unexpected);
         }
-        else if (child)
-            LOG_WRN("Kit (" << child->getPid() << ") disconnected. No DocBroker associated.");
-        else
-            LOG_WRN("An unassociated Kit disconnected.");
+        else if (!_associatedWithDoc && !SigUtil::getShutdownRequestFlag())
+        {
+            LOG_WRN("Unassociated Kit (" << _pid << ") disconnected unexpectedly");
+        }
     }
 
     /// Called after successful socket reads.
@@ -3813,13 +3815,20 @@ private:
         auto message = std::make_shared<Message>(data.data(), data.size(), Message::Dir::Out);
         std::shared_ptr<StreamSocket> socket = getSocket().lock();
         if (socket)
+        {
+            assert(socket->getFD() == _socketFD && "Socket FD changed unexpectedly");
             LOG_TRC("Prisoner message [" << message->abbr() << ']');
+        }
         else
             LOG_WRN("Message handler called but without valid socket.");
 
         std::shared_ptr<ChildProcess> child = _childProcess.lock();
-        std::shared_ptr<DocumentBroker> docBroker = child ? child->getDocumentBroker() : nullptr;
+        std::shared_ptr<DocumentBroker> docBroker =
+            child && child->getPid() > 0 ? child->getDocumentBroker() : nullptr;
         if (docBroker)
+        {
+            assert(child->getPid() == _pid && "Child PID changed unexpectedly");
+            _associatedWithDoc = true;
             docBroker->handleInput(message);
         }
         else if (child && child->getPid() > 0)
