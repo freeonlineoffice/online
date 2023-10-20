@@ -3300,7 +3300,7 @@ void DocumentBroker::handleMediaRequest(std::string range,
             // and this would need to be accessed from WSD through the JailRoot path.
             // But, when we have NoCapsForKit there is no jail, so the media file ends
             // up in the host (AppImage) /tmp
-            const std::string root = COOLWSD::NoCapsForKit ? "/" : getJailRoot();
+            const std::string root = LOOLWSD::NoCapsForKit ? "/" : getJailRoot();
 #else
             const std::string root = getJailRoot();
 #endif
