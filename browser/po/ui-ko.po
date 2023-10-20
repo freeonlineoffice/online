@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-16 19:56+0200\n"
+"POT-Creation-Date: 2023-10-20 23:08+0200\n"
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
@@ -144,14 +144,14 @@ msgstr "CPU 그래프"
 msgid "Network Graph"
 msgstr "네트워크 그래프"
 
-#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:248
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:259
 #: src/control/Control.NotebookbarCalc.js:108
 #: src/control/Control.NotebookbarDraw.js:25
 #: src/control/Control.NotebookbarDraw.js:149
 #: src/control/Control.NotebookbarImpress.js:25
 #: src/control/Control.NotebookbarImpress.js:172
 #: src/control/Control.NotebookbarWriter.js:154
-#: src/layer/tile/CommentListSection.ts:394
+#: src/layer/tile/CommentListSection.ts:396
 #: src/layer/tile/CommentSection.ts:120
 msgid "Save"
 msgstr "저장"
@@ -267,13 +267,13 @@ msgstr ""
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:334
 #: src/control/Control.Zotero.js:372 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:553 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:790 src/control/Toolbar.js:1081
+#: src/control/Toolbar.js:554 src/control/Toolbar.js:655
+#: src/control/Toolbar.js:791 src/control/Toolbar.js:1082
 #: src/core/Socket.js:584 src/core/Socket.js:1003 src/core/Socket.js:1078
 #: src/core/Socket.js:1203 src/core/Socket.js:1207 src/main.js:70
 #: src/main.js:73 src/main.js:110 src/map/Clipboard.js:853
 #: src/map/Clipboard.js:892 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "OK"
 msgstr "확인"
 
@@ -295,7 +295,7 @@ msgstr "이 세션을 정말 종료하겠습니까?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:109
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:329
-#: src/control/Toolbar.js:785 src/layer/tile/CommentListSection.ts:389
+#: src/control/Toolbar.js:786 src/layer/tile/CommentListSection.ts:391
 #: src/layer/tile/CommentSection.ts:119 src/layer/tile/CommentSection.ts:122
 msgid "Cancel"
 msgstr "취소"
@@ -389,7 +389,7 @@ msgstr "서버에서 %1 명령을 구문 분석하는 동안 %0 오류가 발생
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1080
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1081
 msgid "Delete"
 msgstr "삭제"
 
@@ -607,9 +607,9 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2117
-#: src/layer/tile/CanvasTileLayer.js:5272
-#: src/layer/tile/CanvasTileLayer.js:5283
-#: src/layer/tile/CommentListSection.ts:931
+#: src/layer/tile/CanvasTileLayer.js:5276
+#: src/layer/tile/CanvasTileLayer.js:5287
+#: src/layer/tile/CommentListSection.ts:933
 msgid "Comment"
 msgstr "추가 설명"
 
@@ -1351,7 +1351,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:659 src/control/Toolbar.js:757
+#: src/control/Control.NotebookbarCalc.js:659 src/control/Toolbar.js:758
 msgid "Text"
 msgstr "문자"
 
@@ -2113,31 +2113,31 @@ msgstr "저장 중..."
 msgid "Renaming..."
 msgstr "이름 바꾸기..."
 
-#: src/control/Toolbar.js:636
+#: src/control/Toolbar.js:637
 msgid "This version of %productName is powered by"
 msgstr "%productName 의 버전의 제공자"
 
-#: src/control/Toolbar.js:648
+#: src/control/Toolbar.js:649
 msgid "\"Slow Proxy\""
 msgstr ""
 
-#: src/control/Toolbar.js:667
+#: src/control/Toolbar.js:668
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:750
+#: src/control/Toolbar.js:751
 msgid "Insert hyperlink"
 msgstr "하이퍼링크 삽입"
 
-#: src/control/Toolbar.js:769
+#: src/control/Toolbar.js:770
 msgid "Link"
 msgstr "링크"
 
-#: src/control/Toolbar.js:1075
+#: src/control/Toolbar.js:1076
 msgid "Are you sure you want to delete this slide?"
 msgstr "이 슬라이드를 정말 삭제하겠습니까?"
 
-#: src/control/Toolbar.js:1078
+#: src/control/Toolbar.js:1079
 msgid "Are you sure you want to delete this page?"
 msgstr "이 페이지를 정말 삭제하겠습니까?"
 
@@ -2275,18 +2275,18 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1505
+#: src/core/Socket.js:1511
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "문서에 연결할 수 없습니다. 다시 시도하십시오."
 
-#: src/core/Socket.js:1522
+#: src/core/Socket.js:1528
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "연결하는 중.."
 
-#: src/core/Socket.js:1532
+#: src/core/Socket.js:1538
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2458,62 +2458,62 @@ msgstr "서버로 파일 업로드가 실패하였습니다. 파일을 찾을 �
 msgid "Uploading file to server failed, the file is too large."
 msgstr "서버로 파일 업로드가 실패하였습니다. 파일이 너무 큽니다."
 
-#: src/layer/tile/CanvasTileLayer.js:1997
+#: src/layer/tile/CanvasTileLayer.js:2001
 #, fuzzy
 msgid "Functions"
 msgstr "함수 마법사"
 
-#: src/layer/tile/CanvasTileLayer.js:2568
+#: src/layer/tile/CanvasTileLayer.js:2572
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2576
+#: src/layer/tile/CanvasTileLayer.js:2580
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2584
+#: src/layer/tile/CanvasTileLayer.js:2588
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5300
+#: src/layer/tile/CanvasTileLayer.js:5304
 msgid "No Comments"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:874
+#: src/layer/tile/CommentListSection.ts:876
 msgid "Modify"
 msgstr "수정"
 
-#: src/layer/tile/CommentListSection.ts:880
+#: src/layer/tile/CommentListSection.ts:882
 #: src/layer/tile/CommentSection.ts:123
 msgid "Reply"
 msgstr "답변"
 
-#: src/layer/tile/CommentListSection.ts:886
+#: src/layer/tile/CommentListSection.ts:888
 msgid "Remove"
 msgstr "제거하기"
 
-#: src/layer/tile/CommentListSection.ts:892
+#: src/layer/tile/CommentListSection.ts:894
 msgid "Remove Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:898
+#: src/layer/tile/CommentListSection.ts:900
 msgid "Resolve"
 msgstr "해결"
 
-#: src/layer/tile/CommentListSection.ts:898
+#: src/layer/tile/CommentListSection.ts:900
 msgid "Unresolve"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:904
+#: src/layer/tile/CommentListSection.ts:906
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:904
+#: src/layer/tile/CommentListSection.ts:906
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:1127
-#: src/layer/tile/CommentListSection.ts:1162
+#: src/layer/tile/CommentListSection.ts:1129
+#: src/layer/tile/CommentListSection.ts:1166
 msgid "Autosaved"
 msgstr ""
 
@@ -2589,7 +2589,7 @@ msgstr ""
 msgid "Initializing..."
 msgstr "초기화하는 중..."
 
-#: src/map/Map.js:441 src/map/Map.js:444 src/map/Map.js:447 src/map/Map.js:450
+#: src/map/Map.js:438 src/map/Map.js:441 src/map/Map.js:444 src/map/Map.js:447
 msgid "Last saved:"
 msgstr ""
 
@@ -2621,15 +2621,15 @@ msgstr "서버로 파일 업로드가 실패되었음, 상태: %0"
 msgid "Creating new file from template..."
 msgstr "템플릿으로 새로운 파일 만들기..."
 
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:493
+#: src/map/handler/Map.WOPI.js:496
 msgid "Creating copy..."
 msgstr "복사본 만드는 중..."
 

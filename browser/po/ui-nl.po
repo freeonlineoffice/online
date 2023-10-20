@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-16 19:56+0200\n"
+"POT-Creation-Date: 2023-10-20 23:08+0200\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -140,14 +140,14 @@ msgstr "CPU-grafiek"
 msgid "Network Graph"
 msgstr "Netwerkgrafiek"
 
-#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:248
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:259
 #: src/control/Control.NotebookbarCalc.js:108
 #: src/control/Control.NotebookbarDraw.js:25
 #: src/control/Control.NotebookbarDraw.js:149
 #: src/control/Control.NotebookbarImpress.js:25
 #: src/control/Control.NotebookbarImpress.js:172
 #: src/control/Control.NotebookbarWriter.js:154
-#: src/layer/tile/CommentListSection.ts:394
+#: src/layer/tile/CommentListSection.ts:396
 #: src/layer/tile/CommentSection.ts:120
 msgid "Save"
 msgstr "Opslaan"
@@ -267,13 +267,13 @@ msgstr "De server is gestopt; laad de pagina ajb opnieuw."
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:334
 #: src/control/Control.Zotero.js:372 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:553 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:790 src/control/Toolbar.js:1081
+#: src/control/Toolbar.js:554 src/control/Toolbar.js:655
+#: src/control/Toolbar.js:791 src/control/Toolbar.js:1082
 #: src/core/Socket.js:584 src/core/Socket.js:1003 src/core/Socket.js:1078
 #: src/core/Socket.js:1203 src/core/Socket.js:1207 src/main.js:70
 #: src/main.js:73 src/main.js:110 src/map/Clipboard.js:853
 #: src/map/Clipboard.js:892 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "OK"
 msgstr "OK"
 
@@ -295,7 +295,7 @@ msgstr "Weet u zeker dat u deze sessie wilt afbreken?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:109
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:329
-#: src/control/Toolbar.js:785 src/layer/tile/CommentListSection.ts:389
+#: src/control/Toolbar.js:786 src/layer/tile/CommentListSection.ts:391
 #: src/layer/tile/CommentSection.ts:119 src/layer/tile/CommentSection.ts:122
 msgid "Cancel"
 msgstr "Annuleren"
@@ -389,7 +389,7 @@ msgstr ""
 msgid "Unlock"
 msgstr "Ontgrendelen"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1080
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1081
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -605,9 +605,9 @@ msgid "replies"
 msgstr "Antwoorden"
 
 #: src/control/Control.JSDialogBuilder.js:2117
-#: src/layer/tile/CanvasTileLayer.js:5272
-#: src/layer/tile/CanvasTileLayer.js:5283
-#: src/layer/tile/CommentListSection.ts:931
+#: src/layer/tile/CanvasTileLayer.js:5276
+#: src/layer/tile/CanvasTileLayer.js:5287
+#: src/layer/tile/CommentListSection.ts:933
 msgid "Comment"
 msgstr "Opmerking"
 
@@ -1350,7 +1350,7 @@ msgstr "Fractie"
 msgid "Boolean Value"
 msgstr "Booleaanse waarde"
 
-#: src/control/Control.NotebookbarCalc.js:659 src/control/Toolbar.js:757
+#: src/control/Control.NotebookbarCalc.js:659 src/control/Toolbar.js:758
 msgid "Text"
 msgstr "Tekst"
 
@@ -2112,31 +2112,31 @@ msgstr "Opslaan..."
 msgid "Renaming..."
 msgstr "Hernoemen..."
 
-#: src/control/Toolbar.js:636
+#: src/control/Toolbar.js:637
 msgid "This version of %productName is powered by"
 msgstr "Deze versie van %productName werk op basis van"
 
-#: src/control/Toolbar.js:648
+#: src/control/Toolbar.js:649
 msgid "\"Slow Proxy\""
 msgstr "\"Langzame Proxy\""
 
-#: src/control/Toolbar.js:667
+#: src/control/Toolbar.js:668
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:750
+#: src/control/Toolbar.js:751
 msgid "Insert hyperlink"
 msgstr "Hyperlink invoegen"
 
-#: src/control/Toolbar.js:769
+#: src/control/Toolbar.js:770
 msgid "Link"
 msgstr "Koppeling"
 
-#: src/control/Toolbar.js:1075
+#: src/control/Toolbar.js:1076
 msgid "Are you sure you want to delete this slide?"
 msgstr "Bent u zeker dat u deze dia wilt verwijderen?"
 
-#: src/control/Toolbar.js:1078
+#: src/control/Toolbar.js:1079
 msgid "Are you sure you want to delete this page?"
 msgstr "Weet u zeker dat u deze pagina wilt verwijderen?"
 
@@ -2276,7 +2276,7 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1505
+#: src/core/Socket.js:1511
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2284,11 +2284,11 @@ msgstr ""
 "Ach, dit is vervelend. We kunnen geen verbinding maken met uw document. "
 "Probeer het aub opnieuw."
 
-#: src/core/Socket.js:1522
+#: src/core/Socket.js:1528
 msgid "Reconnecting..."
 msgstr "Opnieuw verbinden..."
 
-#: src/core/Socket.js:1532
+#: src/core/Socket.js:1538
 msgid "The server has been disconnected."
 msgstr "De verbinding met de server is verbroken."
 
@@ -2489,61 +2489,61 @@ msgstr ""
 "Het uploaden van het document naar de server is niet gelukt, het bestand is "
 "te groot."
 
-#: src/layer/tile/CanvasTileLayer.js:1997
+#: src/layer/tile/CanvasTileLayer.js:2001
 msgid "Functions"
 msgstr "Functies"
 
-#: src/layer/tile/CanvasTileLayer.js:2568
+#: src/layer/tile/CanvasTileLayer.js:2572
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2576
+#: src/layer/tile/CanvasTileLayer.js:2580
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2584
+#: src/layer/tile/CanvasTileLayer.js:2588
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5300
+#: src/layer/tile/CanvasTileLayer.js:5304
 msgid "No Comments"
 msgstr "Geen notities"
 
-#: src/layer/tile/CommentListSection.ts:874
+#: src/layer/tile/CommentListSection.ts:876
 msgid "Modify"
 msgstr "Wijzigen"
 
-#: src/layer/tile/CommentListSection.ts:880
+#: src/layer/tile/CommentListSection.ts:882
 #: src/layer/tile/CommentSection.ts:123
 msgid "Reply"
 msgstr "Beantwoorden"
 
-#: src/layer/tile/CommentListSection.ts:886
+#: src/layer/tile/CommentListSection.ts:888
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: src/layer/tile/CommentListSection.ts:892
+#: src/layer/tile/CommentListSection.ts:894
 msgid "Remove Thread"
 msgstr "Draad verwijderen"
 
-#: src/layer/tile/CommentListSection.ts:898
+#: src/layer/tile/CommentListSection.ts:900
 msgid "Resolve"
 msgstr "Oplossen"
 
-#: src/layer/tile/CommentListSection.ts:898
+#: src/layer/tile/CommentListSection.ts:900
 msgid "Unresolve"
 msgstr "Niet opgelost"
 
-#: src/layer/tile/CommentListSection.ts:904
+#: src/layer/tile/CommentListSection.ts:906
 msgid "Unresolve Thread"
 msgstr "Draad niet opgelost"
 
-#: src/layer/tile/CommentListSection.ts:904
+#: src/layer/tile/CommentListSection.ts:906
 msgid "Resolve Thread"
 msgstr "Opgeloste draad"
 
-#: src/layer/tile/CommentListSection.ts:1127
-#: src/layer/tile/CommentListSection.ts:1162
+#: src/layer/tile/CommentListSection.ts:1129
+#: src/layer/tile/CommentListSection.ts:1166
 msgid "Autosaved"
 msgstr ""
 
@@ -2631,7 +2631,7 @@ msgstr ""
 msgid "Initializing..."
 msgstr "Initialiseren…"
 
-#: src/map/Map.js:441 src/map/Map.js:444 src/map/Map.js:447 src/map/Map.js:450
+#: src/map/Map.js:438 src/map/Map.js:441 src/map/Map.js:444 src/map/Map.js:447
 msgid "Last saved:"
 msgstr "Laatst opgeslagen:"
 
@@ -2667,15 +2667,15 @@ msgstr "Het uploaden van het bestand naar de server is mislukt met status: %0"
 msgid "Creating new file from template..."
 msgstr "Nieuw bestand van sjabloon maken..."
 
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:485
+#: src/map/handler/Map.WOPI.js:488
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:493
+#: src/map/handler/Map.WOPI.js:496
 msgid "Creating copy..."
 msgstr "Kopie maken..."
 
