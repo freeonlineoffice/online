@@ -1883,10 +1883,7 @@ private:
 
 inline std::ostream& operator<<(std::ostream& os, const http::Header& header)
 {
-    for (const auto& pair : header)
-    {
-        os << '\t' << pair.first << ": " << pair.second << " / ";
-    }
+    Util::joinPair(os, header, " / ");
 
     return os;
 }
