@@ -81,7 +81,7 @@ public:
         {
             LOG_TST("FakeWOPIHost: Handling template GetFile: " << uriReq.getPath());
 
-            HttpHelper::sendFileAndShutdown(socket, TDOC "/test.ott", "");
+            HttpHelper::sendFileAndShutdown(socket, TDOC "/test.ott");
 
             return true;
         }
