@@ -10,7 +10,9 @@
 #pragma once
 
 #include <string>
-#include "Socket.hpp"
+
+#include <HttpRequest.hpp>
+#include <Socket.hpp>
 
 #include <Poco/MemoryStream.h>
 #include <Poco/Util/LayeredConfiguration.h>
@@ -69,9 +71,10 @@ public:
 
 private:
     static std::map<std::string, std::pair<std::string, std::string>> FileHash;
-    static void sendError(int errorCode, const Poco::Net::HTTPRequest& request,
-                          const std::shared_ptr<StreamSocket>& socket, const std::string& shortMessage,
-                          const std::string& longMessage, const std::string& extraHeader = "");
+    static void sendError(http::StatusCode errorCode, const Poco::Net::HTTPRequest& request,
+                          const std::shared_ptr<StreamSocket>& socket,
+                          const std::string& shortMessage, const std::string& longMessage,
+                          const std::string& extraHeader = std::string());
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
