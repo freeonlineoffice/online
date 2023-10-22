@@ -288,6 +288,24 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request,
     return true;
 }
 
+bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http::Response& response)
+{
+    // For now, we reuse the exiting implementation, which uses Poco HTTPCookie.
+    Poco::Net::HTTPResponse pocoResponse;
+    if (isAdminLoggedIn(request, pocoResponse))
+    {
+        // Copy the headers, including the cookies.
+        for (const auto& pair : pocoResponse)
+        {
+            response.set(pair.first, pair.second);
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
 #if ENABLE_DEBUG
     // Represents basic file's attributes.
     // Used for localFile
@@ -477,7 +495,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 #if ENABLE_DEBUG
         noCache = !LOOLWSD::ForceCaching; // for cypress
 #endif
-        Poco::Net::HTTPResponse response;
+        http::Response response(http::StatusCode::OK);
 
         const auto& config = Application::instance().config();
 
@@ -529,10 +547,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             if (loolLogging != "false")
             {
                 LOG_ERR(message.rdbuf());
-
-                std::ostringstream oss;
-                response.write(oss);
-                socket->send(oss.str());
+                socket->send(response);
                 return;
             }
         }
@@ -633,18 +648,19 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             response.set("Server", HTTP_SERVER_STRING);
             response.set("Date", Util::getHttpTimeNow());
 
-            bool gzip = request.hasToken("Accept-Encoding", "gzip");
-            const std::string *content;
 #if ENABLE_DEBUG
             if (std::getenv("LOOL_SERVE_FROM_FS"))
             {
                 // Useful to not serve from memory sometimes especially during lool development
                 // Avoids having to restart lool everytime you make a change in lool
                 const std::string filePath = Poco::Path(LOOLWSD::FileServerRoot, relPath).absolute().toString();
-                HttpHelper::sendFileAndShutdown(socket, filePath, &response, noCache);
+                HttpHelper::sendFileAndShutdown(socket, filePath, response, noCache);
                 return;
             }
 #endif
+
+            const bool gzip = request.hasToken("Accept-Encoding", "gzip");
+            const std::string* content;
             if (gzip)
             {
                 response.set("Content-Encoding", "gzip");
@@ -659,15 +675,12 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
                 response.set("Cache-Control", "max-age=11059200");
                 response.set("ETag", etagString);
             }
-            response.setContentType(mimeType);
             response.add("X-Content-Type-Options", "nosniff");
 
-            std::ostringstream oss;
-            response.write(oss);
-            const std::string header = oss.str();
-            LOG_TRC('#' << socket->getFD() << ": Sending " <<
-                    (!gzip ? "un":"") << "compressed : file [" << relPath << "]: " << header);
-            socket->send(header);
+            LOG_TRC('#' << socket->getFD() << ": Sending " << (!gzip ? "un" : "")
+                        << "compressed : file [" << relPath << "]: " << response.header());
+
+            socket->send(response);
             socket->send(*content);
             // shutdown by caller
         }
