@@ -1814,7 +1814,6 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
 
                 const std::string fileName = Poco::Path(resultURL.getPath()).getFileName();
                 Poco::Net::HTTPResponse response;
-                // We have a fragile test that expects Content-Disposition first.
                 if (!fileName.empty())
                     response.set("Content-Disposition", "attachment; filename=\"" + fileName + '"');
                 response.setContentType("application/octet-stream");
