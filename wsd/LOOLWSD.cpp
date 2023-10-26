@@ -902,6 +902,7 @@ std::string LOOLWSD::RouteToken;
 bool LOOLWSD::SingleKit = false;
 bool LOOLWSD::ForceCaching = false;
 #endif
+COOLWSD::WASMActivationState COOLWSD::WASMState = COOLWSD::WASMActivationState::Disabled;
 #endif
 std::string LOOLWSD::SysTemplate;
 std::string LOOLWSD::LoTemplate = LO_PATH;
@@ -2048,8 +2049,6 @@ void LOOLWSD::innerInitialize(Application& self)
         { "hexify_embedded_urls", "false" },
         { "experimental_features", "false" },
         { "logging.protocol", "false" },
-        { "logging.anonymize.filenames", "false" }, // Deprecated.
-        { "logging.anonymize.usernames", "false" }, // Deprecated.
         // { "logging.anonymize.anonymize_user_data", "false" }, // Do not set to fallback on filename/username.
         { "logging.color", "true" },
         { "logging.file.property[0]", "loolwsd.log" },
@@ -2190,7 +2189,9 @@ void LOOLWSD::innerInitialize(Application& self)
         { "admin_console.logging.admin_login", "true" },
         { "admin_console.logging.metrics_fetch", "true" },
         { "admin_console.logging.monitor_connect", "true" },
-        { "admin_console.logging.admin_action", "true" }
+        { "admin_console.logging.admin_action", "true" },
+        { "wasm.enable", "false" },
+        { "wasm.force", "false" },
     };
 
     // Set default values, in case they are missing from the config file.
@@ -2355,6 +2356,26 @@ void LOOLWSD::innerInitialize(Application& self)
     bool reuseCookies = false;
     if (getSafeConfig(conf, "storage.wopi.reuse_cookies", reuseCookies))
         LOG_WRN("NOTE: Deprecated config option storage.wopi.reuse_cookies - no longer supported.");
+
+    COOLWSD::WASMState = getConfigValue<bool>(conf, "wasm.enable", false)
+                             ? COOLWSD::WASMActivationState::Enabled
+                             : COOLWSD::WASMActivationState::Disabled;
+
+#if ENABLE_DEBUG
+    if (getConfigValue<bool>(conf, "wasm.force", false))
+    {
+        if (COOLWSD::WASMState != COOLWSD::WASMActivationState::Enabled)
+        {
+            LOG_FTL(
+                "WASM is not enabled; cannot force serving WASM. Please set wasm.enabled to true "
+                "in coolwsd.xml first");
+            Util::forcedExit(EX_SOFTWARE);
+        }
+
+        LOG_INF("WASM is force-enabled. All documents will be loaded through WASM");
+        COOLWSD::WASMState = COOLWSD::WASMActivationState::Forced;
+    }
+#endif
 
     // Get anonymization settings.
 #if LOOLWSD_ANONYMIZE_USER_DATA
