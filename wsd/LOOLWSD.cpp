@@ -902,7 +902,7 @@ std::string LOOLWSD::RouteToken;
 bool LOOLWSD::SingleKit = false;
 bool LOOLWSD::ForceCaching = false;
 #endif
-COOLWSD::WASMActivationState COOLWSD::WASMState = COOLWSD::WASMActivationState::Disabled;
+LOOLWSD::WASMActivationState LOOLWSD::WASMState = LOOLWSD::WASMActivationState::Disabled;
 #endif
 std::string LOOLWSD::SysTemplate;
 std::string LOOLWSD::LoTemplate = LO_PATH;
@@ -2357,23 +2357,23 @@ void LOOLWSD::innerInitialize(Application& self)
     if (getSafeConfig(conf, "storage.wopi.reuse_cookies", reuseCookies))
         LOG_WRN("NOTE: Deprecated config option storage.wopi.reuse_cookies - no longer supported.");
 
-    COOLWSD::WASMState = getConfigValue<bool>(conf, "wasm.enable", false)
-                             ? COOLWSD::WASMActivationState::Enabled
-                             : COOLWSD::WASMActivationState::Disabled;
+    LOOLWSD::WASMState = getConfigValue<bool>(conf, "wasm.enable", false)
+                             ? LOOLWSD::WASMActivationState::Enabled
+                             : LOOLWSD::WASMActivationState::Disabled;
 
 #if ENABLE_DEBUG
     if (getConfigValue<bool>(conf, "wasm.force", false))
     {
-        if (COOLWSD::WASMState != COOLWSD::WASMActivationState::Enabled)
+        if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Enabled)
         {
             LOG_FTL(
                 "WASM is not enabled; cannot force serving WASM. Please set wasm.enabled to true "
-                "in coolwsd.xml first");
+                "in loolwsd.xml first");
             Util::forcedExit(EX_SOFTWARE);
         }
 
         LOG_INF("WASM is force-enabled. All documents will be loaded through WASM");
-        COOLWSD::WASMState = COOLWSD::WASMActivationState::Forced;
+        LOOLWSD::WASMState = LOOLWSD::WASMActivationState::Forced;
     }
 #endif
 
