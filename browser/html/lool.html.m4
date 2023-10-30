@@ -138,6 +138,7 @@ var Base64ToArrayBuffer = function(base64Str) {
     window.fullyLoadedAndReady = true;
   }, false);
 
+window.savedUIState = %SAVED_UI_STATE%;
 window.isLocalStorageAllowed = (function() {
   var str = 'localstorage_test';
   try {
