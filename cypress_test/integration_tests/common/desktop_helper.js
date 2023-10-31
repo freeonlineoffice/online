@@ -263,7 +263,7 @@ function createComment(docType, text, isMobile, selector) {
 
 	cy.wait(100);
 
-	cy.cGet('.cool-annotation-table').should('exist');
+	cy.cGet('.lool-annotation-table').should('exist');
 
 	if (isMobile) {
 		cy.cGet('#input-modal-input').type(text);

@@ -102,12 +102,12 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('calc');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';
@@ -120,21 +120,21 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('calc');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-save-new').click();
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';
 		});
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 		cy.cGet('#comment-container-1').trigger('mouseover');
 		cy.cGet('#annotation-content-area-1').should('have.text','Test Comment');
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';
@@ -147,15 +147,15 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('calc');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-cancel-new').click();
-		cy.cGet('.cool-annotation').should('not.exist');
-		cy.cGet('.cool-annotation-autosavelabel').should('not.exist');
+		cy.cGet('.lool-annotation').should('not.exist');
+		cy.cGet('.lool-annotation-autosavelabel').should('not.exist');
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('not.exist');
+		cy.cGet('.lool-annotation').should('not.exist');
 	});
 
 	it('Modify autosave',function() {
@@ -173,12 +173,12 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';
@@ -202,8 +202,8 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-save-1').click();
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
@@ -215,7 +215,7 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';
@@ -239,8 +239,8 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-cancel-1').click();
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
@@ -252,7 +252,7 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'calc', true, false, false, true);
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 		cy.cGet('#comment-container-1').then(function (element) {
 			element[0].style.visibility = '';
 			element[0].style.display = '';

@@ -110,7 +110,7 @@ class TilesSection extends CanvasSectionObject {
 	}
 
 	// the bounding box of this set of tiles
-	public getSubsetBounds(canvasCtx: CanvasRenderingContext2D, tileSubset: Set<any>): cool.Bounds {
+	public getSubsetBounds(canvasCtx: CanvasRenderingContext2D, tileSubset: Set<any>): lool.Bounds {
 
 		// don't do anything for this atypical varient
 		if (app.file.fileBasedView)
@@ -118,13 +118,13 @@ class TilesSection extends CanvasSectionObject {
 
 		var ctx = this.sectionProperties.tsManager._paintContext();
 
-		var bounds: cool.Bounds;
+		var bounds: lool.Bounds;
 		for (const coords of tileSubset) {
 			var topLeft = new L.Point(coords.getPos().x, coords.getPos().y);
 			var rightBottom = new L.Point(topLeft.x + ctx.tileSize.x, topLeft.y + ctx.tileSize.y);
 
 			if (bounds === undefined)
-				bounds = new cool.Bounds(topLeft, rightBottom);
+				bounds = new lool.Bounds(topLeft, rightBottom);
 			else {
 				bounds.extend(topLeft).extend(rightBottom);
 			}
@@ -133,7 +133,7 @@ class TilesSection extends CanvasSectionObject {
 		return bounds;
 	}
 
-	public clipSubsetBounds(canvasCtx: CanvasRenderingContext2D, subsetBounds: cool.Bounds): void {
+	public clipSubsetBounds(canvasCtx: CanvasRenderingContext2D, subsetBounds: lool.Bounds): void {
 
 		var ctx = this.sectionProperties.tsManager._paintContext();
 		ctx.viewBounds.round();
@@ -382,7 +382,7 @@ class TilesSection extends CanvasSectionObject {
 		}
 	}
 
-	public onDraw (frameCount: number = null, elapsedTime: number = null, subsetBounds: cool.Bounds = null) {
+	public onDraw (frameCount: number = null, elapsedTime: number = null, subsetBounds: lool.Bounds = null) {
 		if (this.containerObject.isInZoomAnimation())
 			return;
 
