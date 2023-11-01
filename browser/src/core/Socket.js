@@ -577,7 +577,7 @@ app.definitions.Socket = L.Class.extend({
 			if (window.indirectSocket) {
 				if (window.expectedServerId && window.expectedServerId != this.WSDServer.Id) {
 					if (this.IndirectSocketReconnectCount++ >= 3) {
-						var msg = errorMessages.clusterconfiguration.replace('%productName', (typeof brandProductName !== 'undefined' ? brandProductName : 'Collabora Online Development Edition (unbranded)'));
+						var msg = errorMessages.clusterconfiguration.replace('%productName', (typeof brandProductName !== 'undefined' ? brandProductName : 'Free  Online Office'));
 						msg = msg.replace(/%0/g, window.expectedServerId);
 						msg = msg.replace(/%1/g, window.routeToken);
 						msg = msg.replace(/%2/g, this.WSDServer.Id);
