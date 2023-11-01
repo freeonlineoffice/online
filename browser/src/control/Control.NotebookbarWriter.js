@@ -1,12 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
- * L.Control.NotebookbarWriter - definition of notebookbar content in Writer
+ * L.Control.NotebookbarWriter
  */
 
 /* global _ _UNO */

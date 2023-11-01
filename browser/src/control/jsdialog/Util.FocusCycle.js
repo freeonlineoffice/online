@@ -1,12 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
 /*
+ * JSDialog.FocusCycle - focus related functions
+ *
  * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
- * JSDialog.FocusCycle - focus related functions
  */
 
 /* global JSDialog */

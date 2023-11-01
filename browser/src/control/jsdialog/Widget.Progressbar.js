@@ -1,11 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
  * JSDialog.Progressbar - progress bar widget
  *
  * Example JSON:
@@ -15,6 +9,10 @@
  *     value: 30,
  *     maxValue: 100
  * }
+ *
+ * Copyright the Collabora Online contributors.
+ *
+ * SPDX-License-Identifier: MPL-2.0
  */
 
 /* global JSDialog $ */

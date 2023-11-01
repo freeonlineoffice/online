@@ -1,11 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
  * JSDialog.MultilineEdit - text field with multiple lines and scrollbar
  *
  * Example JSON:
@@ -19,6 +13,10 @@
  *
  * 'cursor' specifies if user can type into the field or it is readonly
  * 'enabled' editable field can be temporarily disabled
+ *
+ * Copyright the Collabora Online contributors.
+ *
+ * SPDX-License-Identifier: MPL-2.0
  */
 
 /* global JSDialog */

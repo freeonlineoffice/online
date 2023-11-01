@@ -1,12 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
- * L.Control.NotebookbarBuilder - builder of native HTML widgets for tabbed menu
+ * L.Control.NotebookbarBuilder
  */
 
 /* global $ _ _UNO JSDialog app */

@@ -1,11 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
  * JSDialog.TreeView - tree view widget with or without header
  *
  * Example JSON:
@@ -50,6 +44,10 @@
  * 'ondemand' property can be set to provide nodes lazy loading
  * 'collapsed' property means, this entry have childrens, but they are not visible, because
  *             this branch is collapsed.
+ *
+ * Copyright the Collabora Online contributors.
+ *
+ * SPDX-License-Identifier: MPL-2.0
  */
 
 /* global $ _ JSDialog */

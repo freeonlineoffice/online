@@ -1,12 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
- * L.Control.Notebookbar - container for tabbed menu on the top of application
+ * L.Control.Notebookbar
  */
 
 /* global $ _ _UNO */

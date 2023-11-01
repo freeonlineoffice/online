@@ -1,12 +1,6 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
- * L.Control.Zotero - bibliography dialogs implementation
+ * L.Control.Zotero
  */
 
 /* global _ Promise app Set */

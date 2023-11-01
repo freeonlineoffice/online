@@ -1,11 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
- */
-
-/*
  * JSDialog.Combobox - combobox widget with support for custom renders of entries
  *
  * Example JSON:
@@ -18,6 +12,10 @@
  * }
  *
  * customEntryRenderer - specifies if entries have custom content which is rendered by the core
+ *
+ * Copyright the Collabora Online contributors.
+ *
+ * SPDX-License-Identifier: MPL-2.0
  */
 
 /* global JSDialog $ */
