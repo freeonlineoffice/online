@@ -6,7 +6,7 @@ declare var $: any;
 declare var Hammer: any;
 declare var app: any;
 
-namespace cool {
+namespace lool {
 
 export class TilesSection extends CanvasSectionObject {
 	map: any;
@@ -873,5 +873,5 @@ export class TilesSection extends CanvasSectionObject {
 }
 
 L.getNewTilesSection = function () {
-	return new cool.TilesSection();
+	return new lool.TilesSection();
 };
