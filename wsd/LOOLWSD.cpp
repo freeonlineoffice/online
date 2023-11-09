@@ -5813,6 +5813,10 @@ int LOOLWSD::innerMain()
     std::string version, hash;
     Util::getVersionInfo(version, hash);
     LOG_INF("Loolwsd version details: " << version << " - " << hash << " - id " << Util::getProcessIdentifier() << " - on " << Util::getLinuxVersion());
+
+    LOG_INF("available memory: " << Util::getTotalSystemMemoryKb()/1024 << " MB");
+    LOG_INF("hardware threads: " << std::thread::hardware_concurrency());
+
 #endif
 
     initializeSSL();
