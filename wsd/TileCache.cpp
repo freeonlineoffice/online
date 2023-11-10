@@ -433,7 +433,7 @@ bool TileCache::intersectsTile(const TileDesc &tileDesc, int part, int mode, int
 }
 
 // FIXME: to be further simplified when we centralize tile messages.
-void TileCache::subscribeToTileRendering(const TileDesc& tile, const std::shared_ptr<ClientSession>& subscriber,
+bool TileCache::subscribeToTileRendering(const TileDesc& tile, const std::shared_ptr<ClientSession>& subscriber,
                                          const std::chrono::steady_clock::time_point &now)
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
@@ -452,7 +452,7 @@ void TileCache::subscribeToTileRendering(const TileDesc& tile, const std::shared
                 LOG_TRC("Redundant request to subscribe on tile " << tile.debugName());
                 // the version stops us unsubscribing when we get there.
                 tileBeingRendered->setVersion(tile.getVersion());
-                return;
+                return false;
             }
         }
 
@@ -471,6 +471,7 @@ void TileCache::subscribeToTileRendering(const TileDesc& tile, const std::shared
         tileBeingRendered->getSubscribers().push_back(subscriber);
         _tilesBeingRendered[tile] = tileBeingRendered;
     }
+    return true;
 }
 
 Tile TileCache::findTile(const TileDesc &desc)
