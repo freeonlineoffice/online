@@ -370,6 +370,6 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		helper.closeDocument(testFileName, '');
 		helper.beforeAll(testFileName, 'impress', true, false, false, true);
 		cy.cGet('.lool-annotation-edit.reply-annotation').should('be.not.visible');
-		cy.cGet('.cool-annotation-content > div').should('have.text','some text0');
+		cy.cGet('.lool-annotation-content > div').should('have.text','some text0');
 	});
 });
