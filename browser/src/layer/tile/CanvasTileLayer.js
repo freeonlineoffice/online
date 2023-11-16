@@ -5155,6 +5155,7 @@ L.CanvasTileLayer = L.Layer.extend({
 				} else if (e.layer === this._debugTrace) {
 					app.socket.setTraceEventLogging(true);
 				} else if (e.layer === this._debugLogging) {
+					L.Log.print();
 					window.setLogging(true);
 				} else if (e.layer === this._debugTileDumping) {
 					app.socket.sendMessage('toggletiledumping true');
@@ -7160,8 +7161,6 @@ L.CanvasTileLayer = L.Layer.extend({
 				this._debugLoadTile++;
 		}
 		this._showDebugForTile(key);
-
-		L.Log.log(textMsg, 'INCOMING', key);
 
 		// updates don't need more chattiness with a tileprocessed
 		if (hasContent)
