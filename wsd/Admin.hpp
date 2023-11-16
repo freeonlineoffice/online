@@ -179,6 +179,8 @@ public:
         return LOOLWSD::getConfigValue<bool>("admin_console.logging.admin_action", true);
     }
 
+    void routeTokenSanityCheck();
+
 private:
     /// Notify Forkit of changed settings.
     void notifyForkit();

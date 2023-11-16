@@ -842,6 +842,11 @@ void Admin::addLostKitsTerminated(unsigned lostKitsTerminated)
     addCallback([=]{ _model.addLostKitsTerminated(lostKitsTerminated); });
 }
 
+void Admin::routeTokenSanityCheck()
+{
+    addCallback([=] { _model.routeTokenSanityCheck(); });
+}
+
 void Admin::notifyForkit()
 {
     std::ostringstream oss;
