@@ -2200,8 +2200,12 @@ void LOOLWSD::innerInitialize(Application& self)
 
 #if !MOBILEAPP
 
-    // Load default configuration files, if present.
-    if (loadConfiguration(PRIO_DEFAULT) == 0)
+    // Load default configuration files, with name independent
+    // of Poco's view of app-name, from local file if present.
+    Poco::Path configPath("coolwsd.xml");
+    if (Application::findFile(configPath))
+        loadConfiguration(configPath.toString(), PRIO_DEFAULT);
+    else
     {
         // Fallback to the LOOLWSD_CONFIGDIR or --config-file path.
         loadConfiguration(ConfigFile, PRIO_DEFAULT);
