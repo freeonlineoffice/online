@@ -1284,6 +1284,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			},
 			{
 				'id':'toggledarktheme',
+				'class': 'unotoggledarktheme',
 				'type': 'bigmenubartoolitem',
 				'text': _('Dark Mode'),
 				'accessibility': { focusBack: true,	combination: 'DT', de: null }
