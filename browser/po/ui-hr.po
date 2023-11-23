@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:19+0100\n"
+"POT-Creation-Date: 2023-11-23 21:19+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/"
@@ -142,7 +142,7 @@ msgstr "Grafikon procesora"
 msgid "Network Graph"
 msgstr "Grafikon mreže"
 
-#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:257
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:256
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:19
 #: src/control/Control.NotebookbarDraw.js:143
@@ -272,7 +272,7 @@ msgstr "Poslužitelj je isključen, ponovo učitaj stranicu."
 #: src/core/Socket.js:1205 src/core/Socket.js:1209 src/main.js:70
 #: src/main.js:73 src/main.js:110 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.WOPI.js:539
 msgid "OK"
 msgstr "U redu"
 
@@ -834,7 +834,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:571 src/control/Control.Menubar.js:708
 #: src/control/Control.Menubar.js:963 src/control/Control.Menubar.js:1015
 #: src/control/Control.Menubar.js:1075 src/control/Control.Menubar.js:1134
-#: src/control/Control.NotebookbarCalc.js:1288
+#: src/control/Control.NotebookbarCalc.js:1289
 #: src/control/Control.NotebookbarDraw.js:415
 #: src/control/Control.NotebookbarImpress.js:533
 #: src/control/Control.NotebookbarWriter.js:1475
@@ -855,7 +855,7 @@ msgstr "Sve"
 
 #: src/control/Control.Menubar.js:175 src/control/Control.Menubar.js:448
 #: src/control/Control.Menubar.js:585 src/control/Control.Menubar.js:730
-#: src/control/Control.NotebookbarCalc.js:1411
+#: src/control/Control.NotebookbarCalc.js:1412
 #: src/control/Control.NotebookbarDraw.js:1228
 #: src/control/Control.NotebookbarImpress.js:1235
 #: src/control/Control.NotebookbarWriter.js:1081
@@ -1468,12 +1468,12 @@ msgstr ""
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1362
+#: src/control/Control.NotebookbarCalc.js:1363
 msgid "Sparkline"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1494
-#: src/control/Control.NotebookbarCalc.js:2282
+#: src/control/Control.NotebookbarCalc.js:1495
+#: src/control/Control.NotebookbarCalc.js:2283
 #: src/control/Control.NotebookbarDraw.js:824
 #: src/control/Control.NotebookbarDraw.js:1313
 #: src/control/Control.NotebookbarImpress.js:935
@@ -1968,19 +1968,19 @@ msgstr ""
 "Ovaj dokument možda sadrži formatiranje ili sadržaj koji se ne može spremiti "
 "u trenutačnom formatu datoteke."
 
-#: src/control/Ruler.js:364
+#: src/control/Ruler.js:359
 msgid "Left Margin"
 msgstr "Lijeva margina"
 
-#: src/control/Ruler.js:365
+#: src/control/Ruler.js:360
 msgid "Right Margin"
 msgstr "Desna margina"
 
-#: src/control/Ruler.js:626
+#: src/control/Ruler.js:621
 msgid "Insert tabstop"
 msgstr "Umetni mjesto tabulatora"
 
-#: src/control/Ruler.js:633
+#: src/control/Ruler.js:628
 msgid "Delete tabstop"
 msgstr "Izbriši mjesto tabulatora"
 
@@ -2575,7 +2575,7 @@ msgid "Resolve Thread"
 msgstr "Riješi raspravu"
 
 #: src/layer/tile/CommentListSection.ts:1167
-#: src/layer/tile/CommentListSection.ts:1204
+#: src/layer/tile/CommentListSection.ts:1203
 msgid "Autosaved"
 msgstr ""
 
@@ -2654,11 +2654,11 @@ msgid ""
 "more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 
-#: src/map/Map.js:221
+#: src/map/Map.js:217
 msgid "Initializing..."
 msgstr "Inicijaliziranje …"
 
-#: src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452 src/map/Map.js:455
+#: src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448 src/map/Map.js:451
 msgid "Last saved:"
 msgstr ""
 
@@ -2694,15 +2694,15 @@ msgstr "Neuspjelo prenošenje datoteke na poslužitelj sa stanjem: %0"
 msgid "Creating new file from template..."
 msgstr "Stvaranje nove datoteke iz predloška …"
 
-#: src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.WOPI.js:539
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.WOPI.js:539
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:544
+#: src/map/handler/Map.WOPI.js:547
 msgid "Creating copy..."
 msgstr "Stvaranje kopije …"
 

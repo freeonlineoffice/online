@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 11:19+0100\n"
-"PO-Revision-Date: 2023-11-19 20:36+0100\n"
+"POT-Creation-Date: 2023-11-23 21:19+0100\n"
+"PO-Revision-Date: 2023-11-23 21:27+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -144,7 +144,7 @@ msgstr "CPU-Grafik"
 msgid "Network Graph"
 msgstr "Netzwerkgrafik"
 
-#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:257
+#: admin/admin.strings.js:36 src/control/Control.Notebookbar.js:256
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:19
 #: src/control/Control.NotebookbarDraw.js:143
@@ -271,7 +271,7 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/core/Socket.js:1005 src/core/Socket.js:1080 src/core/Socket.js:1205
 #: src/core/Socket.js:1209 src/main.js:70 src/main.js:73 src/main.js:110
 #: src/map/Clipboard.js:860 src/map/Clipboard.js:899
-#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:539
 msgid "OK"
 msgstr "OK"
 
@@ -814,7 +814,7 @@ msgstr "Menüleiste verbergen"
 #: src/control/Control.Menubar.js:571 src/control/Control.Menubar.js:708
 #: src/control/Control.Menubar.js:963 src/control/Control.Menubar.js:1015
 #: src/control/Control.Menubar.js:1075 src/control/Control.Menubar.js:1134
-#: src/control/Control.NotebookbarCalc.js:1288
+#: src/control/Control.NotebookbarCalc.js:1289
 #: src/control/Control.NotebookbarDraw.js:415
 #: src/control/Control.NotebookbarImpress.js:533
 #: src/control/Control.NotebookbarWriter.js:1475
@@ -835,7 +835,7 @@ msgstr "Alle"
 
 #: src/control/Control.Menubar.js:175 src/control/Control.Menubar.js:448
 #: src/control/Control.Menubar.js:585 src/control/Control.Menubar.js:730
-#: src/control/Control.NotebookbarCalc.js:1411
+#: src/control/Control.NotebookbarCalc.js:1412
 #: src/control/Control.NotebookbarDraw.js:1228
 #: src/control/Control.NotebookbarImpress.js:1235
 #: src/control/Control.NotebookbarWriter.js:1081
@@ -848,7 +848,7 @@ msgstr "Textausrichtung"
 
 #: src/control/Control.Menubar.js:278 src/control/Control.NotebookbarWriter.js:51
 msgid "References"
-msgstr "Quellangabe"
+msgstr "Referenzen"
 
 #: src/control/Control.Menubar.js:281 src/control/Control.NotebookbarWriter.js:1835
 msgid "Update Index"
@@ -1402,12 +1402,12 @@ msgstr "Register zuklappen"
 msgid "Status Bar"
 msgstr "Statusleiste"
 
-#: src/control/Control.NotebookbarCalc.js:1362
+#: src/control/Control.NotebookbarCalc.js:1363
 msgid "Sparkline"
 msgstr "Sparkline"
 
-#: src/control/Control.NotebookbarCalc.js:1494
-#: src/control/Control.NotebookbarCalc.js:2282
+#: src/control/Control.NotebookbarCalc.js:1495
+#: src/control/Control.NotebookbarCalc.js:2283
 #: src/control/Control.NotebookbarDraw.js:824
 #: src/control/Control.NotebookbarDraw.js:1313
 #: src/control/Control.NotebookbarImpress.js:935
@@ -1904,19 +1904,19 @@ msgstr ""
 "Dieses Dokument enthält möglicherweise Formatierungen oder Inhalte, die nicht im "
 "aktuellen Dateiformat gespeichert werden können."
 
-#: src/control/Ruler.js:364
+#: src/control/Ruler.js:359
 msgid "Left Margin"
 msgstr "Linker Rand"
 
-#: src/control/Ruler.js:365
+#: src/control/Ruler.js:360
 msgid "Right Margin"
 msgstr "Rechter Rand"
 
-#: src/control/Ruler.js:626
+#: src/control/Ruler.js:621
 msgid "Insert tabstop"
 msgstr "Tabulator einfügen"
 
-#: src/control/Ruler.js:633
+#: src/control/Ruler.js:628
 msgid "Delete tabstop"
 msgstr "Tabulator löschen"
 
@@ -2533,7 +2533,7 @@ msgstr "Thread als ungelöst markieren"
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:1167 src/layer/tile/CommentListSection.ts:1204
+#: src/layer/tile/CommentListSection.ts:1167 src/layer/tile/CommentListSection.ts:1203
 msgid "Autosaved"
 msgstr "Automatisch gespeichert"
 
@@ -2616,11 +2616,11 @@ msgstr ""
 "span><kbd>V</kbd>, um weitere Optionen zu sehen</p><p>Popup schließen, um Einfüge-"
 "Spezial zu ignorieren</p>"
 
-#: src/map/Map.js:221
+#: src/map/Map.js:217
 msgid "Initializing..."
 msgstr "Initialisierung …"
 
-#: src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452 src/map/Map.js:455
+#: src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448 src/map/Map.js:451
 msgid "Last saved:"
 msgstr "Zuletzt gespeichert:"
 
@@ -2654,15 +2654,15 @@ msgstr "Das Hochladen der Datei auf den Server mit dem Status %0 ist fehlgeschla
 msgid "Creating new file from template..."
 msgstr "Neue Datei aus Vorlage erzeugen …"
 
-#: src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.WOPI.js:539
 msgid "Error"
 msgstr "Fehler"
 
-#: src/map/handler/Map.WOPI.js:536
+#: src/map/handler/Map.WOPI.js:539
 msgid "File name should contain an extension."
 msgstr "Dateiname sollte eine Erweiterung enthalten."
 
-#: src/map/handler/Map.WOPI.js:544
+#: src/map/handler/Map.WOPI.js:547
 msgid "Creating copy..."
 msgstr "Kopie erstellen …"
 
