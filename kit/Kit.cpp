@@ -2879,6 +2879,9 @@ void lokit_main(
     ChildSession::NoCapsForKit = noCapabilities;
 #endif // MOBILEAPP
 
+    // Setup the OSL sandbox
+    std::string allowedPaths;
+
     try
     {
 #if !MOBILEAPP
@@ -2893,6 +2896,7 @@ void lokit_main(
 
             userdir_url = "file:///tmp/user";
             instdir_path = '/' + std::string(JailUtil::LO_JAIL_SUBPATH) + "/program";
+            allowedPaths += ":r:/" + std::string(JailUtil::LO_JAIL_SUBPATH);
 
             Poco::Path jailLOInstallation(jailPath, JailUtil::LO_JAIL_SUBPATH);
             jailLOInstallation.makeDirectory();
@@ -2994,6 +2998,7 @@ void lokit_main(
             // Setup the devices inside /tmp and set TMPDIR.
             JailUtil::setupJailDevNodes(Poco::Path(jailPath, "/tmp").toString());
             ::setenv("TMPDIR", "/tmp", 1);
+            allowedPaths += ":w:/tmp";
 
             copyCertificateDatabaseToTmp(jailPath);
 
@@ -3039,7 +3044,12 @@ void lokit_main(
                     << loTemplate << "] as install subpath directly, without chroot jail setup.");
             userdir_url = "file:///" + jailPathStr + "/tmp/user";
             instdir_path = '/' + loTemplate + "/program";
+            allowedPaths += ":r:/" + loTemplate;
             JailRoot = jailPathStr;
+
+            std::string tmpPath = jailPathStr + "/tmp";
+            ::setenv("TMPDIR", tmpPath.c_str(), 1);
+            allowedPaths += ":w:" + tmpPath;
         }
 
         LOG_DBG("Initializing LOK with instdir [" << instdir_path << "] and userdir ["
@@ -3047,6 +3057,10 @@ void lokit_main(
 
         UserDirPath = pathFromFileURL(userdir_url);
         InstDirPath = instdir_path;
+
+        // Setup the OSL sandbox
+        allowedPaths += ":r:" + UserDirPath;
+        ::setenv("SAL_ALLOWED_PATHS", allowedPaths.c_str(), 1);
 
         LibreOfficeKit *kit;
         {
