@@ -966,6 +966,7 @@ bool LOOLWSD::SingleKit = false;
 bool LOOLWSD::ForceCaching = false;
 #endif
 LOOLWSD::WASMActivationState LOOLWSD::WASMState = LOOLWSD::WASMActivationState::Disabled;
+std::unordered_map<std::string, std::chrono::steady_clock::time_point> LOOLWSD::Uri2WasmModeMap;
 #endif
 std::string LOOLWSD::SysTemplate;
 std::string LOOLWSD::LoTemplate = LO_PATH;

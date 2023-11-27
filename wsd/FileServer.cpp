@@ -9,6 +9,7 @@
 
 #include <config.h>
 
+#include <chrono>
 #include <iomanip>
 #include <string>
 #include <vector>
@@ -46,6 +47,7 @@
 #include "FileServer.hpp"
 #include "LOOLWSD.hpp"
 #include "FileUtil.hpp"
+#include "RequestDetails.hpp"
 #include "ServerURL.hpp"
 #include <Log.hpp>
 #include <Protocol.hpp>
@@ -529,7 +531,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
         if (requestSegments.size() < 1)
             throw Poco::FileNotFoundException("Invalid URI request: [" + requestUri.toString() + "].");
 
-        const std::string relPath = getRequestPathname(request);
+        const std::string relPath = getRequestPathname(request, requestDetails);
         const std::string endPoint = requestSegments[requestSegments.size() - 1];
 
         static std::string etagString = "\"" LOOLWSD_VERSION_HASH +
@@ -911,7 +913,8 @@ const std::string *FileServerRequestHandler::getUncompressedFile(const std::stri
     return &FileHash[path].first;
 }
 
-std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& request)
+std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& request,
+                                                         const RequestDetails& requestDetails)
 {
     Poco::URI requestUri(request.getURI());
     // avoid .'s and ..'s
@@ -928,19 +931,55 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
     }
 
 #if !MOBILEAPP
+    bool isWasm = false;
+
     if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Forced)
     {
-        if (path.find("/browser/dist/wasm/") == std::string::npos)
+        isWasm = (path.find("/browser/dist/wasm/") == std::string::npos);
+    }
+    else
+    {
+        const std::string wopiSrc = requestDetails.getLineModeKey(std::string());
+        if (!wopiSrc.empty())
         {
-            Poco::replaceInPlace(path, std::string("/browser/dist/"),
-                                 std::string("/browser/dist/wasm/"));
+            const auto it = LOOLWSD::Uri2WasmModeMap.find(wopiSrc);
+            if (it != LOOLWSD::Uri2WasmModeMap.end())
+            {
+                const bool isRecent =
+                    (std::chrono::steady_clock::now() - it->second) <= std::chrono::minutes(1);
+                isWasm = (isRecent && path.find("/browser/dist/wasm/") == std::string::npos);
+
+                // Clean up only after it expires, because we need it more than once.
+                if (!isRecent)
+                {
+                    LOOLWSD::Uri2WasmModeMap.erase(it);
+                }
+            }
         }
     }
-    else if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled &&
-             path.find("wasm") != std::string::npos)
+
+    if (!isWasm)
     {
-        LOG_ERR("Requesting WASM files when it's disabled: [" << path << ']');
-        throw Poco::FileAccessDeniedException("WASM is disabled");
+        std::vector<std::string> requestSegments;
+        requestUri.getPathSegments(requestSegments);
+        const std::string endPoint = requestSegments[requestSegments.size() - 1];
+        if (endPoint == "online.js" || endPoint == "online.worker.js" ||
+            endPoint == "online.wasm" || endPoint == "online.data" || endPoint == "soffice.data")
+        {
+            isWasm = true;
+        }
+#if ENABLE_DEBUG
+        else if (endPoint == "online.wasm.debug.wasm" || endPoint == "soffice.data.js.metadata")
+        {
+            isWasm = true;
+        }
+#endif
+    }
+
+    if (isWasm)
+    {
+        Poco::replaceInPlace(path, std::string("/browser/dist/"),
+                             std::string("/browser/dist/wasm/"));
     }
 #endif // !MOBILEAPP
 
@@ -962,7 +1001,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     const Poco::URI::QueryParameters params = Poco::URI(request.getURI()).getQueryParameters();
 
     // Is this a file we read at startup - if not; it's not for serving.
-    const std::string relPath = getRequestPathname(request);
+    const std::string relPath = getRequestPathname(request, requestDetails);
     LOG_DBG("Preprocessing file: " << relPath);
     std::string preprocess = *getUncompressedFile(relPath);
 
@@ -1338,11 +1377,11 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
 
 
 void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,
-                                                     const RequestDetails &/*requestDetails*/,
+                                                     const RequestDetails& requestDetails,
                                                      Poco::MemoryInputStream& message,
                                                      const std::shared_ptr<StreamSocket>& socket)
 {
-    const std::string relPath = getRequestPathname(request);
+    const std::string relPath = getRequestPathname(request, requestDetails);
     LOG_DBG("Preprocessing file: " << relPath);
     std::string templateWelcome = *getUncompressedFile(relPath);
 
@@ -1385,7 +1424,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
     static const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/%s.js\"></script>");
     static const std::string footerPage("<footer class=\"footer has-text-centered\"><strong>Key:</strong> %s &nbsp;&nbsp;<strong>Expiry Date:</strong> %s</footer>");
 
-    const std::string relPath = getRequestPathname(request);
+    const std::string relPath = getRequestPathname(request, requestDetails);
     LOG_DBG("Preprocessing file: " << relPath);
     std::string adminFile = *getUncompressedFile(relPath);
     const std::string templatePath =
