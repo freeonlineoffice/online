@@ -4231,7 +4231,7 @@ private:
             }
             else if (requestDetails.equals(RequestDetails::Field::Type, "wasm"))
             {
-                if (COOLWSD::WASMState == COOLWSD::WASMActivationState::Disabled)
+                if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled)
                 {
                     LOG_ERR("WASM document request while WASM is disabled: "
                             << requestDetails.toString());

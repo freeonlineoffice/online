@@ -95,7 +95,7 @@ void initHttpRequest(Poco::Net::HTTPRequest& request, const Poco::URI& uri,
         addWopiProof(request, uri, it->second);
 
     // Helps wrt. debugging cluster cases from the logs
-    request.set("X-COOL-WOPI-ServerId", Util::getProcessIdentifier());
+    request.set("X-LOOL-WOPI-ServerId", Util::getProcessIdentifier());
 }
 
 } // namespace
@@ -132,7 +132,7 @@ std::shared_ptr<http::Session> StorageConnectionManager::getHttpSession(const Po
         // We decoupled the Wopi communication from client communication because
         // the Wopi communication must have an independent policy.
         // So, we will use here only Storage settings.
-        useSSL = SSLEnabled || COOLWSD::isSSLTermination();
+        useSSL = SSLEnabled || LOOLWSD::isSSLTermination();
     }
 
     const auto protocol =
@@ -141,7 +141,7 @@ std::shared_ptr<http::Session> StorageConnectionManager::getHttpSession(const Po
     // Create the session.
     auto httpSession = http::Session::create(uri.getHost(), protocol, uri.getPort());
 
-    static int timeoutSec = COOLWSD::getConfigValue<int>("net.connection_timeout_secs", 30);
+    static int timeoutSec = LOOLWSD::getConfigValue<int>("net.connection_timeout_secs", 30);
     httpSession->setTimeout(std::chrono::seconds(timeoutSec));
 
     return httpSession;

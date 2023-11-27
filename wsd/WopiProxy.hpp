@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 
 #include "RequestDetails.hpp"
 #include <Storage.hpp>

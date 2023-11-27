@@ -12,7 +12,7 @@
 #include "FileUtil.hpp"
 #include "HttpHelper.hpp"
 #include "HttpRequest.hpp"
-#include <COOLWSD.hpp>
+#include <LOOLWSD.hpp>
 #include <StorageConnectionManager.hpp>
 #include <Exceptions.hpp>
 #include <Log.hpp>
@@ -34,10 +34,10 @@ void WopiProxy::handleRequest(SocketPoll& poll, SocketDisposition& disposition)
     Util::mapAnonymized(fileId, fileId); // Identity mapping, since fileId is already obfuscated
 
     LOG_INF("Starting GET request handler for session [" << _id << "] on url ["
-                                                         << COOLWSD::anonymizeUrl(url) << "].");
+                                                         << LOOLWSD::anonymizeUrl(url) << "].");
 
-    LOG_INF("Sanitized URI [" << COOLWSD::anonymizeUrl(url) << "] to ["
-                              << COOLWSD::anonymizeUrl(uriPublic.toString())
+    LOG_INF("Sanitized URI [" << LOOLWSD::anonymizeUrl(url) << "] to ["
+                              << LOOLWSD::anonymizeUrl(uriPublic.toString())
                               << "] and mapped to docKey [" << docKey << "] for session [" << _id
                               << "].");
 
@@ -49,10 +49,10 @@ void WopiProxy::handleRequest(SocketPoll& poll, SocketDisposition& disposition)
     switch (storageType)
     {
         case StorageBase::StorageType::Unsupported:
-            LOG_ERR("Unsupported URI [" << COOLWSD::anonymizeUrl(uriPublic.toString())
+            LOG_ERR("Unsupported URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString())
                                         << "] or no storage configured");
             throw BadRequestException("No Storage configured or invalid URI " +
-                                      COOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
+                                      LOOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
 
             break;
         case StorageBase::StorageType::Unauthorized:
@@ -62,7 +62,7 @@ void WopiProxy::handleRequest(SocketPoll& poll, SocketDisposition& disposition)
             break;
 
         case StorageBase::StorageType::FileSystem:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a FileSystem document");
 
             // Remove from the current poll and transfer.
@@ -92,7 +92,7 @@ void WopiProxy::handleRequest(SocketPoll& poll, SocketDisposition& disposition)
                 });
             break;
         case StorageBase::StorageType::Wopi:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a WOPI document");
             // Remove from the current poll and transfer.
             disposition.setMove(
@@ -115,7 +115,7 @@ void WopiProxy::handleRequest(SocketPoll& poll, SocketDisposition& disposition)
 void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Poco::URI& uriPublic,
                               const std::string& docKey, int redirectLimit)
 {
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(uriPublic.toString());
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(uriPublic.toString());
 
     LOG_DBG("Getting info for wopi uri [" << uriAnonym << ']');
     _httpSession = StorageConnectionManager::getHttpSession(uriPublic);
@@ -149,7 +149,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
             if (redirectLimit)
             {
                 const std::string& location = httpResponse->get("Location");
-                LOG_TRC("WOPI::CheckFileInfo redirect to URI [" << COOLWSD::anonymizeUrl(location)
+                LOG_TRC("WOPI::CheckFileInfo redirect to URI [" << LOOLWSD::anonymizeUrl(location)
                                                                 << "]");
 
                 checkFileInfo(poll, location, Poco::URI(location), docKey, redirectLimit - 1);
@@ -199,7 +199,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
         Poco::JSON::Object::Ptr object;
         if (!JsonUtil::parseJSON(wopiResponse, object))
         {
-            if (COOLWSD::AnonymizeUserData)
+            if (LOOLWSD::AnonymizeUserData)
                 wopiResponse = "obfuscated";
 
             LOG_ERR("WOPI::CheckFileInfo ("
@@ -214,7 +214,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
 
         // Stream the file contents.
 
-        if (COOLWSD::AnonymizeUserData)
+        if (LOOLWSD::AnonymizeUserData)
             LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): anonymizing...");
         else
             LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): " << wopiResponse);
@@ -230,7 +230,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
         LocalStorage::FileInfo fileInfo =
             LocalStorage::FileInfo({ filename, ownerId, lastModifiedTime });
 
-        // if (COOLWSD::AnonymizeUserData)
+        // if (LOOLWSD::AnonymizeUserData)
         //     Util::mapAnonymized(Util::getFilenameFromURL(filename),
         //                         Util::getFilenameFromURL(getUri().toString()));
 
@@ -244,7 +244,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
         // First try the FileUrl, if provided.
         if (!fileUrl.empty())
         {
-            const std::string fileUrlAnonym = COOLWSD::anonymizeUrl(fileUrl);
+            const std::string fileUrlAnonym = LOOLWSD::anonymizeUrl(fileUrl);
             try
             {
                 LOG_INF("WOPI::GetFile using FileUrl: " << fileUrlAnonym);
@@ -290,7 +290,7 @@ void WopiProxy::checkFileInfo(SocketPoll& poll, const std::string& url, const Po
 void WopiProxy::download(SocketPoll& poll, const std::string& url, const Poco::URI& uriPublic,
                          const std::string& docKey, int redirectLimit)
 {
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(uriPublic.toString());
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(uriPublic.toString());
 
     LOG_DBG("Getting info for wopi uri [" << uriAnonym << ']');
     _httpSession = StorageConnectionManager::getHttpSession(uriPublic);
@@ -324,7 +324,7 @@ void WopiProxy::download(SocketPoll& poll, const std::string& url, const Poco::U
             if (redirectLimit)
             {
                 const std::string& location = httpResponse->get("Location");
-                LOG_TRC("WOPI::GetFile redirect to URI [" << COOLWSD::anonymizeUrl(location)
+                LOG_TRC("WOPI::GetFile redirect to URI [" << LOOLWSD::anonymizeUrl(location)
                                                           << "]");
 
                 download(poll, location, Poco::URI(location), docKey, redirectLimit - 1);

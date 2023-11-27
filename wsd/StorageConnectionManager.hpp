@@ -16,7 +16,7 @@
 #include <Poco/Util/Application.h>
 
 #include "Authorization.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "Log.hpp"
 #include "Util.hpp"
 
@@ -77,11 +77,11 @@ private:
 
         // false default for upgrade to preserve legacy configuration
         // in-config-file defaults are true.
-        SSLAsScheme = COOLWSD::getConfigValue<bool>("storage.ssl.as_scheme", false);
+        SSLAsScheme = LOOLWSD::getConfigValue<bool>("storage.ssl.as_scheme", false);
 
         // Fallback to ssl.enable if not set - for back compatibility & simplicity.
-        SSLEnabled = COOLWSD::getConfigValue<bool>(
-            "storage.ssl.enable", COOLWSD::getConfigValue<bool>("ssl.enable", true));
+        SSLEnabled = LOOLWSD::getConfigValue<bool>(
+            "storage.ssl.enable", LOOLWSD::getConfigValue<bool>("ssl.enable", true));
 
 #if ENABLE_DEBUG
         char* StorageSSLEnabled = getenv("STORAGE_SSL_ENABLE");
@@ -96,13 +96,13 @@ private:
 
         if (SSLEnabled)
         {
-            sslClientParams.certificateFile = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.certificateFile = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.cert_file_path", "ssl.cert_file_path");
-            sslClientParams.privateKeyFile = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.privateKeyFile = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.key_file_path", "ssl.key_file_path");
-            sslClientParams.caLocation = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.caLocation = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.ca_file_path", "ssl.ca_file_path");
-            sslClientParams.cipherList = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.cipherList = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.cipher_list", "ssl.cipher_list");
 
             sslClientParams.verificationMode =
