@@ -2364,7 +2364,6 @@ void LOOLWSD::innerInitialize(Application& self)
                              ? LOOLWSD::WASMActivationState::Enabled
                              : LOOLWSD::WASMActivationState::Disabled;
 
-#if ENABLE_DEBUG
     if (getConfigValue<bool>(conf, "wasm.force", false))
     {
         if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Enabled)
@@ -2378,7 +2377,6 @@ void LOOLWSD::innerInitialize(Application& self)
         LOG_INF("WASM is force-enabled. All documents will be loaded through WASM");
         LOOLWSD::WASMState = LOOLWSD::WASMActivationState::Forced;
     }
-#endif
 
     // Get anonymization settings.
 #if LOOLWSD_ANONYMIZE_USER_DATA
