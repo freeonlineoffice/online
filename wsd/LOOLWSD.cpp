@@ -888,10 +888,8 @@ void sendLoadResult(std::shared_ptr<ClientSession> clientSession, bool success,
 std::atomic<uint64_t> LOOLWSD::NextConnectionId(1);
 
 #if !MOBILEAPP
-#ifndef KIT_IN_PROCESS
 std::atomic<int> LOOLWSD::ForKitProcId(-1);
 std::shared_ptr<ForKitProcess> LOOLWSD::ForKitProc;
-#endif
 bool LOOLWSD::NoCapsForKit = false;
 bool LOOLWSD::NoSeccomp = false;
 bool LOOLWSD::AdminEnabled = true;
