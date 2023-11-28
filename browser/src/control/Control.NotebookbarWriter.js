@@ -2883,6 +2883,9 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			if (!uiManager.isButtonVisible(c.id)) {
 				return null;
 			}
+			if (!uiManager.isCommandVisible(c.command)) {
+				return null;
+			}
 
 			var opts = Object.assign(c, {});
 
