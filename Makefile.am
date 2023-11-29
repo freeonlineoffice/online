@@ -27,6 +27,9 @@ bin_PROGRAMS = \
 if ENABLE_LIBFUZZER
 else
 bin_PROGRAMS += loolwsd
+if ENABLE_DEBUG
+bin_PROGRAMS += loolwsd-inproc
+endif
 endif
 
 dist_bin_SCRIPTS = loolwsd-systemplate-setup
@@ -195,6 +198,16 @@ loolforkit_SOURCES = $(loolforkit_sources) \
 
 loolforkit_LDADD = libsimd.a
 
+if ENABLE_DEBUG
+loolwsd_inproc_SOURCES = $(loolwsd_sources) \
+                         $(shared_sources) \
+                         $(loolforkit_sources) \
+                         wsd/loolwsd-inproc.cpp
+
+loolwsd_inproc_LDADD = ${loolwsd_LDADD} \
+                       ${loolforkit_LDADD}
+endif
+
 if ENABLE_LIBFUZZER
 loolforkit_SOURCES += \
 		       common/DummyTraceEventEmitter.cpp
@@ -207,7 +220,6 @@ common_fuzzer_sources = \
 		       $(shared_sources)
 
 admin_fuzzer_CPPFLAGS = \
-			-DKIT_IN_PROCESS=1 \
 			$(AM_CPPFLAGS)
 admin_fuzzer_SOURCES = \
 		       $(common_fuzzer_sources) \
@@ -216,7 +228,6 @@ admin_fuzzer_LDFLAGS = -fsanitize=fuzzer $(AM_LDFLAGS)
 admin_fuzzer_LDADD = libsimd.a
 
 clientsession_fuzzer_CPPFLAGS = \
-				-DKIT_IN_PROCESS=1 \
 				$(AM_CPPFLAGS)
 clientsession_fuzzer_SOURCES = \
 			       $(common_fuzzer_sources) \
@@ -225,7 +236,6 @@ clientsession_fuzzer_LDFLAGS = -fsanitize=fuzzer $(AM_LDFLAGS)
 clientsession_fuzzer_LDADD = libsimd.a
 
 httpresponse_fuzzer_CPPFLAGS = \
-				-DKIT_IN_PROCESS=1 \
 				$(AM_CPPFLAGS)
 httpresponse_fuzzer_SOURCES = \
 			       $(common_fuzzer_sources) \
@@ -234,7 +244,6 @@ httpresponse_fuzzer_LDFLAGS = -fsanitize=fuzzer $(AM_LDFLAGS)
 httpresponse_fuzzer_LDADD = libsimd.a
 
 httpecho_fuzzer_CPPFLAGS = \
-				-DKIT_IN_PROCESS=1 \
 				$(AM_CPPFLAGS) \
         -I${top_srcdir}/test
 httpecho_fuzzer_SOURCES = \
@@ -498,6 +507,17 @@ run-one: setup-wsd
 			--o:security.capabilities="$(CAPABILITIES)" \
 			--o:logging.file[@enable]=true --o:logging.level=trace \
 			--singlekit
+
+run-inproc: setup-wsd
+	@echo "Launching loolwsd-inproc"
+	./loolwsd-inproc $(COMMON_PARAMS) \
+			--o:logging.file[@enable]=true --o:logging.level=trace
+
+run-massif-inproc: setup-wsd
+	@echo "Launching loolwsd under valgrind for single process"
+	valgrind --tool=massif --num-callers=64 --trace-children=no -v \
+		./loolwsd-inproc $(COMMON_PARAMS) \
+			--o:logging.file[@enable]=false --o:logging.level=trace
 endif
 
 sync-writer:
