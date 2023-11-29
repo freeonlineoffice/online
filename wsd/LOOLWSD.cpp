@@ -490,6 +490,9 @@ void cleanupDocBrokers()
 /// -1 for error.
 static int forkChildren(const int number)
 {
+    if (Util::isKitInProcess())
+        return 0;
+
     LOG_TRC("Request forkit to spawn " << number << " new child(ren)");
     Util::assertIsLocked(NewChildrenMutex);
 
@@ -497,13 +500,9 @@ static int forkChildren(const int number)
     {
         LOOLWSD::checkDiskSpaceAndWarnClients(false);
 
-#ifdef KIT_IN_PROCESS
-        forkLibreOfficeKit(LOOLWSD::ChildRoot, LOOLWSD::SysTemplate, LOOLWSD::LoTemplate, number);
-#else
         const std::string aMessage = "spawn " + std::to_string(number) + '\n';
         LOG_DBG("MasterToForKit: " << aMessage.substr(0, aMessage.length() - 1));
         LOOLWSD::sendMessageToForKit(aMessage);
-#endif
         OutstandingForks += number;
         LastForkRequestTime = std::chrono::steady_clock::now();
         return number;
@@ -516,6 +515,9 @@ static int forkChildren(const int number)
 /// Returns true if removed at least one.
 static bool cleanupChildren()
 {
+    if (Util::isKitInProcess())
+        return 0;
+
     Util::assertIsLocked(NewChildrenMutex);
 
     const int count = NewChildren.size();
@@ -2754,9 +2756,14 @@ void LOOLWSD::innerInitialize(Application& self)
 #endif
 
 #if !MOBILEAPP
-    NoSeccomp = !getConfigValue<bool>(conf, "security.seccomp", true);
-    NoCapsForKit = !getConfigValue<bool>(conf, "security.capabilities", true);
+    NoSeccomp = Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.seccomp", true);
+    NoCapsForKit =
+        Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.capabilities", true);
     AdminEnabled = getConfigValue<bool>(conf, "admin_console.enable", true);
+#if ENABLE_DEBUG
+    if (Util::isKitInProcess())
+        SingleKit = true;
+#endif
 #endif
 
     // LanguageTool configuration
@@ -3258,9 +3265,6 @@ void LOOLWSD::displayHelp()
 
 bool LOOLWSD::checkAndRestoreForKit()
 {
-    if (Util::isKitInProcess())
-        return false;
-
 // clang issues warning for WIF*() macro usages below:
 // "equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]"
 // https://bugs.llvm.org/show_bug.cgi?id=22949
@@ -3280,6 +3284,9 @@ bool LOOLWSD::checkAndRestoreForKit()
             SigUtil::requestShutdown();
         }
     }
+
+    if (Util::isKitInProcess())
+        return true;
 
     int status;
     const pid_t pid = waitpid(ForKitProcId, &status, WUNTRACED | WNOHANG);
@@ -3803,9 +3810,7 @@ private:
             LOG_TRC("Child connection with URI [" << LOOLWSD::anonymizeUrl(request.getUrl())
                                                   << ']');
             Poco::URI requestURI(request.getUrl());
-            if (Util::isKitInProcess())
-                LOG_TRC("Avoid spawning forkit for kit-in-process");
-            else if (requestURI.getPath() == FORKIT_URI)
+            if (requestURI.getPath() == FORKIT_URI)
             {
                 if (socket->getPid() != LOOLWSD::ForKitProcId)
                 {
@@ -3819,7 +3824,7 @@ private:
                 PrisonerPoll->setForKitProcess(LOOLWSD::ForKitProc);
                 return;
             }
-            else if (requestURI.getPath() != NEW_CHILD_URI)
+            if (requestURI.getPath() != NEW_CHILD_URI)
             {
                 LOG_ERR("Invalid incoming child URI [" << requestURI.getPath() << ']');
                 return;
@@ -6268,15 +6273,18 @@ int LOOLWSD::innerMain()
         TraceEventFile = NULL;
     }
 
-#if !defined(KIT_IN_PROCESS) && !MOBILEAPP
-    // Terminate child processes
-    LOG_INF("Requesting forkit process " << ForKitProcId << " to terminate.");
+#if !MOBILEAPP
+    if (!Util::isKitInProcess())
+    {
+        // Terminate child processes
+        LOG_INF("Requesting forkit process " << ForKitProcId << " to terminate.");
 #if CODE_COVERAGE || VALGRIND_LOOLFORKIT
-    constexpr auto signal = SIGTERM;
+        constexpr auto signal = SIGTERM;
 #else
-    constexpr auto signal = SIGKILL;
+        constexpr auto signal = SIGKILL;
 #endif
-    SigUtil::killChild(ForKitProcId, signal);
+        SigUtil::killChild(ForKitProcId, signal);
+    }
 #endif
 
     Server->stopPrisoners();
@@ -6450,7 +6458,7 @@ std::set<pid_t> LOOLWSD::getKitPids()
     return pids;
 }
 
-#if !defined(BUILDING_TESTS) && !defined(KIT_IN_PROCESS)
+#if !defined(BUILDING_TESTS)
 namespace Util
 {
 
@@ -6485,11 +6493,14 @@ void forwardSigUsr2()
 {
     LOG_TRC("forwardSigUsr2");
 
+    if (Util::isKitInProcess())
+        return;
+
     Util::assertIsLocked(DocBrokersMutex);
     std::lock_guard<std::mutex> newChildLock(NewChildrenMutex);
 
 #if !MOBILEAPP
-    if (!Util::isKitInProcess() && LOOLWSD::ForKitProcId > 0)
+    if (LOOLWSD::ForKitProcId > 0)
     {
         LOG_INF("Sending SIGUSR2 to forkit " << LOOLWSD::ForKitProcId);
         ::kill(LOOLWSD::ForKitProcId, SIGUSR2);
@@ -6523,6 +6534,7 @@ int main(int argc, char** argv)
 {
     SigUtil::setUserSignals();
     SigUtil::setFatalSignals("wsd " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
+    setKitInProcess();
 
     try
     {

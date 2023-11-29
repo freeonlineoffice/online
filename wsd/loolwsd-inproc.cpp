@@ -12,6 +12,8 @@
 #include "LOOLWSD.hpp"
 #include "Kit.hpp"
 
+void setKitInProcess() { Util::setKitInProcess(true); }
+
 int createForkit(const std::string& forKitPath, const StringVector& args)
 {
     // create forkit in a thread

@@ -652,6 +652,8 @@ public:
 #endif
 };
 
+void setKitInProcess();
+
 #if !MOBILEAPP
 int createForkit(const std::string& forKitPath, const StringVector& args);
 #endif
