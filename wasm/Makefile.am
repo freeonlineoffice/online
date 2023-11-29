@@ -46,7 +46,8 @@ online_SOURCES = \
 	../wsd/LOOLWSD.cpp \
 	../wsd/RequestDetails.cpp \
 	../wsd/Storage.cpp \
-	../wsd/TileCache.cpp
+	../wsd/TileCache.cpp \
+	../wsd/loolwsd-fork.cpp
 
 online_DEPENDENCIES = \
 	@LOBUILDDIR@/instdir/program/soffice.html.linkdeps \

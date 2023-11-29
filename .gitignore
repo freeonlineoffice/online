@@ -103,6 +103,7 @@ loadtest
 unittest
 clientnb
 libsimd.a
+loolwsd-inproc
 
 # Fuzzer
 *_fuzzer

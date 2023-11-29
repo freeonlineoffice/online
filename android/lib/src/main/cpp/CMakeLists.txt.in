@@ -28,7 +28,8 @@ add_library(androidapp SHARED
             ../../../../../wsd/LOOLWSD.cpp
             ../../../../../wsd/RequestDetails.cpp
             ../../../../../wsd/Storage.cpp
-            ../../../../../wsd/TileCache.cpp)
+            ../../../../../wsd/TileCache.cpp
+            ../../../../../wsd/loolwsd-fork.cpp)
 
 target_compile_definitions(androidapp PRIVATE LOOLWSD_CONFIGDIR="/assets/etc/loolwsd")
 

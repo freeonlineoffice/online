@@ -74,11 +74,6 @@ static std::map<pid_t, std::string> childJails;
 /// The jails that need cleaning up. This should be small.
 static std::vector<std::string> cleanupJailPaths;
 
-#ifndef KIT_IN_PROCESS
-int ClientPortNumber = DEFAULT_CLIENT_PORT_NUMBER;
-std::string MasterLocation;
-#endif
-
 extern "C" { void dump_forkit_state(void); /* easy for gdb */ }
 
 void dump_forkit_state()
@@ -487,7 +482,6 @@ void forkLibreOfficeKit(const std::string& childRoot,
     }
 }
 
-#ifndef KIT_IN_PROCESS
 static void printArgumentHelp()
 {
     std::cout << "Usage: loolforkit [OPTION]..." << std::endl;
@@ -497,7 +491,7 @@ static void printArgumentHelp()
     std::cout << "" << std::endl;
 }
 
-int main(int argc, char** argv)
+int forkit_main(int argc, char** argv)
 {
     /*WARNING: PRIVILEGED CODE CHECKING START */
 
@@ -806,6 +800,5 @@ int main(int argc, char** argv)
     LOG_INF("ForKit process finished.");
     Util::forcedExit(returnValue);
 }
-#endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

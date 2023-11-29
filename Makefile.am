@@ -147,7 +147,8 @@ loolwsd_sources = common/Crypto.cpp \
                   wsd/WopiProxy.cpp
 
 loolwsd_SOURCES = $(loolwsd_sources) \
-                  $(shared_sources)
+                  $(shared_sources) \
+                  wsd/loolwsd-fork.cpp
 
 EXTRA_loolwsd_DEPENDENCIES = browser/node_modules
 
@@ -189,7 +190,8 @@ loolforkit_sources = kit/ChildSession.cpp \
                      kit/Kit.cpp
 
 loolforkit_SOURCES = $(loolforkit_sources) \
-                     $(shared_sources)
+                     $(shared_sources) \
+                     kit/forkit-main.cpp
 
 loolforkit_LDADD = libsimd.a
 
@@ -200,6 +202,7 @@ loolforkit_SOURCES += \
 common_fuzzer_sources = \
 		       common/DummyTraceEventEmitter.cpp \
 		       $(loolwsd_sources) \
+		       wsd/loolwsd-inproc.cpp \
 		       $(loolforkit_sources) \
 		       $(shared_sources)
 
