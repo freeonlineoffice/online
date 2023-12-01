@@ -282,7 +282,7 @@ inline void shutdownLimitReached(const std::shared_ptr<ProtocolHandlerInterface>
 
 } // end anonymous namespace
 
-void COOLWSD::appendAllowedHostsFrom(LayeredConfiguration& conf, const std::string& root, std::vector<std::string>& allowed)
+void LOOLWSD::appendAllowedHostsFrom(LayeredConfiguration& conf, const std::string& root, std::vector<std::string>& allowed)
 {
     for (size_t i = 0; ; ++i)
     {
@@ -300,7 +300,7 @@ void COOLWSD::appendAllowedHostsFrom(LayeredConfiguration& conf, const std::stri
     }
 }
 
-void COOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<std::string>& allowed)
+void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<std::string>& allowed)
 {
     for (size_t i = 0;; i++)
     {
