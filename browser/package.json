@@ -47,7 +47,7 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "jsdom": "^22.1.0",
+    "jsdom": "^23.0.1",
     "tmp": "^0.2.1"
   },
   "scripts": {
