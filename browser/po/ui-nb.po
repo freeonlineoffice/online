@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 21:19+0100\n"
+"POT-Creation-Date: 2023-12-01 22:37+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -263,13 +263,13 @@ msgstr "Tjeneren har blitt avskrudd; gjeninnlast siden"
 #: src/control/Control.Tabs.js:320 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:554 src/control/Toolbar.js:655
-#: src/control/Toolbar.js:791 src/control/Toolbar.js:1082
+#: src/control/Toolbar.js:555 src/control/Toolbar.js:656
+#: src/control/Toolbar.js:792 src/control/Toolbar.js:1083
 #: src/core/Socket.js:586 src/core/Socket.js:1005 src/core/Socket.js:1080
 #: src/core/Socket.js:1205 src/core/Socket.js:1209 src/main.js:70
-#: src/main.js:73 src/main.js:110 src/map/Clipboard.js:860
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:539
+#: src/map/handler/Map.WOPI.js:547
 msgid "OK"
 msgstr "OK"
 
@@ -291,7 +291,7 @@ msgstr "Er du sikker på at du vil avslutte denne økten?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:786 src/layer/tile/CommentListSection.ts:391
+#: src/control/Toolbar.js:787 src/layer/tile/CommentListSection.ts:391
 #: src/layer/tile/CommentSection.ts:119 src/layer/tile/CommentSection.ts:122
 msgid "Cancel"
 msgstr "Avbryt"
@@ -384,7 +384,7 @@ msgstr "Serveren fikk en %0 feil under kjøring av %1 kommandoen."
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1081
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1082
 msgid "Delete"
 msgstr "Slett"
 
@@ -611,21 +611,21 @@ msgstr "Kommentar"
 msgid "Insert Comment"
 msgstr "Sett inn kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2864
+#: src/control/Control.JSDialogBuilder.js:2860
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3003
+#: src/control/Control.JSDialogBuilder.js:3001
 #: src/control/Control.Menubar.js:819
 msgid "Rows"
 msgstr "Rader"
 
-#: src/control/Control.JSDialogBuilder.js:3004
+#: src/control/Control.JSDialogBuilder.js:3002
 #: src/control/Control.Menubar.js:822
 msgid "Columns"
 msgstr "Kolonner"
 
-#: src/control/Control.JSDialogBuilder.js:3024
+#: src/control/Control.JSDialogBuilder.js:3022
 #, fuzzy
 msgid "Insert Table"
 msgstr "Sett inn tabell"
@@ -1380,7 +1380,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr "Boolsk verdi"
 
-#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:758
+#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:759
 msgid "Text"
 msgstr "Tekst"
 
@@ -2143,31 +2143,31 @@ msgstr "Lagrer..."
 msgid "Renaming..."
 msgstr "Endre navn..."
 
-#: src/control/Toolbar.js:637
+#: src/control/Toolbar.js:638
 msgid "This version of %productName is powered by"
 msgstr "Denne versjonen av %productName kjøres på"
 
-#: src/control/Toolbar.js:649
+#: src/control/Toolbar.js:650
 msgid "\"Slow Proxy\""
 msgstr "\"Sen Proxy\""
 
-#: src/control/Toolbar.js:668
+#: src/control/Toolbar.js:669
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:751
+#: src/control/Toolbar.js:752
 msgid "Insert hyperlink"
 msgstr "Sett inn hyperlenke"
 
-#: src/control/Toolbar.js:770
+#: src/control/Toolbar.js:771
 msgid "Link"
 msgstr "Lenke"
 
-#: src/control/Toolbar.js:1076
+#: src/control/Toolbar.js:1077
 msgid "Are you sure you want to delete this slide?"
 msgstr "Er du sikker på at du vil slette dette lysbildet?"
 
-#: src/control/Toolbar.js:1079
+#: src/control/Toolbar.js:1080
 msgid "Are you sure you want to delete this page?"
 msgstr "Er du sikker på at du vil slette denne siden?"
 
@@ -2571,8 +2571,8 @@ msgstr "Opphev løst status for tråd"
 msgid "Resolve Thread"
 msgstr "Løs tråd"
 
-#: src/layer/tile/CommentListSection.ts:1167
-#: src/layer/tile/CommentListSection.ts:1203
+#: src/layer/tile/CommentListSection.ts:1177
+#: src/layer/tile/CommentListSection.ts:1213
 msgid "Autosaved"
 msgstr ""
 
@@ -2592,7 +2592,7 @@ msgstr "Avvis endring"
 msgid "Resolved"
 msgstr "Løst"
 
-#: src/main.js:110
+#: src/main.js:125
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2683,15 +2683,15 @@ msgstr "Opplasting av fil til server mislyktes med status: %0"
 msgid "Creating new file from template..."
 msgstr "Oppretter ny fil fra mal ..."
 
-#: src/map/handler/Map.WOPI.js:539
+#: src/map/handler/Map.WOPI.js:547
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:539
+#: src/map/handler/Map.WOPI.js:547
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:547
+#: src/map/handler/Map.WOPI.js:555
 msgid "Creating copy..."
 msgstr "Lager en kopi...."
 
