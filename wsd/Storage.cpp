@@ -63,7 +63,7 @@
 #include "androidapp.hpp"
 #elif defined(GTKAPP)
 #include "gtk.hpp"
-#elif defined(__EMSCRIPTEN__)
+#elif WASMAPP
 #include "wasmapp.hpp"
 #endif
 
