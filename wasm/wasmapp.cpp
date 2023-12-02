@@ -20,7 +20,7 @@
 int loolwsd_server_socket_fd = -1;
 
 const char* user_name;
-const int SHOW_JS_MAXLEN = 200;
+constexpr std::size_t SHOW_JS_MAXLEN = 200;
 
 #define FILE_PATH "/sample.docx"
 static std::string fileURL = "file://" FILE_PATH;
@@ -70,11 +70,8 @@ static void send2JS(const std::vector<char>& buffer)
         js = js + "'});";
     }
 
-    std::string subjs = js.substr(0, std::min(std::string::size_type(SHOW_JS_MAXLEN), js.length()));
-    if (js.length() > SHOW_JS_MAXLEN)
-        subjs += "...";
-
-    LOG_TRC_NOFILE( "Evaluating JavaScript: " << subjs);
+    LOG_TRC_NOFILE("Evaluating JavaScript: " << js.substr(0, std::min(SHOW_JS_MAXLEN, js.size()))
+                                             << (js.size() > SHOW_JS_MAXLEN ? "..." : ""));
 
     MAIN_THREAD_EM_ASM(eval(UTF8ToString($0)), js.c_str());
 }
