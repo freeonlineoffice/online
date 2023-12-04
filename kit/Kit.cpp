@@ -1060,6 +1060,7 @@ public:
                     // TODO.  It should filter some messages
                     // before loading the document
                     session->getProtocol()->enableProcessInput(true);
+                    return;
                 }
             }
         }
