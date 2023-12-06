@@ -3056,7 +3056,7 @@ void lokit_main(
             // used by LO Migration::migrateSettingsIfNecessary() in startup code as config dir
             ::setenv("XDG_CONFIG_HOME", (tmpPath + "/.config").c_str(), 1);
             ::setenv("HOME", tmpPath.c_str(), 1);
-            // overwrite coolkitconfig.xcu setting to fit into allowed paths
+            // overwrite loolkitconfig.xcu setting to fit into allowed paths
             ::setenv("LOK_WORKDIR", ("file://" + tmpPath).c_str(), 1);
 
             // Setup the OSL sandbox
