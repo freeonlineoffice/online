@@ -1244,7 +1244,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
     //
     // We expect richdocuments to require these headers if our
     // capabilities shows hasWASMSupport
-    if (COOLWSD::WASMState != COOLWSD::WASMActivationState::Disabled)
+    if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled)
     {
         oss << "Cross-Origin-Opener-Policy: same-origin\r\n";
         oss << "Cross-Origin-Embedder-Policy: require-corp\r\n";

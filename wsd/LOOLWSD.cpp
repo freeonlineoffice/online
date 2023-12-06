@@ -5517,7 +5517,7 @@ private:
         capabilities->set("hasZoteroSupport", config::getBool("zotero.enable", true));
 
         // Set if this instance supports Zotero
-        capabilities->set("hasWASMSupport", COOLWSD::WASMState != COOLWSD::WASMActivationState::Disabled);
+        capabilities->set("hasWASMSupport", LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled);
 
         std::ostringstream ostrJSON;
         capabilities->stringify(ostrJSON);
