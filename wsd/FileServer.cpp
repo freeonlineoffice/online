@@ -621,9 +621,11 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
                 mimeType = "image/png";
             else if (fileType == "svg")
                 mimeType = "image/svg+xml";
+#if !MOBILEAPP
             else if (fileType == "wasm" &&
                      LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled)
                 mimeType = "application/wasm";
+#endif // !MOBILEAPP
             else
                 mimeType = "text/plain";
 
@@ -652,6 +654,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             response.set("Server", HTTP_SERVER_STRING);
             response.set("Date", Util::getHttpTimeNow());
 
+#if !MOBILEAPP
             if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled &&
                 relPath.find("wasm") != std::string::npos)
             {
@@ -659,6 +662,7 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
                 response.add("Cross-Origin-Embedder-Policy", "require-corp");
                 response.add("Cross-Origin-Resource-Policy", "cross-origin");
             }
+#endif // !MOBILEAPP
 
             const bool brotli = request.hasToken("Accept-Encoding", "br");
 #if ENABLE_DEBUG
@@ -767,12 +771,14 @@ void FileServerRequestHandler::readDirToHash(const std::string &basePath, const 
     const std::string fullPath = basePath + path;
     LOG_DBG("Caching files in [" << fullPath << ']');
 
+#if !MOBILEAPP
     if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled &&
         path.find("wasm") != std::string::npos)
     {
         LOG_INF("Skipping [" << fullPath << "] as WASM is disabled");
         return;
     }
+#endif // !MOBILEAPP
 
     DIR* workingdir = opendir((fullPath).c_str());
     if (!workingdir)
@@ -913,13 +919,6 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
 
     std::string path(requestUri.getPath());
 
-    if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled &&
-        path.find("wasm") != std::string::npos)
-    {
-        LOG_ERR("Requesting WASM files when it's disabled: [" << path << ']');
-        throw Poco::FileAccessDeniedException("WASM is disabled");
-    }
-
     Poco::RegularExpression gitHashRe("/([0-9a-f]+)/");
     std::string gitHash;
     if (gitHashRe.extract(path, gitHash))
@@ -928,6 +927,7 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
         Poco::replaceInPlace(path, std::string("/browser" + gitHash), std::string("/browser/dist/"));
     }
 
+#if !MOBILEAPP
     if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Forced)
     {
         if (path.find("/browser/dist/wasm/") == std::string::npos)
@@ -936,6 +936,13 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
                                  std::string("/browser/dist/wasm/"));
         }
     }
+    else if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled &&
+             path.find("wasm") != std::string::npos)
+    {
+        LOG_ERR("Requesting WASM files when it's disabled: [" << path << ']');
+        throw Poco::FileAccessDeniedException("WASM is disabled");
+    }
+#endif // !MOBILEAPP
 
     return path;
 }
@@ -1236,6 +1243,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
         "X-XSS-Protection: 1; mode=block\r\n"
         "Referrer-Policy: no-referrer\r\n";
 
+#if !MOBILEAPP
     // if we have richdocuments with:
     // addHeader('Cross-Origin-Opener-Policy', 'same-origin');
     // addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -1257,6 +1265,7 @@ void FileServerRequestHandler::preprocessFile(const HTTPRequest& request,
         LOG_ASSERT(LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled);
         csp.appendDirective("script-src", "'unsafe-eval'");
     }
+#endif // !MOBILEAPP
 
     csp.merge(config.getString("net.content_security_policy", ""));
 

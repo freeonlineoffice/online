@@ -2432,6 +2432,7 @@ void LOOLWSD::innerInitialize(Application& self)
     if (getSafeConfig(conf, "storage.wopi.reuse_cookies", reuseCookies))
         LOG_WRN("NOTE: Deprecated config option storage.wopi.reuse_cookies - no longer supported.");
 
+#if !MOBILEAPP
     LOOLWSD::WASMState = getConfigValue<bool>(conf, "wasm.enable", false)
                              ? LOOLWSD::WASMActivationState::Enabled
                              : LOOLWSD::WASMActivationState::Disabled;
@@ -2449,6 +2450,7 @@ void LOOLWSD::innerInitialize(Application& self)
         LOG_INF("WASM is force-enabled. All documents will be loaded through WASM");
         LOOLWSD::WASMState = LOOLWSD::WASMActivationState::Forced;
     }
+#endif // !MOBILEAPP
 
     // Get anonymization settings.
 #if LOOLWSD_ANONYMIZE_USER_DATA
@@ -4321,6 +4323,7 @@ private:
                 // All post requests have url prefix 'lool'.
                 handlePostRequest(requestDetails, request, message, disposition, socket);
             }
+#if !MOBILEAPP
             else if (requestDetails.equals(RequestDetails::Field::Type, "wasm"))
             {
                 if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Disabled)
@@ -4337,6 +4340,7 @@ private:
                 _wopiProxy = std::make_unique<WopiProxy>(_id, requestDetails, socket);
                 _wopiProxy->handleRequest(*WebServerPoll, disposition);
             }
+#endif // !MOBILEAPP
             else
             {
                 LOG_ERR("Unknown resource: " << requestDetails.toString());
@@ -5528,8 +5532,10 @@ private:
         // Set if this instance supports Zotero
         capabilities->set("hasZoteroSupport", config::getBool("zotero.enable", true));
 
-        // Set if this instance supports Zotero
+#if !MOBILEAPP
+        // Set if this instance supports WASM.
         capabilities->set("hasWASMSupport", LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled);
+#endif // !MOBILEAPP
 
         std::ostringstream ostrJSON;
         capabilities->stringify(ostrJSON);
