@@ -4,7 +4,7 @@
 
 L.Map.include({
 	insertComment: function() {
-		if (cool.Comment.isAnyEdit()) {
+		if (lool.Comment.isAnyEdit()) {
 			this.uiManager.showInfoModal('annotation-editing', _('A comment is being edited'),
 			_('Please save or discard the comment currently being edited.'), null, _('Close'));
 			return;
