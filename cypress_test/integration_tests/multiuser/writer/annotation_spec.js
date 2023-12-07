@@ -28,11 +28,11 @@ describe(['tagmultiuser'], 'Multiuser Annotation Test', function () {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 
 	});
@@ -41,17 +41,17 @@ describe(['tagmultiuser'], 'Multiuser Annotation Test', function () {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
 	});
 
@@ -59,7 +59,7 @@ describe(['tagmultiuser'], 'Multiuser Annotation Test', function () {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
@@ -75,14 +75,14 @@ describe(['tagmultiuser'], 'Multiuser Annotation Test', function () {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
-		cy.cGet('.cool-annotation-content > div').should('contain','some text');
-		cy.cGet('.cool-annotation-menu').click();
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content > div').should('contain','some text');
+		cy.cGet('.lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item', 'Remove').click();
-		cy.cGet('.cool-annotation-content-wrapper').should('not.exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('not.exist');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('not.exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('not.exist');
 	});
 });
 
@@ -106,11 +106,11 @@ describe(['tagmultiuser'], 'Multiuser Collapsed Annotation Tests', function() {
 		helper.typeIntoDocument('Hello World');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 	});
 
@@ -119,18 +119,18 @@ describe(['tagmultiuser'], 'Multiuser Collapsed Annotation Tests', function() {
 		helper.typeIntoDocument('Hello World');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
-		cy.cGet('.cool-annotation-img').click();
+		cy.cGet('.lool-annotation-img').click();
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
 	});
 
@@ -139,19 +139,19 @@ describe(['tagmultiuser'], 'Multiuser Collapsed Annotation Tests', function() {
 		helper.typeIntoDocument('Hello World');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text');
-		cy.cGet('.cool-annotation-img').click();
+		cy.cGet('.lool-annotation-img').click();
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item','Reply').click();
 		cy.cGet('#annotation-reply-textarea-1').type('some reply text');
 		cy.cGet('#annotation-reply-1').click();
 		cy.cGet('#annotation-content-area-2').should('contain','some reply text');
-		cy.cGet('#comment-container-1 .cool-annotation-reply-count-collapsed').should('have.text', '1');
+		cy.cGet('#comment-container-1 .lool-annotation-reply-count-collapsed').should('have.text', '1');
 
 		cy.cSetActiveFrame('#iframe2');
 		cy.cGet('#annotation-content-area-2').should('contain','some reply text');
-		cy.cGet('#comment-container-1 .cool-annotation-reply-count-collapsed').should('have.text', '1');
+		cy.cGet('#comment-container-1 .lool-annotation-reply-count-collapsed').should('have.text', '1');
 	});
 
 	it('Remove', function() {
@@ -159,15 +159,15 @@ describe(['tagmultiuser'], 'Multiuser Collapsed Annotation Tests', function() {
 		helper.typeIntoDocument('Hello World');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
-		cy.cGet('.cool-annotation-content > div').should('contain','some text');
-		cy.cGet('.cool-annotation-img').click();
-		cy.cGet('.cool-annotation-menu').click();
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content > div').should('contain','some text');
+		cy.cGet('.lool-annotation-img').click();
+		cy.cGet('.lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Remove').click();
-		cy.cGet('.cool-annotation-content-wrapper').should('not.exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('not.exist');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('not.exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('not.exist');
 	});
 
 });
@@ -198,11 +198,11 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('writer');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','Test Comment');
 	});
 
@@ -211,14 +211,14 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('writer');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-save-1').click();
 		cy.cGet('#annotation-content-area-1').should('have.text','Test Comment');
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','Test Comment');
 	});
 
@@ -227,14 +227,14 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		setupUIforCommentInsert('writer');
 		createComment('writer', 'Test Comment', false, '[id=insert-insert-annotation]');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-cancel-1').click();
 		cy.cGet('#comment-container-1').should('not.exist');
-		cy.cGet('.cool-annotation-autosavelabel').should('not.exist');
+		cy.cGet('.lool-annotation-autosavelabel').should('not.exist');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('not.exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('not.exist');
 		cy.cGet('#comment-container-1').should('not.exist');
 	});
 
@@ -242,17 +242,17 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some other text, some text0');
 	});
 
@@ -260,20 +260,20 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-save-1').click();
 		cy.cGet('#annotation-content-area-1').should('have.text','some other text, some text0');
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some other text, some text0');
 	});
 
@@ -281,21 +281,21 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Modify').click();
 		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-cancel-1').click();
-		cy.cGet('.cool-annotation-edit.modify-annotation').should('be.not.visible');
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 	});
 
@@ -303,17 +303,17 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
 		cy.cGet('#annotation-reply-textarea-1').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('#annotation-modify-textarea-2').should('be.visible');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-2').should('have.text','some reply text');
 	});
 
@@ -321,23 +321,23 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
 		cy.cGet('#annotation-reply-textarea-1').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('#annotation-modify-textarea-2').should('be.visible');
 		cy.cGet('#annotation-modify-textarea-2').should('have.text','some reply text');
 		cy.cGet('#annotation-save-2').click();
 		cy.cGet('#annotation-modify-textarea-2').should('be.not.visible');
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#annotation-content-area-2').should('have.text','some reply text');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-2').should('have.text','some reply text');
 	});
 
@@ -345,25 +345,25 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		insertMultipleComment('writer', 1, false, '[id=insert-insert-annotation]');
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
 		cy.cGet('#annotation-reply-textarea-1').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.cool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('#annotation-modify-textarea-2').should('be.visible');
 		cy.cGet('#annotation-modify-textarea-2').should('have.text','some reply text');
 		cy.cGet('#annotation-cancel-2').click();
 		cy.cGet('#annotation-modify-textarea-2').should('not.exist');
-		cy.cGet('.cool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#annotation-content-area-2').should('not.exist');
-		cy.cGet('#comment-container-1 .cool-annotation-autosavelabel').should('be.not.visible');
-		cy.cGet('#comment-container-2 .cool-annotation-autosavelabel').should('not.exist');
+		cy.cGet('#comment-container-1 .lool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('#comment-container-2 .lool-annotation-autosavelabel').should('not.exist');
 
 		cy.cSetActiveFrame('#iframe2');
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('#annotation-content-area-2').should('not.exist');
 	});
