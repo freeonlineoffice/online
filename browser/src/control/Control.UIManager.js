@@ -1043,6 +1043,8 @@ L.Control.UIManager = L.Control.extend({
 					callback();
 
 				that.closeSnackbar();
+			} else if (object.id === '__POPOVER__' && objectType === 'popover' && eventType === 'close') {
+				that.closeSnackbar();
 			}
 		};
 
