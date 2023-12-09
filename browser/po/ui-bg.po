@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-01 22:37+0100\n"
+"POT-Creation-Date: 2023-12-09 17:46+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/"
@@ -147,7 +147,7 @@ msgstr "Графика на мрежата"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:148
-#: src/layer/tile/CommentListSection.ts:396
+#: src/layer/tile/CommentListSection.ts:401
 #: src/layer/tile/CommentSection.ts:120
 msgid "Save"
 msgstr "Записване"
@@ -227,9 +227,10 @@ msgid "Log Levels"
 msgstr "Нива за дневника"
 
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:58
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:82
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:441
-#: src/control/Signing.js:611 src/core/Socket.js:1035 src/core/Socket.js:1040
+#: src/control/Signing.js:611 src/core/Socket.js:1037 src/core/Socket.js:1042
+#: src/layer/tile/CommentListSection.ts:9
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Затваряне"
@@ -264,11 +265,11 @@ msgstr ""
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:555 src/control/Toolbar.js:656
 #: src/control/Toolbar.js:792 src/control/Toolbar.js:1083
-#: src/core/Socket.js:586 src/core/Socket.js:1005 src/core/Socket.js:1080
-#: src/core/Socket.js:1205 src/core/Socket.js:1209 src/main.js:70
+#: src/core/Socket.js:586 src/core/Socket.js:1007 src/core/Socket.js:1082
+#: src/core/Socket.js:1207 src/core/Socket.js:1211 src/main.js:70
 #: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.WOPI.js:547
+#: src/map/handler/Map.WOPI.js:563
 msgid "OK"
 msgstr "OK"
 
@@ -290,7 +291,7 @@ msgstr "Наистина ли искате да приключите сесия�
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:787 src/layer/tile/CommentListSection.ts:391
+#: src/control/Toolbar.js:787 src/layer/tile/CommentListSection.ts:396
 #: src/layer/tile/CommentSection.ts:119 src/layer/tile/CommentSection.ts:122
 msgid "Cancel"
 msgstr "Отказ"
@@ -376,7 +377,26 @@ msgstr ""
 msgid "Open link"
 msgstr "Отваряне на връзката"
 
-#: src/control/Control.AlertDialog.js:55
+#: src/control/Control.AlertDialog.js:56
+msgid "Copied external sources are not allowed"
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:58
+msgid "It seems you have copied a selection that includes external images."
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:59
+msgid ""
+"Downloading external resources is forbidden but pasting images is still "
+"possible. Please right click in the image, choose \"Copy Image\" and paste "
+"it into the document instead."
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:63
+msgid "Don't show this again"
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:79
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr "Сървърът се сблъска с грешка „%0“ при анализа на командата „%1“."
 
@@ -561,71 +581,71 @@ msgstr "Правоъгълен"
 msgid "Fixed size"
 msgstr "Фиксиран размер"
 
-#: src/control/Control.JSDialogBuilder.js:1595
+#: src/control/Control.JSDialogBuilder.js:1598
 msgid "From"
 msgstr "От"
 
-#: src/control/Control.JSDialogBuilder.js:1598
+#: src/control/Control.JSDialogBuilder.js:1601
 msgid "To"
 msgstr "До"
 
-#: src/control/Control.JSDialogBuilder.js:1601
+#: src/control/Control.JSDialogBuilder.js:1604
 msgid "Color"
 msgstr "Цвят"
 
-#: src/control/Control.JSDialogBuilder.js:1715
+#: src/control/Control.JSDialogBuilder.js:1718
 msgid "Select range"
 msgstr "Избиране на диапазон"
 
-#: src/control/Control.JSDialogBuilder.js:1769
+#: src/control/Control.JSDialogBuilder.js:1772
 #: src/control/Control.NotebookbarBuilder.js:231
 msgid "Font Name"
 msgstr "Име на шрифт"
 
-#: src/control/Control.JSDialogBuilder.js:1771 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1774 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Размер на шрифта"
 
-#: src/control/Control.JSDialogBuilder.js:1773
-#: src/control/Control.TopToolbar.js:508
+#: src/control/Control.JSDialogBuilder.js:1776
+#: src/control/Control.TopToolbar.js:524
 msgid "Style"
 msgstr "Стил"
 
-#: src/control/Control.JSDialogBuilder.js:2040
+#: src/control/Control.JSDialogBuilder.js:2043
 #, fuzzy
 msgid "reply"
 msgstr "Отговор"
 
-#: src/control/Control.JSDialogBuilder.js:2043
+#: src/control/Control.JSDialogBuilder.js:2046
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2054
+#: src/control/Control.JSDialogBuilder.js:2057
 #: src/layer/tile/CanvasTileLayer.js:5292
 #: src/layer/tile/CanvasTileLayer.js:5303
-#: src/layer/tile/CommentListSection.ts:968
+#: src/layer/tile/CommentListSection.ts:929
 msgid "Comment"
 msgstr "Коментар"
 
-#: src/control/Control.JSDialogBuilder.js:2118
+#: src/control/Control.JSDialogBuilder.js:2121
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2860
+#: src/control/Control.JSDialogBuilder.js:2874
 msgid "Automatic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3001
+#: src/control/Control.JSDialogBuilder.js:3015
 #: src/control/Control.Menubar.js:819
 msgid "Rows"
 msgstr "Редове"
 
-#: src/control/Control.JSDialogBuilder.js:3002
+#: src/control/Control.JSDialogBuilder.js:3016
 #: src/control/Control.Menubar.js:822
 msgid "Columns"
 msgstr "Колони"
 
-#: src/control/Control.JSDialogBuilder.js:3022
+#: src/control/Control.JSDialogBuilder.js:3036
 #, fuzzy
 msgid "Insert Table"
 msgstr "Вмъкване на таблица"
@@ -1193,28 +1213,28 @@ msgstr ""
 msgid "CSV File (.csv)"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:888
-#: src/control/Control.TopToolbar.js:232
+#: src/control/Control.NotebookbarBuilder.js:892
+#: src/control/Control.TopToolbar.js:233
 msgid "Insert Local Image"
 msgstr "Вмъкване на локално изображение"
 
-#: src/control/Control.NotebookbarBuilder.js:990
+#: src/control/Control.NotebookbarBuilder.js:996
 msgid "Very Tight"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:991
+#: src/control/Control.NotebookbarBuilder.js:997
 msgid "Tight"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:992
+#: src/control/Control.NotebookbarBuilder.js:998
 msgid "Normal"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:993
+#: src/control/Control.NotebookbarBuilder.js:999
 msgid "Loose"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:994
+#: src/control/Control.NotebookbarBuilder.js:1000
 msgid "Very Loose"
 msgstr ""
 
@@ -1740,15 +1760,15 @@ msgstr "Подразбиран стил"
 msgid "Insert table"
 msgstr "Вмъкване на таблица"
 
-#: src/control/Control.TopToolbar.js:236
+#: src/control/Control.TopToolbar.js:237
 msgid "Insert shapes"
 msgstr "Вмъкване на фигури"
 
-#: src/control/Control.TopToolbar.js:238
+#: src/control/Control.TopToolbar.js:239
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:253
+#: src/control/Control.TopToolbar.js:254
 msgid "Hide Menu"
 msgstr ""
 
@@ -1806,7 +1826,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1087
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1089
 msgid "Loading..."
 msgstr "Протича зареждане..."
 
@@ -2194,51 +2214,51 @@ msgstr ""
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:596
+#: src/core/Socket.js:598
 msgid "LOOLWSD version:"
 msgstr ""
 
-#: src/core/Socket.js:608
+#: src/core/Socket.js:610
 msgid "Served by:"
 msgstr "Сървър:"
 
-#: src/core/Socket.js:614
+#: src/core/Socket.js:616
 msgid "Unsupported server version."
 msgstr "Неподдържана версия на сървъра."
 
-#: src/core/Socket.js:618
+#: src/core/Socket.js:620
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:727
+#: src/core/Socket.js:729
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:754
+#: src/core/Socket.js:756
 msgid "Session terminated by document owner"
 msgstr "Сесията е прекратена от собственика на документа"
 
-#: src/core/Socket.js:759
+#: src/core/Socket.js:761
 msgid "Idle document - please click to reload and resume editing"
 msgstr "Неактивен документ - щракнете за презареждане и редактиране"
 
-#: src/core/Socket.js:761
+#: src/core/Socket.js:763
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Неактивен документ – чукнете за презареждане и редактиране"
 
-#: src/core/Socket.js:770
+#: src/core/Socket.js:772
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Сървърът спира за техническо обслужване (извършва се автозаписване)"
 
-#: src/core/Socket.js:774
+#: src/core/Socket.js:776
 msgid "Oops, there is a problem connecting the document"
 msgstr "Възникна проблем при свързване с документа"
 
-#: src/core/Socket.js:778
+#: src/core/Socket.js:780
 msgid "Server is down, restarting automatically. Please wait."
 msgstr ""
 
-#: src/core/Socket.js:805
+#: src/core/Socket.js:807
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2246,7 +2266,7 @@ msgstr ""
 "Документът е променен в хранилището. Новата версия се зарежда. Вашата версия "
 "е запазена като предишна редакция."
 
-#: src/core/Socket.js:811
+#: src/core/Socket.js:813
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2254,70 +2274,70 @@ msgstr ""
 "Възстановява се по-стара версия. Незаписаните промени ще са достъпни в "
 "хронологията на версиите"
 
-#: src/core/Socket.js:817
+#: src/core/Socket.js:819
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:957
+#: src/core/Socket.js:959
 msgid "Document requires password to view."
 msgstr "За разглеждане на документа се изисква парола."
 
-#: src/core/Socket.js:960
+#: src/core/Socket.js:962
 msgid "Document requires password to modify."
 msgstr "За променяне на документа се изисква парола."
 
-#: src/core/Socket.js:962
+#: src/core/Socket.js:964
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Изберете Отказ, за да го отворите само за разглеждане."
 
-#: src/core/Socket.js:966
+#: src/core/Socket.js:968
 msgid "Wrong password provided. Please try again."
 msgstr "Въведена е погрешна парола. Моля, опитайте отново."
 
-#: src/core/Socket.js:1004
+#: src/core/Socket.js:1006
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1035 src/core/Socket.js:1040
+#: src/core/Socket.js:1037 src/core/Socket.js:1042
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1077
+#: src/core/Socket.js:1079
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1078
+#: src/core/Socket.js:1080
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1087
+#: src/core/Socket.js:1089
 msgid "Connecting..."
 msgstr "Протича свързване..."
 
-#: src/core/Socket.js:1104
+#: src/core/Socket.js:1106
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1205
+#: src/core/Socket.js:1207
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1205
+#: src/core/Socket.js:1207
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1527
+#: src/core/Socket.js:1529
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Не е възможно свързване с документа. Моля, опитайте отново."
 
-#: src/core/Socket.js:1544
+#: src/core/Socket.js:1546
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Протича свързване..."
 
-#: src/core/Socket.js:1554
+#: src/core/Socket.js:1556
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2539,57 +2559,65 @@ msgstr ""
 msgid "No Comments"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:911
+#: src/layer/tile/CommentListSection.ts:8
+msgid "A comment is being edited"
+msgstr ""
+
+#: src/layer/tile/CommentListSection.ts:9
+msgid "Please save or discard the comment currently being edited."
+msgstr ""
+
+#: src/layer/tile/CommentListSection.ts:872
 msgid "Modify"
 msgstr "Променяне"
 
-#: src/layer/tile/CommentListSection.ts:917
+#: src/layer/tile/CommentListSection.ts:878
 #: src/layer/tile/CommentSection.ts:123
 msgid "Reply"
 msgstr "Отговор"
 
-#: src/layer/tile/CommentListSection.ts:923
+#: src/layer/tile/CommentListSection.ts:884
 msgid "Remove"
 msgstr "Премахване"
 
-#: src/layer/tile/CommentListSection.ts:929
+#: src/layer/tile/CommentListSection.ts:890
 msgid "Remove Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:935
+#: src/layer/tile/CommentListSection.ts:896
 msgid "Resolve"
 msgstr "Разрешаване"
 
-#: src/layer/tile/CommentListSection.ts:935
+#: src/layer/tile/CommentListSection.ts:896
 msgid "Unresolve"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:941
+#: src/layer/tile/CommentListSection.ts:902
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:941
+#: src/layer/tile/CommentListSection.ts:902
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:1177
-#: src/layer/tile/CommentListSection.ts:1213
+#: src/layer/tile/CommentListSection.ts:1153
+#: src/layer/tile/CommentListSection.ts:1202
 msgid "Autosaved"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:264
+#: src/layer/tile/CommentSection.ts:261
 msgid "Open menu"
 msgstr "Отваряне на менюто"
 
-#: src/layer/tile/CommentSection.ts:282 src/layer/tile/CommentSection.ts:283
+#: src/layer/tile/CommentSection.ts:279 src/layer/tile/CommentSection.ts:280
 msgid "Accept change"
 msgstr "Приемане на промяната"
 
-#: src/layer/tile/CommentSection.ts:289 src/layer/tile/CommentSection.ts:290
+#: src/layer/tile/CommentSection.ts:286 src/layer/tile/CommentSection.ts:287
 msgid "Reject change"
 msgstr "Отхвърляне на промяната"
 
-#: src/layer/tile/CommentSection.ts:313
+#: src/layer/tile/CommentSection.ts:310
 msgid "Resolved"
 msgstr "Разрешено"
 
@@ -2680,19 +2708,19 @@ msgstr "Протича качване..."
 msgid "Uploading file to server failed with status: %0"
 msgstr "Неуспешно качване към сървъра със статус: %0"
 
-#: src/map/handler/Map.WOPI.js:147
+#: src/map/handler/Map.WOPI.js:149
 msgid "Creating new file from template..."
 msgstr "Създава се нов файл от шаблон..."
 
-#: src/map/handler/Map.WOPI.js:547
+#: src/map/handler/Map.WOPI.js:563
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:547
+#: src/map/handler/Map.WOPI.js:563
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:555
+#: src/map/handler/Map.WOPI.js:571
 msgid "Creating copy..."
 msgstr "Създава се копие..."
 
