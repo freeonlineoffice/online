@@ -11,7 +11,7 @@
 
 #include <FakeSocket.hpp>
 #include <Log.hpp>
-#include <COOLWSD.hpp>
+#include <LOOLWSD.hpp>
 #include <Util.hpp>
 
 #include "base64.hpp"

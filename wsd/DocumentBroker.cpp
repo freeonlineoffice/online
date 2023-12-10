@@ -4322,7 +4322,7 @@ void DocumentBroker::switchToOffline()
     details.getParamByName("access_token", access_token);
     // const std::string wopiSrc = session->getPublicUri().getPath() + "?access_token=" + access_token;
     const std::string wopiSrc = session->getPublicUri().getPath();
-    COOLWSD::Uri2WasmModeMap[wopiSrc] = std::chrono::steady_clock::now();
+    LOOLWSD::Uri2WasmModeMap[wopiSrc] = std::chrono::steady_clock::now();
 
     // End activity to allow for unloading.
     endActivity();

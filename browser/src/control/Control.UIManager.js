@@ -165,7 +165,7 @@ L.Control.UIManager = L.Control.extend({
 			app.socket.sendMessage('switch_request offline');
 		}
 
-		// Wait for Coolwsd to initiate the switch.
+		// Wait for Loolwsd to initiate the switch.
 	},
 
 	getAccessibilityState: function() {
