@@ -8,7 +8,6 @@
  */
 
 #include <config.h>
-#include <config_version.h>
 
 #include "LOOLWSD.hpp"
 #include "ProofKey.hpp"
