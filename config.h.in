@@ -1,0 +1,201 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* The user-visible name of the app you build. */
+#undef APP_NAME
+
+/* Default value of feature_lock.calc_unlock_highlights */
+#undef CALC_UNLOCK_HIGHLIGHTS
+
+/* Define to 1 if this is a code-coverage build. */
+#undef CODE_COVERAGE
+
+/* Free Online Office core git hash if present */
+#undef CORE_VERSION_HASH
+
+/* Whether to disable SECCOMP */
+#undef DISABLE_SECCOMP
+
+/* Default value of feature_lock.draw_unlock_highlights */
+#undef DRAW_UNLOCK_HIGHLIGHTS
+
+/* Whether to compile in some extra debugging support code and disable some
+   security pieces */
+#undef ENABLE_DEBUG
+
+/* Whether to compile and enable feature locking */
+#undef ENABLE_FEATURE_LOCK
+
+/* Whether to compile and enable feature restrictions */
+#undef ENABLE_FEATURE_RESTRICTION
+
+/* Whether to enable SIMD */
+#undef ENABLE_SIMD
+
+/* Whether to enable SSL */
+#undef ENABLE_SSL
+
+/* Whether to enable support key */
+#undef ENABLE_SUPPORT_KEY
+
+/* Should the Release notes message be shown on upgrade */
+#undef ENABLE_WELCOME_MESSAGE
+
+/* User feedback URL. */
+#undef FEEDBACK_URL
+
+/* whether the C++ compiler is clang */
+#undef HAVE_CLANG
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `iconv' library (-liconv). */
+#undef HAVE_LIBICONV
+
+/* Define to 1 if you have the `pam' library (-lpam). */
+#undef HAVE_LIBPAM
+
+/* Define to 1 if you have the <LibreOfficeKit/LibreOfficeKit.h> header file.
+   */
+#undef HAVE_LIBREOFFICEKIT_LIBREOFFICEKIT_H
+
+/* Define to 1 if you have the <linux/seccomp.h> header file. */
+#undef HAVE_LINUX_SECCOMP_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Whether OpenSSL has PKCS5_PBKDF2_HMAC() */
+#undef HAVE_PKCS5_PBKDF2_HMAC
+
+/* Define to 1 if you have the <Poco/Net/WebSocket.h> header file. */
+#undef HAVE_POCO_NET_WEBSOCKET_H
+
+/* Define to 1 if you have the `ppoll' function. */
+#undef HAVE_PPOLL
+
+/* Define to 1 if you have the <security/pam_appl.h> header file. */
+#undef HAVE_SECURITY_PAM_APPL_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Whether the used C++ has support for std::filesystem. */
+#undef HAVE_STD_FILESYSTEM
+
+/* Whether the std::filesystem is in the experimental header. */
+#undef HAVE_STD_FILESYSTEM_EXPERIMENTAL
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Default value of help root URL */
+#undef HELP_URL
+
+/* Default value of feature_lock.impress_unlock_highlights */
+#undef IMPRESS_UNLOCK_HIGHLIGHTS
+
+/* Infobar URL. */
+#undef INFOBAR_URL
+
+/* Define to 1 if this is a libfuzzer build. */
+#undef LIBFUZZER
+
+/* Default value of feature_lock.locked_commands */
+#undef LOCKED_COMMANDS
+
+/* Enable logging of test assertions */
+#undef LOK_LOG_ASSERTIONS
+
+/* Enable permanent anonymization in logs */
+#undef LOOLWSD_ANONYMIZE_USER_DATA
+
+/* Destination for Trace Event output */
+#undef LOOLWSD_TRACEEVENTFILE
+
+/* Free Online Office WebSocket server version */
+#undef LOOLWSD_VERSION
+
+/* LibreOffice Online git hash if present */
+#undef LOOLWSD_VERSION_HASH
+
+/* The user-name which is allowed to run loolwsd and its tools */
+#undef LOOL_USER_ID
+
+/* Path to LibreOffice installation */
+#undef LO_PATH
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Limit the maximum number of open connections */
+#undef MAX_CONNECTIONS
+
+/* Limit the maximum number of open documents */
+#undef MAX_DOCUMENTS
+
+/* Define to 1 if this is a mobileapp (eg. Android) build. */
+#undef MOBILEAPP
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Default value of feature_lock.unlock_description */
+#undef UNLOCK_DESCRIPTION
+
+/* Default value of feature_lock.unlock_link */
+#undef UNLOCK_LINK
+
+/* Default value of feature_lock.unlock_title */
+#undef UNLOCK_TITLE
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to 1 if this is the WASM app build. */
+#undef WASMAPP
+
+/* The welcome url of the build. */
+#undef WELCOME_URL
+
+/* Default value of feature_lock.writer_unlock_highlights */
+#undef WRITER_UNLOCK_HIGHLIGHTS
