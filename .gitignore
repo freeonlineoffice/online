@@ -20,7 +20,6 @@ loolwsd.xml
 aclocal.m4
 autom4te.cache
 config.h
-config.h.in
 ios/config.h
 config.log
 config.guess
