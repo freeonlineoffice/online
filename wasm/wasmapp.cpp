@@ -144,14 +144,11 @@ void handle_lool_message(const char *string_value)
         LOG_TRC_NOFILE("Actually sending to Online:" << fileURL);
         std::cout << "Loading file [" << fileURL << "]" << std::endl;
 
-        std::thread([]
-                    {
-                        struct pollfd pollfd;
-                        pollfd.fd = fakeClientFd;
-                        pollfd.events = POLLOUT;
-                        fakeSocketPoll(&pollfd, 1, -1);
-                        fakeSocketWrite(fakeClientFd, fileURL.c_str(), fileURL.size());
-                    }).detach();
+        struct pollfd pollfd;
+        pollfd.fd = fakeClientFd;
+        pollfd.events = POLLOUT;
+        fakeSocketPoll(&pollfd, 1, -1);
+        fakeSocketWrite(fakeClientFd, fileURL.c_str(), fileURL.size());
     }
     else if (strcmp(string_value, "BYE") == 0)
     {
@@ -163,16 +160,11 @@ void handle_lool_message(const char *string_value)
     else
     {
         // As above
-        char *string_copy = strdup(string_value);
-        std::thread([=]
-                    {
-                        struct pollfd pollfd;
-                        pollfd.fd = fakeClientFd;
-                        pollfd.events = POLLOUT;
-                        fakeSocketPoll(&pollfd, 1, -1);
-                        fakeSocketWrite(fakeClientFd, string_copy, strlen(string_copy));
-                        free(string_copy);
-                    }).detach();
+        struct pollfd pollfd;
+        pollfd.fd = fakeClientFd;
+        pollfd.events = POLLOUT;
+        fakeSocketPoll(&pollfd, 1, -1);
+        fakeSocketWrite(fakeClientFd, string_value, strlen(string_value));
     }
 }
 
