@@ -568,6 +568,10 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public reply (annotation: any): void {
+		if (cool.Comment.isAnyEdit()) {
+			cool.CommentSection.showCommentEditingWarning();
+			return;
+		}
 		if ((<any>window).mode.isMobile()) {
 			var avatar = undefined;
 			var author = this.map.getViewName(this.sectionProperties.docLayer._viewId);
@@ -605,6 +609,10 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public modify (annotation: any): void {
+		if (cool.Comment.isAnyEdit()) {
+			cool.CommentSection.showCommentEditingWarning();
+			return;
+		}
 		if ((<any>window).mode.isMobile()) {
 			this.newAnnotationMobile(annotation, function(annotation: any) {
 				this.save(annotation);
