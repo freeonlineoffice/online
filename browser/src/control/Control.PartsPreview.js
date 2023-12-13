@@ -3,7 +3,7 @@
  * L.Control.PartsPreview
  */
 
-/* global _ app $ Hammer w2ui _UNO cool */
+/* global _ app $ Hammer w2ui _UNO lool */
 L.Control.PartsPreview = L.Control.extend({
 	options: {
 		fetchThumbnail: true,
@@ -499,8 +499,8 @@ L.Control.PartsPreview = L.Control.extend({
 	},
 
 	_setPart: function (e) {
-		if (cool.Comment.isAnyEdit()) {
-			cool.CommentSection.showCommentEditingWarning();
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
 			return;
 		}
 

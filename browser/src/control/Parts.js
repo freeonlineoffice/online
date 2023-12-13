@@ -3,12 +3,12 @@
  * Document parts switching and selecting handler
  */
 
-/* global app _ cool */
+/* global app _ lool */
 
 L.Map.include({
 	setPart: function (part, external, calledFromSetPartHandler) {
-		if (cool.Comment.isAnyEdit()) {
-			cool.CommentSection.showCommentEditingWarning();
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
 			return;
 		}
 
@@ -283,8 +283,8 @@ L.Map.include({
 	},
 
 	insertPage: function(nPos) {
-		if (cool.Comment.isAnyEdit()) {
-			cool.CommentSection.showCommentEditingWarning();
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
 			return;
 		}
 

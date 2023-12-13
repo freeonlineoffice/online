@@ -568,8 +568,8 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public reply (annotation: any): void {
-		if (cool.Comment.isAnyEdit()) {
-			cool.CommentSection.showCommentEditingWarning();
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
 			return;
 		}
 		if ((<any>window).mode.isMobile()) {
@@ -609,8 +609,8 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public modify (annotation: any): void {
-		if (cool.Comment.isAnyEdit()) {
-			cool.CommentSection.showCommentEditingWarning();
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
 			return;
 		}
 		if ((<any>window).mode.isMobile()) {
