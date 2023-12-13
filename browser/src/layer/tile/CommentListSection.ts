@@ -41,6 +41,8 @@ namespace lool {
 
 export class CommentSection extends CanvasSectionObject {
 	map: any;
+	static autoSavedComment: cool.Comment;
+	static commentWasAutoAdded: boolean;
 
 	// To associate comment id with its index in commentList array.
 	private idIndexMap: Map<any, number>;
@@ -532,7 +534,7 @@ export class CommentSection extends CanvasSectionObject {
 
 			// Object is later removed in onACKComment when newly inserted comment object is available
 			// It's to reduce the flicker when using comment autosave
-			if (!app.view.commentAutoSave)
+			if (!CommentSection.autoSavedComment)
 				this.removeItem(annotation.sectionProperties.data.id);
 		} else if (annotation.sectionProperties.data.trackchange) {
 			comment = {
@@ -1178,7 +1180,7 @@ export class CommentSection extends CanvasSectionObject {
 				if (this.sectionProperties.docLayer._docType === 'spreadsheet')
 					annotation.hide();
 
-				var autoSavedComment = app.view.commentAutoSave;
+				var autoSavedComment = CommentSection.autoSavedComment;
 				if (autoSavedComment) {
 					var isOurComment = annotation.isAutoSaved();
 					if (isOurComment) {
@@ -1189,8 +1191,8 @@ export class CommentSection extends CanvasSectionObject {
 						annotation.edit();
 						if (autoSavedComment.sectionProperties.data.id === 'new')
 							this.removeItem(autoSavedComment.sectionProperties.data.id);
-						app.view.commentAutoSave = null;
-						app.view.commentAutoAdded = true;
+						CommentSection.autoSavedComment = null;
+						CommentSection.commentWasAutoAdded = true;
 					}
 				}
 			}
@@ -1231,8 +1233,8 @@ export class CommentSection extends CanvasSectionObject {
 				modified.update();
 				this.update();
 
-				if (app.view.commentAutoSave) {
-					app.view.commentAutoSave.sectionProperties.autoSave.innerText = _('Autosaved');
+				if (CommentSection.autoSavedComment) {
+					CommentSection.autoSavedComment.sectionProperties.autoSave.innerText = _('Autosaved');
 					if (this.sectionProperties.docLayer._docType === 'spreadsheet')
 						modified.show();
 					modified.edit();
