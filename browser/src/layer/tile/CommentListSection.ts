@@ -41,7 +41,7 @@ namespace lool {
 
 export class CommentSection extends CanvasSectionObject {
 	map: any;
-	static autoSavedComment: cool.Comment;
+	static autoSavedComment: lool.Comment;
 	static commentWasAutoAdded: boolean;
 
 	// To associate comment id with its index in commentList array.

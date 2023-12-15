@@ -16,7 +16,7 @@ export class Comment extends CanvasSectionObject {
 	pendingInit: boolean = true;
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	constructor (data: any, options: any, commentListSectionPointer: cool.CommentSection) {
+	constructor (data: any, options: any, commentListSectionPointer: lool.CommentSection) {
 
 		super({
 			name: L.CSections.Comment.name,
@@ -218,7 +218,7 @@ export class Comment extends CanvasSectionObject {
 			document.getElementById('document-container').appendChild(this.sectionProperties.container);
 
 		// We make comment directly visible when its transitioned to its determined position
-		if (cool.CommentSection.autoSavedComment)
+		if (lool.CommentSection.autoSavedComment)
 			this.sectionProperties.container.style.visibility = 'hidden';
 	}
 
@@ -715,7 +715,7 @@ export class Comment extends CanvasSectionObject {
 		if ((<any>window).mode.isMobile() && this.sectionProperties.container.parentElement === document.getElementById('document-container'))
 			this.sectionProperties.container.style.visibility = 'hidden';
 
-		if (cool.CommentSection.commentWasAutoAdded)
+		if (lool.CommentSection.commentWasAutoAdded)
 			return;
 		if (this.sectionProperties.docLayer._docType === 'text')
 			this.showWriter();
@@ -759,7 +759,7 @@ export class Comment extends CanvasSectionObject {
 	// check if this is "our" autosaved comment
 	// core is not aware it's autosaved one so use this simplified detection based on content
 	public isAutoSaved (): boolean {
-		var autoSavedComment = cool.CommentSection.autoSavedComment;
+		var autoSavedComment = lool.CommentSection.autoSavedComment;
 		if (!autoSavedComment)
 			return false;
 
@@ -825,8 +825,8 @@ export class Comment extends CanvasSectionObject {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public handleReplyCommentButton (e: any): void {
-		cool.CommentSection.autoSavedComment = null;
-		cool.CommentSection.commentWasAutoAdded = false;
+		lool.CommentSection.autoSavedComment = null;
+		lool.CommentSection.commentWasAutoAdded = false;
 		this.textAreaInput();
 		this.onReplyClick(e);
 	}
@@ -850,11 +850,11 @@ export class Comment extends CanvasSectionObject {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public handleCancelCommentButton (e: any): void {
-		if (cool.CommentSection.commentWasAutoAdded) {
+		if (lool.CommentSection.commentWasAutoAdded) {
 			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).remove(this.sectionProperties.data.id);
 		}
 
-		if (cool.CommentSection.autoSavedComment) {
+		if (lool.CommentSection.autoSavedComment) {
 			this.sectionProperties.contentText.origText = this.sectionProperties.contentText.unedited;
 			this.sectionProperties.contentText.unedited = null;
 		}
@@ -866,14 +866,14 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.nodeModifyText.value = this.sectionProperties.contentText.origText;
 		this.sectionProperties.nodeReplyText.value = '';
 
-		if (cool.CommentSection.autoSavedComment)
+		if (lool.CommentSection.autoSavedComment)
 			this.handleSaveCommentButton(e);
 
 		this.onCancelClick(e);
 		if (this.sectionProperties.docLayer._docType === 'spreadsheet')
 			this.hideCalc();
-		cool.CommentSection.commentWasAutoAdded = false;
-		cool.CommentSection.autoSavedComment = null;
+		lool.CommentSection.commentWasAutoAdded = false;
+		lool.CommentSection.autoSavedComment = null;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -889,8 +889,8 @@ export class Comment extends CanvasSectionObject {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public handleSaveCommentButton (e: any): void {
-		cool.CommentSection.autoSavedComment = null;
-		cool.CommentSection.commentWasAutoAdded = false;
+		lool.CommentSection.autoSavedComment = null;
+		lool.CommentSection.commentWasAutoAdded = false;
 		this.sectionProperties.contentText.unedited = null;
 		this.textAreaInput();
 		this.onSaveComment(e);
@@ -901,7 +901,7 @@ export class Comment extends CanvasSectionObject {
 		L.DomEvent.stopPropagation(e);
 		this.sectionProperties.data.text = this.sectionProperties.nodeModifyText.value;
 		this.updateContent();
-		if (!cool.CommentSection.autoSavedComment)
+		if (!lool.CommentSection.autoSavedComment)
 			this.show();
 		this.sectionProperties.commentListSection.save(this);
 	}
@@ -913,7 +913,7 @@ export class Comment extends CanvasSectionObject {
 			if (this.sectionProperties.contentText.origText !== this.sectionProperties.nodeModifyText.value) {
 				if (!this.sectionProperties.contentText.unedited)
 					this.sectionProperties.contentText.unedited = this.sectionProperties.contentText.origText;
-				cool.CommentSection.autoSavedComment = this;
+				lool.CommentSection.autoSavedComment = this;
 				this.onSaveComment(e);
 			}
 			else if (this.containerObject.testing) {
@@ -933,7 +933,7 @@ export class Comment extends CanvasSectionObject {
 		if (this.sectionProperties.nodeReplyText.value !== '') {
 			if (!this.sectionProperties.contentText.unedited)
 				this.sectionProperties.contentText.unedited = this.sectionProperties.contentText.origText;
-			cool.CommentSection.autoSavedComment = this;
+			lool.CommentSection.autoSavedComment = this;
 			this.onReplyClick(e);
 		}
 		else {
