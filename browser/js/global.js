@@ -277,10 +277,10 @@ window.app = {
 			if (obj === null || obj === undefined) {
 				return '' + obj;
 			}
-			if (!('_coolMemoId' in obj)) {
-				obj['_coolMemoId'] = ++global.memo._lastId;
+			if (!('_loolMemoId' in obj)) {
+				obj['_loolMemoId'] = ++global.memo._lastId;
 			}
-			return obj._coolMemoId;
+			return obj._loolMemoId;
 		},
 
 		_decoratorMemo: {},
