@@ -505,7 +505,7 @@ COMMON_PARAMS = \
 	--o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
 	--o:admin_console.username=admin --o:admin_console.password=admin
 
-run: setup-wsd
+run: prettier-write setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
 			--o:security.capabilities="$(CAPABILITIES)" \
 			--o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
@@ -646,6 +646,23 @@ eslint: browser/node_modules
 		--no-eslintrc \
 		--config browser/.eslintrc
 
+prettier: browser/node_modules
+	browser/node_modules/.bin/prettier \
+		--config browser/.prettierrc \
+		--ignore-path browser/.prettierignore \
+		--ignore-path browser/.beforeprettier \
+		--check \
+		browser/src browser/js browser/admin/src \
+		|| echo "To run prettier, you can use 'make prettier-write' or run LOOLWSD with 'make run'"
+
+prettier-write: browser/node_modules
+	browser/node_modules/.bin/prettier \
+		--config browser/.prettierrc \
+		--ignore-path browser/.prettierignore \
+		--ignore-path browser/.beforeprettier \
+		--write \
+		browser/src browser/js browser/admin/src
+
 install-exec-hook:
 	cd $(DESTDIR)$(bindir) && \
 	$(LN_S) loolconfig loolconfig && \
@@ -689,7 +706,7 @@ check-for-system-nss:
 
 check-recursive: eslint
 
-check: check-for-system-nss eslint check-recursive
+check: check-for-system-nss prettier eslint check-recursive
 	$(GEN_COVERAGE_COMMAND)
 
 coverage-report:
