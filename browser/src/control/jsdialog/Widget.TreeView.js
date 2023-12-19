@@ -85,6 +85,17 @@ function _createCheckbox(parentContainer, treeViewData, builder, entry) {
 	return checkbox;
 }
 
+function _createRadioButton(parentContainer, treeViewData, builder, entry) {
+	var radioButton = L.DomUtil.create('input', builder.options.cssClass + ' ui-treeview-checkbox', parentContainer);
+	radioButton.type = 'radio';
+	radioButton.tabIndex = -1;
+
+	if (entry.state === 'true' || entry.state === true)
+		radioButton.checked = true;
+
+	return radioButton;
+}
+
 function _changeCheckboxStateOnClick(checkbox, treeViewData, builder, entry) {
 	if (checkbox.checked) {
 		var foundEntry = _findEntryWithRow(treeViewData.entries, entry.row);
@@ -182,10 +193,10 @@ function _treelistboxEntry(parentContainer, treeViewData, entry, builder, isTree
 	var expander = L.DomUtil.create('div', builder.options.cssClass + ' ui-treeview-expander ', span);
 
 	if (entry.state !== undefined)
-		var checkbox = _createCheckbox(span, treeViewData, builder, entry);
+		var selectionElement = _createSelectionElement(span, treeViewData, entry,builder);
 
 	if (entry.selected && (entry.selected === 'true' || entry.selected === true))
-		_selectEntry(span, checkbox);
+		_selectEntry(span, selectionElement);
 
 	var text = L.DomUtil.create('span', builder.options.cssClass + ' ui-treeview-cell', span);
 	for (var i in entry.columns) {
@@ -237,7 +248,7 @@ function _treelistboxEntry(parentContainer, treeViewData, entry, builder, isTree
 
 			// block expand/collapse on checkbox
 			if (entry.state)
-				$(checkbox).click(toggleFunction);
+				$(selectionElement).click(toggleFunction);
 		}
 
 		if (entry.ondemand || entry.collapsed)
@@ -246,9 +257,9 @@ function _treelistboxEntry(parentContainer, treeViewData, entry, builder, isTree
 
 	if (!disabled) {
 		var singleClick = _isSingleClickActivate(treeViewData);
-		var clickFunction = _createClickFunction('.ui-treeview-entry', treeRoot, span, checkbox,
+		var clickFunction = _createClickFunction('.ui-treeview-entry', treeRoot, span, selectionElement,
 			true, singleClick, builder, treeViewData, entry);
-		var doubleClickFunction = _createClickFunction('.ui-treeview-entry', treeRoot, span, checkbox,
+		var doubleClickFunction = _createClickFunction('.ui-treeview-entry', treeRoot, span, selectionElement,
 			false, true, builder, treeViewData, entry);
 
 		text.addEventListener('click', clickFunction);
@@ -260,8 +271,8 @@ function _treelistboxEntry(parentContainer, treeViewData, entry, builder, isTree
 				else
 					clickFunction();
 
-				if (checkbox)
-					checkbox.click();
+				if (selectionElement)
+					selectionElement.click();
 				preventDef = true;
 			} else if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
 				if (entry.ondemand)
@@ -326,17 +337,17 @@ function _expandTreeGrid(element) {
 function _headerlistboxEntry(parentContainer, treeViewData, entry, builder) {
 	var disabled = treeViewData.enabled === 'false' || treeViewData.enabled === false;
 	var singleClick = _isSingleClickActivate(treeViewData);
-
+	var selectionElement;
 	if (entry.state !== undefined) {
 		var td = L.DomUtil.create('td', '', parentContainer);
-		var checkbox = _createCheckbox(td, treeViewData, builder, entry);
+		selectionElement = _createSelectionElement(td, treeViewData, entry, builder);
 	}
 
 	if (entry.selected && (entry.selected === 'true' || entry.selected === true))
-		_selectEntry(parentContainer, checkbox);
+		_selectEntry(parentContainer, selectionElement);
 
 	var clickFunction = _createClickFunction('.ui-listview-entry', parentContainer.parentNode,
-		parentContainer, checkbox, true, singleClick, builder, treeViewData, entry);
+		parentContainer, selectionElement, true, singleClick, builder, treeViewData, entry);
 
 	var expander = null; // present in TreeGrid
 
@@ -360,7 +371,7 @@ function _headerlistboxEntry(parentContainer, treeViewData, entry, builder) {
 			td.innerText = entry.columns[i].text;
 
 		if (!disabled)
-			$(td).click(clickFunction);
+			$(parentContainer).click(clickFunction);
 	}
 
 	if (!disabled) {
@@ -372,8 +383,8 @@ function _headerlistboxEntry(parentContainer, treeViewData, entry, builder) {
 				event.stopPropagation();
 			} else if (event.key === 'Enter' || event.key === ' ') {
 				clickFunction();
-				if (checkbox)
-					checkbox.click();
+				if (selectionElement)
+					selectionElement.click();
 				parentContainer.focus();
 				event.preventDefault();
 				event.stopPropagation();
@@ -390,6 +401,18 @@ function _hasIcon(columns) {
 		if (columns[i].collapsed !== undefined)
 			return true;
 	return false;
+}
+
+function _createSelectionElement (parentContainer, treeViewData, entry, builder) {
+	var selectionElement;
+	var checkboxtype = treeViewData.checkboxtype;
+	if (checkboxtype == 'radio') {
+		selectionElement = _createRadioButton(parentContainer, treeViewData, builder, entry);
+	}
+	else {
+		selectionElement = _createCheckbox(parentContainer, treeViewData, builder, entry);
+	}
+	return selectionElement;
 }
 
 function _isSingleClickActivate (treeViewData) {
