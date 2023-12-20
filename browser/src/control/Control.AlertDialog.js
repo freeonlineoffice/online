@@ -56,7 +56,7 @@ L.Control.AlertDialog = L.Control.extend({
 				var message1 = _('It seems you have copied a selection that includes external images.');
 				var message2 = _('Downloading external resources is forbidden but pasting images is still possible. Please right click in the image, choose "Copy Image" and paste it into the document instead.');
 			} else {
-				// insert image for example, it should not happen with correct coolwsd.xml configuration of net.lok_allow
+				// insert image for example, it should not happen with correct loolwsd.xml configuration of net.lok_allow
 				alertId = 'insert_network_access_error';
 				title = _('External data source not allowed');
 				message1 = _('It seems you have tried to insert external data.');
