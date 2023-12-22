@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 19:32+0100\n"
+"POT-Creation-Date: 2023-12-22 22:13+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/"
@@ -228,7 +228,7 @@ msgid "Log Levels"
 msgstr ""
 
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:82
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:94
 #: src/control/Control.Zotero.js:182 src/control/Parts.js:451
 #: src/control/Signing.js:611 src/core/Socket.js:1037 src/core/Socket.js:1042
 #: src/layer/tile/CommentListSection.ts:117
@@ -260,8 +260,8 @@ msgstr ""
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:316
-#: src/control/Control.Tabs.js:325 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:328
+#: src/control/Control.Tabs.js:337 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:555 src/control/Toolbar.js:656
@@ -377,26 +377,40 @@ msgstr ""
 msgid "Open link"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:56
+#: src/control/Control.AlertDialog.js:55
 msgid "Copied external sources are not allowed"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:58
+#: src/control/Control.AlertDialog.js:56
 msgid "It seems you have copied a selection that includes external images."
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:59
+#: src/control/Control.AlertDialog.js:57
 msgid ""
 "Downloading external resources is forbidden but pasting images is still "
 "possible. Please right click in the image, choose \"Copy Image\" and paste "
 "it into the document instead."
 msgstr ""
 
+#: src/control/Control.AlertDialog.js:61
+msgid "External data source not allowed"
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:62
+msgid "It seems you have tried to insert external data."
+msgstr ""
+
 #: src/control/Control.AlertDialog.js:63
+msgid ""
+"Selected external data source is forbidden. Please contact the system "
+"administrator."
+msgstr ""
+
+#: src/control/Control.AlertDialog.js:75
 msgid "Don't show this again"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:79
+#: src/control/Control.AlertDialog.js:91
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr ""
 
@@ -490,11 +504,11 @@ msgid ""
 "From now on clipboard notifications will discreetly appear at the bottom."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:257
+#: src/control/Control.DownloadProgress.js:264
 msgid "Content copied to clipboard"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:301
+#: src/control/Control.DownloadProgress.js:308
 msgid "Download failed"
 msgstr ""
 
@@ -620,8 +634,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2057
-#: src/layer/tile/CanvasTileLayer.js:5311
-#: src/layer/tile/CanvasTileLayer.js:5322
+#: src/layer/tile/CanvasTileLayer.js:5319
+#: src/layer/tile/CanvasTileLayer.js:5330
 #: src/layer/tile/CommentListSection.ts:943
 msgid "Comment"
 msgstr "Заўвага"
@@ -1700,15 +1714,15 @@ msgstr ""
 msgid "Copy Sheet..."
 msgstr ""
 
-#: src/control/Control.Tabs.js:314
+#: src/control/Control.Tabs.js:326
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr ""
 
-#: src/control/Control.Tabs.js:325
+#: src/control/Control.Tabs.js:337
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:325
+#: src/control/Control.Tabs.js:337
 msgid "Enter new sheet name"
 msgstr ""
 
@@ -2500,7 +2514,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5339
+#: src/layer/tile/CanvasTileLayer.js:5347
 msgid "No Comments"
 msgstr ""
 
@@ -2615,11 +2629,11 @@ msgid ""
 "more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 
-#: src/map/Map.js:217
+#: src/map/Map.js:218
 msgid "Initializing..."
 msgstr ""
 
-#: src/map/Map.js:442 src/map/Map.js:445 src/map/Map.js:448 src/map/Map.js:451
+#: src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452
 msgid "Last saved:"
 msgstr ""
 
