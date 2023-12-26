@@ -1183,12 +1183,6 @@ function assertFocus(selectorType, selector) {
 	cy.cGet().its('activeElement.'+selectorType).should('be.eq', selector);
 }
 
-function getLoolFrameWindow() {
-	return cy.get('#loolframe')
-		.its('0.contentWindow')
-		.should('exist');
-}
-
 // Create an alias to a point whose coordinate are the middle point of the blinking cursor
 // It should be used with clickAt (see function below)
 function getBlinkingCursorPosition(aliasName) {
@@ -1264,7 +1258,6 @@ module.exports.overlayItemHasDifferentBoundsThan = overlayItemHasDifferentBounds
 module.exports.typeIntoInputField = typeIntoInputField;
 module.exports.getVisibleBounds = getVisibleBounds;
 module.exports.assertFocus = assertFocus;
-module.exports.getLoolFrameWindow = getLoolFrameWindow;
 module.exports.loadTestDocNoIntegration = loadTestDocNoIntegration;
 module.exports.getBlinkingCursorPosition = getBlinkingCursorPosition;
 module.exports.clickAt = clickAt;
