@@ -416,9 +416,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                     uint64_t dur;
                     if (ph == "i")
                     {
-                        LOOLWSD::writeTraceEventRecording("{\"name\":\""
+                        LOOLWSD::writeTraceEventRecording("{\"name\":"
                                                           + name
-                                                          + "\",\"ph\":\"i\""
+                                                          + ",\"ph\":\"i\""
                                                           + args
                                                           + ",\"ts\":"
                                                           + std::to_string(ts + _performanceCounterEpoch)
@@ -432,9 +432,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                              (static_cast<void>(getTokenUInt64(tokens[4], "id", id)),
                              getTokenUInt64(tokens[5], "tid", tid)))
                     {
-                        LOOLWSD::writeTraceEventRecording("{\"name\":\""
+                        LOOLWSD::writeTraceEventRecording("{\"name\":"
                                                           + name
-                                                          + "\",\"ph\":\""
+                                                          + ",\"ph\":\""
                                                           + ph
                                                           + "\""
                                                           + args
@@ -451,9 +451,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                     else if (ph == "X" &&
                              getTokenUInt64(tokens[4], "dur", dur))
                     {
-                        LOOLWSD::writeTraceEventRecording("{\"name\":\""
+                        LOOLWSD::writeTraceEventRecording("{\"name\":"
                                                           + name
-                                                          + "\",\"ph\":\"X\""
+                                                          + ",\"ph\":\"X\""
                                                           + args
                                                           + ",\"ts\":"
                                                           + std::to_string(ts + _performanceCounterEpoch)
