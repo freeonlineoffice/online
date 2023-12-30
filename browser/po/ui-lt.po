@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-26 17:13+0100\n"
+"POT-Creation-Date: 2023-12-30 12:56+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/"
@@ -643,8 +643,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2057
-#: src/layer/tile/CanvasTileLayer.js:5319
-#: src/layer/tile/CanvasTileLayer.js:5330
+#: src/layer/tile/CanvasTileLayer.js:5486
+#: src/layer/tile/CanvasTileLayer.js:5497
 #: src/layer/tile/CommentListSection.ts:956
 msgid "Comment"
 msgstr "Komentaras"
@@ -2347,17 +2347,17 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1537
+#: src/core/Socket.js:1556
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Nepavyko prisijungti prie dokumento. Bandykite dar kartą."
 
-#: src/core/Socket.js:1554
+#: src/core/Socket.js:1573
 msgid "Reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:1564
+#: src/core/Socket.js:1583
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2469,88 +2469,98 @@ msgid ""
 "sdk.collaboraonline.com/docs/installation/Proxy_settings.html"
 msgstr ""
 
-#: src/errormessages.js:33
-msgid "Failed to load document."
+#: src/errormessages.js:31
+msgid ""
+"Failed to establish socket connection or socket connection closed "
+"unexpectedly."
 msgstr ""
 
 #: src/errormessages.js:34
-msgid "Save failed due to no disk space left. Document will now be read-only."
+msgid "Failed to load document."
 msgstr ""
 
 #: src/errormessages.js:35
+msgid "Save failed due to no disk space left. Document will now be read-only."
+msgstr ""
+
+#: src/errormessages.js:36
 msgid ""
 "The document is too large or no disk space left to save. Document will now "
 "be read-only."
 msgstr ""
 
-#: src/errormessages.js:36 src/errormessages.js:45
+#: src/errormessages.js:37 src/errormessages.js:46
 msgid "Document cannot be saved due to expired or invalid access token."
 msgstr ""
 
-#: src/errormessages.js:37
+#: src/errormessages.js:38
 msgid "Document cannot be saved."
 msgstr ""
 
-#: src/errormessages.js:38
+#: src/errormessages.js:39
 msgid "Document cannot be renamed."
 msgstr ""
 
-#: src/errormessages.js:42
+#: src/errormessages.js:43
 msgid ""
 "Failed to read document from storage, please try to load the document again."
 msgstr ""
 
-#: src/errormessages.js:43
+#: src/errormessages.js:44
 msgid ""
 "Save failed due to no storage space left. Document will now be read-only. "
 "Please make sure enough disk space is available and try to save again."
 msgstr ""
 
-#: src/errormessages.js:44
+#: src/errormessages.js:45
 msgid ""
 "Save failed because the document is too large or exceeds the remaining "
 "storage space. The document will now be read-only but you may still "
 "download it now to preserve a copy locally."
 msgstr ""
 
-#: src/errormessages.js:46
+#: src/errormessages.js:47
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
 
-#: src/errormessages.js:47
+#: src/errormessages.js:48
 msgid "Document cannot be renamed, please check your permissions."
 msgstr ""
 
-#: src/errormessages.js:48
+#: src/errormessages.js:49
 msgid "Document cannot be exported. Please try again."
 msgstr ""
 
-#: src/errormessages.js:53
+#: src/errormessages.js:54
 msgid "Uploading file to server failed, file not found."
 msgstr ""
 
-#: src/errormessages.js:54
+#: src/errormessages.js:55
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2025
+#: src/layer/tile/CanvasTileLayer.js:1997
 #, fuzzy
 msgid "Functions"
 msgstr "Funkcija"
 
-#: src/layer/tile/CanvasTileLayer.js:2596
+#: src/layer/tile/CanvasTileLayer.js:2572
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2604
+#: src/layer/tile/CanvasTileLayer.js:2574
+msgid "Select link text"
+msgstr ""
+
+#: src/layer/tile/CanvasTileLayer.js:2585
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2612
+#: src/layer/tile/CanvasTileLayer.js:2594
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5347
+#: src/layer/tile/CanvasTileLayer.js:5514
 msgid "No Comments"
 msgstr ""
 
