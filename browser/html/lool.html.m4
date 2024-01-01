@@ -138,10 +138,6 @@ var Base64ToArrayBuffer = function(base64Str) {
     window.fullyLoadedAndReady = true;
   }, false);
 
-m4_ifelse(IOSAPP,[true],
-  [   window.savedUIState = false;],
-  [   window.savedUIState = %SAVED_UI_STATE%;])
-
 window.isLocalStorageAllowed = (function() {
   var str = 'localstorage_test';
   try {
@@ -360,6 +356,7 @@ m4_ifelse(MOBILEAPP,[true],
       window.checkFileInfoOverride = {};
       window.deeplEnabled = false;
       window.zoteroEnabled = false;
+      window.savedUIState = false;
       window.indirectionUrl='';],
      [window.host = '%HOST%';
       window.serviceRoot = '%SERVICE_ROOT%';
@@ -389,6 +386,7 @@ m4_ifelse(MOBILEAPP,[true],
       window.checkFileInfoOverride = %CHECK_FILE_INFO_OVERRIDE%;
       window.deeplEnabled = %DEEPL_ENABLED%;
       window.zoteroEnabled = %ZOTERO_ENABLED%;
+      window.savedUIState = %SAVED_UI_STATE%;
       window.indirectionUrl='%INDIRECTION_URL%';])
 
 // This is GLOBAL_JS:
