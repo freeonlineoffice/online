@@ -30,6 +30,7 @@ L.Control.MobileWizardWindow = L.Control.extend({
 		this.isVisible = false; // indicates if this window is currently visible inside mobile-wizard
 		this.isPopup = false; // indicates that current window is a popup, uses different look
 		this.isSnackBar = false; // shows as little popup at the bottom
+		this.isBusyPopUp = false; // show a busy popup
 		this.isFunctionMenu = false; // shows full screen with list of calc functions
 		this.isHamburgerMenu = false; // shows full screen with items from menubar
 		this.isShapesWizard = false; // shows full screen shape type selector
@@ -69,6 +70,7 @@ L.Control.MobileWizardWindow = L.Control.extend({
 		this.mobileWizard.removeClass('funcwizard');
 		this.mobileWizard.removeClass('popup');
 		this.mobileWizard.removeClass('snackbar');
+		this.mobileWizard.removeClass('busypopup');
 	},
 
 	/// this applies special styling for different types of mobile-wizards
@@ -83,6 +85,8 @@ L.Control.MobileWizardWindow = L.Control.extend({
 			this.mobileWizard.addClass('popup');
 		if (this.isSnackBar)
 			this.mobileWizard.addClass('snackbar');
+		if (this.isBusyPopUp)
+			this.mobileWizard.addClass('busypopup'); 
 	},
 
 	/// resets all classes which can modify the look to the original values
@@ -556,6 +560,10 @@ L.Control.MobileWizardWindow = L.Control.extend({
 					var that = this;
 					this.isSnackBar = true;
 					this.snackBarTimout = setTimeout(function () { that.parent.removeWindow(that); }, data.timeout ? data.timeout : this.options.snackbarTimeout);
+				}
+				else if (data.id === 'busypopup') {
+					var that = this;
+					this.isBusyPopUp = true;
 				}
 			}
 
