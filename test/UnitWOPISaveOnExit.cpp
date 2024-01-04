@@ -15,11 +15,7 @@
 
 #include <Poco/Net/HTTPRequest.h>
 
-#include "Util.hpp"
-#include "Log.hpp"
 #include "Unit.hpp"
-#include "UnitHTTP.hpp"
-#include "helpers.hpp"
 #include "lokassert.hpp"
 
 class UnitWOPISaveOnExit : public WOPIUploadConflictCommon
@@ -209,7 +205,7 @@ public:
     /// The document is loaded.
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        LOG_TST("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         LOG_TST("Modifying the document");
@@ -224,7 +220,7 @@ public:
 
     bool onDocumentModified(const std::string& message) override
     {
-        LOG_TST("onDocumentModified: [" << message << ']');
+        LOG_TST("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitModifiedStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitUploadAfterSave);
@@ -318,14 +314,14 @@ class UnitSaveOnExitUnmodified : public WopiTestServer
 
 public:
     UnitSaveOnExitUnmodified()
-        : WopiTestServer("UnitSaveOnExitUnmodified")
+        : Base("UnitSaveOnExitUnmodified")
         , _phase(Phase::Load)
     {
     }
 
     void configure(Poco::Util::LayeredConfiguration& config) override
     {
-        WopiTestServer::configure(config);
+        Base::configure(config);
 
         // Make it more likely to force uploading.
         config.setBool("per_document.always_save_on_exit", true);
@@ -344,7 +340,7 @@ public:
     /// The document is loaded.
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        LOG_TST("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitDestroy);
