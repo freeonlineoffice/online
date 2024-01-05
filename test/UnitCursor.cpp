@@ -10,8 +10,6 @@
 #include <config.h>
 
 #include <memory>
-#include <ostream>
-#include <set>
 #include <string>
 
 #include <Poco/Exception.h>

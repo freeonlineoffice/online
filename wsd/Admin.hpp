@@ -10,7 +10,6 @@
 #pragma once
 
 #include "AdminModel.hpp"
-#include "Log.hpp"
 
 #include "net/WebSocketHandler.hpp"
 #include "LOOLWSD.hpp"

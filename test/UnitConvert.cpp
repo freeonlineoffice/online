@@ -9,9 +9,7 @@
 
 #include <config.h>
 
-#include <cassert>
 #include <iostream>
-#include <random>
 
 #include <Common.hpp>
 #include <Protocol.hpp>

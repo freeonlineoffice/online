@@ -8,7 +8,6 @@
 #pragma once
 
 #include <string>
-#include <memory>
 
 #include <Poco/Net/HTTPRequest.h>
 

@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include <ctime>
 #include <set>
 
 /// Are we running inside WSD or by ourselves.

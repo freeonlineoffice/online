@@ -29,7 +29,6 @@
 
 #include "Util.hpp"
 #include "FileUtil.hpp"
-#include "RequestDetails.hpp"
 #include "WebSocketHandler.hpp"
 #include "QuarantineUtil.hpp"
 

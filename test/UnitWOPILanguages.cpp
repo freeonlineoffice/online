@@ -8,7 +8,6 @@
 #include <config.h>
 
 #include "Unit.hpp"
-#include "lokassert.hpp"
 #include <WopiTestServer.hpp>
 #include <Log.hpp>
 

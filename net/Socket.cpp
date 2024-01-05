@@ -10,6 +10,7 @@
 #include <config.h>
 
 #include "Socket.hpp"
+#include "TraceEvent.hpp"
 #include "Util.hpp"
 
 #include <cstring>

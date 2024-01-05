@@ -17,8 +17,6 @@
 
 #include "Util.hpp"
 #include "Log.hpp"
-#include "UnitHTTP.hpp"
-#include "helpers.hpp"
 #include "lokassert.hpp"
 
 /// This test simulates a permanently-failing upload.

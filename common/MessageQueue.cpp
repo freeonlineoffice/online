@@ -12,6 +12,8 @@
 #include "MessageQueue.hpp"
 #include <climits>
 #include <algorithm>
+#include <string>
+#include <string_view>
 #include <iostream>
 
 #include <Poco/JSON/JSON.h>
