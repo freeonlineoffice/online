@@ -7,6 +7,8 @@
 declare var mode: any;
 declare var ThisIsTheAndroidApp: any;
 declare var postMobileMessage: any;
+declare var idleTimeoutSecs: number;
+declare var outOfFocusTimeoutSecs: number;
 
 /**/
 
@@ -14,6 +16,8 @@ class IdleHandler {
     _serverRecycling: boolean = false;
     _documentIdle: boolean = false;
 	_lastActivity: number = Date.now();
+	_inactivityTimer: ReturnType<typeof setTimeout> = null;
+	_outOfFocusTimer: ReturnType<typeof setTimeout> = null;
     _active: boolean = true;
     map: any;
 	dimId: string = 'inactive_user_message';
@@ -44,6 +48,9 @@ class IdleHandler {
 			return false;
 		}
 
+		this._startInactiveTimer();
+		this._stopOutOfFocusTimer();
+
 		if (!this._active) {
 			// Only activate when we are connected.
 			if (app.socket.connected()) {
@@ -73,10 +80,46 @@ class IdleHandler {
 		return false;
 	}
 
+	_startInactiveTimer() {
+		if (this._serverRecycling || this._documentIdle || !this.map._docLoaded) {
+			return;
+		}
+
+		clearTimeout(this._inactivityTimer);
+
+		this._inactivityTimer = setTimeout(() => {
+			this._dimIfInactive();
+		}, 1 * 60 * 1000); // Check once a minute
+	}
+
+	_startOutOfFocusTimer() {
+		if (this._serverRecycling || this._documentIdle || !this.map._docLoaded) {
+			return;
+		}
+
+		this._stopOutOfFocusTimer();
+
+		this._outOfFocusTimer = setTimeout(() => {
+			this._dim();
+		}, window.outOfFocusTimeoutSecs * 1000);
+	}
+
+	_stopOutOfFocusTimer() {
+		clearTimeout(this._outOfFocusTimer);
+	}
+
+	_dimIfInactive() {
+		if (this.map._docLoaded && (this.getElapsedFromActivity() >= window.idleTimeoutSecs)) {
+			this._dim();
+		} else {
+			this._startInactiveTimer();
+		}
+	}
+
 	_dim() {
 		const message = this.getIdleMessage();
 
-		window.app.console.debug('IdleHandler: _dim(' + message + ')');
+		window.app.console.debug('IdleHandler: _dim()');
 
 		this._active = false;
 		var map = this.map;
@@ -88,9 +131,8 @@ class IdleHandler {
 				map.fire('postMessage', {msgId: 'User_Active'});
 				app.idleHandler._documentIdle = false;
 				app.idleHandler.map._docLayer._setCursorVisible();
-				return app.idleHandler._activate();
 			}
-			return false;
+			return app.idleHandler._activate();
 		};
 
 		this.map._textInput.hideCursor();
@@ -137,6 +179,8 @@ class IdleHandler {
 
 			return;
 		}
+
+		this._startOutOfFocusTimer();
 	}
 }
 
