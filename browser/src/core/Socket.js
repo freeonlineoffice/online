@@ -770,11 +770,6 @@ app.definitions.Socket = L.Class.extend({
 				postMsgData['Reason'] = 'OwnerTermination';
 			}
 			else if (textMsg === 'idle' || textMsg === 'oom') {
-				if (window.mode.isDesktop()) {
-					msg = _('Idle document - please click to reload and resume editing');
-				} else {
-					msg = _('Idle document - please tap to reload and resume editing');
-				}
 				app.idleHandler._documentIdle = true;
 				this._map._docLayer._documentInfo = undefined;
 				postMsgData['Reason'] = 'DocumentIdle';
@@ -858,13 +853,8 @@ app.definitions.Socket = L.Class.extend({
 			// Close any open dialogs first.
 			this._map.uiManager.closeAll();
 
-			var message = '';
-			if (!this._map['wopi'].DisableInactiveMessages) {
-				message = msg;
-			}
-
 			if (textMsg === 'idle' || textMsg === 'oom') {
-				app.idleHandler._dim(message);
+				app.idleHandler._dim();
 			}
 
 			if (postMsgData['Reason']) {
