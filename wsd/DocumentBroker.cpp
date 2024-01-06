@@ -334,8 +334,8 @@ void DocumentBroker::pollThread()
 
 
 #if !MOBILEAPP
-    static const std::size_t IdleDocTimeoutSecs
-        = LOOLWSD::getConfigValue<int>("per_document.idle_timeout_secs", 3600);
+    CONFIG_STATIC const std::size_t IdleDocTimeoutSecs =
+        LOOLWSD::getConfigValue<int>("per_document.idle_timeout_secs", 3600);
 
     // Used to accumulate B/W deltas.
     uint64_t adminSent = 0;
@@ -2788,7 +2788,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
     {
         if (_alwaysSaveOnExit && !_storageManager.lastUploadSuccessful())
         {
-            const auto limStoreFailures =
+            static const auto limStoreFailures =
                 LOOLWSD::getConfigValue<int>("per_document.limit_store_failures", 5);
 
             if (limStoreFailures > 0 &&
@@ -4326,7 +4326,7 @@ ConvertToBroker::ConvertToBroker(const std::string& uri,
                                               << format << "], options: [" << sOptions << "], lang: ["
                                               << lang << "].");
 
-    static const std::chrono::seconds limit_convert_secs(
+    CONFIG_STATIC const std::chrono::seconds limit_convert_secs(
         LOOLWSD::getConfigValue<int>("per_document.limit_convert_secs", 100));
     _limitLifeSeconds = limit_convert_secs;
     ++gConvertToBrokerInstanceCouter;

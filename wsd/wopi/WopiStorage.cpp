@@ -339,7 +339,7 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo, Poco::JSON::Ob
         _hideChangeTrackingControls =
             (booleanFlag ? WOPIFileInfo::TriState::True : WOPIFileInfo::TriState::False);
 
-    static const std::string overrideWatermarks =
+    CONFIG_STATIC const std::string overrideWatermarks =
         LOOLWSD::getConfigValue<std::string>("watermark.text", "");
     if (!overrideWatermarks.empty())
         _watermarkText = overrideWatermarks;

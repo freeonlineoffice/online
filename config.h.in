@@ -199,3 +199,13 @@
 
 /* Default value of feature_lock.writer_unlock_highlights */
 #undef WRITER_UNLOCK_HIGHLIGHTS
+
+/* Should we enable SIMD acceleration */
+#undef ENABLE_SIMD
+
+/* Define to 1 if this is the WASM app build. */
+#undef WASMAPP
+
+/* Makes config variables conditionally static, only in non-debug builds, to allow for overriding them in unit-tests. */
+#undef CONFIG_STATIC
+

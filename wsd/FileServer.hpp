@@ -170,6 +170,7 @@ public:
         {
             if (LOOLWSD::getConfigValue<bool>("ssl.sts.enabled", false))
             {
+                // Only for release, which doesn't support tests. No CONFIG_STATIC, therefore.
                 static const auto maxAge =
                     LOOLWSD::getConfigValue<int>("ssl.sts.max_age", 31536000); // Default 1 year.
                 response.add("Strict-Transport-Security",

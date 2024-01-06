@@ -419,6 +419,7 @@ AC_MSG_CHECKING([whether to enable debug build])
 if test "$enable_debug" = "yes"; then
    AC_MSG_RESULT([yes])
    AC_DEFINE([ENABLE_DEBUG],1,[Whether to compile in some extra debugging support code and disable some security pieces])
+   AC_DEFINE([CONFIG_STATIC],,[Static config values are disabled in debug builds to allow for overriding in tests])
    ENABLE_DEBUG=true
    ENABLE_DEBUG_PROTOCOL=true
    LOOLWSD_LOGLEVEL="trace"
@@ -453,6 +454,7 @@ if test "$enable_debug" = "yes"; then
 else
     AC_MSG_RESULT([no (Release build)])
     AC_DEFINE([ENABLE_DEBUG],0,[Whether to compile in some extra debugging support code and disable some security pieces])
+    AC_DEFINE([CONFIG_STATIC],static,[Static config values are enabled in release builds for performance])
 fi
 AC_SUBST(ENABLE_DEBUG)
 AC_SUBST(ENABLE_BUNDLE)
