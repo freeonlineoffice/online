@@ -142,6 +142,12 @@ L.Map.SlideShow = L.Handler.extend({
 			}
 			this._slideShowWindowProxy.focus();
 			this._slideShowWindowProxy.addEventListener('keydown', this._onCloseSlideWindow);
+
+			var slideShowWindow = this._slideShowWindowProxy;
+			this._map.uiManager.showSnackbar(_('Presenting in window'),
+				_('Close Presentation'), 
+				function() {slideShowWindow.close();},
+				-1, false, true);
 			return;
 		}
 		if (this._cypressSVGPresentationTest || !this._slideShow) {
@@ -205,10 +211,12 @@ L.Map.SlideShow = L.Handler.extend({
 			_('OK'), null, false);
 	},
 
+
 	_onCloseSlideWindow: function(e) {
 		if (e.code === 'Escape') {
 			this.opener.focus();
 			this.close();
+			L.Map.uiManager.closeSnackbar();
 		}
 	}
 });
