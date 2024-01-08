@@ -2854,9 +2854,11 @@ void DocumentBroker::disconnectSessionInternal(const std::shared_ptr<ClientSessi
                 // If at the end of loading it shows a dialog (such as the macro or
                 // csv import dialogs), it will wait for their dismissal indefinetely.
                 // Neither would our load-timeout kick in, since we would be gone.
-                LOG_INF("Session [" << id << "] disconnected but DocKey [" << _docKey
-                                    << "] isn't loaded yet. Terminating the child roughly.");
-                _childProcess->terminate();
+                LOG_INF("Session [" << session->getName() << "] disconnected but DocKey ["
+                                    << _docKey
+                                    << "] isn't loaded yet. Terminating the child roughly");
+                if (_childProcess)
+                    _childProcess->terminate();
             }
 #endif
         }
