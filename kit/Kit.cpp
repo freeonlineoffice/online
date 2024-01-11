@@ -3024,7 +3024,7 @@ void lokit_main(
 
             // The bug is that rewinding and rereading /proc/self/smaps_rollup doubles the previous
             // values, so it only affects the case where we reuse the fd from opening smaps_rollup
-            const bool bBrokenSmapsRollup = (std::getenv("COOL_DISABLE_SMAPS_ROLLUP") != nullptr);
+            const bool bBrokenSmapsRollup = (std::getenv("LOOL_DISABLE_SMAPS_ROLLUP") != nullptr);
             ProcSMapsFile = !bBrokenSmapsRollup ? open("/proc/self/smaps_rollup", O_RDONLY) : -1;
             if (ProcSMapsFile < 0)
             {

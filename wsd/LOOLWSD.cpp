@@ -2981,7 +2981,7 @@ void LOOLWSD::innerInitialize(Application& self)
             // Believed to be fixed in >= v4.19, bug seen in 4.15.0 and not in 6.5.10
             // https://github.com/torvalds/linux/commit/258f669e7e88c18edbc23fe5ce00a476b924551f
             LOG_WRN("Reading smaps_rollup twice reports Private_Dirty doubled, smaps_rollup is unreliable on this kernel");
-            setenv("COOL_DISABLE_SMAPS_ROLLUP", "1", true);
+            setenv("LOOL_DISABLE_SMAPS_ROLLUP", "1", true);
         }
         fclose(fp);
     }
