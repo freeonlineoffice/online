@@ -555,8 +555,9 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
             }
             else
             {
-                LOOLWSD::FileRequestHandler->handleRequest(request, requestDetails, message,
-                                                           socket);
+                FileServerRequestHandler::ResourceAccessDetails accessDetails;
+                LOOLWSD::FileRequestHandler->handleRequest(request, requestDetails, message, socket,
+                                                           accessDetails);
                 socket->shutdown();
             }
         }
