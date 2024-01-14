@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 20:55+0100\n"
+"POT-Creation-Date: 2024-01-14 21:10+0100\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/"
@@ -269,8 +269,8 @@ msgstr "A kiszolgáló leállt, töltse be újra az oldalt."
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080
-#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1085
-#: src/core/Socket.js:1217 src/core/Socket.js:1221 src/main.js:70
+#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1087
+#: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
 #: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
@@ -365,6 +365,18 @@ msgstr " perc"
 #: admin/src/Util.js:54
 msgid " s"
 msgstr " s"
+
+#: js/w2ui-1.5.js:2967
+msgid "No fill"
+msgstr ""
+
+#: js/w2ui-1.5.js:2967
+msgid "Automatic"
+msgstr ""
+
+#: js/w2ui-1.5.js:3007
+msgid "Recent"
+msgstr "Előzmények"
 
 #: src/control/ColorPicker.js:122
 msgid "No color"
@@ -639,8 +651,8 @@ msgid "replies"
 msgstr "válasz"
 
 #: src/control/Control.JSDialogBuilder.js:2065
-#: src/layer/tile/CanvasTileLayer.js:5538
-#: src/layer/tile/CanvasTileLayer.js:5549
+#: src/layer/tile/CanvasTileLayer.js:5559
+#: src/layer/tile/CanvasTileLayer.js:5570
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Megjegyzés"
@@ -649,21 +661,17 @@ msgstr "Megjegyzés"
 msgid "Insert Comment"
 msgstr "Megjegyzés beszúrása"
 
-#: src/control/Control.JSDialogBuilder.js:2876
-msgid "Automatic"
-msgstr ""
-
-#: src/control/Control.JSDialogBuilder.js:3017
+#: src/control/Control.JSDialogBuilder.js:3013
 #: src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Sorok"
 
-#: src/control/Control.JSDialogBuilder.js:3018
+#: src/control/Control.JSDialogBuilder.js:3014
 #: src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: src/control/Control.JSDialogBuilder.js:3038
+#: src/control/Control.JSDialogBuilder.js:3034
 msgid "Insert Table"
 msgstr "Táblázat beszúrása"
 
@@ -1857,7 +1865,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1092
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Betöltés…"
 
@@ -2328,35 +2336,35 @@ msgstr ""
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1082
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Valaki"
 
-#: src/core/Socket.js:1083
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1092
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Kapcsolódás..."
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr "A dokumentum átnevezése folyamatban van, és hamarosan újratöltődik"
 
-#: src/core/Socket.js:1112
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1550
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2364,11 +2372,11 @@ msgstr ""
 "Nagyon sajnáljuk, de nem lehet kapcsolódni a dokumentumhoz. Próbálja meg "
 "később."
 
-#: src/core/Socket.js:1567
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "Újrakapcsolódás..."
 
-#: src/core/Socket.js:1577
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "Megszűnt a kapcsolat a kiszolgálóval."
 
@@ -2581,27 +2589,27 @@ msgstr "A fájl feltöltése a kiszolgálóra nem sikerült, a fájl nem találh
 msgid "Uploading file to server failed, the file is too large."
 msgstr "A fájl feltöltése a kiszolgálóra nem sikerült, a fájl túl nagy."
 
-#: src/layer/tile/CanvasTileLayer.js:1941
+#: src/layer/tile/CanvasTileLayer.js:1956
 msgid "Functions"
 msgstr "Függvények"
 
-#: src/layer/tile/CanvasTileLayer.js:2516
+#: src/layer/tile/CanvasTileLayer.js:2533
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2518
+#: src/layer/tile/CanvasTileLayer.js:2535
 msgid "Select link text"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2529
+#: src/layer/tile/CanvasTileLayer.js:2546
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2538
+#: src/layer/tile/CanvasTileLayer.js:2555
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5566
+#: src/layer/tile/CanvasTileLayer.js:5587
 msgid "No Comments"
 msgstr "Nincsenek megjegyzések"
 
@@ -2999,9 +3007,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Search:"
 #~ msgstr "Keresés"
-
-#~ msgid "Recent"
-#~ msgstr "Előzmények"
 
 #~ msgid "Index"
 #~ msgstr "Index"

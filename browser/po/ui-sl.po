@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreOffice Online UI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 20:55+0100\n"
+"POT-Creation-Date: 2024-01-14 21:10+0100\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/"
@@ -269,8 +269,8 @@ msgstr "Strežnik je izklopljen; prosimo, ponovno naložite stran."
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080
-#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1085
-#: src/core/Socket.js:1217 src/core/Socket.js:1221 src/main.js:70
+#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1087
+#: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
 #: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
@@ -364,6 +364,18 @@ msgstr " min"
 #: admin/src/Util.js:54
 msgid " s"
 msgstr " s"
+
+#: js/w2ui-1.5.js:2967
+msgid "No fill"
+msgstr ""
+
+#: js/w2ui-1.5.js:2967
+msgid "Automatic"
+msgstr ""
+
+#: js/w2ui-1.5.js:3007
+msgid "Recent"
+msgstr "Nedavno"
 
 #: src/control/ColorPicker.js:122
 msgid "No color"
@@ -638,8 +650,8 @@ msgid "replies"
 msgstr "odgovorov"
 
 #: src/control/Control.JSDialogBuilder.js:2065
-#: src/layer/tile/CanvasTileLayer.js:5538
-#: src/layer/tile/CanvasTileLayer.js:5549
+#: src/layer/tile/CanvasTileLayer.js:5559
+#: src/layer/tile/CanvasTileLayer.js:5570
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Komentar"
@@ -648,21 +660,17 @@ msgstr "Komentar"
 msgid "Insert Comment"
 msgstr "Vstavi komentar"
 
-#: src/control/Control.JSDialogBuilder.js:2876
-msgid "Automatic"
-msgstr ""
-
-#: src/control/Control.JSDialogBuilder.js:3017
+#: src/control/Control.JSDialogBuilder.js:3013
 #: src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Vrstice"
 
-#: src/control/Control.JSDialogBuilder.js:3018
+#: src/control/Control.JSDialogBuilder.js:3014
 #: src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Stolpci"
 
-#: src/control/Control.JSDialogBuilder.js:3038
+#: src/control/Control.JSDialogBuilder.js:3034
 msgid "Insert Table"
 msgstr "Vstavi tabelo"
 
@@ -1854,7 +1862,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1092
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Nalaganje ..."
 
@@ -2323,46 +2331,46 @@ msgstr ""
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1082
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Nekdo"
 
-#: src/core/Socket.js:1083
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1092
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Povezovanje ..."
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 "Dokument je v postopku preimenovanja in se bo v kratkem ponovno naložil."
 
-#: src/core/Socket.js:1112
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1550
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Žal se ni mogoče povezati z vašim dokumentom. Prosimo, poskusite znova."
 
-#: src/core/Socket.js:1567
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "Ponovno povezovanje ..."
 
-#: src/core/Socket.js:1577
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "Strežnik ni več povezan."
 
@@ -2570,27 +2578,27 @@ msgstr "Nalaganje datoteke na strežnik je spodletelo, datoteke ni mogoče najti
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Nalaganje datoteke na strežnik je spodletelo, datoteka je prevelika."
 
-#: src/layer/tile/CanvasTileLayer.js:1941
+#: src/layer/tile/CanvasTileLayer.js:1956
 msgid "Functions"
 msgstr "Funkcije"
 
-#: src/layer/tile/CanvasTileLayer.js:2516
+#: src/layer/tile/CanvasTileLayer.js:2533
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2518
+#: src/layer/tile/CanvasTileLayer.js:2535
 msgid "Select link text"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2529
+#: src/layer/tile/CanvasTileLayer.js:2546
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2538
+#: src/layer/tile/CanvasTileLayer.js:2555
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5566
+#: src/layer/tile/CanvasTileLayer.js:5587
 msgid "No Comments"
 msgstr "Ni komentarjev"
 
@@ -2995,9 +3003,6 @@ msgstr ""
 
 #~ msgid "Search:"
 #~ msgstr "Išči:"
-
-#~ msgid "Recent"
-#~ msgstr "Nedavno"
 
 #~ msgid "Index"
 #~ msgstr "Kazalo"

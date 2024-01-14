@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 20:55+0100\n"
+"POT-Creation-Date: 2024-01-14 21:10+0100\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/collabora-online/"
@@ -268,8 +268,8 @@ msgstr "El servidor se ha apagado; vuelva a cargar la página."
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080
-#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1085
-#: src/core/Socket.js:1217 src/core/Socket.js:1221 src/main.js:70
+#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1087
+#: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
 #: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
 #: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
@@ -364,6 +364,18 @@ msgstr " min"
 #: admin/src/Util.js:54
 msgid " s"
 msgstr " s"
+
+#: js/w2ui-1.5.js:2967
+msgid "No fill"
+msgstr ""
+
+#: js/w2ui-1.5.js:2967
+msgid "Automatic"
+msgstr ""
+
+#: js/w2ui-1.5.js:3007
+msgid "Recent"
+msgstr "Recientes"
 
 #: src/control/ColorPicker.js:122
 msgid "No color"
@@ -639,8 +651,8 @@ msgid "replies"
 msgstr "respuestas"
 
 #: src/control/Control.JSDialogBuilder.js:2065
-#: src/layer/tile/CanvasTileLayer.js:5538
-#: src/layer/tile/CanvasTileLayer.js:5549
+#: src/layer/tile/CanvasTileLayer.js:5559
+#: src/layer/tile/CanvasTileLayer.js:5570
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Comentario"
@@ -649,21 +661,17 @@ msgstr "Comentario"
 msgid "Insert Comment"
 msgstr "Insertar comentario"
 
-#: src/control/Control.JSDialogBuilder.js:2876
-msgid "Automatic"
-msgstr ""
-
-#: src/control/Control.JSDialogBuilder.js:3017
+#: src/control/Control.JSDialogBuilder.js:3013
 #: src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Filas"
 
-#: src/control/Control.JSDialogBuilder.js:3018
+#: src/control/Control.JSDialogBuilder.js:3014
 #: src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Columnas"
 
-#: src/control/Control.JSDialogBuilder.js:3038
+#: src/control/Control.JSDialogBuilder.js:3034
 msgid "Insert Table"
 msgstr "Insertar tabla"
 
@@ -1855,7 +1863,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1092
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Cargando…"
 
@@ -2326,45 +2334,45 @@ msgstr ""
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1082
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Alguien"
 
-#: src/core/Socket.js:1083
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1092
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Conectando…"
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr "Se está cambiando el nombre del archivo y se recargará pronto"
 
-#: src/core/Socket.js:1112
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1550
+#: src/core/Socket.js:1552
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Se produjo un error de conexión con el documento. Inténtelo de nuevo."
 
-#: src/core/Socket.js:1567
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: src/core/Socket.js:1577
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "Se ha desconectado el servidor."
 
@@ -2578,27 +2586,27 @@ msgstr "Falló la carga del archivo al servidor; no se encontró el archivo."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Falló la carga del archivo al servidor; el archivo es demasiado grande."
 
-#: src/layer/tile/CanvasTileLayer.js:1941
+#: src/layer/tile/CanvasTileLayer.js:1956
 msgid "Functions"
 msgstr "Funciones"
 
-#: src/layer/tile/CanvasTileLayer.js:2516
+#: src/layer/tile/CanvasTileLayer.js:2533
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2518
+#: src/layer/tile/CanvasTileLayer.js:2535
 msgid "Select link text"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2529
+#: src/layer/tile/CanvasTileLayer.js:2546
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2538
+#: src/layer/tile/CanvasTileLayer.js:2555
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5566
+#: src/layer/tile/CanvasTileLayer.js:5587
 msgid "No Comments"
 msgstr "Sin comentarios"
 
@@ -2997,9 +3005,6 @@ msgstr ""
 
 #~ msgid "Search:"
 #~ msgstr "Buscar:"
-
-#~ msgid "Recent"
-#~ msgstr "Recientes"
 
 #~ msgid "Index"
 #~ msgstr "Índice"

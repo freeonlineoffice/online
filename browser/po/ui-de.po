@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 20:55+0100\n"
-"PO-Revision-Date: 2024-01-11 21:00+0100\n"
+"POT-Creation-Date: 2024-01-14 21:10+0100\n"
+"PO-Revision-Date: 2024-01-14 21:35+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -267,8 +267,8 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/control/Permission.js:80 src/control/Permission.js:90
 #: src/control/Permission.js:140 src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080 src/core/Socket.js:599
-#: src/core/Socket.js:1010 src/core/Socket.js:1085 src/core/Socket.js:1217
-#: src/core/Socket.js:1221 src/main.js:70 src/main.js:73 src/main.js:125
+#: src/core/Socket.js:1010 src/core/Socket.js:1087 src/core/Socket.js:1219
+#: src/core/Socket.js:1223 src/main.js:70 src/main.js:73 src/main.js:125
 #: src/map/Clipboard.js:860 src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
@@ -359,6 +359,18 @@ msgstr " Minuten"
 #: admin/src/Util.js:54
 msgid " s"
 msgstr " Sekunden"
+
+#: js/w2ui-1.5.js:2967
+msgid "No fill"
+msgstr "keine Füllung"
+
+#: js/w2ui-1.5.js:2967
+msgid "Automatic"
+msgstr "Automatisch"
+
+#: js/w2ui-1.5.js:3007
+msgid "Recent"
+msgstr "Kürzlich"
 
 #: src/control/ColorPicker.js:122
 msgid "No color"
@@ -628,8 +640,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2065 src/layer/tile/CanvasTileLayer.js:5538
-#: src/layer/tile/CanvasTileLayer.js:5549 src/layer/tile/CommentListSection.ts:971
+#: src/control/Control.JSDialogBuilder.js:2065 src/layer/tile/CanvasTileLayer.js:5559
+#: src/layer/tile/CanvasTileLayer.js:5570 src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -637,19 +649,15 @@ msgstr "Kommentar"
 msgid "Insert Comment"
 msgstr "Kommentar einfügen"
 
-#: src/control/Control.JSDialogBuilder.js:2876
-msgid "Automatic"
-msgstr "Automatisch"
-
-#: src/control/Control.JSDialogBuilder.js:3017 src/control/Control.Menubar.js:820
+#: src/control/Control.JSDialogBuilder.js:3013 src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Zeilen"
 
-#: src/control/Control.JSDialogBuilder.js:3018 src/control/Control.Menubar.js:823
+#: src/control/Control.JSDialogBuilder.js:3014 src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Spalten"
 
-#: src/control/Control.JSDialogBuilder.js:3038
+#: src/control/Control.JSDialogBuilder.js:3034
 msgid "Insert Table"
 msgstr "Tabelle einfügen"
 
@@ -1764,7 +1772,7 @@ msgstr ""
 "werden können. Dies könnte einige Probleme während der Bearbeitung von Zitaten und die "
 "Literaturliste verursachen."
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1092
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Lade …"
 
@@ -2237,45 +2245,45 @@ msgstr "Nur der Dokomunteigentümer kann das Password ändern."
 msgid "Missing Fonts"
 msgstr "Fehlende Schriftarten"
 
-#: src/core/Socket.js:1082
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Jemand"
 
-#: src/core/Socket.js:1083
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr "%userName speicherte dieses Dokument als %fileName. Wollen Sie mitbearbeiten?"
 
-#: src/core/Socket.js:1092
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 
-#: src/core/Socket.js:1112
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr "Das Dokument wechselt in den Offline-Modus und wird in Kürze neu geladen"
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Exported to storage"
 msgstr "Exportiert in den Speicher"
 
-#: src/core/Socket.js:1217
+#: src/core/Socket.js:1219
 msgid "Successfully exported: "
 msgstr "Erfolgreich exportiert: "
 
-#: src/core/Socket.js:1550
+#: src/core/Socket.js:1552
 msgid "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen Sie "
 "es erneut."
 
-#: src/core/Socket.js:1567
+#: src/core/Socket.js:1569
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1577
+#: src/core/Socket.js:1579
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 
@@ -2505,27 +2513,27 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1941
+#: src/layer/tile/CanvasTileLayer.js:1956
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2516
+#: src/layer/tile/CanvasTileLayer.js:2533
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2518
+#: src/layer/tile/CanvasTileLayer.js:2535
 msgid "Select link text"
 msgstr "Linktext auswählen"
 
-#: src/layer/tile/CanvasTileLayer.js:2529
+#: src/layer/tile/CanvasTileLayer.js:2546
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2538
+#: src/layer/tile/CanvasTileLayer.js:2555
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5566
+#: src/layer/tile/CanvasTileLayer.js:5587
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2946,9 +2954,6 @@ msgstr ""
 
 #~ msgid "Search:"
 #~ msgstr "Suchen:"
-
-#~ msgid "Recent"
-#~ msgstr "Kürzlich"
 
 #~ msgid "Index"
 #~ msgstr "Index"
