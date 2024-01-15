@@ -37,7 +37,7 @@ DESKTOP_TRACK_FOLDER = $(abs_builddir)/workdir/track/desktop
 IDLE_USER_AGENT = "cypress"
 IDLE_TEST_FOLDER = $(abs_srcdir)/integration_tests/idle
 IDLE_DATA_FOLDER = $(abs_srcdir)/data/idle/
-IDLE_DATA_WORKDIR = $(if $(coolwsd),$(IDLE_DATA_FOLDER),$(abs_builddir)/workdir/data/idle/)
+IDLE_DATA_WORKDIR = $(if $(loolwsd),$(IDLE_DATA_FOLDER),$(abs_builddir)/workdir/data/idle/)
 IDLE_TRACK_FOLDER = $(abs_builddir)/workdir/track/idle
 
 MOBILE_USER_AGENT = "cypress-mobile"
@@ -123,13 +123,13 @@ setup_short_idle:
 setup_regular_idle:
 	$(eval SHORT_IDLE=)
 
-start_short_idle_coolwsd: @JAILS_PATH@ $(NODE_BINS) setup_short_idle
+start_short_idle_loolwsd: @JAILS_PATH@ $(NODE_BINS) setup_short_idle
 	$(V)$(KILL_COMMAND) || true
 	$(if $(HEADLESS_BUILD),$(V)pkill Xvfb,)
 	$(call cleanup_before_run)
 	$(call run_JS_error_check)
 	$(if $(HEADLESS_BUILD),$(call start_Xvfb),)
-	$(call start_coolwsd)
+	$(call start_loolwsd)
 
 $(MOBILE_TEST_FILES_DONE): $(PID_FILE) $(DESKTOP_TEST_FILES_DONE)
 	$(if $(PARALLEL_BUILD),\
@@ -155,7 +155,7 @@ $(MULTIUSER_TESTS_DONE): $(PID_FILE) $(MOBILE_TEST_FILES_DONE)
 	$(call run_all_multiuser_tests)
 	$(V)mkdir -p $(dir $@) && touch $@
 
-$(IDLE_TEST_FILES_DONE): $(MULTIUSER_TESTS_DONE) start_short_idle_coolwsd $(PID_FILE)
+$(IDLE_TEST_FILES_DONE): $(MULTIUSER_TESTS_DONE) start_short_idle_loolwsd $(PID_FILE)
 	$(if $(PARALLEL_BUILD),\
 		$(call run_idle_tests,$(subst $(IDLE_TRACK_FOLDER)/,,$(basename $@)),$(basename $@).log),\
 		$(call run_idle_tests))
@@ -392,12 +392,12 @@ endef
 # Idle tests.
 ################
 
-check-idle: @JAILS_PATH@ $(NODE_BINS) start_short_idle_coolwsd $(PID_FILE)
+check-idle: @JAILS_PATH@ $(NODE_BINS) start_short_idle_loolwsd $(PID_FILE)
 	$(call run_idle_tests,$(spec))
 	$(if $(HEADLESS_BUILD),$(V)pkill Xvfb,)
 	$(V)$(KILL_COMMAND) || true
 
-run-idle: @JAILS_PATH@ $(NODE_BINS) start_short_idle_coolwsd $(PID_FILE)
+run-idle: @JAILS_PATH@ $(NODE_BINS) start_short_idle_loolwsd $(PID_FILE)
 	$(call run_interactive_idle,$(spec)) || true
 	$(V)$(KILL_COMMAND) || true
 
@@ -405,7 +405,7 @@ IDLE_CONFIG = \
 	specPattern=$(IDLE_TEST_FOLDER)/**/*_spec.js,supportFile=$(SUPPORT_FILE),userAgent=$(IDLE_USER_AGENT)
 
 IDLE_ENV = \
-	DATA_FOLDER=$(IDLE_DATA_FOLDER),DATA_WORKDIR=$(IDLE_DATA_WORKDIR),WSD_VERSION_HASH=$(COOLWSD_VERSION_HASH),SERVER=$(COOLWSD_SERVER),SERVER_PORT=$(FREE_PORT),LO_CORE_VERSION="$(CORE_VERSION)",INTEGRATION=$(CYPRESS_INTEGRATION),SCREENSHOT_FOLDER=$(abs_srcdir)/cypress/screenshots,IMAGES_FOLDER=$(abs_top_srcdir)/browser/images/help/en/
+	DATA_FOLDER=$(IDLE_DATA_FOLDER),DATA_WORKDIR=$(IDLE_DATA_WORKDIR),WSD_VERSION_HASH=$(LOOLWSD_VERSION_HASH),SERVER=$(LOOLWSD_SERVER),SERVER_PORT=$(FREE_PORT),LO_CORE_VERSION="$(CORE_VERSION)",INTEGRATION=$(CYPRESS_INTEGRATION),SCREENSHOT_FOLDER=$(abs_srcdir)/cypress/screenshots,IMAGES_FOLDER=$(abs_top_srcdir)/browser/images/help/en/
 
 IDLE_INCLUDE_TAGS = \
 	tagdesktop,$(A11Y_TAG)
