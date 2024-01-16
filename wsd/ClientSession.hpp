@@ -241,6 +241,10 @@ public:
     /// Adds and/or modified the copied payload before sending on to the client.
     void postProcessCopyPayload(const std::shared_ptr<Message>& payload);
 
+    /// Removes the <meta name="origin" ...> tag which was added in
+    /// ClientSession::postProcessCopyPayload().
+    void preProcessSetClipboardPayload(std::string& payload);
+
     /// Returns true if we're expired waiting for a clipboard and should be removed
     bool staleWaitDisconnect(const std::chrono::steady_clock::time_point &now);
 
@@ -313,10 +317,6 @@ private:
 
     /// If this session is read-only because of failed lock, try to unlock and make it read-write.
     bool attemptLock(const std::shared_ptr<DocumentBroker>& docBroker);
-
-    /// Removes the <meta name="origin" ...> tag which was added in
-    /// ClientSession::postProcessCopyPayload().
-    void preProcessSetClipboardPayload(std::string& payload);
 
 private:
     std::weak_ptr<DocumentBroker> _docBroker;
