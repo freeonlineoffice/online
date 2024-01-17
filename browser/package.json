@@ -24,7 +24,6 @@
     "jscpd": "3.5.10",
     "l10n-for-node": "0.0.1",
     "mocha": "10.2.0",
-    "pako": "2.1.0",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
