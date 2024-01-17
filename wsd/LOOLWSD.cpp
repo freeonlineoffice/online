@@ -5783,7 +5783,7 @@ public:
         // If we have any delaying work going on.
         Delay::dumpState(os);
 
-        COOLWSD::SavedClipboards->dumpState(os);
+        LOOLWSD::SavedClipboards->dumpState(os);
 #endif
 
         os << "Document Broker polls "
