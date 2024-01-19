@@ -13,7 +13,7 @@
 
 #include <RequestVettingStation.hpp>
 
-#include <COOLWSD.hpp>
+#include <LOOLWSD.hpp>
 #include <TraceEvent.hpp>
 #include <StorageConnectionManager.hpp>
 #include <Exceptions.hpp>
@@ -38,7 +38,7 @@ void sendLoadResult(const std::shared_ptr<ClientSession>& clientSession, bool su
     // Some sane limit, otherwise we get problems transferring this
     // to the client with large strings (can be a whole webpage)
     // Replace reserved characters
-    std::string errorMsgFormatted = COOLProtocol::getAbbreviatedMessage(errorMsg);
+    std::string errorMsgFormatted = LOOLProtocol::getAbbreviatedMessage(errorMsg);
     errorMsgFormatted = Poco::translate(errorMsg, "\"", "'");
     clientSession->sendMessage("commandresult: { \"command\": \"load\", \"success\": " + resultstr +
                                ", \"result\": \"" + result + "\", \"errorMsg\": \"" +
@@ -58,10 +58,10 @@ void RequestVettingStation::handleRequest(SocketPoll& poll, SocketDisposition& d
     Util::mapAnonymized(fileId, fileId); // Identity mapping, since fileId is already obfuscated
 
     LOG_INF("Starting GET request handler for session [" << _id << "] on url ["
-                                                         << COOLWSD::anonymizeUrl(url) << ']');
+                                                         << LOOLWSD::anonymizeUrl(url) << ']');
 
-    LOG_INF("Sanitized URI [" << COOLWSD::anonymizeUrl(url) << "] to ["
-                              << COOLWSD::anonymizeUrl(uriPublic.toString())
+    LOG_INF("Sanitized URI [" << LOOLWSD::anonymizeUrl(url) << "] to ["
+                              << LOOLWSD::anonymizeUrl(uriPublic.toString())
                               << "] and mapped to docKey [" << docKey << "] for session [" << _id
                               << ']');
 
@@ -76,7 +76,7 @@ void RequestVettingStation::handleRequest(SocketPoll& poll, SocketDisposition& d
         }
     }
 
-    LOG_INF("URL [" << COOLWSD::anonymizeUrl(url) << "] is "
+    LOG_INF("URL [" << LOOLWSD::anonymizeUrl(url) << "] is "
                     << (isReadOnly ? "readonly" : "writable"));
 
     // Before we create DocBroker with a SocketPoll thread, a ClientSession, and a Kit process,
@@ -87,10 +87,10 @@ void RequestVettingStation::handleRequest(SocketPoll& poll, SocketDisposition& d
     switch (storageType)
     {
         case StorageBase::StorageType::Unsupported:
-            LOG_ERR("Unsupported URI [" << COOLWSD::anonymizeUrl(uriPublic.toString())
+            LOG_ERR("Unsupported URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString())
                                         << "] or no storage configured");
             throw BadRequestException("No Storage configured or invalid URI " +
-                                      COOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
+                                      LOOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
 
             break;
         case StorageBase::StorageType::Unauthorized:
@@ -101,7 +101,7 @@ void RequestVettingStation::handleRequest(SocketPoll& poll, SocketDisposition& d
             break;
 
         case StorageBase::StorageType::FileSystem:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a FileSystem document");
 
             // Remove from the current poll and transfer.
@@ -119,7 +119,7 @@ void RequestVettingStation::handleRequest(SocketPoll& poll, SocketDisposition& d
                 });
             break;
         case StorageBase::StorageType::Wopi:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a WOPI document");
             // Remove from the current poll and transfer.
             disposition.setMove(
@@ -144,7 +144,7 @@ void RequestVettingStation::checkFileInfo(SocketPoll& poll, const std::string& u
 {
     ProfileZone profileZone("WopiStorage::getWOPIFileInfo", { { "url", url } }); // Move to ctor.
 
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(uriPublic.toString());
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(uriPublic.toString());
 
     LOG_DBG("Getting info for wopi uri [" << uriAnonym << ']');
     _httpSession = StorageConnectionManager::getHttpSession(uriPublic);
@@ -178,7 +178,7 @@ void RequestVettingStation::checkFileInfo(SocketPoll& poll, const std::string& u
             if (redirectLimit)
             {
                 const std::string& location = httpResponse->get("Location");
-                LOG_TRC("WOPI::CheckFileInfo redirect to URI [" << COOLWSD::anonymizeUrl(location)
+                LOG_TRC("WOPI::CheckFileInfo redirect to URI [" << LOOLWSD::anonymizeUrl(location)
                                                                 << "]");
 
                 checkFileInfo(poll, location, Poco::URI(location), docKey, isReadOnly,
@@ -231,14 +231,14 @@ void RequestVettingStation::checkFileInfo(SocketPoll& poll, const std::string& u
         Poco::JSON::Object::Ptr wopiInfo;
         if (JsonUtil::parseJSON(wopiResponse, wopiInfo))
         {
-            if (COOLWSD::AnonymizeUserData)
+            if (LOOLWSD::AnonymizeUserData)
                 LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): anonymizing...");
             else
                 LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): " << wopiResponse);
         }
         else
         {
-            if (COOLWSD::AnonymizeUserData)
+            if (LOOLWSD::AnonymizeUserData)
                 wopiResponse = "obfuscated";
 
             LOG_ERR("WOPI::CheckFileInfo ("
@@ -330,10 +330,10 @@ void RequestVettingStation::createDocBroker(const std::string& docKey, const std
                 // Will download synchronously, but in own docBroker thread.
                 docBroker->addSession(clientSession, std::move(wopiFileInfo));
 
-                COOLWSD::checkDiskSpaceAndWarnClients(true);
+                LOOLWSD::checkDiskSpaceAndWarnClients(true);
                 // Users of development versions get just an info
                 // when reaching max documents or connections
-                COOLWSD::checkSessionLimitsAndWarnClients();
+                LOOLWSD::checkSessionLimitsAndWarnClients();
 
                 sendLoadResult(clientSession, true, "");
             }
