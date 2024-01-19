@@ -19,6 +19,7 @@ L.Control.JSDialog = L.Control.extend({
 		this.map.on('jsdialogaction', this.onJSAction, this);
 		this.map.on('zoomend', this.onZoomEnd, this);
 		this.map.on('closealldialogs', this.onCloseAll, this);
+		this.map.on('closeAutoFilterDialog', this.closeAutoFilterDialogsOnTabChange, this);
 	},
 
 	onRemove: function() {
@@ -27,6 +28,7 @@ L.Control.JSDialog = L.Control.extend({
 		this.map.off('jsdialogaction', this.onJSAction, this);
 		this.map.off('zoomend', this.onZoomEnd, this);
 		this.map.off('closealldialogs', this.onCloseAll, this);
+		this.map.off('closeAutoFilterDialog', this.closeAutoFilterDialogsOnTabChange, this);
 	},
 
 	hasDialogOpened: function() {
@@ -578,6 +580,22 @@ L.Control.JSDialog = L.Control.extend({
 			instance.posy = window.innerHeight - height;
 
 		this.updatePosition(instance.container, instance.posx, instance.posy);
+	},
+
+	closeAutoFilterDialogsOnTabChange: function() {
+		//this.dialogs is an object
+		var dialogKeys = Object.keys(this.dialogs);
+
+		for (var i = 0; i < dialogKeys.length; i++) {
+			var autoFilterDialogId = dialogKeys[i];
+			var dialog = this.dialogs[autoFilterDialogId];
+
+			// Check if the current dialog has the isAutofilter property set to true
+			if (dialog.isAutofilter) {
+				// Call this.close(key, true) for the current dialog
+				this.close(autoFilterDialogId, true);
+			}
+		}
 	},
 
 	onJSDialog: function(e) {
