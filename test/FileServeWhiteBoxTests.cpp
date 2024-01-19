@@ -306,9 +306,9 @@ void FileServeTests::testPreProcessedFile()
 // FIXME: This is temporary and not what we actually eventually want.
 
 // What we really want is not a separate HTML file (produced with M4 conditionals on the below
-// ) for a "WASM app". What we want is that the same cool.html page adapts on demand to
-// instead run locally using WASM, if the connection to the COOL server breaks. (And then
-// re-connects to the COOL server when possible.)
+// ) for a "WASM app". What we want is that the same lool.html page adapts on demand to
+// instead run locally using WASM, if the connection to the LOOL server breaks. (And then
+// re-connects to the LOOL server when possible.)
 
 
 
@@ -380,7 +380,7 @@ void FileServeTests::testPreProcessedFileSubstitution()
         { "CSS_VARIABLES",
           "<style>:root {--co-somestyle-text:#123456;--co-somestyle-size:15px;}</style>" },
         { "POSTMESSAGE_ORIGIN", "https://www.example.com:8080" },
-        { "BRANDING_THEME", "cool_brand" },
+        { "BRANDING_THEME", "lool_brand" },
         { "CHECK_FILE_INFO_OVERRIDE", "DownloadAsPostMessage=true;blah=bleh" }
     };
 

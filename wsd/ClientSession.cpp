@@ -1630,8 +1630,8 @@ void ClientSession::postProcessCopyPayload(const std::shared_ptr<Message>& paylo
             if (pos != std::string::npos)
             {
                 const std::string meta = getClipboardURI();
-                LOG_TRC("Inject clipboard cool origin of '" << meta << "'");
-                std::string origin = "<div id=\"meta-origin\" data-coolorigin=\"" + meta + "\">\n";
+                LOG_TRC("Inject clipboard lool origin of '" << meta << "'");
+                std::string origin = "<div id=\"meta-origin\" data-loolorigin=\"" + meta + "\">\n";
                 data.insert(data.begin() + pos, origin.begin(), origin.end());
 
                 const char* end = "</html>";
@@ -2784,7 +2784,7 @@ void ClientSession::preProcessSetClipboardPayload(std::string& payload)
         payload.erase(start, len);
     }
 
-    start = payload.find("<div id=\"meta-origin\" data-coolorigin=\"");
+    start = payload.find("<div id=\"meta-origin\" data-loolorigin=\"");
     if (start != std::string::npos)
     {
         std::size_t end = payload.find("\">\n", start);

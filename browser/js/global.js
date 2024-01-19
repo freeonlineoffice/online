@@ -24,7 +24,7 @@ window.app = {
 			fetch(global.location.pathname.match(/.*\//) + 'logging.html', {
 				method: 'POST',
 				headers: { 'Content-Type' : 'application/json' },
-				body: global.coolLogging + ' ' + log
+				body: global.loolLogging + ' ' + log
 			});
 		}
 	};

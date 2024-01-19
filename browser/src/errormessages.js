@@ -3,7 +3,7 @@
 /* global _ */
 var errorMessages = {};
 
-var lang = window.coolParams.get('lang');
+var lang = window.loolParams.get('lang');
 if (lang) {
 	String.locale = lang;
 } else {

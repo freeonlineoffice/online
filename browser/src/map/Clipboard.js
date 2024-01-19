@@ -109,7 +109,7 @@ L.Clipboard = L.Class.extend({
 	_originWrapBody: function(body, isStub) {
 		var encodedOrigin = encodeURIComponent(this.getMetaURL());
 		var text =  '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">\n' +
-		            '<div id="meta-origin" data-coolorigin="' + encodedOrigin + '"><html>\n' +
+		            '<div id="meta-origin" data-loolorigin="' + encodedOrigin + '"><html>\n' +
 		            '  <head>\n';
 		if (isStub)
 			text += '    ' + this._getHtmlStubMarker() + '\n';
@@ -353,7 +353,7 @@ L.Clipboard = L.Class.extend({
 		// Look for our HTML meta magic.
 		//   cf. ClientSession.cpp /textselectioncontent:/
 
-		var meta = this._getMetaOrigin(htmlText, '<div id="meta-origin" data-coolorigin="');
+		var meta = this._getMetaOrigin(htmlText, '<div id="meta-origin" data-loolorigin="');
 		var newStyle = true;
 		if (meta === '')
 		{

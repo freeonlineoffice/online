@@ -984,7 +984,7 @@ std::string LOOLWSD::FileServerRoot;
 std::string LOOLWSD::ServiceRoot;
 std::string LOOLWSD::TmpFontDir;
 std::string LOOLWSD::LOKitVersion;
-std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/coolwsd.xml";
+std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
 bool LOOLWSD::EnableTraceEventLogging = false;
 bool LOOLWSD::EnableAccessibility = false;
@@ -996,7 +996,7 @@ std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
 std::string LOOLWSD::UserInterface = "default";
 bool LOOLWSD::AnonymizeUserData = false;
-bool LOOLWSD::CheckCoolUser = true;
+bool LOOLWSD::CheckLoolUser = true;
 bool LOOLWSD::CleanupOnly = false; //< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
 #if ENABLE_SSL
