@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 21:10+0100\n"
-"PO-Revision-Date: 2024-01-14 21:35+0100\n"
+"POT-Creation-Date: 2024-01-20 11:39+0100\n"
+"PO-Revision-Date: 2024-01-20 11:48+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -246,6 +246,18 @@ msgstr "Logging-Level aktualisieren"
 msgid "Version Information"
 msgstr "Versionsinformationen"
 
+#: admin/admin.strings.js:58
+msgid "License"
+msgstr "Lizenz"
+
+#: admin/admin.strings.js:59 src/control/Control.Menubar.js:368
+#: src/control/Control.Menubar.js:522 src/control/Control.Menubar.js:649
+#: src/control/Control.Menubar.js:912 src/control/Control.Menubar.js:979
+#: src/control/Control.Menubar.js:1043 src/control/Control.Menubar.js:1097
+#: src/control/Control.Menubar.js:1171 src/control/Control.NotebookbarWriter.js:492
+msgid "About"
+msgstr "Über"
+
 #: admin/src/AdminSocketAnalytics.js:205
 msgid "Received"
 msgstr "Empfangen"
@@ -267,9 +279,9 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/control/Permission.js:80 src/control/Permission.js:90
 #: src/control/Permission.js:140 src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080 src/core/Socket.js:599
-#: src/core/Socket.js:1010 src/core/Socket.js:1087 src/core/Socket.js:1219
-#: src/core/Socket.js:1223 src/main.js:70 src/main.js:73 src/main.js:125
-#: src/map/Clipboard.js:860 src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
+#: src/core/Socket.js:1010 src/core/Socket.js:1087 src/core/Socket.js:1223
+#: src/core/Socket.js:1227 src/main.js:70 src/main.js:73 src/main.js:125
+#: src/map/Clipboard.js:867 src/map/Clipboard.js:906 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "OK"
@@ -362,7 +374,7 @@ msgstr " Sekunden"
 
 #: js/w2ui-1.5.js:2967
 msgid "No fill"
-msgstr "keine Füllung"
+msgstr "Keine Füllung"
 
 #: js/w2ui-1.5.js:2967
 msgid "Automatic"
@@ -640,8 +652,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2065 src/layer/tile/CanvasTileLayer.js:5559
-#: src/layer/tile/CanvasTileLayer.js:5570 src/layer/tile/CommentListSection.ts:971
+#: src/control/Control.JSDialogBuilder.js:2065 src/layer/tile/CanvasTileLayer.js:5543
+#: src/layer/tile/CanvasTileLayer.js:5554 src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -983,14 +995,6 @@ msgstr "Letzte Aktualisierungen"
 #: src/control/Control.NotebookbarWriter.js:480
 msgid "Send Feedback"
 msgstr "Rückmeldung senden"
-
-#: src/control/Control.Menubar.js:368 src/control/Control.Menubar.js:522
-#: src/control/Control.Menubar.js:649 src/control/Control.Menubar.js:912
-#: src/control/Control.Menubar.js:979 src/control/Control.Menubar.js:1043
-#: src/control/Control.Menubar.js:1097 src/control/Control.Menubar.js:1171
-#: src/control/Control.NotebookbarWriter.js:492
-msgid "About"
-msgstr "Über"
 
 #: src/control/Control.Menubar.js:370 src/control/Control.Menubar.js:524
 #: src/control/Control.Menubar.js:651 src/control/Control.Menubar.js:914
@@ -2265,25 +2269,25 @@ msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr "Das Dokument wechselt in den Offline-Modus und wird in Kürze neu geladen"
 
-#: src/core/Socket.js:1219
+#: src/core/Socket.js:1223
 msgid "Exported to storage"
 msgstr "Exportiert in den Speicher"
 
-#: src/core/Socket.js:1219
+#: src/core/Socket.js:1223
 msgid "Successfully exported: "
 msgstr "Erfolgreich exportiert: "
 
-#: src/core/Socket.js:1552
+#: src/core/Socket.js:1555
 msgid "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen Sie "
 "es erneut."
 
-#: src/core/Socket.js:1569
+#: src/core/Socket.js:1572
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1579
+#: src/core/Socket.js:1582
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 
@@ -2513,7 +2517,7 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1956
+#: src/layer/tile/CanvasTileLayer.js:1957
 msgid "Functions"
 msgstr "Funktionen"
 
@@ -2521,19 +2525,15 @@ msgstr "Funktionen"
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2535
-msgid "Select link text"
-msgstr "Linktext auswählen"
-
-#: src/layer/tile/CanvasTileLayer.js:2546
+#: src/layer/tile/CanvasTileLayer.js:2544
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2555
+#: src/layer/tile/CanvasTileLayer.js:2553
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5587
+#: src/layer/tile/CanvasTileLayer.js:5571
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2601,31 +2601,31 @@ msgstr "Erledigt"
 msgid "Warning! The browser you are using is not supported."
 msgstr "Achtung! Der von Ihnen benutzte Browser wird nicht unterstützt."
 
-#: src/map/Clipboard.js:125
+#: src/map/Clipboard.js:130
 msgid "To paste outside %productName, please first click the 'download' button"
 msgstr ""
 "Um außerhalb von %productName einzufügen, klicken Sie bitte zunächst auf die "
 "Schaltfläche „Herunterladen“"
 
-#: src/map/Clipboard.js:135
+#: src/map/Clipboard.js:138
 msgid "Copying from the document disabled"
 msgstr "Kopieren aus dem Dokument deaktiviert"
 
-#: src/map/Clipboard.js:238
+#: src/map/Clipboard.js:240
 msgid "warning: copy/paste request timed out"
 msgstr "Warnung: Zeitüberschreitung des Aufrufs von Kopieren/Einfügen"
 
-#: src/map/Clipboard.js:301
+#: src/map/Clipboard.js:303
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:853
+#: src/map/Clipboard.js:860
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Bitte verwenden Sie die Schaltflächen Kopieren/ Einfügen auf Ihrer "
 "Bildschirmtastatur.</p>"
 
-#: src/map/Clipboard.js:855
+#: src/map/Clipboard.js:862
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these keyboard "
 "shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</kbd><span class="
@@ -2640,7 +2640,7 @@ msgstr ""
 "td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd></td></"
 "tr><tr><td>Kopieren</td><td>Ausschneiden</td><td>Einfügen</td></tr></table>"
 
-#: src/map/Clipboard.js:874
+#: src/map/Clipboard.js:881
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. Please, wait "
 "for the current download or cancel it before starting a new one</p>"
@@ -2649,7 +2649,7 @@ msgstr ""
 "Bitte warten Sie auf den aktuellen Download oder brechen Sie ihn ab, bevor Sie einen "
 "neuen starten.</p>"
 
-#: src/map/Clipboard.js:892
+#: src/map/Clipboard.js:899
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press now: "
 "<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see more options</"
@@ -2766,6 +2766,9 @@ msgstr ""
 "Anleitung</a> und erzeugen Sie einen Free-Online-Office-Build. Sie können auch mit "
 "Übersetzungen oder durch Meldung eines Fehlers mit allen wichtigen Schritten zur "
 "Reproduktion des Fehlers helfen."
+
+#~ msgid "Select link text"
+#~ msgstr "Linktext auswählen"
 
 #~ msgid "Idle document - please click to reload and resume editing"
 #~ msgstr ""

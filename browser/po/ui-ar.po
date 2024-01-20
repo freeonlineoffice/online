@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-14 21:10+0100\n"
+"POT-Creation-Date: 2024-01-20 11:39+0100\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -247,6 +247,19 @@ msgstr "تحديث مستويات السجل"
 msgid "Version Information"
 msgstr "معلومات الإصدار"
 
+#: admin/admin.strings.js:58
+msgid "License"
+msgstr ""
+
+#: admin/admin.strings.js:59 src/control/Control.Menubar.js:368
+#: src/control/Control.Menubar.js:522 src/control/Control.Menubar.js:649
+#: src/control/Control.Menubar.js:912 src/control/Control.Menubar.js:979
+#: src/control/Control.Menubar.js:1043 src/control/Control.Menubar.js:1097
+#: src/control/Control.Menubar.js:1171
+#: src/control/Control.NotebookbarWriter.js:492
+msgid "About"
+msgstr "عن"
+
 #: admin/src/AdminSocketAnalytics.js:205
 msgid "Received"
 msgstr "وردت"
@@ -270,9 +283,9 @@ msgstr "تم إغلاق الخادم؛ يرجى إعادة تحميل الصفح
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:653
 #: src/control/Toolbar.js:789 src/control/Toolbar.js:1080
 #: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1087
-#: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:860
-#: src/map/Clipboard.js:899 src/map/handler/Map.Feedback.js:83
+#: src/core/Socket.js:1223 src/core/Socket.js:1227 src/main.js:70
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:867
+#: src/map/Clipboard.js:906 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "موافق"
@@ -649,8 +662,8 @@ msgid "replies"
 msgstr "ردود"
 
 #: src/control/Control.JSDialogBuilder.js:2065
-#: src/layer/tile/CanvasTileLayer.js:5559
-#: src/layer/tile/CanvasTileLayer.js:5570
+#: src/layer/tile/CanvasTileLayer.js:5543
+#: src/layer/tile/CanvasTileLayer.js:5554
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "التعليق"
@@ -1022,14 +1035,6 @@ msgstr "آخر التحديثات"
 #: src/control/Control.NotebookbarWriter.js:480
 msgid "Send Feedback"
 msgstr "ارسل رأيك"
-
-#: src/control/Control.Menubar.js:368 src/control/Control.Menubar.js:522
-#: src/control/Control.Menubar.js:649 src/control/Control.Menubar.js:912
-#: src/control/Control.Menubar.js:979 src/control/Control.Menubar.js:1043
-#: src/control/Control.Menubar.js:1097 src/control/Control.Menubar.js:1171
-#: src/control/Control.NotebookbarWriter.js:492
-msgid "About"
-msgstr "عن"
 
 #: src/control/Control.Menubar.js:370 src/control/Control.Menubar.js:524
 #: src/control/Control.Menubar.js:651 src/control/Control.Menubar.js:914
@@ -2345,25 +2350,25 @@ msgstr "تتم إعادة تسمية المستند وسيعاد تحميله ق
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1219
+#: src/core/Socket.js:1223
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1219
+#: src/core/Socket.js:1223
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1552
+#: src/core/Socket.js:1555
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "هذا محرج. تعذر الاتصال بالمستند. رجاءً أعد المحاولة لاحقًا."
 
-#: src/core/Socket.js:1569
+#: src/core/Socket.js:1572
 msgid "Reconnecting..."
 msgstr "جاري إعادة الاتصال ..."
 
-#: src/core/Socket.js:1579
+#: src/core/Socket.js:1582
 msgid "The server has been disconnected."
 msgstr "تم قطع اتصال الخادم."
 
@@ -2569,7 +2574,7 @@ msgstr "فشل تحميل الملف إلى الخادم، لم يتم العث�
 msgid "Uploading file to server failed, the file is too large."
 msgstr "فشل تحميل الملف إلى الخادم، الملف كبير جدا."
 
-#: src/layer/tile/CanvasTileLayer.js:1956
+#: src/layer/tile/CanvasTileLayer.js:1957
 msgid "Functions"
 msgstr "الدوال"
 
@@ -2577,19 +2582,15 @@ msgstr "الدوال"
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2535
-msgid "Select link text"
-msgstr ""
-
-#: src/layer/tile/CanvasTileLayer.js:2546
+#: src/layer/tile/CanvasTileLayer.js:2544
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2555
+#: src/layer/tile/CanvasTileLayer.js:2553
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5587
+#: src/layer/tile/CanvasTileLayer.js:5571
 msgid "No Comments"
 msgstr "لا تعليقات"
 
@@ -2660,30 +2661,30 @@ msgstr "حل"
 msgid "Warning! The browser you are using is not supported."
 msgstr "تحذير! المتصفح الذي تستخدمه غير مدعوم."
 
-#: src/map/Clipboard.js:125
+#: src/map/Clipboard.js:130
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr "للصق خارج %productName، يرجى النقر أولا على زر \"تنزيل\""
 
-#: src/map/Clipboard.js:135
+#: src/map/Clipboard.js:138
 msgid "Copying from the document disabled"
 msgstr "النسخ من المستند غير مفعل"
 
-#: src/map/Clipboard.js:238
+#: src/map/Clipboard.js:240
 msgid "warning: copy/paste request timed out"
 msgstr ""
 
-#: src/map/Clipboard.js:301
+#: src/map/Clipboard.js:303
 msgid "Failed to download clipboard, please re-copy"
 msgstr "فشل تنزيل الحافظة، يرجى إعادة النسخ"
 
-#: src/map/Clipboard.js:853
+#: src/map/Clipboard.js:860
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p> الرجاء استخدام أزرار النسخ/اللصق على لوحة المفاتيح التي تظهر على الشاشة. "
 "</p>"
 
-#: src/map/Clipboard.js:855
+#: src/map/Clipboard.js:862
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2699,7 +2700,7 @@ msgstr ""
 "+</span><kbd>V</kbd></td></tr><tr><td>نسخ</td><td>قص</td><td>لصق</td></tr></t"
 "able>"
 
-#: src/map/Clipboard.js:874
+#: src/map/Clipboard.js:881
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2708,7 +2709,7 @@ msgstr ""
 "<p> بدأ بالفعل التنزيل بسبب عملية نسخ / لصق كبيرة. من فضلك، انتظر التنزيل "
 "الحالي أو قم بإلغائه قبل بدء تنزيل جديد </p>"
 
-#: src/map/Clipboard.js:892
+#: src/map/Clipboard.js:899
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
