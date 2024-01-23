@@ -351,16 +351,16 @@ m4_syscmd([cat ]GLOBAL_JS)m4_dnl
 // Related to issue #5841: the iOS app sets the base text direction via the
 // "dir" parameter
 m4_ifelse(IOSAPP,[true],
-     [document.dir = window.coolParams.get('dir');])
+     [document.dir = window.Params.get('dir');])
 
 m4_ifelse(IOSAPP,[true],
-     [window.userInterfaceMode = window.coolParams.get('userinterfacemode');])
+     [window.userInterfaceMode = window.loolParams.get('userinterfacemode');])
 
 m4_ifelse(ANDROIDAPP,[true],
-     [window.userInterfaceMode = window.coolParams.get('userinterfacemode');])
+     [window.userInterfaceMode = window.loolParams.get('userinterfacemode');])
 
 m4_ifelse(ANDROIDAPP,[true],
-     [var darkTheme = window.coolParams.get('darkTheme');
+     [var darkTheme = window.loolParams.get('darkTheme');
       if (darkTheme) {window.uiDefaults = {'darkTheme': true};}])
 
 m4_ifelse(EMSCRIPTENAPP,[true],
@@ -375,7 +375,7 @@ brandingLink.setAttribute("rel", "stylesheet");
 brandingLink.setAttribute("type", "text/css");
 
 var theme_name = '%BRANDING_THEME%';
-var theme_prefix = '';
+var theme_prefix = '';lool
 if(window.useIntegrationTheme === 'true' && theme_name !== '') {
     theme_prefix = theme_name + '/';
 }
