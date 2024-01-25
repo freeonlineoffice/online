@@ -1374,6 +1374,7 @@ app.definitions.Socket = L.Class.extend({
 			this._map.uiManager.closeAll();
 			this._map.setPermission(app.file.permission);
 			window.migrating = false;
+			this._map.uiManager.initializeSidebar();
 		}
 
 		this._map.fire('docloaded', {status: true});
