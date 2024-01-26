@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-20 11:39+0100\n"
+"POT-Creation-Date: 2024-01-26 20:17+0100\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/collabora-online/"
@@ -276,16 +276,16 @@ msgstr "El servidor ha caigut. Torneu a carregar la pàgina."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:328
-#: src/control/Control.Tabs.js:337 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:349
+#: src/control/Control.Tabs.js:358 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:552 src/control/Toolbar.js:653
-#: src/control/Toolbar.js:789 src/control/Toolbar.js:1080
-#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1087
-#: src/core/Socket.js:1223 src/core/Socket.js:1227 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:867
-#: src/map/Clipboard.js:906 src/map/handler/Map.Feedback.js:83
+#: src/control/Toolbar.js:552 src/control/Toolbar.js:654
+#: src/control/Toolbar.js:790 src/control/Toolbar.js:1081
+#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1089
+#: src/core/Socket.js:1225 src/core/Socket.js:1229 src/main.js:70
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:974
+#: src/map/Clipboard.js:1013 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "D'acord"
@@ -308,7 +308,7 @@ msgstr "Esteu segur que voleu finalitzar aquesta sessió?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:784 src/layer/tile/CommentListSection.ts:415
+#: src/control/Toolbar.js:785 src/layer/tile/CommentListSection.ts:415
 #: src/layer/tile/CommentSection.ts:134 src/layer/tile/CommentSection.ts:137
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -448,7 +448,7 @@ msgstr "Aquest servidor ha trobat un error %0 en processar l'ordre %1."
 msgid "Unlock"
 msgstr "Desbloca"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1079
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1080
 msgid "Delete"
 msgstr "Suprimeix"
 
@@ -664,8 +664,8 @@ msgid "replies"
 msgstr "respostes"
 
 #: src/control/Control.JSDialogBuilder.js:2065
-#: src/layer/tile/CanvasTileLayer.js:5543
-#: src/layer/tile/CanvasTileLayer.js:5554
+#: src/layer/tile/CanvasTileLayer.js:5080
+#: src/layer/tile/CanvasTileLayer.js:5091
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Comentari"
@@ -1432,7 +1432,7 @@ msgstr "Fracció"
 msgid "Boolean Value"
 msgstr "Valor booleà"
 
-#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:756
+#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:757
 msgid "Text"
 msgstr "Text"
 
@@ -1764,15 +1764,15 @@ msgstr "Mou el full cap a la dreta"
 msgid "Copy Sheet..."
 msgstr "Copia el full..."
 
-#: src/control/Control.Tabs.js:326
+#: src/control/Control.Tabs.js:347
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Esteu segur que voleu suprimir el full «%sheet%»?"
 
-#: src/control/Control.Tabs.js:337
+#: src/control/Control.Tabs.js:358
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:337
+#: src/control/Control.Tabs.js:358
 msgid "Enter new sheet name"
 msgstr "Introduïu el nom nou del full"
 
@@ -1870,7 +1870,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1096
 msgid "Loading..."
 msgstr "S'està carregant..."
 
@@ -2209,31 +2209,31 @@ msgstr "S'està desant..."
 msgid "Renaming..."
 msgstr "S'està canviant el nom..."
 
-#: src/control/Toolbar.js:635
+#: src/control/Toolbar.js:636
 msgid "This version of %productName is powered by"
 msgstr "Aquesta versió del %productName funciona amb"
 
-#: src/control/Toolbar.js:647
+#: src/control/Toolbar.js:648
 msgid "\"Slow Proxy\""
 msgstr "«Servidor intermediari lent»"
 
-#: src/control/Toolbar.js:666
+#: src/control/Toolbar.js:667
 msgid "Copy all version information in English"
 msgstr ""
 
-#: src/control/Toolbar.js:749
+#: src/control/Toolbar.js:750
 msgid "Insert hyperlink"
 msgstr "Insereix un enllaç"
 
-#: src/control/Toolbar.js:768
+#: src/control/Toolbar.js:769
 msgid "Link"
 msgstr "Enllaç"
 
-#: src/control/Toolbar.js:1074
+#: src/control/Toolbar.js:1075
 msgid "Are you sure you want to delete this slide?"
 msgstr "Esteu segur que voleu suprimir aquesta diapositiva?"
 
-#: src/control/Toolbar.js:1077
+#: src/control/Toolbar.js:1078
 msgid "Are you sure you want to delete this page?"
 msgstr "Esteu segur que voleu suprimir aquesta pàgina?"
 
@@ -2342,35 +2342,35 @@ msgstr ""
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1084
+#: src/core/Socket.js:1086
 msgid "Someone"
 msgstr "Algú"
 
-#: src/core/Socket.js:1085
+#: src/core/Socket.js:1087
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1094
+#: src/core/Socket.js:1096
 msgid "Connecting..."
 msgstr "S'està connectant…"
 
-#: src/core/Socket.js:1111
+#: src/core/Socket.js:1113
 msgid "The document is being renamed and will reload shortly"
 msgstr "S'està canviant de nom el document i es recarregarà de seguida"
 
-#: src/core/Socket.js:1114
+#: src/core/Socket.js:1116
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1223
+#: src/core/Socket.js:1225
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1223
+#: src/core/Socket.js:1225
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1555
+#: src/core/Socket.js:1558
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2378,11 +2378,11 @@ msgstr ""
 "Això no hauria de passar. No podem connectar amb el vostre document. Torneu-"
 "ho a intentar."
 
-#: src/core/Socket.js:1572
+#: src/core/Socket.js:1575
 msgid "Reconnecting..."
 msgstr "S'està tornant a connectar…"
 
-#: src/core/Socket.js:1582
+#: src/core/Socket.js:1585
 msgid "The server has been disconnected."
 msgstr "S'ha desconnectat el servidor."
 
@@ -2606,7 +2606,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5571
+#: src/layer/tile/CanvasTileLayer.js:5108
 msgid "No Comments"
 msgstr "Cap comentari"
 
@@ -2676,16 +2676,16 @@ msgstr "Resolt"
 msgid "Warning! The browser you are using is not supported."
 msgstr "Advertiment! El navegador que utilitzeu no és compatible."
 
-#: src/map/Clipboard.js:130
+#: src/map/Clipboard.js:131
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr "Per a enganxar fora del %productName, primer feu clic al botó «Baixa»"
 
-#: src/map/Clipboard.js:138
+#: src/map/Clipboard.js:139
 msgid "Copying from the document disabled"
 msgstr "S'ha desactivat la còpia des del document"
 
-#: src/map/Clipboard.js:240
+#: src/map/Clipboard.js:241
 msgid "warning: copy/paste request timed out"
 msgstr ""
 
@@ -2693,11 +2693,11 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "No s'ha pogut baixar el porta-retalls; torneu a copiar"
 
-#: src/map/Clipboard.js:860
+#: src/map/Clipboard.js:967
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Useu els botons de copiar i enganxar en el teclat de pantalla.</p>"
 
-#: src/map/Clipboard.js:862
+#: src/map/Clipboard.js:969
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2714,7 +2714,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Copia</td><td>Retalla</td><td>Enganxa</td></t"
 "r></table>"
 
-#: src/map/Clipboard.js:881
+#: src/map/Clipboard.js:988
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2724,7 +2724,7 @@ msgstr ""
 "Espereu que la baixada actual finalitzi o cancel·leu-la abans de començar-ne "
 "una altra</p>"
 
-#: src/map/Clipboard.js:899
+#: src/map/Clipboard.js:1006
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
@@ -2736,11 +2736,11 @@ msgstr ""
 "a veure més opcions</p><p class=\"vex-footnote\">Tanqueu la finestra "
 "emergent per a ignorar l'enganxament especial</p>"
 
-#: src/map/Map.js:218
+#: src/map/Map.js:220
 msgid "Initializing..."
 msgstr "S'està iniciant..."
 
-#: src/map/Map.js:443 src/map/Map.js:446 src/map/Map.js:449 src/map/Map.js:452
+#: src/map/Map.js:445 src/map/Map.js:448 src/map/Map.js:451 src/map/Map.js:454
 msgid "Last saved:"
 msgstr "Desat per darrer cop:"
 
