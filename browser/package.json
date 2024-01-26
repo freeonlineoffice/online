@@ -46,8 +46,7 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "jsdom": "^23.0.1",
-    "tmp": "^0.2.1"
+    "jsdom": "^23.0.1"
   },
   "scripts": {
     "test": "mocha 'mocha_tests/**/*.js'",
