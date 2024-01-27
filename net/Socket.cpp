@@ -70,7 +70,7 @@ int Socket::createSocket(Socket::Type type)
     default: assert(!"Unknown Socket::Type"); break;
     }
 
-    return socket(domain, SOCK_STREAM | SOCK_NONBLOCK, 0);
+    return socket(domain, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
 #else
     (void) type;
     return fakeSocketSocket();
@@ -585,7 +585,7 @@ bool SocketPoll::insertNewUnixSocket(
     const std::vector<int>* shareFDs)
 {
     LOG_DBG("Connecting to local UDS " << location);
-    const int fd = socket(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK, 0);
+    const int fd = socket(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
     if (fd < 0)
     {
         LOG_SYS("Failed to connect to unix socket at " << location);
@@ -887,7 +887,7 @@ std::shared_ptr<Socket> ServerSocket::accept()
 
     struct sockaddr_in6 clientInfo;
     socklen_t addrlen = sizeof(clientInfo);
-    const int rc = ::accept4(getFD(), (struct sockaddr *)&clientInfo, &addrlen, SOCK_NONBLOCK);
+    const int rc = ::accept4(getFD(), (struct sockaddr *)&clientInfo, &addrlen, SOCK_NONBLOCK | SOCK_CLOEXEC);
 #else
     const int rc = fakeSocketAccept4(getFD());
 #endif
@@ -980,7 +980,7 @@ bool Socket::isLocal() const
 
 std::shared_ptr<Socket> LocalServerSocket::accept()
 {
-    const int rc = ::accept4(getFD(), nullptr, nullptr, SOCK_NONBLOCK);
+    const int rc = ::accept4(getFD(), nullptr, nullptr, SOCK_NONBLOCK | SOCK_CLOEXEC);
     try
     {
         LOG_DBG("Accepted prisoner socket #" << rc << ", creating socket object.");
