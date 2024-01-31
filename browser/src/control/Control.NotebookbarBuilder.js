@@ -541,12 +541,13 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 					'text': _('PDF Document (.pdf)'),
 					'command': !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf'
 				},
+			].concat(!window.ThisIsTheAndroidApp ? [
 				{
 					'id': 'exportpdf' ,
 					'text': _('PDF Document (.pdf) as...'),
-					'command': 'exportpdf' 
+					'command': 'exportpdf'
 				}
-			];
+			] : []);
 		} else if (docType === 'spreadsheet') {
 			submenuOpts = [
 				{
@@ -570,12 +571,13 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 					'text': _('PDF Document (.pdf)'),
 					'command': !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf'
 				},
+			].concat(!window.ThisIsTheAndroidApp ? [
 				{
 					'id': 'exportpdf' ,
 					'text': _('PDF Document (.pdf) as...'),
-					'command': 'exportpdf' 
+					'command': 'exportpdf'
 				}
-			];
+			] : []);
 		} else if (docType === 'presentation') {
 			submenuOpts = [
 				{
@@ -599,12 +601,13 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 					'text': _('PDF Document (.pdf)'),
 					'command': !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf'
 				},
+			].concat(!window.ThisIsTheAndroidApp ? [
 				{
 					'id': 'exportpdf' ,
 					'text': _('PDF Document (.pdf) as...'),
-					'command': 'exportpdf' 
+					'command': 'exportpdf'
 				}
-			];
+			] : []);
 		}
 
 		submenuOpts.forEach(function mapIconToItem(menuItem) {
