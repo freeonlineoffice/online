@@ -1661,7 +1661,6 @@ AC_CONFIG_FILES([Makefile
                  test/Makefile
                  browser/Makefile
                  browser/npm-shrinkwrap.json
-                 loolkitconfig.xcu
                  loolwsd.spec
                  loolwsd.xml
                  debian/loolwsd.postinst])
