@@ -87,6 +87,7 @@ namespace Util
 {
     namespace rng
     {
+        uint_fast64_t getSeed();
         void reseed();
         unsigned getNext();
 
