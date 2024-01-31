@@ -562,7 +562,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
 
         #if !MOBILEAPP
             // If it is not mobile, it must be Linux (for now).
-            std::string osVersionInfo(COOLWSD::getConfigValue<std::string>("per_view.custom_os_info", ""));
+            std::string osVersionInfo(LOOLWSD::getConfigValue<std::string>("per_view.custom_os_info", ""));
             if (osVersionInfo.empty())
                 osVersionInfo = Util::getLinuxVersion();
 

@@ -7,7 +7,7 @@
 # c) prompts for which pid to profile
 # d) profiles, then generates flamegraph on ctrl+c
 if ! test `id -u` = 0; then
-    echo "not root, if this doesn't work try sudo profile-cool"
+    echo "not root, if this doesn't work try sudo profile-lool"
 fi
 if ! which flamegraph.pl > /dev/null 2>&1; then
     REAL_USER_HOME="$(getent passwd $SUDO_USER | cut -d: -f6)"
