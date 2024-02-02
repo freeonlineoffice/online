@@ -173,11 +173,6 @@ bool ClientSession::disconnectFromKit()
     {
         setState(SessionState::WAIT_DISCONNECT);
 
-#ifndef IOS
-        LOG_TRC("request/rescue clipboard on disconnect for " << getId());
-        // rescue clipboard before shutdown.
-        docBroker->forwardToChild(client_from_this(), "getclipboard");
-#endif
         // handshake nicely; so wait for 'disconnected'
         docBroker->forwardToChild(client_from_this(), "disconnect");
 
@@ -1631,7 +1626,8 @@ void ClientSession::postProcessCopyPayload(const std::shared_ptr<Message>& paylo
             }
             else
             {
-                LOG_DBG("Missing <body> in textselectioncontent/clipboardcontent payload.");
+                LOG_DBG("Missing <body> in textselectioncontent/clipboardcontent payload: "
+                        << Util::dumpHex(data));
                 return false;
             }
         });
@@ -1938,8 +1934,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
         const bool empty = header >= payload->size();
 
         // final cleanup ...
-        if (!empty && _state == SessionState::WAIT_DISCONNECT &&
-            (!_wopiFileInfo || !_wopiFileInfo->getDisableCopy()))
+        if (!empty && (!_wopiFileInfo || !_wopiFileInfo->getDisableCopy()))
             LOOLWSD::SavedClipboards->insertClipboard(
                 _clipboardKeys, &payload->data()[header], payload->size() - header);
 
