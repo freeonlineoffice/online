@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-26 20:17+0100\n"
+"POT-Creation-Date: 2024-02-02 18:56+0100\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -218,7 +218,7 @@ msgstr "Aanmelding vernieuwen"
 msgid "Channel Filter:"
 msgstr "Kanaal filter:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:567
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:568
 #: src/control/Control.StatusBar.js:336
 msgid "None"
 msgstr "Geen"
@@ -232,10 +232,10 @@ msgid "Log Levels"
 msgstr "Inlogniveaus"
 
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
-#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:94
-#: src/control/Control.Zotero.js:182 src/control/Parts.js:451
-#: src/control/Signing.js:611 src/core/Socket.js:1040 src/core/Socket.js:1045
-#: src/layer/tile/CommentListSection.ts:130
+#: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
+#: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
+#: src/control/Parts.js:451 src/control/Signing.js:611 src/core/Socket.js:1045
+#: src/core/Socket.js:1050 src/layer/tile/CommentListSection.ts:130
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Sluiten"
@@ -283,10 +283,10 @@ msgstr "De server is gestopt; laad de pagina ajb opnieuw."
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:654
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1081
-#: src/core/Socket.js:599 src/core/Socket.js:1010 src/core/Socket.js:1089
-#: src/core/Socket.js:1225 src/core/Socket.js:1229 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:974
-#: src/map/Clipboard.js:1013 src/map/handler/Map.Feedback.js:83
+#: src/core/Socket.js:604 src/core/Socket.js:1015 src/core/Socket.js:1094
+#: src/core/Socket.js:1230 src/core/Socket.js:1234 src/main.js:70
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:979
+#: src/map/Clipboard.js:1018 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "OK"
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Don't show this again"
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:91
+#: src/control/Control.AlertDialog.js:94
 msgid "The server encountered a %0 error while parsing the %1 command."
 msgstr ""
 "De server ondervond een %0-fout tijdens het uitvoeren van de %1-opdracht."
@@ -560,131 +560,131 @@ msgstr ""
 msgid "Accept"
 msgstr "Accepteren"
 
-#: src/control/Control.JSDialogBuilder.js:159
+#: src/control/Control.JSDialogBuilder.js:160
 #: src/control/Control.StatusBar.js:334
 msgid "Sum"
 msgstr "Som"
 
-#: src/control/Control.JSDialogBuilder.js:160
+#: src/control/Control.JSDialogBuilder.js:161
 #: src/control/Control.StatusBar.js:329
 msgid "Average"
 msgstr "Gemiddelde"
 
-#: src/control/Control.JSDialogBuilder.js:161
+#: src/control/Control.JSDialogBuilder.js:162
 msgid "Min"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:162
+#: src/control/Control.JSDialogBuilder.js:163
 msgid "Max"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:163
+#: src/control/Control.JSDialogBuilder.js:164
 #: src/control/Control.StatusBar.js:331
 msgid "Count"
 msgstr "Aantal"
 
-#: src/control/Control.JSDialogBuilder.js:196
+#: src/control/Control.JSDialogBuilder.js:197
 #: src/control/Control.Menubar.js:677
 msgid "Active sheet"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:197
+#: src/control/Control.JSDialogBuilder.js:198
 #: src/control/Control.Menubar.js:678 src/control/Control.TopToolbar.js:99
 msgid "All Sheets"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:570
+#: src/control/Control.JSDialogBuilder.js:571
 msgid "Solid"
 msgstr "Vast"
 
-#: src/control/Control.JSDialogBuilder.js:573
+#: src/control/Control.JSDialogBuilder.js:574
 msgid "Linear"
 msgstr "Lineair"
 
-#: src/control/Control.JSDialogBuilder.js:576
+#: src/control/Control.JSDialogBuilder.js:577
 msgid "Axial"
 msgstr "Axiaal"
 
-#: src/control/Control.JSDialogBuilder.js:579
+#: src/control/Control.JSDialogBuilder.js:580
 msgid "Radial"
 msgstr "Radiaal"
 
-#: src/control/Control.JSDialogBuilder.js:582
+#: src/control/Control.JSDialogBuilder.js:583
 msgid "Ellipsoid"
 msgstr "Ellipsoide"
 
-#: src/control/Control.JSDialogBuilder.js:586
+#: src/control/Control.JSDialogBuilder.js:587
 msgid "Quadratic"
 msgstr "Kwadratisch"
 
-#: src/control/Control.JSDialogBuilder.js:589
+#: src/control/Control.JSDialogBuilder.js:590
 msgid "Square"
 msgstr "Vierkant"
 
-#: src/control/Control.JSDialogBuilder.js:592
+#: src/control/Control.JSDialogBuilder.js:593
 msgid "Fixed size"
 msgstr "Vaste afmeting"
 
-#: src/control/Control.JSDialogBuilder.js:1606
+#: src/control/Control.JSDialogBuilder.js:1607
 msgid "From"
 msgstr "Van"
 
-#: src/control/Control.JSDialogBuilder.js:1609
+#: src/control/Control.JSDialogBuilder.js:1610
 msgid "To"
 msgstr "tot"
 
-#: src/control/Control.JSDialogBuilder.js:1612
+#: src/control/Control.JSDialogBuilder.js:1613
 msgid "Color"
 msgstr "Kleur"
 
-#: src/control/Control.JSDialogBuilder.js:1726
+#: src/control/Control.JSDialogBuilder.js:1727
 msgid "Select range"
 msgstr "Bereik selecteren"
 
-#: src/control/Control.JSDialogBuilder.js:1780
+#: src/control/Control.JSDialogBuilder.js:1781
 #: src/control/Control.NotebookbarBuilder.js:231
 msgid "Font Name"
 msgstr "Naam lettertype"
 
-#: src/control/Control.JSDialogBuilder.js:1782 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1783 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Lettergrootte"
 
-#: src/control/Control.JSDialogBuilder.js:1784
+#: src/control/Control.JSDialogBuilder.js:1785
 #: src/control/Control.TopToolbar.js:524
 msgid "Style"
 msgstr "Opmaakprofiel"
 
-#: src/control/Control.JSDialogBuilder.js:2051
+#: src/control/Control.JSDialogBuilder.js:2052
 msgid "reply"
 msgstr "Beantwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2054
+#: src/control/Control.JSDialogBuilder.js:2055
 msgid "replies"
 msgstr "Antwoorden"
 
-#: src/control/Control.JSDialogBuilder.js:2065
+#: src/control/Control.JSDialogBuilder.js:2066
 #: src/layer/tile/CanvasTileLayer.js:5080
 #: src/layer/tile/CanvasTileLayer.js:5091
 #: src/layer/tile/CommentListSection.ts:971
 msgid "Comment"
 msgstr "Opmerking"
 
-#: src/control/Control.JSDialogBuilder.js:2129
+#: src/control/Control.JSDialogBuilder.js:2130
 msgid "Insert Comment"
 msgstr "Notitie invoegen"
 
-#: src/control/Control.JSDialogBuilder.js:3013
+#: src/control/Control.JSDialogBuilder.js:3014
 #: src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Rijen"
 
-#: src/control/Control.JSDialogBuilder.js:3014
+#: src/control/Control.JSDialogBuilder.js:3015
 #: src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Kolommen"
 
-#: src/control/Control.JSDialogBuilder.js:3034
+#: src/control/Control.JSDialogBuilder.js:3035
 msgid "Insert Table"
 msgstr "Tabel invoegen"
 
@@ -842,8 +842,8 @@ msgstr "Herstellen"
 #: src/control/Control.Menubar.js:414 src/control/Control.Menubar.js:420
 #: src/control/Control.Menubar.js:562 src/control/Control.Menubar.js:568
 #: src/control/Control.Menubar.js:697 src/control/Control.Menubar.js:703
-#: src/control/Control.NotebookbarCalc.js:1210
 #: src/control/Control.NotebookbarCalc.js:1211
+#: src/control/Control.NotebookbarCalc.js:1212
 #: src/control/Control.NotebookbarDraw.js:338
 #: src/control/Control.NotebookbarDraw.js:339
 #: src/control/Control.NotebookbarImpress.js:454
@@ -856,7 +856,7 @@ msgstr "Zoom herstellen"
 
 #: src/control/Control.Menubar.js:128 src/control/Control.Menubar.js:423
 #: src/control/Control.Menubar.js:571 src/control/Control.Menubar.js:706
-#: src/control/Control.NotebookbarCalc.js:1251
+#: src/control/Control.NotebookbarCalc.js:1252
 #: src/control/Control.NotebookbarDraw.js:379
 #: src/control/Control.NotebookbarImpress.js:495
 #: src/control/Control.NotebookbarWriter.js:1445
@@ -870,8 +870,8 @@ msgstr "Toon liniaal"
 
 #: src/control/Control.Menubar.js:130 src/control/Control.Menubar.js:425
 #: src/control/Control.Menubar.js:575 src/control/Control.Menubar.js:707
-#: src/control/Control.NotebookbarCalc.js:877
-#: src/control/Control.NotebookbarCalc.js:1277
+#: src/control/Control.NotebookbarCalc.js:878
+#: src/control/Control.NotebookbarCalc.js:1278
 #: src/control/Control.NotebookbarDraw.js:404
 #: src/control/Control.NotebookbarDraw.js:940
 #: src/control/Control.NotebookbarImpress.js:521
@@ -890,7 +890,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:572 src/control/Control.Menubar.js:709
 #: src/control/Control.Menubar.js:964 src/control/Control.Menubar.js:1016
 #: src/control/Control.Menubar.js:1076 src/control/Control.Menubar.js:1135
-#: src/control/Control.NotebookbarCalc.js:1289
+#: src/control/Control.NotebookbarCalc.js:1290
 #: src/control/Control.NotebookbarDraw.js:415
 #: src/control/Control.NotebookbarImpress.js:540
 #: src/control/Control.NotebookbarWriter.js:1490
@@ -911,7 +911,7 @@ msgstr "Alle"
 
 #: src/control/Control.Menubar.js:175 src/control/Control.Menubar.js:448
 #: src/control/Control.Menubar.js:586 src/control/Control.Menubar.js:731
-#: src/control/Control.NotebookbarCalc.js:1412
+#: src/control/Control.NotebookbarCalc.js:1413
 #: src/control/Control.NotebookbarDraw.js:1228
 #: src/control/Control.NotebookbarImpress.js:1242
 #: src/control/Control.NotebookbarWriter.js:1096
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:918 src/control/Control.Menubar.js:983
 #: src/control/Control.Menubar.js:1047 src/control/Control.Menubar.js:1101
-#: src/control/Control.NotebookbarCalc.js:876
+#: src/control/Control.NotebookbarCalc.js:877
 #: src/control/Control.NotebookbarDraw.js:939
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897
@@ -1436,96 +1436,96 @@ msgstr "Booleaanse waarde"
 msgid "Text"
 msgstr "Tekst"
 
-#: src/control/Control.NotebookbarCalc.js:816
+#: src/control/Control.NotebookbarCalc.js:817
 msgid "Default"
 msgstr "Standaard"
 
-#: src/control/Control.NotebookbarCalc.js:823
+#: src/control/Control.NotebookbarCalc.js:824
 msgid "Heading 1"
 msgstr "Kop 1"
 
-#: src/control/Control.NotebookbarCalc.js:830
+#: src/control/Control.NotebookbarCalc.js:831
 msgid "Heading 2"
 msgstr "Kop 2"
 
-#: src/control/Control.NotebookbarCalc.js:843
+#: src/control/Control.NotebookbarCalc.js:844
 msgid "Good"
 msgstr "Goed"
 
-#: src/control/Control.NotebookbarCalc.js:850
+#: src/control/Control.NotebookbarCalc.js:851
 msgid "Neutral"
 msgstr "Neutraal"
 
-#: src/control/Control.NotebookbarCalc.js:857
+#: src/control/Control.NotebookbarCalc.js:858
 msgid "Bad"
 msgstr "Fout"
 
-#: src/control/Control.NotebookbarCalc.js:963
+#: src/control/Control.NotebookbarCalc.js:964
 msgid "Row Height"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:971
+#: src/control/Control.NotebookbarCalc.js:972
 msgid "Column Width"
 msgstr "Kolombreedte"
 
-#: src/control/Control.NotebookbarCalc.js:984
+#: src/control/Control.NotebookbarCalc.js:985
 msgid "Insert Rows Above"
 msgstr "Rijen boven invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:991
+#: src/control/Control.NotebookbarCalc.js:992
 msgid "Insert Columns Before"
 msgstr "Kolommen ervoor invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:998
+#: src/control/Control.NotebookbarCalc.js:999
 msgid "Delete Rows"
 msgstr "Rijen verwijderen"
 
-#: src/control/Control.NotebookbarCalc.js:1010
+#: src/control/Control.NotebookbarCalc.js:1011
 msgid "Insert Rows Below"
 msgstr "Rijen onder invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:1017
+#: src/control/Control.NotebookbarCalc.js:1018
 msgid "Insert Columns After"
 msgstr "Kolommen erna invoegen"
 
-#: src/control/Control.NotebookbarCalc.js:1024
+#: src/control/Control.NotebookbarCalc.js:1025
 msgid "Delete Columns"
 msgstr "Kolommen verwijderen"
 
-#: src/control/Control.NotebookbarCalc.js:1196
+#: src/control/Control.NotebookbarCalc.js:1197
 #: src/control/Control.NotebookbarDraw.js:324
 #: src/control/Control.NotebookbarImpress.js:425
 #: src/control/Control.NotebookbarWriter.js:1383
 msgid "Read mode"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1250
+#: src/control/Control.NotebookbarCalc.js:1251
 #: src/control/Control.NotebookbarDraw.js:378
 #: src/control/Control.NotebookbarImpress.js:494
 #: src/control/Control.NotebookbarWriter.js:1444
 msgid "Compact view"
 msgstr "Compacte weergave"
 
-#: src/control/Control.NotebookbarCalc.js:1264
+#: src/control/Control.NotebookbarCalc.js:1265
 #: src/control/Control.NotebookbarDraw.js:391
 #: src/control/Control.NotebookbarImpress.js:508
 #: src/control/Control.NotebookbarWriter.js:1484
 msgid "Collapse Tabs"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1276
+#: src/control/Control.NotebookbarCalc.js:1277
 #: src/control/Control.NotebookbarDraw.js:403
 #: src/control/Control.NotebookbarImpress.js:520
 #: src/control/Control.NotebookbarWriter.js:1471
 msgid "Status Bar"
 msgstr "Statusbalk"
 
-#: src/control/Control.NotebookbarCalc.js:1363
+#: src/control/Control.NotebookbarCalc.js:1364
 msgid "Sparkline"
 msgstr "Sparkline"
 
-#: src/control/Control.NotebookbarCalc.js:1495
-#: src/control/Control.NotebookbarCalc.js:2283
+#: src/control/Control.NotebookbarCalc.js:1496
+#: src/control/Control.NotebookbarCalc.js:2284
 #: src/control/Control.NotebookbarDraw.js:824
 #: src/control/Control.NotebookbarDraw.js:1313
 #: src/control/Control.NotebookbarImpress.js:942
@@ -1869,7 +1869,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1096
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1101
 msgid "Loading..."
 msgstr "Laden…"
 
@@ -2243,63 +2243,63 @@ msgstr "Weet u zeker dat u deze pagina wilt verwijderen?"
 msgid "Oops, there is a problem connecting to %productName: "
 msgstr "Oeps, er is een probleem met het verbinden met %productName: "
 
-#: src/core/Socket.js:580
+#: src/core/Socket.js:585
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "Server is nu bereikbaar. We moeten de pagina nu bijwerken."
 
-#: src/core/Socket.js:582
+#: src/core/Socket.js:587
 msgid "Server is now reachable..."
 msgstr "Server is nu bereikbaar..."
 
-#: src/core/Socket.js:586
+#: src/core/Socket.js:591
 msgid "RELOAD"
 msgstr "OPNIEUW LADEN"
 
-#: src/core/Socket.js:599
+#: src/core/Socket.js:604
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:602
+#: src/core/Socket.js:607
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:611
+#: src/core/Socket.js:616
 msgid "LOOLWSD version:"
 msgstr "LOOLWSD versie:"
 
-#: src/core/Socket.js:623
+#: src/core/Socket.js:628
 msgid "Served by:"
 msgstr "Bediend door:"
 
-#: src/core/Socket.js:629
+#: src/core/Socket.js:634
 msgid "Unsupported server version."
 msgstr "Niet-ondersteunde serverversie."
 
-#: src/core/Socket.js:633
+#: src/core/Socket.js:638
 msgid "LOKit version:"
 msgstr "LOKit versie:"
 
-#: src/core/Socket.js:742
+#: src/core/Socket.js:747
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:769
+#: src/core/Socket.js:774
 msgid "Session terminated by document owner"
 msgstr "Sessie beëindigd door document-eigenaar"
 
-#: src/core/Socket.js:780
+#: src/core/Socket.js:785
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Server wordt afgesloten voor onderhoud (automatische-opslag)"
 
-#: src/core/Socket.js:784
+#: src/core/Socket.js:789
 msgid "Oops, there is a problem connecting the document"
 msgstr "Oeps, er is een probleem met de toegang tot het document"
 
-#: src/core/Socket.js:788
+#: src/core/Socket.js:793
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Server niet beschikbaar, automatisch herstarten. Even geduld a.u.b."
 
-#: src/core/Socket.js:815
+#: src/core/Socket.js:820
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2307,7 +2307,7 @@ msgstr ""
 "Het document is in de opslag gewijzigd. Het document opnieuw laden. Uw "
 "versie is beschikbaar als revisie."
 
-#: src/core/Socket.js:821
+#: src/core/Socket.js:826
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2315,63 +2315,63 @@ msgstr ""
 "Oudere revisie herstellen. Niet-opgeslagen wijzigingen zijn beschikbaar in "
 "de versiegeschiedenis"
 
-#: src/core/Socket.js:827
+#: src/core/Socket.js:832
 msgid "Reloading the document after rename"
 msgstr "Document opnieuw laden na hernoemen"
 
-#: src/core/Socket.js:962
+#: src/core/Socket.js:967
 msgid "Document requires password to view."
 msgstr "Er is een wachtwoord nodig om dit document te bekijken."
 
-#: src/core/Socket.js:965
+#: src/core/Socket.js:970
 msgid "Document requires password to modify."
 msgstr "Er is een wachtwoord nodig om dit document te bewerken."
 
-#: src/core/Socket.js:967
+#: src/core/Socket.js:972
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Klik Cancel om het in alleen-lezen modus te openen."
 
-#: src/core/Socket.js:971
+#: src/core/Socket.js:976
 msgid "Wrong password provided. Please try again."
 msgstr "Verkeer wachtwoord ingevoerd. Probeer aub opnieuw."
 
-#: src/core/Socket.js:1009
+#: src/core/Socket.js:1014
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1040 src/core/Socket.js:1045
+#: src/core/Socket.js:1045 src/core/Socket.js:1050
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1086
+#: src/core/Socket.js:1091
 msgid "Someone"
 msgstr "Iemand"
 
-#: src/core/Socket.js:1087
+#: src/core/Socket.js:1092
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1096
+#: src/core/Socket.js:1101
 msgid "Connecting..."
 msgstr "Bezig met verbinden..."
 
-#: src/core/Socket.js:1113
+#: src/core/Socket.js:1118
 msgid "The document is being renamed and will reload shortly"
 msgstr "Het document wordt hernoemd en zal binnenkort opnieuw worden geladen"
 
-#: src/core/Socket.js:1116
+#: src/core/Socket.js:1121
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1225
+#: src/core/Socket.js:1230
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1225
+#: src/core/Socket.js:1230
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1558
+#: src/core/Socket.js:1563
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2379,11 +2379,11 @@ msgstr ""
 "Ach, dit is vervelend. We kunnen geen verbinding maken met uw document. "
 "Probeer het aub opnieuw."
 
-#: src/core/Socket.js:1575
+#: src/core/Socket.js:1580
 msgid "Reconnecting..."
 msgstr "Opnieuw verbinden..."
 
-#: src/core/Socket.js:1585
+#: src/core/Socket.js:1590
 msgid "The server has been disconnected."
 msgstr "De verbinding met de server is verbroken."
 
@@ -2684,29 +2684,29 @@ msgstr "Opgelost"
 msgid "Warning! The browser you are using is not supported."
 msgstr "Waarschuwing! De browser die u gebruikt wordt niet ondersteund."
 
-#: src/map/Clipboard.js:131
+#: src/map/Clipboard.js:132
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr "Klik eerst op de knop 'download', om buiten %productName te plakken"
 
-#: src/map/Clipboard.js:139
+#: src/map/Clipboard.js:140
 msgid "Copying from the document disabled"
 msgstr "Kopiëren van het document is uitgeschakeld"
 
-#: src/map/Clipboard.js:241
+#: src/map/Clipboard.js:242
 msgid "warning: copy/paste request timed out"
 msgstr ""
 
-#: src/map/Clipboard.js:303
+#: src/map/Clipboard.js:304
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Downloaden van het klembord is mislukt; kopieer opnieuw"
 
-#: src/map/Clipboard.js:967
+#: src/map/Clipboard.js:972
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Gebruik de knoppen kopiëren/plakken op het toetsenbord op uw scherm.</p>"
 
-#: src/map/Clipboard.js:969
+#: src/map/Clipboard.js:974
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2723,7 +2723,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Kopiëren</td><td>Knippen</td><td>Plakken</td>"
 "</tr></table>"
 
-#: src/map/Clipboard.js:988
+#: src/map/Clipboard.js:993
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2732,7 +2732,7 @@ msgstr ""
 "<p>Er is al een download gestart voor een grote kopieer/plak-actie. Wacht "
 "tot die gereed is of annuleer die voor u een nieuwe start</p>"
 
-#: src/map/Clipboard.js:1006
+#: src/map/Clipboard.js:1011
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press "
