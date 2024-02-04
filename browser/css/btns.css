@@ -6,20 +6,19 @@
 	background: var(--color-background-lighter);
 }
 
-/*limit icon to button height*/
+/* limit icon to button height */
 button.jsdialog img {
 	max-height: 100%;
 }
 
 .annotation-btns-container {
 	display: flex;
-	flex-direction: row;
+	flex-flow: row wrap;
 	justify-content: end;
-	flex-wrap: wrap;
 }
 
 :not(.main-nav) .button-secondary,
-:not(.main-nav) > div > button:not(.ui-tab):not(.ui-corner-all):not(.button-primary):not(.unobutton):not(.form-field-button) {
+:not(.main-nav) > div > button:not(.ui-tab, .ui-corner-all, .button-primary, .unobutton, .form-field-button) {
 	box-sizing: border-box;
 	height: 32px;
 	line-height: 0em;
@@ -97,6 +96,8 @@ button.jsdialog img {
 button.has-img {
 	min-width: auto !important;
 }
+
+/* stylelint-disable */
 
 /* Calc Auto-Filter buttons coming from core */
 [data-theme='dark'] button#select_current.has-img > img {
