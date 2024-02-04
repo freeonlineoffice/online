@@ -1,13 +1,8 @@
 {
+	"extends": ["stylelint-config-standard"],
 	"rules": {
-		"indentation": "tab",
-		"string-quotes": "single",
-		"no-extra-semicolons": true,
 		"no-duplicate-selectors": true,
-		"selector-combinator-space-after": "always",
-		"selector-combinator-space-before": "always",
 		"selector-attribute-quotes": "always",
-		"selector-attribute-brackets-space-inside": "never",
 		"function-url-quotes": ["always", {
 			"except": ["empty"]
 		}],
@@ -21,8 +16,6 @@
 		"media-feature-name-no-unknown": true,
 		"comment-no-empty": true,
 		"no-invalid-double-slash-comments": true,
-		"shorthand-property-no-redundant-values": true,
-		"declaration-bang-space-before": "always",
-		"declaration-colon-space-after": "always"
+		"shorthand-property-no-redundant-values": true
 	}
 }
