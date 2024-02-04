@@ -24,6 +24,7 @@
     "jscpd": "3.5.10",
     "l10n-for-node": "0.0.1",
     "mocha": "10.2.0",
+    "prettier": "3.2.5",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
@@ -46,7 +47,8 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "jsdom": "^23.0.1"
+    "jsdom": "^23.0.1",
+    "stylelint-config-standard": "^36.0.0"
   },
   "scripts": {
     "test": "mocha 'mocha_tests/**/*.js'",
