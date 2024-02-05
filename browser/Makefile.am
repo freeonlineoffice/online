@@ -559,6 +559,7 @@ $(DIST_FOLDER)/bundle.css: $(call prereq_css)
 	@mkdir -p $(dir $@)
 	@echo "Checking for CSS errors..."
 	@$(NODE) node_modules/stylelint/bin/stylelint.mjs --config $(srcdir)/.stylelintrc.json $(srcdir)/css/*.css
+	@$(NODE) node_modules/prettier/bin/prettier.cjs --write --config $(srcdir)/.prettierrc $(srcdir)/css/*.css
 	$(call bundle_css)
 
 $(DIST_FOLDER)/bundle.js: $(INTERMEDIATE_DIR)/lool-src.js $(call prereq_all)
