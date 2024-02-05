@@ -544,7 +544,8 @@ $(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@$(NODE) node_modules/eslint/bin/eslint.js --resolve-plugins-relative-to $(abs_builddir) --ignore-path $(srcdir)/.eslintignore --config $(srcdir)/.eslintrc --no-eslintrc $(srcdir)/admin/src
 	@awk 'FNR == 1 {print ""} 1' $(LOOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(LOOL_ADMIN_JS)) > $@
 
-$(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DST)
+
+$(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DST) $(abs_top_srcdir)/scripts/unocommands.py
 	@mkdir -p $(dir $@)
 	$(abs_top_srcdir)/scripts/unocommands.py --check $(abs_top_srcdir)
 	@printf "Checking for obsolete JS build intermediates in this makefile... "
