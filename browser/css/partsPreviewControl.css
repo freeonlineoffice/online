@@ -4,12 +4,13 @@
 	overflow-y: visible;
 	background: var(--color-background-lighter);
 	max-height: 100%;
-	scrollbar-color: var(--color-background-darker) var(--color-background-lighter);
+	scrollbar-color: var(--color-background-darker)
+		var(--color-background-lighter);
 	scrollbar-width: thin;
 }
 
 #sidebar-panel {
-	height: 100%
+	height: 100%;
 }
 
 .preview-frame {

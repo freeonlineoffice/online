@@ -18,7 +18,15 @@ button.jsdialog img {
 }
 
 :not(.main-nav) .button-secondary,
-:not(.main-nav) > div > button:not(.ui-tab, .ui-corner-all, .button-primary, .unobutton, .form-field-button) {
+:not(.main-nav)
+	> div
+	> button:not(
+		.ui-tab,
+		.ui-corner-all,
+		.button-primary,
+		.unobutton,
+		.form-field-button
+	) {
 	box-sizing: border-box;
 	height: 32px;
 	line-height: 0em;
@@ -53,7 +61,7 @@ button.jsdialog img {
 	justify-content: space-between;
 }
 
-.jsdialog.ui-button-box button[disabled='disabled'] {
+.jsdialog.ui-button-box button[disabled="disabled"] {
 	color: var(--color-text-lighter) !important;
 	background-color: var(--color-background-lighter) !important;
 	border-color: var(--color-border-lighter) !important;
@@ -100,10 +108,10 @@ button.has-img {
 /* stylelint-disable */
 
 /* Calc Auto-Filter buttons coming from core */
-[data-theme='dark'] button#select_current.has-img > img {
-	filter: invert(.9)
+[data-theme="dark"] button#select_current.has-img > img {
+	filter: invert(0.9);
 }
 
-[data-theme='dark'] button#unselect_current.has-img > img {
-	filter: invert(.9)
+[data-theme="dark"] button#unselect_current.has-img > img {
+	filter: invert(0.9);
 }

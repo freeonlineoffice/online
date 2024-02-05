@@ -4,14 +4,15 @@
 	margin-top: 1px !important;
 	min-width: 22px;
 	min-height: 22px;
-	background: url('images/unfold.svg') center/16px var(--color-background-lighter) no-repeat;
+	background: url("images/unfold.svg") center/16px
+		var(--color-background-lighter) no-repeat;
 	border: 1px solid var(--color-border-darker);
 	border-radius: var(--border-radius);
 	box-sizing: border-box;
 	box-shadow: 0 0 1px 1px #00000015;
 }
-[data-theme='dark'] .writer-drop-down-marker {
-	background: url('images/dark/unfold.svg') center/16px var(--color-background-lighter) no-repeat;
+[data-theme="dark"] .writer-drop-down-marker {
+	background: url("images/dark/unfold.svg") center/16px
+		var(--color-background-lighter) no-repeat;
 	border: 1px solid var(--color-primary-lighter);
-
 }

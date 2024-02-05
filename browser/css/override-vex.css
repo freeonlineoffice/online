@@ -1,8 +1,11 @@
 @keyframes vex-fadeout {
 	0% {
-		opacity: 1; }
+		opacity: 1;
+	}
 	100% {
-		opacity: 0; } }
+		opacity: 0;
+	}
+}
 
 #about-dialog {
 	color: var(--color-main-text);
@@ -11,7 +14,8 @@
 	border: 1px solid var(--color-border);
 }
 
-.slider, .slides > div {
+.slider,
+.slides > div {
 	width: 100%;
 }
 
@@ -69,11 +73,15 @@
 	color: var(--color-main-text);
 }
 
-.slider > [id^='i-slide'] {
+.slider > [id^="i-slide"] {
 	display: inline-flex;
 	width: 14px;
 	height: 14px;
-	background: linear-gradient(to top, var(--color-background), var(--color-background-darker));
+	background: linear-gradient(
+		to top,
+		var(--color-background),
+		var(--color-background-darker)
+	);
 	text-decoration: none;
 	align-items: center;
 	justify-content: center;
@@ -82,11 +90,11 @@
 	position: relative;
 	color: transparent;
 }
-.slider > [id^='i-slide'].active {
+.slider > [id^="i-slide"].active {
 	background: #444;
 }
-.slider > [id^='i-slide']:focus,
-.slider > [id^='i-slide']:hover {
+.slider > [id^="i-slide"]:focus,
+.slider > [id^="i-slide"]:hover {
 	background: #666;
 }
 
@@ -138,21 +146,26 @@
 	display: block;
 }
 #slide-1 fig {
-	background-image: linear-gradient(to top,#e6e6e6c4,#e6e6e64f 3%,white 33%);
+	background-image: linear-gradient(
+		to top,
+		#e6e6e6c4,
+		#e6e6e64f 3%,
+		white 33%
+	);
 	border-radius: 0 0 50% 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 #slide-1 #fig-slide1-l {
-	background: url('images/welcome/slide1-left.png')  no-repeat center;
+	background: url("images/welcome/slide1-left.png") no-repeat center;
 	width: 68px;
 	height: 68px;
 	box-shadow: 0 0 8px 1px #00000040;
 	border-radius: 100%;
 }
 #slide-1 #fig-slide1-c {
-	background: url('images/welcome/slide1-center.png')  no-repeat center;
+	background: url("images/welcome/slide1-center.png") no-repeat center;
 	width: 96px;
 	height: 96px;
 	box-shadow: 0 0 12px 1px #00000040;
@@ -160,17 +173,17 @@
 	margin: 42px 32px 0;
 }
 #slide-1 #fig-slide1-r {
-	background: url('images/welcome/slide1-right.png')  no-repeat center;
+	background: url("images/welcome/slide1-right.png") no-repeat center;
 	width: 68px;
 	height: 68px;
 	box-shadow: 0 0 8px 1px #0000005e;
 	border-radius: 100%;
 }
 #slide-2 fig {
-	background: url('images/welcome/slide2.png') no-repeat center;
+	background: url("images/welcome/slide2.png") no-repeat center;
 }
 #slide-3 fig {
-	background: url('images/welcome/slide3.png') no-repeat center;
+	background: url("images/welcome/slide3.png") no-repeat center;
 	box-shadow: 0 0 8px 1px #e5e5e5;
 	width: 342px;
 	margin: 12px auto;
@@ -185,5 +198,5 @@
 	flex-direction: row;
 	justify-content: flex-end;
 	position: relative;
-	margin-right: 72px
+	margin-right: 72px;
 }

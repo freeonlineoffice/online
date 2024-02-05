@@ -24,7 +24,7 @@
 	padding: 6px 9px 4px !important;
 	text-decoration: none;
 
-	font: var(--default-font-size)/1.5 var(--lool-font);
+	font: var(--default-font-size) / 1.5 var(--lool-font);
 	display: inline-block;
 	border: 1px solid transparent;
 	border-radius: var(--border-radius);
@@ -106,7 +106,7 @@
 .spreadsheet-header-corner-styles {
 	border: 1px solid var(--color-border-dark);
 	background-color: var(--colo-background-dark);
-	font: var(--default-font-size)/1.5 var(--lool-font);
+	font: var(--default-font-size) / 1.5 var(--lool-font);
 	color: var(--color-text-dark);
 	cursor: pointer;
 }
@@ -153,7 +153,7 @@
 .spreadsheet-header-column {
 	border: 1px solid var(--color-border-dark);
 	background-color: var(--colo-background-dark);
-	font: var(--default-font-size)/1.5 var(--lool-font);
+	font: var(--default-font-size) / 1.5 var(--lool-font);
 	color: var(--color-text-dark);
 	cursor: pointer;
 }
@@ -166,7 +166,11 @@
 .spreadsheet-header-row-selected,
 .spreadsheet-header-column-selected {
 	color: var(--color-primary-text);
-	background: linear-gradient(var(--color-primary), var(--color-primary), var(--color-primary));
+	background: linear-gradient(
+		var(--color-primary),
+		var(--color-primary),
+		var(--color-primary)
+	);
 }
 
 .spreadsheet-header-column-resize {
@@ -182,7 +186,7 @@
 	margin-top: 0px;
 	width: 16px;
 	height: 16px;
-	background-image: url('images/cell-resize-marker.svg');
+	background-image: url("images/cell-resize-marker.svg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -190,7 +194,7 @@
 .spreadsheet-cell-autofill-marker {
 	margin-left: 0px;
 	margin-top: 0px;
-	background-image: url('images/cell-autofill-marker.svg');
+	background-image: url("images/cell-autofill-marker.svg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: crosshair;
@@ -201,7 +205,8 @@
 	margin-top: 0px;
 	width: 18px;
 	height: 17px;
-	background: url('images/drop-down-button.svg') center top/16px var(--color-background-lighter) no-repeat;
+	background: url("images/drop-down-button.svg") center top/16px
+		var(--color-background-lighter) no-repeat;
 	border: 1px solid var(--color-border);
 	box-sizing: border-box;
 	box-shadow: 0 0 1px 0 var(--color-box-shadow);
@@ -210,7 +215,9 @@
 .spreadsheet-drop-down-marker:hover {
 	cursor: pointer;
 	background-position-y: -16px;
-	box-shadow: 0 0 0 0 transparent, inset 0 0 1px 0 #00000015;
+	box-shadow:
+		0 0 0 0 transparent,
+		inset 0 0 1px 0 #00000015;
 }
 
 #toolbar-wrapper.spreadsheet.tablet {
@@ -225,6 +232,9 @@
    - There is no paragraph style dialog in calc
    - The style sidebar pane visible on core side is not implemented in online
 */
-.spreadsheet ~ #main-document-content #sidebar-dock-wrapper .unoEditStyle.sidebar {
+.spreadsheet
+	~ #main-document-content
+	#sidebar-dock-wrapper
+	.unoEditStyle.sidebar {
 	display: none;
 }

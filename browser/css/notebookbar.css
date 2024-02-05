@@ -1,4 +1,3 @@
-
 /* tabs */
 
 .notebookbar-tabs-container {
@@ -27,7 +26,10 @@ button.ui-tab.notebookbar {
 	/* calc([minimum size]
 	   + ([maximum size] - [minimum size])
 	   * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
-	font-size: calc(var(--tb-min-fs) + (var(--tb-max-fs-u) - var(--tb-min-fs-u)) * ((100vw - 640px) / (1000 - 640)));
+	font-size: calc(
+		var(--tb-min-fs) + (var(--tb-max-fs-u) - var(--tb-min-fs-u)) *
+			((100vw - 640px) / (1000 - 640))
+	);
 	/* a minimum value, a preferred value or scaler, and a maximum allowed value. */
 	font-size: clamp(var(--tb-min-fs), var(--tb-fs-s), var(--tb-max-fs));
 	font-family: var(--lool-font);
@@ -35,7 +37,7 @@ button.ui-tab.notebookbar {
 	color: var(--color-main-text);
 }
 
-.ui-tab.notebookbar[style*='block'] {
+.ui-tab.notebookbar[style*="block"] {
 	display: inline-flex !important;
 }
 
@@ -103,7 +105,7 @@ button.ui-tab.notebookbar {
 }
 
 #save.savemodified:after {
-	content: '';
+	content: "";
 	display: block;
 	width: 4px;
 	height: 4px;
@@ -121,7 +123,7 @@ button.ui-tab.notebookbar {
 	position: relative;
 }
 #File .unoSave.savemodified:after {
-	content: '';
+	content: "";
 	display: block;
 	width: 6px;
 	height: 6px;
@@ -142,7 +144,6 @@ button.ui-tab.notebookbar {
 	margin: 0px !important;
 }
 
-
 .hasnotebookbar .notebookbar-shortcuts-bar #Menubar > li > a {
 	cursor: pointer;
 	border: none;
@@ -160,9 +161,9 @@ button.ui-tab.notebookbar {
 }
 
 #Open_Local_Editor img {
-	opacity: .8;
+	opacity: 0.8;
 }
-[data-theme='dark'] #Open_Local_Editor img {
+[data-theme="dark"] #Open_Local_Editor img {
 	filter: invert(1);
 }
 
@@ -178,7 +179,7 @@ button.ui-tab.notebookbar {
 	overflow-y: hidden;
 	scrollbar-width: none; /* Firefox >= 64 */
 	overflow: -moz-scrollbars-none; /* Firefox < 64 */
-	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	display: flex;
 	height: 72px;
 	align-items: center;
@@ -189,7 +190,8 @@ button.ui-tab.notebookbar {
 	vertical-align: middle;
 }
 
-.notebookbar-scroll-wrapper::-webkit-scrollbar { /* WebKit */
+.notebookbar-scroll-wrapper::-webkit-scrollbar {
+	/* WebKit */
 	width: 0;
 	height: 0;
 }
@@ -221,11 +223,23 @@ button.ui-tab.notebookbar {
 #table-Home-Section-Insert #table-GroupB20 #InsertTable.notebookbar {
 	width: 50px;
 }
-#table-Home-Section-Insert #table-LineB9 #InsertGraphic.notebookbar{
+#table-Home-Section-Insert #table-LineB9 #InsertGraphic.notebookbar {
 	width: auto;
 	margin-left: -2px;
 }
-#buttonbefore.notebookbar, #buttonafter.notebookbar, #buttonoptimal.notebookbar, #buttonparallel.notebookbar, #buttonnone.notebookbar, #buttonthrough.notebookbar, #bottom.notebookbar, #top.notebookbar, #standard.notebookbar, #Bold.notebookbar, #Italic.notebookbar, #Underline.notebookbar, #Strikeout.notebookbar{
+#buttonbefore.notebookbar,
+#buttonafter.notebookbar,
+#buttonoptimal.notebookbar,
+#buttonparallel.notebookbar,
+#buttonnone.notebookbar,
+#buttonthrough.notebookbar,
+#bottom.notebookbar,
+#top.notebookbar,
+#standard.notebookbar,
+#Bold.notebookbar,
+#Italic.notebookbar,
+#Underline.notebookbar,
+#Strikeout.notebookbar {
 	margin: 0px !important;
 	padding: 0px !important;
 }
@@ -276,13 +290,14 @@ button.ui-tab.notebookbar {
 	border-top-right-radius: 12px;
 	border-bottom-right-radius: 12px;
 }
-#table-HomeTab .unospan-uptoolbar:not(.disabled):hover{
+#table-HomeTab .unospan-uptoolbar:not(.disabled):hover {
 	box-shadow: -2px 0 2px 2px #e6e6e6b0;
 }
-#table-HomeTab .unospan-downtoolbar:not(.disabled):hover{
+#table-HomeTab .unospan-downtoolbar:not(.disabled):hover {
 	box-shadow: 2px 0 2px 2px #e6e6e6b0;
 }
-#table-HomeTab .unospan-uptoolbar img, #table-HomeTab .unospan-downtoolbar img {
+#table-HomeTab .unospan-uptoolbar img,
+#table-HomeTab .unospan-downtoolbar img {
 	width: 18px !important;
 	height: 18px !important;
 	padding: 4px;
@@ -307,7 +322,8 @@ button.ui-tab.notebookbar {
 	display: none !important;
 }
 
-.unotoolbutton.notebookbar.disabled img, .mobile-wizard-widebutton.disabled img {
+.unotoolbutton.notebookbar.disabled img,
+.mobile-wizard-widebutton.disabled img {
 	-webkit-filter: grayscale(100%) brightness(100%);
 	filter: grayscale(100%) brightness(100%);
 }
@@ -322,7 +338,8 @@ button.ui-tab.notebookbar {
 	align-items: center;
 }
 
-.unotoolbutton.notebookbar.has-label > *{ /*so they stay side by side*/
+.unotoolbutton.notebookbar.has-label > * {
+	/*so they stay side by side*/
 	display: table-cell;
 	width: 100%;
 	height: 100%;
@@ -337,7 +354,7 @@ button.ui-tab.notebookbar {
 	margin: auto !important;
 	display: block;
 }
-.has-label.has-dropdown:not(.inline) .unolabel{
+.has-label.has-dropdown:not(.inline) .unolabel {
 	display: inline-block;
 	clear: both;
 	float: inline-start;
@@ -345,7 +362,7 @@ button.ui-tab.notebookbar {
 
 /* adding focus to tab in notebookbar */
 .ui-tab.selected.notebookbar.add-focus-to-tab {
-	border: 2px solid black !important
+	border: 2px solid black !important;
 }
 
 /* unobuttons with inline labels */
@@ -358,8 +375,7 @@ button.ui-tab.notebookbar {
 	align-items: center;
 }
 
-#FormatPaintbrush span
-{
+#FormatPaintbrush span {
 	display: none;
 }
 
@@ -374,16 +390,18 @@ button.ui-tab.notebookbar {
 
 /* Home tab */
 #table-HomeTab {
-	margin-left: -16px;/*force alignment: clipboard elements*/
+	margin-left: -16px; /*force alignment: clipboard elements*/
 	margin-top: -5px;
 }
 
-#clearFormatting.notebookbar div img, #FormatPaintbrush.notebookbar div img {
+#clearFormatting.notebookbar div img,
+#FormatPaintbrush.notebookbar div img {
 	width: 24px !important;
 	height: 24px !important;
 }
 
-#clearFormatting.notebookbar, #FormatPaintbrush.notebookbar{
+#clearFormatting.notebookbar,
+#FormatPaintbrush.notebookbar {
 	height: 24px !important;
 }
 
@@ -397,7 +415,8 @@ button.ui-tab.notebookbar {
 	padding-right: 0px;
 }
 
-#CharBackColor.notebookbar { /* remove when #2149 is fixed in impress/draw*/
+#CharBackColor.notebookbar {
+	/* remove when #2149 is fixed in impress/draw*/
 	margin-left: 44px !important;
 }
 
@@ -477,7 +496,6 @@ button.ui-tab.notebookbar {
 
 /* Draw tab */
 
-
 /* Calc */
 
 /* Home tab */
@@ -492,7 +510,6 @@ button.ui-tab.notebookbar {
 
 /* Data Tab */
 
-
 /* Impress */
 
 /* Home Tab */
@@ -505,20 +522,17 @@ button.ui-tab.notebookbar {
 
 /* Review Tab */
 
-
 /* Table Tab */
 
 /* Draw Tab */
 
 /* other */
 
-.ui-drawing-area-container
-{
+.ui-drawing-area-container {
 	position: relative;
 }
 
-.ui-drawing-area-loader
-{
+.ui-drawing-area-loader {
 	border: 5px solid var(--color-border-lighter);
 	border-top: 5px solid var(--color-border);
 	border-radius: 50%;
@@ -531,8 +545,7 @@ button.ui-tab.notebookbar {
 	top: 25%;
 }
 
-.ui-drawing-area-loader-container
-{
+.ui-drawing-area-loader-container {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -541,12 +554,15 @@ button.ui-tab.notebookbar {
 }
 
 @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
-.ui-drawing-area-placeholder-container
-{
+.ui-drawing-area-placeholder-container {
 	position: absolute;
 	overflow: hidden;
 	left: 0;
@@ -555,8 +571,7 @@ button.ui-tab.notebookbar {
 	height: 100%;
 }
 
-.ui-drawing-area-placeholder
-{
+.ui-drawing-area-placeholder {
 	margin: 0;
 	position: absolute;
 	top: 50%;
@@ -566,79 +581,91 @@ button.ui-tab.notebookbar {
 	text-align: center;
 }
 
-#style1 img ~ .ui-drawing-area-placeholder-container .ui-drawing-area-placeholder {
+#style1
+	img
+	~ .ui-drawing-area-placeholder-container
+	.ui-drawing-area-placeholder {
 	font-family: Liberation Serif;
 	font-size: var(--default-font-size);
 }
 
-#style2 img ~ .ui-drawing-area-placeholder-container .ui-drawing-area-placeholder {
+#style2
+	img
+	~ .ui-drawing-area-placeholder-container
+	.ui-drawing-area-placeholder {
 	font-family: Liberation Serif;
 	font-size: var(--default-font-size);
 }
 
-#style3 img ~ .ui-drawing-area-placeholder-container .ui-drawing-area-placeholder {
+#style3
+	img
+	~ .ui-drawing-area-placeholder-container
+	.ui-drawing-area-placeholder {
 	font-family: Liberation Sans;
-	font-size: calc(var(--default-font-size)*2);
+	font-size: calc(var(--default-font-size) * 2);
 	font-weight: bold;
 }
 
-#style4 img ~ .ui-drawing-area-placeholder-container .ui-drawing-area-placeholder {
+#style4
+	img
+	~ .ui-drawing-area-placeholder-container
+	.ui-drawing-area-placeholder {
 	font-family: Liberation Sans;
-	font-size: calc(var(--default-font-size)*1.5);
+	font-size: calc(var(--default-font-size) * 1.5);
 }
 
-[class*='as-odt-submenu-icon'] {
-	background: url('images/lc_downloadas-odt.svg') center;
+[class*="as-odt-submenu-icon"] {
+	background: url("images/lc_downloadas-odt.svg") center;
 }
 
-[class*='as-ods-submenu-icon'] {
-	background: url('images/lc_downloadas-ods.svg') center;
+[class*="as-ods-submenu-icon"] {
+	background: url("images/lc_downloadas-ods.svg") center;
 }
 
-[class*='as-odp-submenu-icon'] {
-	background: url('images/lc_downloadas-odp.svg') center;
+[class*="as-odp-submenu-icon"] {
+	background: url("images/lc_downloadas-odp.svg") center;
 }
 
-[class*='as-odg-submenu-icon'] {
-	background: url('images/lc_downloadas-odg.svg') center;
+[class*="as-odg-submenu-icon"] {
+	background: url("images/lc_downloadas-odg.svg") center;
 }
 
-[class*='as-rtf-submenu-icon'] {
-	background: url('images/lc_downloadas-rtf.svg') center;
+[class*="as-rtf-submenu-icon"] {
+	background: url("images/lc_downloadas-rtf.svg") center;
 }
 
-[class*='as-doc-submenu-icon'] {
-	background: url('images/lc_downloadas-doc.svg') center;
+[class*="as-doc-submenu-icon"] {
+	background: url("images/lc_downloadas-doc.svg") center;
 }
 
-[class*='as-docx-submenu-icon'] {
-	background: url('images/lc_downloadas-docx.svg') center;
+[class*="as-docx-submenu-icon"] {
+	background: url("images/lc_downloadas-docx.svg") center;
 }
 
-[class*='pdf-submenu-icon'] {
-	background: url('images/lc_exportpdf.svg') center;
+[class*="pdf-submenu-icon"] {
+	background: url("images/lc_exportpdf.svg") center;
 }
 
-[class*='epub-submenu-icon'] {
-	background: url('images/lc_exportepub.svg') center;
+[class*="epub-submenu-icon"] {
+	background: url("images/lc_exportepub.svg") center;
 }
 
-[class*='as-xls-submenu-icon'] {
-	background: url('images/lc_downloadas-xls.svg') center;
+[class*="as-xls-submenu-icon"] {
+	background: url("images/lc_downloadas-xls.svg") center;
 }
 
-[class*='as-xlsx-submenu-icon'] {
-	background: url('images/lc_downloadas-xlsx.svg') center;
+[class*="as-xlsx-submenu-icon"] {
+	background: url("images/lc_downloadas-xlsx.svg") center;
 }
 
-[class*='as-csv-submenu-icon'] {
-	background: url('images/lc_downloadas-csv.svg') center;
+[class*="as-csv-submenu-icon"] {
+	background: url("images/lc_downloadas-csv.svg") center;
 }
 
-[class*='as-ppt-submenu-icon'] {
-	background: url('images/lc_downloadas-ppt.svg') center;
+[class*="as-ppt-submenu-icon"] {
+	background: url("images/lc_downloadas-ppt.svg") center;
 }
 
-[class*='as-pptx-submenu-icon'] {
-	background: url('images/lc_downloadas-pptx.svg') center;
+[class*="as-pptx-submenu-icon"] {
+	background: url("images/lc_downloadas-pptx.svg") center;
 }

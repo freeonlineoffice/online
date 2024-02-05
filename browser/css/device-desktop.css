@@ -1,7 +1,7 @@
 /* CSS specific for desktop browsers. */
 
 /* Related to selectionMarkers.css on formulabar*/
-#tb_formulabar_item_formula .inputbar_selection_handles *{
+#tb_formulabar_item_formula .inputbar_selection_handles * {
 	background-size: 20px;
 	background-position-y: top;
 	width: 20px;
@@ -9,25 +9,29 @@
 	margin-left: 1px !important;
 	transform: translateY(-12px);
 }
-#tb_formulabar_item_formula .inputbar_selection_handles .leaflet-selection-marker-start{
+#tb_formulabar_item_formula
+	.inputbar_selection_handles
+	.leaflet-selection-marker-start {
 	margin-left: -20px !important;
 }
 
 #loolwsd-version span:before,
 #lokit-version > span:before {
-	content: ' (';
+	content: " (";
 	white-space: pre;
 }
 #loolwsd-version span:after,
 #lokit-version > span:after {
-	content: ')';
+	content: ")";
 }
 
 /* btns hover status
    Rules not intended for touch devices */
 
 .button-secondary:hover,
-button:not(.ui-corner-all):not(.button-primary):not(.unobutton):not(.form-field-button):hover {
+button:not(.ui-corner-all):not(.button-primary):not(.unobutton):not(
+		.form-field-button
+	):hover {
 	cursor: pointer;
 	color: var(--color-text-darker) !important;
 	background-color: var(--color-background-lighter) !important;

@@ -76,7 +76,9 @@
 	display: none;
 }
 .main-nav {
-	height: var(--header-height); /* on mouseover menubar items, border emerges */
+	height: var(
+		--header-height
+	); /* on mouseover menubar items, border emerges */
 	width: 100%;
 	background: var(--color-background-lighter);
 	padding: 3px 3px 3px 0;
@@ -112,21 +114,27 @@
 	box-shadow: none;
 	background: var(--color-main-background);
 	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none;   /* Chrome/Safari/Opera */
-	-khtml-user-select: none;    /* Konqueror */
-	-moz-user-select: none;      /* Firefox */
-	-ms-user-select: none;       /* Internet Explorer/Edge */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 	cursor: default;
 }
 
-.lo-menu a, .lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active {
+.lo-menu a,
+.lo-menu a:hover,
+.lo-menu a:focus,
+.lo-menu a:active {
 	font-family: var(--lool-font);
 	font-size: var(--default-font-size);
 	line-height: 15px;
 }
 
-.lo-menu ul a, .lo-menu ul a:hover, .lo-menu ul a:focus, .lo-menu ul a:active {
+.lo-menu ul a,
+.lo-menu ul a:hover,
+.lo-menu ul a:focus,
+.lo-menu ul a:active {
 	font-size: var(--default-font-size);
 }
 
@@ -134,21 +142,30 @@
 	cursor: not-allowed;
 }
 
-.lo-menu > li > a, .lo-menu > li > a.has-submenu {
+.lo-menu > li > a,
+.lo-menu > li > a.has-submenu {
 	padding: 8px;
 	z-index: 400;
 	border: 1px solid transparent;
 }
 
-.lo-menu a, .lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active, .lo-menu a.highlighted {
+.lo-menu a,
+.lo-menu a:hover,
+.lo-menu a:focus,
+.lo-menu a:active,
+.lo-menu a.highlighted {
 	padding: 5px 22px;
 	color: var(--color-main-text);
 }
-.lo-menu a:hover, .lo-menu a:focus, .lo-menu a:active, .lo-menu a.highlighted {
+.lo-menu a:hover,
+.lo-menu a:focus,
+.lo-menu a:active,
+.lo-menu a.highlighted {
 	background: var(--color-background-darker);
 	color: var(--color-text-darker);
 }
-.lo-menu > li, .lo-menu > li > .disabled {
+.lo-menu > li,
+.lo-menu > li > .disabled {
 	background: transparent; /* top-level menus remain greyish */
 	border-left-color: transparent;
 }
@@ -156,7 +173,10 @@
 	background: var(--color-main-background);
 	color: var(--color-text-lighter);
 }
-.lo-menu > li > a:hover, .lo-menu > li > a:focus, .lo-menu > li > a:active, .lo-menu > li > a.highlighted {
+.lo-menu > li > a:hover,
+.lo-menu > li > a:focus,
+.lo-menu > li > a:active,
+.lo-menu > li > a.highlighted {
 	background: var(--color-background-darker);
 	color: var(--color-text-darker);
 	border-color: var(--color-border-darker);
@@ -186,7 +206,8 @@
 .lo-menu ul a span.sub-arrow {
 	right: 0;
 	margin-right: 5px;
-	background: transparent url('images/lc_menu_chevron.svg') no-repeat center right; /* we want them to be transparent always whether mobile or desktop */
+	background: transparent url("images/lc_menu_chevron.svg") no-repeat center
+		right; /* we want them to be transparent always whether mobile or desktop */
 	color: transparent;
 	/*transform: rotate(180deg);*/
 }
@@ -210,7 +231,7 @@
 
 .main-nav:after {
 	clear: both;
-	content: '\00a0';
+	content: "\00a0";
 	display: block;
 	height: 0;
 	font: 0px/0 serif;
@@ -248,13 +269,13 @@
 }
 
 .main-menu-btn-icon:before {
-	content: '';
+	content: "";
 	top: -7px;
 	left: 0;
 }
 
 .main-menu-btn-icon:after {
-	content: '';
+	content: "";
 	top: 7px;
 	left: 0;
 }
@@ -272,7 +293,6 @@
 	clip: rect(1px, 1px, 1px, 1px);
 }
 
-
 /* always show the menu in desktop view */
 #main-menu-state:not(:checked) ~ #main-menu {
 	display: block;
@@ -287,9 +307,9 @@
 /* The smartmenus plugin doesn't seem to have support for icons, so implement our own pseudo-elements */
 .lo-menu-item-checked::before {
 	position: absolute;
-	content: ' ';
+	content: " ";
 	left: 2px;
-	background: url('images/lc_listitem-selected.svg') no-repeat left -2px;
+	background: url("images/lc_listitem-selected.svg") no-repeat left -2px;
 	width: 20px;
 	height: 20px;
 }
@@ -301,28 +321,28 @@
 }
 
 .writer-icon-img {
-	background-image: url('images/x-office-document.svg');
+	background-image: url("images/x-office-document.svg");
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .calc-icon-img {
-	background-image: url('images/x-office-spreadsheet.svg');
+	background-image: url("images/x-office-spreadsheet.svg");
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .impress-icon-img {
-	background-image: url('images/x-office-presentation.svg');
+	background-image: url("images/x-office-presentation.svg");
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .draw-icon-img {
-	background-image: url('images/x-office-drawing.svg');
+	background-image: url("images/x-office-drawing.svg");
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -340,11 +360,12 @@
 }
 
 /* For classic mode */
-#main-menu .locking-disabled, #menu-nb-hamburger .locking-disabled {
+#main-menu .locking-disabled,
+#menu-nb-hamburger .locking-disabled {
 	color: var(--color-text-lighter) !important;
 	background-color: var(--color-background-lighter);
-	box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
-	background: url('images/lc_lock.svg') right top / 24px no-repeat
+	box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, 0.2);
+	background: url("images/lc_lock.svg") right top / 24px no-repeat;
 }
 
 #main-menu .locking-disabled {
@@ -352,7 +373,8 @@
 	background-position-y: 3px;
 }
 
-#main-menu .locking-disabled:hover, #menu-nb-hamburger .locking-disabled:hover {
+#main-menu .locking-disabled:hover,
+#menu-nb-hamburger .locking-disabled:hover {
 	background-color: var(--color-background-lighter);
 	background-position: right bottom !important;
 }
@@ -362,14 +384,16 @@
 }
 
 /* For notebook bar mode and sidebar*/
-.locking-disabled:not(.mobile-wizard) img.unobutton, #toolbar-up .locking-disabled .w2ui-tb-image.w2ui-icon {
-	background: url('images/lc_lock.svg') center top / 24px no-repeat !important;
+.locking-disabled:not(.mobile-wizard) img.unobutton,
+#toolbar-up .locking-disabled .w2ui-tb-image.w2ui-icon {
+	background: url("images/lc_lock.svg") center top / 24px no-repeat !important;
 	width: 24px !important;
 	padding-left: 24px;
 	box-sizing: border-box;
 }
 
-.locking-disabled:hover img.unobutton, #toolbar-up .locking-disabled .w2ui-tb-image.w2ui-icon:hover {
+.locking-disabled:hover img.unobutton,
+#toolbar-up .locking-disabled .w2ui-tb-image.w2ui-icon:hover {
 	background-position: bottom !important;
 }
 
@@ -426,15 +450,27 @@
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 }
-@keyframes up-n-down-anim{
-	0%{margin-top: 0;}
-	50%{margin-top: -20px;}
-	100%{margin-top: 0;}
+@keyframes up-n-down-anim {
+	0% {
+		margin-top: 0;
+	}
+	50% {
+		margin-top: -20px;
+	}
+	100% {
+		margin-top: 0;
+	}
 }
-@-webkit-keyframes up-n-down-anim{
-	0%{margin-top: 0;}
-	50%{margin-top: -20px;}
-	100%{margin-top: 0;}
+@-webkit-keyframes up-n-down-anim {
+	0% {
+		margin-top: 0;
+	}
+	50% {
+		margin-top: -20px;
+	}
+	100% {
+		margin-top: 0;
+	}
 }
 
 .sidebar .locking-overlay {

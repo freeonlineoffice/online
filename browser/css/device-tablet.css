@@ -11,18 +11,22 @@
 	scrollbar-width: none; /*css draft (firefox only)*/
 	-ms-scrollbar: none; /*ie*/
 }
-#toolbar-up > .w2ui-scroll-wrapper::-webkit-scrollbar { /*webkit only*/
+#toolbar-up > .w2ui-scroll-wrapper::-webkit-scrollbar {
+	/*webkit only*/
 	display: none;
 }
-#toolbar-up .w2ui-scroll-left, #toolbar-up .w2ui-scroll-right{
+#toolbar-up .w2ui-scroll-left,
+#toolbar-up .w2ui-scroll-right {
 	background: none;
 	height: 100%;
 	width: 0px;
 	top: 0%;
-	box-shadow: 8px 0 13px 2px var(--color-primary), -6px 0px 6px 6px var(--color-primary);
+	box-shadow:
+		8px 0 13px 2px var(--color-primary),
+		-6px 0px 6px 6px var(--color-primary);
 	border-radius: 0px;
 }
-#toolbar-up .w2ui-scroll-right{
+#toolbar-up .w2ui-scroll-right {
 	right: 0;
 	-webkit-transform: rotate(180deg);
 	-moz-transform: rotate(180deg);
@@ -46,7 +50,7 @@
 	-webkit-align-items: center;
 	align-items: center;
 }
-.hasnotebookbar{
+.hasnotebookbar {
 	overflow: auto hidden;
 	scrollbar-width: none;
 	-ms-overflow-style: none;
@@ -130,10 +134,10 @@
 
 #loolwsd-version span:before,
 #lokit-version > span:before {
-	content: ' (';
+	content: " (";
 	white-space: pre;
 }
 #loolwsd-version span:after,
 #lokit-version > span:after {
-	content: ')';
+	content: ")";
 }
