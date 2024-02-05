@@ -219,6 +219,9 @@ class CanvasSectionObject {
 	sectionProperties: any = {};
 	callbacks: SectionCallbacks;
 
+	/// The sections those this section can propagate events to. Updated by container.
+	boundsList: Array<CanvasSectionObject> = [];
+
 	/// Paramaters: null (use sectionProperties).
 	onInitialize(): void {
 		if (this.callbacks.onInitialize)
@@ -369,9 +372,6 @@ class CanvasSectionObject {
 		this.containerObject.updateBoundSectionLists();
 		this.containerObject.reNewAllSections();
 	}
-
-	/// The sections those this section can propagate events to. Updated by container.
-	boundsList: Array<CanvasSectionObject>;
 
 	public stopPropagating(): void {
 		this.containerObject.lowestPropagatedBoundSection = this.name;
