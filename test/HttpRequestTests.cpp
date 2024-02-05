@@ -330,7 +330,7 @@ void HttpRequestTests::testSimpleGetSync()
 {
     constexpr auto testname = "simpleGetSync";
 
-    const auto data = Util::rng::getHardRandomHexString(Util::rng::getNext() % 1024);
+    const auto data = Util::rng::getHexString(Util::rng::getNext() % 1024);
     const auto body = std::string(data.data(), data.size());
     const std::string URL = "/echo/" + body;
     TST_LOG("Requesting URI: [" << URL << ']');
@@ -367,7 +367,7 @@ void HttpRequestTests::testChunkedGetSync()
 {
     constexpr auto testname = "chunkedGetSync";
 
-    const auto data = Util::rng::getHardRandomHexString(Util::rng::getNext() % 1024);
+    const auto data = Util::rng::getHexString(Util::rng::getNext() % 1024);
     const auto body = std::string(data.data(), data.size());
     const std::string URL = "/echo/chunked/" + body;
     TST_LOG("Requesting URI: [" << URL << ']');

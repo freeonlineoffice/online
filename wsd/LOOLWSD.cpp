@@ -2397,7 +2397,7 @@ void LOOLWSD::innerInitialize(Application& self)
 
     if (getConfigValue<bool>(conf, "browser_logging", "false"))
     {
-        LogToken = Util::rng::getHardRandomHexString(16);
+        LogToken = Util::rng::getHexString(16);
     }
 
     // First log entry.
@@ -2634,7 +2634,7 @@ void LOOLWSD::innerInitialize(Application& self)
         CleanupChildRoot = ChildRoot;
 
         // Encode the process id into the path for parallel re-use of jails/
-        ChildRoot += std::to_string(getpid()) + '-' + Util::rng::getHardRandomHexString(8) + '/';
+        ChildRoot += std::to_string(getpid()) + '-' + Util::rng::getHexString(8) + '/';
 
         LOG_INF("Creating childroot: " + ChildRoot);
     }
