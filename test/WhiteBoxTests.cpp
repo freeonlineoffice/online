@@ -654,6 +654,10 @@ public:
     {
         return DocumentPasswordType::ToView;
     }
+
+    void updateActivityHeader() const
+    {
+    }
 };
 
 void WhiteBoxTests::testEmptyCellCursor()

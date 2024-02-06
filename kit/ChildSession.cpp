@@ -758,7 +758,7 @@ bool ChildSession::loadDocument(const StringVector& tokens)
     }
 #endif
 
-    SigUtil::addActivity("load view: " + getId() + " doc: " + getJailedFilePathAnonym());
+    SigUtil::addActivity(getId(), "load doc: " + getJailedFilePathAnonym());
 
     const bool loaded = _docManager->onLoad(getId(), getJailedFilePathAnonym(), renderOpts);
     if (!loaded || _viewId < 0)
@@ -825,6 +825,9 @@ bool ChildSession::loadDocument(const StringVector& tokens)
     // Inform everyone (including this one) about updated view info
     _docManager->notifyViewInfo();
     sendTextFrame("editor: " + std::to_string(_docManager->getEditorId()));
+
+    // now we have the doc options parsed and set.
+    _docManager->updateActivityHeader();
 
     LOG_INF("Loaded session " << getId());
     return true;
@@ -1179,7 +1182,7 @@ bool ChildSession::getTextSelection(const StringVector& tokens)
         return false;
     }
 
-    SigUtil::addActivity("getTextSelection");
+    SigUtil::addActivity(getId(), "getTextSelection");
 
     if (getLOKitDocument()->getDocumentType() != LOK_DOCTYPE_TEXT &&
         getLOKitDocument()->getDocumentType() != LOK_DOCTYPE_SPREADSHEET)
@@ -1231,7 +1234,7 @@ bool ChildSession::getClipboard(const StringVector& tokens)
         pMimeTypes[1] = nullptr;
     }
 
-    SigUtil::addActivity("getClipboard");
+    SigUtil::addActivity(getId(), "getClipboard");
 
     bool success = false;
     getLOKitDocument()->setView(_viewId);
@@ -1284,7 +1287,7 @@ bool ChildSession::setClipboard(const char* buffer, int length, const StringVect
         ClipboardData data;
         Poco::MemoryInputStream stream(buffer, length);
 
-        SigUtil::addActivity("setClipboard " + std::to_string(length) + " bytes");
+        SigUtil::addActivity(getId(), "setClipboard " + std::to_string(length) + " bytes");
 
         std::string command; // skip command
         std::getline(stream, command, '\n');
@@ -1388,7 +1391,7 @@ bool ChildSession::insertFile(const StringVector& tokens)
     }
 #endif
 
-    SigUtil::addActivity("insertFile " + type);
+    SigUtil::addActivity(getId(), "insertFile " + type);
 
     if (type == "graphic" || type == "graphicurl" || type == "selectbackground")
     {
@@ -1858,7 +1861,7 @@ bool ChildSession::unoCommand(const StringVector& tokens)
         return false;
     }
 
-    SigUtil::addActivity(formatUnoCommandInfo(getId(), tokens[1]));
+    SigUtil::addActivity(getId(), formatUnoCommandInfo(getId(), tokens[1]));
 
     // we need to get LOK_CALLBACK_UNO_COMMAND_RESULT callback when saving
     const bool bNotify = (tokens.equals(1, ".uno:Save") ||
