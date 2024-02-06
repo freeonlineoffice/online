@@ -364,10 +364,11 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
             timeoutMaxMicroS << "us)" << ((rc==0) ? "(timedout)" : ""));
 
     // First process the wakeup pipe (always the last entry).
-    LOG_TRC('#' << _pollFds[size].fd << ": Handling events of wakeup pipe: 0x" << std::hex
-                << _pollFds[size].revents << std::dec);
     if (_pollFds[size].revents)
     {
+        LOG_TRC('#' << _pollFds[size].fd << ": Handling events of wakeup pipe: 0x" << std::hex
+                << _pollFds[size].revents << std::dec);
+
         // Clear the data.
 #if !MOBILEAPP
         int dump[32];
@@ -401,7 +402,8 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
             std::swap(_newCallbacks, invoke);
         }
 
-        LOG_TRC("Invoking " << invoke.size() << " callbacks");
+        if (invoke.size() > 0)
+            LOG_TRC("Invoking " << invoke.size() << " callbacks");
         for (const auto& callback : invoke)
         {
             try
@@ -691,7 +693,9 @@ void ServerSocket::dumpState(std::ostream& os)
 
 void SocketDisposition::execute()
 {
-    LOG_TRC("Executing SocketDisposition of #" << _socket->getFD() << ": " << name(_disposition));
+    if (_disposition != Type::CONTINUE)
+        LOG_TRC("Executing SocketDisposition of #" << _socket->getFD() <<
+                ": " << name(_disposition));
 
     // We should have hard ownership of this socket.
     ASSERT_CORRECT_SOCKET_THREAD(_socket);
