@@ -86,7 +86,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		var offset = new L.Point(command.width, command.height);
 		var bottomRightTwips = topLeftTwips.add(offset);
 		if (this._debug.tileInvalidationsOn) {
-			this._debug.addInvalidationRectangle(topLeftTwips, bottomRightTwips, textMsg);
+			this._debug.addTileInvalidationRectangle(topLeftTwips, bottomRightTwips, textMsg);
 		}
 		var invalidBounds = new L.Bounds(topLeftTwips, bottomRightTwips);
 		var visibleTopLeft = this._latLngToTwips(this._map.getBounds().getNorthWest());
@@ -106,7 +106,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (needsNewTiles && this._debug.tileInvalidationsOn) {
-			this._debug.addInvalidationMessage(textMsg);
+			this._debug.addTileInvalidationMessage(textMsg);
 		}
 
 		this._previewInvalidations.push(invalidBounds);
