@@ -125,7 +125,7 @@ ios/Mobile/Info.plist
 ios/Mobile/Fonts
 ios/Mobile/Branding
 ios/Mobile/Resources/Settings.bundle/Root.plist
-ios/Mobile/coolkitconfig.xcu
+ios/Mobile/loolkitconfig.xcu
 
 # symlinks created by configure for the iOS app Xcode project
 lobuilddir-symlink
