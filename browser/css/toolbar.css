@@ -20,7 +20,7 @@
 }
 
 #document-name-input-loading-bar::after {
-	content: '';
+	content: "";
 	position: absolute;
 	height: 100%;
 	width: 25%;
@@ -29,8 +29,12 @@
 }
 
 @keyframes moveIndicator {
-	from { left: -25%; }
-	to { left: 100%; }
+	from {
+		left: -25%;
+	}
+	to {
+		left: 100%;
+	}
 }
 
 #toolbar-down {
