@@ -424,7 +424,7 @@ void FileServeTests::testPreProcessedFileSubstitution()
         { "CSS_VARIABLES",
           "<style>:root {--co-somestyle-text:#123456;--co-somestyle-size:15px;}</style>" },
         { "POSTMESSAGE_ORIGIN", "https://www.example.com:8080" },
-        { "BRANDING_THEME", "cool_brand" },
+        { "BRANDING_THEME", "lool_brand" },
         { "BRANDING_JS", "branding.js" },
         { "FOOTER", "<div><b>blah blah footer</b></div>" },
         { "CHECK_FILE_INFO_OVERRIDE", "DownloadAsPostMessage=true;blah=bleh" },
