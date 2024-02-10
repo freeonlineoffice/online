@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 21:14+0100\n"
-"PO-Revision-Date: 2024-02-09 21:16+0100\n"
+"POT-Creation-Date: 2024-02-10 23:18+0100\n"
+"PO-Revision-Date: 2024-02-10 23:21+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -274,13 +274,13 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68 src/control/Control.LanguageDialog.js:109
-#: src/control/Control.Tabs.js:349 src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:358 src/control/Control.Tabs.js:367
 #: src/control/Control.Zotero.js:328 src/control/Control.Zotero.js:366
 #: src/control/Permission.js:80 src/control/Permission.js:90
 #: src/control/Permission.js:140 src/control/Toolbar.js:552 src/control/Toolbar.js:654
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1081 src/core/Socket.js:604
-#: src/core/Socket.js:1017 src/core/Socket.js:1096 src/core/Socket.js:1232
-#: src/core/Socket.js:1236 src/main.js:70 src/main.js:73 src/main.js:125
+#: src/core/Socket.js:1017 src/core/Socket.js:1087 src/core/Socket.js:1223
+#: src/core/Socket.js:1227 src/main.js:70 src/main.js:73 src/main.js:125
 #: src/map/Clipboard.js:979 src/map/Clipboard.js:1018 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
@@ -1657,27 +1657,27 @@ msgstr "Tabelle vor dieser einfügen"
 msgid "Insert sheet after this"
 msgstr "Tabelle nach dieser einfügen"
 
-#: src/control/Control.Tabs.js:81
+#: src/control/Control.Tabs.js:85
 msgid "Move Sheet Left"
 msgstr "Tabelle nach links bewegen"
 
-#: src/control/Control.Tabs.js:86
+#: src/control/Control.Tabs.js:90
 msgid "Move Sheet Right"
 msgstr "Tabelle nach rechts bewegen"
 
-#: src/control/Control.Tabs.js:102
+#: src/control/Control.Tabs.js:106
 msgid "Copy Sheet..."
 msgstr "Tabellen kopieren..."
 
-#: src/control/Control.Tabs.js:347
+#: src/control/Control.Tabs.js:356
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Sind Sie sicher, dass Sie Tabelle %sheet% löschen möchten?"
 
-#: src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:367
 msgid "Rename sheet"
 msgstr "Blatt umbenennen"
 
-#: src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:367
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
@@ -1776,7 +1776,7 @@ msgstr ""
 "werden können. Dies könnte einige Probleme während der Bearbeitung von Zitaten und die "
 "Literaturliste verursachen."
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1103
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Lade …"
 
@@ -2249,45 +2249,45 @@ msgstr "Nur der Dokomunteigentümer kann das Password ändern."
 msgid "Missing Fonts"
 msgstr "Fehlende Schriftarten"
 
-#: src/core/Socket.js:1093
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Jemand"
 
-#: src/core/Socket.js:1094
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr "%userName speicherte dieses Dokument als %fileName. Wollen Sie mitbearbeiten?"
 
-#: src/core/Socket.js:1103
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1120
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 
-#: src/core/Socket.js:1123
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr "Das Dokument wechselt in den Offline-Modus und wird in Kürze neu geladen"
 
-#: src/core/Socket.js:1232
+#: src/core/Socket.js:1223
 msgid "Exported to storage"
 msgstr "Exportiert in den Speicher"
 
-#: src/core/Socket.js:1232
+#: src/core/Socket.js:1223
 msgid "Successfully exported: "
 msgstr "Erfolgreich exportiert: "
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1557
 msgid "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen Sie "
 "es erneut."
 
-#: src/core/Socket.js:1583
+#: src/core/Socket.js:1574
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1593
+#: src/core/Socket.js:1584
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 21:14+0100\n"
+"POT-Creation-Date: 2024-02-10 23:18+0100\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (New Zealand) <https://hosted.weblate.org/projects/"
@@ -272,14 +272,14 @@ msgstr "Server has been shut down; please reload the page."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:349
-#: src/control/Control.Tabs.js:358 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:367 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:552 src/control/Toolbar.js:654
 #: src/control/Toolbar.js:790 src/control/Toolbar.js:1081
-#: src/core/Socket.js:604 src/core/Socket.js:1017 src/core/Socket.js:1096
-#: src/core/Socket.js:1232 src/core/Socket.js:1236 src/main.js:70
+#: src/core/Socket.js:604 src/core/Socket.js:1017 src/core/Socket.js:1087
+#: src/core/Socket.js:1223 src/core/Socket.js:1227 src/main.js:70
 #: src/main.js:73 src/main.js:125 src/map/Clipboard.js:979
 #: src/map/Clipboard.js:1018 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
@@ -1744,27 +1744,27 @@ msgstr "Insert sheet before this"
 msgid "Insert sheet after this"
 msgstr "Insert sheet after this"
 
-#: src/control/Control.Tabs.js:81
+#: src/control/Control.Tabs.js:85
 msgid "Move Sheet Left"
 msgstr "Move Sheet Left"
 
-#: src/control/Control.Tabs.js:86
+#: src/control/Control.Tabs.js:90
 msgid "Move Sheet Right"
 msgstr "Move Sheet Right"
 
-#: src/control/Control.Tabs.js:102
+#: src/control/Control.Tabs.js:106
 msgid "Copy Sheet..."
 msgstr "Copy Sheet..."
 
-#: src/control/Control.Tabs.js:347
+#: src/control/Control.Tabs.js:356
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Are you sure you want to delete sheet, %sheet%?"
 
-#: src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:367
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:358
+#: src/control/Control.Tabs.js:367
 msgid "Enter new sheet name"
 msgstr "Enter new sheet name"
 
@@ -1861,7 +1861,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:237 src/core/Socket.js:1103
+#: src/control/Control.Zotero.js:237 src/core/Socket.js:1094
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -2330,35 +2330,35 @@ msgstr ""
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1093
+#: src/core/Socket.js:1084
 msgid "Someone"
 msgstr "Someone"
 
-#: src/core/Socket.js:1094
+#: src/core/Socket.js:1085
 msgid "%userName saved this document as %fileName. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1103
+#: src/core/Socket.js:1094
 msgid "Connecting..."
 msgstr "Connecting..."
 
-#: src/core/Socket.js:1120
+#: src/core/Socket.js:1111
 msgid "The document is being renamed and will reload shortly"
 msgstr "The document is being renamed and will reload shortly"
 
-#: src/core/Socket.js:1123
+#: src/core/Socket.js:1114
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1232
+#: src/core/Socket.js:1223
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1232
+#: src/core/Socket.js:1223
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1566
+#: src/core/Socket.js:1557
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2366,11 +2366,11 @@ msgstr ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 
-#: src/core/Socket.js:1583
+#: src/core/Socket.js:1574
 msgid "Reconnecting..."
 msgstr "Reconnecting..."
 
-#: src/core/Socket.js:1593
+#: src/core/Socket.js:1584
 msgid "The server has been disconnected."
 msgstr "The server has been disconnected."
 
