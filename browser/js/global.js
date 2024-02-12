@@ -90,8 +90,8 @@ window.app = {
 		var value = this.p.get(name);
 		return value === null ? '' : value;
 	}.bind(loolParams);
-	loolParams.set = function(name) {
-		this.p.set(name);
+	loolParams.set = function(name, value) {
+		this.p.set(name, value);
 	}.bind(loolParams);
 	global.loolParams = loolParams;
 
