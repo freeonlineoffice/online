@@ -216,6 +216,20 @@ JSDialog.combobox = function (parentContainer, data, builder) {
 		}
 	};
 
+	if (data.enabled === false) {
+		container.setAttribute('disabled', '');
+		content.setAttribute('disabled', '');
+	}
+
+	var enabledCallback = function (enable) {
+		if (enable) {
+			content.removeAttribute('disabled');
+		} else {
+			content.setAttribute('disabled', '');
+		}
+	};
+	JSDialog.OnStateChange(container, enabledCallback);
+
 	// notebookbar a11y requires main element to have click handler for shortcuts to work
 	container.addEventListener('click', function () { content.focus(); });
 
@@ -234,6 +248,9 @@ JSDialog.combobox = function (parentContainer, data, builder) {
 
 	var comboboxId = data.id;
 	var clickFunction = function () {
+		if (container.hasAttribute('disabled'))
+			return;
+
 		var parentBuilder = builder;
 		var callback = function(objectType, eventType, object, data) {
 			// send command with correct WindowId (from parent, not dropdown)

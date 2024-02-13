@@ -111,6 +111,8 @@ function _menubuttonControl (parentContainer, data, builder) {
 
 		$(control.container).unbind('click');
 		$(control.container).click(function () {
+			if (control.container.hasAttribute('disabled'))
+				return;
 			$(control.container).w2menu({
 				items: builder._menus[menuId],
 				onSelect: function (event) {
@@ -139,11 +141,13 @@ function _menubuttonControl (parentContainer, data, builder) {
 		L.DomUtil.create('i', 'arrow', button);
 
 		$(button).click(function () {
-			builder.callback('menubutton', 'toggle', button, undefined, builder);
+			if (!button.hasAttribute('disabled')) {
+				builder.callback('menubutton', 'toggle', button, undefined, builder);
+			}
 		});
 
 		if (data.enabled === false)
-			button.setAttribute('disabled', true);
+			button.setAttribute('disabled', '');
 	} else {
 		window.app.console.warn('Not found menu "' + menuId + '"');
 	}
