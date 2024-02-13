@@ -12,6 +12,7 @@
 #include <sstream>
 #include <string>
 
+#include <JsonUtil.hpp>
 #include <Util.hpp>
 
 #define LOK_USE_UNSTABLE_API
@@ -77,6 +78,7 @@ namespace LOKitHelper
             std::ostringstream hposs;
             std::ostringstream sposs;
             std::ostringstream rtlposs;
+            std::ostringstream protectss;
             std::string mode;
             for (int i = 0; i < parts; ++i)
             {
@@ -100,6 +102,11 @@ namespace LOKitHelper
                     {
                         if (prop.second == "1")
                             rtlposs << i << ',';
+                    }
+                    else if (name == "protected")
+                    {
+                        if (prop.second == "1")
+                            protectss << i << ',';
                     }
                     else if (name == "mode" && mode.empty())
                     {
@@ -132,6 +139,13 @@ namespace LOKitHelper
             {
                 rtlparts.pop_back(); // Remove last ','
                 oss << " rtlparts=" << rtlparts;
+            }
+
+            std::string protectparts = protectss.str();
+            if (!protectparts.empty())
+            {
+                protectparts.pop_back(); // Remove last ','
+                oss << " protectedparts=" << protectparts;
             }
 
             if (type == LOK_DOCTYPE_SPREADSHEET)
