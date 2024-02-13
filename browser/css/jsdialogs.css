@@ -690,6 +690,10 @@ input[type="checkbox"]:checked.autofilter,
 	background-color: var(--color-background-lighter);
 }
 
+.jsdialog.spinfieldcontainer[disabled] input {
+	border: 1px solid var(--color-border-lighter);
+}
+
 .spinfield {
 	padding: 4px 0 4px 4px;
 	height: 28px;
