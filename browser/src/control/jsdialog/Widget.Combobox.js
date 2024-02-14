@@ -221,14 +221,7 @@ JSDialog.combobox = function (parentContainer, data, builder) {
 		content.setAttribute('disabled', '');
 	}
 
-	var enabledCallback = function (enable) {
-		if (enable) {
-			content.removeAttribute('disabled');
-		} else {
-			content.setAttribute('disabled', '');
-		}
-	};
-	JSDialog.OnStateChange(container, enabledCallback);
+	JSDialog.SynchronizeDisabledState(container, [content]);
 
 	// notebookbar a11y requires main element to have click handler for shortcuts to work
 	container.addEventListener('click', function () { content.focus(); });
