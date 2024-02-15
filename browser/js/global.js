@@ -80,7 +80,20 @@ window.app = {
 
 	global.setLogging(global.loolLogging != '');
 
-	global.loolParams = new URLSearchParams(global.location.search);
+
+	var loolParams = {
+		p: new URLSearchParams(global.location.search),
+	};
+	/* We need to return an empty string instead of `null` */
+	loolParams.get = function(name) {
+		var value = this.p.get(name);
+		return value === null ? '' : value;
+	}.bind(loolParams);
+	loolParams.set = function(name) {
+		this.p.set(name);
+	}.bind(loolParams);
+	global.loolParams = loolParams;
+
 	var ua = navigator.userAgent.toLowerCase(),
 	    uv = navigator.vendor.toLowerCase(),
 	    doc = document.documentElement,
