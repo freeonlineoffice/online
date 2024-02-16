@@ -1908,6 +1908,17 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{
+				'type': 'toolbox',
+				'children': [
+					{
+						'type': 'bigtoolitem',
+						'text': _UNO('.uno:Protect', 'spreadsheet'),
+						'command': '.uno:Protect',
+						'accessibility': { focusBack: true,	combination: 'DP', de: null }
+					}
+				]
+			},
 		];
 
 		return this.getTabPage('Review', content);
