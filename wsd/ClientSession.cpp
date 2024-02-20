@@ -1239,6 +1239,26 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
             oss << " spellOnline=" << getSpellOnline();
         }
 
+        if (!getTextDarkTheme().empty())
+        {
+            oss << " textDarkTheme=" << getTextDarkTheme();
+        }
+
+        if (!getSpreadsheetDarkTheme().empty())
+        {
+            oss << " spreadsheetDarkTheme=" << getSpreadsheetDarkTheme();
+        }
+
+        if (!getPresentationDarkTheme().empty())
+        {
+            oss << " presentationDarkTheme=" << getPresentationDarkTheme();
+        }
+
+        if (!getDrawingDarkTheme().empty())
+        {
+            oss << " drawingDarkTheme=" << getDrawingDarkTheme();
+        }
+
         if (!getWatermarkText().empty())
         {
             std::string encodedWatermarkText;
