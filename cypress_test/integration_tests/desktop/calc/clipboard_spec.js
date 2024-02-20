@@ -139,7 +139,7 @@ describe(['tagdesktop', 'tagnextcloud', 'tagproxy'], 'Calc clipboard tests.', fu
 			var app = win['0'].app;
 			app.socket.sendMessage('uno .uno:Copy');
 		});
-		var html = '<div id="meta-origin" data-coolorigin="%META_URL%">ignored</div>';
+		var html = '<div id="meta-origin" data-loolorigin="%META_URL%">ignored</div>';
 		setDummyClipboard('text/html', html, /*image=*/false, /*fail=*/true);
 
 		// When pasting the clipboard to B1, which fails:
