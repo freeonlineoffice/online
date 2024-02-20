@@ -518,8 +518,12 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	max-width: 250px;
 }
 
-.lool-annotation.greyed {
+.lool-annotation.tracked-deteled-comment-show {
 	opacity: 0.5;
+}
+
+.lool-annotation.tracked-deteled-comment-hide {
+	display: none;
 }
 
 .lool-annotation > .modalpopup {
