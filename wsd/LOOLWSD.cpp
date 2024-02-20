@@ -49,23 +49,19 @@
 #include <sys/resource.h>
 
 #include <cassert>
-#include <cerrno>
 #include <clocale>
 #include <condition_variable>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
 #include <chrono>
-#include <fstream>
 #include <iostream>
 #include <map>
 #include <mutex>
 #include <regex>
 #include <sstream>
-#include <stdexcept>
 #include <string>
 #include <thread>
-#include <unordered_map>
 
 #if !MOBILEAPP
 
@@ -85,6 +81,16 @@
 #include <Poco/Net/SSLManager.h>
 
 using Poco::Net::PartHandler;
+
+#include <cerrno>
+#include <stdexcept>
+#include <fstream>
+#include <unordered_map>
+
+#include "Admin.hpp"
+#include "Auth.hpp"
+#include "FileServer.hpp"
+#include "UserMessages.hpp"
 
 #endif
 
@@ -107,8 +113,6 @@ using Poco::Net::PartHandler;
 #include <Poco/Util/ServerApplication.h>
 #include <Poco/Util/XMLConfiguration.h>
 
-#include "Admin.hpp"
-#include "Auth.hpp"
 #include "ClientSession.hpp"
 #include <ClientRequestDispatcher.hpp>
 #include <Common.hpp>
@@ -116,7 +120,6 @@ using Poco::Net::PartHandler;
 #include <Crypto.hpp>
 #include <DelaySocket.hpp>
 #include "DocumentBroker.hpp"
-#include "FileServer.hpp"
 #include <common/JsonUtil.hpp>
 #include <common/FileUtil.hpp>
 #include <common/JailUtil.hpp>
@@ -133,7 +136,6 @@ using Poco::Net::PartHandler;
 #include "Storage.hpp"
 #include "TraceFile.hpp"
 #include <Unit.hpp>
-#include "UserMessages.hpp"
 #include <Util.hpp>
 #include <common/ConfigUtil.hpp>
 #include <common/TraceEvent.hpp>
@@ -152,7 +154,7 @@ using Poco::Net::PartHandler;
 #elif WASMAPP
 #include "wasmapp.hpp"
 #endif
-#endif
+#endif // MOBILEAPP
 
 #ifdef __linux__
 #if !MOBILEAPP
