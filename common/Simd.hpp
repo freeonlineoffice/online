@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <config.h>
-
 namespace simd {
     bool init();
     extern bool HasAVX2;

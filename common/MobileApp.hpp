@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include "config.h"
-
 #if MOBILEAPP
 
 #include <LibreOfficeKit/LibreOfficeKit.hxx>

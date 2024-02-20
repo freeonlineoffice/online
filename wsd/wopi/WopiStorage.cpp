@@ -104,7 +104,7 @@ std::map<std::string, std::string> GetQueryParams(const Poco::URI& uri)
 void WopiStorage::initHttpRequest(Poco::Net::HTTPRequest& request, const Poco::URI& uri,
                                   const Authorization& auth) const
 {
-    request.set("User-Agent", WOPI_AGENT_STRING);
+    request.set("User-Agent", http::getAgentString());
 
     auth.authorizeRequest(request);
 

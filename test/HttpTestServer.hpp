@@ -15,7 +15,7 @@
 #include <chrono>
 #include <string>
 
-#ifndef LOOLWSD_VERSION
+#ifndef APP_NAME
 static_assert(false, "config.h must be included in the .cpp being compiled");
 #endif
 

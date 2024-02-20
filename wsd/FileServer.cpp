@@ -1628,7 +1628,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
     // No referrer-policy
     response.add("Referrer-Policy", "no-referrer");
     response.add("X-Content-Type-Options", "nosniff");
-    response.set("Server", HTTP_SERVER_STRING);
+    response.set("Server", http::getServerString());
     response.set("Date", Util::getHttpTimeNow());
 
     response.setBody(std::move(templateFile));
