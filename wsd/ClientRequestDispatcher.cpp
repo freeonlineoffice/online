@@ -24,7 +24,9 @@
 #include <DocumentBroker.hpp>
 #include <Exceptions.hpp>
 #include <FileServer.hpp>
+#if !MOBILEAPP
 #include <HostUtil.hpp>
+#endif // !MOBILEAPP
 #include <RequestDetails.hpp>
 #include <ProxyRequestHandler.hpp>
 #include <WopiProxy.hpp>
@@ -381,8 +383,6 @@ getConvertToBrokerImplementation(const std::string& requestType, const std::stri
     return nullptr;
 }
 
-#endif // !MOBILEAPP
-
 bool ClientRequestDispatcher::allowPostFrom(const std::string& address)
 {
     static bool init = false;
@@ -463,6 +463,8 @@ bool ClientRequestDispatcher::allowConvertTo(const std::string& address,
 
     return allow;
 }
+
+#endif // !MOBILEAPP
 
 void ClientRequestDispatcher::onConnect(const std::shared_ptr<StreamSocket>& socket)
 {
@@ -1883,10 +1885,17 @@ ClientRequestDispatcher::getCapabilitiesJson(const Poco::Net::HTTPRequest& reque
 
     // Can the convert-to be used?
     Poco::JSON::Object::Ptr convert_to = new Poco::JSON::Object;
+#if !MOBILEAPP
     Poco::Dynamic::Var available = allowConvertTo(socket->clientAddress(), request);
     convert_to->set("available", available);
     if (available)
         convert_to->set("endpoint", "/lool/convert-to");
+#else
+    // convert-to is not supported on mobile apps as it requires wopi.
+    (void)request;
+    Poco::Dynamic::Var available = false;
+    convert_to->set("available", available);
+#endif // MOBILEAPP
 
     Poco::JSON::Object::Ptr capabilities = new Poco::JSON::Object;
     capabilities->set("convert-to", convert_to);
