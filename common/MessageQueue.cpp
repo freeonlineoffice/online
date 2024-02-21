@@ -664,7 +664,7 @@ void MessageQueue::dumpState(std::ostream& oss)
     oss << "\tQueue size: " << _queue.size() << "\n";
     size_t i = 0;
     for (Payload &it : _queue)
-        oss << "\t\t" << i++ << ": " << COOLProtocol::getFirstLine(it) << "\n";
+        oss << "\t\t" << i++ << ": " << LOOLProtocol::getFirstLine(it) << "\n";
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
