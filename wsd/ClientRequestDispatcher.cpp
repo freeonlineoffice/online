@@ -10,7 +10,6 @@
  */
 
 #include <config.h>
-#include <config_version.h>
 
 #include <ConfigUtil.hpp>
 #include <JailUtil.hpp>
@@ -629,7 +628,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
             response->add("X-XSS-Protection", "1; mode=block");
             // No referrer-policy
             response->add("Referrer-Policy", "no-referrer");
-            response->set("Server", http::getServerString());
+            response->set("Server", HTTP_SERVER_STRING);
             response->add("Content-Type", "text/plain");
             response->add("X-Content-Type-Options", "nosniff");
 
