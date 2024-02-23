@@ -2031,19 +2031,35 @@ kbd,
 	display: flex;
 }
 
-#DocumentPropertiesDialog #customprops #properties > .ui-grid > div:nth-child(1) {
+#DocumentPropertiesDialog
+	#customprops
+	#properties
+	> .ui-grid
+	> div:nth-child(1) {
 	width: 150px;
 }
 
-#DocumentPropertiesDialog #customprops #properties > .ui-grid > div:nth-child(2) {
+#DocumentPropertiesDialog
+	#customprops
+	#properties
+	> .ui-grid
+	> div:nth-child(2) {
 	width: 100px;
 }
 
-#DocumentPropertiesDialog #customprops #properties > .ui-grid > div:nth-child(3) {
+#DocumentPropertiesDialog
+	#customprops
+	#properties
+	> .ui-grid
+	> div:nth-child(3) {
 	width: 100%;
 }
 
-#DocumentPropertiesDialog #customprops #properties > .ui-grid > div:nth-child(4) {
+#DocumentPropertiesDialog
+	#customprops
+	#properties
+	> .ui-grid
+	> div:nth-child(4) {
 	width: 45px;
 }
 #DocumentPropertiesDialog #customprops .jsdialog.ui-scrollwindow {
