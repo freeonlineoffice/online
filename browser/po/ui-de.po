@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-18 12:43+0100\n"
-"PO-Revision-Date: 2024-02-18 12:50+0100\n"
+"POT-Creation-Date: 2024-02-25 10:30+0100\n"
+"PO-Revision-Date: 2024-02-25 15:02+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -232,7 +232,7 @@ msgstr "Logging-Level"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
 #: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
-#: src/control/Parts.js:451 src/control/Signing.js:611 src/core/Socket.js:1047
+#: src/control/Parts.js:454 src/control/Signing.js:611 src/core/Socket.js:1047
 #: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:132
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -274,14 +274,14 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68 src/control/Control.LanguageDialog.js:109
-#: src/control/Control.Tabs.js:375 src/control/Control.Tabs.js:384
+#: src/control/Control.Tabs.js:380 src/control/Control.Tabs.js:389
 #: src/control/Control.Zotero.js:328 src/control/Control.Zotero.js:366
 #: src/control/Permission.js:80 src/control/Permission.js:90
-#: src/control/Permission.js:140 src/control/Toolbar.js:552 src/control/Toolbar.js:654
-#: src/control/Toolbar.js:790 src/control/Toolbar.js:1081 src/core/Socket.js:604
-#: src/core/Socket.js:1017 src/core/Socket.js:1087 src/core/Socket.js:1223
-#: src/core/Socket.js:1227 src/main.js:70 src/main.js:73 src/main.js:125
-#: src/map/Clipboard.js:979 src/map/Clipboard.js:1018 src/map/handler/Map.Feedback.js:83
+#: src/control/Permission.js:140 src/control/Toolbar.js:692 src/control/Toolbar.js:794
+#: src/control/Toolbar.js:930 src/control/Toolbar.js:1221 src/core/Socket.js:604
+#: src/core/Socket.js:1017 src/core/Socket.js:1087 src/core/Socket.js:1219
+#: src/core/Socket.js:1223 src/main.js:70 src/main.js:73 src/main.js:125
+#: src/map/Clipboard.js:991 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "OK"
@@ -302,8 +302,9 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: admin/src/AdminSocketSettings.js:37 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:81 src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:785 src/layer/tile/CommentListSection.ts:417
+#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:417
 #: src/layer/tile/CommentSection.ts:148 src/layer/tile/CommentSection.ts:151
+#: src/map/Clipboard.js:1030
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -445,7 +446,7 @@ msgstr "Der Server ist auf einen Fehler %0 beim Ausführen des Befehls %1 gesto�
 msgid "Unlock"
 msgstr "Entsperren"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1080
+#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1220
 msgid "Delete"
 msgstr "Löschen"
 
@@ -453,7 +454,7 @@ msgstr "Löschen"
 msgid "Paste Special"
 msgstr "Inhalte einfügen"
 
-#: src/control/Control.DocumentNameInput.js:86
+#: src/control/Control.DocumentNameInput.js:100
 msgid "Path"
 msgstr "Pfad"
 
@@ -652,8 +653,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2099 src/layer/tile/CanvasTileLayer.js:5097
-#: src/layer/tile/CanvasTileLayer.js:5108 src/layer/tile/CommentListSection.ts:973
+#: src/control/Control.JSDialogBuilder.js:2099 src/layer/tile/CanvasTileLayer.js:5151
+#: src/layer/tile/CanvasTileLayer.js:5162 src/layer/tile/CommentListSection.ts:1010
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -917,7 +918,7 @@ msgid "Refresh Citations"
 msgstr "Quellangaben aktualisieren"
 
 #: src/control/Control.Menubar.js:295 src/control/Control.NotebookbarWriter.js:1988
-#: src/control/Control.Zotero.js:1436
+#: src/control/Control.Zotero.js:1438
 msgid "Unlink Citations"
 msgstr "Quellangabe trennen"
 
@@ -1102,7 +1103,7 @@ msgstr "Mehr Bedingungen..."
 #: src/control/Control.NotebookbarCalc.js:877 src/control/Control.NotebookbarDraw.js:939
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897 src/control/Control.StatusBar.js:194
-#: src/control/Control.Zotero.js:211
+#: src/control/Control.Zotero.js:211 src/control/Toolbar.js:447
 msgid "Search"
 msgstr "Suchen"
 
@@ -1326,8 +1327,8 @@ msgid "Currency"
 msgstr "Währung"
 
 #: src/control/Control.NotebookbarCalc.js:648
-#: src/control/Control.NotebookbarWriter.js:1360 src/control/Control.Zotero.js:1073
-#: src/control/Control.Zotero.js:1509
+#: src/control/Control.NotebookbarWriter.js:1360 src/control/Control.Zotero.js:1075
+#: src/control/Control.Zotero.js:1511
 msgid "Date"
 msgstr "Datum"
 
@@ -1347,7 +1348,7 @@ msgstr "Fraktion"
 msgid "Boolean Value"
 msgstr "Boolescher Wert"
 
-#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:757
+#: src/control/Control.NotebookbarCalc.js:653 src/control/Toolbar.js:897
 msgid "Text"
 msgstr "Text"
 
@@ -1669,15 +1670,15 @@ msgstr "Tabelle nach rechts bewegen"
 msgid "Copy Sheet..."
 msgstr "Tabellen kopieren..."
 
-#: src/control/Control.Tabs.js:373
+#: src/control/Control.Tabs.js:378
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Sind Sie sicher, dass Sie Tabelle %sheet% löschen möchten?"
 
-#: src/control/Control.Tabs.js:384
+#: src/control/Control.Tabs.js:389
 msgid "Rename sheet"
 msgstr "Blatt umbenennen"
 
-#: src/control/Control.Tabs.js:384
+#: src/control/Control.Tabs.js:389
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
@@ -1808,7 +1809,7 @@ msgstr "Endnoten"
 msgid "My Publications"
 msgstr "Meine Veröffentlichungen"
 
-#: src/control/Control.Zotero.js:468 src/control/Control.Zotero.js:693
+#: src/control/Control.Zotero.js:468 src/control/Control.Zotero.js:695
 msgid "My Library"
 msgstr "Meine Bibliography"
 
@@ -1816,85 +1817,85 @@ msgstr "Meine Bibliography"
 msgid "Group Libraries"
 msgstr "Gruppen-Bibliotheken"
 
-#: src/control/Control.Zotero.js:709
+#: src/control/Control.Zotero.js:711
 msgid "Failed to load groups"
 msgstr "Laden der Gruppen fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:727 src/control/Control.Zotero.js:1045
+#: src/control/Control.Zotero.js:729 src/control/Control.Zotero.js:1047
 msgid "Failed to load collections"
 msgstr "Laden der Sammlung fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:741
+#: src/control/Control.Zotero.js:743
 msgid "Citation Style"
 msgstr "Zitierstil"
 
-#: src/control/Control.Zotero.js:746
+#: src/control/Control.Zotero.js:748
 msgid "Styles"
 msgstr "Stile"
 
-#: src/control/Control.Zotero.js:746
+#: src/control/Control.Zotero.js:748
 msgid "An error occurred while fetching style list"
 msgstr "Es trat ein Fehler während des Abrufens der Stil-Liste auf"
 
-#: src/control/Control.Zotero.js:754
+#: src/control/Control.Zotero.js:756
 msgid "Failed to load styles"
 msgstr "Laden des Stils fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1073 src/control/Control.Zotero.js:1509
+#: src/control/Control.Zotero.js:1075 src/control/Control.Zotero.js:1511
 msgid "Title"
 msgstr "Titel"
 
-#: src/control/Control.Zotero.js:1073 src/control/Control.Zotero.js:1509
+#: src/control/Control.Zotero.js:1075 src/control/Control.Zotero.js:1511
 msgid "Creator(s)"
 msgstr "Urheber"
 
-#: src/control/Control.Zotero.js:1073 src/control/Control.Zotero.js:1509
+#: src/control/Control.Zotero.js:1075 src/control/Control.Zotero.js:1511
 msgid "Your library is empty"
 msgstr "Ihre Bibliothek ist leer"
 
-#: src/control/Control.Zotero.js:1084
+#: src/control/Control.Zotero.js:1086
 msgid "Failed to load items"
 msgstr "Laden des Elements fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1134
+#: src/control/Control.Zotero.js:1136
 msgid "Citation warning"
 msgstr "Zitierwarnung"
 
-#: src/control/Control.Zotero.js:1135
+#: src/control/Control.Zotero.js:1137
 msgid "Once citations are entered their storage and display type can not be changed."
 msgstr ""
 "Sobald Zitate eingetragen sind, kann ihr Speicherort und Anzeigetyp nicht geändert "
 "werden."
 
-#: src/control/Control.Zotero.js:1136 src/control/Control.Zotero.js:1438
+#: src/control/Control.Zotero.js:1138 src/control/Control.Zotero.js:1440
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: src/control/Control.Zotero.js:1242
+#: src/control/Control.Zotero.js:1244
 msgid "Add Note"
 msgstr "Anmerkung hinzufügen"
 
-#: src/control/Control.Zotero.js:1245
+#: src/control/Control.Zotero.js:1247
 msgid "Notes"
 msgstr "Anmerkungen"
 
-#: src/control/Control.Zotero.js:1245
+#: src/control/Control.Zotero.js:1247
 msgid "An error occurred while fetching notes"
 msgstr "Es trat ein Fehler während des Abrufens der Anmerkungen auf"
 
-#: src/control/Control.Zotero.js:1376
+#: src/control/Control.Zotero.js:1378
 msgid "Updated citations"
 msgstr "Aktualisierte Zitate"
 
-#: src/control/Control.Zotero.js:1378
+#: src/control/Control.Zotero.js:1380
 msgid "Citations update failed"
 msgstr "Aktualisieren des Zitats fehlgeschlagen"
 
-#: src/control/Control.Zotero.js:1382
+#: src/control/Control.Zotero.js:1384
 msgid "Updating citations"
 msgstr "Zitate aktualisieren"
 
-#: src/control/Control.Zotero.js:1437
+#: src/control/Control.Zotero.js:1439
 msgid ""
 "Unlinking citations will prevent Free Online Office from updating citations and "
 "bibliography in this document."
@@ -2116,31 +2117,31 @@ msgstr "Speichern …"
 msgid "Renaming..."
 msgstr "Umbenennen …"
 
-#: src/control/Toolbar.js:636
+#: src/control/Toolbar.js:776
 msgid "This version of %productName is powered by"
 msgstr "Diese Version von %productName wird bereitgestellt von"
 
-#: src/control/Toolbar.js:648
+#: src/control/Toolbar.js:788
 msgid "\"Slow Proxy\""
 msgstr "\"Langsamer Proxy\""
 
-#: src/control/Toolbar.js:667
+#: src/control/Toolbar.js:807
 msgid "Copy all version information in English"
 msgstr "Kopiere alle Versionsinformationen in Englisch"
 
-#: src/control/Toolbar.js:750
+#: src/control/Toolbar.js:890
 msgid "Insert hyperlink"
 msgstr "Hyperlink einfügen"
 
-#: src/control/Toolbar.js:769
+#: src/control/Toolbar.js:909
 msgid "Link"
 msgstr "Hyperlink"
 
-#: src/control/Toolbar.js:1075
+#: src/control/Toolbar.js:1215
 msgid "Are you sure you want to delete this slide?"
 msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 
-#: src/control/Toolbar.js:1078
+#: src/control/Toolbar.js:1218
 msgid "Are you sure you want to delete this page?"
 msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 
@@ -2269,25 +2270,25 @@ msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr "Das Dokument wechselt in den Offline-Modus und wird in Kürze neu geladen"
 
-#: src/core/Socket.js:1223
+#: src/core/Socket.js:1219
 msgid "Exported to storage"
 msgstr "Exportiert in den Speicher"
 
-#: src/core/Socket.js:1223
+#: src/core/Socket.js:1219
 msgid "Successfully exported: "
 msgstr "Erfolgreich exportiert: "
 
-#: src/core/Socket.js:1557
+#: src/core/Socket.js:1553
 msgid "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen Sie "
 "es erneut."
 
-#: src/core/Socket.js:1574
+#: src/core/Socket.js:1570
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1584
+#: src/core/Socket.js:1580
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 
@@ -2517,23 +2518,23 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1974
+#: src/layer/tile/CanvasTileLayer.js:1988
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2550
+#: src/layer/tile/CanvasTileLayer.js:2604
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2561
+#: src/layer/tile/CanvasTileLayer.js:2615
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2570
+#: src/layer/tile/CanvasTileLayer.js:2624
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5125
+#: src/layer/tile/CanvasTileLayer.js:5179
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2545,39 +2546,39 @@ msgstr "Ein Kommentar ist bearbeitet worden"
 msgid "Please save or discard the comment currently being edited."
 msgstr "Bitte speichern oder verwerfen Sie den Kommentar, der gerade bearbeitet wurde."
 
-#: src/layer/tile/CommentListSection.ts:916
+#: src/layer/tile/CommentListSection.ts:953
 msgid "Modify"
 msgstr "Ändern"
 
-#: src/layer/tile/CommentListSection.ts:922 src/layer/tile/CommentSection.ts:152
+#: src/layer/tile/CommentListSection.ts:959 src/layer/tile/CommentSection.ts:152
 msgid "Reply"
 msgstr "Antworten"
 
-#: src/layer/tile/CommentListSection.ts:928
+#: src/layer/tile/CommentListSection.ts:965
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/layer/tile/CommentListSection.ts:934
+#: src/layer/tile/CommentListSection.ts:971
 msgid "Remove Thread"
 msgstr "Thread entfernen"
 
-#: src/layer/tile/CommentListSection.ts:940
+#: src/layer/tile/CommentListSection.ts:977
 msgid "Resolve"
 msgstr "Auflösen"
 
-#: src/layer/tile/CommentListSection.ts:940
+#: src/layer/tile/CommentListSection.ts:977
 msgid "Unresolve"
 msgstr "Ungelöst"
 
-#: src/layer/tile/CommentListSection.ts:946
+#: src/layer/tile/CommentListSection.ts:983
 msgid "Unresolve Thread"
 msgstr "Thread als ungelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:946
+#: src/layer/tile/CommentListSection.ts:983
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:1227 src/layer/tile/CommentListSection.ts:1282
+#: src/layer/tile/CommentListSection.ts:1264 src/layer/tile/CommentListSection.ts:1319
 msgid "Autosaved"
 msgstr "Automatisch gespeichert"
 
@@ -2619,13 +2620,13 @@ msgstr "Warnung: Zeitüberschreitung des Aufrufs von Kopieren/Einfügen"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:972
+#: src/map/Clipboard.js:984
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Bitte verwenden Sie die Schaltflächen Kopieren/ Einfügen auf Ihrer "
 "Bildschirmtastatur.</p>"
 
-#: src/map/Clipboard.js:974
+#: src/map/Clipboard.js:986
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these keyboard "
 "shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</kbd><span class="
@@ -2640,7 +2641,7 @@ msgstr ""
 "td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd></td></"
 "tr><tr><td>Kopieren</td><td>Ausschneiden</td><td>Einfügen</td></tr></table>"
 
-#: src/map/Clipboard.js:993
+#: src/map/Clipboard.js:1005
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. Please, wait "
 "for the current download or cancel it before starting a new one</p>"
@@ -2649,7 +2650,7 @@ msgstr ""
 "Bitte warten Sie auf den aktuellen Download oder brechen Sie ihn ab, bevor Sie einen "
 "neuen starten.</p>"
 
-#: src/map/Clipboard.js:1011
+#: src/map/Clipboard.js:1023
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p>Please press now: "
 "<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see more options</"
