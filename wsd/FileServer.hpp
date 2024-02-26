@@ -72,7 +72,7 @@ class FileServerRequestHandler
 {
 public:
     /// The WOPI URL and authentication details,
-    /// as extracted from the cool.html file-serving request.
+    /// as extracted from the lool.html file-serving request.
     class ResourceAccessDetails
     {
     public:

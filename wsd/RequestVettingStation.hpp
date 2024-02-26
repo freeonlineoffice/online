@@ -23,12 +23,12 @@
 /// Once the request checks out, we can proceed to creating a
 /// DocBroker and a Kit process.
 /// There are two ways to use this class. One is to create it when
-/// serving cool.html, the other when the WebSocket is created
+/// serving lool.html, the other when the WebSocket is created
 /// (by upgrading the socket).
-/// Unfortunately, when serving cool.html the connection is not the one
+/// Unfortunately, when serving lool.html the connection is not the one
 /// used for the WebSocket. As such, it cannot be used to create
 /// DocBroker. Therefore, we work in two modes: we do the CheckFileInfo
-/// as soon as we serve cool.html, but then we need to wait for the
+/// as soon as we serve lool.html, but then we need to wait for the
 /// WebSocket to create DocBroker.
 /// A small complication is that CheckFileInfo might not be done by
 /// then. Or, it might have timed out. Alternatively, the WebSocket
@@ -57,7 +57,7 @@ public:
         }
     }
 
-    /// Called when cool.html is served, to start the vetting as early as possible.
+    /// Called when lool.html is served, to start the vetting as early as possible.
     void handleRequest(const std::string& id);
 
     void handleRequest(const std::string& id, const RequestDetails& requestDetails,

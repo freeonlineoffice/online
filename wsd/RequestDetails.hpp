@@ -135,7 +135,7 @@ public:
     /// wopiSrc is typically encoded.
     /// options are in the form of 'x=y' strings.
     /// compat is in the form of '/sessionId/command/serial' string. Optional.
-    /// /cool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
+    /// /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
     RequestDetails(const std::string& wopiSrc, const std::vector<std::string>& options,
                    const std::string& compat);
 

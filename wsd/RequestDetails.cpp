@@ -93,7 +93,7 @@ RequestDetails::RequestDetails(const std::string &mobileURI)
 RequestDetails::RequestDetails(const std::string& wopiSrc, const std::vector<std::string>& options,
                                const std::string& compat)
 {
-    // /cool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
+    // /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
 
     const std::string decodedWopiSrc = Util::decodeURIComponent(wopiSrc);
     std::string wopiSrcWithOptions = decodedWopiSrc;
@@ -113,7 +113,7 @@ RequestDetails::RequestDetails(const std::string& wopiSrc, const std::vector<std
     // create a valid URI and let it parse and set the various
     // members, as necessary.
     std::ostringstream oss;
-    oss << "/cool/" << Util::encodeURIComponent(wopiSrcWithOptions);
+    oss << "/lool/" << Util::encodeURIComponent(wopiSrcWithOptions);
     oss << "/ws?WOPISrc=" << Util::encodeURIComponent(decodedWopiSrc);
     oss << "&compat=/ws" << compat;
     _uriString = oss.str();
