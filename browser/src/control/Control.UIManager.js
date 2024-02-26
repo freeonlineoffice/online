@@ -1044,7 +1044,8 @@ L.Control.UIManager = L.Control.extend({
 	},
 
 	hideDocumentTooltip: function(elem) {
-		elem.tooltip('option', 'disabled', true);
+		if ($('.ui-tooltip').length > 0)
+			elem.tooltip('option', 'disabled', true);
 	},
 
 	// Snack bar
