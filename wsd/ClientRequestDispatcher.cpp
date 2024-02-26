@@ -33,6 +33,7 @@
 #include <ConfigUtil.hpp>
 #include <JailUtil.hpp>
 #include <ProofKey.hpp>
+#include <Util.hpp>
 
 #include <Poco/File.h>
 #include <Poco/StreamCopier.h>
@@ -563,8 +564,9 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
                                                            accessDetails);
                 if (accessDetails.isValid())
                 {
-                    LOG_ASSERT_MSG(requestDetails.getField(RequestDetails::Field::WOPISrc) ==
-                                       accessDetails.wopiSrc(),
+                    LOG_ASSERT_MSG(Util::decodeURIComponent(
+                                       requestDetails.getField(RequestDetails::Field::WOPISrc)) ==
+                                       Util::decodeURIComponent(accessDetails.wopiSrc()),
                                    "Expected identical WOPISrc in the request as in lool.html");
 
                     const std::string requestKey = RequestDetails::getRequestKey(
