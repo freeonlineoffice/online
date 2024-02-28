@@ -224,7 +224,7 @@ class UserList extends L.Control {
 		);
 
 		var iconTd = L.DomUtil.create('td', 'usercolor', content);
-		var nameTd = L.DomUtil.create('td', 'username cool-font', content);
+		var nameTd = L.DomUtil.create('td', 'username lool-font', content);
 
 		const avatarElement = this.createAvatar(
 			undefined,
@@ -510,7 +510,7 @@ class UserList extends L.Control {
 		sanitizer.innerText = message;
 
 		$('#tb_actionbar_item_userlist').w2overlay({
-			class: 'cool-font',
+			class: 'lool-font',
 			html: sanitizer.innerHTML,
 			style: 'padding: 5px',
 		});
@@ -667,7 +667,7 @@ L.control.userList = function () {
 L.control.createUserListWidget = function () {
 	return (
 		'<div id="userlist_container"><table id="userlist_table"><tbody></tbody></table>' +
-		'<hr><table class="cool-font" id="editor-btn">' +
+		'<hr><table class="lool-font" id="editor-btn">' +
 		'<tr>' +
 		'<td><label id="follow-container"><input type="checkbox" name="alwaysFollow" id="follow-checkbox" onclick="editorUpdate(event)"><span class="checkmark"></span></label></td>' +
 		'<td>' +
