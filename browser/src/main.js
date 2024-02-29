@@ -21,7 +21,8 @@ if (window.ThisIsTheEmscriptenApp)
 else
 	var filePath = global.loolParams.get('file_path');
 
-app.file.permission = global.loolParams.get('permission') || 'edit';
+
+app.setPermission(global.loolParams.get('permission') || 'edit');
 
 var timestamp = global.loolParams.get('timestamp');
 var target = global.loolParams.get('target') || '';

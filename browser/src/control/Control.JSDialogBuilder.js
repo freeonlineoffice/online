@@ -2035,7 +2035,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		annotation.sectionProperties.commentListSection = data.annotation.sectionProperties.commentListSection;
 		annotation.onInitialize();
 
-		if (this.map.isPermissionEditForComments() || this.map.isEditMode())
+		if (app.isCommentEditingAllowed())
 			annotation.sectionProperties.menu.isRoot = isRoot;
 
 		container.appendChild(annotation.sectionProperties.container);
@@ -2158,7 +2158,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		var textNode = L.DomUtil.create('figcaption', 'empty-comment-wizard', emptyCommentWizard);
 		textNode.innerText = data.text;
 		L.DomUtil.create('br', 'empty-comment-wizard', textNode);
-		if (this.map.isPermissionEditForComments()) {
+		if (app.isCommentEditingAllowed()) {
 			var linkNode = L.DomUtil.create('div', 'empty-comment-wizard-link', textNode);
 			linkNode.innerText = _('Insert Comment');
 			linkNode.onclick = builder.map.insertComment.bind(builder.map);
@@ -2842,7 +2842,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			var buttonImage = L.DomUtil.create('img', '', button);
 			// Set the src attribute of the img element to the image URL
 			L.LOUtil.setImage(buttonImage, icon, builder.map);
-			
+
 			button.id = buttonId;
 			button.setAttribute('alt', id);
 

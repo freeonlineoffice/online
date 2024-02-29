@@ -188,7 +188,7 @@ export class Comment extends CanvasSectionObject {
 			this.createTrackChangeButtons();
 		}
 
-		if (this.sectionProperties.noMenu !== true && (this.map.isPermissionEditForComments() || this.map.isEditMode())) {
+		if (this.sectionProperties.noMenu !== true && app.isCommentEditingAllowed()) {
 			this.createMenu();
 		}
 

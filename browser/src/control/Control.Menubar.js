@@ -2087,7 +2087,7 @@ L.Control.Menubar = L.Control.extend({
 				return false;
 			case 'insertcomment':
 			case 'savecomments':
-				if (!this._map.isPermissionEditForComments()) {
+				if (!app.isCommentEditingAllowed()) {
 					return false;
 				}
 			}
