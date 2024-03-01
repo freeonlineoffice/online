@@ -586,6 +586,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	z-index: 0;
 }
 
+.lool-annotation-collapsed-show .lool-annotation-img {
+	visibility: visible;
+}
+
 .lool-dont-break {
 	/* These are technically the same, but use both */
 	overflow-wrap: break-word;
