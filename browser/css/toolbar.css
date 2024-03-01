@@ -3340,7 +3340,9 @@ menu-entry-with-icon.padding-left + menu-entry-icon.width */
 
 #followingChipBackground,
 #userListSummaryBackground {
-	border-radius: var(--btn-size); /* We expect the height to be --btn-size, give a bit for a border. To fully round the corners, this needs to be at least 50% of the height so --btn-size should do */
+	border-radius: var(
+		--btn-size
+	); /* We expect the height to be --btn-size, give a bit for a border. To fully round the corners, this needs to be at least 50% of the height so --btn-size should do */
 	padding: 2px; /* This will become the grey border around the inner elements */
 
 	font-size: 0.8em; /* The "Following foo" text overflows the box at the default size, 0.8em seems about right */
@@ -3349,7 +3351,12 @@ menu-entry-with-icon.padding-left + menu-entry-icon.width */
 }
 
 #followingChipBackground {
-	transform: translateX(calc(4px /* border widths */ + 4px /* background paddings */ + var(--btn-size) - 0.6px /* browser rendering fudge */));
+	transform: translateX(
+		calc(
+			4px /* border widths */ + 4px /* background paddings */ +
+				var(--btn-size) - 0.6px /* browser rendering fudge */
+		)
+	);
 	/* We'd like this to flow over the first item of the userListSummary. I've added a fudge because browser rendering seems to have subpixel errors here and it's far better to
 	 * render the border marginally too far left than leave a gap. */
 }
