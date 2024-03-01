@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 10:30+0100\n"
-"PO-Revision-Date: 2024-02-25 15:02+0100\n"
+"POT-Creation-Date: 2024-03-01 22:11+0100\n"
+"PO-Revision-Date: 2024-03-01 22:24+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -149,8 +149,8 @@ msgstr "Netzwerkgrafik"
 #: src/control/Control.NotebookbarDraw.js:143
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
-#: src/control/Control.NotebookbarWriter.js:148 src/layer/tile/CommentListSection.ts:422
-#: src/layer/tile/CommentSection.ts:149
+#: src/control/Control.NotebookbarWriter.js:148 src/layer/tile/CommentListSection.ts:421
+#: src/layer/tile/CommentSection.ts:148
 msgid "Save"
 msgstr "Speichern"
 
@@ -232,8 +232,8 @@ msgstr "Logging-Level"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
 #: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
-#: src/control/Parts.js:454 src/control/Signing.js:611 src/core/Socket.js:1047
-#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:132
+#: src/control/Parts.js:458 src/control/Signing.js:611 src/core/Socket.js:1047
+#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:131
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Schließen"
@@ -274,14 +274,14 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68 src/control/Control.LanguageDialog.js:109
-#: src/control/Control.Tabs.js:380 src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:390 src/control/Control.Tabs.js:399
 #: src/control/Control.Zotero.js:328 src/control/Control.Zotero.js:366
 #: src/control/Permission.js:80 src/control/Permission.js:90
 #: src/control/Permission.js:140 src/control/Toolbar.js:692 src/control/Toolbar.js:794
 #: src/control/Toolbar.js:930 src/control/Toolbar.js:1221 src/core/Socket.js:604
 #: src/core/Socket.js:1017 src/core/Socket.js:1087 src/core/Socket.js:1219
 #: src/core/Socket.js:1223 src/main.js:70 src/main.js:73 src/main.js:125
-#: src/map/Clipboard.js:991 src/map/handler/Map.Feedback.js:83
+#: src/map/Clipboard.js:998 src/map/handler/Map.Feedback.js:83
 #: src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "OK"
@@ -302,9 +302,8 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: admin/src/AdminSocketSettings.js:37 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:81 src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:417
-#: src/layer/tile/CommentSection.ts:148 src/layer/tile/CommentSection.ts:151
-#: src/map/Clipboard.js:1030
+#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:416
+#: src/layer/tile/CommentSection.ts:147 src/layer/tile/CommentSection.ts:150
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -462,7 +461,7 @@ msgstr "Pfad"
 msgid "Repair Document"
 msgstr "Dokument reparieren"
 
-#: src/control/Control.DocumentRepair.js:115 src/control/Control.UserList.js:331
+#: src/control/Control.DocumentRepair.js:115 src/control/Control.UserList.ts:449
 msgid "You"
 msgstr "Sie"
 
@@ -653,8 +652,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2099 src/layer/tile/CanvasTileLayer.js:5151
-#: src/layer/tile/CanvasTileLayer.js:5162 src/layer/tile/CommentListSection.ts:1010
+#: src/control/Control.JSDialogBuilder.js:2099 src/layer/tile/CanvasTileLayer.js:5189
+#: src/layer/tile/CanvasTileLayer.js:5200 src/layer/tile/CommentListSection.ts:1009
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1103,7 +1102,7 @@ msgstr "Mehr Bedingungen..."
 #: src/control/Control.NotebookbarCalc.js:877 src/control/Control.NotebookbarDraw.js:939
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897 src/control/Control.StatusBar.js:194
-#: src/control/Control.Zotero.js:211 src/control/Toolbar.js:447
+#: src/control/Control.Zotero.js:211 src/control/Toolbar.js:543
 msgid "Search"
 msgstr "Suchen"
 
@@ -1192,23 +1191,23 @@ msgstr "CSV-Datei (.csv)"
 msgid "Insert Local Image"
 msgstr "Lokales Bild einfügen"
 
-#: src/control/Control.NotebookbarBuilder.js:999
+#: src/control/Control.NotebookbarBuilder.js:1000
 msgid "Very Tight"
 msgstr "Sehr eng"
 
-#: src/control/Control.NotebookbarBuilder.js:1000
+#: src/control/Control.NotebookbarBuilder.js:1001
 msgid "Tight"
 msgstr "Eng"
 
-#: src/control/Control.NotebookbarBuilder.js:1001
+#: src/control/Control.NotebookbarBuilder.js:1002
 msgid "Normal"
 msgstr "Normal"
 
-#: src/control/Control.NotebookbarBuilder.js:1002
+#: src/control/Control.NotebookbarBuilder.js:1003
 msgid "Loose"
 msgstr "Weit"
 
-#: src/control/Control.NotebookbarBuilder.js:1003
+#: src/control/Control.NotebookbarBuilder.js:1004
 msgid "Very Loose"
 msgstr "Sehr weit"
 
@@ -1670,15 +1669,15 @@ msgstr "Tabelle nach rechts bewegen"
 msgid "Copy Sheet..."
 msgstr "Tabellen kopieren..."
 
-#: src/control/Control.Tabs.js:378
+#: src/control/Control.Tabs.js:388
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Sind Sie sicher, dass Sie Tabelle %sheet% löschen möchten?"
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Rename sheet"
 msgstr "Blatt umbenennen"
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
@@ -1720,39 +1719,55 @@ msgstr "Verbinder einfügen"
 msgid "Hide Menu"
 msgstr "Menüleiste verbergen"
 
-#: src/control/Control.UserList.js:11
+#: src/control/Control.UserList.ts:54
 msgid "%user has joined"
 msgstr "%user ist beigetreten"
 
-#: src/control/Control.UserList.js:12
+#: src/control/Control.UserList.ts:55
 msgid "%user has left"
 msgstr "%user hat verlassen"
 
-#: src/control/Control.UserList.js:35
+#: src/control/Control.UserList.ts:56
+msgid "Following %user"
+msgstr "%user folgen"
+
+#: src/control/Control.UserList.ts:57
+msgid "Following the editor"
+msgstr "Dem Bearbeiter folgen"
+
+#: src/control/Control.UserList.ts:58
+msgid "Click to stop following"
+msgstr "Klicken, um das Folgen zu beenden"
+
+#: src/control/Control.UserList.ts:59
+msgid "Avatar for %user"
+msgstr "Benutzerbild für %user"
+
+#: src/control/Control.UserList.ts:80
 msgid "%n users"
 msgstr "%n Benutzer"
 
-#: src/control/Control.UserList.js:36
+#: src/control/Control.UserList.ts:81
 msgid "1 user"
 msgstr "1 Benutzer"
 
-#: src/control/Control.UserList.js:37
+#: src/control/Control.UserList.ts:82
 msgid "0 users"
 msgstr "0 Benutzer"
 
-#: src/control/Control.UserList.js:195
-msgid "Following"
-msgstr "Folgend"
-
-#: src/control/Control.UserList.js:223 src/control/Control.UserList.js:389
-msgid "Always follow the editor"
-msgstr "Immer dem Bearbeiter folgen"
-
-#: src/control/Control.UserList.js:337
+#: src/control/Control.UserList.ts:532
 msgid "Readonly"
 msgstr "Schreibgeschützt"
 
-#: src/control/Control.UserList.js:392
+#: src/control/Control.UserList.ts:560
+msgid "Following"
+msgstr "Folgend"
+
+#: src/control/Control.UserList.ts:613 src/control/Control.UserList.ts:674
+msgid "Always follow the editor"
+msgstr "Immer dem Bearbeiter folgen"
+
+#: src/control/Control.UserList.ts:679
 msgid "Current"
 msgstr "Aktuell"
 
@@ -2518,83 +2533,87 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1988
+#: src/layer/tile/CanvasTileLayer.js:1998
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2604
+#: src/layer/tile/CanvasTileLayer.js:2599
+msgid "and %COUNT more"
+msgstr "und %COUNT mehr"
+
+#: src/layer/tile/CanvasTileLayer.js:2614
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2615
+#: src/layer/tile/CanvasTileLayer.js:2625
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2624
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5179
+#: src/layer/tile/CanvasTileLayer.js:5217
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
-#: src/layer/tile/CommentListSection.ts:131
+#: src/layer/tile/CommentListSection.ts:130
 msgid "A comment is being edited"
 msgstr "Ein Kommentar ist bearbeitet worden"
 
-#: src/layer/tile/CommentListSection.ts:132
+#: src/layer/tile/CommentListSection.ts:131
 msgid "Please save or discard the comment currently being edited."
 msgstr "Bitte speichern oder verwerfen Sie den Kommentar, der gerade bearbeitet wurde."
 
-#: src/layer/tile/CommentListSection.ts:953
+#: src/layer/tile/CommentListSection.ts:952
 msgid "Modify"
 msgstr "Ändern"
 
-#: src/layer/tile/CommentListSection.ts:959 src/layer/tile/CommentSection.ts:152
+#: src/layer/tile/CommentListSection.ts:958 src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "Antworten"
 
-#: src/layer/tile/CommentListSection.ts:965
+#: src/layer/tile/CommentListSection.ts:964
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/layer/tile/CommentListSection.ts:971
+#: src/layer/tile/CommentListSection.ts:970
 msgid "Remove Thread"
 msgstr "Thread entfernen"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Resolve"
 msgstr "Auflösen"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Unresolve"
 msgstr "Ungelöst"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Unresolve Thread"
 msgstr "Thread als ungelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:1264 src/layer/tile/CommentListSection.ts:1319
+#: src/layer/tile/CommentListSection.ts:1263 src/layer/tile/CommentListSection.ts:1318
 msgid "Autosaved"
 msgstr "Automatisch gespeichert"
 
-#: src/layer/tile/CommentSection.ts:290
+#: src/layer/tile/CommentSection.ts:289
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: src/layer/tile/CommentSection.ts:308 src/layer/tile/CommentSection.ts:309
+#: src/layer/tile/CommentSection.ts:307 src/layer/tile/CommentSection.ts:308
 msgid "Accept change"
 msgstr "Änderung annehmen"
 
-#: src/layer/tile/CommentSection.ts:315 src/layer/tile/CommentSection.ts:316
+#: src/layer/tile/CommentSection.ts:314 src/layer/tile/CommentSection.ts:315
 msgid "Reject change"
 msgstr "Änderung verwerfen"
 
-#: src/layer/tile/CommentSection.ts:339
+#: src/layer/tile/CommentSection.ts:338
 msgid "Resolved"
 msgstr "Erledigt"
 
@@ -2620,13 +2639,13 @@ msgstr "Warnung: Zeitüberschreitung des Aufrufs von Kopieren/Einfügen"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:984
+#: src/map/Clipboard.js:991
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Bitte verwenden Sie die Schaltflächen Kopieren/ Einfügen auf Ihrer "
 "Bildschirmtastatur.</p>"
 
-#: src/map/Clipboard.js:986
+#: src/map/Clipboard.js:993
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these keyboard "
 "shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</kbd><span class="
@@ -2641,7 +2660,7 @@ msgstr ""
 "td><td><kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd></td></"
 "tr><tr><td>Kopieren</td><td>Ausschneiden</td><td>Einfügen</td></tr></table>"
 
-#: src/map/Clipboard.js:1005
+#: src/map/Clipboard.js:1012
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. Please, wait "
 "for the current download or cancel it before starting a new one</p>"
@@ -2650,15 +2669,24 @@ msgstr ""
 "Bitte warten Sie auf den aktuellen Download oder brechen Sie ihn ab, bevor Sie einen "
 "neuen starten.</p>"
 
-#: src/map/Clipboard.js:1023
+#: src/map/Clipboard.js:1030
 msgid ""
-"<p>Your browser has very limited access to the clipboard</p><p>Please press now: "
+"<p>Your browser has very limited access to the clipboard</p><p><b>Please press</b> "
 "<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see more options</"
 "p><p>Close popup to ignore paste special</p>"
 msgstr ""
-"<p>Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage</p><p>Bitte "
-"drücken Sie jetzt: <kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd>, um "
-"weitere Optionen zu sehen</p><p>Popup schließen, um Einfüge-Spezial zu ignorieren</p>"
+"<p>Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage</"
+"p><p><b>Bitte drücken Sie</b> <kbd>Strg</kbd><span class=\"kbd--plus\">+</span><kbd>V</"
+"kbd>, um weitere Optionen zu sehen</p><p>Popup schließen, um Einfüge-Spezial zu "
+"ignorieren</p>"
+
+#: src/map/Clipboard.js:1037
+msgid "Paste from this document"
+msgstr "Aus diesem Dokument einfügen"
+
+#: src/map/Clipboard.js:1037
+msgid "Cancel paste special"
+msgstr "Spezial-Einfügen beenden"
 
 #: src/map/Map.js:220
 msgid "Initializing..."

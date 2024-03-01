@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 10:30+0100\n"
+"POT-Creation-Date: 2024-03-01 22:11+0100\n"
 "PO-Revision-Date: 2022-04-26 17:15+0000\n"
 "Last-Translator: sebastiaanveld <sebastiaan.veld@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/collabora-online/"
@@ -147,8 +147,8 @@ msgstr "Netwerkgrafiek"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:148
-#: src/layer/tile/CommentListSection.ts:422
-#: src/layer/tile/CommentSection.ts:149
+#: src/layer/tile/CommentListSection.ts:421
+#: src/layer/tile/CommentSection.ts:148
 msgid "Save"
 msgstr "Opslaan"
 
@@ -234,8 +234,8 @@ msgstr "Inlogniveaus"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
 #: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
-#: src/control/Parts.js:454 src/control/Signing.js:611 src/core/Socket.js:1047
-#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:132
+#: src/control/Parts.js:458 src/control/Signing.js:611 src/core/Socket.js:1047
+#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:131
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Sluiten"
@@ -277,15 +277,15 @@ msgstr "De server is gestopt; laad de pagina ajb opnieuw."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:380
-#: src/control/Control.Tabs.js:389 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:390
+#: src/control/Control.Tabs.js:399 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:692 src/control/Toolbar.js:794
 #: src/control/Toolbar.js:930 src/control/Toolbar.js:1221
 #: src/core/Socket.js:604 src/core/Socket.js:1017 src/core/Socket.js:1087
 #: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:991
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:998
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "OK"
@@ -308,9 +308,8 @@ msgstr "Weet u zeker dat u deze sessie wilt afbreken?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:417
-#: src/layer/tile/CommentSection.ts:148 src/layer/tile/CommentSection.ts:151
-#: src/map/Clipboard.js:1030
+#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:416
+#: src/layer/tile/CommentSection.ts:147 src/layer/tile/CommentSection.ts:150
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -466,7 +465,7 @@ msgid "Repair Document"
 msgstr "Herstel document"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.js:331
+#: src/control/Control.UserList.ts:449
 msgid "You"
 msgstr "U"
 
@@ -664,9 +663,9 @@ msgid "replies"
 msgstr "Antwoorden"
 
 #: src/control/Control.JSDialogBuilder.js:2099
-#: src/layer/tile/CanvasTileLayer.js:5151
-#: src/layer/tile/CanvasTileLayer.js:5162
-#: src/layer/tile/CommentListSection.ts:1010
+#: src/layer/tile/CanvasTileLayer.js:5189
+#: src/layer/tile/CanvasTileLayer.js:5200
+#: src/layer/tile/CommentListSection.ts:1009
 msgid "Comment"
 msgstr "Opmerking"
 
@@ -1160,7 +1159,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897
 #: src/control/Control.StatusBar.js:194 src/control/Control.Zotero.js:211
-#: src/control/Toolbar.js:447
+#: src/control/Toolbar.js:543
 msgid "Search"
 msgstr "Zoeken"
 
@@ -1252,23 +1251,23 @@ msgstr "CSV bestand (.csv)"
 msgid "Insert Local Image"
 msgstr "Lokale afbeelding invoegen"
 
-#: src/control/Control.NotebookbarBuilder.js:999
+#: src/control/Control.NotebookbarBuilder.js:1000
 msgid "Very Tight"
 msgstr "Zeer strak"
 
-#: src/control/Control.NotebookbarBuilder.js:1000
+#: src/control/Control.NotebookbarBuilder.js:1001
 msgid "Tight"
 msgstr "Strak"
 
-#: src/control/Control.NotebookbarBuilder.js:1001
+#: src/control/Control.NotebookbarBuilder.js:1002
 msgid "Normal"
 msgstr "Normaal"
 
-#: src/control/Control.NotebookbarBuilder.js:1002
+#: src/control/Control.NotebookbarBuilder.js:1003
 msgid "Loose"
 msgstr "Los"
 
-#: src/control/Control.NotebookbarBuilder.js:1003
+#: src/control/Control.NotebookbarBuilder.js:1004
 msgid "Very Loose"
 msgstr "Zeer los"
 
@@ -1764,15 +1763,15 @@ msgstr "Blad naar rechts verplaatsen"
 msgid "Copy Sheet..."
 msgstr "Kopieer blad..."
 
-#: src/control/Control.Tabs.js:378
+#: src/control/Control.Tabs.js:388
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Weet u zeker dat u blad %sheet% wilt verwijderen?"
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Enter new sheet name"
 msgstr "Voer een nieuwe bladnaam in"
 
@@ -1816,39 +1815,55 @@ msgstr "Verbindingspunten toevoegen"
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UserList.js:11
+#: src/control/Control.UserList.ts:54
 msgid "%user has joined"
 msgstr "%user is erbij gekomen"
 
-#: src/control/Control.UserList.js:12
+#: src/control/Control.UserList.ts:55
 msgid "%user has left"
 msgstr "%user is vertrokken"
 
-#: src/control/Control.UserList.js:35
+#: src/control/Control.UserList.ts:56
+msgid "Following %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:57
+msgid "Following the editor"
+msgstr ""
+
+#: src/control/Control.UserList.ts:58
+msgid "Click to stop following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:59
+msgid "Avatar for %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:80
 msgid "%n users"
 msgstr "%n gebruikers"
 
-#: src/control/Control.UserList.js:36
+#: src/control/Control.UserList.ts:81
 msgid "1 user"
 msgstr "1 gebruiker"
 
-#: src/control/Control.UserList.js:37
+#: src/control/Control.UserList.ts:82
 msgid "0 users"
 msgstr "0 gebruikers"
 
-#: src/control/Control.UserList.js:195
-msgid "Following"
-msgstr ""
-
-#: src/control/Control.UserList.js:223 src/control/Control.UserList.js:389
-msgid "Always follow the editor"
-msgstr "Volg altijd de editor"
-
-#: src/control/Control.UserList.js:337
+#: src/control/Control.UserList.ts:532
 msgid "Readonly"
 msgstr "alleen-lezen"
 
-#: src/control/Control.UserList.js:392
+#: src/control/Control.UserList.ts:560
+msgid "Following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:613 src/control/Control.UserList.ts:674
+msgid "Always follow the editor"
+msgstr "Volg altijd de editor"
+
+#: src/control/Control.UserList.ts:679
 msgid "Current"
 msgstr "Huidig"
 
@@ -2599,85 +2614,89 @@ msgstr ""
 "Het uploaden van het document naar de server is niet gelukt, het bestand is "
 "te groot."
 
-#: src/layer/tile/CanvasTileLayer.js:1988
+#: src/layer/tile/CanvasTileLayer.js:1998
 msgid "Functions"
 msgstr "Functies"
 
-#: src/layer/tile/CanvasTileLayer.js:2604
+#: src/layer/tile/CanvasTileLayer.js:2599
+msgid "and %COUNT more"
+msgstr ""
+
+#: src/layer/tile/CanvasTileLayer.js:2614
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2615
+#: src/layer/tile/CanvasTileLayer.js:2625
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2624
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5179
+#: src/layer/tile/CanvasTileLayer.js:5217
 msgid "No Comments"
 msgstr "Geen notities"
 
-#: src/layer/tile/CommentListSection.ts:131
+#: src/layer/tile/CommentListSection.ts:130
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:132
+#: src/layer/tile/CommentListSection.ts:131
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:953
+#: src/layer/tile/CommentListSection.ts:952
 msgid "Modify"
 msgstr "Wijzigen"
 
-#: src/layer/tile/CommentListSection.ts:959
-#: src/layer/tile/CommentSection.ts:152
+#: src/layer/tile/CommentListSection.ts:958
+#: src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "Beantwoorden"
 
-#: src/layer/tile/CommentListSection.ts:965
+#: src/layer/tile/CommentListSection.ts:964
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: src/layer/tile/CommentListSection.ts:971
+#: src/layer/tile/CommentListSection.ts:970
 msgid "Remove Thread"
 msgstr "Draad verwijderen"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Resolve"
 msgstr "Oplossen"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Unresolve"
 msgstr "Niet opgelost"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Unresolve Thread"
 msgstr "Draad niet opgelost"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Resolve Thread"
 msgstr "Opgeloste draad"
 
-#: src/layer/tile/CommentListSection.ts:1264
-#: src/layer/tile/CommentListSection.ts:1319
+#: src/layer/tile/CommentListSection.ts:1263
+#: src/layer/tile/CommentListSection.ts:1318
 msgid "Autosaved"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:290
+#: src/layer/tile/CommentSection.ts:289
 msgid "Open menu"
 msgstr "Menu openen"
 
-#: src/layer/tile/CommentSection.ts:308 src/layer/tile/CommentSection.ts:309
+#: src/layer/tile/CommentSection.ts:307 src/layer/tile/CommentSection.ts:308
 msgid "Accept change"
 msgstr "Wijziging accepteren"
 
-#: src/layer/tile/CommentSection.ts:315 src/layer/tile/CommentSection.ts:316
+#: src/layer/tile/CommentSection.ts:314 src/layer/tile/CommentSection.ts:315
 msgid "Reject change"
 msgstr "Ongedaan maken"
 
-#: src/layer/tile/CommentSection.ts:339
+#: src/layer/tile/CommentSection.ts:338
 msgid "Resolved"
 msgstr "Opgelost"
 
@@ -2702,12 +2721,12 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Downloaden van het klembord is mislukt; kopieer opnieuw"
 
-#: src/map/Clipboard.js:984
+#: src/map/Clipboard.js:991
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Gebruik de knoppen kopiëren/plakken op het toetsenbord op uw scherm.</p>"
 
-#: src/map/Clipboard.js:986
+#: src/map/Clipboard.js:993
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2724,7 +2743,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Kopiëren</td><td>Knippen</td><td>Plakken</td>"
 "</tr></table>"
 
-#: src/map/Clipboard.js:1005
+#: src/map/Clipboard.js:1012
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2733,17 +2752,25 @@ msgstr ""
 "<p>Er is al een download gestart voor een grote kopieer/plak-actie. Wacht "
 "tot die gereed is of annuleer die voor u een nieuwe start</p>"
 
-#: src/map/Clipboard.js:1023
+#: src/map/Clipboard.js:1030
 #, fuzzy
 msgid ""
-"<p>Your browser has very limited access to the clipboard</p><p>Please press "
-"now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
-"more options</p><p>Close popup to ignore paste special</p>"
+"<p>Your browser has very limited access to the clipboard</p><p><b>Please "
+"press</b> <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to "
+"see more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 "<p>Uw browser het beperkt toegang tot het klembord</p><p>Druk alstublieft op:"
 " <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> om meer "
 "mogelijkheden te zien</p><p class=\"vex-footnote\">Sluit de pop-up om "
 "plakken speciaal te negeren</p>"
+
+#: src/map/Clipboard.js:1037
+msgid "Paste from this document"
+msgstr ""
+
+#: src/map/Clipboard.js:1037
+msgid "Cancel paste special"
+msgstr ""
 
 #: src/map/Map.js:220
 msgid "Initializing..."

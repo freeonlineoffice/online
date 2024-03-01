@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 10:30+0100\n"
+"POT-Creation-Date: 2024-03-01 22:11+0100\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -153,8 +153,8 @@ msgstr "Ağ Grafiği"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:148
-#: src/layer/tile/CommentListSection.ts:422
-#: src/layer/tile/CommentSection.ts:149
+#: src/layer/tile/CommentListSection.ts:421
+#: src/layer/tile/CommentSection.ts:148
 msgid "Save"
 msgstr "Kaydet"
 
@@ -236,8 +236,8 @@ msgstr "Günlük Tutma Düzeyleri"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
 #: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
-#: src/control/Parts.js:454 src/control/Signing.js:611 src/core/Socket.js:1047
-#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:132
+#: src/control/Parts.js:458 src/control/Signing.js:611 src/core/Socket.js:1047
+#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:131
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Kapat"
@@ -279,15 +279,15 @@ msgstr "Sunucu kapatıldı; lütfen sayfayı yeniden yükleyin."
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:380
-#: src/control/Control.Tabs.js:389 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:390
+#: src/control/Control.Tabs.js:399 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:692 src/control/Toolbar.js:794
 #: src/control/Toolbar.js:930 src/control/Toolbar.js:1221
 #: src/core/Socket.js:604 src/core/Socket.js:1017 src/core/Socket.js:1087
 #: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:991
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:998
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "Tamam"
@@ -310,9 +310,8 @@ msgstr "Bu oturumu kapatmak istediğinizden emin misiniz?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:417
-#: src/layer/tile/CommentSection.ts:148 src/layer/tile/CommentSection.ts:151
-#: src/map/Clipboard.js:1030
+#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:416
+#: src/layer/tile/CommentSection.ts:147 src/layer/tile/CommentSection.ts:150
 msgid "Cancel"
 msgstr "İptal"
 
@@ -467,7 +466,7 @@ msgid "Repair Document"
 msgstr "Belgeyi Onar"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.js:331
+#: src/control/Control.UserList.ts:449
 msgid "You"
 msgstr "Siz"
 
@@ -665,9 +664,9 @@ msgid "replies"
 msgstr "yanıt"
 
 #: src/control/Control.JSDialogBuilder.js:2099
-#: src/layer/tile/CanvasTileLayer.js:5151
-#: src/layer/tile/CanvasTileLayer.js:5162
-#: src/layer/tile/CommentListSection.ts:1010
+#: src/layer/tile/CanvasTileLayer.js:5189
+#: src/layer/tile/CanvasTileLayer.js:5200
+#: src/layer/tile/CommentListSection.ts:1009
 msgid "Comment"
 msgstr "Yorum"
 
@@ -1161,7 +1160,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897
 #: src/control/Control.StatusBar.js:194 src/control/Control.Zotero.js:211
-#: src/control/Toolbar.js:447
+#: src/control/Toolbar.js:543
 msgid "Search"
 msgstr "Ara"
 
@@ -1253,23 +1252,23 @@ msgstr "CSV Dosyası (.csv)"
 msgid "Insert Local Image"
 msgstr "Yerel Resim Ekle"
 
-#: src/control/Control.NotebookbarBuilder.js:999
+#: src/control/Control.NotebookbarBuilder.js:1000
 msgid "Very Tight"
 msgstr "Çok Sıkı"
 
-#: src/control/Control.NotebookbarBuilder.js:1000
+#: src/control/Control.NotebookbarBuilder.js:1001
 msgid "Tight"
 msgstr "Sıkı"
 
-#: src/control/Control.NotebookbarBuilder.js:1001
+#: src/control/Control.NotebookbarBuilder.js:1002
 msgid "Normal"
 msgstr "Normal"
 
-#: src/control/Control.NotebookbarBuilder.js:1002
+#: src/control/Control.NotebookbarBuilder.js:1003
 msgid "Loose"
 msgstr "Gevşek"
 
-#: src/control/Control.NotebookbarBuilder.js:1003
+#: src/control/Control.NotebookbarBuilder.js:1004
 msgid "Very Loose"
 msgstr "Çok Gevşek"
 
@@ -1764,15 +1763,15 @@ msgstr "Sayfayı Sağa Taşı"
 msgid "Copy Sheet..."
 msgstr "Sayfayı Kopyala..."
 
-#: src/control/Control.Tabs.js:378
+#: src/control/Control.Tabs.js:388
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "%sheet% sayfasını silmek istediğinizden emin misiniz?"
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Enter new sheet name"
 msgstr "Yeni sayfa adını girin"
 
@@ -1816,39 +1815,55 @@ msgstr "Bağlayıcıları ekle"
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UserList.js:11
+#: src/control/Control.UserList.ts:54
 msgid "%user has joined"
 msgstr "%user katıldı"
 
-#: src/control/Control.UserList.js:12
+#: src/control/Control.UserList.ts:55
 msgid "%user has left"
 msgstr "%user ayrıldı"
 
-#: src/control/Control.UserList.js:35
+#: src/control/Control.UserList.ts:56
+msgid "Following %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:57
+msgid "Following the editor"
+msgstr ""
+
+#: src/control/Control.UserList.ts:58
+msgid "Click to stop following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:59
+msgid "Avatar for %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:80
 msgid "%n users"
 msgstr "%n kullanıcı"
 
-#: src/control/Control.UserList.js:36
+#: src/control/Control.UserList.ts:81
 msgid "1 user"
 msgstr "1 kullanıcı"
 
-#: src/control/Control.UserList.js:37
+#: src/control/Control.UserList.ts:82
 msgid "0 users"
 msgstr "0 kullanıcı"
 
-#: src/control/Control.UserList.js:195
-msgid "Following"
-msgstr ""
-
-#: src/control/Control.UserList.js:223 src/control/Control.UserList.js:389
-msgid "Always follow the editor"
-msgstr "Her zaman düzenleyiciyi takip et"
-
-#: src/control/Control.UserList.js:337
+#: src/control/Control.UserList.ts:532
 msgid "Readonly"
 msgstr "Salt okunur"
 
-#: src/control/Control.UserList.js:392
+#: src/control/Control.UserList.ts:560
+msgid "Following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:613 src/control/Control.UserList.ts:674
+msgid "Always follow the editor"
+msgstr "Her zaman düzenleyiciyi takip et"
+
+#: src/control/Control.UserList.ts:679
 msgid "Current"
 msgstr "Şimdiki"
 
@@ -2587,85 +2602,89 @@ msgstr "Dosya sunucuya yükleme başarısız, dosya bulunamadı."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Doya sunucuya yükleme başarısız oldu, dosya çok büyük."
 
-#: src/layer/tile/CanvasTileLayer.js:1988
+#: src/layer/tile/CanvasTileLayer.js:1998
 msgid "Functions"
 msgstr "İşlevler"
 
-#: src/layer/tile/CanvasTileLayer.js:2604
+#: src/layer/tile/CanvasTileLayer.js:2599
+msgid "and %COUNT more"
+msgstr ""
+
+#: src/layer/tile/CanvasTileLayer.js:2614
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2615
+#: src/layer/tile/CanvasTileLayer.js:2625
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2624
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5179
+#: src/layer/tile/CanvasTileLayer.js:5217
 msgid "No Comments"
 msgstr "Yorum Yok"
 
-#: src/layer/tile/CommentListSection.ts:131
+#: src/layer/tile/CommentListSection.ts:130
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:132
+#: src/layer/tile/CommentListSection.ts:131
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:953
+#: src/layer/tile/CommentListSection.ts:952
 msgid "Modify"
 msgstr "Değiştir"
 
-#: src/layer/tile/CommentListSection.ts:959
-#: src/layer/tile/CommentSection.ts:152
+#: src/layer/tile/CommentListSection.ts:958
+#: src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "Yanıtla"
 
-#: src/layer/tile/CommentListSection.ts:965
+#: src/layer/tile/CommentListSection.ts:964
 msgid "Remove"
 msgstr "Sil"
 
-#: src/layer/tile/CommentListSection.ts:971
+#: src/layer/tile/CommentListSection.ts:970
 msgid "Remove Thread"
 msgstr "Konuyu Kaldır"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Resolve"
 msgstr "Çöz"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Unresolve"
 msgstr "Çözülmemiş"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Unresolve Thread"
 msgstr "Çözülmemiş Sorun"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Resolve Thread"
 msgstr "Sorunu Çöz"
 
-#: src/layer/tile/CommentListSection.ts:1264
-#: src/layer/tile/CommentListSection.ts:1319
+#: src/layer/tile/CommentListSection.ts:1263
+#: src/layer/tile/CommentListSection.ts:1318
 msgid "Autosaved"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:290
+#: src/layer/tile/CommentSection.ts:289
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: src/layer/tile/CommentSection.ts:308 src/layer/tile/CommentSection.ts:309
+#: src/layer/tile/CommentSection.ts:307 src/layer/tile/CommentSection.ts:308
 msgid "Accept change"
 msgstr "Değişikliği kabul et"
 
-#: src/layer/tile/CommentSection.ts:315 src/layer/tile/CommentSection.ts:316
+#: src/layer/tile/CommentSection.ts:314 src/layer/tile/CommentSection.ts:315
 msgid "Reject change"
 msgstr "Değişikliği reddet"
 
-#: src/layer/tile/CommentSection.ts:339
+#: src/layer/tile/CommentSection.ts:338
 msgid "Resolved"
 msgstr "Çözüldü"
 
@@ -2691,12 +2710,12 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Pano indirilemedi, lütfen tekrar kopyalayın"
 
-#: src/map/Clipboard.js:984
+#: src/map/Clipboard.js:991
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Lütfen ekran klavyesindeki kopyala/yapıştır düğmelerini kullanın.</p>"
 
-#: src/map/Clipboard.js:986
+#: src/map/Clipboard.js:993
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2713,7 +2732,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Kopyala</td><td>Kes</td><td>Yapıştır</td></tr"
 "></table>"
 
-#: src/map/Clipboard.js:1005
+#: src/map/Clipboard.js:1012
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2723,17 +2742,25 @@ msgstr ""
 "Lütfen yeni bir indirme işlemine başlamadan önce mevcut indirmeyi bekleyin "
 "veya iptal edin</p>"
 
-#: src/map/Clipboard.js:1023
+#: src/map/Clipboard.js:1030
 #, fuzzy
 msgid ""
-"<p>Your browser has very limited access to the clipboard</p><p>Please press "
-"now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
-"more options</p><p>Close popup to ignore paste special</p>"
+"<p>Your browser has very limited access to the clipboard</p><p><b>Please "
+"press</b> <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to "
+"see more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 "<p>Tarayıcınızın panoya erişimi çok sınırlı</p><p>Daha fazla seçenek görmek "
 "için lütfen şimdi: <kbd>Ctrl</kbd><span class=\"kbd--plus\""
 ">+</span><kbd>V</kbd> tuşlarına basın</p><p class=\"vex-footnote\">Özel "
 "yapıştırmayı yoksaymak için açılır pencereyi kapatın</p>"
+
+#: src/map/Clipboard.js:1037
+msgid "Paste from this document"
+msgstr ""
+
+#: src/map/Clipboard.js:1037
+msgid "Cancel paste special"
+msgstr ""
 
 #: src/map/Map.js:220
 msgid "Initializing..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-25 10:30+0100\n"
+"POT-Creation-Date: 2024-03-01 22:11+0100\n"
 "PO-Revision-Date: 2022-05-15 11:51+0000\n"
 "Last-Translator: Mikhail Pershin <mikhail@frcdr.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/collabora-online/"
@@ -148,8 +148,8 @@ msgstr "График сети"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:148
-#: src/layer/tile/CommentListSection.ts:422
-#: src/layer/tile/CommentSection.ts:149
+#: src/layer/tile/CommentListSection.ts:421
+#: src/layer/tile/CommentSection.ts:148
 msgid "Save"
 msgstr "Сохранить"
 
@@ -236,8 +236,8 @@ msgstr "Уровни логирования"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:21
 #: src/control/Control.AlertDialog.js:27 src/control/Control.AlertDialog.js:90
 #: src/control/Control.AlertDialog.js:97 src/control/Control.Zotero.js:182
-#: src/control/Parts.js:454 src/control/Signing.js:611 src/core/Socket.js:1047
-#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:132
+#: src/control/Parts.js:458 src/control/Signing.js:611 src/core/Socket.js:1047
+#: src/core/Socket.js:1052 src/layer/tile/CommentListSection.ts:131
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Закрыть"
@@ -279,15 +279,15 @@ msgstr "Сервер был выключен; пожалуйста, переза
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:380
-#: src/control/Control.Tabs.js:389 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:390
+#: src/control/Control.Tabs.js:399 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:692 src/control/Toolbar.js:794
 #: src/control/Toolbar.js:930 src/control/Toolbar.js:1221
 #: src/core/Socket.js:604 src/core/Socket.js:1017 src/core/Socket.js:1087
 #: src/core/Socket.js:1219 src/core/Socket.js:1223 src/main.js:70
-#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:991
+#: src/main.js:73 src/main.js:125 src/map/Clipboard.js:998
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:582
 msgid "OK"
 msgstr "ОК"
@@ -310,9 +310,8 @@ msgstr "Действительно завершить сеанс?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.js:43 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:417
-#: src/layer/tile/CommentSection.ts:148 src/layer/tile/CommentSection.ts:151
-#: src/map/Clipboard.js:1030
+#: src/control/Toolbar.js:925 src/layer/tile/CommentListSection.ts:416
+#: src/layer/tile/CommentSection.ts:147 src/layer/tile/CommentSection.ts:150
 msgid "Cancel"
 msgstr "Отклонить"
 
@@ -468,7 +467,7 @@ msgid "Repair Document"
 msgstr "Восстановить документ"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.js:331
+#: src/control/Control.UserList.ts:449
 msgid "You"
 msgstr "Вы"
 
@@ -666,9 +665,9 @@ msgid "replies"
 msgstr "ответы"
 
 #: src/control/Control.JSDialogBuilder.js:2099
-#: src/layer/tile/CanvasTileLayer.js:5151
-#: src/layer/tile/CanvasTileLayer.js:5162
-#: src/layer/tile/CommentListSection.ts:1010
+#: src/layer/tile/CanvasTileLayer.js:5189
+#: src/layer/tile/CanvasTileLayer.js:5200
+#: src/layer/tile/CommentListSection.ts:1009
 msgid "Comment"
 msgstr "Примечание"
 
@@ -1162,7 +1161,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1065
 #: src/control/Control.NotebookbarWriter.js:897
 #: src/control/Control.StatusBar.js:194 src/control/Control.Zotero.js:211
-#: src/control/Toolbar.js:447
+#: src/control/Toolbar.js:543
 msgid "Search"
 msgstr "Поиск"
 
@@ -1254,23 +1253,23 @@ msgstr "Файл CSV (.csv)"
 msgid "Insert Local Image"
 msgstr "Вставить изображение с компьютера"
 
-#: src/control/Control.NotebookbarBuilder.js:999
+#: src/control/Control.NotebookbarBuilder.js:1000
 msgid "Very Tight"
 msgstr "Очень плотно"
 
-#: src/control/Control.NotebookbarBuilder.js:1000
+#: src/control/Control.NotebookbarBuilder.js:1001
 msgid "Tight"
 msgstr "Плотно"
 
-#: src/control/Control.NotebookbarBuilder.js:1001
+#: src/control/Control.NotebookbarBuilder.js:1002
 msgid "Normal"
 msgstr "Нормально"
 
-#: src/control/Control.NotebookbarBuilder.js:1002
+#: src/control/Control.NotebookbarBuilder.js:1003
 msgid "Loose"
 msgstr "Неплотно"
 
-#: src/control/Control.NotebookbarBuilder.js:1003
+#: src/control/Control.NotebookbarBuilder.js:1004
 msgid "Very Loose"
 msgstr "Очень свободно"
 
@@ -1765,15 +1764,15 @@ msgstr "Переместить лист вправо"
 msgid "Copy Sheet..."
 msgstr "Копировать лист..."
 
-#: src/control/Control.Tabs.js:378
+#: src/control/Control.Tabs.js:388
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Действительно удалить лист %sheet% ?"
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:389
+#: src/control/Control.Tabs.js:399
 msgid "Enter new sheet name"
 msgstr "Введите новое имя листа"
 
@@ -1817,39 +1816,55 @@ msgstr "Вставить соединители"
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UserList.js:11
+#: src/control/Control.UserList.ts:54
 msgid "%user has joined"
 msgstr "%user присоединился"
 
-#: src/control/Control.UserList.js:12
+#: src/control/Control.UserList.ts:55
 msgid "%user has left"
 msgstr "%user отсоединился"
 
-#: src/control/Control.UserList.js:35
+#: src/control/Control.UserList.ts:56
+msgid "Following %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:57
+msgid "Following the editor"
+msgstr ""
+
+#: src/control/Control.UserList.ts:58
+msgid "Click to stop following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:59
+msgid "Avatar for %user"
+msgstr ""
+
+#: src/control/Control.UserList.ts:80
 msgid "%n users"
 msgstr "Пользователей: %n"
 
-#: src/control/Control.UserList.js:36
+#: src/control/Control.UserList.ts:81
 msgid "1 user"
 msgstr "Пользователей: 1"
 
-#: src/control/Control.UserList.js:37
+#: src/control/Control.UserList.ts:82
 msgid "0 users"
 msgstr "Пользователей: 0"
 
-#: src/control/Control.UserList.js:195
-msgid "Following"
-msgstr ""
-
-#: src/control/Control.UserList.js:223 src/control/Control.UserList.js:389
-msgid "Always follow the editor"
-msgstr "Всегда следовать за редактором"
-
-#: src/control/Control.UserList.js:337
+#: src/control/Control.UserList.ts:532
 msgid "Readonly"
 msgstr "Только чтение"
 
-#: src/control/Control.UserList.js:392
+#: src/control/Control.UserList.ts:560
+msgid "Following"
+msgstr ""
+
+#: src/control/Control.UserList.ts:613 src/control/Control.UserList.ts:674
+msgid "Always follow the editor"
+msgstr "Всегда следовать за редактором"
+
+#: src/control/Control.UserList.ts:679
 msgid "Current"
 msgstr "Текущий"
 
@@ -2588,85 +2603,89 @@ msgstr "Не удалось загрузить файл на сервер, фа�
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Не удалось загрузить файл на сервер, слишком большой размер файла."
 
-#: src/layer/tile/CanvasTileLayer.js:1988
+#: src/layer/tile/CanvasTileLayer.js:1998
 msgid "Functions"
 msgstr "Функции"
 
-#: src/layer/tile/CanvasTileLayer.js:2604
+#: src/layer/tile/CanvasTileLayer.js:2599
+msgid "and %COUNT more"
+msgstr ""
+
+#: src/layer/tile/CanvasTileLayer.js:2614
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2615
+#: src/layer/tile/CanvasTileLayer.js:2625
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2624
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5179
+#: src/layer/tile/CanvasTileLayer.js:5217
 msgid "No Comments"
 msgstr "Нет комментариев"
 
-#: src/layer/tile/CommentListSection.ts:131
+#: src/layer/tile/CommentListSection.ts:130
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:132
+#: src/layer/tile/CommentListSection.ts:131
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:953
+#: src/layer/tile/CommentListSection.ts:952
 msgid "Modify"
 msgstr "Изменить"
 
-#: src/layer/tile/CommentListSection.ts:959
-#: src/layer/tile/CommentSection.ts:152
+#: src/layer/tile/CommentListSection.ts:958
+#: src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "Ответ"
 
-#: src/layer/tile/CommentListSection.ts:965
+#: src/layer/tile/CommentListSection.ts:964
 msgid "Remove"
 msgstr "Удалить"
 
-#: src/layer/tile/CommentListSection.ts:971
+#: src/layer/tile/CommentListSection.ts:970
 msgid "Remove Thread"
 msgstr "Удалить обсуждение"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Resolve"
 msgstr "Решено"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:976
 msgid "Unresolve"
 msgstr "Удалить пометку \"Решено\""
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Unresolve Thread"
 msgstr "Удалить пометку \"Решено\" с обсуждения"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:982
 msgid "Resolve Thread"
 msgstr "Обсуждение решено"
 
-#: src/layer/tile/CommentListSection.ts:1264
-#: src/layer/tile/CommentListSection.ts:1319
+#: src/layer/tile/CommentListSection.ts:1263
+#: src/layer/tile/CommentListSection.ts:1318
 msgid "Autosaved"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:290
+#: src/layer/tile/CommentSection.ts:289
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: src/layer/tile/CommentSection.ts:308 src/layer/tile/CommentSection.ts:309
+#: src/layer/tile/CommentSection.ts:307 src/layer/tile/CommentSection.ts:308
 msgid "Accept change"
 msgstr "Принять изменение"
 
-#: src/layer/tile/CommentSection.ts:315 src/layer/tile/CommentSection.ts:316
+#: src/layer/tile/CommentSection.ts:314 src/layer/tile/CommentSection.ts:315
 msgid "Reject change"
 msgstr "Отклонить изменение"
 
-#: src/layer/tile/CommentSection.ts:339
+#: src/layer/tile/CommentSection.ts:338
 msgid "Resolved"
 msgstr "Решено"
 
@@ -2691,11 +2710,11 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Не удалось загрузить буфер обмена, повторите копирование"
 
-#: src/map/Clipboard.js:984
+#: src/map/Clipboard.js:991
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Используйте кнопки копирования/вставки на экранной клавиатуре.</p>"
 
-#: src/map/Clipboard.js:986
+#: src/map/Clipboard.js:993
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2712,7 +2731,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Копировать</td><td>Вырезать</td><td>Вставить<"
 "/td></tr></table>"
 
-#: src/map/Clipboard.js:1005
+#: src/map/Clipboard.js:1012
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2721,17 +2740,25 @@ msgstr ""
 "<p>Идёт загрузка для копирования/вставки крупного фрагмента. Пожалуйста, "
 "дождитесь завершения загрузки или отмените её, чтобы начать новую</p>"
 
-#: src/map/Clipboard.js:1023
+#: src/map/Clipboard.js:1030
 #, fuzzy
 msgid ""
-"<p>Your browser has very limited access to the clipboard</p><p>Please press "
-"now: <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to see "
-"more options</p><p>Close popup to ignore paste special</p>"
+"<p>Your browser has very limited access to the clipboard</p><p><b>Please "
+"press</b> <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to "
+"see more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 "<p>Ваш браузер имеет очень ограниченный доступ к буферу обмена</p><p>Нажмите:"
 " <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd>для просмотра "
 "дополнительных опций</p><p class=\"vex-footnote\">Закройте всплывающее окно "
 "для игнорирования специальной вставки</p>"
+
+#: src/map/Clipboard.js:1037
+msgid "Paste from this document"
+msgstr ""
+
+#: src/map/Clipboard.js:1037
+msgid "Cancel paste special"
+msgstr ""
 
 #: src/map/Map.js:220
 msgid "Initializing..."
