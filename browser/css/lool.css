@@ -530,28 +530,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	max-height: initial !important;
 }
 
-.lool-annotation:not(annotation-active) .lool-annotation-collapsed {
-	position: absolute;
-	left: 24px;
-}
-.lool-annotation.annotation-active:not(.rtl) .lool-annotation-collapsed {
-	position: absolute;
-	left: 0 !important;
-}
-.lool-annotation.annotation-active.rtl .lool-annotation-collapsed {
-	position: absolute;
-	left: 48px !important;
-}
-
-#document-container > .lool-annotation:hover .lool-annotation-collapsed {
-	box-shadow:
-		0 0 3px 0 rgb(0 0 0 / 50%),
-		0 0 10px 4px rgb(0 0 0 / 10%);
-	cursor: pointer;
-}
-
-.lool-annotation-content-wrapper,
-.lool-annotation-redline-content-wrapper {
+.lool-annotation-content-wrapper, .lool-annotation-redline-content-wrapper {
 	padding: 8px;
 	font-family: var(--lool-font) !important;
 	font-size: var(--default-font-size);
@@ -572,8 +551,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 .annotation-active.modify-annotation-container .lool-annotation-content-wrapper,
-.annotation-active.reply-annotation-container .lool-annotation-content-wrapper,
-.lool-annotation-collapsed.modalpopup {
+.annotation-active.reply-annotation-container .lool-annotation-content-wrapper {
 	width: auto;
 }
 
@@ -607,65 +585,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	z-index: 0;
 }
 
-.lool-annotation-collapsed {
-	background: var(--color-background-lighter);
-	border-radius: 50%;
-	width: 36px;
-	height: 36px;
-	box-shadow:
-		0 0 3px 5px var(--color-background-lighter),
-		0 0 1px 5px var(--color-box-shadow);
-}
-
-.annotation-active .lool-annotation-collapsed {
-	box-shadow:
-		0 0 3px 5px var(--color-background-lighter),
-		0 0 1px 5px var(--color-box-shadow);
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup {
-	border-radius: 8px !important;
-	border: 1px solid var(--color-border) !important;
-	background: var(--color-background-lighter) !important;
-}
-
 #mobile-wizard-popup {
 	background-color: var(--color-background-lighter) !important;
 }
 
-.jsdialog-container.lool-annotation-collapsed.modalpopup
-	.lokdialog.ui-dialog-content {
-	background-color: transparent !important;
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup .lool-annotation {
-	margin-bottom: 16px;
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup
-	.lool-annotation:last-of-type {
-	margin-bottom: 8px;
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup
-	.lool-annotation:first-of-type {
-	margin-top: 8px;
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup
-	.lool-annotation-content-wrapper {
-	box-shadow: none;
-	border-width: 0px 0px 1px !important;
-	border-bottom: 1px solid var(--color-border) !important;
-	border-radius: 0 !important;
-	background: var(--color-background-lighter);
-}
-
-.jsdialog-container.lool-annotation-collapsed.modalpopup
-	[id^="comment-container-"]:last-child
-	> .lool-annotation-content-wrapper {
-	border-width: 0 !important;
-}
 
 .lool-dont-break {
 	/* These are technically the same, but use both */
@@ -832,12 +755,6 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	opacity: 1;
 	transition: all 0.1s ease 0.5s;
 	visibility: visible;
-}
-.lool-annotation-collapsed [data-title]:hover:after {
-	position: static;
-	float: right;
-	margin-top: 22px;
-	margin-right: 8px;
 }
 [data-title]:after {
 	content: attr(data-title);
