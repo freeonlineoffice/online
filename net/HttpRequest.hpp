@@ -1256,6 +1256,8 @@ public:
         }
     }
 
+    /// Returns the socket FD, for logging/informational purposes.
+    int getFD() const { return _fd; }
 
 private:
     inline void logPrefix(std::ostream& os) const { os << '#' << _fd << ": "; }
