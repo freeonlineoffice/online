@@ -144,13 +144,13 @@ loolwsd_sources = common/Crypto.cpp \
                   wsd/RequestDetails.cpp \
                   wsd/RequestVettingStation.cpp \
                   wsd/Storage.cpp \
-                  wsd/StorageConnectionManager.cpp \
                   wsd/HostUtil.cpp \
                   wsd/TileCache.cpp \
                   wsd/ProofKey.cpp \
                   wsd/QuarantineUtil.cpp \
                   wsd/WopiProxy.cpp \
-                  wsd/wopi/CheckFileInfo.cpp
+                  wsd/wopi/CheckFileInfo.cpp \
+                  wsd/wopi/StorageConnectionManager.cpp
 
 loolwsd_SOURCES = $(loolwsd_sources) \
                   $(shared_sources) \
@@ -303,7 +303,6 @@ wsd_headers = wsd/Admin.hpp \
               wsd/SenderQueue.hpp \
               wsd/ServerURL.hpp \
               wsd/Storage.hpp \
-              wsd/StorageConnectionManager.hpp \
               wsd/TileCache.hpp \
               wsd/TileDesc.hpp \
               wsd/TraceFile.hpp \
@@ -311,7 +310,8 @@ wsd_headers = wsd/Admin.hpp \
               wsd/QuarantineUtil.hpp \
               wsd/HostUtil.hpp \
               wsd/WopiProxy.hpp \
-              wsd/wopi/CheckFileInfo.hpp
+              wsd/wopi/CheckFileInfo.hpp \
+              wsd/wopi/StorageConnectionManager.hpp
 
 shared_headers = common/Common.hpp \
                  common/Clipboard.hpp \
