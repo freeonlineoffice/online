@@ -289,13 +289,28 @@ void LOOLWSD::appendAllowedHostsFrom(LayeredConfiguration& conf, const std::stri
 }
 
 namespace {
-std::string removeProtocol(const std::string& host)
+std::string removeProtocolAndPort(const std::string& host)
 {
+    std::string result;
+
+    // protocol
     size_t nPos = host.find("//");
     if (nPos != std::string::npos)
-        return host.substr(nPos + 2);
+        result = host.substr(nPos + 2);
+    else
+        result = host;
 
-    return host;
+    // port
+    nPos = result.find(":");
+    if (nPos != std::string::npos)
+    {
+        if (nPos == 0)
+            return "";
+
+        result = result.substr(0, nPos);
+    }
+
+    return result;
 }
 
 bool isValidRegex(const std::string& expression)
@@ -328,9 +343,10 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
             break;
         }
 
+        host = removeProtocolAndPort(host);
+
         if (!host.empty())
         {
-            host = removeProtocol(host);
             LOG_INF_S("Adding trusted LOK_ALLOW host: [" << host << ']');
             allowed.push_back(host);
         }
@@ -345,9 +361,9 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
 
             std::string alias = getConfigValue<std::string>(conf, aliasPath, "");
 
-            if (!aliasPath.empty())
+            alias = removeProtocolAndPort(alias);
+            if (!alias.empty())
             {
-                alias = removeProtocol(alias);
                 LOG_INF_S("Adding trusted LOK_ALLOW alias: [" << alias << ']');
                 allowed.push_back(alias);
             }
