@@ -81,8 +81,9 @@ window.app = {
 	global.setLogging(global.loolLogging != '');
 
 
+	var gls = global.location.search;
 	var loolParams = {
-		p: new URLSearchParams(global.location.search),
+		p: new URLSearchParams(gls.slice(gls.lastIndexOf('?') + 1)),
 	};
 	/* We need to return an empty string instead of `null` */
 	loolParams.get = function(name) {
