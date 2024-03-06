@@ -112,9 +112,20 @@ using namespace LOOLProtocol;
 extern "C" { void dump_kit_state(void); /* easy for gdb */ }
 
 #if !MOBILEAPP
+
 // A Kit process hosts only a single document in its lifetime.
 class Document;
 static Document *singletonDocument = nullptr;
+static std::unique_ptr<Util::ThreadCounter> threadCounter;
+
+int getCurrentThreadCount()
+{
+    if (threadCounter)
+        return threadCounter->count();
+    else
+        return -1;
+}
+
 #endif
 
 _LibreOfficeKit* loKitPtr = nullptr;
@@ -2590,6 +2601,9 @@ void lokit_main(
         const Path jailPath = Path::forDirectory(childRoot + '/' + jailId);
         const std::string jailPathStr = jailPath.toString();
         JailUtil::createJailPath(jailPathStr);
+
+        // initialize while we have access to /proc/self/task
+        threadCounter.reset(new Util::ThreadCounter());
 
         if (!ChildSession::NoCapsForKit)
         {
