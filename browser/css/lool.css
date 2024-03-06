@@ -530,7 +530,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	max-height: initial !important;
 }
 
-.lool-annotation-content-wrapper, .lool-annotation-redline-content-wrapper {
+.lool-annotation-content-wrapper,
+.lool-annotation-redline-content-wrapper {
 	padding: 8px;
 	font-family: var(--lool-font) !important;
 	font-size: var(--default-font-size);
@@ -588,7 +589,6 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 #mobile-wizard-popup {
 	background-color: var(--color-background-lighter) !important;
 }
-
 
 .lool-dont-break {
 	/* These are technically the same, but use both */
