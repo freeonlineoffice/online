@@ -13,7 +13,7 @@
 
 #include "CheckFileInfo.hpp"
 
-#include <COOLWSD.hpp>
+#include <LOOLWSD.hpp>
 #include <RequestDetails.hpp>
 #include <TraceEvent.hpp>
 #include <wopi/StorageConnectionManager.hpp>
@@ -28,7 +28,7 @@ void CheckFileInfo::checkFileInfo(int redirectLimit)
 {
     // ProfileZone profileZone("WopiStorage::getWOPIFileInfo", { { "url", url } }); // Move to ctor.
 
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(_url.toString());
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(_url.toString());
 
     LOG_DBG("Getting info for wopi uri [" << uriAnonym << ']');
     _httpSession = StorageConnectionManager::getHttpSession(_url);
@@ -61,7 +61,7 @@ void CheckFileInfo::checkFileInfo(int redirectLimit)
             if (redirectLimit)
             {
                 const std::string location = httpResponse->get("Location");
-                LOG_INF("WOPI::CheckFileInfo redirect to URI [" << COOLWSD::anonymizeUrl(location)
+                LOG_INF("WOPI::CheckFileInfo redirect to URI [" << LOOLWSD::anonymizeUrl(location)
                                                                 << "]");
 
                 _url = RequestDetails::sanitizeURI(location);
@@ -111,7 +111,7 @@ void CheckFileInfo::checkFileInfo(int redirectLimit)
 
         if (JsonUtil::parseJSON(wopiResponse, _wopiInfo))
         {
-            if (COOLWSD::AnonymizeUserData)
+            if (LOOLWSD::AnonymizeUserData)
                 LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): anonymizing...");
             else
                 LOG_DBG("WOPI::CheckFileInfo (" << callDurationMs << "): " << wopiResponse);
@@ -122,7 +122,7 @@ void CheckFileInfo::checkFileInfo(int redirectLimit)
         {
             _state = State::Fail;
 
-            if (COOLWSD::AnonymizeUserData)
+            if (LOOLWSD::AnonymizeUserData)
                 wopiResponse = "obfuscated";
 
             LOG_ERR("WOPI::CheckFileInfo ("

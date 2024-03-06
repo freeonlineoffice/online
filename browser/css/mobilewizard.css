@@ -1191,7 +1191,7 @@ label.disabled {
 	width: -moz-available !important;
 }
 
-#mobile-wizard .ui-header[id^='comment'] {
+#mobile-wizard .ui-header[id^="comment"] {
 	padding: 5px 10px 10px !important;
 	display: table;
 	width: -moz-available !important;
@@ -1273,7 +1273,7 @@ label.disabled {
 	padding-bottom: 32px;
 }
 
-#mobile-wizard .empty-comment-wizard-link{
+#mobile-wizard .empty-comment-wizard-link {
 	color: var(--color-primary);
 	display: flex;
 	justify-content: center;
@@ -1386,7 +1386,7 @@ label.disabled {
 	display: none;
 }
 
-[id$='contentControlModalpopup'].mobile-wizard {
+[id$="contentControlModalpopup"].mobile-wizard {
 	display: flex;
 	flex: 1;
 	align-self: stretch;

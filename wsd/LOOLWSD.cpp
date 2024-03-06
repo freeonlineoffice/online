@@ -4629,7 +4629,7 @@ std::set<pid_t> LOOLWSD::getKitPids()
     return pids;
 }
 
-std::set<pid_t> COOLWSD::getSpareKitPids()
+std::set<pid_t> LOOLWSD::getSpareKitPids()
 {
     std::set<pid_t> pids;
     pid_t pid;
@@ -4645,7 +4645,7 @@ std::set<pid_t> COOLWSD::getSpareKitPids()
     return pids;
 }
 
-std::set<pid_t> COOLWSD::getDocKitPids()
+std::set<pid_t> LOOLWSD::getDocKitPids()
 {
     std::set<pid_t> pids;
     pid_t pid;
