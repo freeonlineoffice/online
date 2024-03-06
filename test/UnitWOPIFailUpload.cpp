@@ -163,8 +163,9 @@ public:
         // We expect this to happen only with the disonnection test,
         // because only in that case there is no user input.
         LOK_ASSERT_MESSAGE("Expected reason to be 'Data-loss detected'",
-                           reason.starts_with("Data-loss detected"));
-        LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
+                           Util::startsWith(reason, "Data-loss detected"));
+        LOK_ASSERT_MESSAGE("Expected to be in Phase::WaitDocClose but was " + toString(_phase),
+                           _phase == Phase::WaitDocClose);
         _unloadingModifiedDocDetected = true;
 
         return failed();
@@ -247,8 +248,9 @@ public:
         // no upload attempts with expired tockens. And we
         // only have one session.
         LOK_ASSERT_MESSAGE("Expected reason to be 'Data-loss detected'",
-                           reason.starts_with("Data-loss detected"));
-        LOK_ASSERT_STATE(_phase, Phase::Done);
+                           Util::startsWith(reason, "Data-loss detected"));
+        LOK_ASSERT_MESSAGE("Expected to be in Phase::WaitDocClose but was " + toString(_phase),
+                           _phase == Phase::Done);
 
         passTest("Data-loss detected as expected");
         return failed();
