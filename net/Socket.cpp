@@ -58,7 +58,7 @@ std::atomic<bool> Socket::InhibitThreadChecks(false);
 
 #define SOCKET_ABSTRACT_UNIX_NAME "0loolwsd-"
 
-int Socket::createSocket(Socket::Type type)
+int Socket::createSocket([[maybe_unused]] Socket::Type type)
 {
 #if !MOBILEAPP
     int domain = AF_UNSPEC;
@@ -73,7 +73,6 @@ int Socket::createSocket(Socket::Type type)
 
     return socket(domain, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
 #else
-    (void) type;
     return fakeSocketSocket();
 #endif
 }
@@ -816,7 +815,7 @@ void SocketPoll::dumpState(std::ostream& os) const
 }
 
 /// Returns true on success only.
-bool ServerSocket::bind(Type type, int port)
+bool ServerSocket::bind([[maybe_unused]] Type type, [[maybe_unused]] int port)
 {
 #if !MOBILEAPP
     // Enable address reuse to avoid stalling after
@@ -870,9 +869,6 @@ bool ServerSocket::bind(Type type, int port)
 
     return rc == 0;
 #else
-    (void) type;
-    (void) port;
-
     return true;
 #endif
 }

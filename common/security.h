@@ -60,10 +60,9 @@ inline int isInContainer()
     return 0;
 }
 
-inline int hasCorrectUID(const char *appName)
+inline int hasCorrectUID([[maybe_unused]] const char* appName)
 {
 #if ENABLE_DEBUG
-    (void)appName;
     return 1; // insecure but easy to use.
 #else
     if (hasUID(LOOL_USER_ID))

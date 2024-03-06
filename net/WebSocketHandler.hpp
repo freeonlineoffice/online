@@ -65,7 +65,7 @@ public:
     /// isClient: the instance should behave like a client (true) or like a server (false)
     ///           (from websocket perspective)
     /// isMasking: a client should mask (true) or not (false) outgoing frames
-    WebSocketHandler(bool isClient, bool isMasking)
+    WebSocketHandler(bool isClient, [[maybe_unused]] bool isMasking)
         :
 #if !MOBILEAPP
         _lastPingSentTime(std::chrono::steady_clock::now() -
@@ -82,9 +82,6 @@ public:
         , _isClient(isClient)
         , _unit(UnitBase::isUnitTesting() ? &UnitBase::get() : nullptr)
     {
-#if MOBILEAPP
-        (void) isMasking;
-#endif
     }
 
     /// Upgrades itself to a websocket directly.
@@ -548,8 +545,8 @@ protected:
         }
     }
 
-    int getPollEvents(std::chrono::steady_clock::time_point now,
-                      int64_t & timeoutMaxMicroS) override
+    int getPollEvents([[maybe_unused]] std::chrono::steady_clock::time_point now,
+                      [[maybe_unused]] int64_t& timeoutMaxMicroS) override
     {
 #if !MOBILEAPP
         if (!_isClient)
@@ -559,9 +556,6 @@ protected:
             timeoutMaxMicroS
                 = std::min(timeoutMaxMicroS, (int64_t)(PingFrequencyMicroS - timeSincePingMicroS).count());
         }
-#else
-        (void) now;
-        (void) timeoutMaxMicroS;
 #endif
         int events = POLLIN;
         if (_msgHandler && _msgHandler->hasQueuedMessages())
@@ -610,7 +604,7 @@ public:
 #endif
 
     /// Do we need to handle a timeout ?
-    void checkTimeout(std::chrono::steady_clock::time_point now) override
+    void checkTimeout([[maybe_unused]] std::chrono::steady_clock::time_point now) override
     {
 #if !MOBILEAPP
         if (_isClient)
@@ -624,8 +618,6 @@ public:
             if (socket)
                 sendPing(now, socket);
         }
-#else
-        (void) now;
 #endif
     }
 
@@ -757,9 +749,8 @@ protected:
     /// Sends a WebSocket frame given the data, length, and flags.
     /// Returns the number of bytes written (including frame overhead) on success,
     /// 0 for closed/invalid socket, and -1 for other errors.
-    int sendFrame(const std::shared_ptr<StreamSocket>& socket,
-                  const char* data, const uint64_t len,
-                  unsigned char flags, bool flush = true) const
+    int sendFrame(const std::shared_ptr<StreamSocket>& socket, const char* data, const uint64_t len,
+                  [[maybe_unused]] unsigned char flags, bool flush = true) const
     {
         if (!socket || data == nullptr || len == 0)
             return -1;
@@ -825,8 +816,6 @@ protected:
         // Return the number of bytes we wrote to the *buffer*.
         const size_t size = out.size() - oldSize;
 #else
-        (void) flags;
-
         // We ignore the flush parameter and always flush in the MOBILEAPP case because there is no
         // WebSocket framing, we put the messages as such into the FakeSocket queue.
         flush = true;
@@ -931,7 +920,8 @@ protected:
 
     /// Upgrade the http(s) connection to a websocket.
     template <typename T>
-    void upgradeToWebSocket(const std::shared_ptr<StreamSocket>& socket, const T& req)
+    void upgradeToWebSocket(const std::shared_ptr<StreamSocket>& socket,
+                            [[maybe_unused]] const T& req)
     {
         assert(socket && "Must have a valid socket");
         LOG_TRC("Upgrading to WebSocket");
@@ -958,8 +948,6 @@ protected:
         httpResponse.set("Sec-WebSocket-Accept", computeAccept(wsKey));
         LOG_TRC("Sending WS Upgrade response: " << httpResponse.header().toString());
         socket->send(httpResponse);
-#else
-        (void) req;
 #endif
         setWebSocket(socket);
     }
