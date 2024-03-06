@@ -1,6 +1,5 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -11,19 +10,20 @@
 
 #pragma once
 
-#include <memory>
-#include <string>
-#include <chrono>
-
-#include <Poco/URI.h>
-#include <Poco/Util/Application.h>
-#include <Poco/JSON/Object.h>
-
-#include "HttpRequest.hpp"
-#include "LOOLWSD.hpp"
-#include "Log.hpp"
+#include <LOOLWSD.hpp>
+#include <HttpRequest.hpp>
+#include <Log.hpp>
+#include <Storage.hpp>
 #include <common/Authorization.hpp>
 #include <net/HttpRequest.hpp>
+
+#include <Poco/JSON/Object.h>
+#include <Poco/URI.h>
+#include <Poco/Util/Application.h>
+
+#include <chrono>
+#include <memory>
+#include <string>
 
 /// WOPI protocol backed storage.
 class WopiStorage : public StorageBase
@@ -159,8 +159,6 @@ public:
         bool _userCanRename = false;
     };
 
-#if !MOBILEAPP
-
     WopiStorage(const Poco::URI& uri, const std::string& localStorePath,
                 const std::string& jailPath)
         : StorageBase(uri, localStorePath, jailPath)
@@ -249,7 +247,6 @@ private:
 
     /// Whether or not this is a legacy server.
     const bool _legacyServer;
-#endif // !MOBILEAPP
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

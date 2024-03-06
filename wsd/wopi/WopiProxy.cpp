@@ -13,11 +13,12 @@
 #include "HttpHelper.hpp"
 #include "HttpRequest.hpp"
 #include <LOOLWSD.hpp>
-#include <wopi/StorageConnectionManager.hpp>
 #include <Exceptions.hpp>
 #include <Log.hpp>
-#include <common/JsonUtil.hpp>
 #include <Util.hpp>
+#include <common/JsonUtil.hpp>
+#include <wopi/StorageConnectionManager.hpp>
+#include <wopi/WopiStorage.hpp>
 
 #include <Poco/JSON/Object.h>
 
