@@ -32,6 +32,9 @@ enum class LokEventTargetEnum
     Window
 };
 
+
+class DocumentManagerInterface;
+
 /// Represents a session to the WSD process, in a Kit process. Note that this is not a singleton.
 class ChildSession final : public Session
 {

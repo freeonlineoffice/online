@@ -39,7 +39,6 @@ online_SOURCES = \
 	../common/Util-mobile.cpp \
 	../kit/ChildSession.cpp \
 	../kit/Kit.cpp \
-	../kit/KitQueue.cpp \
 	../kit/KitWebSocket.cpp \
 	../kit/DeltaSimd.c \
 	../net/FakeSocket.cpp \

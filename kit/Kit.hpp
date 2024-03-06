@@ -21,6 +21,7 @@
 
 #include <wsd/TileDesc.hpp>
 
+#include "Delta.hpp"
 #include "Socket.hpp"
 
 #define LOK_USE_UNSTABLE_API
@@ -292,7 +293,6 @@ public:
     bool forkToSave(const std::function<void()> &childSave, int viewId);
 
     void handleSaveMessage(const std::string &msg);
-
 
     /// Notify all views of viewId and their associated usernames
     void notifyViewInfo();

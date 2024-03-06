@@ -1411,7 +1411,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
     // TODO: compare FD count in a normal process with how
     // many we see open now.
     int expectFds = 2 // SocketPoll wakeups
-        + 1; // socket to coolwsd
+        + 1; // socket to loolwsd
     int actualFds = fdCounter->count();
     if (actualFds != expectFds)
     {
@@ -1472,7 +1472,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
         if (_queue)
             _queue->clear();
 
-        // Hard drop our previous connections to coolwsd and shared wakeups.
+        // Hard drop our previous connections to loolwsd and shared wakeups.
         KitSocketPoll::cleanupChildProcess();
 
         // close duplicate kit->wsd socket
@@ -1848,6 +1848,7 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
         // Only save the options on opening the document.
         // No support for changing them after opening a document.
         _renderOpts = renderOpts;
+        spellOnline = session->getSpellOnline();
     }
     else
     {
@@ -2895,8 +2896,12 @@ void copyCertificateDatabaseToTmp(Poco::Path const& jailPath)
         }
     }
 }
+
 #endif
 }
+
+
+
 
 void lokit_main(
 #if !MOBILEAPP
@@ -3012,7 +3017,7 @@ void lokit_main(
             const std::string loJailDestPath = jailLOInstallation.toString();
 
             // The bind-mount implementation: inlined here to mirror
-            // the fallback link/copy version below.
+            // the fallback link/copy version bellow.
             const auto mountJail = [&]() -> bool {
                 // Mount sysTemplate for the jail directory.
                 LOG_INF("Mounting " << sysTemplate << " -> " << jailPathStr);
@@ -3109,8 +3114,7 @@ void lokit_main(
                 }
             }
 
-            // Setup the devices inside /tmp and set TMPDIR.
-            JailUtil::setupJailDevNodes(Poco::Path(jailPath, "/tmp").toString());
+            // Setup /tmp and set TMPDIR.
             ::setenv("TMPDIR", "/tmp", 1);
             allowedPaths += ":w:/tmp";
 
