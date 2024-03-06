@@ -710,7 +710,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
 
             // Tunnel to WASM.
             _wopiProxy = std::make_unique<WopiProxy>(_id, requestDetails, socket);
-            _wopiProxy->handleRequest(*LOOLWSD::getWebServerPoll(), disposition);
+            _wopiProxy->handleRequest(LOOLWSD::getWebServerPoll(), disposition);
         }
         else
         {
