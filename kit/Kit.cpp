@@ -703,6 +703,7 @@ Document::Document(const std::shared_ptr<lok::Office>& loKit,
       _isDocPasswordProtected(false),
       _docPasswordType(DocumentPasswordType::ToView),
       _stop(false),
+      _deltaGen(new DeltaGenerator()),
       _editorId(-1),
       _editorChangeWarning(false),
       _lastMemTrimTime(std::chrono::steady_clock::now()),
@@ -790,7 +791,7 @@ bool Document::createSession(const std::string& sessionId)
             _websocketHandler, sessionId,
             _jailId, JailRoot, *this);
         _sessions.emplace(sessionId, session);
-        _deltaGen.setSessionCount(_sessions.size());
+        _deltaGen->setSessionCount(_sessions.size());
 
         const int viewId = session->getViewId();
         _lastUpdatedAt[viewId] = std::chrono::steady_clock::now();
@@ -924,7 +925,7 @@ void Document::renderTiles(TileCombined &tileCombined)
         postMessage(buffer, length, WSOpCode::Binary);
     };
 
-    if (!RenderTiles::doRender(_loKitDocument, _deltaGen, tileCombined, _pngPool,
+    if (!RenderTiles::doRender(_loKitDocument, *_deltaGen, tileCombined, _deltaPool,
                                blenderFunc, postMessageFunc, _mobileAppDocId,
                                session->getCanonicalViewId(), session->getDumpTiles()))
     {
@@ -968,7 +969,7 @@ void Document::trimIfInactive()
     LOG_DBG("Sessions are all inactive - trim memory");
     SigUtil::addActivity("trimIfInactive");
     _loKit->trimMemory(4096);
-    _deltaGen.dropCache();
+    _deltaGen->dropCache();
 }
 
 void Document::trimAfterInactivity()
@@ -1936,7 +1937,7 @@ bool Document::forwardToChild(const std::string& prefix, const std::vector<char>
                 LOG_DBG("Have " << count << " child" << (count == 1 ? "" : "ren") <<
                         " after removing ChildSession [" << sessionId << "].");
 
-                _deltaGen.setSessionCount(count);
+                _deltaGen->setSessionCount(count);
 
                 // No longer needed, and allow session dtor to take it.
                 session.reset();
@@ -2071,7 +2072,7 @@ void Document::drainQueue()
             {
                 LOG_INF("_stop or TerminationFlag is set, breaking Document::drainQueue of loop");
                 tileRequests.clear();
-                _pngPool.stop();
+                _deltaPool.stop();
                 break;
             }
 
@@ -2215,7 +2216,7 @@ std::shared_ptr<lok::Document> Document::getLOKitDocument()
 void Document::flushAndExit(int code)
 {
     flushTraceEventRecordings();
-    _pngPool.stop();
+    _deltaPool.stop();
     if (!Util::isKitInProcess())
         Util::forcedExit(code);
     else
@@ -2257,10 +2258,10 @@ void Document::dumpState(std::ostream& oss)
     }
     oss << "\n";
 
-    _pngPool.dumpState(oss);
+    _deltaPool.dumpState(oss);
     _sessions.dumpState(oss);
 
-    _deltaGen.dumpState(oss);
+    _deltaGen->dumpState(oss);
 
     oss << "\tlastUpdatedAt:";
     for (const auto &it : _lastUpdatedAt)
