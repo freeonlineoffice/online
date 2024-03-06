@@ -674,7 +674,7 @@ export class Comment extends CanvasSectionObject {
 			this.sectionProperties.container.style.display = '';
 		}
 		if (this.sectionProperties.data.resolved === 'false' || this.sectionProperties.commentListSection.sectionProperties.showResolved)
-			L.DomUtil.addClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+			L.DomUtil.addClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 		this.sectionProperties.contentNode.style.display = '';
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
@@ -725,7 +725,7 @@ export class Comment extends CanvasSectionObject {
 			else {
 				this.sectionProperties.container.style.visibility = 'hidden';
 			}
-			L.DomUtil.addClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+			L.DomUtil.addClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 		}
 	}
 
@@ -765,7 +765,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
 		this.sectionProperties.showSelectedCoordinate = false;
-		L.DomUtil.removeClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 
 	private hideCalc() {
@@ -790,7 +790,7 @@ export class Comment extends CanvasSectionObject {
 			this.sectionProperties.nodeModify.style.display = 'none';
 			this.sectionProperties.nodeReply.style.display = 'none';
 		}
-		L.DomUtil.removeClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 
 	// check if this is "our" autosaved comment
@@ -1361,7 +1361,7 @@ export class Comment extends CanvasSectionObject {
 				this.sectionProperties.replyCountNode.style.display = 'none';
 		}
 		if (this.sectionProperties.data.resolved === 'false' || this.sectionProperties.commentListSection.sectionProperties.showResolved)
-			L.DomUtil.addClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+			L.DomUtil.addClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 
 	public setExpanded(): void {
@@ -1374,7 +1374,7 @@ export class Comment extends CanvasSectionObject {
 		}
 		if (this.sectionProperties.docLayer._docType === 'text')
 			this.sectionProperties.replyCountNode.style.display = 'none';
-		L.DomUtil.removeClass(this.sectionProperties.container, 'cool-annotation-collapsed-show');
+		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 }
 

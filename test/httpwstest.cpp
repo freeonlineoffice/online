@@ -146,7 +146,7 @@ void HTTPWSTest::testSaveOnDisconnect()
         sendTextFrame(socket1, "paste mimetype=text/plain;charset=utf-8\n" + text, testname);
         getResponseMessage(socket1, "pasteresult: success", testname);
 
-        kitcount = getCoolKitProcessCount();
+        kitcount = getLoolKitProcessCount();
 
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
@@ -165,7 +165,7 @@ void HTTPWSTest::testSaveOnDisconnect()
     }
 
     // Allow time to save and destroy before we connect again.
-    testNoExtraCoolKitsLeft();
+    testNoExtraLoolKitsLeft();
     TST_LOG("Loading again.");
     try
     {
@@ -174,7 +174,7 @@ void HTTPWSTest::testSaveOnDisconnect()
             = loadDocAndGetSession(_socketPoll, _uri, documentURL, testname + "3 ");
 
         // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countCoolKitProcesses(kitcount));
+        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
         // Check if the document contains the pasted text.
         const std::string selection = getAllText(socket, testname, text);
