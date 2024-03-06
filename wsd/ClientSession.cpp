@@ -1499,6 +1499,36 @@ bool ClientSession::filterMessage(const std::string& message) const
             LOG_WRN("WOPI host has disabled copying from the document");
         }
     }
+    else if (isReadOnly())
+    {
+        // By default, don't allow anything
+        allowed = false;
+        if (tokens.equals(0, "userinactive") || tokens.equals(0, "useractive") || tokens.equals(0, "saveas")
+            || tokens.equals(0, "rendersearchresult") || tokens.equals(0, "exportas"))
+        {
+            allowed = true;
+        }
+        else if (tokens.equals(0, "uno"))
+        {
+            if (tokens.size() > 1 && (tokens.equals(1, ".uno:ExecuteSearch") || tokens.equals(1, ".uno:Signature")
+                 || tokens.equals(1, ".uno:ExportToPDF")
+                 || tokens.equals(1,".uno:ExportDirectToPDF")
+                 || tokens.equals(1,".uno:ExportToEPUB")
+                 || tokens.equals(1,".uno:ChangeTheme")))
+            {
+                allowed = true;
+            }
+
+            if (isAllowChangeComments()
+                && tokens.size() > 1
+                && (tokens.equals(1, ".uno:EditAnnotation")
+                    || tokens.equals(1, ".uno:InsertAnnotation")
+                    || tokens.equals(1, ".uno:DeleteAnnotation")))
+            {
+                allowed = true;
+            }
+        }
+    }
 
     return allowed;
 }
