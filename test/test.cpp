@@ -298,6 +298,14 @@ std::set<pid_t> getKitPids()
 {
     return LOOLWSD::getKitPids();
 }
+std::set<pid_t> getSpareKitPids()
+{
+    return COOLWSD::getSpareKitPids();
+}
+std::set<pid_t> getDocKitPids()
+{
+    return COOLWSD::getDocKitPids();
+}
 
 /// Get the PID of the forkit
 std::set<pid_t> getForKitPids()
