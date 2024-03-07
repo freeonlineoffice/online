@@ -110,8 +110,10 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 		if (!this._map['wopi'].UserCanNotWriteRelative) {
 			content.push(
 				(window.uiDefaults && window.uiDefaults.saveAsMode === 'group') ? {
-					'id': 'saveas',
-					'type': 'bigmenubartoolitem',
+					'id': 'saveas:SaveAsMenu',
+					'command': 'saveas',
+					'class': 'unosaveas',
+					'type': 'exportmenubutton',
 					'text': _('Save As'),
 					'accessibility': { focusBack: true,	combination: 'A', de: null }
 				}:
@@ -127,9 +129,10 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 
 		if (!this._map['wopi'].UserCanNotWriteRelative) {
 			content.push({
-				'id': 'exportas',
+				'id': 'exportas:ExportAsMenu',
+				'command': 'exportas',
 				'class': 'unoexportas',
-				'type': 'bigmenubartoolitem',
+				'type': 'exportmenubutton',
 				'text': _('Export As'),
 				'accessibility': { focusBack: true,	combination: 'E', de: null }
 			});
@@ -192,9 +195,10 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 
 		if (!!window.groupDownloadAsForNb && !this._map['wopi'].HideExportOption) {
 			content.push({
-				'id': 'downloadas',
+				'id': 'downloadas:DownloadAsMenu',
+				'command': 'downloadas',
 				'class': 'unodownloadas',
-				'type': 'bigmenubartoolitem',
+				'type': 'exportmenubutton',
 				'text': _('Download'),
 				'accessibility': { focusBack: true,	combination: 'DA', de: null }
 			});
