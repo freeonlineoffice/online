@@ -1627,6 +1627,7 @@ void ClientSession::postProcessCopyPayload(const std::shared_ptr<Message>& paylo
 {
     // Insert our meta origin if we can
     payload->rewriteDataBody([this](std::vector<char>& data) {
+            bool json = Util::findInVector(data, "textselectioncontent:\n{") == 0;
             std::size_t pos = Util::findInVector(data, "<body");
             if (pos != std::string::npos)
             {
@@ -1639,6 +1640,10 @@ void ClientSession::postProcessCopyPayload(const std::shared_ptr<Message>& paylo
                 const std::string meta = getClipboardURI();
                 LOG_TRC("Inject clipboard lool origin of '" << meta << "'");
                 std::string origin = "<div id=\"meta-origin\" data-loolorigin=\"" + meta + "\">\n";
+                if (json)
+                {
+                    origin = "<div id=\\\"meta-origin\\\" data-loolorigin=\\\"" + meta + "\\\">\\n";
+                }
                 data.insert(data.begin() + pos + strlen(">"), origin.begin(), origin.end());
 
                 const char* end = "</body>";
