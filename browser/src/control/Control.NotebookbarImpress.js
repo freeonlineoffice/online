@@ -1701,9 +1701,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			},
 			{
 				'id': 'LanguageMenu',
-				'type': 'bigtoolitem',
+				'type': 'bigcustomtoolitem',
 				'text': _UNO('.uno:LanguageMenu'),
-				'command': '.uno:LanguageMenu',
+				'command': 'languagemenu',
 				'accessibility': { focusBack: false, combination: 'TM', de: null }
 			},
 			{
