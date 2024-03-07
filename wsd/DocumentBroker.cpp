@@ -857,7 +857,7 @@ bool DocumentBroker::download(
         templateSource = wopiFileInfo->getTemplateSource();
 
         _isViewFileExtension = LOOLWSD::IsViewFileExtension(wopiStorage->getFileExtension());
-        if (!wopiFileInfo->getUserCanWrite()) // Readonly.
+        if (!wopiFileInfo->getUserCanWrite() || session->isReadOnly()) // Readonly. Second boolean checks for URL "permission=readonly"
         {
             LOG_DBG("Setting session [" << sessionId << "] to readonly for UserCanWrite=false");
             session->setWritable(false);
@@ -936,7 +936,7 @@ bool DocumentBroker::download(
         wopiInfo->set("SupportsRename", wopiFileInfo->getSupportsRename());
         wopiInfo->set("UserCanRename", wopiFileInfo->getUserCanRename());
         wopiInfo->set("FileUrl", wopiFileInfo->getFileUrl());
-        wopiInfo->set("UserCanWrite", wopiFileInfo->getUserCanWrite());
+        wopiInfo->set("UserCanWrite", wopiFileInfo->getUserCanWrite() && !session->isReadOnly());
         if (wopiFileInfo->getHideChangeTrackingControls() !=
             WopiStorage::WOPIFileInfo::TriState::Unset)
                 wopiInfo->set("HideChangeTrackingControls",
