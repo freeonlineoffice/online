@@ -163,6 +163,7 @@ noinst_PROGRAMS = clientnb \
                   connect \
                   lokitclient \
                   loolmap \
+                  loolbench \
                   loolsocketdump
 
 if ENABLE_LIBFUZZER
@@ -268,6 +269,14 @@ clientnb_SOURCES = net/clientnb.cpp \
 loolmount_SOURCES = tools/mount.cpp
 
 loolmap_SOURCES = tools/map.cpp
+
+loolbench_SOURCES = tools/Benchmark.cpp \
+                    common/DummyTraceEventEmitter.cpp \
+		    common/Log.cpp \
+                    common/StringVector.cpp \
+                    common/Util.cpp \
+                    common/Simd.cpp
+loolbench_LDADD = libsimd.a
 
 loolconvert_SOURCES = tools/Tool.cpp
 
