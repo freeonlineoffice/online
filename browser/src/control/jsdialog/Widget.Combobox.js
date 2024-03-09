@@ -236,8 +236,8 @@ JSDialog.combobox = function (parentContainer, data, builder) {
 	};
 
 	if (data.enabled === false) {
-		container.setAttribute('disabled', '');
-		content.setAttribute('disabled', '');
+		container.disabled = true;
+		content.disabled = true;
 	}
 
 	JSDialog.SynchronizeDisabledState(container, [content]);
