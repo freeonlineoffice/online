@@ -55,7 +55,8 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 			{
 				id: id + '-entry-' + i,
 				type: 'htmlcontent',
-				htmlId: entries[i].htmlId
+				htmlId: entries[i].htmlId,
+				closeCallback: function () { JSDialog.CloseDropdown(id); }
 			}
 			: // regular entry
 			{
