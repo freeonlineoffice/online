@@ -801,8 +801,8 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'vertical': 'true'
 			},
 			{
-				'id': 'home-conditional-format-menu',
-				'type': 'bigtoolitem',
+				'id': 'home-conditional-format-menu:ConditionalFormatMenu',
+				'type': 'menubutton',
 				'text': _UNO('.uno:ConditionalFormatMenu', 'spreadsheet'),
 				'command': '.uno:ConditionalFormatMenu',
 				'accessibility': { focusBack: true,	combination: 'L', de: null }
