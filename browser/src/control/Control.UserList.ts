@@ -244,7 +244,10 @@ class UserList extends L.Control {
 			$('.main-nav.hasnotebookbar').css('overflow', 'scroll hidden');
 			var selector = '#userListPopover';
 			var $target = $(e.target);
-			if (!$target.closest(selector).length && $(selector).is(':visible')) {
+			if (
+				!$target.closest(selector).length &&
+				$(selector).is(':visible')
+			) {
 				$(selector).hide();
 			}
 			document.removeEventListener('click', outsideClickListener);
@@ -267,7 +270,8 @@ class UserList extends L.Control {
 
 	hideUserList() {
 		return (
-			(window as any) /* TODO: remove cast after gh#8221 */.ThisIsAMobileApp ||
+			(window as any) /* TODO: remove cast after gh#8221 */
+				.ThisIsAMobileApp ||
 			(this.map['wopi'].HideUserList !== null &&
 				this.map['wopi'].HideUserList !== undefined &&
 				$.inArray('true', this.map['wopi'].HideUserList) >= 0) ||
@@ -300,10 +304,13 @@ class UserList extends L.Control {
 
 			const readonlyUsers: [number, User][] = [];
 
-			for (const [viewId, user] of Array.from(this.users.entries()).reverse()) {
+			for (const [viewId, user] of Array.from(
+				this.users.entries(),
+			).reverse()) {
 				const isSelf = viewId === this.map._docLayer._viewId;
 				const isFollowed =
-					followedUser !== undefined && viewId === followedUser[0];
+					followedUser !== undefined &&
+					viewId === followedUser[0];
 				if (isSelf || isFollowed) {
 					continue;
 				}
@@ -387,9 +394,14 @@ class UserList extends L.Control {
 			return;
 		}
 
-		var count = $(userlistItem.html).find('#userlist_table tbody tr').length;
+		var count = $(userlistItem.html).find(
+			'#userlist_table tbody tr',
+		).length;
 		if (count > 1) {
-			userlistItem.text = this.options.nUsers.replace('%n', count.toString());
+			userlistItem.text = this.options.nUsers.replace(
+				'%n',
+				count.toString(),
+			);
 		} else if (count === 1) {
 			userlistItem.text = this.options.oneUser;
 		} else {
@@ -430,10 +442,13 @@ class UserList extends L.Control {
 			var viewId = docLayer._followThis;
 			var followUser = docLayer._followUser;
 
-			if (cBox) (cBox as HTMLInputElement).checked = docLayer._followEditor;
+			if (cBox)
+				(cBox as HTMLInputElement).checked = docLayer._followEditor;
 
 			if (docLayer.editorId !== -1 && this.map._viewInfo[editorId])
-				$('#current-editor').text(this.map._viewInfo[editorId].username);
+				$('#current-editor').text(
+					this.map._viewInfo[editorId].username,
+				);
 			else $('#currently-msg').hide();
 
 			if (followUser) this.selectUser(viewId);
@@ -501,9 +516,15 @@ class UserList extends L.Control {
 		let message;
 
 		if (type === 'join') {
-			message = this.options.userJoinedPopupMessage.replace('%user', username);
+			message = this.options.userJoinedPopupMessage.replace(
+				'%user',
+				username,
+			);
 		} else {
-			message = this.options.userLeftPopupMessage.replace('%user', username);
+			message = this.options.userLeftPopupMessage.replace(
+				'%user',
+				username,
+			);
 		}
 
 		const sanitizer = document.createElement('div');
@@ -532,11 +553,18 @@ class UserList extends L.Control {
 				username += ' (' + _('Readonly') + ')';
 			}
 
-			return this.getUserItem(viewId, username, user.extraInfo, user.color);
+			return this.getUserItem(
+				viewId,
+				username,
+				user.extraInfo,
+				user.color,
+			);
 		});
 
 		const userlistItem = w2ui['actionbar'].get('userlist');
-		const userlistElement = $(userlistItem.html).find('#userlist_table tbody');
+		const userlistElement = $(userlistItem.html).find(
+			'#userlist_table tbody',
+		);
 		userlistElement.children().replaceWith(userItems);
 		const newHtml = userlistElement.parent().parent()[0].outerHTML;
 		userlistItem.html = newHtml;
@@ -550,7 +578,10 @@ class UserList extends L.Control {
 		const following = this.getFollowedUser();
 
 		const userElements = users.map(([viewId, user]) => {
-			const userLabel = L.DomUtil.create('div', 'user-list-item--name');
+			const userLabel = L.DomUtil.create(
+				'div',
+				'user-list-item--name',
+			);
 			userLabel.innerText = user.username;
 
 			const userFollowingLabel = L.DomUtil.create(
@@ -611,12 +642,17 @@ class UserList extends L.Control {
 			followEditorWrapper,
 		);
 		followEditorCheckboxLabel.innerText = _('Always follow the editor');
-		followEditorCheckboxLabel.setAttribute('for', 'follow-editor-checkbox');
+		followEditorCheckboxLabel.setAttribute(
+			'for',
+			'follow-editor-checkbox',
+		);
 
 		popoverElement.replaceChildren(...userElements, followEditorWrapper);
 
 		(
-			document.getElementById('follow-editor-checkbox') as HTMLInputElement
+			document.getElementById(
+				'follow-editor-checkbox',
+			) as HTMLInputElement
 		).checked = this.map._docLayer._followEditor;
 	}
 
@@ -625,8 +661,10 @@ class UserList extends L.Control {
 			'followingChipBackground',
 		);
 		const followingChip = document.getElementById('followingChip');
-		const followingChipLine1 = document.getElementById('followingChipLine1');
-		const followingChipLine2 = document.getElementById('followingChipLine2');
+		const followingChipLine1 =
+			document.getElementById('followingChipLine1');
+		const followingChipLine2 =
+			document.getElementById('followingChipLine2');
 
 		const following = this.getFollowedUser();
 
@@ -638,7 +676,8 @@ class UserList extends L.Control {
 		const topAvatarZIndex = this.options.userLimitHeaderWhenFollowing;
 
 		if (this.map._docLayer._followEditor) {
-			followingChipLine1.innerText = this.options.followingChipLine1TextEditor;
+			followingChipLine1.innerText =
+				this.options.followingChipLine1TextEditor;
 			followingChip.style.borderColor = '#000';
 		} else {
 			followingChipLine1.innerText =
