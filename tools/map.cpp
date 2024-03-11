@@ -368,7 +368,7 @@ static void dumpDiff(const AddrSpace &space,
                              (str != "[anon]") &&
                              (str != "[stack]");
                 if (!haveAnnots)
-                    str = "";
+                    str.clear();
                 else
                     map->bumpPointerCountInUnshared();
             }

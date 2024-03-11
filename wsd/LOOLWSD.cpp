@@ -1895,7 +1895,7 @@ private:
         fonts.clear();
         // Clear the saved ETag of the remote font configuration file so that it will be
         // re-downloaded, and all fonts mentioned in it re-downloaded and fed to ForKit.
-        eTagValue = "";
+        _eTagValue.clear();
         LOOLWSD::sendMessageToForKit("exit");
     }
 
@@ -2714,7 +2714,7 @@ void LOOLWSD::innerInitialize(Application& self)
                 LOG_INF("Your support key is valid for " << validDays << " days");
                 LOOLWSD::MaxConnections = 1000;
                 LOOLWSD::MaxDocuments = 200;
-                LOOLWSD::OverrideWatermark = "";
+                LOOLWSD::OverrideWatermark.clear();
             }
         }
     }
