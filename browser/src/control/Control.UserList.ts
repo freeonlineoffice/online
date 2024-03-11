@@ -508,6 +508,22 @@ class UserList extends L.Control {
 		this.renderFollowingChip();
 	}
 
+	showTooltip(text: string) {
+		// TODO: better placement, where it should appear?
+		const userList = $('#tb_actionbar_item_userlist');
+		if (userList) {
+			userList.tooltip({
+				content: text,
+			});
+			userList.tooltip('open');
+		}
+	}
+
+	hideTooltip() {
+		$('#tb_actionbar_item_userlist').tooltip('option', 'disabled', true);
+		$('#userListPopover').hide();
+	}
+
 	showJoinLeaveMessage(
 		type: 'join' | 'leave',
 		username: string,
@@ -530,17 +546,12 @@ class UserList extends L.Control {
 		const sanitizer = document.createElement('div');
 		sanitizer.innerText = message;
 
-		$('#tb_actionbar_item_userlist').w2overlay({
-			class: 'lool-font',
-			html: sanitizer.innerHTML,
-			style: 'padding: 5px',
-		});
+		this.showTooltip(sanitizer.innerText);
 
 		clearTimeout(this.options.userPopupTimeout);
-		this.options.userPopupTimeout = setTimeout(
-			() => $('#tb_actionbar_item_userlist').w2overlay(''),
-			3000,
-		);
+		this.options.userPopupTimeout = setTimeout(() => {
+			this.hideTooltip();
+		}, 3000);
 	}
 
 	renderUserList() {
