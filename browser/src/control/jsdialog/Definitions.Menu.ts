@@ -382,4 +382,9 @@ menuDefinitions.set('InsertConnectorsMenu', [
 	{ type: 'separator' }, // required to show dropdown arrow
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('InsertTableMenu', [
+	{ type: 'html', htmlId: 'inserttablepopup' },
+	{ type: 'separator' }, // required to show dropdown arrow
+] as Array<MenuDefinition>);
+
 JSDialog.MenuDefinitions = menuDefinitions;

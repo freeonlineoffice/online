@@ -3178,13 +3178,12 @@ leaflet-control-search-cancel {
 	z-index: 1000; /* Override default value of 10000 of evo-pop class */
 }
 
-/* for 10x10 grid 10x20+10*.col.margin */
+/* for 20x20 grid 20x20+20*.col.margin */
 .inserttable-grid {
 	box-sizing: border-box;
 	position: relative;
 	padding: 2px;
 	display: block;
-	width: 243px;
 }
 
 .inserttable-grid .row {
@@ -3206,7 +3205,7 @@ leaflet-control-search-cancel {
 
 .inserttable-grid .col.bright {
 	border: 1px solid var(--color-primary);
-	background: var(--color-primary-lighter);
+	background-color: var(--color-primary-lighter);
 }
 
 /* Insert shape grid - based on inserttable grid */
