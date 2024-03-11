@@ -258,7 +258,6 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		e.stopPropagation(); // Stop native event.
 	}
 	public onContextMenu () { return; }
-	public onLongPress () { return; }
 	public onMultiTouchStart () { return; }
 	public onMultiTouchMove () { return; }
 	public onMultiTouchEnd () { return; }
