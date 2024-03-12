@@ -543,7 +543,7 @@ $(DIST_FOLDER)/admin-bundle.js: $(LOOL_ADMIN_DST) \
 $(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@mkdir -p $(dir $@)
 	@echo "Checking for admin JS errors..."
-	@$(NODE) node_modules/eslint/bin/eslint.js --resolve-plugins-relative-to $(abs_builddir) --ignore-path $(srcdir)/.eslintignore --config .eslintrc --no-eslintrc $(srcdir)/admin/src
+	@$(NODE) node_modules/eslint/bin/eslint.js --resolve-plugins-relative-to $(abs_builddir) --ignore-path $(srcdir)/.eslintignore --config .eslintrc --no-eslintrc  --ignore-pattern $(LOOL_ADMIN_TS_JS)  $(srcdir)/admin/src
 	@awk 'FNR == 1 {print ""} 1' $(LOOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(LOOL_ADMIN_JS)) > $@
 
 
