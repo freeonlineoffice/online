@@ -35,7 +35,7 @@ img.sidebar.ui-drawing-area {
 	padding: 0;
 	box-sizing: border-box;
 }
-[data-userinterfacemode="classic"]
+[data-userinterfacemode='classic']
 	#document-container:not(.mobile)
 	+ #sidebar-dock-wrapper,
 #document-container.spreadsheet-doctype:not(.mobile) + #sidebar-dock-wrapper {
@@ -196,15 +196,15 @@ div.sidebar.ui-grid .checkbutton.sidebar,
 	color: var(--color-text-dark);
 	border-radius: var(--border-radius);
 }
-[data-theme="dark"]
+[data-theme='dark']
 	.hasnotebookbar
 	.ui-content.unotoolbutton.selected.has-label,
-[data-theme="dark"] #toggledarktheme,
-[data-theme="dark"] .hasnotebookbar .ui-content.unotoolbutton.selected.inline,
-[data-theme="dark"]
+[data-theme='dark'] #toggledarktheme,
+[data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected.inline,
+[data-theme='dark']
 	.hasnotebookbar
 	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline),
-[data-theme="dark"] .sidebar.unotoolbutton.selected {
+[data-theme='dark'] .sidebar.unotoolbutton.selected {
 	background-color: var(--color-background-darker);
 	border-color: var(--color-border-darker);
 }
@@ -257,7 +257,7 @@ div.sidebar.ui-grid .checkbutton.sidebar,
 #PosSizePropertyPanel.sidebar #ratio {
 	grid-column: 1 / 3;
 }
-#PosSizePropertyPanel.sidebar #ratio input[type="checkbox"] {
+#PosSizePropertyPanel.sidebar #ratio input[type='checkbox'] {
 	margin-inline-start: 0;
 }
 
@@ -302,7 +302,7 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	border: 1px solid transparent;
 }
 
-#table-textorientbox.sidebar .jsdialog input[type="radio"] {
+#table-textorientbox.sidebar .jsdialog input[type='radio'] {
 	background: none !important;
 	width: auto;
 	height: auto;
@@ -381,7 +381,7 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	background-color: var(--color-background-dark);
 	color: var(--color-primary);
 }
-[data-theme="dark"] #NavigatorDeck .ui-treeview-entry.selected {
+[data-theme='dark'] #NavigatorDeck .ui-treeview-entry.selected {
 	background-color: transparent;
 	color: var(--color-text-lighter);
 }
@@ -389,7 +389,7 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	.ui-treeview-entry.selected:not(
 		.ui-listview-expandable-with-icon
 	)::before {
-	content: "–";
+	content: '–';
 	font-size: 17px;
 	font-weight: 500;
 	line-height: 1.2;

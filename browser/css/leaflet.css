@@ -23,7 +23,7 @@
 	margin: auto;
 	/* general typography */
 	font:
-		var(--default-font-size) / 1.5 "Helvetica Neue",
+		var(--default-font-size) / 1.5 'Helvetica Neue',
 		Arial,
 		Helvetica,
 		sans-serif;
@@ -117,7 +117,7 @@
 	height: 1px;
 }
 .lvml {
-	behavior: url("#default#VML");
+	behavior: url('#default#VML');
 	display: inline-block;
 	position: absolute;
 }
@@ -236,7 +236,7 @@
 }
 
 .anchor-marker {
-	background: url("images/lc_anchormenu.svg") rgba(255, 255, 255, 0.85)
+	background: url('images/lc_anchormenu.svg') rgba(255, 255, 255, 0.85)
 		no-repeat center;
 	border: 1px solid transparent;
 	border-radius: 4px;
@@ -249,7 +249,7 @@
 }
 
 .anchor-marker.anchor-dragging::before {
-	content: "";
+	content: '';
 	display: block;
 	background: radial-gradient(
 		var(--color-primary) 10%,
@@ -330,7 +330,7 @@
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
 	font:
-		bold 18px "Lucida Console",
+		bold 18px 'Lucida Console',
 		Monaco,
 		monospace;
 	text-indent: 1px;
@@ -406,12 +406,12 @@ a.leaflet-control-buttons:hover:first-child {
 	background-color: var(--color-main-background);
 }
 .leaflet-control-layers-toggle {
-	background-image: url("images/layers.png");
+	background-image: url('images/layers.png');
 	width: 36px;
 	height: 36px;
 }
 .leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url("images/layers-2x.png");
+	background-image: url('images/layers-2x.png');
 	background-size: 26px 26px;
 }
 .leaflet-touch .leaflet-control-layers-toggle {
@@ -607,7 +607,7 @@ a.leaflet-control-buttons:hover:first-child {
 	width: 24px;
 	margin: 0 auto;
 
-	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)';
 	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
 }
 .leaflet-oldie .leaflet-popup-tip-container {
@@ -956,7 +956,7 @@ input.clipboard {
 .lool-ruler-indentation-marker-down {
 	width: 14px;
 	height: 10px;
-	background: url("images/indentation_marker_down.svg");
+	background: url('images/indentation_marker_down.svg');
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -967,7 +967,7 @@ input.clipboard {
 .lool-ruler-indentation-marker-up {
 	width: 14px;
 	height: 10px;
-	background: url("images/indentation_marker_up.svg");
+	background: url('images/indentation_marker_up.svg');
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -1021,7 +1021,7 @@ input.clipboard {
 .lool-ruler-tabstop-left {
 	width: 20px;
 	height: 20px;
-	background: url("images/tabstop-left.svg");
+	background: url('images/tabstop-left.svg');
 	position: absolute;
 	pointer-events: none;
 }
@@ -1029,7 +1029,7 @@ input.clipboard {
 .lool-ruler-tabstop-right {
 	width: 20px;
 	height: 20px;
-	background: url("images/tabstop-right.svg");
+	background: url('images/tabstop-right.svg');
 	position: absolute;
 	pointer-events: none;
 }
@@ -1037,7 +1037,7 @@ input.clipboard {
 .lool-ruler-tabstop-center {
 	width: 20px;
 	height: 20px;
-	background: url("images/tabstop-center.svg");
+	background: url('images/tabstop-center.svg');
 	position: absolute;
 	pointer-events: none;
 }
@@ -1045,7 +1045,7 @@ input.clipboard {
 .lool-ruler-tabstop-decimal {
 	width: 20px;
 	height: 20px;
-	background: url("images/tabstop-decimal.svg");
+	background: url('images/tabstop-decimal.svg');
 	position: absolute;
 	pointer-events: none;
 }

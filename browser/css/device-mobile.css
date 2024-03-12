@@ -1,13 +1,13 @@
 /* CSS specific for mobile phones. */
 
 /* RTL on mobile */
-html[dir="rtl"] .w2ui-icon.closemobile,
-html[dir="rtl"] #toolbar-hamburger.menuwizard-opened,
-html[dir="rtl"] .mobile-wizard-back {
+html[dir='rtl'] .w2ui-icon.closemobile,
+html[dir='rtl'] #toolbar-hamburger.menuwizard-opened,
+html[dir='rtl'] .mobile-wizard-back {
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
-html[dir="rtl"] .sub-menu-arrow {
+html[dir='rtl'] .sub-menu-arrow {
 	transform: rotate(0deg);
 	background-position: right;
 }
@@ -53,7 +53,7 @@ input#follow-checkbox {
 	width: 25px;
 }
 .checkmark:after {
-	content: "";
+	content: '';
 	position: absolute;
 	display: none;
 	left: 9px;
@@ -112,10 +112,10 @@ div#w2ui-overlay-actionbar.w2ui-overlay {
 	z-index: 1003;
 }
 .editmode-off {
-	background: url("images/lc_closedocmobile.svg") no-repeat center !important;
+	background: url('images/lc_closedocmobile.svg') no-repeat center !important;
 }
 .editmode-on {
-	background: url("images/lc_listitem-selected.svg") no-repeat center / 28px !important;
+	background: url('images/lc_listitem-selected.svg') no-repeat center / 28px !important;
 }
 
 /* No ruler on mobile phones. */
@@ -374,7 +374,7 @@ nav:not(.spreadsheet-color-indicator)
 	margin: 0px;
 }
 
-#toolbar-wrapper.mobile td[id^="tb_actionbar_item"] .w2ui-tb-image {
+#toolbar-wrapper.mobile td[id^='tb_actionbar_item'] .w2ui-tb-image {
 	width: 36px !important;
 }
 
@@ -435,21 +435,21 @@ nav:not(.spreadsheet-color-indicator)
 #nolines input.spinfield {
 	width: 140px !important;
 }
-td[id^="tb_spreadsheet-toolbar_item"] table.w2ui-button.over {
+td[id^='tb_spreadsheet-toolbar_item'] table.w2ui-button.over {
 	background: none;
 	border-color: #fff;
 }
-td[id^="tb_spreadsheet-toolbar_item"] table.w2ui-button {
+td[id^='tb_spreadsheet-toolbar_item'] table.w2ui-button {
 	border: none !important;
 }
-td[id^="tb_spreadsheet-toolbar_item"]:focus table.w2ui-button,
-td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button {
+td[id^='tb_spreadsheet-toolbar_item']:focus table.w2ui-button,
+td[id^='tb_spreadsheet-toolbar_item']:active table.w2ui-button {
 	background-color: #eaf5ff;
 	outline: none;
 	border: none;
 }
-td[id^="tb_spreadsheet-toolbar_item"]:focus table.w2ui-button div.w2ui-icon,
-td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button div.w2ui-icon {
+td[id^='tb_spreadsheet-toolbar_item']:focus table.w2ui-button div.w2ui-icon,
+td[id^='tb_spreadsheet-toolbar_item']:active table.w2ui-button div.w2ui-icon {
 	-webkit-filter: grayscale(100%) brightness(80%) sepia(100%)
 		hue-rotate(-190deg) saturate(900%) contrast(0.8);
 	filter: grayscale(100%) brightness(80%) sepia(100%) hue-rotate(-190deg)
@@ -635,17 +635,17 @@ td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button div.w2ui-icon {
 	padding-left: 38px;
 }
 .context-menu-list .context-menu-item:nth-child(1) span {
-	background: url("images/lc_editannotation.svg") no-repeat left center /
+	background: url('images/lc_editannotation.svg') no-repeat left center /
 		24px;
 }
 .context-menu-list .context-menu-item:nth-child(2) span {
-	background: url("images/lc_replycomment.svg") no-repeat left center / 24px;
+	background: url('images/lc_replycomment.svg') no-repeat left center / 24px;
 }
 .context-menu-list .context-menu-item:nth-child(3) span {
-	background: url("images/lc_deletenote.svg") no-repeat left center / 24px;
+	background: url('images/lc_deletenote.svg') no-repeat left center / 24px;
 }
 .context-menu-list .context-menu-item:nth-child(4) span {
-	background: url("images/lc_ok.svg") no-repeat left center / 24px;
+	background: url('images/lc_ok.svg') no-repeat left center / 24px;
 }
 
 /* Related to jsdialogs.css */
@@ -657,8 +657,8 @@ td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button div.w2ui-icon {
 	color: #333;
 }
 #mobile-wizard-content #MacroWarnMedium p:first-child::after {
-	content: " ";
-	background: url("images/lc_runmacro.svg") no-repeat left -2px / 24px;
+	content: ' ';
+	background: url('images/lc_runmacro.svg') no-repeat left -2px / 24px;
 	width: var(--btn-size);
 	height: var(--btn-size);
 	float: left;
@@ -707,7 +707,7 @@ td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button div.w2ui-icon {
 	#MacroSelectorDialog
 	#commands.empty
 	> .mobile-wizard.ui-treeview-body::after {
-	content: "…";
+	content: '…';
 	width: 22px;
 	height: 22px;
 	line-height: 11px;
@@ -817,10 +817,10 @@ td[id^="tb_spreadsheet-toolbar_item"]:active table.w2ui-button div.w2ui-icon {
 }
 #toolbar-down .locking-disabled .w2ui-icon:before {
 	display: block;
-	content: "";
+	content: '';
 	width: 18px;
 	height: 18px;
-	background: url("images/lc_lock.svg") no-repeat center -15px /16px white;
+	background: url('images/lc_lock.svg') no-repeat center -15px /16px white;
 	box-shadow:
 		0 0 1px 0 #0b87e7,
 		0 0 3px 0 #00000075;

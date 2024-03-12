@@ -134,10 +134,10 @@
 
 #loolwsd-version span:before,
 #lokit-version > span:before {
-	content: " (";
+	content: ' (';
 	white-space: pre;
 }
 #loolwsd-version span:after,
 #lokit-version > span:after {
-	content: ")";
+	content: ')';
 }

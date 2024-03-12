@@ -37,7 +37,7 @@ button.ui-tab.notebookbar {
 	color: var(--color-main-text);
 }
 
-.ui-tab.notebookbar[style*="block"] {
+.ui-tab.notebookbar[style*='block'] {
 	display: inline-flex !important;
 }
 
@@ -105,7 +105,7 @@ button.ui-tab.notebookbar {
 }
 
 #save.savemodified:after {
-	content: "";
+	content: '';
 	display: block;
 	width: 4px;
 	height: 4px;
@@ -123,7 +123,7 @@ button.ui-tab.notebookbar {
 	position: relative;
 }
 #File .unoSave.savemodified:after {
-	content: "";
+	content: '';
 	display: block;
 	width: 6px;
 	height: 6px;
@@ -163,7 +163,7 @@ button.ui-tab.notebookbar {
 #Open_Local_Editor img {
 	opacity: 0.8;
 }
-[data-theme="dark"] #Open_Local_Editor img {
+[data-theme='dark'] #Open_Local_Editor img {
 	filter: invert(1);
 }
 
@@ -614,58 +614,58 @@ button.ui-tab.notebookbar {
 	font-size: calc(var(--default-font-size) * 1.5);
 }
 
-[class*="as-odt-submenu-icon"] {
-	background: url("images/lc_downloadas-odt.svg") center;
+[class*='as-odt-submenu-icon'] {
+	background: url('images/lc_downloadas-odt.svg') center;
 }
 
-[class*="as-ods-submenu-icon"] {
-	background: url("images/lc_downloadas-ods.svg") center;
+[class*='as-ods-submenu-icon'] {
+	background: url('images/lc_downloadas-ods.svg') center;
 }
 
-[class*="as-odp-submenu-icon"] {
-	background: url("images/lc_downloadas-odp.svg") center;
+[class*='as-odp-submenu-icon'] {
+	background: url('images/lc_downloadas-odp.svg') center;
 }
 
-[class*="as-odg-submenu-icon"] {
-	background: url("images/lc_downloadas-odg.svg") center;
+[class*='as-odg-submenu-icon'] {
+	background: url('images/lc_downloadas-odg.svg') center;
 }
 
-[class*="as-rtf-submenu-icon"] {
-	background: url("images/lc_downloadas-rtf.svg") center;
+[class*='as-rtf-submenu-icon'] {
+	background: url('images/lc_downloadas-rtf.svg') center;
 }
 
-[class*="as-doc-submenu-icon"] {
-	background: url("images/lc_downloadas-doc.svg") center;
+[class*='as-doc-submenu-icon'] {
+	background: url('images/lc_downloadas-doc.svg') center;
 }
 
-[class*="as-docx-submenu-icon"] {
-	background: url("images/lc_downloadas-docx.svg") center;
+[class*='as-docx-submenu-icon'] {
+	background: url('images/lc_downloadas-docx.svg') center;
 }
 
-[class*="pdf-submenu-icon"] {
-	background: url("images/lc_exportpdf.svg") center;
+[class*='pdf-submenu-icon'] {
+	background: url('images/lc_exportpdf.svg') center;
 }
 
-[class*="epub-submenu-icon"] {
-	background: url("images/lc_exportepub.svg") center;
+[class*='epub-submenu-icon'] {
+	background: url('images/lc_exportepub.svg') center;
 }
 
-[class*="as-xls-submenu-icon"] {
-	background: url("images/lc_downloadas-xls.svg") center;
+[class*='as-xls-submenu-icon'] {
+	background: url('images/lc_downloadas-xls.svg') center;
 }
 
-[class*="as-xlsx-submenu-icon"] {
-	background: url("images/lc_downloadas-xlsx.svg") center;
+[class*='as-xlsx-submenu-icon'] {
+	background: url('images/lc_downloadas-xlsx.svg') center;
 }
 
-[class*="as-csv-submenu-icon"] {
-	background: url("images/lc_downloadas-csv.svg") center;
+[class*='as-csv-submenu-icon'] {
+	background: url('images/lc_downloadas-csv.svg') center;
 }
 
-[class*="as-ppt-submenu-icon"] {
-	background: url("images/lc_downloadas-ppt.svg") center;
+[class*='as-ppt-submenu-icon'] {
+	background: url('images/lc_downloadas-ppt.svg') center;
 }
 
-[class*="as-pptx-submenu-icon"] {
-	background: url("images/lc_downloadas-pptx.svg") center;
+[class*='as-pptx-submenu-icon'] {
+	background: url('images/lc_downloadas-pptx.svg') center;
 }

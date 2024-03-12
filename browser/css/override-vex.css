@@ -73,7 +73,7 @@
 	color: var(--color-main-text);
 }
 
-.slider > [id^="i-slide"] {
+.slider > [id^='i-slide'] {
 	display: inline-flex;
 	width: 14px;
 	height: 14px;
@@ -90,11 +90,11 @@
 	position: relative;
 	color: transparent;
 }
-.slider > [id^="i-slide"].active {
+.slider > [id^='i-slide'].active {
 	background: #444;
 }
-.slider > [id^="i-slide"]:focus,
-.slider > [id^="i-slide"]:hover {
+.slider > [id^='i-slide']:focus,
+.slider > [id^='i-slide']:hover {
 	background: #666;
 }
 
@@ -158,14 +158,14 @@
 	align-items: center;
 }
 #slide-1 #fig-slide1-l {
-	background: url("images/welcome/slide1-left.png") no-repeat center;
+	background: url('images/welcome/slide1-left.png') no-repeat center;
 	width: 68px;
 	height: 68px;
 	box-shadow: 0 0 8px 1px #00000040;
 	border-radius: 100%;
 }
 #slide-1 #fig-slide1-c {
-	background: url("images/welcome/slide1-center.png") no-repeat center;
+	background: url('images/welcome/slide1-center.png') no-repeat center;
 	width: 96px;
 	height: 96px;
 	box-shadow: 0 0 12px 1px #00000040;
@@ -173,17 +173,17 @@
 	margin: 42px 32px 0;
 }
 #slide-1 #fig-slide1-r {
-	background: url("images/welcome/slide1-right.png") no-repeat center;
+	background: url('images/welcome/slide1-right.png') no-repeat center;
 	width: 68px;
 	height: 68px;
 	box-shadow: 0 0 8px 1px #0000005e;
 	border-radius: 100%;
 }
 #slide-2 fig {
-	background: url("images/welcome/slide2.png") no-repeat center;
+	background: url('images/welcome/slide2.png') no-repeat center;
 }
 #slide-3 fig {
-	background: url("images/welcome/slide3.png") no-repeat center;
+	background: url('images/welcome/slide3.png') no-repeat center;
 	box-shadow: 0 0 8px 1px #e5e5e5;
 	width: 342px;
 	margin: 12px auto;

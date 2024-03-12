@@ -45,7 +45,7 @@
 .spreadsheet-tab.spreadsheet-tab-protected:hover > .lock {
 	width: 16px;
 	height: 16px;
-	background-image: url("images/lc_spreadsheet_protected.svg") !important;
+	background-image: url('images/lc_spreadsheet_protected.svg') !important;
 	background-repeat: no-repeat !important;
 }
 
@@ -197,7 +197,7 @@
 	margin-top: 0px;
 	width: 16px;
 	height: 16px;
-	background-image: url("images/cell-resize-marker.svg");
+	background-image: url('images/cell-resize-marker.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -205,7 +205,7 @@
 .spreadsheet-cell-autofill-marker {
 	margin-left: 0px;
 	margin-top: 0px;
-	background-image: url("images/cell-autofill-marker.svg");
+	background-image: url('images/cell-autofill-marker.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: crosshair;
@@ -216,7 +216,7 @@
 	margin-top: 0px;
 	width: 18px;
 	height: 17px;
-	background: url("images/drop-down-button.svg") center top/16px
+	background: url('images/drop-down-button.svg') center top/16px
 		var(--color-background-lighter) no-repeat;
 	border: 1px solid var(--color-border);
 	box-sizing: border-box;
