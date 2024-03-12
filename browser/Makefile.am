@@ -479,6 +479,13 @@ define run_eslint_check
 		--no-eslintrc $(1)
 endef
 
+define run_prettier_check
+	@$(NODE) node_modules/.bin/prettier \
+		--ignore-path $(srcdir)/browser/.prettierignore \
+		--ignore-path $(srcdir)/browser/.beforeprettier \
+		$(1)
+endef
+
 .PHONY: build-lool
 
 all-local: build-lool
@@ -552,11 +559,7 @@ $(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@mkdir -p $(dir $@)
 	@echo "Checking for admin JS errors..."
 	$(call run_eslint_check,--ignore-pattern $(LOOL_ADMIN_TS_JS) $(srcdir)/admin/src)
-	@$(NODE) node_modules/.bin/prettier \
-		--ignore-path $(srcdir)/browser/.prettierignore \
-		--ignore-path $(srcdir)/browser/.beforeprettier \
-		--debug-check \
-		$(srcdir)/admin/src
+	$(call run_prettier_check,--debug-check $(srcdir)/admin/src)
 	@awk 'FNR == 1 {print ""} 1' $(LOOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(LOOL_ADMIN_JS)) > $@
 
 
@@ -567,11 +570,7 @@ $(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DS
 	@if ! test "z$(LOOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(LOOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
 	@echo "Checking for lool JS errors..."
 	$(call run_eslint_check,$(srcdir)/src $(srcdir)/js)
-	@$(NODE) node_modules/.bin/prettier \
-		--ignore-path $(srcdir)/browser/.prettierignore \
-		--ignore-path $(srcdir)/browser/.beforeprettier \
-		--debug-check \
-		$(srcdir)/src
+	$(call run_prettier_check,--debug-check $(srcdir)/src $(srcdir)/js/global.js)
 	@echo "Bundling lool..."
 	$(call bundle_lool)
 
@@ -869,9 +868,9 @@ jsconfig: $(abs_srcdir)/jsconfig.json $(abs_srcdir)/admin/jsconfig.json
 build-tests: $(MOCHA_TS_JS_FILES)
 	@echo "Build of mocha test finished."
 
-eslint: $(COOL_ADMIN_TS_JS)
+eslint: $(LOOL_ADMIN_TS_JS)
 	$(call run_eslint_check,--max-warnings 0 \
-		--ignore-pattern $(COOL_ADMIN_TS_JS) \
+		--ignore-pattern $(LOOL_ADMIN_TS_JS) \
 		$(srcdir)/src \
 		$(srcdir)/js \
 		$(srcdir)/admin/src)
