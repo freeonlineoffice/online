@@ -875,6 +875,12 @@ eslint: $(LOOL_ADMIN_TS_JS)
 		$(srcdir)/js \
 		$(srcdir)/admin/src)
 
+prettier:
+	$(call run_prettier_check,--check \
+		$(srcdir)/src \
+		$(srcdir)/js \
+		$(srcdir)/admin/src)
+
 MOCHA_TEST_LOG = "`pwd`/mocha.log"
 DUPLICATION_TEST_LOG = "`pwd`/duplication.log"
 check-local: $(MOCHA_TS_JS_FILES)
