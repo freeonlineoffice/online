@@ -516,7 +516,7 @@ COMMON_PARAMS = \
 	--o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
 	--o:admin_console.username=admin --o:admin_console.password=admin
 
-run: prettier-write setup-wsd
+run: setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
 			--o:security.capabilities="$(CAPABILITIES)" \
 			--o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
@@ -656,12 +656,7 @@ prettier: browser/node_modules
 	@make -C browser prettier
 
 prettier-write: browser/node_modules
-	browser/node_modules/.bin/prettier \
-		--config browser/.prettierrc \
-		--ignore-path browser/.prettierignore \
-		--ignore-path browser/.beforeprettier \
-		--write \
-		browser/src browser/js browser/admin/src
+	@make -C browser prettier-write
 
 install-exec-hook:
 	cd $(DESTDIR)$(bindir) && \
