@@ -1,14 +1,14 @@
 :root {
 	/*All used fonts (except w2ui)
 	----------------------------------*/
-	--lool-font: "Segoe UI", Tahoma, Arial, Helvetica, sans-serif;
+	--lool-font: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
 	/*investigate what are the drawback in consisntly use --lool-fonts
 	for jquery-ui and perhaps mobile*/
 	--mobile-font: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
 	--jquery-ui-font: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
 
-	--docs-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	--docs--pre-font: "Consolas", "Menlo", "Lucida Console", "Courier New",
+	--docs-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--docs--pre-font: 'Consolas', 'Menlo', 'Lucida Console', 'Courier New',
 		monospace;
 
 	/* Shared color for cell and selection border */
@@ -176,13 +176,13 @@
 
 .bucket-cursor {
 	cursor:
-		url("images/cursors/fill.png") 4 18,
+		url('images/cursors/fill.png') 4 18,
 		auto !important; /*setting coordinates to align the tip of the brush icon */
 }
 .lool-scrollbar-show {
 	opacity: 1 !important;
-	filter: "alpha(opacity=100)" !important;
-	-ms-filter: "alpha(opacity=100)" !important;
+	filter: 'alpha(opacity=100)' !important;
+	-ms-filter: 'alpha(opacity=100)' !important;
 }
 
 .table-column-resize-marker {
@@ -190,7 +190,7 @@
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/table-column-resize-marker.svg");
+	background-image: url('images/table-column-resize-marker.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: col-resize;
@@ -201,7 +201,7 @@
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/table-column-resize-marker-hover.svg");
+	background-image: url('images/table-column-resize-marker-hover.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: col-resize;
@@ -212,7 +212,7 @@
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/table-row-resize-marker.svg");
+	background-image: url('images/table-row-resize-marker.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: row-resize;
@@ -223,7 +223,7 @@
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/table-row-resize-marker-hover.svg");
+	background-image: url('images/table-row-resize-marker-hover.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: row-resize;
@@ -233,13 +233,13 @@
 	margin: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background: url("images/table-row-or-column-select-marker.svg") no-repeat
+	background: url('images/table-row-or-column-select-marker.svg') no-repeat
 		center center / 12px;
 	cursor: pointer;
 }
 
 .table-select-marker::before {
-	content: "";
+	content: '';
 	position: absolute;
 	z-index: 0;
 }
@@ -257,7 +257,7 @@
 }
 
 .table-select-marker:hover {
-	background: url("images/table-row-or-column-select-marker-selected.svg")
+	background: url('images/table-row-or-column-select-marker-selected.svg')
 		no-repeat center center / 12px;
 }
 
@@ -270,7 +270,7 @@
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/table-move-marker.svg");
+	background-image: url('images/table-move-marker.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	cursor: move;
@@ -382,7 +382,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	top: 16px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background: url("images/baseline-edit-24px.svg") no-repeat center !important;
+	background: url('images/baseline-edit-24px.svg') no-repeat center !important;
 	transform: rotate(0deg);
 	transition: transform 0.5s;
 }
@@ -420,7 +420,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 .lool-character {
 	table-layout: fixed;
 	font:
-		17px/1.5 "Helvetica Neue",
+		17px/1.5 'Helvetica Neue',
 		Arial,
 		Helvetica,
 		sans-serif;
@@ -436,7 +436,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	margin-top: 0px;
 	width: var(--btn-size);
 	height: var(--btn-size);
-	background-image: url("images/note.svg");
+	background-image: url('images/note.svg');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	outline: none;
@@ -468,11 +468,11 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
  * will try to load its own font file which is not available in dist/ */
 .context-menu-icon::before {
 	font-family: var(--lool-font) !important;
-	content: "\2713";
+	content: '\2713';
 	color: var(--color-main-text) !important;
 }
 .context-menu-icon-lo-checkmark:before {
-	content: "\2713";
+	content: '\2713';
 }
 
 .context-menu-hover {
@@ -491,14 +491,14 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 
 /* With RTL write direction the arrow of the context menu's submenu should be flipped */
 
-[dir="rtl"] .context-menu-submenu:after {
+[dir='rtl'] .context-menu-submenu:after {
 	right: unset;
 	left: 0.5em;
 	border-color: transparent #2f2f2f transparent transparent;
 	border-width: 0.25em 0.25em 0.25em 0;
 }
 
-[dir="rtl"] .context-menu-submenu.context-menu-hover:after {
+[dir='rtl'] .context-menu-submenu.context-menu-hover:after {
 	border-color: transparent var(--color-background-lighter) transparent
 		transparent;
 }
@@ -582,7 +582,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	top: -15px;
 }
 
-.tracked-deleted-comment-show .cool-annotation-menubar {
+.tracked-deleted-comment-show .lool-annotation-menubar {
 	display: none;
 }
 
@@ -672,7 +672,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	box-sizing: border-box;
 	width: 32px; /* Width of new image */
 	height: 32px; /* Height of new image */
-	background: url("images/user.svg") center 3px no-repeat;
+	background: url('images/user.svg') center 3px no-repeat;
 }
 
 .leaflet-container .leaflet-pane.leaflet-calc-background-pane {
@@ -717,16 +717,16 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 .lool-redline-accept-button {
-	background: url("images/lc_acceptchanges.svg") no-repeat center !important;
+	background: url('images/lc_acceptchanges.svg') no-repeat center !important;
 }
 
 .lool-redline-reject-button {
-	background: url("images/lc_rejecttrackedchange.svg") no-repeat center !important;
+	background: url('images/lc_rejecttrackedchange.svg') no-repeat center !important;
 }
 
 .lool-annotation-menu,
 .lool-annotation-menu-redline {
-	background: url("images/submenu.svg") no-repeat center/contain !important;
+	background: url('images/submenu.svg') no-repeat center/contain !important;
 }
 
 .lool-annotation-menu:hover,
@@ -837,7 +837,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 .lool-control-scroll-up,
 .lool-control-scroll-down {
 	font:
-		bold 18px "Lucida Console",
+		bold 18px 'Lucida Console',
 		Monaco,
 		monospace;
 	text-indent: 1px;
@@ -873,7 +873,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	border-bottom-right-radius: var(--border-radius);
 }
 
-.lokdialog.ui-dialog-content [Id$="Page"] {
+.lokdialog.ui-dialog-content [Id$='Page'] {
 	grid-column-gap: 24px;
 }
 
@@ -1100,7 +1100,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 #datepicker .ui-datepicker-next span {
-	background-image: url("images/lc_nextrecord.svg");
+	background-image: url('images/lc_nextrecord.svg');
 }
 
 #datepicker .ui-icon-circle-triangle-e {
@@ -1108,7 +1108,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 #datepicker .ui-datepicker-prev span {
-	background-image: url("images/lc_prevrecord.svg");
+	background-image: url('images/lc_prevrecord.svg');
 }
 
 #datepicker .ui-icon-circle-triangle-w {
