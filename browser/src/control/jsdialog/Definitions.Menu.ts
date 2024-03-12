@@ -87,8 +87,14 @@ menuDefinitions.set('Menu Statistic', [
 ] as Array<MenuDefinition>);
 
 menuDefinitions.set('FormatSparklineMenu', [
-	{ text: _UNO('.uno:InsertSparkline', 'spreadsheet'), uno: 'InsertSparkline' },
-	{ text: _UNO('.uno:DeleteSparkline', 'spreadsheet'), uno: 'DeleteSparkline' },
+	{
+		text: _UNO('.uno:InsertSparkline', 'spreadsheet'),
+		uno: 'InsertSparkline',
+	},
+	{
+		text: _UNO('.uno:DeleteSparkline', 'spreadsheet'),
+		uno: 'DeleteSparkline',
+	},
 	{
 		text: _UNO('.uno:DeleteSparklineGroup', 'spreadsheet'),
 		uno: 'DeleteSparklineGroup',
@@ -98,7 +104,10 @@ menuDefinitions.set('FormatSparklineMenu', [
 		uno: 'EditSparklineGroup',
 	},
 	{ text: _UNO('.uno:EditSparkline', 'spreadsheet'), uno: 'EditSparkline' },
-	{ text: _UNO('.uno:GroupSparklines', 'spreadsheet'), uno: 'GroupSparklines' },
+	{
+		text: _UNO('.uno:GroupSparklines', 'spreadsheet'),
+		uno: 'GroupSparklines',
+	},
 	{
 		text: _UNO('.uno:UngroupSparklines', 'spreadsheet'),
 		uno: 'UngroupSparklines',
@@ -110,7 +119,10 @@ menuDefinitions.set('MenuPrintRanges', [
 		text: _UNO('.uno:DefinePrintArea', 'spreadsheet'),
 		uno: '.uno:DefinePrintArea',
 	},
-	{ text: _UNO('.uno:AddPrintArea', 'spreadsheet'), uno: '.uno:AddPrintArea' },
+	{
+		text: _UNO('.uno:AddPrintArea', 'spreadsheet'),
+		uno: '.uno:AddPrintArea',
+	},
 	{
 		text: _UNO('.uno:EditPrintArea', 'spreadsheet'),
 		uno: '.uno:EditPrintArea',
@@ -200,8 +212,14 @@ menuDefinitions.set('FormatBulletsMenu', [
 	{ type: 'separator' },
 	{ text: _UNO('.uno:DecrementLevel', 'text'), uno: 'DecrementLevel' },
 	{ text: _UNO('.uno:IncrementLevel', 'text'), uno: 'IncrementLevel' },
-	{ text: _UNO('.uno:DecrementSubLevels', 'text'), uno: 'DecrementSubLevels' },
-	{ text: _UNO('.uno:IncrementSubLevels', 'text'), uno: 'IncrementSubLevels' },
+	{
+		text: _UNO('.uno:DecrementSubLevels', 'text'),
+		uno: 'DecrementSubLevels',
+	},
+	{
+		text: _UNO('.uno:IncrementSubLevels', 'text'),
+		uno: 'IncrementSubLevels',
+	},
 	{ type: 'separator' },
 	{ text: _UNO('.uno:MoveDown', 'text'), uno: 'MoveDown' },
 	{ text: _UNO('.uno:MoveUp', 'text'), uno: 'MoveUp' },
@@ -316,7 +334,10 @@ menuDefinitions.set('ConditionalFormatMenu', [
 				uno: '.uno:ConditionalFormatEasy?FormatRule:short=6',
 			},
 			{ type: 'separator' },
-			{ text: _('More conditions...'), uno: '.uno:ConditionalFormatDialog' },
+			{
+				text: _('More conditions...'),
+				uno: '.uno:ConditionalFormatDialog',
+			},
 		],
 	},
 	{ type: 'separator' },

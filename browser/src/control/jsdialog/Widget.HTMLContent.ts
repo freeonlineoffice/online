@@ -27,7 +27,10 @@ var getHtmlFromId = function (
 	closeCallback: EventListenerOrEventListenerObject,
 ) {
 	if (id === 'iconset')
-		return (window as any).getConditionalFormatMenuHtml('iconsetoverlay', true);
+		return (window as any).getConditionalFormatMenuHtml(
+			'iconsetoverlay',
+			true,
+		);
 	else if (id === 'scaleset')
 		return (window as any).getConditionalColorScaleMenuHtml(
 			'iconsetoverlay',
