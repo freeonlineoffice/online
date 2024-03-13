@@ -418,6 +418,10 @@ static int createLibreOfficeKit(const std::string& childRoot,
         {
             // Child
 
+            // sort out thread local variables to get logging right from
+            // as early as possible.
+            Util::setThreadName("kit_spare_" + Util::encodeId(spareKitId, 3));
+
             // Close the pipe from loolwsd
             close(0);
 
