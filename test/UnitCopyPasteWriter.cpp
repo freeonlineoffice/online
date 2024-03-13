@@ -19,7 +19,7 @@
 
 #include <common/JsonUtil.hpp>
 #include <net/WebSocketSession.hpp>
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 #include <wsd/ClientSession.hpp>
 
 #include <HttpRequest.hpp>
@@ -33,7 +33,7 @@ std::shared_ptr<ClientSession> getChildSession(size_t session)
     std::shared_ptr<DocumentBroker> broker;
     std::shared_ptr<ClientSession> clientSession;
 
-    std::vector<std::shared_ptr<DocumentBroker>> brokers = COOLWSD::getBrokersTestOnly();
+    std::vector<std::shared_ptr<DocumentBroker>> brokers = LOOLWSD::getBrokersTestOnly();
     assert(brokers.size() > 0);
     broker = brokers[0];
     auto sessions = broker->getSessionsTestOnlyUnsafe();
