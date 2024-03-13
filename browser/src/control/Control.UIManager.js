@@ -1,10 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
 /*
  * L.Control.UIManager - initializes the UI elements like toolbars, menubar or ruler
-			 and allows to controll them (show/hide)
+ *			 and allows to controll them (show/hide)
  */
 
-/* global app lool $ setupToolbar w2ui toolbarUpMobileItems _ Hammer JSDialog */
+/* global app $ setupToolbar w2ui toolbarUpMobileItems _ Hammer JSDialog */
 L.Control.UIManager = L.Control.extend({
 	mobileWizard: null,
 	documentNameInput: null,
@@ -1196,9 +1196,6 @@ L.Control.UIManager = L.Control.extend({
 	},
 
 	isAnyDialogOpen: function() {
-		if (lool.Comment.isAnyEdit())
-			return true;
-
 		if (this.map.jsdialog)
 			return this.map.jsdialog.hasDialogOpened();
 		else
