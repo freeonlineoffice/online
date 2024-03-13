@@ -612,7 +612,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 										'accessibility': { focusBack: true, combination: 'FW', de: null }
 									},
 									{
-										'id': 'home-char-back-color',
+										'id': 'home-char-back-color:ColorPickerMenu',
+										'noLabel': true,
 										'class': 'unospan-BackColor',
 										'type': 'toolitem',
 										'text': _UNO('.uno:CharBackColor'),
@@ -620,7 +621,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 										'accessibility': { focusBack: true, combination: 'BC', de: null }
 									},
 									{
-										'id': 'home-color',
+										'id': 'home-color:ColorPickerMenu',
+										'noLabel': true,
 										'class': 'unospan-FontColor',
 										'type': 'toolitem',
 										'text': _UNO('.uno:Color'),
@@ -854,7 +856,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'toolbox',
 						'children': [
 							{
-								'id': 'home-xline-color',
+								'id': 'home-xline-color:ColorPickerMenu',
+								'noLabel': true,
 								'class': 'unospan-XLineColor',
 								'type': 'toolitem',
 								'text': _UNO('.uno:XLineColor'),
@@ -867,7 +870,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'toolbox',
 						'children': [
 							{
-								'id': 'home-fill-color',
+								'id': 'home-fill-color:ColorPickerMenu',
+								'noLabel': true,
 								'class': 'unospan-BackgroundColor',
 								'type': 'toolitem',
 								'text': _UNO('.uno:FillColor'),
