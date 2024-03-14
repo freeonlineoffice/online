@@ -13,6 +13,7 @@
 #include <cstring>
 #include <iostream>
 #include <thread>
+#include <memory>
 #include <assert.h>
 
 #include <Poco/Net/HTMLForm.h>
