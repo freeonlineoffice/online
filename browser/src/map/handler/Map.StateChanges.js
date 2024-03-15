@@ -55,7 +55,7 @@ L.Map.StateChangeHandler = L.Handler.extend({
 		}
 
 		if (e.commandName === '.uno:StartWithPresentation' && (state === true || state === 'true')) {
-			let startPresentationParam = window.coolParams.get('startPresentation');
+			let startPresentationParam = window.loolParams.get('startPresentation');
 			if (startPresentationParam === '' || startPresentationParam === 'true' || startPresentationParam === '1') {
 
 				this._map.dispatch('presentation');
