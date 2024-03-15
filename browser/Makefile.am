@@ -330,7 +330,7 @@ LOOL_JS_LST =\
 	src/control/Control.Selection.js \
 	src/control/Control.LokDialog.js \
 	src/control/Control.AlertDialog.js \
-	src/control/ColorPicker.js \
+	src/control/ColorPicker.ts \
 	src/control/jsdialog/Definitions.Menu.ts \
 	src/control/jsdialog/Util.Dropdown.js \
 	src/control/jsdialog/Util.FocusCycle.js \
@@ -752,7 +752,7 @@ pot:
 		admin/src/Util.js \
 		js/global.js \
 		js/w2ui-1.5.js \
-		src/control/ColorPicker.js \
+		src/control/ColorPicker.ts \
 		src/control/Control.AlertDialog.js \
 		src/control/Control.Command.js \
 		src/control/Control.ContextMenu.js \
