@@ -75,7 +75,7 @@ class IdleHandler {
 		// but unfortunatly that causes problem in _deactivate and unnecessary 'userinactive' message is sent
 		if (window.mode.isDesktop()
 		&& !this.map.uiManager.isAnyDialogOpen()
-		&& !cool.Comment.isAnyEdit()
+		&& !lool.Comment.isAnyEdit()
 		&& $('input:focus').length === 0) {
 			this.map.focus();
 		}
