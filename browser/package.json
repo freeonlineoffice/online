@@ -17,7 +17,7 @@
     "browserify": "17.0.0",
     "browserify-css": "0.15.0",
     "canvas": "^2.11.2",
-    "d3": "7.8.5",
+    "d3": "7.9.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "fzstd": "0.1.1",
