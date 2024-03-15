@@ -819,7 +819,7 @@ std::string Admin::getLogLines()
 
     try {
         int lineCount = 500;
-        std::string fName = LOOLWSD::getPathFromConfig("logging.file.property[0]");
+        static const std::string fName = LOOLWSD::getPathFromConfig("logging.file.property[0]");
         std::ifstream infile(fName);
 
         std::string line;
@@ -1096,10 +1096,13 @@ void Admin::connectToMonitorSync(const std::string &uri)
     }
 
     LOG_TRC("Add monitor " << uri);
-    if (LOOLWSD::getConfigValue<bool>("admin_console.logging.monitor_connect", true))
+    static const bool logMonitorConnect =
+        LOOLWSD::getConfigValue<bool>("admin_console.logging.monitor_connect", true);
+    if (logMonitorConnect)
     {
         LOG_ANY("Connected to remote monitor with uri [" << uriWithoutParam << ']');
     }
+
     auto handler = std::make_shared<MonitorSocketHandler>(this, uri);
     _monitorSockets.insert({uriWithoutParam, handler});
     insertNewWebSocketSync(Poco::URI(uri), handler);
@@ -1138,8 +1141,12 @@ void Admin::sendMetrics(const std::shared_ptr<StreamSocket>& socket, const std::
     getMetrics(oss);
     socket->send(oss.str());
     socket->shutdown();
-    bool skipAuthentication = LOOLWSD::getConfigValue<bool>("security.enable_metrics_unauthenticated", false);
-    bool showLog = LOOLWSD::getConfigValue<bool>("admin_console.logging.metrics_fetch", true);
+
+
+    static bool skipAuthentication =
+        LOOLWSD::getConfigValue<bool>("security.enable_metrics_unauthenticated", false);
+    static bool showLog =
+        LOOLWSD::getConfigValue<bool>("admin_console.logging.metrics_fetch", true);
     if (!skipAuthentication && showLog)
     {
         LOG_ANY("Metrics endpoint has been accessed by source IPAddress [" << socket->clientAddress() << ']');
