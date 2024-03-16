@@ -688,9 +688,6 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
                 }
             }
 
-            response.set("Server", HTTP_SERVER_STRING);
-            response.set("Date", Util::getHttpTimeNow());
-
 #if !MOBILEAPP
             if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled &&
                 relPath.find("wasm") != std::string::npos)
@@ -1519,8 +1516,6 @@ void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,
     // No referrer-policy
     httpResponse.add("Referrer-Policy", "no-referrer");
     httpResponse.add("X-Content-Type-Options", "nosniff");
-    httpResponse.set("Server", HTTP_SERVER_STRING);
-    httpResponse.set("Date", Util::getHttpTimeNow());
 
     httpResponse.setBody(std::move(templateWelcome));
     socket->send(httpResponse);
