@@ -263,14 +263,7 @@ public:
 #endif
 
     /// Gets our fast cache of the socket buffer size
-    int getSendBufferSize() const
-    {
-#if !MOBILEAPP
-        return _sendBufferSize;
-#else
-        return INT_MAX; // We want to always send a single record in one go
-#endif
-    }
+    int getSendBufferSize() const { return (Util::isMobileApp() ? INT_MAX : _sendBufferSize); }
 
 #if !MOBILEAPP
     /// Sets the receive buffer size in bytes.
@@ -615,7 +608,7 @@ public:
     {
         LOG_DBG("Stopping SocketPoll thread " << _name);
         _stop = true;
-#if MOBILEAPP
+        if (!Util::isMobileApp())
         {
             // We don't want to risk some callbacks in _newCallbacks being invoked when we start
             // running a thread for this SocketPoll again.
@@ -626,7 +619,6 @@ public:
                 _newCallbacks.clear();
             }
         }
-#endif
         wakeup();
     }
 
@@ -1287,12 +1279,10 @@ public:
     /// buffer for an optimal transmission.
     int getSendBufferCapacity() const
     {
-#if !MOBILEAPP
+        if (Util::isMobileApp())
+            return INT_MAX; // We want to always send a single record in one go
         const int capacity = getSendBufferSize();
         return std::max<int>(0, capacity - _outBuffer.size());
-#else
-        return INT_MAX; // We want to always send a single record in one go
-#endif
     }
 
 protected:

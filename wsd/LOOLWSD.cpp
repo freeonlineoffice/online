@@ -371,11 +371,12 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
     }
 }
 
-#if !MOBILEAPP
 /// Internal implementation to alert all clients
 /// connected to any document.
 void LOOLWSD::alertAllUsersInternal(const std::string& msg)
 {
+    if (Util::isMobileApp())
+        return;
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
 
     LOG_INF("Alerting all users: [" << msg << ']');
@@ -392,6 +393,8 @@ void LOOLWSD::alertAllUsersInternal(const std::string& msg)
 
 void LOOLWSD::alertUserInternal(const std::string& dockey, const std::string& msg)
 {
+    if (Util::isMobileApp())
+        return;
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
 
     LOG_INF("Alerting document users with dockey: [" << dockey << ']' << " msg: [" << msg << ']');
@@ -403,7 +406,6 @@ void LOOLWSD::alertUserInternal(const std::string& dockey, const std::string& ms
             docBroker->addCallback([msg, docBroker](){ docBroker->alertAllUsers(msg); });
     }
 }
-#endif
 
 void LOOLWSD::writeTraceEventRecording(const char *data, std::size_t nbytes)
 {
@@ -1926,12 +1928,10 @@ private:
 
 void LOOLWSD::innerInitialize(Application& self)
 {
-#if !MOBILEAPP
-    if (geteuid() == 0 && CheckLoolUser)
+    if (!Util::isMobileApp() && geteuid() == 0 && CheckLoolUser)
     {
         throw std::runtime_error("Do not run as root. Please run as lool user.");
     }
-#endif
 
     Util::setApplicationPath(Poco::Path(Application::instance().commandPath()).parent().toString());
 
@@ -2950,7 +2950,8 @@ void LOOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessio
 
 void LOOLWSD::defineOptions(OptionSet& optionSet)
 {
-#if !MOBILEAPP
+    if (Util::isMobileApp())
+        return;
     ServerApplication::defineOptions(optionSet);
 
     optionSet.addOption(Option("help", "", "Display help information on command line arguments.")
@@ -3039,10 +3040,6 @@ void LOOLWSD::defineOptions(OptionSet& optionSet)
     optionSet.addOption(Option("forcecaching", "", "Force HTML & asset caching even in debug mode: accelerates cypress.")
                         .required(false)
                         .repeatable(false));
-#endif
-
-#else
-    (void) optionSet;
 #endif
 }
 
@@ -3668,9 +3665,8 @@ private:
 
             auto child = std::make_shared<ChildProcess>(pid, jailId, socket, request);
 
-#if !MOBILEAPP
-            UnitWSD::get().newChild(child);
-#endif
+            if (!Util::isMobileApp())
+                UnitWSD::get().newChild(child);
 
             _pid = pid;
             _socketFD = socket->getFD();

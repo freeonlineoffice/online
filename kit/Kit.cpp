@@ -167,8 +167,6 @@ static int URPfromLoFDs[2] { -1, -1 };
 // socket buffer & event processing in a single, thread.
 bool pushToMainThread(LibreOfficeKitCallback cb, int type, const char *p, void *data);
 
-#if !MOBILEAPP
-
 static LokHookFunction2* initFunction = nullptr;
 
 namespace
@@ -203,7 +201,7 @@ namespace
         consistencyCheckJail();
     }
 
-#ifndef BUILDING_TESTS
+#if !defined(BUILDING_TESTS) && !MOBILEAPP
     enum class LinkOrCopyType
     {
         All,
@@ -682,8 +680,6 @@ namespace
 #endif // BUILDING_TESTS
 } // namespace
 
-#endif // !MOBILEAPP
-
 Document::Document(const std::shared_ptr<lok::Office>& loKit,
                    const std::string& jailId,
                    const std::string& docKey,
@@ -826,13 +822,11 @@ std::size_t Document::purgeSessions()
         }
 
         num_sessions = _sessions.size();
-#if !MOBILEAPP
-        if (num_sessions == 0)
+        if (!Util::isMobileApp() && num_sessions == 0)
         {
             LOG_FTL("Document [" << anonymizeUrl(_url) << "] has no more views, exiting bluntly.");
             flushAndExit(EX_OK);
         }
-#endif
     }
 
     if (deadSessions.size() > 0 )
@@ -1240,13 +1234,11 @@ void Document::onUnload(const ChildSession& session)
     int viewCount = _loKitDocument->getViewsCount();
     if (viewCount == 1)
     {
-#if !MOBILEAPP
-        if (_sessions.empty())
+        if (!Util::isMobileApp() && _sessions.empty())
         {
             LOG_INF("Document [" << anonymizeUrl(_url) << "] has no more views, exiting bluntly.");
             flushAndExit(EX_OK);
         }
-#endif
         LOG_INF("Document [" << anonymizeUrl(_url) << "] has no more views, but has " <<
                 _sessions.size() << " sessions still. Destroying the document.");
 #ifdef __ANDROID__
@@ -1534,9 +1526,8 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
     const bool accessibilityState = session->getAccessibilityState();
     const std::string& userTimezone = session->getTimezone();
 
-#if !MOBILEAPP
-    consistencyCheckFileExists(uri);
-#endif
+    if (!Util::isMobileApp())
+        consistencyCheckFileExists(uri);
 
     std::string options;
     if (!lang.empty())
@@ -2001,16 +1992,14 @@ void Document::drainQueue()
     catch (const std::exception& exc)
     {
         LOG_FTL("drainQueue: Exception: " << exc.what());
-#if !MOBILEAPP
-        flushAndExit(EX_SOFTWARE);
-#endif
+        if (!Util::isMobileApp())
+            flushAndExit(EX_SOFTWARE);
     }
     catch (...)
     {
         LOG_FTL("drainQueue: Unknown exception");
-#if !MOBILEAPP
-        flushAndExit(EX_SOFTWARE);
-#endif
+        if (!Util::isMobileApp())
+            flushAndExit(EX_SOFTWARE);
     }
 }
 
@@ -2026,7 +2015,6 @@ std::shared_ptr<lok::Document> Document::getLOKitDocument()
     return _loKitDocument;
 }
 
-#if !MOBILEAPP
     /// Stops theads, flushes buffers, and exits the process.
 void Document::flushAndExit(int code)
 {
@@ -2037,7 +2025,6 @@ void Document::flushAndExit(int code)
     else
         SigUtil::setTerminationFlag();
 }
-#endif
 
 void Document::dumpState(std::ostream& oss)
 {
@@ -2191,7 +2178,7 @@ void TraceEvent::emitOneRecording(const std::string &recording)
     addRecording(recording, false);
 }
 
-#elif !MOBILEAPP
+#else
 
 void flushTraceEventRecordings()
 {
@@ -2350,16 +2337,17 @@ int KitSocketPoll::kitPoll(int timeoutMicroS)
     if (_document)
         _document->trimAfterInactivity();
 
-#if !MOBILEAPP
-    flushTraceEventRecordings();
-
-    if (_document && _document->purgeSessions() == 0)
+    if (!Util::isMobileApp())
     {
-        LOG_INF("Last session discarded. Setting TerminationFlag");
-        SigUtil::setTerminationFlag();
-        return -1;
+        flushTraceEventRecordings();
+
+        if (_document && _document->purgeSessions() == 0)
+        {
+            LOG_INF("Last session discarded. Setting TerminationFlag");
+            SigUtil::setTerminationFlag();
+            return -1;
+        }
     }
-#endif
     // Report the number of events we processed.
     return eventsSignalled;
 }
@@ -3039,8 +3027,6 @@ void runKitLoopInAThread()
 
 #endif // !BUILDING_TESTS
 
-#if !MOBILEAPP
-
 void consistencyCheckJail()
 {
     static bool warned = false;
@@ -3073,8 +3059,6 @@ void consistencyCheckJail()
             LOG_TRC("Passed system consistency check");
     }
 }
-
-#endif // !MOBILEAPP
 
 /// Fetch the latest montonically incrementing wire-id
 TileWireId getCurrentWireId(bool increment)

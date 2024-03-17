@@ -555,14 +555,15 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         if (LOOLWSD::EnableTraceEventLogging)
             sendTextFrame("enabletraceeventlogging yes");
 
-        #if !MOBILEAPP
+        if (!Util::isMobileApp())
+        {
             // If it is not mobile, it must be Linux (for now).
             std::string osVersionInfo(LOOLWSD::getConfigValue<std::string>("per_view.custom_os_info", ""));
             if (osVersionInfo.empty())
                 osVersionInfo = Util::getLinuxVersion();
 
             sendTextFrame(std::string("osinfo ") + osVersionInfo);
-        #endif
+        }
 
         // Send clipboard key
         rotateClipboardKey(true);
@@ -1678,9 +1679,8 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
 
     const bool isConvertTo = static_cast<bool>(_saveAsSocket);
 
-#if !MOBILEAPP
-    LOOLWSD::dumpOutgoingTrace(docBroker->getJailId(), getId(), firstLine);
-#endif
+    if (!Util::isMobileApp())
+        LOOLWSD::dumpOutgoingTrace(docBroker->getJailId(), getId(), firstLine);
 
     const auto& tokens = payload->tokens();
     if (tokens.equals(0, "unocommandresult:"))
