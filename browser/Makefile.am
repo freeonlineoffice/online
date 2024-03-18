@@ -333,6 +333,7 @@ LOOL_JS_LST =\
 	src/control/ColorPicker.ts \
 	src/control/jsdialog/Definitions.Menu.ts \
 	src/control/jsdialog/Util.Dropdown.js \
+	src/control/jsdialog/Util.Events.ts \
 	src/control/jsdialog/Util.FocusCycle.js \
 	src/control/jsdialog/Util.ModalHelper.js \
 	src/control/jsdialog/Util.StateChange.ts \
@@ -795,6 +796,7 @@ pot:
 		src/control/Toolbar.js \
 		src/control/jsdialog/Definitions.Menu.ts \
 		src/control/jsdialog/Util.Dropdown.js \
+		src/control/jsdialog/Util.Events.ts \
 		src/control/jsdialog/Util.FocusCycle.js \
 		src/control/jsdialog/Util.ModalHelper.js \
 		src/control/jsdialog/Util.StateChange.ts \
