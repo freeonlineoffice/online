@@ -13,7 +13,9 @@ export class ScrollSection extends CanvasSectionObject {
 	pendingScrollEvent: any = null;
 	stepByStepScrolling: boolean = false; // quick scroll will move "page up/down" not "jump to"
 
-	constructor () {
+	isRTL: () => boolean;
+
+	constructor (isRTL?: () => boolean) {
 		super({
 			name: L.CSections.Scroll.name,
 			anchor: [],
@@ -31,6 +33,8 @@ export class ScrollSection extends CanvasSectionObject {
 		this.sectionProperties = {};
 
 		this.map = L.Map.THIS;
+
+		this.isRTL = isRTL ?? (() => false);
 
 		this.map.on('scrollto', this.onScrollTo, this);
 		this.map.on('scrollby', this.onScrollBy, this);
@@ -693,6 +697,10 @@ export class ScrollSection extends CanvasSectionObject {
 	}
 
 	public scrollHorizontalWithOffset (offset: number): void {
+		if (this.isRTL()) {
+			offset = -offset;
+		}
+
 		var go = true;
 		if (offset > 0) {
 			if (this.documentTopLeft[0] + offset > this.sectionProperties.xMax)
@@ -1054,6 +1062,6 @@ export class ScrollSection extends CanvasSectionObject {
 
 }
 
-L.getNewScrollSection = function () {
-	return new lool.ScrollSection();
+L.getNewScrollSection = function (isRTL?: () => boolean) {
+	return new lool.ScrollSection(isRTL);
 };
