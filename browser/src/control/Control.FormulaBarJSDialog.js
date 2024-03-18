@@ -1,19 +1,31 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.FormulaBarJSDialog
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-/* global _ _UNO UNOKey */
-L.Control.FormulaBarJSDialog = L.Control.extend({
-	container: null,
-	builder: null,
+/*
+ * JSDialog.FormulaBar - implementation of formulabar toolbar
+ */
 
-	onAdd: function (map) {
+/* global JSDialog _ _UNO UNOKey */
+
+class FormulaBar {
+	constructor(map) {
 		this.map = map;
+		this.parentContainer = L.DomUtil.get('formulabar');
 
 		this.map.on('formulabar', this.onFormulaBar, this);
 		this.map.on('jsdialogupdate', this.onJSUpdate, this);
 		this.map.on('jsdialogaction', this.onJSAction, this);
+
+		this.map.on('doclayerinit', this.onDocLayerInit, this);
+		this.map.on('updatepermission', this.onUpdatePermission, this);
+		this.map.on('celladdress', this.onCellAddress, this);
 
 		this.builder = new L.control.jsDialogBuilder(
 			{
@@ -22,17 +34,72 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 				cssClass: 'formulabar jsdialog',
 				callback: this.callback.bind(this)
 			});
-	},
 
-	onRemove: function() {
+		this.createFormulabar('');
+	}
+
+	onRemove() {
 		this.map.off('formulabar', this.onFormulaBar, this);
 		this.map.off('jsdialogupdate', this.onJSUpdate, this);
 		this.map.off('jsdialogaction', this.onJSAction, this);
-	},
 
-	createFormulabar: function(text) {
+		this.map.off('doclayerinit', this.onDocLayerInit, this);
+		this.map.off('updatepermission', this.onUpdatePermission, this);
+		this.map.off('celladdress', this.onCellAddress, this);
+	}
+
+	onDocLayerInit() {
+		var docType = this.map.getDocType();
+		if (docType == 'spreadsheet')
+			this.showFormulabar();
+	}
+
+	onUpdatePermission(e) {
+		var adressInput = L.DomUtil.get('addressInput');
+
+		if (e.perm === 'edit') {
+			if (adressInput)
+				adressInput.removeAttribute('disabled');
+			this.enable();
+		} else {
+			if (adressInput)
+				adressInput.setAttribute('disabled', '');
+			this.disable();
+		}
+	}
+
+	onCellAddress (e) {
+		var adressInput = L.DomUtil.get('addressInput');
+		if (adressInput && document.activeElement !== adressInput) {
+			// if the user is not editing the address field
+			adressInput.value = e.address;
+		}
+		this.map.formulabarSetDirty();
+	}
+
+	onAddressInputChange() {
+		// address control should not have focus anymore
+		L.DomUtil.get('addressInput').blur();
+		this.map.focus();
+		var value = L.DomUtil.get('addressInput').value;
+		var command = {
+			ToPoint : {
+				type: 'string',
+				value: value
+			}
+
+		};
+		this.map.sendUnoCommand('.uno:GoToCell', command);
+	}
+
+	createFormulabar(text) {
 		if (!window.mode.isMobile()) {
 			var data = [
+				{
+					id: 'addressInput',
+					type: 'edit',
+					text: _('cell address')
+				},
 				{
 					id: 'formulabar-toolbox',
 					type: 'toolbox',
@@ -82,6 +149,11 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 		} else {
 			var data = [
 				{
+					id: 'addressInput',
+					type: 'edit',
+					text: _('cell address')
+				},
+				{
 					type: 'toolbox',
 					children: [
 						{
@@ -103,22 +175,14 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 				}];
 		}
 
-		var wrapper = document.getElementById('calc-inputbar-wrapper');
-		wrapper.style.display = 'block';
+		this.parentContainer.innerHTML = '';
+		this.builder.build(this.parentContainer, data);
+	}
 
-		var parent = document.getElementById('calc-inputbar');
-		parent.innerHTML = '';
-		this.container = L.DomUtil.create('div', 'inputbar_container', parent);
-		this.container.style.width = '100%';
-
-		this.builder.build(this.container, data);
-	},
-
-	toggleMultiLine: function(input) {
+	toggleMultiLine(input) {
 		if (L.DomUtil.hasClass(input, 'expanded')) {
 			L.DomUtil.removeClass(input, 'expanded');
-			L.DomUtil.removeClass(L.DomUtil.get('calc-inputbar-wrapper'), 'expanded');
-			L.DomUtil.removeClass(L.DomUtil.get('formulabar'), 'expanded');
+			L.DomUtil.removeClass(this.parentContainer, 'expanded');
 			this.onJSUpdate({
 				data: {
 					jsontype: 'formulabar',
@@ -134,8 +198,7 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 			});
 		} else {
 			L.DomUtil.addClass(input, 'expanded');
-			L.DomUtil.addClass(L.DomUtil.get('calc-inputbar-wrapper'), 'expanded');
-			L.DomUtil.addClass(L.DomUtil.get('formulabar'), 'expanded');
+			L.DomUtil.addClass(this.parentContainer, 'expanded');
 			this.onJSUpdate({
 				data: {
 					jsontype: 'formulabar',
@@ -150,13 +213,18 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 				}
 			});
 		}
-	},
+	}
 
-	callback: function(objectType, eventType, object, data, builder) {
+	callback(objectType, eventType, object, data, builder) {
 		if (object.id === 'expand') {
 			var input = this.getInputField();
 			if (input)
 				this.toggleMultiLine(input);
+			return;
+		}
+
+		if (object.id === 'addressInput' && eventType === 'changed') {
+			this.onAddressInputChange();
 			return;
 		}
 
@@ -172,48 +240,53 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 		}
 
 		builder._defaultCallbackHandler(objectType, eventType, object, data, builder);
-	},
+	}
 
-	focusField: function() {
+	focusField() {
 		L.DomUtil.addClass(this.getInputField(), 'focused');
-	},
+	}
 
-	blurField: function() {
+	blurField() {
 		L.DomUtil.removeClass(this.getInputField(), 'focused');
-	},
+	}
 
-	enable: function() {
+	enable() {
 		var input = this.getInputField();
 		if (!input)
 			return;
 
 		input.enable();
-	},
+	}
 
-	disable: function() {
+	disable() {
 		var input = this.getInputField();
 		if (!input)
 			return;
 
 		input.disable();
-	},
+	}
 
-	hasFocus: function() {
+	hasFocus() {
 		var input = this.getInputField();
 		if (!input)
 			return false;
 		return L.DomUtil.hasClass(input, 'focused');
-	},
+	}
 
-	show: function(action) {
+	showFormulabar() {
+		if (this.parentContainer)
+			this.parentContainer.style.setProperty('display', 'table-cell');
+	}
+
+	show(action) {
 		this.showButton(action, true);
-	},
+	}
 
-	hide: function(action) {
+	hide(action) {
 		this.showButton(action, false);
-	},
+	}
 
-	showButton: function(action, show) {
+	showButton(action, show) {
 		this.onJSAction(
 			{
 				data: {
@@ -225,33 +298,33 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 					}
 				}
 			});
-	},
+	}
 
-	getControl: function(controlId) {
-		if (!this.container)
+	getControl(controlId) {
+		if (!this.parentContainer)
 			return;
 
-		var control = this.container.querySelector('[id=\'' + controlId + '\']');
+		var control = this.parentContainer.querySelector('[id=\'' + controlId + '\']');
 		if (!control)
 			window.app.console.warn('formulabar update: not found control with id: "' + controlId + '"');
 
 		return control;
-	},
+	}
 
-	getInputField: function() {
+	getInputField() {
 		return this.getControl('sc_input_window');
-	},
+	}
 
-	onFormulaBar: function(e) {
+	onFormulaBar(e) {
 		var data = e.data;
 		if (data.jsontype !== 'formulabar')
 			return;
 
 		console.warn('formulabar: old style formulabar full update - to fix in core');
 		return;
-	},
+	}
 
-	onJSUpdate: function (e) {
+	onJSUpdate (e) {
 		var data = e.data;
 		if (data.jsontype !== 'formulabar')
 			return;
@@ -269,9 +342,9 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 		this.builder.build(temporaryParent, [data.control], false);
 		parent.insertBefore(temporaryParent.firstChild, control.nextSibling);
 		L.DomUtil.remove(control);
-	},
+	}
 
-	onJSAction: function (e) {
+	onJSAction (e) {
 		var data = e.data;
 
 		if (data.jsontype !== 'formulabar')
@@ -284,7 +357,7 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 
 		var innerData = data ? data.data : null;
 
-		if (this.container) {
+		if (this.parentContainer.firstChild) {
 			var messageForInputField = innerData && innerData.control_id === 'sc_input_window';
 			var isSetTextMessage = innerData && innerData.action_type === 'setText';
 			var isGrabFocusMessage = innerData && innerData.action_type === 'grab_focus';
@@ -303,12 +376,12 @@ L.Control.FormulaBarJSDialog = L.Control.extend({
 				return;
 			}
 
-			this.builder.executeAction(this.container, innerData);
+			this.builder.executeAction(this.parentContainer, innerData);
 		} else
 			this.createFormulabar(innerData.text);
-	},
-});
+	}
+}
 
-L.control.formulaBarJSDialog = function (options) {
-	return new L.Control.FormulaBarJSDialog(options);
+JSDialog.FormulaBar = function (map) {
+	return new FormulaBar(map);
 };

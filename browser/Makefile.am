@@ -366,7 +366,6 @@ LOOL_JS_LST =\
 	src/control/Control.MobileTopBar.js \
 	src/control/Control.MobileBottomBar.js \
 	src/control/Control.UserList.ts \
-	src/control/Control.FormulaBar.js \
 	src/control/Control.FormulaBarJSDialog.js \
 	src/control/Control.SheetsBar.js \
 	src/control/Control.PresentationBar.js \
@@ -760,7 +759,6 @@ pot:
 		src/control/Control.DocumentNameInput.js \
 		src/control/Control.DocumentRepair.js \
 		src/control/Control.DownloadProgress.js \
-		src/control/Control.FormulaBar.js \
 		src/control/Control.FormulaBarJSDialog.js \
 		src/control/Control.IdleHandler.ts \
 		src/control/Control.JSDialogBuilder.js \

@@ -1632,6 +1632,10 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				builder.callback('edit', 'change', edit, this.value, builder);
 		});
 
+		edit.addEventListener('change', function() {
+			builder.callback('edit', 'changed', edit, this.value, builder);
+		});
+
 		edit.addEventListener('click', function(e) {
 			e.stopPropagation();
 		});
