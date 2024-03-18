@@ -43,7 +43,7 @@ jobs:
         fetch-depth: 2
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 20
 
 
     # Initializes the CodeQL tools for scanning.
@@ -58,7 +58,7 @@ jobs:
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 20
 
     - if: matrix.language == 'cpp'
       name: Install dependencies
