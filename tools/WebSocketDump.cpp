@@ -146,7 +146,7 @@ private:
                 http::Response response(http::StatusCode::BadRequest);
                 response.setContentLength(0);
                 LOG_INF("DumpWebSockets bad request");
-                socket->sendWithDateAndAgent(response);
+                socket->send(response);
                 disposition.setClosed();
             }
         }
