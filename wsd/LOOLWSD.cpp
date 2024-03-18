@@ -1895,7 +1895,7 @@ private:
         fonts.clear();
         // Clear the saved ETag of the remote font configuration file so that it will be
         // re-downloaded, and all fonts mentioned in it re-downloaded and fed to ForKit.
-        _eTagValue.clear();
+        eTagValue.clear();
         LOOLWSD::sendMessageToForKit("exit");
     }
 
