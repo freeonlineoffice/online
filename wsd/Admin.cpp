@@ -817,11 +817,12 @@ std::string Admin::getLogLines()
 {
     ASSERT_CORRECT_THREAD();
 
-    try {
-        int lineCount = 500;
+    try
+    {
         static const std::string fName = LOOLWSD::getPathFromConfig("logging.file.property[0]");
         std::ifstream infile(fName);
 
+        std::size_t lineCount = 500;
         std::string line;
         std::deque<std::string> lines;
 
@@ -829,7 +830,7 @@ std::string Admin::getLogLines()
         {
             std::istringstream iss(line);
             lines.push_back(line);
-            if (lines.size() > (size_t)lineCount)
+            if (lines.size() > lineCount)
             {
                 lines.pop_front();
             }
@@ -837,16 +838,21 @@ std::string Admin::getLogLines()
 
         infile.close();
 
-        if (lines.size() < (size_t)lineCount)
+        if (lines.size() < lineCount)
         {
-            lineCount = (int)lines.size();
+            lineCount = lines.size();
         }
 
         line.clear(); // Use the same variable to include result.
-        // Newest will be on top.
-        for (int i = lineCount - 1; i >= 0; i--)
+        if (lineCount > 0)
         {
-            line += "\n" + lines[i];
+            line.reserve(lineCount * 128); // Avoid repeated resizing.
+            // Newest will be on top.
+            for (int i = static_cast<int>(lineCount) - 1; i >= 0; i--)
+            {
+                line += '\n';
+                line += lines[i];
+            }
         }
 
         return line;
