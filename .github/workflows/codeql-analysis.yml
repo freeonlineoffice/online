@@ -42,6 +42,7 @@ jobs:
         # a pull request then we can checkout the head.
         fetch-depth: 2
     - uses: actions/setup-node@v3
+      using: 'node20'
 
 
     # Initializes the CodeQL tools for scanning.
@@ -55,6 +56,7 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
     - uses: actions/setup-node@v3
+      using: 'node20'
 
     - if: matrix.language == 'cpp'
       name: Install dependencies
