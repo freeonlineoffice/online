@@ -4379,7 +4379,7 @@ int LOOLWSD::innerMain()
 #endif
     }
 
-    COOLWSD::alertAllUsersInternal("close: shuttingdown");
+    LOOLWSD::alertAllUsersInternal("close: shuttingdown");
 
     // Lots of polls will stop; stop watching them first.
     SocketPoll::shutdownWatchdog();
