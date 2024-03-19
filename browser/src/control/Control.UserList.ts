@@ -466,7 +466,7 @@ class UserList extends L.Control {
 
 		if (e.viewId === this.map._docLayer._viewId) {
 			username = _('You');
-			color = '#000';
+			color = 'var(--color-main-text)';
 			you = true;
 		} else {
 			username = e.username;
@@ -688,7 +688,7 @@ class UserList extends L.Control {
 
 		if (this.map._docLayer._followEditor) {
 			followingChip.innerText = this.options.followingChipTextEditor;
-			followingChip.style.borderColor = '#000';
+			followingChip.style.borderColor = 'var(--color-main-text)';
 		} else {
 			followingChip.innerText =
 				this.options.followingChipTextUser.replace(
