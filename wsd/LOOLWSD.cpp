@@ -3539,7 +3539,6 @@ private:
                                       << child->getPid() << ") as expected");
             }
 
-            std::unique_lock<std::mutex> lock = docBroker->getLock();
             docBroker->disconnectedFromKit(unexpected);
         }
         else if (!_associatedWithDoc && !SigUtil::getShutdownRequestFlag())
