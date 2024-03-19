@@ -3,7 +3,7 @@
   "version": "0.8.0-dev",
   "description": "LibreOffice Online front-end",
   "devDependencies": {
-    "@braintree/sanitize-url": "7.0.0",
+    "@braintree/sanitize-url": "7.0.1",
     "@browserify/uglifyify": "6.0.0",
     "@types/jquery": "^3.5.29",
     "@types/jquery.contextmenu": "^1.7.38",
