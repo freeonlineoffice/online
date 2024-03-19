@@ -180,7 +180,8 @@ div.sidebar.ui-grid .checkbutton.sidebar,
 .hasnotebookbar .ui-content.unotoolbutton.has-label,
 .hasnotebookbar .ui-content.unotoolbutton.inline,
 .hasnotebookbar .ui-content.unotoolbutton:not(.has-label):not(.inline),
-.sidebar.unotoolbutton {
+.sidebar.unotoolbutton,
+.jsdialog.unotoolbutton {
 	background-color: transparent;
 	border: 1px solid transparent;
 	color: var(--color-main-text);
@@ -211,8 +212,8 @@ div.sidebar.ui-grid .checkbutton.sidebar,
 /* selected hover */
 .hasnotebookbar .ui-content.unotoolbutton.selected:hover,
 .unotoolbutton.notebookbar:hover,
-.hasnotebookbar
-	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
+.unotoolbutton.jsdialog:hover,
+.hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
 .sidebar.unotoolbutton:hover,
 .sidebar.unotoolbutton.selected:hover {
 	background-color: var(--color-background-darker) !important;

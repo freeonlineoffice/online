@@ -98,7 +98,8 @@ class FormulaBar {
 				{
 					id: 'addressInput',
 					type: 'edit',
-					text: _('cell address')
+					text: _('cell address'),
+					changedCallback: this.callbackAddress.bind(this)
 				},
 				{
 					id: 'formulabar-buttons-toolbox',
@@ -157,7 +158,8 @@ class FormulaBar {
 				{
 					id: 'addressInput',
 					type: 'edit',
-					text: _('cell address')
+					text: _('cell address'),
+					changedCallback: this.callbackAddress.bind(this)
 				},
 				{
 					type: 'toolbox',
@@ -221,6 +223,10 @@ class FormulaBar {
 		}
 	}
 
+	callbackAddress() {
+		this.onAddressInputChange();
+	}
+
 	callback(objectType, eventType, object, data, builder) {
 		if (object.id === 'expand') {
 			var input = this.getInputField();
@@ -229,10 +235,8 @@ class FormulaBar {
 			return;
 		}
 
-		if (object.id === 'addressInput' && eventType === 'changed') {
-			this.onAddressInputChange();
+		if (object.id === 'addressInput')
 			return;
-		}
 
 		// in the core we have DrawingArea not TextView
 		if (object.id.indexOf('sc_input_window') === 0) {

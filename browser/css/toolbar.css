@@ -176,13 +176,6 @@ w2ui-toolbar {
 	border-bottom: 5px solid var(--color-text-dark);
 	margin-top: -5px;
 }
-#spreadsheet-toolbar {
-	width: 100%;
-	text-align: center;
-	padding: 0;
-	background-color: var(--color-main-background);
-	border-top: 1px solid var(--color-border);
-}
 
 #presentation-toolbar {
 	bottom: 0;
@@ -1927,9 +1920,6 @@ leaflet-control-search-cancel {
 }
 .w2ui-icon.insertpage {
 	background: url('images/lc_insertpage.svg') no-repeat center;
-}
-.w2ui-icon.insertsheet {
-	background: url('images/plus.svg') no-repeat center;
 }
 .w2ui-icon.conditionalformatdialog {
 	background: url('images/lc_conditionalformatmenu.svg') no-repeat center;
