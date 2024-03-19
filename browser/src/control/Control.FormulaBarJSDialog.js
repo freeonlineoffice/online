@@ -101,7 +101,7 @@ class FormulaBar {
 					text: _('cell address')
 				},
 				{
-					id: 'formulabar-toolbox',
+					id: 'formulabar-buttons-toolbox',
 					type: 'toolbox',
 					children: [
 						{
@@ -133,7 +133,13 @@ class FormulaBar {
 							type: 'customtoolitem',
 							text: _UNO('.uno:Cancel', 'spreadsheet'),
 							visible: false
-						},
+						}
+					]
+				},
+				{
+					id: 'formulabar-toolbox',
+					type: 'toolbox',
+					children: [
 						{
 							id: 'sc_input_window',
 							type: 'formulabaredit',
