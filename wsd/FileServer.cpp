@@ -226,7 +226,7 @@ FileServerRequestHandler::~FileServerRequestHandler()
 bool FileServerRequestHandler::isAdminLoggedIn(const Poco::Net::HTTPRequest& request,
                                                std::string& jwtToken)
 {
-    assert(COOLWSD::AdminEnabled);
+    assert(LOOLWSD::AdminEnabled);
 
     try
     {
