@@ -9,8 +9,16 @@
 
 #pragma once
 
-#include <test/testlog.hpp>
 #include <test/lokassert.hpp>
+#include <test/testlog.hpp>
+
+#include <Socket.hpp>
+#include <Common.hpp>
+#include <WebSocketSession.hpp>
+#include <common/ConfigUtil.hpp>
+#include <common/Util.hpp>
+#include <tools/LOOLWebSocket.hpp>
+#include <wsd/TileDesc.hpp>
 
 #include <Poco/BinaryReader.h>
 #include <Poco/Dynamic/Var.h>
@@ -24,15 +32,9 @@
 #include <Poco/Path.h>
 #include <Poco/URI.h>
 
-#include <Common.hpp>
-#include "Socket.hpp"
-#include "common/FileUtil.hpp"
-#include <tools/LOOLWebSocket.hpp>
-#include <common/ConfigUtil.hpp>
-#include <common/Util.hpp>
-#include <net/WebSocketSession.hpp>
-#include <wsd/TileDesc.hpp>
-
+#include <chrono>
+#include <filesystem>
+#include <fstream>
 #include <iterator>
 #include <fstream>
 #include <string>

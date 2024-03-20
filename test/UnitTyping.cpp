@@ -11,18 +11,17 @@
 
 #include <config.h>
 
-#include <random>
-#include <iostream>
-
+#include <LOOLWSD.hpp>
 #include <Exceptions.hpp>
 #include <Log.hpp>
 #include <Unit.hpp>
 #include <UnitHTTP.hpp>
+#include <WebSocketSession.hpp>
 #include <helpers.hpp>
-#include <LOOLWSD.hpp>
-
 #include <wsd/TileDesc.hpp>
-#include <net/WebSocketSession.hpp>
+
+#include <random>
+#include <iostream>
 
 using namespace ::helpers;
 
