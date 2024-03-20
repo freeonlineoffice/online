@@ -205,7 +205,8 @@ class ColorPicker {
 			this.statics.ID_TAG + pickerID + '-basic-color-';
 		this._tintSampleIdTag = this.statics.ID_TAG + pickerID + '-tint-';
 		this._noColorControlId = this.statics.ID_TAG + pickerID + '-no-color';
-		this._autoColorControlId = this.statics.ID_TAG + pickerID + '-auto-color';
+		this._autoColorControlId =
+			this.statics.ID_TAG + pickerID + '-auto-color';
 		this._createBasicColorSelectionMark();
 		this._selectedColorElement = selectedColorSample;
 		this._selectedColor = this.options.selectedColor;
@@ -293,7 +294,10 @@ class ColorPicker {
 				? 'colors-container-no-color-row'
 				: 'colors-container-auto-color-row',
 			handlers: [
-				{ event: 'click', handler: L.bind(this.onClickPseudoColor, this) },
+				{
+					event: 'click',
+					handler: L.bind(this.onClickPseudoColor, this),
+				},
 			],
 			children: [description, checked],
 		};
@@ -310,7 +314,12 @@ class ColorPicker {
 				selected: boolean;
 				color: string;
 				size: 'small';
-				handlers: [{ event: 'click'; handler: (event: ColorEvent) => void }];
+				handlers: [
+					{
+						event: 'click';
+						handler: (event: ColorEvent) => void;
+					},
+				];
 				mark?: HTMLElement;
 			} = {
 				type: 'colorsample',
@@ -321,7 +330,10 @@ class ColorPicker {
 				handlers: [
 					{
 						event: 'click',
-						handler: L.bind(this.onClickBasicColorSample, this),
+						handler: L.bind(
+							this.onClickBasicColorSample,
+							this,
+						),
 					},
 				],
 			};
@@ -355,7 +367,10 @@ class ColorPicker {
 				color: tints[k],
 				size: 'big',
 				handlers: [
-					{ event: 'click', handler: L.bind(this.onClickTintSample, this) },
+					{
+						event: 'click',
+						handler: L.bind(this.onClickTintSample, this),
+					},
 				],
 			};
 			tintsEntries1.push(entry);
@@ -377,7 +392,10 @@ class ColorPicker {
 				color: tints[k],
 				size: 'big',
 				handlers: [
-					{ event: 'click', handler: L.bind(this.onClickTintSample, this) },
+					{
+						event: 'click',
+						handler: L.bind(this.onClickTintSample, this),
+					},
 				],
 			};
 			tintsEntries2.push(entry);
@@ -431,7 +449,9 @@ class ColorPicker {
 
 	_extractTintIndex(sampleId: string) {
 		if (!sampleId.startsWith(this._tintSampleIdTag)) return -1;
-		var index = parseInt(sampleId.substring(this._tintSampleIdTag.length));
+		var index = parseInt(
+			sampleId.substring(this._tintSampleIdTag.length),
+		);
 		if (
 			index < 0 ||
 			index >= this._getTintSet(this._selectedBasicColorIndex).length
@@ -525,7 +545,10 @@ class ColorPicker {
 		if (sampleElem) {
 			if (colorType === 'BASIC_COLOR') {
 				sampleElem.appendChild(this._basicColorSelectionMark);
-				L.DomUtil.addClass(sampleElem, 'colors-container-selected-basic-color');
+				L.DomUtil.addClass(
+					sampleElem,
+					'colors-container-selected-basic-color',
+				);
 			} else if (colorType === 'TINT' && sampleElem.firstChild) {
 				const child: ChildNode & { style?: HTMLElement['style'] } =
 					sampleElem.firstChild;
@@ -551,8 +574,9 @@ class ColorPicker {
 				sampleElem.style.backgroundColor = tint;
 				sampleElem.name = tint.substring(1);
 				if (sampleElem.firstChild) {
-					const child: ChildNode & { style?: HTMLElement['style'] } =
-						sampleElem.firstChild;
+					const child: ChildNode & {
+						style?: HTMLElement['style'];
+					} = sampleElem.firstChild;
 
 					if (!('style' in child)) {
 						throw new Error(
@@ -585,7 +609,10 @@ class ColorPicker {
 					if (checked) {
 						noColorElem.innerHTML = '&#10004;';
 						// update value for the related menu entry
-						L.DomUtil.addClass(this._selectedColorElement, 'no-color-selected');
+						L.DomUtil.addClass(
+							this._selectedColorElement,
+							'no-color-selected',
+						);
 						this._selectedColorElement.innerHTML = '\\';
 					} else {
 						noColorElem.innerHTML = '';
@@ -643,7 +670,8 @@ class ColorPicker {
 
 	_updateSelectedColorElement() {
 		if (this._selectedColorElement) {
-			this._selectedColorElement.style.backgroundColor = this._selectedColor;
+			this._selectedColorElement.style.backgroundColor =
+				this._selectedColor;
 		}
 	}
 }

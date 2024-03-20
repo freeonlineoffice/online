@@ -690,10 +690,11 @@ class UserList extends L.Control {
 			followingChip.innerText = this.options.followingChipTextEditor;
 			followingChip.style.borderColor = '#000';
 		} else {
-			followingChip.innerText = this.options.followingChipTextUser.replace(
-				'%user',
-				following[1].username,
-			);
+			followingChip.innerText =
+				this.options.followingChipTextUser.replace(
+					'%user',
+					following[1].username,
+				);
 			followingChip.style.borderColor = following[1].color;
 		}
 

@@ -109,7 +109,12 @@ function createColor(
 
 		if (colorCode != null) {
 			if (colorCode) {
-				builder._sendColorCommand(builder, widgetData, colorCode, themeData);
+				builder._sendColorCommand(
+					builder,
+					widgetData,
+					colorCode,
+					themeData,
+				);
 				builder.callback(
 					'colorpicker',
 					'hidedropdown',
@@ -118,7 +123,11 @@ function createColor(
 					builder,
 				);
 			} else {
-				builder._sendColorCommand(builder, widgetData, 'transparent');
+				builder._sendColorCommand(
+					builder,
+					widgetData,
+					'transparent',
+				);
 				builder.callback(
 					'colorpicker',
 					'hidedropdown',
@@ -174,7 +183,8 @@ function createPaletteSwitch(
 ): HTMLSelectElement {
 	const paletteListbox = L.DomUtil.create(
 		'div',
-		builder.options.cssClass + ' ui-listbox-container color-palette-selector',
+		builder.options.cssClass +
+			' ui-listbox-container color-palette-selector',
 		parentContainer,
 	);
 	const listbox = L.DomUtil.create(
@@ -305,7 +315,11 @@ JSDialog.colorPicker = function (
 	data: ColorPaletteWidgetData,
 	builder: any,
 ) {
-	const container = L.DomUtil.create('div', 'ui-color-picker', parentContainer);
+	const container = L.DomUtil.create(
+		'div',
+		'ui-color-picker',
+		parentContainer,
+	);
 	container.id = data.id;
 
 	createAutoColorButton(container, data, builder);
