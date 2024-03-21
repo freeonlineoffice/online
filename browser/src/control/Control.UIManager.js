@@ -351,7 +351,7 @@ L.Control.UIManager = L.Control.extend({
 
 		var startPresentationGet = this.map.isPresentationOrDrawing() && window.loolParams.get('startPresentation');
 		if (startPresentationGet === 'true' || startPresentationGet === '1') {
-			this._map.dispatch('presentation');
+			app.dispatcher.dispatch('presentation');
 		}
 	},
 

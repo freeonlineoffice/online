@@ -194,6 +194,7 @@ LOOL_LIBS_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(LOOL_LIBS_JS))
 LOOL_JS_LST =\
 	src/docstate.js \
 	src/docstatefunctions.js \
+	src/docdispatcher.ts \
 	src/Leaflet.js \
 	src/errormessages.js \
 	src/unocommands.js \
@@ -817,6 +818,7 @@ pot:
 		src/core/Debug.js \
 		src/docstate.js \
 		src/docstatefunctions.js \
+		src/docdispatcher.ts \
 		src/errormessages.js \
 		src/layer/tile/CanvasTileLayer.js \
 		src/layer/tile/CommentListSection.ts \
