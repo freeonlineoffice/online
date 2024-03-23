@@ -395,8 +395,10 @@ void LOOLWSD::writeTraceEventRecording(const std::string &recording)
 
 void LOOLWSD::checkSessionLimitsAndWarnClients()
 {
-#if !ENABLE_SUPPORT_KEY
 #if !MOBILEAPP
+    if (config::isSupportKeyEnabled())
+        return;
+
     ssize_t docBrokerCount = DocBrokers.size() - ConvertToBroker::getInstanceCount();
     if (LOOLWSD::MaxDocuments < 10000 &&
         (docBrokerCount > static_cast<ssize_t>(LOOLWSD::MaxDocuments) || LOOLWSD::NumConnections >= LOOLWSD::MaxConnections))
@@ -413,7 +415,6 @@ void LOOLWSD::checkSessionLimitsAndWarnClients()
             LOG_ERR("Error while shutting down socket on reaching limit: " << ex.what());
         }
     }
-#endif
 #endif
 }
 
@@ -2663,44 +2664,45 @@ void LOOLWSD::innerInitialize(Application& self)
     setenv("LOK_HELP_URL", "", 1);
 #endif
 
-#if ENABLE_SUPPORT_KEY
-    const std::string supportKeyString = getConfigValue<std::string>(conf, "support_key", "");
-
-    if (supportKeyString.empty())
+    if (config::isSupportKeyEnabled())
     {
-        LOG_WRN("Support key not set, please use 'loolconfig set-support-key'.");
-        std::cerr << "Support key not set, please use 'loolconfig set-support-key'." << std::endl;
-        LOOLWSD::OverrideWatermark = "Unsupported, the support key is missing.";
-    }
-    else
-    {
-        SupportKey key(supportKeyString);
+        const std::string supportKeyString = getConfigValue<std::string>(conf, "support_key", "");
 
-        if (!key.verify())
+        if (supportKeyString.empty())
         {
-            LOG_WRN("Invalid support key, please use 'loolconfig set-support-key'.");
-            std::cerr << "Invalid support key, please use 'loolconfig set-support-key'." << std::endl;
-            LOOLWSD::OverrideWatermark = "Unsupported, the support key is invalid.";
+            LOG_WRN("Support key not set, please use 'loolconfig set-support-key'.");
+            std::cerr << "Support key not set, please use 'loolconfig set-support-key'." << std::endl;
+            LOOLWSD::OverrideWatermark = "Unsupported, the support key is missing.";
         }
         else
         {
-            int validDays =  key.validDaysRemaining();
-            if (validDays <= 0)
+            SupportKey key(supportKeyString);
+
+            if (!key.verify())
             {
-                LOG_WRN("Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'.");
-                std::cerr << "Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'." << std::endl;
-                LOOLWSD::OverrideWatermark = "Unsupported, the support key has expired.";
+                LOG_WRN("Invalid support key, please use 'loolconfig set-support-key'.");
+                std::cerr << "Invalid support key, please use 'loolconfig set-support-key'." << std::endl;
+                LOOLWSD::OverrideWatermark = "Unsupported, the support key is invalid.";
             }
             else
             {
-                LOG_INF("Your support key is valid for " << validDays << " days");
-                LOOLWSD::MaxConnections = 1000;
-                LOOLWSD::MaxDocuments = 200;
-                LOOLWSD::OverrideWatermark.clear();
+                int validDays =  key.validDaysRemaining();
+                if (validDays <= 0)
+                {
+                    LOG_WRN("Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'.");
+                    std::cerr << "Your support key has expired, please ask for a new one, and use 'loolconfig set-support-key'." << std::endl;
+                    LOOLWSD::OverrideWatermark = "Unsupported, the support key has expired.";
+                }
+                else
+                {
+                    LOG_INF("Your support key is valid for " << validDays << " days");
+                    LOOLWSD::MaxConnections = 1000;
+                    LOOLWSD::MaxDocuments = 200;
+                    LOOLWSD::OverrideWatermark.clear();
+                }
             }
         }
     }
-#endif
 
     if (LOOLWSD::MaxConnections < 3)
     {

@@ -292,6 +292,7 @@ loolstress_SOURCES = tools/Stress.cpp \
 
 loolconfig_SOURCES = tools/Config.cpp \
 		     common/DummyTraceEventEmitter.cpp \
+		     common/ConfigUtil.cpp \
 		     common/Crypto.cpp \
 		     common/Log.cpp \
 		     common/StringVector.cpp \
