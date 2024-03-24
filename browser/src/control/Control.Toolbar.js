@@ -9,23 +9,6 @@
 
 var map;
 
-function _cancelSearch() {
-	var toolbar = window.mode.isMobile() ? w2ui['searchbar'] : w2ui['actionbar'];
-	var searchInput = L.DomUtil.get('search-input');
-	map.resetSelection();
-	toolbar.hide('cancelsearch');
-	toolbar.disable('searchprev');
-	toolbar.disable('searchnext');
-	searchInput.value = '';
-	if (window.mode.isMobile()) {
-		searchInput.focus();
-		// odd, but on mobile we need to invoke it twice
-		toolbar.hide('cancelsearch');
-	}
-
-	map._onGotFocus();
-}
-
 function getUNOCommand(unoData) {
 	if (typeof unoData !== 'object')
 		return unoData;
@@ -835,14 +818,25 @@ function unoCmdToToolbarId(commandname)
 }
 
 function updateSearchButtons() {
-	var toolbar = window.mode.isMobile() ? w2ui['searchbar'] : w2ui['actionbar'];
+	var toolbar = window.mode.isMobile() ? w2ui['searchbar'] : null;
+	var statusBar = app.map.statusBar;
 	// conditionally disabling until, we find a solution for tdf#108577
 	if (L.DomUtil.get('search-input').value === '') {
-		toolbar.disable('searchprev');
-		toolbar.disable('searchnext');
-		toolbar.hide('cancelsearch');
+		if (statusBar) {
+			statusBar.enableItem('searchprev', false);
+			statusBar.enableItem('searchnext', false);
+			statusBar.showItem('cancelsearch', false);
+		} else {
+			toolbar.disable('searchprev');
+			toolbar.disable('searchnext');
+			toolbar.hide('cancelsearch');
+		}
 	}
-	else {
+	else if (statusBar) {
+		statusBar.enableItem('searchprev', true);
+		statusBar.enableItem('searchnext', true);
+		statusBar.showItem('cancelsearch', true);
+	} else {
 		toolbar.enable('searchprev');
 		toolbar.enable('searchnext');
 		toolbar.show('cancelsearch');
@@ -871,7 +865,7 @@ function onSearchKeyDown(e) {
 		entry.select();
 		e.originalEvent.preventDefault();
 	} else if (e.keyCode === 27) {
-		_cancelSearch();
+		map.cancelSearch();
 	}
 }
 
@@ -1211,11 +1205,11 @@ function setupToolbar(e) {
 
 	map.on('search', function (e) {
 		var searchInput = L.DomUtil.get('search-input');
-		var toolbar = w2ui['actionbar'];
+		var toolbar = app.map.statusBar;
 		if (e.count === 0) {
-			toolbar.disable('searchprev');
-			toolbar.disable('searchnext');
-			toolbar.hide('cancelsearch');
+			toolbar.enableItem('searchprev', false);
+			toolbar.enableItem('searchnext', false);
+			toolbar.showItem('cancelsearch', false);
 			L.DomUtil.addClass(searchInput, 'search-not-found');
 			$('#findthis').addClass('search-not-found');
 			map.resetSelection();
