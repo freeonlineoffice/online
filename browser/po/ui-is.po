@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 20:45+0100\n"
+"POT-Creation-Date: 2024-03-24 22:29+0100\n"
 "PO-Revision-Date: 2022-06-02 09:20+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/"
@@ -273,15 +273,14 @@ msgstr "Slökkt hefur verið á netþjóninum, þú ættir að hlaða síðunni 
 #: admin/src/AdminSocketOverview.js:99 admin/src/AdminSocketOverview.js:422
 #: admin/src/AdminSocketSettings.js:36 src/control/Control.AlertDialog.js:43
 #: src/control/Control.DocumentRepair.js:68
-#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:390
-#: src/control/Control.Tabs.js:399 src/control/Control.Zotero.js:328
+#: src/control/Control.LanguageDialog.js:109 src/control/Control.Tabs.js:380
+#: src/control/Control.Tabs.js:389 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:692 src/control/Toolbar.js:794
-#: src/control/Toolbar.js:930 src/control/Toolbar.js:1272
-#: src/core/Socket.js:604 src/core/Socket.js:1032 src/core/Socket.js:1102
-#: src/core/Socket.js:1250 src/core/Socket.js:1254 src/main.js:71
-#: src/main.js:74 src/main.js:126 src/map/Clipboard.js:1013
+#: src/control/Toolbar.js:930 src/core/Socket.js:604 src/core/Socket.js:1032
+#: src/core/Socket.js:1102 src/core/Socket.js:1250 src/core/Socket.js:1254
+#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1013
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:604
 msgid "OK"
 msgstr "Í lagi"
@@ -442,7 +441,7 @@ msgstr "Þjónninn rakst á %0 villu við að þátta %1 skipunina."
 msgid "Unlock"
 msgstr "Aflæsa"
 
-#: src/control/Control.ContextMenu.js:187 src/control/Toolbar.js:1271
+#: src/control/Control.ContextMenu.js:187
 msgid "Delete"
 msgstr "Eyða"
 
@@ -537,20 +536,20 @@ msgid "Download failed"
 msgstr ""
 
 #: src/control/Control.FormulaBarJSDialog.js:101
-#: src/control/Control.FormulaBarJSDialog.js:160
+#: src/control/Control.FormulaBarJSDialog.js:161
 msgid "cell address"
 msgstr "vistfang reits"
 
-#: src/control/Control.FormulaBarJSDialog.js:110
-#: src/control/Control.FormulaBarJSDialog.js:168
+#: src/control/Control.FormulaBarJSDialog.js:111
+#: src/control/Control.FormulaBarJSDialog.js:170
 msgid "Function Wizard"
 msgstr "Fallagerðarpúki"
 
-#: src/control/Control.FormulaBarJSDialog.js:122
+#: src/control/Control.FormulaBarJSDialog.js:123
 msgid "Formula"
 msgstr "Formúla"
 
-#: src/control/Control.FormulaBarJSDialog.js:128
+#: src/control/Control.FormulaBarJSDialog.js:129
 #: src/control/Control.MobileTopBar.js:42
 msgid "Accept"
 msgstr "Samþykkja"
@@ -636,17 +635,17 @@ msgstr "Athugasemd"
 msgid "Insert Comment"
 msgstr "Settu inn athugasemd"
 
-#: src/control/Control.JSDialogBuilder.js:2885
+#: src/control/Control.JSDialogBuilder.js:2886
 #: src/control/Control.Menubar.js:820
 msgid "Rows"
 msgstr "Raðir"
 
-#: src/control/Control.JSDialogBuilder.js:2886
+#: src/control/Control.JSDialogBuilder.js:2887
 #: src/control/Control.Menubar.js:823
 msgid "Columns"
 msgstr "Dálkar"
 
-#: src/control/Control.JSDialogBuilder.js:2906
+#: src/control/Control.JSDialogBuilder.js:2907
 msgid "Insert Table"
 msgstr "Setja inn töflu"
 
@@ -1578,23 +1577,23 @@ msgstr "Fela leitarstikuna"
 msgid "Clear the search field"
 msgstr "Hreinsa leitarsvæði"
 
-#: src/control/Control.SheetsBar.js:27
+#: src/control/Control.SheetsBar.js:47
 msgid "Scroll to the first sheet"
 msgstr "Skruna á fyrsta blað"
 
-#: src/control/Control.SheetsBar.js:28
+#: src/control/Control.SheetsBar.js:54
 msgid "Scroll left"
 msgstr "Skrun til vinstri"
 
-#: src/control/Control.SheetsBar.js:29
+#: src/control/Control.SheetsBar.js:61
 msgid "Scroll right"
 msgstr "Skruna til hægri"
 
-#: src/control/Control.SheetsBar.js:30
+#: src/control/Control.SheetsBar.js:68
 msgid "Scroll to the last sheet"
 msgstr "Skruna á síðasta blað"
 
-#: src/control/Control.SheetsBar.js:31
+#: src/control/Control.SheetsBar.js:75
 msgid "Insert sheet"
 msgstr "Setja inn blað"
 
@@ -1694,35 +1693,35 @@ msgstr ""
 msgid "Set Language for Selection"
 msgstr ""
 
-#: src/control/Control.Tabs.js:54
+#: src/control/Control.Tabs.js:44
 msgid "Insert sheet before this"
 msgstr "Setja inn blað hér á undan"
 
-#: src/control/Control.Tabs.js:57
+#: src/control/Control.Tabs.js:47
 msgid "Insert sheet after this"
 msgstr "Setja inn blað hér á eftir"
 
-#: src/control/Control.Tabs.js:90
+#: src/control/Control.Tabs.js:80
 msgid "Move Sheet Left"
 msgstr "Færa blað til vinstri"
 
-#: src/control/Control.Tabs.js:95
+#: src/control/Control.Tabs.js:85
 msgid "Move Sheet Right"
 msgstr "Færa blað til hægri"
 
-#: src/control/Control.Tabs.js:111
+#: src/control/Control.Tabs.js:101
 msgid "Copy Sheet..."
 msgstr "Afrita blað..."
 
-#: src/control/Control.Tabs.js:388
+#: src/control/Control.Tabs.js:378
 msgid "Are you sure you want to delete sheet, %sheet%?"
 msgstr "Ertu viss um að þú viljir eyða blaðinu %sheet%?"
 
-#: src/control/Control.Tabs.js:399
+#: src/control/Control.Tabs.js:389
 msgid "Rename sheet"
 msgstr ""
 
-#: src/control/Control.Tabs.js:399
+#: src/control/Control.Tabs.js:389
 msgid "Enter new sheet name"
 msgstr "Settu inn nýtt nafn á blaðinu"
 
@@ -2196,14 +2195,6 @@ msgstr "Setja inn veftengil"
 #: src/control/Toolbar.js:909
 msgid "Link"
 msgstr "Tengill"
-
-#: src/control/Toolbar.js:1266
-msgid "Are you sure you want to delete this slide?"
-msgstr "Ertu viss um að þú viljir eyða þessari skyggnu?"
-
-#: src/control/Toolbar.js:1269
-msgid "Are you sure you want to delete this page?"
-msgstr "Ertu viss um að þú viljir eyða þessari síðu?"
 
 #: src/core/Socket.js:56
 msgid "Oops, there is a problem connecting to %productName: "
@@ -2724,7 +2715,7 @@ msgstr ""
 msgid "Initializing..."
 msgstr "Frumstilli..."
 
-#: src/map/Map.js:450 src/map/Map.js:453 src/map/Map.js:456 src/map/Map.js:459
+#: src/map/Map.js:451 src/map/Map.js:454 src/map/Map.js:457 src/map/Map.js:460
 msgid "Last saved:"
 msgstr "Síðast vistað:"
 
@@ -2831,6 +2822,12 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Are you sure you want to delete this slide?"
+#~ msgstr "Ertu viss um að þú viljir eyða þessari skyggnu?"
+
+#~ msgid "Are you sure you want to delete this page?"
+#~ msgstr "Ertu viss um að þú viljir eyða þessari síðu?"
 
 #~ msgid "Min"
 #~ msgstr "Lágm"
