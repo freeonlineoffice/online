@@ -330,6 +330,8 @@ function insertComment(text = 'some text0', save = true) {
 	cy.cGet('.lool-annotation').last({log: false}).find('#annotation-modify-textarea-new').type(text);
 	// Click outside modify area to trigger update
 	cy.cGet('.lool-annotation').last({log: false}).find('.lool-annotation-table').click();
+	// In case of small window to expand the comments
+	cy.cGet('.lool-annotation').last({log: false}).find('.lool-annotation-img').click();
 	// Check that comment exists
 	cy.cGet('.lool-annotation').last({log: false}).find('.lool-annotation-textarea').should('contain',text);
 
