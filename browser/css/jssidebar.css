@@ -213,7 +213,8 @@ div.sidebar.ui-grid .checkbutton.sidebar,
 .hasnotebookbar .ui-content.unotoolbutton.selected:hover,
 .unotoolbutton.notebookbar:hover,
 .unotoolbutton.jsdialog:hover,
-.hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
+.hasnotebookbar
+	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
 .sidebar.unotoolbutton:hover,
 .sidebar.unotoolbutton.selected:hover {
 	background-color: var(--color-background-darker) !important;
