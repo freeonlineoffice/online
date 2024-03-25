@@ -266,8 +266,8 @@ export class Comment extends CanvasSectionObject {
 		imgAuthor.setAttribute('height', this.sectionProperties.imgSize[1]);
 
 		if (this.sectionProperties.docLayer._docType !== 'spreadsheet') {
-			this.sectionProperties.replyCountNode = L.DomUtil.create('div', 'lool-annotation-reply-count-collapsed', tdImg);
-			this.sectionProperties.replyCountNode.style.display = 'none';
+			this.sectionProperties.collapsedInfoNode = L.DomUtil.create('div', 'lool-annotation-info-collapsed', tdImg);
+			this.sectionProperties.collapsedInfoNode.style.display = 'none';
 		}
 
 		this.sectionProperties.authorAvatarImg = imgAuthor;
@@ -678,7 +678,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.contentNode.style.display = '';
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
-		this.sectionProperties.replyCountNode.style.visibility = '';
+		this.sectionProperties.collapsedInfoNode.style.visibility = '';
 		this.sectionProperties.showSelectedCoordinate = true;
 	}
 
@@ -1359,7 +1359,7 @@ export class Comment extends CanvasSectionObject {
 			this.sectionProperties.container.style.display = '';
 			this.sectionProperties.container.style.visibility = 'hidden';
 		}
-		this.updateThreadCountIndicator();
+		this.updateThreadInfoIndicator();
 		if (this.sectionProperties.data.resolved === 'false'
 		|| this.sectionProperties.commentListSection.sectionProperties.showResolved
 		|| this.sectionProperties.docLayer._docType === 'presentation'
@@ -1367,21 +1367,21 @@ export class Comment extends CanvasSectionObject {
 			L.DomUtil.addClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 
-	public updateThreadCountIndicator(replycount:number | string = -1): void {
+	public updateThreadInfoIndicator(replycount:number | string = -1): void {
 		if (this.sectionProperties.docLayer._docType === 'spreadsheet')
 			return;
 
 		if (this.isEdit())
-			this.sectionProperties.replyCountNode.innerText = '!';
+			this.sectionProperties.collapsedInfoNode.innerText = '!';
 		else if (replycount === '!' || typeof replycount === "number" && replycount > 0)
-			this.sectionProperties.replyCountNode.innerText = replycount;
+			this.sectionProperties.collapsedInfoNode.innerText = replycount;
 		else
-			this.sectionProperties.replyCountNode.innerText = '';
+			this.sectionProperties.collapsedInfoNode.innerText = '';
 
-		if (this.sectionProperties.replyCountNode.innerText === '' || this.isContainerVisible())
-			this.sectionProperties.replyCountNode.style.display = 'none';
-		else if ((!this.isContainerVisible() && this.sectionProperties.replyCountNode.innerText !== ''))
-			this.sectionProperties.replyCountNode.style.display = '';
+		if (this.sectionProperties.collapsedInfoNode.innerText === '' || this.isContainerVisible())
+			this.sectionProperties.collapsedInfoNode.style.display = 'none';
+		else if ((!this.isContainerVisible() && this.sectionProperties.collapsedInfoNode.innerText !== ''))
+			this.sectionProperties.collapsedInfoNode.style.display = '';
 	}
 
 	public setExpanded(): void {
@@ -1393,7 +1393,7 @@ export class Comment extends CanvasSectionObject {
 			this.sectionProperties.container.style.visibility = '';
 		}
 		if (this.sectionProperties.docLayer._docType === 'text')
-			this.sectionProperties.replyCountNode.style.display = 'none';
+			this.sectionProperties.collapsedInfoNode.style.display = 'none';
 		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
 	}
 }

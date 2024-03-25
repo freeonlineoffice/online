@@ -674,7 +674,7 @@ export class CommentSection extends CanvasSectionObject {
 			this.sectionProperties.commentList[rootIndex].sectionProperties.container.style.visibility = '';
 			rootIndex++;
 		}
-		rootComment.updateThreadCountIndicator();
+		rootComment.updateThreadInfoIndicator();
 	}
 
 	private collapseReplies(rootIndex: number, rootId: number) {
@@ -682,8 +682,8 @@ export class CommentSection extends CanvasSectionObject {
 
 		for (var i = lastChild; i > rootIndex; i--) {
 			this.sectionProperties.commentList[i].sectionProperties.container.style.display = 'none';
-			this.sectionProperties.commentList[i].updateThreadCountIndicator();
 		}
+		this.sectionProperties.commentList[i].updateThreadInfoIndicator();
 	}
 
 	private cssToCorePixels(cssPixels: number) {
@@ -755,9 +755,7 @@ export class CommentSection extends CanvasSectionObject {
 
 			if (this.isCollapsed) {
 				this.showCollapsedReplies(idx);
-				if (docType === 'text') {
-					selectedComment.sectionProperties.replyCountNode.style.display = 'none';
-				}
+				selectedComment.updateThreadInfoIndicator();
 			}
 
 			this.update();
@@ -1373,7 +1371,7 @@ export class CommentSection extends CanvasSectionObject {
 		}
 
 		if (this.sectionProperties.docLayer._docType === 'text')
-			this.updateReplyCount();
+			this.updateThreadInfoIndicator();
 	}
 
 	public selectById (commentId: any): void {
@@ -1749,11 +1747,11 @@ export class CommentSection extends CanvasSectionObject {
 
 	private update (): void {
 		if (this.sectionProperties.docLayer._docType === 'text')
-			this.updateReplyCount();
+			this.updateThreadInfoIndicator();
 		this.layout();
 	}
 
-	private updateReplyCount(): void {
+	private updateThreadInfoIndicator(): void {
 		for (var i = 0; i < this.sectionProperties.commentList.length; i++) {
 			var comment = this.sectionProperties.commentList[i];
 			var replyCount = 0;
@@ -1775,9 +1773,9 @@ export class CommentSection extends CanvasSectionObject {
 				}
 			}
 			if (anyEdit)
-				comment.updateThreadCountIndicator('!');
+				comment.updateThreadInfoIndicator('!');
 			else
-				comment.updateThreadCountIndicator(replyCount);
+				comment.updateThreadInfoIndicator(replyCount);
 		}
 	}
 
