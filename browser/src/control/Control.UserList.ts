@@ -82,23 +82,14 @@ class UserList extends L.Control {
 			this.options.noUser = _('0 users');
 		}
 
-		map.on('updateEditorName', function (e: UserEvent) {
-			$('#currently-msg').show();
-			$('#current-editor').text(e.username);
-		});
-
 		this.registerHeaderAvatarEvents();
 	}
 
 	selectUser(viewId: number) {
-		var userlistItem = w2ui['actionbar'].get('userlist');
-		if (userlistItem === null) {
-			return;
-		}
-
 		const user = this.users.get(viewId);
 
 		if (user === undefined) {
+			console.debug("User doesn't exist: " + viewId);
 			return;
 		}
 
@@ -143,7 +134,6 @@ class UserList extends L.Control {
 		if (!follow) {
 			this.map._goToViewId(myViewId);
 			this.map._setFollowing(false, null);
-			w2ui['actionbar'].uncheck('userlist');
 			this.renderAll();
 			return;
 		} else if (followingViewId !== -1) {
@@ -155,19 +145,6 @@ class UserList extends L.Control {
 		docLayer._followEditor = false;
 
 		this.selectUser(viewId);
-	}
-
-	onUseritemClicked(e: MouseEvent | TouchEvent) {
-		var viewId = parseInt(
-			(e.currentTarget as HTMLElement).id.replace('user-', ''),
-		);
-
-		if (viewId === this.map._docLayer._viewId) {
-			w2ui['actionbar'].uncheck('userlist');
-			return;
-		}
-
-		w2ui['actionbar'].uncheck('userlist');
 	}
 
 	createAvatar(
@@ -392,46 +369,42 @@ class UserList extends L.Control {
 	}
 
 	updateUserListCount() {
-		var actionbar = w2ui.actionbar;
-		var userlistItem = actionbar && actionbar.get('userlist');
+		const userlistItem =
+			this.map.statusBar &&
+			this.map.statusBar.hasItem &&
+			this.map.statusBar.hasItem('userlist');
+
 		if (userlistItem == null) {
 			return;
 		}
 
-		var count = $(userlistItem.html).find(
-			'#userlist_table tbody tr',
-		).length;
+		const count = this.users.size;
+		let text = '';
 		if (count > 1) {
-			userlistItem.text = this.options.nUsers.replace(
-				'%n',
-				count.toString(),
-			);
+			text = this.options.nUsers.replace('%n', count.toString());
 		} else if (count === 1) {
-			userlistItem.text = this.options.oneUser;
+			text = this.options.oneUser;
 		} else {
-			userlistItem.text = this.options.noUser;
+			text = this.options.noUser;
 		}
 
-		w2ui['actionbar'].refresh();
+		if (this.map.statusBar.setUsersCountText)
+			this.map.statusBar.setUsersCountText(text);
 
 		if (!this.hideUserList() && count > 1 && !window.mode.isDesktop()) {
-			actionbar.show('userlist');
-			actionbar.show('userlistbreak');
+			this.map.statusBar.showItem('userlist');
+			this.map.statusBar.showItem('userlistbreak');
 		} else {
-			actionbar.hide('userlist');
-			actionbar.hide('userlistbreak');
+			this.map.statusBar.hideItem('userlist');
+			this.map.statusBar.hideItem('userlistbreak');
 		}
 	}
 
 	deselectUser(e: UserEvent) {
-		var userlistItem = w2ui['actionbar'].get('userlist');
-		if (userlistItem === null) {
-			return;
-		}
-
 		const user = this.users.get(e.viewId);
 
 		if (user === undefined) {
+			console.debug("User doesn't exist: " + e.viewId);
 			return;
 		}
 
@@ -440,21 +413,9 @@ class UserList extends L.Control {
 
 	onOpenUserList() {
 		setTimeout(() => {
-			var cBox = $('#follow-checkbox')[0];
 			var docLayer = this.map._docLayer;
-			var editorId = docLayer._editorId;
 			var viewId = docLayer._followThis;
 			var followUser = docLayer._followUser;
-
-			if (cBox)
-				(cBox as HTMLInputElement).checked = docLayer._followEditor;
-
-			if (docLayer.editorId !== -1 && this.map._viewInfo[editorId])
-				$('#current-editor').text(
-					this.map._viewInfo[editorId].username,
-				);
-			else $('#currently-msg').hide();
-
 			if (followUser) this.selectUser(viewId);
 		}, 100);
 	}
@@ -507,8 +468,11 @@ class UserList extends L.Control {
 	renderAll() {
 		this.updateUserListCount();
 		this.renderHeaderAvatars();
-		this.renderHeaderAvatarPopover();
-		this.renderUserList();
+		const topPopoverElement = document.getElementById('userListPopover');
+		if (topPopoverElement) this.renderHeaderAvatarPopover(topPopoverElement);
+		const statusbarPopoverElement = document.getElementById('userlist-entries');
+		if (statusbarPopoverElement)
+			this.renderHeaderAvatarPopover(statusbarPopoverElement);
 		this.renderFollowingChip();
 	}
 
@@ -558,37 +522,9 @@ class UserList extends L.Control {
 		}, 3000);
 	}
 
-	renderUserList() {
-		const headerUserList = Array.from(this.getSortedUsers());
-
-		const userItems = headerUserList.map(([viewId, user]) => {
-			let username = user.username;
-
-			if (user.readonly) {
-				username += ' (' + _('Readonly') + ')';
-			}
-
-			return this.getUserItem(
-				viewId,
-				username,
-				user.extraInfo,
-				user.color,
-			);
-		});
-
-		const userlistItem = w2ui['actionbar'].get('userlist');
-		const userlistElement = $(userlistItem.html).find(
-			'#userlist_table tbody',
-		);
-		userlistElement.children().replaceWith(userItems);
-		const newHtml = userlistElement.parent().parent()[0].outerHTML;
-		userlistItem.html = newHtml;
-	}
-
-	renderHeaderAvatarPopover() {
+	renderHeaderAvatarPopover(popoverElement: Element) {
 		// Popover rendering
 		const users = Array.from(this.getSortedUsers());
-		const popoverElement = document.getElementById('userListPopover');
 
 		const following = this.getFollowedUser();
 
@@ -642,7 +578,7 @@ class UserList extends L.Control {
 		followEditorWrapper.id = 'follow-editor';
 		const followEditorCheckbox = L.DomUtil.create(
 			'input',
-			'follow-editor-checkbox',
+			'follow-editor-checkbox jsdialog ui-checkbox',
 			followEditorWrapper,
 		);
 		followEditorCheckbox.id = 'follow-editor-checkbox';
@@ -651,6 +587,9 @@ class UserList extends L.Control {
 			(window as any).editorUpdate(event);
 			this.renderAll();
 		};
+		(followEditorCheckbox as HTMLInputElement).checked =
+			this.map._docLayer._followEditor;
+
 		const followEditorCheckboxLabel = L.DomUtil.create(
 			'label',
 			'follow-editor-label',
@@ -663,12 +602,6 @@ class UserList extends L.Control {
 		);
 
 		popoverElement.replaceChildren(...userElements, followEditorWrapper);
-
-		(
-			document.getElementById(
-				'follow-editor-checkbox',
-			) as HTMLInputElement
-		).checked = this.map._docLayer._followEditor;
 	}
 
 	renderFollowingChip() {
@@ -715,19 +648,8 @@ L.control.userList = function () {
 };
 
 L.control.createUserListWidget = function () {
-	return (
-		'<div id="userlist_container"><table id="userlist_table"><tbody></tbody></table>' +
-		'<hr><table class="lool-font" id="editor-btn">' +
-		'<tr>' +
-		'<td><label id="follow-container"><input type="checkbox" name="alwaysFollow" id="follow-checkbox" onclick="editorUpdate(event)"><span class="checkmark"></span></label></td>' +
-		'<td>' +
-		_('Always follow the editor') +
-		'</td>' +
-		'</tr>' +
-		'</table>' +
-		'<p id="currently-msg">' +
-		_('Current') +
-		' - <b><span id="current-editor"></span></b></p>' +
-		'</div>'
-	);
+	// TODO: this is not interactive
+	const userlistElement = L.DomUtil.create('div');
+	app.map.userList.renderHeaderAvatarPopover(userlistElement);
+	return userlistElement.outerHTML;
 };

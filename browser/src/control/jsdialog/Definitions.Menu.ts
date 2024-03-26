@@ -387,6 +387,11 @@ menuDefinitions.set('InsertTableMenu', [
 	{ type: 'separator' }, // required to show dropdown arrow
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('UsersListMenu', [
+	{ type: 'html', htmlId: 'userslistpopup' },
+	{ type: 'separator' }, // required to show dropdown arrow
+] as Array<MenuDefinition>);
+
 menuDefinitions.set('ColorPickerMenu', [
 	{ id: 'colorpickerwidget', type: 'colorpicker' },
 	{ type: 'separator' }, // required to show dropdown arrow
