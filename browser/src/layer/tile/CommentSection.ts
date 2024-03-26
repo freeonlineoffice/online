@@ -691,8 +691,8 @@ export class Comment extends CanvasSectionObject {
 		this.positionCalcComment();
 		if (!(<any>window).mode.isMobile()) {
 			this.sectionProperties.commentListSection.select(this);
-			this.sectionProperties.container.style.visibility = '';
 		}
+		this.sectionProperties.container.style.visibility = '';
 	}
 
 	private getCommentWidth() {
