@@ -17,23 +17,23 @@
 #include <thread>
 #include <string>
 
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 
 #include <lokassert.hpp>
 #include <testlog.hpp>
 
 std::string getPidList(const std::set<pid_t>& pids);
 
-std::set<pid_t> helpers::getKitPids() { return COOLWSD::getKitPids(); }
+std::set<pid_t> helpers::getKitPids() { return LOOLWSD::getKitPids(); }
 
-std::set<pid_t> helpers::getSpareKitPids() { return COOLWSD::getSpareKitPids(); }
+std::set<pid_t> helpers::getSpareKitPids() { return LOOLWSD::getSpareKitPids(); }
 
-std::set<pid_t> helpers::getDocKitPids() { return COOLWSD::getDocKitPids(); }
+std::set<pid_t> helpers::getDocKitPids() { return LOOLWSD::getDocKitPids(); }
 
 pid_t helpers::getForKitPid()
 {
     std::string testname = "getForKitPid";
-    pid_t pid = COOLWSD::ForKitProcId;
+    pid_t pid = LOOLWSD::ForKitProcId;
     LOK_ASSERT_MESSAGE("Expected forkit process id to be >= 0", pid > 0);
     return pid;
 }
