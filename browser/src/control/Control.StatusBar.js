@@ -12,6 +12,7 @@ L.Control.StatusBar = L.Control.extend({
 	onAdd: function (map) {
 		this.map = map;
 		this.parentContainer = document.getElementById('toolbar-down');
+		L.DomUtil.addClass(this.parentContainer, 'ui-toolbar');
 		this.builder = new L.control.jsDialogBuilder(
 			{
 				mobileWizard: this,
