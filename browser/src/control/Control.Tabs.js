@@ -208,7 +208,7 @@ L.Control.Tabs = L.Control.extend({
 							}(i).bind(this));
 					}
 
-					if (i === selectedPart) {
+					if (!scrollDiv && i === selectedPart) {
 						horizScrollPos = tab.offsetLeft;
 					}
 
