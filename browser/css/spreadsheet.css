@@ -299,7 +299,6 @@
 	vertical-align: bottom;
 	display: inline-block;
 	background-color: var(--color-main-background);
-	padding-bottom: 5px;
 }
 
 .tab-drop-area-active {
