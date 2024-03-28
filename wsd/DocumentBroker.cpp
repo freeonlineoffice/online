@@ -801,7 +801,7 @@ bool DocumentBroker::downloadAdvance(const std::string& jailId,
     // Pass the public URI to storage as it needs to load using the token
     // and other storage-specific data provided in the URI.
     LOG_DBG("Creating new storage instance for URI ["
-            << COOLWSD::anonymizeUrl(_uriPublic.toString()) << ']');
+            << LOOLWSD::anonymizeUrl(_uriPublic.toString()) << ']');
 
     try
     {
@@ -854,13 +854,13 @@ bool DocumentBroker::downloadAdvance(const std::string& jailId,
             userId = localfileinfo->getUserId();
             username = localfileinfo->getUsername();
 
-            _isViewFileExtension = COOLWSD::IsViewFileExtension(localStorage->getFileExtension());
+            _isViewFileExtension = LOOLWSD::IsViewFileExtension(localStorage->getFileExtension());
         }
     }
 
 #if ENABLE_SUPPORT_KEY
-    if (!COOLWSD::OverrideWatermark.empty())
-        watermarkText = COOLWSD::OverrideWatermark;
+    if (!LOOLWSD::OverrideWatermark.empty())
+        watermarkText = LOOLWSD::OverrideWatermark;
 #endif
 
     // Basic file information was stored by the above getWOPIFileInfo() or getLocalFileInfo() calls
@@ -894,7 +894,7 @@ bool DocumentBroker::downloadAdvance(const std::string& jailId,
 
 #if !MOBILEAPP
         // Check if we have a prefilter "plugin" for this document format
-        for (const auto& plugin : COOLWSD::PluginConfigurations)
+        for (const auto& plugin : LOOLWSD::PluginConfigurations)
         {
             try
             {
@@ -970,14 +970,14 @@ bool DocumentBroker::downloadAdvance(const std::string& jailId,
         Poco::DigestOutputStream dos(sha1);
         Poco::StreamCopier::copyStream(istr, dos);
         dos.close();
-        LOG_INF("SHA1 for DocKey [" << _docKey << "] of [" << COOLWSD::anonymizeUrl(localPath)
+        LOG_INF("SHA1 for DocKey [" << _docKey << "] of [" << LOOLWSD::anonymizeUrl(localPath)
                                     << "]: " << Poco::DigestEngine::digestToHex(sha1.digest()));
 
         std::string localPathEncoded;
         Poco::URI::encode(localPath, "#?", localPathEncoded);
         _uriJailed = Poco::URI(Poco::URI("file://"), localPathEncoded).toString();
         _uriJailedAnonym =
-            Poco::URI(Poco::URI("file://"), COOLWSD::anonymizeUrl(localPathEncoded)).toString();
+            Poco::URI(Poco::URI("file://"), LOOLWSD::anonymizeUrl(localPathEncoded)).toString();
 
         _filename = fileInfo.getFilename();
 #if !MOBILEAPP
@@ -1436,13 +1436,14 @@ bool DocumentBroker::download(
         Poco::DigestOutputStream dos(sha1);
         Poco::StreamCopier::copyStream(istr, dos);
         dos.close();
-        LOG_INF("SHA1 for DocKey [" << _docKey << "] of [" << LOOLWSD::anonymizeUrl(localPath) << "]: " <<
-                Poco::DigestEngine::digestToHex(sha1.digest()));
+        LOG_INF("SHA1 for DocKey [" << _docKey << "] of [" << LOOLWSD::anonymizeUrl(localPath)
+                                    << "]: " << Poco::DigestEngine::digestToHex(sha1.digest()));
 
         std::string localPathEncoded;
         Poco::URI::encode(localPath, "#?", localPathEncoded);
         _uriJailed = Poco::URI(Poco::URI("file://"), localPathEncoded).toString();
-        _uriJailedAnonym = Poco::URI(Poco::URI("file://"), LOOLWSD::anonymizeUrl(localPathEncoded)).toString();
+        _uriJailedAnonym =
+            Poco::URI(Poco::URI("file://"), LOOLWSD::anonymizeUrl(localPathEncoded)).toString();
 
         _filename = fileInfo.getFilename();
 #if !MOBILEAPP
@@ -1461,7 +1462,8 @@ bool DocumentBroker::download(
             // Use the local temp file's timestamp.
             const auto timepoint = FileUtil::Stat(localFilePath).modifiedTimepoint();
             _saveManager.setLastModifiedTime(timepoint);
-            _storageManager.setLastUploadedFileModifiedTime(timepoint); // Used to detect modifications.
+            _storageManager.setLastUploadedFileModifiedTime(
+                timepoint); // Used to detect modifications.
         }
 
         bool dontUseCache = Util::isMobileApp();
@@ -1480,8 +1482,8 @@ bool DocumentBroker::download(
         // Add the time taken to load the file from storage and to check file info.
         _wopiDownloadDuration += getFileCallDurationMs + checkFileInfoCallDurationMs;
         const auto downloadSecs = _wopiDownloadDuration.count() / 1000.;
-        const std::string msg
-            = "stats: wopiloadduration " + std::to_string(downloadSecs); // In seconds.
+        const std::string msg =
+            "stats: wopiloadduration " + std::to_string(downloadSecs); // In seconds.
         LOG_TRC("Sending to Client [" << msg << "].");
         session->sendTextFrame(msg);
     }
