@@ -293,6 +293,7 @@ public:
 
     void handleSaveMessage(const std::string &msg);
 
+
     /// Notify all views of viewId and their associated usernames
     void notifyViewInfo();
 

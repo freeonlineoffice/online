@@ -1335,6 +1335,7 @@ bool Document::joinThreads()
 // Most threads are opportunisticaly created but some need to be started
 void Document::startThreads()
 {
+
     if (SocketPoll::PollWatchdog)
         SocketPoll::PollWatchdog->startThread();
 }
@@ -1410,7 +1411,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
     // TODO: compare FD count in a normal process with how
     // many we see open now.
     int expectFds = 2 // SocketPoll wakeups
-        + 1; // socket to loolwsd
+        + 1; // socket to coolwsd
     int actualFds = fdCounter->count();
     if (actualFds != expectFds)
     {
@@ -1471,7 +1472,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
         if (_queue)
             _queue->clear();
 
-        // Hard drop our previous connections to loolwsd and shared wakeups.
+        // Hard drop our previous connections to coolwsd and shared wakeups.
         KitSocketPoll::cleanupChildProcess();
 
         // close duplicate kit->wsd socket
