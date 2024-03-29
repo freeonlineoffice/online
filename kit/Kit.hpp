@@ -140,7 +140,11 @@ public:
     static void dumpGlobalState(std::ostream& oss);
     static std::shared_ptr<KitSocketPoll> create();
 
+    static void cleanupChildProcess();
+
     virtual void wakeupHook() override;
+
+    static KitSocketPoll* getMainPoll() { return mainPoll; }
 
 #if ENABLE_DEBUG
     struct ReEntrancyGuard
@@ -229,6 +233,12 @@ public:
     virtual DocumentPasswordType getDocPasswordType() const = 0;
 
     virtual void updateActivityHeader() const = 0;
+
+    virtual bool joinThreads() = 0;
+
+    virtual bool forkToSave(const std::function<void()> &childSave, int viewId) = 0;
+
+    virtual void handleSaveMessage(const std::string &msg) = 0;
 };
 
 /// A document container.
@@ -238,7 +248,8 @@ public:
 /// per process. But for security reasons don't.
 /// However, we could have a loolkit instance
 /// per user or group of users (a trusted circle).
-class Document final : public DocumentManagerInterface
+class Document final : public DocumentManagerInterface,
+                       public std::enable_shared_from_this<Document>
 {
 public:
     Document(const std::shared_ptr<lok::Office>& loKit, const std::string& jailId,
@@ -326,6 +337,14 @@ private:
 
     void updateActivityHeader() const override;
 
+    bool joinThreads() override;
+
+    void startThreads();
+
+    bool forkToSave(const std::function<void()> &childSave, int viewId) override;
+
+    void handleSaveMessage(const std::string &msg) override;
+
     /// Notify all views of viewId and their associated usernames
     void notifyViewInfo() override;
 
@@ -392,7 +411,13 @@ private:
     static std::shared_ptr<lok::Document> _loKitDocumentForAndroidOnly;
 #endif
     std::shared_ptr<TileQueue> _tileQueue;
+
+    // Connection to the coolwsd process
     std::shared_ptr<WebSocketHandler> _websocketHandler;
+
+    // Connection a child background save process has to its parent: a precious thing.
+    std::weak_ptr<WebSocketHandler> _saveProcessParent;
+    bool _isBgSaveProcess;
 
     // Document password provided
     std::string _docPassword;
