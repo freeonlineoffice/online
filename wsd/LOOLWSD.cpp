@@ -126,6 +126,7 @@ using Poco::Net::PartHandler;
 #include <common/JsonUtil.hpp>
 #include <common/FileUtil.hpp>
 #include <common/JailUtil.hpp>
+#include <common/Watchdog.hpp>
 #if MOBILEAPP
 #  include <Kit.hpp>
 #endif
@@ -4361,7 +4362,7 @@ int LOOLWSD::innerMain()
     LOOLWSD::alertAllUsersInternal("close: shuttingdown");
 
     // Lots of polls will stop; stop watching them first.
-    SocketPoll::shutdownWatchdog();
+    SocketPoll::PollWatchdog.reset();
 
     // Stop the listening to new connections
     // and wait until sockets close.

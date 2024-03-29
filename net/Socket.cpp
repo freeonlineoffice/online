@@ -57,7 +57,7 @@ constexpr std::chrono::microseconds WebSocketHandler::PingFrequencyMicroS;
 std::atomic<bool> SocketPoll::InhibitThreadChecks(false);
 std::atomic<bool> Socket::InhibitThreadChecks(false);
 
-std::unique_ptr<Watchdog> PollWatchdog;
+std::unique_ptr<Watchdog> SocketPoll::PollWatchdog;
 
 #define SOCKET_ABSTRACT_UNIX_NAME "0loolwsd-"
 
@@ -1478,11 +1478,6 @@ extern "C" {
         syscall(SYS_futimesat, -1, "/tmp/kit-watchdog", times);
 #endif
     }
-}
-
-void SocketPoll::shutdownWatchdog()
-{
-    PollWatchdog.reset();
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
