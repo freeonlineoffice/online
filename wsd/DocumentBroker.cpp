@@ -987,6 +987,7 @@ bool DocumentBroker::download(
     // /tmp/user/docs/<dirName>, root under getJailRoot()
     const Poco::Path jailPath(JAILED_DOCUMENT_ROOT, Util::rng::getFilename(16));
     const std::string jailRoot = getJailRoot();
+    const Poco::URI& uriPublic = session->getPublicUri();
 
     LOG_INF("JailPath for docKey [" << _docKey << "]: [" << jailPath.toString() << "], jailRoot: ["
                                     << jailRoot << ']');
@@ -998,7 +999,6 @@ bool DocumentBroker::download(
 
         // Pass the public URI to storage as it needs to load using the token
         // and other storage-specific data provided in the URI.
-        const Poco::URI& uriPublic = session->getPublicUri();
         LOG_DBG("Creating new storage instance for URI ["
                 << LOOLWSD::anonymizeUrl(uriPublic.toString()) << ']');
 
@@ -1231,7 +1231,7 @@ bool DocumentBroker::download(
     const StorageBase::FileInfo fileInfo = _storage->getFileInfo();
     if (!fileInfo.isValid())
     {
-        LOG_ERR("Invalid fileinfo for URI [" << session->getPublicUri().toString() << "].");
+        LOG_ERR("Invalid fileinfo for URI [" << uriPublic.toString() << ']');
         return false;
     }
 
