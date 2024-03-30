@@ -621,6 +621,7 @@ class UserList extends L.Control {
 
 		followingChip.onclick = () => {
 			this.unfollowAll();
+			this.renderFollowingChip();
 		};
 
 		followingChip.title = this.options.followingChipTooltipText;
