@@ -122,7 +122,7 @@ fi
 if [ "$CORE_BRANCH" == "distro/libreoffice/lo-7.4.0" ]; then
   ( cd core && ./autogen.sh --with-distro=CPLinux-LOKit --disable-epm --without-package-format --disable-symbols ) || exit 1
 else
-  ( cd core && ./autogen.sh --with-distro=LibreOfficeOnline ) || exit 1
+  ( cd core && ./autogen.sh --with-distro=FreeOnlineOffice ) || exit 1
 fi
 ( cd core && make $CORE_BUILD_TARGET ) || exit 1
 
