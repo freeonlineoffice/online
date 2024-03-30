@@ -27,7 +27,7 @@ interface HtmlContentJson {
 }
 
 function getPermissionModeHtml(isReadOnlyMode: boolean, canUserWrite: boolean) {
-	var permissionModeDiv = '<div id="PermissionMode" class="cool-font jsdialog ';
+	var permissionModeDiv = '<div id="PermissionMode" class="lool-font jsdialog ';
 	if (isReadOnlyMode && !canUserWrite) {
 		permissionModeDiv +=
 			' status-readonly-mode" title="' +
@@ -53,7 +53,7 @@ function getStatusbarItemHtml(id: string, title: string, text: string) {
 	return (
 		'<div id="' +
 		id +
-		'" class="cool-font" title="' +
+		'" class="lool-font" title="' +
 		title +
 		'" style="padding: 5px 5px;">' +
 		text +
