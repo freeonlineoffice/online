@@ -115,8 +115,14 @@ class Dispatcher {
 			let elementToFocus: HTMLButtonElement;
 			if (tabsContainer) {
 				for (let i = 0; i < tabsContainer.children.length; i++) {
-					if (tabsContainer.children[i].classList.contains('selected')) {
-						elementToFocus = tabsContainer.children[i] as HTMLButtonElement;
+					if (
+						tabsContainer.children[i].classList.contains(
+							'selected',
+						)
+					) {
+						elementToFocus = tabsContainer.children[
+							i
+						] as HTMLButtonElement;
 						break;
 					}
 				}
@@ -130,7 +136,10 @@ class Dispatcher {
 		};
 
 		this.actionsMap['saveas'] = function () {
-			if (app.map && app.map.uiManager.getCurrentMode() === 'notebookbar') {
+			if (
+				app.map &&
+				app.map.uiManager.getCurrentMode() === 'notebookbar'
+			) {
 				app.map.openSaveAs(); // Opens save as dialog if integrator supports it.
 			}
 		};
@@ -160,11 +169,13 @@ class Dispatcher {
 		};
 
 		this.actionsMap['prev'] = () => {
-			if (app.map._docLayer._docType === 'text') app.map.goToPage('prev');
+			if (app.map._docLayer._docType === 'text')
+				app.map.goToPage('prev');
 			else app.map.setPart('prev');
 		};
 		this.actionsMap['next'] = () => {
-			if (app.map._docLayer._docType === 'text') app.map.goToPage('next');
+			if (app.map._docLayer._docType === 'text')
+				app.map.goToPage('next');
 			else app.map.setPart('next');
 		};
 
@@ -212,7 +223,9 @@ class Dispatcher {
 				app.map._docLayer.postKeyboardEvent(
 					'input',
 					app.map.keyboard.keyCodes.enter,
-					app.map.keyboard._toUNOKeyCode(app.map.keyboard.keyCodes.enter),
+					app.map.keyboard._toUNOKeyCode(
+						app.map.keyboard.keyCodes.enter,
+					),
 				);
 			} else {
 				this.sendUnoCommand('.uno:AcceptFormula');
@@ -240,7 +253,9 @@ class Dispatcher {
 		this.actionsMap['functiondialog'] = function () {
 			if (window.mode.isMobile() && app.map._functionWizardData) {
 				app.map._docLayer._closeMobileWizard();
-				app.map._docLayer._openMobileWizard(app.map._functionWizardData);
+				app.map._docLayer._openMobileWizard(
+					app.map._functionWizardData,
+				);
 				app.map.formulabarSetDirty();
 			} else {
 				app.map.sendUnoCommand('.uno:FunctionDialog');
@@ -336,18 +351,22 @@ class Dispatcher {
 
 		this.actionsMap['previouspart'] = function () {
 			app.map._docLayer._preview._scrollViewByDirection('prev');
-			if (app.file.fileBasedView) app.map._docLayer._checkSelectedPart();
+			if (app.file.fileBasedView)
+				app.map._docLayer._checkSelectedPart();
 		};
 
 		this.actionsMap['nextpart'] = function () {
 			app.map._docLayer._preview._scrollViewByDirection('next');
-			if (app.file.fileBasedView) app.map._docLayer._checkSelectedPart();
+			if (app.file.fileBasedView)
+				app.map._docLayer._checkSelectedPart();
 		};
 
 		this.actionsMap['lastpart'] = function () {
 			if (app && app.file.fileBasedView === true) {
 				const partToSelect = app.map._docLayer._parts - 1;
-				app.map._docLayer._preview._scrollViewToPartPosition(partToSelect);
+				app.map._docLayer._preview._scrollViewToPartPosition(
+					partToSelect,
+				);
 				app.map._docLayer._checkSelectedPart();
 			}
 		};
@@ -355,7 +374,9 @@ class Dispatcher {
 		this.actionsMap['firstpart'] = function () {
 			if (app && app.file.fileBasedView === true) {
 				const partToSelect = 0;
-				app.map._docLayer._preview._scrollViewToPartPosition(partToSelect);
+				app.map._docLayer._preview._scrollViewToPartPosition(
+					partToSelect,
+				);
 				app.map._docLayer._checkSelectedPart();
 			}
 		};
@@ -433,7 +454,9 @@ class Dispatcher {
 
 		this.actionsMap['.uno:AcceptAllTrackedChanges'] = function () {
 			app.map.sendUnoCommand('.uno:AcceptAllTrackedChanges');
-			app.socket.sendMessage('commandvalues command=.uno:ViewAnnotations');
+			app.socket.sendMessage(
+				'commandvalues command=.uno:ViewAnnotations',
+			);
 		};
 
 		this.actionsMap['.uno:RejectAllTrackedChanges'] = function () {
@@ -469,7 +492,9 @@ class Dispatcher {
 			(app.map.jsdialog && app.map.jsdialog.hasDialogOpened())
 		) {
 			app.map.dialog.blinkOpenDialog();
-			console.debug('Cannot dispatch: ' + action + ' when dialog is opened.');
+			console.debug(
+				'Cannot dispatch: ' + action + ' when dialog is opened.',
+			);
 			return;
 		}
 

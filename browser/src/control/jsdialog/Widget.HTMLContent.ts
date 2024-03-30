@@ -27,7 +27,8 @@ interface HtmlContentJson {
 }
 
 function getPermissionModeHtml(isReadOnlyMode: boolean, canUserWrite: boolean) {
-	var permissionModeDiv = '<div id="PermissionMode" class="lool-font jsdialog ';
+	var permissionModeDiv =
+		'<div id="PermissionMode" class="lool-font jsdialog ';
 	if (isReadOnlyMode && !canUserWrite) {
 		permissionModeDiv +=
 			' status-readonly-mode" title="' +
@@ -78,7 +79,11 @@ function getInsertModeHtml(text: string) {
 }
 
 function getSelectionModeHtml(text: string) {
-	return getStatusbarItemHtml('StatusSelectionMode', _('Selection Mode'), text);
+	return getStatusbarItemHtml(
+		'StatusSelectionMode',
+		_('Selection Mode'),
+		text,
+	);
 }
 
 function getRowColSelCountHtml(text: string) {
@@ -90,7 +95,11 @@ function getRowColSelCountHtml(text: string) {
 }
 
 function getStateTableCellHtml(text: string) {
-	return getStatusbarItemHtml('StateTableCell', _('Choice of functions'), text);
+	return getStatusbarItemHtml(
+		'StateTableCell',
+		_('Choice of functions'),
+		text,
+	);
 }
 
 function getSlideStatusHtml(text: string) {
@@ -136,7 +145,8 @@ var getHtmlFromId = function (
 	else if (id === 'statewordcount') return getWordCountHtml(data.text);
 	else if (id === 'statusdocpos') return getStatusDocPosHtml(data.text);
 	else if (id === 'insertmode') return getInsertModeHtml(data.text);
-	else if (id === 'statusselectionmode') return getSelectionModeHtml(data.text);
+	else if (id === 'statusselectionmode')
+		return getSelectionModeHtml(data.text);
 	else if (id === 'rowcolselcount') return getRowColSelCountHtml(data.text);
 	else if (id === 'statetablecell') return getStateTableCellHtml(data.text);
 	else if (id === 'slidestatus') return getSlideStatusHtml(data.text);
