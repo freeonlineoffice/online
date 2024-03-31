@@ -44,8 +44,7 @@ L.Control.UIManager = L.Control.extend({
 		map.on('unblockUI', this.unblockUI, this);
 
 		$('#toolbar-wrapper').on('click', function (event) {
-			if (event.target.parentElement.id === 'toolbar-up' || // checks if clicked on empty part of the toolbar on tabbed view
-				event.target.id === 'tb_editbar_item_item_64') // checks if clicked on empty part of the toolbar on compact view
+			if (event.target.parentElement.id === 'toolbar-up') // checks if clicked on empty part of the toolbar on tabbed view
 				that.map.fire('editorgotfocus');
 		});
 
@@ -338,7 +337,7 @@ L.Control.UIManager = L.Control.extend({
 			JSDialog.PresentationBar(this.map);
 		}
 
-		if (window.mode.isMobile() || (window.mode.isTablet() && !enableNotebookbar)) {
+		if (window.mode.isMobile()) {
 			this.map.on('updatetoolbarcommandvalues', function() {
 				w2ui['editbar'].refresh();
 			});
@@ -772,7 +771,7 @@ L.Control.UIManager = L.Control.extend({
 		var obj = $('.unfold');
 		obj.removeClass('w2ui-icon unfold');
 		obj.addClass('w2ui-icon fold');
-		$('#tb_editbar_item_fold').prop('title', _('Hide Menu'));
+		$('#fold').prop('title', _('Hide Menu'));
 
 		if (this._notebookbarShouldBeCollapsed)
 			this.collapseNotebookbar();
@@ -795,7 +794,7 @@ L.Control.UIManager = L.Control.extend({
 		var obj = $('.fold');
 		obj.removeClass('w2ui-icon fold');
 		obj.addClass('w2ui-icon unfold');
-		$('#tb_editbar_item_fold').prop('title', _('Show Menu'));
+		$('#fold').prop('title', _('Show Menu'));
 	},
 
 	isMenubarHidden: function() {
