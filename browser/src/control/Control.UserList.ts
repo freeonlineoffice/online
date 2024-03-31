@@ -219,18 +219,33 @@ class UserList extends L.Control {
 		return content;
 	}
 
-	registerHeaderAvatarEvents() {
+	openDropdown() {
+		const userListSummary = document.getElementById(
+			'userListSummaryBackground',
+		);
+		const userListPopover = document.getElementById('userlist-dropdown');
+		// checking case ''(empty string) is because when element loads first time it does not have any inline display style
+		const canShowDropdown =
+			!userListPopover &&
+			userListSummary &&
+			userListSummary.style.display !== 'none';
+		if (canShowDropdown) {
+			JSDialog.OpenDropdown(
+				'userlist',
+				document.getElementById('userListSummary'),
+				JSDialog.MenuDefinitions.get('UsersListMenu'),
+			);
+		}
+	}
 
-		document
-			.getElementById('userListSummary')
-			.addEventListener('click', function (e) {
+	registerHeaderAvatarEvents() {
+		document.getElementById('userListSummary').addEventListener(
+			'click',
+			function (e: MouseEvent) {
 				e.stopPropagation();
-				JSDialog.OpenDropdown(
-					'userlist',
-					document.getElementById('userListSummary'),
-					JSDialog.MenuDefinitions.get('UsersListMenu'),
-				);
-			});
+				this.openDropdown();
+			}.bind(this),
+		);
 	}
 
 	hideUserList() {
