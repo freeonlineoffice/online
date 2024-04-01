@@ -494,8 +494,8 @@ clean-local:
 	if test "z@SYSTEMPLATE_PATH@" != "z"; then rm -rf "@SYSTEMPLATE_PATH@" || echo "WARNING: failed to remove the systemplate"; fi
 	if test "z@JAILS_PATH@" != "z"; then rm -rf "@JAILS_PATH@" || echo "WARNING: failed to remove all jails cleanly"; fi
 	rm -rf "${top_srcdir}/loleaflet"
-#	rm -rf loolconfig loolconvert loolforkit loolmap loolmount # kill old binaries
-#	rm -rf loolwsd loolwsd_fuzzer loolstress loolsocketdump
+	rm -rf loolconfig loolconvert loolforkit loolmap loolmount # kill old binaries
+	rm -rf loolwsd loolwsd_fuzzer loolstress loolsocketdump
 	$(CLEANUP_COVERAGE)
 
 if ENABLE_DEBUG
@@ -663,12 +663,6 @@ prettier: browser/node_modules
 
 prettier-write: browser/node_modules
 	@make -C browser prettier-write
-
-install-exec-hook:
-	cd $(DESTDIR)$(bindir) && \
-	$(LN_S) loolconfig loolconfig && \
-	$(LN_S) loolwsd loolwsd && \
-	$(LN_S) loolwsd-systemplate-setup loolwsd-systemplate-setup
 
 stress_file=$(abs_top_srcdir)/test/data/hello-world.odt
 trace_dir=$(abs_top_srcdir)/test/traces
