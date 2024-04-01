@@ -495,7 +495,7 @@ clean-local:
 	if test "z@JAILS_PATH@" != "z"; then rm -rf "@JAILS_PATH@" || echo "WARNING: failed to remove all jails cleanly"; fi
 	rm -rf "${top_srcdir}/loleaflet"
 	rm -rf loolconfig loolconvert loolforkit loolmap loolmount # kill old binaries
-	rm -rf loolwsd loolwsd_fuzzer loolwsd_fuzzer loolstress loolsocketdump
+	rm -rf loolwsd loolwsd_fuzzer loolstress loolsocketdump
 	$(CLEANUP_COVERAGE)
 
 if ENABLE_DEBUG
