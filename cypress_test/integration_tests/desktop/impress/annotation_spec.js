@@ -227,7 +227,7 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('#annotation-save-1').click();
 		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.not.visible');
-		cy.cGet('.leaflet-marker-icon').should('exist')l
+		cy.cGet('.leaflet-marker-icon').should('exist')
 		cy.cGet('.lool-annotation-content > div').should('have.text','some text0');
 
 		helper.closeDocument(testFileName, '');
