@@ -175,6 +175,7 @@ textarea.lool-annotation-textarea {
 .toolbar-row {
 	display: flex;
 	flex-direction: row;
+	height: 38px !important;
 }
 
 .insertshape-grid {
