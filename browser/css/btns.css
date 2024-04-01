@@ -44,10 +44,14 @@
 	color: var(--color-text-dark);
 	border-radius: var(--border-radius);
 }
-[data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected.has-label,
+[data-theme='dark']
+	.hasnotebookbar
+	.ui-content.unotoolbutton.selected.has-label,
 [data-theme='dark'] #toggledarktheme,
 [data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected.inline,
-[data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline),
+[data-theme='dark']
+	.hasnotebookbar
+	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline),
 [data-theme='dark'] .sidebar.unotoolbutton.selected {
 	background-color: var(--color-background-darker);
 	border-color: var(--color-border-darker);
@@ -56,7 +60,8 @@
 .hasnotebookbar .ui-content.unotoolbutton.selected:hover,
 .unotoolbutton.notebookbar:hover,
 .unotoolbutton.jsdialog:hover,
-.hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
+.hasnotebookbar
+	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
 .sidebar.unotoolbutton.selected:hover,
 .jsdialog.unotoolbutton.selected:hover {
 	background-color: var(--color-background-darker) !important;

@@ -464,7 +464,8 @@ class UserList extends L.Control {
 	renderAll() {
 		this.updateUserListCount();
 		this.renderHeaderAvatars();
-		const jsdialogPopoverElement = document.getElementById('userlist-entries');
+		const jsdialogPopoverElement =
+			document.getElementById('userlist-entries');
 		if (jsdialogPopoverElement)
 			this.renderHeaderAvatarPopover(jsdialogPopoverElement);
 		const mobilePopoverElement = document.getElementById(
