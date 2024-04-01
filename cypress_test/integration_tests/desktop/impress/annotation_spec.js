@@ -217,7 +217,6 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		helper.beforeAll(testFileName, 'impress', true, false, false, true);
 		cy.cGet('.leaflet-marker-icon').should('exist');
 		cy.cGet('.lool-annotation-content > div').should('have.text','some text0');
->>>>>>> 786ad1c84 (Rewrite desktopHelper.insertComment())
 	});
 
 	it('Insert autosave save', function() {
