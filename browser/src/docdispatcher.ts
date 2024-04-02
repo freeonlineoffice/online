@@ -288,7 +288,7 @@ class Dispatcher {
 					),
 				);
 			} else {
-				this.sendUnoCommand('.uno:AcceptFormula');
+				app.map.sendUnoCommand('.uno:AcceptFormula');
 			}
 
 			app.map.onFormulaBarBlur();
@@ -512,7 +512,7 @@ class Dispatcher {
 
 	private addWriterCommands() {
 		this.actionsMap['.uno:ShowResolvedAnnotations'] = function () {
-			const items = this['stateChangeHandler'];
+			const items = app.map['stateChangeHandler'];
 			let val = items.getItemValue('.uno:ShowResolvedAnnotations');
 			val = val === 'true' || val === true;
 			app.map.showResolvedComments(!val);
