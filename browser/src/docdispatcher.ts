@@ -91,7 +91,8 @@ class Dispatcher {
 				else if (configuration.mobileWizard)
 					app.dispatcher.dispatch('mobile_wizard');
 				configuration.commentWizard = true;
-				var menuData = app.map._docLayer.getCommentWizardStructure();
+				var menuData =
+					app.map._docLayer.getCommentWizardStructure();
 				app.map.fire('mobilewizard', { data: menuData });
 				//app.map.mobileTopBar.check(id);
 			}
@@ -126,7 +127,8 @@ class Dispatcher {
 				else if (configuration.commentWizard)
 					app.dispatcher.dispatch('comment_wizard');
 				configuration.insertionMobileWizard = true;
-				const menuData = app.map.menubar.generateInsertMenuStructure();
+				const menuData =
+					app.map.menubar.generateInsertMenuStructure();
 				app.map.fire('mobilewizard', { data: menuData });
 				//app.map.mobileTopBar.check(id);
 			}

@@ -455,8 +455,10 @@ class UserList extends L.Control {
 		this.updateUserListCount();
 		this.renderHeaderAvatars();
 		const topPopoverElement = document.getElementById('userListPopover');
-		if (topPopoverElement) this.renderHeaderAvatarPopover(topPopoverElement);
-		const statusbarPopoverElement = document.getElementById('userlist-entries');
+		if (topPopoverElement)
+			this.renderHeaderAvatarPopover(topPopoverElement);
+		const statusbarPopoverElement =
+			document.getElementById('userlist-entries');
 		if (statusbarPopoverElement)
 			this.renderHeaderAvatarPopover(statusbarPopoverElement);
 		this.renderFollowingChip();

@@ -46,7 +46,12 @@ class MobileSearchBar {
 				w2icon: 'unfold',
 				text: _('Hide the search bar'),
 			},
-			{ type: 'edit', id: 'search-input', placeholder: _('Search'), text: '' },
+			{
+				type: 'edit',
+				id: 'search-input',
+				placeholder: _('Search'),
+				text: '',
+			},
 			{
 				type: 'customtoolitem',
 				id: 'searchprev',
