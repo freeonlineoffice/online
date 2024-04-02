@@ -178,9 +178,6 @@ LOOL_LIBS_JS +=\
 	l10n.js
 endif
 
-LOOL_LIBS_JS +=\
-	w2ui-1.5.js
-
 NODE_MODULES_JS_SRC = $(patsubst %.js,$(builddir)/%.js,$(NODE_MODULES_JS))
 NODE_MODULES_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(NODE_MODULES_JS))
 
@@ -753,7 +750,6 @@ pot:
 		admin/src/AdminSocketSettings.js \
 		admin/src/Util.js \
 		js/global.js \
-		js/w2ui-1.5.js \
 		src/control/ColorPicker.ts \
 		src/control/Control.AlertDialog.js \
 		src/control/Control.Command.js \
