@@ -263,10 +263,6 @@ nav:not(.spreadsheet-color-indicator)
 	width: 38px !important;
 }
 
-#toolbar-wrapper.mobile td[id^='tb_actionbar_item'] .w2ui-tb-image {
-	width: 36px !important;
-}
-
 #toolbar-up .checked{
 	border-color: transparent !important;
 	background: none !important;
@@ -330,21 +326,6 @@ nav:not(.spreadsheet-color-indicator)
 	border-bottom: none;
 	border-top: 5px solid #8d99a7;
 	margin-bottom: 5px !important;
-}
-#w2ui-overlay-editbar .menu {
-	border-radius: var(--border-radius);
-}
-#w2ui-overlay-editbar:before {
-	border: none !important;
-}
-#w2ui-overlay-editbar:after {
-	border: none;
-	border-top: 8px solid #000000;
-	border-top-color: inherit;
-	border-right: 8px solid transparent;
-	border-left: 8px solid transparent;
-	top: 100%;
-	margin-top: -3px;
 }
 #toolbar-search #search *{
 	width: 100% !important;

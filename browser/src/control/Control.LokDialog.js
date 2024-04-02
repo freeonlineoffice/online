@@ -3,7 +3,7 @@
  * L.Control.LokDialog used for displaying LOK dialogs
  */
 
-/* global app $ L Hammer w2ui brandProductName UNOModifier */
+/* global app $ L Hammer brandProductName UNOModifier */
 
 L.WinUtil = {
 
@@ -586,10 +586,8 @@ L.Control.LokDialog = L.Control.extend({
 	},
 
 	_launchDialog: function(id, leftTwips, topTwips, width, height, title, type, uniqueId) {
-		if (window.ThisIsTheiOSApp) {
-			if (w2ui['editbar'])
-				w2ui['editbar'].disable('closemobile');
-		}
+		if (window.ThisIsTheiOSApp && app.map.mobileTopBar)
+				app.map.mobileTopBar.enableItem('closemobile', false);
 		this.onCloseCurrentPopUp();
 		var dialogContainer = L.DomUtil.create('div', 'lokdialog', document.body);
 		L.DomUtil.setStyle(dialogContainer, 'padding', '0px');
@@ -863,10 +861,8 @@ L.Control.LokDialog = L.Control.extend({
 	_onDialogClose: function(dialogId, notifyBackend) {
 		this._closeChildWindows(dialogId);
 
-		if (window.ThisIsTheiOSApp) {
-			if (w2ui['editbar'])
-				w2ui['editbar'].enable('closemobile');
-		}
+		if (window.ThisIsTheiOSApp && app.map.mobileTopBar)
+			app.map.mobileTopBar.enableItem('closemobile', true);
 
 		if (notifyBackend)
 			this._sendCloseWindow(dialogId);

@@ -39,6 +39,7 @@ L.Control.MobileTopBar = L.Control.extend({
 
 		if (docType == 'text') {
 			return [
+				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
 				{type: 'toolitem',  id: 'redo', text: _UNO('.uno:Redo'), command: '.uno:Redo', enabled: false},
 				{type: 'spacer', id: 'before-PermissionMode'},
@@ -58,6 +59,7 @@ L.Control.MobileTopBar = L.Control.extend({
 			];
 		} else if (docType == 'spreadsheet') {
 			return [
+				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
 				{type: 'toolitem',  id: 'redo', text: _UNO('.uno:Redo'), command: '.uno:Redo', enabled: false},
 				{type: 'customtoolitem', visible: false, id: 'acceptformula', command: 'acceptformula', text: _('Accept')},
@@ -70,6 +72,7 @@ L.Control.MobileTopBar = L.Control.extend({
 			];
 		} else if (docType == 'presentation') {
 			return [
+				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
 				{type: 'toolitem',  id: 'redo', text: _UNO('.uno:Redo'), command: '.uno:Redo', enabled: false},
 				{type: 'spacer'},
@@ -81,6 +84,7 @@ L.Control.MobileTopBar = L.Control.extend({
 			];
 		} else if (docType == 'drawing') {
 			return [
+				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
 				{type: 'toolitem',  id: 'redo', text: _UNO('.uno:Redo'), command: '.uno:Redo', enabled: false},
 				{type: 'spacer'},
@@ -109,6 +113,11 @@ L.Control.MobileTopBar = L.Control.extend({
 			'control_id': command,
 			'action_type': enable ? 'enable' : 'disable'
 		});
+	},
+
+	showSigningItem: function (icon, text) {
+		this.builder.updateWidget(this.parentContainer,
+			{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', noLabel: true, w2icon: icon, text: text ? text : _UNO('.uno:Signature')});
 	},
 
 	onUpdatePermission: function(e) {

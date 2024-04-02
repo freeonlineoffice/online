@@ -3,7 +3,7 @@
  * Document Signing
  */
 
-/* global _ app w2ui*/
+/* global _ app */
 
 L.Map.include({
 	onChangeSignStatus: function(signstatus) {
@@ -44,7 +44,7 @@ L.Map.include({
 			if (!window.mode.isMobile())
 				app.map.statusBar.showSigningItem(statusIcon, statusText);
 			else
-				w2ui['actionbar'].insert('undo', {type: 'button',  id: 'signstatus', img: statusIcon, hint: statusText});
+				app.map.mobileTopBar.showSigningItem(statusIcon, statusText);
 		}
 	}
 });
