@@ -55,7 +55,7 @@
 				* This ensures the consistency once the variables are set, but the compound error increases (if one modifies the non-base values again and again, and again).
 */
 
-namespace cool {
+namespace lool {
 
 // Simple point, for simple purposes.
 export class SimplePoint {
@@ -222,5 +222,5 @@ export class SimpleRectangle {
 
 }
 
-app.definitions.simpleRectangle = cool.SimpleRectangle;
-app.definitions.simplePoint = cool.SimplePoint;
+app.definitions.simpleRectangle = lool.SimpleRectangle;
+app.definitions.simplePoint = lool.SimplePoint;
