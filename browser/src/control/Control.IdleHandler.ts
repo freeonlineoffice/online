@@ -12,6 +12,8 @@ declare var outOfFocusTimeoutSecs: number;
 
 /**/
 
+app.idleHandlerId = 'inactive_user_message';
+
 class IdleHandler {
     _serverRecycling: boolean = false;
     _documentIdle: boolean = false;
@@ -20,7 +22,7 @@ class IdleHandler {
 	_outOfFocusTimer: ReturnType<typeof setTimeout> = null;
     _active: boolean = true;
     map: any;
-	dimId: string = 'inactive_user_message';
+	dimId: string = app.idleHandlerId;
 
 	getIdleMessage(): string {
 		if (this.map['wopi'] && this.map['wopi'].DisableInactiveMessages) {
