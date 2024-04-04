@@ -46,6 +46,7 @@
 #include <common/SigUtil.hpp>
 #include <common/security.h>
 #include <common/ConfigUtil.hpp>
+#include <common/Watchdog.hpp>
 #include <kit/DeltaSimd.h>
 
 static bool NoCapsForKit = false;
@@ -415,6 +416,16 @@ static int createLibreOfficeKit(const std::string& childRoot,
     }
     else
     {
+        /* We are about to fork, but not exec. After a fork the child has
+           only one thread, but a copy of the watchdog object.
+
+           Stop the watchdog thread before fork, let the child discard
+           its copy of the watchdog that is now in a discardable state,
+           and allow it to create a new one on next SocketPoll ctor */
+        const bool hasWatchDog(SocketPoll::PollWatchdog);
+        if (hasWatchDog)
+            SocketPoll::PollWatchdog->joinThread();
+
         pid = fork();
         if (!pid)
         {
@@ -434,6 +445,10 @@ static int createLibreOfficeKit(const std::string& childRoot,
 
             SigUtil::setSigChildHandler(nullptr);
 
+            // Throw away inherited watchdog, which will let a new one for this
+            // child be created on demand
+            SocketPoll::PollWatchdog.reset();
+
             UnitKit::get().postFork();
 
             sleepForDebugger();
@@ -443,6 +458,12 @@ static int createLibreOfficeKit(const std::string& childRoot,
         }
         else
         {
+            if (hasWatchDog)
+            {
+                // restart parent watchdog if there was one
+                SocketPoll::PollWatchdog->startThread();
+            }
+
             // Parent
             if (pid < 0)
             {
