@@ -192,10 +192,8 @@ L.Control.UIManager = L.Control.extend({
 		}
 
 		if (!window.mode.isMobile()) {
-			if (!enableNotebookbar) {
-				this.map.topToolbar = L.control.topToolbar();
-				this.map.addControl(this.map.topToolbar);
-			}
+			if (!enableNotebookbar)
+				this.map.topToolbar = JSDialog.TopToolbar(this.map);
 
 			this.map.statusBar = JSDialog.StatusBar(this.map);
 
@@ -405,7 +403,7 @@ L.Control.UIManager = L.Control.extend({
 		}
 		if (this.map.topToolbar)
 		{
-			this.map.removeControl(this.map.topToolbar);
+			this.map.topToolbar.onRemove();
 			this.map.topToolbar = null;
 		}
 	},
@@ -413,8 +411,7 @@ L.Control.UIManager = L.Control.extend({
 	addClassicUI: function() {
 		this.map.menubar = L.control.menubar();
 		this.map.addControl(this.map.menubar);
-		this.map.topToolbar = L.control.topToolbar();
-		this.map.addControl(this.map.topToolbar);
+		this.map.topToolbar = JSDialog.TopToolbar(this.map);
 
 		//update the toolbar according to CheckFileInfo
 		this.map.topToolbar.onWopiProps(this.map.wopi);
