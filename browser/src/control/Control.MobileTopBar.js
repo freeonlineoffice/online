@@ -1,21 +1,20 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.SearchBar
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * JSDialog.MobileTopBar - component of top bar on mobile
  */
 
-/* global $ _UNO _ app */
-L.Control.MobileTopBar = L.Control.extend({
-
-	options: {
-		doctype: 'text'
-	},
-
-	initialize: function (docType) {
-		L.setOptions(this, {docType: docType});
-	},
-
-	onAdd: function (map) {
+/* global JSDialog $ _UNO _ app */
+class MobileTopBar {
+	constructor(map) {
 		this.map = map;
+		this.docType = map.getDocType();
 		this.parentContainer = document.getElementById('toolbar-up');
 		L.DomUtil.addClass(this.parentContainer, 'ui-toolbar');
 
@@ -31,13 +30,13 @@ L.Control.MobileTopBar = L.Control.extend({
 
 		map.on('updatepermission', this.onUpdatePermission, this);
 		map.on('commandstatechanged', this.onCommandStateChanged, this);
-	},
+	}
 
-	getToolItems: function(docType) {
+	getToolItems() {
 		var isReadOnlyMode = app.map ? app.map.isReadOnlyMode() : true;
 		var canUserWrite = !app.isReadOnly();
 
-		if (docType == 'text') {
+		if (this.docType == 'text') {
 			return [
 				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
@@ -57,7 +56,7 @@ L.Control.MobileTopBar = L.Control.extend({
 				{type: 'customtoolitem',  id: 'comment_wizard', command: 'comment_wizard', w2icon: 'viewcomments'},
 				{type: 'menubutton', id: 'userlist:UsersListMenu', visible: false},
 			];
-		} else if (docType == 'spreadsheet') {
+		} else if (this.docType == 'spreadsheet') {
 			return [
 				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
@@ -70,7 +69,7 @@ L.Control.MobileTopBar = L.Control.extend({
 				{type: 'customtoolitem',  id: 'comment_wizard', command: 'comment_wizard', w2icon: 'viewcomments'},
 				{type: 'menubutton', id: 'userlist:UsersListMenu', visible: false},
 			];
-		} else if (docType == 'presentation') {
+		} else if (this.docType == 'presentation') {
 			return [
 				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
@@ -79,10 +78,10 @@ L.Control.MobileTopBar = L.Control.extend({
 				{type: 'customtoolitem',  id: 'mobile_wizard', command: 'mobile_wizard'},
 				{type: 'customtoolitem',  id: 'insertion_mobile_wizard', command: 'insertion_mobile_wizard'},
 				{type: 'customtoolitem',  id: 'comment_wizard', command: 'comment_wizard', w2icon: 'viewcomments'},
-				{type: 'customtoolitem', id: 'fullscreen-' + docType, text: _UNO('.uno:FullScreen', docType)},
+				{type: 'customtoolitem', id: 'fullscreen-' + this.docType, text: _UNO('.uno:FullScreen', this.docType)},
 				{type: 'menubutton', id: 'userlist:UsersListMenu', visible: false},
 			];
-		} else if (docType == 'drawing') {
+		} else if (this.docType == 'drawing') {
 			return [
 				{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 				{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', enabled: false},
@@ -94,40 +93,40 @@ L.Control.MobileTopBar = L.Control.extend({
 				{type: 'menubutton', id: 'userlist:UsersListMenu', visible: false},
 			];
 		}
-	},
+	}
 
-	create: function() {
-		var items = this.getToolItems(this.options.docType);
+	create() {
+		var items = this.getToolItems();
 		this.builder.build(this.parentContainer, items);
-	},
+	}
 
 	showItem(command, show) {
 		this.builder.executeAction(this.parentContainer, {
 			'control_id': command,
 			'action_type': show ? 'show' : 'hide'
 		});
-	},
+	}
 
 	enableItem(command, enable) {
 		this.builder.executeAction(this.parentContainer, {
 			'control_id': command,
 			'action_type': enable ? 'enable' : 'disable'
 		});
-	},
+	}
 
-	showSigningItem: function (icon, text) {
+	showSigningItem(icon, text) {
 		this.builder.updateWidget(this.parentContainer,
 			{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', noLabel: true, w2icon: icon, text: text ? text : _UNO('.uno:Signature')});
-	},
+	}
 
 	selectItem(command, select) {
 		this.builder.executeAction(this.parentContainer, {
 			'control_id': command,
 			'action_type': select ? 'select' : 'unselect'
 		});
-	},
+	}
 
-	onUpdatePermission: function(e) {
+	onUpdatePermission(e) {
 		var toolbarButtons = ['next', 'prev', 'mobile_wizard', 'insertion_mobile_wizard', 'comment_wizard'];
 		if (e.perm === 'edit') {
 			toolbarButtons.forEach((id) => {
@@ -143,9 +142,9 @@ L.Control.MobileTopBar = L.Control.extend({
 				this.showItem('PermissionMode', true);
 			}
 		}
-	},
+	}
 
-	onCommandStateChanged: function(e) {
+	onCommandStateChanged(e) {
 		var commandName = e.commandName;
 		var state = e.state;
 
@@ -159,9 +158,9 @@ L.Control.MobileTopBar = L.Control.extend({
 				this.enableItem(id, false);
 			}
 		}
-	},
-});
+	}
+}
 
-L.control.mobileTopBar = function (docType) {
-	return new L.Control.MobileTopBar(docType);
+JSDialog.MobileTopBar = function (map) {
+	return new MobileTopBar(map);
 };
