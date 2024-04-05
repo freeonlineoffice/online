@@ -10,7 +10,7 @@
  * JSDialog.TopToolbar - component of top toolbar in compact mode
  */
 
-/* global $ app JSDialog _ _UNO */
+/* global $ JSDialog _ _UNO */
 class TopToolbar extends JSDialog.Toolbar {
 	constructor(map) {
 		super(map, 'toolbar-up');
@@ -20,7 +20,7 @@ class TopToolbar extends JSDialog.Toolbar {
 		map.on('updatepermission', this.onUpdatePermission, this);
 		map.on('wopiprops', this.onWopiProps, this);
 		map.on('commandstatechanged', this.onCommandStateChanged, this);
-		map.on('contextchange', this.onContextChange, this);
+		map.on('contextchange', this.onContextChange.bind(this), this);
 
 		if (!window.mode.isMobile()) {
 			map.on('updatetoolbarcommandvalues', this.updateCommandValues, this);
@@ -85,7 +85,7 @@ class TopToolbar extends JSDialog.Toolbar {
 	}
 
 	onContextChange(event) {
-		window.updateVisibilityForToolbar(app.map.topToolbar, event.context);
+		this.updateVisibilityForToolbar(event.context);
 	}
 
 	// mobile:false means hide it both for normal Online used from a mobile phone browser, and in a mobile app on a mobile phone
@@ -338,7 +338,7 @@ class TopToolbar extends JSDialog.Toolbar {
 			break;
 		}
 
-		window.updateVisibilityForToolbar(this);
+		this.updateVisibilityForToolbar();
 
 		this.map.createFontSizeSelector('#fontsizecombobox-input');
 

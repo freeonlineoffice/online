@@ -368,8 +368,7 @@ class UserList extends L.Control {
 		if (this.map.mobileTopBar) {
 			if (!this.hideUserList() && count > 1)
 				this.map.mobileTopBar.showItem('userlist', true);
-			else
-				this.map.mobileTopBar.showItem('userlist', false);
+			else this.map.mobileTopBar.showItem('userlist', false);
 		}
 	}
 
@@ -433,8 +432,7 @@ class UserList extends L.Control {
 		this.updateUserListCount();
 		this.renderHeaderAvatars();
 		const popoverElement = document.getElementById('userlist-entries');
-		if (popoverElement)
-			this.renderHeaderAvatarPopover(popoverElement);
+		if (popoverElement) this.renderHeaderAvatarPopover(popoverElement);
 		this.renderFollowingChip();
 	}
 
