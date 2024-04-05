@@ -51,7 +51,7 @@
 .ui-toolbar > div > div .lool-font {
 	margin: auto 2px;
 	padding: 3px;
-	text-wrap: nowrap;
+	white-space: nowrap;
 	height: inherit;
 }
 .ui-toolbar > div > div > .unotoolbutton button {
