@@ -203,7 +203,7 @@ void KitWebSocketHandler::onDisconnect()
 void BgSaveChildWebSocketHandler::handleMessage(const std::vector<char>& data)
 {
     LOG_DBG(_socketName << ": recv from parent [" <<
-            COOLProtocol::getAbbreviatedMessage(data));
+            LOOLProtocol::getAbbreviatedMessage(data));
 }
 
 void BgSaveChildWebSocketHandler::onDisconnect()
@@ -222,7 +222,7 @@ BgSaveChildWebSocketHandler::~BgSaveChildWebSocketHandler()
 void BgSaveParentWebSocketHandler::handleMessage(const std::vector<char>& data)
 {
     LOG_DBG(_socketName << ": recv from parent [" <<
-            COOLProtocol::getAbbreviatedMessage(data));
+            LOOLProtocol::getAbbreviatedMessage(data));
 
     const StringVector tokens = StringVector::tokenize(data.data(), data.size());
 
