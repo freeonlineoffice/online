@@ -342,7 +342,10 @@ menuDefinitions.set('ConditionalFormatMenu', [
 				uno: '.uno:ConditionalFormatEasy?FormatRule:short=23',
 			},
 			{ type: 'separator' },
-			{ text: _('More conditions...'), uno: '.uno:ConditionalFormatDialog' },
+			{
+				text: _('More conditions...'),
+				uno: '.uno:ConditionalFormatDialog',
+			},
 		],
 	},
 	{

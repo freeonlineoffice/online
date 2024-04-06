@@ -160,17 +160,20 @@ class Toolbar {
 				((window.mode.isMobile() && item.mobile === true) ||
 					(window.mode.isTablet() && item.tablet === true) ||
 					(window.mode.isDesktop() && item.desktop === true) ||
-					((window as any).ThisIsAMobileApp && item.mobilebrowser === true)) &&
+					((window as any).ThisIsAMobileApp &&
+						item.mobilebrowser === true)) &&
 				item.hidden
 			) {
 				toShow.push(item.id);
 			}
 
 			if (context && item.context) {
-				if (item.context.indexOf(context) >= 0) toShow.push(item.id);
+				if (item.context.indexOf(context) >= 0)
+					toShow.push(item.id);
 				else toHide.push(item.id);
 			} else if (!context && item.context) {
-				if (item.context.indexOf('default') >= 0) toShow.push(item.id);
+				if (item.context.indexOf('default') >= 0)
+					toShow.push(item.id);
 				else toHide.push(item.id);
 			}
 		});

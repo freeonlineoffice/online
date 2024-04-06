@@ -41,7 +41,9 @@ class Dispatcher {
 			app.map.print();
 		};
 		this.actionsMap['repair'] = function () {
-			app.socket.sendMessage('commandvalues command=.uno:DocumentRepair');
+			app.socket.sendMessage(
+				'commandvalues command=.uno:DocumentRepair',
+			);
 		};
 
 		this.actionsMap['remotelink'] = function () {
@@ -107,10 +109,11 @@ class Dispatcher {
 		this.actionsMap['localgraphic'] = function () {
 			L.DomUtil.get('insertgraphic').click();
 		};
-		this.actionsMap['remotegraphic'] = this.actionsMap['insertremotegraphic'] =
-			function () {
-				app.map.fire('postMessage', { msgId: 'UI_InsertGraphic' });
-			};
+		this.actionsMap['remotegraphic'] = this.actionsMap[
+			'insertremotegraphic'
+		] = function () {
+			app.map.fire('postMessage', { msgId: 'UI_InsertGraphic' });
+		};
 
 		this.actionsMap['showhelp'] = function () {
 			app.map.showHelp('online-help-content');
@@ -207,9 +210,10 @@ class Dispatcher {
 			app.map.insertComment();
 		};
 
-		this.actionsMap['fold'] = this.actionsMap['hamburger-tablet'] = () => {
-			app.map.uiManager.toggleMenubar();
-		};
+		this.actionsMap['fold'] = this.actionsMap['hamburger-tablet'] =
+			() => {
+				app.map.uiManager.toggleMenubar();
+			};
 
 		this.actionsMap['close'] = this.actionsMap['closemobile'] = () => {
 			app.map.uiManager.enterReadonlyOrClose();
@@ -522,7 +526,8 @@ class Dispatcher {
 				else if (configuration.mobileWizard)
 					app.dispatcher.dispatch('mobile_wizard');
 				configuration.commentWizard = true;
-				var menuData = app.map._docLayer.getCommentWizardStructure();
+				var menuData =
+					app.map._docLayer.getCommentWizardStructure();
 				app.map.fire('mobilewizard', { data: menuData });
 				app.map.mobileTopBar.selectItem('comment_wizard', true);
 			}
@@ -550,16 +555,23 @@ class Dispatcher {
 			if (configuration.insertionMobileWizard) {
 				configuration.insertionMobileWizard = false;
 				app.map.fire('closemobilewizard');
-				app.map.mobileTopBar.selectItem('insertion_mobile_wizard', false);
+				app.map.mobileTopBar.selectItem(
+					'insertion_mobile_wizard',
+					false,
+				);
 			} else {
 				if (configuration.mobileWizard)
 					app.dispatcher.dispatch('mobile_wizard');
 				else if (configuration.commentWizard)
 					app.dispatcher.dispatch('comment_wizard');
 				configuration.insertionMobileWizard = true;
-				const menuData = app.map.menubar.generateInsertMenuStructure();
+				const menuData =
+					app.map.menubar.generateInsertMenuStructure();
 				app.map.fire('mobilewizard', { data: menuData });
-				app.map.mobileTopBar.selectItem('insertion_mobile_wizard', true);
+				app.map.mobileTopBar.selectItem(
+					'insertion_mobile_wizard',
+					true,
+				);
 			}
 		};
 

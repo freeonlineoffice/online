@@ -47,7 +47,10 @@ class JSDialogMessageRouter {
 		}
 	}
 
-	public processMessage(msgData: JSDialogJSON, callbackFn: JSDialogCallback) {
+	public processMessage(
+		msgData: JSDialogJSON,
+		callbackFn: JSDialogCallback,
+	) {
 		// update existing component
 		if (msgData.action) {
 			var fireJSDialogEvent = function () {
@@ -66,7 +69,10 @@ class JSDialogMessageRouter {
 
 			var isNotebookbarInitialized =
 				app.map.uiManager && app.map.uiManager.notebookbar;
-			if (msgData.jsontype === 'notebookbar' && !isNotebookbarInitialized) {
+			if (
+				msgData.jsontype === 'notebookbar' &&
+				!isNotebookbarInitialized
+			) {
 				setTimeout(fireJSDialogEvent, 1000);
 				return;
 			} else if (fireJSDialogEvent() === true) {
@@ -74,7 +80,8 @@ class JSDialogMessageRouter {
 			}
 		}
 
-		if (msgData.type === 'messagebox') this._preProcessMessageDialog(msgData);
+		if (msgData.type === 'messagebox')
+			this._preProcessMessageDialog(msgData);
 
 		// appears in autofilter dropdown for hidden popups, we can ignore that
 		if (msgData.jsontype === 'popup') return;
@@ -86,9 +93,13 @@ class JSDialogMessageRouter {
 				msgData.type === 'dropdown' ||
 				msgData.type === 'snackbar' ||
 				(msgData.type === 'modalpopup' &&
-					msgData.id === JSDialog.generateModalId(app.idleHandlerId))
+					msgData.id ===
+						JSDialog.generateModalId(app.idleHandlerId))
 			) {
-				app.map.fire('jsdialog', { data: msgData, callback: callbackFn });
+				app.map.fire('jsdialog', {
+					data: msgData,
+					callback: callbackFn,
+				});
 				return;
 			}
 
@@ -103,7 +114,10 @@ class JSDialogMessageRouter {
 				msgData.jsontype === 'dialog' ||
 				msgData.type === 'modalpopup'
 			) {
-				app.map.fire('mobilewizard', { data: msgData, callback: callbackFn });
+				app.map.fire('mobilewizard', {
+					data: msgData,
+					callback: callbackFn,
+				});
 			} else {
 				console.warn(
 					'jsdialog: unhandled jsdialog mobile message: {jsontype: "' +
@@ -114,7 +128,10 @@ class JSDialogMessageRouter {
 				);
 			}
 		} else if (msgData.jsontype === 'dialog') {
-			app.map.fire('jsdialog', { data: msgData, callback: callbackFn });
+			app.map.fire('jsdialog', {
+				data: msgData,
+				callback: callbackFn,
+			});
 		} else if (msgData.jsontype === 'sidebar') {
 			app.map.fire('sidebar', { data: msgData });
 		} else if (msgData.jsontype === 'formulabar') {
