@@ -2608,7 +2608,7 @@ void lokit_main(
             const std::string loJailDestPath = jailLOInstallation.toString();
 
             // The bind-mount implementation: inlined here to mirror
-            // the fallback link/copy version bellow.
+            // the fallback link/copy version below.
             const auto mountJail = [&]() -> bool {
                 // Mount sysTemplate for the jail directory.
                 LOG_INF("Mounting " << sysTemplate << " -> " << jailPathStr);
