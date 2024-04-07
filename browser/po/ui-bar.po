@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 16:50+0200\n"
+"POT-Creation-Date: 2024-04-07 11:11+0200\n"
 "PO-Revision-Date: 2020-01-28 16:49+0000\n"
 "Last-Translator: Florian <1234567890@hotmail.de>\n"
 "Language-Team: Bavarian <https://weblate.documentfoundation.org/projects/"
@@ -1133,7 +1133,7 @@ msgid "Above Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:824
-msgid "Bellow Average..."
+msgid "Below Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:935 src/control/Control.Menubar.js:1000

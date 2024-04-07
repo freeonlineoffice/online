@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 16:50+0200\n"
-"PO-Revision-Date: 2024-04-06 17:11+0200\n"
+"POT-Creation-Date: 2024-04-07 11:11+0200\n"
+"PO-Revision-Date: 2024-04-07 11:15+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1062,7 +1062,7 @@ msgstr "Zwischen..."
 
 #: src/control/Control.Menubar.js:813
 msgid "Duplicate..."
-msgstr "Duplikat"
+msgstr "Duplikat..."
 
 #: src/control/Control.Menubar.js:814
 msgid "Contains text..."
@@ -1074,7 +1074,7 @@ msgstr "Mehr Bedingungen..."
 
 #: src/control/Control.Menubar.js:818
 msgid "Top/Bottom Rules..."
-msgstr "Größer-/Kleiner-Regeln"
+msgstr "Größer-/Kleiner-Regeln..."
 
 #: src/control/Control.Menubar.js:819
 msgid "Top N elements..."
@@ -1090,15 +1090,15 @@ msgstr "Kleinste N Elemente..."
 
 #: src/control/Control.Menubar.js:822
 msgid "Bottom N percent..."
-msgstr "Kleinste N Prozente"
+msgstr "Kleinste N Prozente..."
 
 #: src/control/Control.Menubar.js:823
 msgid "Above Average..."
-msgstr "Überdurchschnittlich"
+msgstr "Überdurchschnittlich..."
 
 #: src/control/Control.Menubar.js:824
-msgid "Bellow Average..."
-msgstr "Unterdurchschnittlich"
+msgid "Below Average..."
+msgstr "Unterdurchschnittlich..."
 
 #: src/control/Control.Menubar.js:935 src/control/Control.Menubar.js:1000
 #: src/control/Control.Menubar.js:1064 src/control/Control.Menubar.js:1118

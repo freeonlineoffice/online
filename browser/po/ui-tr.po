@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 16:50+0200\n"
+"POT-Creation-Date: 2024-04-07 11:11+0200\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -1142,7 +1142,7 @@ msgid "Above Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:824
-msgid "Bellow Average..."
+msgid "Below Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:935 src/control/Control.Menubar.js:1000
