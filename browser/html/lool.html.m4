@@ -360,9 +360,8 @@ m4_ifelse(IOSAPP,[true],
 m4_ifelse(ANDROIDAPP,[true],
      [window.userInterfaceMode = window.loolParams.get('userinterfacemode');])
 
-m4_ifelse(ANDROIDAPP,[true],
-     [var darkTheme = window.loolParams.get('darkTheme');
-      if (darkTheme) {window.uiDefaults = {'darkTheme': true};}])
+var darkTheme = window.loolParams.get('darkTheme');
+if (darkTheme) {window.uiDefaults = {'darkTheme': true};}
 
 m4_ifelse(EMSCRIPTENAPP,[true],
      [window.userInterfaceMode = 'notebookbar';])
