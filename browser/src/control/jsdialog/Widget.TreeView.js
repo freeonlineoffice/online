@@ -320,6 +320,8 @@ function _getLevel(element) {
 }
 
 function _isSeparator(element) {
+	if (!element.text)
+		return false;
 	return element.text.toLowerCase() === 'separator';
 }
 function _expandTreeGrid(element) {
