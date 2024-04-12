@@ -548,9 +548,9 @@ run-massif-inproc: setup-wsd
 			--o:logging.file[@enable]=false --o:logging.level=trace
 
 run-heaptrack-inproc: setup-wsd
-	@echo "Launching coolwsd under heaptrack for single process"
+	@echo "Launching loolwsd under heaptrack for single process"
 	heaptrack \
-		./coolwsd-inproc $(COMMON_PARAMS) \
+		./loolwsd-inproc $(COMMON_PARAMS) \
 			--o:logging.file[@enable]=false --o:logging.level=trace
 endif
 
