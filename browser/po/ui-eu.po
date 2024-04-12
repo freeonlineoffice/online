@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 11:11+0200\n"
+"POT-Creation-Date: 2024-04-12 20:24+0200\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -283,7 +283,7 @@ msgstr "Zerbitzaria itzali egin da; kargatu orria berriro mesedez."
 #: src/control/Toolbar.js:695 src/control/Toolbar.js:797
 #: src/control/Toolbar.js:933 src/core/Socket.js:604 src/core/Socket.js:1032
 #: src/core/Socket.js:1102 src/core/Socket.js:1250 src/core/Socket.js:1254
-#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1098
+#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1093
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:601
 msgid "OK"
 msgstr "Ados"
@@ -374,18 +374,6 @@ msgstr " minutu"
 #: admin/src/Util.js:54
 msgid " s"
 msgstr " s"
-
-#: js/w2ui-1.5.js:4360
-msgid "No fill"
-msgstr ""
-
-#: js/w2ui-1.5.js:4360
-msgid "Automatic"
-msgstr ""
-
-#: js/w2ui-1.5.js:4459
-msgid "Recent"
-msgstr "Azkenak"
 
 #: src/control/ColorPicker.ts:270
 msgid "No color"
@@ -628,8 +616,8 @@ msgid "replies"
 msgstr "erantzunak"
 
 #: src/control/Control.JSDialogBuilder.js:1954
-#: src/layer/tile/CanvasTileLayer.js:5208
-#: src/layer/tile/CanvasTileLayer.js:5219
+#: src/layer/tile/CanvasTileLayer.js:5202
+#: src/layer/tile/CanvasTileLayer.js:5213
 #: src/layer/tile/CommentListSection.ts:1009
 msgid "Comment"
 msgstr "Iruzkina"
@@ -2384,27 +2372,27 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Huts egin du fitxategia zerbitzarira kargatzeak, fitxategia handiegia da."
 
-#: src/layer/tile/CanvasTileLayer.js:2017
+#: src/layer/tile/CanvasTileLayer.js:2024
 msgid "Functions"
 msgstr "Funtzioak"
 
-#: src/layer/tile/CanvasTileLayer.js:2625
+#: src/layer/tile/CanvasTileLayer.js:2620
 msgid "and %COUNT more"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2639
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2647
+#: src/layer/tile/CanvasTileLayer.js:2642
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2655
+#: src/layer/tile/CanvasTileLayer.js:2650
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5236
+#: src/layer/tile/CanvasTileLayer.js:5230
 msgid "No Comments"
 msgstr "Iruzkinik gabe"
 
@@ -2491,12 +2479,12 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Ezin izan da arbela deskargatu, mesedez kopiatu berriro"
 
-#: src/map/Clipboard.js:1091
+#: src/map/Clipboard.js:1086
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 "<p>Erabili zure pantailako teklatuaren kopiatzeko/itsasteko botoiak.</p>"
 
-#: src/map/Clipboard.js:1093
+#: src/map/Clipboard.js:1088
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2513,7 +2501,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Kopiatu</td><td>Ebaki</td><td>Itsatsi</td></t"
 "r></table>"
 
-#: src/map/Clipboard.js:1112
+#: src/map/Clipboard.js:1107
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2523,7 +2511,7 @@ msgstr ""
 "Itxaron deskarga burutu arte edo utzi bertan behera, beste deskarga bati "
 "ekin nahi badiozu</p>"
 
-#: src/map/Clipboard.js:1130
+#: src/map/Clipboard.js:1125
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p><b>Please "
@@ -2535,19 +2523,19 @@ msgstr ""
 "aukera gehiago ikusteko</p><p class=\"vex-footnote\">Itxi pop-up leihoa "
 "Itsatsi Berezia ez ikusteko</p>"
 
-#: src/map/Clipboard.js:1137
+#: src/map/Clipboard.js:1132
 msgid "Paste from this document"
 msgstr ""
 
-#: src/map/Clipboard.js:1137
+#: src/map/Clipboard.js:1132
 msgid "Cancel paste special"
 msgstr ""
 
-#: src/map/Map.js:225
+#: src/map/Map.js:224
 msgid "Initializing..."
 msgstr "Hasieratzen..."
 
-#: src/map/Map.js:451 src/map/Map.js:454 src/map/Map.js:457 src/map/Map.js:460
+#: src/map/Map.js:450 src/map/Map.js:453 src/map/Map.js:456 src/map/Map.js:459
 msgid "Last saved:"
 msgstr "Gordetako azkenak:"
 
@@ -2650,6 +2638,9 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Recent"
+#~ msgstr "Azkenak"
 
 #, fuzzy
 #~ msgid "Read-only"
