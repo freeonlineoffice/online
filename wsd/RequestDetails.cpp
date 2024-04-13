@@ -65,7 +65,7 @@ RequestDetails::RequestDetails(Poco::Net::HTTPRequest &request, const std::strin
     _isGet = method == "GET";
     _isHead = method == "HEAD";
     auto it = request.find("ProxyPrefix");
-	_isProxy = it != request.end();
+    _isProxy = it != request.end();
     if (_isProxy)
         _proxyPrefix = it->second;
     it = request.find("Upgrade");
@@ -90,6 +90,10 @@ RequestDetails::RequestDetails(const std::string &mobileURI)
 
 RequestDetails::RequestDetails(const std::string& wopiSrc, const std::vector<std::string>& options,
                                const std::string& compat)
+    : _isGet(true)
+    , _isHead(false)
+    , _isProxy(false)
+    , _isWebSocket(false)
 {
     // /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
 
