@@ -807,7 +807,7 @@ int forkit_main(int argc, char** argv)
         Log::logger().setLevel(LogLevel);
     }
 
-    // The SocketPoll ctor which may, depending on COOL_WATCHDOG env variable,
+    // The SocketPoll ctor which may, depending on LOOL_WATCHDOG env variable,
     // want to override the SIG2 handler so set user signal handlers before
     // that otherwise that choice is overwritten
     SigUtil::setUserSignals();
