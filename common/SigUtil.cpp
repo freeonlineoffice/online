@@ -22,6 +22,10 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
+#if !defined(ANDROID) && !defined(IOS)
+#  include <sys/prctl.h>
+#endif
+
 #include <atomic>
 #include <cassert>
 #include <chrono>
@@ -542,6 +546,13 @@ void requestShutdown()
 
         sigaction(SIGCHLD, &action, nullptr);
 
+    }
+
+    void dieOnParentDeath()
+    {
+#if !defined(ANDROID) && !defined(IOS)
+        prctl(PR_SET_PDEATHSIG, SIGKILL);
+#endif
     }
 
     static
