@@ -526,6 +526,10 @@ public:
     /// Post fork hook - just before we init the child kit
     virtual void postFork();
 
+    /// Called just after and before bg save process events
+    virtual void postBackgroundSaveFork() {}
+    virtual void preBackgroundSaveExit() {}
+
     /// Kit got a message
     virtual bool filterKitMessage(WebSocketHandler *, std::string &/* message */ )
     {
