@@ -24,7 +24,7 @@ interface SectionCallbacks {
 	onDrawArea?: (area?: lool.Bounds, paneTopLeft?: lool.Point, canvasContext?: CanvasRenderingContext2D) => void;
 	onNewDocumentTopLeft?: (size: Array<number>) => void;
 	onRemove?: () => void;
-	onCursorPositionChanged?: (newPosition: Array<number>) => void;
+	onCursorPositionChanged?: (newPosition: cool.SimpleRectangle) => void;
 	onCellAddressChanged?: () => void;
 	onAnimationEnded?: (frameCount: number, elapsedTime: number) => void;
 }
@@ -227,7 +227,7 @@ class CanvasSectionObject {
 			return this.callbacks.onInitialize();
 	}
 
-	onCursorPositionChanged(newPosition: Array<number>) {
+	onCursorPositionChanged(newPosition: cool.SimpleRectangle) {
 		if (this.callbacks.onCursorPositionChanged)
 			return this.callbacks.onCursorPositionChanged(newPosition);
 	}
@@ -898,7 +898,10 @@ class CanvasSectionContainer {
 		this.documentBottomRight[0] = Math.round(points[2]);
 		this.documentBottomRight[1] = Math.round(points[3]);
 
-		app.file.viewedRectangle = [this.documentTopLeft[0], this.documentTopLeft[1], this.documentBottomRight[0] - this.documentTopLeft[0], this.documentBottomRight[1] - this.documentTopLeft[1]];
+		app.file.viewedRectangle.pX = this.documentTopLeft[0];
+		app.file.viewedRectangle.pY = this.documentTopLeft[1];
+		app.file.viewedRectangle.pWidth = this.documentTopLeft[2];
+		app.file.viewedRectangle.pHeight = this.documentTopLeft[3];
 
 		for (var i: number = 0; i < this.sections.length; i++) {
 			var section: CanvasSectionObject = this.sections[i];
@@ -997,7 +1000,7 @@ class CanvasSectionContainer {
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
 			if (windowSection.interactable)
-				windowSection.onCursorPositionChanged(app.file.cursor.rectangle);
+				windowSection.onCursorPositionChanged(app.file.cursor.rectangle.clone());
 
 			if (this.lowestPropagatedBoundSection === windowSection.name)
 				propagate = false; // Window sections can not stop the propagation of the event for other window sections.
@@ -1006,7 +1009,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = this.sections.length - 1; i > -1; i--) {
 				if (this.sections[i].interactable)
-					this.sections[i].onCursorPositionChanged(app.file.cursor.rectangle);
+					this.sections[i].onCursorPositionChanged(app.file.cursor.rectangle.clone());
 			}
 		}
 	}
@@ -1656,6 +1659,9 @@ class CanvasSectionContainer {
 		var cssHeight: number = newHeight / app.dpiScale;
 		this.canvas.style.width = cssWidth.toFixed(4) + 'px';
 		this.canvas.style.height = cssHeight.toFixed(4) + 'px';
+
+		app.canvasSize.pX = newWidth;
+		app.canvasSize.pY = newHeight;
 
 		// Avoid black default background if canvas was never painted
 		// since construction.
