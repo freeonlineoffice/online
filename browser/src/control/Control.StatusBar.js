@@ -341,12 +341,13 @@ class StatusBar extends JSDialog.Toolbar {
 		this.parentContainer.style.display = 'none';
 	}
 
-	updateHtmlItem(id, text) {
+	updateHtmlItem(id, text, disabled) {
 		this.builder.updateWidget(this.parentContainer, {
 			id: id,
 			type: 'htmlcontent',
 			htmlId: id.toLowerCase(),
-			text: text
+			text: text,
+			enabled: !disabled
 		});
 
 		JSDialog.RefreshScrollables();
@@ -413,13 +414,13 @@ class StatusBar extends JSDialog.Toolbar {
 		else if (commandName === '.uno:RowColSelCount') {
 			state = this.toLocalePattern('$1 rows, $2 columns selected', '(\\d+) rows, (\\d+) columns selected', state, '$1', '$2');
 			state = this.toLocalePattern('$1 of $2 records found', '(\\d+) of (\\d+) records found', state, '$1', '$2');
-			this.updateHtmlItem('RowColSelCount', state ? state : _('Select multiple cells'));
+			this.updateHtmlItem('RowColSelCount', state ? state : _('Select multiple cells'), !state);
 		}
 		else if (commandName === '.uno:InsertMode') {
-			this.updateHtmlItem('InsertMode', state ? L.Styles.insertMode[state].toLocaleString() : _('Insert mode: inactive'));
+			this.updateHtmlItem('InsertMode', state ? L.Styles.insertMode[state].toLocaleString() : _('Insert mode: inactive'), !state);
 
 			$('#InsertMode').removeClass();
-			$('#InsertMode').addClass('lool-font insert-mode-' + state);
+			$('#InsertMode').addClass('jsdialog ui-badge insert-mode-' + state);
 
 			if (!state && this.map.hyperlinkPopup) {
 				this.map.hyperlinkUnderCursor = null;
@@ -428,7 +429,7 @@ class StatusBar extends JSDialog.Toolbar {
 			}
 		}
 		else if (commandName === '.uno:StatusSelectionMode' || commandName === '.uno:SelectionMode') {
-			this.updateHtmlItem('StatusSelectionMode', state ? L.Styles.selectionMode[state].toLocaleString() : _('Selection mode: inactive'));
+			this.updateHtmlItem('StatusSelectionMode', state ? L.Styles.selectionMode[state].toLocaleString() : _('Selection mode: inactive'), !state);
 		}
 		else if (commandName == '.uno:StateTableCell') {
 			this.updateHtmlItem('StateTableCell', state ? this.localizeStateTableCell(state) : ' ');
