@@ -17,7 +17,6 @@
 
 #include <Poco/URI.h>
 #include <Poco/Util/Application.h>
-#include <Poco/JSON/Object.h>
 
 #include "HttpRequest.hpp"
 #include "LOOLWSD.hpp"

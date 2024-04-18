@@ -20,8 +20,6 @@
 #include <wopi/StorageConnectionManager.hpp>
 #include <wopi/WopiStorage.hpp>
 
-#include <Poco/JSON/Object.h>
-
 void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<TerminatingPoll>& poll,
                               SocketDisposition& disposition)
 {

@@ -54,8 +54,6 @@
 
 #include <Poco/File.h>
 #include <Poco/Exception.h>
-#include <Poco/JSON/Object.h>
-#include <Poco/JSON/Parser.h>
 #include <Poco/URI.h>
 
 #include "ChildSession.hpp"
@@ -73,6 +71,7 @@
 #include <Unit.hpp>
 #include <UserMessages.hpp>
 #include <Util.hpp>
+#include <JsonUtil.hpp>
 #include "Watermark.hpp"
 #include "RenderTiles.hpp"
 #include "KitWebSocket.hpp"
