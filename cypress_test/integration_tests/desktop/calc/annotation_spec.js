@@ -91,7 +91,7 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 		calcHelper.assertNumberofSheets(2);
 
 		desktopHelper.insertComment();
-		cy.cGet('.cool-annotation').should('exist');
+		cy.cGet('.lool-annotation').should('exist');
 
 		calcHelper.selectOptionFromContextMenu('Delete Sheet...');
 		cy.cGet('#delete-sheet-modal-response').click();

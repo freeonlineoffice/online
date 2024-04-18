@@ -1387,7 +1387,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
     // TODO: compare FD count in a normal process with how
     // many we see open now.
     int expectFds = 2 // SocketPoll wakeups
-        + 1; // socket to coolwsd
+        + 1; // socket to loolwsd
     int actualFds = fdCounter->count();
     if (actualFds != expectFds)
     {
@@ -1438,7 +1438,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
 
         UnitKit::get().postBackgroundSaveFork();
 
-        // Hard drop our previous connections to coolwsd and shared wakeups.
+        // Hard drop our previous connections to loolwsd and shared wakeups.
         KitSocketPoll::cleanupChildProcess();
 
         // close duplicate kit->wsd socket

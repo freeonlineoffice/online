@@ -1125,7 +1125,7 @@ export class Comment extends CanvasSectionObject {
 	}
 
 	/// This event is Writer-only. Fired by CanvasSectionContainer.
-	public onCursorPositionChanged(newPosition: cool.SimpleRectangle): void {
+	public onCursorPositionChanged(newPosition: lool.SimpleRectangle): void {
 		var x = newPosition.pX1;
 		var y = Math.round(newPosition.pCenter[1]);
 		if (this.sectionProperties.pixelBasedOrgRectangles) {

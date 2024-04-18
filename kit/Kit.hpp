@@ -411,7 +411,7 @@ private:
 #endif
     std::shared_ptr<TileQueue> _tileQueue;
 
-    // Connection to the coolwsd process
+    // Connection to the loolwsd process
     std::shared_ptr<WebSocketHandler> _websocketHandler;
 
     // Connection a child background save process has to its parent: a precious thing.

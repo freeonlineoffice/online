@@ -189,8 +189,8 @@ export class SplitPanesContext {
 
 	// When view is split by horizontal and/or vertical line(s), there are up to 4 different parts of the file visible on the screen.
 	// This function returns the viewed parts' coordinates as simple rectangles.
-	public getViewRectangles(): cool.SimpleRectangle[] {
-		const viewRectangles: cool.SimpleRectangle[] = new Array<cool.SimpleRectangle>();
+	public getViewRectangles(): lool.SimpleRectangle[] {
+		const viewRectangles: lool.SimpleRectangle[] = new Array<lool.SimpleRectangle>();
 		viewRectangles.push(app.file.viewedRectangle.clone()); // If view is not splitted, this will be the only view rectangle.
 
 		/*
@@ -209,7 +209,7 @@ export class SplitPanesContext {
 			viewRectangles[0].pX1 = 0;
 			viewRectangles[0].pX2 = this._splitPos.x;
 
-			const topRightPane: cool.SimpleRectangle = app.file.viewedRectangle.clone();
+			const topRightPane: lool.SimpleRectangle = app.file.viewedRectangle.clone();
 			const width = app.file.viewedRectangle.pWidth - viewRectangles[0].pWidth;
 			topRightPane.pX1 = app.file.viewedRectangle.pX2 - width;
 			topRightPane.pWidth = width;
