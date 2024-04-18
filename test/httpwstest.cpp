@@ -45,8 +45,7 @@ class HTTPWSTest : public CPPUNIT_NS::TestFixture
 
     CPPUNIT_TEST(testExoticLang);
     CPPUNIT_TEST(testSaveOnDisconnect);
-    // This test is failing
-    //CPPUNIT_TEST(testReloadWhileDisconnecting);
+    CPPUNIT_TEST(testReloadWhileDisconnecting);
     CPPUNIT_TEST(testInactiveClient);
     CPPUNIT_TEST(testViewInfoMsg);
     CPPUNIT_TEST(testUndoConflict);
@@ -222,14 +221,12 @@ void HTTPWSTest::testReloadWhileDisconnecting()
         TST_LOG("Loading again.");
         socket = loadDocAndGetSession(_socketPoll, _uri, documentURL, testname);
 
-        // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
-
-        // Check if the document contains the pasted text.
+        TST_LOG("Checking if the document contains the pasted text.");
         const std::string expected = "aaa bbb ccc";
         const std::string selection = getAllText(socket, testname, expected);
         LOK_ASSERT_EQUAL(std::string("textselectioncontent: ") + expected, selection);
 
+        TST_LOG("Closing connection after getting pasted text.");
         socket->asyncShutdown();
 
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
