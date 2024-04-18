@@ -708,7 +708,6 @@ Document::Document(const std::shared_ptr<lok::Office>& loKit,
       _editorChangeWarning(false),
       _lastMemTrimTime(std::chrono::steady_clock::now()),
       _mobileAppDocId(mobileAppDocId),
-      _inputProcessingEnabled(true),
       _duringLoad(0)
 {
     LOG_INF("Document ctor for [" << _docKey <<
@@ -2079,13 +2078,12 @@ void Document::checkIdle()
     ProcessToIdleDeadline = std::chrono::steady_clock::now() - std::chrono::milliseconds(10);
 }
 
-void Document::enableProcessInput(bool enable)
+bool Document::processInputEnabled() const
 {
-    LOG_TRC("Document - input processing now: " <<
-            (enable ? "enabled" : "disabled") <<
-            " was " <<
-            (_inputProcessingEnabled ? "enabled" : "disabled"));
-    _inputProcessingEnabled = enable;
+    bool enabled = !_websocketHandler || _websocketHandler->processInputEnabled();
+    if (!enabled)
+        LOG_TRC("Document - not processing input");
+    return enabled;
 }
 
 void Document::drainQueue()
@@ -2274,7 +2272,7 @@ void Document::dumpState(std::ostream& oss)
         << "\n\teditorId: " << _editorId
         << "\n\teditorChangeWarning: " << _editorChangeWarning
         << "\n\tmobileAppDocId: " << _mobileAppDocId
-        << "\n\tinputProcessingEnabled: " << _inputProcessingEnabled
+        << "\n\tinputProcessingEnabled: " << processInputEnabled()
         << "\n\tduringLoad: " << _duringLoad
         << "\n";
 
