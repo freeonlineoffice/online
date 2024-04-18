@@ -538,7 +538,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
             }
             else if (tokens[1].find(".uno:Save") != std::string::npos)
             {
-                static bool doBgSave = !!getenv("COOL_BGSAVE");
+                static bool doBgSave = !!getenv("LOOL_BGSAVE");
 
                 bool saving = false;
                 if (doBgSave)
@@ -570,6 +570,26 @@ bool ChildSession::_handleInput(const char *buffer, int length)
             }
 
             return unoCommand(tokens);
+        }
+        else if (tokens.equals(0, "save"))
+        {
+            bool background = tokens[1] == "background=true";
+            SigUtil::addActivity(getId(), (background ? "bg " : "") + firstLine);
+
+            StringVector unoSave = StringVector::tokenize("uno .uno:Save " + tokens.cat(' ', 2));
+
+            bool saving = false;
+            if (background)
+                saving = saveDocumentBackground(unoSave);
+
+            if (!saving)
+            { // fallback to foreground save
+                // Disable processing of other messages while saving document
+                InputProcessingManager processInput(getProtocol(), false);
+                return unoCommand(unoSave);
+            }
+            else
+                return true;
         }
         else if (tokens.equals(0, "selecttext"))
         {
