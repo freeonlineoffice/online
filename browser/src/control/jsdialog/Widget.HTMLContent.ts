@@ -34,7 +34,8 @@ function sanitizeString(text: string): string {
 }
 
 function getPermissionModeHtml(isReadOnlyMode: boolean, canUserWrite: boolean) {
-	var permissionModeDiv = '<div id="PermissionMode" class="jsdialog ui-badge';
+	var permissionModeDiv =
+		'<div id="PermissionMode" class="jsdialog ui-badge';
 	if (isReadOnlyMode && !canUserWrite) {
 		permissionModeDiv +=
 			' status-readonly-mode" title="' +
@@ -175,7 +176,10 @@ function htmlContent(
 		setTimeout(() => builder.map.userList.renderAll(), 0);
 
 	if (data.enabled === false && parentContainer.firstChild)
-		(parentContainer.firstChild as HTMLElement).setAttribute('disabled', '');
+		(parentContainer.firstChild as HTMLElement).setAttribute(
+			'disabled',
+			'',
+		);
 }
 
 JSDialog.htmlContent = htmlContent;
