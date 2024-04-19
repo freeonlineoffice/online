@@ -40,7 +40,7 @@ std::set<pid_t> getSpareKitPids();
 std::set<pid_t> getDocKitPids();
 
 /*
- * Get the pid of the coolforkit process
+ * Get the pid of the loolforkit process
  */
 pid_t getForKitPid();
 
