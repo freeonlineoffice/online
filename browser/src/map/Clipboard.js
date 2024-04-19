@@ -785,7 +785,7 @@ L.Clipboard = L.Class.extend({
 
 	// Executes the navigator.clipboard.write() call, if it's available.
 	_navigatorClipboardWrite: function() {
-		if (navigator.clipboard.write === undefined) {
+		if (!L.Browser.hasNavigatorClipboardWrite) {
 			return false;
 		}
 
@@ -851,7 +851,7 @@ L.Clipboard = L.Class.extend({
 
 	// Executes the navigator.clipboard.read() call, if it's available.
 	_navigatorClipboardRead: function(isSpecial) {
-		if (navigator.clipboard.read === undefined) {
+		if (!L.Browser.hasNavigatorClipboardRead) {
 			return false;
 		}
 
