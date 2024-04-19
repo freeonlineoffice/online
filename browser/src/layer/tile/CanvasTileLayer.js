@@ -3895,7 +3895,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	// Scrolls the view to selected position
 	scrollToPos: function(pos) {
-		if (pos.pX) // Turn into lat/lng if required.
+		if (pos.pX) // Turn into lat/lng if required (pos may also be a simplePoint.).
 			pos = this._twipsToLatLng({ x: pos.x, y: pos.y });
 
 		var center = this._map.project(pos);
@@ -4682,7 +4682,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._updateCursorAndOverlay();
 	},
 
-	// TODO: unused variables: horizontalDirection, verticalDirection
 	// TODO: used only in calc: move to CalcTileLayer
 	_onUpdateCellCursor: function (onPgUpDn, scrollToCursor, sameAddress) {
 		this._onUpdateCellResizeMarkers();
@@ -6492,27 +6491,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		return L.TileCoordData.parseKey(key);
 	},
 
-	_keyToBounds: function (key) {
-		return this._tileCoordsToBounds(this._keyToTileCoords(key));
-	},
-
-	_tileCoordsToBounds: function (coords) {
-
-		var map = this._map;
-		var tileSize = this._getTileSize();
-
-		var nwPoint = new L.Point(coords.x, coords.y);
-		var sePoint = nwPoint.add([tileSize, tileSize]);
-		nwPoint = this._corePixelsToCss(nwPoint);
-		sePoint = this._corePixelsToCss(sePoint);
-
-		var nw = map.unproject(nwPoint, coords.z);
-		var se = map.unproject(sePoint, coords.z);
-
-		return new L.LatLngBounds(nw, se);
-	},
-
-	// Fix for lool#5876 allow immediate reuse of canvas context memory
+	// Fix for #5876 allow immediate reuse of canvas context memory
 	// WKWebView has a hard limit on the number of bytes of canvas
 	// context memory that can be allocated. Reducing the canvas
 	// size to zero is a way to reduce the number of bytes counted
