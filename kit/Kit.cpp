@@ -1438,6 +1438,10 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
 
         UnitKit::get().postBackgroundSaveFork();
 
+        // other queued messages should be handled in the parent kit
+        if (_tileQueue)
+            _tileQueue->clear();
+
         // Hard drop our previous connections to loolwsd and shared wakeups.
         KitSocketPoll::cleanupChildProcess();
 
