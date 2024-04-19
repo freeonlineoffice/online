@@ -728,15 +728,22 @@ DocumentBroker::~DocumentBroker()
 {
     ASSERT_CORRECT_THREAD();
 
-    LOG_INF("~DocumentBroker [" << _docKey <<
-            "] destroyed with " << _sessions.size() << " sessions left.");
+    LOG_INF("~DocumentBroker [" << _docKey << "] destroyed with " << _sessions.size()
+                                << " sessions left");
 
     // Do this early - to avoid operating on _childProcess from two threads.
     _poll->joinThread();
 
-    if (!_sessions.empty())
-        LOG_WRN("Destroying DocumentBroker [" << _docKey << "] while having " << _sessions.size()
-                                              << " unremoved sessions.");
+    for (const auto& sessionIt : _sessions)
+    {
+        if (sessionIt.second->isLive())
+        {
+            LOG_WRN("Destroying DocumentBroker ["
+                    << _docKey << "] while having " << _sessions.size()
+                    << " unremoved sessions, at least one is still live");
+            break;
+        }
+    }
 
     // Need to first make sure the child exited, socket closed,
     // and thread finished before we are destroyed.
@@ -2430,7 +2437,7 @@ bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
     if (!isModified() && !force)
     {
         // Nothing to do.
-        LOG_TRC("Nothing to autosave [" << _docKey << "].");
+        LOG_TRC("Nothing to autosave [" << _docKey << ']');
         return false;
     }
 
@@ -2474,9 +2481,13 @@ bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
             = std::chrono::duration_cast<std::chrono::milliseconds>(now - _lastActivityTime);
         const auto timeSinceLastSave = std::min(_saveManager.timeSinceLastSaveRequest(),
                                                 _storageManager.timeSinceLastUploadResponse());
-        LOG_TRC("Time since last save of docKey [" << _docKey << "] is " << timeSinceLastSave
-                                                     << " and most recent activity was "
-                                                     << inactivityTime << " ago.");
+        LOG_TRC("DocKey [" << _docKey << "] is modified. It has been " << timeSinceLastSave
+                           << " since last save and the most recent activity was " << inactivityTime
+                           << " ago. Idle save is "
+                           << (_saveManager.isIdleSaveEnabled() ? "" : "not ")
+                           << "enabled, auto save is "
+                           << (_saveManager.isAutoSaveEnabled() ? "" : "not ")
+                           << "enabled with interval of " << _saveManager.autoSaveInterval());
 
         // Either we've been idle long enough, or it's auto-save time.
         bool save = _saveManager.isIdleSaveEnabled() &&
@@ -2514,9 +2525,8 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
     const NeedToSave needToSave = needToSaveToDisk();
     const NeedToUpload needToUpload = needToUploadToStorage();
     bool canStop = (needToSave == NeedToSave::No && needToUpload == NeedToUpload::No);
-    LOG_TRC("autoSaveAndStop for docKey [" << getDocKey() << "] needToSave: " << name(needToSave)
-                                           << ", needToUpload: " << name(needToUpload)
-                                           << ", canStop: " << canStop);
+    LOG_TRC("autoSaveAndStop for docKey [" << getDocKey() << "]: " << name(needToSave) << ", "
+                                           << name(needToUpload) << ", canStop: " << canStop);
 
     if (!canStop && needToSave == NeedToSave::No && !isStorageOutdated())
     {
@@ -2597,9 +2607,6 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
         }
     }
 
-    static const auto minTimeBetweenSaves = std::chrono::milliseconds(
-        LOOLWSD::getConfigValue<int>("per_document.min_time_between_saves_ms", 500));
-
     // Don't hammer on saving.
     if (!canStop && _saveManager.canSaveNow(isUnloading()))
     {
@@ -2642,9 +2649,10 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
     {
         LOG_TRC("Too soon to issue another save on ["
                 << getDocKey() << "]: " << _saveManager.timeSinceLastSaveRequest()
-                << " since last save request and " << _saveManager.timeSinceLastSaveRequest()
-                << " since last save response. Min time between saves: "
-                << _saveManager.minTimeBetweenSaves());
+                << " since last save request, " << _saveManager.timeSinceLastSaveResponse()
+                << " since last save response, and last save took "
+                << _saveManager.lastSaveDuration()
+                << ". Min time between saves: " << _saveManager.minTimeBetweenSaves());
     }
 
     if (canStop)
@@ -2657,8 +2665,8 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
 }
 
 bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
-                                 bool dontTerminateEdit, bool dontSaveIfUnmodified, bool isAutosave,
-                                 const std::string& extendedData)
+                                 bool dontTerminateEdit, bool dontSaveIfUnmodified,
+                                 bool isAutosave, const std::string& extendedData)
 {
     ASSERT_CORRECT_THREAD();
 
@@ -2697,13 +2705,20 @@ bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
     // If Core does report something different after saving, we'll update this flag.
     _nextStorageAttrs.setUserModified(isModified() || haveModifyActivityAfterSaveRequest());
 
+    static bool forceBackgroundSave = !!getenv("LOOL_FORCE_BGSAVE");
+
     // Note: It's odd to capture these here, but this function is used from ClientSession too.
-    _nextStorageAttrs.setIsAutosave(isAutosave || (_unitWsd && _unitWsd->isAutosave()));
+    bool autosave = isAutosave || (_unitWsd && _unitWsd->isAutosave());
+    bool background = forceBackgroundSave || (autosave && _backgroundAutoSave);
+
+    _nextStorageAttrs.setIsAutosave(autosave);
     _nextStorageAttrs.setExtendedData(extendedData);
 
     const std::string saveArgs = oss.str();
-    LOG_TRC(".uno:Save arguments: " << saveArgs);
-    const auto command = "uno .uno:Save " + saveArgs;
+    LOG_TRC("save arguments: " << saveArgs);
+
+    // re-written to .uno:Save in the Kit.
+    const auto command = std::string("save background=") + (background ? "true" : "")+ " " + saveArgs;
     if (forwardToChild(session, command))
     {
         _saveManager.markLastSaveRequestTime();
@@ -2943,7 +2958,7 @@ void DocumentBroker::disconnectSessionInternal(const std::shared_ptr<ClientSessi
             // We must be the last session, flag to destroy if unload is requested.
             LOG_ASSERT_MSG(countActiveSessions() <= 1, "Unload-requested with multiple sessions");
             LOG_TRC("Unload requested while disconnecting session ["
-                    << id << "], having " << _sessions.size() << " sessions, marking to destroy.");
+                    << id << "], having " << _sessions.size() << " sessions, marking to destroy");
             _docState.markToDestroy();
         }
 
@@ -2961,17 +2976,18 @@ void DocumentBroker::disconnectSessionInternal(const std::shared_ptr<ClientSessi
         {
             LOG_ERR("Failed to unlock docKey [" << _docKey
                                                 << "] before disconnecting last editable session ["
-                                                << session->getId() << "]: " << error);
+                                                << session->getName() << "]: " << error);
         }
 
         bool hardDisconnect;
         if (session->inWaitDisconnected())
         {
-            LOG_TRC("hard disconnecting while waiting for disconnected handshake.");
+            LOG_TRC("Removing session [" << id << "] while waiting for disconnected handshake");
             hardDisconnect = true;
         }
         else
         {
+            LOG_DBG("Disconnecting session [" << id << "] from Kit");
             hardDisconnect = session->disconnectFromKit();
 
             if (!Util::isMobileApp() && !isLoaded() && _sessions.empty())
