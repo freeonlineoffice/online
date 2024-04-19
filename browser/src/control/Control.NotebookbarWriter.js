@@ -1024,7 +1024,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'class': 'unoremotelink',
 								'type': 'customtoolitem',
 								'text': _('Smart Picker'),
-								'command': 'remotelink'
+								'command': 'remotelink',
+								'accessibility': { focusBack: true, combination: 'RL', de: null }
 							}
 						]
 					}
@@ -1043,7 +1044,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:InsertAnnotation', 'text'),
 				'command': '.uno:InsertAnnotation',
-				'accessibility': { focusBack: false,	combination: 'L',	de:	'N' }
+				'accessibility': { focusBack: false, combination: 'ZC', de: 'ZC' }
 			},
 			{
 				'type': 'container',
