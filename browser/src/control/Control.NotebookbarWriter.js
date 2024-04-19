@@ -632,6 +632,13 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'vertical': 'true'
 			},
 			{
+				'id': 'home-insert-annotation',
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:InsertAnnotation'),
+				'command': '.uno:InsertAnnotation',
+				'accessibility': { focusBack: false, combination: 'ZC', de: 'ZC' }
+			},
+			{
 				'type': 'container',
 				'children': [
 					{
@@ -772,12 +779,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'text': _UNO('.uno:InsertTable', 'text'),
 								'command': '.uno:InsertTable',
 								'accessibility': { focusBack: false,	combination: 'IT',	de:	null }
-							}
-						]
-					},
-					{
-						'type': 'toolbox',
-						'children': [
+							},
 							{
 								'id': 'home-insert-graphic:InsertImageMenu',
 								'type': 'menubutton',
@@ -785,7 +787,12 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'text': _UNO('.uno:InsertGraphic'),
 								'command': '.uno:InsertGraphic',
 								'accessibility': { focusBack: true, 	combination: 'IG',	de: null }
-							},
+							}
+						]
+					},
+					{
+						'type': 'toolbox',
+						'children': [
 							{
 								'id': 'home-insert-page-break',
 								'type': 'toolitem',
@@ -800,13 +807,6 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'text': _UNO('.uno:CharmapControl'),
 								'command': 'charmapcontrol',
 								'accessibility': { focusBack: false,	combination: 'IS',	de:	null }
-							},
-							{
-								'id': 'home-insert-annotation',
-								'type': 'toolitem',
-								'text': _UNO('.uno:InsertAnnotation'),
-								'command': '.uno:InsertAnnotation',
-								'accessibility': { focusBack: false, 	combination: 'ZC',	de: 'ZC' }
 							}
 						]
 					}

@@ -686,6 +686,13 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'vertical': 'true'
 			},
 			{
+				'id': 'home-insert-annotation',
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:InsertAnnotation'),
+				'command': '.uno:InsertAnnotation',
+				'accessibility': { focusBack: false, combination: 'ZC', de: 'ZC' }
+			},
+			{
 				'type': 'container',
 				'children': [
 					{
@@ -938,6 +945,14 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'type': 'toolbox',
 						'children': [
 							{
+								'id': 'home-insert-table:InsertTableMenu',
+								'type': 'menubutton',
+								'noLabel': true,
+								'text': _UNO('.uno:InsertTable', 'presentation'),
+								'command': '.uno:InsertTable',
+								'accessibility': { focusBack: true, combination: 'IT', de: null }
+							},
+							{
 								'id': 'home-insert-graphic:InsertImageMenu',
 								'type': 'menubutton',
 								'noLabel': true,
@@ -970,14 +985,6 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 								'text': _UNO('.uno:InsertObjectChart'),
 								'command': '.uno:InsertObjectChart',
 								'accessibility': { focusBack: true, combination: 'IC', de: null }
-							},
-							{
-								'id': 'home-insert-table:InsertTableMenu',
-								'type': 'menubutton',
-								'noLabel': true,
-								'text': _UNO('.uno:InsertTable', 'presentation'),
-								'command': '.uno:InsertTable',
-								'accessibility': { focusBack: true, combination: 'IT', de: null }
 							}
 						]
 					}
