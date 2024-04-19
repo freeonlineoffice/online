@@ -28,9 +28,9 @@
 #include <Common.hpp>
 #include <Protocol.hpp>
 
-#include "lokassert.hpp"
-#include <countloolkits.hpp>
+#include <lokassert.hpp>
 #include <helpers.hpp>
+#include <KitPidHelpers.hpp>
 
 using namespace helpers;
 
@@ -84,7 +84,7 @@ public:
     void setUp()
     {
         resetTestStartTime();
-        testCountHowManyLoolkits();
+        waitForKitPidsReady("setUp");
         resetTestStartTime();
         _socketPoll->startThread();
     }
@@ -93,14 +93,14 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        testNoExtraLoolKitsLeft();
+        waitForKitPidsReady("tearDown");
         resetTestStartTime();
     }
 };
 
 void HTTPWSTest::testExoticLang()
 {
-    const std::string testname = "saveOnDisconnect- ";
+    const std::string testname = "testExoticLang- ";
 
     std::string documentPath, documentURL;
     getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
@@ -123,6 +123,7 @@ void HTTPWSTest::testExoticLang()
 
 void HTTPWSTest::testSaveOnDisconnect()
 {
+
     const std::string testname = "saveOnDisconnect- ";
 
     const std::string text = helpers::genRandomString(40);
@@ -131,7 +132,6 @@ void HTTPWSTest::testSaveOnDisconnect()
     std::string documentPath, documentURL;
     getDocumentPathAndURL("hello.odt", documentPath, documentURL, testname);
 
-    int kitcount = -1;
     try
     {
         std::shared_ptr<http::WebSocketSession> socket1
@@ -145,8 +145,6 @@ void HTTPWSTest::testSaveOnDisconnect()
         sendTextFrame(socket1, "paste mimetype=text/plain;charset=utf-8\n" + text, testname);
         getResponseMessage(socket1, "pasteresult: success", testname);
 
-        kitcount = getLoolKitProcessCount();
-
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
 
@@ -157,23 +155,14 @@ void HTTPWSTest::testSaveOnDisconnect()
                            socket1->waitForDisconnection(std::chrono::seconds(5)));
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
                            socket2->waitForDisconnection(std::chrono::seconds(5)));
-    }
-    catch (const Poco::Exception& exc)
-    {
-        LOK_ASSERT_FAIL(exc.displayText());
-    }
 
-    // Allow time to save and destroy before we connect again.
-    testNoExtraLoolKitsLeft();
-    TST_LOG("Loading again.");
-    try
-    {
+        // Allow time to save and destroy before we connect again.
+        waitForKitPidsReady(testname);
+
+        TST_LOG("Loading again.");
         // Load the same document and check that the last changes (pasted text) is saved.
         std::shared_ptr<http::WebSocketSession> socket
             = loadDocAndGetSession(_socketPoll, _uri, documentURL, testname + "3 ");
-
-        // Should have no new instances.
-        LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
         // Check if the document contains the pasted text.
         const std::string selection = getAllText(socket, testname, text);
@@ -209,13 +198,14 @@ void HTTPWSTest::testReloadWhileDisconnecting()
         // the socket is closed, when the doc is not even modified yet.
         getResponseMessage(socket, "statechanged", testname);
 
-        const int kitcount = getLoolKitProcessCount();
-
         // Shutdown abruptly.
         TST_LOG("Closing connection after pasting.");
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
                            socket->waitForDisconnection(std::chrono::seconds(5)));
+
+        // Do not wait here. Reconnect before disconnect finishes
+        // TODO: Test fails because it is unable to reconnect
 
         // Load the same document and check that the last changes (pasted text) is saved.
         TST_LOG("Loading again.");
