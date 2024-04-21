@@ -523,12 +523,12 @@ int forkit_main(int argc, char** argv)
 
     /*WARNING*/ // early check for avoiding the security check for username 'lool'
     /*WARNING*/ // (deliberately only this, not moving the entire parameter parsing here)
-    /*WARNING*/ bool checkLOOLUser = true;
-    /*WARNING*/ std::string disableLOOLUserChecking("--disable-lool-user-checking");
-    /*WARNING*/ for (int i = 1; checkLOOLUser && (i < argc); ++i)
+    /*WARNING*/ bool checkLoolUser = true;
+    /*WARNING*/ std::string disableLoolUserChecking("--disable-lool-user-checking");
+    /*WARNING*/ for (int i = 1; checkLoolUser && (i < argc); ++i)
     /*WARNING*/ {
-    /*WARNING*/     if (disableLOOLUserChecking == argv[i])
-    /*WARNING*/         checkLOOLUser = false;
+    /*WARNING*/     if (disableLoolUserChecking == argv[i])
+    /*WARNING*/         checkLoolUser = false;
     /*WARNING*/ }
 
     /*WARNING*/ if (!hasCorrectUID("loolforkit"))
@@ -546,7 +546,7 @@ int forkit_main(int argc, char** argv)
     /*WARNING*/     }
     /*WARNING*/     else if (hasAnyCapability())
     /*WARNING*/     {
-    /*WARNING*/         if (!checkLOOLUser)
+    /*WARNING*/         if (!checkLoolUser)
     /*WARNING*/             LOG_FTL("Security: --disable-lool-user-checking failed, loolforkit has some capabilities set.");
 
     /*WARNING*/         LOG_FTL("Aborting.");
@@ -555,7 +555,7 @@ int forkit_main(int argc, char** argv)
 
     /*WARNING*/     // even without the capabilities, don't run unless the user really knows
     /*WARNING*/     // what they are doing, and provided a --disable-lool-user-checking
-    /*WARNING*/     if (checkLOOLUser)
+    /*WARNING*/     if (checkLoolUser)
     /*WARNING*/     {
     /*WARNING*/         LOG_FTL("Aborting.");
     /*WARNING*/         return EX_SOFTWARE;
@@ -692,7 +692,6 @@ int forkit_main(int argc, char** argv)
             SingleKit = true;
         }
 #endif
-
         // we are running in a lower-privilege mode - with no chroot
         else if (std::strstr(cmd, "--nocaps") == cmd)
         {

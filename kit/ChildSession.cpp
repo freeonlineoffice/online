@@ -436,6 +436,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
                tokens.equals(0, "windowmouse") ||
                tokens.equals(0, "windowgesture") ||
                tokens.equals(0, "uno") ||
+               tokens.equals(0, "save") ||
                tokens.equals(0, "selecttext") ||
                tokens.equals(0, "windowselecttext") ||
                tokens.equals(0, "selectgraphic") ||
@@ -538,20 +539,10 @@ bool ChildSession::_handleInput(const char *buffer, int length)
             }
             else if (tokens[1].find(".uno:Save") != std::string::npos)
             {
-                static bool doBgSave = !!getenv("LOOL_BGSAVE");
-
-                bool saving = false;
-                if (doBgSave)
-                    saving = !saveDocumentBackground(tokens);
-
-                if (!saving)
-                { // fallback to foreground save
-
-                    // Disable processing of other messages while saving document
-                    InputProcessingManager processInput(getProtocol(), false);
-                    return unoCommand(tokens);
-                }
-                return true;
+                LOG_ERR("Unexpected UNO Save command in client");
+                // save should go through path below
+                assert(false);
+                return false;
             }
             else if (tokens[1].find(".uno:SetDocumentProperties") != std::string::npos)
             {
@@ -814,7 +805,7 @@ bool ChildSession::loadDocument(const StringVector& tokens)
         if (!_jailRoot.empty())
         {
             url = Protocol + _jailRoot;
-            if (Util::startsWith(getJailedFilePath(), Protocol))
+            if (getJailedFilePath().starts_with(Protocol))
                 url += getJailedFilePath().substr(sizeof(Protocol) - 1);
             else
                 url += getJailedFilePath();
@@ -1948,6 +1939,11 @@ bool ChildSession::unoCommand(const StringVector& tokens)
                           tokens.equals(1, ".uno:OpenHyperlink") ||
                           tokens.startsWith(1, "vnd.sun.star.script:"));
 
+    LOG_TRC("uno command " << tokens[1] << " " << tokens.cat(' ', 2) << " notify: " << bNotify);
+
+    // check that internal UNO commands don't make it to the core
+    assert (!tokens.equals(1, ".uno:AutoSave"));
+
     getLOKitDocument()->setView(_viewId);
 
     if (tokens.size() == 2)
@@ -2968,7 +2964,7 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         break;
     case LOK_CALLBACK_STATE_CHANGED:
         sendTextFrame("statechanged: " + payload);
-        if (Util::startsWith(payload, ".uno:SlideMasterPage"))
+        if (payload.starts_with(".uno:SlideMasterPage"))
         {
             std::string status = LOKitHelper::documentStatus(getLOKitDocument()->get());
             sendTextFrame("status: " + status);

@@ -266,9 +266,6 @@ UnitBase::TestResult UnitCursor::testInsertAnnotationWriter()
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
                        socket->waitForDisconnection(std::chrono::seconds(5)));
 
-    // Make sure the document is fully unloaded.
-    // testNoExtraLoolKitsLeft();
-
     TST_LOG("Reloading ");
     socket = helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
 
@@ -338,8 +335,6 @@ UnitBase::TestResult UnitCursor::testEditAnnotationWriter()
     LOK_ASSERT_EQUAL(
         std::string("textselectioncontent: and now for something completely different"), res);
 
-    // const int kitcount = getLoolKitProcessCount();
-
     // Close and reopen the same document and test again.
     TST_LOG("Closing connection after pasting.");
     socket->shutdownWS();
@@ -348,9 +343,6 @@ UnitBase::TestResult UnitCursor::testEditAnnotationWriter()
 
     TST_LOG("Reloading ");
     socket = helpers::loadDocAndGetSession(socketPoll, uri, documentURL, testname);
-
-    // Should have no new instances.
-    // LOK_ASSERT_EQUAL(kitcount, countLoolKitProcesses(kitcount));
 
     // Confirm that the text is in the comment and not doc body.
     // Click in the body.
