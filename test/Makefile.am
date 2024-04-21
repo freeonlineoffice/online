@@ -1,3 +1,5 @@
+if ENABLE_TESTS
+
 # Cap threadpools to 4 threads.
 export MAX_CONCURRENCY=4
 AUTOMAKE_OPTION = serial-tests
@@ -126,6 +128,7 @@ test_base_sources = \
 	TileQueueTests.cpp \
 	RequestDetailsTests.cpp \
 	StringVectorTests.cpp \
+	FileServeWhiteBoxTests.cpp \
 	WhiteBoxTests.cpp \
 	HttpWhiteBoxTests.cpp \
 	DeltaTests.cpp \
@@ -182,13 +185,13 @@ fakesockettest_LDADD = $(CPPUNIT_LIBS)
 
 # old-style unit tests - bootstrapped via UnitClient
 unit_base_la_SOURCES = UnitClient.cpp ${test_base_sources}
-unit_tiletest_la_SOURCES = UnitClient.cpp TileCacheTests.cpp
+unit_tiletest_la_SOURCES = UnitClient.cpp TileCacheTests.cpp KitPidHelpers.cpp
 unit_tiletest_la_LIBADD = $(CPPUNIT_LIBS)
-unit_integration_la_SOURCES = UnitClient.cpp integration-http-server.cpp
+unit_integration_la_SOURCES = UnitClient.cpp integration-http-server.cpp KitPidHelpers.cpp
 unit_integration_la_LIBADD = $(CPPUNIT_LIBS)
-unit_httpws_la_SOURCES = UnitClient.cpp httpwstest.cpp
+unit_httpws_la_SOURCES = UnitClient.cpp httpwstest.cpp KitPidHelpers.cpp
 unit_httpws_la_LIBADD = $(CPPUNIT_LIBS)
-unit_crash_la_SOURCES = UnitClient.cpp httpcrashtest.cpp
+unit_crash_la_SOURCES = UnitClient.cpp httpcrashtest.cpp KitPidHelpers.cpp
 unit_crash_la_LIBADD = $(CPPUNIT_LIBS)
 
 # unit test modules:
@@ -266,6 +269,7 @@ unit_paste_la_SOURCES = UnitPaste.cpp
 unit_paste_la_LIBADD = $(CPPUNIT_LIBS)
 unit_load_torture_la_SOURCES = UnitLoadTorture.cpp
 unit_load_torture_la_LIBADD = $(CPPUNIT_LIBS)
+unit_save_torture_la_LIBADD = $(CPPUNIT_LIBS)
 unit_rendering_options_la_SOURCES = UnitRenderingOptions.cpp
 unit_rendering_options_la_LIBADD = $(CPPUNIT_LIBS)
 unit_password_protected_la_SOURCES = UnitPasswordProtected.cpp
@@ -340,3 +344,4 @@ all-local: unittest
 	@$(CLEANUP_COMMAND)
 
 .PRECIOUS: $(TEST_LOGS)
+endif

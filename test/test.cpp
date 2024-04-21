@@ -35,7 +35,6 @@
 
 #include <helpers.hpp>
 #include <Unit.hpp>
-#include <wsd/LOOLWSD.hpp>
 #if ENABLE_SSL
 #include <Ssl.hpp>
 #include <SslSocket.hpp>
@@ -290,29 +289,5 @@ bool runClientTests(const char* cmd, bool standalone, bool verbose)
 
     return result.wasSuccessful();
 }
-
-// Standalone tests don't really use WSD
-#ifndef STANDALONE_CPPUNIT
-
-std::set<pid_t> getKitPids()
-{
-    return LOOLWSD::getKitPids();
-}
-
-/// Get the PID of the forkit
-std::set<pid_t> getForKitPids()
-{
-    std::set<pid_t> pids;
-    if (LOOLWSD::ForKitProcId >= 0)
-        pids.emplace(LOOLWSD::ForKitProcId);
-    return pids;
-}
-
-/// How many live loolkit processes do we have ?
-int getLoolKitProcessCount()
-{
-    return getKitPids().size();
-}
-#endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

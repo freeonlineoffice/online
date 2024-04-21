@@ -45,18 +45,6 @@
 #error TDOC must be defined (see Makefile.am)
 #endif
 
-#if HAVE_STD_FILESYSTEM
-# if HAVE_STD_FILESYSTEM_EXPERIMENTAL
-#  include <experimental/filesystem>
-namespace filesystem = ::std::experimental::filesystem;
-# else
-#  include <filesystem>
-namespace filesystem = ::std::filesystem;
-# endif
-#else
-# include <Poco/TemporaryFile.h>
-#endif
-
 // Sometimes we need to retry some commands as they can (due to timing or load) soft-fail.
 constexpr int COMMAND_RETRY_COUNT = 5;
 
@@ -125,7 +113,6 @@ std::vector<char> readDataFromFile(std::unique_ptr<std::fstream>& file)
 
 namespace
 {
-#if HAVE_STD_FILESYSTEM
 /// Class to delete files when the process ends.
 class FileDeleter
 {
@@ -137,7 +124,7 @@ public:
     {
         std::unique_lock<std::mutex> guard(_lock);
         for (const std::string& file: _filesToDelete)
-            filesystem::remove(file);
+            std::filesystem::remove(file);
     }
 
     void registerForDeletion(const std::string& file)
@@ -146,7 +133,6 @@ public:
         _filesToDelete.push_back(file);
     }
 };
-#endif
 }
 
 /// Make a temp copy of a file, and prepend it with a prefix.
@@ -154,7 +140,6 @@ public:
 inline std::string getTempFileCopyPath(const std::string& srcDir, const std::string& srcFilename, const std::string& dstFilenamePrefix)
 {
     const std::string srcPath = srcDir + '/' + srcFilename;
-#if HAVE_STD_FILESYSTEM
     std::string dstPath;
 
     bool retry;
@@ -162,9 +147,9 @@ inline std::string getTempFileCopyPath(const std::string& srcDir, const std::str
         std::string dstFilename = dstFilenamePrefix + Util::encodeId(Util::rng::getNext()) + '_' + srcFilename;
 
         retry = false;
-        dstPath = filesystem::temp_directory_path() / dstFilename;
+        dstPath = std::filesystem::temp_directory_path() / dstFilename;
         try {
-            filesystem::copy(srcPath, dstPath);
+            std::filesystem::copy(srcPath, dstPath);
         }
         catch (const std::exception& ex)
         {
@@ -175,13 +160,6 @@ inline std::string getTempFileCopyPath(const std::string& srcDir, const std::str
 
     static FileDeleter fileDeleter;
     fileDeleter.registerForDeletion(dstPath);
-#else
-    const std::string dstFilename = dstFilenamePrefix + Util::encodeId(Util::rng::getNext()) + '_' + srcFilename;
-    const std::string dstPath = Poco::Path(Poco::Path::temp(), dstFilename).toString();
-    copyFileTo(srcPath, dstPath);
-    Poco::TemporaryFile::registerForDeletion(dstPath);
-#endif
-
     return dstPath;
 }
 

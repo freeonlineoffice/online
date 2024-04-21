@@ -11,6 +11,9 @@
 
 #include "WebSocketSession.hpp"
 
+#include <sstream>
+#include <random>
+
 #include <Poco/Net/AcceptCertificateHandler.h>
 #include <Poco/Net/InvalidCertificateHandler.h>
 #include <Poco/Net/SSLManager.h>
@@ -26,11 +29,9 @@
 #include <Unit.hpp>
 #include <Util.hpp>
 
-#include <countloolkits.hpp>
 #include <helpers.hpp>
 #include <test.hpp>
-#include <sstream>
-#include <random>
+#include <KitPidHelpers.hpp>
 
 using namespace helpers;
 
@@ -168,7 +169,7 @@ public:
     void setUp()
     {
         resetTestStartTime();
-        testCountHowManyLoolkits();
+        waitForKitPidsReady("setUp");
         resetTestStartTime();
         _socketPoll->startThread();
     }
@@ -177,7 +178,7 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        testNoExtraLoolKitsLeft();
+        waitForKitPidsReady("tearDown");
         resetTestStartTime();
     }
 };
@@ -448,13 +449,14 @@ void TileCacheTests::testDisconnectMultiView()
     constexpr size_t repeat = 2;
     for (size_t j = 1; j <= repeat; ++j)
     {
-        std::string documentPath, documentURL;
-        getDocumentPathAndURL("setclientpart.ods", documentPath, documentURL, "disconnectMultiView ");
+        // Make sure previous sessions have closed
+        waitForKitPidsReady(testname);
 
         TST_LOG("disconnectMultiView try #" << j);
 
-        // Wait to clear previous sessions.
-        countLoolKitProcesses(InitialLoolKitCount);
+        std::string documentPath, documentURL;
+        getDocumentPathAndURL("setclientpart.ods", documentPath, documentURL, "disconnectMultiView ");
+
 
         // Request a huge tile, and cancel immediately.
         std::shared_ptr<http::WebSocketSession> socket1
