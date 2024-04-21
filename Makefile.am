@@ -395,7 +395,7 @@ noinst_HEADERS = $(wsd_headers) $(shared_headers) $(kit_headers) \
                  test/UnitHTTP.hpp \
                  test/HttpTestServer.hpp \
                  test/WopiTestServer.hpp \
-                 test/countloolkits.hpp \
+                 test/KitPidHelpers.hpp \
                  test/lokassert.hpp \
                  test/test.hpp \
                  test/testlog.hpp \
