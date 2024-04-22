@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-21 20:06+0200\n"
+"POT-Creation-Date: 2024-04-22 22:44+0200\n"
 "PO-Revision-Date: 2024-04-12 20:29+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
@@ -151,7 +151,7 @@ msgstr "Netzwerkgrafik"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:145
-#: src/layer/tile/CommentListSection.ts:421
+#: src/layer/tile/CommentListSection.ts:423
 #: src/layer/tile/CommentSection.ts:148
 msgid "Save"
 msgstr "Speichern"
@@ -284,7 +284,7 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:695 src/control/Toolbar.js:797
-#: src/control/Toolbar.js:933 src/core/Socket.js:604 src/core/Socket.js:1032
+#: src/control/Toolbar.js:934 src/core/Socket.js:604 src/core/Socket.js:1032
 #: src/core/Socket.js:1102 src/core/Socket.js:1250 src/core/Socket.js:1254
 #: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1099
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:601
@@ -309,7 +309,7 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41 src/control/Control.Zotero.js:323
-#: src/control/Toolbar.js:928 src/layer/tile/CommentListSection.ts:416
+#: src/control/Toolbar.js:929 src/layer/tile/CommentListSection.ts:418
 #: src/layer/tile/CommentSection.ts:147 src/layer/tile/CommentSection.ts:150
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -633,9 +633,9 @@ msgid "replies"
 msgstr "Antworten"
 
 #: src/control/Control.JSDialogBuilder.js:1954
-#: src/layer/tile/CanvasTileLayer.js:5229
-#: src/layer/tile/CanvasTileLayer.js:5240
-#: src/layer/tile/CommentListSection.ts:1009
+#: src/layer/tile/CanvasTileLayer.js:5219
+#: src/layer/tile/CanvasTileLayer.js:5230
+#: src/layer/tile/CommentListSection.ts:1016
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1371,7 +1371,7 @@ msgstr "Fraktion"
 msgid "Boolean Value"
 msgstr "Boolescher Wert"
 
-#: src/control/Control.NotebookbarCalc.js:592 src/control/Toolbar.js:900
+#: src/control/Control.NotebookbarCalc.js:592 src/control/Toolbar.js:901
 msgid "Text"
 msgstr "Text"
 
@@ -2005,11 +2005,11 @@ msgstr "\"Langsamer Proxy\""
 msgid "Copy all version information in English"
 msgstr "Kopiere alle Versionsinformationen in Englisch"
 
-#: src/control/Toolbar.js:893
+#: src/control/Toolbar.js:894
 msgid "Insert hyperlink"
 msgstr "Hyperlink einfügen"
 
-#: src/control/Toolbar.js:912
+#: src/control/Toolbar.js:913
 msgid "Link"
 msgstr "Hyperlink"
 
@@ -2415,27 +2415,27 @@ msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu "
 "groß."
 
-#: src/layer/tile/CanvasTileLayer.js:2048
+#: src/layer/tile/CanvasTileLayer.js:2047
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2643
+#: src/layer/tile/CanvasTileLayer.js:2615
 msgid "and %COUNT more"
 msgstr "und %COUNT mehr"
 
-#: src/layer/tile/CanvasTileLayer.js:2657
+#: src/layer/tile/CanvasTileLayer.js:2629
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2665
+#: src/layer/tile/CanvasTileLayer.js:2637
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2673
+#: src/layer/tile/CanvasTileLayer.js:2645
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:5257
+#: src/layer/tile/CanvasTileLayer.js:5247
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2449,41 +2449,41 @@ msgstr ""
 "Bitte speichern oder verwerfen Sie den Kommentar, der gerade bearbeitet "
 "wurde."
 
-#: src/layer/tile/CommentListSection.ts:952
+#: src/layer/tile/CommentListSection.ts:959
 msgid "Modify"
 msgstr "Ändern"
 
-#: src/layer/tile/CommentListSection.ts:958
+#: src/layer/tile/CommentListSection.ts:965
 #: src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "Antworten"
 
-#: src/layer/tile/CommentListSection.ts:964
+#: src/layer/tile/CommentListSection.ts:971
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/layer/tile/CommentListSection.ts:970
+#: src/layer/tile/CommentListSection.ts:977
 msgid "Remove Thread"
 msgstr "Thread entfernen"
 
-#: src/layer/tile/CommentListSection.ts:976
+#: src/layer/tile/CommentListSection.ts:983
 msgid "Resolve"
 msgstr "Auflösen"
 
-#: src/layer/tile/CommentListSection.ts:976
+#: src/layer/tile/CommentListSection.ts:983
 msgid "Unresolve"
 msgstr "Ungelöst"
 
-#: src/layer/tile/CommentListSection.ts:982
+#: src/layer/tile/CommentListSection.ts:989
 msgid "Unresolve Thread"
 msgstr "Thread als ungelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:982
+#: src/layer/tile/CommentListSection.ts:989
 msgid "Resolve Thread"
 msgstr "Thread als gelöst markieren"
 
-#: src/layer/tile/CommentListSection.ts:1263
-#: src/layer/tile/CommentListSection.ts:1325
+#: src/layer/tile/CommentListSection.ts:1270
+#: src/layer/tile/CommentListSection.ts:1332
 msgid "Autosaved"
 msgstr "Automatisch gespeichert"
 
