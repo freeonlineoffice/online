@@ -1,7 +1,18 @@
 /* -*- js-indent-level: 8 -*- */
 /*
-* Control.Mention
-*/
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * Control.Mention
+ */
+
+/* global app */
+
 L.Control.Mention = L.Control.extend({
 	onAdd: function(map) {
 		this.map = map;
@@ -43,7 +54,7 @@ L.Control.Mention = L.Control.extend({
 	},
 
 	getCurrentCursorPosition: function() {
-		var currPos = this.map._docLayer._corePixelsToCss(this.map._docLayer._cursorCorePixels.getBottomLeft());
+		var currPos = { x: app.file.textCursor.rectangle.cX1, y: app.file.textCursor.rectangle.cY2 };
 		var origin = this.map.getPixelOrigin();
 		var panePos = this.map._getMapPanePos();
 		return new L.Point(Math.round(currPos.x + panePos.x - origin.x), Math.round(currPos.y + panePos.y - origin.y));
