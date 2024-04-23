@@ -19,6 +19,7 @@
 #include <common/StateEnum.hpp>
 #include "Util.hpp"
 #include "net/Socket.hpp"
+#include <Poco/Exception.h>
 
 #include <test/testlog.hpp>
 
