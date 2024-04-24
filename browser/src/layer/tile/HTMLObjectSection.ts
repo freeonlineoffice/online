@@ -11,7 +11,7 @@
 
 class HTMLObjectSection extends CanvasSectionObject {
 
-	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: cool.SimplePoint,  extraClass: string = "", visible: boolean = true) {
+	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint,  extraClass: string = "", visible: boolean = true) {
         super({
 			name: "will-be-set-at-initialization", // There may be multiple instances of this class.
 			anchor: [],
