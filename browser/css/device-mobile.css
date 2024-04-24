@@ -233,7 +233,8 @@ nav:not(.spreadsheet-color-indicator)
 	scrollbar-width: none; /*css draft (firefox only)*/
 	-ms-scrollbar: none; /*ie*/
 }
-.ui-scroll-wrapper::-webkit-scrollbar { /*webkit only*/
+.ui-scroll-wrapper::-webkit-scrollbar {
+	/*webkit only*/
 	display: none;
 }
 .ui-scroll-left,
