@@ -3166,6 +3166,7 @@ leaflet-control-search-cancel {
 	height: auto;
 	position: static;
 	text-align: left;
+	display: flex;
 }
 
 .insertshape-grid.insertconnectors .row {
