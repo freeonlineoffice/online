@@ -623,9 +623,8 @@ export class CommentSection extends CanvasSectionObject {
 			}
 		}
 		else {
-			this.unselect();
 			annotation.reply();
-			this.select(annotation);
+			this.select(annotation, true);
 			annotation.focus();
 		}
 	}
@@ -641,11 +640,6 @@ export class CommentSection extends CanvasSectionObject {
 			}.bind(this), /* isMod */ true);
 		}
 		else {
-			if (this.sectionProperties.docLayer._docType !== 'spreadsheet') {
-				this.unselect();
-				this.select(annotation);
-			}
-
 			// Make sure that comment is not transitioning and comment menu is not open.
 			var tempFunction = function() {
 				setTimeout(function() {
