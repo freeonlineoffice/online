@@ -349,7 +349,6 @@ L.Control.PartsPreview = L.Control.extend({
 
 	_getBottomBound: function () {
 		var previewContBB = this._partsPreviewCont.getBoundingClientRect();
-		var bottomBound;
 
 		// is not visible yet, assume map bounds
 		if (previewContBB.right === 0 && previewContBB.bottom === 0) {
@@ -358,13 +357,9 @@ L.Control.PartsPreview = L.Control.extend({
 
 		if (this._direction === 'x') {
 			this._previewContTop = previewContBB.left;
-			bottomBound = previewContBB.right + previewContBB.width / 2;
 		} else {
 			this._previewContTop = previewContBB.top;
-			bottomBound = previewContBB.bottom + previewContBB.height / 2;
 		}
-
-		return bottomBound;
 	},
 
 	_layoutPreview: function (i, img) {
