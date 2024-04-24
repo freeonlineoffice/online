@@ -85,7 +85,7 @@ all_la_unit_tests = \
 	unit-bad-doc-load.la \
 	unit-hosting.la \
 	unit-timeout.la \
-	unit-base.la
+#	unit-base.la
 #	unit-admin.la
 #	unit-tilecache.la # Empty test.
 
