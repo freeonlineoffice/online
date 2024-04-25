@@ -33,6 +33,7 @@ class WebSocketHandler;
 class ClientSession;
 class Message;
 
+
 // Forward declaration to avoid pulling the world here.
 namespace Poco
 {
@@ -55,11 +56,13 @@ class StorageBase;
 
 typedef UnitBase *(CreateUnitHooksFunction)();
 typedef UnitBase**(CreateUnitHooksFunctionMulti)();
-extern "C" { UnitBase *unit_create_wsd(void); }
-extern "C" { UnitBase** unit_create_wsd_multi(void); }
-extern "C" { UnitBase *unit_create_kit(void); }
-extern "C" { typedef struct _LibreOfficeKit LibreOfficeKit; }
-
+extern "C" {
+    UnitBase *unit_create_wsd(void);
+    UnitBase** unit_create_wsd_multi(void);
+    UnitBase *unit_create_kit(void);
+    typedef struct _LibreOfficeKit LibreOfficeKit;
+    typedef LibreOfficeKit *(LokHookFunction2)( const char *install_path, const char *user_profile_url );
+}
 /// Derive your WSD unit test / hooks from me.
 class UnitBase
 {
@@ -105,7 +108,7 @@ protected:
     STATE_ENUM(TestResult, Failed, Ok, TimedOut);
 
     /// Encourages the process to exit with this value (unless hooked)
-    void exitTest(TestResult result, const std::string& reason = std::string());
+    virtual void exitTest(TestResult result, const std::string& reason = std::string());
 
     /// Fail the test with the given reason.
     void failTest(const std::string& reason)
@@ -119,7 +122,7 @@ protected:
         exitTest(TestResult::Ok, reason);
     }
 
-    /// Called when a test has eneded, to clean up.
+    /// Called when a test has ended, to clean up.
     virtual void endTest(const std::string& reason);
 
     /// Construct a UnitBase instance with a default name.
@@ -545,7 +548,8 @@ public:
 
     /// Allow a custom LibreOfficeKit wrapper
     virtual LibreOfficeKit *lok_init(const char * /* instdir */,
-                                     const char * /* userdir */)
+                                     const char * /* userdir */,
+                                     LokHookFunction2 /* fn */)
     {
         return nullptr;
     }
