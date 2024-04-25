@@ -81,6 +81,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		this.insertMode = false;
 		this._resetInternalState();
 		this._sheetSwitch = new L.SheetSwitchViewRestore(map);
+		this._sheetGrid = true;
 	},
 
 	_resetInternalState: function() {
@@ -829,6 +830,13 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				When insertMode is passive: User is selecting cells.
 			*/
 			this.insertMode = e.state.trim() === '' ? false: true;
+		}
+		else if (e.commandName === '.uno:ToggleSheetGrid') {
+			let newState = e.state.trim() === 'true';
+			if (this._sheetGrid != newState) {
+				this._sheetGrid = newState;
+				this._painter._sectionContainer.requestReDraw();
+			}
 		}
 	},
 

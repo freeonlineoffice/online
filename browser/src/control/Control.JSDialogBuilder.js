@@ -2207,7 +2207,8 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			'downloadas-epub': 'exportepub',
 			'languagestatusmenu': 'languagemenu',
 			'cancelsearch': 'cancel',
-			'printoptions': 'print'
+			'printoptions': 'print',
+			'togglesheetgrid': 'show',
 		};
 		if (iconURLAliases[cleanName]) {
 			cleanName = iconURLAliases[cleanName];
