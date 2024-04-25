@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-22 22:44+0200\n"
+"POT-Creation-Date: 2024-04-25 19:35+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
@@ -287,7 +287,7 @@ msgstr "Server telah dimatikan; silakan muat ulang halaman."
 #: src/control/Toolbar.js:695 src/control/Toolbar.js:797
 #: src/control/Toolbar.js:934 src/core/Socket.js:604 src/core/Socket.js:1032
 #: src/core/Socket.js:1102 src/core/Socket.js:1250 src/core/Socket.js:1254
-#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1099
+#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1120
 #: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.WOPI.js:601
 msgid "OK"
 msgstr "OK"
@@ -509,7 +509,7 @@ msgstr ""
 
 #: src/control/Control.DownloadProgress.js:87
 #: src/control/Control.DownloadProgress.js:112
-#: src/control/Control.PartsPreview.js:272
+#: src/control/Control.PartsPreview.js:275
 msgid "Copy"
 msgstr ""
 
@@ -620,8 +620,8 @@ msgid "replies"
 msgstr "balasan"
 
 #: src/control/Control.JSDialogBuilder.js:1954
-#: src/layer/tile/CanvasTileLayer.js:5219
-#: src/layer/tile/CanvasTileLayer.js:5230
+#: src/layer/tile/CanvasTileLayer.js:5195
+#: src/layer/tile/CanvasTileLayer.js:5206
 #: src/layer/tile/CommentListSection.ts:1016
 msgid "Comment"
 msgstr "Komentar"
@@ -775,12 +775,8 @@ msgstr "Tutup dokumen"
 #: src/control/Control.NotebookbarCalc.js:216
 #: src/control/Control.NotebookbarDraw.js:282
 #: src/control/Control.NotebookbarDraw.js:283
-#: src/control/Control.NotebookbarImpress.js:280
 #: src/control/Control.NotebookbarImpress.js:281
-#: src/control/Control.NotebookbarImpress.js:296
-#: src/control/Control.NotebookbarImpress.js:297
-#: src/control/Control.NotebookbarImpress.js:312
-#: src/control/Control.NotebookbarImpress.js:313
+#: src/control/Control.NotebookbarImpress.js:282
 #: src/control/Control.NotebookbarWriter.js:255
 #: src/control/Control.NotebookbarWriter.js:256
 msgid "Repair"
@@ -794,8 +790,8 @@ msgstr "Perbaiki"
 #: src/control/Control.NotebookbarCalc.js:1151
 #: src/control/Control.NotebookbarDraw.js:339
 #: src/control/Control.NotebookbarDraw.js:340
-#: src/control/Control.NotebookbarImpress.js:385
-#: src/control/Control.NotebookbarImpress.js:386
+#: src/control/Control.NotebookbarImpress.js:354
+#: src/control/Control.NotebookbarImpress.js:355
 #: src/control/Control.NotebookbarWriter.js:1335
 #: src/control/Control.NotebookbarWriter.js:1336
 #: src/control/Control.StatusBar.js:248
@@ -806,7 +802,7 @@ msgstr "Atur ulang zum"
 #: src/control/Control.Menubar.js:575 src/control/Control.Menubar.js:710
 #: src/control/Control.NotebookbarCalc.js:1191
 #: src/control/Control.NotebookbarDraw.js:380
-#: src/control/Control.NotebookbarImpress.js:426
+#: src/control/Control.NotebookbarImpress.js:395
 #: src/control/Control.NotebookbarWriter.js:1376
 msgid "Toggle UI Mode"
 msgstr ""
@@ -822,8 +818,8 @@ msgstr "Tampilkan Penggaris"
 #: src/control/Control.NotebookbarCalc.js:1217
 #: src/control/Control.NotebookbarDraw.js:405
 #: src/control/Control.NotebookbarDraw.js:950
-#: src/control/Control.NotebookbarImpress.js:452
-#: src/control/Control.NotebookbarImpress.js:1013
+#: src/control/Control.NotebookbarImpress.js:421
+#: src/control/Control.NotebookbarImpress.js:982
 #: src/control/Control.NotebookbarWriter.js:827
 #: src/control/Control.NotebookbarWriter.js:1403
 msgid "Show Status Bar"
@@ -840,7 +836,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1093 src/control/Control.Menubar.js:1152
 #: src/control/Control.NotebookbarCalc.js:1229
 #: src/control/Control.NotebookbarDraw.js:416
-#: src/control/Control.NotebookbarImpress.js:471
+#: src/control/Control.NotebookbarImpress.js:440
 #: src/control/Control.NotebookbarWriter.js:1421
 msgid "Dark Mode"
 msgstr ""
@@ -861,7 +857,7 @@ msgstr "Semua"
 #: src/control/Control.Menubar.js:590 src/control/Control.Menubar.js:735
 #: src/control/Control.NotebookbarCalc.js:1353
 #: src/control/Control.NotebookbarDraw.js:1239
-#: src/control/Control.NotebookbarImpress.js:1201
+#: src/control/Control.NotebookbarImpress.js:1170
 #: src/control/Control.NotebookbarWriter.js:1026
 msgid "Smart Picker"
 msgstr ""
@@ -936,7 +932,7 @@ msgstr "Sisip Tabel"
 #: src/control/Control.Menubar.js:333 src/control/Control.Menubar.js:1238
 #: src/control/Control.NotebookbarCalc.js:231
 #: src/control/Control.NotebookbarDraw.js:297
-#: src/control/Control.NotebookbarImpress.js:328
+#: src/control/Control.NotebookbarImpress.js:297
 #: src/control/Control.NotebookbarWriter.js:271
 #: src/control/Control.NotebookbarWriter.js:1298
 msgid "Properties"
@@ -1017,7 +1013,7 @@ msgid "Save Comments"
 msgstr "Simpan Komentar"
 
 #: src/control/Control.Menubar.js:432
-#: src/control/Control.NotebookbarImpress.js:463
+#: src/control/Control.NotebookbarImpress.js:432
 msgid "Master View"
 msgstr ""
 
@@ -1138,7 +1134,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1064 src/control/Control.Menubar.js:1118
 #: src/control/Control.NotebookbarCalc.js:816
 #: src/control/Control.NotebookbarDraw.js:949
-#: src/control/Control.NotebookbarImpress.js:1012
+#: src/control/Control.NotebookbarImpress.js:981
 #: src/control/Control.NotebookbarWriter.js:826
 #: src/control/Control.StatusBar.js:223 src/control/Control.Zotero.js:211
 #: src/control/Toolbar.js:546
@@ -1330,7 +1326,7 @@ msgstr "Lihat riwayat"
 
 #: src/control/Control.NotebookbarCalc.js:244
 #: src/control/Control.NotebookbarDraw.js:310
-#: src/control/Control.NotebookbarImpress.js:340
+#: src/control/Control.NotebookbarImpress.js:309
 #: src/control/Control.NotebookbarWriter.js:285
 msgid "Rename"
 msgstr ""
@@ -1435,28 +1431,28 @@ msgstr "Hapus Kolom"
 
 #: src/control/Control.NotebookbarCalc.js:1136
 #: src/control/Control.NotebookbarDraw.js:325
-#: src/control/Control.NotebookbarImpress.js:355
+#: src/control/Control.NotebookbarImpress.js:324
 #: src/control/Control.NotebookbarWriter.js:1314
 msgid "Read mode"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1190
 #: src/control/Control.NotebookbarDraw.js:379
-#: src/control/Control.NotebookbarImpress.js:425
+#: src/control/Control.NotebookbarImpress.js:394
 #: src/control/Control.NotebookbarWriter.js:1375
 msgid "Compact view"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1204
 #: src/control/Control.NotebookbarDraw.js:392
-#: src/control/Control.NotebookbarImpress.js:439
+#: src/control/Control.NotebookbarImpress.js:408
 #: src/control/Control.NotebookbarWriter.js:1415
 msgid "Collapse Tabs"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1216
 #: src/control/Control.NotebookbarDraw.js:404
-#: src/control/Control.NotebookbarImpress.js:451
+#: src/control/Control.NotebookbarImpress.js:420
 #: src/control/Control.NotebookbarWriter.js:1402
 msgid "Status Bar"
 msgstr ""
@@ -1469,9 +1465,9 @@ msgstr "Grafik mini"
 #: src/control/Control.NotebookbarCalc.js:2239
 #: src/control/Control.NotebookbarDraw.js:829
 #: src/control/Control.NotebookbarDraw.js:1325
-#: src/control/Control.NotebookbarImpress.js:884
-#: src/control/Control.NotebookbarImpress.js:1306
-#: src/control/Control.NotebookbarImpress.js:2335
+#: src/control/Control.NotebookbarImpress.js:853
+#: src/control/Control.NotebookbarImpress.js:1275
+#: src/control/Control.NotebookbarImpress.js:2304
 #: src/control/Control.NotebookbarWriter.js:982
 #: src/control/Control.NotebookbarWriter.js:2753
 msgid "Shapes"
@@ -1501,12 +1497,12 @@ msgstr "Tata letak halaman"
 msgid "Master"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:362
-#: src/control/Control.NotebookbarImpress.js:998
+#: src/control/Control.NotebookbarImpress.js:331
+#: src/control/Control.NotebookbarImpress.js:967
 msgid "Presentation"
 msgstr "Presentasi"
 
-#: src/control/Control.NotebookbarImpress.js:370
+#: src/control/Control.NotebookbarImpress.js:339
 msgid "Present in Window"
 msgstr ""
 
@@ -1543,15 +1539,15 @@ msgstr ""
 msgid "Ruler"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:179
+#: src/control/Control.PartsPreview.js:182
 msgid "preview of page "
 msgstr "pratinjau halaman "
 
-#: src/control/Control.PartsPreview.js:238
+#: src/control/Control.PartsPreview.js:241
 msgid "Paste Slide"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:281
+#: src/control/Control.PartsPreview.js:284
 msgid "Paste"
 msgstr ""
 
@@ -2367,27 +2363,27 @@ msgstr "Mengunggah berkas ke peladen gagal, berkas tidak ditemukan."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Gagal mengunggah berkas ke server, ukuran berkas terlalu besar."
 
-#: src/layer/tile/CanvasTileLayer.js:2047
+#: src/layer/tile/CanvasTileLayer.js:2038
 msgid "Functions"
 msgstr "Fungsi"
 
-#: src/layer/tile/CanvasTileLayer.js:2615
+#: src/layer/tile/CanvasTileLayer.js:2604
 msgid "and %COUNT more"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2629
+#: src/layer/tile/CanvasTileLayer.js:2618
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2637
+#: src/layer/tile/CanvasTileLayer.js:2626
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2645
+#: src/layer/tile/CanvasTileLayer.js:2634
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:5247
+#: src/layer/tile/CanvasTileLayer.js:5223
 msgid "No Comments"
 msgstr "Tidak ada komentar"
 
@@ -2457,28 +2453,28 @@ msgstr "Terselesaikan"
 msgid "Warning! The browser you are using is not supported."
 msgstr "Peringatan! Browser yang Anda gunakan tidak didukung."
 
-#: src/map/Clipboard.js:146
+#: src/map/Clipboard.js:167
 msgid ""
 "To paste outside %productName, please first click the 'download' button"
 msgstr "Untuk menempel di luar %productName, silakan klik dulu tombol 'unduh'"
 
-#: src/map/Clipboard.js:154
+#: src/map/Clipboard.js:175
 msgid "Copying from the document disabled"
 msgstr "Menyalin dari dokumen dinonaktifkan"
 
-#: src/map/Clipboard.js:256
+#: src/map/Clipboard.js:277
 msgid "warning: copy/paste request timed out"
 msgstr ""
 
-#: src/map/Clipboard.js:318
+#: src/map/Clipboard.js:339
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Gagal unduh ke papan, tolong salin ulang"
 
-#: src/map/Clipboard.js:1092
+#: src/map/Clipboard.js:1113
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr "<p>Tolong gunakan tombol salin/tempel di papan ketik layar mu.</p>"
 
-#: src/map/Clipboard.js:1094
+#: src/map/Clipboard.js:1115
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2495,7 +2491,7 @@ msgstr ""
 "n><kbd>V</kbd></td></tr><tr><td>Salin</td><td>Potong</td><td>Tempel</td></tr>"
 "</table>"
 
-#: src/map/Clipboard.js:1113
+#: src/map/Clipboard.js:1134
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
@@ -2505,7 +2501,7 @@ msgstr ""
 "tunggu untuk pengunduhan saat ini atau batalkan sebelum memulai sebuah "
 "unduhan baru</p>"
 
-#: src/map/Clipboard.js:1131
+#: src/map/Clipboard.js:1152
 #, fuzzy
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p><b>Please "
@@ -2517,11 +2513,11 @@ msgstr ""
 "untuk melihat lebih banyak opsi</p><p class=\"vex-footnote\"> Tutup popup "
 "untuk mengabaikan paste special</p>"
 
-#: src/map/Clipboard.js:1138
+#: src/map/Clipboard.js:1159
 msgid "Paste from this document"
 msgstr ""
 
-#: src/map/Clipboard.js:1138
+#: src/map/Clipboard.js:1159
 msgid "Cancel paste special"
 msgstr ""
 
