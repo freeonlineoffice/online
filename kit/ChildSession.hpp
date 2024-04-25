@@ -23,6 +23,7 @@
 #include "Watermark.hpp"
 #include "StateRecorder.hpp"
 
+class Document;
 class ChildSession;
 
 enum class LokEventTargetEnum
@@ -30,8 +31,6 @@ enum class LokEventTargetEnum
     Document,
     Window
 };
-
-class DocumentManagerInterface;
 
 /// Represents a session to the WSD process, in a Kit process. Note that this is not a singleton.
 class ChildSession final : public Session
@@ -47,7 +46,7 @@ public:
         const std::string& id,
         const std::string& jailId,
         const std::string& jailRoot,
-        DocumentManagerInterface& docManager);
+        Document& document);
     virtual ~ChildSession();
 
     bool getStatus();
@@ -245,7 +244,7 @@ public:
 private:
     const std::string _jailId;
     const std::string _jailRoot;
-    DocumentManagerInterface* _docManager;
+    Document* _docManager;
 
     std::shared_ptr<Watermark> _docWatermark;
 
