@@ -32,6 +32,8 @@ L.Control.PartsPreview = L.Control.extend({
 		this._partsPreviewCont = preview;
 		this._partsPreviewCont.onscroll = this._onScroll.bind(this);
 		this._idNum = 0;
+		this._width = 0;
+		this._height = 0;
 	},
 
 	onAdd: function (map) {
@@ -50,6 +52,7 @@ L.Control.PartsPreview = L.Control.extend({
 		map.on('deletepage', this._deletePreview, this);
 		map.on('scrolllimits', this._invalidateParts, this);
 		map.on('scrolltopart', this._scrollToPart, this);
+		window.addEventListener('resize', L.bind(this._resize, this));
 	},
 
 	createScrollbar: function () {
@@ -550,6 +553,20 @@ L.Control.PartsPreview = L.Control.extend({
 				}
 			}
 		}
+	},
+
+	_resize: function () {
+		if (this._height == window.innerHeight &&
+		    this._width == window.innerWidth)
+			return;
+
+		if (this._previewInitialized) {
+			this._invalidateParts();
+			this._map._processPreviewQueue();
+		}
+
+		this._height = window.innerHeight;
+		this._width = window.innerWidth;
 	},
 
 	_updatePreview: function (e) {

@@ -137,6 +137,9 @@ L.Map.include({
 	},
 
 	_processPreviewQueue: function() {
+		if (!this._docLayer)
+			return;
+
 		if (!this._docLayer._canonicalIdInitialized)
 			return;
 
