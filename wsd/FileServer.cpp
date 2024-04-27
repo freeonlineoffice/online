@@ -947,11 +947,13 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
 #if !MOBILEAPP
     bool isWasm = false;
 
+#if ENABLE_DEBUG
     if (LOOLWSD::WASMState == LOOLWSD::WASMActivationState::Forced)
     {
         isWasm = (path.find("/browser/dist/wasm/") == std::string::npos);
     }
     else
+#endif
     {
         const std::string wopiSrc = requestDetails.getLineModeKey(std::string());
         if (!wopiSrc.empty())

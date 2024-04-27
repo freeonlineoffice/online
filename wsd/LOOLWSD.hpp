@@ -298,7 +298,7 @@ public:
     {
         Disabled,
         Enabled
-#ifdef ENABLE_DEBUG
+#if ENABLE_DEBUG
         ,
         Forced //< When Forced, only WASM is served.
 #endif
