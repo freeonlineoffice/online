@@ -25,7 +25,7 @@
     "jquery": "^3.6.0",
     "jquery-contextmenu": "2.9.2",
     "jquery-mousewheel": "3.1.13",
-    "jquery-ui": "1.13.2",
+    "jquery-ui": "1.13.3",
     "jscpd": "3.5.10",
     "l10n-for-node": "0.0.1",
     "mocha": "10.4.0",
