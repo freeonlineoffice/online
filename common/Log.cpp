@@ -179,6 +179,13 @@ namespace Log
         }
     };
 
+    void postFork()
+    {
+        /// after forking we can end up with threads that
+        /// logged in the parent confusing our counting.
+        ThreadLocalBufferCount = 0;
+    }
+
     class BufferedConsoleChannel : public ConsoleChannel
     {
         class ThreadLocalBuffer
