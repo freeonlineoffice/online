@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-25 19:35+0200\n"
+"POT-Creation-Date: 2024-04-27 21:27+0200\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -494,7 +494,7 @@ msgstr ""
 
 #: src/control/Control.DownloadProgress.js:61
 #: src/control/Control.NotebookbarCalc.js:202
-#: src/control/Control.NotebookbarImpress.js:268
+#: src/control/Control.NotebookbarImpress.js:270
 #: src/control/Control.NotebookbarWriter.js:242
 msgid "Download"
 msgstr ""
@@ -618,7 +618,7 @@ msgstr "ردود"
 #: src/control/Control.JSDialogBuilder.js:1954
 #: src/layer/tile/CanvasTileLayer.js:5195
 #: src/layer/tile/CanvasTileLayer.js:5206
-#: src/layer/tile/CommentListSection.ts:1016
+#: src/layer/tile/CommentListSection.ts:1013
 msgid "Comment"
 msgstr "التعليق"
 
@@ -771,8 +771,8 @@ msgstr "أغلق المستند"
 #: src/control/Control.NotebookbarCalc.js:216
 #: src/control/Control.NotebookbarDraw.js:282
 #: src/control/Control.NotebookbarDraw.js:283
-#: src/control/Control.NotebookbarImpress.js:281
-#: src/control/Control.NotebookbarImpress.js:282
+#: src/control/Control.NotebookbarImpress.js:283
+#: src/control/Control.NotebookbarImpress.js:284
 #: src/control/Control.NotebookbarWriter.js:255
 #: src/control/Control.NotebookbarWriter.js:256
 msgid "Repair"
@@ -786,8 +786,8 @@ msgstr "أصلح"
 #: src/control/Control.NotebookbarCalc.js:1151
 #: src/control/Control.NotebookbarDraw.js:339
 #: src/control/Control.NotebookbarDraw.js:340
-#: src/control/Control.NotebookbarImpress.js:354
-#: src/control/Control.NotebookbarImpress.js:355
+#: src/control/Control.NotebookbarImpress.js:356
+#: src/control/Control.NotebookbarImpress.js:357
 #: src/control/Control.NotebookbarWriter.js:1335
 #: src/control/Control.NotebookbarWriter.js:1336
 #: src/control/Control.StatusBar.js:248
@@ -798,7 +798,7 @@ msgstr "صفّر مستوى التكبير"
 #: src/control/Control.Menubar.js:575 src/control/Control.Menubar.js:710
 #: src/control/Control.NotebookbarCalc.js:1191
 #: src/control/Control.NotebookbarDraw.js:380
-#: src/control/Control.NotebookbarImpress.js:395
+#: src/control/Control.NotebookbarImpress.js:397
 #: src/control/Control.NotebookbarWriter.js:1376
 msgid "Toggle UI Mode"
 msgstr ""
@@ -814,8 +814,8 @@ msgstr "أظهر المسطرة"
 #: src/control/Control.NotebookbarCalc.js:1217
 #: src/control/Control.NotebookbarDraw.js:405
 #: src/control/Control.NotebookbarDraw.js:950
-#: src/control/Control.NotebookbarImpress.js:421
-#: src/control/Control.NotebookbarImpress.js:982
+#: src/control/Control.NotebookbarImpress.js:423
+#: src/control/Control.NotebookbarImpress.js:984
 #: src/control/Control.NotebookbarWriter.js:827
 #: src/control/Control.NotebookbarWriter.js:1403
 msgid "Show Status Bar"
@@ -832,7 +832,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1093 src/control/Control.Menubar.js:1152
 #: src/control/Control.NotebookbarCalc.js:1229
 #: src/control/Control.NotebookbarDraw.js:416
-#: src/control/Control.NotebookbarImpress.js:440
+#: src/control/Control.NotebookbarImpress.js:442
 #: src/control/Control.NotebookbarWriter.js:1421
 msgid "Dark Mode"
 msgstr ""
@@ -853,7 +853,7 @@ msgstr "الكل"
 #: src/control/Control.Menubar.js:590 src/control/Control.Menubar.js:735
 #: src/control/Control.NotebookbarCalc.js:1353
 #: src/control/Control.NotebookbarDraw.js:1239
-#: src/control/Control.NotebookbarImpress.js:1170
+#: src/control/Control.NotebookbarImpress.js:1172
 #: src/control/Control.NotebookbarWriter.js:1026
 msgid "Smart Picker"
 msgstr ""
@@ -928,7 +928,7 @@ msgstr "إدراج جدول"
 #: src/control/Control.Menubar.js:333 src/control/Control.Menubar.js:1238
 #: src/control/Control.NotebookbarCalc.js:231
 #: src/control/Control.NotebookbarDraw.js:297
-#: src/control/Control.NotebookbarImpress.js:297
+#: src/control/Control.NotebookbarImpress.js:299
 #: src/control/Control.NotebookbarWriter.js:271
 #: src/control/Control.NotebookbarWriter.js:1298
 msgid "Properties"
@@ -1009,7 +1009,7 @@ msgid "Save Comments"
 msgstr "حفظ التعليقات"
 
 #: src/control/Control.Menubar.js:432
-#: src/control/Control.NotebookbarImpress.js:432
+#: src/control/Control.NotebookbarImpress.js:434
 msgid "Master View"
 msgstr ""
 
@@ -1130,7 +1130,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1064 src/control/Control.Menubar.js:1118
 #: src/control/Control.NotebookbarCalc.js:816
 #: src/control/Control.NotebookbarDraw.js:949
-#: src/control/Control.NotebookbarImpress.js:981
+#: src/control/Control.NotebookbarImpress.js:983
 #: src/control/Control.NotebookbarWriter.js:826
 #: src/control/Control.StatusBar.js:223 src/control/Control.Zotero.js:211
 #: src/control/Toolbar.js:546
@@ -1308,21 +1308,21 @@ msgstr "تصدير ك"
 
 #: src/control/Control.NotebookbarCalc.js:151
 #: src/control/Control.NotebookbarDraw.js:186
-#: src/control/Control.NotebookbarImpress.js:216
+#: src/control/Control.NotebookbarImpress.js:217
 #: src/control/Control.NotebookbarWriter.js:192
 msgid "Share"
 msgstr "شارك"
 
 #: src/control/Control.NotebookbarCalc.js:161
 #: src/control/Control.NotebookbarDraw.js:196
-#: src/control/Control.NotebookbarImpress.js:225
+#: src/control/Control.NotebookbarImpress.js:227
 #: src/control/Control.NotebookbarWriter.js:201
 msgid "See history"
 msgstr "شاهد السجل"
 
 #: src/control/Control.NotebookbarCalc.js:244
 #: src/control/Control.NotebookbarDraw.js:310
-#: src/control/Control.NotebookbarImpress.js:309
+#: src/control/Control.NotebookbarImpress.js:311
 #: src/control/Control.NotebookbarWriter.js:285
 msgid "Rename"
 msgstr ""
@@ -1427,28 +1427,28 @@ msgstr "حذف الأعمدة"
 
 #: src/control/Control.NotebookbarCalc.js:1136
 #: src/control/Control.NotebookbarDraw.js:325
-#: src/control/Control.NotebookbarImpress.js:324
+#: src/control/Control.NotebookbarImpress.js:326
 #: src/control/Control.NotebookbarWriter.js:1314
 msgid "Read mode"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1190
 #: src/control/Control.NotebookbarDraw.js:379
-#: src/control/Control.NotebookbarImpress.js:394
+#: src/control/Control.NotebookbarImpress.js:396
 #: src/control/Control.NotebookbarWriter.js:1375
 msgid "Compact view"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1204
 #: src/control/Control.NotebookbarDraw.js:392
-#: src/control/Control.NotebookbarImpress.js:408
+#: src/control/Control.NotebookbarImpress.js:410
 #: src/control/Control.NotebookbarWriter.js:1415
 msgid "Collapse Tabs"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1216
 #: src/control/Control.NotebookbarDraw.js:404
-#: src/control/Control.NotebookbarImpress.js:420
+#: src/control/Control.NotebookbarImpress.js:422
 #: src/control/Control.NotebookbarWriter.js:1402
 msgid "Status Bar"
 msgstr ""
@@ -1461,9 +1461,9 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:2239
 #: src/control/Control.NotebookbarDraw.js:829
 #: src/control/Control.NotebookbarDraw.js:1325
-#: src/control/Control.NotebookbarImpress.js:853
-#: src/control/Control.NotebookbarImpress.js:1275
-#: src/control/Control.NotebookbarImpress.js:2304
+#: src/control/Control.NotebookbarImpress.js:855
+#: src/control/Control.NotebookbarImpress.js:1277
+#: src/control/Control.NotebookbarImpress.js:2306
 #: src/control/Control.NotebookbarWriter.js:982
 #: src/control/Control.NotebookbarWriter.js:2753
 msgid "Shapes"
@@ -1493,12 +1493,12 @@ msgstr "تخطيط الصفحة"
 msgid "Master"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:331
-#: src/control/Control.NotebookbarImpress.js:967
+#: src/control/Control.NotebookbarImpress.js:333
+#: src/control/Control.NotebookbarImpress.js:969
 msgid "Presentation"
 msgstr "عرض"
 
-#: src/control/Control.NotebookbarImpress.js:339
+#: src/control/Control.NotebookbarImpress.js:341
 msgid "Present in Window"
 msgstr ""
 
@@ -2381,57 +2381,57 @@ msgstr ""
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/layer/tile/CommentListSection.ts:959
+#: src/layer/tile/CommentListSection.ts:956
 msgid "Modify"
 msgstr "عدّل"
 
-#: src/layer/tile/CommentListSection.ts:965
+#: src/layer/tile/CommentListSection.ts:962
 #: src/layer/tile/CommentSection.ts:151
 msgid "Reply"
 msgstr "رُدّ"
 
-#: src/layer/tile/CommentListSection.ts:971
+#: src/layer/tile/CommentListSection.ts:968
 msgid "Remove"
 msgstr "أزل"
 
-#: src/layer/tile/CommentListSection.ts:977
+#: src/layer/tile/CommentListSection.ts:974
 msgid "Remove Thread"
 msgstr "إزالة مؤشر الترابط"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:980
 msgid "Resolve"
 msgstr "حل"
 
-#: src/layer/tile/CommentListSection.ts:983
+#: src/layer/tile/CommentListSection.ts:980
 msgid "Unresolve"
 msgstr "غير محلول"
 
-#: src/layer/tile/CommentListSection.ts:989
+#: src/layer/tile/CommentListSection.ts:986
 msgid "Unresolve Thread"
 msgstr "مؤشر ترابط غير محلول"
 
-#: src/layer/tile/CommentListSection.ts:989
+#: src/layer/tile/CommentListSection.ts:986
 msgid "Resolve Thread"
 msgstr "مؤشر ترابط محلول"
 
-#: src/layer/tile/CommentListSection.ts:1270
-#: src/layer/tile/CommentListSection.ts:1332
+#: src/layer/tile/CommentListSection.ts:1267
+#: src/layer/tile/CommentListSection.ts:1329
 msgid "Autosaved"
 msgstr ""
 
-#: src/layer/tile/CommentSection.ts:287
+#: src/layer/tile/CommentSection.ts:301
 msgid "Open menu"
 msgstr "افتح القائمة"
 
-#: src/layer/tile/CommentSection.ts:305 src/layer/tile/CommentSection.ts:306
+#: src/layer/tile/CommentSection.ts:319 src/layer/tile/CommentSection.ts:320
 msgid "Accept change"
 msgstr "اقبل التغيير"
 
-#: src/layer/tile/CommentSection.ts:312 src/layer/tile/CommentSection.ts:313
+#: src/layer/tile/CommentSection.ts:326 src/layer/tile/CommentSection.ts:327
 msgid "Reject change"
 msgstr "ارفض التغيير"
 
-#: src/layer/tile/CommentSection.ts:336
+#: src/layer/tile/CommentSection.ts:350
 #, fuzzy
 msgid "Resolved"
 msgstr "حل"
