@@ -1049,6 +1049,7 @@ void ForKitProcWSHandler::handleMessage(const std::vector<char> &data)
         {
             Admin::instance().addSegFaultCount(count);
             LOG_INF(count << " loolkit processes crashed with segmentation fault.");
+            UnitWSD::get().kitSegfault(count);
         }
         else
         {
