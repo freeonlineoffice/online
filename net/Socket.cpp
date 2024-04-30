@@ -371,6 +371,16 @@ void SocketPoll::pollingThreadEntry()
     LOG_INF("Finished polling thread [" << _name << "].");
 }
 
+void SocketPoll::disableWatchdog()
+{
+    _watchdogTime = Watchdog::getDisableStamp();
+}
+
+void SocketPoll::enableWatchdog()
+{
+    _watchdogTime = Watchdog::getTimestamp();
+}
+
 int SocketPoll::poll(int64_t timeoutMaxMicroS)
 {
     if (_runOnClientThread)
@@ -391,7 +401,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
     const size_t size = _pollSockets.size();
 
     // disable watchdog - it's good to sleep
-    _watchdogTime = Watchdog::getDisableStamp();
+    disableWatchdog();
 
     int rc;
     do
@@ -420,7 +430,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
             timeoutMaxMicroS << "us)" << ((rc==0) ? "(timedout)" : ""));
 
     // from now we want to race back to sleep.
-    _watchdogTime = Watchdog::getTimestamp();
+    enableWatchdog();
 
     // First process the wakeup pipe (always the last entry).
     if (_pollFds[size].revents)
