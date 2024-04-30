@@ -2158,7 +2158,11 @@ kbd,
 	margin-block-start: 4px;
 }
 
-#DocumentPropertiesDialog #properties > .jsdialog.ui-grid > .ui-grid-cell > .ui-grid-cell {
+#DocumentPropertiesDialog
+	#properties
+	> .jsdialog.ui-grid
+	> .ui-grid-cell
+	> .ui-grid-cell {
 	align-items: center;
 	grid-column-gap: 4px;
 }
