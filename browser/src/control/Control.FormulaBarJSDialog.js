@@ -55,7 +55,7 @@ class FormulaBar {
 	}
 
 	onUpdatePermission(e) {
-		var adressInput = L.DomUtil.get('addressInput');
+		var adressInput = L.DomUtil.get('addressInput-input');
 
 		if (e.perm === 'edit') {
 			if (adressInput)
@@ -69,7 +69,7 @@ class FormulaBar {
 	}
 
 	onCellAddress (e) {
-		var adressInput = L.DomUtil.get('addressInput');
+		var adressInput = L.DomUtil.get('addressInput-input');
 		if (adressInput && document.activeElement !== adressInput) {
 			// if the user is not editing the address field
 			adressInput.value = e.address;
@@ -79,9 +79,9 @@ class FormulaBar {
 
 	onAddressInputChange() {
 		// address control should not have focus anymore
-		L.DomUtil.get('addressInput').blur();
+		L.DomUtil.get('addressInput-input').blur();
 		this.map.focus();
-		var value = L.DomUtil.get('addressInput').value;
+		var value = L.DomUtil.get('addressInput-input').value;
 		var command = {
 			ToPoint : {
 				type: 'string',

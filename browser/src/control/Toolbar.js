@@ -943,7 +943,7 @@ L.Map.include({
 		map.uiManager.showModal(json, [
 			{id: 'response-ok', func: function() {
 				var text = document.getElementById('hyperlink-text-box');
-				var link = document.getElementById('hyperlink-link-box');
+				var link = document.getElementById('hyperlink-link-box-input');
 
 				if (link.value != '') {
 					if (!text.value || text.value === '')
@@ -1104,7 +1104,7 @@ L.Map.include({
 		}, 250);
 
 		map.formulabar.blurField();
-		$('#addressInput').blur();
+		$('#addressInput-input').blur();
 	},
 
 	formulabarBlur: function() {
