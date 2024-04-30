@@ -1,6 +1,5 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -61,7 +60,7 @@ void UnitSyntheticLok::loadAndSynthesize(
 
     std::vector<char> message
         = wsSession->waitForMessage("status:", timeout, name);
-    const std::string status = COOLProtocol::getFirstLine(message);
+    const std::string status = LOOLProtocol::getFirstLine(message);
 
     // Kit will signal success through unitresult: to wsd in its own time.
 }
