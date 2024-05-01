@@ -1403,6 +1403,8 @@ app.definitions.Socket = L.Class.extend({
 			this._map.setPermission(app.file.permission);
 			window.migrating = false;
 			this._map.uiManager.initializeSidebar();
+			if (typeof window.initializedUI === 'function')
+				window.initializedUI();
 		}
 
 		this._map.fire('docloaded', {status: true});
