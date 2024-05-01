@@ -1228,6 +1228,8 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
         wopiInfo->set("HideChangeTrackingControls", wopiFileInfo->getHideChangeTrackingControls() ==
                                                         WopiStorage::WOPIFileInfo::TriState::True);
     wopiInfo->set("IsOwner", session->isDocumentOwner());
+    bool disablePresentation = !watermarkText.empty() || wopiFileInfo->getDisableExport() || wopiFileInfo->getHideExportOption();
+    wopiInfo->set("DisablePresentation", disablePresentation);
 
     std::ostringstream ossWopiInfo;
     wopiInfo->stringify(ossWopiInfo);
