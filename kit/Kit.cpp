@@ -1974,6 +1974,8 @@ bool Document::forwardToChild(const std::string& prefix, const std::vector<char>
 
                 _deltaGen->setSessionCount(count);
 
+                _sessionUserInfo[session->getViewId()].setDisconnected();
+
                 // No longer needed, and allow session dtor to take it.
                 session.reset();
                 return true;
@@ -2338,7 +2340,8 @@ void Document::dumpState(std::ostream& oss)
             << " userId: " << it.second.getUserId()
             << " userName: " << it.second.getUserName()
             << " userExtraInfo: " << it.second.getUserExtraInfo()
-            << " readOnly: " << it.second.isReadOnly();
+            << " readOnly: " << it.second.isReadOnly()
+            << " connected: " << it.second.isConnected();
     }
     oss << "\n";
 
