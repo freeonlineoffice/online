@@ -1864,7 +1864,6 @@ input[type='number']:hover::-webkit-outer-spin-button {
 
 /* formulabar */
 #sc_input_window.formulabar {
-	height: 28px;
 	border: 1px solid var(--color-border);
 	flex-grow: 1;
 	background-color: var(--color-background-lighter);
@@ -1921,9 +1920,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 }
 
 #sc_input_window.formulabar.expanded {
-	height: 72px !important;
-	border-radius: var(--border-radius) 0 var(--border-radius)
-		var(--border-radius) !important;
+	border-radius: var(--border-radius) 0 var(--border-radius) var(--border-radius) !important;
 }
 
 .formulabar.unotoolbutton {
@@ -1933,7 +1930,9 @@ input[type='number']:hover::-webkit-outer-spin-button {
 }
 
 #acceptformula {
-	margin-inline-start: 3px;
+	/* Align it. Sum menu button occupies 2x a button size */
+	/* so, move acceptformula one button to the right */
+	margin-inline-start: var(--btn-size) !important;
 }
 
 .formulabar.unotoolbutton:hover {
