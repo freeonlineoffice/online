@@ -80,7 +80,7 @@ L.Control.PartsPreview = L.Control.extend({
 					}, this), 500);
 				}
 
-				this._getBottomBound();
+				this._setPreviewContainerTop();
 
 				// Add a special frame just as a drop-site for reordering.
 				var frameClass = 'preview-frame ' + this.options.frameClass;
@@ -344,13 +344,8 @@ L.Control.PartsPreview = L.Control.extend({
 		return img;
 	},
 
-	_getBottomBound: function () {
+	_setPreviewContainerTop: function () {
 		var previewContBB = this._partsPreviewCont.getBoundingClientRect();
-
-		// is not visible yet, assume map bounds
-		if (previewContBB.right === 0 && previewContBB.bottom === 0) {
-			previewContBB = this._map._container.getBoundingClientRect();
-		}
 
 		if (this._direction === 'x') {
 			this._previewContTop = previewContBB.left;
