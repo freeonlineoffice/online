@@ -1071,6 +1071,7 @@ LOOLWSD::LOOLWSD()
 
 LOOLWSD::~LOOLWSD()
 {
+    UnitWSD::get().setWSD(nullptr);
 }
 
 #if !MOBILEAPP
@@ -2232,6 +2233,7 @@ void LOOLWSD::innerInitialize(Application& self)
     {
         throw std::runtime_error("Failed to load wsd unit test library.");
     }
+    UnitWSD::get().setWSD(this);
 
     // Allow UT to manipulate before using configuration values.
     UnitWSD::get().configure(conf);
@@ -4627,6 +4629,18 @@ int LOOLWSD::main(const std::vector<std::string>& /*args*/)
 int LOOLWSD::getClientPortNumber()
 {
     return ClientPortNumber;
+}
+
+/// Only for unit testing ...
+std::string COOLWSD::getJailRoot(int pid)
+{
+    std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
+    for (auto &it : DocBrokers)
+    {
+        if (pid < 0 || it.second->getPid() == pid)
+            return it.second->getJailRoot();
+    }
+    return std::string();
 }
 
 #if !MOBILEAPP
