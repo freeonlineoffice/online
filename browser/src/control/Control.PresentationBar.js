@@ -51,14 +51,12 @@ class PresentationBar {
 						id: 'presentation',
 						type: 'customtoolitem',
 						text: this._getItemUnoName('presentation'),
-						command: 'presentation',
-						visible: false
+						command: 'presentation'
 					},
 					{
 						id: 'presentationbreak',
 						type: 'separator',
 						orientation: 'vertical',
-						visible: false
 					},
 					{
 						id: 'insertpage',
@@ -99,8 +97,10 @@ class PresentationBar {
 		this.parentContainer.innerHTML = '';
 		this.builder.build(this.parentContainer, data);
 
-		if (this.map.getDocType() === 'drawing')
-			this.enableItem('presentation', false);
+		if (this.map.getDocType() === 'drawing') {
+			this.showItem('presentation', false);
+			this.showItem('presentationbreak', false);
+		}
 	}
 
 	enableItem(command, enable) {
@@ -142,14 +142,16 @@ class PresentationBar {
 
 	onWopiProps(e) {
 		if (e.HideExportOption) {
-			this.hideItem('presentation');
-			this.hideItem('presentationbreak');
+			this.showItem('presentation', false);
+			this.showItem('presentationbreak', false);
 		}
 	}
 
 	onDocLayerInit() {
-		if (!this.map['wopi'].HideExportOption && this.map.getDocType() !== 'drawing')
-			this.showItem('presentation');
+		if (!this.map['wopi'].HideExportOption && this.map.getDocType() !== 'drawing') {
+			this.showItem('presentation', true);
+			this.showItem('presentationbreak', true);
+		}
 
 		if (!window.mode.isMobile())
 			this.show();
