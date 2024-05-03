@@ -533,7 +533,7 @@ int forkit_main(int argc, char** argv)
     /*WARNING*/         checkLoolUser = false;
     /*WARNING*/ }
 
-    /*WARNING*/ if (!hasCorrectUID("loolforkit"))
+    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "loolforkit"))
     /*WARNING*/ {
     /*WARNING*/     // don't allow if any capability is set (unless root; who runs this
     /*WARNING*/     // as root or runs this in a container and provides --disable-lool-user-checking knows what they

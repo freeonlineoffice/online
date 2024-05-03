@@ -147,11 +147,13 @@ void usage(const char* program)
 
 int main(int argc, char** argv)
 {
-    if (!hasCorrectUID(/* appName = */"loolmount"))
-    {
-        fprintf(stderr, "Aborting.\n");
-        return EX_SOFTWARE;
-    }
+    /*WARNING: PRIVILEGED CODE CHECKING START */
+    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "loolmount"))
+    /*WARNING*/ {
+    /*WARNING*/    fprintf(stderr, "Aborting.\n");
+    /*WARNING*/    return EX_SOFTWARE;
+    /*WARNING*/ }
+    /*WARNING: PRIVILEGED CODE CHECKING END */
 
     const char* program = argv[0];
     if (argc < 3)
