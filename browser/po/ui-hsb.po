@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-30 16:36+0200\n"
+"POT-Creation-Date: 2024-05-04 20:21+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Upper Sorbian <https://hosted.weblate.org/projects/"
@@ -218,7 +218,7 @@ msgstr "Protokol wobnowić"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:191 src/control/Control.StatusBar.js:194
 msgid "None"
 msgstr "Žadyn"
@@ -506,7 +506,7 @@ msgstr ""
 
 #: src/control/Control.DownloadProgress.js:87
 #: src/control/Control.DownloadProgress.js:112
-#: src/control/Control.PartsPreview.js:262
+#: src/control/Control.PartsPreview.js:261
 msgid "Copy"
 msgstr ""
 
@@ -546,99 +546,99 @@ msgstr ""
 msgid "Accept"
 msgstr "Akceptować"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Połny"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Linearny"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Aksialny"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Radialny"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Elipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Kwadratiski"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Kwadrat"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Kruta wulkosć"
 
-#: src/control/Control.JSDialogBuilder.js:1494
+#: src/control/Control.JSDialogBuilder.js:1495
 msgid "From"
 msgstr "Wot"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1498
 msgid "To"
 msgstr "Do"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1501
 msgid "Color"
 msgstr "Barba"
 
-#: src/control/Control.JSDialogBuilder.js:1621
+#: src/control/Control.JSDialogBuilder.js:1622
 msgid "Select range"
 msgstr "Wobłuk wubrać"
 
-#: src/control/Control.JSDialogBuilder.js:1675
+#: src/control/Control.JSDialogBuilder.js:1721
 #: src/control/Control.NotebookbarBuilder.js:151
 msgid "Font Name"
 msgstr "Mjeno pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1677 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1723 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Wulkosć pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1679
+#: src/control/Control.JSDialogBuilder.js:1725
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:1943
+#: src/control/Control.JSDialogBuilder.js:1989
 #, fuzzy
 msgid "reply"
 msgstr "Wotmołwić"
 
-#: src/control/Control.JSDialogBuilder.js:1946
+#: src/control/Control.JSDialogBuilder.js:1992
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1957
+#: src/control/Control.JSDialogBuilder.js:2003
 #: src/layer/tile/CanvasTileLayer.js:5202
 #: src/layer/tile/CanvasTileLayer.js:5213
 #: src/layer/tile/CommentListSection.ts:1013
 msgid "Comment"
 msgstr "Komentar"
 
-#: src/control/Control.JSDialogBuilder.js:2021
+#: src/control/Control.JSDialogBuilder.js:2067
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2857
+#: src/control/Control.JSDialogBuilder.js:2903
 #: src/control/Control.Menubar.js:838
 msgid "Rows"
 msgstr "Linki"
 
-#: src/control/Control.JSDialogBuilder.js:2858
+#: src/control/Control.JSDialogBuilder.js:2904
 #: src/control/Control.Menubar.js:841
 msgid "Columns"
 msgstr "Špalty"
 
-#: src/control/Control.JSDialogBuilder.js:2878
+#: src/control/Control.JSDialogBuilder.js:2924
 #, fuzzy
 msgid "Insert Table"
 msgstr "Tabelu zasadźić"
@@ -1538,16 +1538,16 @@ msgstr ""
 msgid "Ruler"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:169
+#: src/control/Control.PartsPreview.js:168
 msgid "preview of page "
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:228
+#: src/control/Control.PartsPreview.js:227
 #, fuzzy
 msgid "Paste Slide"
 msgstr "Folijowy wuhotowak"
 
-#: src/control/Control.PartsPreview.js:271
+#: src/control/Control.PartsPreview.js:270
 msgid "Paste"
 msgstr ""
 
@@ -2143,18 +2143,18 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1515
+#: src/core/Socket.js:1518
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Bohužel njemóžemy z wašim dokumentom zwjazać. Prošu spytajće hišće raz."
 
-#: src/core/Socket.js:1532
+#: src/core/Socket.js:1535
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Zwjazuje so..."
 
-#: src/core/Socket.js:1542
+#: src/core/Socket.js:1545
 msgid "The server has been disconnected."
 msgstr ""
 

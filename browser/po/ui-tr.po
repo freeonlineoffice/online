@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-30 16:36+0200\n"
+"POT-Creation-Date: 2024-05-04 20:21+0200\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -220,7 +220,7 @@ msgstr "Günlüğü Tazele"
 msgid "Channel Filter:"
 msgstr "Kanal Filtresi:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:191 src/control/Control.StatusBar.js:194
 msgid "None"
 msgstr "Hiçbiri"
@@ -508,7 +508,7 @@ msgstr ""
 
 #: src/control/Control.DownloadProgress.js:87
 #: src/control/Control.DownloadProgress.js:112
-#: src/control/Control.PartsPreview.js:262
+#: src/control/Control.PartsPreview.js:261
 msgid "Copy"
 msgstr ""
 
@@ -548,98 +548,98 @@ msgstr "Formül"
 msgid "Accept"
 msgstr "Kabul Et"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Katı"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Doğrusal"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Eksenel"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Dairesel"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Eliptik"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Karesel"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Kare"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Sabit boyut"
 
-#: src/control/Control.JSDialogBuilder.js:1494
+#: src/control/Control.JSDialogBuilder.js:1495
 msgid "From"
 msgstr "Başlangıç"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1498
 msgid "To"
 msgstr "Bitiş"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1501
 msgid "Color"
 msgstr "Renk"
 
-#: src/control/Control.JSDialogBuilder.js:1621
+#: src/control/Control.JSDialogBuilder.js:1622
 msgid "Select range"
 msgstr "Aralığı seç"
 
-#: src/control/Control.JSDialogBuilder.js:1675
+#: src/control/Control.JSDialogBuilder.js:1721
 #: src/control/Control.NotebookbarBuilder.js:151
 msgid "Font Name"
 msgstr "Yazıtipi Adı"
 
-#: src/control/Control.JSDialogBuilder.js:1677 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1723 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Yazıtipi Boyutu"
 
-#: src/control/Control.JSDialogBuilder.js:1679
+#: src/control/Control.JSDialogBuilder.js:1725
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Biçem"
 
-#: src/control/Control.JSDialogBuilder.js:1943
+#: src/control/Control.JSDialogBuilder.js:1989
 msgid "reply"
 msgstr "yanıt"
 
-#: src/control/Control.JSDialogBuilder.js:1946
+#: src/control/Control.JSDialogBuilder.js:1992
 msgid "replies"
 msgstr "yanıt"
 
-#: src/control/Control.JSDialogBuilder.js:1957
+#: src/control/Control.JSDialogBuilder.js:2003
 #: src/layer/tile/CanvasTileLayer.js:5202
 #: src/layer/tile/CanvasTileLayer.js:5213
 #: src/layer/tile/CommentListSection.ts:1013
 msgid "Comment"
 msgstr "Yorum"
 
-#: src/control/Control.JSDialogBuilder.js:2021
+#: src/control/Control.JSDialogBuilder.js:2067
 msgid "Insert Comment"
 msgstr "Yorum Ekle"
 
-#: src/control/Control.JSDialogBuilder.js:2857
+#: src/control/Control.JSDialogBuilder.js:2903
 #: src/control/Control.Menubar.js:838
 msgid "Rows"
 msgstr "Satırlar"
 
-#: src/control/Control.JSDialogBuilder.js:2858
+#: src/control/Control.JSDialogBuilder.js:2904
 #: src/control/Control.Menubar.js:841
 msgid "Columns"
 msgstr "Sütunlar"
 
-#: src/control/Control.JSDialogBuilder.js:2878
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Insert Table"
 msgstr "Tablo Ekle"
 
@@ -1538,15 +1538,15 @@ msgstr ""
 msgid "Ruler"
 msgstr "Cetvel"
 
-#: src/control/Control.PartsPreview.js:169
+#: src/control/Control.PartsPreview.js:168
 msgid "preview of page "
 msgstr "sayfa önizleme "
 
-#: src/control/Control.PartsPreview.js:228
+#: src/control/Control.PartsPreview.js:227
 msgid "Paste Slide"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:271
+#: src/control/Control.PartsPreview.js:270
 msgid "Paste"
 msgstr ""
 
@@ -2141,17 +2141,17 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1515
+#: src/core/Socket.js:1518
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Utanç verici ama belgenize bağlanamadık. Lütfen tekrar deneyin."
 
-#: src/core/Socket.js:1532
+#: src/core/Socket.js:1535
 msgid "Reconnecting..."
 msgstr "Yeniden Bağlanıyor..."
 
-#: src/core/Socket.js:1542
+#: src/core/Socket.js:1545
 msgid "The server has been disconnected."
 msgstr "Sunucu bağlantısı kesildi."
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-30 16:36+0200\n"
+"POT-Creation-Date: 2024-05-04 20:21+0200\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/collabora-online/"
@@ -216,7 +216,7 @@ msgstr "Actualizar registro"
 msgid "Channel Filter:"
 msgstr "Filtro de canal:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:191 src/control/Control.StatusBar.js:194
 msgid "None"
 msgstr "Ninguno"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: src/control/Control.DownloadProgress.js:87
 #: src/control/Control.DownloadProgress.js:112
-#: src/control/Control.PartsPreview.js:262
+#: src/control/Control.PartsPreview.js:261
 msgid "Copy"
 msgstr ""
 
@@ -547,98 +547,98 @@ msgstr "Fórmula"
 msgid "Accept"
 msgstr "Aceptar"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Sólido"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Lineal"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Elipsoidal"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Cuadrático"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Cuadrado"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Tamaño fijo"
 
-#: src/control/Control.JSDialogBuilder.js:1494
+#: src/control/Control.JSDialogBuilder.js:1495
 msgid "From"
 msgstr "De"
 
-#: src/control/Control.JSDialogBuilder.js:1497
+#: src/control/Control.JSDialogBuilder.js:1498
 msgid "To"
 msgstr "A"
 
-#: src/control/Control.JSDialogBuilder.js:1500
+#: src/control/Control.JSDialogBuilder.js:1501
 msgid "Color"
 msgstr "Color"
 
-#: src/control/Control.JSDialogBuilder.js:1621
+#: src/control/Control.JSDialogBuilder.js:1622
 msgid "Select range"
 msgstr "Seleccionar intervalo"
 
-#: src/control/Control.JSDialogBuilder.js:1675
+#: src/control/Control.JSDialogBuilder.js:1721
 #: src/control/Control.NotebookbarBuilder.js:151
 msgid "Font Name"
 msgstr "Tipo de letra"
 
-#: src/control/Control.JSDialogBuilder.js:1677 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1723 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Tamaño de letra"
 
-#: src/control/Control.JSDialogBuilder.js:1679
+#: src/control/Control.JSDialogBuilder.js:1725
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Estilo"
 
-#: src/control/Control.JSDialogBuilder.js:1943
+#: src/control/Control.JSDialogBuilder.js:1989
 msgid "reply"
 msgstr "respuesta"
 
-#: src/control/Control.JSDialogBuilder.js:1946
+#: src/control/Control.JSDialogBuilder.js:1992
 msgid "replies"
 msgstr "respuestas"
 
-#: src/control/Control.JSDialogBuilder.js:1957
+#: src/control/Control.JSDialogBuilder.js:2003
 #: src/layer/tile/CanvasTileLayer.js:5202
 #: src/layer/tile/CanvasTileLayer.js:5213
 #: src/layer/tile/CommentListSection.ts:1013
 msgid "Comment"
 msgstr "Comentario"
 
-#: src/control/Control.JSDialogBuilder.js:2021
+#: src/control/Control.JSDialogBuilder.js:2067
 msgid "Insert Comment"
 msgstr "Insertar comentario"
 
-#: src/control/Control.JSDialogBuilder.js:2857
+#: src/control/Control.JSDialogBuilder.js:2903
 #: src/control/Control.Menubar.js:838
 msgid "Rows"
 msgstr "Filas"
 
-#: src/control/Control.JSDialogBuilder.js:2858
+#: src/control/Control.JSDialogBuilder.js:2904
 #: src/control/Control.Menubar.js:841
 msgid "Columns"
 msgstr "Columnas"
 
-#: src/control/Control.JSDialogBuilder.js:2878
+#: src/control/Control.JSDialogBuilder.js:2924
 msgid "Insert Table"
 msgstr "Insertar tabla"
 
@@ -1537,15 +1537,15 @@ msgstr ""
 msgid "Ruler"
 msgstr "Regla"
 
-#: src/control/Control.PartsPreview.js:169
+#: src/control/Control.PartsPreview.js:168
 msgid "preview of page "
 msgstr "previsualización de la página "
 
-#: src/control/Control.PartsPreview.js:228
+#: src/control/Control.PartsPreview.js:227
 msgid "Paste Slide"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:271
+#: src/control/Control.PartsPreview.js:270
 msgid "Paste"
 msgstr ""
 
@@ -2142,17 +2142,17 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1515
+#: src/core/Socket.js:1518
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Se produjo un error de conexión con el documento. Inténtelo de nuevo."
 
-#: src/core/Socket.js:1532
+#: src/core/Socket.js:1535
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: src/core/Socket.js:1542
+#: src/core/Socket.js:1545
 msgid "The server has been disconnected."
 msgstr "Se ha desconectado el servidor."
 
