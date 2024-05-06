@@ -2,15 +2,15 @@
 #
 # get a flamegraph of where the watchdog is called from to create a
 # visualization of where interactive responsiveness is poor
-# a) systemwide profiles on the rare 'futimesat' syscall that x86_64 coolwsd
+# a) systemwide profiles on the rare 'futimesat' syscall that x86_64 loolwsd
 # calls from its watchdog for the length of time requested. The env variable
-# COOL_WATCHDOG must be set to trigger these.
+# LOOL_WATCHDOG must be set to trigger these.
 # d) generates flamegraph after
 if ! test `id -u` = 0; then
-    echo "not root, if this doesn't work try sudo watchdog-cool"
+    echo "not root, if this doesn't work try sudo watchdog-lool"
 fi
 if [ $# -ne 1 ]; then
-    echo "Usage: watchdog-cool NUMBER[SUFFIX], e.g. watchdog-cool 1h"
+    echo "Usage: watchdog-lool NUMBER[SUFFIX], e.g. watchdog-lool 1h"
     exit 1
 fi
 if ! which flamegraph.pl > /dev/null 2>&1; then
