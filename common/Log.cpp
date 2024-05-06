@@ -65,7 +65,7 @@ public:
         // loggers and we can't access the internal mutex.
         if (find(name))
             throw Poco::ExistsException();
-        auto log = new GenericLogger(name, chan, lvl);
+        auto log = new GenericLogger(name, std::move(chan), lvl);
         add(log);
         return *log;
     }
