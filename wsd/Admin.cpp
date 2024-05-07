@@ -722,7 +722,7 @@ void Admin::pollingThread()
     // if monitor closes early we set the _migrateMsgReceived for each docbroker
     // so that docbroker can cleanup the documents
     if (_closeMonitor)
-        COOLWSD::setAllMigrationMsgReceived();
+        LOOLWSD::setAllMigrationMsgReceived();
 }
 
 void Admin::modificationAlert(const std::string& docKey, pid_t pid, bool value){

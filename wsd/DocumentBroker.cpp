@@ -339,7 +339,7 @@ void DocumentBroker::pollThread()
     bool waitingForMigrationMsg = false;
     std::chrono::time_point<std::chrono::steady_clock> migrationMsgStartTime;
     static const std::chrono::microseconds migrationMsgTimeout = std::chrono::seconds(
-        COOLWSD::getConfigValue<int>("indirection_endpoint.migration_timeout_secs", 180));
+        LOOLWSD::getConfigValue<int>("indirection_endpoint.migration_timeout_secs", 180));
 
     // Main polling loop goodness.
     while (!_stop && _poll->continuePolling() && !SigUtil::getTerminationFlag())
@@ -490,7 +490,7 @@ void DocumentBroker::pollThread()
 
                     autoSaveAndStop("dead");
                 }
-                else if (COOLWSD::IndirectionServerEnabled && SigUtil::getShutdownRequestFlag() &&
+                else if (LOOLWSD::IndirectionServerEnabled && SigUtil::getShutdownRequestFlag() &&
                          !_migrateMsgReceived)
                 {
                     if (!waitingForMigrationMsg)
