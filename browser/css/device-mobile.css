@@ -152,14 +152,17 @@ textarea.lool-annotation-textarea {
 
 /* Related to toolbar.css */
 @-moz-document url-prefix() {
-	#toolbar-up{
+	#toolbar-up {
 		top: -1px;
 	}
 }
 #formulabar:not(.expanded) #addressInput {
 	align-self: center;
 }
-#toolbar-up #redo.disabled, #toolbar-up #undo.disabled, #toolbar-up #mobile_wizard.disabled, #toolbar-up #insertion_mobile_wizard.disabled {
+#toolbar-up #redo.disabled,
+#toolbar-up #undo.disabled,
+#toolbar-up #mobile_wizard.disabled,
+#toolbar-up #insertion_mobile_wizard.disabled {
 	display: none;
 }
 #toolbar-wrapper.mobile {
@@ -198,7 +201,7 @@ nav:not(.spreadsheet-color-indicator)
 }
 .formulabar.toolbox {
 	/* fx = inputfield expander */
-	grid-template-columns: calc(var(--btn-size)*2) auto var(--btn-size);
+	grid-template-columns: calc(var(--btn-size) * 2) auto var(--btn-size);
 	display: grid;
 	grid-auto-flow: column;
 	align-items: start;
@@ -247,7 +250,10 @@ nav:not(.spreadsheet-color-indicator)
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
-.w2ui-icon.equal, .w2ui-icon.autosum{width: 38px !important;}
+.w2ui-icon.equal,
+.w2ui-icon.autosum {
+	width: 38px !important;
+}
 
 #toolbar-up .checked {
 	border-color: transparent !important;

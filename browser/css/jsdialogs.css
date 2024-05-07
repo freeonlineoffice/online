@@ -1921,7 +1921,8 @@ input[type='number']:hover::-webkit-outer-spin-button {
 }
 
 #sc_input_window.formulabar.expanded {
-	border-radius: var(--border-radius) 0 var(--border-radius) var(--border-radius) !important;
+	border-radius: var(--border-radius) 0 var(--border-radius)
+		var(--border-radius) !important;
 }
 
 .formulabar.unotoolbutton {
