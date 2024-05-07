@@ -230,7 +230,6 @@ static std::chrono::milliseconds careerSpanMs(std::chrono::milliseconds::zero())
 int ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS * 4;
 std::atomic<unsigned> LOOLWSD::NumConnections;
 std::unordered_set<std::string> LOOLWSD::EditFileExtensions;
-std::unordered_set<std::string> LOOLWSD::ViewWithCommentsFileExtensions;
 
 #if MOBILEAPP
 
