@@ -615,12 +615,12 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
         else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                  requestDetails.equals(1, "getMetrics"))
         {
+            if (!LOOLWSD::AdminEnabled)
+                throw Poco::FileAccessDeniedException("Admin console disabled");
+
             // See metrics.txt
             std::shared_ptr<http::Response> response =
                 std::make_shared<http::Response>(http::StatusCode::OK);
-
-            if (!LOOLWSD::AdminEnabled)
-                throw Poco::FileAccessDeniedException("Admin console disabled");
 
             try
             {
@@ -642,6 +642,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
                 return;
             }
 
+            FileServerRequestHandler::hstsHeaders(*response);
             response->add("Last-Modified", Util::getHttpTimeNow());
             // Ask UAs to block if they detect any XSS attempt
             response->add("X-XSS-Protection", "1; mode=block");
@@ -801,6 +802,7 @@ void ClientRequestDispatcher::handleRootRequest(const RequestDetails& requestDet
     const std::string responseString = "OK";
 
     http::Response httpResponse(http::StatusCode::OK);
+    FileServerRequestHandler::hstsHeaders(httpResponse);
     httpResponse.set("Content-Length", std::to_string(responseString.size()));
     httpResponse.set("Content-Type", mimeType);
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
@@ -820,6 +822,7 @@ void ClientRequestDispatcher::handleFaviconRequest(const RequestDetails& request
 
     LOG_TRC_S("Favicon request: " << requestDetails.getURI());
     http::Response response(http::StatusCode::OK);
+    FileServerRequestHandler::hstsHeaders(response);
     response.setContentType("image/vnd.microsoft.icon");
     std::string faviconPath =
         Poco::Path(Poco::Util::Application::instance().commandPath()).parent().toString() +
@@ -851,6 +854,7 @@ void ClientRequestDispatcher::handleWopiDiscoveryRequest(
     Poco::replaceInPlace(xml, std::string("%SRV_URI%"), srvUrl);
 
     http::Response httpResponse(http::StatusCode::OK);
+    FileServerRequestHandler::hstsHeaders(httpResponse);
     httpResponse.setBody(xml, "text/xml");
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
     httpResponse.set("X-Content-Type-Options", "nosniff");
@@ -869,6 +873,7 @@ void ClientRequestDispatcher::handleCapabilitiesRequest(const Poco::Net::HTTPReq
     const std::string capabilities = getCapabilitiesJson(request, socket);
 
     http::Response httpResponse(http::StatusCode::OK);
+    FileServerRequestHandler::hstsHeaders(httpResponse);
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
     httpResponse.setBody(capabilities, "application/json");
     httpResponse.set("X-Content-Type-Options", "nosniff");
@@ -1002,6 +1007,7 @@ void ClientRequestDispatcher::handleRobotsTxtRequest(const Poco::Net::HTTPReques
     const std::string responseString = "User-agent: *\nDisallow: /\n";
 
     http::Response httpResponse(http::StatusCode::OK);
+    FileServerRequestHandler::hstsHeaders(httpResponse);
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
     httpResponse.set("Content-Length", std::to_string(responseString.size()));
     httpResponse.set("Content-Type", "text/plain");
@@ -1420,6 +1426,7 @@ void ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
                 handler.takeFile();
 
                 http::Response httpResponse(http::StatusCode::OK);
+                FileServerRequestHandler::hstsHeaders(httpResponse);
                 httpResponse.set("Content-Length", "0");
                 socket->sendAndShutdown(httpResponse);
                 socket->ignoreInput();
@@ -1476,6 +1483,7 @@ void ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
                 serveAsAttachment = attachmentIt->second != "0";
 
             http::Response response(http::StatusCode::OK);
+            FileServerRequestHandler::hstsHeaders(response);
 
             // Instruct browsers to download the file, not display it
             // with the exception of SVG where we need the browser to
