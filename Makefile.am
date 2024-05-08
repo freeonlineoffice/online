@@ -108,7 +108,6 @@ shared_sources = common/FileUtil.cpp \
                  common/StringVector.cpp \
                  common/Session.cpp \
                  common/Seccomp.cpp \
-                 common/MessageQueue.cpp \
                  common/MobileApp.cpp \
                  common/TraceEvent.cpp \
                  common/SigUtil.cpp \
@@ -120,6 +119,7 @@ shared_sources = common/FileUtil.cpp \
                  common/Authorization.cpp \
                  common/CommandControl.cpp \
                  common/Simd.cpp \
+                 kit/KitQueue.cpp \
                  net/DelaySocket.cpp \
                  net/HttpRequest.cpp \
                  net/HttpHelper.cpp \
@@ -349,7 +349,6 @@ shared_headers = common/Common.hpp \
                  common/Util.hpp \
                  common/ConfigUtil.hpp \
                  common/Authorization.hpp \
-                 common/MessageQueue.hpp \
                  common/Message.hpp \
                  common/MobileApp.hpp \
                  common/Png.hpp \
@@ -363,6 +362,7 @@ shared_headers = common/Common.hpp \
                  common/Simd.hpp \
                  common/ThreadPool.hpp \
                  common/Watchdog.hpp \
+                 kit/KitQueue.hpp \
                  net/Buffer.hpp \
                  net/DelaySocket.hpp \
                  net/FakeSocket.hpp \

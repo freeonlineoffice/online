@@ -9,7 +9,7 @@
 
 #include <config.h>
 
-#include "MessageQueue.hpp"
+#include "KitQueue.hpp"
 #include <climits>
 #include <algorithm>
 #include <string>
@@ -22,7 +22,7 @@
 #include "Log.hpp"
 #include <TileDesc.hpp>
 
-void TileQueue::put_impl(const Payload& value)
+void KitQueue::put_impl(const Payload& value)
 {
     StringVector tokens = StringVector::tokenize(value.data(), value.size());
 
@@ -78,7 +78,7 @@ void TileQueue::put_impl(const Payload& value)
         _queue.emplace_back(value);
 }
 
-void TileQueue::removeTileDuplicate(const std::string& tileMsg)
+void KitQueue::removeTileDuplicate(const std::string& tileMsg)
 {
     assert(LOOLProtocol::matchPrefix("tile", tileMsg, /*ignoreWhitespace*/ true));
 
@@ -225,7 +225,7 @@ public:
 
 }
 
-std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
+std::string KitQueue::removeCallbackDuplicate(const std::string& callbackMsg)
 {
     assert(LOOLProtocol::matchPrefix("callback", callbackMsg, /*ignoreWhitespace*/ true));
 
@@ -472,7 +472,7 @@ std::string TileQueue::removeCallbackDuplicate(const std::string& callbackMsg)
     return std::string();
 }
 
-int TileQueue::priority(const std::string& tileMsg)
+int KitQueue::priority(const std::string& tileMsg)
 {
     TileDesc tile = TileDesc::parse(tileMsg); //FIXME: Expensive, avoid.
 
@@ -487,7 +487,7 @@ int TileQueue::priority(const std::string& tileMsg)
     return -1;
 }
 
-void TileQueue::deprioritizePreviews()
+void KitQueue::deprioritizePreviews()
 {
     for (size_t i = 0; i < getQueue().size(); ++i)
     {
@@ -507,9 +507,9 @@ void TileQueue::deprioritizePreviews()
     }
 }
 
-TileQueue::Payload TileQueue::get_impl()
+KitQueue::Payload KitQueue::get_impl()
 {
-    LOG_TRC("MessageQueue depth: " << getQueue().size());
+    LOG_TRC("KitQueue depth: " << getQueue().size());
 
     const Payload front = getQueue().front();
 
@@ -521,7 +521,7 @@ TileQueue::Payload TileQueue::get_impl()
     if (!isTile || isPreview)
     {
         // Don't combine non-tiles or tiles with id.
-        LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
+        LOG_TRC("KitQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
         getQueue().erase(getQueue().begin());
 
         // de-prioritize the other tiles with id - usually the previews in
@@ -603,7 +603,7 @@ TileQueue::Payload TileQueue::get_impl()
     if (tiles.size() == 1)
     {
         msg = tiles[0].serialize("tile");
-        LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
+        LOG_TRC("KitQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
         return Payload(msg.data(), msg.data() + msg.size());
     }
 
@@ -623,7 +623,7 @@ TileQueue::Payload TileQueue::get_impl()
             if (a.getTilePosX() == b.getTilePosX() &&
                 a.getTilePosY() == b.getTilePosY())
             {
-                LOG_TRC("MessageQueue: dropping duplicate tile: " <<
+                LOG_TRC("KitQueue: dropping duplicate tile: " <<
                         j << " vs. " << i << " at: " <<
                         a.getTilePosX() << "," << b.getTilePosY());
                 tiles.erase(tiles.begin() + j);
@@ -636,11 +636,11 @@ TileQueue::Payload TileQueue::get_impl()
     TileCombined combined = TileCombined::create(tiles);
     assert(!combined.hasDuplicates());
     std::string tileCombined = combined.serialize("tilecombine");
-    LOG_TRC("MessageQueue res: " << LOOLProtocol::getAbbreviatedMessage(tileCombined));
+    LOG_TRC("KitQueue res: " << LOOLProtocol::getAbbreviatedMessage(tileCombined));
     return Payload(tileCombined.data(), tileCombined.data() + tileCombined.size());
 }
 
-void TileQueue::dumpState(std::ostream& oss)
+void KitQueue::dumpState(std::ostream& oss)
 {
     oss << "\ttileQueue:"
         << "\n\t\tcursorPositions:";

@@ -22,7 +22,6 @@
 
 #include <Common.hpp>
 #include <Protocol.hpp>
-#include <MessageQueue.hpp>
 #include <Png.hpp>
 #include <TileCache.hpp>
 #include <kit/Delta.hpp>

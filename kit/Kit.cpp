@@ -694,7 +694,7 @@ Document::Document(const std::shared_ptr<lok::Office>& loKit,
       _docId(docId),
       _url(url),
       _obfuscatedFileId(Util::getFilenameFromURL(docKey)),
-      _tileQueue(std::make_shared<TileQueue>()),
+      _queue(std::make_shared<KitQueue>()),
       _websocketHandler(websocketHandler),
       _modified(ModifiedState::UnModified),
       _isBgSaveProcess(false),
@@ -1079,8 +1079,8 @@ void Document::trimAfterInactivity()
     assert(descriptor && "Null callback data.");
     assert(descriptor->getDoc() && "Null Document instance.");
 
-    std::shared_ptr<TileQueue> tileQueue = descriptor->getDoc()->_tileQueue;
-    assert(tileQueue && "Null TileQueue.");
+    std::shared_ptr<KitQueue> tileQueue = descriptor->getDoc()->_queue;
+    assert(tileQueue && "Null KitQueue.");
 
     const std::string payload = p ? p : "(nil)";
     LOG_TRC("Document::ViewCallback [" << descriptor->getViewId() <<
@@ -1240,7 +1240,7 @@ void Document::onUnload(const ChildSession& session)
     LOG_INF("Unloading session [" << sessionId << "] on url [" << anonymizeUrl(_url) << "].");
 
     const int viewId = session.getViewId();
-    _tileQueue->removeCursorPosition(viewId);
+    _queue->removeCursorPosition(viewId);
 
     if (_loKitDocument == nullptr)
     {
@@ -1343,8 +1343,8 @@ void Document::handleSaveMessage(const std::string &)
             LOG_TRC("Shutting down already shutdown bgsv child's socket to parent kit post save");
 
         // any further messages are not interesting.
-        if (_tileQueue)
-            _tileQueue->clear();
+        if (_queue)
+            _queue->clear();
 
         // cleanup any lingering file-system pieces
         _loKitDocument.reset();
@@ -1440,8 +1440,8 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
         UnitKit::get().postBackgroundSaveFork();
 
         // other queued messages should be handled in the parent kit
-        if (_tileQueue)
-            _tileQueue->clear();
+        if (_queue)
+            _queue->clear();
 
         // Hard drop our previous connections to loolwsd and shared wakeups.
         KitSocketPoll::cleanupChildProcess();
@@ -2117,7 +2117,7 @@ void Document::drainQueue()
         std::vector<TileCombined> tileRequests;
 
         if (hasQueueItems())
-            LOG_TRC("drainQueue with " << _tileQueue->size() <<
+            LOG_TRC("drainQueue with " << _queue->size() <<
                     " items: " << (processInputEnabled() ? "processing" : "blocked") );
 
         while (processInputEnabled() && hasQueueItems())
@@ -2130,7 +2130,7 @@ void Document::drainQueue()
                 break;
             }
 
-            const TileQueue::Payload input = _tileQueue->pop();
+            const KitQueue::Payload input = _queue->pop();
 
             LOG_TRC("Kit handling queue message: " << LOOLProtocol::getAbbreviatedMessage(input));
 
@@ -2395,7 +2395,7 @@ void Document::dumpState(std::ostream& oss)
 
     // dumpState:
     // TODO: _websocketHandler - but this is an odd one.
-    _tileQueue->dumpState(oss);
+    _queue->dumpState(oss);
     oss << "\tviewIdToCallbackDescr:";
     for (const auto &it : _viewIdToCallbackDescr)
     {
