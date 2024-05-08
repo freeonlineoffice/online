@@ -4632,7 +4632,7 @@ int LOOLWSD::getClientPortNumber()
 }
 
 /// Only for unit testing ...
-std::string COOLWSD::getJailRoot(int pid)
+std::string LOOLWSD::getJailRoot(int pid)
 {
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
     for (auto &it : DocBrokers)
