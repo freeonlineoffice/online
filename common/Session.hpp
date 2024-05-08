@@ -21,7 +21,6 @@
 
 #include "Protocol.hpp"
 #include "Log.hpp"
-#include "MessageQueue.hpp"
 #include "Message.hpp"
 #include "TileCache.hpp"
 #include "WebSocketHandler.hpp"

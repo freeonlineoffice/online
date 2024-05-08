@@ -18,7 +18,6 @@
 #include <Common.hpp>
 #include <FileUtil.hpp>
 #include <Kit.hpp>
-#include <MessageQueue.hpp>
 #include <Protocol.hpp>
 #include <TileDesc.hpp>
 #include <Util.hpp>
