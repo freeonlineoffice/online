@@ -58,7 +58,9 @@ class Mention extends L.Control.AutoCompletePopup {
 		if (text.length > 1) {
 			this.itemList = this.users.filter((element: any) => {
 				// case insensitive
-				return element.username.toLowerCase().includes(text.toLowerCase());
+				return element.username
+					.toLowerCase()
+					.includes(text.toLowerCase());
 			});
 		} else {
 			this.itemList = this.users;
@@ -92,7 +94,9 @@ class Mention extends L.Control.AutoCompletePopup {
 
 	callback(objectType: any, eventType: any, object: any, index: number) {
 		if (eventType === 'close') {
-			this.closeMentionPopup({ typingMention: false } as CloseMessageEvent);
+			this.closeMentionPopup({
+				typingMention: false,
+			} as CloseMessageEvent);
 		} else if (eventType === 'select' || eventType === 'activate') {
 			var command = {
 				'Hyperlink.Text': {
@@ -111,9 +115,14 @@ class Mention extends L.Control.AutoCompletePopup {
 			this.map.sendUnoCommand('.uno:SetHyperlink', command, true);
 			this.map.fire('postMessage', {
 				msgId: 'UI_Mention',
-				args: { type: 'selected', username: this.itemList[index].username },
+				args: {
+					type: 'selected',
+					username: this.itemList[index].username,
+				},
 			});
-			this.closeMentionPopup({ typingMention: false } as CloseMessageEvent);
+			this.closeMentionPopup({
+				typingMention: false,
+			} as CloseMessageEvent);
 		} else if (eventType === 'keydown') {
 			if (object.key !== 'Tab' && object.key !== 'Shift') {
 				this.map.focus();
