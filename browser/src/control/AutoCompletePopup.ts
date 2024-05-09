@@ -120,7 +120,10 @@ abstract class AutoCompletePopup {
 			id: this.popupId,
 		} as PopupData;
 
-		this.map.fire('jsdialog', { data: closePopupData, callback: undefined });
+		this.map.fire('jsdialog', {
+			data: closePopupData,
+			callback: undefined,
+		});
 	}
 
 	abstract getPopupEntries(ev: FireEvent): Array<Entry>;
@@ -187,7 +190,9 @@ abstract class AutoCompletePopup {
 				return;
 			}
 			if (L.DomUtil.get(this.popupId))
-				this.closeMentionPopup({ typingMention: true } as CloseMessageEvent);
+				this.closeMentionPopup({
+					typingMention: true,
+				} as CloseMessageEvent);
 			data = this.newPopupData;
 			data.children[0].children[0] = control;
 			(data.children[0].children[0] as TreeWidget).entries = entries;
@@ -199,7 +204,9 @@ abstract class AutoCompletePopup {
 				return;
 			}
 			if (L.DomUtil.get(this.popupId))
-				this.closeMentionPopup({ typingMention: true } as CloseMessageEvent);
+				this.closeMentionPopup({
+					typingMention: true,
+				} as CloseMessageEvent);
 			data = this.newPopupData;
 			data.children[0].children[0] = control;
 		}
