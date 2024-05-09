@@ -10,6 +10,8 @@
 #include <config.h>
 
 #include "KitQueue.hpp"
+
+#include <string.h>
 #include <climits>
 #include <algorithm>
 #include <string>
@@ -30,14 +32,38 @@
     return str.str();
 }
 
+namespace {
+    bool textItem(const KitQueue::Payload &value, const std::string &firstToken, bool &removeText)
+    {
+        size_t offset = firstToken.size(); // in this case a session
+        if (value.size() < offset + 3)
+            return false;
+
+        size_t remaining = value.size() - firstToken.size();
+
+        if (!memcmp(value.data() + offset + 1, "textinput", std::min(remaining, size_t(9))))
+        {
+            removeText = false;
+            return true;
+        }
+
+        if (!memcmp(value.data() + offset + 1, "removetextcontext", std::min(remaining, size_t(17))))
+        {
+            removeText = true;
+            return true;
+        }
+        return false;
+    }
+}
+
 void KitQueue::put(const Payload& value)
 {
     if (value.empty())
         throw std::runtime_error("Cannot queue empty item.");
 
-    StringVector tokens = StringVector::tokenize(value.data(), value.size());
-
     const std::string firstToken = LOOLProtocol::getFirstToken(value);
+
+    bool removeText = false;
 
     if (firstToken == "tilecombine")
     {
@@ -63,17 +89,13 @@ void KitQueue::put(const Payload& value)
     else if (firstToken == "callback")
         assert(false && "callbacks should not come from the client");
 
-    else if (tokens.equals(1, "textinput"))
+    else if (textItem(value, firstToken, removeText))
     {
-        const std::string newMsg = combineTextInput(tokens);
-        if (!newMsg.empty())
-            _queue.emplace_back(newMsg.data(), newMsg.data() + newMsg.size());
-        else
-            _queue.emplace_back(value);
-    }
-    else if (tokens.equals(1, "removetextcontext"))
-    {
-        const std::string newMsg = combineRemoveText(tokens);
+        StringVector tokens = StringVector::tokenize(value.data(), value.size());
+
+        std::string newMsg = !removeText ? combineTextInput(tokens)
+            : combineRemoveText(tokens);
+
         if (!newMsg.empty())
             _queue.emplace_back(newMsg.data(), newMsg.data() + newMsg.size());
         else
