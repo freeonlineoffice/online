@@ -245,7 +245,7 @@ void cleanupJails(const std::string& root)
                     for (const auto& newJail : newJails)
                     {
                         const std::string path = Poco::Path(childDir, newJail).toString();
-                        if (newJail == CoolTestMountpoint)
+                        if (newJail == LoolTestMountpoint)
                             safeRemoveDir(path);
                         else
                             tryRemoveJail(path);
