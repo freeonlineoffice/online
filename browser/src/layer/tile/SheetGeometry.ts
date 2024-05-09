@@ -249,8 +249,7 @@ export class SheetGeometry {
 	// in print-twips.
 	public getPrintTwipsPointFromTile(point: Point): Point {
 		if (!(point instanceof L.Point)) {
-			console.error('Bad argument type, expected L.Point');
-			return point;
+			console.warn('Bad argument type, expected L.Point');
 		}
 
 		return new L.Point(this._columns.getPrintTwipsPosFromTile(point.x),
