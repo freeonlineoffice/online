@@ -778,7 +778,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 .jsdialog-window .ui-listbox,
 .jsdialog-window .ui-combobox,
 .jsdialog-window .ui-timefield {
-	height: 32px;/* Use the same height as in .jsdialog.ui-edit */
+	height: 32px; /* Use the same height as in .jsdialog.ui-edit */
 	min-width: 100px;
 	width: 100%;
 }
