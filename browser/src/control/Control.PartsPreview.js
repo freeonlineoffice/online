@@ -80,8 +80,6 @@ L.Control.PartsPreview = L.Control.extend({
 					}, this), 500);
 				}
 
-				this._setPreviewContainerTop();
-
 				// Add a special frame just as a drop-site for reordering.
 				var frameClass = 'preview-frame ' + this.options.frameClass;
 				var frame = L.DomUtil.create('div', frameClass, this._partsPreviewCont);
@@ -342,16 +340,6 @@ L.Control.PartsPreview = L.Control.extend({
 		this._idNum++;
 
 		return img;
-	},
-
-	_setPreviewContainerTop: function () {
-		var previewContBB = this._partsPreviewCont.getBoundingClientRect();
-
-		if (this._direction === 'x') {
-			this._previewContTop = previewContBB.left;
-		} else {
-			this._previewContTop = previewContBB.top;
-		}
 	},
 
 	_scrollToPart: function() {
