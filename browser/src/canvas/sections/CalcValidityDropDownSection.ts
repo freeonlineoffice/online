@@ -11,7 +11,7 @@
 
 class CalcValidityDropDown extends HTMLObjectSection {
 
-	constructor (sectionName: string, documentPosition: cool.SimplePoint, visible: boolean = true) {
+	constructor (sectionName: string, documentPosition: lool.SimplePoint, visible: boolean = true) {
 		super(sectionName, 16, 16, documentPosition, 'spreadsheet-drop-down-marker', visible);
 	}
 

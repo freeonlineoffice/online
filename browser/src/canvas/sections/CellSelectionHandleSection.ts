@@ -36,7 +36,7 @@ class CellSelectionHandle extends CanvasSectionObject {
 		app.map.focus();
 		app.map.fire('scrollvelocity', {vx: 0, vy: 0});
 
-		const newPoint = new cool.SimplePoint(0, 0);
+		const newPoint = new lool.SimplePoint(0, 0);
 		newPoint.pX = this.position[0] + point[0];
 		newPoint.pY = this.position[1] + point[1];
 
@@ -45,13 +45,13 @@ class CellSelectionHandle extends CanvasSectionObject {
 		app.map.scrollingIsHandled = false;
 	}
 
-	private sharedOnDragAndEnd(point: cool.SimplePoint) {
+	private sharedOnDragAndEnd(point: lool.SimplePoint) {
 		const type = this.name === 'cell_selection_handle_start' ? 'start' : 'end';
 		app.map._docLayer._postSelectTextEvent(type, point.x, point.y);
 	}
 
 	private onDrag(point: number[]) {
-		const newPoint = new cool.SimplePoint(0, 0);
+		const newPoint = new lool.SimplePoint(0, 0);
 		newPoint.pX = this.position[0] + point[0];
 		newPoint.pY = this.position[1] + point[1];
 
