@@ -408,7 +408,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
     {
 #if !MOBILEAPP
 #  if HAVE_PPOLL
-        LOG_TRC("ppoll start, timeoutMicroS: " << timeoutMaxMicroS << " size " << size);
+        LOGA_TRC(Socket, "ppoll start, timeoutMicroS: " << timeoutMaxMicroS << " size " << size);
         timeoutMaxMicroS = std::max(timeoutMaxMicroS, (int64_t)0);
         struct timespec timeout;
         timeout.tv_sec = timeoutMaxMicroS / (1000 * 1000);
@@ -426,8 +426,8 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
 #endif
     }
     while (rc < 0 && errno == EINTR);
-    LOG_TRC("Poll completed with " << rc << " live polls max (" <<
-            timeoutMaxMicroS << "us)" << ((rc==0) ? "(timedout)" : ""));
+    LOGA_TRC(Socket, "Poll completed with " << rc << " live polls max (" <<
+             timeoutMaxMicroS << "us)" << ((rc==0) ? "(timedout)" : ""));
 
     // from now we want to race back to sleep.
     enableWatchdog();
@@ -435,16 +435,16 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
     // First process the wakeup pipe (always the last entry).
     if (_pollFds[size].revents)
     {
-        LOG_TRC('#' << _pollFds[size].fd << ": Handling events of wakeup pipe: 0x" << std::hex
-                << _pollFds[size].revents << std::dec);
+        LOGA_TRC(Socket, '#' << _pollFds[size].fd << ": Handling events of wakeup pipe: 0x" << std::hex
+                 << _pollFds[size].revents << std::dec);
 
         // Clear the data.
 #if !MOBILEAPP
         int dump[32];
         dump[0] = ::read(_wakeup[0], &dump, sizeof(dump));
-        LOG_TRC("Wakeup pipe read " << dump[0] << " bytes");
+        LOGA_TRC(Socket, "Wakeup pipe read " << dump[0] << " bytes");
 #else
-        LOG_TRC("Wakeup pipe read");
+        LOGA_TRC(Socket, "Wakeup pipe read");
         int dump = fakeSocketRead(_wakeup[0], &dump, sizeof(dump));
 #endif
 
@@ -454,8 +454,8 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
 
             if (!_newSockets.empty())
             {
-                LOG_TRC("Inserting " << _newSockets.size() << " new sockets after the existing "
-                                     << _pollSockets.size());
+                LOGA_TRC(Socket, "Inserting " << _newSockets.size() << " new sockets after the existing "
+                         << _pollSockets.size());
 
                 // Update thread ownership.
                 for (auto& i : _newSockets)
@@ -472,7 +472,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
         }
 
         if (invoke.size() > 0)
-            LOG_TRC("Invoking " << invoke.size() << " callbacks");
+            LOGA_TRC(Socket, "Invoking " << invoke.size() << " callbacks");
         for (const auto& callback : invoke)
         {
             try
@@ -536,9 +536,9 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
                 SocketDisposition disposition(_pollSockets[i]);
                 try
                 {
-                    LOG_TRC('#' << _pollFds[i].fd << ": Handling poll events of " << _name
-                                << " at index " << i << " (of " << size << "): 0x" << std::hex
-                                << _pollFds[i].revents << std::dec);
+                    LOGA_TRC(Socket, '#' << _pollFds[i].fd << ": Handling poll events of " << _name
+                             << " at index " << i << " (of " << size << "): 0x" << std::hex
+                             << _pollFds[i].revents << std::dec);
 
                     _pollSockets[i]->handlePoll(disposition, newNow, _pollFds[i].revents);
                 }
@@ -553,8 +553,8 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS)
                 if (!disposition.isContinue())
                 {
                     itemsErased++;
-                    LOG_TRC('#' << _pollFds[i].fd << ": Removing socket (at " << i
-                            << " of " << _pollSockets.size() << ") from " << _name);
+                    LOGA_TRC(Socket, '#' << _pollFds[i].fd << ": Removing socket (at " << i
+                             << " of " << _pollSockets.size() << ") from " << _name);
                     _pollSockets[i] = nullptr;
                 }
 
