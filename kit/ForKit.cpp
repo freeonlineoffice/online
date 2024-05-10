@@ -60,6 +60,7 @@ static std::string UserInterface;
 static bool DisplayVersion = false;
 static std::string UnitTestLibrary;
 static std::string LogLevel;
+static std::string LogDisabledAreas;
 static std::string LogLevelStartup;
 static std::atomic<unsigned> ForkCounter(0);
 
@@ -79,6 +80,7 @@ void dump_forkit_state()
 
     oss << "Forkit: " << ForkCounter << " forks\n"
         << "  LogLevel: " << LogLevel << "\n"
+        << "  LogDisabledAreas: " << LogDisabledAreas << "\n"
         << "  LogLevelStartup: " << LogLevelStartup << "\n"
         << "  unit test: " << UnitTestLibrary << "\n"
         << "  NoCapsForKit: " << NoCapsForKit << "\n"
@@ -419,8 +421,9 @@ static int createLibreOfficeKit(const std::string& childRoot,
         pid = fork();
         if (!pid)
         {
-            // Child
+            sleepForDebugger();
 
+            // Child
             Log::postFork();
 
             // sort out thread local variables to get logging right from
@@ -442,8 +445,6 @@ static int createLibreOfficeKit(const std::string& childRoot,
             SocketPoll::PollWatchdog.reset();
 
             UnitKit::get().postFork();
-
-            sleepForDebugger();
 
             lokit_main(childRoot, jailId, sysTemplate, loTemplate, NoCapsForKit, NoSeccomp,
                        queryVersion, DisplayVersion, spareKitId);
@@ -602,6 +603,7 @@ int forkit_main(int argc, char** argv)
     const bool logToFile = std::getenv("LOOL_LOGFILE");
     const char* logFilename = std::getenv("LOOL_LOGFILENAME");
     const char* logLevel = std::getenv("LOOL_LOGLEVEL");
+    const char* logDisabledAreas = std::getenv("LOOL_LOGDISABLED_AREAS");
     const char* logLevelStartup = std::getenv("LOOL_LOGLEVEL_STARTUP");
     const char* logColor = std::getenv("LOOL_LOGCOLOR");
     std::map<std::string, std::string> logProperties;
@@ -619,6 +621,7 @@ int forkit_main(int argc, char** argv)
         LOG_INF("Setting log-level to [" << LogLevelStartup << " and delaying "
                 "setting to configured [" << LogLevel << "] until after Forkit initialization.");
     }
+    LogDisabledAreas = logDisabledAreas ? logDisabledAreas : "";
 
     std::string childRoot;
     std::string sysTemplate;
@@ -788,6 +791,7 @@ int forkit_main(int argc, char** argv)
         LOG_INF("Forkit initialization complete: setting log-level to [" << LogLevel << "] as configured.");
         Log::setLevel(LogLevel);
     }
+    Log::setDisabledAreas(LogDisabledAreas);
 
     // The SocketPoll ctor which may, depending on LOOL_WATCHDOG env variable,
     // want to override the SIG2 handler so set user signal handlers before

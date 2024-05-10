@@ -715,6 +715,7 @@ bool LOOLWSD::EnableAccessibility = false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
 std::string LOOLWSD::LogLevelStartup = "trace";
+std::string LOOLWSD::LogDisabledAreas = "Socket,WebSocket,Admin";
 std::string LOOLWSD::LogToken;
 std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
@@ -2152,10 +2153,12 @@ void LOOLWSD::innerInitialize(Application& self)
 
     // Set the log-level after complete initialization to force maximum details at startup.
     LogLevel = getConfigValue<std::string>(conf, "logging.level", "trace");
+    LogDisabledAreas = getConfigValue<std::string>(conf, "logging.disabled_areas", "Socket,WebSocket,Admin");
     MostVerboseLogLevelSettableFromClient = getConfigValue<std::string>(conf, "logging.most_verbose_level_settable_from_client", "notice");
     LeastVerboseLogLevelSettableFromClient = getConfigValue<std::string>(conf, "logging.least_verbose_level_settable_from_client", "fatal");
 
     setenv("LOOL_LOGLEVEL", LogLevel.c_str(), true);
+    setenv("LOOL_LOGDISABLED_AREAS", LogDisabledAreas.c_str(), true);
 
 #if !ENABLE_DEBUG
     const std::string salLog = getConfigValue<std::string>(conf, "logging.lokit_sal_log", "-INFO-WARN");
@@ -3919,6 +3922,7 @@ public:
            << "\n  ConfigFile: " << LOOLWSD::ConfigFile
            << "\n  ConfigDir: " << LOOLWSD::ConfigDir
            << "\n  LogLevel: " << LOOLWSD::LogLevel
+           << "\n  LogDisabledAreas: " << LOOLWSD::LogDisabledAreas
            << "\n  AnonymizeUserData: " << (LOOLWSD::AnonymizeUserData ? "yes" : "no")
            << "\n  CheckLoolUser: " << (LOOLWSD::CheckLoolUser ? "yes" : "no")
            << "\n  IsProxyPrefixEnabled: " << (LOOLWSD::IsProxyPrefixEnabled ? "yes" : "no")
@@ -4254,6 +4258,7 @@ int LOOLWSD::innerMain()
         LOG_INF("WSD initialization complete: setting log-level to [" << LogLevel << "] as configured.");
         Log::setLevel(LogLevel);
     }
+    Log::setDisabledAreas(LogDisabledAreas);
 
     if (Log::getLevel() >= Log::Level::INF)
         LOG_ERR("Log level is set very high to '" << LogLevel << "' this will have a "
