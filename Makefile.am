@@ -222,6 +222,7 @@ loolforkit_SOURCES += \
 		       common/DummyTraceEventEmitter.cpp
 
 common_fuzzer_sources = \
+		       fuzzer/Common.cpp \
 		       common/DummyTraceEventEmitter.cpp \
 		       $(loolwsd_sources) \
 		       wsd/loolwsd-inproc.cpp \
