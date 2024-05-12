@@ -604,6 +604,7 @@ void UnitBase::endTest(const std::string& reason)
 UnitWSD::UnitWSD(const std::string& name)
     : UnitBase(name, UnitType::Wsd)
     , _hasKitHooks(false)
+    , _wsd(nullptr)
 {
 }
 
