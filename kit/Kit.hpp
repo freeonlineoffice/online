@@ -77,6 +77,7 @@ struct UserInfo
 {
     UserInfo()
         : _readOnly(false)
+        , _connected(false)
     {
     }
 
