@@ -433,7 +433,7 @@ namespace
         {
         case FTW_F:
         case FTW_SLN:
-            File(newPath.parent()).createDirectories();
+            Poco::File(newPath.parent()).createDirectories();
 
             if (shouldLinkFile(relativeOldPath))
                 linkOrCopyFile(fpath, newPath.toString());
@@ -557,7 +557,7 @@ namespace
             return FTW_CONTINUE;
         }
 
-        if (Util::startsWith(fpath, childRootForGCDAFiles))
+        if (fpath.starts_with(childRootForGCDAFiles))
         {
             LOG_TRC("nftw: Skipping childRoot subtree: " << fpath);
             return FTW_SKIP_SUBTREE;
@@ -1919,6 +1919,14 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
     _loKitDocument->setViewLanguage(viewId, lang.c_str());
     _loKitDocument->setViewTimezone(viewId, userTimezone.c_str());
     _loKitDocument->setAccessibilityState(viewId, accessibilityState);
+    if (session->isReadOnly())
+    {
+        _loKitDocument->setViewReadOnly(viewId, true);
+        if (session->isAllowChangeComments())
+        {
+            _loKitDocument->setAllowChangeComments(viewId, true);
+        }
+    }
 
     // viewId's monotonically increase, and CallbackDescriptors are never freed.
     _viewIdToCallbackDescr.emplace(viewId,
