@@ -24,7 +24,7 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
                               SocketDisposition& disposition)
 {
     std::string url = _requestDetails.getDocumentURI();
-    if (Util::startsWith(url, "/wasm/"))
+    if (url.starts_with("/wasm/"))
     {
         url = url.substr(6);
     }
