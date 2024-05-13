@@ -108,7 +108,7 @@ protected:
             LOG_TST("WopiTestServer created with " << data.size() << " bytes from file ["
                                                    << filenameOrContents << "]");
             _filename = filenameOrContents; // Capture the real filename.
-            setFileContent(Util::toString(data));
+            setFileContent(std::string(data.begin(), data.end()));
         }
         else
         {
@@ -219,7 +219,7 @@ protected:
     /// Given a wopi URI, extracts the filename.
     static std::string extractFilenameFromWopiUri(const std::string& uriPath)
     {
-        if (Util::startsWith(uriPath, getURIRootPath()))
+        if (uriPath.starts_with(getURIRootPath()))
         {
             const auto first = getURIRootPath().size();
             const auto it = uriPath.find_first_of('/', first);
@@ -232,13 +232,13 @@ protected:
     /// Returns true iff @uriPath is a Wopi path but not to the contents.
     static bool isWopiInfoRequest(const std::string& uriPath)
     {
-        return Util::startsWith(uriPath, getURIRootPath()) && !Util::endsWith(uriPath, "/contents");
+        return uriPath.starts_with(getURIRootPath()) && !uriPath.ends_with("/contents");
     }
 
     /// Returns true iff @uriPath is a Wopi path to the contents of a file.
     static bool isWopiContentRequest(const std::string& uriPath)
     {
-        return Util::startsWith(uriPath, getURIRootPath()) && Util::endsWith(uriPath, "/contents");
+        return uriPath.starts_with(getURIRootPath()) && uriPath.ends_with("/contents");
     }
 
     void configure(Poco::Util::LayeredConfiguration& config) override
@@ -562,7 +562,7 @@ protected:
         {
             return handleHttpPostRequest(request, message, socket);
         }
-        else if (!Util::startsWith(uriReq.getPath(), "/lool/")) // Skip requests to the websrv.
+        else if (!uriReq.getPath().starts_with("/cool/")) // Skip requests to the websrv.
         {
             // Complain if we are expected to handle something that we don't.
             LOG_TST("ERROR: FakeWOPIHost: Request, cannot handle request: " << uriReq.getPath());
