@@ -14,7 +14,7 @@
 
 #include <HttpRequest.hpp>
 #include <Socket.hpp>
-#include <COOLWSD.hpp>
+#include <LOOLWSD.hpp>
 
 class RequestDetails;
 
@@ -166,12 +166,12 @@ public:
     {
         // HSTS hardening. Disabled in debug builds.
 #if !ENABLE_DEBUG
-        if (COOLWSD::isSSLEnabled() || COOLWSD::isSSLTermination())
+        if (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination())
         {
-            if (COOLWSD::getConfigValue<bool>("ssl.sts.enabled", false))
+            if (LOOLWSD::getConfigValue<bool>("ssl.sts.enabled", false))
             {
                 static const auto maxAge =
-                    COOLWSD::getConfigValue<int>("ssl.sts.max_age", 31536000); // Default 1 year.
+                    LOOLWSD::getConfigValue<int>("ssl.sts.max_age", 31536000); // Default 1 year.
                 response.add("Strict-Transport-Security",
                              "max-age=" + std::to_string(maxAge) + "; includeSubDomains");
             }
