@@ -3536,7 +3536,7 @@ void DocumentBroker::handleMediaRequest(std::string range,
         LOG_ASSERT(JsonUtil::getJSONValue<std::string>(object, "id") == tag);
         const std::string url = JsonUtil::getJSONValue<std::string>(object, "url");
         LOG_ASSERT(!url.empty());
-        if (Util::startsWith(Util::toLower(url), "file://"))
+        if (Util::toLower(url).starts_with("file://"))
         {
             // For now, we only support file:// schemes.
             // In the future, we may/should support http.
@@ -3795,7 +3795,7 @@ bool DocumentBroker::forwardUrpToChild(const std::string& message)
 bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& session,
                                     const std::string& message, bool binary)
 {
-    if (Util::startsWith(message, "urp "))
+    if (message.starts_with("urp "))
         return forwardUrpToChild(message);
 
     ASSERT_CORRECT_THREAD();
@@ -3824,12 +3824,12 @@ bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& sessio
     LOG_TRC("Forwarding payload to child [" << viewId << "]: " << getAbbreviatedMessage(message));
 
 #if 0 // extreme paste debugging - message can be giant and binary
-    if (Log::traceEnabled() && Util::startsWith(message, "paste "))
+    if (Log::traceEnabled() && message.starts_with("paste "))
         LOG_TRC("Logging paste payload (" << message.size() << " bytes) '" << message << "' end paste");
 #endif
 
     std::string msg = "child-" + viewId + ' ';
-    if (Util::startsWith(message, "load "))
+    if (message.starts_with("load "))
     {
         // Special-case loading.
         const StringVector tokens = StringVector::tokenize(message);
