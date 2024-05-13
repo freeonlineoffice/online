@@ -11,16 +11,7 @@
 
 #include "Util.hpp"
 
-#include <csignal>
 #include <poll.h>
-
-#ifdef HAVE_GETENTROPY
-#  include <unistd.h>
-#endif
-
-#ifdef HAVE_SYS_RANDOM_H
-#  include <sys/random.h>
-#endif
 
 #ifdef __linux__
 #  include <sys/prctl.h>
@@ -69,7 +60,6 @@
 #include <Poco/Util/Application.h>
 #include <Poco/URI.h>
 
-#include "Common.hpp"
 #include "Log.hpp"
 #include "JsonUtil.hpp"
 #include "Protocol.hpp"
