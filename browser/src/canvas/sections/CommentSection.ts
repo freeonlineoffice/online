@@ -22,7 +22,11 @@ export enum CommentLayoutStatus {
 	HIDDEN
 }
 
-export class Comment extends CanvasSectionObject {
+export class Comment extends app.definitions.canvasSectionObject {
+	name: string = L.CSections.Comment.name;
+	processingOrder: number = L.CSections.Comment.processingOrder;
+	drawingOrder: number = L.CSections.Comment.drawingOrder;
+	zIndex: number = L.CSections.Comment.zIndex;
 
 	valid: boolean = true;
 	map: any;
@@ -30,21 +34,7 @@ export class Comment extends CanvasSectionObject {
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	constructor (data: any, options: any, commentListSectionPointer: lool.CommentSection) {
-
-		super({
-			name: L.CSections.Comment.name,
-			backgroundColor: '',
-			borderColor: null,
-			anchor: [],
-			position: [0, 0],
-			size: [],
-			expand: '',
-			processingOrder: L.CSections.Comment.processingOrder,
-			drawingOrder: L.CSections.Comment.drawingOrder,
-			zIndex: L.CSections.Comment.zIndex,
-			interactable: true,
-			sectionProperties: {},
-		});
+		super();
 
 		this.myTopLeft = [0, 0];
 		this.documentObject = true;

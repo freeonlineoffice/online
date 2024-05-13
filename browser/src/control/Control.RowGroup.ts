@@ -15,25 +15,18 @@
 namespace lool {
 
 export class RowGroup extends GroupBase {
+	name: string = L.CSections.RowGroup.name;
+	anchor: any = [[L.CSections.CornerGroup.name, 'bottom', 'top'], 'left'];
+	expand: string[] = ['top', 'bottom']; // Expand vertically.
+	processingOrder: number = L.CSections.RowGroup.processingOrder;
+	drawingOrder: number = L.CSections.RowGroup.drawingOrder;
+	zIndex: number = L.CSections.RowGroup.zIndex;
+
 	_sheetGeometry: lool.SheetGeometry;
 	_cornerHeaderHeight: number;
 	_splitPos: lool.Point;
 
-	constructor() {
-		super({
-			name: L.CSections.RowGroup.name,
-			anchor: [[L.CSections.CornerGroup.name, 'bottom', 'top'], 'left'],
-			position: [0, 0], // This section's myTopLeft is placed according to corner group section if exists, if not, this is placed at (0, 0).
-			size: [0, 0], // No initial height is necessary. Height will be expanded. Width is computed inside update function.
-			expand: 'top bottom', // Expand vertically.
-			processingOrder: L.CSections.RowGroup.processingOrder,
-			drawingOrder: L.CSections.RowGroup.drawingOrder,
-			zIndex: L.CSections.RowGroup.zIndex,
-			interactable: true,
-			sectionProperties: {},
-		});
-
-	}
+	constructor() { super(); }
 
 	update(): void {
 		if (this.isRemoved) // Prevent calling while deleting the section. It causes errors.

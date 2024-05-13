@@ -6,7 +6,12 @@ declare var app: any;
 
 namespace lool {
 
-export class ScrollSection extends CanvasSectionObject {
+export class ScrollSection extends app.definitions.canvasSectionObject {
+	name: string = L.CSections.Scroll.name;
+	processingOrder: number = L.CSections.Scroll.processingOrder
+	drawingOrder: number = L.CSections.Scroll.drawingOrder;
+	zIndex: number = L.CSections.Scroll.zIndex;
+	windowSection: boolean = true; // This section covers the entire canvas.
 
 	map: any;
 	autoScrollTimer: any;
@@ -16,21 +21,8 @@ export class ScrollSection extends CanvasSectionObject {
 	isRTL: () => boolean;
 
 	constructor (isRTL?: () => boolean) {
-		super({
-			name: L.CSections.Scroll.name,
-			anchor: [],
-			position: [],
-			size: [],
-			expand: '',
-			processingOrder: L.CSections.Scroll.processingOrder,
-			drawingOrder: L.CSections.Scroll.drawingOrder,
-			zIndex: L.CSections.Scroll.zIndex,
-			interactable: true,
-		});
+		super();
 
-		this.isAnimating = false;
-		this.windowSection = true; // This section covers the entire canvas.
-		this.sectionProperties = {};
 
 		this.map = L.Map.THIS;
 

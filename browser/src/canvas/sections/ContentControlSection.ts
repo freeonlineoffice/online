@@ -3,9 +3,24 @@ declare var app: any;
 
 namespace lool {
 
-export class ContentControlSection extends CanvasSectionObject {
+export class ContentControlSection extends app.definitions.canvasSectionObject {
+	name: string = L.CSections.ContentControl.name;
+	processingOrder: number = L.CSections.ContentControl.processingOrder;
+	drawingOrder: number = L.CSections.ContentControl.drawingOrder;
+	zIndex: number = L.CSections.ContentControl.zIndex;
+	interactable: boolean = false;
+	documentObject: boolean = true;
 
 	map: any;
+
+	constructor() {
+		super();
+
+		this.map = L.Map.THIS;
+		this.sectionProperties.json = null;
+		this.sectionProperties.datePicker = null;
+		this.sectionProperties.picturePicker = null;
+	}
 
 	public onInitialize(): void {
 		this.sectionProperties.polyAttri = {
@@ -35,28 +50,6 @@ export class ContentControlSection extends CanvasSectionObject {
 		document.getElementById('document-container').appendChild(container);
 		this.sectionProperties.datePicker = false;
 		this.sectionProperties.picturePicker = false;
-	}
-
-	constructor() {
-		super({
-			processingOrder: L.CSections.ContentControl.processingOrder,
-			drawingOrder: L.CSections.ContentControl.drawingOrder,
-			zIndex: L.CSections.ContentControl.zIndex,
-			name: L.CSections.ContentControl.name,
-			interactable: false,
-			sectionProperties: {},
-			position: [0, 0],
-			size: [],
-			expand: '',
-			anchor: [],
-		});
-
-		this.myTopLeft = [0, 0];
-		this.documentObject = true;
-		this.map = L.Map.THIS;
-		this.sectionProperties.json = null;
-		this.sectionProperties.datePicker = null;
-		this.sectionProperties.picturePicker = null;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
