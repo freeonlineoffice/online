@@ -7,6 +7,8 @@
 
 // Compile and link this into test and utility executables that need it to link
 
+#include "config.h"
+
 #include <common/TraceEvent.hpp>
 
 void TraceEvent::emitOneRecordingIfEnabled([[maybe_unused]] const std::string& recording) {}
