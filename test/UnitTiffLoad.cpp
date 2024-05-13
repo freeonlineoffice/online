@@ -54,7 +54,7 @@ void UnitTiffLoad::invokeWSDTest()
     // broken.
     const std::string content
         = helpers::assertResponseString(socket, "shapeselectioncontent:", testname);
-    LOK_ASSERT(Util::startsWith(content, "shapeselectioncontent:\n"));
+    LOK_ASSERT(content.starts_with("shapeselectioncontent:\n"));
 
     exitTest(TestResult::Ok);
 }

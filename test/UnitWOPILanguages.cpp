@@ -139,7 +139,7 @@ public:
     {
         const std::string message(data, len);
 
-        if (Util::startsWith(message, "cellformula:"))
+        if (message.starts_with("cellformula:"))
         {
             if (_currentUserId == 0)
             {
@@ -266,7 +266,7 @@ public:
     {
         const std::string message(data, len);
 
-        if (Util::startsWith(message, "cellformula:"))
+        if (message.starts_with("cellformula:"))
         {
             if (_currentUserId == 0)
             {
