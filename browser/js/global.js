@@ -1185,6 +1185,8 @@ window.app = {
 		global.LANG = lang;
 	if (global.socket && global.socket.readyState !== 3) {
 		global.socket.onopen = function () {
+			// Note there are two socket "onopen" handlers, this one and the other in browser/src/core/Socket.js.
+			// See the notes there for explanation.
 			if (global.socket.readyState === 1) {
 				var ProtocolVersionNumber = '0.1';
 				var timestamp = encodeURIComponent(global.loolParams.get('timestamp'));
