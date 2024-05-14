@@ -562,7 +562,7 @@ protected:
         {
             return handleHttpPostRequest(request, message, socket);
         }
-        else if (!uriReq.getPath().starts_with("/cool/")) // Skip requests to the websrv.
+        else if (!uriReq.getPath().starts_with("/lool/")) // Skip requests to the websrv.
         {
             // Complain if we are expected to handle something that we don't.
             LOG_TST("ERROR: FakeWOPIHost: Request, cannot handle request: " << uriReq.getPath());
