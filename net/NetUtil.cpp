@@ -58,7 +58,7 @@ Poco::Net::HostEntry resolveDNS(const std::string& addressToCheck)
 
     // lookup and cache
     auto hostEntry = Poco::Net::DNS::resolve(addressToCheck);
-    queries.push_back(DNSCacheEntry(addressToCheck, hostEntry, now));
+    queries.push_back(DNSCacheEntry{addressToCheck, hostEntry, now});
     return hostEntry;
 }
 
