@@ -61,6 +61,7 @@
 #include <map>
 #include <memory>
 #include <mutex>
+#include <queue>
 #include <regex>
 #include <sstream>
 #include <string>
@@ -145,6 +146,7 @@ using Poco::Net::PartHandler;
 #include <common/TraceEvent.hpp>
 
 #include <common/SigUtil.hpp>
+#include <net/AsyncDNS.hpp>
 
 #include <RequestVettingStation.hpp>
 #include <ServerSocket.hpp>
@@ -1924,6 +1926,10 @@ void LOOLWSD::innerInitialize(Application& self)
     Util::setApplicationPath(Poco::Path(Application::instance().commandPath()).parent().toString());
 
     StartTime = std::chrono::steady_clock::now();
+
+#if !MOBILEAPP
+    net::AsyncDNS::startAsyncDNS();
+#endif
 
     LayeredConfiguration& conf = config();
 
@@ -4543,6 +4549,10 @@ int LOOLWSD::innerMain()
     const int returnValue = UnitBase::uninit();
 
     LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
+
+#if !MOBILEAPP
+    net::AsyncDNS::stopAsyncDNS();
+#endif
 
     // At least on centos7, Poco deadlocks while
     // cleaning up its SSL context singleton.
