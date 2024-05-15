@@ -242,7 +242,7 @@ void BgSaveParentWebSocketHandler::handleMessage(const std::vector<char>& data)
     // Badly don't want modified state coming from the background processx
     if (tokens[1] == "statechanged:")
     {
-        LOG_TRC("Don't send un-wanted message to parent: " << COOLProtocol::getAbbreviatedMessage(data));
+        LOG_TRC("Don't send un-wanted message to parent: " << LOOLProtocol::getAbbreviatedMessage(data));
         return;
     }
 
