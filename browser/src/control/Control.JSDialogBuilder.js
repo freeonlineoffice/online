@@ -2322,10 +2322,15 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 		var isRealUnoCommand = true;
 		var hasPopUp = false;
+		var hasImage = true;
 
 		if (data.text && data.text.endsWith('...')) {
 			data.text = data.text.replace('...', '');
 			hasPopUp = true;
+		}
+
+		if (data && data.image === false) {
+			hasImage = false;
 		}
 
 		if (data.command || data.postmessage === true) {
@@ -2364,17 +2369,21 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				// FIXME: DEPRECATED, this is legacy way to setup icon based on CSS class
 				var buttonImage = L.DomUtil.create('div', 'w2ui-icon ' + data.w2icon, button);
 			}
-			else if (data.icon) {
-				buttonImage = L.DomUtil.create('img', '', button);
-				this._isStringCloseToURL(data.icon) ? buttonImage.src = data.icon : L.LOUtil.setImage(buttonImage, data.icon, builder.map);
-			}
-			else if (data.image) {
-				buttonImage = L.DomUtil.create('img', '', button);
-				buttonImage.src =  data.image;
-			}
-			else {
-				buttonImage = L.DomUtil.create('img', '', button);
-				L.LOUtil.setImage(buttonImage, builder._createIconURL(data.command), builder.map);
+			else if (hasImage !== false){
+				if (data.icon) {
+					buttonImage = L.DomUtil.create('img', '', button);
+					this._isStringCloseToURL(data.icon) ? buttonImage.src = data.icon : L.LOUtil.setImage(buttonImage, data.icon, builder.map);
+				}
+				else if (data.image) {
+					buttonImage = L.DomUtil.create('img', '', button);
+					buttonImage.src = data.image;
+				}
+				else {
+					buttonImage = L.DomUtil.create('img', '', button);
+					L.LOUtil.setImage(buttonImage, builder._createIconURL(data.command), builder.map);
+				}
+			} else {
+				buttonImage = false;
 			}
 
 			controls['button'] = button;
@@ -2383,7 +2392,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				label.htmlFor = buttonId;
 				label.textContent = builder._cleanText(data.text);
 				button.setAttribute('alt', label.textContent);
-				buttonImage.alt = label.textContent;
+				if (buttonImage !== false) {
+					buttonImage.alt = label.textContent;
+				}
 				builder._stressAccessKey(label, button.accessKey);
 				controls['label'] = label;
 				$(div).addClass('has-label');
@@ -2392,7 +2403,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			} else {
 				div.title = data.text;
 				button.setAttribute('alt', data.text);
-				buttonImage.alt = data.text;
+				if (buttonImage !== false) {
+					buttonImage.alt = data.text;
+				}
 				builder.map.uiManager.enableTooltip(div);
 				$(div).addClass('no-label');
 			}
