@@ -2,14 +2,14 @@
 /*
  * This file is part of the LibreOffice project.
  *
+ * SPDX-License-Identifier: MPL-2.0
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
 #pragma once
-
-#include <config.h>
 
 #include <cassert>
 #include <cerrno>
@@ -20,8 +20,6 @@
 #include <cstring>
 #include <algorithm>
 #include <atomic>
-#include <functional>
-#include <memory>
 #include <mutex>
 #include <set>
 #include <sstream>
@@ -618,30 +616,6 @@ namespace Util
     inline std::string trimmed(const char* s)
     {
         return trimmed(std::string(s));
-    }
-
-    /// Return true iff s starts with t.
-    inline bool startsWith(const std::string& s, const std::string& t)
-    {
-        return s.length() >= t.length() && memcmp(s.c_str(), t.c_str(), t.length()) == 0;
-    }
-
-    /// Return true iff s starts with t.
-    inline bool startsWith(const std::string& s, const char* t)
-    {
-        if (t != nullptr && !s.empty())
-        {
-            const size_t len = std::strlen(t);
-            return s.length() >= len && memcmp(s.c_str(), t, len) == 0;
-        }
-
-        return false;
-    }
-
-    /// Return true iff s ends with t.
-    inline bool endsWith(const std::string& s, const std::string& t)
-    {
-        return equal(t.rbegin(), t.rend(), s.rbegin());
     }
 
 #ifdef IOS
