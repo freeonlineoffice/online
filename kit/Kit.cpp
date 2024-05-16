@@ -2169,7 +2169,8 @@ void Document::drainCallbacks()
                             << session.getId() << "] for view [" << viewId
                             << "] is not running. Dropping ["
                             << lokCallbackTypeToString(type) << "] payload ["
-                            << payload << ']');
+                            << COOLProtocol::getAbbreviatedMessage(payload)
+                            << ']');
                 }
 
                 if (!broadcast)
@@ -2179,7 +2180,8 @@ void Document::drainCallbacks()
             if (!isFound)
                 LOG_ERR("Document::ViewCallback. Session [" << viewId <<
                         "] is no longer active to process [" << lokCallbackTypeToString(type) <<
-                        "] [" << payload << "] message to Master Session.");
+                        "] [" << COOLProtocol::getAbbreviatedMessage(payload) <<
+                        "] message to Master Session.");
         }
     }
 
