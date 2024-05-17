@@ -189,6 +189,11 @@ void AsyncDNS::resolveDNS()
 
         Lookup lookup = _lookups.front();
         _lookups.pop();
+
+        // Unlock to allow entries to queue up in _lookups while
+        // resolving
+        _lock.unlock();
+
         std::string hostToCheck, exception;
 
         try
@@ -201,6 +206,8 @@ void AsyncDNS::resolveDNS()
         }
 
         lookup.cb(hostToCheck, exception);
+
+        _lock.lock();
     }
 }
 
