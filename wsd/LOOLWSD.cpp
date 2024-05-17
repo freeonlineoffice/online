@@ -3952,6 +3952,9 @@ public:
         // If we have any delaying work going on.
         Delay::dumpState(os);
 
+        // If we have any DNS work going on.
+        net::AsyncDNS::dumpState(os);
+
         LOOLWSD::SavedClipboards->dumpState(os);
 #endif
 
