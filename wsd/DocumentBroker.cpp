@@ -186,6 +186,7 @@ DocumentBroker::DocumentBroker(ChildType type, const std::string& uri, const Poc
     , _mobileAppDocId(mobileAppDocId)
     , _alwaysSaveOnExit(LOOLWSD::getConfigValue<bool>("per_document.always_save_on_exit", false))
     , _backgroundAutoSave(LOOLWSD::getConfigValue<bool>("per_document.background_autosave", true))
+    , _backgroundManualSave(LOOLWSD::getConfigValue<bool>("per_document.background_manualsave", true))
 #if !MOBILEAPP
     , _admin(Admin::instance())
 #endif
@@ -2741,7 +2742,8 @@ bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
 
     // Note: It's odd to capture these here, but this function is used from ClientSession too.
     bool autosave = isAutosave || (_unitWsd && _unitWsd->isAutosave());
-    bool background = forceBackgroundSave || (autosave && _backgroundAutoSave);
+    bool background =
+        forceBackgroundSave || (autosave && _backgroundAutoSave) || _backgroundManualSave;
 
     _nextStorageAttrs.setIsAutosave(autosave);
     _nextStorageAttrs.setExtendedData(extendedData);
