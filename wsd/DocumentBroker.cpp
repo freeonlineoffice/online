@@ -1433,7 +1433,8 @@ void DocumentBroker::startRenameFileCommand()
     constexpr bool dontTerminateEdit = false; // We will save, rename, and reload: terminate.
     constexpr bool dontSaveIfUnmodified = true;
     constexpr bool isAutosave = false;
-    sendUnoSave(it->second, dontTerminateEdit, dontSaveIfUnmodified, isAutosave);
+    constexpr bool finalWrite = true;
+    sendUnoSave(it->second, dontTerminateEdit, dontSaveIfUnmodified, isAutosave, finalWrite);
 }
 
 void DocumentBroker::endRenameFileCommand()
@@ -2436,14 +2437,15 @@ bool DocumentBroker::manualSave(const std::shared_ptr<ClientSession>& session,
     {
         LOG_DBG("Manual save by " << session->getName() << " on docKey [" << _docKey << ']');
         return sendUnoSave(session, dontTerminateEdit, dontSaveIfUnmodified,
-                           /*isAutosave=*/false, extendedData);
+                           /*isAutosave=*/false, /*finalWrite=*/false, extendedData);
     }
 
     LOG_DBG("Document [" << _docKey << "] is currently saving and cannot issue another save");
     return false;
 }
 
-bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
+bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified,
+                              const bool finalWrite)
 {
     ASSERT_CORRECT_THREAD();
 
@@ -2457,8 +2459,9 @@ bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
 
     _saveManager.autoSaveChecked();
 
-    LOG_TRC("autoSave(): forceful? " << force
-                                     << ", dontSaveIfUnmodified: " << dontSaveIfUnmodified);
+    LOG_TRC("autoSave(): forceful? " << force <<
+            ", dontSaveIfUnmodified: " << dontSaveIfUnmodified <<
+            " finalWrite : " << finalWrite);
 
     const CanSave canSave = canSaveToDisk();
     if (canSave != CanSave::Yes)
@@ -2505,7 +2508,7 @@ bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
         // triggered when the document is closed. In the case of network disconnection or browser crash
         // most users would want to have had the chance to hit save before the document unloaded.
         sent = sendUnoSave(savingSession, /*dontTerminateEdit=*/true, dontSaveIfUnmodified,
-                           /*isAutosave=*/false);
+                           /*isAutosave=*/false, finalWrite);
     }
     else if (isModified())
     {
@@ -2538,7 +2541,8 @@ bool DocumentBroker::autoSave(const bool force, const bool dontSaveIfUnmodified)
         {
             LOG_TRC("Sending timed save command for [" << _docKey << ']');
             sent = sendUnoSave(savingSession, /*dontTerminateEdit=*/true,
-                               /*dontSaveIfUnmodified=*/true, /*isAutosave=*/true);
+                               /*dontSaveIfUnmodified=*/true, /*isAutosave=*/true,
+                               finalWrite);
         }
     }
 
@@ -2649,7 +2653,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
                               << "] before terminating. isPossiblyModified: "
                               << (possiblyModified ? "yes" : "no")
                               << ", conflict: " << (_documentChangedInStorage ? "yes" : "no"));
-        if (!autoSave(/*force=*/possiblyModified, /*dontSaveIfUnmodified=*/true))
+        if (!autoSave(/*force=*/possiblyModified, /*dontSaveIfUnmodified=*/true, /*finalWrite=*/true))
         {
             // Nothing to save. Try to upload if necessary.
             const auto session = getWriteableSession();
@@ -2699,7 +2703,8 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
 
 bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
                                  bool dontTerminateEdit, bool dontSaveIfUnmodified,
-                                 bool isAutosave, const std::string& extendedData)
+                                 bool isAutosave, bool finalWrite,
+                                 const std::string& extendedData)
 {
     ASSERT_CORRECT_THREAD();
 
@@ -2738,12 +2743,15 @@ bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
     // If Core does report something different after saving, we'll update this flag.
     _nextStorageAttrs.setUserModified(isModified() || haveModifyActivityAfterSaveRequest());
 
-    static bool forceBackgroundSave = !!getenv("LOOL_FORCE_BGSAVE");
+    static bool forceBackgroundEnv = !!getenv("LOOL_FORCE_BGSAVE");
 
     // Note: It's odd to capture these here, but this function is used from ClientSession too.
     bool autosave = isAutosave || (_unitWsd && _unitWsd->isAutosave());
-    bool background =
-        forceBackgroundSave || (autosave && _backgroundAutoSave) || _backgroundManualSave;
+    bool backgroundConfigured = (autosave && _backgroundAutoSave) || _backgroundManualSave;
+    bool background = forceBackgroundEnv || (!finalWrite && backgroundConfigured);
+
+    if (finalWrite)
+        LOG_TRC("suspected final save: don't do background write");
 
     _nextStorageAttrs.setIsAutosave(autosave);
     _nextStorageAttrs.setExtendedData(extendedData);
@@ -2937,7 +2945,8 @@ std::size_t DocumentBroker::removeSession(const std::shared_ptr<ClientSession>& 
         // If always_save_on_exit=true, issue a save to guarantee uploading if necessary.
         if (!lastEditableSession ||
             (!_saveManager.isSaving() &&
-             !autoSave(/*force=*/_alwaysSaveOnExit || isPossiblyModified(), dontSaveIfUnmodified)))
+             !autoSave(/*force=*/_alwaysSaveOnExit || isPossiblyModified(),
+                       dontSaveIfUnmodified, /*finalWrite=*/true)))
         {
             disconnectSessionInternal(session);
         }
@@ -4350,6 +4359,7 @@ void DocumentBroker::dumpState(std::ostream& os)
     os << "\n  wopiDownloadDuration (ms): " << _wopiDownloadDuration.count();
     os << "\n  alwaysSaveOnExit: " << (_alwaysSaveOnExit?"true":"false");
     os << "\n  backgroundAutoSave: " << (_backgroundAutoSave?"true":"false");
+    os << "\n  backgroundManualSave: " << (_backgroundManualSave?"true":"false");
     os << "\n  isViewFileExtension: " << _isViewFileExtension;
 #if !MOBILEAPP
     os << "\n  last quarantined version: "
@@ -4496,7 +4506,8 @@ void DocumentBroker::startSwitchingToOffline(const std::shared_ptr<ClientSession
     constexpr bool dontTerminateEdit = false; // We will save and reload: terminate.
     constexpr bool dontSaveIfUnmodified = true;
     constexpr bool isAutosave = false;
-    sendUnoSave(session, dontTerminateEdit, dontSaveIfUnmodified, isAutosave);
+    constexpr bool finalWrite = true;
+    sendUnoSave(session, dontTerminateEdit, dontSaveIfUnmodified, isAutosave, finalWrite);
 }
 
 void DocumentBroker::endSwitchingToOffline()
