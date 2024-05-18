@@ -34,6 +34,7 @@ class UnitSaveTorture : public UnitWSD
 
     void testModified();
     void testTileCombineRace();
+    void testBgSaveCrash();
     void testSaveTorture();
 
     void configure(Poco::Util::LayeredConfiguration& config) override
@@ -204,6 +205,7 @@ void UnitSaveTorture::testTileCombineRace()
     {
         std::chrono::seconds timeout = std::chrono::seconds(10);
         auto message = wsSession->waitForMessage("unocommandresult:", timeout, name);
+        LOK_ASSERT(message.size() > 0);
         bool success;
         if (getSaveResult(message, success))
         {
@@ -214,6 +216,70 @@ void UnitSaveTorture::testTileCombineRace()
 
     poll->joinThread();
 }
+
+void UnitSaveTorture::testBgSaveCrash()
+{
+    std::string name = "testBgSaveCrash";
+    std::string docName = "empty.ods";
+    std::chrono::seconds timeout = std::chrono::seconds(10);
+
+    std::string documentPath, documentURL;
+    helpers::getDocumentPathAndURL(docName, documentPath, documentURL, name);
+
+    TST_LOG("Starting test on " << documentURL << ' ' << documentPath);
+
+    std::shared_ptr<SocketPoll> poll = std::make_shared<SocketPoll>("WebSocketPoll");
+    poll->startThread();
+
+    Poco::URI uri(helpers::getTestServerURI());
+    auto wsSession = helpers::loadDocAndGetSession(poll, docName, uri, testname);
+
+    TST_LOG("modify document");
+    modifyDocument(wsSession);
+    LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, timeout), true);
+
+    createStamp("crashkitonsave");
+
+    forceAutosave = true;
+    // force a crashing save ...
+    wsSession->sendMessage(std::string("save dontTerminateEdit=0 dontSaveIfUnmodified=0"));
+
+    std::vector<char> message;
+    while (true)
+    {
+        message = wsSession->waitForMessage("unocommandresult:", timeout, name);
+        LOK_ASSERT(message.size() > 0);
+        bool success;
+        if (getSaveResult(message, success))
+        {
+            LOK_ASSERT_EQUAL(success, false); // bg save should crash and burn
+            break;
+        }
+    }
+
+    TST_LOG("Background save exited early as expected");
+
+    // Leave the crashing stamp - we should learn and save non-background now
+    wsSession->sendMessage(std::string("save dontTerminateEdit=0 dontSaveIfUnmodified=0"));
+
+    while (true)
+    {
+        message = wsSession->waitForMessage("unocommandresult:", timeout, name);
+        LOK_ASSERT(message.size() > 0);
+        bool success;
+        if (getSaveResult(message, success))
+        {
+            // non-bg save has no crash hook & should be fine.
+            LOK_ASSERT_EQUAL(success, true);
+            break;
+        }
+    }
+
+    TST_LOG("(non)-background save succeeded on 2nd attempt");
+
+    poll->joinThread();
+}
+
 
 namespace {
     /*
@@ -302,6 +368,7 @@ void UnitSaveTorture::saveTortureOne(
         while (true)
         {
             message = wsSession->waitForMessage("unocommandresult:", timeout, name);
+            LOK_ASSERT(message.size() > 0);
             bool success;
             if (getSaveResult(message, success))
             {
@@ -354,6 +421,8 @@ void UnitSaveTorture::invokeWSDTest()
 {
     testModified();
 
+    testBgSaveCrash();
+
     testTileCombineRace();
 
     testSaveTorture();
@@ -403,7 +472,13 @@ public:
 
     virtual void postBackgroundSaveFork() override
     {
-        std::cerr << "\n\npost background save process fork\n\n\n";
+        if (stampExists("crashkitonsave"))
+        {
+            std::cerr << "Exit bgsave process to simulate crash\n\n";
+            _exit(0); // otherwise we create segv's to count.
+        }
+
+        std::cerr << "\npost background save process fork\n\n";
 
         waitWhileStamp("holdsave");
     }
