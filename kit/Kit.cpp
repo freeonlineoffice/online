@@ -698,6 +698,7 @@ Document::Document(const std::shared_ptr<lok::Office>& loKit,
       _websocketHandler(websocketHandler),
       _modified(ModifiedState::UnModified),
       _isBgSaveProcess(false),
+      _isBgSaveDisabled(false),
       _haveDocPassword(false),
       _isDocPasswordProtected(false),
       _docPasswordType(DocumentPasswordType::ToView),
@@ -1370,6 +1371,12 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
     {
         LOG_ERR("Serious error bgsv process trying to fork again");
         assert(false);
+        return false;
+    }
+
+    if (_isBgSaveDisabled)
+    {
+        LOG_TRC("Skipping background save for bg save disabled process");
         return false;
     }
 
@@ -2385,6 +2392,12 @@ bool Document::trackDocModifiedState(const std::string &stateChanged)
     return filter;
 }
 
+void Document::disableBgSave(const std::string &reason)
+{
+    LOG_WRN("Disabled background save " + reason);
+    _isBgSaveDisabled = true;
+}
+
 /// Stops theads, flushes buffers, and exits the process.
 void Document::flushAndExit(int code)
 {
@@ -2418,6 +2431,8 @@ void Document::dumpState(std::ostream& oss)
         << "\n\tinputProcessingEnabled: " << processInputEnabled()
         << "\n\tduringLoad: " << _duringLoad
         << "\n\tmodified: " << toString(_modified)
+        << "\n\tbgSaveProc: " << _isBgSaveProcess
+        << "\n\tbgSaveDisabled: "<< _isBgSaveDisabled
         << "\n";
 
     // dumpState:
