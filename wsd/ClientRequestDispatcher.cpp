@@ -449,7 +449,7 @@ public:
     {
         net::AsyncDNS::DNSThreadFn pushHostnameResolvedToPoll = [this](const std::string& hostname,
                                                                        const std::string& exception) {
-            COOLWSD::getWebServerPoll()->addCallback([this, hostname, exception]() {
+            LOOLWSD::getWebServerPoll()->addCallback([this, hostname, exception]() {
                 hostnameResolved(hostname, exception);
             });
         };
@@ -2013,7 +2013,7 @@ void ClientRequestDispatcher::handleCapabilitiesRequest(const Poco::Net::HTTPReq
     LOG_DBG("Wopi capabilities request: " << request.getURI());
 
     AsyncFn convertToAllowedCb = [socket](bool allowedConvert){
-        COOLWSD::getWebServerPoll()->addCallback([socket, allowedConvert]() { sendCapabilities(allowedConvert, socket); });
+        LOOLWSD::getWebServerPoll()->addCallback([socket, allowedConvert]() { sendCapabilities(allowedConvert, socket); });
     };
 
     allowConvertTo(socket->clientAddress(), request, convertToAllowedCb);
