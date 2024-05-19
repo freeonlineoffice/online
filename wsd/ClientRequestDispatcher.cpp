@@ -2015,7 +2015,7 @@ void ClientRequestDispatcher::handleCapabilitiesRequest(const Poco::Net::HTTPReq
         LOOLWSD::getWebServerPoll()->addCallback([socket, allowedConvert]() { sendCapabilities(allowedConvert, socket); });
     };
 
-    allowConvertTo(socket->clientAddress(), request, convertToAllowedCb);
+    allowConvertTo(socket->clientAddress(), request, std::move(convertToAllowedCb));
 }
 
 #endif
