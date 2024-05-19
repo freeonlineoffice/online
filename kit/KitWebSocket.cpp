@@ -275,7 +275,7 @@ void BgSaveParentWebSocketHandler::handleMessage(const std::vector<char>& data)
     if (tokens[1] == "jsdialog:")
     {
         terminateSave("Unexpected jsdialog message: " +
-                      COOLProtocol::getAbbreviatedMessage(data));
+                      LOOLProtocol::getAbbreviatedMessage(data));
         return;
     }
 
