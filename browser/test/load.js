@@ -100,7 +100,7 @@ data = data.replace(/%SAVED_UI_STATE%/g, 'false');
 data = data.replace(/%WASM_ENABLED%/g, 'false');
 data = data.replace(/%INDIRECTION_URL%/g, '');
 
-data = data.replace(/%BRANDING_THEME%/g, 'cool_brand');
+data = data.replace(/%BRANDING_THEME%/g, 'lool_brand');
 
 window = new JSDOM(data, {
 				runScripts: 'dangerously',
