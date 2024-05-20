@@ -707,6 +707,9 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             else
                 content = getUncompressedFile(relPath);
 
+            response.add("Content-Length", std::to_string(content->size()));
+            response.add("Connection", "close");
+
             if (!noCache)
             {
                 // 60 * 60 * 24 * 128 (days) = 11059200
@@ -1491,6 +1494,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
         }
     }
 
+    httpResponse.add("Connection", "close");
     httpResponse.setBody(preprocess, mimeType);
 
     socket->send(httpResponse);
