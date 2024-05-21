@@ -1926,10 +1926,6 @@ void LOOLWSD::innerInitialize(Application& self)
 
     StartTime = std::chrono::steady_clock::now();
 
-#if !MOBILEAPP
-    net::AsyncDNS::startAsyncDNS();
-#endif
-
     LayeredConfiguration& conf = config();
 
     // Add default values of new entries here, so there is a sensible default in case
@@ -2811,6 +2807,10 @@ void LOOLWSD::innerInitialize(Application& self)
 #endif
 
     WebServerPoll = std::make_unique<TerminatingPoll>("websrv_poll");
+
+#if !MOBILEAPP
+    net::AsyncDNS::startAsyncDNS();
+#endif
 
     PrisonerPoll = std::make_unique<PrisonPoll>();
 
@@ -4523,6 +4523,10 @@ int LOOLWSD::innerMain()
 
     PrisonerPoll.reset();
 
+#if !MOBILEAPP
+    net::AsyncDNS::stopAsyncDNS();
+#endif
+
     WebServerPoll.reset();
 
     // Terminate child processes
@@ -4551,10 +4555,6 @@ int LOOLWSD::innerMain()
     const int returnValue = UnitBase::uninit();
 
     LOG_INF("Process [loolwsd] finished with exit status: " << returnValue);
-
-#if !MOBILEAPP
-    net::AsyncDNS::stopAsyncDNS();
-#endif
 
     // At least on centos7, Poco deadlocks while
     // cleaning up its SSL context singleton.
