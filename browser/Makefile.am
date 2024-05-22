@@ -813,6 +813,7 @@ pot:
 		src/control/Parts.js \
 		src/control/Permission.js \
 		src/control/Ruler.js \
+		src/control/VRuler.ts \
 		src/control/Signing.js \
 		src/control/Toolbar.js \
 		src/control/jsdialog/Component.Toolbar.ts \
