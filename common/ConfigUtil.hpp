@@ -22,7 +22,7 @@ class AbstractConfiguration;
 }
 } // namespace Poco
 
-namespace config
+namespace ConfigUtil
 {
 /// Initialize the config from an XML string.
 void initialize(const std::string& xml);
@@ -51,4 +51,4 @@ bool isSslEnabled();
 /// Return true if build is support key enabled (ENABLE_SUPPORT_KEY is defined)
 bool isSupportKeyEnabled();
 
-} // namespace config
+} // namespace ConfigUtil

@@ -135,7 +135,8 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
         // Send LOOL version information
         std::string timezoneName;
         if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
-            timezoneName = config::getString("indirection_endpoint.geolocation_setup.timezone", "");
+            timezoneName =
+                ConfigUtil::getString("indirection_endpoint.geolocation_setup.timezone", "");
 
         sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental, timezoneName));
 

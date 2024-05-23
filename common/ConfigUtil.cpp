@@ -17,7 +17,7 @@
 #include <Poco/Util/AbstractConfiguration.h>
 #include <Poco/Util/XMLConfiguration.h>
 
-namespace config
+namespace ConfigUtil
 {
 static Poco::AutoPtr<Poco::Util::XMLConfiguration> XmlConfig;
 static const Poco::Util::AbstractConfiguration* Config{ 0 };
@@ -82,4 +82,4 @@ bool isSupportKeyEnabled()
 #endif
 }
 
-} // namespace config
+} // namespace ConfigUtil

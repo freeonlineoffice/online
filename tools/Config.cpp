@@ -130,7 +130,7 @@ void Config::displayHelp()
               << "Commands: " << std::endl
               << "    anonymize [string-1]...[string-n]" << std::endl
               << "    set-admin-password" << std::endl;
-    if (config::isSupportKeyEnabled())
+    if (ConfigUtil::isSupportKeyEnabled())
     {
         std::cout << "    set-support-key" << std::endl;
     }
@@ -172,7 +172,7 @@ void Config::defineOptions(OptionSet& optionSet)
                         .repeatable(false)
                         .argument("password"));
 
-    if (config::isSupportKeyEnabled())
+    if (ConfigUtil::isSupportKeyEnabled())
     {
         optionSet.addOption(Option("support-key", "", "Specify the support key [set-support-key].")
                             .required(false)
@@ -343,7 +343,7 @@ int Config::main(const std::vector<std::string>& args)
         return EX_UNAVAILABLE;
 #endif
     }
-    else if (config::isSupportKeyEnabled() && args[0] == "set-support-key")
+    else if (ConfigUtil::isSupportKeyEnabled() && args[0] == "set-support-key")
     {
         std::string supportKeyString;
         if (SupportKeyStringProvided)
