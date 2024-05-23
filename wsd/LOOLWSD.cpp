@@ -210,7 +210,7 @@ void LOOLWSD::appendAllowedHostsFrom(LayeredConfiguration& conf, const std::stri
         {
             break;
         }
-        const std::string host = getConfigValue<std::string>(conf, path, "");
+        const std::string host = ConfigUtil::getConfigValue<std::string>(conf, path, "");
         if (!host.empty())
         {
             LOG_INF_S("Adding trusted LOK_ALLOW host: [" << host << ']');
@@ -290,7 +290,7 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
                 break;
             }
 
-            std::string alias = getConfigValue<std::string>(conf, aliasPath, "");
+            std::string alias = ConfigUtil::getConfigValue<std::string>(conf, aliasPath, "");
 
             alias = removeProtocolAndPort(alias);
             if (!alias.empty())
@@ -597,8 +597,8 @@ inline std::string getLaunchBase(bool asAdmin = false)
 
     if (asAdmin)
     {
-        auto user = LOOLWSD::getConfigValue<std::string>("admin_console.username", "");
-        auto passwd = LOOLWSD::getConfigValue<std::string>("admin_console.password", "");
+        auto user = ConfigUtil::getConfigValue<std::string>("admin_console.username", "");
+        auto passwd = ConfigUtil::getConfigValue<std::string>("admin_console.password", "");
 
         if (user.empty() || passwd.empty())
             return "";
@@ -2249,12 +2249,12 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     }
 
     // Experimental features.
-    EnableExperimental = getConfigValue<bool>(conf, "experimental_features", false);
+    EnableExperimental = ConfigUtil::getConfigValue<bool>(conf, "experimental_features", false);
 
-    EnableAccessibility = getConfigValue<bool>(conf, "accessibility.enable", false);
+    EnableAccessibility = ConfigUtil::getConfigValue<bool>(conf, "accessibility.enable", false);
 
     // Setup user interface mode
-    UserInterface = getConfigValue<std::string>(conf, "user_interface.mode", "default");
+    UserInterface = ConfigUtil::getConfigValue<std::string>(conf, "user_interface.mode", "default");
 
     if (UserInterface == "compact")
         UserInterface = "classic";
@@ -2266,16 +2266,20 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         UserInterface = "notebookbar";
 
     // Set the log-level after complete initialization to force maximum details at startup.
-    LogLevel = getConfigValue<std::string>(conf, "logging.level", "trace");
-    LogDisabledAreas = getConfigValue<std::string>(conf, "logging.disabled_areas", "Socket,WebSocket,Admin");
-    MostVerboseLogLevelSettableFromClient = getConfigValue<std::string>(conf, "logging.most_verbose_level_settable_from_client", "notice");
-    LeastVerboseLogLevelSettableFromClient = getConfigValue<std::string>(conf, "logging.least_verbose_level_settable_from_client", "fatal");
+    LogLevel = ConfigUtil::getConfigValue<std::string>(conf, "logging.level", "trace");
+    LogDisabledAreas = ConfigUtil::getConfigValue<std::string>(conf, "logging.disabled_areas",
+                                                               "Socket,WebSocket,Admin");
+    MostVerboseLogLevelSettableFromClient = ConfigUtil::getConfigValue<std::string>(
+        conf, "logging.most_verbose_level_settable_from_client", "notice");
+    LeastVerboseLogLevelSettableFromClient = ConfigUtil::getConfigValue<std::string>(
+        conf, "logging.least_verbose_level_settable_from_client", "fatal");
 
     setenv("LOOL_LOGLEVEL", LogLevel.c_str(), true);
     setenv("LOOL_LOGDISABLED_AREAS", LogDisabledAreas.c_str(), true);
 
 #if !ENABLE_DEBUG
-    const std::string salLog = getConfigValue<std::string>(conf, "logging.lokit_sal_log", "-INFO-WARN");
+    const std::string salLog =
+        ConfigUtil::getConfigValue<std::string>(conf, "logging.lokit_sal_log", "-INFO-WARN");
     setenv("SAL_LOG", salLog.c_str(), 0);
 #endif
 
@@ -2286,13 +2290,14 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     constexpr bool withColor = false;
     constexpr bool logToFile = false;
 #else
-    const bool withColor = getConfigValue<bool>(conf, "logging.color", true) && isatty(fileno(stderr));
+    const bool withColor =
+        ConfigUtil::getConfigValue<bool>(conf, "logging.color", true) && isatty(fileno(stderr));
     if (withColor)
     {
         setenv("LOOL_LOGCOLOR", "1", true);
     }
 
-    const auto logToFile = getConfigValue<bool>(conf, "logging.file[@enable]", false);
+    const auto logToFile = ConfigUtil::getConfigValue<bool>(conf, "logging.file[@enable]", false);
     std::map<std::string, std::string> logProperties;
     for (std::size_t i = 0; ; ++i)
     {
@@ -2324,7 +2329,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 #endif
 
     // Log at trace level until we complete the initialization.
-    LogLevelStartup = getConfigValue<std::string>(conf, "logging.level_startup", "trace");
+    LogLevelStartup =
+        ConfigUtil::getConfigValue<std::string>(conf, "logging.level_startup", "trace");
     setenv("LOOL_LOGLEVEL_STARTUP", LogLevelStartup.c_str(), true);
 
     Log::initialize("wsd", LogLevelStartup, withColor, logToFile, logProperties);
@@ -2334,7 +2340,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
                 << LogLevel << "] until after WSD initialization.");
     }
 
-    if (getConfigValue<bool>(conf, "browser_logging", false))
+    if (ConfigUtil::getConfigValue<bool>(conf, "browser_logging", false))
     {
         LogToken = Util::rng::getHexString(16);
     }
@@ -2356,11 +2362,12 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     UnitWSD::get().configure(conf);
 
     // Trace Event Logging.
-    EnableTraceEventLogging = getConfigValue<bool>(conf, "trace_event[@enable]", false);
+    EnableTraceEventLogging = ConfigUtil::getConfigValue<bool>(conf, "trace_event[@enable]", false);
 
     if (EnableTraceEventLogging)
     {
-        const auto traceEventFile = getConfigValue<std::string>(conf, "trace_event.path", LOOLWSD_TRACEEVENTFILE);
+        const auto traceEventFile = ConfigUtil::getConfigValue<std::string>(
+            conf, "trace_event.path", LOOLWSD_TRACEEVENTFILE);
         LOG_INF("Trace Event file is " << traceEventFile << ".");
         TraceEventFile = fopen(traceEventFile.c_str(), "w");
         if (TraceEventFile != NULL)
@@ -2384,16 +2391,16 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     // Check deprecated settings.
     bool reuseCookies = false;
-    if (getSafeConfig(conf, "storage.wopi.reuse_cookies", reuseCookies))
+    if (ConfigUtil::getSafeConfig(conf, "storage.wopi.reuse_cookies", reuseCookies))
         LOG_WRN("NOTE: Deprecated config option storage.wopi.reuse_cookies - no longer supported.");
 
 #if !MOBILEAPP
-    LOOLWSD::WASMState = getConfigValue<bool>(conf, "wasm.enable", false)
+    LOOLWSD::WASMState = ConfigUtil::getConfigValue<bool>(conf, "wasm.enable", false)
                              ? LOOLWSD::WASMActivationState::Enabled
                              : LOOLWSD::WASMActivationState::Disabled;
 
 #if ENABLE_DEBUG
-    if (getConfigValue<bool>(conf, "wasm.force", false))
+    if (ConfigUtil::getConfigValue<bool>(conf, "wasm.force", false))
     {
         if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Enabled)
         {
@@ -2416,13 +2423,13 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 #else
     LOG_INF("Anonymization of user-data is configurable.");
     bool haveAnonymizeUserDataConfig = false;
-    if (getSafeConfig(conf, "logging.anonymize.anonymize_user_data", AnonymizeUserData))
+    if (ConfigUtil::getSafeConfig(conf, "logging.anonymize.anonymize_user_data", AnonymizeUserData))
         haveAnonymizeUserDataConfig = true;
 
     bool anonymizeFilenames = false;
     bool anonymizeUsernames = false;
-    if (getSafeConfig(conf, "logging.anonymize.usernames", anonymizeFilenames) ||
-        getSafeConfig(conf, "logging.anonymize.filenames", anonymizeUsernames))
+    if (ConfigUtil::getSafeConfig(conf, "logging.anonymize.usernames", anonymizeFilenames) ||
+        ConfigUtil::getSafeConfig(conf, "logging.anonymize.filenames", anonymizeUsernames))
     {
         LOG_WRN("NOTE: both logging.anonymize.usernames and logging.anonymize.filenames are deprecated and superseded by "
                 "logging.anonymize.anonymize_user_data. Please remove username and filename entries from the config and use only anonymize_user_data.");
@@ -2438,7 +2445,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     if (AnonymizeUserData && LogLevel == "trace" && !CleanupOnly)
     {
-        if (getConfigValue<bool>(conf, "logging.anonymize.allow_logging_user_data", false))
+        if (ConfigUtil::getConfigValue<bool>(conf, "logging.anonymize.allow_logging_user_data",
+                                             false))
         {
             LOG_WRN("Enabling trace logging while anonymization is enabled due to logging.anonymize.allow_logging_user_data setting. "
                     "This will leak user-data!");
@@ -2465,7 +2473,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     if (AnonymizeUserData)
     {
         // Get the salt, if set, otherwise default, and set as envar, so the kits inherit it.
-        anonymizationSalt = getConfigValue<std::uint64_t>(conf, "logging.anonymize.anonymization_salt", 82589933);
+        anonymizationSalt = ConfigUtil::getConfigValue<std::uint64_t>(
+            conf, "logging.anonymize.anonymization_salt", 82589933);
         const std::string anonymizationSaltStr = std::to_string(anonymizationSalt);
         setenv("LOOL_ANONYMIZATION_SALT", anonymizationSaltStr.c_str(), true);
     }
@@ -2473,12 +2482,12 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     {
         bool enableWebsocketURP =
-            LOOLWSD::getConfigValue<bool>("security.enable_websocket_urp", false);
+            ConfigUtil::getConfigValue<bool>("security.enable_websocket_urp", false);
         setenv("ENABLE_WEBSOCKET_URP", enableWebsocketURP ? "true" : "false", 1);
     }
 
     {
-        std::string proto = getConfigValue<std::string>(conf, "net.proto", "");
+        std::string proto = ConfigUtil::getConfigValue<std::string>(conf, "net.proto", "");
         if (Util::iequal(proto, "ipv4"))
             ClientPortProto = Socket::Type::IPv4;
         else if (Util::iequal(proto, "ipv6"))
@@ -2490,7 +2499,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     }
 
     {
-        std::string listen = getConfigValue<std::string>(conf, "net.listen", "");
+        std::string listen = ConfigUtil::getConfigValue<std::string>(conf, "net.listen", "");
         if (Util::iequal(listen, "any"))
             ClientListenAddr = ServerSocket::Type::Public;
         else if (Util::iequal(listen, "loopback"))
@@ -2500,15 +2509,15 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     }
 
     // Prefix for the loolwsd pages; should not end with a '/'
-    ServiceRoot = getPathFromConfig("net.service_root");
+    ServiceRoot = ConfigUtil::getPathFromConfig("net.service_root");
     while (ServiceRoot.length() > 0 && ServiceRoot[ServiceRoot.length() - 1] == '/')
         ServiceRoot.pop_back();
 
-    IsProxyPrefixEnabled = getConfigValue<bool>(conf, "net.proxy_prefix", false);
+    IsProxyPrefixEnabled = ConfigUtil::getConfigValue<bool>(conf, "net.proxy_prefix", false);
 
 #if ENABLE_SSL
-    LOOLWSD::SSLEnabled.set(getConfigValue<bool>(conf, "ssl.enable", true));
-    LOOLWSD::SSLTermination.set(getConfigValue<bool>(conf, "ssl.termination", false));
+    LOOLWSD::SSLEnabled.set(ConfigUtil::getConfigValue<bool>(conf, "ssl.enable", true));
+    LOOLWSD::SSLTermination.set(ConfigUtil::getConfigValue<bool>(conf, "ssl.termination", false));
 #endif
 
     LOG_INF("SSL support: SSL is " << (LOOLWSD::isSSLEnabled() ? "enabled." : "disabled."));
@@ -2522,7 +2531,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
 #endif
 
-    int pdfResolution = getConfigValue<int>(conf, "per_document.pdf_resolution_dpi", 96);
+    int pdfResolution =
+        ConfigUtil::getConfigValue<int>(conf, "per_document.pdf_resolution_dpi", 96);
     if (pdfResolution > 0)
     {
         constexpr int MaxPdfResolutionDpi = 384;
@@ -2542,14 +2552,14 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         ::setenv("PDFIMPORT_RESOLUTION_DPI", pdfResolutionStr.c_str(), 1);
     }
 
-    SysTemplate = getPathFromConfig("sys_template_path");
+    SysTemplate = ConfigUtil::getPathFromConfig("sys_template_path");
     if (SysTemplate.empty())
     {
         LOG_FTL("Missing sys_template_path config entry.");
         throw Poco::Util::MissingOptionException("systemplate");
     }
 
-    ChildRoot = getPathFromConfig("child_root_path");
+    ChildRoot = ConfigUtil::getPathFromConfig("child_root_path");
     if (ChildRoot.empty())
     {
         LOG_FTL("Missing child_root_path config entry.");
@@ -2616,7 +2626,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     std::string fontsMissingHandling = ConfigUtil::getString("fonts_missing.handling", "log");
     setenv("FONTS_MISSING_HANDLING", fontsMissingHandling.c_str(), 1);
 
-    IsBindMountingEnabled = getConfigValue<bool>(conf, "mount_jail_tree", true);
+    IsBindMountingEnabled = ConfigUtil::getConfigValue<bool>(conf, "mount_jail_tree", true);
 #if CODE_COVERAGE
     // Code coverage is not supported with bind-mounting.
     if (IsBindMountingEnabled)
@@ -2629,8 +2639,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     // Setup the jails.
     bool UseMountNamespaces = true;
 
-    NoCapsForKit =
-        Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.capabilities", true);
+    NoCapsForKit = Util::isKitInProcess() ||
+                   !ConfigUtil::getConfigValue<bool>(conf, "security.capabilities", true);
     if (NoCapsForKit && UseMountNamespaces)
     {
         // With NoCapsForKit we don't chroot. If Linux namespaces are available, we could
@@ -2644,13 +2654,13 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     setupChildRoot(UseMountNamespaces);
 
     LOG_DBG("FileServerRoot before config: " << FileServerRoot);
-    FileServerRoot = getPathFromConfig("file_server_root_path");
+    FileServerRoot = ConfigUtil::getPathFromConfig("file_server_root_path");
     LOG_DBG("FileServerRoot after config: " << FileServerRoot);
 
     //creating quarantine directory
-    if (getConfigValue<bool>(conf, "quarantine_files[@enable]", false))
+    if (ConfigUtil::getConfigValue<bool>(conf, "quarantine_files[@enable]", false))
     {
-        std::string path = Util::trimmed(getPathFromConfig("quarantine_files.path"));
+        std::string path = Util::trimmed(ConfigUtil::getPathFromConfig("quarantine_files.path"));
         LOG_INF("Quarantine path is set to [" << path << "] in config");
         if (path.empty())
         {
@@ -2692,7 +2702,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         LOG_INF("Quarantine is disabled in config");
     }
 
-    NumPreSpawnedChildren = getConfigValue<int>(conf, "num_prespawn_children", 1);
+    NumPreSpawnedChildren = ConfigUtil::getConfigValue<int>(conf, "num_prespawn_children", 1);
     if (NumPreSpawnedChildren < 1)
     {
         LOG_WRN("Invalid num_prespawn_children in config (" << NumPreSpawnedChildren << "). Resetting to 1.");
@@ -2703,7 +2713,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     FileUtil::registerFileSystemForDiskSpaceChecks(ChildRoot);
 
     int nThreads = std::max<int>(std::thread::hardware_concurrency(), 1);
-    int maxConcurrency = getConfigValue<int>(conf, "per_document.max_concurrency", 4);
+    int maxConcurrency = ConfigUtil::getConfigValue<int>(conf, "per_document.max_concurrency", 4);
 
     if (maxConcurrency > 16)
     {
@@ -2739,7 +2749,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     setenv("VCL_NO_THREAD_SCALE", "1", 1);
 #endif
 
-    const auto redlining = getConfigValue<bool>(conf, "per_document.redlining_as_comments", false);
+    const auto redlining =
+        ConfigUtil::getConfigValue<bool>(conf, "per_document.redlining_as_comments", false);
     if (!redlining)
     {
         setenv("DISABLE_REDLINE", "1", 1);
@@ -2758,7 +2769,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     // Log the connection and document limits.
 #if ENABLE_WELCOME_MESSAGE
-    if (getConfigValue<bool>(conf, "home_mode.enable", false))
+    if (ConfigUtil::getConfigValue<bool>(conf, "home_mode.enable", false))
     {
         LOOLWSD::MaxConnections = 20;
         LOOLWSD::MaxDocuments = 10;
@@ -2782,10 +2793,16 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     }
 
 #if !MOBILEAPP
-    NoSeccomp = Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.seccomp", true);
-    AdminEnabled = getConfigValue<bool>(conf, "admin_console.enable", true);
-    IndirectionServerEnabled = !getConfigValue<std::string>(conf, "indirection_endpoint.url", "").empty();
-    GeolocationSetup = getConfigValue("indirection_endpoint.geolocation_setup.enable", false);
+    NoSeccomp =
+        Util::isKitInProcess() || !ConfigUtil::getConfigValue<bool>(conf, "security.seccomp", true);
+    NoCapsForKit = Util::isKitInProcess() ||
+                   !ConfigUtil::getConfigValue<bool>(conf, "security.capabilities", true);
+    AdminEnabled = ConfigUtil::getConfigValue<bool>(conf, "admin_console.enable", true);
+    IndirectionServerEnabled =
+        !ConfigUtil::getConfigValue<std::string>(conf, "indirection_endpoint.url", "").empty();
+    GeolocationSetup =
+        ConfigUtil::getConfigValue("indirection_endpoint.geolocation_setup.enable", false);
+
 #if ENABLE_DEBUG
     if (Util::isKitInProcess())
         SingleKit = true;
@@ -2793,27 +2810,32 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 #endif
 
     // LanguageTool configuration
-    bool enableLanguageTool = getConfigValue<bool>(conf, "languagetool.enabled", false);
+    bool enableLanguageTool = ConfigUtil::getConfigValue<bool>(conf, "languagetool.enabled", false);
     setenv("LANGUAGETOOL_ENABLED", enableLanguageTool ? "true" : "false", 1);
-    const std::string baseAPIUrl = getConfigValue<std::string>(conf, "languagetool.base_url", "");
+    const std::string baseAPIUrl =
+        ConfigUtil::getConfigValue<std::string>(conf, "languagetool.base_url", "");
     setenv("LANGUAGETOOL_BASEURL", baseAPIUrl.c_str(), 1);
-    const std::string userName = getConfigValue<std::string>(conf, "languagetool.user_name", "");
+    const std::string userName =
+        ConfigUtil::getConfigValue<std::string>(conf, "languagetool.user_name", "");
     setenv("LANGUAGETOOL_USERNAME", userName.c_str(), 1);
-    const std::string apiKey = getConfigValue<std::string>(conf, "languagetool.api_key", "");
+    const std::string apiKey =
+        ConfigUtil::getConfigValue<std::string>(conf, "languagetool.api_key", "");
     setenv("LANGUAGETOOL_APIKEY", apiKey.c_str(), 1);
-    bool sslVerification = getConfigValue<bool>(conf, "languagetool.ssl_verification", true);
+    bool sslVerification =
+        ConfigUtil::getConfigValue<bool>(conf, "languagetool.ssl_verification", true);
     setenv("LANGUAGETOOL_SSL_VERIFICATION", sslVerification ? "true" : "false", 1);
-    const std::string restProtocol = getConfigValue<std::string>(conf, "languagetool.rest_protocol", "");
+    const std::string restProtocol =
+        ConfigUtil::getConfigValue<std::string>(conf, "languagetool.rest_protocol", "");
     setenv("LANGUAGETOOL_RESTPROTOCOL", restProtocol.c_str(), 1);
 
     // DeepL configuration
-    const std::string apiURL = getConfigValue<std::string>(conf, "deepl.api_url", "");
-    const std::string authKey = getConfigValue<std::string>(conf, "deepl.auth_key", "");
+    const std::string apiURL = ConfigUtil::getConfigValue<std::string>(conf, "deepl.api_url", "");
+    const std::string authKey = ConfigUtil::getConfigValue<std::string>(conf, "deepl.auth_key", "");
     setenv("DEEPL_API_URL", apiURL.c_str(), 1);
     setenv("DEEPL_AUTH_KEY", authKey.c_str(), 1);
 
 #if !MOBILEAPP
-    const std::string helpUrl = getConfigValue<std::string>(conf, "help_url", HELP_URL);
+    const std::string helpUrl = ConfigUtil::getConfigValue<std::string>(conf, "help_url", HELP_URL);
     setenv("LOK_HELP_URL", helpUrl.c_str(), 1);
 #else
     // On mobile UI there should be no tunnelled dialogs. But if there are some, by mistake,
@@ -2823,7 +2845,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     if (ConfigUtil::isSupportKeyEnabled())
     {
-        const std::string supportKeyString = getConfigValue<std::string>(conf, "support_key", "");
+        const std::string supportKeyString =
+            ConfigUtil::getConfigValue<std::string>(conf, "support_key", "");
 
         if (supportKeyString.empty())
         {
@@ -2888,10 +2911,11 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     LOOLWSD::NumConnections = 0;
 
     // Command Tracing.
-    if (getConfigValue<bool>(conf, "trace[@enable]", false))
+    if (ConfigUtil::getConfigValue<bool>(conf, "trace[@enable]", false))
     {
-        const auto& path = getConfigValue<std::string>(conf, "trace.path", "");
-        const auto recordOutgoing = getConfigValue<bool>(conf, "trace.outgoing.record", false);
+        const auto& path = ConfigUtil::getConfigValue<std::string>(conf, "trace.path", "");
+        const auto recordOutgoing =
+            ConfigUtil::getConfigValue<bool>(conf, "trace.outgoing.record", false);
         std::vector<std::string> filters;
         for (size_t i = 0; ; ++i)
         {
@@ -2907,8 +2931,10 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
             }
         }
 
-        const auto compress = getConfigValue<bool>(conf, "trace.path[@compress]", false);
-        const auto takeSnapshot = getConfigValue<bool>(conf, "trace.path[@snapshot]", false);
+        const auto compress =
+            ConfigUtil::getConfigValue<bool>(conf, "trace.path[@compress]", false);
+        const auto takeSnapshot =
+            ConfigUtil::getConfigValue<bool>(conf, "trace.path[@snapshot]", false);
         TraceDumper = std::make_unique<TraceFileWriter>(path, recordOutgoing, compress,
                                                         takeSnapshot, filters);
     }
@@ -2988,19 +3014,30 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     ServerApplication::initialize(self);
 
     DocProcSettings docProcSettings;
-    docProcSettings.setLimitVirtMemMb(getConfigValue<int>("per_document.limit_virt_mem_mb", 0));
-    docProcSettings.setLimitStackMemKb(getConfigValue<int>("per_document.limit_stack_mem_kb", 0));
-    docProcSettings.setLimitFileSizeMb(getConfigValue<int>("per_document.limit_file_size_mb", 0));
-    docProcSettings.setLimitNumberOpenFiles(getConfigValue<int>("per_document.limit_num_open_files", 0));
+    docProcSettings.setLimitVirtMemMb(
+        ConfigUtil::getConfigValue<int>("per_document.limit_virt_mem_mb", 0));
+    docProcSettings.setLimitStackMemKb(
+        ConfigUtil::getConfigValue<int>("per_document.limit_stack_mem_kb", 0));
+    docProcSettings.setLimitFileSizeMb(
+        ConfigUtil::getConfigValue<int>("per_document.limit_file_size_mb", 0));
+    docProcSettings.setLimitNumberOpenFiles(
+        ConfigUtil::getConfigValue<int>("per_document.limit_num_open_files", 0));
 
     DocCleanupSettings &docCleanupSettings = docProcSettings.getCleanupSettings();
-    docCleanupSettings.setEnable(getConfigValue<bool>("per_document.cleanup[@enable]", true));
-    docCleanupSettings.setCleanupInterval(getConfigValue<int>("per_document.cleanup.cleanup_interval_ms", 10000));
-    docCleanupSettings.setBadBehaviorPeriod(getConfigValue<int>("per_document.cleanup.bad_behavior_period_secs", 60));
-    docCleanupSettings.setIdleTime(getConfigValue<int>("per_document.cleanup.idle_time_secs", 300));
-    docCleanupSettings.setLimitDirtyMem(getConfigValue<int>("per_document.cleanup.limit_dirty_mem_mb", 3072));
-    docCleanupSettings.setLimitCpu(getConfigValue<int>("per_document.cleanup.limit_cpu_per", 85));
-    docCleanupSettings.setLostKitGracePeriod(getConfigValue<int>("per_document.cleanup.lost_kit_grace_period_secs", 120));
+    docCleanupSettings.setEnable(
+        ConfigUtil::getConfigValue<bool>("per_document.cleanup[@enable]", true));
+    docCleanupSettings.setCleanupInterval(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.cleanup_interval_ms", 10000));
+    docCleanupSettings.setBadBehaviorPeriod(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.bad_behavior_period_secs", 60));
+    docCleanupSettings.setIdleTime(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.idle_time_secs", 300));
+    docCleanupSettings.setLimitDirtyMem(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.limit_dirty_mem_mb", 3072));
+    docCleanupSettings.setLimitCpu(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.limit_cpu_per", 85));
+    docCleanupSettings.setLostKitGracePeriod(
+        ConfigUtil::getConfigValue<int>("per_document.cleanup.lost_kit_grace_period_secs", 120));
 
     Admin::instance().setDefDocProcSettings(docProcSettings, false);
 
@@ -3015,13 +3052,13 @@ void LOOLWSD::initializeSSL()
     if (!LOOLWSD::isSSLEnabled())
         return;
 
-    const std::string ssl_cert_file_path = getPathFromConfig("ssl.cert_file_path");
+    const std::string ssl_cert_file_path = ConfigUtil::getPathFromConfig("ssl.cert_file_path");
     LOG_INF("SSL Cert file: " << ssl_cert_file_path);
 
-    const std::string ssl_key_file_path = getPathFromConfig("ssl.key_file_path");
+    const std::string ssl_key_file_path = ConfigUtil::getPathFromConfig("ssl.key_file_path");
     LOG_INF("SSL Key file: " << ssl_key_file_path);
 
-    const std::string ssl_ca_file_path = getPathFromConfig("ssl.ca_file_path");
+    const std::string ssl_ca_file_path = ConfigUtil::getPathFromConfig("ssl.ca_file_path");
     LOG_INF("SSL CA file: " << ssl_ca_file_path);
 
     std::string ssl_cipher_list = config().getString("ssl.cipher_list", "");
@@ -4402,7 +4439,7 @@ int LOOLWSD::innerMain()
     Delay delay(SimulatedLatencyMs);
 
     const auto fetchUpdateCheck = std::chrono::duration_cast<std::chrono::milliseconds>(
-        std::chrono::hours(std::max(getConfigValue<int>("fetch_update_check", 10), 0)));
+        std::chrono::hours(std::max(ConfigUtil::getConfigValue<int>("fetch_update_check", 10), 0)));
 #endif
 
     ClientRequestDispatcher::InitStaticFileContentCache();
@@ -4551,7 +4588,8 @@ int LOOLWSD::innerMain()
     auto stampFetch = startStamp - (fetchUpdateCheck - std::chrono::milliseconds(60000));
 
 #ifdef __linux__
-    if (getConfigValue<bool>("stop_on_config_change", false)) {
+    if (ConfigUtil::getConfigValue<bool>("stop_on_config_change", false))
+    {
         std::shared_ptr<InotifySocket> inotifySocket = std::make_shared<InotifySocket>(startStamp);
         mainWait.insertNewSocket(inotifySocket);
     }

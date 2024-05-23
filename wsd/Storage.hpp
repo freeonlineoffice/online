@@ -15,6 +15,7 @@
 #include "Log.hpp"
 #include "Util.hpp"
 #include <common/Authorization.hpp>
+#include <common/ConfigUtil.hpp>
 
 #include <Poco/URI.h>
 
@@ -585,7 +586,7 @@ public:
     LockContext()
         : _supportsLocks(false)
         , _lockState(StorageBase::LockState::UNLOCK)
-        , _refreshSeconds(LOOLWSD::getConfigValue<int>("storage.wopi.locking.refresh", 900))
+        , _refreshSeconds(ConfigUtil::getConfigValue<int>("storage.wopi.locking.refresh", 900))
     {
     }
 

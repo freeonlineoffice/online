@@ -177,7 +177,7 @@ public:
         : StorageBase(uri, localStorePath, jailPath)
         , _wopiSaveDuration(std::chrono::milliseconds::zero())
         , _utf7Converter("UTF-8", "UTF-7")
-        , _legacyServer(LOOLWSD::getConfigValue<bool>("storage.wopi.is_legacy_server", false))
+        , _legacyServer(ConfigUtil::getConfigValue<bool>("storage.wopi.is_legacy_server", false))
     {
         LOG_INF("WopiStorage ctor with localStorePath: ["
                 << localStorePath << "], jailPath: [" << jailPath << "], uri: ["

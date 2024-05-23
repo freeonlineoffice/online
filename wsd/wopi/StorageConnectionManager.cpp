@@ -139,8 +139,8 @@ StorageConnectionManager::getHttpSession(const Poco::URI& uri, std::chrono::seco
 
     if (timeout == std::chrono::seconds::zero())
     {
-        CONFIG_STATIC const std::chrono::seconds defTimeout =
-            std::chrono::seconds(LOOLWSD::getConfigValue<int>("net.connection_timeout_secs", 30));
+        CONFIG_STATIC const std::chrono::seconds defTimeout = std::chrono::seconds(
+            ConfigUtil::getConfigValue<int>("net.connection_timeout_secs", 30));
         timeout = defTimeout;
     }
 
@@ -161,11 +161,11 @@ void StorageConnectionManager::initialize()
 
     // false default for upgrade to preserve legacy configuration
     // in-config-file defaults are true.
-    SSLAsScheme = LOOLWSD::getConfigValue<bool>("storage.ssl.as_scheme", false);
+    SSLAsScheme = ConfigUtil::getConfigValue<bool>("storage.ssl.as_scheme", false);
 
     // Fallback to ssl.enable if not set - for back compatibility & simplicity.
-    SSLEnabled = LOOLWSD::getConfigValue<bool>("storage.ssl.enable",
-                                               LOOLWSD::getConfigValue<bool>("ssl.enable", true));
+    SSLEnabled = ConfigUtil::getConfigValue<bool>(
+        "storage.ssl.enable", ConfigUtil::getConfigValue<bool>("ssl.enable", true));
 
 #if ENABLE_DEBUG
     char* StorageSSLEnabled = getenv("STORAGE_SSL_ENABLE");
@@ -182,24 +182,24 @@ void StorageConnectionManager::initialize()
     {
         if (LOOLWSD::isSSLEnabled())
         {
-            sslClientParams.certificateFile = LOOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.certificateFile = ConfigUtil::getPathFromConfigWithFallback(
                 "storage.ssl.cert_file_path", "ssl.cert_file_path");
-            sslClientParams.privateKeyFile = LOOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.privateKeyFile = ConfigUtil::getPathFromConfigWithFallback(
                 "storage.ssl.key_file_path", "ssl.key_file_path");
-            sslClientParams.caLocation = LOOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.caLocation = ConfigUtil::getPathFromConfigWithFallback(
                 "storage.ssl.ca_file_path", "ssl.ca_file_path");
         }
         else
         {
             sslClientParams.certificateFile =
-                LOOLWSD::getPathFromConfig("storage.ssl.cert_file_path");
+                ConfigUtil::getPathFromConfig("storage.ssl.cert_file_path");
             sslClientParams.privateKeyFile =
-                LOOLWSD::getPathFromConfig("storage.ssl.key_file_path");
-            sslClientParams.caLocation = LOOLWSD::getPathFromConfig("storage.ssl.ca_file_path");
+                ConfigUtil::getPathFromConfig("storage.ssl.key_file_path");
+            sslClientParams.caLocation = ConfigUtil::getPathFromConfig("storage.ssl.ca_file_path");
         }
         sslClientParams.cipherList =
-            LOOLWSD::getPathFromConfigWithFallback("storage.ssl.cipher_list", "ssl.cipher_list");
-        const bool sslVerification = LOOLWSD::getConfigValue<bool>("ssl.ssl_verification", true);
+            ConfigUtil::getPathFromConfigWithFallback("storage.ssl.cipher_list", "ssl.cipher_list");
+        const bool sslVerification = ConfigUtil::getConfigValue<bool>("ssl.ssl_verification", true);
         sslClientParams.verificationMode =
             !sslVerification ? Poco::Net::Context::VERIFY_NONE : Poco::Net::Context::VERIFY_STRICT;
         sslClientParams.loadDefaultCAs = true;

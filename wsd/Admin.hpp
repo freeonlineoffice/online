@@ -11,8 +11,8 @@
 
 #include "AdminModel.hpp"
 
-#include "net/WebSocketHandler.hpp"
-#include "LOOLWSD.hpp"
+#include <net/WebSocketHandler.hpp>
+#include <common/ConfigUtil.hpp>
 
 class Admin;
 
@@ -180,7 +180,7 @@ public:
 
     bool logAdminAction()
     {
-        return LOOLWSD::getConfigValue<bool>("admin_console.logging.admin_action", true);
+        return ConfigUtil::getConfigValue<bool>("admin_console.logging.admin_action", true);
     }
 
     void routeTokenSanityCheck();
