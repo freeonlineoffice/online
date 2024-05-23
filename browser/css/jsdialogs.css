@@ -2017,6 +2017,10 @@ input[type='number']:hover::-webkit-outer-spin-button {
 	border-color: transparent;
 }
 /* Formula Wizard */
+#FormulaDialog .ui-tabs-root {
+	background-color: var(--color-background-tabs-group);
+	border-radius: var(--border-radius-large);
+}
 #FormulaDialog #ParameterPage > .ui-grid-cell {
 	display: flex;
 	flex-direction: column;
