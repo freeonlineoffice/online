@@ -2205,8 +2205,6 @@ void Document::drainQueue()
 
     try
     {
-        std::vector<TileCombined> tileRequests;
-
         if (hasCallbacks())
             drainCallbacks();
 
@@ -2220,7 +2218,7 @@ void Document::drainQueue()
             if (_stop || SigUtil::getTerminationFlag())
             {
                 LOG_INF("_stop or TerminationFlag is set, breaking Document::drainQueue of loop");
-                tileRequests.clear();
+                _queue->clearTileQueue();
                 _deltaPool.stop();
                 break;
             }
@@ -2236,13 +2234,9 @@ void Document::drainQueue()
                 LOG_INF("Received EOF. Finishing.");
                 break;
             }
-            else if (tokens.equals(0, "tile"))
+            else if (tokens.equals(0, "tile") || tokens.equals(0, "tilecombine"))
             {
-                tileRequests.emplace_back(TileDesc::parse(tokens));
-            }
-            else if (tokens.equals(0, "tilecombine"))
-            {
-                tileRequests.emplace_back(TileCombined::parse(tokens));
+                assert(false && "Should not have incoming tile requests in message queue");
             }
             else if (tokens.startsWith(0, "child-"))
             {
@@ -2265,8 +2259,10 @@ void Document::drainQueue()
             }
         }
 
-        if (!tileRequests.empty() && !isBackgroundSaveProcess())
+        if (processInputEnabled() && !isBackgroundSaveProcess() && _queue->getTileQueueSize() > 0)
         {
+            std::vector<TileCombined> tileRequests = _queue->popWholeTileQueue();
+
             // Put requests that include tiles in the visible area to the front to handle those first
             std::partition(tileRequests.begin(), tileRequests.end(), [this](const TileCombined& req) {
                 return isTileRequestInsideVisibleArea(req); });

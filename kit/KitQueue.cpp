@@ -20,10 +20,6 @@
 
 #include "JsonUtil.hpp"
 
-#include "Protocol.hpp"
-#include "Log.hpp"
-#include <TileDesc.hpp>
-
 /* static */ std::string KitQueue::Callback::toString(int view, int type, const std::string payload)
 {
     std::ostringstream str;
@@ -66,26 +62,11 @@ void KitQueue::put(const Payload& value)
     bool removeText = false;
 
     if (firstToken == "tilecombine")
-    {
-        // Breakup tilecombine and deduplicate (we are re-combining
-        // the tiles inside get() again)
-        const std::string msg = std::string(value.data(), value.size());
-        const TileCombined tileCombined = TileCombined::parse(msg);
-        for (const auto& tile : tileCombined.getTiles())
-        {
-            const std::string newMsg = tile.serialize("tile");
+        pushTileCombineRequest(value);
 
-            removeTileDuplicate(newMsg);
-
-            _queue.emplace_back(newMsg.data(), newMsg.data() + newMsg.size());
-        }
-    }
     else if (firstToken == "tile")
-    {
-        removeTileDuplicate(std::string(value.data(), value.size()));
+        pushTileQueue(value);
 
-        _queue.push_back(value);
-    }
     else if (firstToken == "callback")
         assert(false && "callbacks should not come from the client");
 
@@ -119,14 +100,14 @@ void KitQueue::removeTileDuplicate(const std::string& tileMsg)
         newMsgPos = tileMsg.size() - 1;
     }
 
-    for (size_t i = 0; i < _queue.size(); ++i)
+    for (size_t i = 0; i < _tileQueue.size(); ++i)
     {
-        auto& it = _queue[i];
+        auto& it = _tileQueue[i];
         if (it.size() > newMsgPos &&
             strncmp(tileMsg.data(), it.data(), newMsgPos) == 0)
         {
             LOG_TRC("Remove duplicate tile request: " << std::string(it.data(), it.size()) << " -> " << LOOLProtocol::getAbbreviatedMessage(tileMsg));
-            _queue.erase(_queue.begin() + i);
+            _tileQueue.erase(_tileQueue.begin() + i);
             break;
         }
     }
@@ -428,9 +409,9 @@ int KitQueue::priority(const std::string& tileMsg)
 
 void KitQueue::deprioritizePreviews()
 {
-    for (size_t i = 0; i < _queue.size(); ++i)
+    for (size_t i = 0; i < _tileQueue.size(); ++i)
     {
-        const Payload front = _queue.front();
+        const Payload front = _tileQueue.front();
         const std::string message(front.data(), front.size());
 
         // stop at the first non-tile or non-'id' (preview) message
@@ -441,8 +422,8 @@ void KitQueue::deprioritizePreviews()
             break;
         }
 
-        _queue.erase(_queue.begin());
-        _queue.push_back(front);
+        _tileQueue.erase(_tileQueue.begin());
+        _tileQueue.push_back(front);
     }
 }
 
@@ -451,9 +432,42 @@ KitQueue::Payload KitQueue::pop()
     if (_queue.empty())
         return Payload();
 
-    LOG_TRC("KitQueue depth: " << _queue.size());
-
     const Payload front = _queue.front();
+
+    LOG_TRC("KitQueue(" << _queue.size() << ") - pop " <<
+            LOOLProtocol::getAbbreviatedMessage(front));
+
+    _queue.erase(_queue.begin());
+
+    return front;
+}
+
+std::vector<TileCombined> KitQueue::popWholeTileQueue()
+{
+    std::vector<TileCombined> tileQueue;
+
+    while (!_tileQueue.empty())
+    {
+        Payload value = popTileQueue(); // can combine to a tilecombine
+
+        auto tokens = StringVector::tokenize(value.data(), value.size());
+        if (tokens.equals(0, "tile"))
+            tileQueue.emplace_back(TileDesc::parse(tokens));
+
+        else if (tokens.equals(0, "tilecombine"))
+            tileQueue.emplace_back(TileCombined::parse(tokens));
+    }
+    return tileQueue;
+}
+
+KitQueue::Payload KitQueue::popTileQueue()
+{
+    if (_tileQueue.empty())
+        return Payload();
+
+    LOG_TRC("KitQueue depth: " << _tileQueue.size());
+
+    const Payload front = _tileQueue.front();
 
     std::string msg(front.data(), front.size());
 
@@ -464,7 +478,7 @@ KitQueue::Payload KitQueue::pop()
     {
         // Don't combine non-tiles or tiles with id.
         LOG_TRC("KitQueue res: " << LOOLProtocol::getAbbreviatedMessage(msg));
-        _queue.erase(_queue.begin());
+        _tileQueue.erase(_tileQueue.begin());
 
         // de-prioritize the other tiles with id - usually the previews in
         // Impress
@@ -478,9 +492,9 @@ KitQueue::Payload KitQueue::pop()
     // position, otherwise handle the one that is at the front
     int prioritized = 0;
     int prioritySoFar = -1;
-    for (size_t i = 0; i < _queue.size(); ++i)
+    for (size_t i = 0; i < _tileQueue.size(); ++i)
     {
-        auto& it = _queue[i];
+        auto& it = _tileQueue[i];
         const std::string prio(it.data(), it.size());
 
         // avoid starving - stop the search when we reach a non-tile,
@@ -507,15 +521,15 @@ KitQueue::Payload KitQueue::pop()
         }
     }
 
-    _queue.erase(_queue.begin() + prioritized);
+    _tileQueue.erase(_tileQueue.begin() + prioritized);
 
     std::vector<TileDesc> tiles;
     tiles.emplace_back(TileDesc::parse(msg));
 
     // Combine as many tiles as possible with the top one.
-    for (size_t i = 0; i < _queue.size(); )
+    for (size_t i = 0; i < _tileQueue.size(); )
     {
-        auto& it = _queue[i];
+        auto& it = _tileQueue[i];
         msg = std::string(it.data(), it.size());
         if (!LOOLProtocol::matchPrefix("tile", msg) ||
             LOOLProtocol::getTokenStringFromMessage(msg, "id", id))
@@ -532,7 +546,7 @@ KitQueue::Payload KitQueue::pop()
         if (tiles[0].canCombine(tile2))
         {
             tiles.emplace_back(tile2);
-            _queue.erase(_queue.begin() + i);
+            _tileQueue.erase(_tileQueue.begin() + i);
         }
         else
         {
@@ -540,7 +554,7 @@ KitQueue::Payload KitQueue::pop()
         }
     }
 
-    LOG_TRC("Combined " << tiles.size() << " tiles, leaving " << _queue.size() << " in queue.");
+    LOG_TRC("Combined " << tiles.size() << " tiles, leaving " << _tileQueue.size() << " in queue.");
 
     if (tiles.size() == 1)
     {
@@ -638,6 +652,31 @@ std::string KitQueue::combineTextInput(const StringVector& tokens)
     }
 
     return std::string();
+}
+
+void KitQueue::pushTileCombineRequest(const Payload &value)
+{
+    assert(LOOLProtocol::getFirstToken(value) == "tilecombine");
+
+    // Breakup tilecombine and deduplicate (we are re-combining
+    // the tiles inside pop() again)
+    const std::string msg = std::string(value.data(), value.size());
+    const TileCombined tileCombined = TileCombined::parse(msg);
+    for (const auto& tile : tileCombined.getTiles())
+    {
+        const std::string newMsg = tile.serialize("tile");
+
+        removeTileDuplicate(newMsg);
+
+        _tileQueue.emplace_back(newMsg.data(), newMsg.data() + newMsg.size());
+    }
+}
+
+void KitQueue::pushTileQueue(const Payload &value)
+{
+    removeTileDuplicate(std::string(value.data(), value.size()));
+
+    _tileQueue.push_back(value);
 }
 
 std::string KitQueue::combineRemoveText(const StringVector& tokens)
