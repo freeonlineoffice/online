@@ -231,6 +231,7 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 	}
 
 	public onMouseLeave () {
+		this.map._docLayer.isAutoFillFromOnMouseUp = false;
 		this.sectionProperties.mapPane.style.cursor = 'default';
 	}
 
