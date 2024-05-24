@@ -153,7 +153,8 @@ class StatusBar extends JSDialog.Toolbar {
 				type: 'menubutton',
 				text: '' + zoomPercent,
 				selected: zoomSelected,
-				menu: this._generateZoomItems()
+				menu: this._generateZoomItems(),
+				image: false
 			});
 	}
 
@@ -247,7 +248,7 @@ class StatusBar extends JSDialog.Toolbar {
 		].concat(window.mode.isTablet() ? [] : [
 			{type: 'customtoolitem',  id: 'zoomreset', command: 'zoomreset', text: _('Reset zoom')},
 			{type: 'customtoolitem',  id: 'zoomout', command: 'zoomout', text: _UNO('.uno:ZoomMinus')},
-			{type: 'menubutton', id: 'zoom', text: '100', selected: 'zoom100', menu: this._generateZoomItems()},
+			{type: 'menubutton', id: 'zoom', text: '100', selected: 'zoom100', menu: this._generateZoomItems(), image: false},
 			{type: 'customtoolitem',  id: 'zoomin', command: 'zoomin', text: _UNO('.uno:ZoomPlus')}
 		]);
 	}
