@@ -63,7 +63,11 @@ class SnackbarController {
 									text: label,
 									labelFor: buttonId,
 								}
-							: { id: 'label-no-action', type: 'fixedtext', text: label },
+							: {
+									id: 'label-no-action',
+									type: 'fixedtext',
+									text: label,
+								},
 						withDismiss
 							? {
 									id: 'snackbar-dismiss-button',
@@ -72,7 +76,12 @@ class SnackbarController {
 								}
 							: {},
 						hasProgress
-							? { id: 'progress', type: 'progressbar', value: 0, maxValue: 100 }
+							? {
+									id: 'progress',
+									type: 'progressbar',
+									value: 0,
+									maxValue: 100,
+								}
 							: {},
 						action
 							? {
@@ -154,7 +163,9 @@ class SnackbarController {
 			},
 		};
 
-		app.socket._onMessage({ textMsg: 'jsdialog: ' + JSON.stringify(json) });
+		app.socket._onMessage({
+			textMsg: 'jsdialog: ' + JSON.stringify(json),
+		});
 	}
 }
 
