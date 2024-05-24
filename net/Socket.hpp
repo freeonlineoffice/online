@@ -462,6 +462,9 @@ public:
     /// Do some of the queued writing.
     virtual void performWrites(std::size_t capacity) = 0;
 
+    /// Called when the SSL Handshake fails.
+    virtual void onHandshakeFail() {}
+
     /// Called when the socket is disconnected and will be destroyed.
     /// Will be called exactly once.
     virtual void onDisconnect() {}
@@ -1307,6 +1310,11 @@ public:
         return std::max<int>(0, capacity - _outBuffer.size());
     }
 
+    virtual long getSslVerifyResult()
+    {
+        return 0;
+    }
+
 protected:
 
     std::vector<std::pair<size_t, size_t>> findChunks(Poco::Net::HTTPRequest &request);
@@ -1433,6 +1441,12 @@ protected:
 
         if (_closed)
             disposition.setClosed();
+    }
+
+    void handshakeFail()
+    {
+        if (_socketHandler)
+            _socketHandler->onHandshakeFail();
     }
 
 public:
