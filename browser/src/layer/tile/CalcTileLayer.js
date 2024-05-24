@@ -352,7 +352,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	/// take into account only data area to reduce scrollbar range
-	updateScollLimit: function () {
+	updateScrollLimit: function () {
 		if (this.sheetGeometry && this._lastColumn && this._lastRow) {
 			this._restrictDocumentSize();
 		}
