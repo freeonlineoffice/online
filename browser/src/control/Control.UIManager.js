@@ -100,7 +100,7 @@ L.Control.UIManager = L.Control.extend({
 	},
 
 	invertBackground: function() {
-		// Implement this
+		app.socket.sendMessage('uno .uno:InvertBackground');
 	},
 
 	toggleDarkMode: function() {
