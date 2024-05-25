@@ -882,6 +882,7 @@ L.Map.include({
 	},
 
 	makeURLFromStr: function(str) {
+		str = str.trim();
 		if (!(str.toLowerCase().startsWith('http://') || str.toLowerCase().startsWith('https://'))) {
 			str = 'http://' + str;
 		}
@@ -938,7 +939,7 @@ L.Map.include({
 				vertical: false,
 				layoutstyle: 'end'
 			},
-		], 'hyperlink-link-box');
+		], 'hyperlink-link-box-input');
 
 		map.uiManager.showModal(json, [
 			{id: 'response-ok', func: function() {
@@ -1000,7 +1001,7 @@ L.Map.include({
 		if (this.hyperlinkUnderCursor && this.hyperlinkUnderCursor.link)
 			link = this.hyperlinkUnderCursor.link;
 
-		this._createAndRunHyperlinkDialog(text ? text.trim() : '', link);
+		this._createAndRunHyperlinkDialog(text ? text.replace(/^[\n\r]+|[\n\r]+$/g, '') : '', link);
 	},
 
 	cancelSearch: function() {
