@@ -79,7 +79,7 @@ L.Control.Notebookbar = L.Control.extend({
 		$(docLogo).data('id', 'document-logo');
 		$(docLogo).data('type', 'action');
 		$('.main-nav').prepend(docLogoHeader);
-		var isDarkMode = this.map.uiManager.getDarkModeState();
+		var isDarkMode = window.prefs.getBoolean('darkTheme');
 		if (isDarkMode)
 			$('#invertbackground').hide();
 
@@ -448,7 +448,7 @@ L.Control.Notebookbar = L.Control.extend({
 	},
 
 	onDarkModeToggleChange: function() {
-		if (this.map.uiManager.getDarkModeState()) {
+		if (window.prefs.getBoolean('darkTheme')) {
 			$('#toggledarktheme').addClass('selected');
 			$('#invertbackground').show();
 		}
@@ -459,7 +459,7 @@ L.Control.Notebookbar = L.Control.extend({
 	},
 
 	onAccessibilityToggleChange: function() {
-		if (this.map.uiManager.getAccessibilityState()) {
+		if (window.prefs.getBoolean('accessibilityState')) {
 			$('#togglea11ystate').addClass('selected');
 		} else {
 			$('#togglea11ystate').removeClass('selected');

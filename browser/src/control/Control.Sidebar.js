@@ -44,7 +44,7 @@ L.Control.Sidebar = L.Control.extend({
 			this.map.focus();
 		}
 
-		this.map.uiManager.setSavedState('ShowSidebar', false);
+		this.map.uiManager.setDocTypePref('ShowSidebar', false);
 	},
 
 	onJSUpdate: function (e) {
@@ -105,12 +105,12 @@ L.Control.Sidebar = L.Control.extend({
 	},
 
 	unsetSelectedSidebar: function() {
-		this.map.uiManager.setSavedState('PropertyDeck', false);
-		this.map.uiManager.setSavedState('SdSlideTransitionDeck', false);
-		this.map.uiManager.setSavedState('SdCustomAnimationDeck', false);
-		this.map.uiManager.setSavedState('SdMasterPagesDeck', false);
-		this.map.uiManager.setSavedState('NavigatorDeck', false);
-		this.map.uiManager.setSavedState('A11yCheckDeck', false);
+		this.map.uiManager.setDocTypePref('PropertyDeck', false);
+		this.map.uiManager.setDocTypePref('SdSlideTransitionDeck', false);
+		this.map.uiManager.setDocTypePref('SdCustomAnimationDeck', false);
+		this.map.uiManager.setDocTypePref('SdMasterPagesDeck', false);
+		this.map.uiManager.setDocTypePref('NavigatorDeck', false);
+		this.map.uiManager.setDocTypePref('A11yCheckDeck', false);
 	},
 
 	commandForDeck: function(deckId) {
@@ -164,7 +164,7 @@ L.Control.Sidebar = L.Control.extend({
 				if (sidebarData.children && sidebarData.children[0] && sidebarData.children[0].id) {
 					this.unsetSelectedSidebar();
 					var currentDeck = sidebarData.children[0].id;
-					this.map.uiManager.setSavedState(currentDeck, true);
+					this.map.uiManager.setDocTypePref(currentDeck, true);
 					if (this.targetDeckCommand) {
 						var stateHandler = this.map['stateChangeHandler'];
 						var isCurrent = stateHandler ?
@@ -184,7 +184,7 @@ L.Control.Sidebar = L.Control.extend({
 				if (wrapper.style.display === 'none')
 					$('#sidebar-dock-wrapper').show(this.options.animSpeed);
 
-				this.map.uiManager.setSavedState('ShowSidebar', true);
+				this.map.uiManager.setDocTypePref('ShowSidebar', true);
 			} else {
 				this.closeSidebar();
 			}

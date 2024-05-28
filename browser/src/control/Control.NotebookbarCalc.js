@@ -109,7 +109,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 
 		if (!this._map['wopi'].UserCanNotWriteRelative) {
 			content.push(
-				(window.uiDefaults && window.uiDefaults.saveAsMode === 'group') ? {
+				(window.prefs.get('saveAsMode') === 'group') ? {
 					'id': 'saveas:SaveAsMenu',
 					'command': 'saveas',
 					'class': 'unosaveas',

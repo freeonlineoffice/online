@@ -27,7 +27,7 @@ L.Map.include({
 		var unoCommand = '.uno:ShowResolvedAnnotations';
 		this.sendUnoCommand(unoCommand);
 		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).setViewResolved(on);
-		this.uiManager.setSavedState('ShowResolved', on ? true : false);
+		this.uiManager.setDocTypePref('ShowResolved', on ? true : false);
 	}
 });
 
