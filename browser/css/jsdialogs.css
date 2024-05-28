@@ -1937,10 +1937,21 @@ input[type='number']:hover::-webkit-outer-spin-button {
 		var(--border-radius) !important;
 }
 
-#formulabar-buttons-toolbox.formulabar {
+#formulabar-buttons-toolbox.formulabar.toolbox {
 	display: grid;
 	grid-auto-flow: column;
-	height: min-content;
+	align-items: center;
+	grid-column-gap: 4px;
+	grid-template-columns: repeat(3, 30px);
+}
+
+#formulabar-buttons-toolbox * {
+	align-items: center;
+	justify-content: center;
+}
+
+.unotoolbutton.formulabar {
+	display: flex;
 }
 
 .formulabar.unotoolbutton {
