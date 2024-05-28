@@ -594,9 +594,6 @@ L.Control.JSDialog = L.Control.extend({
 				// Call this.close(key, true) for the current dialog
 				this.close(autoFilterDialogId, true);
 			}
-
-			if (dialog.isAutoFillPopup)
-				this.close(autoFilterDialogId);
 		}
 	},
 
@@ -630,8 +627,7 @@ L.Control.JSDialog = L.Control.extend({
 		instance.isDocumentAreaPopup = instance.popupParent === '_POPOVER_' && instance.posx !== undefined && instance.posy !== undefined;
 		instance.isPopup = instance.isModalPopUp || instance.isDocumentAreaPopup || instance.isSnackbar;
 		instance.containerParent = instance.isDocumentAreaPopup ? document.getElementById('document-container'): document.body;
-		instance.isAutoFillPopup = instance.id === 'autoFillPopup';
-		instance.isAutofilter = instance.isDocumentAreaPopup && this.map._docLayer.isCalc() && !instance.isAutoFillPopup;
+		instance.isAutofilter = instance.isDocumentAreaPopup && this.map._docLayer.isCalc();
 		instance.haveTitlebar = (!instance.isModalPopUp && !instance.isSnackbar) || (instance.hasClose && instance.title && instance.title !== '');
 		instance.nonModal = !instance.isModalPopUp && !instance.isDocumentAreaPopup && !instance.isSnackbar;
 
@@ -699,9 +695,6 @@ L.Control.JSDialog = L.Control.extend({
 			}
 
 			if (instance.isAutofilter)
-				this.calculateAutoFilterPosition(instance);
-
-			if (instance.isAutoFillPopup)
 				this.calculateAutoFilterPosition(instance);
 
 			this.dialogs[instance.id] = instance;
