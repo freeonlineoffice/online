@@ -729,10 +729,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._toolbarCommandValues = {};
 		this._previewInvalidations = [];
 
-		this._followThis = -1;
 		this._editorId = -1;
-		this._followUser = false;
-		this._followEditor = false;
+		app.setFollowingOff();
+
 		this._selectedTextContent = '';
 		this._typingMention = false;
 		this._mentionText = [];
@@ -2134,7 +2133,6 @@ L.CanvasTileLayer = L.Layer.extend({
 			if (!this.isWriter() && this._graphicSelection
 				&& this._allowViewJump()) {
 
-				var docLayer = this._map._docLayer;
 				if (
 					(
 						!app.isPointVisibleInTheDisplayedArea([this._graphicSelection.x1, this._graphicSelection.y1]) ||
@@ -2142,7 +2140,7 @@ L.CanvasTileLayer = L.Layer.extend({
 					)
 					&&
 					!this._selectionHandles.active &&
-					!(docLayer._followEditor || docLayer._followUser) &&
+					!(app.isFollowingEditor() || app.isFollowingUser()) &&
 					!this._map.calcInputBarHasFocus()) {
 					this.scrollToPos(new app.definitions.simplePoint(this._graphicSelection.x1, this._graphicSelection.y1));
 				}
@@ -2399,8 +2397,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			app.sectionContainer.onCursorPositionChanged();
 		}
 
-		var docLayer = this._map._docLayer;
-		if ((docLayer._followEditor || docLayer._followUser) && this._map.lastActionByUser) {
+		if ((app.isFollowingEditor() || app.isFollowingUser()) && this._map.lastActionByUser) {
 			this._map._setFollowing(false, null);
 		}
 		this._map.lastActionByUser = false;
@@ -2446,8 +2443,8 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		docLayer._editorId = editorId;
 
-		if (docLayer._followEditor) {
-			docLayer._followThis = editorId;
+		if (app.isFollowingEditor()) {
+			app.setFollowingEditor(editorId);
 		}
 
 		if (this._map._viewInfo[editorId])
@@ -2457,7 +2454,6 @@ L.CanvasTileLayer = L.Layer.extend({
 	_onInvalidateViewCursorMsg: function (textMsg) {
 		var obj = JSON.parse(textMsg.substring('invalidateviewcursor:'.length + 1));
 		var viewId = parseInt(obj.viewId);
-		var docLayer = this._map._docLayer;
 
 		// Ignore if viewid is same as ours or not in our db
 		if (viewId === this._viewId || !this._map._viewInfo[viewId]) {
@@ -2484,7 +2480,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		this._onUpdateViewCursor(viewId);
 
-		if (docLayer._followThis === viewId && (docLayer._followEditor || docLayer._followUser)) {
+		if (app.getFollowedViewId() === viewId && (app.isFollowingEditor() || app.isFollowingUser())) {
 			if (this._map.getDocType() === 'text' || this._map.getDocType() === 'presentation') {
 				this.goToViewCursor(viewId);
 			}
@@ -3532,8 +3528,6 @@ L.CanvasTileLayer = L.Layer.extend({
 			return;
 		}
 
-		var docLayer = this._map._docLayer;
-
 		if (!zoom
 		&& scroll !== false
 		&& (app.file.textCursor.visible || this._graphicSelection)
@@ -3557,7 +3551,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			if (!app.isPointVisibleInTheDisplayedArea(new app.definitions.simplePoint(correctedCursor.x1, correctedCursor.y1).toArray()) ||
 				!app.isPointVisibleInTheDisplayedArea(new app.definitions.simplePoint(correctedCursor.x2, correctedCursor.y2).toArray())) {
 				if (!this._selectionHandles.active &&
-				    !(docLayer._followEditor || docLayer._followUser) &&
+				    !(app.isFollowingEditor() || app.isFollowingUser()) &&
 				    !this._map.calcInputBarHasFocus()) {
 					this.scrollToPos(new app.definitions.simplePoint(correctedCursor.x1, correctedCursor.y1));
 				}
