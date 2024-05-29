@@ -1985,6 +1985,9 @@ static std::string getCapabilitiesJson(bool convertToAvailable)
     capabilities->set("hasWASMSupport",
                       LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled);
 
+    if (const char* podName = std::getenv("POD_NAME"))
+        capabilities->set("podName", podName);
+
     std::ostringstream ostrJSON;
     capabilities->stringify(ostrJSON);
     return ostrJSON.str();
