@@ -1307,7 +1307,7 @@ window.app = {
 				if (L.Browser.cypressTest && isCalcTest)
 					global.enableAccessibility = false;
 
-				var accessibilityState = global.prefs.getBoolean('accessibilityState', false);
+				var accessibilityState = global.prefs.getBoolean('accessibilityState');
 				accessibilityState = accessibilityState || (L.Browser.cypressTest && !isCalcTest);
 				msg += ' accessibilityState=' + accessibilityState;
 
