@@ -305,7 +305,10 @@ class UserList extends L.Control {
 
 		let displayCount: number;
 
-		if (this.getFollowedUser() === undefined && !app.isFollowingEditor()) {
+		if (
+			this.getFollowedUser() === undefined &&
+			!app.isFollowingEditor()
+		) {
 			displayCount = this.options.userLimitHeader;
 		} else {
 			displayCount = this.options.userLimitHeaderWhenFollowing;

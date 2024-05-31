@@ -119,7 +119,12 @@ class SnackbarController {
 								}
 							: {},
 						snackbarData.hasProgress
-							? { id: 'progress', type: 'progressbar', value: 0, maxValue: 100 }
+							? {
+									id: 'progress',
+									type: 'progressbar',
+									value: 0,
+									maxValue: 100,
+								}
 							: {},
 						snackbarData.action
 							? {
