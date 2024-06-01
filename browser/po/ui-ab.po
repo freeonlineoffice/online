@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-31 23:05+0200\n"
+"POT-Creation-Date: 2024-06-01 14:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,14 +278,13 @@ msgstr ""
 #: src/control/Control.Tabs.js:390 src/control/Control.Zotero.js:328
 #: src/control/Control.Zotero.js:366 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:695 src/control/Toolbar.js:797
-#: src/control/Toolbar.js:943 src/core/Socket.js:657 src/core/Socket.js:1092
-#: src/core/Socket.js:1162 src/core/Socket.js:1309 src/core/Socket.js:1313
-#: src/docdispatcher.ts:388 src/main.js:71 src/main.js:74 src/main.js:126
-#: src/map/Clipboard.js:1176 src/map/handler/Map.Feedback.js:83
-#: src/map/handler/Map.SlideShow.js:56 src/map/handler/Map.SlideShow.js:165
-#: src/map/handler/Map.SlideShow.js:299 src/map/handler/Map.SlideShow.js:310
-#: src/map/handler/Map.WOPI.js:603
+#: src/control/Toolbar.js:695 src/control/Toolbar.js:786
+#: src/core/Socket.js:657 src/core/Socket.js:1092 src/core/Socket.js:1162
+#: src/core/Socket.js:1309 src/core/Socket.js:1313 src/docdispatcher.ts:388
+#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1176
+#: src/map/handler/Map.Feedback.js:83 src/map/handler/Map.SlideShow.js:56
+#: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
+#: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
 msgid "OK"
 msgstr ""
 
@@ -307,9 +306,9 @@ msgstr "Ишәҭахума асеанс ахыркәшара?"
 #: src/control/Control.DownloadProgress.js:81
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1222 src/control/Control.UIManager.js:1289
-#: src/control/Control.UIManager.js:1424 src/control/Control.UIManager.js:1566
-#: src/control/Control.Zotero.js:323 src/control/Toolbar.js:938
+#: src/control/Control.UIManager.js:1223 src/control/Control.UIManager.js:1290
+#: src/control/Control.UIManager.js:1425 src/control/Control.UIManager.js:1567
+#: src/control/Control.Zotero.js:323 src/control/Toolbar.js:781
 #: src/canvas/sections/CommentListSection.ts:413
 #: src/canvas/sections/CommentSection.ts:137
 #: src/canvas/sections/CommentSection.ts:140
@@ -656,8 +655,8 @@ msgid "replies"
 msgstr ""
 
 #: src/control/Control.JSDialogBuilder.js:2005
-#: src/layer/tile/CanvasTileLayer.js:4610
-#: src/layer/tile/CanvasTileLayer.js:4621
+#: src/layer/tile/CanvasTileLayer.js:4609
+#: src/layer/tile/CanvasTileLayer.js:4620
 #: src/canvas/sections/CommentListSection.ts:1008
 msgid "Comment"
 msgstr "Азгәаҭа"
@@ -1430,7 +1429,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:592 src/control/Toolbar.js:910
+#: src/control/Control.NotebookbarCalc.js:592 src/control/Toolbar.js:753
 msgid "Text"
 msgstr ""
 
@@ -1771,7 +1770,7 @@ msgstr "Иҭаргылатәуп абӷьыц"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:758
 msgid "Hide Menu"
 msgstr ""
 
@@ -1779,7 +1778,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:780
+#: src/control/Control.UIManager.js:781
 msgid "Show Menu"
 msgstr ""
 
@@ -2068,23 +2067,11 @@ msgstr "Аиқәырхара..."
 msgid "Renaming..."
 msgstr ""
 
-#: src/control/Toolbar.js:779
-msgid "This version of %productName is powered by"
-msgstr "%productName ари аверсиа аус ауеит аҟны"
-
-#: src/control/Toolbar.js:791
-msgid "\"Slow Proxy\""
-msgstr ""
-
-#: src/control/Toolbar.js:810
-msgid "Copy all version information in English"
-msgstr ""
-
-#: src/control/Toolbar.js:903
+#: src/control/Toolbar.js:746
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:922
+#: src/control/Toolbar.js:765
 msgid "Link"
 msgstr ""
 
@@ -2556,7 +2543,7 @@ msgstr ""
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4638
+#: src/layer/tile/CanvasTileLayer.js:4637
 msgid "No Comments"
 msgstr ""
 
@@ -2828,6 +2815,9 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "This version of %productName is powered by"
+#~ msgstr "%productName ари аверсиа аус ауеит аҟны"
 
 #~ msgid "Previous slide"
 #~ msgstr "Аҧхьатәи аслаид"
