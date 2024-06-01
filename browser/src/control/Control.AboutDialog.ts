@@ -92,13 +92,15 @@ class AboutDialog {
 		const slowProxyElement = content.querySelector(
 			'#slow-proxy',
 		) as HTMLElement;
-		if (windowAny.socketProxy) slowProxyElement.innerText = _('"Slow Proxy"');
+		if (windowAny.socketProxy)
+			slowProxyElement.innerText = _('"Slow Proxy"');
 
 		const routeTokenElement = content.querySelector(
 			'#routeToken',
 		) as HTMLElement;
 		if (windowAny.indirectSocket)
-			routeTokenElement.innerText = 'RouteToken: ' + windowAny.routeToken;
+			routeTokenElement.innerText =
+				'RouteToken: ' + windowAny.routeToken;
 
 		this.map.uiManager.showYesNoButton(
 			aboutDialogId + '-box',
@@ -117,7 +119,10 @@ class AboutDialog {
 
 		var form = document.getElementById('about-dialog-box');
 
-		form.addEventListener('click', this.aboutDialogClickHandler.bind(this));
+		form.addEventListener(
+			'click',
+			this.aboutDialogClickHandler.bind(this),
+		);
 		form.addEventListener('keyup', this.aboutDialogKeyHandler.bind(this));
 		form.querySelector('#loolwsd-version').querySelector('a').focus();
 		var copyversion = L.DomUtil.create(
@@ -125,7 +130,10 @@ class AboutDialog {
 			'ui-pushbutton jsdialog',
 			null,
 		);
-		copyversion.setAttribute('id', 'modal-dialog-about-dialog-box-copybutton');
+		copyversion.setAttribute(
+			'id',
+			'modal-dialog-about-dialog-box-copybutton',
+		);
 		copyversion.setAttribute(
 			'title',
 			_('Copy all version information in English'),
@@ -133,7 +141,9 @@ class AboutDialog {
 		var img = L.DomUtil.create('img', null, null);
 		L.LOUtil.setImage(img, 'lc_copy.svg', this.map);
 		copyversion.innerHTML =
-			'<img src="' + sanitizeUrl(img.src) + '" width="18px" height="18px">';
+			'<img src="' +
+			sanitizeUrl(img.src) +
+			'" width="18px" height="18px">';
 		copyversion.addEventListener(
 			'click',
 			this.copyVersionInfoToClipboard.bind(this),
@@ -188,10 +198,17 @@ class AboutDialog {
 			this.getVersionInfoFromClass('loolwsd-version') +
 			'\n';
 		text +=
-			'LOKit version: ' + this.getVersionInfoFromClass('lokit-version') + '\n';
-		text += 'Served by: ' + document.getElementById('os-info').innerText + '\n';
+			'LOKit version: ' +
+			this.getVersionInfoFromClass('lokit-version') +
+			'\n';
 		text +=
-			'Server ID: ' + document.getElementById('loolwsd-id').innerText + '\n';
+			'Served by: ' +
+			document.getElementById('os-info').innerText +
+			'\n';
+		text +=
+			'Server ID: ' +
+			document.getElementById('loolwsd-id').innerText +
+			'\n';
 		text = text.replace(/\u00A0/g, ' ');
 
 		if (navigator.clipboard && window.isSecureContext) {
@@ -204,7 +221,10 @@ class AboutDialog {
 					}.bind(this),
 				)
 				.catch(function (error) {
-					window.console.error('Error copying text to clipboard:', error);
+					window.console.error(
+						'Error copying text to clipboard:',
+						error,
+					);
 				});
 		} else {
 			var textArea = document.createElement('textarea');
@@ -218,7 +238,10 @@ class AboutDialog {
 				window.console.log('Text copied to clipboard');
 				this.contentHasBeenCopiedShowSnackbar();
 			} catch (error) {
-				window.console.error('Error copying text to clipboard:', error);
+				window.console.error(
+					'Error copying text to clipboard:',
+					error,
+				);
 			} finally {
 				document.body.removeChild(textArea);
 			}
