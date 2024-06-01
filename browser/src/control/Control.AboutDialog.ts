@@ -33,7 +33,7 @@ class AboutDialog {
 		const windowAny = window as any;
 		// Just as a test to exercise the Async Trace Event functionality, uncomment this
 		// line and the asyncTraceEvent.finish() below.
-		// var asyncTraceEvent = app.socket.createAsyncTraceEvent('cool-showLOAboutDialog');
+		// var asyncTraceEvent = app.socket.createAsyncTraceEvent('lool-showLOAboutDialog');
 
 		const aboutDialogId = 'about-dialog';
 		// Move the div sitting in 'body' as content and make it visible
@@ -119,7 +119,7 @@ class AboutDialog {
 
 		form.addEventListener('click', this.aboutDialogClickHandler.bind(this));
 		form.addEventListener('keyup', this.aboutDialogKeyHandler.bind(this));
-		form.querySelector('#coolwsd-version').querySelector('a').focus();
+		form.querySelector('#loolwsd-version').querySelector('a').focus();
 		var copyversion = L.DomUtil.create(
 			'button',
 			'ui-pushbutton jsdialog',
@@ -152,9 +152,9 @@ class AboutDialog {
 			this.map._debug.toggle();
 		} else if (e.key === 'l') {
 			// L toggges the Online logging level between the default (whatever
-			// is set in coolwsd.xml or on the coolwsd command line) and the
+			// is set in loolwsd.xml or on the loolwsd command line) and the
 			// most verbose a client is allowed to set (which also can be set in
-			// coolwsd.xml or on the coolwsd command line).
+			// loolwsd.xml or on the loolwsd command line).
 			//
 			// In a typical developer "make run" setup, the default is "trace"
 			// so there is nothing more verbose. But presumably it is different
@@ -171,11 +171,11 @@ class AboutDialog {
 
 			let logLevelInformation;
 			if (newLogLevel === 'default')
-				logLevelInformation = 'default (from coolwsd.xml)';
+				logLevelInformation = 'default (from loolwsd.xml)';
 			else if (newLogLevel === 'verbose')
-				logLevelInformation = 'most verbose (from coolwsd.xml)';
+				logLevelInformation = 'most verbose (from loolwsd.xml)';
 			else if (newLogLevel === 'terse')
-				logLevelInformation = 'least verbose (from coolwsd.xml)';
+				logLevelInformation = 'least verbose (from loolwsd.xml)';
 			else logLevelInformation = newLogLevel;
 
 			console.debug('Log level: ' + logLevelInformation);
@@ -185,13 +185,13 @@ class AboutDialog {
 	private copyVersionInfoToClipboard() {
 		let text =
 			'COOLWSD version: ' +
-			this.getVersionInfoFromClass('coolwsd-version') +
+			this.getVersionInfoFromClass('loolwsd-version') +
 			'\n';
 		text +=
 			'LOKit version: ' + this.getVersionInfoFromClass('lokit-version') + '\n';
 		text += 'Served by: ' + document.getElementById('os-info').innerText + '\n';
 		text +=
-			'Server ID: ' + document.getElementById('coolwsd-id').innerText + '\n';
+			'Server ID: ' + document.getElementById('loolwsd-id').innerText + '\n';
 		text = text.replace(/\u00A0/g, ' ');
 
 		if (navigator.clipboard && window.isSecureContext) {
