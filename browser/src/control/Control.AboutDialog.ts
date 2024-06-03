@@ -194,7 +194,7 @@ class AboutDialog {
 
 	private copyVersionInfoToClipboard() {
 		let text =
-			'COOLWSD version: ' +
+			'LOOLWSD version: ' +
 			this.getVersionInfoFromClass('loolwsd-version') +
 			'\n';
 		text +=
