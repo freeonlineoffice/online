@@ -149,6 +149,7 @@ loolwsd_sources = common/Crypto.cpp \
                   wsd/TileCache.cpp \
                   wsd/ProofKey.cpp \
                   wsd/QuarantineUtil.cpp \
+                  wsd/ServerAuditUtil.cpp \
                   wsd/wopi/CheckFileInfo.cpp \
                   wsd/wopi/StorageConnectionManager.cpp \
                   wsd/wopi/WopiProxy.cpp \
@@ -328,6 +329,7 @@ wsd_headers = wsd/Admin.hpp \
               wsd/UserMessages.hpp \
               wsd/QuarantineUtil.hpp \
               wsd/HostUtil.hpp \
+              wsd/ServerAuditUtil.hpp \
               wsd/wopi/CheckFileInfo.hpp \
               wsd/wopi/StorageConnectionManager.hpp \
               wsd/wopi/WopiProxy.hpp \
