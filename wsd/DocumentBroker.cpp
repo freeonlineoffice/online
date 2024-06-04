@@ -3346,7 +3346,7 @@ void DocumentBroker::handleTileRequest(const StringVector &tokens, bool forceKey
         return;
     }
 
-    if (!cachedTile)
+    if (!cachedTile || cachedTile->tooLarge())
         tile.forceKeyframe();
 
     auto now = std::chrono::steady_clock::now();
@@ -3409,9 +3409,10 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
         }
 
         Tile cachedTile = _tileCache->lookupTile(tile);
-        if(!cachedTile || !cachedTile->isValid())
+        bool tooLarge = cachedTile && cachedTile->tooLarge();
+        if(!cachedTile || !cachedTile->isValid() || tooLarge)
         {
-            if (!cachedTile)
+            if (!cachedTile || tooLarge)
                 tile.forceKeyframe();
             tilesNeedsRendering.push_back(tile);
             _debugRenderedTileCount++;
