@@ -50,6 +50,14 @@ class ServerAuditDialog {
 					'',
 				],
 			},
+			certwarning: {
+				sslverifyfail: [
+					_('Your WOPI server is not secure: SSL verification failed'),
+					'SDK: ssl-configuration',
+					'https://sdk.collaboraonline.com/docs/installation/Configuration.html?highlight=ssl#ssl-configuration',
+				],
+				ok: [_('No problems with SSL verification detected'), '', ''],
+			},
 		};
 	}
 
