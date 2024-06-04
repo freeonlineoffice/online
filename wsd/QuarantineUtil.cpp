@@ -36,18 +36,15 @@ std::size_t getSecondsSinceEpoch()
 std::string Quarantine::QuarantinePath;
 std::unordered_map<std::string, std::vector<std::string>> Quarantine::QuarantineMap;
 std::mutex Quarantine::Mutex;
+std::size_t Quarantine::MaxSizeBytes;
+std::size_t Quarantine::MaxAgeSecs;
+std::size_t Quarantine::MaxVersions;
 
 Quarantine::Quarantine(DocumentBroker& docBroker, const std::string& docName)
     : _docKey(docBroker.getDocKey())
     , _docName(Util::encodeURIComponent(docName, std::string(",/?:@&=+$#") + Delimiter))
     , _quarantinedFilename(Delimiter + std::to_string(docBroker.getPid()) + Delimiter +
                            docBroker.getDocKey() + Delimiter + _docName)
-    , _maxSizeBytes(LOOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 0) *
-                    1024 * 1024)
-    , _maxAgeSecs(LOOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 30) * 60)
-    , _maxVersions(std::max(
-          LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2),
-          1UL))
 {
     LOG_DBG("Quarantine ctor for [" << _docKey << ']');
 }
@@ -57,6 +54,12 @@ void Quarantine::initialize(const std::string& path)
     if (!LOOLWSD::getConfigValue<bool>("quarantine_files[@enable]", false) ||
         !QuarantinePath.empty())
         return;
+
+    MaxSizeBytes =
+        LOOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 0) * 1024 * 1024;
+    MaxAgeSecs = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 30) * 60;
+    MaxVersions = std::max(
+        LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2), 1UL);
 
     // This function should ever be called once, but for consistency, take the lock.
     std::lock_guard<std::mutex> lock(Mutex);
@@ -123,16 +126,16 @@ void Quarantine::makeQuarantineSpace()
     auto index = files.begin();
     while (index != files.end())
     {
-        bool purge = currentSize >= _maxSizeBytes;
+        bool purge = currentSize >= MaxSizeBytes;
         if (!purge)
         {
             // Parse the timestamp from the quarantined filename (first token).
             const auto pair = Util::u64FromString(Util::split(*index, Delimiter).first);
             const auto age = (now - pair.first);
-            if (!pair.second || (now > pair.first && age > _maxAgeSecs))
+            if (!pair.second || (now > pair.first && age > MaxAgeSecs))
             {
                 LOG_TRC("Will remove quarantined file [" << *index << "] which is " << age
-                                                         << " secs old (max " << _maxAgeSecs
+                                                         << " secs old (max " << MaxAgeSecs
                                                          << " secs)");
                 purge = true;
             }
@@ -143,7 +146,7 @@ void Quarantine::makeQuarantineSpace()
             FileUtil::Stat file(QuarantinePath + *index);
             LOG_TRC("Removing quarantined file ["
                     << *index << "] (" << file.size() << " bytes). Current quarantine size: "
-                    << currentSize << " (max " << _maxSizeBytes << " bytes)");
+                    << currentSize << " (max " << MaxSizeBytes << " bytes)");
             currentSize -= file.size();
             FileUtil::removeFile(QuarantinePath + *index, true);
             index = files.erase(index);
@@ -161,9 +164,9 @@ void Quarantine::clearOldQuarantineVersions()
     LOG_ASSERT_MSG(!Mutex.try_lock(), "Quarantine Mutex must be taken");
 
     auto& container = QuarantineMap[_docKey];
-    if (container.size() > _maxVersions)
+    if (container.size() > MaxVersions)
     {
-        const std::size_t excess = container.size() - _maxVersions;
+        const std::size_t excess = container.size() - MaxVersions;
         LOG_TRC("Removing " << excess << " excess quarantined file versions for [" << _docKey
                             << ']');
         for (std::size_t i = 0; i < excess; ++i)

@@ -49,6 +49,9 @@ private:
     /// Protects the shared QuarantineMap from concurrent modification.
     static std::mutex Mutex;
     static std::string QuarantinePath;
+    static std::size_t MaxSizeBytes; //< Total limit on all quarantined files.
+    static std::size_t MaxAgeSecs; //< The oldest quarantined file for any doc.
+    static std::size_t MaxVersions; //< The maximum number of quarantines per doc.
 
     /// The delimiter used in the quarantine filename.
     static constexpr char Delimiter = '_';
@@ -60,7 +63,4 @@ private:
     /// The Delimiter is used to join and later tokenize it.
     /// The document filename is encoded to ensure tokenization.
     const std::string _quarantinedFilename;
-    const std::size_t _maxSizeBytes;
-    const std::size_t _maxAgeSecs;
-    const std::size_t _maxVersions;
 };
