@@ -55,11 +55,11 @@ void Quarantine::initialize(const std::string& path)
         !QuarantinePath.empty())
         return;
 
-    MaxSizeBytes =
-        LOOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 0) * 1024 * 1024;
-    MaxAgeSecs = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 30) * 60;
+    MaxSizeBytes = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.limit_dir_size_mb", 250) *
+                   1024 * 1024;
+    MaxAgeSecs = LOOLWSD::getConfigValue<std::size_t>("quarantine_files.expiry_min", 3000) * 60;
     MaxVersions = std::max(
-        LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 2), 1UL);
+        LOOLWSD::getConfigValue<std::size_t>("quarantine_files.max_versions_to_maintain", 5), 1UL);
 
     // This function should ever be called once, but for consistency, take the lock.
     std::lock_guard<std::mutex> lock(Mutex);
