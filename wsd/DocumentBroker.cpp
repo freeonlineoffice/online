@@ -53,7 +53,6 @@
 #include <CommandControl.hpp>
 
 #if !MOBILEAPP
-#include "ServerAuditUtil.hpp"
 #include <wopi/CheckFileInfo.hpp>
 #include <net/HttpHelper.hpp>
 #endif
@@ -1176,7 +1175,7 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
     const std::string templateSource = wopiFileInfo->getTemplateSource();
 
     if (userExtraInfo.find("is_admin") == std::string::npos)
-        ServerAuditUtil::set("is_admin", "missing");
+        _serverAudit.set("is_admin", "missing");
 
     _isViewFileExtension = LOOLWSD::IsViewFileExtension(wopiStorage->getFileExtension());
     if (!wopiFileInfo->getUserCanWrite() ||
@@ -4478,7 +4477,7 @@ void DocumentBroker::onUrpMessage(const char* data, size_t len)
 
 std::string DocumentBroker::getServerAudit() const
 {
-    return ServerAuditUtil::getResultsJSON();
+    return _serverAudit.getResultsJSON();
 }
 
 void DocumentBroker::switchMode(const std::shared_ptr<ClientSession>& session,

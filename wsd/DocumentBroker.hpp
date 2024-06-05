@@ -29,6 +29,7 @@
 #include "net/Socket.hpp"
 #include "net/WebSocketHandler.hpp"
 #include "Storage.hpp"
+#include "ServerAuditUtil.hpp"
 
 #include "common/SigUtil.hpp"
 #include "common/Session.hpp"
@@ -1593,6 +1594,10 @@ private:
 
     /// The Quarantine manager.
     std::unique_ptr<Quarantine> _quarantine;
+
+#if !MOBILEAPP && !WASMAPP
+    ServerAuditUtil _serverAudit;
+#endif
 
     std::unique_ptr<TileCache> _tileCache;
     std::atomic<bool> _isModified;
