@@ -533,7 +533,7 @@ L.Control.UIManager = L.Control.extend({
 			break;
 		}
 
-		this.setDocTypePref('compactMode', uiMode.mode === 'classic');
+		window.prefs.set('compactMode', uiMode.mode === 'classic');
 		this.initializeSidebar();
 		this.insertCustomButtons();
 
