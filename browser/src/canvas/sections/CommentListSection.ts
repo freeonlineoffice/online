@@ -946,6 +946,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 		L.installContextMenu({
 			selector: '.lool-annotation-menu',
 			trigger: 'none',
+			zIndex: 1500,
 			className: 'lool-font',
 			build: function ($trigger: any) {
 				return {
@@ -1006,6 +1007,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 		L.installContextMenu({
 			selector: '.lool-annotation-menu-redline',
 			trigger: 'none',
+			zIndex: 1500,
 			className: 'lool-font',
 			items: {
 				modify: {

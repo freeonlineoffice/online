@@ -160,6 +160,7 @@ L.Control.ContextMenu = L.Control.extend({
 				selector: '.leaflet-layer',
 				className: 'lool-font',
 				trigger: 'none',
+				zIndex: 1500,
 				build: function() {
 					return {
 						callback: function(key) {
