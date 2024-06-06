@@ -787,6 +787,7 @@ L.Control.UIManager = L.Control.extend({
 	// Ruler
 
 	showRuler: function() {
+		this._map.sendUnoCommand('.uno:ShowRuler');
 		$('.lool-ruler').show();
 		$('#map').addClass('hasruler');
 		this.setDocTypePref('ShowRuler', true);
