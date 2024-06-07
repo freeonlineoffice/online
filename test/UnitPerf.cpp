@@ -18,7 +18,7 @@
 #include <helpers.hpp>
 #include <StringVector.hpp>
 #include <WebSocketSession.hpp>
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 #include <wsd/DocumentBroker.hpp>
 #include <test/lokassert.hpp>
 #include <Poco/Util/LayeredConfiguration.h>
