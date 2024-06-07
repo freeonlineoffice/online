@@ -34,11 +34,15 @@ class JSDialogMessageRouter {
 			var fireJSDialogEvent = function () {
 				switch (msgData.action) {
 					case 'update':
-						app.socket._map.fire('jsdialogupdate', { data: msgData });
+						app.socket._map.fire('jsdialogupdate', {
+							data: msgData,
+						});
 						return true;
 
 					case 'action':
-						app.socket._map.fire('jsdialogaction', { data: msgData });
+						app.socket._map.fire('jsdialogaction', {
+							data: msgData,
+						});
 						return true;
 				}
 
@@ -46,8 +50,12 @@ class JSDialogMessageRouter {
 			};
 
 			var isNotebookbarInitialized =
-				app.socket._map.uiManager && app.socket._map.uiManager.notebookbar;
-			if (msgData.jsontype === 'notebookbar' && !isNotebookbarInitialized) {
+				app.socket._map.uiManager &&
+				app.socket._map.uiManager.notebookbar;
+			if (
+				msgData.jsontype === 'notebookbar' &&
+				!isNotebookbarInitialized
+			) {
 				setTimeout(fireJSDialogEvent, 1000);
 				return;
 			} else if (fireJSDialogEvent() === true) {
@@ -103,7 +111,10 @@ class JSDialogMessageRouter {
 				);
 			}
 		} else if (msgData.jsontype === 'dialog') {
-			app.socket._map.fire('jsdialog', { data: msgData, callback: callbackFn });
+			app.socket._map.fire('jsdialog', {
+				data: msgData,
+				callback: callbackFn,
+			});
 		} else if (msgData.jsontype === 'sidebar') {
 			app.socket._map.fire('sidebar', { data: msgData });
 		} else if (msgData.jsontype === 'formulabar') {
@@ -113,7 +124,10 @@ class JSDialogMessageRouter {
 				for (var i = 0; i < msgData.children.length; i++) {
 					if (msgData.children[i].type === 'control') {
 						msgData.children[i].id = msgData.id;
-						app.socket._map.fire('notebookbar', msgData.children[i]);
+						app.socket._map.fire(
+							'notebookbar',
+							msgData.children[i],
+						);
 						return;
 					}
 				}

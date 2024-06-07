@@ -20,7 +20,11 @@ class ServerAuditDialog {
 
 	constructor(map: any) {
 		this.map = map;
-		this.map.on('receivedserveraudit', this.onServerAudit.bind(this), this);
+		this.map.on(
+			'receivedserveraudit',
+			this.onServerAudit.bind(this),
+			this,
+		);
 
 		this.errorCodes = {
 			is_admin: {
@@ -119,7 +123,10 @@ class ServerAuditDialog {
 						{
 							id: 'auditlist',
 							type: 'treelistbox',
-							headers: [/* icon */ { text: _('Status') }, { text: _('Help') }],
+							headers: [
+								/* icon */ { text: _('Status') },
+								{ text: _('Help') },
+							],
 							entries: entries,
 							enabled: entries.length > 0,
 						},
