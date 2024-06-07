@@ -1,6 +1,6 @@
 ~+3008950~FoWfKnRzxrKHTLC4~000~NewSession: https://localhost:9980/wopi/files/opt/libreoffice/online/test/data/hello-world.odt?access_token=test&access_token_ttl=0
 ~+141759~FoWfKnRzxrKHTLC4~05f~NewSession: https://localhost:9980/wopi/files/opt/libreoffice/online/test/data/hello-world.odt?access_token=test&access_token_ttl=0
->+480>FoWfKnRzxrKHTLC4>05f>coolclient 0.1 1716920949623 169.39999999850988
+>+480>FoWfKnRzxrKHTLC4>05f>loolclient 0.1 1716920949623 169.39999999850988
 >+5524>FoWfKnRzxrKHTLC4>05f>load url=https%3A%2F%2Flocalhost%3A9980%2Fwopi%2Ffiles%2Fopt%2Flibreoffice%2Fonline%2Ftest%2Fdata%2Fhello-world.odt accessibilityState=false deviceFormFactor=desktop spreadsheetDarkTheme=false timezone=Europe/London
 >+636629>FoWfKnRzxrKHTLC4>05f>uno .uno:ToolbarMode?Mode:string=notebookbar_online.ui
 >+18435>FoWfKnRzxrKHTLC4>05f>commandvalues command=.uno:StyleApply
