@@ -2600,7 +2600,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 				if (scrollX !== 0 || scrollY !== 0) {
 					var newCenter = mapBounds.getCenter();
-					newCenter.lat += scrollX;
+					newCenter.lng += scrollX;
 					newCenter.lat += scrollY;
 					this.scrollToPos(newCenter);
 				}
