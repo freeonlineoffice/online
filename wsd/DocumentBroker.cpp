@@ -1174,8 +1174,8 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
         : wopiFileInfo->getWatermarkText();
     const std::string templateSource = wopiFileInfo->getTemplateSource();
 
-    if (userExtraInfo.find("is_admin") == std::string::npos)
-        _serverAudit.set("is_admin", "missing");
+    if (!wopiFileInfo->getIsAdminUserError().empty())
+        _serverAudit.set("is_admin", wopiFileInfo->getIsAdminUserError());
 
     _isViewFileExtension = LOOLWSD::IsViewFileExtension(wopiStorage->getFileExtension());
     if (!wopiFileInfo->getUserCanWrite() ||
