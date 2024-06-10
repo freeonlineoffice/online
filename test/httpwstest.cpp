@@ -281,7 +281,8 @@ void HTTPWSTest::testInactiveClient()
                                             token == "tableselected:" ||
                                             token == "colorpalettes:" ||
                                             token == "jsdialog:" ||
-                                            token == "serveraudit:");
+                                            token == "serveraudit:" ||
+                                            token == "adminuser:");
 
                     // End when we get state changed.
                     return (token != "statechanged:");
