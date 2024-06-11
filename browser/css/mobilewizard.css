@@ -1286,6 +1286,7 @@ label.disabled {
 .ui-explorable-entry .lool-annotation {
 	position: relative !important;
 	z-index: auto;
+	width: inherit;
 }
 
 .ui-explorable-entry .lool-annotation-header {
