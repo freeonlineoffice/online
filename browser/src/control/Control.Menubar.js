@@ -1893,6 +1893,7 @@ L.Control.Menubar = L.Control.extend({
 			|| id === 'deletepage'
 			|| id === 'remotelink'
 			|| id === 'toggledarktheme'
+			|| id === 'invertbackground'
 			|| id === 'home-search'
 			|| id === 'print-active-sheet'
 			|| id == 'print-all-sheets') {
