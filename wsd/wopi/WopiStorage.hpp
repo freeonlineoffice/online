@@ -23,6 +23,7 @@
 
 #include <chrono>
 #include <memory>
+#include <optional>
 #include <string>
 
 /// WOPI protocol backed storage.
@@ -80,7 +81,7 @@ public:
         bool getSupportsLocks() const { return _supportsLocks; }
         bool getUserCanRename() const { return _userCanRename; }
 
-        bool getIsAdminUser() const { return _isAdminUser; }
+        const std::optional<bool> getIsAdminUser() const { return _isAdminUser; }
         const std::string& getIsAdminUserError() const { return _isAdminUserError; }
 
         TriState getDisableChangeTrackingShow() const { return _disableChangeTrackingShow; }
@@ -161,7 +162,7 @@ public:
         /// If user is allowed to rename the document
         bool _userCanRename = false;
         /// If user is considered as admin on the integrator side
-        bool _isAdminUser = false;
+        std::optional<bool> _isAdminUser = std::nullopt;
 
         /// error code if integration does not use isAdminUser field properly
         std::string _isAdminUserError = "";
