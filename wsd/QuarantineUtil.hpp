@@ -64,7 +64,7 @@ public:
 
 private:
     /// Returns quarantine directory size in bytes.
-    std::size_t quarantineSize();
+    static std::size_t quarantineSize();
 
     void makeQuarantineSpace();
 
