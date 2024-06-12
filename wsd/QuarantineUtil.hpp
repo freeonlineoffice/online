@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 #include <mutex>
 #include <string>
@@ -51,7 +52,7 @@ public:
 
     static void initialize(const std::string& path);
 
-    bool isEnabled() const { return !QuarantinePath.empty(); }
+    static bool isEnabled() { return !QuarantinePath.empty(); }
 
     /// Quarantines a new version of the document.
     bool quarantineFile(const std::string& docName);
@@ -68,7 +69,9 @@ private:
 
     void makeQuarantineSpace();
 
-    void clearOldQuarantineVersions();
+    /// Removes old quarantined files for the given DocKey based on MaxVersions and @oldestTimestamp.
+    /// Doesn't remove the DocKey from QuarantineMap if it's empty nor does it remove the DocKey directory.
+    static void deleteOldQuarantineVersions(const std::string& docKey, std::size_t oldestTimestamp);
 
     void removeQuarantine();
 
