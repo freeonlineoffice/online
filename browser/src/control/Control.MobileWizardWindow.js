@@ -45,6 +45,8 @@ L.Control.MobileWizardWindow = L.Control.extend({
 		var parentNode = document.getElementById('mobile-wizard-content');
 		this.content = L.DomUtil.create('div', 'mobile-wizard mobile-wizard-content', parentNode);
 		this.content.id = this.id;
+
+		this.scrollPositions = [];
 	},
 
 	onAdd: function (map) {
@@ -243,6 +245,8 @@ L.Control.MobileWizardWindow = L.Control.extend({
 		else
 			$(contentToShow).children('.ui-content').first().show();
 
+		const currentScroll = this.mobileWizard.scrollTop();
+		this.scrollPositions.push(currentScroll);
 		this.mobileWizard.scrollTop(0);
 
 		this._currentDepth++;
@@ -315,7 +319,8 @@ L.Control.MobileWizardWindow = L.Control.extend({
 			$('#mobile-wizard.funcwizard div#mobile-wizard-content').addClass('hideHelpBG');
 			headers.show('slide', { direction: 'left' }, 'fast');
 
-			this.mobileWizard.scrollTop(0);
+			const prevScroll = this.scrollPositions.pop();
+			this.mobileWizard.scrollTop(prevScroll);
 
 			if (this._currentDepth == 0 || (this._isTabMode && this._currentDepth == 1)) {
 				this._inMainMenu = true;
