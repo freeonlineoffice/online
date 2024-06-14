@@ -342,10 +342,10 @@ void ClientSession::handleClipboardRequest(DocumentBroker::ClipboardRequest     
                         }
 
                         // Check if this is likely produced by us.
-                        std::string clipboardHeader = httpResponse->get("X-COOL-Clipboard");
+                        std::string clipboardHeader = httpResponse->get("X-LOOL-Clipboard");
                         if (clipboardHeader != "true")
                         {
-                            LOG_ERR("Clipboard response is missing the required 'X-COOL-Clipboard: true' header");
+                            LOG_ERR("Clipboard response is missing the required 'X-LOOL-Clipboard: true' header");
                             return;
                         }
 
@@ -2049,7 +2049,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
                 << "Content-Length: " << (empty ? 0 : (payload->size() - header)) << "\r\n"
                 << "Content-Type: application/octet-stream\r\n"
                 << "X-Content-Type-Options: nosniff\r\n"
-                << "X-COOL-Clipboard: true\r\n"
+                << "X-LOOL-Clipboard: true\r\n"
                 << "Connection: close\r\n"
                 << "\r\n";
 
