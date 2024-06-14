@@ -29,7 +29,9 @@ class ServerAuditDialog {
 		this.errorCodes = {
 			is_admin: {
 				missing: [
-					_('The IsAdminUser property is not set by integration'),
+					_(
+						'The IsAdminUser property is not set by integration',
+					),
 					'SDK: IsAdminUser',
 					'https://sdk.collaboraonline.com/docs/advanced_integration.html?highlight=IsAdminUser#isadminuser',
 				],
@@ -40,7 +42,13 @@ class ServerAuditDialog {
 					'SDK: IsAdminUser',
 					'https://sdk.collaboraonline.com/docs/advanced_integration.html?highlight=IsAdminUser#isadminuser',
 				],
-				ok: [_('The IsAdminUser user property is set by integration'), '', ''],
+				ok: [
+					_(
+						'The IsAdminUser user property is set by integration',
+					),
+					'',
+					'',
+				],
 			},
 		};
 	}
