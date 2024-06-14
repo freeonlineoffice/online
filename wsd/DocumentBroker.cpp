@@ -1293,6 +1293,11 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
         LOG_ANY("User stats: " << userStatsString);
     }
 
+    if (config::getBool("logging.disable_server_audit", false))
+    {
+        _serverAudit.disable();
+    }
+
     // Pass the ownership to the client session.
     session->setWopiFileInfo(wopiFileInfo);
     session->setUserId(userId);
@@ -4482,11 +4487,6 @@ void DocumentBroker::onUrpMessage(const char* data, size_t len)
 }
 
 #if !MOBILEAPP && !WASMAPP
-
-std::string DocumentBroker::getServerAudit() const
-{
-    return _serverAudit.getResultsJSON();
-}
 
 void DocumentBroker::switchMode(const std::shared_ptr<ClientSession>& session,
                                 const std::string& mode)
