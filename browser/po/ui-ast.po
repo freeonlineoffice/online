@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-08 22:56+0200\n"
+"POT-Creation-Date: 2024-06-14 19:30+0200\n"
 "PO-Revision-Date: 2022-05-23 11:40+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Asturian <https://hosted.weblate.org/projects/"
@@ -147,7 +147,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:145
-#: src/canvas/sections/CommentListSection.ts:418
+#: src/canvas/sections/CommentListSection.ts:420
 #: src/canvas/sections/CommentSection.ts:138
 msgid "Save"
 msgstr "Guardar"
@@ -213,7 +213,7 @@ msgstr "Anovar el rexistru"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:195
 msgid "None"
 msgstr ""
@@ -230,7 +230,7 @@ msgstr ""
 #: src/control/Control.AlertDialog.js:29 src/control/Control.AlertDialog.js:92
 #: src/control/Control.AlertDialog.js:99 src/control/Control.Zotero.js:179
 #: src/control/Parts.js:471 src/core/Socket.js:1117 src/core/Socket.js:1122
-#: src/canvas/sections/CommentListSection.ts:126
+#: src/canvas/sections/CommentListSection.ts:128
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Zarrar"
@@ -279,7 +279,9 @@ msgstr ""
 #: src/control/Toolbar.js:694 src/control/Toolbar.js:785
 #: src/core/Socket.js:652 src/core/Socket.js:1087 src/core/Socket.js:1157
 #: src/core/Socket.js:1304 src/core/Socket.js:1308 src/docdispatcher.ts:408
-#: src/main.js:71 src/main.js:74 src/main.js:126 src/map/Clipboard.js:1174
+#: src/canvas/sections/CommentListSection.ts:1228
+#: src/canvas/sections/CommentListSection.ts:2071 src/main.js:71
+#: src/main.js:74 src/main.js:126 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
 #: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
@@ -304,10 +306,10 @@ msgstr "¿De xuru que quies terminar esta sesión?"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1220 src/control/Control.UIManager.js:1287
-#: src/control/Control.UIManager.js:1422 src/control/Control.UIManager.js:1564
+#: src/control/Control.UIManager.js:1214 src/control/Control.UIManager.js:1281
+#: src/control/Control.UIManager.js:1416 src/control/Control.UIManager.js:1558
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
-#: src/canvas/sections/CommentListSection.ts:413
+#: src/canvas/sections/CommentListSection.ts:415
 #: src/canvas/sections/CommentSection.ts:137
 #: src/canvas/sections/CommentSection.ts:140
 msgid "Cancel"
@@ -446,19 +448,19 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:202 src/docdispatcher.ts:405
+#: src/control/Control.ContextMenu.js:203 src/docdispatcher.ts:405
 msgid "Delete"
 msgstr "Desaniciar"
 
-#: src/control/Control.ContextMenu.js:222
+#: src/control/Control.ContextMenu.js:223
 msgid "Paste Special"
 msgstr "Apegáu especial"
 
-#: src/control/Control.ContextMenu.js:230
+#: src/control/Control.ContextMenu.js:231
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:238
+#: src/control/Control.ContextMenu.js:239
 msgid "Fill Series"
 msgstr ""
 
@@ -575,98 +577,98 @@ msgstr ""
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:471
+#: src/control/Control.JSDialogBuilder.js:470
 msgid "Solid"
 msgstr "Sólidu"
 
-#: src/control/Control.JSDialogBuilder.js:474
+#: src/control/Control.JSDialogBuilder.js:473
 msgid "Linear"
 msgstr "Llinial"
 
-#: src/control/Control.JSDialogBuilder.js:477
+#: src/control/Control.JSDialogBuilder.js:476
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:480
+#: src/control/Control.JSDialogBuilder.js:479
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:483
+#: src/control/Control.JSDialogBuilder.js:482
 msgid "Ellipsoid"
 msgstr "Elipsoidal"
 
-#: src/control/Control.JSDialogBuilder.js:487
+#: src/control/Control.JSDialogBuilder.js:486
 msgid "Quadratic"
 msgstr "Cuadráticu"
 
-#: src/control/Control.JSDialogBuilder.js:490
+#: src/control/Control.JSDialogBuilder.js:489
 msgid "Square"
 msgstr "Cuadráu"
 
-#: src/control/Control.JSDialogBuilder.js:493
+#: src/control/Control.JSDialogBuilder.js:492
 msgid "Fixed size"
 msgstr "Tamañu fixu"
 
-#: src/control/Control.JSDialogBuilder.js:1495
+#: src/control/Control.JSDialogBuilder.js:1494
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1498
+#: src/control/Control.JSDialogBuilder.js:1497
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1501
+#: src/control/Control.JSDialogBuilder.js:1500
 msgid "Color"
 msgstr "Color"
 
-#: src/control/Control.JSDialogBuilder.js:1624
+#: src/control/Control.JSDialogBuilder.js:1623
 msgid "Select range"
 msgstr "Esbillar la estaya"
 
-#: src/control/Control.JSDialogBuilder.js:1723
-#: src/control/Control.NotebookbarBuilder.js:151
+#: src/control/Control.JSDialogBuilder.js:1722
+#: src/control/Control.NotebookbarBuilder.js:150
 msgid "Font Name"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1725 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1724 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1727
+#: src/control/Control.JSDialogBuilder.js:1726
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Estilu"
 
-#: src/control/Control.JSDialogBuilder.js:1991
+#: src/control/Control.JSDialogBuilder.js:1990
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1994
+#: src/control/Control.JSDialogBuilder.js:1993
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2005
-#: src/layer/tile/CanvasTileLayer.js:4613
-#: src/layer/tile/CanvasTileLayer.js:4624
-#: src/canvas/sections/CommentListSection.ts:1008
+#: src/control/Control.JSDialogBuilder.js:2004
+#: src/layer/tile/CanvasTileLayer.js:4644
+#: src/layer/tile/CanvasTileLayer.js:4655
+#: src/canvas/sections/CommentListSection.ts:1014
 msgid "Comment"
 msgstr "Comentariu"
 
-#: src/control/Control.JSDialogBuilder.js:2069
+#: src/control/Control.JSDialogBuilder.js:2068
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2923
+#: src/control/Control.JSDialogBuilder.js:2922
 #: src/control/Control.Menubar.js:851
 msgid "Rows"
 msgstr "Fileres"
 
-#: src/control/Control.JSDialogBuilder.js:2924
+#: src/control/Control.JSDialogBuilder.js:2923
 #: src/control/Control.Menubar.js:854
 msgid "Columns"
 msgstr "Columnes"
 
-#: src/control/Control.JSDialogBuilder.js:2944
+#: src/control/Control.JSDialogBuilder.js:2943
 #, fuzzy
 msgid "Insert Table"
 msgstr "Inxertar una forma"
@@ -688,29 +690,29 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:67 src/control/Control.Menubar.js:82
 #: src/control/Control.Menubar.js:966
-#: src/control/Control.NotebookbarBuilder.js:380
-#: src/control/Control.NotebookbarBuilder.js:487
+#: src/control/Control.NotebookbarBuilder.js:379
+#: src/control/Control.NotebookbarBuilder.js:486
 msgid "ODF text document (.odt)"
 msgstr "Documentu de testu ODF (.odt)"
 
 #: src/control/Control.Menubar.js:68 src/control/Control.Menubar.js:83
 #: src/control/Control.Menubar.js:967
-#: src/control/Control.NotebookbarBuilder.js:392
-#: src/control/Control.NotebookbarBuilder.js:499
+#: src/control/Control.NotebookbarBuilder.js:391
+#: src/control/Control.NotebookbarBuilder.js:498
 msgid "Word 2003 Document (.doc)"
 msgstr "Documentu de Word 2003 (.doc)"
 
 #: src/control/Control.Menubar.js:69 src/control/Control.Menubar.js:84
 #: src/control/Control.Menubar.js:968
-#: src/control/Control.NotebookbarBuilder.js:388
-#: src/control/Control.NotebookbarBuilder.js:495
+#: src/control/Control.NotebookbarBuilder.js:387
+#: src/control/Control.NotebookbarBuilder.js:494
 msgid "Word Document (.docx)"
 msgstr "Documentu de Word (.docx)"
 
 #: src/control/Control.Menubar.js:70 src/control/Control.Menubar.js:85
 #: src/control/Control.Menubar.js:969
-#: src/control/Control.NotebookbarBuilder.js:384
-#: src/control/Control.NotebookbarBuilder.js:491
+#: src/control/Control.NotebookbarBuilder.js:383
+#: src/control/Control.NotebookbarBuilder.js:490
 msgid "Rich Text (.rtf)"
 msgstr "Testu enriquecíu (.rtf)"
 
@@ -733,21 +735,21 @@ msgstr "Esportar como"
 #: src/control/Control.Menubar.js:1020 src/control/Control.Menubar.js:1028
 #: src/control/Control.Menubar.js:1084 src/control/Control.Menubar.js:1091
 #: src/control/Control.Menubar.js:1138 src/control/Control.Menubar.js:1148
-#: src/control/Control.NotebookbarBuilder.js:401
-#: src/control/Control.NotebookbarBuilder.js:431
-#: src/control/Control.NotebookbarBuilder.js:461
-#: src/control/Control.NotebookbarBuilder.js:548
-#: src/control/Control.NotebookbarBuilder.js:559
-#: src/control/Control.NotebookbarBuilder.js:566
-#: src/control/Control.NotebookbarBuilder.js:573
+#: src/control/Control.NotebookbarBuilder.js:400
+#: src/control/Control.NotebookbarBuilder.js:430
+#: src/control/Control.NotebookbarBuilder.js:460
+#: src/control/Control.NotebookbarBuilder.js:547
+#: src/control/Control.NotebookbarBuilder.js:558
+#: src/control/Control.NotebookbarBuilder.js:565
+#: src/control/Control.NotebookbarBuilder.js:572
 #: src/control/Control.NotebookbarDraw.js:254
 msgid "PDF Document (.pdf)"
 msgstr "Documentu PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:74 src/control/Control.Menubar.js:86
 #: src/control/Control.Menubar.js:956 src/control/Control.Menubar.js:970
-#: src/control/Control.NotebookbarBuilder.js:396
-#: src/control/Control.NotebookbarBuilder.js:552
+#: src/control/Control.NotebookbarBuilder.js:395
+#: src/control/Control.NotebookbarBuilder.js:551
 msgid "EPUB (.epub)"
 msgstr "EPUB (.epub)"
 
@@ -781,16 +783,16 @@ msgstr "Baxar como"
 #: src/control/Control.Menubar.js:553 src/control/Control.Menubar.js:685
 #: src/control/Control.Menubar.js:965 src/control/Control.Menubar.js:1029
 #: src/control/Control.Menubar.js:1092 src/control/Control.Menubar.js:1149
-#: src/control/Control.NotebookbarBuilder.js:407
-#: src/control/Control.NotebookbarBuilder.js:437
-#: src/control/Control.NotebookbarBuilder.js:467
+#: src/control/Control.NotebookbarBuilder.js:406
+#: src/control/Control.NotebookbarBuilder.js:436
+#: src/control/Control.NotebookbarBuilder.js:466
 #, fuzzy
 msgid "PDF Document (.pdf) as..."
 msgstr "Documentu PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:90 src/control/Control.Menubar.js:407
 #: src/control/Control.Menubar.js:558 src/control/Control.Menubar.js:696
-#: src/control/Control.Toolbar.js:1065
+#: src/control/Control.Toolbar.js:1063
 msgid "Close document"
 msgstr "Zarrar el documentu"
 
@@ -1025,22 +1027,22 @@ msgstr "Cabera modificación"
 
 #: src/control/Control.Menubar.js:384 src/control/Control.Menubar.js:397
 #: src/control/Control.Menubar.js:1030
-#: src/control/Control.NotebookbarBuilder.js:445
-#: src/control/Control.NotebookbarBuilder.js:521
+#: src/control/Control.NotebookbarBuilder.js:444
+#: src/control/Control.NotebookbarBuilder.js:520
 msgid "ODF presentation (.odp)"
 msgstr "Presentación ODF (.odp)"
 
 #: src/control/Control.Menubar.js:385 src/control/Control.Menubar.js:398
 #: src/control/Control.Menubar.js:1031
-#: src/control/Control.NotebookbarBuilder.js:457
-#: src/control/Control.NotebookbarBuilder.js:529
+#: src/control/Control.NotebookbarBuilder.js:456
+#: src/control/Control.NotebookbarBuilder.js:528
 msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "Presentación de PowerPoint 2003 (.ppt)"
 
 #: src/control/Control.Menubar.js:386 src/control/Control.Menubar.js:399
 #: src/control/Control.Menubar.js:1032
-#: src/control/Control.NotebookbarBuilder.js:453
-#: src/control/Control.NotebookbarBuilder.js:525
+#: src/control/Control.NotebookbarBuilder.js:452
+#: src/control/Control.NotebookbarBuilder.js:524
 msgid "PowerPoint Presentation (.pptx)"
 msgstr "Presentación de PowerPoint (.pptx)"
 
@@ -1049,12 +1051,12 @@ msgid "Save Comments"
 msgstr "Guardar los comentarios"
 
 #: src/control/Control.Menubar.js:404
-#: src/control/Control.NotebookbarBuilder.js:592
+#: src/control/Control.NotebookbarBuilder.js:591
 msgid "Full Page Slides"
 msgstr ""
 
 #: src/control/Control.Menubar.js:405
-#: src/control/Control.NotebookbarBuilder.js:596
+#: src/control/Control.NotebookbarBuilder.js:595
 msgid "Notes Pages"
 msgstr ""
 
@@ -1078,29 +1080,29 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:554 src/control/Control.Menubar.js:1033
 #: src/control/Control.Menubar.js:1093
-#: src/control/Control.NotebookbarBuilder.js:449
+#: src/control/Control.NotebookbarBuilder.js:448
 #: src/control/Control.NotebookbarDraw.js:228
 msgid "ODF Drawing (.odg)"
 msgstr "Dibuxu ODF (.odg)"
 
 #: src/control/Control.Menubar.js:674 src/control/Control.Menubar.js:686
 #: src/control/Control.Menubar.js:1150
-#: src/control/Control.NotebookbarBuilder.js:415
-#: src/control/Control.NotebookbarBuilder.js:506
+#: src/control/Control.NotebookbarBuilder.js:414
+#: src/control/Control.NotebookbarBuilder.js:505
 msgid "ODF spreadsheet (.ods)"
 msgstr "Fueya de cálculu ODF (.ods)"
 
 #: src/control/Control.Menubar.js:675 src/control/Control.Menubar.js:687
 #: src/control/Control.Menubar.js:1151
-#: src/control/Control.NotebookbarBuilder.js:423
-#: src/control/Control.NotebookbarBuilder.js:514
+#: src/control/Control.NotebookbarBuilder.js:422
+#: src/control/Control.NotebookbarBuilder.js:513
 msgid "Excel 2003 Spreadsheet (.xls)"
 msgstr "Fueya de cálculu d'Excel 2003 (.xls)"
 
 #: src/control/Control.Menubar.js:676 src/control/Control.Menubar.js:688
 #: src/control/Control.Menubar.js:1152
-#: src/control/Control.NotebookbarBuilder.js:419
-#: src/control/Control.NotebookbarBuilder.js:510
+#: src/control/Control.NotebookbarBuilder.js:418
+#: src/control/Control.NotebookbarBuilder.js:509
 msgid "Excel Spreadsheet (.xlsx)"
 msgstr "Fueya de cálculu d'Excel (.xlsx)"
 
@@ -1244,7 +1246,7 @@ msgstr ""
 msgid "Insert Shape"
 msgstr "Inxertar una forma"
 
-#: src/control/Control.Menubar.js:2061
+#: src/control/Control.Menubar.js:2062
 msgid "file type icon"
 msgstr "iconu del tipu de ficheru"
 
@@ -1271,16 +1273,16 @@ msgstr "Entamu del dilíu"
 msgid "Gradient End"
 msgstr "Fin del dilíu"
 
-#: src/control/Control.NotebookbarBuilder.js:220
+#: src/control/Control.NotebookbarBuilder.js:219
 msgid "Tap to expand"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:221
-#: src/control/Control.NotebookbarBuilder.js:265
+#: src/control/Control.NotebookbarBuilder.js:220
+#: src/control/Control.NotebookbarBuilder.js:264
 msgid "Tap to collapse"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:427
+#: src/control/Control.NotebookbarBuilder.js:426
 msgid "CSV File (.csv)"
 msgstr "Ficheru CSV (.csv)"
 
@@ -1745,7 +1747,7 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Introduz el nome nuevu de la fueya"
 
-#: src/control/Control.Toolbar.js:925
+#: src/control/Control.Toolbar.js:923
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -2307,17 +2309,17 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1571
+#: src/core/Socket.js:1572
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 
-#: src/core/Socket.js:1588
+#: src/core/Socket.js:1589
 msgid "Reconnecting..."
 msgstr "Reconeutando…"
 
-#: src/core/Socket.js:1598
+#: src/core/Socket.js:1599
 msgid "The server has been disconnected."
 msgstr "Desconeutóse'l sirvidor."
 
@@ -2329,15 +2331,15 @@ msgstr ""
 msgid "Ctrl+Shift+Alt+D to exit"
 msgstr ""
 
-#: src/docstate.js:83
+#: src/docstate.js:84
 msgid "Standard"
 msgstr ""
 
-#: src/docstate.js:94
+#: src/docstate.js:95
 msgid "Theme colors"
 msgstr ""
 
-#: src/docstate.js:95
+#: src/docstate.js:96
 msgid "Document colors"
 msgstr ""
 
@@ -2525,71 +2527,99 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1768
+#: src/layer/tile/CanvasTileLayer.js:1784
 msgid "Functions"
 msgstr "Funciones"
 
-#: src/layer/tile/CanvasTileLayer.js:2301
+#: src/layer/tile/CanvasTileLayer.js:2317
 msgid "Copy link location"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2309
+#: src/layer/tile/CanvasTileLayer.js:2325
 msgid "Edit link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2317
+#: src/layer/tile/CanvasTileLayer.js:2333
 msgid "Remove link"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4641
+#: src/layer/tile/CanvasTileLayer.js:4672
 msgid "No Comments"
 msgstr "Ensin comentarios"
 
-#: src/canvas/sections/CommentListSection.ts:125
+#: src/canvas/sections/CommentListSection.ts:127
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:126
+#: src/canvas/sections/CommentListSection.ts:128
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:951
+#: src/canvas/sections/CommentListSection.ts:956
 msgid "Modify"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:957
+#: src/canvas/sections/CommentListSection.ts:962
 #: src/canvas/sections/CommentSection.ts:141
 msgid "Reply"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:963
+#: src/canvas/sections/CommentListSection.ts:968
 msgid "Remove"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:969
+#: src/canvas/sections/CommentListSection.ts:974
 msgid "Remove Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:975
+#: src/canvas/sections/CommentListSection.ts:980
 #, fuzzy
 msgid "Resolve"
 msgstr "Solucionáu"
 
-#: src/canvas/sections/CommentListSection.ts:975
+#: src/canvas/sections/CommentListSection.ts:980
 msgid "Unresolve"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:981
+#: src/canvas/sections/CommentListSection.ts:986
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:981
+#: src/canvas/sections/CommentListSection.ts:986
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1262
-#: src/canvas/sections/CommentListSection.ts:1324
+#: src/canvas/sections/CommentListSection.ts:1226
+#: src/canvas/sections/CommentListSection.ts:1239
+#: src/canvas/sections/CommentListSection.ts:2069
+msgid "Comments Updated"
+msgstr ""
+
+#: src/canvas/sections/CommentListSection.ts:1227
+msgid "Another user has removed this comment."
+msgstr ""
+
+#: src/canvas/sections/CommentListSection.ts:1240
+msgid ""
+"Another user has updated the comment. Would you like to overwrite those "
+"changes?"
+msgstr ""
+
+#: src/canvas/sections/CommentListSection.ts:1241
+msgid "Overwrite"
+msgstr "Sobroscribir"
+
+#: src/canvas/sections/CommentListSection.ts:1242
+msgid "Update"
+msgstr ""
+
+#: src/canvas/sections/CommentListSection.ts:1313
+#: src/canvas/sections/CommentListSection.ts:1375
 msgid "Autosaved"
+msgstr ""
+
+#: src/canvas/sections/CommentListSection.ts:2070
+msgid "Another user has updated comments. Would you like to proceed updating?"
 msgstr ""
 
 #: src/canvas/sections/CommentSection.ts:291
@@ -2631,11 +2661,11 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr ""
 
-#: src/map/Clipboard.js:1167
+#: src/map/Clipboard.js:1169
 msgid "<p>Please use the copy/paste buttons on your on-screen keyboard.</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:1169
+#: src/map/Clipboard.js:1171
 msgid ""
 "<p>Your browser has very limited access to the clipboard, so use these "
 "keyboard shortcuts:</p><table class=\"warn-copy-paste\"><tr><td><kbd>Ctrl</"
@@ -2645,25 +2675,25 @@ msgid ""
 "td><td>Cut</td><td>Paste</td></tr></table>"
 msgstr ""
 
-#: src/map/Clipboard.js:1188
+#: src/map/Clipboard.js:1190
 msgid ""
 "<p>A download due to a large copy/paste operation has already started. "
 "Please, wait for the current download or cancel it before starting a new "
 "one</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:1206
+#: src/map/Clipboard.js:1208
 msgid ""
 "<p>Your browser has very limited access to the clipboard</p><p><b>Please "
 "press</b> <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>V</kbd> to "
 "see more options</p><p>Close popup to ignore paste special</p>"
 msgstr ""
 
-#: src/map/Clipboard.js:1213
+#: src/map/Clipboard.js:1215
 msgid "Paste from this document"
 msgstr ""
 
-#: src/map/Clipboard.js:1213
+#: src/map/Clipboard.js:1215
 msgid "Cancel paste special"
 msgstr ""
 
@@ -2868,9 +2898,6 @@ msgstr ""
 
 #~ msgid "Discard"
 #~ msgstr "Descartar"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobroscribir"
 
 #~ msgid "Save to new file"
 #~ msgstr "Guardar nun ficheru nuevu"
