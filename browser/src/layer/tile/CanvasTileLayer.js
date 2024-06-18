@@ -1632,6 +1632,8 @@ L.CanvasTileLayer = L.Layer.extend({
 				app.isAdminUser = false;
 			else
 				app.isAdminUser = null;
+
+			this._map.fire('adminuser');
 		}
 	},
 
