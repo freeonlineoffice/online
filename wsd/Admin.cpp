@@ -710,7 +710,7 @@ void Admin::pollingThread()
     if (!controllerMonitorConnection)
     {
         LOG_WRN("Monitor connection to the controller doesn't exist, skipping shutdown migration");
-        COOLWSD::setAllMigrationMsgReceived();
+        LOOLWSD::setAllMigrationMsgReceived();
         return;
     }
 
