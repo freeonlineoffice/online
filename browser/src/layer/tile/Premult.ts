@@ -62,8 +62,12 @@ namespace cool {
 					this._bytes[o8 + 3] = data[i8 + 3];
 				} else {
 					this._bytes[o8] = Math.ceil((data[i8] * 255) / alpha);
-					this._bytes[o8 + 1] = Math.ceil((data[i8 + 1] * 255) / alpha);
-					this._bytes[o8 + 2] = Math.ceil((data[i8 + 2] * 255) / alpha);
+					this._bytes[o8 + 1] = Math.ceil(
+						(data[i8 + 1] * 255) / alpha,
+					);
+					this._bytes[o8 + 2] = Math.ceil(
+						(data[i8 + 2] * 255) / alpha,
+					);
 					this._bytes[o8 + 3] = alpha;
 				}
 			}
