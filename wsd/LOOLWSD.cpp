@@ -716,7 +716,7 @@ bool LOOLWSD::EnableAccessibility = false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
 std::string LOOLWSD::LogLevelStartup = "trace";
-std::string LOOLWSD::LogDisabledAreas = "Socket,WebSocket,Admin";
+std::string LOOLWSD::LogDisabledAreas = "Socket,WebSocket,Admin,Pixel";
 std::string LOOLWSD::LogToken;
 std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
