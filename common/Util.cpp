@@ -374,11 +374,11 @@ namespace Util
         std::string version, hash;
         Util::getVersionInfo(version, hash);
         return
-            "{ \"Version\":  \"" + version + "\", "
-              "\"Hash\":     \"" + hash + "\", "
-              "\"Protocol\": \"" + LOOLProtocol::GetProtocolVersion() + "\", "
-              "\"Id\":       \"" + Util::getProcessIdentifier() + "\", "
-              "\"Options\":  \"" + std::string(enableExperimental ? " (E)" : "") + "\" }";
+            "{ \"Version\":     \"" + version + "\", "
+              "\"Hash\":        \"" + hash + "\", "
+              "\"Protocol\":    \"" + LOOLProtocol::GetProtocolVersion() + "\", "
+              "\"Id\":          \"" + Util::getProcessIdentifier() + "\", "
+              "\"Options\":     \"" + std::string(enableExperimental ? " (E)" : "") + "\" }";
     }
 
     std::string UniqueId()
