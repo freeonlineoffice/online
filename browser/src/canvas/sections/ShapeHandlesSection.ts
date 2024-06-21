@@ -117,20 +117,20 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 	getShapeWidth() {
 		let middleLeft = this.sectionProperties.info.handles.kinds.rectangle['4'][0];
-		middleLeft = new cool.SimplePoint(parseInt(middleLeft.point.x), parseInt(middleLeft.point.y));
+		middleLeft = new lool.SimplePoint(parseInt(middleLeft.point.x), parseInt(middleLeft.point.y));
 
 		let middleRight = this.sectionProperties.info.handles.kinds.rectangle['5'][0];
-		middleRight = new cool.SimplePoint(parseInt(middleRight.point.x), parseInt(middleRight.point.y));
+		middleRight = new lool.SimplePoint(parseInt(middleRight.point.x), parseInt(middleRight.point.y));
 
 		return Math.abs(middleLeft.distanceTo(middleRight.toArray()));
 	}
 
 	getShapeHeight() {
 		let topMiddle = this.sectionProperties.info.handles.kinds.rectangle['2'][0];
-		topMiddle = new cool.SimplePoint(parseInt(topMiddle.point.x), parseInt(topMiddle.point.y));
+		topMiddle = new lool.SimplePoint(parseInt(topMiddle.point.x), parseInt(topMiddle.point.y));
 
 		let bottomMiddle = this.sectionProperties.info.handles.kinds.rectangle['7'][0];
-		bottomMiddle = new cool.SimplePoint(parseInt(bottomMiddle.point.x), parseInt(bottomMiddle.point.y));
+		bottomMiddle = new lool.SimplePoint(parseInt(bottomMiddle.point.x), parseInt(bottomMiddle.point.y));
 
 		return Math.abs(topMiddle.distanceTo(bottomMiddle.toArray()));
 	}
@@ -140,7 +140,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 	*/
 	getShapeAngleRadians() {
 		let topMiddle = this.sectionProperties.info.handles.kinds.rectangle['2'][0];
-		topMiddle = new cool.SimplePoint(parseInt(topMiddle.point.x), parseInt(topMiddle.point.y));
+		topMiddle = new lool.SimplePoint(parseInt(topMiddle.point.x), parseInt(topMiddle.point.y));
 
 		const center = app.map._docLayer._graphicSelection.center; // number array in twips.
 
@@ -236,7 +236,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 	getRotationHandle() {
 		if (this.sectionProperties.info?.handles?.kinds?.rectangle && !this.sectionProperties.hasVideo) {
 			const rotationInfo = this.getRotationInfo(); // Rotation section will read the information from this (parent) class.
-			const rotationHandlePosition: cool.SimplePoint = this.getRotationHandlePosition(rotationInfo);
+			const rotationHandlePosition: lool.SimplePoint = this.getRotationHandlePosition(rotationInfo);
 			rotationInfo.initialPosition = rotationHandlePosition.clone();
 
 			// Core side doesn't send a position information for rotation handle. We add this.
