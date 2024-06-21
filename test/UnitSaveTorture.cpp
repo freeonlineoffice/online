@@ -114,7 +114,7 @@ namespace {
         const auto testname = __func__;
 
         std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-        while (true)
+        while (!SigUtil::getShutdownRequestFlag())
         {
             if (std::chrono::duration_cast<std::chrono::seconds>(
                     std::chrono::steady_clock::now() - start).count() > timeout.count())
@@ -133,6 +133,8 @@ namespace {
             else if (tokens[1] == ".uno:ModifiedStatus=true")
                 return true;
         }
+
+        return false;
     }
 }
 
@@ -202,7 +204,7 @@ void UnitSaveTorture::testTileCombineRace()
     removeStamp("holddrainqueue");
 
     // Check the save succeeded & kit didn't crash
-    while (true)
+    while (!SigUtil::getShutdownRequestFlag())
     {
         std::chrono::seconds timeout = std::chrono::seconds(10);
         auto message = wsSession->waitForMessage("unocommandresult:", timeout, name);
@@ -246,7 +248,7 @@ void UnitSaveTorture::testBgSaveCrash()
     wsSession->sendMessage(std::string("save dontTerminateEdit=0 dontSaveIfUnmodified=0"));
 
     std::vector<char> message;
-    while (true)
+    while (!SigUtil::getShutdownRequestFlag())
     {
         message = wsSession->waitForMessage("unocommandresult:", timeout, name);
         LOK_ASSERT(message.size() > 0);
@@ -263,7 +265,7 @@ void UnitSaveTorture::testBgSaveCrash()
     // Leave the crashing stamp - we should learn and save non-background now
     wsSession->sendMessage(std::string("save dontTerminateEdit=0 dontSaveIfUnmodified=0"));
 
-    while (true)
+    while (!SigUtil::getShutdownRequestFlag())
     {
         message = wsSession->waitForMessage("unocommandresult:", timeout, name);
         LOK_ASSERT(message.size() > 0);
@@ -366,7 +368,7 @@ void UnitSaveTorture::saveTortureOne(
         std::vector<char> message;
 
         // Check the save succeeded
-        while (true)
+        while (!SigUtil::getShutdownRequestFlag())
         {
             message = wsSession->waitForMessage("unocommandresult:", timeout, name);
             LOK_ASSERT(message.size() > 0);
