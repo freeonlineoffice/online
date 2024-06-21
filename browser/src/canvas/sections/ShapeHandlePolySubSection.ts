@@ -10,7 +10,7 @@
 */
 
 class ShapeHandlePolySubSection extends ShapeHandleCustomSubSection {
-	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: cool.SimplePoint, ownInfo: any) {
+	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
         super(parentHandlerSection, sectionName, size, documentPosition, ownInfo);
 		this.sectionProperties.mousePointerType = 'move';
 	}

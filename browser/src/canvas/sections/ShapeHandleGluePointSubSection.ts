@@ -15,7 +15,7 @@ class ShapeHandleGluePointSubSection extends CanvasSectionObject {
 	zIndex: number = L.CSections.DefaultForDocumentObjects.zIndex;
     documentObject: boolean = true;
 
-	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: cool.SimplePoint, ownInfo: any) {
+	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
         super();
 
         this.name = sectionName;

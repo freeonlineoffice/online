@@ -22,7 +22,7 @@ class ShapeHandleCustomSubSection extends HTMLObjectSection {
 	zIndex: number = L.CSections.DefaultForDocumentObjects.zIndex;
     backgroundColor: string = null;
 
-	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: cool.SimplePoint, ownInfo: any) {
+	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
         super(sectionName, size[0], size[1], documentPosition, null, true);
 
 		this.getHTMLObject().style.opacity = 0.5;

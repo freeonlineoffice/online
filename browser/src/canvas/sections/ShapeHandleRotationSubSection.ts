@@ -12,7 +12,7 @@
 class ShapeHandleRotationSubSection extends HTMLObjectSection {
 	documentObject: boolean = true;
 
-	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: cool.SimplePoint, ownInfo: any) {
+	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
         super(sectionName, size[0], size[1], documentPosition, null, true);
 
         this.sectionProperties.parentHandlerSection = parentHandlerSection;
@@ -28,7 +28,7 @@ class ShapeHandleRotationSubSection extends HTMLObjectSection {
 		app.definitions.shapeHandlesSection.mirrorEventsFromSourceToCanvasSectionContainer(this.getHTMLObject());
 	}
 
-	calculateAngle(center: cool.SimplePoint, target: cool.SimplePoint): number {
+	calculateAngle(center: lool.SimplePoint, target: lool.SimplePoint): number {
 		let angle = Math.atan2(target.y - center.y, target.x - center.x);
 
 		while (angle < 0)

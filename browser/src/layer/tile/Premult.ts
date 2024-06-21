@@ -9,7 +9,7 @@
  */
 declare var L: any;
 
-namespace cool {
+namespace lool {
 	/**
 	 * Used to re-use an aligned buffer that we can un-pre-multiply
 	 * un-aligned bytes from a stream into, and ensure we can also
@@ -73,6 +73,6 @@ namespace cool {
 			}
 		}
 	}
-} // namespace cool
+} // namespace lool
 
-L.UnPremult = cool.UnPremult;
+L.UnPremult = lool.UnPremult;
