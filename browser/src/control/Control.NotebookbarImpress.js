@@ -404,12 +404,11 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'type': 'toolbox',
 						'children': [
 							{
-								'id': 'showruler',
-								'class': 'unoshowruler',
+								'id': 'collapsenotebookbar',
+								'class': 'unocollapsenotebookbar',
 								'type': 'menubartoolitem',
-								'text': _('Ruler'),
-								'command': _('Show Ruler'),
-								'accessibility': { focusBack: true, combination: 'R', de: 'L' }
+								'text': _('Collapse Tabs'),
+								'accessibility': { focusBack: true, combination: 'CU', de: null }
 							}
 						]
 					},
@@ -428,13 +427,6 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					}
 				],
 				'vertical': 'true'
-			},
-			{
-				'id': 'collapsenotebookbar',
-				'class': 'unocollapsenotebookbar',
-				'type': 'bigmenubartoolitem',
-				'text': _('Collapse Tabs'),
-				'accessibility': { focusBack: true, combination: 'CU', de: null }
 			},
 			{
 				'id': 'view-master-view',
