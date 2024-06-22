@@ -1527,7 +1527,9 @@ class CanvasSectionContainer {
 		section.size[1] = Math.round(section.size[1]);
 	}
 
+
 	private calculateSectionInitialPosition(section: CanvasSectionObject, index: number): number {
+		// @ts-expect-error because alternative got type 'never'.
 		if (typeof section.anchor[index] === 'string' || section.anchor[index].length === 1) {
 			var anchor: string = typeof section.anchor[index] === 'string' ? section.anchor[index]: section.anchor[index][0];
 			if (index === 0)
@@ -1540,11 +1542,13 @@ class CanvasSectionContainer {
 			// Count should always be an odd number. Because last variable will be used as a fallback to canvas's edges (top, bottom, right or left).
 			// See anchor explanation on top of this file.
 			// Correct example: ["header", "bottom", "top"] => Look for section "header", if found, use its bottom, if not found, use canvas's top.
+			// @ts-expect-error because type never has no attribute length.
 			if (section.anchor[index].length % 2 === 0) { // eslint-disable-line no-lonely-if
 				console.error('Section: ' + section.name + '. Wrong anchor definition.');
 				return 0;
 			}
 			else {
+				// @ts-expect-error because type never has no attribute length.
 				var count: number = section.anchor[index].length;
 				var targetSection: CanvasSectionObject = null;
 				var targetEdge: string = null;
