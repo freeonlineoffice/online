@@ -58,8 +58,16 @@ function _iconViewEntry(
 	if (!disabled) {
 		var singleClick = parentData.singleclickactivate === true;
 		$(entryContainer).click(function () {
-			$('#' + parentData.id + ' .ui-treeview-entry').removeClass('selected');
-			builder.callback('iconview', 'select', parentData, entry.row, builder);
+			$('#' + parentData.id + ' .ui-treeview-entry').removeClass(
+				'selected',
+			);
+			builder.callback(
+				'iconview',
+				'select',
+				parentData,
+				entry.row,
+				builder,
+			);
 			if (singleClick) {
 				builder.callback(
 					'iconview',
@@ -72,7 +80,9 @@ function _iconViewEntry(
 		});
 		if (!singleClick) {
 			$(entryContainer).dblclick(function () {
-				$('#' + parentData.id + ' .ui-treeview-entry').removeClass('selected');
+				$('#' + parentData.id + ' .ui-treeview-entry').removeClass(
+					'selected',
+				);
 				builder.callback(
 					'iconview',
 					'activate',
@@ -132,7 +142,11 @@ JSDialog.iconView = function (
 			});
 		} else if (position != -1)
 			console.warn(
-				'not found entry: "' + position + '" in: "' + container.id + '"',
+				'not found entry: "' +
+					position +
+					'" in: "' +
+					container.id +
+					'"',
 			);
 	};
 
