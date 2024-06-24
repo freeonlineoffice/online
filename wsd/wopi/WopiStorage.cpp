@@ -575,7 +575,7 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
             outfile.open(wopiCertDest);
             if (!outfile.is_open())
             {
-                const std::string wopiCertDestAnonym = COOLWSD::anonymizeUrl(wopiCertDest);
+                const std::string wopiCertDestAnonym = LOOLWSD::anonymizeUrl(wopiCertDest);
                 LOG_ERR("Cannot open file [" << wopiCertDestAnonym << "] to save wopi cert.");
             }
             else
