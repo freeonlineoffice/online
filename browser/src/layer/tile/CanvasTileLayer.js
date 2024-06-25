@@ -711,9 +711,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		// View selection of other views
 		this._viewSelections = {};
 
-		// Graphic view selection rectangles
-		this._graphicViewMarkers = {};
-
 		this._lastValidPart = -1;
 		// Cursor marker
 		this._cursorMarker = null;
@@ -1354,7 +1351,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 			// update tiles and selection because mode could be changed
 			this._update();
-			this.updateAllGraphicViewSelections();
+			app.definitions.otherViewGraphicSelectionSection.updateVisibilities();
 			this.updateAllViewCursors();
 			this.updateAllTextViewSelection();
 		}
@@ -1999,15 +1996,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (!this._graphicMarker)
 			return;
 
-		// Remove other view selection as it interferes with playing the media.
-		for (var viewId in this._graphicViewMarkers) {
-			if (viewId !== this._viewId && this._map._viewInfo[viewId]) {
-				var viewMarker = this._graphicViewMarkers[viewId].marker;
-				if (viewMarker)
-					this._viewLayerGroup.removeLayer(viewMarker);
-			}
-		}
-
 		var videoDesc = JSON.parse(textMsg);
 
 		if (this._graphicSelection) {
@@ -2216,24 +2204,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 
 		var strTwips = obj.selection.match(/\d+/g);
-		this._graphicViewMarkers[viewId] = this._graphicViewMarkers[viewId] || {};
-		this._graphicViewMarkers[viewId].part = parseInt(obj.part);
-		this._graphicViewMarkers[viewId].mode = (obj.mode !== undefined) ? parseInt(obj.mode) : 0;
-		if (strTwips != null) {
-			var topLeftTwips = new L.Point(parseInt(strTwips[0]), parseInt(strTwips[1]));
-			var offset = new L.Point(parseInt(strTwips[2]), parseInt(strTwips[3]));
-			var bottomRightTwips = topLeftTwips.add(offset);
-			var boundRectTwips = this._getGraphicSelectionRectangle(
-				new L.Bounds(topLeftTwips, bottomRightTwips));
-			this._graphicViewMarkers[viewId].bounds = new L.LatLngBounds(
-				this._twipsToLatLng(boundRectTwips.getTopLeft(), this._map.getZoom()),
-				this._twipsToLatLng(boundRectTwips.getBottomRight(), this._map.getZoom()));
-		}
-		else {
-			this._graphicViewMarkers[viewId].bounds = L.LatLngBounds.createDefault();
-		}
 
-		this._onUpdateGraphicViewSelection(viewId);
+		app.definitions.otherViewGraphicSelectionSection.addOrUpdateGraphicSelectionIndicator(viewId, strTwips, parseInt(obj.part), obj.mode !== undefined ? parseInt(obj.mode): 0);
 
 		if (this.isCalc()) {
 			this._saveMessageForReplay(textMsg, viewId);
@@ -2709,15 +2681,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			delete this._cellViewCursors[viewId];
 		}
 
-		// update graphicviewselection
-		if (typeof this._graphicViewMarkers[viewId] !== 'undefined') {
-			this._graphicViewMarkers[viewId].bounds = L.LatLngBounds.createDefault();
-			this._graphicViewMarkers[viewId].part = 0;
-			this._graphicViewMarkers[viewId].mode = 0;
-			this._onUpdateGraphicViewSelection(viewId);
-			delete this._graphicViewMarkers[viewId];
-		}
-
+		app.definitions.otherViewGraphicSelectionSection.removeView(viewId);
 		this._map.removeView(viewId);
 	},
 
@@ -3762,10 +3726,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		this.eachView(this._viewSelections, this._onUpdateTextViewSelection, this, false);
 	},
 
-	updateAllGraphicViewSelections: function () {
-		this.eachView(this._graphicViewMarkers, this._onUpdateGraphicViewSelection, this, false);
-	},
-
 	goToViewCursor: function(viewId) {
 		if (viewId === this._viewId) {
 			this._onUpdateCursor();
@@ -3807,35 +3767,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 		else if (viewSelection) {
 			viewSelection.clear();
-		}
-	},
-
-	_onUpdateGraphicViewSelection: function (viewId) {
-		var viewBounds = this._graphicViewMarkers[viewId].bounds;
-		var viewMarker = this._graphicViewMarkers[viewId].marker;
-		var viewPart = this._graphicViewMarkers[viewId].part;
-		var viewMode = this._graphicViewMarkers[viewId].mode;
-
-		if (!this._isEmptyRectangle(viewBounds) &&
-		   (this.isWriter() || (this._selectedPart === viewPart && this._selectedMode === viewMode))) {
-			if (!viewMarker) {
-				var color = L.LOUtil.rgbToHex(this._map.getViewColor(viewId));
-				viewMarker = L.rectangle(viewBounds, {
-					pointerEvents: 'auto',
-					fill: false,
-					color: color
-				});
-				// Disable autoPan, so the graphic view selection doesn't make the view jump to the popup.
-				viewMarker.bindPopup(this._map.getViewName(viewId), {autoClose: false, autoPan: false, backgroundColor: color, color: 'white', closeButton: false});
-				this._graphicViewMarkers[viewId].marker = viewMarker;
-			}
-			else {
-				viewMarker.setBounds(viewBounds);
-			}
-			this._viewLayerGroup.addLayer(viewMarker);
-		}
-		else if (viewMarker) {
-			this._viewLayerGroup.removeLayer(viewMarker);
 		}
 	},
 
