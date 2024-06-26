@@ -20,7 +20,7 @@ class OtherViewGraphicSelectionSection extends CanvasSectionObject {
     static sectionNamePrefix = 'OtherViewGraphicSelection ';
     static sectionPointers: Array<OtherViewGraphicSelectionSection> = [];
 
-    constructor(viewId: number, rectangle: cool.SimpleRectangle, part: number, mode: number) {
+    constructor(viewId: number, rectangle: lool.SimpleRectangle, part: number, mode: number) {
         super();
 
         this.size = [rectangle.pWidth, rectangle.pHeight];
@@ -52,7 +52,7 @@ class OtherViewGraphicSelectionSection extends CanvasSectionObject {
     }
 
     public static addOrUpdateGraphicSelectionIndicator(viewId: number, rectangleData: Array<string>, part: number, mode: number) {
-        let rectangle = new cool.SimpleRectangle(0, 0, 0, 0);
+        let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
         if (rectangleData)
             rectangle = new app.definitions.simpleRectangle(parseInt(rectangleData[0]), parseInt(rectangleData[1]), parseInt(rectangleData[2]), parseInt(rectangleData[3]));
 

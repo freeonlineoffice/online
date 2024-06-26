@@ -12,7 +12,7 @@ class ValidityInputHelpSection extends HTMLObjectSection {
     static sectionName = 'Validity Input Help';
     static className = 'input-help';
 
-    public static showValidityInputHelp(textMsg: string, documentPosition: cool.SimplePoint) {
+    public static showValidityInputHelp(textMsg: string, documentPosition: lool.SimplePoint) {
         let message: any = textMsg.replace('validityinputhelp: ', '');
 		message = JSON.parse(message);
 
@@ -35,7 +35,7 @@ class ValidityInputHelpSection extends HTMLObjectSection {
             app.sectionContainer.removeSection(ValidityInputHelpSection.sectionName);
     }
 
-    constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: cool.SimplePoint, extraClass: string = "", showSection: boolean = true) {
+    constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint, extraClass: string = "", showSection: boolean = true) {
         super(sectionName, objectWidth, objectHeight, documentPosition, extraClass, showSection);
     }
 }
