@@ -929,6 +929,7 @@ bool DocumentBroker::download(
         }
 
         wopiStorage->handleWOPIFileInfo(*wopiFileInfo, *_lockCtx);
+        _isViewFileExtension = LOOLWSD::IsViewFileExtension(wopiStorage->getFileExtension());
 
         if (session)
         {
@@ -1177,7 +1178,6 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
     if (!wopiFileInfo->getIsAdminUserError().empty())
         _serverAudit.set("is_admin", wopiFileInfo->getIsAdminUserError());
 
-    _isViewFileExtension = LOOLWSD::IsViewFileExtension(wopiStorage->getFileExtension());
     if (!wopiFileInfo->getUserCanWrite() ||
         session->isReadOnly()) // Readonly. Second boolean checks for URL "permission=readonly"
     {
