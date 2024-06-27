@@ -1,60 +1,25 @@
 # spec file for package loolwsd
 #
-# Copyright (c) 2015 Collabora
+# Copyright (c) 2024 FreeOnlineOffice
 #
 # This file is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-%if 0%{?name_suffix:1}
-Name:           loolwsd%{name_suffix}
-%else
 Name:           loolwsd
-%endif
 Version:        @PACKAGE_VERSION@
 Release:        1
 Vendor:         %{vendor}
-Summary:        LibreOffice Online WebSocket Daemon
-License:        EULA
+Summary:        Free Online Office WebSocket Daemon
+License:        MPL Version 2.0
 Source0:        loolwsd-@PACKAGE_VERSION@.tar.gz
-BuildRequires:  libcap-devel pam-devel gcc-c++ cppunit-devel pam-devel fontconfig make
-
-# Red Hat and CentOS
-%if 0%{?rhel} == 7
-BuildRequires:  libpcap kernel-headers python36-polib python36-lxml
-%endif
-
-%if 0%{?rhel} == 8
-BuildRequires:  libpcap kernel-headers python3-polib python3-lxml
-%endif
-
-# openSUSE Leap 15.x, SLES12, SLES15
-%if 0%{?suse_version}
-BuildRequires:  libcap-progs linux-glibc-devel systemd-rpm-macros python3-polib python3-lxml
-%endif
-
+BuildRequires:  libcap-devel pam-devel rsync
 Requires:       libreoffice libreoffice-ure libreofficebasis-core libreofficebasis-writer libreofficebasis-impress libreofficebasis-graphicfilter libreofficebasis-en-US libreofficebasis-calc libreofficebasis-ooofonts libreaofficebasis-images libreofficebasis-draw libreofficebasis-extension-pdf-import libreofficebasis-ooolinguistic libreofficebasis-math
-Requires(post): coreutils grep sed cpio
-
-%if 0%{?rhel}
-# loolwsd dependencies
-Requires:       openssh-clients
-%endif
-
-%if 0%{?suse_version}
-# loolwsd dependencies
-Requires(post): libcap-progs
-Requires:       %{fillup_prereq}
-%endif
-
+Requires(post): coreutils grep sed cpio /usr/sbin/setcap
 Provides: loolwsd
-Obsoletes: loolwsd
 
 %description
 
-%if 0%{?suse_version}
-%debug_package
-%endif
 %prep
 %setup -n loolwsd-@PACKAGE_VERSION@
 
@@ -64,6 +29,7 @@ Obsoletes: loolwsd
 	--with-lokit-path=bundled/include \
 	--with-lo-path=/opt/libreoffice \
 	--disable-setcap \
+	--disable-tests \
 %if 0%{?config_options:1}
 	%{config_options}
 %endif
@@ -75,22 +41,10 @@ env BUILDING_FROM_RPMBUILD=yes make %{?_smp_mflags}
 
 %install
 env BUILDING_FROM_RPMBUILD=yes make install DESTDIR=%{buildroot}
-install -d -m 755 %{buildroot}/var/adm/fillup-templates
-%if 0%{?rhel}
 install -D -m 444 loolwsd.service %{buildroot}%{_unitdir}/loolwsd.service
-# systemd in RHEL 7 does not understand these options
-%if 0%{?rhel} <= 7
-sed -i "/^ReadWritePaths/d;/^ProtectControlGroups/d;/^ProtectSystem/d" %{buildroot}%{_unitdir}/loolwsd.service
-%endif
-install -D -m 644 sysconfig.loolwsd %{buildroot}/etc/sysconfig/loolwsd
+# Apache webserver on Redhead like distributions
 install -d -m 755 %{buildroot}/etc/httpd/conf
 install -D -m 755 etc/apache2/loolwsd.conf %{buildroot}/etc/httpd/conf
-rm %{buildroot}/etc/apache2/conf-available/loolwsd.conf
-%endif
-%if 0%{?suse_version}
-install -D -m 444 loolwsd.service %{buildroot}%{_unitdir}/loolwsd.service
-install -D -m 644 sysconfig.loolwsd %{buildroot}/var/adm/fillup-templates
-%endif
 mkdir -p %{buildroot}/etc/pam.d
 echo "auth       required     pam_unix.so" > %{buildroot}/etc/pam.d/loolwsd
 echo "account    required     pam_unix.so" >>  %{buildroot}/etc/pam.d/loolwsd
@@ -119,44 +73,43 @@ echo "account    required     pam_unix.so" >>  %{buildroot}/etc/pam.d/loolwsd
 /usr/share/man/man1/loolstress.1.gz
 /usr/share/man/man1/loolwsd-systemplate-setup.1.gz
 /usr/share/man/man1/loolmount.1.gz
-%{_unitdir}/loolwsd.service
-%if 0%{?rhel}
-%config(noreplace) /etc/sysconfig/loolwsd
-%endif
-%if 0%{?suse_version}
-/var/adm/fillup-templates/sysconfig.loolwsd
-%endif
+/usr/lib/systemd/system/loolwsd.service
 
 %config(noreplace) /etc/pam.d/loolwsd
 %config(noreplace) %attr(640, lool, root) /etc/loolwsd/loolwsd.xml
 %config /etc/loolwsd/loolkitconfig.xcu
 %config(noreplace) /etc/nginx/snippets/loolwsd.conf
-%if 0%{?suse_version} > 0
 %config(noreplace) /etc/apache2/conf-available/loolwsd.conf
-%endif
-%if 0%{?rhel} > 0
 %config(noreplace) /etc/httpd/conf/loolwsd.conf
-%endif
 
 %doc README.md
 
 %pre
-%if 0%{?suse_version}
-%service_add_pre loolwsd.service
-%endif
-
 getent group lool >/dev/null || groupadd -r lool
 getent passwd lool >/dev/null || useradd -g lool -r lool -d /opt/lool -s /bin/bash
 
-# for filename in `find /opt/lool/systemplate -type f`;do stripped=$(echo -ne $filename | sed -e "s|/opt/lool/systemplate||");rpm -qf --qf="%{NAME}\n" $stripped;done | grep -v devel | grep -v 32bit | grep -v -- -fonts | sort | uniq
-%triggerin -- expat fontconfig freetype freetype2 glibc glibc-locale kernel keyutils-libs krb5 krb5-libs libbz2-1 libcap libcap-ng libcap2 libexpat1 libfreetype6 libgcc libgcc_s1 libgcrypt libiscsi libpng libpng12 libpng12-0 libpng15-15 libpng16-16 libstdc++ libstdc++6 libuuid libuuid1 libz1 lsb nss-mdns nss-softokn-freebl pcre sssd sssd-client systemd-libs timezone tzdata zlib
+%post
+setcap cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep /usr/bin/loolforkit
+setcap cap_sys_admin=ep /usr/bin/loolmount
+# compatibility with older systemd versions
+SYSTEMD_VERSION=$(busctl --system get-property org.freedesktop.systemd1 /org/freedesktop/systemd1 org.freedesktop.systemd1.Manager Version | grep -Eo [0-9]{3} | head -n 1)
+if [[ "$SYSTEMD_VERSION" -lt "228" ]]; then
+    sed -i "/^ProtectSystem/d" /usr/lib/systemd/system/loolwsd.service
+fi
+if [[ "$SYSTEMD_VERSION" -lt "231" ]]; then
+    sed -i "/^ReadWritePaths/d" /usr/lib/systemd/system/loolwsd.service
+fi
+if [[ "$SYSTEMD_VERSION" -lt "232" ]]; then
+    sed -i "/^ProtectControlGroups/d" /usr/lib/systemd/system/loolwsd.service
+fi
 
-echo -ne "Triggered update of loolwsd systemplate..."
+if [ $1 -eq 1 ] ; then
+    # Initial installation
+    systemctl preset loolwsd.service >/dev/null 2>&1 || :
+fi
 
-%if 0%{?rhel} >= 7 || 0%{?suse_version} >= 1300
 systemctl is-active -q loolwsd && LOOLWSD_IS_ACTIVE=1 || LOOLWSD_IS_ACTIVE=0
 if [ $LOOLWSD_IS_ACTIVE == "1" ]; then systemctl stop loolwsd; fi
-%endif
 
 # Figure out where LO is installed, let's hope it is not a mount point
 # Create a directory for loolwsd on the same file system
@@ -168,47 +121,23 @@ mkdir -p ${loolparent}/lool/child-roots
 chown lool:lool ${loolparent}/lool
 chown lool:lool ${loolparent}/lool/child-roots
 
-fc-cache ${loroot}/share/fonts/truetype
-loolwsd-systemplate-setup ${loolparent}/lool/systemplate ${loroot} >/dev/null 2>&1
+fc-cache ${lokitroot}/share/fonts/truetype
+loolwsd-systemplate-setup ${loolparent}/lool/systemplate ${lokitroot} >/dev/null 2>&1
 loolconfig generate-proof-key >/dev/null 2>&1
 
-%if 0%{?rhel} || 0%{?suse_version}
 if [ $LOOLWSD_IS_ACTIVE == "1" ]; then systemctl start loolwsd; fi
-%endif
-
-echo "   Done."
-
-%post
-setcap cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep /usr/bin/loolforkit
-setcap cap_sys_admin=ep /usr/bin/loolmount
-
-%if 0%{?rhel} >= 7
-%systemd_post loolwsd.service
-%else
-%if 0%{?suse_version}
-%service_add_post loolwsd.service
-%{fillup_only -n loolwsd}
-%endif
-%endif
 
 
 %preun
-%if 0%{?rhel} >= 7
-%systemd_preun loolwsd.service
-%else
-%if 0%{?suse_version}
-%service_del_preun loolwsd.service
-%endif
-%endif
+if [ $1 -eq 0 ]; then
+    systemctl --no-reload disable loolwsd.service > /dev/null 2>&1 || :
+    systemctl stop coolwsd.service > /dev/null 2>&1 || :
+fi
 
 %postun
-%if 0%{?rhel} >= 7
-%systemd_postun loolwsd.service
-%else
-%if 0%{?suse_version}
-%service_del_postun loolwsd.service
-%endif
-%endif
+if [ $1 -eq 0 ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || :
+fi
 
 %changelog
 * Mon Aug 03 2015 Mihai Varga
