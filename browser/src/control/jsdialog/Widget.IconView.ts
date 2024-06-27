@@ -21,8 +21,8 @@ declare var JSDialog: any;
 
 function _iconViewEntry(
 	parentContainer: Element,
-	parentData: any,
-	entry: any,
+	parentData: IconViewJSON,
+	entry: IconViewEntry,
 	builder: any,
 ) {
 	var disabled = parentData.enabled === false;
@@ -98,7 +98,7 @@ function _iconViewEntry(
 
 JSDialog.iconView = function (
 	parentContainer: Element,
-	data: any,
+	data: IconViewJSON,
 	builder: any,
 ) {
 	var container = L.DomUtil.create(
