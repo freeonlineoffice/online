@@ -1253,6 +1253,7 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
         // then exempt that host from ssl host verification also in core
         if (ssl::Manager::getClientVerification() == ssl::CertificateVerification::Disabled)
             oss << " verifyHost=false";
+#endif
 
         if (!getUserId().empty() && !getUserName().empty())
         {
