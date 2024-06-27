@@ -368,6 +368,10 @@ AC_ARG_ENABLE([cypress],
             AS_HELP_STRING([--enable-cypress],
                            [Enable cypress tests.]))
 
+AC_ARG_ENABLE([tests],
+            AS_HELP_STRING([--disable-tests],
+                           [Do not build and run unit tests.]))
+
 AC_ARG_WITH([help-url],
             AS_HELP_STRING([--with-help-url=<url>],
                 [Set the base URL of the online help. Default is https://help.collaboraoffice.com/help.html?])
@@ -412,6 +416,7 @@ experimental_msg="disabled by default"
 bundle_msg="using uglified bundled JS and CSS"
 LOK_LOG_ASSERTIONS=0
 log_asserts_msg="disabled"
+SSL_VERIFY="true"
 
 # a reasonable default
 NUM_PRESPAWN_CHILDREN=4
@@ -429,6 +434,7 @@ if test "$enable_debug" = "yes"; then
    LOOLWSD_ANONYMIZE_USER_DATA=false
    BROWSER_LOGGING="true"
    debug_msg="low security debugging mode"
+   SSL_VERIFY="false"
 
    # helps attaching to the right process
    NUM_PRESPAWN_CHILDREN=1
@@ -506,8 +512,14 @@ fi
 if test "$enable_experimental" = "yes" ; then
   ENABLE_EXPERIMENTAL=true
   experimental_msg="enabled by default"
+  SSL_VERIFY="false"
 fi
 AC_SUBST(ENABLE_EXPERIMENTAL)
+
+AC_MSG_CHECKING([if ssl verification is enabled by default])
+AC_MSG_RESULT([$SSL_VERIFY])
+AC_DEFINE_UNQUOTED([SSL_VERIFY],["$SSL_VERIFY"],[Default SSL Verification mode])
+AC_SUBST(SSL_VERIFY)
 
 dnl check for a file at a path with an env-var with a given suffix
 AC_DEFUN([CHK_FILE_VAR], dnl env-var, suffix, file-to-match, msg
@@ -1114,61 +1126,6 @@ AC_SUBST(HAVE_CLANG)
 AS_IF([test "$ENABLE_GTKAPP" != true],
 [CXXFLAGS="$CXXFLAGS $CXXFLAGS_CXXSTD"])
 
-STD_FILESYSTEM=
-if test "$HAVE_CXXSTD" = TRUE -a "$ENABLE_ANDROIDAPP" != "true" ; then
-    save_CXXFLAGS=$CXXFLAGS
-    CXXFLAGS="$CXXFLAGS -Werror"
-    save_LIBS=$LIBS
-    LIBS="$save_LIBS -lstdc++fs"
-    AC_LANG_PUSH([C++])
-    AC_LINK_IFELSE([AC_LANG_SOURCE([[
-        #include <experimental/filesystem>
-        int main()
-        {
-            if (!std::experimental::filesystem::temp_directory_path().empty())
-                return 0;
-            return 1;
-        }
-        ]])],[STD_FILESYSTEM=experimental])
-    AC_LINK_IFELSE([AC_LANG_SOURCE([[
-        #include <filesystem>
-        int main()
-        {
-            if (!std::filesystem::temp_directory_path().empty())
-                return 0;
-            return 1;
-        }
-        ]])],[STD_FILESYSTEM=TRUE])
-    AC_LANG_POP([C++])
-    CXXFLAGS=$save_CXXFLAGS
-    LIBS=$save_LIBS
-fi
-
-if test -n "$STD_FILESYSTEM" ; then
-    LIBS="$LIBS -lstdc++fs"
-    AC_DEFINE([HAVE_STD_FILESYSTEM],1,[Whether the used C++ has support for std::filesystem.])
-    if test "$STD_FILESYSTEM" = "experimental" ; then
-        AC_DEFINE([HAVE_STD_FILESYSTEM_EXPERIMENTAL],1,[Whether the std::filesystem is in the experimental header.])
-    else
-        AC_DEFINE([HAVE_STD_FILESYSTEM_EXPERIMENTAL],0,[Whether the std::filesystem is in the experimental header.])
-    fi
-else
-    AC_DEFINE([HAVE_STD_FILESYSTEM],0,[Whether the used C++ has support for std::filesystem.])
-    AC_DEFINE([HAVE_STD_FILESYSTEM_EXPERIMENTAL],0,[Whether the std::filesystem is in the experimental header.])
-fi
-
-AC_LINK_IFELSE(
-    [AC_LANG_SOURCE([[
-    #include <unistd.h>
-    int main()
-    {
-        char buffer[8];
-        getentropy(buffer, sizeof(buffer));
-    }
-    ]])],
-    [AC_DEFINE([HAVE_GETENTROPY],1,[Define to 1 if you have getentropy() function in <unistd.h> header file.])],
-    [AC_DEFINE([HAVE_GETENTROPY],0,[Define to 1 if you have getentropy() function in <unistd.h> header file.])])
-
 AS_IF([test -n "$LOKIT_PATH"],
       [CPPFLAGS="$CPPFLAGS -I${LOKIT_PATH}"])
 lokit_msg="$LOKIT_PATH"
@@ -1251,7 +1208,7 @@ AS_IF([test "$ENABLE_IOSAPP" != "true" -a "$ENABLE_ANDROIDAPP" != "true" -a "$ho
 dnl    deflated HTTP / web-page serving
        PKG_CHECK_MODULES([ZLIB], [zlib])
 dnl    tile compression
-       PKG_CHECK_MODULES([ZSTD], [libzstd])
+       PKG_CHECK_MODULES([ZSTD], [libzstd >= 1.4.0])
 
        PKG_CHECK_MODULES([CPPUNIT], [cppunit])
        ])
@@ -1342,7 +1299,7 @@ AC_SUBST(LIBPFM_LIBS)
 
 ENABLE_SSL=true
 if test "$enable_ssl" != "no" -a "$mobile_app" != "true"; then
-   ssl_msg="ssl enabled"
+   ssl_msg="ssl enabled. cert verification: $SSL_VERIFY"
    ENABLE_SSL=true
    AC_DEFINE([ENABLE_SSL],1,[Whether to enable SSL])
 else
