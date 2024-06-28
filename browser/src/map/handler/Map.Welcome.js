@@ -107,7 +107,7 @@ L.Map.Welcome = L.Handler.extend({
 			this._iframeWelcome.clearTimeout();
 			var keys = Object.keys(data.strings);
 			for (var it in keys) {
-				data.strings[keys[it]] = _(keys[it]).replace('%loolVersion', window.loolwsdVersion);
+				data.strings[keys[it]] = _(keys[it]).replace('{loolversion}', window.loolwsdVersion);
 			}
 			this._iframeWelcome.postMessage(data);
 		} else if (data.MessageId === 'welcome-close') {

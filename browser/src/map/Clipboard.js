@@ -168,7 +168,7 @@ L.Clipboard = L.Class.extend({
 	// what an empty clipboard has on it
 	_getStubHtml: function() {
 		return this._substProductName(this._originWrapBody(
-		    '    <p>' + _('To paste outside %productName, please first click the \'download\' button') + '</p>\n',
+		    '    <p>' + _('To paste outside {productname}, please first click the \'download\' button') + '</p>\n',
 		    true
 		));
 	},
@@ -1182,7 +1182,7 @@ L.Clipboard = L.Class.extend({
 
 	_substProductName: function (msg) {
 		var productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'Free Online Office';
-		return msg.replace('%productName', productName);
+		return msg.replace('{productname}', productName);
 	},
 
 	_warnLargeCopyPasteAlreadyStarted: function () {
