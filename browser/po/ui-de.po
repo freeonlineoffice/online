@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 22:05+0200\n"
-"PO-Revision-Date: 2024-06-21 22:10+0200\n"
+"POT-Creation-Date: 2024-06-28 21:11+0200\n"
+"PO-Revision-Date: 2024-06-28 21:29+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -233,7 +233,7 @@ msgstr "Logging-Level"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:23
 #: src/control/Control.AlertDialog.js:29 src/control/Control.AlertDialog.js:92
 #: src/control/Control.AlertDialog.js:99 src/control/Control.Zotero.js:179
-#: src/control/Parts.js:471 src/core/Socket.js:1117 src/core/Socket.js:1122
+#: src/control/Parts.js:471 src/core/Socket.js:1128 src/core/Socket.js:1133
 #: src/canvas/sections/CommentListSection.ts:128
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
@@ -279,8 +279,8 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/control/Control.Zotero.js:325 src/control/Control.Zotero.js:363
 #: src/control/Permission.js:80 src/control/Permission.js:90
 #: src/control/Permission.js:140 src/control/Toolbar.js:694 src/control/Toolbar.js:785
-#: src/core/Socket.js:652 src/core/Socket.js:1087 src/core/Socket.js:1157
-#: src/core/Socket.js:1304 src/core/Socket.js:1308 src/docdispatcher.ts:408
+#: src/core/Socket.js:663 src/core/Socket.js:1098 src/core/Socket.js:1168
+#: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
 #: src/canvas/sections/CommentListSection.ts:1241
 #: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71 src/main.js:74
 #: src/main.js:126 src/map/Clipboard.js:1176 src/map/handler/Map.Feedback.js:82
@@ -319,8 +319,8 @@ msgstr ""
 "Fehler beim Setzen des JWT-Authentifizierungscookies über eine unsichere Verbindung"
 
 #: admin/src/AdminSocketOverview.js:415
-msgid "Failed to authenticate this session over protocol %0"
-msgstr "Fehler beim Authentifizieren dieser Sitzung über Protokoll %0"
+msgid "Failed to authenticate this session over protocol {0}"
+msgstr "Fehler beim Authentifizieren dieser Sitzung über Protokoll {0}"
 
 #: admin/src/AdminSocketOverview.js:420
 msgid "Warning"
@@ -444,8 +444,8 @@ msgid "Don't show this again"
 msgstr "Zeige dies nicht noch einmal"
 
 #: src/control/Control.AlertDialog.js:96
-msgid "The server encountered a %0 error while parsing the %1 command."
-msgstr "Der Server ist auf einen Fehler %0 beim Ausführen des Befehls %1 gestoßen."
+msgid "The server encountered a {0} error while parsing the {1} command."
+msgstr "Der Server ist auf einen Fehler {0} beim Ausführen des Befehls {1} gestoßen."
 
 #: src/control/Control.Command.js:80
 msgid "Unlock"
@@ -513,10 +513,10 @@ msgstr "Download-Bereich"
 
 #: src/control/Control.DownloadProgress.js:38
 msgid ""
-"If you want to share large elements outside of %productName it's necessary to first "
+"If you want to share large elements outside of {productname} it's necessary to first "
 "download them."
 msgstr ""
-"Falls Sie große Elemente außerhalb von %productName teilen wollen, müssen Sie diese "
+"Falls Sie große Elemente außerhalb von {productname} teilen wollen, müssen Sie diese "
 "zunächst herunterladen."
 
 #: src/control/Control.DownloadProgress.js:51 src/control/Control.NotebookbarCalc.js:202
@@ -646,8 +646,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:2004 src/layer/tile/CanvasTileLayer.js:4363
-#: src/layer/tile/CanvasTileLayer.js:4374 src/canvas/sections/CommentListSection.ts:1027
+#: src/control/Control.JSDialogBuilder.js:2004 src/layer/tile/CanvasTileLayer.js:4261
+#: src/layer/tile/CanvasTileLayer.js:4272 src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -829,7 +829,7 @@ msgstr "Lineal anzeigen"
 #: src/control/Control.NotebookbarCalc.js:817 src/control/Control.NotebookbarCalc.js:1224
 #: src/control/Control.NotebookbarDraw.js:405 src/control/Control.NotebookbarDraw.js:957
 #: src/control/Control.NotebookbarImpress.js:423
-#: src/control/Control.NotebookbarImpress.js:992
+#: src/control/Control.NotebookbarImpress.js:1017
 #: src/control/Control.NotebookbarWriter.js:837
 #: src/control/Control.NotebookbarWriter.js:1442
 msgid "Show Status Bar"
@@ -845,7 +845,7 @@ msgstr "Menüleiste verbergen"
 #: src/control/Control.Menubar.js:1000 src/control/Control.Menubar.js:1052
 #: src/control/Control.Menubar.js:1112 src/control/Control.Menubar.js:1171
 #: src/control/Control.NotebookbarCalc.js:1236 src/control/Control.NotebookbarDraw.js:416
-#: src/control/Control.NotebookbarImpress.js:442
+#: src/control/Control.NotebookbarImpress.js:467
 #: src/control/Control.NotebookbarWriter.js:1460
 msgid "Dark Mode"
 msgstr "Dunkelmodus"
@@ -853,7 +853,7 @@ msgstr "Dunkelmodus"
 #: src/control/Control.Menubar.js:137 src/control/Control.Menubar.js:439
 #: src/control/Control.Menubar.js:588 src/control/Control.Menubar.js:729
 #: src/control/Control.NotebookbarCalc.js:1243 src/control/Control.NotebookbarDraw.js:423
-#: src/control/Control.NotebookbarImpress.js:449
+#: src/control/Control.NotebookbarImpress.js:474
 #: src/control/Control.NotebookbarWriter.js:1467
 msgid "Invert Background"
 msgstr "Hintergrund umkehren"
@@ -874,7 +874,7 @@ msgstr "Alle"
 #: src/control/Control.Menubar.js:602 src/control/Control.Menubar.js:753
 #: src/control/Control.NotebookbarCalc.js:1367
 #: src/control/Control.NotebookbarDraw.js:1246
-#: src/control/Control.NotebookbarImpress.js:1209
+#: src/control/Control.NotebookbarImpress.js:1234
 #: src/control/Control.NotebookbarWriter.js:1065
 msgid "Smart Picker"
 msgstr "Smarter Picker"
@@ -1028,7 +1028,7 @@ msgstr "Ganzseitige Folien"
 msgid "Notes Pages"
 msgstr "Notizenseiten"
 
-#: src/control/Control.Menubar.js:440 src/control/Control.NotebookbarImpress.js:434
+#: src/control/Control.Menubar.js:440 src/control/Control.NotebookbarImpress.js:459
 msgid "Master View"
 msgstr "Masteransicht"
 
@@ -1083,38 +1083,38 @@ msgid "All Sheets"
 msgstr "Alle Tabellen"
 
 #: src/control/Control.Menubar.js:826 src/control/jsdialog/Definitions.Menu.ts:304
-msgid "Condition..."
-msgstr "Bedingung..."
+msgid "Highlight cells with..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:827 src/control/jsdialog/Definitions.Menu.ts:307
-msgid "Greater than..."
-msgstr "Größer als..."
+msgid "Values greater than..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:828 src/control/jsdialog/Definitions.Menu.ts:311
-msgid "Less than..."
-msgstr "Kleiner als..."
+msgid "Values less than..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:829 src/control/jsdialog/Definitions.Menu.ts:315
-msgid "Equal to..."
-msgstr "Gleich..."
+msgid "Values equal to..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:830 src/control/jsdialog/Definitions.Menu.ts:319
-msgid "Between..."
-msgstr "Zwischen..."
+msgid "Values between..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:831 src/control/jsdialog/Definitions.Menu.ts:323
-msgid "Duplicate..."
-msgstr "Duplikat..."
+msgid "Values duplicate..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:832 src/control/jsdialog/Definitions.Menu.ts:327
-msgid "Contains text..."
+msgid "Containing text..."
 msgstr "Enthält Text..."
 
 #: src/control/Control.Menubar.js:834 src/control/Control.Menubar.js:844
 #: src/control/jsdialog/Definitions.Menu.ts:332
 #: src/control/jsdialog/Definitions.Menu.ts:366
-msgid "More conditions..."
-msgstr "Mehr Bedingungen..."
+msgid "More highlights..."
+msgstr ""
 
 #: src/control/Control.Menubar.js:836 src/control/jsdialog/Definitions.Menu.ts:338
 msgid "Top/Bottom Rules..."
@@ -1147,7 +1147,7 @@ msgstr "Unterdurchschnittlich..."
 #: src/control/Control.Menubar.js:954 src/control/Control.Menubar.js:1019
 #: src/control/Control.Menubar.js:1083 src/control/Control.Menubar.js:1137
 #: src/control/Control.NotebookbarCalc.js:816 src/control/Control.NotebookbarDraw.js:956
-#: src/control/Control.NotebookbarImpress.js:991
+#: src/control/Control.NotebookbarImpress.js:1016
 #: src/control/Control.NotebookbarWriter.js:836 src/control/Control.MobileSearchBar.ts:30
 #: src/control/Control.StatusBar.js:224 src/control/Control.Zotero.js:208
 #: src/control/Toolbar.js:545
@@ -1430,6 +1430,7 @@ msgstr "Kompaktansicht"
 
 #: src/control/Control.NotebookbarCalc.js:1211 src/control/Control.NotebookbarDraw.js:392
 #: src/control/Control.NotebookbarImpress.js:410
+#: src/control/Control.NotebookbarImpress.js:435
 #: src/control/Control.NotebookbarWriter.js:1454
 msgid "Collapse Tabs"
 msgstr "Register zuklappen"
@@ -1447,9 +1448,9 @@ msgstr "Sparkline"
 #: src/control/Control.NotebookbarCalc.js:1451
 #: src/control/Control.NotebookbarCalc.js:2253 src/control/Control.NotebookbarDraw.js:836
 #: src/control/Control.NotebookbarDraw.js:1332
-#: src/control/Control.NotebookbarImpress.js:863
-#: src/control/Control.NotebookbarImpress.js:1314
-#: src/control/Control.NotebookbarImpress.js:2350
+#: src/control/Control.NotebookbarImpress.js:888
+#: src/control/Control.NotebookbarImpress.js:1339
+#: src/control/Control.NotebookbarImpress.js:2375
 #: src/control/Control.NotebookbarWriter.js:1021
 #: src/control/Control.NotebookbarWriter.js:2799
 msgid "Shapes"
@@ -1478,13 +1479,21 @@ msgid "Master"
 msgstr "Master"
 
 #: src/control/Control.NotebookbarImpress.js:333
-#: src/control/Control.NotebookbarImpress.js:977
+#: src/control/Control.NotebookbarImpress.js:1002
 msgid "Presentation"
 msgstr "Präsentation"
 
 #: src/control/Control.NotebookbarImpress.js:341
 msgid "Present in Window"
 msgstr "Präsentieren im Fenster"
+
+#: src/control/Control.NotebookbarImpress.js:444
+msgid "Normal View"
+msgstr ""
+
+#: src/control/Control.NotebookbarImpress.js:450
+msgid "Notes View"
+msgstr ""
 
 #: src/control/Control.NotebookbarWriter.js:69
 msgid "Form"
@@ -1643,8 +1652,8 @@ msgid "Copy Sheet..."
 msgstr "Tabellen kopieren..."
 
 #: src/control/Control.Tabs.js:379
-msgid "Are you sure you want to delete sheet, %sheet%?"
-msgstr "Sind Sie sicher, dass Sie Tabelle %sheet% löschen möchten?"
+msgid "Are you sure you want to delete sheet, {sheet}?"
+msgstr "Sind Sie sicher, dass Sie Tabelle {sheet} löschen möchten?"
 
 #: src/control/Control.Tabs.js:390
 msgid "Rename sheet"
@@ -1693,16 +1702,16 @@ msgid "Show Menu"
 msgstr "Menü anzeigen"
 
 #: src/control/Control.UserList.ts:54
-msgid "%user has joined"
-msgstr "%user ist beigetreten"
+msgid "{user} has joined"
+msgstr "{user} ist beigetreten"
 
 #: src/control/Control.UserList.ts:55
-msgid "%user has left"
-msgstr "%user hat verlassen"
+msgid "{user} has left"
+msgstr "{user} hat verlassen"
 
 #: src/control/Control.UserList.ts:56
-msgid "Following %user"
-msgstr "%user folgen"
+msgid "Following {user}"
+msgstr "{user} folgen"
 
 #: src/control/Control.UserList.ts:57
 msgid "Following the editor"
@@ -1713,8 +1722,8 @@ msgid "Stop following"
 msgstr "Folgen beenden"
 
 #: src/control/Control.UserList.ts:59
-msgid "Avatar for %user"
-msgstr "Benutzerbild für %user"
+msgid "Avatar for {user}"
+msgstr "Benutzerbild für {user}"
 
 #: src/control/Control.UserList.ts:79
 msgid "%n users"
@@ -1757,7 +1766,7 @@ msgstr ""
 "werden können. Dies könnte einige Probleme während der Bearbeitung von Zitaten und die "
 "Literaturliste verursachen."
 
-#: src/control/Control.Zotero.js:234 src/core/Socket.js:1256
+#: src/control/Control.Zotero.js:234 src/core/Socket.js:1267
 msgid "Loading..."
 msgstr "Lade …"
 
@@ -2093,68 +2102,68 @@ msgstr ""
 "Überschriften und Objekte, die Sie dem Dokument hinzufügen, werden hier angezeigt"
 
 #: src/core/Socket.js:56
-msgid "Oops, there is a problem connecting to %productName: "
-msgstr "Es besteht ein Problem bei der Verbindung zum %productName: "
+msgid "Oops, there is a problem connecting to {productname}: "
+msgstr "Es besteht ein Problem bei der Verbindung zum {productname}: "
 
-#: src/core/Socket.js:633
+#: src/core/Socket.js:644
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "Der Server ist jetzt erreichbar. Wir müssen die Seite jetzt aktualisieren."
 
-#: src/core/Socket.js:635
+#: src/core/Socket.js:646
 msgid "Server is now reachable..."
 msgstr "Der Server ist jetzt erreichbar …"
 
-#: src/core/Socket.js:639
+#: src/core/Socket.js:650
 msgid "RELOAD"
 msgstr "NEU LADEN"
 
-#: src/core/Socket.js:652
+#: src/core/Socket.js:663
 msgid "Cluster configuration warning"
 msgstr "Cluster-Konfigurations-Warnung"
 
-#: src/core/Socket.js:655
+#: src/core/Socket.js:666
 msgid "Wrong server, reconnecting..."
 msgstr "Falscher Server, wiederverbinden..."
 
-#: src/core/Socket.js:664
+#: src/core/Socket.js:675
 msgid "LOOLWSD version:"
 msgstr "LOOLWSD Version:"
 
-#: src/core/Socket.js:676
+#: src/core/Socket.js:687
 msgid "Served by:"
 msgstr "Angeboten von:"
 
-#: src/core/Socket.js:682
+#: src/core/Socket.js:693
 msgid "Unsupported server version."
 msgstr "Diese Serverversion wird nicht unterstützt."
 
-#: src/core/Socket.js:686
+#: src/core/Socket.js:697
 msgid "LOKit version:"
 msgstr "LOKit Version:"
 
-#: src/core/Socket.js:794
+#: src/core/Socket.js:805
 msgid "Document is getting migrated"
 msgstr "Dokument wird migriert"
 
-#: src/core/Socket.js:821
+#: src/core/Socket.js:832
 msgid "Session terminated by document owner"
 msgstr "Sitzung durch Dokumenteigentümer beendet"
 
-#: src/core/Socket.js:832
+#: src/core/Socket.js:843
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Der Server wird für Wartungszwecke heruntergefahren (Auto-Sicherung)"
 
-#: src/core/Socket.js:838
+#: src/core/Socket.js:849
 msgid "Oops, there is a problem connecting the document"
 msgstr "Es besteht ein Problem bei der Verbindung zum Dokument"
 
-#: src/core/Socket.js:842
+#: src/core/Socket.js:853
 msgid "Server is down, restarting automatically. Please wait."
 msgstr ""
 "Der Server ist heruntergefahren und wird automatisch neu gestartet. Bitte haben Sie "
 "einen Moment Geduld."
 
-#: src/core/Socket.js:869
+#: src/core/Socket.js:880
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is available "
 "as revision."
@@ -2162,84 +2171,84 @@ msgstr ""
 "Das Dokument auf dem Speicher wurde geändert. Öffnen Sie das neue Dokument. Ihre "
 "Version steht als Revision zur Verfügung."
 
-#: src/core/Socket.js:875
+#: src/core/Socket.js:886
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version history"
 msgstr ""
 "Ältere Version wiederherstellen. Alle ungespeicherten Änderungen bleiben in der "
 "Versionshistorie erhalten"
 
-#: src/core/Socket.js:881
+#: src/core/Socket.js:892
 msgid "Reloading the document after rename"
 msgstr "Nach der Umbennenung wird das Dokument neu geladen"
 
-#: src/core/Socket.js:1039
+#: src/core/Socket.js:1050
 msgid "Document requires password to view."
 msgstr "Das Dokument benötigt ein Kennwort zum Ansehen."
 
-#: src/core/Socket.js:1042
+#: src/core/Socket.js:1053
 msgid "Document requires password to modify."
 msgstr "Das Dokument benötigt ein Kennwort zum Bearbeiten."
 
-#: src/core/Socket.js:1044
+#: src/core/Socket.js:1055
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Klicken Sie auf Abbrechen, um das Dokument im Ansichtsmodus zu öffnen."
 
-#: src/core/Socket.js:1048
+#: src/core/Socket.js:1059
 msgid "Wrong password provided. Please try again."
 msgstr "Sie haben ein falsches Kennwort eingegeben. Bitte versuchen Sie es erneut."
 
-#: src/core/Socket.js:1086
+#: src/core/Socket.js:1097
 msgid "Only the document owner can change the password."
 msgstr "Nur der Dokomunteigentümer kann das Password ändern."
 
-#: src/core/Socket.js:1117 src/core/Socket.js:1122
+#: src/core/Socket.js:1128 src/core/Socket.js:1133
 msgid "Missing Fonts"
 msgstr "Fehlende Schriftarten"
 
-#: src/core/Socket.js:1154
+#: src/core/Socket.js:1165
 msgid "Someone"
 msgstr "Jemand"
 
-#: src/core/Socket.js:1155
-msgid "%userName saved this document as %fileName. Do you want to join?"
-msgstr "%userName speicherte dieses Dokument als %fileName. Wollen Sie mitbearbeiten?"
+#: src/core/Socket.js:1166
+msgid "{user}Name saved this document as {filename}. Do you want to join?"
+msgstr "{user}Name speicherte dieses Dokument als {filename}. Wollen Sie mitbearbeiten?"
 
-#: src/core/Socket.js:1172
+#: src/core/Socket.js:1183
 msgid "The document is being renamed and will reload shortly"
 msgstr "Das Dokument wird umbenannt und in Kürze neu geladen"
 
-#: src/core/Socket.js:1175
+#: src/core/Socket.js:1186
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr "Das Dokument wechselt in den Offline-Modus und wird in Kürze neu geladen"
 
-#: src/core/Socket.js:1256
+#: src/core/Socket.js:1267
 msgid "Connecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1271
+#: src/core/Socket.js:1282
 msgid "Server is shutting down"
 msgstr "Der Server wird heruntergefahren"
 
-#: src/core/Socket.js:1304
+#: src/core/Socket.js:1315
 msgid "Exported to storage"
 msgstr "Exportiert in den Speicher"
 
-#: src/core/Socket.js:1304
+#: src/core/Socket.js:1315
 msgid "Successfully exported: "
 msgstr "Erfolgreich exportiert: "
 
-#: src/core/Socket.js:1573
+#: src/core/Socket.js:1584
 msgid "Well, this is embarrassing, we cannot connect to your document. Please try again."
 msgstr ""
 "Es konnte keine Verbindung zu Ihrem Dokument hergestellt werden. Bitte versuchen Sie "
 "es erneut."
 
-#: src/core/Socket.js:1590
+#: src/core/Socket.js:1601
 msgid "Reconnecting..."
 msgstr "Verbinden …"
 
-#: src/core/Socket.js:1600
+#: src/core/Socket.js:1611
 msgid "The server has been disconnected."
 msgstr "Die Verbindung zum Server wurde unterbrochen."
 
@@ -2300,10 +2309,10 @@ msgstr "Weitere Informationen und Unterstützung"
 
 #: src/errormessages.js:17
 msgid ""
-"This service is limited to %0 documents, and %1 connections total by the admin. This "
+"This service is limited to {0} documents, and {1} connections total by the admin. This "
 "limit has been reached. Please try again later."
 msgstr ""
-"Dieser Service ist durch den Administrator auf %0 Dokumente und %1 Verbindungen "
+"Dieser Service ist durch den Administrator auf {0} Dokumente und {1} Verbindungen "
 "insgesamt begrenzt. Diese Begrenzung wurde erreicht. Bitte versuchen Sie es später "
 "erneut."
 
@@ -2324,19 +2333,23 @@ msgstr ""
 "sich bei Ihrem Administrator, falls das Problem weiterhin besteht."
 
 #: src/errormessages.js:20
+msgid "Authorization error was: '{errormessage}'."
+msgstr ""
+
+#: src/errormessages.js:21
 msgid "Wrong or missing WOPISrc parameter, please contact support."
 msgstr "Falsche oder fehlenden WOPISrc-Parameter, bitte kontaktieren Sie den Support."
 
-#: src/errormessages.js:21
+#: src/errormessages.js:22
 msgid ""
-"Your session will expire in %time. Please save your work and refresh the session (or "
+"Your session will expire in {time}. Please save your work and refresh the session (or "
 "webpage) to continue. You might need to login again."
 msgstr ""
-"Ihre Sitzung wird in %time ablaufen. Bitte speichern Sie Ihre Arbeit und erneuern Sie "
+"Ihre Sitzung wird in {time} ablaufen. Bitte speichern Sie Ihre Arbeit und erneuern Sie "
 "die Sitzung (oder Webseite), um fortzufahren. Sie müssen sich eventuell erneut "
 "anmelden."
 
-#: src/errormessages.js:22
+#: src/errormessages.js:23
 msgid ""
 "Your session has expired. Further changes to the document might not be saved. Please "
 "refresh the session (or webpage) to continue. You might need to login again."
@@ -2345,7 +2358,7 @@ msgstr ""
 "nicht gespeichert. Bitte erneuern Sie die Sitzung (oder Webseite), um fortzufahren. "
 "Sie müssen sich eventuell erneut anmelden."
 
-#: src/errormessages.js:23
+#: src/errormessages.js:24
 msgid ""
 "Failed to load the document. Please ensure the file type is supported and not "
 "corrupted, and try again."
@@ -2353,17 +2366,17 @@ msgstr ""
 "Das Laden des Dokuments ist fehlgeschlagen. Bitte vergewissern Sie sich, dass der "
 "Dateityp unterstützt und die Datei nicht defekt ist, und versuchen Sie es dann erneut."
 
-#: src/errormessages.js:24
-msgid "Invalid link: '%url'"
-msgstr "Ungültiger Link: '%url'"
-
 #: src/errormessages.js:25
+msgid "Invalid link: '{url}'"
+msgstr "Ungültiger Link: '{url}'"
+
+#: src/errormessages.js:26
 msgid "You are leaving the document. The following web page will open in a new tab: "
 msgstr ""
 "Sie verlassen das Dokument. Die folgende Webseite wird in einer neuen Registerkarte "
 "geöffnet: "
 
-#: src/errormessages.js:26
+#: src/errormessages.js:27
 msgid ""
 "Failed to load the document. This document is either malformed or is taking more "
 "resources than allowed. Please contact the administrator."
@@ -2371,11 +2384,11 @@ msgstr ""
 "Fehler beim Laden des Dokuments. Dieses Dokument ist entweder fehlerhaft oder "
 "beansprucht mehr Ressourcen als zulässig. Bitte wenden Sie sich an den Administrator."
 
-#: src/errormessages.js:27
+#: src/errormessages.js:28
 msgid "Cleaning up the document from the last session."
 msgstr "Das Dokument der letzten Sitzung wird bereinigt."
 
-#: src/errormessages.js:28
+#: src/errormessages.js:29
 msgid ""
 "We are in the process of cleaning up this document from the last session, please try "
 "again later."
@@ -2383,20 +2396,20 @@ msgstr ""
 "Wir bereinigen gerade dieses Dokument der letzten Sitzung, bitte versuchen Sie es "
 "später noch einmal."
 
-#: src/errormessages.js:29
+#: src/errormessages.js:30
 msgid ""
-"Your %productName cluster appear to be mis-configured or scaling rapidly - please "
+"Your {productname} cluster appear to be mis-configured or scaling rapidly - please "
 "contact your system administrator. Continuing with editing may result in multiple "
 "users not seeing each other, conflicts in the document storage and/or copy/paste "
-"problems. Expected serverId %0 for routeToken %1 but connected to serverId %2"
+"problems. Expected serverId {0} for routeToken {1} but connected to serverId {2}"
 msgstr ""
-"Ihr %productName Cluster scheint fehlkonfiguriert zu sein oder skaliert schnell - "
+"Ihr {productname} Cluster scheint fehlkonfiguriert zu sein oder skaliert schnell - "
 "bitte kontaktieren Sie Ihren System-Administrator. Mit dem Bearbeiten fortzufahren "
 "könnte dazu führen, dass mehrere Nutzer sich untereinander nicht sehen, Dokument-"
 "Speicher-Konflikte und/oder Kopieren-/Einfügen-Probleme entstehen. Erwartete serverId "
-"%0 für routeToken %1, aber verbunden mit serverId %2"
+"{0} für routeToken {1}, aber verbunden mit serverId {2}"
 
-#: src/errormessages.js:30
+#: src/errormessages.js:31
 msgid ""
 "Failed to establish socket connection or socket connection closed unexpectedly. The "
 "reverse proxy might be misconfigured, please contact the administrator. For more info "
@@ -2409,23 +2422,23 @@ msgstr ""
 "Konfiguration finden Sie unter https://sdk.collaboraonline.com/docs/installation/"
 "Proxy_settings.html"
 
-#: src/errormessages.js:31
+#: src/errormessages.js:32
 msgid "Failed to establish socket connection or socket connection closed unexpectedly."
 msgstr ""
 "Die Socket-Verbindung konnte nicht hergestellt werden oder die Socket-Verbindung wurde "
 "unerwartet geschlossen."
 
-#: src/errormessages.js:34
+#: src/errormessages.js:35
 msgid "Failed to load document."
 msgstr "Dokument konnte nicht geladen werden."
 
-#: src/errormessages.js:35
+#: src/errormessages.js:36
 msgid "Save failed due to no disk space left. Document will now be read-only."
 msgstr ""
 "Speichern fehlgeschlagen, da kein Speicherplatz mehr vorhanden ist. Das Dokument ist "
 "jetzt schreibgeschützt."
 
-#: src/errormessages.js:36
+#: src/errormessages.js:37
 msgid ""
 "The document is too large or no disk space left to save. Document will now be read-"
 "only."
@@ -2433,27 +2446,27 @@ msgstr ""
 "Das Dokument ist zu groß oder es ist kein Plattenplatz mehr zum Speichern verfügbar. "
 "Das Dokument wird nun nur lesbar sein."
 
-#: src/errormessages.js:37 src/errormessages.js:46
+#: src/errormessages.js:38 src/errormessages.js:47
 msgid "Document cannot be saved due to expired or invalid access token."
 msgstr ""
 "Das Dokument kann aufgrund eines abgelaufenen oder ungültigen Zugangs nicht "
 "gespeichert werden."
 
-#: src/errormessages.js:38
+#: src/errormessages.js:39
 msgid "Document cannot be saved."
 msgstr "Dokument kann nicht gespeichert werden."
 
-#: src/errormessages.js:39
+#: src/errormessages.js:40
 msgid "Document cannot be renamed."
 msgstr "Dokument kann nicht umbenannt werden."
 
-#: src/errormessages.js:43
+#: src/errormessages.js:44
 msgid "Failed to read document from storage, please try to load the document again."
 msgstr ""
 "Das Lesen des Dokuments aus dem Speicher ist fehlgeschlagen. Bitte versuchen Sie, das "
 "Dokument erneut zu laden."
 
-#: src/errormessages.js:44
+#: src/errormessages.js:45
 msgid ""
 "Save failed due to no storage space left. Document will now be read-only. Please make "
 "sure enough disk space is available and try to save again."
@@ -2462,7 +2475,7 @@ msgstr ""
 "schreibgeschützt. Bitte stellen Sie sicher, dass genug Speicherplatz verfügbar ist und "
 "probieren erneut zu speichern."
 
-#: src/errormessages.js:45
+#: src/errormessages.js:46
 msgid ""
 "Save failed because the document is too large or exceeds the remaining storage space. "
 "The document will now be read-only but you may still download it now to preserve a "
@@ -2472,48 +2485,48 @@ msgstr ""
 "Speicherplatz überstieg. Das Dokument ist nun nur-lesbar, aber Sie wollen es eventuell "
 "herunterladen, um eine lokale Kopie aufzubewahren."
 
-#: src/errormessages.js:47
+#: src/errormessages.js:48
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
 "Das Dokument kann nicht gespeichert werden. Bitte überprüfen Sie Ihre Zugriffsrechte."
 
-#: src/errormessages.js:48
+#: src/errormessages.js:49
 msgid "Document cannot be renamed, please check your permissions."
 msgstr ""
 "Das Dokument kann nicht umbenannt werden. Bitte überprüfen Sie Ihre Zugriffsrechte."
 
-#: src/errormessages.js:49
+#: src/errormessages.js:50
 msgid "Document cannot be exported. Please try again."
 msgstr "Das Dokument kann nicht exportiert werden. Bitte versuchen Sie es noch einmal."
 
-#: src/errormessages.js:54
+#: src/errormessages.js:55
 msgid "Uploading file to server failed, file not found."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen, die Datei wurde nicht "
 "gefunden."
 
-#: src/errormessages.js:55
+#: src/errormessages.js:56
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1802
+#: src/layer/tile/CanvasTileLayer.js:1807
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:2333
+#: src/layer/tile/CanvasTileLayer.js:2306
 msgid "Copy link location"
 msgstr "Link-Speicherort kopieren"
 
-#: src/layer/tile/CanvasTileLayer.js:2341
+#: src/layer/tile/CanvasTileLayer.js:2314
 msgid "Edit link"
 msgstr "Link bearbeiten"
 
-#: src/layer/tile/CanvasTileLayer.js:2349
+#: src/layer/tile/CanvasTileLayer.js:2322
 msgid "Remove link"
 msgstr "Link entfernen"
 
-#: src/layer/tile/CanvasTileLayer.js:4391
+#: src/layer/tile/CanvasTileLayer.js:4289
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2614,9 +2627,9 @@ msgid "Warning! The browser you are using is not supported."
 msgstr "Achtung! Der von Ihnen benutzte Browser wird nicht unterstützt."
 
 #: src/map/Clipboard.js:171
-msgid "To paste outside %productName, please first click the 'download' button"
+msgid "To paste outside {productname}, please first click the 'download' button"
 msgstr ""
-"Um außerhalb von %productName einzufügen, klicken Sie bitte zunächst auf die "
+"Um außerhalb von {productname} einzufügen, klicken Sie bitte zunächst auf die "
 "Schaltfläche „Herunterladen“"
 
 #: src/map/Clipboard.js:179
@@ -2693,17 +2706,15 @@ msgid "Please send us your feedback"
 msgstr "Bitte senden Sie uns Ihr Feedback"
 
 #: src/map/handler/Map.FileInserter.js:105
-#, javascript-format
-msgid "The file of type: %0 cannot be uploaded to server since the file has no name"
+msgid "The file of type: {0} cannot be uploaded to server since the file has no name"
 msgstr ""
-"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die Datei "
+"Die Datei vom Typ: {0} kann nicht auf den Server hochgeladen werden, da die Datei "
 "keinen Namen hat"
 
 #: src/map/handler/Map.FileInserter.js:107
-#, javascript-format
-msgid "The file of type: %0 cannot be uploaded to server since the file is empty"
+msgid "The file of type: {0} cannot be uploaded to server since the file is empty"
 msgstr ""
-"Die Datei vom Typ: %0 kann nicht auf den Server hochgeladen werden, da die Datei leer "
+"Die Datei vom Typ: {0} kann nicht auf den Server hochgeladen werden, da die Datei leer "
 "ist"
 
 #: src/map/handler/Map.FileInserter.js:138
@@ -2711,8 +2722,8 @@ msgid "Uploading..."
 msgstr "Hochladen …"
 
 #: src/map/handler/Map.FileInserter.js:161
-msgid "Uploading file to server failed with status: %0"
-msgstr "Das Hochladen der Datei auf den Server mit dem Status %0 ist fehlgeschlagen"
+msgid "Uploading file to server failed with status: {0}"
+msgstr "Das Hochladen der Datei auf den Server mit dem Status {0} ist fehlgeschlagen"
 
 #: src/map/handler/Map.SlideShow.js:55
 msgid "Empty Slide Show"
@@ -2788,8 +2799,8 @@ msgid "Free Online Office Welcome"
 msgstr "Free Online Office Begrüßung"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:26-7
-msgid "Explore The New %loolVersion"
-msgstr "Entdecken Sie die neue %loolVersion"
+msgid "Explore The New {loolversion}"
+msgstr "Entdecken Sie die neue {loolversion}"
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:27-7
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h2:38-7
@@ -2840,6 +2851,27 @@ msgstr ""
 "Anleitung</a> und erzeugen Sie einen Free-Online-Office-Build. Sie können auch mit "
 "Übersetzungen oder durch Meldung eines Fehlers mit allen wichtigen Schritten zur "
 "Reproduktion des Fehlers helfen."
+
+#~ msgid "Condition..."
+#~ msgstr "Bedingung..."
+
+#~ msgid "Greater than..."
+#~ msgstr "Größer als..."
+
+#~ msgid "Less than..."
+#~ msgstr "Kleiner als..."
+
+#~ msgid "Equal to..."
+#~ msgstr "Gleich..."
+
+#~ msgid "Between..."
+#~ msgstr "Zwischen..."
+
+#~ msgid "Duplicate..."
+#~ msgstr "Duplikat..."
+
+#~ msgid "More conditions..."
+#~ msgstr "Mehr Bedingungen..."
 
 #~ msgid "This version of %productName is powered by"
 #~ msgstr "Diese Version von %productName wird bereitgestellt von"

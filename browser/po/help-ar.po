@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 22:05+0200\n"
+"POT-Creation-Date: 2024-06-28 21:11+0200\n"
 "PO-Revision-Date: 2022-01-14 12:16+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -1480,7 +1480,8 @@ msgid "Select all in drawing page"
 msgstr "تحديد الكل في صفحة الرسم"
 
 #: html/lool-help.html%2Bdiv.h1:394-5
-msgid "<span class=\"productname\">%productName</span> Help"
+#, fuzzy
+msgid "<span class=\"productname\">{productname}</span> Help"
 msgstr "<span class=\"productname\">%productName</span> مساعدة"
 
 #: html/lool-help.html%2Bdiv.p:395-5
@@ -1490,7 +1491,8 @@ msgstr "التحرير التعاوني"
 
 #: html/lool-help.html%2Bdiv.p:396-5
 #: html/lool-help.html%2Bdiv.div.h3:442-5
-msgid "<span class=\"productname\">%productName</span> user interface"
+#, fuzzy
+msgid "<span class=\"productname\">{productname}</span> user interface"
 msgstr "<span class=\"productname\">%productName </span> واجهة المستخدم"
 
 #: html/lool-help.html%2Bdiv.p:397-5
@@ -1514,7 +1516,8 @@ msgstr "ميزات متقدمة"
 
 #: html/lool-help.html%2Bdiv.div.p:401-9
 #: html/lool-help.html%2Bdiv.div.h2:560-5
-msgid "<span class=\"productname\">%productName</span> spreadsheets"
+#, fuzzy
+msgid "<span class=\"productname\">{productname}</span> spreadsheets"
 msgstr "<span class=\"productname\">%productName</span> جداول البيانات"
 
 #: html/lool-help.html%2Bdiv.div.p:402-9
@@ -1540,7 +1543,8 @@ msgstr "جداول البيانات"
 
 #: html/lool-help.html%2Bdiv.div.p:409-9
 #: html/lool-help.html%2Bdiv.div.h2:629-5
-msgid "<span class=\"productname\">%productName</span> text documents"
+#, fuzzy
+msgid "<span class=\"productname\">{productname}</span> text documents"
 msgstr "<span class=\"productname\">%productName </span> المستندات النصية"
 
 #: html/lool-help.html%2Bdiv.div.p:410-9
@@ -1565,7 +1569,8 @@ msgstr "مستندات نصية"
 
 #: html/lool-help.html%2Bdiv.div.p:416-9
 #: html/lool-help.html%2Bdiv.div.h2:683-5
-msgid "<span class=\"productname\">%productName</span> presentations"
+#, fuzzy
+msgid "<span class=\"productname\">{productname}</span> presentations"
 msgstr "<span class=\"productname\">٪ productName </span> العروض التقديمية"
 
 #: html/lool-help.html%2Bdiv.div.p:417-9
@@ -1594,8 +1599,9 @@ msgid "Frequently Asked Questions"
 msgstr "الأسئلة المتداولة"
 
 #: html/lool-help.html%2Bdiv.div.p:426-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> allows you to create and "
+"<span class=\"productname\">{productname}</span> allows you to create and "
 "edit office documents text documents, spreadsheets and presentations "
 "directly in your browser, in a simple and straight-forward way. You can work "
 "alone on a document, or collaboratively as part of a team."
@@ -1624,16 +1630,18 @@ msgstr ""
 "للمستخدم. من الممكن متابعة المحرر."
 
 #: html/lool-help.html%2Bdiv.div.div.ul.li.p:436-11
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> notifies you with a small "
+"<span class=\"productname\">{productname}</span> notifies you with a small "
 "notification in the footer when a new user enters or when a user leaves."
 msgstr ""
 "يُخطرك <span class=\"productname\">%productName </span> بإشعار صغير في "
 "التذييل عندما يدخل مستخدم جديد أو عندما يغادر المستخدم."
 
 #: html/lool-help.html%2Bdiv.div.div.p:443-30
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> uses modern browser "
+"<span class=\"productname\">{productname}</span> uses modern browser "
 "resources to adapt the user interface to the size of the viewing area, "
 "including small screens found in mobile devices. The interface is composed "
 "of:"
@@ -1750,17 +1758,19 @@ msgstr ""
 "مجموعة من المعلومات على المستند. تعتمد المعلومات الفعلية على طبيعة المستند."
 
 #: html/lool-help.html%2Bdiv.div.p:481-5
+#, fuzzy
 msgid ""
 "Your documents are stored and managed in the cloud storage that is "
-"integrated with <span class=\"productname\">%productName</span>."
+"integrated with <span class=\"productname\">{productname}</span>."
 msgstr ""
 "يتم تخزين مستنداتك وإدارتها في التخزين السحابي المدمج مع <span class=\""
 "productname\">%productName </span>."
 
 #: html/lool-help.html%2Bdiv.div.div.p:482-30
+#, fuzzy
 msgid ""
 "To download a document download it from the <span class=\"productname\""
-">%productName</span> application’s <span class=\"ui\">File</span> menu. The "
+">{productname}</span> application’s <span class=\"ui\">File</span> menu. The "
 "download formats available depends on the application. All applications "
 "exports documents in PDF format."
 msgstr ""
@@ -1769,16 +1779,18 @@ msgstr ""
 "على التطبيق. تصدر جميع التطبيقات الوثائق بتنسيق PDF."
 
 #: html/lool-help.html%2Bdiv.div.div.p:483-30
+#, fuzzy
 msgid ""
 "To open document, click on the file to open the <span class=\"productname\""
-">%productName</span> module associated to the document format."
+">{productname}</span> module associated to the document format."
 msgstr ""
 "لفتح المستند، انقر فوق الملف لفتح الوحدة <span class=\"productname\">٪٪ "
 "productName </span> المقترنة بتنسيق المستند."
 
 #: html/lool-help.html%2Bdiv.div.div.p:484-30
+#, fuzzy
 msgid ""
-"Documents in <span class=\"productname\">%productName</span> save "
+"Documents in <span class=\"productname\">{productname}</span> save "
 "automatically, but if you are concerned that a document is synchronized as "
 "quickly as possible you can also force saving using the <span class=\"ui\""
 ">File</span> menu’s <span class=\"ui\">Save</span> entry."
@@ -1815,10 +1827,11 @@ msgid "Copy and Paste"
 msgstr "نسخ ولصق"
 
 #: html/lool-help.html%2Bdiv.div.div.p:494-5
+#, fuzzy
 msgid ""
 "Rich content copy/cut and paste is supported, not only within a given "
 "document, but also across documents on the same or different <span class=\""
-"productname\">%productName</span>. For these internal uses, users can copy/"
+"productname\">{productname}</span>. For these internal uses, users can copy/"
 "cut content, including images and mixed content, on PC by using the keyboard "
 "shortcuts directly (<kbd>Ctrl</kbd><span class=\"kbd--plus\""
 ">+</span><kbd>X</kbd>, <kbd>Ctrl</kbd><span class=\"kbd--plus\""
@@ -1905,8 +1918,9 @@ msgid "Inactive document"
 msgstr "مستند غير نشط"
 
 #: html/lool-help.html%2Bdiv.div.div.p:506-5
+#, fuzzy
 msgid ""
-"When <span class=\"productname\">%productName</span> detects that there has "
+"When <span class=\"productname\">{productname}</span> detects that there has "
 "not been any activity in the browser for a while, it puts the document in an "
 "“Inactive” state. The document is shown with a transparent gray overlay, "
 "with the message “Inactive document – please click to resume editing”."
@@ -1986,8 +2000,9 @@ msgid "Adding charts"
 msgstr "إضافة رسوم بيانية"
 
 #: html/lool-help.html%2Bdiv.div.div.p:524-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> supports inserting and "
+"<span class=\"productname\">{productname}</span> supports inserting and "
 "visualization of charts in documents. To add a chart:"
 msgstr ""
 "<span class=\"productname\">%productName </span> يدعم إدراج الرسوم البيانية "
@@ -2048,8 +2063,9 @@ msgid "Handling images"
 msgstr "معالجة الصور"
 
 #: html/lool-help.html%2Bdiv.div.div.p:540-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> inserts images in the text "
+"<span class=\"productname\">{productname}</span> inserts images in the text "
 "document from your local computer or from your cloud storage. Inserted "
 "images are always embedded in the document."
 msgstr ""
@@ -2088,10 +2104,11 @@ msgid "Comments in documents"
 msgstr "التعليقات الواردة في المستندات"
 
 #: html/lool-help.html%2Bdiv.div.div.p:547-5
+#, fuzzy
 msgid ""
-"Insert comments in <span class=\"productname\">%productName</span> in places "
-"that need special reader attention. Comments are displayed on the right and "
-"carry the name and date of the issuer."
+"Insert comments in <span class=\"productname\">{productname}</span> in "
+"places that need special reader attention. Comments are displayed on the "
+"right and carry the name and date of the issuer."
 msgstr ""
 "إدراج تعليقات في <span class=\"productname\">%productName </span> في الأماكن "
 "التي تحتاج إلى اهتمام خاص من القارئ. يتم عرض التعليقات على اليمين وتحمل اسم "
@@ -2113,8 +2130,9 @@ msgid "Spellchecking"
 msgstr "التدقيق الإملائي"
 
 #: html/lool-help.html%2Bdiv.div.div.p:553-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> can check spelling in text "
+"<span class=\"productname\">{productname}</span> can check spelling in text "
 "documents, spreadsheets and presentations. A red wavy underline indicates "
 "misspelled words. Click on the right mouse button to open a context menu "
 "with suggested misspelling corrections."
@@ -2195,21 +2213,23 @@ msgstr ""
 "فضلا عن الخط والحدود المعقدة والخلفية وحماية الخلية وخيارات أخرى."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:587-30
+#, fuzzy
 msgid ""
 "<span class=\"def\">Sorting data:</span> You can sort a list of numbers or "
-"text ascending or descending. <span class=\"productname\">%productName</span>"
-" automatically detects cells that are headers, and adjoining columns, to "
-"extend the selection."
+"text ascending or descending. <span class=\"productname\""
+">{productname}</span> automatically detects cells that are headers, and "
+"adjoining columns, to extend the selection."
 msgstr ""
 "<span class=\"def\"> فرز البيانات:</span> يمكنك فرز قائمة بالأرقام أو النص "
 "تصاعديًا أو تنازليًا. يقوم <span class=\"productname\">%productName </span> "
 "تلقائيا بالكشف عن الخلايا التي هي رؤوس وأعمدة متجاورة لتوسيع التحديد."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:588-30
+#, fuzzy
 msgid ""
 "<span class=\"def\">Filtering data:</span> Filters and advanced filters "
 "allow you to work on certain filtered rows (records) of a data range. In the "
-"spreadsheets in <span class=\"productname\">%productName</span> there are "
+"spreadsheets in <span class=\"productname\">{productname}</span> there are "
 "various possibilities for applying filters."
 msgstr ""
 "<span class=\"def\"> تصفية البيانات:</span> تسمح لك عوامل التصفية والمرشحات "
@@ -2324,12 +2344,13 @@ msgstr ""
 "اليمنى للخلية عندما يكون لديها تعليق. مرر الماوس على الخلية لعرض التعليقات."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:622-5
+#, fuzzy
 msgid ""
 "<span class=\"def\">Conditional formatting:</span> <span class=\""
-"productname\">%productName</span> adds symbols to each cell of a range based "
-"on cells conditions. Select the cell range and click the <span class=\"ui\">"
-"Conditional Formatting</span> icon on the toolbar. Select the symbol set to "
-"apply on the range."
+"productname\">{productname}</span> adds symbols to each cell of a range "
+"based on cells conditions. Select the cell range and click the <span class=\""
+"ui\">Conditional Formatting</span> icon on the toolbar. Select the symbol "
+"set to apply on the range."
 msgstr ""
 "<span class=\"def\"> تنسيق شرطي:</span> <span class=\"productname\">%"
 "productName </span> يضيف رموزاً لكل خلية من النطاق استناداً إلى ظروف "
@@ -2337,8 +2358,9 @@ msgstr ""
 "في شريط الأدوات. حدد مجموعة الرموز لتطبيقها على النطاق."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:633-30
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> edits text documents in the "
+"<span class=\"productname\">{productname}</span> edits text documents in the "
 "same way you edit a desktop document. It provides a What You See Is What You "
 "Get (WYSIWYG) layout – that conveniently lays out the document as it will be "
 "printed. Operations like typing text, cut, copy and pasting contents, "
@@ -2368,8 +2390,9 @@ msgid "Formatting text"
 msgstr "تنسيق النص"
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:644-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> supports modern techniques "
+"<span class=\"productname\">{productname}</span> supports modern techniques "
 "for paragraph formatting through styles. A style is a set of text properties "
 "(font, color, background and many more) labeled with a name, the style name. "
 "Use style to apply the same set of properties to many paragraphs in the "
@@ -2407,9 +2430,10 @@ msgstr ""
 "التنسيق المباشر فقط على الكائن الحالي المحدد."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:649-5
+#, fuzzy
 msgid ""
 "<span class=\"def\">Style formatting:</span> <span class=\"productname\""
-">%productName</span> supports paragraph styles. You can apply an existing "
+">{productname}</span> supports paragraph styles. You can apply an existing "
 "paragraph style to a paragraph. Choose menu <span class=\"ui\">Edit</span> → "
 "<span class=\"ui\">Edit styles</span> to change style."
 msgstr ""
@@ -2449,9 +2473,10 @@ msgid "Track changes"
 msgstr "تعقب التغييرات"
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:666-5
+#, fuzzy
 msgid ""
 "When you turn on Track Changes, <span class=\"productname\""
-">%productName</span> marks up new changes made to the document. Select this "
+">{productname}</span> marks up new changes made to the document. Select this "
 "option again to turn it off."
 msgstr ""
 "عند تشغيل تعقب التغييرات، <span class=\"productname\">%productName </span> "
@@ -2529,8 +2554,9 @@ msgstr ""
 "السفلية والتعليقات الختامية مدعومة."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:687-30
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> Impress edits presentations "
+"<span class=\"productname\">{productname}</span> Impress edits presentations "
 "in a way that should be familiar to people. Operations like typing text, "
 "cut, copy and pasting contents, selecting text , inserting, resizing, "
 "anchoring images, adding and handling tables, are similar to a desktop "
@@ -2544,8 +2570,9 @@ msgstr ""
 "وأشرطة الأدوات لتنفيذ الإجراءات في المستند."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:693-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> displays presentation slide "
+"<span class=\"productname\">{productname}</span> displays presentation slide "
 "shows, including a subset of slide transitions and object animations. Choose "
 "the slide show from the menu or click on icon in the bottom left toolbar in "
 "the slide pane."
@@ -2556,8 +2583,9 @@ msgstr ""
 "جزء الشريحة."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:694-5
+#, fuzzy
 msgid ""
-"To exit a <span class=\"productname\">%productName</span> slide show, press "
+"To exit a <span class=\"productname\">{productname}</span> slide show, press "
 "the <kbd>Esc</kbd> key to return to the presentation edit mode."
 msgstr ""
 "للخروج من <span class=\"productname\">%productName </span> عرض الشرائح، اضغط "
@@ -2580,9 +2608,10 @@ msgstr ""
 "شريحة أو تكرار أو حذف الشريحة الحالية."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:709-5
+#, fuzzy
 msgid ""
 "<span class=\"def\">Slide layouts:</span> <span class=\"productname\""
-">%productName</span> Impress let you change the slide layout. Select the "
+">{productname}</span> Impress let you change the slide layout. Select the "
 "desired slide layout in the drop-down layout list."
 msgstr ""
 "تخطيطات الشرائح <span class=\"def\">: </span> <span class=\"productname\">٪ "
@@ -2598,9 +2627,10 @@ msgstr ""
 "بالشريحة الحالية. تنسيق عناصر الشرائح وترتيبها في الشريحة الرئيسية."
 
 #: html/lool-help.html%2Bdiv.div.div.div.p:713-30
+#, fuzzy
 msgid ""
 "<span class=\"def\">Slide transitions:</span> <span class=\"productname\""
-">%productName</span> Impress provides visual effects when displaying a new "
+">{productname}</span> Impress provides visual effects when displaying a new "
 "slide in the slide show. Slide transitions are property of the slide, use "
 "the side bar to set the slide transition when in edit mode."
 msgstr ""
@@ -2628,16 +2658,18 @@ msgstr ""
 "الشريط الجانبي لتحديد سمة الجدول."
 
 #: html/lool-help.html%2Bdiv.div.div.h4:722-5
+#, fuzzy
 msgid ""
 "What are the documents file formats supported by <span class=\"productname\""
-">%productName</span>?"
+">{productname}</span>?"
 msgstr ""
 "ما هي تنسيقات ملفات المستندات التي يدعمها <span class=\"productname\">٪ "
 "productName </span>؟"
 
 #: html/lool-help.html%2Bdiv.div.div.p:723-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> supports both reading and "
+"<span class=\"productname\">{productname}</span> supports both reading and "
 "writing for the following file formats:"
 msgstr ""
 "<span class=\"productname\">%productName </span> يدعم كل من القراءة والكتابة "
@@ -2674,16 +2706,18 @@ msgid "A copy of the document is saved with the new name in the same folder."
 msgstr "يتم حفظ نسخة من المستند بالاسم الجديد في نفس المجلد."
 
 #: html/lool-help.html%2Bdiv.div.div.h4:739-5
+#, fuzzy
 msgid ""
-"How can I quit <span class=\"productname\">%productName</span> without "
+"How can I quit <span class=\"productname\">{productname}</span> without "
 "saving my edits?"
 msgstr ""
 "كيف يمكنني إنهاء <span class=\"productname\">%productName </span> دون حفظ "
 "تعديلاتي؟"
 
 #: html/lool-help.html%2Bdiv.div.div.p:740-5
+#, fuzzy
 msgid ""
-"<span class=\"productname\">%productName</span> saves the document in the "
+"<span class=\"productname\">{productname}</span> saves the document in the "
 "background regularly, you can't just close without saving it. To abandon "
 "your changes, you must either undo them, or use the <span class=\"ui\">"
 "Revision History </span> in the <span class=\"ui\">File</span> menu."
@@ -2694,16 +2728,18 @@ msgstr ""
 "القائمة <span class=\"ui\">File </span>."
 
 #: html/lool-help.html%2Bdiv.div.div.h4:743-5
+#, fuzzy
 msgid ""
-"Can <span class=\"productname\">%productName</span> open a password-"
+"Can <span class=\"productname\">{productname}</span> open a password-"
 "protected document?"
 msgstr ""
 "هل يمكن لـ <span class=\"productname\">%productName </span> فتح مستند محمي "
 "بكلمة مرور؟"
 
 #: html/lool-help.html%2Bdiv.div.div.p:744-5
+#, fuzzy
 msgid ""
-"Yes. <span class=\"productname\">%productName</span> opens password-"
+"Yes. <span class=\"productname\">{productname}</span> opens password-"
 "protected documents, but it is necessary to supply the password in the “"
 "Enter password” prompt at load time."
 msgstr ""
@@ -3093,8 +3129,9 @@ msgstr ""
 "وانسخها إلى الحافظة"
 
 #: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:862-11
+#, fuzzy
 msgid ""
-"Activate the <span class=\"productname\">%productName</span> spreadsheet "
+"Activate the <span class=\"productname\">{productname}</span> spreadsheet "
 "window."
 msgstr ""
 "تنشيط <span class=\"productname\">%productName </span> نافذة جدول البيانات."
@@ -3180,8 +3217,9 @@ msgid "How can I run my slide show?"
 msgstr "كيف يمكنني تشغيل عرض الشرائح الخاص بي؟"
 
 #: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:897-11
+#, fuzzy
 msgid ""
-"Open the presentation in <span class=\"productname\">%productName</span>"
+"Open the presentation in <span class=\"productname\">{productname}</span>"
 msgstr "افتح العرض التقديمي في <span class=\"productname\">%productName </span>"
 
 #: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:898-11
