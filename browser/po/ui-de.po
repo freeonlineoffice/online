@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-28 21:11+0200\n"
-"PO-Revision-Date: 2024-06-28 21:29+0200\n"
+"PO-Revision-Date: 2024-06-28 21:37+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1084,27 +1084,27 @@ msgstr "Alle Tabellen"
 
 #: src/control/Control.Menubar.js:826 src/control/jsdialog/Definitions.Menu.ts:304
 msgid "Highlight cells with..."
-msgstr ""
+msgstr "Markieren Sie Zellen mit..."
 
 #: src/control/Control.Menubar.js:827 src/control/jsdialog/Definitions.Menu.ts:307
 msgid "Values greater than..."
-msgstr ""
+msgstr "Werte größer als..."
 
 #: src/control/Control.Menubar.js:828 src/control/jsdialog/Definitions.Menu.ts:311
 msgid "Values less than..."
-msgstr ""
+msgstr "Werte kleiner als..."
 
 #: src/control/Control.Menubar.js:829 src/control/jsdialog/Definitions.Menu.ts:315
 msgid "Values equal to..."
-msgstr ""
+msgstr "Werte gleich..."
 
 #: src/control/Control.Menubar.js:830 src/control/jsdialog/Definitions.Menu.ts:319
 msgid "Values between..."
-msgstr ""
+msgstr "Werte zwischen..."
 
 #: src/control/Control.Menubar.js:831 src/control/jsdialog/Definitions.Menu.ts:323
 msgid "Values duplicate..."
-msgstr ""
+msgstr "Werte duplizieren..."
 
 #: src/control/Control.Menubar.js:832 src/control/jsdialog/Definitions.Menu.ts:327
 msgid "Containing text..."
@@ -1114,7 +1114,7 @@ msgstr "Enthält Text..."
 #: src/control/jsdialog/Definitions.Menu.ts:332
 #: src/control/jsdialog/Definitions.Menu.ts:366
 msgid "More highlights..."
-msgstr ""
+msgstr "Weitere Markierungen..."
 
 #: src/control/Control.Menubar.js:836 src/control/jsdialog/Definitions.Menu.ts:338
 msgid "Top/Bottom Rules..."
@@ -1489,11 +1489,11 @@ msgstr "Präsentieren im Fenster"
 
 #: src/control/Control.NotebookbarImpress.js:444
 msgid "Normal View"
-msgstr ""
+msgstr "Normal-Ansicht"
 
 #: src/control/Control.NotebookbarImpress.js:450
 msgid "Notes View"
-msgstr ""
+msgstr "Notiz-Ansicht"
 
 #: src/control/Control.NotebookbarWriter.js:69
 msgid "Form"
@@ -2334,7 +2334,7 @@ msgstr ""
 
 #: src/errormessages.js:20
 msgid "Authorization error was: '{errormessage}'."
-msgstr ""
+msgstr "Authorisierungsfehler war: '{errormessage}'."
 
 #: src/errormessages.js:21
 msgid "Wrong or missing WOPISrc parameter, please contact support."
