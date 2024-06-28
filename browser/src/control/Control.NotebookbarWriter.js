@@ -366,7 +366,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							'id': 'accessibility-check',
 							'class': 'unoAccessibilityCheck',
 							'type': 'bigtoolitem',
-							'text': _UNO('.uno:SidebarDeck.A11yCheckDeck', 'text'),
+							'text': _('Accessibility Check'),
 							'command': '.uno:SidebarDeck.A11yCheckDeck',
 							'accessibility': { focusBack: false, combination: 'A', de: null }
 						} : {},
@@ -2291,7 +2291,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			{
 				'id': 'review-accessibility-check',
 				'type': 'bigtoolitem',
-				'text': _UNO('.uno:SidebarDeck.A11yCheckDeck', 'text'),
+				'text': _('Accessibility Check'),
 				'command': '.uno:SidebarDeck.A11yCheckDeck',
 				'accessibility': { focusBack: false, combination: 'A1', de: 'B' }
 			}
