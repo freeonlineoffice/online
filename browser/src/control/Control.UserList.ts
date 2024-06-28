@@ -460,9 +460,15 @@ class UserList extends L.Control {
 		let message;
 
 		if (type === 'join') {
-			message = this.options.userJoinedPopupMessage.replace('{user}', username);
+			message = this.options.userJoinedPopupMessage.replace(
+				'{user}',
+				username,
+			);
 		} else {
-			message = this.options.userLeftPopupMessage.replace('{user}', username);
+			message = this.options.userLeftPopupMessage.replace(
+				'{user}',
+				username,
+			);
 		}
 
 		const sanitizer = document.createElement('div');
@@ -577,10 +583,11 @@ class UserList extends L.Control {
 			followingChip.innerText = this.options.followingChipTextEditor;
 			followingChip.style.borderColor = 'var(--color-main-text)';
 		} else {
-			followingChip.innerText = this.options.followingChipTextUser.replace(
-				'{user}',
-				following[1].username,
-			);
+			followingChip.innerText =
+				this.options.followingChipTextUser.replace(
+					'{user}',
+					following[1].username,
+				);
 			followingChip.style.borderColor = following[1].color;
 		}
 
