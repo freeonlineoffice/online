@@ -74,9 +74,6 @@ if (host === '' && !window.ThisIsAMobileApp) {
 	map.uiManager.showInfoModal('empty-host-url-modal', '', errorMessages.emptyhosturl, '', _('OK'), null, false);
 }
 
-if (L.Map.versionBar)
-	map.addControl(L.Map.versionBar);
-
 L.Map.THIS = map;
 app.map = map;
 app.idleHandler.map = map;

@@ -317,7 +317,8 @@ m4_ifelse(MOBILEAPP,[true],
       window.loolLogging = 'true';
       window.enableWelcomeMessage = false;
       window.autoShowWelcome = false;
-	  window.autoShowFeedback = true;
+      window.autoShowFeedback = true;
+      window.allowUpdateNotification = false;
       window.outOfFocusTimeoutSecs = 1000000;
       window.idleTimeoutSecs = 1000000;
       window.protocolDebug = false;
@@ -345,6 +346,7 @@ m4_ifelse(MOBILEAPP,[true],
       window.enableWelcomeMessage = %ENABLE_WELCOME_MSG%;
       window.autoShowWelcome = %AUTO_SHOW_WELCOME%;
       window.autoShowFeedback = %AUTO_SHOW_FEEDBACK%;
+      window.allowUpdateNotification = %ENABLE_UPDATE_NOTIFICATION%;
       window.userInterfaceMode = '%USER_INTERFACE_MODE%';
       window.useIntegrationTheme = '%USE_INTEGRATION_THEME%';
       window.enableMacrosExecution = '%ENABLE_MACROS_EXECUTION%';
