@@ -155,7 +155,8 @@ JSDialog.iconView = function (
 
 		if (entry) {
 			L.DomUtil.addClass(entry, 'selected');
-			const blockOption = JSDialog._scrollIntoViewBlockOption('nearest');
+			const blockOption =
+				JSDialog._scrollIntoViewBlockOption('nearest');
 			entry.scrollIntoView({
 				behavior: 'smooth',
 				block: blockOption,
