@@ -8,7 +8,7 @@ class URLPopUpSection extends HTMLObjectSection {
 	editButtonId = 'hyperlink-pop-up-edit';
 	removeButtonId = 'hyperlink-pop-up-remove';
 
-    constructor (url: string, documentPosition: cool.SimplePoint) {
+    constructor (url: string, documentPosition: lool.SimplePoint) {
         super(URLPopUpSection.sectionName, null, null, documentPosition, URLPopUpSection.cssClass);
 
 		const objectDiv = this.getHTMLObject();
@@ -87,7 +87,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		};
 	}
 
-    public static showURLPopUP(url: string, documentPosition: cool.SimplePoint) {
+    public static showURLPopUP(url: string, documentPosition: lool.SimplePoint) {
 		if (URLPopUpSection.isOpen())
 			URLPopUpSection.closeURLPopUp();
 
