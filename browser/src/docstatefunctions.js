@@ -43,7 +43,8 @@ app.getViewRectangles = function () {
 // ToDo: _splitPanesContext should be an app variable.
 app.isPointVisibleInTheDisplayedArea = function (twipsArray) {
 	if (app.map._docLayer._splitPanesContext) {
-		let rectangles = app.map._docLayer._splitPanesContext.getViewRectangles();
+		let rectangles =
+			app.map._docLayer._splitPanesContext.getViewRectangles();
 		for (let i = 0; i < rectangles.length; i++) {
 			if (rectangles[i].containsPoint(twipsArray)) return true;
 		}
