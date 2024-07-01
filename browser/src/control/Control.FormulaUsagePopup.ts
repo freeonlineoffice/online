@@ -42,7 +42,11 @@ class FormulaUsagePopup extends L.Control.AutoCompletePopup {
 
 	onAdd() {
 		this.newPopupData.isAutoCompletePopup = true;
-		this.map.on('openformulausagepopup', this.openFormulaUsagePopup, this);
+		this.map.on(
+			'openformulausagepopup',
+			this.openFormulaUsagePopup,
+			this,
+		);
 		this.map.on('sendformulausagetext', this.sendFormulaUsageText, this);
 	}
 
