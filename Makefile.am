@@ -20,6 +20,7 @@ export ENABLE_DEBUG
 
 bin_PROGRAMS = \
 	loolforkit \
+	loolforkitns \
 	loolmount \
         loolstress \
 	loolconvert loolconfig
@@ -119,6 +120,7 @@ shared_sources = common/FileUtil.cpp \
                  common/Authorization.cpp \
                  common/CommandControl.cpp \
                  common/Simd.cpp \
+                 common/LoolMount.cpp \
                  kit/KitQueue.cpp \
                  net/DelaySocket.cpp \
                  net/HttpRequest.cpp \
@@ -208,6 +210,12 @@ loolforkit_SOURCES = $(loolforkit_sources) \
 
 loolforkit_LDADD = libsimd.a
 
+loolforkitns_SOURCES = $(loolforkit_sources) \
+                       $(shared_sources) \
+                       kit/forkit-main.cpp
+
+loolforkitns_LDADD = libsimd.a
+
 if ENABLE_DEBUG
 loolwsd_inproc_SOURCES = $(loolwsd_sources) \
                          $(shared_sources) \
@@ -272,7 +280,8 @@ clientnb_SOURCES = net/clientnb.cpp \
                    common/Util.cpp \
                    common/Util-desktop.cpp
 
-loolmount_SOURCES = tools/mount.cpp
+clolmount_SOURCES = tools/mount.cpp \
+                    common/LoolMount.cpp
 
 loolmap_SOURCES = tools/map.cpp
 
@@ -473,7 +482,7 @@ endif
 if ENABLE_LIBFUZZER
 CLEANUP_DEPS=
 else
-CLEANUP_DEPS=loolwsd loolmount loolforkit
+CLEANUP_DEPS=loolwsd loolmount loolforkit loolforkitns
 endif
 
 # Build loolwsd and loolmount first, so we can cleanup before updating

@@ -713,6 +713,7 @@ std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
 bool LOOLWSD::EnableTraceEventLogging = false;
 bool LOOLWSD::EnableAccessibility = false;
+bool LOOLWSD::EnableMountNamespaces= false;
 FILE *LOOLWSD::TraceEventFile = NULL;
 std::string LOOLWSD::LogLevel = "trace";
 std::string LOOLWSD::LogLevelStartup = "trace";
@@ -1973,6 +1974,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "logging.disable_server_audit", "false" },
         { "browser_logging", "false" },
         { "mount_jail_tree", "true" },
+        { "mount_namespaces", "false" },
         { "net.connection_timeout_secs", "30" },
         { "net.listen", "any" },
         { "net.proto", "all" },
@@ -2138,6 +2140,12 @@ void LOOLWSD::innerInitialize(Application& self)
 
     // Experimental features.
     EnableExperimental = getConfigValue<bool>(conf, "experimental_features", false);
+
+    const bool UseMountNamespaces = EnableExperimental && getConfigValue<bool>(conf, "mount_namespaces", false);
+    // attempt this early before starting logging which spawns a thread
+    EnableMountNamespaces = UseMountNamespaces && JailUtil::becomeMountingUser(geteuid(), getegid());
+    if (EnableMountNamespaces)
+        JailUtil::enableMountNamespaces();
 
     EnableAccessibility = getConfigValue<bool>(conf, "accessibility.enable", false);
 
@@ -2503,6 +2511,9 @@ void LOOLWSD::innerInitialize(Application& self)
     // For some reason I can't get at this setting in ChildSession::loKitCallback().
     std::string fontsMissingHandling = config::getString("fonts_missing.handling", "log");
     setenv("FONTS_MISSING_HANDLING", fontsMissingHandling.c_str(), 1);
+
+    if (UseMountNamespaces && !EnableMountNamespaces)
+        LOG_WRN("Using mount namespaces failed.");
 
     IsBindMountingEnabled = getConfigValue<bool>(conf, "mount_jail_tree", true);
 #if CODE_COVERAGE
@@ -3449,7 +3460,16 @@ bool LOOLWSD::createForKit()
 #elif VALGRIND_LOOLFORKIT
     std::string forKitPath = "/usr/bin/valgrind";
 #else
-    std::string forKitPath = parentPath + "loolforkit";
+    std::string forKitPath = parentPath;
+    if (EnableMountNamespaces)
+    {
+        forKitPath += "loolforkitns";
+        args.push_back("--namespace");
+    }
+    else
+    {
+        forKitPath += "loolforkit";
+    }
 #endif
 
     // Always reap first, in case we haven't done so yet.
