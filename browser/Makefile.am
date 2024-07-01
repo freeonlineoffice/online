@@ -412,6 +412,8 @@ LOOL_JS_LST =\
 	src/control/Ruler.js \
 	src/control/VRuler.ts \
 	src/slideshow/SlideShowPresenter.ts \
+	src/slideshow/transition/Transition2d.ts \
+	src/slideshow/transition/FadeTransition.ts \
 	src/dom/PosAnimation.js \
 	src/map/anim/Map.PanAnimation.js \
 	src/dom/PosAnimation.Timer.js \
@@ -847,6 +849,8 @@ pot:
 		src/control/jsdialog/Widget.Timefield.js \
 		src/control/jsdialog/Widget.TreeView.js \
 		src/slideshow/SlideShowPresenter.ts \
+		src/slideshow/transition/Transition2d.ts \
+		src/slideshow/transition/FadeTransition.ts \
 		src/core/Socket.js \
 		src/core/Debug.js \
 		src/docstate.js \
