@@ -1630,6 +1630,12 @@ L.CanvasTileLayer = L.Layer.extend({
 				app.isAdminUser = null;
 
 			this._map.fire('adminuser');
+		} else if (textMsg.startsWith('presentationinfo:')) {
+			var content = JSON.parse(textMsg.substring('presentationinfo:'.length + 1));
+			if (this._map.slideShow2) {
+				this._map.slideShow2.initializeSlideShowInfo(content);
+			}
+>>>>>>> 10e73c48c (Introduce SlideshowPresenter to show the slide shows)
 		}
 	},
 
