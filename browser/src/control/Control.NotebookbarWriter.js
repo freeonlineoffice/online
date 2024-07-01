@@ -2459,7 +2459,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'type': 'toolitem',
 								'text': _UNO('.uno:SelectTable', 'text'),
 								'command': '.uno:SelectTable'
-							}
+							},
 						]
 					},
 					{
@@ -2474,7 +2474,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'type': 'toolitem',
 								'text': _UNO('.uno:DeleteTable', 'text'),
 								'command': '.uno:DeleteTable'
-							}
+							},
 						]
 					}
 				],
@@ -2564,8 +2564,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 						'children': [
 							{
 								'type': 'toolitem',
-								'text': _UNO('.uno:NumberFormatDecimal', 'text'),
-								'command': '.uno:NumberFormatDecimal'
+								'text': _UNO('.uno:TableCellBackgroundColor', 'text'),
+								'command': '.uno:TableCellBackgroundColor',
 							},
 							{
 								'type': 'toolitem',
