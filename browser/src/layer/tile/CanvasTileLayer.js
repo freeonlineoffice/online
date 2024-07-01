@@ -3025,13 +3025,6 @@ L.CanvasTileLayer = L.Layer.extend({
 			return false;
 	},
 
-	_latLngBoundsToSimpleRectangle: function(latLngBounds) {
-		let topLeft = this._latLngToTwips(latLngBounds.getNorthWest());
-		let bottomRight = this._latLngToTwips(latLngBounds.getSouthEast());
-
-		return new app.definitions.simpleRectangle(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
-	},
-
 	_simpleRectangleToLatLngBounds: function(simpleRectangle) {
 		return new L.LatLngBounds(
 			this._twipsToLatLng({ x: simpleRectangle.x1, y: simpleRectangle.y1 }, this._map.getZoom()),
@@ -4792,13 +4785,6 @@ L.CanvasTileLayer = L.Layer.extend({
 	_latLngToTwips: function (latLng, zoom) {
 		var pixels = this._map.project(latLng, zoom);
 		return this._cssPixelsToTwips(pixels);
-	},
-
-	_latLngToCorePixels: function(latLng, zoom) {
-		var pixels = this._map.project(latLng, zoom);
-		return new L.Point (
-			pixels.x * app.dpiScale,
-			pixels.y * app.dpiScale);
 	},
 
 	_twipsToPixels: function (twips) { // css pixels
