@@ -150,7 +150,7 @@ void usage(const char* program)
 int domount(int argc, const char* const* argv)
 {
     /*WARNING: PRIVILEGED CODE CHECKING START */
-    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "coolmount"))
+    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "loolmount"))
     /*WARNING*/ {
     /*WARNING*/    fprintf(stderr, "Aborting.\n");
     /*WARNING*/    return EX_SOFTWARE;
