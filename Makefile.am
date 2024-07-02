@@ -280,7 +280,7 @@ clientnb_SOURCES = net/clientnb.cpp \
                    common/Util.cpp \
                    common/Util-desktop.cpp
 
-clolmount_SOURCES = tools/mount.cpp \
+loolmount_SOURCES = tools/mount.cpp \
                     common/LoolMount.cpp
 
 loolmap_SOURCES = tools/map.cpp
