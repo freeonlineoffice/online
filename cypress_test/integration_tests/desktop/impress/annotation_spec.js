@@ -118,7 +118,7 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 		cy.cGet('.lool-annotation-content > div').should('include.text','some reply text');
 	});
 
-	it.skip('Autosave Collapse', function() {
+	it('Autosave Collapse', function() {
 		desktopHelper.insertComment(undefined, false);
 		cy.cGet('#map').focus();
 		helper.typeIntoDocument('{home}');
@@ -136,8 +136,8 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 
 		helper.reloadDocument(newFilePath);
 		cy.cGet('.lool-annotation-img').click();
-		cy.cGet('.lool-annotation-content-wrapper').should('exist');
-		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
+		cy.cGet('.lool-annotation-lontent-wrapper').should('exist');
+		cy.cGet('[id^=annotation-content-area-]').should('have.text','some text0');
 		cy.cGet('.lool-annotation-info-collapsed').should('be.not.visible');
 	})
 });
