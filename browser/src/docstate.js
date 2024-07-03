@@ -138,3 +138,4 @@ if (activateValidation) {
 }
 
 window.JSDialog = {}; // initialize jsdialog module
+window.SlideShow = {}; // initialize slideshow module
