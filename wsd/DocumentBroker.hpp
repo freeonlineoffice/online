@@ -1728,6 +1728,8 @@ public:
 protected:
     bool isConvertTo() const override { return true; }
 
+    virtual bool isReadOnly() const { return true; }
+
     virtual bool isGetThumbnail() const { return false; }
 
     virtual void sendStartMessage(const std::shared_ptr<ClientSession>& clientSession,
@@ -1783,6 +1785,8 @@ public:
                     {}
 
 private:
+    virtual bool isReadOnly() const override { return false; }
+
     void sendStartMessage(const std::shared_ptr<ClientSession>& clientSession,
                           const std::string& encodedFrom) override;
 };
