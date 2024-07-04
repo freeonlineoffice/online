@@ -8,6 +8,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+declare var SlideShow: any;
+
 class Transition2d {
 	public canvas: HTMLCanvasElement;
 	public gl: WebGL2RenderingContext;
@@ -227,3 +229,5 @@ class Transition2d {
 		return program;
 	}
 }
+
+SlideShow.Transition2d = Transition2d;

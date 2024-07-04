@@ -8,7 +8,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-class FadeTransition extends Transition2d {
+declare var SlideShow: any;
+
+class FadeTransition extends SlideShow.Transition2d {
 	private effectTransition: number = 0;
 	constructor(
 		canvas: HTMLCanvasElement,
@@ -41,7 +43,7 @@ class FadeTransition extends Transition2d {
 	}
 }
 
-app.definitions.FadeTransition = function (
+SlideShow.FadeTransition = function (
 	canvas: HTMLCanvasElement,
 	image1: HTMLImageElement,
 	image2: HTMLImageElement,
