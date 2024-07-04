@@ -1633,7 +1633,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		} else if (textMsg.startsWith('presentationinfo:')) {
 			var content = JSON.parse(textMsg.substring('presentationinfo:'.length + 1));
 			if (this._map.slideShowPresenter) {
-				this._map.slideShowPresenter.initializeSlideShowInfo(content);
+				this._map.slideShowPresenter.onSlideShowInfo(content);
 			}
 		}
 	},
