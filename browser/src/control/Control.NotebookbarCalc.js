@@ -1726,7 +1726,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			},
 			{
 				'type': 'container',
-				'children': [ 
+				'children': [
 					{
 						'type': 'toolbox',
 						'children': [
@@ -1747,7 +1747,6 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 								'type': 'toolitem',
 								'text': _UNO('.uno:ConvertFormulaToValue', 'spreadsheet'),
 								'command': '.uno:ConvertFormulaToValue',
-								'image': false,
 								'accessibility': { focusBack: true,	combination: 'R', de: null }
 							}
 						]
