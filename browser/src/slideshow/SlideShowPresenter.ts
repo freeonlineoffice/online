@@ -137,9 +137,9 @@ class SlideShowPresenter {
 						3,
 					);
 				};
-				image2.src = 'images/help/pt-BR/manage-changes-filter.png';
+				image2.src = this._map._docLayer._preview._previewTiles[1].src;
 			};
-			image1.src = 'images/help/pt-BR/paragraph-dialog.png';
+			image1.src = this._map._docLayer._preview._previewTiles[0].src;
 
 			L.DomEvent.on(
 				document,
