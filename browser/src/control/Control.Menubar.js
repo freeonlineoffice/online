@@ -2124,7 +2124,7 @@ L.Control.Menubar = L.Control.extend({
 			}
 		}
 
-		if (menuItem.id === 'runmacro' && window.enableMacrosExecution === 'false')
+		if (menuItem.id === 'runmacro' && !window.enableMacrosExecution)
 			return false;
 
 		if (menuItem.type === 'action') {
