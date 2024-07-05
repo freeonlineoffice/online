@@ -104,6 +104,7 @@ clientnb
 libsimd.a
 loolwsd-inproc
 loolbench
+loolforkitns
 
 # Fuzzer
 *_fuzzer
