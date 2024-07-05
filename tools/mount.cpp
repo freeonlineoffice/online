@@ -22,7 +22,7 @@ extern int domount(bool namespace_mount, int argc, const char* const* argv);
 int main(int argc, char** argv)
 {
     /*WARNING: PRIVILEGED CODE CHECKING START */
-    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "coolmount"))
+    /*WARNING*/ if (!hasCorrectUID(/* appName = */ "loolmount"))
     /*WARNING*/ {
     /*WARNING*/    fprintf(stderr, "Aborting.\n");
     /*WARNING*/    return EX_SOFTWARE;
