@@ -417,6 +417,7 @@ LOOL_JS_LST =\
 	src/slideshow/transition/FadeTransition.ts \
 	src/slideshow/transition/PlusTransition.ts \
 	src/slideshow/transition/CircleTransition.ts \
+	src/slideshow/transition/VenetianTransition.ts \
 	src/slideshow/transition/WedgeTransition.ts \
 	src/slideshow/transition/OvalTransition.ts \
 	src/slideshow/transition/BoxTransition.ts \
@@ -866,6 +867,7 @@ pot:
 		src/slideshow/transition/FadeTransition.ts \
 		src/slideshow/transition/PlusTransition.ts \
 		src/slideshow/transition/CircleTransition.ts \
+		src/slideshow/transition/VenetianTransition.ts \
 		src/slideshow/transition/WedgeTransition.ts \
 		src/slideshow/transition/BoxTransition.ts \
 		src/slideshow/transition/OvalTransition.ts\
