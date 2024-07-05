@@ -424,6 +424,7 @@ LOOL_JS_LST =\
 	src/slideshow/transition/DiamondTransition.ts\
 	src/slideshow/transition/CheckersTransition.ts \
 	src/slideshow/transition/BarsTransition.ts \
+	src/slideshow/transition/CutTransition.ts \
 	src/slideshow/transition/WheelTransition.ts \
 	src/slideshow/transition/UncoverTransition.ts \
 	src/slideshow/transition/WipeTransition.ts \
@@ -874,6 +875,7 @@ pot:
 		src/slideshow/transition/DiamondTransition.ts\
 		src/slideshow/transition/CheckersTransition.ts \
 		src/slideshow/transition/BarsTransition.ts \
+		src/slideshow/transition/CutTransition.ts \
 		src/slideshow/transition/WheelTransition.ts \
 		src/slideshow/transition/UncoverTransition.ts \
 		src/core/Socket.js \
