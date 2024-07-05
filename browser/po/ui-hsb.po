@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 21:32+0200\n"
+"POT-Creation-Date: 2024-07-05 23:12+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Upper Sorbian <https://hosted.weblate.org/projects/"
@@ -218,7 +218,7 @@ msgstr "Protokol wobnowić"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:195
 msgid "None"
 msgstr "Žadyn"
@@ -286,7 +286,7 @@ msgstr ""
 #: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
 #: src/canvas/sections/CommentListSection.ts:1241
 #: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71
-#: src/main.js:74 src/main.js:126 src/map/Clipboard.js:1176
+#: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
 #: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
@@ -311,8 +311,8 @@ msgstr "Chceće tute posedźenje woprawdźe skónčić?"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1227 src/control/Control.UIManager.js:1294
-#: src/control/Control.UIManager.js:1429 src/control/Control.UIManager.js:1571
+#: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
+#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1574
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
 #: src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137
@@ -588,99 +588,99 @@ msgstr ""
 "Inaktiwny dokument - prošu podótkńće so, zo byšće znowa začitał a z "
 "wobdźěłowanjom pokročował"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Połny"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Linearny"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Aksialny"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Radialny"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Elipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Kwadratiski"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Kwadrat"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Kruta wulkosć"
 
-#: src/control/Control.JSDialogBuilder.js:1402
+#: src/control/Control.JSDialogBuilder.js:1403
 msgid "From"
 msgstr "Wot"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1406
 msgid "To"
 msgstr "Do"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1409
 msgid "Color"
 msgstr "Barba"
 
-#: src/control/Control.JSDialogBuilder.js:1531
+#: src/control/Control.JSDialogBuilder.js:1532
 msgid "Select range"
 msgstr "Wobłuk wubrać"
 
-#: src/control/Control.JSDialogBuilder.js:1630
+#: src/control/Control.JSDialogBuilder.js:1631
 #: src/control/Control.NotebookbarBuilder.js:150
 msgid "Font Name"
 msgstr "Mjeno pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1632 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1633 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Wulkosć pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1634
+#: src/control/Control.JSDialogBuilder.js:1635
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:1898
+#: src/control/Control.JSDialogBuilder.js:1899
 #, fuzzy
 msgid "reply"
 msgstr "Wotmołwić"
 
-#: src/control/Control.JSDialogBuilder.js:1901
+#: src/control/Control.JSDialogBuilder.js:1902
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1912
-#: src/layer/tile/CanvasTileLayer.js:4160
-#: src/layer/tile/CanvasTileLayer.js:4171
+#: src/control/Control.JSDialogBuilder.js:1913
+#: src/layer/tile/CanvasTileLayer.js:3984
+#: src/layer/tile/CanvasTileLayer.js:3995
 #: src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Komentar"
 
-#: src/control/Control.JSDialogBuilder.js:1976
+#: src/control/Control.JSDialogBuilder.js:1977
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2832
+#: src/control/Control.JSDialogBuilder.js:2840
 #: src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Linki"
 
-#: src/control/Control.JSDialogBuilder.js:2833
+#: src/control/Control.JSDialogBuilder.js:2841
 #: src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Špalty"
 
-#: src/control/Control.JSDialogBuilder.js:2853
+#: src/control/Control.JSDialogBuilder.js:2861
 #, fuzzy
 msgid "Insert Table"
 msgstr "Tabelu zasadźić"
@@ -804,7 +804,7 @@ msgstr "PDF-dokument (.pdf)"
 
 #: src/control/Control.Menubar.js:90 src/control/Control.Menubar.js:408
 #: src/control/Control.Menubar.js:560 src/control/Control.Menubar.js:699
-#: src/control/Control.Toolbar.js:1055
+#: src/control/Control.Toolbar.js:1061
 msgid "Close document"
 msgstr "Dokument začinić"
 
@@ -1616,11 +1616,6 @@ msgstr ""
 msgid "Go Offline"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:398
-#: src/control/Control.NotebookbarWriter.js:2323
-msgid "Accessibility Check"
-msgstr ""
-
 #: src/control/Control.NotebookbarWriter.js:1331
 msgid "Rich Text"
 msgstr ""
@@ -1810,7 +1805,7 @@ msgstr "Twary zasadźić"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:754
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
 msgid "Hide Menu"
 msgstr ""
 
@@ -1818,7 +1813,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:777
+#: src/control/Control.UIManager.js:780
 msgid "Show Menu"
 msgstr ""
 
@@ -2327,7 +2322,7 @@ msgid "Someone"
 msgstr ""
 
 #: src/core/Socket.js:1166
-msgid "{usernme} saved this document as {filename}. Do you want to join?"
+msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
 #: src/core/Socket.js:1183
@@ -2554,10 +2549,11 @@ msgid ""
 "be read-only."
 msgstr ""
 
-#: src/errormessages.js:38 src/errormessages.js:47
-msgid "Document cannot be saved due to expired or invalid access token."
+#: src/errormessages.js:38
+msgid ""
+"Document cannot be saved due to expired session, please reopen the document "
+"to continue."
 msgstr ""
-"Dokument njeda so spadnjeneho abo njepłaćiweho přistupneho tokena składować."
 
 #: src/errormessages.js:39
 msgid "Document cannot be saved."
@@ -2585,6 +2581,12 @@ msgid ""
 "download it now to preserve a copy locally."
 msgstr ""
 
+#: src/errormessages.js:47
+msgid ""
+"Document cannot be saved due to expired session, please reload the page to "
+"continue."
+msgstr ""
+
 #: src/errormessages.js:48
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
@@ -2605,11 +2607,11 @@ msgstr "Nahrawanje na serwer njeje so poradźiło, dataja njeje so namakała."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Nahrawanje na serwer njeje so poradźiło, dataja je přewulka."
 
-#: src/layer/tile/CanvasTileLayer.js:1800
+#: src/layer/tile/CanvasTileLayer.js:1793
 msgid "Functions"
 msgstr "Funkcije"
 
-#: src/layer/tile/CanvasTileLayer.js:4188
+#: src/layer/tile/CanvasTileLayer.js:4012
 msgid "No Comments"
 msgstr ""
 
@@ -2705,7 +2707,7 @@ msgstr "Změnu wotpokazać"
 msgid "Resolved"
 msgstr "Rozrisany"
 
-#: src/main.js:126
+#: src/main.js:123
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2919,6 +2921,10 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Document cannot be saved due to expired or invalid access token."
+#~ msgstr ""
+#~ "Dokument njeda so spadnjeneho abo njepłaćiweho přistupneho tokena składować."
 
 #~ msgid "This version of %productName is powered by"
 #~ msgstr "Tuta wersija %productName spěchuje so wot"

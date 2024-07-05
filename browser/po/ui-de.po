@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 21:32+0200\n"
-"PO-Revision-Date: 2024-07-01 21:37+0200\n"
+"POT-Creation-Date: 2024-07-05 23:12+0200\n"
+"PO-Revision-Date: 2024-07-05 23:16+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -217,7 +217,7 @@ msgstr "Logging aktualisieren"
 msgid "Channel Filter:"
 msgstr "Kanalfilter:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:195
 msgid "None"
 msgstr "Keine"
@@ -283,7 +283,7 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
 #: src/canvas/sections/CommentListSection.ts:1241
 #: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71 src/main.js:74
-#: src/main.js:126 src/map/Clipboard.js:1176 src/map/handler/Map.Feedback.js:82
+#: src/main.js:123 src/map/Clipboard.js:1176 src/map/handler/Map.Feedback.js:82
 #: src/map/handler/Map.SlideShow.js:56 src/map/handler/Map.SlideShow.js:165
 #: src/map/handler/Map.SlideShow.js:299 src/map/handler/Map.SlideShow.js:310
 #: src/map/handler/Map.WOPI.js:603
@@ -305,9 +305,9 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: admin/src/AdminSocketOverview.js:100 admin/src/AdminSocketOverview.js:423
 #: admin/src/AdminSocketSettings.js:37 src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:71 src/control/Control.LanguageDialog.js:103
-#: src/control/Control.MobileTopBar.ts:41 src/control/Control.UIManager.js:1227
-#: src/control/Control.UIManager.js:1294 src/control/Control.UIManager.js:1429
-#: src/control/Control.UIManager.js:1571 src/control/Control.Zotero.js:320
+#: src/control/Control.MobileTopBar.ts:41 src/control/Control.UIManager.js:1230
+#: src/control/Control.UIManager.js:1297 src/control/Control.UIManager.js:1432
+#: src/control/Control.UIManager.js:1574 src/control/Control.Zotero.js:320
 #: src/control/Toolbar.js:780 src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137 src/canvas/sections/CommentSection.ts:140
 msgid "Cancel"
@@ -577,93 +577,93 @@ msgstr "Leeres Dokument - zum Neuladen und Fortsetzen der Bearbeitung klicken Si
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Inaktives Dokument – zum Neuladen und Fortsetzen der Bearbeitung bitte tippen"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Stabil"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Linear"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Elliptisch"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Quadratisch"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Rechteckig"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Festen Größe"
 
-#: src/control/Control.JSDialogBuilder.js:1402
+#: src/control/Control.JSDialogBuilder.js:1403
 msgid "From"
 msgstr "Von"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1406
 msgid "To"
 msgstr "Bis"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1409
 msgid "Color"
 msgstr "Farbe"
 
-#: src/control/Control.JSDialogBuilder.js:1531
+#: src/control/Control.JSDialogBuilder.js:1532
 msgid "Select range"
 msgstr "Bereich auswählen"
 
-#: src/control/Control.JSDialogBuilder.js:1630
+#: src/control/Control.JSDialogBuilder.js:1631
 #: src/control/Control.NotebookbarBuilder.js:150
 msgid "Font Name"
 msgstr "Schriftart"
 
-#: src/control/Control.JSDialogBuilder.js:1632 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1633 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: src/control/Control.JSDialogBuilder.js:1634 src/control/Control.TopToolbar.js:452
+#: src/control/Control.JSDialogBuilder.js:1635 src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Aussehen"
 
-#: src/control/Control.JSDialogBuilder.js:1898
+#: src/control/Control.JSDialogBuilder.js:1899
 msgid "reply"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:1901
+#: src/control/Control.JSDialogBuilder.js:1902
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:1912 src/layer/tile/CanvasTileLayer.js:4160
-#: src/layer/tile/CanvasTileLayer.js:4171 src/canvas/sections/CommentListSection.ts:1027
+#: src/control/Control.JSDialogBuilder.js:1913 src/layer/tile/CanvasTileLayer.js:3984
+#: src/layer/tile/CanvasTileLayer.js:3995 src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:1976
+#: src/control/Control.JSDialogBuilder.js:1977
 msgid "Insert Comment"
 msgstr "Kommentar einfügen"
 
-#: src/control/Control.JSDialogBuilder.js:2832 src/control/Control.Menubar.js:854
+#: src/control/Control.JSDialogBuilder.js:2840 src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Zeilen"
 
-#: src/control/Control.JSDialogBuilder.js:2833 src/control/Control.Menubar.js:857
+#: src/control/Control.JSDialogBuilder.js:2841 src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Spalten"
 
-#: src/control/Control.JSDialogBuilder.js:2853
+#: src/control/Control.JSDialogBuilder.js:2861
 msgid "Insert Table"
 msgstr "Tabelle einfügen"
 
@@ -780,7 +780,7 @@ msgstr "PDF-Dokument (.pdf) als..."
 
 #: src/control/Control.Menubar.js:90 src/control/Control.Menubar.js:408
 #: src/control/Control.Menubar.js:560 src/control/Control.Menubar.js:699
-#: src/control/Control.Toolbar.js:1055
+#: src/control/Control.Toolbar.js:1061
 msgid "Close document"
 msgstr "Dokument schließen"
 
@@ -1509,11 +1509,6 @@ msgstr "Online gehen"
 msgid "Go Offline"
 msgstr "Offline gehen"
 
-#: src/control/Control.NotebookbarWriter.js:398
-#: src/control/Control.NotebookbarWriter.js:2323
-msgid "Accessibility Check"
-msgstr "Barrierefreiheitsprüfung"
-
 #: src/control/Control.NotebookbarWriter.js:1331
 msgid "Rich Text"
 msgstr "Rich Text"
@@ -1696,7 +1691,7 @@ msgstr "Formen einfügen"
 msgid "Insert connectors"
 msgstr "Verbinder einfügen"
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:754
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
 msgid "Hide Menu"
 msgstr "Menüleiste verbergen"
 
@@ -1704,7 +1699,7 @@ msgstr "Menüleiste verbergen"
 msgid "Enter new name"
 msgstr "Neuen Namen eingeben"
 
-#: src/control/Control.UIManager.js:777
+#: src/control/Control.UIManager.js:780
 msgid "Show Menu"
 msgstr "Menü anzeigen"
 
@@ -2218,7 +2213,7 @@ msgid "Someone"
 msgstr "Jemand"
 
 #: src/core/Socket.js:1166
-msgid "{usernme} saved this document as {filename}. Do you want to join?"
+msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr "{username} speicherte dieses Dokument als {filename}. Wollen Sie mitbearbeiten?"
 
 #: src/core/Socket.js:1183
@@ -2453,11 +2448,13 @@ msgstr ""
 "Das Dokument ist zu groß oder es ist kein Plattenplatz mehr zum Speichern verfügbar. "
 "Das Dokument wird nun nur lesbar sein."
 
-#: src/errormessages.js:38 src/errormessages.js:47
-msgid "Document cannot be saved due to expired or invalid access token."
+#: src/errormessages.js:38
+msgid ""
+"Document cannot be saved due to expired session, please reopen the document to "
+"continue."
 msgstr ""
-"Das Dokument kann aufgrund eines abgelaufenen oder ungültigen Zugangs nicht "
-"gespeichert werden."
+"Das Dokument kann aufgrund einer abgelaufenen Sitzung nicht gespeichert werden. Bitte "
+"öffnen Sie das Dokument erneut, um fortzufahren."
 
 #: src/errormessages.js:39
 msgid "Document cannot be saved."
@@ -2492,6 +2489,13 @@ msgstr ""
 "Speicherplatz überstieg. Das Dokument ist nun nur-lesbar, aber Sie wollen es eventuell "
 "herunterladen, um eine lokale Kopie aufzubewahren."
 
+#: src/errormessages.js:47
+msgid ""
+"Document cannot be saved due to expired session, please reload the page to continue."
+msgstr ""
+"Das Dokument kann aufgrund einer abgelaufenen Sitzung nicht gespeichert werden. Bitte "
+"laden Sie die Seite neu, um fortzufahren."
+
 #: src/errormessages.js:48
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
@@ -2517,11 +2521,11 @@ msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 "Das Hochladen der Datei auf den Server ist fehlgeschlagen. Die Datei ist zu groß."
 
-#: src/layer/tile/CanvasTileLayer.js:1800
+#: src/layer/tile/CanvasTileLayer.js:1793
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:4188
+#: src/layer/tile/CanvasTileLayer.js:4012
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2617,7 +2621,7 @@ msgstr "Änderung verwerfen"
 msgid "Resolved"
 msgstr "Erledigt"
 
-#: src/main.js:126
+#: src/main.js:123
 msgid "Warning! The browser you are using is not supported."
 msgstr "Achtung! Der von Ihnen benutzte Browser wird nicht unterstützt."
 
@@ -2846,6 +2850,14 @@ msgstr ""
 "Anleitung</a> und erzeugen Sie einen Free-Online-Office-Build. Sie können auch mit "
 "Übersetzungen oder durch Meldung eines Fehlers mit allen wichtigen Schritten zur "
 "Reproduktion des Fehlers helfen."
+
+#~ msgid "Accessibility Check"
+#~ msgstr "Barrierefreiheitsprüfung"
+
+#~ msgid "Document cannot be saved due to expired or invalid access token."
+#~ msgstr ""
+#~ "Das Dokument kann aufgrund eines abgelaufenen oder ungültigen Zugangs nicht "
+#~ "gespeichert werden."
 
 #~ msgid "Copy link location"
 #~ msgstr "Link-Speicherort kopieren"

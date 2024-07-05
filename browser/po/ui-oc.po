@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 21:32+0200\n"
+"POT-Creation-Date: 2024-07-05 23:12+0200\n"
 "PO-Revision-Date: 2022-01-15 13:53+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/collabora-online/"
@@ -217,7 +217,7 @@ msgstr "Actualizar lo jornal"
 msgid "Channel Filter:"
 msgstr "Filtre de canal :"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:195
 msgid "None"
 msgstr "Pas cap"
@@ -285,7 +285,7 @@ msgstr "Lo servidor es estat arrestat, volgatz recargar la pagina."
 #: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
 #: src/canvas/sections/CommentListSection.ts:1241
 #: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71
-#: src/main.js:74 src/main.js:126 src/map/Clipboard.js:1176
+#: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
 #: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
@@ -310,8 +310,8 @@ msgstr "Sètz segur que volètz suprimir aquesta session ?"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1227 src/control/Control.UIManager.js:1294
-#: src/control/Control.UIManager.js:1429 src/control/Control.UIManager.js:1571
+#: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
+#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1574
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
 #: src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137
@@ -585,98 +585,98 @@ msgstr ""
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Plen"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Linear"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Ellipsoïde"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Qüadratic"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Carrat"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Talha fixa"
 
-#: src/control/Control.JSDialogBuilder.js:1402
+#: src/control/Control.JSDialogBuilder.js:1403
 msgid "From"
 msgstr "De"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1406
 msgid "To"
 msgstr "A"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1409
 msgid "Color"
 msgstr "Color"
 
-#: src/control/Control.JSDialogBuilder.js:1531
+#: src/control/Control.JSDialogBuilder.js:1532
 msgid "Select range"
 msgstr "Seleccionar l’interval"
 
-#: src/control/Control.JSDialogBuilder.js:1630
+#: src/control/Control.JSDialogBuilder.js:1631
 #: src/control/Control.NotebookbarBuilder.js:150
 msgid "Font Name"
 msgstr "Nom de la poliça"
 
-#: src/control/Control.JSDialogBuilder.js:1632 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1633 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Talha de la poliça"
 
-#: src/control/Control.JSDialogBuilder.js:1634
+#: src/control/Control.JSDialogBuilder.js:1635
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Estil"
 
-#: src/control/Control.JSDialogBuilder.js:1898
+#: src/control/Control.JSDialogBuilder.js:1899
 msgid "reply"
 msgstr "responsa"
 
-#: src/control/Control.JSDialogBuilder.js:1901
+#: src/control/Control.JSDialogBuilder.js:1902
 msgid "replies"
 msgstr "responsas"
 
-#: src/control/Control.JSDialogBuilder.js:1912
-#: src/layer/tile/CanvasTileLayer.js:4160
-#: src/layer/tile/CanvasTileLayer.js:4171
+#: src/control/Control.JSDialogBuilder.js:1913
+#: src/layer/tile/CanvasTileLayer.js:3984
+#: src/layer/tile/CanvasTileLayer.js:3995
 #: src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Comentari"
 
-#: src/control/Control.JSDialogBuilder.js:1976
+#: src/control/Control.JSDialogBuilder.js:1977
 msgid "Insert Comment"
 msgstr "Apondre un comentari"
 
-#: src/control/Control.JSDialogBuilder.js:2832
+#: src/control/Control.JSDialogBuilder.js:2840
 #: src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Linhas"
 
-#: src/control/Control.JSDialogBuilder.js:2833
+#: src/control/Control.JSDialogBuilder.js:2841
 #: src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Colomnas"
 
-#: src/control/Control.JSDialogBuilder.js:2853
+#: src/control/Control.JSDialogBuilder.js:2861
 msgid "Insert Table"
 msgstr "Inserir un tablèu"
 
@@ -799,7 +799,7 @@ msgstr "Document PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:90 src/control/Control.Menubar.js:408
 #: src/control/Control.Menubar.js:560 src/control/Control.Menubar.js:699
-#: src/control/Control.Toolbar.js:1055
+#: src/control/Control.Toolbar.js:1061
 msgid "Close document"
 msgstr "Tampar lo document"
 
@@ -1609,11 +1609,6 @@ msgstr ""
 msgid "Go Offline"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:398
-#: src/control/Control.NotebookbarWriter.js:2323
-msgid "Accessibility Check"
-msgstr ""
-
 #: src/control/Control.NotebookbarWriter.js:1331
 msgid "Rich Text"
 msgstr ""
@@ -1800,7 +1795,7 @@ msgstr "Inserir de fòrmas"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:754
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
 msgid "Hide Menu"
 msgstr ""
 
@@ -1808,7 +1803,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:777
+#: src/control/Control.UIManager.js:780
 msgid "Show Menu"
 msgstr ""
 
@@ -2309,7 +2304,7 @@ msgid "Someone"
 msgstr "Qualqu’un"
 
 #: src/core/Socket.js:1166
-msgid "{usernme} saved this document as {filename}. Do you want to join?"
+msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
 #: src/core/Socket.js:1183
@@ -2509,8 +2504,10 @@ msgid ""
 "be read-only."
 msgstr ""
 
-#: src/errormessages.js:38 src/errormessages.js:47
-msgid "Document cannot be saved due to expired or invalid access token."
+#: src/errormessages.js:38
+msgid ""
+"Document cannot be saved due to expired session, please reopen the document "
+"to continue."
 msgstr ""
 
 #: src/errormessages.js:39
@@ -2539,6 +2536,12 @@ msgid ""
 "download it now to preserve a copy locally."
 msgstr ""
 
+#: src/errormessages.js:47
+msgid ""
+"Document cannot be saved due to expired session, please reload the page to "
+"continue."
+msgstr ""
+
 #: src/errormessages.js:48
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
@@ -2559,11 +2562,11 @@ msgstr ""
 msgid "Uploading file to server failed, the file is too large."
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1800
+#: src/layer/tile/CanvasTileLayer.js:1793
 msgid "Functions"
 msgstr "Foncions"
 
-#: src/layer/tile/CanvasTileLayer.js:4188
+#: src/layer/tile/CanvasTileLayer.js:4012
 msgid "No Comments"
 msgstr "Cap de comentari"
 
@@ -2659,7 +2662,7 @@ msgstr "Regetar la modificacion"
 msgid "Resolved"
 msgstr ""
 
-#: src/main.js:126
+#: src/main.js:123
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 

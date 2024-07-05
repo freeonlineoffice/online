@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 21:32+0200\n"
+"POT-Creation-Date: 2024-07-05 23:12+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/"
@@ -216,7 +216,7 @@ msgstr "Оновити журнал"
 msgid "Channel Filter:"
 msgstr "Фільтр каналу:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:467
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:468
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:195
 msgid "None"
 msgstr "Нічого"
@@ -284,7 +284,7 @@ msgstr "Сервер вимкнено, перезавантажте сторін
 #: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
 #: src/canvas/sections/CommentListSection.ts:1241
 #: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71
-#: src/main.js:74 src/main.js:126 src/map/Clipboard.js:1176
+#: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
 #: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
@@ -309,8 +309,8 @@ msgstr "Ви справді бажаєте закінчити цей сеанс?
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1227 src/control/Control.UIManager.js:1294
-#: src/control/Control.UIManager.js:1429 src/control/Control.UIManager.js:1571
+#: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
+#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1574
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
 #: src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137
@@ -585,98 +585,98 @@ msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 "Неактивний документ - торкніть для перезавантаження і відновлення редагування"
 
-#: src/control/Control.JSDialogBuilder.js:470
+#: src/control/Control.JSDialogBuilder.js:471
 msgid "Solid"
 msgstr "Суцільний"
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:474
 msgid "Linear"
 msgstr "Лінійний"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:477
 msgid "Axial"
 msgstr "Осьовий"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:480
 msgid "Radial"
 msgstr "Радіальний"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Ellipsoid"
 msgstr "Еліпсоїд"
 
-#: src/control/Control.JSDialogBuilder.js:486
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Quadratic"
 msgstr "Квадратичний"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Square"
 msgstr "Прямокутний"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Fixed size"
 msgstr "Фіксований розмір"
 
-#: src/control/Control.JSDialogBuilder.js:1402
+#: src/control/Control.JSDialogBuilder.js:1403
 msgid "From"
 msgstr "Від"
 
-#: src/control/Control.JSDialogBuilder.js:1405
+#: src/control/Control.JSDialogBuilder.js:1406
 msgid "To"
 msgstr "До"
 
-#: src/control/Control.JSDialogBuilder.js:1408
+#: src/control/Control.JSDialogBuilder.js:1409
 msgid "Color"
 msgstr "Колір"
 
-#: src/control/Control.JSDialogBuilder.js:1531
+#: src/control/Control.JSDialogBuilder.js:1532
 msgid "Select range"
 msgstr "Обрати діапазон"
 
-#: src/control/Control.JSDialogBuilder.js:1630
+#: src/control/Control.JSDialogBuilder.js:1631
 #: src/control/Control.NotebookbarBuilder.js:150
 msgid "Font Name"
 msgstr "Шрифт"
 
-#: src/control/Control.JSDialogBuilder.js:1632 src/control/Toolbar.js:123
+#: src/control/Control.JSDialogBuilder.js:1633 src/control/Toolbar.js:123
 msgid "Font Size"
 msgstr "Кегль"
 
-#: src/control/Control.JSDialogBuilder.js:1634
+#: src/control/Control.JSDialogBuilder.js:1635
 #: src/control/Control.TopToolbar.js:452
 msgid "Style"
 msgstr "Стиль"
 
-#: src/control/Control.JSDialogBuilder.js:1898
+#: src/control/Control.JSDialogBuilder.js:1899
 msgid "reply"
 msgstr "відповідь"
 
-#: src/control/Control.JSDialogBuilder.js:1901
+#: src/control/Control.JSDialogBuilder.js:1902
 msgid "replies"
 msgstr "відповіді"
 
-#: src/control/Control.JSDialogBuilder.js:1912
-#: src/layer/tile/CanvasTileLayer.js:4160
-#: src/layer/tile/CanvasTileLayer.js:4171
+#: src/control/Control.JSDialogBuilder.js:1913
+#: src/layer/tile/CanvasTileLayer.js:3984
+#: src/layer/tile/CanvasTileLayer.js:3995
 #: src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Коментар"
 
-#: src/control/Control.JSDialogBuilder.js:1976
+#: src/control/Control.JSDialogBuilder.js:1977
 msgid "Insert Comment"
 msgstr "Вставити коментар"
 
-#: src/control/Control.JSDialogBuilder.js:2832
+#: src/control/Control.JSDialogBuilder.js:2840
 #: src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Рядки"
 
-#: src/control/Control.JSDialogBuilder.js:2833
+#: src/control/Control.JSDialogBuilder.js:2841
 #: src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Стовпчики"
 
-#: src/control/Control.JSDialogBuilder.js:2853
+#: src/control/Control.JSDialogBuilder.js:2861
 msgid "Insert Table"
 msgstr "Вставити таблицю"
 
@@ -799,7 +799,7 @@ msgstr "Документ PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:90 src/control/Control.Menubar.js:408
 #: src/control/Control.Menubar.js:560 src/control/Control.Menubar.js:699
-#: src/control/Control.Toolbar.js:1055
+#: src/control/Control.Toolbar.js:1061
 msgid "Close document"
 msgstr "Закрити документ"
 
@@ -1611,11 +1611,6 @@ msgstr ""
 msgid "Go Offline"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:398
-#: src/control/Control.NotebookbarWriter.js:2323
-msgid "Accessibility Check"
-msgstr ""
-
 #: src/control/Control.NotebookbarWriter.js:1331
 msgid "Rich Text"
 msgstr ""
@@ -1804,7 +1799,7 @@ msgstr "Вставити фігури"
 msgid "Insert connectors"
 msgstr "Вставити роз'єм"
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:754
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
 msgid "Hide Menu"
 msgstr ""
 
@@ -1812,7 +1807,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:777
+#: src/control/Control.UIManager.js:780
 msgid "Show Menu"
 msgstr ""
 
@@ -2321,7 +2316,7 @@ msgid "Someone"
 msgstr "Хтось"
 
 #: src/core/Socket.js:1166
-msgid "{usernme} saved this document as {filename}. Do you want to join?"
+msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
 #: src/core/Socket.js:1183
@@ -2553,11 +2548,11 @@ msgid ""
 "be read-only."
 msgstr ""
 
-#: src/errormessages.js:38 src/errormessages.js:47
-msgid "Document cannot be saved due to expired or invalid access token."
+#: src/errormessages.js:38
+msgid ""
+"Document cannot be saved due to expired session, please reopen the document "
+"to continue."
 msgstr ""
-"Документ не може бути збережений через маркер доступу, що застарів або "
-"недійсний."
 
 #: src/errormessages.js:39
 msgid "Document cannot be saved."
@@ -2585,6 +2580,12 @@ msgid ""
 "download it now to preserve a copy locally."
 msgstr ""
 
+#: src/errormessages.js:47
+msgid ""
+"Document cannot be saved due to expired session, please reload the page to "
+"continue."
+msgstr ""
+
 #: src/errormessages.js:48
 msgid "Document cannot be saved, please check your permissions."
 msgstr ""
@@ -2605,11 +2606,11 @@ msgstr "Не вдалося завантажити файл на сервер, �
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Не вдалося завантажити файл на сервер, занадто великий файл."
 
-#: src/layer/tile/CanvasTileLayer.js:1800
+#: src/layer/tile/CanvasTileLayer.js:1793
 msgid "Functions"
 msgstr "Функції"
 
-#: src/layer/tile/CanvasTileLayer.js:4188
+#: src/layer/tile/CanvasTileLayer.js:4012
 msgid "No Comments"
 msgstr "Коментарі відсутні"
 
@@ -2705,7 +2706,7 @@ msgstr "Відкинути зміну"
 msgid "Resolved"
 msgstr "Вирішено"
 
-#: src/main.js:126
+#: src/main.js:123
 msgid "Warning! The browser you are using is not supported."
 msgstr "Увага! Ваш браузер не підтримується."
 
@@ -2941,6 +2942,11 @@ msgid ""
 "help out with translations or by filing a bug report with all the essential "
 "steps on how to reproduce it."
 msgstr ""
+
+#~ msgid "Document cannot be saved due to expired or invalid access token."
+#~ msgstr ""
+#~ "Документ не може бути збережений через маркер доступу, що застарів або "
+#~ "недійсний."
 
 #~ msgid "This version of %productName is powered by"
 #~ msgstr "Ця версія %productName працює на"
