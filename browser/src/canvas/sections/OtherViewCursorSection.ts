@@ -20,8 +20,8 @@ class OtherViewCursorSection extends HTMLObjectSection {
     static sectionNamePrefix = 'OtherViewCursor ';
     static sectionPointers: Array<OtherViewCursorSection> = [];
 
-    constructor(viewId: number, color: string, rectangle: cool.SimpleRectangle, part: number, mode: number) {
-        super(OtherViewCursorSection.sectionNamePrefix + viewId, rectangle.pWidth / app.dpiScale, rectangle.pHeight / app.dpiScale, new cool.SimplePoint(rectangle.x1, rectangle.y1));
+    constructor(viewId: number, color: string, rectangle: lool.SimpleRectangle, part: number, mode: number) {
+        super(OtherViewCursorSection.sectionNamePrefix + viewId, rectangle.pWidth / app.dpiScale, rectangle.pHeight / app.dpiScale, new lool.SimplePoint(rectangle.x1, rectangle.y1));
 
         this.sectionProperties.color = color;
         this.sectionProperties.viewId = viewId;
@@ -55,7 +55,7 @@ class OtherViewCursorSection extends HTMLObjectSection {
     }
 
     public static addOrUpdateOtherViewCursor(viewId: number, username: string, rectangleData: Array<string>, part: number, mode: number) {
-        let rectangle = new cool.SimpleRectangle(0, 0, 0, 0);
+        let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
         const color = L.LOUtil.rgbToHex(L.LOUtil.getViewIdColor(viewId));
 
         if (rectangleData) {
@@ -89,7 +89,7 @@ class OtherViewCursorSection extends HTMLObjectSection {
         section.setShowSection(section.checkMyVisibility());
         section.onNewDocumentTopLeft();
         section.adjustHTMLObjectPosition();
-        const documentPosition = new cool.SimplePoint(section.position[0] * app.pixelsToTwips, (section.position[1] - 20) * app.pixelsToTwips);
+        const documentPosition = new lool.SimplePoint(section.position[0] * app.pixelsToTwips, (section.position[1] - 20) * app.pixelsToTwips);
 
         if (section.showSection)
             app.definitions.cursorHeaderSection.showCursorHeader(viewId, username, documentPosition, color);

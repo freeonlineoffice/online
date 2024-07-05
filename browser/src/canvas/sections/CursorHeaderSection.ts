@@ -12,7 +12,7 @@ class CursorHeaderSection extends HTMLObjectSection {
     static namePrefix: string = 'CursorHeader ';
     static duration = 3000;
 
-    constructor(viewId: number, username: string, documentPosition: cool.SimplePoint, color: string) {
+    constructor(viewId: number, username: string, documentPosition: lool.SimplePoint, color: string) {
         super(CursorHeaderSection.namePrefix + viewId, null, null, documentPosition);
 
         this.sectionProperties.deletionTimeout = null;
@@ -36,7 +36,7 @@ class CursorHeaderSection extends HTMLObjectSection {
         }, CursorHeaderSection.duration);
     }
 
-    public static showCursorHeader(viewId: number, username: string, documentPosition: cool.SimplePoint, color: string) {
+    public static showCursorHeader(viewId: number, username: string, documentPosition: lool.SimplePoint, color: string) {
         const sectionName = CursorHeaderSection.namePrefix + viewId;
         let section;
 
