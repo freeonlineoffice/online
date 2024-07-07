@@ -180,22 +180,8 @@ class SlideShowPresenter {
 			return;
 		}
 
-		if (
-			this._map._docLayer.hiddenSlides() >=
-			this._map.getNumberOfParts()
-		) {
-			this._map.uiManager.showInfoModal(
-				'allslidehidden-modal',
-				_('Empty Slide Show'),
-				'All slides are hidden!',
-				'',
-				_('OK'),
-				() => {
-					0;
-				},
-				false,
-				'allslidehidden-modal-response',
-			);
+		if (this._map._docLayer.hiddenSlides() >= this._map.getNumberOfParts()) {
+			this._notifyAllSlidesHidden();
 			return;
 		}
 
@@ -225,6 +211,21 @@ class SlideShowPresenter {
 	_checkAlreadyPresenting() {
 		if (this._slideShowCanvas) return true;
 		return false;
+	}
+
+	_notifyAllSlidesHidden() {
+		this._map.uiManager.showInfoModal(
+			'allslidehidden-modal',
+			_('Empty Slide Show'),
+			'All slides are hidden!',
+			'',
+			_('OK'),
+			() => {
+				0;
+			},
+			false,
+			'allslidehidden-modal-response',
+		);
 	}
 
 	_notifyAlreadyPresenting() {
