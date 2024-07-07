@@ -132,9 +132,7 @@ public:
 
         if (_takeSnapshot)
         {
-            std::string decodedUri;
-            Poco::URI::decode(uri, decodedUri);
-            const std::string url = Poco::URI(decodedUri).getPath();
+            const std::string url = Poco::URI(Util::decodeURIComponent(uri)).getPath();
             const auto it = _urlToSnapshot.find(url);
             if (it != _urlToSnapshot.end())
             {
@@ -213,9 +211,7 @@ public:
                     std::string url;
                     if (LOOLProtocol::getTokenString(tokens[1], "url", url))
                     {
-                        std::string decodedUrl;
-                        Poco::URI::decode(url, decodedUrl);
-                        Poco::URI uriPublic = Poco::URI(decodedUrl);
+                        Poco::URI uriPublic = Poco::URI(Util::decodeURIComponent(url));
                         if (uriPublic.isRelative() || uriPublic.getScheme() == "file")
                         {
                             uriPublic.normalize();
