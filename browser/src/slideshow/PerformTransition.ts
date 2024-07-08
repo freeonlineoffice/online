@@ -311,7 +311,7 @@ SlideShow.PerformTransition = function (
 
 		default:
 			new SlideShow.NoTransition(canvas, image1, image2).start();
-			console.error('Unknown transition type', slideInfo.transitionType);
+			console.log('Unknown transition type', slideInfo.transitionType);
 			break;
 	}
 
