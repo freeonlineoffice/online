@@ -12,80 +12,41 @@ SlideShow.PerformTransition = function (
 	canvas: HTMLCanvasElement,
 	image1: HTMLImageElement,
 	image2: HTMLImageElement,
-    type: string,
+	slideInfo: SlideInfo,
 ) {
+	switch (slideInfo.transitionType) {
+		case 'Fade':
+			new SlideShow.FadeTransition(canvas, image1, image2).start(2);
+			break;
+		
+		case 'BarWipe':
+			new SlideShow.WipeTransition(canvas, image1, image2).start(1);
+			break;
+		
+		case 'PineWheelWipe':
+			// 1,2,3, 4, 8
+			new SlideShow.WheelTransition(canvas, image1, image2).start(2);
+			break;
 
-    switch (type) {
-        case 'FADE':
-            new SlideShow.FadeTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(2);
-            break;
-        case 'WIPE':
-            new SlideShow.WipeTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
-        case 'WHEEL':
-            // 1,2,3, 4, 8
-            new SlideShow.WheelTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(2);
-            break;
+			case 'SlideWipe':
+			new SlideShow.UncoverTransition(canvas, image1, image2).start(2);
+			break;
 
-        case 'UNCOVER':
-            new SlideShow.UncoverTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(2);
-            break;
-        
-        case 'BARS':
-            new SlideShow.BarsTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
-        
-        case 'CHECKERS':
-            new SlideShow.CheckersTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
+		case 'RandomBarWipe':
+			new SlideShow.BarsTransition(canvas, image1, image2).start(1);
+			break;
+
+		case 'CheckerBoardWipe':
+			new SlideShow.CheckersTransition(canvas, image1, image2).start(1);
+			break;
+
+		case "FourBoxWipe":
+			// All Shapes come here
             break;
 
-        case 'PLUS':
-            new SlideShow.PlusTransition(
-                canvas,
-                image1,
-                image2,
-            ).start();
-            break;
-        
-        case 'CIRCLE':
-            new SlideShow.CircleTransition(
-                canvas,
-                image1,
-                image2,
-            ).start();
-            break;
-
-        case 'DIAMOND':
-            new SlideShow.DiamondTransition(
-                canvas,
-                image1,
-                image2,
-            ).start();
-            break;
+		case 'PLUS':
+			new SlideShow.PlusTransition(canvas, image1, image2).start();
+			break;
 
         case 'OVAL':
             new SlideShow.OvalTransition(
@@ -111,73 +72,50 @@ SlideShow.PerformTransition = function (
             ).start();
             break;
 
-        case 'VENETIAN':
-            new SlideShow.VenetianTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
-        
-        case 'CUT':
-            new SlideShow.CutTransition(
-                canvas,
-                image1,
-                image2,
-            ).start();
-            break;
-        
-        case 'COVER':
-            new SlideShow.CoverTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
+		case 'IrisWipe':
+			new SlideShow.BoxTransition(canvas, image1, image2).start(1);
+			break;
 
-        case 'DISSOLVE':
-            new SlideShow.SimpleDissolveTransition(
-                canvas,
-                image1,
-                image2,
-            ).start();
-            break;
+		case 'FanWipe':
+			new SlideShow.WedgeTransition(canvas, image1, image2).start();
+			break;
 
-        case 'PUSH':
-            new SlideShow.PushTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
+		case 'BlindWipe':
+			new SlideShow.VenetianTransition(canvas, image1, image2).start(1);
+			break;
 
-        case 'SPLIT':
-            new SlideShow.SplitTransition(
-                canvas,
-                image1,
-                image2,
-            ).start(1);
-            break;
+		case 'CUT':
+			// todo: subtype of "BarWipe" to "FadeOverColor"
+			new SlideShow.CutTransition(canvas, image1, image2).start();
+			break;
 
 		case 'COVER':
 			new SlideShow.CoverTransition(canvas, image1, image2).start(1);
 			break;
 
-		case 'DISSOLVE':
+		case 'Dissolve':
 			new SlideShow.SimpleDissolveTransition(canvas, image1, image2).start();
 			break;
 
-		case 'PUSH':
+		case 'PushWipe':
 			new SlideShow.PushTransition(canvas, image1, image2).start(1);
 			break;
 
-		case 'SPLIT':
+		case 'BarnDoorWipe':
 			new SlideShow.SplitTransition(canvas, image1, image2).start(1);
+			break;
+	
+		case 'EllipseWipe':
+			// todo: have to find!
+			break;
+
+		case 'WaterfallWipe':
+			// TODO: Need to implement
 			break;
 
 		default:
 			new SlideShow.NoTransition(canvas, image1, image2).start();
-			console.error('Unknown transition type');
+			console.error('Unknown transition type', slideInfo.transitionType);
 			break;
 	}
 
