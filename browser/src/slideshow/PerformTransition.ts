@@ -1,5 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -160,10 +159,27 @@ SlideShow.PerformTransition = function (
             ).start(1);
             break;
 
-        default:
-            console.error('Unknown transition type');
-            break;
-    }
+		case 'COVER':
+			new SlideShow.CoverTransition(canvas, image1, image2).start(1);
+			break;
+
+		case 'DISSOLVE':
+			new SlideShow.SimpleDissolveTransition(canvas, image1, image2).start();
+			break;
+
+		case 'PUSH':
+			new SlideShow.PushTransition(canvas, image1, image2).start(1);
+			break;
+
+		case 'SPLIT':
+			new SlideShow.SplitTransition(canvas, image1, image2).start(1);
+			break;
+
+		default:
+			new SlideShow.NoTransition(canvas, image1, image2).start();
+			console.error('Unknown transition type');
+			break;
+	}
 
 	return;
 };

@@ -1,5 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -108,7 +107,7 @@ class SlideShowPresenter {
 				this._slideShowCanvas,
 				previousSlide,
 				nextSlide,
-				"FADE"
+				'NONE',
 			);
 		});
 	}
