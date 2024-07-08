@@ -22,7 +22,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-#if !defined(ANDROID) && !defined(IOS)
+#if !defined(ANDROID) && !defined(IOS) && !defined(__FreeBSD__)
 #  include <sys/prctl.h>
 #endif
 
@@ -550,7 +550,7 @@ void requestShutdown()
 
     void dieOnParentDeath()
     {
-#if !defined(ANDROID) && !defined(IOS)
+#if !defined(ANDROID) && !defined(IOS) && !defined(__FreeBSD__)
         prctl(PR_SET_PDEATHSIG, SIGKILL);
 #endif
     }
