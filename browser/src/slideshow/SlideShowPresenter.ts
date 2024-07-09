@@ -268,8 +268,12 @@ class SlideShowPresenter {
 		if (this._slideCompositor)
 			this._slideCompositor.updatePresentationInfo(this._presentationInfo);
 		else
-			this._slideCompositor = new SlideShow.SlideCompositor(this, this._presentationInfo,
-				this._slideShowCanvas.width, this._slideShowCanvas.height);
+			this._slideCompositor = new SlideShow.PreviewsCompositor(
+				this,
+				this._presentationInfo,
+				this._slideShowCanvas.width,
+				this._slideShowCanvas.height,
+			);
 
 		this._slideCompositor.fetchAndRun(0, () => { this._doPresentation(); });
 	}
