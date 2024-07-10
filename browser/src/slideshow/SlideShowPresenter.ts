@@ -150,6 +150,12 @@ class SlideShowPresenter {
 				nextSlide,
 				slideInfo,
 			);
+
+			if (slideInfo?.nextSlideDuration && slideInfo.nextSlideDuration > 0) {
+				setTimeout(() => {
+					this._nextSlide();
+				}, slideInfo.transitionDuration + slideInfo.nextSlideDuration);
+			}
 		});
 	}
 
