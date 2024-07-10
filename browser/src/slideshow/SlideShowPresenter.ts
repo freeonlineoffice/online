@@ -343,7 +343,7 @@ class SlideShowPresenter {
 		if (numberOfSlides === 0) return;
 
 		if (!this._slideCompositor)
-			this._slideCompositor = new SlideShow.PreviewsCompositor(
+			this._slideCompositor = new SlideShow.LayersCompositor(
 				this,
 				this._presentationInfo,
 				this._slideShowCanvas.width,
