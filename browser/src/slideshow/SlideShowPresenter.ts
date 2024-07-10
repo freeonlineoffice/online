@@ -64,7 +64,9 @@ class SlideShowPresenter {
 			: 0;
 	}
 
-	public isFullscreen() { return !!this._fullscreen; }
+	public isFullscreen() {
+		return !!this._fullscreen;
+	}
 
 	_onFullScreenChange() {
 		this._fullscreen = document.fullscreenElement;
