@@ -146,7 +146,7 @@ SlideShow.PerformTransition = function (
 			break;
 
 		case TransitionType.FOURBOXWIPE:
-			new SlideShow.PlusTransition(canvas, image1, image2).start();
+			new SlideShow.PlusTransition(canvas, image1, image2, slideInfo).start();
 			break;
 
 		case TransitionType.IRISWIPE:
@@ -163,7 +163,7 @@ SlideShow.PerformTransition = function (
 			break;
 
 		case TransitionType.FANWIPE:
-			new SlideShow.WedgeTransition(canvas, image1, image2).start();
+			new SlideShow.WedgeTransition(canvas, image1, image2, slideInfo).start();
 			break;
 
 		case TransitionType.BLINDSWIPE:
@@ -180,6 +180,7 @@ SlideShow.PerformTransition = function (
 				canvas,
 				image1,
 				image2,
+				slideInfo,
 			).start();
 			break;
 
