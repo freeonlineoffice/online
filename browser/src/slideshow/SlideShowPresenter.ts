@@ -58,6 +58,12 @@ class SlideShowPresenter {
 		this._map.off('newfullscreen', this._onStart, this);
 	}
 
+	public getSlideInfo(slideNumber: number): SlideInfo | null {
+		return this._presentationInfo
+			? this._presentationInfo.slides[slideNumber]
+			: null;
+	}
+
 	_getSlidesCount() {
 		return this._presentationInfo
 			? this._presentationInfo.slides.length
@@ -66,6 +72,10 @@ class SlideShowPresenter {
 
 	public isFullscreen() {
 		return !!this._fullscreen;
+	}
+
+	public getCanvas(): HTMLCanvasElement {
+		return this._slideShowCanvas;
 	}
 
 	_onFullScreenChange() {
@@ -138,12 +148,10 @@ class SlideShowPresenter {
 		return canvas;
 	}
 
-	_doTransition(previousSlide: HTMLImageElement, nextSlideNumber: number) {
+	_doTransition(previousSlide: ImageBitmap, nextSlideNumber: number) {
 		this._slideCompositor.fetchAndRun(nextSlideNumber, () => {
-			const nextSlide =
-				this._slideCompositor.getSlide(nextSlideNumber);
-			const slideInfo =
-				this._slideCompositor.getSlideInfo(nextSlideNumber);
+			const nextSlide = this._slideCompositor.getSlide(nextSlideNumber);
+			const slideInfo = this.getSlideInfo(nextSlideNumber);
 			if (
 				slideInfo.transitionType == undefined ||
 				slideInfo.transitionType.length == 0
