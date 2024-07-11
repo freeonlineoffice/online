@@ -195,6 +195,9 @@ void HTTPServerTest::testLoolPostPoco()
             }
         }
     }
+
+    std::string wildcard = "https://*.collabora.com";
+    LOK_ASSERT_EQUAL(wildcard, Util::trimURI(wildcard));
 }
 
 void HTTPServerTest::testLoolPost()
