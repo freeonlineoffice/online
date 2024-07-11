@@ -248,12 +248,12 @@ static bool haveCapability(cap_value_t capability)
     return true;
 }
 
-static bool haveCorrectCapabilities(bool useMountNamespaces)
+static bool haveCorrectCapabilities()
 {
     bool result = true;
 
     // Do check them all, don't shortcut with &&
-    if (!useMountNamespaces && !haveCapability(CAP_SYS_CHROOT))
+    if (!haveCapability(CAP_SYS_CHROOT))
         result = false;
     if (!haveCapability(CAP_FOWNER))
         result = false;
@@ -263,7 +263,7 @@ static bool haveCorrectCapabilities(bool useMountNamespaces)
     return result;
 }
 #else
-static bool haveCorrectCapabilities(bool /*useMountNamespaces*/)
+static bool haveCorrectCapabilities()
 {
     // chroot() can only be called by root
     return getuid() == 0;
@@ -376,6 +376,7 @@ void sleepForDebugger()
 static int createLibreOfficeKit(const std::string& childRoot,
                                 const std::string& sysTemplate,
                                 const std::string& loTemplate,
+                                bool useMountNamespaces,
                                 bool queryVersion = false)
 {
     // Generate a jail ID to be used for in the jail path.
@@ -396,8 +397,8 @@ static int createLibreOfficeKit(const std::string& childRoot,
     {
         std::thread([childRoot, jailId, sysTemplate, loTemplate, queryVersion] {
             sleepForDebugger();
-            lokit_main(childRoot, jailId, sysTemplate, loTemplate, true, true, queryVersion,
-                       DisplayVersion, spareKitId);
+            lokit_main(childRoot, jailId, sysTemplate, loTemplate, true, true,
+                       false, queryVersion, DisplayVersion, spareKitId);
         })
             .detach();
     }
@@ -442,7 +443,7 @@ static int createLibreOfficeKit(const std::string& childRoot,
             UnitKit::get().postFork();
 
             lokit_main(childRoot, jailId, sysTemplate, loTemplate, NoCapsForKit, NoSeccomp,
-                       queryVersion, DisplayVersion, spareKitId);
+                       useMountNamespaces, queryVersion, DisplayVersion, spareKitId);
         }
         else
         {
@@ -476,7 +477,8 @@ static int createLibreOfficeKit(const std::string& childRoot,
 
 void forkLibreOfficeKit(const std::string& childRoot,
                         const std::string& sysTemplate,
-                        const std::string& loTemplate)
+                        const std::string& loTemplate,
+                        bool useMountNamespaces)
 {
     // Cleanup first, to reduce disk load.
     cleanupChildren();
@@ -489,7 +491,7 @@ void forkLibreOfficeKit(const std::string& childRoot,
         const size_t retry = count * 2;
         for (size_t i = 0; ForkCounter > 0 && i < retry; ++i)
         {
-            if (ForkCounter-- <= 0 || createLibreOfficeKit(childRoot, sysTemplate, loTemplate) < 0)
+            if (ForkCounter-- <= 0 || createLibreOfficeKit(childRoot, sysTemplate, loTemplate, useMountNamespaces) < 0)
             {
                 LOG_ERR("Failed to create a kit process.");
                 ++ForkCounter;
@@ -767,7 +769,7 @@ int forkit_main(int argc, char** argv)
     if (!std::getenv("LD_BIND_NOW")) // must be set by parent.
         LOG_INF("Note: LD_BIND_NOW is not set.");
 
-    if (!NoCapsForKit && !haveCorrectCapabilities(useMountNamespaces))
+    if (!NoCapsForKit && !useMountNamespaces && !haveCorrectCapabilities())
     {
         LOG_FTL("Capabilities are not set for the loolforkit program.");
         LOG_FTL("Please make sure that the current partition was *not* mounted with the 'nosuid' option.");
@@ -806,7 +808,7 @@ int forkit_main(int argc, char** argv)
     // We must have at least one child, more are created dynamically.
     // Ask this first child to send version information to master process and trace startup.
     ::setenv("LOOL_TRACE_STARTUP", "1", 1);
-    const pid_t forKitPid = createLibreOfficeKit(childRoot, sysTemplate, loTemplate, true);
+    const pid_t forKitPid = createLibreOfficeKit(childRoot, sysTemplate, loTemplate, useMountNamespaces, true);
     if (forKitPid < 0)
     {
         LOG_FTL("Failed to create a kit process.");
@@ -865,7 +867,7 @@ int forkit_main(int argc, char** argv)
 #endif
             // new kits are launched primarily after a 'spawn' message
             if (!Util::isKitInProcess() && !SigUtil::getTerminationFlag())
-                forkLibreOfficeKit(childRoot, sysTemplate, loTemplate);
+                forkLibreOfficeKit(childRoot, sysTemplate, loTemplate, useMountNamespaces);
     }
 
     const int returnValue = UnitBase::uninit();
