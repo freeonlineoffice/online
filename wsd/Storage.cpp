@@ -80,7 +80,7 @@ std::string StorageBase::getLocalRootPath() const
         localPath.erase(0, 1);
     }
 
-    return JailUtil::buildLocalPathToJail(COOLWSD::EnableMountNamespaces, _localStorePath, std::move(localPath));
+    return JailUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces, _localStorePath, std::move(localPath));
 }
 #endif
 

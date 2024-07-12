@@ -51,7 +51,7 @@ bool enterUserNS(uid_t uid, gid_t gid);
 /// -> /chroot/jailId/tmp/user/doc/childId
 /// otherwise replaces jailPath's in /tmp with the tmp dir that is mounted
 /// from, e.g. return:
-/// -> /chroot/tmp/cool-jailId/tmp/user/doc/childId
+/// -> /chroot/tmp/lool-jailId/tmp/user/doc/childId
 std::string buildLocalPathToJail(bool usingMountNamespaces, std::string localJailRoot, std::string jailPath);
 
 /// Bind mount a jail directory.

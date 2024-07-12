@@ -245,7 +245,7 @@ export class SheetGeometry {
 			this._rows.getTileTwipsPosFromPrint(point.y));
 	}
 
-	public convertToTileTwips(simplePoint: cool.SimplePoint): void {
+	public convertToTileTwips(simplePoint: lool.SimplePoint): void {
 		simplePoint.x = this._columns.getTileTwipsPosFromPrint(simplePoint.x);
 		simplePoint.y = this._rows.getTileTwipsPosFromPrint(simplePoint.y);
 	}
