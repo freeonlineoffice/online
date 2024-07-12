@@ -13,12 +13,22 @@
 
 declare var SlideShow: any;
 
+interface VideoInfo {
+	id: number;
+	url: string;
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+}
+
 interface SlideInfo {
 	hash: string;
 	index: number;
 	empty: boolean;
 	masterPage: string;
 	masterPageObjectsVisibility: boolean;
+	videos: Array<VideoInfo>;
 	transitionDuration: number;
 	nextSlideDuration: number;
 	transitionDirection: boolean;
@@ -173,7 +183,7 @@ class SlideShowPresenter {
 			transitionParameters.next = nextTexture;
 			transitionParameters.slideInfo = slideInfo;
 			transitionParameters.callback = () => {
-				this._slideRenderer.renderFrame(nextTexture);
+				this._slideRenderer.renderSlide(nextTexture, slideInfo, this._presentationInfo.docWidth, this._presentationInfo.docHeight);
 			};
 
 			SlideShow.PerformTransition(transitionParameters);
@@ -191,12 +201,10 @@ class SlideShowPresenter {
 
 	_doPresentation() {
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-			const slideImage = this._slideCompositor.getSlide(
-				this._currentSlide,
-			);
-			const currentTexture =
-				this._slideRenderer.createTexture(slideImage);
-			this._slideRenderer.renderFrame(currentTexture);
+			const slideImage = this._slideCompositor.getSlide(this._currentSlide);
+			const currentTexture = this._slideRenderer.createTexture(slideImage);
+			const slideInfo = this.getSlideInfo(this._currentSlide);
+			this._slideRenderer.renderSlide(currentTexture, slideInfo, this._presentationInfo.docWidth, this._presentationInfo.docHeight);
 		});
 	}
 
