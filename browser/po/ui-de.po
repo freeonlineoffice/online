@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 23:12+0200\n"
-"PO-Revision-Date: 2024-07-05 23:16+0200\n"
+"POT-Creation-Date: 2024-07-12 23:16+0200\n"
+"PO-Revision-Date: 2024-07-12 23:20+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -286,7 +286,7 @@ msgstr "Der Server wurde heruntergefahren, bitte laden Sie die Seite neu."
 #: src/main.js:123 src/map/Clipboard.js:1176 src/map/handler/Map.Feedback.js:82
 #: src/map/handler/Map.SlideShow.js:56 src/map/handler/Map.SlideShow.js:165
 #: src/map/handler/Map.SlideShow.js:299 src/map/handler/Map.SlideShow.js:310
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "OK"
 msgstr "OK"
 
@@ -307,7 +307,7 @@ msgstr "Sind Sie sicher, dass Sie diese Sitzung beenden wollen?"
 #: src/control/Control.DownloadProgress.js:71 src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41 src/control/Control.UIManager.js:1230
 #: src/control/Control.UIManager.js:1297 src/control/Control.UIManager.js:1432
-#: src/control/Control.UIManager.js:1574 src/control/Control.Zotero.js:320
+#: src/control/Control.UIManager.js:1591 src/control/Control.Zotero.js:320
 #: src/control/Toolbar.js:780 src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137 src/canvas/sections/CommentSection.ts:140
 msgid "Cancel"
@@ -475,7 +475,7 @@ msgstr "Pfad"
 msgid "Repair Document"
 msgstr "Dokument reparieren"
 
-#: src/control/Control.DocumentRepair.js:115 src/control/Control.UserList.ts:388
+#: src/control/Control.DocumentRepair.js:115 src/control/Control.UserList.ts:389
 msgid "You"
 msgstr "Sie"
 
@@ -646,8 +646,8 @@ msgstr "Antworten"
 msgid "replies"
 msgstr "Antworten"
 
-#: src/control/Control.JSDialogBuilder.js:1913 src/layer/tile/CanvasTileLayer.js:3984
-#: src/layer/tile/CanvasTileLayer.js:3995 src/canvas/sections/CommentListSection.ts:1027
+#: src/control/Control.JSDialogBuilder.js:1913 src/layer/tile/CanvasTileLayer.js:3998
+#: src/layer/tile/CanvasTileLayer.js:4009 src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1739,11 +1739,11 @@ msgstr "1 Benutzer"
 msgid "0 users"
 msgstr "0 Benutzer"
 
-#: src/control/Control.UserList.ts:502
+#: src/control/Control.UserList.ts:503
 msgid "Following"
 msgstr "Folgend"
 
-#: src/control/Control.UserList.ts:558
+#: src/control/Control.UserList.ts:559
 msgid "Always follow the editor"
 msgstr "Immer dem Bearbeiter folgen"
 
@@ -2525,7 +2525,7 @@ msgstr ""
 msgid "Functions"
 msgstr "Funktionen"
 
-#: src/layer/tile/CanvasTileLayer.js:4012
+#: src/layer/tile/CanvasTileLayer.js:4026
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
@@ -2781,15 +2781,15 @@ msgstr "Der Präsentations-Modus wurde für dieses Dokument deaktiviert"
 msgid "Creating new file from template..."
 msgstr "Neue Datei aus Vorlage erzeugen …"
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "Error"
 msgstr "Fehler"
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "File name should contain an extension."
 msgstr "Dateiname sollte eine Erweiterung enthalten."
 
-#: src/map/handler/Map.WOPI.js:611
+#: src/map/handler/Map.WOPI.js:613
 msgid "Creating copy..."
 msgstr "Kopie erstellen …"
 

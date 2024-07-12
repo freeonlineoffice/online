@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 23:12+0200\n"
+"POT-Creation-Date: 2024-07-12 23:16+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Matthaiks <kitynska@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/collabora-online/"
@@ -291,7 +291,7 @@ msgstr "Serwer został wyłączony, załaduj ponownie stronę."
 #: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
-#: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:605
 msgid "OK"
 msgstr "OK"
 
@@ -314,7 +314,7 @@ msgstr "Czy jesteś pewien, że chcesz zamknąć tą sesję?"
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
 #: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
-#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1574
+#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1591
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
 #: src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137
@@ -485,7 +485,7 @@ msgid "Repair Document"
 msgstr "Napraw dokument"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.ts:388
+#: src/control/Control.UserList.ts:389
 msgid "You"
 msgstr "Ty"
 
@@ -659,8 +659,8 @@ msgid "replies"
 msgstr "odpowiedzi"
 
 #: src/control/Control.JSDialogBuilder.js:1913
-#: src/layer/tile/CanvasTileLayer.js:3984
-#: src/layer/tile/CanvasTileLayer.js:3995
+#: src/layer/tile/CanvasTileLayer.js:3998
+#: src/layer/tile/CanvasTileLayer.js:4009
 #: src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Komentarz"
@@ -1852,11 +1852,11 @@ msgstr "1 użytkownik"
 msgid "0 users"
 msgstr "0 użytkowników"
 
-#: src/control/Control.UserList.ts:502
+#: src/control/Control.UserList.ts:503
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.ts:558
+#: src/control/Control.UserList.ts:559
 msgid "Always follow the editor"
 msgstr "Zawsze postępuj zgodnie z instrukcjami edytora"
 
@@ -2615,7 +2615,7 @@ msgstr "Przesyłanie pliku na serwer nie powiodło się, plik jest za duży."
 msgid "Functions"
 msgstr "Funkcje"
 
-#: src/layer/tile/CanvasTileLayer.js:4012
+#: src/layer/tile/CanvasTileLayer.js:4026
 msgid "No Comments"
 msgstr "Bez komentarzy"
 
@@ -2874,15 +2874,15 @@ msgstr ""
 msgid "Creating new file from template..."
 msgstr "Tworzenie nowego pliku z szablonu..."
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:611
+#: src/map/handler/Map.WOPI.js:613
 msgid "Creating copy..."
 msgstr "Tworzenie kopii..."
 

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 23:12+0200\n"
+"POT-Creation-Date: 2024-07-12 23:16+0200\n"
 "PO-Revision-Date: 2022-05-21 18:17+0000\n"
 "Last-Translator: PhD. Ayhan YALÇINSOY <ayhanyalcinsoy@pisilinux.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/collabora-online/"
@@ -291,7 +291,7 @@ msgstr "Sunucu kapatıldı; lütfen sayfayı yeniden yükleyin."
 #: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
-#: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:605
 msgid "OK"
 msgstr "Tamam"
 
@@ -314,7 +314,7 @@ msgstr "Bu oturumu kapatmak istediğinizden emin misiniz?"
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
 #: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
-#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1574
+#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1591
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
 #: src/canvas/sections/CommentListSection.ts:428
 #: src/canvas/sections/CommentSection.ts:137
@@ -483,7 +483,7 @@ msgid "Repair Document"
 msgstr "Belgeyi Onar"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.ts:388
+#: src/control/Control.UserList.ts:389
 msgid "You"
 msgstr "Siz"
 
@@ -658,8 +658,8 @@ msgid "replies"
 msgstr "yanıt"
 
 #: src/control/Control.JSDialogBuilder.js:1913
-#: src/layer/tile/CanvasTileLayer.js:3984
-#: src/layer/tile/CanvasTileLayer.js:3995
+#: src/layer/tile/CanvasTileLayer.js:3998
+#: src/layer/tile/CanvasTileLayer.js:4009
 #: src/canvas/sections/CommentListSection.ts:1027
 msgid "Comment"
 msgstr "Yorum"
@@ -1851,11 +1851,11 @@ msgstr "1 kullanıcı"
 msgid "0 users"
 msgstr "0 kullanıcı"
 
-#: src/control/Control.UserList.ts:502
+#: src/control/Control.UserList.ts:503
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.ts:558
+#: src/control/Control.UserList.ts:559
 msgid "Always follow the editor"
 msgstr "Her zaman düzenleyiciyi takip et"
 
@@ -2609,7 +2609,7 @@ msgstr "Doya sunucuya yükleme başarısız oldu, dosya çok büyük."
 msgid "Functions"
 msgstr "İşlevler"
 
-#: src/layer/tile/CanvasTileLayer.js:4012
+#: src/layer/tile/CanvasTileLayer.js:4026
 msgid "No Comments"
 msgstr "Yorum Yok"
 
@@ -2870,15 +2870,15 @@ msgstr ""
 msgid "Creating new file from template..."
 msgstr "Şablondan yeni dosya oluşturuluyor ..."
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "Error"
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:603
+#: src/map/handler/Map.WOPI.js:605
 msgid "File name should contain an extension."
 msgstr ""
 
-#: src/map/handler/Map.WOPI.js:611
+#: src/map/handler/Map.WOPI.js:613
 msgid "Creating copy..."
 msgstr "Kopya oluşturuluyor..."
 
