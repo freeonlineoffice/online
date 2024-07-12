@@ -475,12 +475,6 @@ SYSTEM_STAMP = @SYSTEMPLATE_PATH@/system_stamp
 CAPABILITIES = $(if @ENABLE_SETCAP@,true,false)
 RUN_GDB = $(if $(GDB_FRONTEND),$(GDB_FRONTEND),gdb --tui --args)
 
-if ENABLE_SETCAP
-SET_CAPS_COMMAND=sudo @SETCAP@ cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep loolforkit && sudo @SETCAP@ cap_sys_admin=ep loolmount
-else
-SET_CAPS_COMMAND=echo "Skipping capability setting"
-endif
-
 if ENABLE_LIBFUZZER
 CLEANUP_DEPS=
 else
@@ -490,7 +484,6 @@ endif
 # Build loolwsd and loolmount first, so we can cleanup before updating
 # the systemplate directory, which we can't rm if it's mounted.
 $(SYSTEM_STAMP): ${top_srcdir}/loolwsd-systemplate-setup $(CLEANUP_DEPS)
-	$(SET_CAPS_COMMAND)
 	$(CLEANUP_COMMAND)
 	if test "z@SYSTEMPLATE_PATH@" != "z"; then chmod u+w -R --silent "@SYSTEMPLATE_PATH@" ; rm -rf "@SYSTEMPLATE_PATH@" && \
 	${top_srcdir}/loolwsd-systemplate-setup "@SYSTEMPLATE_PATH@" "@LO_PATH@" && touch $@; fi
@@ -538,7 +531,8 @@ COMMON_PARAMS = \
 	--o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
 	--o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
 	--o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
-	--o:admin_console.username=admin --o:admin_console.password=admin
+	--o:admin_console.username=admin --o:admin_console.password=admin \
+	--o:mount_namespaces[@default]=true
 
 run: setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
@@ -633,7 +627,6 @@ endif
 # capabilities won't survive packaging anyway. Instead, handle it when
 # installing the RPM or Debian package.
 all-local: $(ALL_LOCAL_DEPS) @JAILS_PATH@ $(SYSTEM_STAMP)
-	$(SET_CAPS_COMMAND)
 	@$(abs_top_srcdir)/scripts/refresh-git-hooks
 
 # just run the build without any tests
