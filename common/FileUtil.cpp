@@ -407,7 +407,7 @@ namespace FileUtil
 
                 localStorageDir.pushDirectory(jailPathDir);
 
-                std::string tmpMapping("cool-");
+                std::string tmpMapping("lool-");
                 tmpMapping.append(jailId);
 
                 localStorageDir.pushDirectory(tmpMapping);

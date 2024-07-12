@@ -41,7 +41,7 @@ namespace FileUtil
     /// -> /chroot/jailId/tmp/user/doc/childId
     /// otherwise replaces jailPath's in /tmp with the tmp dir that is mounted
     /// from, e.g. return:
-    /// -> /chroot/tmp/cool-jailId/tmp/user/doc/childId
+    /// -> /chroot/tmp/lool-jailId/tmp/user/doc/childId
     std::string buildLocalPathToJail(bool usingMountNamespaces, std::string localJailRoot, std::string jailPath);
 
     // We work around some of the mess of using the same sources both on the server side and in unit
