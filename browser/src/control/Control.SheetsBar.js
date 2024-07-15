@@ -81,7 +81,7 @@ class SheetsBar {
 			}
 		];
 
-		this.parentContainer.innerHTML = '';
+		this.parentContainer.replaceChildren();
 		this.builder.build(this.parentContainer, data);
 	}
 

@@ -89,7 +89,7 @@ class PresentationBar {
 			}
 		];
 
-		this.parentContainer.innerHTML = '';
+		this.parentContainer.replaceChildren();
 		this.builder.build(this.parentContainer, data);
 
 		if (this.map.getDocType() === 'drawing') {

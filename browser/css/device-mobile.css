@@ -214,12 +214,14 @@ nav:not(.spreadsheet-color-indicator)
 }
 #toolbar-search {
 	height: 39px !important;
+	display: none;
 }
 #toolbar-up #fullscreen {
 	display: none;
 }
 #toolbar-down {
 	border-top: 1px solid var(--color-border) !important;
+	display: none;
 }
 .ui-scroll-wrapper {
 	overflow-x: scroll !important;

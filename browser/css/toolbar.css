@@ -174,6 +174,7 @@
 	margin-top: -1px;
 	border-bottom: none;
 	box-sizing: border-box;
+	display: none;
 }
 
 #presentation-buttons-toolbar {
