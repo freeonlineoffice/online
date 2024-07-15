@@ -1162,7 +1162,9 @@ bool DocumentBroker::doDownloadDocument(const Authorization& auth,
     }
 #endif //!MOBILEAPP
 
-    const std::string localFilePath = Poco::Path(getJailRoot(), localPath).toString();
+    const std::string localFilePath = Poco::Path(FileUtil::buildLocalPathToJail(COOLWSD::EnableMountNamespaces,
+                                                                                getJailRoot(),
+                                                                                localPath)).toString();
     std::ifstream istr(localFilePath, std::ios::binary);
     Poco::SHA1Engine sha1;
     Poco::DigestOutputStream dos(sha1);
