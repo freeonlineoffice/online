@@ -128,10 +128,7 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide--;
-			this._doTransition(
-				this._slideRenderer._slideTexture,
-				this._currentSlide,
-			);
+			this._doPresentation();
 		});
 	}
 
