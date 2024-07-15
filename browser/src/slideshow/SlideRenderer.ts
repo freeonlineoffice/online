@@ -52,22 +52,24 @@ class SlideRenderer {
 				`;
 	}
 
-	public setupPositions() {
+	public setupPositions(xMin: number, xMax: number, yMin: number, yMax: number) : WebGLVertexArrayObject {
 		const gl = this._context.gl;
 
+		// 5 numbers -> 3 x vertex X,Y,Z and 2x texture X,Y
 		const positions = new Float32Array([
-			-1.0, -1.0, 0.0, 0.0, 1.0,
-			 1.0, -1.0, 0.0, 1.0, 1.0,
-			-1.0,  1.0, 0.0, 0.0, 0.0,
-			 1.0,  1.0, 0.0, 1.0, 0.0,
+		//    vX     vX   vZ   tX   tY
+			xMin, -yMin, 0.0, 0.0, 1.0,
+			xMax, -yMin, 0.0, 1.0, 1.0,
+			xMin, -yMax, 0.0, 0.0, 0.0,
+			xMax, -yMax, 0.0, 1.0, 0.0,
 		]);
 
 		const buffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 		gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-		this._vao = gl.createVertexArray();
-		gl.bindVertexArray(this._vao);
+		const vao = gl.createVertexArray();
+		gl.bindVertexArray(vao);
 
 		const positionLocation = gl.getAttribLocation(
 			this._program,
@@ -90,14 +92,9 @@ class SlideRenderer {
 		);
 
 		gl.enableVertexAttribArray(texCoordLocation);
-		gl.vertexAttribPointer(
-			texCoordLocation,
-			2,
-			gl.FLOAT,
-			false,
-			5 * 4,
-			3 * 4,
-		);
+		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 5 * 4, 3 * 4);
+
+		return vao;
 	}
 
 	public setup(canvas: HTMLCanvasElement) {
@@ -116,7 +113,7 @@ class SlideRenderer {
 			fragmentShader,
 		);
 
-		this.setupPositions();
+		this._vao = this.setupPositions(-1.0, 1.0, 1.0, -1.0);
 		this._context.gl.useProgram(this._program);
 	}
 
@@ -168,18 +165,20 @@ class SlideRenderer {
 	public renderSlide(currentSlideTexture: WebGLTexture, slideInfo: SlideInfo, docWidth: number, docHeight: number) {
 		this._slideTexture = currentSlideTexture;
 		this._videos = [];
-		for (var videoInfo of slideInfo.videos) {
-			const video = new VideoRenderInfo;
-			video.videoElement = this.setupVideo(videoInfo.url);
-			video.texture = this.initTexture();
-			video.vao = this.setupVideoPosition(videoInfo.x, videoInfo.y, videoInfo.width, videoInfo.height, docWidth, docHeight);
+		if (slideInfo.videos !== undefined)
+		{
+			for (var videoInfo of slideInfo.videos) {
+				const video = new VideoRenderInfo;
+				video.videoElement = this.setupVideo(videoInfo.url);
+				video.texture = this.initTexture();
+				video.vao = this.setupRectangleInDocumentPositions(videoInfo.x, videoInfo.y, videoInfo.width, videoInfo.height, docWidth, docHeight);
 
 			this._videos.push(video);
 		}
 		requestAnimationFrame(this.render.bind(this));
 	}
 
-	setupVideoPosition(x: number, y: number, width: number, height: number, docWidth: number, docHeight: number): WebGLVertexArrayObject {
+	setupRectangleInDocumentPositions(x: number, y: number, width: number, height: number, docWidth: number, docHeight: number): WebGLVertexArrayObject {
 		const gl = this._context.gl;
 
 		var xMin = (x / docWidth) * 2.0 - 1.0;
@@ -188,31 +187,7 @@ class SlideRenderer {
 		var yMin = (y / docHeight) * 2.0 - 1.0;
 		var yMax = ((y + height) / docHeight) * 2.0 - 1.0;
 
-		const positions = new Float32Array([
-			xMin, -yMin, 0.0, 0.0, 1.0,
-			xMax, -yMin, 0.0, 1.0, 1.0,
-			xMin, -yMax, 0.0, 0.0, 0.0,
-			xMax, -yMax, 0.0, 1.0, 0.0,
-		]);
-
-		const buffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-		gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
-
-		const vao = gl.createVertexArray();
-		gl.bindVertexArray(vao);
-
-		const positionLocation = gl.getAttribLocation(this._program, 'a_position');
-
-		gl.enableVertexAttribArray(positionLocation);
-		gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 5 * 4, 0);
-
-		const texCoordLocation = gl.getAttribLocation(this._program, 'a_texCoord');
-
-		gl.enableVertexAttribArray(texCoordLocation);
-		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 5 * 4, 3 * 4);
-
-		return vao;
+		return this.setupPositions(xMin, xMax, yMin, yMax);
 	}
 
 	private render() {
