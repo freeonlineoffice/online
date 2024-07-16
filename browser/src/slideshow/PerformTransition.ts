@@ -27,6 +27,7 @@ enum TransitionType {
 	ELLIPSEWIPE,
 	BARNDOORWIPE,
 	WATERFALLWIPE,
+	MISCSHAPEWIPE,
 }
 
 enum TransitionSubType {
@@ -77,6 +78,7 @@ const stringToTransitionTypeMap: Record<string, TransitionType> = {
 	EllipseWipe: TransitionType.ELLIPSEWIPE,
 	BarnDoorWipe: TransitionType.BARNDOORWIPE,
 	WaterfallWipe: TransitionType.WATERFALLWIPE,
+	MiscShapeWipe: TransitionType.MISCSHAPEWIPE,
 };
 
 const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
@@ -184,6 +186,10 @@ SlideShow.PerformTransition = function (
 
 		case TransitionType.WATERFALLWIPE:
 			new SlideShow.DiagonalTransition(transitionParameters).start();
+			break;
+
+		case TransitionType.MISCSHAPEWIPE:
+			SlideShow.MicsShapeWipeTransition(transitionParameters).start();
 			break;
 
 		default:
