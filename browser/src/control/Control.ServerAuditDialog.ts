@@ -17,6 +17,21 @@ interface AuditEntry {
 	code: string;
 	status: string;
 }
+
+class ClientAuditor {
+	private static checkPostMessages(entries: Array<AuditEntry>) {
+		if ((window as any).WOPIPostmessageReady)
+			entries.push({ code: 'postmessage', status: 'ok' });
+		else entries.push({ code: 'postmessage', status: 'hostnotready' });
+	}
+
+	public static performClientAudit(): Array<AuditEntry> {
+		const entries = new Array<AuditEntry>();
+		ClientAuditor.checkPostMessages(entries);
+		return entries;
+	}
+}
+
 class ServerAuditDialog {
 	map: any;
 	id: string = 'ServerAuditDialog';
@@ -79,14 +94,9 @@ class ServerAuditDialog {
 		};
 	}
 
-	private performClientAudit(): Array<AuditEntry> {
-		const entries = new Array<AuditEntry>();
-		return entries;
-	}
-
 	public open() {
 		const serverEntries = this.getEntries(app.serverAudit);
-		const clientEntries = this.getEntries(this.performClientAudit());
+		const clientEntries = this.getEntries(ClientAuditor.performClientAudit());
 
 		const dialogBuildEvent = {
 			data: this.getJSON(serverEntries.concat(clientEntries)),
