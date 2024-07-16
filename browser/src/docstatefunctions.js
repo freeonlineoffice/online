@@ -140,3 +140,8 @@ app.isCalcRTL = function () {
 		) >= 0
 	);
 };
+
+app.setServerAuditFromCore = function (entries) {
+	app.serverAudit = entries;
+	app.map.fire('receivedserveraudit');
+};
