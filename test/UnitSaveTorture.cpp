@@ -14,6 +14,7 @@
 #include <Util.hpp>
 #include <JsonUtil.hpp>
 #include <FileUtil.hpp>
+#include <JailUtil.hpp>
 #include <helpers.hpp>
 #include <StringVector.hpp>
 #include <WebSocketSession.hpp>
@@ -54,7 +55,7 @@ class UnitSaveTorture : public UnitWSD
 
     std::string getJailRootPath(const std::string &name)
     {
-        return getJailRoot() + "/tmp/" + name;
+        return FileUtil::buildLocalPathToJail(JailUtil::isMountNamespacesEnabled(), getJailRoot(), "/tmp/" + name);
     }
 
     void createStamp(const std::string &name)
