@@ -4327,7 +4327,6 @@ L.CanvasTileLayer = L.Layer.extend({
 			var weight = cursorStyle.getFloatPropWithoutUnit('border-top-width') * app.dpiScale;
 			var color = cursorStyle.getPropValue('border-top-color');
 			this._cellCursorSection = new app.definitions.cellCursorSection(color, weight);
-			this._cellCursorSection.name = 'OwnCellCursor';
 			app.sectionContainer.addSection(this._cellCursorSection);
 		}
 
