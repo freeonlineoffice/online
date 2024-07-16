@@ -31,7 +31,7 @@
 #include "Log.hpp"
 #include <SigUtil.hpp>
 
-extern int domount(bool namespace_mount, int argc, const char* const* argv);
+extern int domount(int argc, const char* const* argv);
 
 namespace JailUtil
 {
@@ -128,7 +128,7 @@ bool loolmount(const std::string& arg, std::string source, std::string target)
             argv[argc++] = source.c_str();
         if (!target.empty())
             argv[argc++] = target.c_str();
-        return domount(true, argc, argv) == EX_OK;
+        return domount(argc, argv) == EX_OK;
     }
 
     const std::string cmd = Poco::Path(Util::getApplicationPath(), "loolmount").toString() + ' '
