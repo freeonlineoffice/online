@@ -169,10 +169,8 @@ var getElementsFromId = function (
 	else if (id === 'insertmode') return getInsertModeElements(data.text);
 	else if (id === 'statusselectionmode')
 		return getSelectionModeElements(data.text);
-	else if (id === 'rowcolselcount')
-		return getRowColSelCountElements(data.text);
-	else if (id === 'statetablecell')
-		return getStateTableCellElements(data.text);
+	else if (id === 'rowcolselcount') return getRowColSelCountElements(data.text);
+	else if (id === 'statetablecell') return getStateTableCellElements(data.text);
 	else if (id === 'slidestatus') return getSlideStatusElements(data.text);
 	else if (id === 'pagestatus') return getPageStatusElements(data.text);
 };
