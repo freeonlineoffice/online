@@ -838,6 +838,24 @@ class TreeViewControl {
 		this._tableContainer.addEventListener('click', L.bind(TreeViewControl.onClick));
 	}
 
+	static toggleExpand(tr) {
+		let expanded = tr.getAttribute('aria-expanded') === 'true';
+		var level = tr.getAttribute('aria-level');
+
+		tr.setAttribute('aria-expanded', !expanded);
+
+		// show/hide sub entries
+		let sibling = tr.nextSibling;
+		while (sibling && sibling.getAttribute('aria-level') > level) {
+			if (expanded)
+				L.DomUtil.addClass(sibling, 'hidden');
+			else
+				L.DomUtil.removeClass(sibling, 'hidden');
+
+			sibling = sibling.nextSibling;
+		}
+	}
+
 	static onClick(e) {
 		let td = e.target;
 		if (!td || td.localName !== 'td')
@@ -849,7 +867,7 @@ class TreeViewControl {
 
 		let expand = td.firstChild;
 		if (expand && e.clientX < expand.getBoundingClientRect().left)
-			console.log('click expand ');
+			TreeViewControl.toggleExpand(tr);
 	}
 
 	fillHeaders(headers, builder) {
