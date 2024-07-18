@@ -472,6 +472,8 @@ LOOL_JS_LST =\
 	src/slideshow/transition/TurnDownTransition.ts \
 	src/slideshow/transition/Venetian3dTransition.ts \
 	src/slideshow/transition/TurnAroundTransition.ts \
+	src/slideshow/transition/PermTextureTransition.ts \
+	src/slideshow/transition/StaticNoiseTransition.ts \
 	src/slideshow/transition/MicsShapeWipeTransition.ts \
 	src/dom/PosAnimation.js \
 	src/map/anim/Map.PanAnimation.js \
@@ -963,6 +965,8 @@ pot:
 		src/slideshow/transition/TurnDownTransition.ts \
 		src/slideshow/transition/Venetian3dTransition.ts \
 		src/slideshow/transition/TurnAroundTransition.ts \
+		src/slideshow/transition/PermTextureTransition.ts \
+		src/slideshow/transition/StaticNoiseTransition.ts \
 		src/slideshow/transition/MicsShapeWipeTransition.ts \
 		src/core/Socket.js \
 		src/core/Debug.js \

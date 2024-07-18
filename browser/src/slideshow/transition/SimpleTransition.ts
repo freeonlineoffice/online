@@ -274,4 +274,4 @@ class SimpleTransition extends SlideShow.Transition3d {
 	}
 }
 
-SlideShow.SimpleTransition2 = SimpleTransition;
+SlideShow.SimpleTransition = SimpleTransition;
