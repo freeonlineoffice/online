@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "LOOL_LOGLEVEL"
-            value = "trace"
+            value = "debug"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
