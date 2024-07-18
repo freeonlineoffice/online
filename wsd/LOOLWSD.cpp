@@ -1917,7 +1917,7 @@ private:
     std::map<std::string, FontData> fonts;
 };
 
-void COOLWSD::setupChildRoot(const bool UseMountNamespaces)
+void LOOLWSD::setupChildRoot(const bool UseMountNamespaces)
 {
     JailUtil::disableBindMounting(); // Default to assume failure
     JailUtil::disableMountNamespaces();
