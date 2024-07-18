@@ -135,6 +135,8 @@ app.isFollowingEditor = function () {
 
 app.isCalcRTL = function () {
 	return (
-		app.map._docLayer._rtlParts.indexOf(app.map._docLayer._selectedPart) >= 0
+		app.map._docLayer._rtlParts.indexOf(
+			app.map._docLayer._selectedPart,
+		) >= 0
 	);
 };
