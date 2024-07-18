@@ -467,6 +467,8 @@ LOOL_JS_LST =\
 	src/slideshow/transition/FallTransition.ts \
 	src/slideshow/transition/WipeTransition.ts \
 	src/slideshow/transition/NoTransition.ts \
+	src/slideshow/transition/ReflectionTransition.ts \
+	src/slideshow/transition/TurnAroundTransition.ts \
 	src/slideshow/transition/MicsShapeWipeTransition.ts \
 	src/dom/PosAnimation.js \
 	src/map/anim/Map.PanAnimation.js \
@@ -953,6 +955,8 @@ pot:
 		src/slideshow/transition/CubeTransition.ts \
 		src/slideshow/transition/HelixTransition.ts \
 		src/slideshow/transition/FallTransition.ts \
+		src/slideshow/transition/ReflectionTransition.ts \
+		src/slideshow/transition/TurnAroundTransition.ts \
 		src/slideshow/transition/MicsShapeWipeTransition.ts \
 		src/core/Socket.js \
 		src/core/Debug.js \
