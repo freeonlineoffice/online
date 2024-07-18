@@ -1,4 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
+
 /*
  * Calc tile layer is used to display a spreadsheet document
  */

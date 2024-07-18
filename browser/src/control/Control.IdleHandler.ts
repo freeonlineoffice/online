@@ -1,3 +1,5 @@
+/** */
+
 /*
 	* Class for idle handling of the view.
 */
