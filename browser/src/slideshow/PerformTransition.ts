@@ -108,6 +108,11 @@ const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
 SlideShow.PerformTransition = function (
 	transitionParameters: TransitionParameters,
 ) {
+	if (transitionParameters.context.is2dGl()) {
+		transitionParameters.callback();
+		return;
+	}
+
 	switch (
 		stringToTransitionTypeMap[
 			transitionParameters.slideInfo.transitionType
