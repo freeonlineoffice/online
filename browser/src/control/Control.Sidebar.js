@@ -159,8 +159,6 @@ L.Control.Sidebar = L.Control.extend({
 			}
 
 			if (sidebarData.children.length) {
-				var wrapper = document.getElementById('sidebar-dock-wrapper');
-
 				this.onResize();
 
 				if (sidebarData.children && sidebarData.children[0] && sidebarData.children[0].id) {
@@ -183,7 +181,7 @@ L.Control.Sidebar = L.Control.extend({
 				}
 
 				this.builder.build(this.container, [sidebarData]);
-				if (wrapper.style.display === 'none')
+				if (!this.isVisible())
 					$('#sidebar-dock-wrapper').show(this.options.animSpeed);
 
 				this.map.uiManager.setDocTypePref('ShowSidebar', true);
