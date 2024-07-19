@@ -88,7 +88,10 @@ class SlideShowPresenter {
 			return;
 		}
 
-		if (this._map._docLayer.hiddenSlides() >= this._map.getNumberOfParts()) {
+		if (
+			this._map._docLayer.hiddenSlides() >=
+			this._map.getNumberOfParts()
+		) {
 			this._map.uiManager.showInfoModal(
 				'allslidehidden-modal',
 				_('Empty Slide Show'),
@@ -130,7 +133,9 @@ class SlideShowPresenter {
 
 			image1.onload = () => {
 				image2.onload = () => {
-					SlideShow.FadeTransition(canvas, image1, image2).start(3);
+					SlideShow.FadeTransition(canvas, image1, image2).start(
+						3,
+					);
 				};
 				image2.src = 'images/help/pt-BR/manage-changes-filter.png';
 			};

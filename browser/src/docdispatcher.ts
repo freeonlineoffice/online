@@ -386,10 +386,11 @@ class Dispatcher {
 			else app.map.fire('fullscreen');
 		};
 
-		this.actionsMap['presentinwindow'] = this.actionsMap['present-in-window'] =
-			() => {
-				app.map.fire('presentinwindow');
-			};
+		this.actionsMap['presentinwindow'] = this.actionsMap[
+			'present-in-window'
+		] = () => {
+			app.map.fire('presentinwindow');
+		};
 
 		this.actionsMap['fullscreen-drawing'] = () => {
 			L.toggleFullScreen();
