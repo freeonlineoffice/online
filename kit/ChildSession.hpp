@@ -179,6 +179,7 @@ private:
     bool setAccessibilityState(bool enable);
     bool getA11yFocusedParagraph();
     bool getA11yCaretPosition();
+    bool getPresentationInfo();
 
     void rememberEventsForInactiveUser(const int type, const std::string& payload);
 

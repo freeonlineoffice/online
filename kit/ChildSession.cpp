@@ -345,7 +345,14 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         assert(!getDocURL().empty());
         assert(!getJailedFilePath().empty());
 
-        char* data = _docManager->getLOKit()->extractDocumentStructureRequest(getJailedFilePath().c_str());
+        std::string filter;
+        if (tokens.size() > 2)
+        {
+            getTokenString(tokens[2], "filter", filter);
+        }
+
+        char* data = _docManager->getLOKit()->extractDocumentStructureRequest(getJailedFilePath().c_str(),
+                                                                              filter.c_str());
         if (!data)
         {
             LOG_TRC("extractDocumentStructureRequest returned no data.");
@@ -553,7 +560,8 @@ bool ChildSession::_handleInput(const char *buffer, int length)
                tokens.equals(0, "a11ystate") ||
                tokens.equals(0, "geta11yfocusedparagraph") ||
                tokens.equals(0, "geta11ycaretposition") ||
-               tokens.equals(0, "toggletiledumping"));
+               tokens.equals(0, "toggletiledumping") ||
+               tokens.equals(0, "getpresentationinfo"));
 
         ProfileZone pz("ChildSession::_handleInput:" + tokens[0]);
         if (tokens.equals(0, "clientzoom"))
@@ -799,6 +807,10 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         else if (tokens.equals(0, "toggletiledumping"))
         {
             setDumpTiles(tokens[1] == "true");
+        }
+        else if (tokens.equals(0, "getpresentationinfo"))
+        {
+            return getPresentationInfo();
         }
         else
         {
@@ -2835,6 +2847,18 @@ bool ChildSession::getA11yCaretPosition()
     getLOKitDocument()->setView(_viewId);
     int pos = getLOKitDocument()->getA11yCaretPosition();
     sendTextFrame("a11ycaretposition: " + std::to_string(pos));
+    return true;
+}
+
+bool ChildSession::getPresentationInfo()
+{
+    getLOKitDocument()->setView(_viewId);
+
+    char* info = nullptr;
+    info = getLOKitDocument()->getPresentationInfo();
+    std::string data(info);
+    free(info);
+    sendTextFrame("presentationinfo: " + data);
     return true;
 }
 
