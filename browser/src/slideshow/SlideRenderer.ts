@@ -178,7 +178,14 @@ class SlideRenderer {
 		requestAnimationFrame(this.render.bind(this));
 	}
 
-	setupRectangleInDocumentPositions(x: number, y: number, width: number, height: number, docWidth: number, docHeight: number): WebGLVertexArrayObject {
+	setupRectangleInDocumentPositions(
+		x: number,
+		y: number,
+		width: number,
+		height: number,
+		docWidth: number,
+		docHeight: number,
+	): WebGLVertexArrayObject {
 		const gl = this._context.gl;
 
 		var xMin = (x / docWidth) * 2.0 - 1.0;

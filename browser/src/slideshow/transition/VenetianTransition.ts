@@ -40,10 +40,10 @@ class VenetianTransition extends Transition2d {
 			this.gl.getUniformLocation(this.program, 'direction'),
 			this.direction,
 		);
-		this.gl.uniform2fv(this.gl.getUniformLocation(this.program, 'resolution'), [
-			this.gl.canvas.width,
-			this.gl.canvas.height,
-		]);
+		this.gl.uniform2fv(
+			this.gl.getUniformLocation(this.program, 'resolution'),
+			[this.gl.canvas.width, this.gl.canvas.height],
+		);
 	}
 
 	public getFragmentShader(): string {
