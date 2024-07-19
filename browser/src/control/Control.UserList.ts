@@ -613,5 +613,5 @@ L.control.createUserListWidget = function () {
 	// TODO: this is not interactive
 	const userlistElement = L.DomUtil.create('div');
 	app.map.userList.renderHeaderAvatarPopover(userlistElement);
-	return userlistElement.outerHTML;
+	return userlistElement;
 };
