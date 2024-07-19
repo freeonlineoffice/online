@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 23:16+0200\n"
+"POT-Creation-Date: 2024-07-19 22:32+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -147,7 +147,7 @@ msgstr "Nettverksgraf"
 #: src/control/Control.NotebookbarImpress.js:19
 #: src/control/Control.NotebookbarImpress.js:166
 #: src/control/Control.NotebookbarWriter.js:145
-#: src/canvas/sections/CommentListSection.ts:433
+#: src/canvas/sections/CommentListSection.ts:434
 #: src/canvas/sections/CommentSection.ts:138
 msgid "Save"
 msgstr "Lagre"
@@ -230,8 +230,8 @@ msgstr "Loggnivåer"
 #: admin/admin.strings.js:55 src/control/Control.AlertDialog.js:23
 #: src/control/Control.AlertDialog.js:29 src/control/Control.AlertDialog.js:92
 #: src/control/Control.AlertDialog.js:99 src/control/Control.Zotero.js:179
-#: src/control/Parts.js:471 src/core/Socket.js:1128 src/core/Socket.js:1133
-#: src/canvas/sections/CommentListSection.ts:128
+#: src/control/Parts.js:473 src/core/Socket.js:1130 src/core/Socket.js:1135
+#: src/canvas/sections/CommentListSection.ts:129
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Steng"
@@ -278,11 +278,11 @@ msgstr "Tjeneren har blitt avskrudd; gjeninnlast siden"
 #: src/control/Control.Zotero.js:363 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:694 src/control/Toolbar.js:785
-#: src/core/Socket.js:663 src/core/Socket.js:1098 src/core/Socket.js:1168
-#: src/core/Socket.js:1315 src/core/Socket.js:1319 src/docdispatcher.ts:408
-#: src/canvas/sections/CommentListSection.ts:1241
-#: src/canvas/sections/CommentListSection.ts:2084 src/main.js:71
-#: src/main.js:74 src/main.js:123 src/map/Clipboard.js:1176
+#: src/core/Socket.js:665 src/core/Socket.js:1100 src/core/Socket.js:1170
+#: src/core/Socket.js:1318 src/core/Socket.js:1322 src/docdispatcher.ts:412
+#: src/canvas/sections/CommentListSection.ts:1242
+#: src/canvas/sections/CommentListSection.ts:2092 src/main.js:73
+#: src/main.js:76 src/main.js:125 src/map/Clipboard.js:1176
 #: src/map/handler/Map.Feedback.js:82 src/map/handler/Map.SlideShow.js:56
 #: src/map/handler/Map.SlideShow.js:165 src/map/handler/Map.SlideShow.js:299
 #: src/map/handler/Map.SlideShow.js:310 src/map/handler/Map.WOPI.js:605
@@ -307,10 +307,10 @@ msgstr "Er du sikker på at du vil avslutte denne økten?"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1230 src/control/Control.UIManager.js:1297
-#: src/control/Control.UIManager.js:1432 src/control/Control.UIManager.js:1591
+#: src/control/Control.UIManager.js:1241 src/control/Control.UIManager.js:1308
+#: src/control/Control.UIManager.js:1443 src/control/Control.UIManager.js:1602
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:780
-#: src/canvas/sections/CommentListSection.ts:428
+#: src/canvas/sections/CommentListSection.ts:429
 #: src/canvas/sections/CommentSection.ts:137
 #: src/canvas/sections/CommentSection.ts:140
 msgid "Cancel"
@@ -451,7 +451,7 @@ msgstr "Serveren fikk en %0 feil under kjøring av %1 kommandoen."
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:203 src/docdispatcher.ts:405
+#: src/control/Control.ContextMenu.js:203 src/docdispatcher.ts:409
 msgid "Delete"
 msgstr "Slett"
 
@@ -477,7 +477,7 @@ msgid "Repair Document"
 msgstr "Gjenopprett dokument"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.ts:389
+#: src/control/Control.UserList.ts:391
 msgid "You"
 msgstr "Du"
 
@@ -652,9 +652,9 @@ msgid "replies"
 msgstr "Svar"
 
 #: src/control/Control.JSDialogBuilder.js:1913
-#: src/layer/tile/CanvasTileLayer.js:3998
-#: src/layer/tile/CanvasTileLayer.js:4009
-#: src/canvas/sections/CommentListSection.ts:1027
+#: src/layer/tile/CanvasTileLayer.js:4021
+#: src/layer/tile/CanvasTileLayer.js:4032
+#: src/canvas/sections/CommentListSection.ts:1028
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -662,17 +662,17 @@ msgstr "Kommentar"
 msgid "Insert Comment"
 msgstr "Sett inn kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2840
+#: src/control/Control.JSDialogBuilder.js:2853
 #: src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Rader"
 
-#: src/control/Control.JSDialogBuilder.js:2841
+#: src/control/Control.JSDialogBuilder.js:2854
 #: src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Kolonner"
 
-#: src/control/Control.JSDialogBuilder.js:2861
+#: src/control/Control.JSDialogBuilder.js:2874
 #, fuzzy
 msgid "Insert Table"
 msgstr "Sett inn tabell"
@@ -680,7 +680,7 @@ msgstr "Sett inn tabell"
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:348
 #: src/control/Control.Menubar.js:350 src/control/Control.Menubar.js:352
 #: src/control/Control.Menubar.js:525 src/control/Control.Menubar.js:659
-#: src/control/Control.Menubar.js:935 src/control/Control.StatusBar.js:475
+#: src/control/Control.Menubar.js:935 src/control/Control.StatusBar.js:474
 msgid "None (Do not check spelling)"
 msgstr "Ingen (ikke sjekk stavingen)"
 
@@ -841,6 +841,7 @@ msgid "Toggle UI Mode"
 msgstr ""
 
 #: src/control/Control.Menubar.js:133 src/control/Control.Menubar.js:435
+#: src/control/Control.NotebookbarImpress.js:411
 #: src/control/Control.NotebookbarWriter.js:1458
 msgid "Show Ruler"
 msgstr "Vis linjal"
@@ -851,8 +852,8 @@ msgstr "Vis linjal"
 #: src/control/Control.NotebookbarCalc.js:1224
 #: src/control/Control.NotebookbarDraw.js:405
 #: src/control/Control.NotebookbarDraw.js:957
-#: src/control/Control.NotebookbarImpress.js:423
-#: src/control/Control.NotebookbarImpress.js:1017
+#: src/control/Control.NotebookbarImpress.js:424
+#: src/control/Control.NotebookbarImpress.js:1018
 #: src/control/Control.NotebookbarWriter.js:866
 #: src/control/Control.NotebookbarWriter.js:1471
 msgid "Show Status Bar"
@@ -869,7 +870,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1112 src/control/Control.Menubar.js:1171
 #: src/control/Control.NotebookbarCalc.js:1236
 #: src/control/Control.NotebookbarDraw.js:416
-#: src/control/Control.NotebookbarImpress.js:467
+#: src/control/Control.NotebookbarImpress.js:468
 #: src/control/Control.NotebookbarWriter.js:1489
 msgid "Dark Mode"
 msgstr ""
@@ -878,7 +879,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:588 src/control/Control.Menubar.js:729
 #: src/control/Control.NotebookbarCalc.js:1243
 #: src/control/Control.NotebookbarDraw.js:423
-#: src/control/Control.NotebookbarImpress.js:474
+#: src/control/Control.NotebookbarImpress.js:475
 #: src/control/Control.NotebookbarWriter.js:1496
 msgid "Invert Background"
 msgstr ""
@@ -899,7 +900,7 @@ msgstr "Alle"
 #: src/control/Control.Menubar.js:602 src/control/Control.Menubar.js:753
 #: src/control/Control.NotebookbarCalc.js:1367
 #: src/control/Control.NotebookbarDraw.js:1246
-#: src/control/Control.NotebookbarImpress.js:1234
+#: src/control/Control.NotebookbarImpress.js:1235
 #: src/control/Control.NotebookbarWriter.js:1094
 msgid "Smart Picker"
 msgstr ""
@@ -1071,7 +1072,7 @@ msgid "Notes Pages"
 msgstr ""
 
 #: src/control/Control.Menubar.js:440
-#: src/control/Control.NotebookbarImpress.js:459
+#: src/control/Control.NotebookbarImpress.js:460
 msgid "Master View"
 msgstr ""
 
@@ -1210,7 +1211,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:1083 src/control/Control.Menubar.js:1137
 #: src/control/Control.NotebookbarCalc.js:816
 #: src/control/Control.NotebookbarDraw.js:956
-#: src/control/Control.NotebookbarImpress.js:1016
+#: src/control/Control.NotebookbarImpress.js:1017
 #: src/control/Control.NotebookbarWriter.js:865
 #: src/control/Control.MobileSearchBar.ts:30
 #: src/control/Control.StatusBar.js:224 src/control/Control.Zotero.js:208
@@ -1230,7 +1231,7 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1427 src/control/Control.StatusBar.js:474
+#: src/control/Control.Menubar.js:1427 src/control/Control.StatusBar.js:473
 msgid "Reset to Default Language"
 msgstr "Nullstill til standardspråk"
 
@@ -1526,15 +1527,14 @@ msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1211
 #: src/control/Control.NotebookbarDraw.js:392
-#: src/control/Control.NotebookbarImpress.js:410
-#: src/control/Control.NotebookbarImpress.js:435
+#: src/control/Control.NotebookbarImpress.js:436
 #: src/control/Control.NotebookbarWriter.js:1483
 msgid "Collapse Tabs"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1223
 #: src/control/Control.NotebookbarDraw.js:404
-#: src/control/Control.NotebookbarImpress.js:422
+#: src/control/Control.NotebookbarImpress.js:423
 #: src/control/Control.NotebookbarWriter.js:1470
 msgid "Status Bar"
 msgstr ""
@@ -1547,9 +1547,9 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:2253
 #: src/control/Control.NotebookbarDraw.js:836
 #: src/control/Control.NotebookbarDraw.js:1332
-#: src/control/Control.NotebookbarImpress.js:888
-#: src/control/Control.NotebookbarImpress.js:1339
-#: src/control/Control.NotebookbarImpress.js:2375
+#: src/control/Control.NotebookbarImpress.js:889
+#: src/control/Control.NotebookbarImpress.js:1340
+#: src/control/Control.NotebookbarImpress.js:2376
 #: src/control/Control.NotebookbarWriter.js:1050
 #: src/control/Control.NotebookbarWriter.js:2828
 msgid "Shapes"
@@ -1579,7 +1579,7 @@ msgid "Master"
 msgstr ""
 
 #: src/control/Control.NotebookbarImpress.js:333
-#: src/control/Control.NotebookbarImpress.js:1002
+#: src/control/Control.NotebookbarImpress.js:1003
 msgid "Presentation"
 msgstr ""
 
@@ -1587,11 +1587,16 @@ msgstr ""
 msgid "Present in Window"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:444
+#: src/control/Control.NotebookbarImpress.js:410
+#: src/control/Control.NotebookbarWriter.js:1457
+msgid "Ruler"
+msgstr ""
+
+#: src/control/Control.NotebookbarImpress.js:445
 msgid "Normal View"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:450
+#: src/control/Control.NotebookbarImpress.js:451
 msgid "Notes View"
 msgstr ""
 
@@ -1621,10 +1626,6 @@ msgstr ""
 
 #: src/control/Control.NotebookbarWriter.js:1352
 msgid "Picture"
-msgstr ""
-
-#: src/control/Control.NotebookbarWriter.js:1457
-msgid "Ruler"
 msgstr ""
 
 #: src/control/Control.PartsPreview.js:167
@@ -1718,19 +1719,19 @@ msgstr "Velg flere celler"
 msgid "Insert mode: inactive"
 msgstr "Innsmettingsmodus: inaktivt"
 
-#: src/control/Control.StatusBar.js:433
+#: src/control/Control.StatusBar.js:432
 msgid "Selection mode: inactive"
 msgstr "Utvalgsmodus: inaktivt"
 
-#: src/control/Control.StatusBar.js:491
+#: src/control/Control.StatusBar.js:490
 msgid "Set Language for All text"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:494
+#: src/control/Control.StatusBar.js:493
 msgid "Set Language for Paragraph"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:495
+#: src/control/Control.StatusBar.js:494
 msgid "Set Language for Selection"
 msgstr ""
 
@@ -1796,7 +1797,7 @@ msgstr "Sett inn former"
 msgid "Insert connectors"
 msgstr "Sett inn bindeledd"
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:757
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:767
 msgid "Hide Menu"
 msgstr ""
 
@@ -1804,7 +1805,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:780
+#: src/control/Control.UIManager.js:791
 msgid "Show Menu"
 msgstr ""
 
@@ -1846,11 +1847,11 @@ msgstr "1 bruker"
 msgid "0 users"
 msgstr "Ingen brukere."
 
-#: src/control/Control.UserList.ts:503
+#: src/control/Control.UserList.ts:505
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.ts:559
+#: src/control/Control.UserList.ts:561
 msgid "Always follow the editor"
 msgstr "Følg alltid editoren"
 
@@ -1872,7 +1873,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:234 src/core/Socket.js:1267
+#: src/control/Control.Zotero.js:234 src/core/Socket.js:1270
 msgid "Loading..."
 msgstr "Laster …"
 
@@ -2209,63 +2210,63 @@ msgstr ""
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr "Oops, problem med å koble dokumentet til %productName: "
 
-#: src/core/Socket.js:644
+#: src/core/Socket.js:646
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr ""
 
-#: src/core/Socket.js:646
+#: src/core/Socket.js:648
 msgid "Server is now reachable..."
 msgstr ""
 
-#: src/core/Socket.js:650
+#: src/core/Socket.js:652
 msgid "RELOAD"
 msgstr ""
 
-#: src/core/Socket.js:663
+#: src/core/Socket.js:665
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:666
+#: src/core/Socket.js:668
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:675
+#: src/core/Socket.js:677
 msgid "LOOLWSD version:"
 msgstr ""
 
-#: src/core/Socket.js:687
+#: src/core/Socket.js:689
 msgid "Served by:"
 msgstr "Servert av:"
 
-#: src/core/Socket.js:693
+#: src/core/Socket.js:695
 msgid "Unsupported server version."
 msgstr "Denne serverversjonen støttes ikke"
 
-#: src/core/Socket.js:697
+#: src/core/Socket.js:699
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:805
+#: src/core/Socket.js:807
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:832
+#: src/core/Socket.js:834
 msgid "Session terminated by document owner"
 msgstr "Sesjonen er avsluttet av dokumenteier."
 
-#: src/core/Socket.js:843
+#: src/core/Socket.js:845
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Serveren tas ned for vedlikehold (autolagring)"
 
-#: src/core/Socket.js:849
+#: src/core/Socket.js:851
 msgid "Oops, there is a problem connecting the document"
 msgstr "Oops, problem med å koble til dokumentet"
 
-#: src/core/Socket.js:853
+#: src/core/Socket.js:855
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Tjeneren er nede. Vent mens den starter på nytt automatisk."
 
-#: src/core/Socket.js:880
+#: src/core/Socket.js:882
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2273,7 +2274,7 @@ msgstr ""
 "Dokumentet har blitt endret på serveren. Laster det nye dokumentet. Din "
 "versjon er tilgjengelig som en revisjon."
 
-#: src/core/Socket.js:886
+#: src/core/Socket.js:888
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2281,78 +2282,78 @@ msgstr ""
 "Gjenoppretter en eldre versjon. Alle endringer som ikke er lagret er "
 "tilgjengelige i versjonsloggen"
 
-#: src/core/Socket.js:892
+#: src/core/Socket.js:894
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:1050
+#: src/core/Socket.js:1052
 msgid "Document requires password to view."
 msgstr "Passord kreves for å se dokumentet."
 
-#: src/core/Socket.js:1053
+#: src/core/Socket.js:1055
 msgid "Document requires password to modify."
 msgstr "Passord kreves for å endre dokumentet."
 
-#: src/core/Socket.js:1055
+#: src/core/Socket.js:1057
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Trykk avbryt for å åpne som skrivebeskyttet."
 
-#: src/core/Socket.js:1059
+#: src/core/Socket.js:1061
 msgid "Wrong password provided. Please try again."
 msgstr "Feil passord. Prøv igjen:"
 
-#: src/core/Socket.js:1097
+#: src/core/Socket.js:1099
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1128 src/core/Socket.js:1133
+#: src/core/Socket.js:1130 src/core/Socket.js:1135
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1165
+#: src/core/Socket.js:1167
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1166
+#: src/core/Socket.js:1168
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1183
+#: src/core/Socket.js:1185
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1186
+#: src/core/Socket.js:1188
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1267
+#: src/core/Socket.js:1270
 msgid "Connecting..."
 msgstr "Kobler til …"
 
-#: src/core/Socket.js:1282
+#: src/core/Socket.js:1285
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1315
+#: src/core/Socket.js:1318
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1315
+#: src/core/Socket.js:1318
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1584
+#: src/core/Socket.js:1587
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Vi kan ikke koble til ditt dokument nå. Prøv å koble til på nytt."
 
-#: src/core/Socket.js:1601
+#: src/core/Socket.js:1604
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Kobler til …"
 
-#: src/core/Socket.js:1611
+#: src/core/Socket.js:1614
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2376,11 +2377,11 @@ msgstr ""
 msgid "Document colors"
 msgstr ""
 
-#: src/docdispatcher.ts:398
+#: src/docdispatcher.ts:402
 msgid "Are you sure you want to delete this slide?"
 msgstr "Er du sikker på at du vil slette dette lysbildet?"
 
-#: src/docdispatcher.ts:401
+#: src/docdispatcher.ts:405
 msgid "Are you sure you want to delete this page?"
 msgstr "Er du sikker på at du vil slette denne siden?"
 
@@ -2600,85 +2601,85 @@ msgstr "Opplasting av fil til server mislyktes, filen ble ikke funnet."
 msgid "Uploading file to server failed, the file is too large."
 msgstr "Opplasting av fil til server mislyktes, filen er for stor."
 
-#: src/layer/tile/CanvasTileLayer.js:1793
+#: src/layer/tile/CanvasTileLayer.js:1808
 msgid "Functions"
 msgstr "Funksjoner"
 
-#: src/layer/tile/CanvasTileLayer.js:4026
+#: src/layer/tile/CanvasTileLayer.js:4049
 msgid "No Comments"
 msgstr "Ingen kommentarer"
 
-#: src/canvas/sections/CommentListSection.ts:127
+#: src/canvas/sections/CommentListSection.ts:128
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:128
+#: src/canvas/sections/CommentListSection.ts:129
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:969
+#: src/canvas/sections/CommentListSection.ts:970
 msgid "Modify"
 msgstr "Endre"
 
-#: src/canvas/sections/CommentListSection.ts:975
+#: src/canvas/sections/CommentListSection.ts:976
 #: src/canvas/sections/CommentSection.ts:141
 msgid "Reply"
 msgstr "Svar"
 
-#: src/canvas/sections/CommentListSection.ts:981
+#: src/canvas/sections/CommentListSection.ts:982
 msgid "Remove"
 msgstr "Slett"
 
-#: src/canvas/sections/CommentListSection.ts:987
+#: src/canvas/sections/CommentListSection.ts:988
 msgid "Remove Thread"
 msgstr "Fjern tråd"
 
-#: src/canvas/sections/CommentListSection.ts:993
+#: src/canvas/sections/CommentListSection.ts:994
 msgid "Resolve"
 msgstr "Løs"
 
-#: src/canvas/sections/CommentListSection.ts:993
+#: src/canvas/sections/CommentListSection.ts:994
 msgid "Unresolve"
 msgstr "Opphev løst status"
 
-#: src/canvas/sections/CommentListSection.ts:999
+#: src/canvas/sections/CommentListSection.ts:1000
 msgid "Unresolve Thread"
 msgstr "Opphev løst status for tråd"
 
-#: src/canvas/sections/CommentListSection.ts:999
+#: src/canvas/sections/CommentListSection.ts:1000
 msgid "Resolve Thread"
 msgstr "Løs tråd"
 
-#: src/canvas/sections/CommentListSection.ts:1239
-#: src/canvas/sections/CommentListSection.ts:1252
-#: src/canvas/sections/CommentListSection.ts:2082
+#: src/canvas/sections/CommentListSection.ts:1240
+#: src/canvas/sections/CommentListSection.ts:1253
+#: src/canvas/sections/CommentListSection.ts:2090
 msgid "Comments Updated"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1240
+#: src/canvas/sections/CommentListSection.ts:1241
 msgid "Another user has removed this comment."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1253
+#: src/canvas/sections/CommentListSection.ts:1254
 msgid ""
 "Another user has updated the comment. Would you like to overwrite those "
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1254
+#: src/canvas/sections/CommentListSection.ts:1255
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: src/canvas/sections/CommentListSection.ts:1255
+#: src/canvas/sections/CommentListSection.ts:1256
 msgid "Update"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1326
-#: src/canvas/sections/CommentListSection.ts:1388
+#: src/canvas/sections/CommentListSection.ts:1327
+#: src/canvas/sections/CommentListSection.ts:1389
 msgid "Autosaved"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:2083
+#: src/canvas/sections/CommentListSection.ts:2091
 msgid "Another user has updated comments. Would you like to proceed updating?"
 msgstr ""
 
@@ -2700,7 +2701,7 @@ msgstr "Avvis endring"
 msgid "Resolved"
 msgstr "Løst"
 
-#: src/main.js:123
+#: src/main.js:125
 msgid "Warning! The browser you are using is not supported."
 msgstr ""
 
@@ -2762,11 +2763,11 @@ msgstr ""
 msgid "Cancel paste special"
 msgstr ""
 
-#: src/map/Map.js:224
+#: src/map/Map.js:218
 msgid "Initializing..."
 msgstr "Klargjør …"
 
-#: src/map/Map.js:450 src/map/Map.js:453 src/map/Map.js:456 src/map/Map.js:459
+#: src/map/Map.js:444 src/map/Map.js:447 src/map/Map.js:450 src/map/Map.js:453
 msgid "Last saved:"
 msgstr ""
 
@@ -2881,9 +2882,9 @@ msgstr ""
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.p:28-7
 msgid ""
 "Enjoy the latest developments in online productivity, free for you to use, "
-"to explore and to use with others in the browser. Various <a target=\"_blank"
-"\" href=\"https://www.libreoffice.org/\">apps</a> are also available for "
-"mobile."
+"to explore and to use with others in the browser. Various <a "
+"target=\"_blank\" href=\"https://www.libreoffice.org/\">apps</a> are also "
+"available for mobile."
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.h1:37-7
