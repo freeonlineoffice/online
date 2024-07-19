@@ -96,7 +96,9 @@ class ServerAuditDialog {
 
 	public open() {
 		const serverEntries = this.getEntries(app.serverAudit);
-		const clientEntries = this.getEntries(ClientAuditor.performClientAudit());
+		const clientEntries = this.getEntries(
+			ClientAuditor.performClientAudit(),
+		);
 
 		const dialogBuildEvent = {
 			data: this.getJSON(serverEntries.concat(clientEntries)),

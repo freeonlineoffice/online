@@ -18,7 +18,11 @@
 class Tooltip {
 	constructor(options) {
 		this._options = L.extend({ timeout: 150 }, options);
-		this._container = L.DomUtil.create('div', 'cooltip-text', document.body);
+		this._container = L.DomUtil.create(
+			'div',
+			'cooltip-text',
+			document.body,
+		);
 		this._container.id = 'cooltip';
 		this._container.addEventListener(
 			'mouseenter',
@@ -111,7 +115,12 @@ class Tooltip {
 
 	show(elem) {
 		let content = elem.dataset.cooltip,
-			rectView = new DOMRect(0, 0, window.innerWidth, window.innerHeight),
+			rectView = new DOMRect(
+				0,
+				0,
+				window.innerWidth,
+				window.innerHeight,
+			),
 			rectElem = elem.getBoundingClientRect(),
 			rectCont,
 			rectTooltip,
@@ -124,7 +133,10 @@ class Tooltip {
 
 		do {
 			rectTooltip = this.position(rectElem, rectCont, index++);
-		} while (index < 8 && !L.LOUtil.containsDOMRect(rectView, rectTooltip));
+		} while (
+			index < 8 &&
+			!L.LOUtil.containsDOMRect(rectView, rectTooltip)
+		);
 		// containsDOMRect() checks if the tooltip box(rectTooltip) is inside the boundaries of the window(rectView)
 
 		this._container.style.left = rectTooltip.left + 'px';

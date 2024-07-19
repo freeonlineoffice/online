@@ -117,7 +117,10 @@ class VRuler {
 
 	_updatePaintTimer() {
 		clearTimeout(this.options.timer);
-		this.options.timer = setTimeout(L.bind(this._updateBreakPoints, this), 300);
+		this.options.timer = setTimeout(
+			L.bind(this._updateBreakPoints, this),
+			300,
+		);
 	}
 
 	_resetTopBottomPageSpacing(e?: any) {
@@ -133,7 +136,8 @@ class VRuler {
 	onCommandStateChanged(e: any) {
 		// reset Top bottom margin on style change
 		// Style will change when we do focus on section like Header, Footer, Main text section
-		if (e.commandName == '.uno:StyleApply') this._resetTopBottomPageSpacing();
+		if (e.commandName == '.uno:StyleApply')
+			this._resetTopBottomPageSpacing();
 	}
 
 	_changeInteractions(e: any) {
@@ -160,7 +164,9 @@ class VRuler {
 		// Paragraph end..
 		this._pVerticalEndMarker = document.createElement('div');
 		this._pVerticalEndMarker.id = 'lo-vertical-pend-marker';
-		this._pVerticalEndMarker.classList.add('cool-ruler-indentation-marker-up');
+		this._pVerticalEndMarker.classList.add(
+			'cool-ruler-indentation-marker-up',
+		);
 		this._rFace.appendChild(this._pVerticalEndMarker);
 
 		// While one of the markers is being dragged, a howrizontal line should be visible in order to indicate the new position of the marker..
@@ -202,7 +208,11 @@ class VRuler {
 		if (!this.options.showruler) {
 			L.DomUtil.setStyle(this._rWrapper, 'display', 'none');
 		}
-		this._rFace = L.DomUtil.create('div', 'cool-ruler-face', this._rWrapper);
+		this._rFace = L.DomUtil.create(
+			'div',
+			'cool-ruler-face',
+			this._rWrapper,
+		);
 		this._rMarginWrapper = L.DomUtil.create(
 			'div',
 			'cool-ruler-marginwrapper',
@@ -257,7 +267,9 @@ class VRuler {
 		this._rWrapper.style.visibility = '';
 		this._rWrapper.style.transform = 'rotate(90deg)';
 		const position: string =
-			document.documentElement.dir === 'rtl' ? 'top right' : 'top left';
+			document.documentElement.dir === 'rtl'
+				? 'top right'
+				: 'top left';
 		this._rWrapper.style.transformOrigin = position;
 		this._rWrapper.style.left = this.options.tileMargin + 'px';
 		this._updateBreakPoints();
@@ -298,7 +310,8 @@ class VRuler {
 	}
 
 	_updateBreakPoints() {
-		if (this.options.margin1 == null || this.options.margin2 == null) return;
+		if (this.options.margin1 == null || this.options.margin2 == null)
+			return;
 
 		const topMargin: number = this.options.leftOffset;
 		const docLayer = this._map._docLayer;
@@ -310,7 +323,8 @@ class VRuler {
 		// this._bMarginDrag.style.width near the end of this function), so presumably it
 		// doesn't matter that much what bottomMargin is.
 		const bottomMargin: number =
-			this.options.pageWidth - (this.options.leftOffset + this.options.margin2);
+			this.options.pageWidth -
+			(this.options.leftOffset + this.options.margin2);
 		this.options.pageBottomMargin = bottomMargin;
 
 		const scale: number = this._map.getZoomScale(this._map.getZoom(), 10);
@@ -323,7 +337,9 @@ class VRuler {
 		this.options.DraggableConvertRatio = wPixel / this.options.pageWidth;
 		this._rFace.style.width = wPixel + 'px';
 		this._rBPContainer.style.marginLeft =
-			-1 * (this.options.DraggableConvertRatio * (500 - (topMargin % 1000))) +
+			-1 *
+				(this.options.DraggableConvertRatio *
+					(500 - (topMargin % 1000))) +
 			1 +
 			'px';
 
@@ -337,7 +353,11 @@ class VRuler {
 		// FIXME: Surely this should be locale-specific, we would want to use inches at
 		// least in the US. (The ruler unit to use doesn't seem to be stored in the document
 		// at least for .odt?)
-		for (let num: number = 0; num <= this.options.pageWidth / 1000 + 1; num++) {
+		for (
+			let num: number = 0;
+			num <= this.options.pageWidth / 1000 + 1;
+			num++
+		) {
 			const marker = L.DomUtil.create(
 				'div',
 				'cool-ruler-maj',
@@ -345,7 +365,8 @@ class VRuler {
 			);
 			// The - 1 is to compensate for the left and right .5px borders of
 			// cool-ruler-maj in leaflet.css.
-			marker.style.width = this.options.DraggableConvertRatio * 1000 - 1 + 'px';
+			marker.style.width =
+				this.options.DraggableConvertRatio * 1000 - 1 + 'px';
 			if (this.options.displayNumber) {
 				marker.innerText = Math.abs(numCounter);
 				numCounter++;
@@ -435,7 +456,8 @@ class VRuler {
 		if (this._map._docLayer._docPixelSize)
 			pageoffset =
 				currentPage *
-				(this._map._docLayer._docPixelSize.y / this._map._docLayer._pages);
+				(this._map._docLayer._docPixelSize.y /
+					this._map._docLayer._pages);
 
 		const rulerOffset: number =
 			mapPaneYTranslate +
@@ -474,15 +496,26 @@ class VRuler {
 			(element.getBoundingClientRect().right -
 				element.getBoundingClientRect().left) *
 			0.5;
-		this._markerHorizontalLine.style.left = String(newLeft + halfWidth) + 'px';
+		this._markerHorizontalLine.style.left =
+			String(newLeft + halfWidth) + 'px';
 	}
 
 	_moveIndentationEnd(e: Event) {
 		this._map.rulerActive = false;
 
 		if (e.type !== 'panend') {
-			L.DomEvent.off(this._rFace, 'mousemove', this._moveIndentation, this);
-			L.DomEvent.off(this._map, 'mouseup', this._moveIndentationEnd, this);
+			L.DomEvent.off(
+				this._rFace,
+				'mousemove',
+				this._moveIndentation,
+				this,
+			);
+			L.DomEvent.off(
+				this._map,
+				'mouseup',
+				this._moveIndentationEnd,
+				this,
+			);
 		}
 
 		// Calculation step..
@@ -517,7 +550,8 @@ class VRuler {
 				topMarginPX / this.options.DraggableConvertRatio +
 				this.options.pageTopMargin;
 			// margin should not go above page top
-			this.options.pageTopMargin = top < 0 ? this.options.pageTopMargin : top;
+			this.options.pageTopMargin =
+				top < 0 ? this.options.pageTopMargin : top;
 		} else if (element.id == 'lo-vertical-pend-marker') {
 			const bottomMarginPX: number =
 				this._rTSContainer.getBoundingClientRect().bottom -
@@ -557,8 +591,18 @@ class VRuler {
 			e.target.id.trim() === '' ? e.target.parentNode.id : e.target.id;
 
 		if (e.type !== 'panstart') {
-			L.DomEvent.on(this._rFace, 'mousemove', this._moveIndentation, this);
-			L.DomEvent.on(this._map, 'mouseup', this._moveIndentationEnd, this);
+			L.DomEvent.on(
+				this._rFace,
+				'mousemove',
+				this._moveIndentation,
+				this,
+			);
+			L.DomEvent.on(
+				this._map,
+				'mouseup',
+				this._moveIndentationEnd,
+				this,
+			);
 		} else {
 			e.clientX = e.center.x;
 		}
