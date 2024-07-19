@@ -49,8 +49,8 @@ class SlideRenderer {
 		const gl = this._context.gl;
 
 		const positions = new Float32Array([
-			-1.0, -1.0, 0, 0, 1, 1.0, -1.0, 0, 1, 1, -1.0, 1.0, 0, 0, 0, 1.0, 1.0, 0,
-			1, 0,
+			-1.0, -1.0, 0, 0, 1, 1.0, -1.0, 0, 1, 1, -1.0, 1.0, 0, 0, 0, 1.0,
+			1.0, 0, 1, 0,
 		]);
 
 		const buffer = gl.createBuffer();
@@ -60,25 +60,52 @@ class SlideRenderer {
 		this._vao = gl.createVertexArray();
 		gl.bindVertexArray(this._vao);
 
-		const positionLocation = gl.getAttribLocation(this._program, 'a_position');
+		const positionLocation = gl.getAttribLocation(
+			this._program,
+			'a_position',
+		);
 
 		gl.enableVertexAttribArray(positionLocation);
-		gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 5 * 4, 0);
+		gl.vertexAttribPointer(
+			positionLocation,
+			3,
+			gl.FLOAT,
+			false,
+			5 * 4,
+			0,
+		);
 
-		const texCoordLocation = gl.getAttribLocation(this._program, 'a_texCoord');
+		const texCoordLocation = gl.getAttribLocation(
+			this._program,
+			'a_texCoord',
+		);
 
 		gl.enableVertexAttribArray(texCoordLocation);
-		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 5 * 4, 3 * 4);
+		gl.vertexAttribPointer(
+			texCoordLocation,
+			2,
+			gl.FLOAT,
+			false,
+			5 * 4,
+			3 * 4,
+		);
 	}
 
 	public setup(canvas: HTMLCanvasElement) {
 		this._context = new RenderContext(canvas);
 		this._canvas = canvas;
 
-		const vertexShader = this._context.createVertexShader(this.getVertexShader());
-		const fragmentShader = this._context.createFragmentShader(this.getFragmentShader());
+		const vertexShader = this._context.createVertexShader(
+			this.getVertexShader(),
+		);
+		const fragmentShader = this._context.createFragmentShader(
+			this.getFragmentShader(),
+		);
 
-		this._program = this._context.createProgram(vertexShader, fragmentShader);
+		this._program = this._context.createProgram(
+			vertexShader,
+			fragmentShader,
+		);
 
 		this.setupPositions();
 		this._context.gl.useProgram(this._program);

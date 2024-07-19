@@ -104,7 +104,10 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide++;
-			this._doTransition(this._slideRenderer._slideTexture, this._currentSlide);
+			this._doTransition(
+				this._slideRenderer._slideTexture,
+				this._currentSlide,
+			);
 		});
 	}
 
@@ -115,8 +118,10 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide--;
-			this._doTransition(this._slideRenderer._slideTexture, this._currentSlide);
-
+			this._doTransition(
+				this._slideRenderer._slideTexture,
+				this._currentSlide,
+			);
 		});
 	}
 
@@ -150,7 +155,8 @@ class SlideShowPresenter {
 
 	_doTransition(currentTexture: WebGLTexture, nextSlideNumber: number) {
 		this._slideCompositor.fetchAndRun(nextSlideNumber, () => {
-			const nextSlide = this._slideCompositor.getSlide(nextSlideNumber);
+			const nextSlide =
+				this._slideCompositor.getSlide(nextSlideNumber);
 			const slideInfo = this.getSlideInfo(nextSlideNumber);
 			if (
 				slideInfo.transitionType == undefined ||
@@ -164,15 +170,18 @@ class SlideShowPresenter {
 			const transitionParameters = new TransitionParameters();
 			transitionParameters.context = this._slideRenderer._context;
 			transitionParameters.current = currentTexture;
-			transitionParameters.next =  nextTexture;
+			transitionParameters.next = nextTexture;
 			transitionParameters.slideInfo = slideInfo;
 			transitionParameters.callback = () => {
 				this._slideRenderer.renderFrame(nextTexture);
-			}
+			};
 
 			SlideShow.PerformTransition(transitionParameters);
 
-			if (slideInfo?.nextSlideDuration && slideInfo.nextSlideDuration > 0) {
+			if (
+				slideInfo?.nextSlideDuration &&
+				slideInfo.nextSlideDuration > 0
+			) {
 				setTimeout(() => {
 					this._nextSlide();
 				}, slideInfo.transitionDuration + slideInfo.nextSlideDuration);
@@ -182,8 +191,11 @@ class SlideShowPresenter {
 
 	_doPresentation() {
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-			const slideImage = this._slideCompositor.getSlide(this._currentSlide);
-			const currentTexture = this._slideRenderer.createTexture(slideImage);
+			const slideImage = this._slideCompositor.getSlide(
+				this._currentSlide,
+			);
+			const currentTexture =
+				this._slideRenderer.createTexture(slideImage);
 			this._slideRenderer.renderFrame(currentTexture);
 		});
 	}

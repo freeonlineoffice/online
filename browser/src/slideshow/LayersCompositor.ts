@@ -35,10 +35,7 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 
 	protected _addHooks() {
 		app.map.on('slidebackground', this.onSlideBackground, this);
-		this.layerDrawing = new SlideShow.LayerDrawing(
-			app.map,
-			this
-		);
+		this.layerDrawing = new SlideShow.LayerDrawing(app.map, this);
 		this.layerDrawing.addHooks();
 	}
 
@@ -87,7 +84,9 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 			const slide = slides[i];
 			slide.prev = prevSlideHash;
 			slide.next =
-				i + 1 < numberOfSlides ? slides[i + 1].hash : this.firstSlideHash;
+				i + 1 < numberOfSlides
+					? slides[i + 1].hash
+					: this.firstSlideHash;
 			this.slidesInfo.set(slide.hash, slide);
 			this.partHashes.set(slide.index, slide.hash);
 			prevSlideHash = slide.hash;
@@ -109,7 +108,11 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 			data.image = img as HTMLImageElement;
 
 			const slideInfo = this.slidesInfo.get(data.pageHash);
-			if (slideInfo && slideInfo.background && !slideInfo.background.isCustom)
+			if (
+				slideInfo &&
+				slideInfo.background &&
+				!slideInfo.background.isCustom
+			)
 				data.pageHash = slideInfo.masterPage;
 
 			this.backgroundChecksums.set(data.pageHash, data.checksum);
@@ -122,11 +125,14 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 			const currentSlideInfo = this.slidesInfo.get(currentSlideHash);
 			if (currentSlideInfo && currentSlideInfo.background) {
 				const pageHash =
-					!this.isMasterPageMode() && currentSlideInfo.background.isCustom
+					!this.isMasterPageMode() &&
+					currentSlideInfo.background.isCustom
 						? currentSlideHash
 						: currentSlideInfo.masterPage;
 				if (pageHash === data.pageHash) {
-					const image = this.cachedBackgrounds.get(data.checksum);
+					const image = this.cachedBackgrounds.get(
+						data.checksum,
+					);
 					app.map.fire('slidebackgroundready', { image: image });
 				}
 			}
@@ -148,7 +154,10 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 				const image = this.cachedBackgrounds.get(checksum);
 				app.map.fire('slidebackgroundready', { image: image });
 			} else {
-				this.requestBackgroundForPage(slideInfo.index, masterPageMode);
+				this.requestBackgroundForPage(
+					slideInfo.index,
+					masterPageMode,
+				);
 			}
 		}
 	}
@@ -220,7 +229,10 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 
 	public getLayerSize() {
 		const slideSize = this.getSlideSizePixel();
-		const resolution = this.computeLayerResolution(slideSize[0], slideSize[1]);
+		const resolution = this.computeLayerResolution(
+			slideSize[0],
+			slideSize[1],
+		);
 		return this.computeLayerSize(resolution[0], resolution[1]);
 	}
 

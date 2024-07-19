@@ -59,7 +59,10 @@ class PreviewsCompositor extends SlideShow.SlideCompositor {
 			createImageBitmap(received).then((result: ImageBitmap) => {
 				this._slides[e.part] = result;
 
-				if (e.part === this._initialSlideNumber && this._onGotSlideCallback) {
+				if (
+					e.part === this._initialSlideNumber &&
+					this._onGotSlideCallback
+				) {
 					const callback = this._onGotSlideCallback; // allow nesting
 					this._onGotSlideCallback = null;
 					callback.call(this._slideShowPresenter);

@@ -36,15 +36,22 @@ class Transition2d {
 		this.gl = transitionParameters.context.gl;
 		this.slideInfo = transitionParameters.slideInfo;
 		this.animationTime =
-			this.slideInfo?.transitionDuration > 0 ? this.slideInfo.transitionDuration : 2000;
+			this.slideInfo?.transitionDuration > 0
+				? this.slideInfo.transitionDuration
+				: 2000;
 
 		const vertexShaderSource = this.getVertexShader();
 		const fragmentShaderSource = this.getFragmentShader();
 
-		const vertexShader = this.context.createVertexShader(vertexShaderSource);
-		const fragmentShader = this.context.createFragmentShader(fragmentShaderSource);
+		const vertexShader =
+			this.context.createVertexShader(vertexShaderSource);
+		const fragmentShader =
+			this.context.createFragmentShader(fragmentShaderSource);
 
-		this.program = this.context.createProgram(vertexShader, fragmentShader);
+		this.program = this.context.createProgram(
+			vertexShader,
+			fragmentShader,
+		);
 
 		this.time = 0;
 		this.startTime = null;
@@ -148,24 +155,31 @@ class Transition2d {
 		if (this.time > 1) this.time = 1;
 		const gl = this.gl;
 
-		gl.viewport(0, 0, this.context.canvas.width, this.context.canvas.height);
+		gl.viewport(
+			0,
+			0,
+			this.context.canvas.width,
+			this.context.canvas.height,
+		);
 		gl.clearColor(0.0, 0.0, 0.0, 1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT);
 
 		gl.useProgram(this.program);
-		gl.uniform1f(
-			gl.getUniformLocation(this.program, 'time'),
-			this.time,
-		);
+		gl.uniform1f(gl.getUniformLocation(this.program, 'time'), this.time);
 
 		gl.activeTexture(gl.TEXTURE0);
 		gl.bindTexture(gl.TEXTURE_2D, this.transitionParameters.current);
-		gl.uniform1i(gl.getUniformLocation(this.program, 'leavingSlideTexture'), 0);
+		gl.uniform1i(
+			gl.getUniformLocation(this.program, 'leavingSlideTexture'),
+			0,
+		);
 
 		gl.activeTexture(gl.TEXTURE1);
 		gl.bindTexture(gl.TEXTURE_2D, this.transitionParameters.next);
 		gl.uniform1i(
-			gl.getUniformLocation(this.program, 'enteringSlideTexture'), 1);
+			gl.getUniformLocation(this.program, 'enteringSlideTexture'),
+			1,
+		);
 
 		this.renderUniformValue();
 
