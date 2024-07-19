@@ -27,10 +27,10 @@ class VenetianTransition extends Transition2d {
 			this.gl.getUniformLocation(this.program, 'direction'),
 			this.direction,
 		);
-		this.gl.uniform2fv(this.gl.getUniformLocation(this.program, 'resolution'), [
-			this.canvas.width,
-			this.canvas.height,
-		]);
+		this.gl.uniform2fv(
+			this.gl.getUniformLocation(this.program, 'resolution'),
+			[this.canvas.width, this.canvas.height],
+		);
 	}
 
 	public start(direction: number): void {

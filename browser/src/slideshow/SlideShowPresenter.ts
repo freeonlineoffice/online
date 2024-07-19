@@ -18,7 +18,7 @@ interface SlideInfo {
 	empty: boolean;
 	masterPage: string;
 	masterPageObjectsVisible: boolean;
-	transitionDirection : boolean;
+	transitionDirection: boolean;
 	transitionType: string | undefined;
 	transitionSubtype: string | undefined;
 	background: {
@@ -55,7 +55,9 @@ class SlideShowPresenter {
 	}
 
 	_getSlidesCount() {
-		return this._presentationInfo ? this._presentationInfo.slides.length : 0;
+		return this._presentationInfo
+			? this._presentationInfo.slides.length
+			: 0;
 	}
 
 	_onFullScreenChange() {
@@ -81,7 +83,9 @@ class SlideShowPresenter {
 		}
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-			const previousSlide = this._slideCompositor.getSlide(this._currentSlide);
+			const previousSlide = this._slideCompositor.getSlide(
+				this._currentSlide,
+			);
 			this._doTransition(previousSlide, this._currentSlide + 1);
 			this._currentSlide++;
 		});
@@ -93,7 +97,9 @@ class SlideShowPresenter {
 		}
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-			const previousSlide = this._slideCompositor.getSlide(this._currentSlide);
+			const previousSlide = this._slideCompositor.getSlide(
+				this._currentSlide,
+			);
 			this._doTransition(previousSlide, this._currentSlide - 1);
 			this._currentSlide--;
 		});
@@ -102,11 +108,9 @@ class SlideShowPresenter {
 		this._nextSlide();
 	}
 
-	_onCanvasKeyDown(event : KeyboardEvent) {
-		if (event.code === "Space")
-			this._nextSlide();
-		else if (event.code === "Backspace")
-			this._previoustSlide();
+	_onCanvasKeyDown(event: KeyboardEvent) {
+		if (event.code === 'Space') this._nextSlide();
+		else if (event.code === 'Backspace') this._previoustSlide();
 	}
 
 	_createCanvas(width: number, height: number) {
@@ -121,16 +125,21 @@ class SlideShowPresenter {
 		canvas.height = height;
 
 		canvas.addEventListener('click', this._onCanvasClick.bind(this));
-		window.addEventListener('keydown',this._onCanvasKeyDown.bind(this));
+		window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
 
 		return canvas;
 	}
 
 	_doTransition(previousSlide: HTMLImageElement, nextSlideNumber: number) {
 		this._slideCompositor.fetchAndRun(nextSlideNumber, () => {
-			const nextSlide = this._slideCompositor.getSlide(nextSlideNumber);
-			const slideInfo = this._slideCompositor.getSlideInfo(nextSlideNumber)
-			if (slideInfo.transitionType == undefined || slideInfo.transitionType.length == 0) {
+			const nextSlide =
+				this._slideCompositor.getSlide(nextSlideNumber);
+			const slideInfo =
+				this._slideCompositor.getSlideInfo(nextSlideNumber);
+			if (
+				slideInfo.transitionType == undefined ||
+				slideInfo.transitionType.length == 0
+			) {
 				slideInfo.transitionType = 'NONE';
 			}
 			SlideShow.PerformTransition(
@@ -144,7 +153,9 @@ class SlideShowPresenter {
 
 	_doPresentation() {
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-			const previousSlide = this._slideCompositor.getSlide(this._currentSlide);
+			const previousSlide = this._slideCompositor.getSlide(
+				this._currentSlide,
+			);
 			this._doTransition(previousSlide, this._currentSlide);
 		});
 	}
@@ -173,12 +184,20 @@ class SlideShowPresenter {
 			return;
 		}
 
-		if (this._map._docLayer.hiddenSlides() >= this._map.getNumberOfParts()) {
+		if (
+			this._map._docLayer.hiddenSlides() >=
+			this._map.getNumberOfParts()
+		) {
 			this._notifyAllSlidesHidden();
 			return;
 		}
 
-		L.DomEvent.on(document, 'fullscreenchange', this._onFullScreenChange, this);
+		L.DomEvent.on(
+			document,
+			'fullscreenchange',
+			this._onFullScreenChange,
+			this,
+		);
 
 		if (!this._map['wopi'].DownloadAsPostMessage) {
 			this._slideShowCanvas = this._createCanvas(
@@ -266,7 +285,9 @@ class SlideShowPresenter {
 		if (numberOfSlides === 0) return;
 
 		if (this._slideCompositor)
-			this._slideCompositor.updatePresentationInfo(this._presentationInfo);
+			this._slideCompositor.updatePresentationInfo(
+				this._presentationInfo,
+			);
 		else
 			this._slideCompositor = new SlideShow.PreviewsCompositor(
 				this,
@@ -275,7 +296,9 @@ class SlideShowPresenter {
 				this._slideShowCanvas.height,
 			);
 
-		this._slideCompositor.fetchAndRun(0, () => { this._doPresentation(); });
+		this._slideCompositor.fetchAndRun(0, () => {
+			this._doPresentation();
+		});
 	}
 }
 

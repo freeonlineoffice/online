@@ -21,8 +21,11 @@ abstract class SlideCompositor {
 	_initialSlideNumber: number = 0;
 	_onGotSlideCallback: VoidFunction = null;
 
-	constructor(slideShowPresenter: SlideShowPresenter, presentationInfo: PresentationInfo,
-		width: number, height: number
+	constructor(
+		slideShowPresenter: SlideShowPresenter,
+		presentationInfo: PresentationInfo,
+		width: number,
+		height: number,
 	) {
 		this._slideShowPresenter = slideShowPresenter;
 		this._presentationInfo = presentationInfo;
@@ -45,12 +48,16 @@ abstract class SlideCompositor {
 		this._onGotSlideCallback = callback;
 	}
 
-	public getSlideInfo(slideNumber: number): SlideInfo | null{
-		return this._presentationInfo? this._presentationInfo.slides[slideNumber] : null;
+	public getSlideInfo(slideNumber: number): SlideInfo | null {
+		return this._presentationInfo
+			? this._presentationInfo.slides[slideNumber]
+			: null;
 	}
 
 	protected _getSlidesCount() {
-		return this._presentationInfo ? this._presentationInfo.slides.length : 0;
+		return this._presentationInfo
+			? this._presentationInfo.slides.length
+			: 0;
 	}
 
 	protected _getSlideWidth() {
