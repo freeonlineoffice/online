@@ -1,6 +1,5 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
  *
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -157,7 +156,7 @@ class VRuler {
 		this._pVerticalStartMarker = document.createElement('div');
 		this._pVerticalStartMarker.id = 'lo-vertical-pstart-marker';
 		this._pVerticalStartMarker.classList.add(
-			'cool-ruler-indentation-marker-up',
+			'lool-ruler-indentation-marker-up',
 		);
 		this._rFace.appendChild(this._pVerticalStartMarker);
 
@@ -165,14 +164,14 @@ class VRuler {
 		this._pVerticalEndMarker = document.createElement('div');
 		this._pVerticalEndMarker.id = 'lo-vertical-pend-marker';
 		this._pVerticalEndMarker.classList.add(
-			'cool-ruler-indentation-marker-up',
+			'lool-ruler-indentation-marker-up',
 		);
 		this._rFace.appendChild(this._pVerticalEndMarker);
 
 		// While one of the markers is being dragged, a howrizontal line should be visible in order to indicate the new position of the marker..
 		this._markerHorizontalLine = L.DomUtil.create(
 			'div',
-			'cool-ruler-horizontal-indentation-marker-center',
+			'lool-ruler-horizontal-indentation-marker-center',
 		);
 		this._rFace.appendChild(this._markerHorizontalLine);
 
@@ -197,7 +196,7 @@ class VRuler {
 	_initLayout() {
 		this._rWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler leaflet-bar leaflet-control leaflet-control-custom',
+			'lool-ruler leaflet-bar leaflet-control leaflet-control-custom',
 		);
 		this._rWrapper.id = 'vertical-ruler';
 		this._rWrapper.style.visibility = 'hidden';
@@ -210,30 +209,30 @@ class VRuler {
 		}
 		this._rFace = L.DomUtil.create(
 			'div',
-			'cool-ruler-face',
+			'lool-ruler-face',
 			this._rWrapper,
 		);
 		this._rMarginWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler-marginwrapper',
+			'lool-ruler-marginwrapper',
 			this._rFace,
 		);
 		// BP => Break Points
 		this._rBPWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler-breakwrapper',
+			'lool-ruler-breakwrapper',
 			this._rFace,
 		);
 		this._rBPContainer = L.DomUtil.create(
 			'div',
-			'cool-ruler-breakcontainer',
+			'lool-ruler-breakcontainer',
 			this._rBPWrapper,
 		);
 
 		// Tab stops
 		this._rTSContainer = L.DomUtil.create(
 			'div',
-			'cool-ruler-tabstopcontainer',
+			'lool-ruler-tabstopcontainer',
 			this._rMarginWrapper,
 		);
 		this._initiateIndentationMarkers();
@@ -360,11 +359,11 @@ class VRuler {
 		) {
 			const marker = L.DomUtil.create(
 				'div',
-				'cool-ruler-maj',
+				'lool-ruler-maj',
 				this._rBPContainer,
 			);
 			// The - 1 is to compensate for the left and right .5px borders of
-			// cool-ruler-maj in leaflet.css.
+			// lool-ruler-maj in leaflet.css.
 			marker.style.width =
 				this.options.DraggableConvertRatio * 1000 - 1 + 'px';
 			if (this.options.displayNumber) {
@@ -377,22 +376,22 @@ class VRuler {
 			this.options.marginSet = true;
 			this._tMarginMarker = L.DomUtil.create(
 				'div',
-				'cool-ruler-margin cool-ruler-left',
+				'lool-ruler-margin lool-ruler-left',
 				this._rFace,
 			);
 			this._bMarginMarker = L.DomUtil.create(
 				'div',
-				'cool-ruler-margin cool-ruler-right',
+				'lool-ruler-margin lool-ruler-right',
 				this._rFace,
 			);
 			this._tMarginDrag = L.DomUtil.create(
 				'div',
-				'cool-ruler-drag cool-ruler-left',
+				'lool-ruler-drag lool-ruler-left',
 				this._rMarginWrapper,
 			);
 			this._bMarginDrag = L.DomUtil.create(
 				'div',
-				'cool-ruler-drag cool-ruler-right',
+				'lool-ruler-drag lool-ruler-right',
 				this._rMarginWrapper,
 			);
 			const topMarginTooltipText: string = _('Top Margin');

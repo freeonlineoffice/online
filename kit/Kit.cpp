@@ -3048,7 +3048,7 @@ void lokit_main(
             const std::string loJailDestPath = jailLOInstallation.toString();
 
             const std::string tempRoot = Poco::Path(childRoot, "tmp").toString();
-            const std::string tmpSubDir = Poco::Path(tempRoot, "cool-" + jailId).toString();
+            const std::string tmpSubDir = Poco::Path(tempRoot, "lool-" + jailId).toString();
             const std::string jailTmpDir = Poco::Path(jailPath, "tmp").toString();
 
             // The bind-mount implementation: inlined here to mirror

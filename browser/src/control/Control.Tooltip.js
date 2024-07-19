@@ -20,10 +20,10 @@ class Tooltip {
 		this._options = L.extend({ timeout: 150 }, options);
 		this._container = L.DomUtil.create(
 			'div',
-			'cooltip-text',
+			'looltip-text',
 			document.body,
 		);
-		this._container.id = 'cooltip';
+		this._container.id = 'looltip';
 		this._container.addEventListener(
 			'mouseenter',
 			L.bind(this.mouseEnter, this),
@@ -114,7 +114,7 @@ class Tooltip {
 	}
 
 	show(elem) {
-		let content = elem.dataset.cooltip,
+		let content = elem.dataset.looltip,
 			rectView = new DOMRect(
 				0,
 				0,

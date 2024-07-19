@@ -64,11 +64,27 @@ class SlideRenderer {
 
 		// 5 numbers -> 3 x vertex X,Y,Z and 2x texture X,Y
 		const positions = new Float32Array([
-		//    vX     vX   vZ   tX   tY
-			xMin, -yMin, 0.0, 0.0, 1.0,
-			xMax, -yMin, 0.0, 1.0, 1.0,
-			xMin, -yMax, 0.0, 0.0, 0.0,
-			xMax, -yMax, 0.0, 1.0, 0.0,
+			//    vX     vX   vZ   tX   tY
+			xMin,
+			-yMin,
+			0.0,
+			0.0,
+			1.0,
+			xMax,
+			-yMin,
+			0.0,
+			1.0,
+			1.0,
+			xMin,
+			-yMax,
+			0.0,
+			0.0,
+			0.0,
+			xMax,
+			-yMax,
+			0.0,
+			1.0,
+			0.0,
 		]);
 
 		const buffer = gl.createBuffer();
@@ -78,25 +94,12 @@ class SlideRenderer {
 		const vao = gl.createVertexArray();
 		gl.bindVertexArray(vao);
 
-		const positionLocation = gl.getAttribLocation(
-			this._program,
-			'a_position',
-		);
+		const positionLocation = gl.getAttribLocation(this._program, 'a_position');
 
 		gl.enableVertexAttribArray(positionLocation);
-		gl.vertexAttribPointer(
-			positionLocation,
-			3,
-			gl.FLOAT,
-			false,
-			5 * 4,
-			0,
-		);
+		gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 5 * 4, 0);
 
-		const texCoordLocation = gl.getAttribLocation(
-			this._program,
-			'a_texCoord',
-		);
+		const texCoordLocation = gl.getAttribLocation(this._program, 'a_texCoord');
 
 		gl.enableVertexAttribArray(texCoordLocation);
 		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 5 * 4, 3 * 4);
@@ -115,10 +118,7 @@ class SlideRenderer {
 			this.getFragmentShader(),
 		);
 
-		this._program = this._context.createProgram(
-			vertexShader,
-			fragmentShader,
-		);
+		this._program = this._context.createProgram(vertexShader, fragmentShader);
 
 		this._vao = this.setupPositions(-1.0, 1.0, 1.0, -1.0);
 		this._context.getGl().useProgram(this._program);
@@ -135,20 +135,28 @@ class SlideRenderer {
 			: this._context.loadTexture(<any>image);
 	}
 
-	private setupVideo(url: string) : HTMLVideoElement {
-		const video = document.createElement("video");
+	private setupVideo(url: string): HTMLVideoElement {
+		const video = document.createElement('video');
 
 		video.playsInline = true;
 		video.muted = true;
 		video.loop = true;
 
-		video.addEventListener("playing", () => {
-			// todo
-		}, true);
+		video.addEventListener(
+			'playing',
+			() => {
+				// todo
+			},
+			true,
+		);
 
-		video.addEventListener("timeupdate", () => {
-			// todo
-		}, true);
+		video.addEventListener(
+			'timeupdate',
+			() => {
+				// todo
+			},
+			true,
+		);
 
 		video.src = url;
 		video.play();
@@ -161,14 +169,24 @@ class SlideRenderer {
 		gl.bindTexture(gl.TEXTURE_2D, texture);
 
 		const pixel = new Uint8Array([0, 0, 255, 255]); // opaque blue
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+		gl.texImage2D(
+			gl.TEXTURE_2D,
+			0,
+			gl.RGBA,
+			1,
+			1,
+			0,
+			gl.RGBA,
+			gl.UNSIGNED_BYTE,
+			pixel,
+		);
 
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
 
 		return texture;
-	  }
+	}
 
 	private updateTexture(
 		texture: WebGLTexture | ImageBitmap,
@@ -177,7 +195,7 @@ class SlideRenderer {
 		const gl = this._context.getGl();
 		gl.bindTexture(gl.TEXTURE_2D, texture);
 		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
-	  }
+	}
 
 	public renderSlide(
 		currentSlideTexture: WebGLTexture | ImageBitmap,
@@ -187,15 +205,22 @@ class SlideRenderer {
 	) {
 		this._slideTexture = currentSlideTexture;
 		this._videos = [];
-		if (slideInfo.videos !== undefined)
-		{
+		if (slideInfo.videos !== undefined) {
 			for (var videoInfo of slideInfo.videos) {
-				const video = new VideoRenderInfo;
+				const video = new VideoRenderInfo();
 				video.videoElement = this.setupVideo(videoInfo.url);
 				video.texture = this.initTexture();
-				video.vao = this.setupRectangleInDocumentPositions(videoInfo.x, videoInfo.y, videoInfo.width, videoInfo.height, docWidth, docHeight);
+				video.vao = this.setupRectangleInDocumentPositions(
+					videoInfo.x,
+					videoInfo.y,
+					videoInfo.width,
+					videoInfo.height,
+					docWidth,
+					docHeight,
+				);
 
-			this._videos.push(video);
+				this._videos.push(video);
+			}
 		}
 		requestAnimationFrame(this.render.bind(this));
 	}

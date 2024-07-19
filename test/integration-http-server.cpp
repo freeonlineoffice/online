@@ -622,7 +622,7 @@ void HTTPServerTest::testExtractDocStructure()
 
     TST_LOG("extract-document-structure");
 
-    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/cool/extract-document-structure");
+    Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/lool/extract-document-structure");
     Poco::Net::HTMLForm form;
     form.setEncoding(Poco::Net::HTMLForm::ENCODING_MULTIPART);
     form.addPart("data", new Poco::Net::FilePartSource(srcPath));
@@ -662,7 +662,7 @@ void HTTPServerTest::testTransformDocStructure()
 
         TST_LOG("transform-document-structure");
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/cool/transform-document-structure");
+        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/lool/transform-document-structure");
         Poco::Net::HTMLForm form;
         form.setEncoding(Poco::Net::HTMLForm::ENCODING_MULTIPART);
         form.set("format", "docx");
@@ -701,7 +701,7 @@ void HTTPServerTest::testTransformDocStructure()
 
         TST_LOG("transform-document-structure-check");
 
-        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/cool/extract-document-structure");
+        Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/lool/extract-document-structure");
         Poco::Net::HTMLForm form;
         form.setEncoding(Poco::Net::HTMLForm::ENCODING_MULTIPART);
         form.set("format", "docx");
