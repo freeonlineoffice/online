@@ -59,13 +59,17 @@ class Transition2d {
 
 	public initBuffers(): void {
 		const positions = new Float32Array([
-			-1.0, -1.0, 0, 0, 1, 1.0, -1.0, 0, 1, 1, -1.0, 1.0, 0, 0, 0, 1.0, 1.0, 0,
-			1, 0,
+			-1.0, -1.0, 0, 0, 1, 1.0, -1.0, 0, 1, 1, -1.0, 1.0, 0, 0, 0, 1.0,
+			1.0, 0, 1, 0,
 		]);
 
 		const buffer = this.gl.createBuffer();
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
-		this.gl.bufferData(this.gl.ARRAY_BUFFER, positions, this.gl.STATIC_DRAW);
+		this.gl.bufferData(
+			this.gl.ARRAY_BUFFER,
+			positions,
+			this.gl.STATIC_DRAW,
+		);
 
 		this.vao = this.gl.createVertexArray();
 		this.gl.bindVertexArray(this.vao);
