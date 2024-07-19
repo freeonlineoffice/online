@@ -17,7 +17,13 @@ class FadeTransition extends Transition2d {
 		image1: HTMLImageElement,
 		image2: HTMLImageElement,
 	) {
-		super(canvas, vertexShaderSource, fragmentShaderSource, image1, image2);
+		super(
+			canvas,
+			vertexShaderSource,
+			fragmentShaderSource,
+			image1,
+			image2,
+		);
 		this.prepareTransition();
 		this.animationTime = 1500;
 	}

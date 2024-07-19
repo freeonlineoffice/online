@@ -1635,7 +1635,6 @@ L.CanvasTileLayer = L.Layer.extend({
 			if (this._map.slideShow2) {
 				this._map.slideShow2.initializeSlideShowInfo(content);
 			}
->>>>>>> 10e73c48c (Introduce SlideshowPresenter to show the slide shows)
 		}
 	},
 
