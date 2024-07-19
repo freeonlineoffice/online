@@ -55,7 +55,7 @@ class SlideShowPresenter {
 	_fullscreen: Element = null;
 	_slideShowCanvas: HTMLCanvasElement = null;
 	_currentSlide: number = 0;
-	_slideRenderer: SlideRenderer = new SlideRenderer();
+	_slideRenderer: SlideRenderer = null;
 
 	constructor(map: any) {
 		this._map = map;
@@ -156,9 +156,11 @@ class SlideShowPresenter {
 		window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
 
 		try {
+			this._slideRenderer = new SlideRendererGl();
 			this._slideRenderer.setup(canvas);
 		} catch (error) {
-			this._slideRenderer.setup2d(canvas);
+			this._slideRenderer = new SlideRenderer2d();
+			this._slideRenderer.setup(canvas);
 		}
 
 		return canvas;
