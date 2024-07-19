@@ -325,14 +325,7 @@ L.Control.UIManager = L.Control.extend({
 			L.DomUtil.remove(L.DomUtil.get('presentation-controls-wrapper'));
 			document.getElementById('selectbackground').parentNode.removeChild(document.getElementById('selectbackground'));
 
-			if ((window.mode.isTablet() || window.mode.isDesktop()) && !app.isReadOnly()) {
-				var showRuler = this.getBooleanDocTypePref('ShowRuler', true);
-				var interactiveRuler = this.map.isEditMode();
-				var isRTL = document.documentElement.dir === 'rtl';
-				L.control.ruler({position: (isRTL ? 'topright' : 'topleft'), interactive:interactiveRuler, showruler: showRuler}).addTo(this.map);
-				L.control.vruler(this.map, {position: (isRTL ? 'topright' : 'topleft'), interactive:interactiveRuler, showruler: showRuler});
-				this.map.fire('rulerchanged');
-			}
+			this.initializeRuler();
 
 			var showResolved = this.getBooleanDocTypePref('ShowResolved', true);
 			if (showResolved === false || showResolved === 'false')
@@ -400,6 +393,19 @@ L.Control.UIManager = L.Control.extend({
 			// So for the moment, let's just hide it on
 			// Chromebooks early
 			app.socket.sendMessage('uno .uno:SidebarHide');
+		}
+	},
+
+	// Initialize ruler
+	initializeRuler: function() {
+		if ((window.mode.isTablet() || window.mode.isDesktop()) && !app.isReadOnly()) {
+			var showRuler = this.getBooleanDocTypePref('ShowRuler');
+			var interactiveRuler = this.map.isEditMode();
+			var isRTL = document.documentElement.dir === 'rtl';
+			L.control.ruler({position: (isRTL ? 'topright' : 'topleft'), interactive:interactiveRuler, showruler: showRuler}).addTo(this.map);
+			if (!this.map.isPresentationOrDrawing())
+				L.control.vruler(this.map, {position: (isRTL ? 'topright' : 'topleft'), interactive:interactiveRuler, showruler: showRuler});
+			this.map.fire('rulerchanged');
 		}
 	},
 
@@ -1120,13 +1126,13 @@ L.Control.UIManager = L.Control.extend({
 	/// shows modal dialog
 	/// json - JSON for building the dialog
 	/// callbacks - array of { id: widgetId, type: eventType, func: functionToCall }
-	showModal: function(json, callbacks) {
+	showModal: function(json, callbacks, cancelButtonId) {
 		var that = this;
 		var builderCallback = function(objectType, eventType, object, data) {
 			window.app.console.debug('modal action: \'' + objectType + '\' id:\'' + object.id + '\' event: \'' + eventType + '\' state: \'' + data + '\'');
 
 			// default close methods
-			callbacks.push({id: 'response-cancel', func: function() { that.closeModal(json.id); }});
+			callbacks.push({id: (cancelButtonId ? cancelButtonId: 'response-cancel'), func: function() { that.closeModal(json.id); }});
 			callbacks.push({id: '__POPOVER__', func: function() { that.closeModal(json.id); }});
 
 			for (var i in callbacks) {
@@ -1576,7 +1582,7 @@ L.Control.UIManager = L.Control.extend({
 	/// message - message
 	/// buttonText - text inside OK button
 	/// callback - callback on button press
-	showConfirmModal: function(id, title, message, buttonText, callback) {
+	showConfirmModal: function(id, title, message, buttonText, callback, hideCancelButton) {
 		var dialogId = this.generateModalId(id);
 		var json = this._modalDialogJSON(id, title, !window.mode.isDesktop(), [
 			{
@@ -1594,6 +1600,7 @@ L.Control.UIManager = L.Control.extend({
 						id: 'response-cancel',
 						type: 'pushbutton',
 						text: _('Cancel'),
+						hidden: hideCancelButton === true ? true: false
 					},
 					{
 						id: 'response-ok',

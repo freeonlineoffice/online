@@ -404,11 +404,12 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'type': 'toolbox',
 						'children': [
 							{
-								'id': 'collapsenotebookbar',
-								'class': 'unocollapsenotebookbar',
+								'id': 'showruler',
+								'class': 'unoshowruler',
 								'type': 'menubartoolitem',
-								'text': _('Collapse Tabs'),
-								'accessibility': { focusBack: true, combination: 'CU', de: null }
+								'text': _('Ruler'),
+								'command': _('Show Ruler'),
+								'accessibility': { focusBack: true, combination: 'R', de: 'L' }
 							}
 						]
 					},
