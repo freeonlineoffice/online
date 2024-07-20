@@ -94,15 +94,35 @@ class SlideRenderer {
 		const vao = gl.createVertexArray();
 		gl.bindVertexArray(vao);
 
-		const positionLocation = gl.getAttribLocation(this._program, 'a_position');
+		const positionLocation = gl.getAttribLocation(
+			this._program,
+			'a_position',
+		);
 
 		gl.enableVertexAttribArray(positionLocation);
-		gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 5 * 4, 0);
+		gl.vertexAttribPointer(
+			positionLocation,
+			3,
+			gl.FLOAT,
+			false,
+			5 * 4,
+			0,
+		);
 
-		const texCoordLocation = gl.getAttribLocation(this._program, 'a_texCoord');
+		const texCoordLocation = gl.getAttribLocation(
+			this._program,
+			'a_texCoord',
+		);
 
 		gl.enableVertexAttribArray(texCoordLocation);
-		gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 5 * 4, 3 * 4);
+		gl.vertexAttribPointer(
+			texCoordLocation,
+			2,
+			gl.FLOAT,
+			false,
+			5 * 4,
+			3 * 4,
+		);
 
 		return vao;
 	}
@@ -118,7 +138,10 @@ class SlideRenderer {
 			this.getFragmentShader(),
 		);
 
-		this._program = this._context.createProgram(vertexShader, fragmentShader);
+		this._program = this._context.createProgram(
+			vertexShader,
+			fragmentShader,
+		);
 
 		this._vao = this.setupPositions(-1.0, 1.0, 1.0, -1.0);
 		this._context.getGl().useProgram(this._program);
@@ -194,7 +217,14 @@ class SlideRenderer {
 	) {
 		const gl = this._context.getGl();
 		gl.bindTexture(gl.TEXTURE_2D, texture);
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+		gl.texImage2D(
+			gl.TEXTURE_2D,
+			0,
+			gl.RGBA,
+			gl.RGBA,
+			gl.UNSIGNED_BYTE,
+			video,
+		);
 	}
 
 	public renderSlide(
