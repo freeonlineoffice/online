@@ -103,7 +103,7 @@ public:
             }
 
             LOG_TRC("Accepted client #" << clientSocket->getFD());
-            _clientPoller.insertNewSocket(clientSocket);
+            _clientPoller.insertNewSocket(std::move(clientSocket));
         }
     }
 

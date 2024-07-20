@@ -1106,7 +1106,8 @@ void ClientRequestDispatcher::handleClipboardRequest(const Poco::Net::HTTPReques
                                                  << " bytes of data");
         docBroker->setupTransfer(
             disposition,
-            [docBroker, type, viewId, tag, data](const std::shared_ptr<Socket>& moveSocket)
+            [docBroker, type, viewId=std::move(viewId),
+             tag=std::move(tag), data=std::move(data)](const std::shared_ptr<Socket>& moveSocket)
             {
                 auto streamSocket = std::static_pointer_cast<StreamSocket>(moveSocket);
                 docBroker->handleClipboardRequest(type, streamSocket, viewId, tag, data);

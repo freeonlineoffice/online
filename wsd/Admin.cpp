@@ -858,7 +858,7 @@ void Admin::setChannelLogLevel(const std::string& channelName, std::string level
     {
         LOOLWSD::setLogLevelsOfKits(level); // For current kits.
         LOOLWSD::sendMessageToForKit("setloglevel " + level); // For forkit and future kits.
-        _forkitLogLevel = level; // We will remember this setting rather than asking forkit its loglevel.
+        _forkitLogLevel = std::move(level); // We will remember this setting rather than asking forkit its loglevel.
     }
 }
 

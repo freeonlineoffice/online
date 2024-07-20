@@ -3540,7 +3540,7 @@ bool LOOLWSD::createForKit()
 #elif VALGRIND_LOOLFORKIT
     std::string forKitPath = "/usr/bin/valgrind";
 #else
-    std::string forKitPath = parentPath;
+    std::string forKitPath = std::move(parentPath);
     if (EnableMountNamespaces)
     {
         forKitPath += "loolforkitns";
@@ -3808,7 +3808,7 @@ private:
             child->setSMapsFD(socket->getIncomingFD(SMAPS));
             _childProcess = child; // weak
 
-            addNewChild(child);
+            addNewChild(std::move(child));
         }
         catch (const std::bad_weak_ptr&)
         {

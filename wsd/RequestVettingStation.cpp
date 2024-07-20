@@ -406,8 +406,8 @@ void RequestVettingStation::createClientSession(const std::string& docKey, const
     const auto docBroker = _docBroker;
     _docBroker->setupTransfer(
         _socket,
-        [clientSession, uriPublic, wopiFileInfo = std::move(wopiFileInfo), ws,
-         docBroker](const std::shared_ptr<Socket>& moveSocket) mutable
+        [clientSession=std::move(clientSession), uriPublic, wopiFileInfo=std::move(wopiFileInfo),
+         ws, docBroker](const std::shared_ptr<Socket>& moveSocket) mutable
         {
             try
             {
@@ -476,3 +476,5 @@ void RequestVettingStation::sendErrorAndShutdown(const std::shared_ptr<WebSocket
         ws->shutdown(statusCode, msg); // And ignore input (done in shutdown()).
     }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

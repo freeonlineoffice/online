@@ -1889,7 +1889,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
                     if (isConvertTo)
                     {
                         http::Response response(http::StatusCode::Unauthorized);
-                        response.set("X-ERROR-KIND", errorKind);
+                        response.set("X-ERROR-KIND", std::move(errorKind));
                         _saveAsSocket->send(response);
 
                         // Conversion failed, cleanup fake session.
@@ -1982,7 +1982,8 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
 
             // Rewrite file:// URLs to be visible to the outside world.
             const Path path(FileUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces,
-                                                           docBroker->getJailRoot(), relative));
+                                                           docBroker->getJailRoot(),
+                                                           std::move(relative)));
             if (Poco::File(path).exists())
             {
                 if (!isConvertTo)

@@ -112,7 +112,7 @@ void Quarantine::initialize(const std::string& path)
             LOG_TRC("Found " << entries.size() << " quarantine file for DocKey [" << docKey << ']');
             if (!entries.empty())
             {
-                QuarantineMap[docKey] = entries;
+                QuarantineMap[docKey] = std::move(entries);
             }
         }
     }
@@ -453,3 +453,5 @@ Quarantine::Entry::Entry(const std::string& root, const std::string& docKey,
     LOG_TRC("New quarantine file for [" << _docKey << "], name: [" << _filename << "], size: "
                                         << _size << ", created: " << _secondsSinceEpoch);
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

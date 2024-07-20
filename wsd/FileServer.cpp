@@ -1281,7 +1281,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
         userInterfaceModeConfig = "notebookbar";
 
     if (userInterfaceModeConfig == "classic" || userInterfaceModeConfig == "notebookbar" || userInterfaceMode.empty())
-        userInterfaceMode = userInterfaceModeConfig;
+        userInterfaceMode = std::move(userInterfaceModeConfig);
 
     // default to the notebookbar if the value is "default" or whatever
     // nonsensical
@@ -1513,7 +1513,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
     socket->send(httpResponse);
     LOG_TRC("Sent file: " << relPath << ": " << preprocess);
 
-    return ResourceAccessDetails(wopiSrc, urv[ACCESS_TOKEN]);
+    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN], urv[PERMISSION]);
 }
 
 void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,

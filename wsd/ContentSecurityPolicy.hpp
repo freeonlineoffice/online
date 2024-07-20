@@ -47,7 +47,7 @@ public:
     /// @value must be space-delimited and cannot have semicolon.
     void appendDirectiveUrl(std::string directive, std::string url)
     {
-        appendDirective(directive, Util::trimURI(url));
+        appendDirective(std::move(directive), Util::trimURI(url));
     }
 
     /// Append the given value to a directive.
