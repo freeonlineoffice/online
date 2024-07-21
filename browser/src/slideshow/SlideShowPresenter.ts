@@ -156,11 +156,9 @@ class SlideShowPresenter {
 		window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
 
 		try {
-			this._slideRenderer = new SlideRendererGl();
-			this._slideRenderer.setup(canvas);
+			this._slideRenderer = new SlideRendererGl(canvas);
 		} catch (error) {
-			this._slideRenderer = new SlideRenderer2d();
-			this._slideRenderer.setup(canvas);
+			this._slideRenderer = new SlideRenderer2d(canvas);
 		}
 
 		return canvas;
