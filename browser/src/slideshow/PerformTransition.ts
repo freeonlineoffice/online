@@ -178,7 +178,7 @@ SlideShow.PerformTransition = function (
 			break;
 
 		case TransitionType.WATERFALLWIPE:
-			// TODO: Need to implement
+			new SlideShow.DiagonalTransition(transitionParameters).start();
 			break;
 
 		default:

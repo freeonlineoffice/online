@@ -440,6 +440,7 @@ LOOL_JS_LST =\
 	src/slideshow/transition/EllipseWipeTransition.ts \
 	src/slideshow/transition/SlideWipeTransition.ts \
 	src/slideshow/transition/BarWipeTransition.ts \
+	src/slideshow/transition/DiagonalTransition.ts \
 	src/slideshow/transition/WipeTransition.ts \
 	src/slideshow/transition/NoTransition.ts \
 	src/dom/PosAnimation.js \
@@ -905,6 +906,7 @@ pot:
 		src/slideshow/transition/IrisWipeTransition.ts \
 		src/slideshow/transition/EllipseWipeTransition.ts \
 		src/slideshow/transition/SlideWipeTransition.ts \
+		src/slideshow/transition/DiagonalTransition.ts \
 		src/slideshow/transition/BarWipeTransition.ts \
 		src/core/Socket.js \
 		src/core/Debug.js \
