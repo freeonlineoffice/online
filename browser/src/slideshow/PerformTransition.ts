@@ -159,7 +159,6 @@ SlideShow.PerformTransition = function (
 			break;
 
 		case TransitionType.BLINDSWIPE:
-			// todo : add Venetian to online UI
 			new SlideShow.VenetianTransition(transitionParameters).start(1);
 			break;
 
