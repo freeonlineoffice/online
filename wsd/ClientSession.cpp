@@ -42,7 +42,6 @@
 
 using namespace LOOLProtocol;
 
-
 static constexpr float TILES_ON_FLY_MIN_UPPER_LIMIT = 10.0;
 static constexpr int SYNTHETIC_LOOL_PID_OFFSET = 10000000;
 
@@ -175,6 +174,7 @@ bool ClientSession::disconnectFromKit()
         setState(SessionState::WAIT_DISCONNECT);
 
         // handshake nicely; so wait for 'disconnected'
+        LOG_TRC("Sending 'disconnect' command to session " << getId());
         docBroker->forwardToChild(client_from_this(), "disconnect");
 
         return false;
