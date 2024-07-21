@@ -24,6 +24,7 @@
 #include <JsonUtil.hpp>
 
 #include <common/Message.hpp>
+#include <common/ThreadPool.hpp>
 #include <wsd/FileServer.hpp>
 #include <net/Buffer.hpp>
 #include <net/NetUtil.hpp>
@@ -67,6 +68,7 @@ class WhiteBoxTests : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(testUtf8);
 #endif
     CPPUNIT_TEST(testFindInVector);
+    CPPUNIT_TEST(testThreadPool);
     CPPUNIT_TEST_SUITE_END();
 
     void testLOOLProtocolFunctions();
@@ -97,6 +99,9 @@ class WhiteBoxTests : public CPPUNIT_NS::TestFixture
     void testJsonUtilEscapeJSONValue();
     void testUtf8();
     void testFindInVector();
+    void testThreadPool();
+
+    size_t waitForThreads(size_t count);
 };
 
 void WhiteBoxTests::testLOOLProtocolFunctions()
@@ -1307,6 +1312,45 @@ void WhiteBoxTests::testFindInVector()
     ret = Util::findInVector(v, "blah");
     expected = std::string::npos;
     LOK_ASSERT_EQUAL(expected, ret);
+}
+
+#if 0
+size_t WhiteBoxTests::waitForThreads(size_t count)
+{
+    auto start = std::chrono::steady_clock::now();
+    while (Util::getCurrentThreadCount() != count)
+    {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::steady_clock::now() - start).count() >= 250)
+        {
+            std::cerr << "Failed to get correct thread count " << count <<
+                " instead we have " << Util::getCurrentThreadCount() << "\n";
+            break;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    return Util::getCurrentThreadCount();
+}
+#endif
+
+void WhiteBoxTests::testThreadPool()
+{
+    constexpr auto testname = __func__;
+//    const size_t existingUnrelatedThreads = Util::getCurrentThreadCount();
+    // coverity[tainted_data_argument : FALSE] - we trust this variable in tests
+    setenv("MAX_CONCURRENCY","8",1);
+    ThreadPool pool;
+    LOK_ASSERT_EQUAL(int(8), pool._maxConcurrency);
+    LOK_ASSERT_EQUAL(size_t(7), pool._threads.size());
+//    LOK_ASSERT_EQUAL(size_t(7 + existingUnrelatedThreads), waitForThreads(8 + existingUnrelatedThreads));
+
+    pool.stop();
+    LOK_ASSERT_EQUAL(size_t(0), pool._threads.size());
+//    LOK_ASSERT_EQUAL(size_t(existingUnrelatedThreads), waitForThreads(existingUnrelatedThreads));
+
+    pool.start();
+    LOK_ASSERT_EQUAL(size_t(7), pool._threads.size());
+//    LOK_ASSERT_EQUAL(size_t(7 + existingUnrelatedThreads), waitForThreads(8 + existingUnrelatedThreads));
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION(WhiteBoxTests);

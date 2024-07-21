@@ -1877,7 +1877,6 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
         // Only save the options on opening the document.
         // No support for changing them after opening a document.
         _renderOpts = renderOpts;
-        spellOnline = session->getSpellOnline();
     }
     else
     {

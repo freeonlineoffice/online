@@ -277,7 +277,8 @@ void HTTPWSTest::testInactiveClient()
                                             token == "editor:" ||
                                             token == "context:" ||
                                             token == "window:" ||
-                                            token == "rulerupdate:" ||
+                                            token == "hrulerupdate:" ||
+                                            token == "vrulerupdate:" ||
                                             token == "tableselected:" ||
                                             token == "colorpalettes:" ||
                                             token == "jsdialog:" ||
