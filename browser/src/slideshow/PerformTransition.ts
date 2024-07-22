@@ -159,7 +159,7 @@ SlideShow.PerformTransition = function (
 			break;
 
 		case TransitionType.BLINDSWIPE:
-			new SlideShow.VenetianTransition(transitionParameters).start(1);
+			new SlideShow.VenetianTransition(transitionParameters).start();
 			break;
 
 		case TransitionType.DISSOLVE:
