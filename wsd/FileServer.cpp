@@ -1513,7 +1513,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
     socket->send(httpResponse);
     LOG_TRC("Sent file: " << relPath << ": " << preprocess);
 
-    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN], urv[PERMISSION]);
+    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN]);
 }
 
 void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,
