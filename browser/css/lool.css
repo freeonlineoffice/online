@@ -40,6 +40,10 @@
 	--annotation-input-size: 100px;
 	--annotation-max-size: 1000;
 	--annotation-min-size: 100;
+
+	/* Ruler */
+	--ruler-height: 20px;
+	--canvas-container-y: var(--ruler-height);
 }
 .focus-hidden:focus {
 	outline: none;
