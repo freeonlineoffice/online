@@ -383,7 +383,7 @@ static int createLibreOfficeKit(const std::string& childRoot,
     const std::string jailId = Util::rng::getFilename(16);
 
     // Update the dynamic files as necessary.
-    JailUtil::SysTemplate::updateDynamicFiles(sysTemplate);
+    const bool sysTemplateIncomplete = !JailUtil::SysTemplate::updateDynamicFiles(sysTemplate);
 
     // Used to label the spare kit instances
     static size_t spareKitId = 0;
@@ -395,10 +395,12 @@ static int createLibreOfficeKit(const std::string& childRoot,
     pid_t pid = 0;
     if (Util::isKitInProcess())
     {
-        std::thread([childRoot, jailId, sysTemplate, loTemplate, queryVersion] {
+        std::thread([childRoot, jailId, sysTemplate, loTemplate, queryVersion,
+                     sysTemplateIncomplete] {
             sleepForDebugger();
             lokit_main(childRoot, jailId, sysTemplate, loTemplate, true, true,
-                       false, queryVersion, DisplayVersion, spareKitId);
+                       false, queryVersion, DisplayVersion, sysTemplateIncomplete,
+                       spareKitId);
         })
             .detach();
     }
@@ -443,7 +445,8 @@ static int createLibreOfficeKit(const std::string& childRoot,
             UnitKit::get().postFork();
 
             lokit_main(childRoot, jailId, sysTemplate, loTemplate, NoCapsForKit, NoSeccomp,
-                       useMountNamespaces, queryVersion, DisplayVersion, spareKitId);
+                       useMountNamespaces, queryVersion, DisplayVersion,
+                       sysTemplateIncomplete, spareKitId);
         }
         else
         {
