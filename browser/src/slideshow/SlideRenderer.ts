@@ -83,7 +83,9 @@ abstract class SlideRenderer {
 		return [xMin, xMax, yMin, yMax];
 	}
 
-	public abstract createTexture(image: ImageBitmap): WebGLTexture | ImageBitmap;
+	public abstract createTexture(
+		image: ImageBitmap,
+	): WebGLTexture | ImageBitmap;
 
 	protected abstract prepareVideos(
 		slideInfo: SlideInfo,
@@ -189,7 +191,14 @@ class SlideRendererGl extends SlideRenderer {
 	private updateTexture(texture: WebGLTexture, video: HTMLVideoElement) {
 		const gl = this._context.getGl();
 		gl.bindTexture(gl.TEXTURE_2D, texture);
-		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+		gl.texImage2D(
+			gl.TEXTURE_2D,
+			0,
+			gl.RGBA,
+			gl.RGBA,
+			gl.UNSIGNED_BYTE,
+			video,
+		);
 	}
 
 	public setupPositions(
