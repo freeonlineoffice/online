@@ -809,7 +809,8 @@ input[type='number']:hover::-webkit-outer-spin-button {
 
 .ui-listbox-arrow {
 	content: '';
-	background: url('images/jquery-ui-lightness/ui-icons_222222_256x240.png') no-repeat transparent;
+	background: url('images/jquery-ui-lightness/ui-icons_222222_256x240.png')
+		no-repeat transparent;
 	background-position: -67px -17px !important;
 	display: inline-block;
 	position: relative;
