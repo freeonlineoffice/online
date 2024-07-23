@@ -330,7 +330,7 @@ menuDefinitions.set('ConditionalFormatMenu', [
 			{ type: 'separator' },
 			{
 				text: _('More highlights...'),
-				uno: '.uno:ConditionalFormatDialog',
+				uno: '.uno:ConditionalFormatManagerDialog',
 			},
 		],
 	},
@@ -364,7 +364,7 @@ menuDefinitions.set('ConditionalFormatMenu', [
 			{ type: 'separator' },
 			{
 				text: _('More highlights...'),
-				uno: '.uno:ConditionalFormatDialog',
+				uno: '.uno:ConditionalFormatManagerDialog',
 			},
 		],
 	},
