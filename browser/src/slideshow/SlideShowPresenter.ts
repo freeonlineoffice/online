@@ -38,6 +38,7 @@ interface SlideInfo {
 		isCustom: boolean;
 		fillColor: string;
 	};
+	animations: any;
 	next: string;
 	prev: string;
 }
@@ -58,6 +59,7 @@ class SlideShowPresenter {
 	_windowCloseInterval: ReturnType<typeof setInterval> = null;
 	_currentSlide: number = 0;
 	_slideRenderer: SlideRenderer = null;
+	_animationsHandler: SlideAnimations = null;
 
 	constructor(map: any) {
 		this._map = map;
@@ -130,10 +132,8 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide++;
-			this._doTransition(
-				this._slideRenderer._slideTexture,
-				this._currentSlide,
-			);
+			this.createAnimationsHandler();
+			this._doTransition(this._slideRenderer._slideTexture, this._currentSlide);
 		});
 	}
 
@@ -144,6 +144,7 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide--;
+			this.createAnimationsHandler();
 			this._doPresentation();
 		});
 	}
@@ -476,10 +477,26 @@ class SlideShowPresenter {
 			);
 		}
 
+		this.createAnimationsHandler();
+
 		this._slideCompositor.updatePresentationInfo(this._presentationInfo);
 		this._slideCompositor.fetchAndRun(0, () => {
 			this._doPresentation();
 		});
+	}
+
+	createAnimationsHandler() {
+		const slideInfo = this.getSlideInfo(this._currentSlide);
+		if (slideInfo.animations) {
+			this._animationsHandler = new SlideAnimations();
+			this._animationsHandler.importAnimations(slideInfo.animations.root);
+			this._animationsHandler.parseInfo();
+			const animationTree = this._animationsHandler.getAnimationsTree();
+			if (animationTree) {
+				const info = animationTree.getInfo(true);
+				window.app.console.log('animations info: \n' + info);
+			}
+		}
 	}
 }
 
