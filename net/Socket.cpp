@@ -372,14 +372,14 @@ void SocketPoll::pollingThreadEntry()
 
         // Invoke the virtual implementation.
         pollingThread();
-
-        // Release sockets.
-        removeSockets();
     }
     catch (const std::exception& exc)
     {
         LOG_ERR("Exception in polling thread [" << _name << "]: " << exc.what());
     }
+
+    // Release sockets.
+    removeSockets();
 
     _threadFinished = true;
     LOG_INF("Finished polling thread [" << _name << "].");
