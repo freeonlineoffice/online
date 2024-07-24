@@ -631,8 +631,11 @@ input[type='checkbox']:checked.autofilter,
 }
 /* input text */
 
-.jsdialog.ui-edit,
-#hyperlink-text-box:not(.mobile-wizard) {
+.ui-dialog .jsdialog.ui-edit:focus-visible {
+	outline-offset: -2px;
+}
+
+.jsdialog.ui-edit, #hyperlink-text-box:not(.mobile-wizard) {
 	color: var(--color-text-dark);
 	background-color: var(--color-background-dark);
 	line-height: 28px;
