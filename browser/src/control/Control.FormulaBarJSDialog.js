@@ -90,6 +90,8 @@ class FormulaBar {
 
 		};
 		this.map.sendUnoCommand('.uno:GoToCell', command);
+		// TODO: create clear helper to provide one-time allow ticket for view jump
+		this.map._docLayer._searchRequested = true;
 	}
 
 	createFormulabar(text) {
