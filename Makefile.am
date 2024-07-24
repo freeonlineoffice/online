@@ -472,7 +472,6 @@ CLEANUP_COVERAGE=rm -rf ${abs_top_srcdir}/gcov; find . -iname "*.gc??" -delete
 if HAVE_LO_PATH
 
 SYSTEM_STAMP = @SYSTEMPLATE_PATH@/system_stamp
-CAPABILITIES = $(if @ENABLE_SETCAP@,true,false)
 RUN_GDB = $(if $(GDB_FRONTEND),$(GDB_FRONTEND),gdb --tui --args)
 
 if ENABLE_LIBFUZZER
@@ -536,14 +535,12 @@ COMMON_PARAMS = \
 
 run: setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
-			--o:security.capabilities="$(CAPABILITIES)" \
 			--o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
 			--o:trace_event[@enable]=true
 
 if ENABLE_DEBUG
 run-one: setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
-			--o:security.capabilities="$(CAPABILITIES)" \
 			--o:logging.file[@enable]=true --o:logging.level=trace \
 			--singlekit
 
@@ -590,21 +587,18 @@ run-gdb: setup-wsd
 	@echo "Launching loolwsd under gdb"
 	$(RUN_GDB) \
 		./loolwsd $(COMMON_PARAMS) \
-			--o:security.capabilities="false" \
 			--o:logging.file[@enable]=false --o:logging.level=error
 
 run-callgrind: setup-wsd
 	@echo "Launching loolwsd under valgrind's callgrind"
 	valgrind --tool=callgrind --simulate-cache=yes --dump-instr=yes --num-callers=50 --error-limit=no --trace-children=yes \
 		./loolwsd $(COMMON_PARAMS) \
-			--o:security.capabilities="false" \
 			--o:logging.file[@enable]=false --o:logging.level=error
 
 run-strace: setup-wsd
 	@echo "Launching loolwsd under strace"
 	strace -o strace.log -f -tt -s 256 \
 		./loolwsd $(COMMON_PARAMS) \
-			--o:security.capabilities="false" \
 			--o:logging.file[@enable]=false --o:logging.level=error
 
 else
@@ -621,11 +615,6 @@ else
 ALL_LOCAL_DEPS=loolwsd
 endif
 
-# After building loolforkit, set its capabilities as required. Do it
-# already after a plain 'make' to allow for testing without
-# installing. When building for packaging, no need for this, as the
-# capabilities won't survive packaging anyway. Instead, handle it when
-# installing the RPM or Debian package.
 all-local: $(ALL_LOCAL_DEPS) @JAILS_PATH@ $(SYSTEM_STAMP)
 	@$(abs_top_srcdir)/scripts/refresh-git-hooks
 
