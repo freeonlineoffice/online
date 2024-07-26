@@ -325,7 +325,7 @@ void DocumentBroker::pollThread()
             _poll->stop();
 
             // Async cleanup.
-            COOLWSD::doHousekeeping();
+            LOOLWSD::doHousekeeping();
 
             return;
         }
