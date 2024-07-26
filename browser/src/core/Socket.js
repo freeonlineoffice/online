@@ -414,7 +414,7 @@ app.definitions.Socket = L.Class.extend({
 						// When debugging let QA know something is up.
 						if (window.enableDebug)
 							this._map.uiManager.showInfoModal(
-								'cool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
+								'lool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
 					}
 					finally {
 						if (completeEventOneMessage)

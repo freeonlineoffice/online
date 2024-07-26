@@ -217,7 +217,7 @@
     <security desc="Altering these defaults potentially opens you to significant risk">
       <seccomp desc="Should we use the seccomp system call filtering." type="bool" default="true">true</seccomp>
 
-      <!-- deprecated: If capabilities is 'false', coolwsd will assume mount_namespaces of 'true' to achieve
+      <!-- deprecated: If capabilities is 'false', loolwsd will assume mount_namespaces of 'true' to achieve
            this goal, only avoiding chroot for process isolation if linux namespaces are unavailable -->
       <capabilities desc="Should we require capabilities to isolate processes into chroot jails" type="bool" default="true">true</capabilities>
 

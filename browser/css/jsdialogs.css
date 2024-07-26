@@ -277,7 +277,7 @@ td.jsdialog > [id^='table-box']:not(.sidebar) {
 
 #toolbar-down .ui-badge,
 #toolbar-down .unolabel {
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	font-size: var(--default-font-size);
 	color: var(--color-status-badge) !important;
 }
