@@ -550,9 +550,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 }
 
 .lool-annotation:not(.annotation-active) .lool-annotation-content-wrapper:hover,
-.lool-annotation:not(.annotation-active)
-	.lool-annotation-redline-content-wrapper:hover {
-	background-color: var(--color-background-dark);
+.lool-annotation:not(.annotation-active) .lool-annotation-redline-content-wrapper:hover {
 	color: var(--color-text-dark);
 }
 
