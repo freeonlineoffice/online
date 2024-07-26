@@ -67,7 +67,12 @@ class SlideShowPresenter {
 	addHooks() {
 		this._map.on('newfullscreen', this._onStart, this);
 		this._map.on('newpresentinwindow', this._onStartInWindow, this);
-		L.DomEvent.on(document, 'fullscreenchange', this._onFullScreenChange, this);
+		L.DomEvent.on(
+			document,
+			'fullscreenchange',
+			this._onFullScreenChange,
+			this,
+		);
 	}
 
 	removeHooks() {
@@ -153,7 +158,11 @@ class SlideShowPresenter {
 	}
 
 	_createCanvas(parent: Element, width: number, height: number) {
-		const canvas = L.DomUtil.create('canvas', 'leaflet-slideshow2', parent);
+		const canvas = L.DomUtil.create(
+			'canvas',
+			'leaflet-slideshow2',
+			parent,
+		);
 
 		canvas.id = 'fullscreen-canvas';
 		canvas.width = width;
@@ -291,12 +300,15 @@ class SlideShowPresenter {
 			);
 		}
 
-		this._slideShowWindowProxy.document.documentElement.innerHTML = htmlContent;
+		this._slideShowWindowProxy.document.documentElement.innerHTML =
+			htmlContent;
 		this._slideShowWindowProxy.document.close();
 		this._slideShowWindowProxy.focus();
 
 		const body =
-			this._slideShowWindowProxy.document.querySelector('#root-in-window');
+			this._slideShowWindowProxy.document.querySelector(
+				'#root-in-window',
+			);
 		this._slideShowCanvas = this._createCanvas(
 			body,
 			window.screen.width,
