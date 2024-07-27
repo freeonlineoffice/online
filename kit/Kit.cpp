@@ -1334,6 +1334,7 @@ bool Document::joinThreads()
 // Most threads are opportunisticaly created but some need to be started
 void Document::startThreads()
 {
+    getLOKit()->startThreads();
 
     if (SocketPoll::PollWatchdog)
         SocketPoll::PollWatchdog->startThread();
