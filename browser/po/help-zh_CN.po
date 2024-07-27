@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-19 22:32+0200\n"
+"POT-Creation-Date: 2024-07-27 08:46+0200\n"
 "PO-Revision-Date: 2022-01-13 17:17+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -1888,9 +1888,10 @@ msgid ""
 msgstr "当您粘贴来自文档内部的文本时，将保留格式。您也可以从正在编辑的文档中直接复制对象（如图像）并粘贴。"
 
 #: html/lool-help.html%2Bdiv.div.div.p:515-5
+#, fuzzy
 msgid ""
 "When you paste text from outside of the document (another browser window or "
-"a desktop application, it will be pasted as rich text."
+"a desktop application), it will be pasted as rich text."
 msgstr "当您粘贴来自文档外部（如其它浏览器窗口或桌面应用程序）的文本时，将作为富文本粘贴。"
 
 #: html/lool-help.html%2Bdiv.div.div.p:516-5

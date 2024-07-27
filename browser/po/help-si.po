@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-19 22:32+0200\n"
+"POT-Creation-Date: 2024-07-27 08:46+0200\n"
 "PO-Revision-Date: 2021-04-26 23:46+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
 "Language-Team: Sinhala <https://hosted.weblate.org/projects/collabora-online/"
@@ -1733,7 +1733,7 @@ msgstr ""
 #: html/lool-help.html%2Bdiv.div.div.p:515-5
 msgid ""
 "When you paste text from outside of the document (another browser window or "
-"a desktop application, it will be pasted as rich text."
+"a desktop application), it will be pasted as rich text."
 msgstr ""
 
 #: html/lool-help.html%2Bdiv.div.div.p:516-5
