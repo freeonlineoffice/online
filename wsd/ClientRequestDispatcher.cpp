@@ -607,9 +607,6 @@ void launchAsyncCheckFileInfo(const std::string& id, const FileServerRequestHand
         "access_token=" + accessDetails.accessToken(), "access_token_ttl=0"
     };
 
-    if (!accessDetails.permission().empty())
-        options.push_back("permission=" + accessDetails.permission());
-
     const RequestDetails fullRequestDetails =
         RequestDetails(accessDetails.wopiSrc(), options, /*compat=*/std::string());
 
@@ -701,8 +698,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
                 {
                     auto accessDetails = FileServerRequestHandler::ResourceAccessDetails(
                         mapAccessDetails.at("wopiSrc"),
-                        mapAccessDetails.at("accessToken"),
-                        mapAccessDetails.at("permission"));
+                        mapAccessDetails.at("accessToken"));
                     launchAsyncCheckFileInfo(_id, accessDetails, RequestVettingStations);
                 }
             }
