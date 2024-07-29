@@ -133,7 +133,10 @@ class SlideShowPresenter {
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide++;
 			this.createAnimationsHandler();
-			this._doTransition(this._slideRenderer._slideTexture, this._currentSlide);
+			this._doTransition(
+				this._slideRenderer._slideTexture,
+				this._currentSlide,
+			);
 		});
 	}
 
@@ -489,9 +492,12 @@ class SlideShowPresenter {
 		const slideInfo = this.getSlideInfo(this._currentSlide);
 		if (slideInfo.animations) {
 			this._animationsHandler = new SlideAnimations();
-			this._animationsHandler.importAnimations(slideInfo.animations.root);
+			this._animationsHandler.importAnimations(
+				slideInfo.animations.root,
+			);
 			this._animationsHandler.parseInfo();
-			const animationTree = this._animationsHandler.getAnimationsTree();
+			const animationTree =
+				this._animationsHandler.getAnimationsTree();
 			if (animationTree) {
 				const info = animationTree.getInfo(true);
 				window.app.console.log('animations info: \n' + info);
