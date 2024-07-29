@@ -4637,6 +4637,12 @@ void DocumentBroker::startSwitchingToOffline(const std::shared_ptr<ClientSession
 {
     LOG_DBG("Starting switching to Offline mode");
 
+    if (_docState.activity() != DocumentState::Activity::None)
+    {
+        // It's not safe to call startActivity() while executing another.
+        return;
+    }
+
     // Transition.
     if (!startActivity(DocumentState::Activity::SwitchingToOffline))
     {
