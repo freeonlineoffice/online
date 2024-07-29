@@ -339,6 +339,7 @@ class SlideShowPresenter {
 				if (slideShowWindow.closed) {
 					clearInterval(this._windowCloseInterval);
 					this._map.uiManager.closeSnackbar();
+					this._slideShowCanvas = null;
 					this._slideShowWindowProxy = null;
 				}
 			}.bind(this),
