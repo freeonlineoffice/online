@@ -15,7 +15,8 @@
  */
 
 declare var app: any;
-declare var SlideShow: any;
+// declare var SlideShow: any;
+declare namespace SlideShow {}
 
 class LayersCompositor extends SlideShow.SlideCompositor {
 	private firstSlideHash: string = null;
@@ -29,10 +30,8 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 	constructor(
 		slideShowPresenter: SlideShowPresenter,
 		presentationInfo: PresentationInfo,
-		width: number,
-		height: number,
 	) {
-		super(slideShowPresenter, presentationInfo, width, height);
+		super(slideShowPresenter, presentationInfo);
 	}
 
 	protected _addHooks() {
@@ -72,6 +71,7 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 	public updatePresentationInfo(presentationInfo: PresentationInfo) {
 		this._presentationInfo = presentationInfo;
 		this.onSlidesInfo(presentationInfo);
+		this.layerDrawing.onUpdatePresentationInfo();
 	}
 
 	private onSlidesInfo(data: any) {
@@ -236,6 +236,11 @@ class LayersCompositor extends SlideShow.SlideCompositor {
 			slideSize[1],
 		);
 		return this.computeLayerSize(resolution[0], resolution[1]);
+	}
+
+	// return [width, height]
+	public getCanvasSize(): [number, number] {
+		return this.layerDrawing.getCanvasSize();
 	}
 
 	public getSlide(slideNumber: number): ImageBitmap {
