@@ -72,7 +72,8 @@ body {
 	top: -100em;
 }
 
-#wopi-host-id, #proxy-prefix-id {
+#wopi-host-id,
+#proxy-prefix-id {
 	display: none;
 }
 
@@ -1090,7 +1091,8 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	display: none;
 }
 
-#about-dialog-container, #about-dialog-header {
+#about-dialog-container,
+#about-dialog-header {
 	display: flex;
 	flex-flow: row nowrap;
 	place-content: stretch flex-start;
