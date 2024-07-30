@@ -427,8 +427,7 @@ void FileServeTests::testPreProcessedFileSubstitution()
         { "BRANDING_THEME", "lool_brand" },
         { "BRANDING_JS", "branding.js" },
         { "FOOTER", "<div><b>blah blah footer</b></div>" },
-        { "CHECK_FILE_INFO_OVERRIDE", "DownloadAsPostMessage=true;blah=bleh" },
-        { "BUYPRODUCT_URL", "https://buy.ourproduct.com/'" }
+        { "CHECK_FILE_INFO_OVERRIDE", "DownloadAsPostMessage=true;blah=bleh" }
     };
 
     preProcessedFileSubstitution(testname, std::move(variables));
