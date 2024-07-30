@@ -998,6 +998,7 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:SpellOnline'},
 				{name: _UNO('.uno:ShowResolvedAnnotations', 'text'), id: 'showresolved', type: 'action', uno: '.uno:ShowResolvedAnnotations'},
 				{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
 			]
 			},
 			window.enableAccessibility ?
@@ -1050,6 +1051,7 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:SpellOnline'},
 				{name: _UNO('.uno:FullScreen', 'presentation'), id: 'fullscreen', type: 'action', mobileapp: false},
 				{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
 			]
 			},
 			{name: _UNO('.uno:TableMenu', 'text'/*HACK should be 'presentation', but not in xcu*/), id: 'tablemenu', type: 'menu', menu: [
@@ -1110,6 +1112,7 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:SpellOnline'},
 				{name: _UNO('.uno:FullScreen', 'presentation'), id: 'fullscreen', type: 'action', mobileapp: false},
 				{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
 			]
 			},
 			{name: _UNO('.uno:TableMenu', 'text'/*HACK should be 'presentation', but not in xcu*/), id: 'tablemenu', type: 'menu', menu: [
@@ -1169,6 +1172,7 @@ L.Control.Menubar = L.Control.extend({
 				{uno: '.uno:SpellOnline'},
 				{name: _UNO('.uno:FullScreen', 'presentation'), id: 'fullscreen', type: 'action', mobileapp: false},
 				{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
 			]
 			},
 			{name: _UNO('.uno:SheetMenu', 'spreadsheet'), id: 'sheetmenu', type: 'menu', menu: [
@@ -2166,6 +2170,9 @@ L.Control.Menubar = L.Control.extend({
 			return false;
 
 		if (menuItem.id === 'changesmenu' && this._map['wopi'].HideChangeTrackingControls)
+			return false;
+
+		if (menuItem.id === 'invertbackground' && !window.prefs.getBoolean('darkTheme'))
 			return false;
 
 
