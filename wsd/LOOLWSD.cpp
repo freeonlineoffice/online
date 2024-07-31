@@ -4051,6 +4051,16 @@ public:
            << "\n  UserInterface: " << LOOLWSD::UserInterface
             ;
 
+#if !MOBILEAPP
+        if (FetchHttpSession)
+        {
+            os << "\nFetchHttpSession:\n";
+            FetchHttpSession->dumpState(os, "\n  ");
+        }
+        else
+#endif // !MOBILEAPP
+            os << "\nFetchHttpSession: null\n";
+
         os << "\nServer poll:\n";
         _acceptPoll.dumpState(os);
 
