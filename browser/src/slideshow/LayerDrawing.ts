@@ -380,7 +380,12 @@ class LayerDrawing {
 
 		// always draw a solid white rectangle behind the background
 		this.offscreenContext.fillStyle = '#FFFFFF';
-		this.offscreenContext.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+		this.offscreenContext.fillRect(
+			0,
+			0,
+			this.canvasWidth,
+			this.canvasHeight,
+		);
 
 		const slideInfo = this.getSlideInfo(slideHash);
 		if (!slideInfo.background) return true;
