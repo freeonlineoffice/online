@@ -75,6 +75,7 @@ class LayerDrawing {
 	private renderedSlides: Map<string, ImageBitmap> = new Map();
 	private requestedSlideHash: string = null;
 	private prefetchedSlideHash: string = null;
+	private lastRenderedSlideHash: string = null;
 	private resolutionWidth: number = 960;
 	private resolutionHeight: number = 540;
 	private canvasWidth: number = 0;
@@ -202,6 +203,11 @@ class LayerDrawing {
 			this.requestedSlideHash = slideHash;
 		}
 
+		if (this.lastRenderedSlideHash === slideHash) {
+			this.onSlideRenderingComplete();
+			return;
+		}
+
 		const backgroundRendered = this.drawBackground(slideHash);
 		const masterPageRendered = this.drawMasterPage(slideHash);
 		if (backgroundRendered && masterPageRendered) {
@@ -285,10 +291,8 @@ class LayerDrawing {
 			this.backgroundChecksums.set(pageHash, imageInfo.checksum);
 			this.cachedBackgrounds.set(imageInfo.checksum, imageInfo);
 
-			if (info.slideHash === this.requestedSlideHash) {
-				this.clearCanvas();
-				this.drawBitmap(imageInfo);
-			}
+			this.clearCanvas();
+			this.drawBitmap(imageInfo);
 		}
 	}
 
@@ -324,9 +328,7 @@ class LayerDrawing {
 		}
 		layers.push(layerEntry);
 
-		if (info.slideHash === this.requestedSlideHash) {
-			this.drawMasterPageLayer(layerEntry, info.slideHash);
-		}
+		this.drawMasterPageLayer(layerEntry, info.slideHash);
 	}
 
 	private handleDrawPageLayerMsg(info: LayerInfo, img: any) {
@@ -368,9 +370,7 @@ class LayerDrawing {
 		}
 		layers.push(layerEntry);
 
-		if (info.slideHash === this.requestedSlideHash) {
-			this.drawDrawPageLayer(layerEntry);
-		}
+		this.drawDrawPageLayer(layerEntry);
 	}
 
 	private clearCanvas() {
@@ -521,6 +521,20 @@ class LayerDrawing {
 	}
 
 	onSlideRenderingComplete() {
+		this.lastRenderedSlideHash =
+			this.requestedSlideHash || this.prefetchedSlideHash;
+		if (this.prefetchedSlideHash) {
+			this.prefetchedSlideHash = null;
+			return;
+		}
+		const reqSlideInfo = this.getSlideInfo(this.requestedSlideHash);
+
+		this.cacheAndNotify();
+		// fetch next slide and draw it on offscreen canvas
+		this.requestSlideImpl(reqSlideInfo.next, true);
+	}
+
+	private cacheAndNotify() {
 		if (!this.offscreenCanvas) {
 			window.app.console.log(
 				'LayerDrawing.onSlideRenderingComplete: no offscreen canvas available.',
@@ -531,7 +545,8 @@ class LayerDrawing {
 		const renderedSlide = this.offscreenCanvas.transferToImageBitmap();
 		this.renderedSlides.set(this.requestedSlideHash, renderedSlide);
 
-		if (this.requestedSlideHash) this.requestedSlideHash = null;
+		this.requestedSlideHash = null;
+		this.lastRenderedSlideHash = null;
 
 		const oldCallback = this.onSlideRenderingCompleteCallback;
 		this.onSlideRenderingCompleteCallback = null;
