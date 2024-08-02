@@ -157,7 +157,6 @@ void HTTPServerTest::testLoolPostPoco()
     Poco::Net::HTTPRequest request(Poco::Net::HTTPRequest::HTTP_POST, "/browser/dist/lool.html");
     Poco::Net::HTMLForm form;
     form.set("access_token", "2222222222");
-    form.set("buy_product", "https://jim:bob@nowhere.com/other/stuff?a=b;c=d#somethingelse");
     form.prepareSubmit(request);
     std::ostream& ostr = session->sendRequest(request);
     form.write(ostr);
@@ -170,7 +169,6 @@ void HTTPServerTest::testLoolPostPoco()
     Poco::StreamCopier::copyToString(rs, html);
 
     LOK_ASSERT(html.find(form["access_token"]) != std::string::npos);
-    LOK_ASSERT(html.find(form["buy_product"]) != std::string::npos);
     LOK_ASSERT(html.find(_uri.getHost()) != std::string::npos);
 
     std::string csp = response["Content-Security-Policy"];
