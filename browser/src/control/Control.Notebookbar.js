@@ -3,7 +3,7 @@
  * L.Control.Notebookbar
  */
 
-/* global $ _ _UNO JSDialog */
+/* global $ _ _UNO JSDialog app */
 L.Control.Notebookbar = L.Control.extend({
 
 	_currentScrollPosition: 0,
@@ -43,7 +43,7 @@ L.Control.Notebookbar = L.Control.extend({
 
 		this.map.on('contextchange', this.onContextChange, this);
 		this.map.on('notebookbar', this.onNotebookbar, this);
-		this.map.on('updatepermission', this.onUpdatePermission, this);
+		app.events.on('updatepermission', this.onUpdatePermission.bind(this));
 		this.map.on('jsdialogupdate', this.onJSUpdate, this);
 		this.map.on('jsdialogaction', this.onJSAction, this);
 		this.map.on('statusbarchanged', this.onStatusbarChange, this);
@@ -101,7 +101,6 @@ L.Control.Notebookbar = L.Control.extend({
 		this.resetInCore();
 		this.map.off('commandstatechanged', this.builder.onCommandStateChanged, this.builder);
 		this.map.off('contextchange', this.onContextChange, this);
-		this.map.off('updatepermission', this.onUpdatePermission, this);
 		this.map.off('notebookbar');
 		this.map.off('jsdialogupdate', this.onJSUpdate, this);
 		this.map.off('jsdialogaction', this.onJSAction, this);
@@ -161,7 +160,7 @@ L.Control.Notebookbar = L.Control.extend({
 	},
 
 	onUpdatePermission: function(e) {
-		if (e.perm === 'edit') {
+		if (e.detail.perm === 'edit') {
 			this._showNotebookbar = true;
 			this.showTabs();
 			$('.main-nav').removeClass('readonly');

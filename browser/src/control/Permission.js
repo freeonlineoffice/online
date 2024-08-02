@@ -197,7 +197,7 @@ L.Map.include({
 			this._textInput.setSwitchedToEditMode();
 		}
 
-		this.fire('updatepermission', {perm : perm});
+		app.events.fire('updatepermission', {perm : perm});
 
 		if (this._docLayer._docType === 'text') {
 			this.setZoom(10);
@@ -219,7 +219,7 @@ L.Map.include({
 			this._docLayer._clearSelections();
 			this._docLayer._onUpdateTextSelection();
 		}
-		this.fire('updatepermission', {perm : perm});
+		app.events.fire('updatepermission', {perm : perm});
 		this.fire('closemobilewizard');
 		this.fire('closealldialogs');
 

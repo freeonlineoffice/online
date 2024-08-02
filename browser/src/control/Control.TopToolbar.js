@@ -10,14 +10,14 @@
  * JSDialog.TopToolbar - component of top toolbar in compact mode
  */
 
-/* global $ JSDialog _ _UNO */
+/* global $ JSDialog _ _UNO app */
 class TopToolbar extends JSDialog.Toolbar {
 	constructor(map) {
 		super(map, 'toolbar-up');
 		this.stylesSelectValue = null;
 
 		map.on('doclayerinit', this.onDocLayerInit, this);
-		map.on('updatepermission', this.onUpdatePermission, this);
+		app.events.on('updatepermission', this.onUpdatePermission.bind(this));
 		map.on('wopiprops', this.onWopiProps, this);
 		map.on('commandstatechanged', this.onCommandStateChanged, this);
 		map.on('contextchange', this.onContextChange.bind(this), this);
@@ -34,7 +34,6 @@ class TopToolbar extends JSDialog.Toolbar {
 		}
 
 		this.map.off('doclayerinit', this.onDocLayerInit, this);
-		this.map.off('updatepermission', this.onUpdatePermission, this);
 		this.map.off('wopiprops', this.onWopiProps, this);
 		this.map.off('commandstatechanged', this.onCommandStateChanged, this);
 
@@ -346,7 +345,7 @@ class TopToolbar extends JSDialog.Toolbar {
 	}
 
 	onUpdatePermission(e) {
-		if (e.perm === 'edit') {
+		if (e.detail.perm === 'edit') {
 			// Enable list boxes
 			$('#styles-input').prop('disabled', false);
 			$('#fontnamecombobox-input').prop('disabled', false);

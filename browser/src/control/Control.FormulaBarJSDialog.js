@@ -12,7 +12,7 @@
  * JSDialog.FormulaBar - implementation of formulabar toolbar
  */
 
-/* global JSDialog _ _UNO UNOKey */
+/* global JSDialog _ _UNO UNOKey app */
 
 class FormulaBar {
 	constructor(map) {
@@ -24,7 +24,7 @@ class FormulaBar {
 		this.map.on('jsdialogaction', this.onJSAction, this);
 
 		this.map.on('doclayerinit', this.onDocLayerInit, this);
-		this.map.on('updatepermission', this.onUpdatePermission, this);
+		app.events.on('updatepermission', this.onUpdatePermission.bind(this));
 		this.map.on('celladdress', this.onCellAddress, this);
 
 		this.builder = new L.control.jsDialogBuilder(
@@ -44,7 +44,6 @@ class FormulaBar {
 		this.map.off('jsdialogaction', this.onJSAction, this);
 
 		this.map.off('doclayerinit', this.onDocLayerInit, this);
-		this.map.off('updatepermission', this.onUpdatePermission, this);
 		this.map.off('celladdress', this.onCellAddress, this);
 	}
 
@@ -57,7 +56,7 @@ class FormulaBar {
 	onUpdatePermission(e) {
 		var adressInput = L.DomUtil.get('addressInput-input');
 
-		if (e.perm === 'edit') {
+		if (e.detail.perm === 'edit') {
 			if (adressInput)
 				adressInput.removeAttribute('disabled');
 			this.enable();
