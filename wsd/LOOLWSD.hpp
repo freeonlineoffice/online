@@ -318,6 +318,7 @@ public:
     static std::unordered_set<std::string> EditFileExtensions;
     static unsigned MaxConnections;
     static unsigned MaxDocuments;
+    static std::string HardwareResourceWarning;
     static std::string OverrideWatermark;
     static std::set<const Poco::Util::AbstractConfiguration*> PluginConfigurations;
     static std::chrono::steady_clock::time_point StartTime;
@@ -344,6 +345,11 @@ public:
     static std::string GetConnectionId()
     {
         return Util::encodeId(NextConnectionId++, 3);
+    }
+
+    static const std::string& getHardwareResourceWarning()
+    {
+        return HardwareResourceWarning;
     }
 
     static bool isSSLEnabled()

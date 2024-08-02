@@ -734,6 +734,7 @@ Util::RuntimeConstant<bool> LOOLWSD::SSLTermination;
 #endif
 unsigned LOOLWSD::MaxConnections;
 unsigned LOOLWSD::MaxDocuments;
+std::string LOOLWSD::HardwareResourceWarning = "ok";
 std::string LOOLWSD::OverrideWatermark;
 std::set<const Poco::Util::AbstractConfiguration*> LOOLWSD::PluginConfigurations;
 std::chrono::steady_clock::time_point LOOLWSD::StartTime;
@@ -2686,9 +2687,12 @@ void LOOLWSD::innerInitialize(Application& self)
     // It is worth avoiding configuring with a large number of under-weight
     // containers / VMs - better to have fewer, stronger ones.
     if (nThreads < 4)
+    {
         LOG_WRN("Fewer threads than recommended. Having at least four threads for "
                 "provides significant parallelism that can be used for burst "
                 "compression of newly visible document pages, giving lower latency.");
+        HardwareResourceWarning = "lowresources";
+    }
 
 #elif defined(__EMSCRIPTEN__)
     // disable threaded image scaling for wasm for now
