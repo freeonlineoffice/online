@@ -103,7 +103,9 @@ class ServerAuditDialog {
 					'https://sdk.collaboraonline.com/docs/installation/Configuration.html#performance',
 				],
 				ok: [
-					_('Hardware resources are sufficient for optimal performance'),
+					_(
+						'Hardware resources are sufficient for optimal performance',
+					),
 					'',
 					'',
 				],

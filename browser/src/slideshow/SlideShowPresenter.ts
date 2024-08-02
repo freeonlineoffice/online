@@ -114,7 +114,10 @@ class SlideShowPresenter {
 	_onFullScreenChange() {
 		this._fullscreen = document.fullscreenElement;
 		if (this._fullscreen) {
-			window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
+			window.addEventListener(
+				'keydown',
+				this._onCanvasKeyDown.bind(this),
+			);
 			this.centerCanvas();
 		} else {
 			this._stopFullScreen();
@@ -124,7 +127,10 @@ class SlideShowPresenter {
 	_stopFullScreen() {
 		if (!this._slideShowCanvas) return;
 
-		window.removeEventListener('keydown', this._onCanvasKeyDown.bind(this));
+		window.removeEventListener(
+			'keydown',
+			this._onCanvasKeyDown.bind(this),
+		);
 		L.DomUtil.remove(this._slideShowCanvas);
 		this._slideShowCanvas = null;
 		if (this._presenterContainer) {
@@ -180,7 +186,10 @@ class SlideShowPresenter {
 		if (!this._slideShowCanvas) return;
 		let winWidth = 0;
 		let winHeight = 0;
-		if (this._slideShowWindowProxy && !this._slideShowWindowProxy.closed) {
+		if (
+			this._slideShowWindowProxy &&
+			!this._slideShowWindowProxy.closed
+		) {
 			winWidth = this._slideShowWindowProxy.innerWidth;
 			winHeight = this._slideShowWindowProxy.innerHeight;
 		} else if (this.isFullscreen()) {
@@ -199,7 +208,11 @@ class SlideShowPresenter {
 		}
 	}
 
-	private _createPresenterHTML(parent: Element, width: number, height: number) {
+	private _createPresenterHTML(
+		parent: Element,
+		width: number,
+		height: number,
+	) {
 		const presenterContainer = L.DomUtil.create(
 			'div',
 			'leaflet-slideshow2',
@@ -344,8 +357,11 @@ class SlideShowPresenter {
 			this._doTransition(blankTexture, this._currentSlide);
 		} else {
 			this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-				const slideImage = this._slideCompositor.getSlide(this._currentSlide);
-				const currentTexture = this._slideRenderer.createTexture(slideImage);
+				const slideImage = this._slideCompositor.getSlide(
+					this._currentSlide,
+				);
+				const currentTexture =
+					this._slideRenderer.createTexture(slideImage);
 				const slideInfo = this.getSlideInfo(this._currentSlide);
 				this._slideRenderer.renderSlide(
 					currentTexture,
@@ -389,7 +405,9 @@ class SlideShowPresenter {
 		this._slideShowWindowProxy.focus();
 
 		const body =
-			this._slideShowWindowProxy.document.querySelector('#root-in-window');
+			this._slideShowWindowProxy.document.querySelector(
+				'#root-in-window',
+			);
 		this._presenterContainer = this._createPresenterHTML(
 			body,
 			window.screen.width,
