@@ -549,7 +549,7 @@ private:
 #endif
 
 #if !MOBILEAPP
-    void processFetchUpdate();
+    void processFetchUpdate(SocketPoll& poll);
     static void setupChildRoot(const bool UseMountNamespaces);
 #endif
     void initializeSSL();

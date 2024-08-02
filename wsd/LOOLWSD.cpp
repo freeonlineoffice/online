@@ -4212,7 +4212,7 @@ private:
 };
 
 #if !MOBILEAPP
-void LOOLWSD::processFetchUpdate()
+void LOOLWSD::processFetchUpdate(SocketPoll& poll)
 {
     try
     {
@@ -4251,7 +4251,7 @@ void LOOLWSD::processFetchUpdate()
                         << httpResponse->statusLine().reasonPhrase());
         });
 
-        FetchHttpSession->asyncRequest(request, *LOOLWSD::getWebServerPoll());
+        FetchHttpSession->asyncRequest(request, poll);
     }
     catch(const Poco::Exception& exc)
     {
@@ -4522,7 +4522,7 @@ int LOOLWSD::innerMain()
             = std::chrono::duration_cast<std::chrono::milliseconds>(timeNow - stampFetch);
         if (fetchUpdateCheck > std::chrono::milliseconds::zero() && durationFetch > fetchUpdateCheck)
         {
-            processFetchUpdate();
+            processFetchUpdate(mainWait);
             stampFetch = timeNow;
         }
 #endif
