@@ -63,6 +63,7 @@ class SlideShowPresenter {
 	_currentSlide: number = 0;
 	_slideRenderer: SlideRenderer = null;
 	_animationsHandler: SlideAnimations = null;
+	_canvasLoader: CanvasLoader | null = null;
 
 	constructor(map: any) {
 		this._map = map;
@@ -268,6 +269,11 @@ class SlideShowPresenter {
 				slideInfo.transitionType = 'NONE';
 			}
 
+			if (this._canvasLoader != null) {
+				this._canvasLoader.stopLoader();
+				this._canvasLoader = null;
+			}
+
 			const nextTexture = this._slideRenderer.createTexture(nextSlide);
 
 			const transitionParameters = new TransitionParameters();
@@ -369,6 +375,10 @@ class SlideShowPresenter {
 					this._presentationInfo.docWidth,
 					this._presentationInfo.docHeight,
 				);
+				if (this._canvasLoader != null) {
+					this._canvasLoader.stopLoader();
+					this._canvasLoader = null;
+				}
 			});
 		}
 	}
@@ -595,6 +605,11 @@ class SlideShowPresenter {
 		this._slideShowCanvas.width = canvasSize[0];
 		this._slideShowCanvas.height = canvasSize[1];
 		this.centerCanvas();
+
+		const transitionParameters = new TransitionParameters();
+		transitionParameters.context = this._slideRenderer._context;
+		this._canvasLoader = new SlideShow.CanvasLoader(transitionParameters);
+		this._canvasLoader.startLoader();
 
 		this._slideCompositor.fetchAndRun(0, () => {
 			this._doPresentation();
