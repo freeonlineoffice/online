@@ -213,7 +213,7 @@ define start_loolwsd_instance
 			--o:logging.file.property[0]=$(LOOLWSD_LOG) \
 			--unattended \
 			$(if $(findstring php-proxy, $(CYPRESS_INTEGRATION)),--o:net.proxy_prefix=true) \
-			 > $(#LOOLWSD_OUTPUT) 2>&1 &
+			 > $(LOOLWSD_OUTPUT) 2>&1 &
 	$(V)$(WAIT_ON_BINARY) http://localhost:$(FREE_PORT) --timeout 60000 || (echo ==dump loolwsd.log== && cat $(LOOLWSD_OUTPUT) && exit 1)
 	$(V)echo
 endef
