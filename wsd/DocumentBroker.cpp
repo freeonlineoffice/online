@@ -1247,8 +1247,8 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
     if (!wopiFileInfo->getIsAdminUserError().empty())
         _serverAudit.set("is_admin", wopiFileInfo->getIsAdminUserError());
 
-    if (!COOLWSD::getHardwareResourceWarning().empty())
-        _serverAudit.set("hardwarewarning", COOLWSD::getHardwareResourceWarning());
+    if (!LOOLWSD::getHardwareResourceWarning().empty())
+        _serverAudit.set("hardwarewarning", LOOLWSD::getHardwareResourceWarning());
 
     if (!wopiFileInfo->getUserCanWrite() ||
         session->isReadOnly()) // Readonly. Second boolean checks for URL "permission=readonly"
