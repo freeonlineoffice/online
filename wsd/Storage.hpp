@@ -28,15 +28,6 @@
 /// Limits number of HTTP redirections to prevent from redirection loops
 static constexpr auto RedirectionLimit = 21;
 
-namespace Poco
-{
-namespace Net
-{
-class HTTPClientSession;
-}
-
-} // namespace Poco
-
 struct LockContext;
 
 /// Base class of all Storage abstractions.
@@ -412,7 +403,6 @@ public:
     static std::unique_ptr<StorageBase> create(const Poco::URI& uri, const std::string& jailRoot,
                                                const std::string& jailPath, bool takeOwnership);
 
-    static Poco::Net::HTTPClientSession* getHTTPClientSession(const Poco::URI& uri);
     static std::shared_ptr<http::Session> getHttpSession(const Poco::URI& uri);
 
 protected:
