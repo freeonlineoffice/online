@@ -889,6 +889,11 @@ bool DocumentBroker::download(
     {
         _docState.setStatus(DocumentState::Status::Downloading);
 
+        if(_unitWsd != nullptr)
+        {
+            _unitWsd->onDocumentLoading();
+        }
+
         // Pass the public URI to storage as it needs to load using the token
         // and other storage-specific data provided in the URI.
         LOG_DBG("Creating new storage instance for URI ["
@@ -2437,6 +2442,12 @@ void DocumentBroker::setLoaded()
             std::max(std::chrono::seconds(minTimeoutSecs), std::chrono::seconds(5)));
         LOG_DBG("Document loaded in " << _loadDuration << ", saving-timeout set to "
                                       << _saveManager.getSavingTimeout());
+
+        if(_unitWsd != nullptr)
+        {
+            _unitWsd->onDocumentLoaded();
+        }
+
     }
 }
 
