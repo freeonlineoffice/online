@@ -85,6 +85,11 @@ var AdminSocketSettings = AdminSocketBase.extend({
 			else {
 				$('#loolwsd-version').text(loolwsdVersionObj.Version);
 			}
+			let buildConfig = loolwsdVersionObj.BuildConfig;
+			if (loolwsdVersionObj.PocoVersion !== undefined) {
+				buildConfig += ' (poco version: ' + loolwsdVersionObj.PocoVersion + ')';
+			}
+			$('#loolwsd-buildconfig').html(buildConfig);
 		}
 		else if (textMsg.startsWith('lokitversion ')) {
 			var lokitVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
