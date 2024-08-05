@@ -11,6 +11,7 @@
 #include <config.h>
 
 #include "WopiStorage.hpp"
+#include "wopi/StorageConnectionManager.hpp"
 
 #include <Auth.hpp>
 #include <CommandControl.hpp>
@@ -341,7 +342,8 @@ StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& 
 
     try
     {
-        std::shared_ptr<http::Session> httpSession = getHttpSession(uriObject);
+        std::shared_ptr<http::Session> httpSession =
+            StorageConnectionManager::getHttpSession(uriObject);
 
         http::Request httpRequest = initHttpRequest(uriObject, auth);
         httpRequest.setVerb(http::Request::VERB_POST);
@@ -481,7 +483,8 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
                                           const Authorization& auth, unsigned redirectLimit)
 {
     const auto startTime = std::chrono::steady_clock::now();
-    std::shared_ptr<http::Session> httpSession = getHttpSession(uriObject);
+    std::shared_ptr<http::Session> httpSession =
+        StorageConnectionManager::getHttpSession(uriObject);
 
     http::Request httpRequest = initHttpRequest(uriObject, auth);
 
@@ -670,7 +673,7 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
     try
     {
         assert(!_uploadHttpSession && "Unexpected to have an upload http::session");
-        _uploadHttpSession = getHttpSession(uriObject);
+        _uploadHttpSession = StorageConnectionManager::getHttpSession(uriObject);
 
         http::Request httpRequest = initHttpRequest(uriObject, auth);
         httpRequest.setVerb(http::Request::VERB_POST);
