@@ -1319,7 +1319,7 @@ public:
     /// Returns the socket FD, for logging/informational purposes.
     int getFD() const { return _fd; }
 
-    void dumpState(std::ostream& os, const std::string& indent = "\n  ") const override
+    void dumpState(std::ostream& os, const std::string& indent) const override
     {
         const auto now = std::chrono::steady_clock::now();
         os << indent << "http::Session: #" << _fd;
@@ -1833,7 +1833,7 @@ public:
         }
     }
 
-    void dumpState(std::ostream& os, const std::string& indent = "\n  ") const
+    void dumpState(std::ostream& os, const std::string& indent) const override
     {
         const auto now = std::chrono::steady_clock::now();
         os << indent << "http::server::Session: #" << _fd;
