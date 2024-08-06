@@ -169,6 +169,5 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			docType: this._docType
 		});
 		this._resetPreFetching(true);
-		this._update();
 	},
 });
