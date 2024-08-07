@@ -75,7 +75,9 @@ class LayerDrawing {
 	private renderedSlides: Map<string, ImageBitmap> = new Map();
 	private requestedSlideHash: string = null;
 	private prefetchedSlideHash: string = null;
-	private lastRenderedSlideHash: string = null;
+	private nextRequestedSlideHash: string = null;
+	private nextPrefetchedSlideHash: string = null;
+	private slideRequestTimeout: any = null;
 	private resolutionWidth: number = 960;
 	private resolutionHeight: number = 540;
 	private canvasWidth: number = 0;
@@ -183,27 +185,47 @@ class LayerDrawing {
 		}
 		if (
 			slideHash === this.requestedSlideHash ||
-			slideHash === this.prefetchedSlideHash
-		)
+			slideHash === this.prefetchedSlideHash ||
+			slideHash === this.nextRequestedSlideHash ||
+			slideHash === this.nextPrefetchedSlideHash
+		) {
 			return;
+		}
 
-		// TODO: queue
-		if (this.requestedSlideHash || this.prefetchedSlideHash) {
-			setTimeout(
-				this.requestSlideImpl.bind(this),
-				500,
-				slideHash,
-				prefetch,
-			);
+		if (
+			this.requestedSlideHash ||
+			this.prefetchedSlideHash ||
+			this.slideRequestTimeout
+		) {
+			if (!prefetch || !this.slideRequestTimeout) {
+				if (!prefetch) {
+					// maybe user has switched to a new slide
+					clearTimeout(this.slideRequestTimeout);
+					this.nextRequestedSlideHash = slideHash;
+					this.nextPrefetchedSlideHash = null;
+				} else {
+					// prefetching and nothing already queued
+					this.nextPrefetchedSlideHash = slideHash;
+				}
+				this.slideRequestTimeout = setTimeout(() => {
+					this.slideRequestTimeout = null;
+					this.nextRequestedSlideHash = null;
+					this.nextPrefetchedSlideHash = null;
+					this.requestSlideImpl(slideHash, prefetch);
+				}, 500);
+			}
+			return;
 		}
 
 		if (prefetch) {
 			this.prefetchedSlideHash = slideHash;
+			this.requestedSlideHash = null;
 		} else {
 			this.requestedSlideHash = slideHash;
+			this.prefetchedSlideHash = null;
 		}
 
-		if (this.lastRenderedSlideHash === slideHash) {
+		if (this.renderedSlides.has(slideHash)) {
 			this.onSlideRenderingComplete();
 			return;
 		}
@@ -521,8 +543,6 @@ class LayerDrawing {
 	}
 
 	onSlideRenderingComplete() {
-		this.lastRenderedSlideHash =
-			this.requestedSlideHash || this.prefetchedSlideHash;
 		if (this.prefetchedSlideHash) {
 			this.prefetchedSlideHash = null;
 			return;
@@ -531,7 +551,9 @@ class LayerDrawing {
 
 		this.cacheAndNotify();
 		// fetch next slide and draw it on offscreen canvas
-		this.requestSlideImpl(reqSlideInfo.next, true);
+		if (!this.renderedSlides.has(reqSlideInfo.next)) {
+			this.requestSlideImpl(reqSlideInfo.next, true);
+		}
 	}
 
 	private cacheAndNotify() {
@@ -541,12 +563,12 @@ class LayerDrawing {
 			);
 			return;
 		}
-
-		const renderedSlide = this.offscreenCanvas.transferToImageBitmap();
-		this.renderedSlides.set(this.requestedSlideHash, renderedSlide);
-
+		if (!this.renderedSlides.has(this.requestedSlideHash)) {
+			const renderedSlide =
+				this.offscreenCanvas.transferToImageBitmap();
+			this.renderedSlides.set(this.requestedSlideHash, renderedSlide);
+		}
 		this.requestedSlideHash = null;
-		this.lastRenderedSlideHash = null;
 
 		const oldCallback = this.onSlideRenderingCompleteCallback;
 		this.onSlideRenderingCompleteCallback = null;
