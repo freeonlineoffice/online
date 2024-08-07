@@ -76,7 +76,12 @@ class CanvasLoader extends Transition2d {
 			this.gl.useProgram(null);
 
 			// Optionally, you might want to reset the viewport
-			this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
+			this.gl.viewport(
+				0,
+				0,
+				this.gl.canvas.width,
+				this.gl.canvas.height,
+			);
 
 			// If you're using any textures, unbind them too
 			this.gl.bindTexture(this.gl.TEXTURE_2D, null);
