@@ -11,19 +11,16 @@
 
 #pragma once
 
-#include <memory>
-#include <string>
-#include <chrono>
-
-#include <Poco/URI.h>
-#include <Poco/Util/Application.h>
-
-#include "HttpRequest.hpp"
 #include "LOOLWSD.hpp"
 #include "Log.hpp"
 #include "Util.hpp"
 #include <common/Authorization.hpp>
-#include <net/HttpRequest.hpp>
+
+#include <Poco/URI.h>
+
+#include <memory>
+#include <string>
+#include <chrono>
 
 /// Limits number of HTTP redirections to prevent from redirection loops
 static constexpr auto RedirectionLimit = 21;
