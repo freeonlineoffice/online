@@ -1,6 +1,6 @@
 ~+4985204~ISu4BKYIKBUvATX2~000~NewSession: https://localhost:9980/wopi/files/home/collaboran/collabora-online/test/data/hello-world.ods?access_token=test&access_token_ttl=0
 ~+127770~ISu4BKYIKBUvATX2~067~NewSession: https://localhost:9980/wopi/files/home/collaboran/collabora-online/test/data/hello-world.ods?access_token=test&access_token_ttl=0
->+15170>ISu4BKYIKBUvATX2>067>coolclient 0.1 1722849577597 168.79999999993015
+>+15170>ISu4BKYIKBUvATX2>067>loolclient 0.1 1722849577597 168.79999999993015
 >+8962>ISu4BKYIKBUvATX2>067>load url=https%3A%2F%2Flocalhost%3A9980%2Fwopi%2Ffiles%2Fhome%2Fcollaboran%2Fcollabora-online%2Ftest%2Fdata%2Fhello-world.ods accessibilityState=false deviceFormFactor=desktop darkTheme=false timezone=Europe/London
 >+788843>ISu4BKYIKBUvATX2>067>uno .uno:ToolbarMode?Mode:string=notebookbar_online.ui
 >+14676>ISu4BKYIKBUvATX2>067>commandvalues command=.uno:StyleApply

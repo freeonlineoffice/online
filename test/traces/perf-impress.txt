@@ -1,5 +1,5 @@
 ~+7810156~Ol7pnV5kNXeGYUa1~06b~NewSession: https://localhost:9980/wopi/files/home/collaboran/collabora-online/test/data/hello-world.odp?access_token=test&access_token_ttl=0
->+15388>Ol7pnV5kNXeGYUa1>06b>coolclient 0.1 1722936813876 142.90000000037253
+>+15388>Ol7pnV5kNXeGYUa1>06b>loolclient 0.1 1722936813876 142.90000000037253
 >+7114>Ol7pnV5kNXeGYUa1>06b>load url=https%3A%2F%2Flocalhost%3A9980%2Fwopi%2Ffiles%2Fhome%2Fcollaboran%2Fcollabora-online%2Ftest%2Fdata%2Fhello-world.odp accessibilityState=false deviceFormFactor=desktop darkTheme=false darkBackground=false timezone=Europe/London
 >+733225>Ol7pnV5kNXeGYUa1>06b>uno .uno:ToolbarMode?Mode:string=notebookbar_online.ui
 >+18234>Ol7pnV5kNXeGYUa1>06b>commandvalues command=.uno:StyleApply
