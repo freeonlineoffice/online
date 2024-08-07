@@ -891,7 +891,7 @@ bool DocumentBroker::download(
 
         if(_unitWsd != nullptr)
         {
-            _unitWsd->onDocumentLoading();
+            _unitWsd->onPerfDocumentLoading();
         }
 
         // Pass the public URI to storage as it needs to load using the token
@@ -2445,7 +2445,7 @@ void DocumentBroker::setLoaded()
 
         if(_unitWsd != nullptr)
         {
-            _unitWsd->onDocumentLoaded();
+            _unitWsd->onPerfDocumentLoaded();
         }
 
     }
