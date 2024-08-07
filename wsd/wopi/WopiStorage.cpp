@@ -352,7 +352,6 @@ StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& 
                                                            StorageBase::LockState lock,
                                                            const Attributes& attribs)
 {
-    lockCtx._lockFailureReason.clear();
     if (!lockCtx.supportsLocks())
         return LockUpdateResult(LockUpdateResult::Status::UNSUPPORTED);
 
@@ -401,11 +400,7 @@ StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& 
             return LockUpdateResult(LockUpdateResult::Status::OK);
         }
 
-        std::string failureReason = httpResponse->get("X-WOPI-LockFailureReason", "");
-        if (!failureReason.empty())
-        {
-            lockCtx._lockFailureReason = failureReason;
-        }
+        const std::string failureReason = httpResponse->get("X-WOPI-LockFailureReason", "");
 
         if (httpResponse->statusLine().statusCode() == http::StatusCode::Unauthorized ||
             httpResponse->statusLine().statusCode() == http::StatusCode::Forbidden ||
@@ -429,7 +424,6 @@ StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& 
         LOG_ERR("Cannot " << wopiLog << " uri [" << uriAnonym << "]. Error: " << exc.what());
     }
 
-    lockCtx._lockFailureReason = "Request failed";
     return LockUpdateResult(LockUpdateResult::Status::FAILED, "Internal error");
 }
 

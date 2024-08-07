@@ -567,8 +567,6 @@ struct LockContext
     std::string _lockToken;
     /// Time of last successful lock (re-)acquisition
     std::chrono::steady_clock::time_point _lastLockTime;
-    /// Reason for unsuccessful locking request
-    std::string _lockFailureReason;
 
     LockContext()
         : _supportsLocks(false)
