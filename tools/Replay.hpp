@@ -27,7 +27,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <config_version.h>
 #include <ctime>
 #include <Util.hpp>
 #include <common/Log.hpp>
@@ -341,7 +340,7 @@ struct Stats {
             file << "\n";
         }
 
-        std::string commitHash = COOLWSD_VERSION_HASH;
+        std::string commitHash = LOOLWSD_VERSION_HASH;
 
         time_t now = time(0);
         struct tm datetime;
