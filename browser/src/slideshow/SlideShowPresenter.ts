@@ -425,6 +425,7 @@ class SlideShowPresenter {
 				null,
 				false,
 			);
+			return;
 		}
 
 		this._slideShowWindowProxy.document.documentElement.innerHTML =
