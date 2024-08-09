@@ -280,9 +280,13 @@ class SlideShowPresenter {
 		transitionParameters.context = this._slideRenderer._context;
 
 		try {
-			this._canvasLoader = new SlideShow.CanvasLoaderGl(transitionParameters);
+			this._canvasLoader = new SlideShow.CanvasLoaderGl(
+				transitionParameters,
+			);
 		} catch (error) {
-			this._canvasLoader = new SlideShow.CanvasLoader2d(transitionParameters);
+			this._canvasLoader = new SlideShow.CanvasLoader2d(
+				transitionParameters,
+			);
 		}
 
 		this._canvasLoader.startLoader();
