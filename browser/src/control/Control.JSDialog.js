@@ -1,4 +1,4 @@
-/** */
+/* -*- js-indent-level: 8 -*- */
 
 /*
  * L.Control.JSDialog - class which creates and updates dialogs, popups, snackbar
