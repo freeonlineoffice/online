@@ -410,6 +410,7 @@ LOOL_JS_LST =\
 	src/control/Styles.js \
 	src/control/Ruler.js \
 	src/control/VRuler.ts \
+	src/slideshow/SlideCache.ts \
 	src/slideshow/SlideCompositor.ts \
 	src/slideshow/LayerDrawing.ts \
 	src/slideshow/LayersCompositor.ts \
@@ -880,6 +881,7 @@ pot:
 		src/control/jsdialog/Widget.SidebarContainers.ts \
 		src/control/jsdialog/Widget.Timefield.js \
 		src/control/jsdialog/Widget.TreeView.js \
+		src/slideshow/SlideCache.ts \
 		src/slideshow/SlideCompositor.ts \
 		src/slideshow/LayerDrawing.ts \
 		src/slideshow/LayersCompositor.ts \
