@@ -29,7 +29,7 @@
     "jquery-ui": "1.14.0",
     "jscpd": "^4.0.4",
     "l10n-for-node": "0.0.1",
-    "mocha": "10.7.0",
+    "mocha": "10.7.3",
     "prettier": "3.3.3",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
