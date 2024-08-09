@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-02 22:42+0200\n"
+"POT-Creation-Date: 2024-08-09 19:43+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/collabora-online/"
@@ -309,8 +309,8 @@ msgstr "Vil du virkelig afslutte denne session?"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1281 src/control/Control.UIManager.js:1348
-#: src/control/Control.UIManager.js:1483 src/control/Control.UIManager.js:1642
+#: src/control/Control.UIManager.js:1274 src/control/Control.UIManager.js:1341
+#: src/control/Control.UIManager.js:1476 src/control/Control.UIManager.js:1635
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:784
 #: src/canvas/sections/CommentListSection.ts:438
 #: src/canvas/sections/CommentSection.ts:146
@@ -455,19 +455,19 @@ msgstr "Serveren har fundet en %0-fejl under udførelse af kommandoen %1."
 msgid "Unlock"
 msgstr "Lås op"
 
-#: src/control/Control.ContextMenu.js:203 src/docdispatcher.ts:411
+#: src/control/Control.ContextMenu.js:209 src/docdispatcher.ts:411
 msgid "Delete"
 msgstr "Slet"
 
-#: src/control/Control.ContextMenu.js:223
+#: src/control/Control.ContextMenu.js:229
 msgid "Paste Special"
 msgstr "Indsæt speciel"
 
-#: src/control/Control.ContextMenu.js:231
+#: src/control/Control.ContextMenu.js:237
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:239
+#: src/control/Control.ContextMenu.js:245
 msgid "Fill Series"
 msgstr ""
 
@@ -481,7 +481,7 @@ msgid "Repair Document"
 msgstr "Reparer dokument"
 
 #: src/control/Control.DocumentRepair.js:115
-#: src/control/Control.UserList.ts:389
+#: src/control/Control.UserList.ts:392
 msgid "You"
 msgstr "Dig"
 
@@ -658,8 +658,8 @@ msgid "replies"
 msgstr "svar"
 
 #: src/control/Control.JSDialogBuilder.js:1914
-#: src/layer/tile/CanvasTileLayer.js:4027
-#: src/layer/tile/CanvasTileLayer.js:4038
+#: src/layer/tile/CanvasTileLayer.js:4031
+#: src/layer/tile/CanvasTileLayer.js:4042
 #: src/canvas/sections/CommentListSection.ts:1037
 msgid "Comment"
 msgstr "Kommentar"
@@ -668,17 +668,17 @@ msgstr "Kommentar"
 msgid "Insert Comment"
 msgstr "Indsæt Kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2881
+#: src/control/Control.JSDialogBuilder.js:2883
 #: src/control/Control.Menubar.js:854
 msgid "Rows"
 msgstr "Rækker"
 
-#: src/control/Control.JSDialogBuilder.js:2882
+#: src/control/Control.JSDialogBuilder.js:2884
 #: src/control/Control.Menubar.js:857
 msgid "Columns"
 msgstr "Kolonner"
 
-#: src/control/Control.JSDialogBuilder.js:2902
+#: src/control/Control.JSDialogBuilder.js:2904
 #, fuzzy
 msgid "Insert Table"
 msgstr "Indsæt tabel"
@@ -763,7 +763,7 @@ msgstr "PDF-dokument (.pdf)"
 msgid "EPUB (.epub)"
 msgstr "EPUB (.epub)"
 
-#: src/control/Control.Menubar.js:76 src/control/Control.UIManager.js:193
+#: src/control/Control.Menubar.js:76 src/control/Control.UIManager.js:186
 #, fuzzy
 msgid "Rename Document"
 msgstr "Reparer dokument"
@@ -1416,7 +1416,7 @@ msgstr "Se historik"
 #: src/control/Control.NotebookbarDraw.js:310
 #: src/control/Control.NotebookbarImpress.js:311
 #: src/control/Control.NotebookbarWriter.js:314
-#: src/control/Control.UIManager.js:193
+#: src/control/Control.UIManager.js:186
 msgid "Rename"
 msgstr ""
 
@@ -1806,15 +1806,15 @@ msgstr "Indsæt figurer"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:807
+#: src/control/Control.TopToolbar.js:197 src/control/Control.UIManager.js:800
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UIManager.js:193
+#: src/control/Control.UIManager.js:186
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:831
+#: src/control/Control.UIManager.js:824
 msgid "Show Menu"
 msgstr ""
 
@@ -1856,11 +1856,15 @@ msgstr "1 bruger"
 msgid "0 users"
 msgstr "0 brugere"
 
-#: src/control/Control.UserList.ts:503
+#: src/control/Control.UserList.ts:85
+msgid "User List Summary"
+msgstr ""
+
+#: src/control/Control.UserList.ts:506
 msgid "Following"
 msgstr ""
 
-#: src/control/Control.UserList.ts:559
+#: src/control/Control.UserList.ts:562
 msgid "Always follow the editor"
 msgstr "Tillader at følge redaktøren"
 
@@ -2208,7 +2212,7 @@ msgstr "Antal dias"
 msgid "Cell borders"
 msgstr "Cellekanter"
 
-#: src/control/jsdialog/Widget.TreeView.js:692
+#: src/control/jsdialog/Widget.TreeView.js:699
 msgid "Headings and objects that you add to the document will appear here"
 msgstr ""
 
@@ -2349,7 +2353,7 @@ msgstr ""
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1600
+#: src/core/Socket.js:1599
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -2357,12 +2361,12 @@ msgstr ""
 "Øhh, det er pinligt, vi kan ikke komme i forbindelse med dit dokument. Prøv "
 "venligst igen."
 
-#: src/core/Socket.js:1617
+#: src/core/Socket.js:1616
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Forbinder..."
 
-#: src/core/Socket.js:1627
+#: src/core/Socket.js:1626
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -2615,7 +2619,7 @@ msgstr "Upload af filen til server slog fejl, filen er for stor."
 msgid "Functions"
 msgstr "Funktionsguide"
 
-#: src/layer/tile/CanvasTileLayer.js:4055
+#: src/layer/tile/CanvasTileLayer.js:4059
 msgid "No Comments"
 msgstr "Ingen Kommentarer"
 
