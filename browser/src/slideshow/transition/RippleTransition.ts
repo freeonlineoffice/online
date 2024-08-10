@@ -16,10 +16,16 @@ class RippleTransitionImp extends PermTextureTransition {
 	}
 
 	public displayPermSlide_(): void {
-		const centerUniform = this.gl.getUniformLocation(this.program, 'center');
+		const centerUniform = this.gl.getUniformLocation(
+			this.program,
+			'center',
+		);
 		this.gl.uniform2fv(centerUniform, [0.5, 0.5]);
 
-		const slideRation = this.gl.getUniformLocation(this.program, 'slideRatio');
+		const slideRation = this.gl.getUniformLocation(
+			this.program,
+			'slideRatio',
+		);
 		this.gl.uniform1f(slideRation, 1.0);
 	}
 

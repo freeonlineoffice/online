@@ -92,7 +92,10 @@ class PermTextureTransition extends SimpleTransition {
 		for (let y = 0; y < 256; y++) {
 			for (let x = 0; x < 256; x++) {
 				const base = (x + y * 256) * 4;
-				const value = this.permutation256[(y + this.permutation256[x]) % 256];
+				const value =
+					this.permutation256[
+						(y + this.permutation256[x]) % 256
+					];
 				a[base] = value; // R
 				a[base + 1] = value; // G (could be different for variety)
 				a[base + 2] = value; // B (could be different for variety)

@@ -62,7 +62,9 @@ function RochadeTransition(transitionParameters: TransitionParameters) {
 	slide.pushTriangle([0, 0], [1, 0], [0, 1]);
 	slide.pushTriangle([1, 0], [0, 1], [1, 1]);
 
-	slide.operations.push(makeSEllipseTranslate(w, h, 0.25, -0.25, true, 0, 1));
+	slide.operations.push(
+		makeSEllipseTranslate(w, h, 0.25, -0.25, true, 0, 1),
+	);
 	slide.operations.push(
 		makeRotateAndScaleDepthByWidth(
 			vec3.fromValues(0, 1, 0),

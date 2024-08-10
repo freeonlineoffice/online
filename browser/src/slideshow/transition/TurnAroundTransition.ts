@@ -55,7 +55,9 @@ function TurnAroundTransition(transitionParameters: TransitionParameters) {
 	aEnteringPrimitives.push(Primitive.cloneDeep(slide));
 
 	const aOperations: Operation[] = [];
-	aOperations.push(makeSTranslate(vec3.fromValues(0, 0, -1.5), true, 0, 0.5));
+	aOperations.push(
+		makeSTranslate(vec3.fromValues(0, 0, -1.5), true, 0, 0.5),
+	);
 	aOperations.push(makeSTranslate(vec3.fromValues(0, 0, 1.5), true, 0.5, 1));
 	aOperations.push(
 		makeRotateAndScaleDepthByWidth(
