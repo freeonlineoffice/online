@@ -79,6 +79,7 @@
 #include <common/ConfigUtil.hpp>
 #include <common/TraceEvent.hpp>
 #include <common/Watchdog.hpp>
+#include <common/Uri.hpp>
 
 #if !MOBILEAPP
 #include <common/security.h>
@@ -179,7 +180,7 @@ namespace
 
     std::string pathFromFileURL(const std::string &uri)
     {
-        const std::string decoded = Util::decodeURIComponent(uri);
+        const std::string decoded = Uri::decode(uri);
         if (decoded.rfind("file://", 0) != 0)
         {
             LOG_ERR("Asked to load a very unusual file path: '" << uri << "' -> '" << decoded << "'");

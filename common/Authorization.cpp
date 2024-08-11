@@ -12,6 +12,7 @@
 #include "Authorization.hpp"
 #include "Log.hpp"
 #include "StringVector.hpp"
+#include <common/Uri.hpp>
 
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/URI.h>
@@ -94,12 +95,12 @@ Authorization Authorization::create(const Poco::URI& uri)
     {
         if (param.first == "access_token")
         {
-            decoded = Util::decodeURIComponent(param.second);
+            decoded = Uri::decode(param.second);
             return Authorization(Authorization::Type::Token, decoded);
         }
 
         if (param.first == "access_header")
-            decoded = Util::decodeURIComponent(param.second);
+            decoded = Uri::decode(param.second);
     }
 
     if (!decoded.empty())

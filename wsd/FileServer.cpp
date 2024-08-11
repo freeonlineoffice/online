@@ -1392,7 +1392,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
                 return ResourceAccessDetails();
             }
 
-            const Poco::URI uriWopiFrameAncestor(Util::decodeURIComponent(param.second));
+            const Poco::URI uriWopiFrameAncestor(Uri::decode(param.second));
             wopiSrc = uriWopiFrameAncestor.toString();
 
             // Remove parameters from URL

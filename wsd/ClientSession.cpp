@@ -802,7 +802,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
                         LOOLProtocol::stringToInteger(attr[1], dontSaveIfUnmodified);
                     else if (attr[0] == "extendedData")
                     {
-                        extendedData = Util::decodeURIComponent(attr[1]);
+                        extendedData = Uri::decode(attr[1]);
                     }
                 }
             }
@@ -997,7 +997,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
             return false;
         }
 
-        std::string wopiFilename = Util::decodeURIComponent(encodedWopiFilename);
+        std::string wopiFilename = Uri::decode(encodedWopiFilename);
         const std::string error =
             docBroker->handleRenameFileCommand(getId(), std::move(wopiFilename));
         if (!error.empty())
@@ -1965,7 +1965,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
         }
 
         // Save-as completed, inform the ClientSession.
-        const std::string wopiFilename = Util::decodeURIComponent(encodedWopiFilename);
+        const std::string wopiFilename = Uri::decode(encodedWopiFilename);
 
         // URI constructor implicitly decodes when it gets std::string as param
         Poco::URI resultURL(encodedURL);
@@ -1975,7 +1975,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
         {
             std::string relative;
             if (isConvertTo || isExportAs)
-                relative = Util::decodeURIComponent(resultURL.getPath());
+                relative = Uri::decode(resultURL.getPath());
             else
                 relative = resultURL.getPath();
 

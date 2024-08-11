@@ -39,8 +39,8 @@ std::map<std::string, std::string> getParams(const std::string& uri)
 #endif // ENABLE_DEBUG
         }
 
-        std::string key = Util::decodeURIComponent(param.first);
-        std::string value = Util::decodeURIComponent(param.second);
+        std::string key = Uri::decode(param.first);
+        std::string value = Uri::decode(param.second);
         LOG_TRC("Decoding param [" << param.first << "] = [" << param.second << "] -> [" << key
                                    << "] = [" << value << ']');
 
@@ -97,7 +97,7 @@ RequestDetails::RequestDetails(const std::string& wopiSrc, const std::vector<std
 {
     // /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
 
-    const std::string decodedWopiSrc = Util::decodeURIComponent(wopiSrc);
+    const std::string decodedWopiSrc = Uri::decode(wopiSrc);
     std::string wopiSrcWithOptions = decodedWopiSrc;
     if (!options.empty())
     {
@@ -212,11 +212,11 @@ void RequestDetails::processURI()
 
         const std::string docUri = uriRes.substr(0, end);
 
-        _fields[Field::LegacyDocumentURI] = Util::decodeURIComponent(docUri);
+        _fields[Field::LegacyDocumentURI] = Uri::decode(docUri);
 
         // Find the DocumentURI proper.
         end = uriRes.find_first_of("/?", 0, 2);
-        _fields[Field::DocumentURI] = Util::decodeURIComponent(uriRes.substr(0, end));
+        _fields[Field::DocumentURI] = Uri::decode(uriRes.substr(0, end));
     }
     else // Otherwise, it's the full URI.
     {
@@ -256,7 +256,7 @@ void RequestDetails::processURI()
 Poco::URI RequestDetails::sanitizeURI(const std::string& uri)
 {
     // The URI of the document should be url-encoded.
-    Poco::URI uriPublic((Util::isMobileApp() ? uri : Util::decodeURIComponent(uri)));
+    Poco::URI uriPublic((Util::isMobileApp() ? uri : Uri::decode(uri)));
 
     if (uriPublic.isRelative() || uriPublic.getScheme() == "file")
     {
@@ -277,7 +277,7 @@ Poco::URI RequestDetails::sanitizeURI(const std::string& uri)
         // look for encoded query params (access token as of now)
         if (param.first == "access_token")
         {
-            param.second = Util::decodeURIComponent(param.second);
+            param.second = Uri::decode(param.second);
         }
     }
 
