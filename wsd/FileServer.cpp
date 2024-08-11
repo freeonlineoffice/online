@@ -768,8 +768,7 @@ void FileServerRequestHandler::sendError(http::StatusCode errorCode,
     if (!shortMessage.empty())
     {
         const Poco::URI requestUri(request.getURI());
-        const std::string pathSanitized =
-            Util::encodeURIComponent(requestUri.getPath(), std::string());
+        const std::string pathSanitized = Uri::encode(requestUri.getPath(), std::string());
         // Let's keep message as plain text to avoid complications.
         headers += "Content-Type: text/plain charset=UTF-8\r\n";
         body = "Error: " + shortMessage + '\n' +
@@ -1059,7 +1058,7 @@ class UserRequestVars
         // Escape bad characters in access token.
         // These are placed directly in javascript in lool.html, we need to make sure
         // that no one can do anything nasty with their clever inputs.
-        const std::string escaped = Util::encodeURIComponent(value, "'");
+        const std::string escaped = Uri::encode(value, "'");
         _vars[var] = escaped;
 
         LOG_TRC("Field [" << field << "] for var [" << var << "] = [" << escaped << ']');
@@ -1132,6 +1131,7 @@ public:
         extractVariable(form, "theme", BRANDING_THEME);
 
         extractVariable(form, "checkfileinfo_override", CHECK_FILE_INFO_OVERRIDE);
+
     }
 
     const std::string& operator[](const std::string& key) const
@@ -1414,7 +1414,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
         // frame ancestors are also allowed for img-src in order to load the views avatars
         csp.appendDirective("img-src", frameAncestors);
         csp.appendDirective("frame-ancestors", frameAncestors);
-        const std::string escapedFrameAncestors = Util::encodeURIComponent(frameAncestors, "'");
+        const std::string escapedFrameAncestors = Uri::encode(frameAncestors, "'");
         Poco::replaceInPlace(preprocess, std::string("%FRAME_ANCESTORS%"), escapedFrameAncestors);
     }
     else
@@ -1591,7 +1591,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
         Poco::Path(relPath).setFileName("admintemplate.html").toString();
     std::string templateFile = *getUncompressedFile(templatePath);
 
-    const std::string escapedJwtToken = Util::encodeURIComponent(jwtToken, "'");
+    const std::string escapedJwtToken = Uri::encode(jwtToken, "'");
     Poco::replaceInPlace(templateFile, std::string("%JWT_TOKEN%"), escapedJwtToken);
     if (relPath == "/browser/dist/admin/adminClusterOverview.html" ||
         relPath == "/browser/dist/admin/adminClusterOverviewAbout.html")

@@ -9,7 +9,7 @@
 #include "lokassert.hpp"
 #include "testlog.hpp"
 #include "Unit.hpp"
-#include "Util.hpp"
+#include <common/Uri.hpp>
 
 #include <Poco/URI.h>
 
@@ -83,7 +83,7 @@ protected:
         const Poco::URI wopiURL(helpers::getTestServerURI() + wopiName +
                                 "&testname=" + getTestname());
 
-        _wopiSrc = Util::encodeURIComponent(wopiURL.toString());
+        _wopiSrc = Uri::encode(wopiURL.toString());
 
         // This is just a client connection that is used from the tests.
         LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
@@ -104,7 +104,7 @@ protected:
         const Poco::URI wopiURL(helpers::getTestServerURI() + wopiName +
                                 "&testname=" + getTestname());
 
-        std::string wopiSrc = Util::encodeURIComponent(wopiURL.toString());
+        std::string wopiSrc = Uri::encode(wopiURL.toString());
 
         // This is just a client connection that is used from the tests.
         LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
