@@ -568,7 +568,8 @@ class LayerDrawing {
 			return;
 		}
 		if (!this.slideCache.has(this.requestedSlideHash)) {
-			const renderedSlide = this.offscreenCanvas.transferToImageBitmap();
+			const renderedSlide =
+				this.offscreenCanvas.transferToImageBitmap();
 			this.slideCache.set(this.requestedSlideHash, renderedSlide);
 		}
 		this.requestedSlideHash = null;

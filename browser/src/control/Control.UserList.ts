@@ -420,7 +420,12 @@ class UserList extends L.Control {
 		}
 
 		if (user !== undefined) {
-			this.showJoinLeaveMessage('leave', e.viewId, user.username, user.color);
+			this.showJoinLeaveMessage(
+				'leave',
+				e.viewId,
+				user.username,
+				user.color,
+			);
 		}
 
 		this.renderAll();
