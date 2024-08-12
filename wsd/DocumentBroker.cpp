@@ -3472,6 +3472,9 @@ void DocumentBroker::handleTileRequest(const StringVector &tokens, bool forceKey
     Tile cachedTile = _tileCache->lookupTile(tile);
     if (cachedTile && cachedTile->isValid())
     {
+        if (tile.getWireId() == 0)
+            tile.setWireId(cachedTile->_wids.back());
+
         session->sendTileNow(tile, cachedTile);
         return;
     }
