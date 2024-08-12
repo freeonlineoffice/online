@@ -45,6 +45,7 @@
 #include <common/Authorization.hpp>
 #include <common/TraceEvent.hpp>
 #include <common/SpookyV2.h>
+#include <common/Uri.hpp>
 #include "KitHelper.hpp"
 #include <Log.hpp>
 #include <Png.hpp>
@@ -1247,7 +1248,7 @@ bool ChildSession::downloadAs(const StringVector& tokens)
     }
 
     // Obfuscate the new name.
-    Util::mapAnonymized(Util::getFilenameFromURL(name), _docManager->getObfuscatedFileId());
+    Util::mapAnonymized(Uri::getFilenameFromURL(name), _docManager->getObfuscatedFileId());
 
     getTokenString(tokens[3], "format", format);
 

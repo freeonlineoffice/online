@@ -144,8 +144,8 @@ void WopiStorage::handleWOPIFileInfo(const WOPIFileInfo& wopiFileInfo, LockConte
     setFileInfo(wopiFileInfo);
 
     if (LOOLWSD::AnonymizeUserData)
-        Util::mapAnonymized(Util::getFilenameFromURL(wopiFileInfo.getFilename()),
-                            Util::getFilenameFromURL(getUri().toString()));
+        Util::mapAnonymized(Uri::getFilenameFromURL(wopiFileInfo.getFilename()),
+                            Uri::getFilenameFromURL(getUri().toString()));
 
     if (wopiFileInfo.getSupportsLocks())
         lockCtx.initSupportsLocks();
@@ -841,11 +841,11 @@ WopiStorage::handleUploadToStorageResponse(const WopiUploadDetails& details,
                     {
                         // Get the FileId form the URL, which we use as the anonymized filename.
                         const std::string decodedUrl = Uri::decode(url);
-                        const std::string obfuscatedFileId = Util::getFilenameFromURL(decodedUrl);
+                        const std::string obfuscatedFileId = Uri::getFilenameFromURL(decodedUrl);
                         Util::mapAnonymized(obfuscatedFileId,
                                             obfuscatedFileId); // Identity, to avoid re-anonymizing.
 
-                        const std::string filenameOnly = Util::getFilenameFromURL(filename);
+                        const std::string filenameOnly = Uri::getFilenameFromURL(filename);
                         Util::mapAnonymized(filenameOnly, obfuscatedFileId);
                         object->set("Name", LOOLWSD::anonymizeUrl(filename));
                     }
