@@ -1002,7 +1002,7 @@ void ClientRequestDispatcher::handleFaviconRequest(const RequestDetails& request
     if (!Poco::File(faviconPath).exists())
         faviconPath = LOOLWSD::FileServerRoot + "/favicon.ico";
 
-    HttpHelper::sendFileAndShutdown(socket, faviconPath, response);
+    HttpHelper::sendFile(socket, faviconPath, response);
 }
 
 void ClientRequestDispatcher::handleWopiDiscoveryRequest(
@@ -1670,7 +1670,7 @@ void ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
 
             try
             {
-                HttpHelper::sendFileAndShutdown(socket, filePath.toString(), response);
+                HttpHelper::sendFile(socket, filePath.toString(), response);
             }
             catch (const Poco::Exception& exc)
             {

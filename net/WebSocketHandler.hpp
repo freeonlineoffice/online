@@ -269,6 +269,12 @@ public:
                  true /* hard async shutdown & close */);
     }
 
+    /// Returns true if the underlying socket is connected.
+    bool isConnected() const {
+        std::shared_ptr<StreamSocket> socket = _socket.lock();
+        return nullptr != socket && !socket->isClosed();
+    }
+
 private:
     bool handleTCPStream(const std::shared_ptr<StreamSocket>& socket)
     {
