@@ -28,6 +28,7 @@ enum TransitionType {
 	BARNDOORWIPE,
 	WATERFALLWIPE,
 	MISCSHAPEWIPE,
+	ZOOM,
 }
 
 enum TransitionSubType {
@@ -71,6 +72,7 @@ enum TransitionSubType {
 	FANOUTHORIZONTAL,
 	CORNERSIN,
 	HEART,
+	ROTATEIN,
 }
 
 const stringToTransitionTypeMap: Record<string, TransitionType> = {
@@ -90,6 +92,7 @@ const stringToTransitionTypeMap: Record<string, TransitionType> = {
 	BarnDoorWipe: TransitionType.BARNDOORWIPE,
 	WaterfallWipe: TransitionType.WATERFALLWIPE,
 	MiscShapeWipe: TransitionType.MISCSHAPEWIPE,
+	Zoom: TransitionType.ZOOM,
 };
 
 const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
@@ -132,6 +135,7 @@ const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
 	CornersIn: TransitionSubType.CORNERSIN,
 	FanOutHorizontal: TransitionSubType.FANOUTHORIZONTAL,
 	Heart: TransitionSubType.HEART,
+	RotateIn: TransitionSubType.ROTATEIN,
 };
 
 SlideShow.PerformTransition = function (
@@ -211,6 +215,10 @@ SlideShow.PerformTransition = function (
 
 		case TransitionType.MISCSHAPEWIPE:
 			SlideShow.MicsShapeWipeTransition(transitionParameters).start();
+			break;
+
+		case TransitionType.ZOOM:
+			SlideShow.NewsFlashTransition(transitionParameters).start();
 			break;
 
 		default:
