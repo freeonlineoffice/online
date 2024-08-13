@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <functional>
 #include <string>
 #include <memory>
 #include <vector>
@@ -70,6 +71,13 @@ std::vector<std::string> resolveAddresses(const std::string& addressToCheck);
 std::shared_ptr<StreamSocket>
 connect(const std::string& host, const std::string& port, const bool isSSL,
         const std::shared_ptr<ProtocolHandlerInterface>& protocolHandler);
+
+typedef std::function<void(std::shared_ptr<StreamSocket>)> asyncConnectCB;
+
+void
+asyncConnect(const std::string& host, const std::string& port, const bool isSSL,
+             const std::shared_ptr<ProtocolHandlerInterface>& protocolHandler,
+             const asyncConnectCB& asyncCb);
 
 /// Connect to an end-point at the given @uri and return StreamSocket.
 std::shared_ptr<StreamSocket>
