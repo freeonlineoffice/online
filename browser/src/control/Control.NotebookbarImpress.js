@@ -2212,7 +2212,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			{
 				'id': 'draw-convert-curve',
 				'type': 'bigtoolitem',
-				'text': _UNO('.uno:ChangeBezier'),
+				'text': _UNO('.uno:ChangeBezier', 'presentation'),
 				'command': '.uno:ChangeBezier',
 				'accessibility': { focusBack: true, combination: 'CB', de: null }
 			},
