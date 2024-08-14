@@ -1777,7 +1777,8 @@ public:
             catch (std::invalid_argument&) {}
             catch (std::out_of_range&) {}
 
-            return asyncUpload(fromFile, mimeType, start, end, startIsSuffix, http::StatusCode::PartialContent);
+            return asyncUpload(std::move(fromFile), std::move(mimeType), start, end,
+                               startIsSuffix, http::StatusCode::PartialContent);
         }
 
         try {
@@ -1789,7 +1790,8 @@ public:
 
         // FIXME: does not support ranges that specify multiple comma-separated values
 
-        return asyncUpload(fromFile, mimeType, start, end, startIsSuffix, http::StatusCode::PartialContent);
+        return asyncUpload(std::move(fromFile), std::move(mimeType), start, end,
+                           startIsSuffix, http::StatusCode::PartialContent);
     }
 
     int getStart() {

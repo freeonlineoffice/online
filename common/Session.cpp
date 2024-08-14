@@ -98,17 +98,17 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
 
         if (name == "url")
         {
-            _docURL = value;
+            _docURL = std::move(value);
             ++offset;
         }
         else if (name == "jail")
         {
-            _jailedFilePath = value;
+            _jailedFilePath = std::move(value);
             ++offset;
         }
         else if (name == "xjail")
         {
-            _jailedFilePathAnonym = value;
+            _jailedFilePathAnonym = std::move(value);
             ++offset;
         }
         else if (name == "authorid")
@@ -148,7 +148,7 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
         }
         else if (name == "password")
         {
-            _docPassword = value;
+            _docPassword = std::move(value);
             _haveDocPassword = true;
             ++offset;
         }
@@ -157,12 +157,12 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
             if (value == "en")
                 _lang = "en-US";
             else
-                _lang = value;
+                _lang = std::move(value);
             ++offset;
         }
         else if (name == "timezone")
         {
-            _timezone= value;
+            _timezone= std::move(value);
             ++offset;
         }
         else if (name == "watermarkText")
@@ -177,47 +177,47 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
         }
         else if (name == "timestamp")
         {
-            timestamp = value;
+            timestamp = std::move(value);
             ++offset;
         }
         else if (name == "template")
         {
-            doctemplate = value;
+            doctemplate = std::move(value);
             ++offset;
         }
         else if (name == "deviceFormFactor")
         {
-            _deviceFormFactor = value;
+            _deviceFormFactor = std::move(value);
             ++offset;
         }
         else if (name == "spellOnline")
         {
-            _spellOnline = value;
+            _spellOnline = std::move(value);
             ++offset;
         }
         else if (name == "darkTheme")
         {
-            _darkTheme = value;
+            _darkTheme = std::move(value);
             ++offset;
         }
         else if (name == "darkBackground")
         {
-            _darkBackground = value;
+            _darkBackground = std::move(value);
             ++offset;
         }
         else if (name == "batch")
         {
-            _batch = value;
+            _batch = std::move(value);
             ++offset;
         }
         else if (name == "enableMacrosExecution")
         {
-            _enableMacrosExecution = value;
+            _enableMacrosExecution = std::move(value);
             ++offset;
         }
         else if (name == "macroSecurityLevel")
         {
-            _macroSecurityLevel = value;
+            _macroSecurityLevel = std::move(value);
             ++offset;
         }
         else if (name == "accessibilityState")

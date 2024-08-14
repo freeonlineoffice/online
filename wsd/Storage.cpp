@@ -375,7 +375,7 @@ void LocalStorage::uploadLocalFileToStorageAsync(const Authorization& /*auth*/,
     }
 
     if (asyncUploadCallback)
-        asyncUploadCallback(AsyncUpload(AsyncUpload::State::Complete, res));
+        asyncUploadCallback(AsyncUpload(AsyncUpload::State::Complete, std::move(res)));
 }
 
 void LockContext::initSupportsLocks()
