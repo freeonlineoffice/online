@@ -299,7 +299,8 @@ loolbench_LDADD = libsimd.a
 
 loolconvert_SOURCES = tools/Tool.cpp
 
-loolstress_CPPFLAGS = -DTDOC=\"$(abs_top_srcdir)/test/data\" ${include_paths}
+loolstress_TDOC_CPPFLAGS = -DTDOC=\"$(abs_top_srcdir)/test/data\"
+loolstress_CPPFLAGS = ${loolstress_TDOC_CPPFLAGS} ${include_paths}
 loolstress_SOURCES = tools/Stress.cpp \
                      common/DummyTraceEventEmitter.cpp \
                      $(shared_sources)
@@ -645,7 +646,7 @@ endef
 CLANGXX_COMPILE_FLAGS=clang++ $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 
-JSON_COMPILE_FLAGS=$(subst ",\",$(subst \,\\,$(CLANGXX_COMPILE_FLAGS)))
+JSON_COMPILE_FLAGS=$(subst ",\",$(subst \,\\,$(CLANGXX_COMPILE_FLAGS) $(loolstress_TDOC_CPPFLAGS)))
 
 JSON_COMPILE_SRC = $(patsubst %.cpp,%.cmd,$(wildcard **/*.cpp))
 
@@ -654,7 +655,7 @@ $(eval $(call file_targets,$(JSON_COMPILE_SRC)))
 .cpp.cmd:
 	@echo -n "{\"directory\":\"$(abs_builddir)\",\"command\":\"" > $@
 	@echo -n $(JSON_COMPILE_FLAGS) >> $@
-	@echo -n "\",\"file\":\"$<\"}" >> $@
+	@echo -n " -o $(patsubst %.cpp,%.o,$<) -c $<\",\"file\":\"$<\"}" >> $@
 
 $(abs_srcdir)/compile_commands.json: $(JSON_COMPILE_SRC)
 	@echo -n "[" > $@
