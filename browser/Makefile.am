@@ -420,6 +420,7 @@ LOOL_JS_LST =\
 	src/slideshow/SlideRenderer.ts \
 	src/slideshow/SlideShowPresenter.ts \
 	src/slideshow/Transition2d.ts \
+	src/slideshow/PauseTimer.ts \
 	src/slideshow/PerformTransition.ts \
 	src/slideshow/SlideAnimations.ts \
 	src/slideshow/transition/FadeTransition.ts \
@@ -891,6 +892,7 @@ pot:
 		src/slideshow/SlideRenderer.ts \
 		src/slideshow/SlideShowPresenter.ts \
 		src/slideshow/Transition2d.ts \
+		src/slideshow/PauseTimer.ts \
 		src/slideshow/PerformTransition.ts \
 		src/slideshow/SlideAnimations.ts \
 		src/slideshow/transition/FadeTransition.ts \
