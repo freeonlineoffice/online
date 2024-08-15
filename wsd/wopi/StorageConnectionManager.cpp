@@ -162,11 +162,11 @@ void StorageConnectionManager::initialize()
 
     // false default for upgrade to preserve legacy configuration
     // in-config-file defaults are true.
-    SSLAsScheme = COOLWSD::getConfigValue<bool>("storage.ssl.as_scheme", false);
+    SSLAsScheme = LOOLWSD::getConfigValue<bool>("storage.ssl.as_scheme", false);
 
     // Fallback to ssl.enable if not set - for back compatibility & simplicity.
-    SSLEnabled = COOLWSD::getConfigValue<bool>("storage.ssl.enable",
-                                               COOLWSD::getConfigValue<bool>("ssl.enable", true));
+    SSLEnabled = LOOLWSD::getConfigValue<bool>("storage.ssl.enable",
+                                               LOOLWSD::getConfigValue<bool>("ssl.enable", true));
 
 #if ENABLE_DEBUG
     char* StorageSSLEnabled = getenv("STORAGE_SSL_ENABLE");
@@ -181,26 +181,26 @@ void StorageConnectionManager::initialize()
 
     if (SSLEnabled || SSLAsScheme)
     {
-        if (COOLWSD::isSSLEnabled())
+        if (LOOLWSD::isSSLEnabled())
         {
-            sslClientParams.certificateFile = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.certificateFile = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.cert_file_path", "ssl.cert_file_path");
-            sslClientParams.privateKeyFile = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.privateKeyFile = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.key_file_path", "ssl.key_file_path");
-            sslClientParams.caLocation = COOLWSD::getPathFromConfigWithFallback(
+            sslClientParams.caLocation = LOOLWSD::getPathFromConfigWithFallback(
                 "storage.ssl.ca_file_path", "ssl.ca_file_path");
         }
         else
         {
             sslClientParams.certificateFile =
-                COOLWSD::getPathFromConfig("storage.ssl.cert_file_path");
+                LOOLWSD::getPathFromConfig("storage.ssl.cert_file_path");
             sslClientParams.privateKeyFile =
-                COOLWSD::getPathFromConfig("storage.ssl.key_file_path");
-            sslClientParams.caLocation = COOLWSD::getPathFromConfig("storage.ssl.ca_file_path");
+                LOOLWSD::getPathFromConfig("storage.ssl.key_file_path");
+            sslClientParams.caLocation = LOOLWSD::getPathFromConfig("storage.ssl.ca_file_path");
         }
         sslClientParams.cipherList =
-            COOLWSD::getPathFromConfigWithFallback("storage.ssl.cipher_list", "ssl.cipher_list");
-        const bool sslVerification = COOLWSD::getConfigValue<bool>("ssl.ssl_verification", true);
+            LOOLWSD::getPathFromConfigWithFallback("storage.ssl.cipher_list", "ssl.cipher_list");
+        const bool sslVerification = LOOLWSD::getConfigValue<bool>("ssl.ssl_verification", true);
         sslClientParams.verificationMode =
             !sslVerification ? Poco::Net::Context::VERIFY_NONE : Poco::Net::Context::VERIFY_STRICT;
         sslClientParams.loadDefaultCAs = true;
