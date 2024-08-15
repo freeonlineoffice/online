@@ -1468,7 +1468,7 @@ private:
                 }
             }
 
-            if (_response->get("Connection", "") == "close")
+            if( _response->header().getConnectionToken() == Header::ConnectionToken::Close )
             {
                 LOG_TRC("Our peer has sent the 'Connection: close' token. Disconnecting.");
                 onDisconnect();
