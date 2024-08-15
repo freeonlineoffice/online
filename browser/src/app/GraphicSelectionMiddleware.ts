@@ -11,7 +11,7 @@
  */
 
 class GraphicSelection {
-	public static rectangle: cool.SimpleRectangle = null;
+	public static rectangle: lool.SimpleRectangle = null;
 	public static extraInfo: any = null;
 	public static selectionAngle: number = 0;
 	public static handlesSection: ShapeHandlesSection = null;
@@ -95,7 +95,9 @@ class GraphicSelection {
 
 		var bounds = new L.Bounds(topLeft, bottomRight);
 
-		app.map._docLayer._oleCSelections.setPointSet(CPointSet.fromBounds(bounds));
+		app.map._docLayer._oleCSelections.setPointSet(
+			CPointSet.fromBounds(bounds),
+		);
 	}
 
 	// When a shape is selected, the rectangles of other shapes are also sent from the core side.
@@ -104,7 +106,11 @@ class GraphicSelection {
 		const correction = 0.567; // Correction for impress case.
 
 		if (this.extraInfo && this.extraInfo.ObjectRectangles) {
-			for (let i = 0; i < this.extraInfo.ObjectRectangles.length; i++) {
+			for (
+				let i = 0;
+				i < this.extraInfo.ObjectRectangles.length;
+				i++
+			) {
 				for (let j = 0; j < 4; j++)
 					this.extraInfo.ObjectRectangles[i][j] *=
 						app.twipsToPixels * correction;
@@ -120,10 +126,11 @@ class GraphicSelection {
 		if (hasExtraInfo) {
 			extraInfo = messageJSON[5];
 			if (extraInfo.gridOffsetX || extraInfo.gridOffsetY) {
-				app.map._docLayer._shapeGridOffset = new app.definitions.simplePoint(
-					signX * extraInfo.gridOffsetX,
-					extraInfo.gridOffsetY,
-				);
+				app.map._docLayer._shapeGridOffset =
+					new app.definitions.simplePoint(
+						signX * extraInfo.gridOffsetX,
+						extraInfo.gridOffsetY,
+					);
 				hasGridOffset = true;
 			}
 		}
@@ -164,21 +171,31 @@ class GraphicSelection {
 			let addHandlesSection = false;
 
 			if (!this.handlesSection) addHandlesSection = true;
-			else if (extraInfo.id !== this.handlesSection.sectionProperties.info.id) {
+			else if (
+				extraInfo.id !==
+				this.handlesSection.sectionProperties.info.id
+			) {
 				// Another shape is selected.
 				this.handlesSection.removeSubSections();
-				app.sectionContainer.removeSection(this.handlesSection.name);
+				app.sectionContainer.removeSection(
+					this.handlesSection.name,
+				);
 				this.handlesSection = null;
 				addHandlesSection = true;
 			}
 
 			if (addHandlesSection) {
-				this.handlesSection = new app.definitions.shapeHandlesSection({});
+				this.handlesSection =
+					new app.definitions.shapeHandlesSection({});
 				app.sectionContainer.addSection(this.handlesSection);
 			}
 
-			this.handlesSection.setPosition(this.rectangle.pX1, this.rectangle.pY1);
-			extraInfo.hasTableSelection = app.map._docLayer.hasTableSelection(); // scaleSouthAndEastOnly
+			this.handlesSection.setPosition(
+				this.rectangle.pX1,
+				this.rectangle.pY1,
+			);
+			extraInfo.hasTableSelection =
+				app.map._docLayer.hasTableSelection(); // scaleSouthAndEastOnly
 			this.handlesSection.refreshInfo(this.extraInfo);
 			this.handlesSection.setShowSection(true);
 			app.sectionContainer.requestReDraw();
@@ -202,7 +219,10 @@ class GraphicSelection {
 		}
 
 		// video is handled in _onEmbeddedVideoContent
-		if (this.handlesSection && this.handlesSection.sectionProperties.hasVideo)
+		if (
+			this.handlesSection &&
+			this.handlesSection.sectionProperties.hasVideo
+		)
 			app.map._cacheSVG[extraInfo.id] = undefined;
 		else if (this.handlesSection) this.handlesSection.setSVG(textMsg);
 	}
@@ -216,12 +236,16 @@ class GraphicSelection {
 			app.map._docLayer._oleCSelections.clear();
 		} else if (textMsg.match('INPLACE')) {
 			if (app.map._docLayer._oleCSelections.empty()) {
-				textMsg = '[' + textMsg.substr('graphicselection:'.length) + ']';
+				textMsg =
+					'[' + textMsg.substr('graphicselection:'.length) + ']';
 				try {
 					var msgData = JSON.parse(textMsg);
-					if (msgData.length > 1) this.extractAndSetGraphicSelection(msgData);
+					if (msgData.length > 1)
+						this.extractAndSetGraphicSelection(msgData);
 				} catch (error) {
-					window.app.console.warn('cannot parse graphicselection command');
+					window.app.console.warn(
+						'cannot parse graphicselection command',
+					);
 				}
 				this.renderDarkOverlay();
 
@@ -243,23 +267,31 @@ class GraphicSelection {
 
 			if (this.extraInfo) {
 				var dragInfo = this.extraInfo.dragInfo;
-				if (dragInfo && dragInfo.dragMethod === 'PieSegmentDragging') {
+				if (
+					dragInfo &&
+					dragInfo.dragMethod === 'PieSegmentDragging'
+				) {
 					dragInfo.initialOffset /= 100.0;
 					var dragDir = dragInfo.dragDirection;
-					dragInfo.dragDirection = app.map._docLayer._twipsToPixels(
-						new L.Point(dragDir[0], dragDir[1]),
-					);
+					dragInfo.dragDirection =
+						app.map._docLayer._twipsToPixels(
+							new L.Point(dragDir[0], dragDir[1]),
+						);
 					dragDir = dragInfo.dragDirection;
-					dragInfo.range2 = dragDir.x * dragDir.x + dragDir.y * dragDir.y;
+					dragInfo.range2 =
+						dragDir.x * dragDir.x + dragDir.y * dragDir.y;
 				}
 			}
 
 			// defaults
 			var extraInfo = this.extraInfo;
 			if (extraInfo) {
-				if (extraInfo.isDraggable === undefined) extraInfo.isDraggable = true;
-				if (extraInfo.isResizable === undefined) extraInfo.isResizable = true;
-				if (extraInfo.isRotatable === undefined) extraInfo.isRotatable = true;
+				if (extraInfo.isDraggable === undefined)
+					extraInfo.isDraggable = true;
+				if (extraInfo.isResizable === undefined)
+					extraInfo.isResizable = true;
+				if (extraInfo.isRotatable === undefined)
+					extraInfo.isRotatable = true;
 			}
 
 			// Workaround for tdf#123874. For some reason the handling of the
@@ -268,7 +300,8 @@ class GraphicSelection {
 
 			// Note2: scroll to frame in writer would result an error:
 			//   svgexport.cxx:810: ...UnknownPropertyException message: "Background
-			var isFrame = extraInfo.type == 601 && !extraInfo.isWriterGraphic;
+			var isFrame =
+				extraInfo.type == 601 && !extraInfo.isWriterGraphic;
 
 			if (
 				!window.ThisIsTheiOSApp &&
@@ -276,7 +309,9 @@ class GraphicSelection {
 				!this.extraInfo.svg &&
 				!isFrame
 			) {
-				app.socket.sendMessage('rendershapeselection mimetype=image/svg+xml');
+				app.socket.sendMessage(
+					'rendershapeselection mimetype=image/svg+xml',
+				);
 			}
 
 			// scroll to selected graphics, if it has no cursor
