@@ -2231,6 +2231,10 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			}
 		}
 	}
+
+	public hasAnyComments(): boolean {
+		return this.containerObject.sections.some((x: any) => x.constructor.name == "Comment")
+	}
 }
 
 }
