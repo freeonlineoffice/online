@@ -53,7 +53,7 @@ app.definitions.Socket = L.Class.extend({
 			try {
 				this.socket = window.createWebSocket(this.getWebSocketBaseURI(map));
 			} catch (e) {
-				this._map.fire('error', {msg: _('Oops, there is a problem connecting to {productname}: ').replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Collabora Online Development Edition (unbranded)')) + e, cmd: 'socket', kind: 'failed', id: 3});
+				this._map.fire('error', {msg: _('Oops, there is a problem connecting to {productname}: ').replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Free Online Office')) + e, cmd: 'socket', kind: 'failed', id: 3});
 				return;
 			}
 		}
@@ -676,7 +676,7 @@ app.definitions.Socket = L.Class.extend({
 			if (window.indirectSocket) {
 				if (window.expectedServerId && window.expectedServerId != this.WSDServer.Id) {
 					if (this.IndirectSocketReconnectCount++ >= 3) {
-						var msg = errorMessages.clusterconfiguration.replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Collabora Online Development Edition (unbranded)'));
+						var msg = errorMessages.clusterconfiguration.replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Free Online Office'));
 						msg = msg.replace('{0}', window.expectedServerId);
 						msg = msg.replace('{1}', window.routeToken);
 						msg = msg.replace('{2}', this.WSDServer.Id);

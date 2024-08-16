@@ -58,7 +58,7 @@ class AboutDialog {
 			productName =
 				typeof brandProductName !== 'undefined'
 					? brandProductName
-					: 'Collabora Online Development Edition (unbranded)';
+					: 'Free Online Office';
 		}
 		var productURL =
 			typeof brandProductURL !== 'undefined'
