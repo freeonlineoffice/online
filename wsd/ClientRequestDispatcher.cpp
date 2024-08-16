@@ -9,6 +9,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+#include <Poco/Net/HTTPRequest.h>
 #include <config.h>
 
 #include <ClientRequestDispatcher.hpp>
@@ -757,6 +758,10 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
                         "Expected identical WOPISrc in the request as in lool.html");
 
                     launchAsyncCheckFileInfo(_id, accessDetails, RequestVettingStations);
+                }
+                if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_POST)
+                {
+                    socket->shutdown();
                 }
                 served = true;
             }
