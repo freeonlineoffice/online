@@ -34,10 +34,10 @@
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
-    "stylelint": "16.8.1",
+    "stylelint": "16.8.2",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
-    "uglify-js": "3.19.1",
+    "uglify-js": "3.19.2",
     "uglifycss": "0.0.29",
     "xtend": "4.0.2"
   },
