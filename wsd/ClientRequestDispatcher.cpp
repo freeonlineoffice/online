@@ -1168,6 +1168,7 @@ void ClientRequestDispatcher::handleRobotsTxtRequest(const Poco::Net::HTTPReques
     {
         socket->send(responseString);
     }
+    socket->flush();
     LOG_INF_S("Sent robots.txt response successfully");
 }
 
