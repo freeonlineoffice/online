@@ -74,7 +74,7 @@ bool enterMountingNS(uid_t uid, gid_t gid)
     if (mount("none", "/", nullptr, MS_REC | MS_PRIVATE, nullptr) != 0)
     {
         LOG_ERR("enterMountingNS, root mount failed: " << strerror(errno));
-        // set to original uid so coolmount check isn't surprised by 'nobody'
+        // set to original uid so loolmount check isn't surprised by 'nobody'
         mapuser(uid, uid, gid, gid);
         return false;
     }
