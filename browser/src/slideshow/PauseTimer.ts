@@ -65,7 +65,10 @@ class PauseTimerGl extends Transition2d implements PauseTimer {
 	private animate(): void {
 		const currentTime = performance.now();
 		const elapsedTime = (currentTime - this.startTime) / 1000;
-		this.pauseTimeRemaining = Math.max(0, this.pauseDuration - elapsedTime);
+		this.pauseTimeRemaining = Math.max(
+			0,
+			this.pauseDuration - elapsedTime,
+		);
 
 		this.textTexture = this.createTextTexture(
 			Math.ceil(this.pauseTimeRemaining),
