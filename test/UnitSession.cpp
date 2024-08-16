@@ -159,15 +159,15 @@ UnitBase::TestResult UnitSession::testFiles()
     setTestname(__func__);
 
     const std::vector<std::string> documentURLs = {
-        // "/cool/getMetrics", // < Requires Admin
+        // "/lool/getMetrics", // < Requires Admin
         "/", // <
         "/favicon.ico",
         "/hosting/discovery",
         "/hosting/capabilities",
         "/robots.txt",
-        // "/cool/media",
-        // "/cool/clipboard",
-        // "/cool/file:\/\/.../ws",
+        // "/lool/media",
+        // "/lool/clipboard",
+        // "/lool/file:\/\/.../ws",
     };
     // Reused http session, keep-alive
     std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
@@ -212,8 +212,8 @@ UnitBase::TestResult UnitSession::testFileServer()
 
     const std::vector<std::string> documentURLs = {
         // "/browser/welcome/welcome.html", // < '/browser/welcome/` not in FileServer's FileHash(!)
-        "/browser/dist/cool.html", // < special preprocessFile(..)
-        "/browser/dist/cool.css", // < fall-through general case
+        "/browser/dist/lool.html", // < special preprocessFile(..)
+        "/browser/dist/lool.css", // < fall-through general case
         // "/browser/dist/admin/admin.html", // < Requires Admin
     };
     // Reused http session, keep-alive
