@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 10:21+0200\n"
-"PO-Revision-Date: 2024-08-16 10:28+0200\n"
+"POT-Creation-Date: 2024-08-16 16:41+0200\n"
+"PO-Revision-Date: 2024-08-16 17:48+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -378,15 +378,15 @@ msgstr " Minuten"
 msgid " s"
 msgstr " Sekunden"
 
-#: js/global.js:1328
+#: js/global.js:1327
 msgid "Cluster is scaling, retrying..."
 msgstr "Cluster skaliert, versucht es erneut..."
 
-#: js/global.js:1330
+#: js/global.js:1329
 msgid "Document is migrating to new server, retrying..."
 msgstr "Dokument wird auf neuen Server migriert, erneuter Versuch..."
 
-#: js/global.js:1332
+#: js/global.js:1331
 msgid "Failed to get RouteToken from controller"
 msgstr "RouteToken konnte nicht vom Controller abgerufen werden"
 

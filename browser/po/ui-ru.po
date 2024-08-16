@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 10:21+0200\n"
+"POT-Creation-Date: 2024-08-16 16:41+0200\n"
 "PO-Revision-Date: 2022-05-15 11:51+0000\n"
 "Last-Translator: Mikhail Pershin <mikhail@frcdr.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/collabora-online/"
@@ -388,15 +388,15 @@ msgstr " мин"
 msgid " s"
 msgstr " с"
 
-#: js/global.js:1328
+#: js/global.js:1327
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1330
+#: js/global.js:1329
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1332
+#: js/global.js:1331
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
