@@ -959,7 +959,8 @@ public:
         _sentHTTPContinue(false),
         _shutdownSignalled(false),
         _readType(readType),
-        _inputProcessingEnabled(true)
+        _inputProcessingEnabled(true),
+        _lastSeenHTTPHeader( std::chrono::steady_clock::now() )
     {
         LOG_TRC("StreamSocket ctor");
     }
@@ -992,7 +993,7 @@ public:
     const std::string& hostname() const { return _hostname; }
 
     /// Just trigger the async shutdown.
-    virtual void shutdown() override
+    void shutdown() override
     {
         _shutdownSignalled = true;
         LOG_TRC("Async shutdown requested.");
@@ -1441,8 +1442,7 @@ protected:
                     }
                 }
             }
-        }
-        while (oldSize != _outBuffer.size());
+        } while (oldSize != _outBuffer.size());
 
         if (closed)
         {
@@ -1652,6 +1652,9 @@ private:
     std::vector<int> _incomingFDs;
     ReadType _readType;
     std::atomic_bool _inputProcessingEnabled;
+
+    // Used in parseHeader, SocketPoll::DefaultPollTimeoutMicroS acting as max delay
+    std::chrono::steady_clock::time_point _lastSeenHTTPHeader;
 };
 
 enum class WSOpCode : unsigned char {
