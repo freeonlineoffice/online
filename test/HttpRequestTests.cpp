@@ -307,7 +307,7 @@ void HttpRequestTests::testSimpleGet()
         std::unique_lock<std::mutex> lock(mutex);
 
         httpSession->setConnectFailHandler([]() {
-            LOK_ASSERT(false);
+            LOK_ASSERT_FAIL("Unexpected connection failure");
         });
 
         httpSession->asyncRequest(httpRequest, pollThread);
@@ -531,7 +531,7 @@ void HttpRequestTests::test500GetStatuses()
         timedout = true; // Assume we timed out until we prove otherwise.
 
         httpSession->setConnectFailHandler([]() {
-            LOK_ASSERT(false);
+            LOK_ASSERT_FAIL("Unexpected connection failure");
         });
 
         httpSession->asyncRequest(httpRequest, pollThread);
@@ -624,7 +624,7 @@ void HttpRequestTests::testSimplePost_External()
     std::unique_lock<std::mutex> lock(mutex);
 
     httpSession->setConnectFailHandler([]() {
-        LOK_ASSERT(false);
+        LOK_ASSERT_FAIL("Unexpected connection failure");
     });
 
     httpSession->asyncRequest(httpRequest, pollThread);
