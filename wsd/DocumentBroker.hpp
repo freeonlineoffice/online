@@ -44,7 +44,7 @@
 // Forwards.
 class PrisonerRequestDispatcher;
 class DocumentBroker;
-struct LockContext;
+class LockContext;
 class TileCache;
 class Message;
 
