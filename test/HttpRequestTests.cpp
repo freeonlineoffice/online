@@ -306,7 +306,7 @@ void HttpRequestTests::testSimpleGet()
 
         std::unique_lock<std::mutex> lock(mutex);
 
-        httpSession->setConnectFailHandler([this]() {
+        httpSession->setConnectFailHandler([]() {
             LOK_ASSERT(false);
         });
 
@@ -530,7 +530,7 @@ void HttpRequestTests::test500GetStatuses()
         std::unique_lock<std::mutex> lock(mutex);
         timedout = true; // Assume we timed out until we prove otherwise.
 
-        httpSession->setConnectFailHandler([this]() {
+        httpSession->setConnectFailHandler([]() {
             LOK_ASSERT(false);
         });
 
@@ -623,7 +623,7 @@ void HttpRequestTests::testSimplePost_External()
 
     std::unique_lock<std::mutex> lock(mutex);
 
-    httpSession->setConnectFailHandler([this]() {
+    httpSession->setConnectFailHandler([]() {
         LOK_ASSERT(false);
     });
 
