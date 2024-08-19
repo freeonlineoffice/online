@@ -942,6 +942,7 @@ pot:
 		src/map/handler/Map.WOPI.js
 
 	html2po --pot --input=html/lool-help.html --output=po/templates/lool-help.pot --duplicates=merge
+	html2po --pot --input=descriptions/google-play.html --output=po/templates/descriptions.pot --duplicates=merge --keepcomments
 	html2po --pot --input=welcome/welcome.html --output=po/templates/welcome.pot --duplicates=merge
 	$(srcdir)/util/appendwelcome.py po/templates/welcome.pot po/templates/lool-ui.pot
 	rm po/templates/welcome.pot
@@ -950,6 +951,7 @@ pot:
 l10n: pot
 	for i in po/ui-*.po; do pot2po --input=po/templates/lool-ui.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
 	for i in po/help-*.po; do pot2po --input=po/templates/lool-help.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
+	for i in po/descriptions-*.po; do pot2po --input=po/templates/descriptions.pot --template=$$i --output=$$i.new; mv $$i.new $$i;done
 
 clean-local:
 	@rm -rf $(DIST_FOLDER)
