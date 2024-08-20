@@ -200,18 +200,9 @@ L.Control.UIManager = L.Control.extend({
 		// Wait for Loolwsd to initiate the switch.
 	},
 
-	toggleAccessibilityState: function() {
-		var prevAccessibilityState = window.prefs.getBoolean('accessibilityState');
-		window.prefs.set('accessibilityState', !prevAccessibilityState);
-		this.map.fire('a11ystatechanged');
-		this.map.setAccessibilityState(!prevAccessibilityState);
-	},
-
 	initializeBasicUI: function() {
 		var enableNotebookbar = this.shouldUseNotebookbarMode();
 		var that = this;
-
-		app.accessibilityState = window.prefs.getBoolean('accessibilityState');
 
 		if (window.mode.isMobile() || !enableNotebookbar) {
 			var menubar = L.control.menubar();

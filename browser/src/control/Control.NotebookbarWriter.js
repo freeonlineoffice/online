@@ -387,8 +387,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 					hasAccessibilitySupport ?
 						{
 							'id':'togglea11ystate',
-							'type': 'bigmenubartoolitem',
-							'text': _('Voice Over')
+							'type': 'bigcustomtoolitem',
+							'text': _('Screen Reading')
 						} : {},
 					hasAccessibilityCheck ?
 						{
