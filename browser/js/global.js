@@ -391,8 +391,10 @@ class MobileAppInitializer extends InitializerBase {
 		  window.postMobileMessage('HYPERLINK ' + url); /* don't call the 'normal' window.open on mobile at all */
 		};
 
-		window.MobileAppName = 'MOBILEAPPNAME';
-		window.brandProductName = 'MOBILEAPPNAME';
+		const element = document.getElementById("initial-variables");
+
+		window.MobileAppName = element.dataset.mobileAppName;
+		window.brandProductName = element.dataset.mobileAppName;
 
 		window.loolLogging = "true";
 		window.outOfFocusTimeoutSecs = 1000000;
