@@ -1792,6 +1792,13 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'enabled': 'true',
 				'accessibility': { focusBack: true,	combination: 'DS', de: null }
 			},
+			{
+				'id': 'data-define-range',
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:DefineDBName', 'spreadsheet'),
+				'command': '.uno:DefineDBName',
+				'accessibility': { focusBack: true,	combination: 'DR', de: null }
+			},
 		];
 
 		return this.getTabPage('Data', content);
