@@ -1534,7 +1534,7 @@ L.Control.Menubar = L.Control.extend({
 	_isEventBound: function(element, eventType, namespace) {
 		var events = $._data($(element)[0], 'events');
 		if (events && events[eventType]) {
-			return namespace 
+			return namespace
 				? events[eventType].some(event => event.namespace === namespace)
 				: true;
 		}
@@ -1845,7 +1845,7 @@ L.Control.Menubar = L.Control.extend({
 							break;
 						}
 					}
-					if (id === 'insertcomment' && self._map.getDocType() !== 'drawing')
+					if (id === 'insertcomment' && (self._map.getDocType() !== 'drawing' && !app.isCommentEditingAllowed()))
 						found = false;
 					if (!found) {
 						$(aItem).addClass('disabled');
