@@ -406,6 +406,13 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'vertical': 'true'
 			},
 			{
+				'id': 'collapsenotebookbar',
+				'class': 'unocollapsenotebookbar',
+				'type': 'bigcustomtoolitem',
+				'text': _('Collapse Tabs'),
+				'accessibility': { focusBack: true, combination: 'CU', de: null }
+			},
+			{
 				'id':'toggledarktheme',
 				'type': 'bigmenubartoolitem',
 				'text': _('Dark Mode'),
