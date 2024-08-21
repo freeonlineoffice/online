@@ -1513,6 +1513,7 @@ AC_DEFINE_UNQUOTED([LOOL_USER_ID],["$LOOL_USER_ID"],[The user-name which is allo
 AC_CONFIG_LINKS([discovery.xml:discovery.xml])
 AC_CONFIG_LINKS([browser/package.json:browser/package.json])
 AC_CONFIG_LINKS([browser/.eslintrc:browser/.eslintrc])
+AC_CONFIG_LINKS([cypress_test/.eslintrc:cypress_test/.eslintrc])
 AC_CONFIG_LINKS([browser/.prettierrc:browser/.prettierrc])
 AC_CONFIG_LINKS([cypress_test/package.json:cypress_test/package.json])
 AC_CONFIG_COMMANDS_PRE([
