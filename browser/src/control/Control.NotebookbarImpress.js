@@ -1443,9 +1443,8 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			},
 			{
 				'id': 'showslide',
-				'type': 'bigmenubartoolitem',
+				'type': 'bigcustomtoolitem',
 				'text': _UNO('.uno:ShowSlide', 'presentation'),
-				'command': '.uno:ShowSlide',
 				'accessibility': { focusBack: true, combination: 'SS', de: null }
 			},
 			{
