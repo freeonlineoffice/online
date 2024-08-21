@@ -299,15 +299,20 @@ class SlideShowPresenter {
 				transitionParameters,
 				loopAndRepeatDuration,
 				() => {
-					const currSlideInfo = this.getSlideInfo(this._currentSlide);
+					const currSlideInfo = this.getSlideInfo(
+						this._currentSlide,
+					);
 
 					if (
 						currSlideInfo?.transitionType == undefined ||
 						currSlideInfo.transitionType == 'NONE'
 					) {
-						this._slideCompositor.fetchAndRun(this._currentSlide, () => {
-							this._doPresentation();
-						});
+						this._slideCompositor.fetchAndRun(
+							this._currentSlide,
+							() => {
+								this._doPresentation();
+							},
+						);
 						return;
 					}
 
