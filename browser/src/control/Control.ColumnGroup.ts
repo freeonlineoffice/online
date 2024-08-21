@@ -165,9 +165,7 @@ export class ColumnGroup extends GroupBase {
 			index = Math.floor(index / levelPercentage);
 			return index;
 		}
-		else {
-			return -1;
-		}
+		return -1;
 	}
 
 	findClickedGroup (point: number[]): GroupEntry {
