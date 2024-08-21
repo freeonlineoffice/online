@@ -347,9 +347,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 							{
 								'id': 'zoomout',
 								'class': 'unozoomout',
-								'type': 'menubartoolitem',
+								'type': 'customtoolitem',
 								'text': _UNO('.uno:ZoomMinus'),
-								'command': '.uno:ZoomMinus',
 								'accessibility': { focusBack: true, combination: 'ZO', de: null }
 							}
 						]
