@@ -413,9 +413,8 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 							{
 								'id': 'showstatusbar',
 								'class': 'unoshowstatusbar',
-								'type': 'menubartoolitem',
+								'type': 'customtoolitem',
 								'text': _('Status Bar'),
-								'command': _('Show Status Bar'),
 								'accessibility': { focusBack: true, combination: 'SB', de: null }
 							}
 						]
