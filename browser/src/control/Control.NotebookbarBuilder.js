@@ -467,6 +467,17 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 					'command': 'exportpdf'
 				}
 			] : []);
+		} else if (docType === 'drawing') {
+			submenuOpts = [
+				{
+					'action': 'downloadas-odg',
+					'text': _('ODF Drawing (.odg)')
+				},
+				{
+					'action': 'downloadas-png',
+					'text': _('Image (.png)')
+				}
+			];
 		}
 
 		submenuOpts.forEach(function mapIconToItem(menuItem) {
