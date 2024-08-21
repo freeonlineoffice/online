@@ -382,10 +382,11 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'toolbox',
 						'children': [
 							{
-								'id': 'collapsenotebookbar',
-								'type': 'menubartoolitem',
-								'text': _('Collapse Tabs'),
-								'accessibility': { focusBack: true, combination: 'CN', de: null }
+								'id': 'showruler',
+								'class': 'unoshowruler',
+								'type': 'customtoolitem',
+								'text': _('Ruler'),
+								'accessibility': { focusBack: true, combination: 'R', de: 'L' }
 							}
 						]
 					},

@@ -254,10 +254,20 @@ class Dispatcher {
 
 		this.actionsMap['toggleuimode'] = () => {
 			if (app.map.uiManager.shouldUseNotebookbarMode()) {
-				app.map.uiManager.onChangeUIMode({ mode: 'classic', force: true });
+				app.map.uiManager.onChangeUIMode({
+					mode: 'classic',
+					force: true,
+				});
 			} else {
-				app.map.uiManager.onChangeUIMode({ mode: 'notebookbar', force: true });
+				app.map.uiManager.onChangeUIMode({
+					mode: 'notebookbar',
+					force: true,
+				});
 			}
+		};
+
+		this.actionsMap['showruler'] = () => {
+			app.map.uiManager.toggleRuler();
 		};
 	}
 

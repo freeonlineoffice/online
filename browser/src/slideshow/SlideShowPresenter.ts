@@ -168,7 +168,10 @@ class SlideShowPresenter {
 
 		if (this._currentSlide + 1 >= this._getSlidesCount()) {
 			const currSlideInfo = this.getSlideInfo(this._currentSlide);
-			if (currSlideInfo?.isEndless == undefined || !currSlideInfo.isEndless) {
+			if (
+				currSlideInfo?.isEndless == undefined ||
+				!currSlideInfo.isEndless
+			) {
 				if (this._currentSlide + 1 === this._getSlidesCount()) {
 					this._currentSlide++;
 					this.exitSlideshowWithWarning();
