@@ -537,6 +537,10 @@ class Dispatcher {
 				}),
 			);
 		};
+
+		this.actionsMap['selectbackground'] = function () {
+			L.DomUtil.get('selectbackground').click();
+		};
 	}
 
 	private addZoteroCommands() {
