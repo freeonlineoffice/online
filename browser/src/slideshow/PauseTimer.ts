@@ -57,9 +57,7 @@ class PauseTimerGl extends StaticTextRenderer implements PauseTimer {
 		this.textCanvas.height = this.context.canvas.height;
 		this.ctx = this.textCanvas.getContext('2d');
 
-		this.textTexture = this.createTextTexture(
-			`Pause...( ${Math.ceil(this.pauseTimeRemaining)} )`,
-		);
+		this.textTexture = this.createTextTexture(this.getPauseTextContent());
 		this.prepareTransition();
 	}
 
@@ -76,9 +74,7 @@ class PauseTimerGl extends StaticTextRenderer implements PauseTimer {
 			this.pauseDuration - elapsedTime,
 		);
 
-		this.textTexture = this.createTextTexture(
-			`Pause...( ${Math.ceil(this.pauseTimeRemaining)} )`,
-		);
+		this.textTexture = this.createTextTexture(this.getPauseTextContent());
 
 		this.render();
 		requestAnimationFrame(this.animate.bind(this));
@@ -131,6 +127,13 @@ class PauseTimerGl extends StaticTextRenderer implements PauseTimer {
 			this.textCanvas = null;
 			this.ctx = null;
 		}
+	}
+
+	private getPauseTextContent(): string {
+		return _('Pause... ( %SECONDS% )').replace(
+			'%SECONDS%',
+			Math.ceil(this.pauseTimeRemaining),
+		);
 	}
 }
 
