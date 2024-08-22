@@ -758,6 +758,11 @@ L.Map.include({
 		var id = 'hyperlink';
 		var title = _('Insert hyperlink');
 
+		let focusId = 'hyperlink-link-box-input';
+		if (defaultText === '') {
+			focusId = 'hyperlink-text-box';
+		}
+
 		var dialogId = 'modal-dialog-' + id;
 		var json = map.uiManager._modalDialogJSON(id, title, true, [
 			{
@@ -803,7 +808,7 @@ L.Map.include({
 				vertical: false,
 				layoutstyle: 'end'
 			},
-		], 'hyperlink-link-box-input');
+		], focusId);
 
 		map.uiManager.showModal(json, [
 			{id: 'response-ok', func: function() {
