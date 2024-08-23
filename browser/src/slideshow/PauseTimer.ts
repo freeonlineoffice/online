@@ -99,9 +99,19 @@ class PauseTimerGl extends Transition2d implements PauseTimer {
 	}
 
 	private clearCanvas(): void {
-		this.ctx.clearRect(0, 0, this.textCanvas.width, this.textCanvas.height);
+		this.ctx.clearRect(
+			0,
+			0,
+			this.textCanvas.width,
+			this.textCanvas.height,
+		);
 		this.ctx.fillStyle = 'black';
-		this.ctx.fillRect(0, 0, this.textCanvas.width, this.textCanvas.height);
+		this.ctx.fillRect(
+			0,
+			0,
+			this.textCanvas.width,
+			this.textCanvas.height,
+		);
 	}
 
 	// add text on off screen canvas...
