@@ -457,7 +457,7 @@ void WopiStorage::updateLockStateAsync(const Authorization& auth, LockContext& l
     auth.authorizeURI(uriObject);
 
     Poco::URI uriObjectAnonym(getUri());
-    uriObjectAnonym.setPath(COOLWSD::anonymizeUrl(uriObjectAnonym.getPath()));
+    uriObjectAnonym.setPath(LOOLWSD::anonymizeUrl(uriObjectAnonym.getPath()));
     const std::string uriAnonym = uriObjectAnonym.toString();
 
     const auto wopiLog = (lock == StorageBase::LockState::LOCK ? "WOPI::Lock" : "WOPI::Unlock");
@@ -474,7 +474,7 @@ void WopiStorage::updateLockStateAsync(const Authorization& auth, LockContext& l
     httpHeader.set("X-WOPI-Lock", lockCtx.lockToken());
     if (!attribs.getExtendedData().empty())
     {
-        httpHeader.set("X-COOL-WOPI-ExtendedData", attribs.getExtendedData());
+        httpHeader.set("X-LOOL-WOPI-ExtendedData", attribs.getExtendedData());
         if (isLegacyServer())
             httpHeader.set("X-LOOL-WOPI-ExtendedData", attribs.getExtendedData());
     }
