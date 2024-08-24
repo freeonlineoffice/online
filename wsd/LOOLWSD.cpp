@@ -3172,9 +3172,7 @@ void LOOLWSD::handleOption(const std::string& optionName,
     }
     else if (optionName == "version-hash")
     {
-        std::string version, hash;
-        Util::getVersionInfo(version, hash);
-        std::cout << hash << std::endl;
+        std::cout << Util::getLoolVersionHash() << std::endl;
         Util::forcedExit(EX_OK);
     }
     else if (optionName == "version")
@@ -4238,8 +4236,8 @@ void LOOLWSD::processFetchUpdate(SocketPoll& poll)
             return;
 
         Poco::URI uriFetch(url);
-        uriFetch.addQueryParameter("product", APP_NAME);
-        uriFetch.addQueryParameter("version", LOOLWSD_VERSION);
+        uriFetch.addQueryParameter("product", config::getString("product_name", APP_NAME));
+        uriFetch.addQueryParameter("version", Util::getLoolVersion());
         LOG_TRC("Infobar update request from " << uriFetch.toString());
         FetchHttpSession = StorageConnectionManager::getHttpSession(uriFetch);
         if (!FetchHttpSession)
@@ -4944,7 +4942,7 @@ void forwardSigUsr2()
 int main(int argc, char** argv)
 {
     SigUtil::setUserSignals();
-    SigUtil::setFatalSignals("wsd " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
+    SigUtil::setFatalSignals("wsd " + Util::getLoolVersion() + ' ' + Util::getLoolVersionHash());
     setKitInProcess();
 
     try

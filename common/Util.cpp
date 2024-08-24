@@ -354,11 +354,19 @@ namespace Util
         return ThreadName;
     }
 
+    std::string getLoolVersion() { return std::string(LOOLWSD_VERSION); }
+
+    std::string getLoolVersionHash()
+    {
+        std::string hash(LOOLWSD_VERSION_HASH);
+        hash.resize(std::min(8, (int)hash.length()));
+        return hash;
+    }
+
     void getVersionInfo(std::string& version, std::string& hash)
     {
-        version = std::string(LOOLWSD_VERSION);
-        hash = std::string(LOOLWSD_VERSION_HASH);
-        hash.resize(std::min(8, (int)hash.length()));
+        version = getLoolVersion();
+        hash = getLoolVersionHash();
     }
 
     const std::string& getProcessIdentifier()
