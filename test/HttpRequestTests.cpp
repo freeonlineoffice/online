@@ -7,7 +7,6 @@
 
 #include <config.h>
 
-#include "ConfigUtil.hpp"
 #include <HttpTestServer.hpp>
 
 #include <Poco/URI.h>

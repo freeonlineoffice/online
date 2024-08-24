@@ -8,6 +8,7 @@
  */
 
 #include <config.h>
+
 #include <jni.h>
 #include <android/log.h>
 
@@ -136,7 +137,7 @@ static void send2JS(const JNIThreadContext &jctx, const std::vector<char>& buffe
         encoder.rdbuf()->setLineLength(0); // unlimited
         encoder << std::string(buffer.data(), buffer.size());
         encoder.close();
-        
+
         ss << "')";
 
         js = ss.str();
