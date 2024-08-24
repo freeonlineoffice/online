@@ -611,7 +611,8 @@ int forkit_main(int argc, char** argv)
     if (!Util::isKitInProcess())
     {
         // Already set by LOOLWSD.cpp in kit in process
-        SigUtil::setFatalSignals("forkit startup of " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
+        SigUtil::setFatalSignals("forkit startup of " + Util::getLoolVersion() + ' ' +
+                                 Util::getLoolVersionHash());
     }
     else
     {

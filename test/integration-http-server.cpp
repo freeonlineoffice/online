@@ -145,7 +145,7 @@ void HTTPServerTest::testLoolGet()
     const std::string html = httpResponse->getBody();
     LOK_ASSERT(html.find(param["access_token"]) != std::string::npos);
     LOK_ASSERT(html.find(_uri.getHost()) != std::string::npos);
-    LOK_ASSERT(html.find(std::string(LOOLWSD_VERSION_HASH)) != std::string::npos);
+    LOK_ASSERT(html.find(Util::getLoolVersionHash()) != std::string::npos);
 }
 
 void HTTPServerTest::testLoolPostPoco()
@@ -256,8 +256,10 @@ void HTTPServerTest::testLoolPost()
     const std::string html = httpResponse->getBody();
     fprintf(stderr, "%s\n", html.c_str());
     LOK_ASSERT(html.find(_uri.getHost()) != std::string::npos);
-    LOK_ASSERT(html.find("data-version-path = \"" LOOLWSD_VERSION_HASH "\"") != std::string::npos);
-    LOK_ASSERT(html.find("data-loolwsd-version = \"" LOOLWSD_VERSION "\"") != std::string::npos);
+    LOK_ASSERT(html.find("data-version-path = \"" + Util::getLoolVersionHash() + '"') !=
+               std::string::npos);
+    LOK_ASSERT(html.find("data-loolwsd-version = \"" + Util::getLoolVersion() + '"') !=
+               std::string::npos);
     LOK_ASSERT(html.find("choMXq0rSMcsm0RoZZWDWsrgAcE5AHwc") != std::string::npos);
     LOK_ASSERT(html.find("data-access-token-ttl = \"0\"") != std::string::npos);
     LOK_ASSERT(html.find("data-access-header = \"\"") != std::string::npos);

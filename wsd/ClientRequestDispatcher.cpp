@@ -9,7 +9,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#include <Poco/Net/HTTPRequest.h>
 #include <config.h>
 
 #include <ClientRequestDispatcher.hpp>
@@ -48,6 +47,7 @@
 #include <Poco/File.h>
 #include <Poco/MemoryStream.h>
 #include <Poco/Net/HTMLForm.h>
+#include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/NetException.h>
 #include <Poco/Net/PartHandler.h>
 #include <Poco/SAX/InputSource.h>
@@ -1914,7 +1914,7 @@ std::string ClientRequestDispatcher::getDiscoveryXML()
     const std::string urlsrc = "urlsrc";
 
     const std::string rootUriValue = "%SRV_URI%";
-    const std::string uriBaseValue = rootUriValue + "/browser/" LOOLWSD_VERSION_HASH "/";
+    const std::string uriBaseValue = rootUriValue + "/browser/" + Util::getLoolVersionHash() + '/';
     const std::string uriValue = uriBaseValue + "lool.html?";
 
     LOG_DBG_S("Processing discovery.xml from " << discoveryPath);
@@ -2035,10 +2035,10 @@ static std::string getCapabilitiesJson(bool convertToAvailable)
     capabilities->set("serverId", Util::getProcessIdentifier());
 
     // Set the product version
-    capabilities->set("productVersion", Util::getCoolVersion());
+    capabilities->set("productVersion", Util::getLoolVersion());
 
     // Set the product version hash
-    capabilities->set("productVersionHash", Util::getCoolVersionHash());
+    capabilities->set("productVersionHash", Util::getLoolVersionHash());
 
     // Set that this is a proxy.php-enabled instance
     capabilities->set("hasProxyPrefix", LOOLWSD::IsProxyPrefixEnabled);

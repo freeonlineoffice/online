@@ -1579,15 +1579,9 @@ std::string WebSocketHandler::generateKey()
 // Required by Android and iOS apps.
 namespace http
 {
-    std::string getAgentString()
-    {
-        return "LOOLWSD HTTP Agent " LOOLWSD_VERSION;
-    }
+std::string getAgentString() { return "LOOLWSD HTTP Agent " + Util::getLoolVersion(); }
 
-    std::string getServerString()
-    {
-        return "LOOLWSD HTTP Server " LOOLWSD_VERSION;
-    }
+std::string getServerString() { return "LOOLWSD HTTP Server " + Util::getLoolVersion(); }
 }
 
 extern "C" {

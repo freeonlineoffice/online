@@ -340,7 +340,7 @@ struct Stats {
             file << "\n";
         }
 
-        std::string commitHash = LOOLWSD_VERSION_HASH;
+        std::string commitHash = Util::getLoolVersionHash();
 
         time_t now = time(0);
         struct tm datetime;

@@ -2986,7 +2986,8 @@ void lokit_main(
     if (!Util::isKitInProcess())
     {
         // Already set by LOOLWSD.cpp
-        SigUtil::setFatalSignals("kit startup of " LOOLWSD_VERSION " " LOOLWSD_VERSION_HASH);
+        SigUtil::setFatalSignals("kit startup of " + Util::getLoolVersion() + ' ' +
+                                 Util::getLoolVersionHash());
         SigUtil::setUserSignals();
     }
 
