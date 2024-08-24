@@ -372,7 +372,12 @@ p.mobile-wizard.ui-combobox-text.selected {
 	color: var(--color-text-lighter) !important;
 }
 
-.ui-header.mobile-wizard:active, .mobile-wizard.ui-combobox-text:active, .ui-header.mobile-wizard:focus, .mobile-wizard.ui-combobox-text:focus, .ui-header.mobile-wizard:hover, .mobile-wizard.ui-combobox-text:hover {
+.ui-header.mobile-wizard:active,
+.mobile-wizard.ui-combobox-text:active,
+.ui-header.mobile-wizard:focus,
+.mobile-wizard.ui-combobox-text:focus,
+.ui-header.mobile-wizard:hover,
+.mobile-wizard.ui-combobox-text:hover {
 	background-color: var(--color-background-dark);
 }
 
@@ -599,7 +604,13 @@ p.mobile-wizard.ui-combobox-text.selected {
 	padding-top: 0px;
 }
 .mobile-wizard input.spinfield:disabled {
-	background: linear-gradient(to right, var(--color-background-lighter) 0%, var(--color-background-dark) 15%, var(--color-background-dark) 40%, var(--color-background-lighter) 100%);
+	background: linear-gradient(
+		to right,
+		var(--color-background-lighter) 0%,
+		var(--color-background-dark) 15%,
+		var(--color-background-dark) 40%,
+		var(--color-background-lighter) 100%
+	);
 	color: var(--color-text-lighter) !important;
 	border-radius: var(--border-radius);
 	height: 48px !important;
