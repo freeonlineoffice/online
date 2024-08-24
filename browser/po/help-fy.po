@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 16:41+0200\n"
+"POT-Creation-Date: 2024-08-24 17:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -50,8 +50,8 @@ msgstr ""
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:91-69
 msgid ""
-"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>, <kbd>Ctrl</kbd><"
-"span class=\"kbd--plus\">+</span><kbd>Insert"
+"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Ctrl</kbd><span "
+"class=\"kbd--plus\">+</span><kbd>Insert"
 msgstr ""
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:92-38

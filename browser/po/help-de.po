@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 16:41+0200\n"
-"PO-Revision-Date: 2024-08-16 17:48+0200\n"
+"POT-Creation-Date: 2024-08-24 17:35+0200\n"
+"PO-Revision-Date: 2024-08-24 17:40+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -51,10 +51,10 @@ msgstr "Kopieren"
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:91-69
 msgid ""
-"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>, <kbd>Ctrl</kbd><span class=\"kbd--"
+"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Ctrl</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Insert"
 msgstr ""
-"Strg</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>, <kbd>Umschalt</kbd><span class=\"kbd--"
+"Strg</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Strg</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Eingabetaste"
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:92-38
