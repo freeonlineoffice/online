@@ -168,6 +168,7 @@ public:
 #endif
     int kitPoll(int timeoutMicroS);
     void setDocument(std::shared_ptr<Document> document) { _document = std::move(document); }
+    std::shared_ptr<Document> getDocument() const { return _document; }
 
     // unusual LOK event from another thread, push into our loop to process.
     static bool pushToMainThread(LibreOfficeKitCallback callback, int type, const char* p,
@@ -381,6 +382,8 @@ public:
 
     /// Are we currently performing a load ?
     bool isLoadOngoing() const { return _duringLoad > 0; }
+
+    std::shared_ptr<KitQueue> getQueue() const { return _queue; }
 
 private:
     void postForceModifiedCommand(bool modified);
