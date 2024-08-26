@@ -14,6 +14,7 @@
 #include "CommandControl.hpp"
 #endif
 #if !MOBILEAPP
+#include <wsd/SpecialBrokers.hpp>
 #include <HostUtil.hpp>
 #endif // !MOBILEAPP
 
@@ -117,7 +118,7 @@ using Poco::Net::PartHandler;
 #include <Clipboard.hpp>
 #include <Crypto.hpp>
 #include <DelaySocket.hpp>
-#include "DocumentBroker.hpp"
+#include <wsd/DocumentBroker.hpp>
 #include <common/JsonUtil.hpp>
 #include <common/FileUtil.hpp>
 #include <common/JailUtil.hpp>
