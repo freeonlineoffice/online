@@ -233,7 +233,8 @@ class SlideRenderer2d extends SlideRenderer {
 
 		gl.setTransform(1, 0, 0, 1, 0, 0);
 
-		if (this._isAnyVideoPlaying) requestAnimationFrame(this.render.bind(this));
+		if (this._isAnyVideoPlaying)
+			requestAnimationFrame(this.render.bind(this));
 	}
 }
 
