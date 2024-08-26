@@ -241,7 +241,6 @@ class SimpleTransition extends SlideShow.Transition3d {
 			this.time,
 		);
 
-		const t = this.time; // Normalized time
 		this.gl.bindVertexArray(this.vao);
 
 		this.displaySlides_();
