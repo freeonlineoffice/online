@@ -68,8 +68,8 @@ class ServerAuditDialog {
 					_(
 						'The IsAdminUser user property is set by integration',
 					),
-					'',
-					'',
+					'SDK: IsAdminUser',
+					'https://sdk.collaboraonline.com/docs/advanced_integration.html?highlight=IsAdminUser#isadminuser',
 				],
 			},
 			certwarning: {
@@ -82,12 +82,16 @@ class ServerAuditDialog {
 				],
 				ok: [
 					_('No problems with SSL verification detected'),
-					'',
-					'',
+					'SDK: ssl-configuration',
+					'https://sdk.collaboraonline.com/docs/installation/Configuration.html?highlight=ssl#ssl-configuration',
 				],
 			},
 			postmessage: {
-				ok: [_('PostMessage API is initialized'), '', ''],
+				ok: [
+					_('PostMessage API is initialized'),
+					'SDK: post-message-initialization',
+					'https://sdk.collaboraonline.com/docs/postmessage_api.html#initialization',
+				],
 				hostnotready: [
 					_('Integrator is not ready for PostMessage calls'),
 					'SDK: post-message-initialization',
@@ -106,8 +110,8 @@ class ServerAuditDialog {
 					_(
 						'Hardware resources are sufficient for optimal performance',
 					),
-					'',
-					'',
+					'SDK: hardware-requirements',
+					'https://sdk.collaboraonline.com/docs/installation/Configuration.html#performance',
 				],
 			},
 		};
