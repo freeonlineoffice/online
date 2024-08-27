@@ -33,6 +33,8 @@ class Transition2d {
 	protected slideInfo: SlideInfo = null;
 	private skip: boolean = false;
 
+	// TODO - remove code duplication
+	/* jscpd:ignore-start */
 	constructor(transitionParameters: TransitionParameters) {
 		this.transitionParameters = transitionParameters;
 		this.context = transitionParameters.context;
@@ -61,6 +63,7 @@ class Transition2d {
 
 		this.prepareTransition();
 	}
+	/* jscpd:ignore-end */
 
 	public getVertexShader(): string {
 		return `#version 300 es
@@ -111,6 +114,8 @@ class Transition2d {
 		this.startTransition();
 	}
 
+	// TODO - remove code duplication
+	/* jscpd:ignore-start */
 	public initBuffers(): void {
 		const positions = new Float32Array([
 			...[-1.0, -1.0, 0, 0, 1],
@@ -159,6 +164,7 @@ class Transition2d {
 			3 * 4,
 		);
 	}
+	/* jscpd:ignore-end */
 
 	public render() {
 		if (!this.startTime) this.startTime = performance.now();
