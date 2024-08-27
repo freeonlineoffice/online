@@ -634,7 +634,9 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         }
 
         // Send LOOL version information
-        sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental));
+        sendTextFrame("loolserver " +
+                      Util::getVersionJSON(EnableExperimental, LOOLWSD::IndirectionServerEnabled &&
+                                                                   LOOLWSD::GeolocationSetup));
         // Send LOKit version information
         sendTextFrame("lokitversion " + LOOLWSD::LOKitVersion);
 

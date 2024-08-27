@@ -129,7 +129,10 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
     else if (tokens.equals(0, "version"))
     {
         // Send LOOL version information
-        sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental));
+        sendTextFrame("loolserver " +
+                      Util::getVersionJSON(EnableExperimental, LOOLWSD::IndirectionServerEnabled &&
+                                                                   LOOLWSD::GeolocationSetup));
+
         // Send LOKit version information
         sendTextFrame("lokitversion " + LOOLWSD::LOKitVersion);
     }

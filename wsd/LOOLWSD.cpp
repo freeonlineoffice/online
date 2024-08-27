@@ -741,6 +741,7 @@ std::set<const Poco::Util::AbstractConfiguration*> LOOLWSD::PluginConfigurations
 std::chrono::steady_clock::time_point LOOLWSD::StartTime;
 bool LOOLWSD::IsBindMountingEnabled = true;
 bool LOOLWSD::IndirectionServerEnabled = false;
+bool LOOLWSD::GeolocationSetup = false;
 
 // If you add global state please update dumpState below too
 
@@ -2754,6 +2755,7 @@ void LOOLWSD::innerInitialize(Application& self)
     NoSeccomp = Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.seccomp", true);
     AdminEnabled = getConfigValue<bool>(conf, "admin_console.enable", true);
     IndirectionServerEnabled = !getConfigValue<std::string>(conf, "indirection_endpoint.url", "").empty();
+    GeolocationSetup = getConfigValue("indirection_endpoint.geolocation_setup.enable", false);
 #if ENABLE_DEBUG
     if (Util::isKitInProcess())
         SingleKit = true;

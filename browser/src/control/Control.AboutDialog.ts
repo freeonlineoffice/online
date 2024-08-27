@@ -103,12 +103,20 @@ class AboutDialog {
 		if (windowAny.socketProxy)
 			slowProxyElement.innerText = _('"Slow Proxy"');
 
-		const routeTokenElement = content.querySelector(
-			'#routeToken',
-		) as HTMLElement;
-		if (windowAny.indirectSocket)
+		if (windowAny.indirectSocket) {
+			const routeTokenElement = content.querySelector(
+				'#routeToken',
+			) as HTMLElement;
 			routeTokenElement.innerText =
 				'RouteToken: ' + windowAny.routeToken;
+			if (windowAny.geolocationSetup) {
+				const timezoneElement = content.querySelector(
+					'#timeZone',
+				) as HTMLElement;
+				timezoneElement.innerText =
+					'TimeZone: ' + app.socket.WSDServer.TimeZone;
+			}
+		}
 
 		this.map.uiManager.showYesNoButton(
 			aboutDialogId + '-box',
