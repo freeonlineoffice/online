@@ -677,14 +677,23 @@ $(DIST_FOLDER)/global.js: $(srcdir)/js/global.js
 	@mkdir -p $(dir $@)
 	$(call global_file)
 
+$(INTERMEDIATE_DIR)/LOOL_JS.m4:
+	@rm -f LOOL_JS.m4
+	$(foreach file,$(NODE_MODULES_JS) $(LOOL_LIBS_JS) $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)), $(shell echo -n $(file), >> $(INTERMEDIATE_DIR)/LOOL_JS.m4))
+# remove last ","
+	@truncate -s -1 $(INTERMEDIATE_DIR)/LOOL_JS.m4
+
 $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 	$(LOOL_HTML_DST) \
 	$(LOOL_WELCOME_DST) \
 	$(DIST_FOLDER)/bundle.css \
 	$(DIST_FOLDER)/global.js \
-	$(DIST_FOLDER)/bundle.js
+	$(DIST_FOLDER)/bundle.js \
+	$(INTERMEDIATE_DIR)/LOOL_JS.m4
+
 	@echo "Generating lool.html..."
-	m4 -PE -DBUNDLE=$(IS_BUNDLE) \
+	m4 -PE -I $(INTERMEDIATE_DIR) \
+	    -DBUNDLE=$(IS_BUNDLE) \
 		-DIOSAPP=$(ENABLE_IOSAPP) \
 		-DGTKAPP=$(ENABLE_GTKAPP) \
 		-DDEBUG=$(ENABLE_DEBUG) \
@@ -693,9 +702,6 @@ $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 		-DMOBILEAPPNAME="$(APP_NAME)" \
 		-DLOOL_CSS="$(subst $(SPACE),$(COMMA),$(LOOL_CSS_M4))" \
 		-DGLOBAL_JS="$(DIST_FOLDER)/global.js" \
-		-DLOOL_JS="$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS) \
-		$(LOOL_LIBS_JS) \
-		$(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)))" \
 		-DVENDOR="$(VENDOR)" \
 		$(srcdir)/html/lool.html.m4 > $@
 
