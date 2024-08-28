@@ -212,8 +212,10 @@ class InitializerBase {
 		let initCSSVars = document.getElementById("init-css-vars") ? document.getElementById("init-css-vars").value: "";
 
 		if (initCSSVars) {
-			let rootRule = this.getRule(':root');
-			if (rootRule) rootRule.insertRule(atob(initCSSVars));
+			initCSSVars = atob(initCSSVars);
+			const sheet = new CSSStyleSheet();
+			sheet.replace(initCSSVars);
+			document.adoptedStyleSheets.push(sheet);
 		}
 
 		const element = document.getElementById("initial-variables");
@@ -262,19 +264,6 @@ class InitializerBase {
 		}, false);
 
 		this.initiateLoolParams();
-	}
-
-	getRule(rule) {
-		for (let i = 0; i < document.styleSheets.length; i++) {
-			for (let j = 0; j < document.styleSheets[i].cssRules.length; j++) {
-				const currentRule = document.styleSheets[i].cssRules[j];
-				if (currentRule && currentRule.selectorText && currentRule.selectorText === rule) {
-					return currentRule;
-				}
-			}
-		}
-
-		return null;
 	}
 
 	initiateLoolParams() {
