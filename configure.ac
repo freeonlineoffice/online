@@ -1757,6 +1757,7 @@ AC_CONFIG_FILES([Makefile
                  wasm/Makefile
                  test/Makefile
                  browser/Makefile
+                 browser/l10n/Makefile
                  browser/npm-shrinkwrap.json
                  loolwsd.spec
                  loolwsd.xml
