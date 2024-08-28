@@ -211,7 +211,9 @@ function moveFocus(
 	nextElement?: Element,
 ) {
 	const focusableElements = Array.from(
-		currentElement.parentElement?.querySelectorAll('.ui-color-picker-entry'),
+		currentElement.parentElement?.querySelectorAll(
+			'.ui-color-picker-entry',
+		),
 	) as HTMLElement[];
 
 	const [currentRow, currentColumn] = getRowColumn(currentElement);
@@ -298,7 +300,9 @@ function findFocusableElement(
 		const firstFocusableElement =
 			direction === 'next'
 				? (focusableElements.find(isFocusable) as HTMLElement)
-				: (focusableElements.reverse().find(isFocusable) as HTMLElement);
+				: (focusableElements
+						.reverse()
+						.find(isFocusable) as HTMLElement);
 		if (firstFocusableElement) {
 			return firstFocusableElement;
 		}
@@ -322,7 +326,11 @@ function findFocusableElement(
 
 	if (sibling) {
 		// Recursively check the next or previous sibling of the current sibling
-		return findFocusableElement(sibling as HTMLElement, direction, isFocusable);
+		return findFocusableElement(
+			sibling as HTMLElement,
+			direction,
+			isFocusable,
+		);
 	}
 
 	return null;
@@ -336,7 +344,9 @@ function findFocusableWithin(
 	const focusableElements = Array.from(element.querySelectorAll('*'));
 	return direction === 'next'
 		? (focusableElements.find(isFocusable) as HTMLElement | null)
-		: (focusableElements.reverse().find(isFocusable) as HTMLElement | null);
+		: (focusableElements
+				.reverse()
+				.find(isFocusable) as HTMLElement | null);
 }
 
 // Utility function to check if an element is focusable
@@ -394,7 +404,12 @@ function createAutoColorButton(
 	});
 	autoButton.addEventListener('keydown', (event: KeyboardEvent) => {
 		if (event.key === 'ArrowDown') {
-			moveFocus(autoButton, 'next', 'vertical', autoButton.nextElementSibling);
+			moveFocus(
+				autoButton,
+				'next',
+				'vertical',
+				autoButton.nextElementSibling,
+			);
 			event.preventDefault();
 		}
 		if (event.key === 'ArrowUp') {
@@ -539,14 +554,20 @@ function updatePalette(
 	//update here
 	customInput.addEventListener('keydown', (event: KeyboardEvent) => {
 		if (event.key === 'ArrowRight') {
-			const nextElement = customInput.nextElementSibling as HTMLElement;
+			const nextElement =
+				customInput.nextElementSibling as HTMLElement;
 			if (nextElement) {
 				nextElement.focus();
 				event.preventDefault();
 			}
 		} else if (event.key === 'ArrowUp') {
 			// Focus on the last element of the ui-color-picker-palette div
-			moveFocus(customContainer, 'previous', 'vertical', paletteContainer);
+			moveFocus(
+				customContainer,
+				'previous',
+				'vertical',
+				paletteContainer,
+			);
 			event.preventDefault();
 		} else if (event.key === 'ArrowDown') {
 			moveFocus(customContainer, 'next', 'vertical', recentContainer);
