@@ -2035,7 +2035,7 @@ static std::string getCapabilitiesJson(bool convertToAvailable)
     else if (!serverName.empty())
         capabilities->set("podName", serverName);
 
-    if (COOLWSD::IndirectionServerEnabled && COOLWSD::GeolocationSetup)
+    if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
     {
         std::string timezoneName = Util::getIANATimezone();
         if (!timezoneName.empty())
