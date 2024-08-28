@@ -2320,7 +2320,10 @@ kbd,
 #ServerAuditDialog .ui-treeview td[role='gridcell'] {
 	padding-inline-start: 0;
 }
-#ServerAuditDialog tr:first-child th:first-child .ui-treeview-header-sort-icon:after {
+#ServerAuditDialog
+	tr:first-child
+	th:first-child
+	.ui-treeview-header-sort-icon:after {
 	display: none;
 }
 #ServerAuditDialog tr:first-child th:first-child .ui-treeview-header-sort-icon {
