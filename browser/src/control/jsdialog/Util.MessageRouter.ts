@@ -119,6 +119,8 @@ class JSDialogMessageRouter {
 			});
 		} else if (msgData.jsontype === 'sidebar') {
 			app.socket._map.fire('sidebar', { data: msgData });
+		} else if (msgData.jsontype === 'navigator') {
+			app.socket._map.fire('navigator', { data: msgData });
 		} else if (msgData.jsontype === 'formulabar') {
 			app.socket._map.fire('formulabar', { data: msgData });
 		} else if (msgData.jsontype === 'notebookbar') {
