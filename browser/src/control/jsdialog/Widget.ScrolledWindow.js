@@ -136,8 +136,6 @@ function _scrolledWindowControl(parentContainer, data, builder) {
 		resizeObserver.observe(content);
 	}
 
-	var lastScrollV = null;
-	var lastScrollH = null;
 	var sendTimer = null;
 	if ((!noVertical && verticalSteps) || (!noHorizontal && horizontalSteps)) {
 		scrollwindow.addEventListener('scroll', function() {
@@ -155,18 +153,8 @@ function _scrolledWindowControl(parentContainer, data, builder) {
 			if (sendTimer)
 				clearTimeout(sendTimer);
 			sendTimer = setTimeout(function () {
-				var newScrollV = Math.round(scrollwindow.scrollTop / rowHeight);
-				if (lastScrollV !== newScrollV) {
-					lastScrollV = newScrollV;
-					builder.callback('scrolledwindow', 'scrollv', scrollwindow, newScrollV, builder);
-				}
-
-				var newScrollH = Math.round(scrollwindow.scrollLeft / 10);
-				if (lastScrollH !== newScrollH) {
-					lastScrollH = newScrollH;
-					builder.callback('scrolledwindow', 'scrollh', scrollwindow, newScrollH, builder);
-				}
-			}, 50);
+				builder.callback('scrolledwindow', 'scrollv', scrollwindow, Math.round(scrollwindow.scrollTop / rowHeight), builder);
+				builder.callback('scrolledwindow', 'scrollh', scrollwindow, Math.round(scrollwindow.scrollLeft / 10), builder); }, 50);
 		});
 	}
 
