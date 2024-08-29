@@ -405,7 +405,7 @@ app.definitions.Socket = L.Class.extend({
 						window.app.console.error(msg);
 
 						// When debugging let QA know something is up.
-						if (window.enableDebug)
+						if (window.enableDebug || L.Browser.cypressTest)
 							this._map.uiManager.showInfoModal(
 								'lool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
 
