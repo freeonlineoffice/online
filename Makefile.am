@@ -449,6 +449,8 @@ EXTRA_DIST = discovery.xml \
              debian/source/format \
              debian/changelog \
              debian/control \
+             debian/loolwsd.install \
+             debian/loolwsd-deprecated.install \
              debian/loolwsd.postinst \
              debian/loolwsd.postrm \
              etc/key.pem \
