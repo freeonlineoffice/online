@@ -421,7 +421,7 @@ LOOL_JS_LST =\
 	src/slideshow/RenderContext.ts \
 	src/slideshow/SlideRenderer.ts \
 	src/slideshow/SlideShowPresenter.ts \
-	src/slideshow/RendererBase.ts \
+	src/slideshow/SimpleTextureRenderer.ts \
 	src/slideshow/StaticTextRenderer.ts \
 	src/slideshow/PauseTimer.ts \
 	src/slideshow/PerformTransition.ts \
@@ -972,7 +972,7 @@ pot:
 		src/slideshow/RenderContext.ts \
 		src/slideshow/SlideRenderer.ts \
 		src/slideshow/SlideShowPresenter.ts \
-		src/slideshow/RendererBase.ts \
+		src/slideshow/SimpleTextureRenderer.ts \
 		src/slideshow/StaticTextRenderer.ts \
 		src/slideshow/PauseTimer.ts \
 		src/slideshow/PerformTransition.ts \

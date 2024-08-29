@@ -53,7 +53,7 @@ class SlideTransition {
 
 	createSlideTransition(
 		transitionParameters: TransitionParameters,
-	): SlideChangeBase {
+	): ISlideChangeBase {
 		if (!this.isValid()) return null;
 
 		switch (this.getType()) {
