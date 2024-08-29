@@ -69,20 +69,20 @@ class SlideShowPresenter {
 	_canvasLoader: CanvasLoader | null = null;
 	_isAnimationPlaying: boolean = false;
 	_isPresentInWindow: boolean = false;
+	private _slideShowHandler: SlideShowHandler;
+	private _slideShowNavigator: SlideShowNavigator;
+	private _metaPresentation: MetaPresentation;
+	private _startSlide: number;
 
 	constructor(map: any) {
 		this._map = map;
+		this._init();
 		this.addHooks();
 	}
 
 	addHooks() {
 		this._map.on('newfullscreen', this._onStart, this);
 		this._map.on('newpresentinwindow', this._onStartInWindow, this);
-		this._map.on(
-			'animationstatechanged',
-			this._onAnimationStateChanged,
-			this,
-		);
 		L.DomEvent.on(
 			document,
 			'fullscreenchange',
@@ -94,17 +94,22 @@ class SlideShowPresenter {
 	removeHooks() {
 		this._map.off('newfullscreen', this._onStart, this);
 		this._map.off('newpresentinwindow', this._onStartInWindow, this);
-		this._map.off(
-			'animationstatechanged',
-			this._onAnimationStateChanged,
-			this,
-		);
 		L.DomEvent.off(
 			document,
 			'fullscreenchange',
 			this._onFullScreenChange,
 			this,
 		);
+	}
+
+	private _init() {
+		this._slideShowHandler = new SlideShowHandler();
+		this._slideShowHandler.setPresenter(this);
+		this._slideShowNavigator = new SlideShowNavigator(
+			this._slideShowHandler,
+		);
+		this._slideShowHandler.setNavigator(this._slideShowNavigator);
+		this._slideShowNavigator.setPresenter(this);
 	}
 
 	public getSlideInfo(slideNumber: number): SlideInfo | null {
@@ -130,9 +135,12 @@ class SlideShowPresenter {
 	_onFullScreenChange() {
 		this._fullscreen = document.fullscreenElement;
 		if (this._fullscreen) {
+			// window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
 			window.addEventListener(
 				'keydown',
-				this._onCanvasKeyDown.bind(this),
+				this._slideShowNavigator.onKeyDown.bind(
+					this._slideShowNavigator,
+				),
 			);
 			this.centerCanvas();
 		} else {
@@ -145,9 +153,12 @@ class SlideShowPresenter {
 
 		this._slideRenderer.deleteResources();
 
+		// window.removeEventListener('keydown', this._onCanvasKeyDown.bind(this));
 		window.removeEventListener(
 			'keydown',
-			this._onCanvasKeyDown.bind(this),
+			this._slideShowNavigator.onKeyDown.bind(
+				this._slideShowNavigator,
+			),
 		);
 		L.DomUtil.remove(this._slideShowCanvas);
 		this._slideShowCanvas = null;
@@ -161,11 +172,11 @@ class SlideShowPresenter {
 		this._map.focus();
 	}
 
+	// TODO _nextSlide (don't hack this, no more used):
+	//  port endless/repeat to SlideShowNavigator,
+	//  to be removed
 	_nextSlide() {
-		if (this._isAnimationPlaying) {
-			this._map.fire('skipanimation');
-			return;
-		}
+		window.app.console.log('SlideShowPresenter._nextSlide');
 
 		if (this._currentSlide + 1 >= this._getSlidesCount()) {
 			const currSlideInfo = this.getSlideInfo(this._currentSlide);
@@ -189,7 +200,6 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide++;
-			this.createAnimationsHandler();
 			this._doTransition(
 				this._slideRenderer.getSlideTexture(),
 				this._currentSlide,
@@ -197,11 +207,9 @@ class SlideShowPresenter {
 		});
 	}
 
+	// TODO _previoustSlide (don't hack this, no more used) to be removed
 	_previoustSlide() {
-		if (this._isAnimationPlaying) {
-			this._map.fire('skipanimation');
-			return;
-		}
+		window.app.console.log('SlideShowPresenter._previoustSlide');
 
 		if (this._currentSlide <= 0) {
 			return;
@@ -218,20 +226,8 @@ class SlideShowPresenter {
 
 		this._slideCompositor.fetchAndRun(this._currentSlide, () => {
 			this._currentSlide--;
-			this.createAnimationsHandler();
 			this._doPresentation();
 		});
-	}
-
-	_onCanvasClick() {
-		this._nextSlide();
-	}
-
-	_onCanvasKeyDown(event: KeyboardEvent) {
-		if (event.code === 'Space' || event.code === 'ArrowRight')
-			this._nextSlide();
-		else if (event.code === 'Backspace' || event.code === 'ArrowLeft')
-			this._previoustSlide();
 	}
 
 	private centerCanvas() {
@@ -294,7 +290,10 @@ class SlideShowPresenter {
 
 		canvas.id = 'slideshow-canvas';
 
-		canvas.addEventListener('click', this._onCanvasClick.bind(this));
+		canvas.addEventListener(
+			'click',
+			this._slideShowNavigator.onClick.bind(this._slideShowNavigator),
+		);
 
 		try {
 			this._slideRenderer = new SlideRendererGl(canvas);
@@ -314,7 +313,10 @@ class SlideShowPresenter {
 		);
 	}
 
+	// TODO make it works with SlideShowNavigator/SlideShowHandler
+	//  use this.slideShowNavigator.currentSlideIndex in place of this._currentSlide
 	private startTimer(loopAndRepeatDuration: number) {
+		window.app.console.log('SlideShowPresenter.startTimer');
 		const transitionParameters = new TransitionParameters();
 		transitionParameters.context = this._slideRenderer._context;
 
@@ -368,7 +370,9 @@ class SlideShowPresenter {
 		pauseTimer.startTimer();
 	}
 
+	// TODO make it works with SlideShowNavigator/SlideShowHandler
 	private startLoader(): void {
+		window.app.console.log('SlideShowPresenter.startLoader');
 		const transitionParameters = new TransitionParameters();
 		transitionParameters.context = this._slideRenderer._context;
 
@@ -392,6 +396,10 @@ class SlideShowPresenter {
 		this._canvasLoader = null;
 	}
 
+	// TODO _doTransition (don't hack this, no more used)
+	//  port to SlideShowHandler transitionType = 'NONE' (?)
+	//  port to SlideShowNavigator/SlideShowHandler stopLoader()
+	//  to be removed
 	_doTransition(
 		currentTexture: WebGLTexture | ImageBitmap,
 		nextSlideNumber: number,
@@ -487,6 +495,7 @@ class SlideShowPresenter {
 		this._map.uiManager.closeSnackbar();
 	}
 
+	// TODO _doPresentation (don't hack this, no more used) to be removed
 	_doPresentation(isStarting = false) {
 		this._slideRenderer.pauseVideos();
 		const slideInfo = this.getSlideInfo(this._currentSlide);
@@ -569,7 +578,9 @@ class SlideShowPresenter {
 		);
 		this._slideShowWindowProxy.addEventListener(
 			'keydown',
-			this._onCanvasKeyDown.bind(this),
+			this._slideShowNavigator.onKeyDown.bind(
+				this._slideShowNavigator,
+			),
 		);
 
 		const slideShowWindow = this._slideShowWindowProxy;
@@ -708,19 +719,15 @@ class SlideShowPresenter {
 	/// called when user triggers the presentation using UI
 	_onStart(that: any) {
 		this._onPrepareScreen(false); // opens full screen, has to be on user interaction
-		this._currentSlide = that?.startSlideNumber ?? 0;
+		this._startSlide = that?.startSlideNumber ?? 0;
 		app.socket.sendMessage('getpresentationinfo');
 	}
 
 	/// called when user triggers the in-window presentation using UI
-	_onStartInWindow() {
+	_onStartInWindow(that: any) {
 		this._onPrepareScreen(true); // opens full screen, has to be on user interaction
-		this._currentSlide = 0;
+		this._startSlide = that?.startSlideNumber ?? 0;
 		app.socket.sendMessage('getpresentationinfo');
-	}
-
-	_onAnimationStateChanged(e: any) {
-		this._isAnimationPlaying = !!e.isPlaying;
 	}
 
 	/// called as a response on getpresentationinfo
@@ -738,7 +745,13 @@ class SlideShowPresenter {
 			);
 		}
 
-		this.createAnimationsHandler();
+		this._metaPresentation = new MetaPresentation(
+			this._presentationInfo,
+			this._slideShowHandler,
+			this._slideShowNavigator,
+		);
+		this._slideShowHandler.setMetaPresentation(this._metaPresentation);
+		this._slideShowNavigator.setMetaPresentation(this._metaPresentation);
 
 		this._slideCompositor.updatePresentationInfo(this._presentationInfo);
 		const canvasSize = this._slideCompositor.getCanvasSize();
@@ -748,26 +761,11 @@ class SlideShowPresenter {
 
 		this.startLoader();
 
-		this._slideCompositor.fetchAndRun(0, () => {
-			this._doPresentation(true);
-		});
-	}
-
-	createAnimationsHandler() {
-		const slideInfo = this.getSlideInfo(this._currentSlide);
-		if (slideInfo.animations) {
-			this._animationsHandler = new SlideAnimations();
-			this._animationsHandler.importAnimations(
-				slideInfo.animations.root,
-			);
-			this._animationsHandler.parseInfo();
-			const animationTree =
-				this._animationsHandler.getAnimationsTree();
-			if (animationTree) {
-				const info = animationTree.getInfo(true);
-				window.app.console.log('animations info: \n' + info);
-			}
-		}
+		this._slideShowNavigator.startPresentation(this._startSlide, false);
+		// TODO remove comment out code
+		// this._slideCompositor.fetchAndRun(0, () => {
+		// 	this._doPresentation(true);
+		// });
 	}
 }
 

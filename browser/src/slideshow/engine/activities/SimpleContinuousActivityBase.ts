@@ -21,7 +21,9 @@ abstract class SimpleContinuousActivityBase extends ActivityBase {
 		super(aCommonParamSet);
 
 		// Time elapsed since activity started
-		this.aTimer = new ElapsedTime(aCommonParamSet.aActivityQueue.getTimer());
+		this.aTimer = new ElapsedTime(
+			aCommonParamSet.aActivityQueue.getTimer(),
+		);
 		// Simple duration of activity
 		this.nMinSimpleDuration = aCommonParamSet.nMinDuration;
 		// Minimal number of frames to show
@@ -52,7 +54,8 @@ abstract class SimpleContinuousActivityBase extends ActivityBase {
 		// times.
 
 		// fraction of time elapsed
-		const nFractionElapsedTime = nCurrElapsedTime / this.nMinSimpleDuration;
+		const nFractionElapsedTime =
+			nCurrElapsedTime / this.nMinSimpleDuration;
 
 		// fraction of minimum calls performed
 		const nFractionRequiredCalls =
@@ -154,7 +157,10 @@ abstract class SimpleContinuousActivityBase extends ActivityBase {
 			nRelativeSimpleTime = nT - nRepeats;
 
 			// clamp repeats to max permissible value (maRepeats.getValue() - 1.0)
-			if (this.isRepeatCountValid() && nRepeats >= this.getRepeatCount()) {
+			if (
+				this.isRepeatCountValid() &&
+				nRepeats >= this.getRepeatCount()
+			) {
 				// Note that this code here only gets
 				// triggered if this.nRepeats is an
 				// _integer_. Otherwise, nRepeats will never

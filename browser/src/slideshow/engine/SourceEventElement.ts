@@ -68,7 +68,10 @@ class SourceEventElement implements MouseClickHandler {
 
 		if (this.bClickHandled) return false;
 
-		this.aEventMultiplexer.notifyEvent(EventTrigger.OnClick, this.getId());
+		this.aEventMultiplexer.notifyEvent(
+			EventTrigger.OnClick,
+			this.getId(),
+		);
 		this.aSlideShow.update();
 		this.bClickHandled = true;
 		this.setDefaultCursor();

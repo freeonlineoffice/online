@@ -37,7 +37,9 @@ class AnimationTransformNode extends AnimationBaseNode3 {
 
 		const aNodeInfo = this.aNodeInfo as AnimateTransformNodeInfo;
 		if (
-			!AnimationTransformNode.isValidTransformation(aNodeInfo.transformType)
+			!AnimationTransformNode.isValidTransformation(
+				aNodeInfo.transformType,
+			)
 		) {
 			this.eCurrentState = NodeState.Invalid;
 			window.app.console.log(
@@ -51,7 +53,7 @@ class AnimationTransformNode extends AnimationBaseNode3 {
 
 	public createActivity(): AnimationActivity {
 		const aActivityParamSet = this.fillActivityParams();
-		let aAnimation;
+		let aAnimation = null;
 
 		if (
 			this.getAttributeName() === 'scale' ||
@@ -60,20 +62,32 @@ class AnimationTransformNode extends AnimationBaseNode3 {
 			aAnimation = createPairPropertyAnimation(
 				this.getAttributeName(),
 				this.getAnimatedElement(),
-				this.aNodeContext.aSlideWidth,
-				this.aNodeContext.aSlideHeight,
+				this.aNodeContext.aContext.nSlideWidth,
+				this.aNodeContext.aContext.nSlideHeight,
 			);
 		} else {
 			aAnimation = createPropertyAnimation(
 				this.getAttributeName(),
 				this.getAnimatedElement(),
-				this.aNodeContext.aSlideWidth,
-				this.aNodeContext.aSlideHeight,
+				this.aNodeContext.aContext.nSlideWidth,
+				this.aNodeContext.aContext.nSlideHeight,
 			);
 		}
 
+		if (!aAnimation) {
+			window.app.console.log(
+				'AnimationTransformNode.createActivity: failed to create animation.',
+			);
+			return null;
+		}
+
 		const aInterpolator: PropertyInterpolatorType = null; // createActivity will compute it;
-		return createActivity(aActivityParamSet, this, aAnimation, aInterpolator);
+		return createActivity(
+			aActivityParamSet,
+			this,
+			aAnimation,
+			aInterpolator,
+		);
 	}
 
 	public getTransformType(): string {

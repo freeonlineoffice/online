@@ -27,7 +27,9 @@ class SlideTransition {
 	constructor(slideInfo: SlideInfo) {
 		this.slideInfo = slideInfo;
 		this.bIsValid = !!this.getType();
-		this.aDuration = new Duration(this.slideInfo.transitionDuration + 'ms');
+		this.aDuration = new Duration(
+			this.slideInfo.transitionDuration + 'ms',
+		);
 		if (!this.aDuration.isSet()) {
 			this.aDuration = new Duration(null); // duration == 0.0
 		}
@@ -38,8 +40,11 @@ class SlideTransition {
 				SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS
 			: SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
 		if (this.nMinFrameCount < 1.0) this.nMinFrameCount = 1;
-		else if (this.nMinFrameCount > SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS)
-			this.nMinFrameCount = SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
+		else if (
+			this.nMinFrameCount > SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS
+		)
+			this.nMinFrameCount =
+				SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
 	}
 
 	isValid() {
@@ -68,7 +73,9 @@ class SlideTransition {
 				return new SlideShow.BarsTransition(transitionParameters);
 
 			case TransitionType.CHECKERBOARDWIPE:
-				return new SlideShow.CheckersTransition(transitionParameters);
+				return new SlideShow.CheckersTransition(
+					transitionParameters,
+				);
 
 			case TransitionType.FOURBOXWIPE:
 				return new SlideShow.PlusTransition(transitionParameters);
@@ -77,16 +84,22 @@ class SlideTransition {
 				return SlideShow.IrisWipeTransition(transitionParameters);
 
 			case TransitionType.ELLIPSEWIPE:
-				return SlideShow.EllipseWipeTransition(transitionParameters);
+				return SlideShow.EllipseWipeTransition(
+					transitionParameters,
+				);
 
 			case TransitionType.FANWIPE:
 				return new SlideShow.WedgeTransition(transitionParameters);
 
 			case TransitionType.BLINDSWIPE:
-				return new SlideShow.VenetianTransition(transitionParameters);
+				return new SlideShow.VenetianTransition(
+					transitionParameters,
+				);
 
 			case TransitionType.DISSOLVE:
-				return new SlideShow.SimpleDissolveTransition(transitionParameters);
+				return new SlideShow.SimpleDissolveTransition(
+					transitionParameters,
+				);
 
 			case TransitionType.PUSHWIPE:
 				return SlideShow.PushWipeTransition(transitionParameters);
@@ -95,7 +108,9 @@ class SlideTransition {
 				return new SlideShow.SplitTransition(transitionParameters);
 
 			case TransitionType.WATERFALLWIPE:
-				return new SlideShow.DiagonalTransition(transitionParameters);
+				return new SlideShow.DiagonalTransition(
+					transitionParameters,
+				);
 
 			default:
 				console.log(

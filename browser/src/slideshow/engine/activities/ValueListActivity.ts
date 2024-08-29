@@ -42,8 +42,19 @@ function ValueListActivityTemplate<T extends AGConstructor<ActivityBase>>(
 				aAnimation,
 				'ValueListActivity constructor: invalid animation object',
 			);
-			assert(aValueList.length != 0, 'ValueListActivity: value list is empty');
-			super(aActivityParamSet);
+			assert(
+				aValueList.length != 0,
+				'ValueListActivity: value list is empty',
+			);
+
+			super(
+				aValueList,
+				aActivityParamSet,
+				aAnimation,
+				aInterpolator,
+				aOperatorSet,
+				bAccumulate,
+			);
 
 			this.aValueList = aValueList;
 			this.aAnimation = aAnimation;
@@ -120,7 +131,10 @@ function ValueListActivityTemplate<T extends AGConstructor<ActivityBase>>(
 
 			if (this.bCumulative) {
 				//aValue = aValue + nRepeatCount * this.aLastValue;
-				aValue = this.add(aValue, this.scale(nRepeatCount, this.aLastValue));
+				aValue = this.add(
+					aValue,
+					this.scale(nRepeatCount, this.aLastValue),
+				);
 			}
 
 			aValue = this.aFormula ? this.aFormula(aValue) : aValue;
@@ -145,7 +159,10 @@ function ValueListActivityTemplate<T extends AGConstructor<ActivityBase>>(
 			let aValue = this.aValueList[nFrame];
 
 			if (this.bCumulative) {
-				aValue = this.add(aValue, this.scale(nRepeatCount, this.aLastValue));
+				aValue = this.add(
+					aValue,
+					this.scale(nRepeatCount, this.aLastValue),
+				);
 				// for numbers:   aValue = aValue + nRepeatCount * this.aLastValue;
 				// for enums, bools or strings:   aValue = aValue;
 			}

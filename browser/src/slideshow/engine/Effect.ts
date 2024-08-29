@@ -49,7 +49,10 @@ class Effect {
 	}
 
 	end() {
-		assert(this.eState === EffectState.Playing, 'Effect.end: wrong state.');
+		assert(
+			this.eState === EffectState.Playing,
+			'Effect.end: wrong state.',
+		);
 		this.eState = EffectState.Ended;
 	}
 }

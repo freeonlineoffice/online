@@ -108,7 +108,10 @@ abstract class DiscreteActivityBase extends ActivityBase {
 		// schedule next frame, if either repeat is indefinite
 		// (repeat forever), or we've not yet reached the requested
 		// repeat count
-		if (!this.isRepeatCountValid() || nCurrRepeat < this.getRepeatCount()) {
+		if (
+			!this.isRepeatCountValid() ||
+			nCurrRepeat < this.getRepeatCount()
+		) {
 			// add wake-up event to queue (modulo vector size, to cope with repeats).
 
 			// repeat is handled locally, only apply acceleration/deceleration.
@@ -129,7 +132,8 @@ abstract class DiscreteActivityBase extends ActivityBase {
 			);
 			const nNextTimeout =
 				this.nMinSimpleDuration *
-				(nRepeatCount + this.calcAcceleratedTime(nCurrentRepeatTime));
+				(nRepeatCount +
+					this.calcAcceleratedTime(nCurrentRepeatTime));
 			this.aWakeupEvent.setNextTimeout(nNextTimeout);
 
 			this.getEventQueue().addEvent(this.aWakeupEvent);

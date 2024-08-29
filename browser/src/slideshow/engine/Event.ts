@@ -12,7 +12,7 @@
 
 abstract class EventBase {
 	private static CURR_UNIQUE_ID = 0;
-	private nId: number;
+	private readonly nId: number;
 
 	constructor() {
 		this.nId = EventBase.getUniqueId();
@@ -46,7 +46,10 @@ class DelayEvent extends EventBase {
 	}
 
 	fire() {
-		assert(this.isCharged(), 'DelayEvent.fire: assertion isCharged failed');
+		assert(
+			this.isCharged(),
+			'DelayEvent.fire: assertion isCharged failed',
+		);
 
 		this.bWasFired = true;
 		this.aFunctor();
@@ -113,7 +116,10 @@ class WakeupEvent extends EventBase {
 	getActivationTime(nCurrentTime: number) {
 		const nElapsedTime = this.aTimer.getElapsedTime();
 
-		return Math.max(nCurrentTime, nCurrentTime - nElapsedTime + this.nNextTime);
+		return Math.max(
+			nCurrentTime,
+			nCurrentTime - nElapsedTime + this.nNextTime,
+		);
 	}
 
 	start() {
@@ -148,7 +154,11 @@ function registerEvent(
 	const eTimingType = aTiming.getType();
 
 	aRegisterEventDebugPrinter.print(
-		'registerEvent( timing: ' + aTiming.info() + ' )',
+		'registerEvent( node id: ' +
+			nNodeId +
+			', timing: ' +
+			aTiming.info() +
+			' )',
 	);
 
 	if (eTimingType == TimingType.Offset) {
@@ -181,7 +191,8 @@ function registerEvent(
 			case TimingType.Event:
 				{
 					const eEventType = aTiming.getEventType();
-					const sEventBaseElemId = aTiming.getEventBaseElementId();
+					const sEventBaseElemId =
+						aTiming.getEventBaseElementId();
 					if (sEventBaseElemId) {
 						// const aEventBaseElem =
 						// 	aNodeContext.aContext.getSlideElement(sEventBaseElemId);
@@ -193,16 +204,24 @@ function registerEvent(
 							);
 							return;
 						}
-						const aSourceEventElement = aNodeContext.makeSourceEventElement(
-							sEventBaseElemId,
-							aSlideShow,
-							aEventBaseElem,
-						);
+						const aSourceEventElement =
+							aNodeContext.makeSourceEventElement(
+								sEventBaseElemId,
+								aSlideShow,
+								aEventBaseElem,
+							);
 
-						if (!aInteractiveAnimationSequenceMap.has(nNodeId)) {
+						if (
+							!aInteractiveAnimationSequenceMap.has(
+								nNodeId,
+							)
+						) {
 							aInteractiveAnimationSequenceMap.set(
 								nNodeId,
-								new InteractiveAnimationSequence(nNodeId, aSlideShow),
+								new InteractiveAnimationSequence(
+									nNodeId,
+									aSlideShow,
+								),
 							);
 						}
 
@@ -216,22 +235,27 @@ function registerEvent(
 								);
 								aEventMultiplexer.registerRewindedEffectHandler(
 									aSourceEventElement.getId(),
-									aSourceEventElement.charge.bind(aSourceEventElement),
+									aSourceEventElement.charge.bind(
+										aSourceEventElement,
+									),
 								);
 								bEventRegistered = true;
 								break;
 							default:
 								window.app.console.log(
-									'generateEvent: not handled event type: ' + eEventType,
+									'generateEvent: not handled event type: ' +
+										eEventType,
 								);
 						}
 						if (bEventRegistered) {
-							const aStartEvent = aInteractiveAnimationSequenceMap
-								.get(nNodeId)
-								.getStartEvent();
-							const aEndEvent = aInteractiveAnimationSequenceMap
-								.get(nNodeId)
-								.getEndEvent();
+							const aStartEvent =
+								aInteractiveAnimationSequenceMap
+									.get(nNodeId)
+									.getStartEvent();
+							const aEndEvent =
+								aInteractiveAnimationSequenceMap
+									.get(nNodeId)
+									.getEndEvent();
 							aEventMultiplexer.registerEvent(
 								eEventType,
 								aSourceEventElement.getId(),
@@ -247,19 +271,24 @@ function registerEvent(
 								aInteractiveAnimationSequenceMap
 									.get(nNodeId)
 									.chargeEvents.bind(
-										aInteractiveAnimationSequenceMap.get(nNodeId),
+										aInteractiveAnimationSequenceMap.get(
+											nNodeId,
+										),
 									),
 							);
 						}
 					} // no base event element present
 					else {
 						switch (eEventType) {
-							case EventTrigger.OnNextEffect:
-								aNextEffectEventArray.appendEvent(aEvent);
+							case EventTrigger.OnNext:
+								aNextEffectEventArray.appendEvent(
+									aEvent,
+								);
 								break;
 							default:
 								window.app.console.log(
-									'registerEvent: not handled event type: ' + eEventType,
+									'registerEvent: not handled event type: ' +
+										eEventType,
 								);
 						}
 					}
@@ -268,10 +297,13 @@ function registerEvent(
 			case TimingType.SyncBase:
 				{
 					const eEventType = aTiming.getEventType();
-					const sEventBaseElemId = aTiming.getEventBaseElementId();
+					const sEventBaseElemId =
+						aTiming.getEventBaseElementId();
 					if (sEventBaseElemId) {
 						const aAnimationNode =
-							aNodeContext.aAnimationNodeMap.get(sEventBaseElemId);
+							aNodeContext.aAnimationNodeMap.get(
+								sEventBaseElemId,
+							);
 						if (!aAnimationNode) {
 							window.app.console.log(
 								'registerEvent: TimingType.SyncBase: event base element not found: ' +
@@ -293,7 +325,8 @@ function registerEvent(
 				break;
 			default:
 				window.app.console.log(
-					'registerEvent: not handled timing type: ' + eTimingType,
+					'registerEvent: not handled timing type: ' +
+						eTimingType,
 				);
 		}
 	}

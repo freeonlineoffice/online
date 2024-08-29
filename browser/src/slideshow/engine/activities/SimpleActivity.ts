@@ -66,7 +66,9 @@ class SimpleActivity extends ContinuousActivityBase {
 		if (this.isDisposed() || !this.aAnimation) return;
 
 		const nT =
-			1.0 - this.nDirection + nModifiedTime * (2.0 * this.nDirection - 1.0);
+			1.0 -
+			this.nDirection +
+			nModifiedTime * (2.0 * this.nDirection - 1.0);
 		this.aAnimation.perform(nT);
 	}
 

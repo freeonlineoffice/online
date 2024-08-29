@@ -54,7 +54,8 @@ abstract class AnimationBaseNode extends BaseNode {
 
 		// additive property
 		if (aNodeInfo.additive && aNodeInfo.additive in AdditiveMode) {
-			const sAdditive = aNodeInfo.additive as keyof typeof AdditiveMode;
+			const sAdditive =
+				aNodeInfo.additive as keyof typeof AdditiveMode;
 			this.eAdditiveMode = AdditiveMode[sAdditive];
 		} else {
 			this.eAdditiveMode = AdditiveMode.Replace;
@@ -66,11 +67,16 @@ abstract class AnimationBaseNode extends BaseNode {
 				SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS
 			: SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
 		if (this.nMinFrameCount < 1.0) this.nMinFrameCount = 1;
-		else if (this.nMinFrameCount > SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS)
-			this.nMinFrameCount = SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
+		else if (
+			this.nMinFrameCount > SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS
+		)
+			this.nMinFrameCount =
+				SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
 
 		if (this.aTargetHash) {
-			if (!this.aNodeContext.aAnimatedElementMap.has(this.aTargetHash)) {
+			if (
+				!this.aNodeContext.aAnimatedElementMap.has(this.aTargetHash)
+			) {
 				// TODO: pass correct arguments
 				const aAnimatedElement = this.bIsTargetTextElement
 					? new AnimatedTextElement(this.aTargetHash, null, null)
@@ -81,9 +87,8 @@ abstract class AnimationBaseNode extends BaseNode {
 					aAnimatedElement,
 				);
 			}
-			this.aAnimatedElement = this.aNodeContext.aAnimatedElementMap.get(
-				this.aTargetHash,
-			);
+			this.aAnimatedElement =
+				this.aNodeContext.aAnimatedElementMap.get(this.aTargetHash);
 
 			// set additive mode
 			this.aAnimatedElement.setAdditiveMode(this.eAdditiveMode);
@@ -108,7 +113,9 @@ abstract class AnimationBaseNode extends BaseNode {
 			if (this.getContext().bIsSkipping) {
 				this.aActivity.end();
 			} else {
-				this.getContext().aActivityQueue.addActivity(this.aActivity);
+				this.getContext().aActivityQueue.addActivity(
+					this.aActivity,
+				);
 			}
 		} else {
 			super.scheduleDeactivationEvent();
@@ -121,7 +128,10 @@ abstract class AnimationBaseNode extends BaseNode {
 		}
 		if (eDestState === NodeState.Ended) {
 			if (this.aActivity) this.aActivity.dispose();
-			if (this.getFillMode() === FillModes.Remove && this.getAnimatedElement())
+			if (
+				this.getFillMode() === FillModes.Remove &&
+				this.getAnimatedElement()
+			)
 				this.removeEffect();
 		}
 	}
@@ -151,8 +161,10 @@ abstract class AnimationBaseNode extends BaseNode {
 		aActivityParamSet.nRepeatCount = this.getRepeatCount();
 		aActivityParamSet.nAccelerationFraction = this.getAccelerateValue();
 		aActivityParamSet.nDecelerationFraction = this.getDecelerateValue();
-		aActivityParamSet.nSlideWidth = this.aNodeContext.aSlideWidth;
-		aActivityParamSet.nSlideHeight = this.aNodeContext.aSlideHeight;
+		aActivityParamSet.nSlideWidth =
+			this.aNodeContext.aContext.nSlideWidth;
+		aActivityParamSet.nSlideHeight =
+			this.aNodeContext.aContext.nSlideHeight;
 
 		return aActivityParamSet;
 	}
@@ -236,6 +248,8 @@ abstract class AnimationBaseNode2 extends AnimationBaseNode {
 				'AnimationBaseNode2.parseElement: target attribute name not found: ' +
 					this.attributeName,
 			);
+		} else {
+			this.attributeName = this.attributeName.toLowerCase();
 		}
 		this.aToValue = aNodeInfo.to;
 	}
@@ -358,13 +372,16 @@ abstract class AnimationBaseNode3 extends AnimationBaseNode2 {
 		if (verbose) {
 			// accumulate mode
 			if (this.getAccumulate())
-				sInfo += ';  accumulate: ' + AccumulateMode[this.getAccumulate()];
+				sInfo +=
+					';  accumulate: ' +
+					AccumulateMode[this.getAccumulate()];
 
 			// calcMode
 			sInfo += ';  calcMode: ' + CalcMode[this.getCalcMode()];
 
 			// from
-			if (this.getFromValue()) sInfo += ';  from: ' + this.getFromValue();
+			if (this.getFromValue())
+				sInfo += ';  from: ' + this.getFromValue();
 
 			// by
 			if (this.getByValue()) sInfo += ';  by: ' + this.getByValue();
@@ -378,7 +395,8 @@ abstract class AnimationBaseNode3 extends AnimationBaseNode2 {
 				sInfo += ';  values: ' + this.getValues().join(',');
 
 			// formula
-			if (this.getFormula()) sInfo += ';  formula: ' + this.getFormula();
+			if (this.getFormula())
+				sInfo += ';  formula: ' + this.getFormula();
 		}
 		return sInfo;
 	}

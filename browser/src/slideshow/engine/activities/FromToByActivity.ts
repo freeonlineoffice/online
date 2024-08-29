@@ -79,7 +79,9 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 
 		public initAnimatedElement() {
 			if (this.aAnimation && this.aFrom) {
-				const aValue = this.aFormula ? this.aFormula(this.aFrom) : this.aFrom;
+				const aValue = this.aFormula
+					? this.aFormula(this.aFrom)
+					: this.aFrom;
 				this.aAnimation.perform(aValue);
 			}
 		}
@@ -96,7 +98,8 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 
 			this.aAnimation.start(this.getTargetElement());
 
-			const aAnimationStartValue = this.aAnimation.getUnderlyingValue();
+			const aAnimationStartValue =
+				this.aAnimation.getUnderlyingValue();
 
 			// first of all, determine general type of
 			// animation, by inspecting which of the FromToBy values
@@ -155,7 +158,10 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 		}
 
 		// perform hook override for ContinuousActivityBase
-		public performContinuousHook(nModifiedTime: number, nRepeatCount: number) {
+		public performContinuousHook(
+			nModifiedTime: number,
+			nRepeatCount: number,
+		) {
 			if (this.isDisposed() || !this.aAnimation) {
 				window.app.console.log(
 					'FromToByActivity.performContinuousHook: activity disposed or not valid animation',
@@ -188,7 +194,8 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 					this.nIteration = nRepeatCount;
 					this.aStartInterpolationValue = this.aStartValue;
 				} else {
-					const aActualValue = this.aAnimation.getUnderlyingValue();
+					const aActualValue =
+						this.aAnimation.getUnderlyingValue();
 					if (!this.equal(aActualValue, this.aPreviousValue))
 						this.aStartInterpolationValue = aActualValue;
 				}
@@ -205,7 +212,10 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 			// the target attribute, cumulative animation is not defined.
 			if (this.bCumulative && !this.bDynamicStartValue) {
 				// aValue = this.aEndValue * nRepeatCount + aValue;
-				aValue = this.add(this.scale(nRepeatCount, this.aEndValue), aValue);
+				aValue = this.add(
+					this.scale(nRepeatCount, this.aEndValue),
+					aValue,
+				);
 			}
 
 			aValue = this.aFormula ? this.aFormula(aValue) : aValue;
@@ -228,7 +238,9 @@ function FromToByActivityTemplate<T extends AGConstructor<ActivityBase>>(
 
 		public performEnd() {
 			if (this.aAnimation) {
-				let aValue = this.isAutoReverse() ? this.aStartValue : this.aEndValue;
+				let aValue = this.isAutoReverse()
+					? this.aStartValue
+					: this.aEndValue;
 				aValue = this.aFormula ? this.aFormula(aValue) : aValue;
 				this.aAnimation.perform(aValue);
 			}

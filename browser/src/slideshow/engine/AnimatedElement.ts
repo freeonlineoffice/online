@@ -34,11 +34,9 @@ namespace PropertyOperators {
 			return a === b;
 		},
 		add: (a: any, b: any) => {
-			b;
 			return a;
 		},
 		scale: (k: any, v: any) => {
-			k;
 			return v;
 		},
 	};
@@ -245,7 +243,11 @@ class AnimatedElement {
 	private bVisible: boolean;
 	private aSlideShowContext: SlideShowContext;
 
-	constructor(sId: string, aLayer: HTMLImageElement, aBBox: BoundingBoxType) {
+	constructor(
+		sId: string,
+		aLayer: HTMLImageElement,
+		aBBox: BoundingBoxType,
+	) {
 		if (!aLayer) {
 			window.app.console.log(
 				'AnimatedElement constructor: layer argument not valid',
@@ -255,6 +257,9 @@ class AnimatedElement {
 			window.app.console.log(
 				'AnimatedElement constructor: bounding box argument not valid',
 			);
+
+			// TODO: remove this dummy bounding box once core sends a real one
+			aBBox = new DOMRect(0, 0, 1000, 1000);
 		}
 
 		this.sId = sId;
@@ -270,7 +275,7 @@ class AnimatedElement {
 	}
 
 	private createBaseElement(): AnimatedObjectType {
-		// TODO crop the layer to the bbox and return it as a bitmap or canvas.
+		// TODO maybe crop the layer to the bbox and return it as a bitmap or canvas.
 		return null;
 	}
 
@@ -520,7 +525,8 @@ class AnimatedElement {
 		const nNewCenterX = aNewPos[0];
 		const nNewCenterY = aNewPos[1];
 
-		if (nNewCenterX === this.nCenterX && nNewCenterY === this.nCenterY) return;
+		if (nNewCenterX === this.nCenterX && nNewCenterY === this.nCenterY)
+			return;
 
 		this.aTMatrix.translateSelf(
 			nNewCenterX - this.nCenterX,
@@ -529,7 +535,11 @@ class AnimatedElement {
 		this.nCenterX = nNewCenterX;
 		this.nCenterY = nNewCenterY;
 		window.app.console.log(
-			'AnimatedElement.setPos(' + nNewCenterX + ', ' + nNewCenterY + ')',
+			'AnimatedElement.setPos(' +
+				nNewCenterX +
+				', ' +
+				nNewCenterY +
+				')',
 		);
 	}
 
@@ -537,7 +547,9 @@ class AnimatedElement {
 		ANIMDBG.print('AnimatedElement.setWidth: nNewWidth = ' + nNewWidth);
 		if (nNewWidth < 0) {
 			window.app.console.log(
-				'AnimatedElement(' + this.getId() + ').setWidth: negative width!',
+				'AnimatedElement(' +
+					this.getId() +
+					').setWidth: negative width!',
 			);
 			nNewWidth = 0;
 		}
@@ -563,7 +575,9 @@ class AnimatedElement {
 		ANIMDBG.print('AnimatedElement.setWidth: nNewHeight = ' + nNewHeight);
 		if (nNewHeight < 0) {
 			window.app.console.log(
-				'AnimatedElement(' + this.getId() + ').setWidth: negative height!',
+				'AnimatedElement(' +
+					this.getId() +
+					').setWidth: negative height!',
 			);
 			nNewHeight = 0;
 		}
@@ -582,24 +596,34 @@ class AnimatedElement {
 			.translate(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorY = nScaleFactorY;
-		window.app.console.log('AnimatedElement.setHeight(' + nNewHeight + ')');
+		window.app.console.log(
+			'AnimatedElement.setHeight(' + nNewHeight + ')',
+		);
 	}
 
 	setSize(aNewSize: [number, number]) {
 		let nNewWidth = aNewSize[0];
 		let nNewHeight = aNewSize[1];
 		ANIMDBG.print(
-			'AnimatedElement.setSize:  = [' + nNewWidth + ',' + nNewHeight + ']',
+			'AnimatedElement.setSize:  = [' +
+				nNewWidth +
+				',' +
+				nNewHeight +
+				']',
 		);
 		if (nNewWidth < 0) {
 			window.app.console.log(
-				'AnimatedElement(' + this.getId() + ').setSize: negative width!',
+				'AnimatedElement(' +
+					this.getId() +
+					').setSize: negative width!',
 			);
 			nNewWidth = 0;
 		}
 		if (nNewHeight < 0) {
 			window.app.console.log(
-				'AnimatedElement(' + this.getId() + ').setSize: negative height!',
+				'AnimatedElement(' +
+					this.getId() +
+					').setSize: negative height!',
 			);
 			nNewHeight = 0;
 		}
@@ -665,28 +689,38 @@ class AnimatedElement {
 
 	setVisibility(bValue: boolean) {
 		this.bVisible = bValue;
-		window.app.console.log('AnimatedElement.setVisibility(' + bValue + ')');
+		window.app.console.log(
+			'AnimatedElement.setVisibility(' + bValue + ')',
+		);
 	}
 
 	getFillColor(): any {
-		window.app.console.log('AnimatedElement.getFillColor() not implemented');
+		window.app.console.log(
+			'AnimatedElement.getFillColor() not implemented',
+		);
 		return null;
 	}
 
 	setFillColor(aRGBValue: any) {
 		window.app.console.log(
-			'AnimatedElement.setFillColor(' + aRGBValue + ') not implemented',
+			'AnimatedElement.setFillColor(' +
+				aRGBValue +
+				') not implemented',
 		);
 	}
 
 	getStrokeColor(): any {
-		window.app.console.log('AnimatedElement.getStrokeColor() not implemented');
+		window.app.console.log(
+			'AnimatedElement.getStrokeColor() not implemented',
+		);
 		return null;
 	}
 
 	setStrokeColor(aRGBValue: any) {
 		window.app.console.log(
-			'AnimatedElement.setStrokeColor(' + aRGBValue + ') not implemented',
+			'AnimatedElement.setStrokeColor(' +
+				aRGBValue +
+				') not implemented',
 		);
 	}
 

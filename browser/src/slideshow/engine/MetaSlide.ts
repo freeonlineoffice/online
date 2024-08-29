@@ -27,11 +27,15 @@ class MetaSlide {
 		if (this.hasTransition())
 			this._transitionHandler = new SlideTransition(slideInfo);
 
-		this._animationsHandler = new SlideAnimations(
-			this._slideShowHandler.getContext(),
-		);
-		this._animationsHandler.importAnimations(slideInfo.animations.root);
-		this._animationsHandler.parseInfo();
+		if (slideInfo.animations) {
+			this._animationsHandler = new SlideAnimations(
+				this._slideShowHandler.getContext(),
+			);
+			this._animationsHandler.importAnimations(
+				slideInfo.animations.root,
+			);
+			this._animationsHandler.parseInfo();
+		}
 	}
 
 	public hasTransition(): boolean {
@@ -43,11 +47,15 @@ class MetaSlide {
 	}
 
 	public get next(): MetaSlide {
-		return this.info.next ? this._metaPres.getMetaSlide(this.info.next) : null;
+		return this.info.next
+			? this._metaPres.getMetaSlide(this.info.next)
+			: null;
 	}
 
 	public get prev(): MetaSlide {
-		return this.info.prev ? this._metaPres.getMetaSlide(this.info.prev) : null;
+		return this.info.prev
+			? this._metaPres.getMetaSlide(this.info.prev)
+			: null;
 	}
 
 	public get transitionHandler(): SlideTransition {

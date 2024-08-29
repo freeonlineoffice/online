@@ -42,7 +42,8 @@ class SetActivity extends AnimationActivity {
 
 	public dispose() {
 		this.bIsActive = false;
-		if (this.aEndEvent && this.aEndEvent.isCharged()) this.aEndEvent.dispose();
+		if (this.aEndEvent && this.aEndEvent.isCharged())
+			this.aEndEvent.dispose();
 	}
 
 	public calcTimeLag() {

@@ -10,8 +10,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-abstract class MouseClickHandler {
-	abstract handleClick(aMouseEvent?: any): boolean;
+interface MouseClickHandler {
+	handleClick: (aMouseEvent?: any) => boolean;
 }
 
 class EventMultiplexer {
@@ -30,7 +30,10 @@ class EventMultiplexer {
 		number,
 		DelayEvent
 	>();
-	private aRewindEndedInteractiveEffectEventSet = new Map<number, DelayEvent>();
+	private aRewindEndedInteractiveEffectEventSet = new Map<
+		number,
+		DelayEvent
+	>();
 	private aRewindedEffectHandlerSet = new Map<string, Handler0>();
 	private aElementChangedHandlerSet = new Map<string, Handler1>();
 
@@ -43,6 +46,24 @@ class EventMultiplexer {
 	private static getUniqueId() {
 		++EventMultiplexer.CURR_UNIQUE_ID;
 		return EventMultiplexer.CURR_UNIQUE_ID;
+	}
+
+	clear() {
+		this.aEventMap.clear();
+		this.aEventMap = null;
+		this.aSkipEffectEndHandlerSet = null;
+		this.aMouseClickHandlerSet.clear();
+		this.aMouseClickHandlerSet = null;
+		this.aSkipInteractiveEffectEventSet.clear();
+		this.aSkipInteractiveEffectEventSet = null;
+		this.aRewindRunningInteractiveEffectEventSet.clear();
+		this.aRewindRunningInteractiveEffectEventSet = null;
+		this.aRewindEndedInteractiveEffectEventSet.clear();
+		this.aRewindEndedInteractiveEffectEventSet = null;
+		this.aRewindedEffectHandlerSet.clear();
+		this.aRewindedEffectHandlerSet = null;
+		this.aElementChangedHandlerSet.clear();
+		this.aElementChangedHandlerSet = null;
 	}
 
 	getId() {
@@ -58,13 +79,14 @@ class EventMultiplexer {
 		this.aMouseClickHandlerSet.push(aHandlerEntry);
 	}
 
-	// TODO: look where this method is used
 	notifyMouseClick(aMouseEvent: any) {
 		const aMouseClickHandlerSet = this.aMouseClickHandlerSet.clone();
 		while (!aMouseClickHandlerSet.isEmpty()) {
 			const aHandlerEntry = aMouseClickHandlerSet.top();
 			aMouseClickHandlerSet.pop();
-			if (aHandlerEntry.aValue.handleClick(aMouseEvent)) break;
+			if (aHandlerEntry.aValue && aHandlerEntry.aValue.handleClick) {
+				if (aHandlerEntry.aValue.handleClick(aMouseEvent)) break;
+			}
 		}
 	}
 
@@ -89,7 +111,9 @@ class EventMultiplexer {
 		this.DBG('notifyEvent', eEventType, sNotifierId);
 		if (this.aEventMap.has(eEventType)) {
 			if (this.aEventMap.get(eEventType).has(sNotifierId)) {
-				const aEventArray = this.aEventMap.get(eEventType).get(sNotifierId);
+				const aEventArray = this.aEventMap
+					.get(eEventType)
+					.get(sNotifierId);
 				const nSize = aEventArray.length;
 				for (let i = 0; i < nSize; ++i) {
 					this.aTimerEventQueue.addEvent(aEventArray[i]);
@@ -151,7 +175,10 @@ class EventMultiplexer {
 		}
 	}
 
-	registerSkipInteractiveEffectEvent(nNotifierId: number, aEvent: DelayEvent) {
+	registerSkipInteractiveEffectEvent(
+		nNotifierId: number,
+		aEvent: DelayEvent,
+	) {
 		this.aSkipInteractiveEffectEventSet.set(nNotifierId, aEvent);
 	}
 
@@ -173,7 +200,9 @@ class EventMultiplexer {
 	notifyRewindRunningInteractiveEffectEvent(nNotifierId: number) {
 		if (this.aRewindRunningInteractiveEffectEventSet.has(nNotifierId)) {
 			this.aTimerEventQueue.addEvent(
-				this.aRewindRunningInteractiveEffectEventSet.get(nNotifierId),
+				this.aRewindRunningInteractiveEffectEventSet.get(
+					nNotifierId,
+				),
 			);
 		}
 	}

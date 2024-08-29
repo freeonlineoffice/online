@@ -116,7 +116,10 @@ function createStateTransitionTable() {
 		[NodeState.Resolved, NodeState.Active | NodeState.Ended],
 		[NodeState.Active, NodeState.Ended],
 		[NodeState.Frozen, NodeState.Invalid], // this state is unreachable here
-		[NodeState.Ended, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
+		[
+			NodeState.Ended,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
 	]);
 	aSTT.get(RestartMode.WhenNotActive).set(FillModes.Remove, aTable2);
 
@@ -126,8 +129,14 @@ function createStateTransitionTable() {
 		[NodeState.Unresolved, NodeState.Resolved | NodeState.Ended],
 		[NodeState.Resolved, NodeState.Active | NodeState.Ended],
 		[NodeState.Active, NodeState.Frozen | NodeState.Ended],
-		[NodeState.Frozen, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
-		[NodeState.Ended, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
+		[
+			NodeState.Frozen,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
+		[
+			NodeState.Ended,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
 	]);
 	aSTT.get(RestartMode.WhenNotActive).set(FillModes.Freeze, aTable3);
 	aSTT.get(RestartMode.WhenNotActive).set(FillModes.Hold, aTable3);
@@ -138,9 +147,15 @@ function createStateTransitionTable() {
 		[NodeState.Invalid, NodeState.Invalid],
 		[NodeState.Unresolved, NodeState.Resolved | NodeState.Ended],
 		[NodeState.Resolved, NodeState.Active | NodeState.Ended],
-		[NodeState.Active, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
+		[
+			NodeState.Active,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
 		[NodeState.Frozen, NodeState.Invalid], // this state is unreachable here
-		[NodeState.Ended, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
+		[
+			NodeState.Ended,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
 	]);
 	aSTT.get(RestartMode.Always).set(FillModes.Remove, aTable4);
 
@@ -156,8 +171,14 @@ function createStateTransitionTable() {
 				NodeState.Frozen |
 				NodeState.Ended,
 		],
-		[NodeState.Frozen, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
-		[NodeState.Ended, NodeState.Resolved | NodeState.Active | NodeState.Ended], // restart is possible
+		[
+			NodeState.Frozen,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
+		[
+			NodeState.Ended,
+			NodeState.Resolved | NodeState.Active | NodeState.Ended,
+		], // restart is possible
 	]);
 	aSTT.get(RestartMode.Always).set(FillModes.Freeze, aTable5);
 	aSTT.get(RestartMode.Always).set(FillModes.Hold, aTable5);
@@ -207,11 +228,15 @@ class StateTransition {
 			);
 			return false;
 		}
-		if (!bForce && !this.aNode.isTransition(this.aNode.getState(), eNodeState))
+		if (
+			!bForce &&
+			!this.aNode.isTransition(this.aNode.getState(), eNodeState)
+		)
 			return false;
 
 		// recursion detection:
-		if ((this.aNode.nCurrentStateTransition & eNodeState) != 0) return false; // already in wanted transition
+		if ((this.aNode.nCurrentStateTransition & eNodeState) != 0)
+			return false; // already in wanted transition
 
 		// mark transition:
 		this.aNode.nCurrentStateTransition |= eNodeState;
@@ -276,12 +301,16 @@ abstract class BaseNode {
 
 		if (!aNodeInfo)
 			window.app.console.log(
-				'BaseNode(id:' + this.nId + ') constructor: aNodeInfo is not valid',
+				'BaseNode(id:' +
+					this.nId +
+					') constructor: aNodeInfo is not valid',
 			);
 
 		if (!aNodeContext)
 			window.app.console.log(
-				'BaseNode(id:' + this.nId + ') constructor: aNodeContext is not valid',
+				'BaseNode(id:' +
+					this.nId +
+					') constructor: aNodeContext is not valid',
 			);
 
 		if (!aNodeContext.aContext)
@@ -332,8 +361,11 @@ abstract class BaseNode {
 		this.aBegin = new Timing(this, this.aNodeInfo.begin);
 		this.aBegin.parse();
 
-		this.aEnd = new Timing(this, this.aNodeInfo.end);
-		this.aEnd.parse();
+		this.aEnd = null;
+		if (this.aNodeInfo.end) {
+			this.aEnd = new Timing(this, this.aNodeInfo.end);
+			this.aEnd.parse();
+		}
 
 		this.aDuration = new Duration(this.aNodeInfo.dur);
 		if (!this.aDuration.isSet()) {
@@ -349,7 +381,8 @@ abstract class BaseNode {
 		}
 
 		if (this.aNodeInfo.restart && this.aNodeInfo.restart in RestartMode) {
-			const sRestart = this.aNodeInfo.restart as keyof typeof RestartMode;
+			const sRestart = this.aNodeInfo
+				.restart as keyof typeof RestartMode;
 			this.eRestartMode = RestartMode[sRestart];
 		} else {
 			this.eRestartMode = RestartMode.Default;
@@ -358,7 +391,10 @@ abstract class BaseNode {
 		this.nRepeatCount = 1;
 		if (this.aNodeInfo.repeatCount)
 			this.nRepeatCount = parseFloat(this.aNodeInfo.repeatCount);
-		if (isNaN(this.nRepeatCount) && this.aNodeInfo.repeatCount !== 'indefinite')
+		if (
+			isNaN(this.nRepeatCount) &&
+			this.aNodeInfo.repeatCount !== 'indefinite'
+		)
 			this.nRepeatCount = 1;
 
 		this.nAccelerate = 0.0;
@@ -432,12 +468,15 @@ abstract class BaseNode {
 	}
 
 	public resolve() {
-		if (this.aNodeContext.bIsInvalid || !this.checkValidNode()) return false;
+		if (this.aNodeContext.bIsInvalid || !this.checkValidNode())
+			return false;
 
 		this.DBG(this.callInfo('resolve'));
 
 		if (this.eCurrentState == NodeState.Resolved)
-			window.app.console.log('BaseNode.resolve: already in RESOLVED state');
+			window.app.console.log(
+				'BaseNode.resolve: already in RESOLVED state',
+			);
 
 		const aStateTrans = new StateTransition(this);
 
@@ -474,7 +513,9 @@ abstract class BaseNode {
 		if (!this.checkValidNode()) return false;
 
 		if (this.eCurrentState === NodeState.Active)
-			window.app.console.log('BaseNode.activate: already in ACTIVE state');
+			window.app.console.log(
+				'BaseNode.activate: already in ACTIVE state',
+			);
 
 		this.DBG(this.callInfo('activate'), getCurrentSystemTime());
 
@@ -514,7 +555,8 @@ abstract class BaseNode {
 				this.notifyEndListeners();
 
 				if (this.aActivationEvent) this.aActivationEvent.dispose();
-				if (this.aDeactivationEvent) this.aDeactivationEvent.dispose();
+				if (this.aDeactivationEvent)
+					this.aDeactivationEvent.dispose();
 			}
 		} else {
 			this.end();
@@ -526,7 +568,10 @@ abstract class BaseNode {
 		const bIsFrozenOrInTransitionToFrozen = this.inStateOrTransition(
 			NodeState.Frozen,
 		);
-		if (this.inStateOrTransition(NodeState.Ended) || !this.checkValidNode())
+		if (
+			this.inStateOrTransition(NodeState.Ended) ||
+			!this.checkValidNode()
+		)
 			return;
 
 		if (!this.isTransition(this.eCurrentState, NodeState.Ended))
@@ -602,7 +647,10 @@ abstract class BaseNode {
 		if (this.aDeactivationEvent) {
 			this.aDeactivationEvent.charge();
 		} else if (typeof nDelay == typeof 0) {
-			this.aDeactivationEvent = makeDelay(this.deactivate.bind(this), nDelay);
+			this.aDeactivationEvent = makeDelay(
+				this.deactivate.bind(this),
+				nDelay,
+			);
 		} else {
 			this.aDeactivationEvent = null;
 		}
@@ -614,7 +662,9 @@ abstract class BaseNode {
 
 		if (!aEvent) {
 			if (this.getDuration() && this.getDuration().isValue())
-				aEvent = this.makeDeactivationEvent(this.getDuration().getValue());
+				aEvent = this.makeDeactivationEvent(
+					this.getDuration().getValue(),
+				);
 		}
 		if (aEvent) {
 			this.aContext.aTimerEventQueue.addEvent(aEvent);
@@ -642,7 +692,8 @@ abstract class BaseNode {
 	}
 
 	public notifyEndListeners() {
-		const nDeactivatingListenerCount = this.aDeactivatingListenerArray.length;
+		const nDeactivatingListenerCount =
+			this.aDeactivatingListenerArray.length;
 
 		for (let i = 0; i < nDeactivatingListenerCount; ++i) {
 			this.aDeactivatingListenerArray[i].notifyDeactivating(this);
@@ -652,7 +703,10 @@ abstract class BaseNode {
 			EventTrigger.EndEvent,
 			this.getId(),
 		);
-		if (this.getParentNode() && this.getParentNode().isMainSequenceRootNode())
+		if (
+			this.getParentNode() &&
+			this.getParentNode().isMainSequenceRootNode()
+		)
 			this.aContext.aEventMultiplexer.notifyNextEffectEndEvent();
 
 		if (this.isMainSequenceRootNode())
@@ -721,10 +775,12 @@ abstract class BaseNode {
 			sInfo += ';  is container: ' + this.isContainer();
 
 			// begin
-			if (this.getBegin()) sInfo += ';  begin: ' + this.getBegin().info();
+			if (this.getBegin())
+				sInfo += ';  begin: ' + this.getBegin().info();
 
 			// duration
-			if (this.getDuration()) sInfo += ';  dur: ' + this.getDuration().info();
+			if (this.getDuration())
+				sInfo += ';  dur: ' + this.getDuration().info();
 
 			// end
 			if (this.getEnd()) sInfo += ';  end: ' + this.getEnd().info();
@@ -735,7 +791,8 @@ abstract class BaseNode {
 
 			// restart mode
 			if (this.getRestartMode())
-				sInfo += ';  restart: ' + RestartMode[this.getRestartMode()];
+				sInfo +=
+					';  restart: ' + RestartMode[this.getRestartMode()];
 
 			// repeatCount
 			if (this.getRepeatCount() && this.getRepeatCount() != 1.0)

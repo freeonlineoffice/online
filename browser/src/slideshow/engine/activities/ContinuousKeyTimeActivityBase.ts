@@ -69,7 +69,8 @@ class KeyStopLerp {
 		}
 
 		let nRawLerp =
-			(nAlpha - this.aKeyStopList[this.nLastIndex]) / this.nKeyStopDistance;
+			(nAlpha - this.aKeyStopList[this.nLastIndex]) /
+			this.nKeyStopDistance;
 
 		nRawLerp = clampN(nRawLerp, 0.0, 1.0);
 

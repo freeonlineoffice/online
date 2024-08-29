@@ -57,15 +57,14 @@ class ElapsedTime {
 		this.nStartTime += nPauseDuration;
 	}
 
-	adjustTimer(nOffset: number, bLimitToLastQueriedTime: boolean) {
-		if (bLimitToLastQueriedTime == undefined) bLimitToLastQueriedTime = true;
-
+	adjustTimer(nOffset: number) {
 		// to make getElapsedTime() become _larger_, have to reduce nStartTime.
 		this.nStartTime -= nOffset;
 
 		// also adjust frozen time, this method must _always_ affect the
 		// value returned by getElapsedTime()!
-		if (this.bInHoldMode || this.bInPauseMode) this.nFrozenTime += nOffset;
+		if (this.bInHoldMode || this.bInPauseMode)
+			this.nFrozenTime += nOffset;
 	}
 
 	holdTimer() {

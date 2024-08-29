@@ -21,7 +21,9 @@ class TimerEventQueue {
 
 	addEvent(aEvent: EventBase) {
 		this.DBG(
-			'TimerEventQueue.addEvent event(' + aEvent.getId() + ') appended.',
+			'TimerEventQueue.addEvent event(' +
+				aEvent.getId() +
+				') appended.',
 		);
 		if (!aEvent) {
 			window.app.console.log('TimerEventQueue.addEvent: null event');
@@ -48,7 +50,8 @@ class TimerEventQueue {
 
 		while (
 			!this.isEmpty() &&
-			(bFireAllEvents || this.aEventSet.top().nActivationTime <= nCurrentTime)
+			(bFireAllEvents ||
+				this.aEventSet.top().nActivationTime <= nCurrentTime)
 		) {
 			const aEventEntry = this.aEventSet.top();
 			this.aEventSet.pop();

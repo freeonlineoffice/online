@@ -24,6 +24,7 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 		aNodeContext: NodeContext,
 	) {
 		super(aNodeInfo, aParentNode, aNodeContext);
+		this.sClassName = 'AnimationTransitionFilterNode';
 	}
 
 	public parseNodeInfo() {
@@ -36,7 +37,8 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 		this.eTransitionType = undefined;
 		if (
 			aNodeInfo.transitionType &&
-			stringToTransitionTypeMap[aNodeInfo.transitionType] in TransitionType
+			stringToTransitionTypeMap[aNodeInfo.transitionType] in
+				TransitionType
 		) {
 			this.eTransitionType =
 				stringToTransitionTypeMap[aNodeInfo.transitionType];
@@ -50,7 +52,8 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 
 		// subtype property
 		this.eTransitionSubType = undefined;
-		if (!aNodeInfo.transitionSubType) aNodeInfo.transitionSubType = 'Default';
+		if (!aNodeInfo.transitionSubType)
+			aNodeInfo.transitionSubType = 'Default';
 		if (
 			stringToTransitionSubTypeMap[aNodeInfo.transitionSubType] in
 			TransitionSubType
@@ -76,14 +79,16 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 			);
 		}
 
-		this.bIsReverseDirection = aNodeInfo.transitionDirection === 'reverse';
+		this.bIsReverseDirection =
+			aNodeInfo.transitionDirection === 'reverse';
 
 		this.eTransitionMode = TransitionMode.in;
 		if (
 			aNodeInfo.transitionMode &&
 			aNodeInfo.transitionMode in TransitionMode
 		) {
-			const sMode = aNodeInfo.transitionMode as keyof typeof TransitionMode;
+			const sMode =
+				aNodeInfo.transitionMode as keyof typeof TransitionMode;
 			this.eTransitionMode = TransitionMode[sMode];
 		}
 	}
@@ -94,8 +99,8 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 		return createShapeTransition(
 			aActivityParamSet,
 			this.getAnimatedElement(),
-			this.aNodeContext.aSlideWidth,
-			this.aNodeContext.aSlideHeight,
+			this.aNodeContext.aContext.nSlideWidth,
+			this.aNodeContext.aContext.nSlideHeight,
 			this,
 		);
 	}
@@ -121,10 +126,13 @@ class AnimationTransitionFilterNode extends AnimationBaseNode {
 
 		if (verbose) {
 			if (this.getTransitionType())
-				sInfo += '; type: ' + TransitionType[this.getTransitionType()];
+				sInfo +=
+					'; type: ' + TransitionType[this.getTransitionType()];
 
 			if (this.getTransitionSubtype())
-				sInfo += '; subtype: ' + TransitionSubType[this.getTransitionSubtype()];
+				sInfo +=
+					'; subtype: ' +
+					TransitionSubType[this.getTransitionSubtype()];
 
 			sInfo += '; is reverse direction: ' + this.getReverseDirection();
 

@@ -42,10 +42,13 @@ class ActivityQueue {
 		const nSize = this.aCurrentActivityWaitingSet.length;
 		let nLag = 0.0;
 		for (let i = 0; i < nSize; ++i) {
-			nLag = Math.max(nLag, this.aCurrentActivityWaitingSet[i].calcTimeLag());
+			nLag = Math.max(
+				nLag,
+				this.aCurrentActivityWaitingSet[i].calcTimeLag(),
+			);
 		}
 
-		if (nLag > 0.0) this.aTimer.adjustTimer(-nLag, true);
+		if (nLag > 0.0) this.aTimer.adjustTimer(-nLag);
 
 		while (this.aCurrentActivityWaitingSet.length != 0) {
 			const aActivity = this.aCurrentActivityWaitingSet.shift();
@@ -62,7 +65,8 @@ class ActivityQueue {
 
 		if (this.aCurrentActivityReinsertSet.length != 0) {
 			// TODO: optimization, try to swap reference here
-			this.aCurrentActivityWaitingSet = this.aCurrentActivityReinsertSet;
+			this.aCurrentActivityWaitingSet =
+				this.aCurrentActivityReinsertSet;
 			this.aCurrentActivityReinsertSet = [];
 		}
 	}
@@ -70,7 +74,8 @@ class ActivityQueue {
 	processDequeued() {
 		// notify all dequeued activities from last round
 		const nSize = this.aDequeuedActivitySet.length;
-		for (let i = 0; i < nSize; ++i) this.aDequeuedActivitySet[i].dequeued();
+		for (let i = 0; i < nSize; ++i)
+			this.aDequeuedActivitySet[i].dequeued();
 
 		this.aDequeuedActivitySet = [];
 	}
@@ -98,11 +103,13 @@ class ActivityQueue {
 	endAll() {
 		aActivityQueueDebugPrinter.print('ActivityQueue.endAll invoked');
 		let nSize = this.aCurrentActivityWaitingSet.length;
-		for (let i = 0; i < nSize; ++i) this.aCurrentActivityWaitingSet[i].end();
+		for (let i = 0; i < nSize; ++i)
+			this.aCurrentActivityWaitingSet[i].end();
 		this.aCurrentActivityWaitingSet = [];
 
 		nSize = this.aCurrentActivityReinsertSet.length;
-		for (let i = 0; i < nSize; ++i) this.aCurrentActivityReinsertSet[i].end();
+		for (let i = 0; i < nSize; ++i)
+			this.aCurrentActivityReinsertSet[i].end();
 		this.aCurrentActivityReinsertSet = [];
 	}
 

@@ -27,7 +27,10 @@ function createActivity(
 
 	// do we need to get an interpolator ?
 	if (!aInterpolator) {
-		aInterpolator = PropertyInterpolator.getInterpolator(eCalcMode, eValueType);
+		aInterpolator = PropertyInterpolator.getInterpolator(
+			eCalcMode,
+			eValueType,
+		);
 	}
 
 	// is it cumulative ?
@@ -55,7 +58,8 @@ function createActivity(
 		const width = aBBox.width / aActivityParamSet.nSlideWidth;
 		const height = aBBox.height / aActivityParamSet.nSlideHeight;
 		const x = (aBBox.x + aBBox.width / 2) / aActivityParamSet.nSlideWidth;
-		const y = (aBBox.y + aBBox.height / 2) / aActivityParamSet.nSlideHeight;
+		const y =
+			(aBBox.y + aBBox.height / 2) / aActivityParamSet.nSlideHeight;
 
 		aActivityParamSet.aFormula = function (__PARAM0__: any) {
 			return eval(sFormula);
@@ -94,7 +98,8 @@ function createActivity(
 				);
 			default:
 				window.app.console.log(
-					'createActivity: unexpected calculation mode: ' + CalcMode[eCalcMode],
+					'createActivity: unexpected calculation mode: ' +
+						CalcMode[eCalcMode],
 				);
 			// FALLTHROUGH intended
 			case CalcMode.Paced:
@@ -130,7 +135,8 @@ function createActivity(
 
 			default:
 				window.app.console.log(
-					'createActivity: unexpected calculation mode: ' + CalcMode[eCalcMode],
+					'createActivity: unexpected calculation mode: ' +
+						CalcMode[eCalcMode],
 				);
 			// FALLTHROUGH intended
 			case CalcMode.Paced:
@@ -299,7 +305,13 @@ function extractAttributeValues(
 				if (typeof aValueSet[i] === 'string') {
 					const aTuple = aValueSet[i].split(',');
 					const aValue: number[] = [];
-					evalValuesAttribute(aValue, aTuple, aBBox, nSlideWidth, nSlideHeight);
+					evalValuesAttribute(
+						aValue,
+						aTuple,
+						aBBox,
+						nSlideWidth,
+						nSlideHeight,
+					);
 					aValueList.push(aValue);
 				} else {
 					aValueList.push(undefined);
@@ -308,7 +320,8 @@ function extractAttributeValues(
 			break;
 		default:
 			window.app.console.log(
-				'createValueListActivity: unexpected value type: ' + eValueType,
+				'createValueListActivity: unexpected value type: ' +
+					eValueType,
 			);
 	}
 }

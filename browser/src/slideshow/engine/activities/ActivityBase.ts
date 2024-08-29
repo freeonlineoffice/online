@@ -129,7 +129,8 @@ abstract class ActivityBase extends AnimationActivity {
 		// of nAccelerationFraction and nDecelerationFraction
 		// exceeds 1.0, ignore both (that's according to SMIL spec)
 		if (
-			(this.nAccelerationFraction > 0.0 || this.nDecelerationFraction > 0.0) &&
+			(this.nAccelerationFraction > 0.0 ||
+				this.nDecelerationFraction > 0.0) &&
 			this.nAccelerationFraction + this.nDecelerationFraction <= 1.0
 		) {
 			const nC =
@@ -149,13 +150,17 @@ abstract class ActivityBase extends AnimationActivity {
 					nTPrime += nT - this.nAccelerationFraction; // partial second interval
 				} else {
 					nTPrime +=
-						1.0 - this.nAccelerationFraction - this.nDecelerationFraction; // full second interval
+						1.0 -
+						this.nAccelerationFraction -
+						this.nDecelerationFraction; // full second interval
 
-					const nTRelative = nT - 1.0 + this.nDecelerationFraction;
+					const nTRelative =
+						nT - 1.0 + this.nDecelerationFraction;
 
 					nTPrime +=
 						nTRelative -
-						(0.5 * nTRelative * nTRelative) / this.nDecelerationFraction;
+						(0.5 * nTRelative * nTRelative) /
+							this.nDecelerationFraction;
 				}
 			}
 			// normalize, and assign to work variable

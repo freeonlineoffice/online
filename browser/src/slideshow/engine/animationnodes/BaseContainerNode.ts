@@ -127,7 +127,8 @@ abstract class BaseContainerNode extends BaseNode {
 	public isChildNode(aAnimationNode: BaseNode) {
 		const nChildrenCount = this.aChildrenArray.length;
 		for (let i = 0; i < nChildrenCount; ++i) {
-			if (this.aChildrenArray[i].getId() == aAnimationNode.getId()) return true;
+			if (this.aChildrenArray[i].getId() == aAnimationNode.getId())
+				return true;
 		}
 		return false;
 	}
@@ -167,7 +168,10 @@ abstract class BaseContainerNode extends BaseNode {
 			}
 			if (this.nLeftIterations >= 1.0) {
 				bFinished = false;
-				const aRepetitionEvent = makeDelay(this.repeat.bind(this), 0.0);
+				const aRepetitionEvent = makeDelay(
+					this.repeat.bind(this),
+					0.0,
+				);
 				this.aContext.aTimerEventQueue.addEvent(aRepetitionEvent);
 			} else {
 				this.deactivate();
@@ -223,9 +227,12 @@ abstract class BaseContainerNode extends BaseNode {
 		if (!eNodeStateMask) eNodeStateMask = -1;
 
 		for (const childNode of this.aChildrenArray) {
-			if (eNodeStateMask != -1 && (childNode.getState() & eNodeStateMask) == 0)
+			if (
+				eNodeStateMask != -1 &&
+				(childNode.getState() & eNodeStateMask) == 0
+			)
 				continue;
-			aFunction(childNode);
+			aFunction.call(childNode);
 		}
 	}
 
@@ -247,7 +254,9 @@ abstract class BaseContainerNode extends BaseNode {
 
 		if (verbose) {
 			if (this.getImpressNodeType())
-				sInfo += '; nodeType: ' + ImpressNodeType[this.getImpressNodeType()];
+				sInfo +=
+					'; nodeType: ' +
+					ImpressNodeType[this.getImpressNodeType()];
 		}
 
 		for (const child of this.aChildrenArray) {
@@ -310,8 +319,17 @@ class SequentialTimeContainer extends BaseContainerNode {
 
 	protected activate_st() {
 		const nChildrenCount = this.aChildrenArray.length;
-		for (; this.nFinishedChildren < nChildrenCount; ++this.nFinishedChildren) {
-			if (this.resolveChild(this.aChildrenArray[this.nFinishedChildren])) break;
+		for (
+			;
+			this.nFinishedChildren < nChildrenCount;
+			++this.nFinishedChildren
+		) {
+			if (
+				this.resolveChild(
+					this.aChildrenArray[this.nFinishedChildren],
+				)
+			)
+				break;
 			else
 				window.app.console.log(
 					'SequentialTimeContainer.activate_st: resolving child failed!',
@@ -470,7 +488,8 @@ class SequentialTimeContainer extends BaseContainerNode {
 			// As we rewind the previous effect we need to decrease the finished
 			// children counter.
 			--this.nFinishedChildren;
-			const aPreviousChildNode = this.aChildrenArray[this.nFinishedChildren];
+			const aPreviousChildNode =
+				this.aChildrenArray[this.nFinishedChildren];
 			// No need to invoke the end method for the previous child as it is
 			// already in the ENDED state.
 
@@ -509,7 +528,8 @@ class SequentialTimeContainer extends BaseContainerNode {
 
 		if (
 			bResolved &&
-			(this.isMainSequenceRootNode() || this.isInteractiveSequenceRootNode())
+			(this.isMainSequenceRootNode() ||
+				this.isInteractiveSequenceRootNode())
 		) {
 			if (this.aCurrentSkipEvent) this.aCurrentSkipEvent.dispose();
 			this.aCurrentSkipEvent = makeEvent(
@@ -522,7 +542,8 @@ class SequentialTimeContainer extends BaseContainerNode {
 				this.rewindCurrentEffect.bind(this, aChildNode),
 			);
 
-			if (this.aRewindLastEffectEvent) this.aRewindLastEffectEvent.dispose();
+			if (this.aRewindLastEffectEvent)
+				this.aRewindLastEffectEvent.dispose();
 			this.aRewindLastEffectEvent = makeEvent(
 				this.rewindLastEffect.bind(this, aChildNode),
 			);
@@ -563,7 +584,9 @@ class SequentialTimeContainer extends BaseContainerNode {
 
 			const sId = aChildNode.getBegin().getEventBaseElementId();
 			if (sId) {
-				this.aContext.aEventMultiplexer.notifyRewindedEffectEvent(sId);
+				this.aContext.aEventMultiplexer.notifyRewindedEffectEvent(
+					sId,
+				);
 			}
 		}
 	}

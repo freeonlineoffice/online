@@ -22,25 +22,25 @@ enum TimingType {
 
 enum EventTrigger {
 	Unknown,
-	OnSlideBegin,
-	OnSlideEnd,
+	OnBegin, // on slide begin
+	OnEnd, // on slide end
 	BeginEvent,
 	EndEvent,
 	OnClick,
 	OnDblClick,
 	OnMouseEnter,
 	OnMouseLeave,
-	OnNextEffect,
-	OnPrevEffect,
+	OnNext, // on next effect
+	OnPrev, // on previous effect
 	Repeat,
 }
 
 function getEventTriggerType(sEventTrigger: string): EventTrigger {
-	if (sEventTrigger == 'begin') return EventTrigger.BeginEvent;
-	else if (sEventTrigger == 'end') return EventTrigger.EndEvent;
-	else if (sEventTrigger == 'next') return EventTrigger.OnNextEffect;
-	else if (sEventTrigger == 'prev') return EventTrigger.OnPrevEffect;
-	else if (sEventTrigger == 'click') return EventTrigger.OnClick;
+	if (sEventTrigger == 'BeginEvent') return EventTrigger.BeginEvent;
+	else if (sEventTrigger == 'EndEvent') return EventTrigger.EndEvent;
+	else if (sEventTrigger == 'OnNext') return EventTrigger.OnNext;
+	else if (sEventTrigger == 'OnPrev') return EventTrigger.OnPrev;
+	else if (sEventTrigger == 'OnClick') return EventTrigger.OnClick;
 	else return EventTrigger.Unknown;
 }
 
@@ -111,7 +111,9 @@ class Timing {
 				const TimeInSec = Timing.parseClockValue(sClockValue);
 				if (TimeInSec != undefined) {
 					this.eTimingType = TimingType.Offset;
-					this.nOffset = bPositiveOffset ? TimeInSec : -TimeInSec;
+					this.nOffset = bPositiveOffset
+						? TimeInSec
+						: -TimeInSec;
 				}
 			} else {
 				let aTimingSplit = [];
@@ -149,7 +151,9 @@ class Timing {
 					const sClockValue = aTimingSplit[1];
 					const TimeInSec = Timing.parseClockValue(sClockValue);
 					if (TimeInSec != undefined) {
-						this.nOffset = bPositiveOffset ? TimeInSec : -TimeInSec;
+						this.nOffset = bPositiveOffset
+							? TimeInSec
+							: -TimeInSec;
 					} else {
 						this.eTimingType = TimingType.Unknown;
 					}
@@ -163,7 +167,8 @@ class Timing {
 
 		let nTimeInSec = undefined;
 
-		const reFullClockValue = /^([0-9]+):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?$/;
+		const reFullClockValue =
+			/^([0-9]+):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?$/;
 		const rePartialClockValue = /^([0-5][0-9]):([0-5][0-9])(.[0-9]+)?$/;
 		const reTimeCountValue = /^([0-9]+)(.[0-9]+)?(h|min|s|ms)?$/;
 
@@ -173,7 +178,8 @@ class Timing {
 			const nHours = parseInt(aClockTimeParts[1]);
 			const nMinutes = parseInt(aClockTimeParts[2]);
 			let nSeconds = parseInt(aClockTimeParts[3]);
-			if (aClockTimeParts[4]) nSeconds += parseFloat(aClockTimeParts[4]);
+			if (aClockTimeParts[4])
+				nSeconds += parseFloat(aClockTimeParts[4]);
 
 			nTimeInSec = (nHours * 60 + nMinutes) * 60 + nSeconds;
 		} else if (rePartialClockValue.test(sClockValue)) {
@@ -181,14 +187,16 @@ class Timing {
 
 			const nMinutes = parseInt(aClockTimeParts[1]);
 			let nSeconds = parseInt(aClockTimeParts[2]);
-			if (aClockTimeParts[3]) nSeconds += parseFloat(aClockTimeParts[3]);
+			if (aClockTimeParts[3])
+				nSeconds += parseFloat(aClockTimeParts[3]);
 
 			nTimeInSec = nMinutes * 60 + nSeconds;
 		} else if (reTimeCountValue.test(sClockValue)) {
 			const aClockTimeParts = reTimeCountValue.exec(sClockValue);
 
 			let nTimeCount = parseInt(aClockTimeParts[1]);
-			if (aClockTimeParts[2]) nTimeCount += parseFloat(aClockTimeParts[2]);
+			if (aClockTimeParts[2])
+				nTimeCount += parseFloat(aClockTimeParts[2]);
 
 			if (aClockTimeParts[3]) {
 				if (aClockTimeParts[3] == 'h') {
@@ -217,8 +225,10 @@ class Timing {
 
 			sInfo += ', type: ' + TimingType[this.getType()];
 			sInfo += ', offset: ' + this.getOffset();
-			sInfo += ', event base element id: ' + this.getEventBaseElementId();
-			sInfo += ', timing event type: ' + EventTrigger[this.getEventType()];
+			sInfo +=
+				', event base element id: ' + this.getEventBaseElementId();
+			sInfo +=
+				', timing event type: ' + EventTrigger[this.getEventType()];
 		} else {
 			switch (this.getType()) {
 				case TimingType.Indefinite:

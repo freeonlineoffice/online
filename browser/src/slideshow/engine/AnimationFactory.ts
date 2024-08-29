@@ -143,7 +143,9 @@ function createPropertyAnimation(
 ): AnimationBase {
 	const sPropNameAsKey = sAttrName as PropertyGetterSetterMapKeyType;
 	if (!aPropertyGetterSetterMap[sPropNameAsKey]) {
-		window.app.console.log('createPropertyAnimation: attribute is unknown');
+		window.app.console.log(
+			'createPropertyAnimation: attribute is unknown: ' + sAttrName,
+		);
 		return null;
 	}
 
@@ -154,7 +156,9 @@ function createPropertyAnimation(
 	const sSetValueMethod = aFunctorSet.set;
 
 	if (!sGetValueMethod || !sSetValueMethod) {
-		window.app.console.log('createPropertyAnimation: attribute is not handled');
+		window.app.console.log(
+			'createPropertyAnimation: attribute is not handled',
+		);
 		return null;
 	}
 
@@ -180,7 +184,8 @@ function createPairPropertyAnimation(
 	nWidth: number,
 	nHeight: number,
 ): AnimationBase {
-	const sTransformTypeAsKey = sTransformType as PropertyGetterSetterMapKeyType;
+	const sTransformTypeAsKey =
+		sTransformType as PropertyGetterSetterMapKeyType;
 	const aFunctorSet: PropertyGetterSetter =
 		aPropertyGetterSetterMap[sTransformTypeAsKey];
 	const sGetValueMethod = aFunctorSet.get;
@@ -189,7 +194,8 @@ function createPairPropertyAnimation(
 	const aDefaultValue: any[] = [];
 	const aSizeReference: any[] = [];
 	if (sTransformType === 'scale') {
-		aDefaultValue[0] = aSizeReference[0] = aAnimatedElement.getBaseBBox().width;
+		aDefaultValue[0] = aSizeReference[0] =
+			aAnimatedElement.getBaseBBox().width;
 		aDefaultValue[1] = aSizeReference[1] =
 			aAnimatedElement.getBaseBBox().height;
 	} else if (sTransformType === 'translate') {
@@ -272,7 +278,9 @@ class ClippingAnimation extends AnimationBase {
 
 	perform(aValue: any): void {
 		// TODO implement ClippingAnimation.perform()
-		window.app.console.log('ClippingAnimation.perform(): value: ' + aValue);
+		window.app.console.log(
+			'ClippingAnimation.perform(): value: ' + aValue,
+		);
 	}
 
 	getUnderlyingValue(): any {
@@ -297,7 +305,9 @@ aTransitionInfoTable[0][0] = {
 };
 aTransitionInfoTable[TransitionType.FADE] = {};
 aTransitionInfoTable[TransitionType.FADE][TransitionSubType.CROSSFADE] =
-	aTransitionInfoTable[TransitionType.FADE][TransitionSubType.FADEOVERCOLOR] = {
+	aTransitionInfoTable[TransitionType.FADE][
+		TransitionSubType.FADEOVERCOLOR
+	] = {
 		class: TransitionClass.Special,
 		rotationAngle: 0.0,
 		scaleX: 1.0,
@@ -326,11 +336,13 @@ function createShapeTransition(
 	const bDirectionForward =
 		!aAnimatedTransitionFilterNode.getReverseDirection();
 	const bModeIn =
-		aAnimatedTransitionFilterNode.getTransitionMode() == TransitionMode.in;
+		aAnimatedTransitionFilterNode.getTransitionMode() ==
+		TransitionMode.in;
 
 	let aTransitionInfo = null;
 	if (aTransitionInfoTable[eTransitionType])
-		aTransitionInfo = aTransitionInfoTable[eTransitionType][eTransitionSubType];
+		aTransitionInfo =
+			aTransitionInfoTable[eTransitionType][eTransitionSubType];
 
 	const eTransitionClass: TransitionClass = aTransitionInfo
 		? aTransitionInfo['class']
@@ -376,7 +388,11 @@ function createShapeTransition(
 					const eDirection = bModeIn
 						? DirectionType.Forward
 						: DirectionType.Backward;
-					return new SimpleActivity(aActivityParamSet, aAnimation, eDirection);
+					return new SimpleActivity(
+						aActivityParamSet,
+						aAnimation,
+						eDirection,
+					);
 				}
 			}
 	}
