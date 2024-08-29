@@ -177,7 +177,7 @@ DocumentBroker::DocumentBroker(ChildType type, const std::string& uri, const Poc
     , _cursorWidth(0)
     , _cursorHeight(0)
     , _poll(
-          std::make_unique<DocumentBrokerPoll>("doc" SHARED_DOC_THREADNAME_SUFFIX + _docId, *this))
+          std::make_shared<DocumentBrokerPoll>("doc" SHARED_DOC_THREADNAME_SUFFIX + _docId, *this))
     , _stop(false)
     , _lockCtx(std::make_unique<LockContext>())
     , _tileVersion(0)
@@ -187,7 +187,8 @@ DocumentBroker::DocumentBroker(ChildType type, const std::string& uri, const Poc
     , _mobileAppDocId(mobileAppDocId)
     , _alwaysSaveOnExit(LOOLWSD::getConfigValue<bool>("per_document.always_save_on_exit", false))
     , _backgroundAutoSave(LOOLWSD::getConfigValue<bool>("per_document.background_autosave", true))
-    , _backgroundManualSave(LOOLWSD::getConfigValue<bool>("per_document.background_manualsave", true))
+    , _backgroundManualSave(
+          LOOLWSD::getConfigValue<bool>("per_document.background_manualsave", true))
 #if !MOBILEAPP
     , _admin(Admin::instance())
 #endif
