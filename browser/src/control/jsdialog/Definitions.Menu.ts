@@ -431,4 +431,15 @@ menuDefinitions.set('LanguageStatusMenu', [
 	// dynamically updated in Constol.StatusBar
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('Presentation', [
+	{
+		text: _('From Beginning'),
+		action: 'fullscreen-presentation',
+	},
+	{
+		text: _('From Current Slide'),
+		action: 'presentation-currentslide',
+	},
+] as Array<MenuDefinition>);
+
 JSDialog.MenuDefinitions = menuDefinitions;
