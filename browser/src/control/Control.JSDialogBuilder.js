@@ -2166,7 +2166,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			'zoteroaddnote': 'addcitationnote',
 			'zoterorefresh': 'updateall',
 			'zoterounlink': 'unlinkcitation',
-			'zoteroaddeditbibliography': 'addeditbibliography',
+			'zoteroeditbibliography': 'addeditbibliography',
 			'zoterosetdocprefs': 'formproperties',
 			'sidebardeck.propertydeck' : 'sidebar',
 			// Fix issue #6145 by adding aliases for the PDF and EPUB icons
