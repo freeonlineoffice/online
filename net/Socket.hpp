@@ -999,7 +999,7 @@ public:
         LOG_TRC("Async shutdown requested.");
     }
 
-    virtual void ignoreInput() override
+    void ignoreInput() override
     {
         Socket::ignoreInput();
         _inBuffer.clear();
@@ -1022,7 +1022,7 @@ public:
         return events;
     }
 
-    virtual bool hasBuffered() const override
+    bool hasBuffered() const override
     {
         return !_outBuffer.empty() || !_inBuffer.empty();
     }

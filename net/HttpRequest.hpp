@@ -2012,7 +2012,7 @@ private:
         return events;
     }
 
-    virtual void handleIncomingMessage(SocketDisposition& /*disposition*/) override
+    void handleIncomingMessage(SocketDisposition& /*disposition*/) override
     {
         if (!isConnected())
         {
