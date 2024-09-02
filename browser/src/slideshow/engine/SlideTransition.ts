@@ -112,6 +112,14 @@ class SlideTransition {
 					transitionParameters,
 				);
 
+			case TransitionType.MISCSHAPEWIPE:
+				return SlideShow.MicsShapeWipeTransition(
+					transitionParameters,
+				);
+
+			case TransitionType.ZOOM:
+				return SlideShow.NewsFlashTransition(transitionParameters);
+
 			default:
 				console.log(
 					'Unknown transition type',
