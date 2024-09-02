@@ -451,6 +451,7 @@ EXTRA_DIST = discovery.xml \
              debian/control \
              debian/loolwsd.install \
              debian/loolwsd-deprecated.install \
+             debian/loolwsd-deprecated.postinst \
              debian/loolwsd.postinst \
              debian/loolwsd.postrm \
              etc/key.pem \
