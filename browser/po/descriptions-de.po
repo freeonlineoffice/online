@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-24 17:35+0200\n"
-"PO-Revision-Date: 2024-08-24 17:48+0200\n"
+"POT-Creation-Date: 2024-09-02 19:48+0200\n"
+"PO-Revision-Date: 2024-09-02 21:12+0200\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/collabora-online/"
 "app-store-descriptions/de/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. App name - 50 chars limit
 #: descriptions/google-play.html%2Bhtml.body.h3:5-1
 msgid "Free Online Office: LibreOffice, OpenOffice & more"
-msgstr "Free Online Office: LibreOffice, OpenOffice und mehr"
+msgstr "Free Online Office: LibreOffice, OpenOffice & mehr"
 
 #. Short description - 80 chars limit
 #: descriptions/google-play.html%2Bhtml.body.p:9-1
