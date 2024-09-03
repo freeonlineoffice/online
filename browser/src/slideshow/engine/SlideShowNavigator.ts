@@ -1,8 +1,6 @@
 /* -*- tab-width: 4 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -105,6 +103,7 @@ class SlideShowNavigator {
 			'SlideShowNavigator.rewindEffect: current index: ' +
 				this.currentSlide,
 		);
+		if (this.backToLastSlide()) return;
 		this.slideShowHandler.rewindEffect();
 	}
 
@@ -113,6 +112,7 @@ class SlideShowNavigator {
 			'SlideShowNavigator.rewindAllEffects: current index: ' +
 				this.currentSlide,
 		);
+		if (this.backToLastSlide()) return;
 		this.slideShowHandler.rewindAllEffects();
 	}
 
@@ -132,12 +132,19 @@ class SlideShowNavigator {
 		this.displaySlide(this.theMetaPres.numberOfSlides - 1, true);
 	}
 
+	private backToLastSlide(): boolean {
+		if (this.currentSlide >= this.theMetaPres.numberOfSlides) {
+			this.goToLastSlide();
+			return true;
+		}
+		return false;
+	}
+
 	quit() {
 		NAVDBG.print(
 			'SlideShowNavigator.quit: current index: ' + this.currentSlide,
 		);
-		this.slideShowHandler.exitSlideShow();
-		this.presenter._stopFullScreen();
+		this.endPresentation(true);
 	}
 
 	switchSlide(nOffset: number, bSkipTransition: boolean) {
@@ -156,7 +163,9 @@ class SlideShowNavigator {
 		);
 		if (nNewSlide === undefined || nNewSlide < 0) return;
 		if (nNewSlide >= this.theMetaPres.numberOfSlides) {
-			this.quit();
+			this.currentSlide = nNewSlide;
+			const force = nNewSlide > this.theMetaPres.numberOfSlides;
+			this.endPresentation(force);
 			return;
 		}
 		this.slideCompositor.fetchAndRun(nNewSlide, () => {
@@ -167,6 +176,8 @@ class SlideShowNavigator {
 			);
 
 			this.prevSlide = this.currentSlide;
+			if (this.prevSlide >= this.theMetaPres.numberOfSlides)
+				this.prevSlide = undefined;
 			this.currentSlide = nNewSlide;
 			this.slideShowHandler.displaySlide(
 				this.currentSlide,
@@ -187,7 +198,14 @@ class SlideShowNavigator {
 		this.displaySlide(nStartSlide, false);
 	}
 
+	endPresentation(force: boolean = false) {
+		this.presenter.endPresentation(force);
+	}
+
 	onClick(aEvent: MouseEvent) {
+		aEvent.preventDefault();
+		aEvent.stopPropagation();
+
 		const metaSlide = this.theMetaPres.getMetaSlideByIndex(
 			this.currentSlide,
 		);
@@ -197,7 +215,7 @@ class SlideShowNavigator {
 					this.currentSlide,
 			);
 
-		if (metaSlide.animationsHandler) {
+		if (metaSlide && metaSlide.animationsHandler) {
 			const aEventMultiplexer =
 				metaSlide.animationsHandler.eventMultiplexer;
 			if (aEventMultiplexer) {
@@ -216,6 +234,8 @@ class SlideShowNavigator {
 	}
 
 	onKeyDown(aEvent: KeyboardEvent) {
+		aEvent.preventDefault();
+		aEvent.stopPropagation();
 		const handler = this.keyHandlerMap[aEvent.code];
 		if (handler) handler();
 	}
