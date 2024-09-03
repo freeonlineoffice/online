@@ -241,15 +241,27 @@ class SlideShowPresenter {
 			winWidth = window.screen.width;
 			winHeight = window.screen.height;
 		}
+
+		// set canvas styles
 		if (
 			winWidth * this._slideShowCanvas.height <
 			winHeight * this._slideShowCanvas.width
 		) {
-			this._slideShowCanvas.className =
-				'leaflet-slideshow2 slideshow-vertical-center';
+			// clean previous styles
+			this._slideShowCanvas.style.height = '';
+			this._slideShowCanvas.style.left = '';
+			// set new styles
+			this._slideShowCanvas.style.width = '100%';
+			this._slideShowCanvas.style.top = '50%';
+			this._slideShowCanvas.style.transform = 'translateY(-50%)';
 		} else {
-			this._slideShowCanvas.className =
-				'leaflet-slideshow2 slideshow-horizontal-center';
+			// clean previous styles
+			this._slideShowCanvas.style.width = '';
+			this._slideShowCanvas.style.top = '';
+			// set new styles
+			this._slideShowCanvas.style.height = '100%';
+			this._slideShowCanvas.style.left = '50%';
+			this._slideShowCanvas.style.transform = 'translateX(-50%)';
 		}
 	}
 
@@ -286,6 +298,9 @@ class SlideShowPresenter {
 		);
 
 		canvas.id = 'slideshow-canvas';
+		// set canvas styles
+		canvas.style.margin = 0;
+		canvas.style.position = 'absolute';
 
 		canvas.addEventListener(
 			'click',
@@ -423,28 +438,6 @@ class SlideShowPresenter {
 				<meta charset="UTF-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>${sanitizedTitle}</title>
-				<style>
-					body, html {
-						margin: 0;
-						padding: 0;
-						height: 100%;
-						overflow: hidden; /* Prevent scrollbars */
-					}
-					.slideshow-vertical-center {
-						margin: 0;
-						position: absolute;
-						width: 100%;
-						top: 50%;
-						transform: translateY(-50%);
-					}
-					.slideshow-horizontal-center {
-						margin: 0;
-						position: absolute;
-						height: 100%;
-						left: 50%;
-						transform: translateX(-50%);
-					}
-				</style>
 			</head>
 			<body>
 				<div id="root-in-window"></div>
@@ -525,6 +518,12 @@ class SlideShowPresenter {
 			htmlContent;
 		this._slideShowWindowProxy.document.close();
 		this._slideShowWindowProxy.focus();
+
+		// set body styles
+		this._slideShowWindowProxy.document.body.style.margin = '0';
+		this._slideShowWindowProxy.document.body.style.padding = '0';
+		this._slideShowWindowProxy.document.body.style.height = '100%';
+		this._slideShowWindowProxy.document.body.style.overflow = 'hidden';
 
 		const body =
 			this._slideShowWindowProxy.document.querySelector(
