@@ -313,6 +313,9 @@ class SlideShowPresenter {
 			this._slideRenderer = new SlideRenderer2d(canvas);
 		}
 
+		if (this._slideRenderer._context.is2dGl())
+			this._slideShowHandler.disable();
+
 		return canvas;
 	}
 
