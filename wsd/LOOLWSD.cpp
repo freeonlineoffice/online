@@ -2091,6 +2091,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "per_view.idle_timeout_secs", "900" },
         { "per_view.out_of_focus_timeout_secs", "300" },
         { "per_view.custom_os_info", "" },
+        { "per_view.min_saved_message_timeout_secs", "0"},
         { "security.capabilities", "true" },
         { "security.seccomp", "true" },
         { "security.jwt_expiry_secs", "1800" },
