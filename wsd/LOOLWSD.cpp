@@ -29,12 +29,6 @@
 /* Default lool UI used in the start test URI */
 #define LOOLWSD_TEST_LOOL_UI "/browser/" LOOLWSD_VERSION_HASH "/debug.html"
 
-/* Default document used in the start test URI */
-#define LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER  "test/data/hello-world.odt"
-#define LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_CALC    "test/data/hello-world.ods"
-#define LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_IMPRESS "test/data/hello-world.odp"
-#define LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_DRAW    "test/data/hello-world.odg"
-
 /* Default ciphers used, when not specified otherwise */
 #define DEFAULT_CIPHER_SET "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
 
@@ -4461,19 +4455,24 @@ int LOOLWSD::innerMain()
 #if !MOBILEAPP && ENABLE_DEBUG
     const std::string postMessageURI =
         getServiceURI("/browser/dist/framed.doc.html?file_path=" DEBUG_ABSSRCDIR
-                      "/" LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER);
+                      "/test/samples/writer-edit.fodt");
     std::ostringstream oss;
+    std::ostringstream ossRO;
     oss << "\nLaunch one of these in your browser:\n\n"
-        << "Edit mode:" << '\n'
-        << "    Writer:      " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER) << '\n'
-        << "    Calc:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_CALC) << '\n'
-        << "    Impress:     " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_IMPRESS) << '\n'
-        << "    Draw:        " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_DRAW) << '\n'
-        << "\nReadonly mode:" << '\n'
-        << "    Writer readonly:  " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_WRITER, true) << '\n'
-        << "    Calc readonly:    " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_CALC, true) << '\n'
-        << "    Impress readonly: " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_IMPRESS, true) << '\n'
-        << "    Draw readonly:    " << getLaunchURI(LOOLWSD_TEST_DOCUMENT_RELATIVE_PATH_DRAW, true) << '\n'
+        << "Edit mode:" << '\n';
+
+    auto names = FileUtil::getDirEntries(DEBUG_ABSSRCDIR "/test/samples");
+    for (auto &i : names)
+    {
+        if (i.find("-edit") != std::string::npos)
+        {
+            oss   << "    " << i << "\t" << getLaunchURI(std::string("test/samples/") + i) << "\n";
+            ossRO << "    " << i << "\t" << getLaunchURI(std::string("test/samples/") + i, true) << "\n";
+        }
+    }
+
+    oss << "\nReadonly mode:" << '\n'
+        << ossRO.str()
         << "\npostMessage: " << postMessageURI << std::endl;
 
     const std::string adminURI = getServiceURI(LOOLWSD_TEST_ADMIN_CONSOLE, true);
