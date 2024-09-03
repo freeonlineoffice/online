@@ -69,10 +69,13 @@ class SimpleActivity extends ContinuousActivityBase {
 			1.0 -
 			this.nDirection +
 			nModifiedTime * (2.0 * this.nDirection - 1.0);
-		this.aAnimation.perform(nT);
+		this.aAnimation.perform(nT, nT === this.nDirection);
 	}
 
 	public performEnd() {
-		if (this.aAnimation) this.aAnimation.perform(this.nDirection);
+		if (this.aAnimation) {
+			console.debug('SimpleActivity.performEnd');
+			this.aAnimation.perform(this.nDirection, /*last:*/ true);
+		}
 	}
 }
