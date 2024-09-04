@@ -114,18 +114,20 @@ bool enterUserNS(uid_t uid, gid_t gid)
 #endif
 }
 
-bool loolmount(const std::string& arg, std::string source, std::string target)
+bool loolmount(const std::string& arg, std::string source, std::string target, bool silent = false)
 {
     source = Util::trim(source, '/');
     target = Util::trim(target, '/');
 
     if (isMountNamespacesEnabled())
     {
-        const char *argv[4];
+        const char *argv[5];
         argv[0] = "notloolmount";
         int argc = 1;
         if (!arg.empty())
             argv[argc++] = arg.c_str();
+        if (silent)
+            argv[argc++] = "-s";
         if (!source.empty())
             argv[argc++] = source.c_str();
         if (!target.empty())
@@ -134,7 +136,7 @@ bool loolmount(const std::string& arg, std::string source, std::string target)
     }
 
     const std::string cmd = Poco::Path(Util::getApplicationPath(), "loolmount").toString() + ' '
-                            + arg + ' ' + source + ' ' + target;
+                            + arg + (silent ? " -s" : " ") + source + ' ' + target;
     LOG_TRC("Executing loolmount command: " << cmd);
     return !system(cmd.c_str());
 }
@@ -185,7 +187,7 @@ bool remountReadonly(const std::string& source, const std::string& target)
 static bool unmount(const std::string& target, bool silent = false)
 {
     LOG_DBG("Unmounting [" << target << ']');
-    const bool res = loolmount("-u", "", target);
+    const bool res = loolmount("-u", "", target, silent);
     if (res)
         LOG_TRC("Unmounted [" << target << "] successfully.");
     else
