@@ -90,7 +90,7 @@ class PermTextureTransition extends SimpleTransition {
     ];
 
 	public generatePermutationData(): Uint8Array {
-		const permutationMatrix = new Uint8Array(256 * 256 * 4); // Multiplied by 4 for RGBA
+		const a = new Uint8Array(256 * 256 * 4); // Multiplied by 4 for RGBA
 		for (let y = 0; y < 256; y++) {
 			for (let x = 0; x < 256; x++) {
 				const base = (x + y * 256) * 4;
@@ -98,13 +98,13 @@ class PermTextureTransition extends SimpleTransition {
 					this.permutation256[
 						(y + this.permutation256[x]) % 256
 					];
-				permutationMatrix[base] = value; // R
-				permutationMatrix[base + 1] = value; // G (could be different for variety)
-				permutationMatrix[base + 2] = value; // B (could be different for variety)
-				permutationMatrix[base + 3] = 255; // A (alpha channel)
+				a[base] = value; // R
+				a[base + 1] = value; // G (could be different for variety)
+				a[base + 2] = value; // B (could be different for variety)
+				a[base + 3] = 255; // A (alpha channel)
 			}
 		}
-		return permutationMatrix;
+		return a;
 	}
 
 	public displayPermSlide_(): void {
@@ -143,11 +143,6 @@ class PermTextureTransition extends SimpleTransition {
 		);
 
 		this.displayPermSlide_();
-	}
-
-	public releaseResources(): void {
-		this.gl.deleteTexture(this.permTexture);
-		super.releaseResources();
 	}
 }
 
