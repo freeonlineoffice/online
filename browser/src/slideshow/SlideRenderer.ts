@@ -52,7 +52,6 @@ abstract class SlideRenderer {
 	protected _requestAnimationFrameId: number = null;
 	protected _isAnyVideoPlaying: boolean = false;
 
-
 	constructor(canvas: HTMLCanvasElement) {
 		this._canvas = canvas;
 	}
@@ -89,7 +88,9 @@ abstract class SlideRenderer {
 				videoRenderInfo.playing = true;
 				if (!this._isAnyVideoPlaying) {
 					this._isAnyVideoPlaying = true;
-					this._requestAnimationFrameId = requestAnimationFrame(this.render.bind(this));
+					this._requestAnimationFrameId = requestAnimationFrame(
+						this.render.bind(this),
+					);
 				}
 			},
 			true,
@@ -100,8 +101,7 @@ abstract class SlideRenderer {
 			() => {
 				videoRenderInfo.playing = false;
 				for (const videoInfo of this._videos) {
-					if (videoInfo.playing)
-						return;
+					if (videoInfo.playing) return;
 				}
 				cancelAnimationFrame(this._requestAnimationFrameId);
 				this._isAnyVideoPlaying = false;
@@ -233,8 +233,7 @@ class SlideRenderer2d extends SlideRenderer {
 
 		gl.setTransform(1, 0, 0, 1, 0, 0);
 
-		if (this._isAnyVideoPlaying)
-			requestAnimationFrame(this.render.bind(this));
+		if (this._isAnyVideoPlaying) requestAnimationFrame(this.render.bind(this));
 	}
 }
 
@@ -486,6 +485,8 @@ class SlideRendererGl extends SlideRenderer {
 		}
 
 		if (this._isAnyVideoPlaying)
-			this._requestAnimationFrameId = requestAnimationFrame(this.render.bind(this));
+			this._requestAnimationFrameId = requestAnimationFrame(
+				this.render.bind(this),
+			);
 	}
 }
