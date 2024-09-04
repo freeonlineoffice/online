@@ -21,6 +21,8 @@ enum NodeState {
 	Ended = 16,
 }
 
+/* eslint-disable */
+
 enum FillModes {
 	Default = 0,
 	Inherit = 0,
@@ -38,6 +40,8 @@ enum RestartMode {
 	WhenNotActive,
 	Never,
 }
+
+/* eslint-enable */
 
 enum ImpressNodeType {
 	Default,

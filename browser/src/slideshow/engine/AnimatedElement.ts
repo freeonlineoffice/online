@@ -221,6 +221,7 @@ interface AnimatedElementState {
 
 class AnimatedElement {
 	private sId: string;
+	private slideHash: string;
 	private aLayer: HTMLImageElement;
 	private aBaseBBox: BoundingBoxType;
 	private aBaseElement: AnimatedObjectType;
@@ -245,6 +246,7 @@ class AnimatedElement {
 
 	constructor(
 		sId: string,
+		slideHash: string,
 		aLayer: HTMLImageElement,
 		aBBox: BoundingBoxType,
 	) {
@@ -263,6 +265,7 @@ class AnimatedElement {
 		}
 
 		this.sId = sId;
+		this.slideHash = slideHash;
 		this.aLayer = aLayer;
 		this.aBaseBBox = this.cloneBBox(aBBox);
 		this.aBaseElement = this.createBaseElement();
@@ -288,6 +291,13 @@ class AnimatedElement {
 	}
 
 	private initElement() {
+		const presenter = app.map.slideShowPresenter;
+		if (!presenter) return;
+		const compositor = presenter._slideCompositor;
+		if (!compositor) return;
+
+		this.aLayer = compositor.getLayer(this.slideHash, this.sId);
+
 		this.nCenterX = this.nBaseCenterX;
 		this.nCenterY = this.nBaseCenterY;
 		this.nScaleFactorX = 1.0;
