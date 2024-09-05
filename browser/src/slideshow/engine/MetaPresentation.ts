@@ -87,7 +87,7 @@ class MetaPresentation {
 					: null;
 			const metaSlide = new MetaSlide(slide, this);
 			this.metaSlides.set(slide.hash, metaSlide);
-			this.partHashes.set(slide.index, slide.hash);
+			this.partHashes.set(i, slide.hash);
 			prevSlideHash = slide.hash;
 		}
 	}
