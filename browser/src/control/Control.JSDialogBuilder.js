@@ -2283,6 +2283,8 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			button = L.DomUtil.create('button', 'ui-content unobutton', div);
 			button.id = buttonId;
 
+			JSDialog.SynchronizeDisabledState(div, [button]);
+
 			if(data.text)
 				button.setAttribute('aria-label', data.text);
 			else if (data.aria)
