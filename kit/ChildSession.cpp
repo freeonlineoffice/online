@@ -3046,7 +3046,7 @@ void ChildSession::updateSpeed()
     std::chrono::steady_clock::time_point now(std::chrono::steady_clock::now());
 
     while (_cursorInvalidatedEvent.size() != 0 &&
-           std::chrono::duration_cast<std::chrono::milliseconds>(now - _cursorInvalidatedEvent.front()).count() > _eventStorageIntervalMs)
+           (now - _cursorInvalidatedEvent.front()) > EventStorageInterval)
     {
         _cursorInvalidatedEvent.pop();
     }
@@ -3060,7 +3060,7 @@ int ChildSession::getSpeed()
     std::chrono::steady_clock::time_point now(std::chrono::steady_clock::now());
 
     while (_cursorInvalidatedEvent.size() > 0 &&
-           std::chrono::duration_cast<std::chrono::milliseconds>(now - _cursorInvalidatedEvent.front()).count() > _eventStorageIntervalMs)
+           (now - _cursorInvalidatedEvent.front()) > EventStorageInterval)
     {
         _cursorInvalidatedEvent.pop();
     }
