@@ -18,6 +18,7 @@ class SlideShowNavigator {
 	private _canvasClickHandler: MouseClickHandler;
 	private currentSlide: number;
 	private prevSlide: number;
+	private isEnabled: boolean;
 
 	constructor(slideShowHandler: SlideShowHandler) {
 		this.slideShowHandler = slideShowHandler;
@@ -145,6 +146,9 @@ class SlideShowNavigator {
 			'SlideShowNavigator.quit: current index: ' + this.currentSlide,
 		);
 		this.endPresentation(true);
+		this.currentSlide = undefined;
+		this.prevSlide = undefined;
+		this.removeHandlers();
 	}
 
 	switchSlide(nOffset: number, bSkipTransition: boolean) {
@@ -212,7 +216,9 @@ class SlideShowNavigator {
 				nStartSlide,
 		);
 		this.slideShowHandler.isStarting = true;
-		this.displaySlide(nStartSlide, false);
+		this.currentSlide = undefined;
+		this.prevSlide = undefined;
+		this.displaySlide(nStartSlide, bSkipTransition);
 	}
 
 	endPresentation(force: boolean = false) {
@@ -222,6 +228,8 @@ class SlideShowNavigator {
 	onClick(aEvent: MouseEvent) {
 		aEvent.preventDefault();
 		aEvent.stopPropagation();
+
+		if (!this.isEnabled) return;
 
 		const metaSlide = this.theMetaPres.getMetaSlideByIndex(
 			this.currentSlide,
@@ -253,6 +261,7 @@ class SlideShowNavigator {
 	onKeyDown(aEvent: KeyboardEvent) {
 		aEvent.preventDefault();
 		aEvent.stopPropagation();
+		if (!this.isEnabled && aEvent.code !== 'Escape') return;
 		const handler = this.keyHandlerMap[aEvent.code];
 		if (handler) handler();
 	}
@@ -263,5 +272,13 @@ class SlideShowNavigator {
 
 	private get slideCompositor(): SlideCompositor {
 		return this.presenter._slideCompositor;
+	}
+
+	enable() {
+		this.isEnabled = true;
+	}
+
+	disable() {
+		this.isEnabled = false;
 	}
 }

@@ -247,6 +247,12 @@ class LayerDrawing {
 	}
 
 	private requestSlideImpl(slideHash: string, prefetch: boolean = false) {
+		console.debug(
+			'LayerDrawing.requestSlideImpl: slide hash: ' +
+				slideHash +
+				', prefetching: ' +
+				prefetch,
+		);
 		const slideInfo = this.getSlideInfo(slideHash);
 		if (!slideInfo) {
 			window.app.console.log(
@@ -261,6 +267,9 @@ class LayerDrawing {
 			slideHash === this.nextRequestedSlideHash ||
 			slideHash === this.nextPrefetchedSlideHash
 		) {
+			console.debug(
+				'LayerDrawing.requestSlideImpl: no need to fetch slide again',
+			);
 			return;
 		}
 
@@ -298,7 +307,7 @@ class LayerDrawing {
 		}
 
 		if (this.slideCache.has(slideHash)) {
-			this.onSlideRenderingComplete();
+			this.onSlideRenderingComplete({ success: true });
 			return;
 		}
 
@@ -306,13 +315,13 @@ class LayerDrawing {
 		const masterPageRendered = this.drawMasterPage(slideHash);
 		if (backgroundRendered && masterPageRendered) {
 			if (this.drawDrawPage(slideHash)) {
-				this.onSlideRenderingComplete();
+				this.onSlideRenderingComplete({ success: true });
 				return;
 			}
 		}
 
 		app.socket.sendMessage(
-			`getslide part=${slideInfo.index} width=${this.canvasWidth} height=${this.canvasHeight} ` +
+			`getslide hash=${slideInfo.hash} part=${slideInfo.index} width=${this.canvasWidth} height=${this.canvasHeight} ` +
 				`renderBackground=${backgroundRendered ? 0 : 1} renderMasterPage=${masterPageRendered ? 0 : 1}`,
 		);
 	}
@@ -638,7 +647,21 @@ class LayerDrawing {
 		}
 	}
 
-	onSlideRenderingComplete() {
+	onSlideRenderingComplete(e: any) {
+		if (!e.success) {
+			const slideHash =
+				this.requestedSlideHash || this.prefetchedSlideHash;
+			const slideInfo = this.getSlideInfo(slideHash);
+			const index = slideInfo ? slideInfo.index : undefined;
+			this.requestedSlideHash = null;
+			this.prefetchedSlideHash = null;
+			console.debug(
+				'LayerDrawing.onSlideRenderingComplete: rendering failed for slide: ' +
+					index,
+			);
+			return;
+		}
+
 		if (this.prefetchedSlideHash) {
 			this.prefetchedSlideHash = null;
 			return;

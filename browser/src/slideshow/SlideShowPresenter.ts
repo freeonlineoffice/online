@@ -75,6 +75,7 @@ class SlideShowPresenter {
 	private _slideShowNavigator: SlideShowNavigator;
 	private _metaPresentation: MetaPresentation;
 	private _startSlide: number;
+	private _presentationInfoChanged: boolean = false;
 
 	constructor(map: any) {
 		this._map = map;
@@ -110,6 +111,8 @@ class SlideShowPresenter {
 		this._slideShowNavigator = new SlideShowNavigator(
 			this._slideShowHandler,
 		);
+		// do not allow user interaction until we get presentation info
+		this._slideShowNavigator.disable();
 		this._slideShowHandler.setNavigator(this._slideShowNavigator);
 		this._slideShowNavigator.setPresenter(this);
 	}
@@ -452,7 +455,12 @@ class SlideShowPresenter {
 	}
 
 	_closeSlideShowWindow() {
-		if (this._slideShowWindowProxy == null) return;
+		if (
+			this._slideShowWindowProxy == null ||
+			this._slideShowWindowProxy.closed
+		) {
+			return;
+		}
 		this._slideShowWindowProxy.opener.focus();
 		this._slideShowWindowProxy.close();
 		this._map.uiManager.closeSnackbar();
@@ -568,6 +576,7 @@ class SlideShowPresenter {
 			function () {
 				if (slideShowWindow.closed) {
 					clearInterval(this._windowCloseInterval);
+					this._slideShowNavigator.quit();
 					this._map.uiManager.closeSnackbar();
 					this._slideShowCanvas = null;
 					this._presenterContainer = null;
@@ -715,6 +724,8 @@ class SlideShowPresenter {
 		const numberOfSlides = this._getSlidesCount();
 		if (numberOfSlides === 0) return;
 
+		let skipTransition = false;
+
 		if (!this._metaPresentation) {
 			this._metaPresentation = new MetaPresentation(
 				data,
@@ -728,7 +739,35 @@ class SlideShowPresenter {
 				this._metaPresentation,
 			);
 		} else {
-			this._metaPresentation.update(data);
+			// don't allow user interaction
+			this._slideShowNavigator.disable();
+			const currentSlideHash =
+				this._metaPresentation.getCurrentSlideHash();
+			if (this._presentationInfoChanged || currentSlideHash) {
+				// presentation is changed and presentation info has been updated
+				this._presentationInfoChanged = false;
+				// clean
+				if (this._slideRenderer.isAnyVideoPlaying) {
+					this._slideRenderer.pauseVideos();
+				}
+				this._slideShowHandler.skipAllEffects();
+				this._slideShowHandler.cleanLeavingSlideStatus(
+					this._slideShowNavigator.currentSlideIndex,
+					true,
+				);
+
+				this._metaPresentation.update(data);
+				// try to restore previously displayed slide
+				const slideInfo =
+					this._metaPresentation.getSlideInfo(currentSlideHash);
+				this._startSlide = slideInfo
+					? slideInfo.indexInSlideShow
+					: 0;
+				skipTransition = true;
+			} else {
+				// slideshow has been started again
+				this._metaPresentation.update(data);
+			}
 		}
 
 		if (!this._slideCompositor) {
@@ -746,11 +785,22 @@ class SlideShowPresenter {
 
 		this.startLoader();
 
-		this._slideShowNavigator.startPresentation(this._startSlide, false);
+		// allow user interaction
+		this._slideShowNavigator.enable();
+
+		this._slideShowNavigator.startPresentation(
+			this._startSlide,
+			skipTransition,
+		);
 		// TODO remove comment out code
 		// this._slideCompositor.fetchAndRun(0, () => {
 		// 	this._doPresentation(true);
 		// });
+	}
+
+	onSlideShowInfoChanged() {
+		this._presentationInfoChanged = true;
+		app.socket.sendMessage('getpresentationinfo');
 	}
 }
 
