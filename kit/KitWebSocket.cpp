@@ -283,7 +283,7 @@ void BgSaveParentWebSocketHandler::handleMessage(const std::vector<char>& data)
             // white-listing to avoid popup & dialog & other interactive errors
         {
             LOG_DBG("Unexpected but benign jsdialog message from bgsave process " +
-                    COOLProtocol::getAbbreviatedMessage(data));
+                    LOOLProtocol::getAbbreviatedMessage(data));
             return;
         }
 
