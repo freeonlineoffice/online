@@ -74,7 +74,9 @@ abstract class AnimationBaseNode extends BaseNode {
 				SlideShowHandler.MINIMUM_FRAMES_PER_SECONDS;
 
 		if (this.aTargetHash) {
-			if (!this.aNodeContext.aAnimatedElementMap.has(this.aTargetHash)) {
+			if (
+				!this.aNodeContext.aAnimatedElementMap.has(this.aTargetHash)
+			) {
 				const slideHash = this.aNodeContext.metaSlide.info.hash;
 				const aAnimatedElement = this.bIsTargetTextElement
 					? new AnimatedTextElement(

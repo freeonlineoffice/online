@@ -51,11 +51,15 @@ class AboutDialog {
 		content.style.display = 'block';
 
 		if (content.querySelector('#js-dialog')) {
-			(content.querySelector('#js-dialog') as HTMLAnchorElement).onclick =
-				function () {
-					app.socket.sendMessage('uno .uno:WidgetTestDialog');
-					app.map.uiManager.closeModal('modal-dialog-about-dialog-box', false);
-				};
+			(
+				content.querySelector('#js-dialog') as HTMLAnchorElement
+			).onclick = function () {
+				app.socket.sendMessage('uno .uno:WidgetTestDialog');
+				app.map.uiManager.closeModal(
+					'modal-dialog-about-dialog-box',
+					false,
+				);
+			};
 		}
 
 		// fill product-name and product-string
