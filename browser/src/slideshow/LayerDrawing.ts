@@ -145,7 +145,10 @@ class LayerDrawing {
 		return this.slideCache.get(startSlideHash);
 	}
 
-	public getLayerImage(slideHash: string, targetElement: string): ImageBitmap {
+	public getLayerImage(
+		slideHash: string,
+		targetElement: string,
+	): ImageBitmap {
 		// TODO: USE REAL HASH !!!
 		slideHash = this.helper.getSlideHash(0);
 		// REMOVE ABOVE

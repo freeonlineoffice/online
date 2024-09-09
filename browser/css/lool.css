@@ -526,11 +526,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 
 [dir='rtl'] .context-menu-submenu:after {
 	right: unset;
-	left: .5em;
+	left: 0.5em;
 	border-color: transparent var(--color-text-darker) transparent transparent;
-	border-width: .25em .25em .25em 0;
+	border-width: 0.25em 0.25em 0.25em 0;
 }
-
 
 #mobile-wizard {
 	display: none;
