@@ -966,7 +966,7 @@ public:
         LOG_TRC("StreamSocket ctor");
     }
 
-    ~StreamSocket()
+    ~StreamSocket() override
     {
         LOG_TRC("StreamSocket dtor called with pending write: " << _outBuffer.size()
                                                                 << ", read: " << _inBuffer.size());
