@@ -613,12 +613,12 @@ void DocumentBroker::pollThread()
 #if !MOBILEAPP
         if (std::chrono::duration_cast<std::chrono::minutes>(now - lastClipboardHashUpdateTime).count() >= 2)
         {
-            for (auto &it : _sessions)
+            for (const auto& it : _sessions)
             {
                 if (it.second->staleWaitDisconnect(now))
                 {
-                    std::string id = it.second->getId();
-                    LOG_WRN("Unusual, Kit session " + id + " failed its disconnect handshake, killing");
+                    LOG_WRN("Unusual, Kit session " << it.second->getId()
+                                                    << " failed its disconnect handshake, killing");
                     finalRemoveSession(it.second);
                     break; // it invalid.
                 }
@@ -628,7 +628,7 @@ void DocumentBroker::pollThread()
         if (std::chrono::duration_cast<std::chrono::minutes>(now - lastClipboardHashUpdateTime).count() >= 5)
         {
             LOG_TRC("Rotating clipboard keys");
-            for (auto &it : _sessions)
+            for (const auto& it : _sessions)
                 it.second->rotateClipboardKey(true);
 
             lastClipboardHashUpdateTime = now;
