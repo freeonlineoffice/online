@@ -3108,7 +3108,8 @@ std::string ChildSession::getBlockedCommandType(std::string command)
 }
 #endif
 
-bool ChildSession::sendProgressFrame(const char* id, const std::string &jsonProps)
+bool ChildSession::sendProgressFrame(const char* id, const std::string& jsonProps,
+                                     const std::string& forcedID)
 {
     std::string msg = "progress: { \"id\":\"";
     msg += id;
@@ -3119,6 +3120,10 @@ bool ChildSession::sendProgressFrame(const char* id, const std::string &jsonProp
     {
         msg += ", ";
         msg += jsonProps;
+    }
+    if (!forcedID.empty())
+    {
+        msg += ", \"forceid\": \"" + forcedID + "\"";
     }
     msg += " }";
     return sendTextFrame(msg);
@@ -3526,16 +3531,19 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         if (isPending) // dialog ret=ok, local save has been started
         {
             sendTextFrame("blockui: ");
+            sendProgressFrame("start", "", "exporting");
             return;
         }
         else if (isAbort) // dialog ret=cancel, local save was aborted
         {
             _exportAsWopiUrl.clear();
+            sendProgressFrame("finish", "", "exporting");
             return;
         }
 
         // this is export status message
         sendTextFrame("unblockui: ");
+        sendProgressFrame("finish", "", "exporting");
 
         if (isError) // local save failed
         {
