@@ -38,6 +38,16 @@ abstract class SlideCompositor {
 	public abstract getCanvasSize(): [number, number]; // [width, height]
 
 	public abstract getSlide(slideNumber: number): ImageBitmap;
+
+	public abstract getLayerImage(
+		slideHash: string,
+		targetElement: string,
+	): ImageBitmap;
+
+	public abstract getLayerBounds(
+		slideHash: string,
+		targetElement: string,
+	): BoundingBoxType;
 }
 
 SlideShow.SlideCompositor = SlideCompositor;

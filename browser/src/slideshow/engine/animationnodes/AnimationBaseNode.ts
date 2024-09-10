@@ -79,18 +79,8 @@ abstract class AnimationBaseNode extends BaseNode {
 			) {
 				const slideHash = this.aNodeContext.metaSlide.info.hash;
 				const aAnimatedElement = this.bIsTargetTextElement
-					? new AnimatedTextElement(
-							this.aTargetHash,
-							slideHash,
-							null,
-							null,
-						)
-					: new AnimatedElement(
-							this.aTargetHash,
-							slideHash,
-							null,
-							null,
-						);
+					? new AnimatedTextElement(this.aTargetHash, slideHash)
+					: new AnimatedElement(this.aTargetHash, slideHash);
 
 				this.aNodeContext.aAnimatedElementMap.set(
 					this.aTargetHash,
