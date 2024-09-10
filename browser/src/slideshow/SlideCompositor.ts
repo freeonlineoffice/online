@@ -48,6 +48,13 @@ abstract class SlideCompositor {
 		slideHash: string,
 		targetElement: string,
 	): BoundingBoxType;
+
+	public abstract getAnimatedSlide(slideIndex: number): ImageBitmap;
+
+	public abstract getAnimatedLayerInfo(
+		slideHash: string,
+		targetElement: string,
+	): AnimatedShapeInfo;
 }
 
 SlideShow.SlideCompositor = SlideCompositor;
