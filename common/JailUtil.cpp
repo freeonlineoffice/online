@@ -269,7 +269,7 @@ void removeAuxFolders(const std::string &root)
 
 /*
     The tmp dir of a path/<jailid>/tmp is mounted from (or linked to) a
-    path/tmp/cool-<jailid> dir. In a mount namespace case the existence
+    path/tmp/lool-<jailid> dir. In a mount namespace case the existence
     of path/<jailid>/tmp is not visible to the parent process so its
     contents cannot be removed via the path/<jailid>/tmp view, and
     in any case the path/<jailid>/tmp should be removed.
@@ -282,7 +282,7 @@ void removeAssocTmpOfJail(const std::string &root)
 
     jailPath.popDirectory();
     jailPath.pushDirectory("tmp");
-    jailPath.pushDirectory(std::string("cool-") + jailId);
+    jailPath.pushDirectory(std::string("lool-") + jailId);
 
     FileUtil::removeFile(jailPath.toString(), true);
 }
