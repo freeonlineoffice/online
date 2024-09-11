@@ -2168,6 +2168,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "deepl.enabled", "false" },
         { "zotero.enable", "true" },
         { "indirection_endpoint.geolocation_setup.enable", "false" },
+        { "indirection_endpoint.geolocation_setup.timezone", "" },
         { "indirection_endpoint.server_name", "" },
         { "indirection_endpoint.url", "" },
 #if !MOBILEAPP

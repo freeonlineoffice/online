@@ -11,6 +11,7 @@
 
 #include <chrono>
 #include <iomanip>
+#include <string>
 #include <sys/poll.h>
 #include <unistd.h>
 
@@ -20,6 +21,7 @@
 #include "Admin.hpp"
 #include "AdminModel.hpp"
 #include "Auth.hpp"
+#include "ConfigUtil.hpp"
 #include <Common.hpp>
 #include <Log.hpp>
 #include <Protocol.hpp>
@@ -129,9 +131,11 @@ void AdminSocketHandler::handleMessage(const std::vector<char> &payload)
     else if (tokens.equals(0, "version"))
     {
         // Send LOOL version information
-        sendTextFrame("loolserver " +
-                      Util::getVersionJSON(EnableExperimental, LOOLWSD::IndirectionServerEnabled &&
-                                                                   LOOLWSD::GeolocationSetup));
+        std::string timezoneName;
+        if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
+            timezoneName = config::getString("indirection_endpoint.geolocation_setup.timezone", "");
+
+        sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental, timezoneName));
 
         // Send LOKit version information
         sendTextFrame("lokitversion " + LOOLWSD::LOKitVersion);

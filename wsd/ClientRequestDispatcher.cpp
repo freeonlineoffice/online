@@ -2083,7 +2083,8 @@ static std::string getCapabilitiesJson(bool convertToAvailable)
 
     if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
     {
-        std::string timezoneName = Util::getIANATimezone();
+        std::string timezoneName =
+            config::getString("indirection_endpoint.geolocation_setup.timezone", "");
         if (!timezoneName.empty())
             capabilities->set("timezone", std::string(timezoneName));
     }

@@ -23,6 +23,7 @@
 #include <Poco/StreamCopier.h>
 #include <Poco/URI.h>
 
+#include "ConfigUtil.hpp"
 #include "DocumentBroker.hpp"
 #include "LOOLWSD.hpp"
 #include "FileServer.hpp"
@@ -633,10 +634,12 @@ bool ClientSession::_handleInput(const char *buffer, int length)
             }
         }
 
+        std::string timezoneName;
+        if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
+            timezoneName = config::getString("indirection_endpoint.geolocation_setup.timezone", "");
+
         // Send LOOL version information
-        sendTextFrame("loolserver " +
-                      Util::getVersionJSON(EnableExperimental, LOOLWSD::IndirectionServerEnabled &&
-                                                                   LOOLWSD::GeolocationSetup));
+        sendTextFrame("loolserver " + Util::getVersionJSON(EnableExperimental, timezoneName));
         // Send LOKit version information
         sendTextFrame("lokitversion " + LOOLWSD::LOKitVersion);
 
