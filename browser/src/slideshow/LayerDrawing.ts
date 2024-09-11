@@ -62,11 +62,13 @@ interface LayerInfo {
 	index?: number;
 	type?: 'bitmap' | 'placeholder' | 'animated';
 	content: LayerContentType;
+	isField?: boolean;
 }
 
 interface LayerEntry {
 	type: 'bitmap' | 'placeholder' | 'animated';
 	content: LayerContentType;
+	isField?: boolean;
 }
 
 class LayerDrawing {
@@ -377,6 +379,7 @@ class LayerDrawing {
 		const layerEntry: LayerEntry = {
 			type: info.type,
 			content: info.content,
+			isField: info.isField,
 		};
 		if (info.type === 'bitmap') {
 			if (
@@ -507,6 +510,7 @@ class LayerDrawing {
 		}
 
 		for (const layer of layers) {
+			if (layer.isField) return false;
 			this.drawMasterPageLayer(layer, slideHash);
 		}
 		return true;
