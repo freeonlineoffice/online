@@ -48,6 +48,12 @@ public:
                WAIT_DISCONNECT // closed and waiting for Kit's disconnected message
     );
 
+    enum ViewMode {
+        NORMAL_VIEW = 0, // For all.
+        MASTER_VIEW = 1, // Impress master page view.
+        NOTES_VIEW = 2 // Impress notes view.
+    };
+
     /// Returns true if this session has loaded a view (i.e. we got status message).
     bool isViewLoaded() const { return _state == SessionState::LIVE; }
 
@@ -367,7 +373,7 @@ private:
     int _clientSelectedPart;
 
     /// Selected mode of the presentation viewed by the client (in Impress)
-    int _clientSelectedMode;
+    ViewMode _clientSelectedMode;
 
     /// Zoom properties of the client
     int _tileWidthPixel;
