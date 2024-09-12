@@ -349,6 +349,9 @@ public:
 
     void dumpState(std::ostream& oss);
 
+    /// Returns true iff we have a LOKit Document instance.
+    bool isLoaded() const { return !!_loKitDocument; }
+
     /// Return access to the lok::Office instance.
     std::shared_ptr<lok::Office> getLOKit() { return _loKit; }
 
