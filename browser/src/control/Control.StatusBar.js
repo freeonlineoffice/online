@@ -23,6 +23,8 @@ class StatusBar extends JSDialog.Toolbar {
 		map.on('updatestatepagenumber', this.onPageChange, this);
 		map.on('search', this.onSearch, this);
 		map.on('zoomend', this.onZoomEnd, this);
+		map.on('initmodificationindicator', this.onInitModificationIndicator, this);
+		map.on('updatemodificationindicator', this.onUpdateModificationIndicator, this);
 	}
 
 	localizeStateTableCell(text) {
@@ -240,7 +242,7 @@ class StatusBar extends JSDialog.Toolbar {
 			this._generateHtmlItem('permissionmode'),					// spreadsheet, text, presentation
 			{type: 'toolitem', id: 'signstatus', command: '.uno:Signature', w2icon: '', text: _UNO('.uno:Signature'), visible: false},
 			{type: 'spacer',  id: 'permissionspacer'},
-			{type: 'customtoolitem',  id: 'documentstatus'},
+			this._generateHtmlItem('documentstatus'),					// spreadsheet, text, presentation, drawing
 			{type: 'customtoolitem',  id: 'prev', command: 'prev', text: _UNO('.uno:PageUp', 'text'), pressAndHold: true},
 			{type: 'customtoolitem',  id: 'next', command: 'next', text: _UNO('.uno:PageDown', 'text'), pressAndHold: true},
 			{type: 'separator', id: 'prevnextbreak', orientation: 'vertical'},
@@ -291,6 +293,7 @@ class StatusBar extends JSDialog.Toolbar {
 				this.showItem('StateTableCellMenu', !app.map.isReadOnlyMode());
 				this.showItem('statetablebreak', !app.map.isReadOnlyMode());
 				this.showItem('permissionmode-container', true);
+				this.showItem('documentstatus-container', true);
 			}
 			break;
 
@@ -303,6 +306,7 @@ class StatusBar extends JSDialog.Toolbar {
 				this.showItem('languagestatus', !app.map.isReadOnlyMode());
 				this.showItem('languagestatusbreak', !app.map.isReadOnlyMode());
 				this.showItem('permissionmode-container', true);
+				this.showItem('documentstatus-container', true);
 			}
 			break;
 
@@ -312,6 +316,7 @@ class StatusBar extends JSDialog.Toolbar {
 				this.showItem('languagestatus', !app.map.isReadOnlyMode());
 				this.showItem('languagestatusbreak', !app.map.isReadOnlyMode());
 				this.showItem('permissionmode-container', true);
+				this.showItem('documentstatus-container', true);
 			}
 			break;
 		case 'drawing':
@@ -320,6 +325,7 @@ class StatusBar extends JSDialog.Toolbar {
 				this.showItem('languagestatus', !app.map.isReadOnlyMode());
 				this.showItem('languagestatusbreak', !app.map.isReadOnlyMode());
 				this.showItem('permissionmode-container', true);
+				this.showItem('documentstatus-container', true);
 			}
 			break;
 		}
@@ -522,6 +528,33 @@ class StatusBar extends JSDialog.Toolbar {
 		}
 
 		JSDialog.MenuDefinitions.set('LanguageStatusMenu', menuEntries);
+	}
+
+	onInitModificationIndicator(lastmodtime) {
+		const docstatcontainer = document.getElementById('documentstatus-container');
+		if (lastmodtime == null) {
+			if (docstatcontainer !== null && docstatcontainer !== undefined) {
+				docstatcontainer.classList.add('hidden');
+			}
+			return;
+		}
+		docstatcontainer.classList.remove('hidden');
+
+		this.map.fire('modificationindicatorinitialized');
+	}
+
+	// status can be '', 'SAVING', 'MODIFIED' or 'SAVED'
+	onUpdateModificationIndicator(e) {
+		if (this._lastModstatus !== e.status) {
+			this.updateHtmlItem('DocumentStatus', e.status);
+			this._lastModStatus = e.status;
+		}
+		if (e.lastSaved !== null && e.lastSaved !== undefined) {
+			const lastSaved = document.getElementById('last-saved');
+			if (lastSaved !== null && lastSaved !== undefined) {
+				lastSaved.textContent = e.lastSaved;
+			}
+		}
 	}
 }
 

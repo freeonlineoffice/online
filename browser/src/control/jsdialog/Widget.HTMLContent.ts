@@ -130,6 +130,30 @@ function getPageStatusElements(text: string) {
 	return getStatusbarItemElements('PageStatus', _('Number of Pages'), text);
 }
 
+function getDocumentStatusElements(text: string) {
+	const docstat = getStatusbarItemElements(
+		'DocumentStatus',
+		_('Your changes have been saved'),
+		'',
+	);
+
+	if (text === 'SAVING') docstat.textContent = _('Saving...');
+	else if (text === 'SAVED') {
+		const lastSaved = document.createElement('span');
+		lastSaved.id = 'last-saved';
+		lastSaved.title = _('Your changes have been saved') + '.';
+		lastSaved.textContent = '';
+		docstat.appendChild(lastSaved);
+
+		const savedStatus = document.createElement('span');
+		savedStatus.id = 'saved-status-label';
+		savedStatus.textContent = _('Document saved');
+		docstat.appendChild(savedStatus);
+	}
+
+	return docstat;
+}
+
 var getElementsFromId = function (
 	id: string,
 	closeCallback: EventListenerOrEventListenerObject,
@@ -176,6 +200,7 @@ var getElementsFromId = function (
 		return getStateTableCellElements(data.text);
 	else if (id === 'slidestatus') return getSlideStatusElements(data.text);
 	else if (id === 'pagestatus') return getPageStatusElements(data.text);
+	else if (id === 'documentstatus') return getDocumentStatusElements(data.text);
 };
 
 function htmlContent(
