@@ -1086,7 +1086,7 @@ namespace Util
         }
         return os;
     }
-    std::string Backtrace::toString() const noexcept
+    std::string Backtrace::toString() const
     {
         std::string s = "Backtrace:\n";
         int fidx = skipFrames;
