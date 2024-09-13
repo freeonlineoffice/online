@@ -36,7 +36,7 @@
 #include "ClientSession.hpp"
 #include "Common.hpp"
 #include "Exceptions.hpp"
-#include "COOLWSD.hpp"
+#include "LOOLWSD.hpp"
 #include "FileServer.hpp"
 #include "Socket.hpp"
 #include "Storage.hpp"
@@ -62,7 +62,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-using namespace COOLProtocol;
+using namespace LOOLProtocol;
 
 using Poco::JSON::Object;
 
@@ -93,7 +93,7 @@ ConvertToBroker::ConvertToBroker(const std::string& uri, const Poco::URI& uriPub
             << "].");
 
     CONFIG_STATIC const std::chrono::seconds limit_convert_secs(
-        COOLWSD::getConfigValue<int>("per_document.limit_convert_secs", 100));
+        LOOLWSD::getConfigValue<int>("per_document.limit_convert_secs", 100));
     _limitLifeSeconds = limit_convert_secs;
     ++gConvertToBrokerInstanceCouter;
 }
@@ -207,7 +207,7 @@ void ConvertToBroker::setLoaded()
     toPath.setExtension(_format);
 
     // file:///user/docs/filename.ext normally, file:///<jail-root>/user/docs/filename.ext in the nocaps case
-    const std::string toJailURL = "file://" + (COOLWSD::NoCapsForKit ? getJailRoot() : "") +
+    const std::string toJailURL = "file://" + (LOOLWSD::NoCapsForKit ? getJailRoot() : "") +
                                   std::string(JAILED_DOCUMENT_ROOT) + toPath.getFileName();
 
     std::string encodedTo;
