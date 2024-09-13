@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-02 19:48+0200\n"
+"POT-Creation-Date: 2024-09-13 23:34+0200\n"
 "PO-Revision-Date: 2022-04-20 11:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/collabora-online/"
@@ -53,8 +53,8 @@ msgstr ""
 #: html/lool-help.html%2Bdiv.div.table.tr.td:91-69
 #, fuzzy
 msgid ""
-"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Ctrl</kbd><span "
-"class=\"kbd--plus\">+</span><kbd>Insert"
+"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>,<br/"
+"><kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Insert"
 msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Mayús</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Intro"
@@ -3146,12 +3146,13 @@ msgstr "Directamente:"
 msgid "Select the text with the existing format"
 msgstr "Seleccione el texto con el formato deseado"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:834-11
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:877-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:834-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:877-11
+#, fuzzy
 msgid ""
 "Click on the clone formatting icon <img style=\"height:0.6cm;width:0.6cm;\" "
-"alt=\"\" src=\"images/lc_formatpaintbrush.svg\">. The mouse pointer turns to "
-"a paint bucket."
+"alt=\"\" src=\"images/lc_formatpaintbrush.svg\"/>. The mouse pointer turns "
+"to a paint bucket."
 msgstr ""
 "Pulse en el icono Clonar formato <img style=\"height:0.6cm;width:0.6cm;\" "
 "alt=\"\" src=\"images/lc_formatpaintbrush.svg\">. El puntero del ratón "

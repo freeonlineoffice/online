@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-02 19:48+0200\n"
-"PO-Revision-Date: 2024-09-02 21:12+0200\n"
+"POT-Creation-Date: 2024-09-13 23:34+0200\n"
+"PO-Revision-Date: 2024-09-13 23:41+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -51,10 +51,10 @@ msgstr "Kopieren"
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:91-69
 msgid ""
-"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Ctrl</kbd><span class=\"kbd--"
+"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>,<br/><kbd>Ctrl</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Insert"
 msgstr ""
-"Strg</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd><kbd>Strg</kbd><span class=\"kbd--"
+"Strg</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>,<br/><kbd>Strg</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Eingabetaste"
 
 #: html/lool-help.html%2Bdiv.div.table.tr.td:92-38
@@ -2924,14 +2924,14 @@ msgstr "Direkt:"
 msgid "Select the text with the existing format"
 msgstr "Wählen Sie den Text mit dem vorhandenen Format aus"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:834-11
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:877-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:834-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:877-11
 msgid ""
 "Click on the clone formatting icon <img style=\"height:0.6cm;width:0.6cm;\" alt=\"\" "
-"src=\"images/lc_formatpaintbrush.svg\">. The mouse pointer turns to a paint bucket."
+"src=\"images/lc_formatpaintbrush.svg\"/>. The mouse pointer turns to a paint bucket."
 msgstr ""
 "Klicken Sie auf das Symbol Formatierung übertragen <img style=\"height:0.6cm;width:0.6cm;\" "
-"alt=\"\" src=\"images/lc_formatpaintbrush.svg\">. Der Mauszeiger verwandelt sich in einen "
+"alt=\"\" src=\"images/lc_formatpaintbrush.svg\"/>. Der Mauszeiger verwandelt sich in einen "
 "Farbeimer."
 
 #: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:835-11
