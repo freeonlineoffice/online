@@ -9,6 +9,9 @@
 /* Define to 1 if this is a code-coverage build. */
 #undef CODE_COVERAGE
 
+/* Static config values are enabled in release builds for performance */
+#undef CONFIG_STATIC
+
 /* Free Online Office core git hash if present */
 #undef CORE_VERSION_HASH
 
