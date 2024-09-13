@@ -92,6 +92,7 @@ class SlideShowPresenter {
 			this._onFullScreenChange,
 			this,
 		);
+		this._map.on('updateparts', this.onUpdateParts, this);
 	}
 
 	removeHooks() {
@@ -103,6 +104,7 @@ class SlideShowPresenter {
 			this._onFullScreenChange,
 			this,
 		);
+		this._map.off('updateparts', this.onUpdateParts, this);
 	}
 
 	private _init() {
@@ -115,6 +117,10 @@ class SlideShowPresenter {
 		this._slideShowNavigator.disable();
 		this._slideShowHandler.setNavigator(this._slideShowNavigator);
 		this._slideShowNavigator.setPresenter(this);
+	}
+
+	private onUpdateParts() {
+		if (this._checkAlreadyPresenting()) this.onSlideShowInfoChanged();
 	}
 
 	public getSlideInfo(slideNumber: number): SlideInfo | null {
@@ -799,6 +805,8 @@ class SlideShowPresenter {
 	}
 
 	onSlideShowInfoChanged() {
+		if (this._presentationInfoChanged) return;
+
 		this._presentationInfoChanged = true;
 		app.socket.sendMessage('getpresentationinfo');
 	}

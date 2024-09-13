@@ -3635,11 +3635,6 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         sendTextFrame("tooltip: " + payload);
         break;
     }
-    case LOK_CALLBACK_PRESENTATION_INFO_CHANGED:
-    {
-        sendTextFrame("presentationinfochanged: " + payload);
-        break;
-    }
     default:
         LOG_ERR("Unknown callback event (" << lokCallbackTypeToString(type) << "): " << payload);
     }
