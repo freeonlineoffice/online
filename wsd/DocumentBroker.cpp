@@ -225,7 +225,7 @@ void DocumentBroker::setupPriorities()
         return;
     if (_type == ChildType::Batch)
     {
-        int prio = LOOLWSD::getConfigValue<int>("per_document.batch_priority", 5);
+        const int prio = LOOLWSD::getConfigValue<int>("per_document.batch_priority", 5);
         Util::setProcessAndThreadPriorities(_childProcess->getPid(), prio);
     }
 }
@@ -2803,7 +2803,7 @@ void DocumentBroker::autoSaveAndStop(const std::string& reason)
     {
         if (_alwaysSaveOnExit && !_storageManager.lastUploadSuccessful())
         {
-            static const auto limStoreFailures =
+            CONFIG_STATIC const auto limStoreFailures =
                 LOOLWSD::getConfigValue<int>("per_document.limit_store_failures", 5);
 
             if (limStoreFailures > 0 &&
