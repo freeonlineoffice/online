@@ -1285,6 +1285,7 @@ private:
     public:
         StorageManager(std::chrono::milliseconds minTimeBetweenUploads)
             : _request(minTimeBetweenUploads)
+            , _sizeAsUploaded(0)
         {
             if (Log::traceEnabled())
             {
@@ -1344,6 +1345,14 @@ private:
         /// Returns the last modified time of the document.
         const std::string& getLastModifiedTime() const { return _lastModifiedTime; }
 
+        /// Set size of the document as we've uploaded.
+        /// Used to resynchronize after an upload failure that break reliance on the LastModifiedTime.
+        void setSizeAsUploaded(std::size_t size) { _sizeAsUploaded = size; }
+
+        /// Get size of the document as we've set in our PutFile header.
+        /// Used to resynchronize after an upload failure that break reliance on the LastModifiedTime.
+        std::size_t getSizeAsUploaded() const { return _sizeAsUploaded; }
+
         /// Returns how long the last upload took.
         std::chrono::milliseconds lastUploadDuration() const
         {
@@ -1375,6 +1384,7 @@ private:
             os << indent << "last upload was successful: " << std::boolalpha
                << lastUploadSuccessful();
             os << indent << "upload failure count: " << uploadFailureCount();
+            os << indent << "last upload size: " << _sizeAsUploaded;
         }
 
     private:
@@ -1386,6 +1396,10 @@ private:
 
         /// The modified time of the document in storage, as reported by the server.
         std::string _lastModifiedTime;
+
+        /// The size of the document as we uploaded to the server.
+        /// Used to help resynchronize the LastModifiedTime after an upload failure.
+        std::size_t _sizeAsUploaded;
     };
 
     /// Represents a lock-state update request.
