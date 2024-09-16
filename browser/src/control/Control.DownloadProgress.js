@@ -283,6 +283,8 @@ L.Control.DownloadProgress = L.Control.extend({
 		var that = this;
 		this._map._clip._doAsyncDownload(
 			'GET', that._uri, null, true,
+			function(progress) { return progress/2; },
+		).then(
 			function(response) {
 				window.app.console.log('clipboard async download done');
 				// annoying async parse of the blob ...
@@ -295,8 +297,8 @@ L.Control.DownloadProgress = L.Control.extend({
 				};
 				// TODO: failure to parse ? ...
 				reader.readAsText(response);
-			},
-			function(progress) { return progress/2; },
+			}
+		).catch(
 			function (response) {
 				that._onClose();
 				app.showAsyncDownloadError(response, _('Download failed'));
