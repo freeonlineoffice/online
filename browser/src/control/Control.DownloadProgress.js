@@ -280,7 +280,6 @@ L.Control.DownloadProgress = L.Control.extend({
 	},
 
 	_download: async function () {
-		var that = this;
 		let response;
 		try {
 			response = await this._map._clip._doAsyncDownload(
@@ -288,7 +287,7 @@ L.Control.DownloadProgress = L.Control.extend({
 				function(progress) { return progress/2; },
 			);
 		} catch (error) {
-			that._onClose();
+			this._onClose();
 			app.showAsyncDownloadError(error, _('Download failed'));
 			return;
 		}
@@ -296,11 +295,11 @@ L.Control.DownloadProgress = L.Control.extend({
 		window.app.console.log('clipboard async download done');
 		// annoying async parse of the blob ...
 		var reader = new FileReader();
-		reader.onload = function() {
+		reader.onload = () => {
 			var text = reader.result;
 			window.app.console.log('async clipboard parse done: ' + text.substring(0, 256));
-			let result = that._map._clip.parseClipboard(text);
-			that._map._clip.setTextSelectionHTML(result['html'], result['plain']);
+			let result = this._map._clip.parseClipboard(text);
+			this._map._clip.setTextSelectionHTML(result['html'], result['plain']);
 		};
 		// TODO: failure to parse ? ...
 		reader.readAsText(response);
