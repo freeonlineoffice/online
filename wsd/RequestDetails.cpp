@@ -70,6 +70,7 @@ RequestDetails::RequestDetails(Poco::Net::HTTPRequest &request, const std::strin
         _proxyPrefix = it->second;
     it = request.find("Upgrade");
     _isWebSocket = it != request.end() && Util::iequal(it->second, "websocket");
+    _closeConnection = !request.getKeepAlive(); // HTTP/1.1: closeConnection true w/ "Connection: close" only!
     // request.getHost fires an exception on mobile.
     if (!Util::isMobileApp())
         _hostUntrusted = request.getHost();
@@ -82,6 +83,7 @@ RequestDetails::RequestDetails(const std::string &mobileURI)
     , _isHead(false)
     , _isProxy(false)
     , _isWebSocket(false)
+    , _closeConnection(false)
 {
     _uriString = mobileURI;
     dehexify();
@@ -94,6 +96,7 @@ RequestDetails::RequestDetails(const std::string& wopiSrc, const std::vector<std
     , _isHead(false)
     , _isProxy(false)
     , _isWebSocket(false)
+    , _closeConnection(false)
 {
     // /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
 
