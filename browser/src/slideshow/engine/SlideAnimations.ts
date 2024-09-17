@@ -98,7 +98,7 @@ function createAnimationNode(
 			window.app.console.log(
 				'createAnimationNode: AnimateColor not implemented',
 			);
-			return;
+			return null;
 		case AnimationNodeType.AnimateTransform:
 			aCreatedNode = new AnimationTransformNode(
 				aNodeInfo,
@@ -106,13 +106,19 @@ function createAnimationNode(
 				aNodeContext,
 			);
 			break;
-		case AnimationNodeType.TransitionFilter:
-			aCreatedNode = new AnimationTransitionFilterNode(
-				aNodeInfo,
-				aParentNode,
-				aNodeContext,
-			);
-			break;
+		case AnimationNodeType.TransitionFilter: {
+			const aTransFilterInfo = aNodeInfo as TransitionFilterNodeInfo;
+			if (aTransFilterInfo.transitionType === 'Fade') {
+				aCreatedNode = new AnimationTransitionFilterNode(
+					aNodeInfo,
+					aParentNode,
+					aNodeContext,
+				);
+				break;
+			} else {
+				return null;
+			}
+		}
 		case AnimationNodeType.Audio:
 			window.app.console.log(
 				'createAnimationNode: Audio not implemented',
@@ -218,6 +224,10 @@ class SlideAnimations {
 
 	public elementsParsed() {
 		return this.bElementsParsed;
+	}
+
+	public info(verbose: boolean) {
+		if (this.aRootNode) return this.aRootNode.info(verbose);
 	}
 
 	isFirstRun() {

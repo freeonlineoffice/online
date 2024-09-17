@@ -42,6 +42,12 @@ abstract class BaseContainerNode extends BaseNode {
 
 		const aNodeInfo: ContainerNodeInfo = this.aNodeInfo;
 
+		if (this.getParentNode() && this.getParentNode().isMainSequenceRootNode()) {
+			if (this.getBegin().getEventType() !== EventTrigger.OnNext) {
+				this.bIsFirstAutoEffect = true;
+			}
+		}
+
 		// nodeType property
 		this.eImpressNodeType = ImpressNodeType.Default;
 		if (aNodeInfo.nodeType && aNodeInfo.nodeType in ImpressNodeType) {
@@ -332,7 +338,7 @@ class SequentialTimeContainer extends BaseContainerNode {
 				break;
 			else
 				window.app.console.log(
-					'SequentialTimeContainer.activate_st: resolving child failed!',
+					`SequentialTimeContainer(${this.getId()}).activate_st: resolving child(${this.nFinishedChildren}) failed!`,
 				);
 		}
 

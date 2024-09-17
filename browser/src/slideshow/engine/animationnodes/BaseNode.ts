@@ -270,6 +270,7 @@ abstract class BaseNode {
 	protected sClassName = 'BaseNode';
 	public readonly eAnimationNodeType: AnimationNodeType;
 	protected bIsContainer: boolean;
+	protected bIsFirstAutoEffect: boolean = false;
 	protected readonly aNodeInfo: AnimationNodeInfo;
 	protected readonly aParentNode: BaseContainerNode;
 	protected readonly aNodeContext: NodeContext;
@@ -528,6 +529,9 @@ abstract class BaseNode {
 		if (aStateTrans.enter(NodeState.Active)) {
 			this.activate_st();
 			aStateTrans.commit();
+
+			if (this.bIsFirstAutoEffect)
+				this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectStarted();
 			if (!this.aContext.aEventMultiplexer)
 				window.app.console.log(
 					'BaseNode.activate: this.aContext.aEventMultiplexer is not valid',
@@ -557,6 +561,8 @@ abstract class BaseNode {
 				aStateTrans.commit();
 
 				this.notifyEndListeners();
+				if (this.bIsFirstAutoEffect)
+					this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectEnded();
 
 				if (this.aActivationEvent) this.aActivationEvent.dispose();
 				if (this.aDeactivationEvent)
@@ -593,6 +599,8 @@ abstract class BaseNode {
 			// if is FROZEN or is to be FROZEN, then
 			// will/already notified deactivating listeners
 			if (!bIsFrozenOrInTransitionToFrozen) this.notifyEndListeners();
+			if (this.bIsFirstAutoEffect)
+				this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectEnded();
 
 			if (this.aActivationEvent) this.aActivationEvent.dispose();
 			if (this.aDeactivationEvent) this.aDeactivationEvent.dispose();
@@ -732,15 +740,15 @@ abstract class BaseNode {
 		);
 	}
 
-	public getBegin(): any {
+	public getBegin(): Timing {
 		return this.aBegin;
 	}
 
-	public getEnd(): any {
+	public getEnd(): Timing {
 		return this.aEnd;
 	}
 
-	public getDuration(): any {
+	public getDuration(): Duration {
 		return this.aDuration;
 	}
 
@@ -769,10 +777,7 @@ abstract class BaseNode {
 	}
 
 	public info(bVerbose: boolean = false) {
-		let sInfo: string = 'class name: ' + this.sClassName;
-		sInfo += ';  node name: ' + this.aNodeInfo.nodeName;
-		sInfo += ';  id: ' + this.getId();
-		sInfo += ';  state: ' + NodeState[this.getState()];
+		let sInfo = `${this.sClassName}(${this.aNodeInfo.nodeName}, ${this.getId()}, ${NodeState[this.getState()]})`;
 
 		if (bVerbose) {
 			// is container
