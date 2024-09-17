@@ -12,9 +12,9 @@
 #import <cstdlib>
 #import <cstring>
 
+#define LIBO_INTERNAL_ONLY
 #import <LibreOfficeKit/LibreOfficeKit.hxx>
 
-#define LIBO_INTERNAL_ONLY
 #include <comphelper/lok.hxx>
 #include <i18nlangtag/languagetag.hxx>
 
