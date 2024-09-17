@@ -730,12 +730,10 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
         return Poco::Path(getJailPath(), getFileInfo().getFilename()).toString();
 }
 
-void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
-                                                const std::string& saveAsPath,
-                                                const std::string& saveAsFilename,
-                                                const bool isRename, const Attributes& attribs,
-                                                SocketPoll& socketPoll,
-                                                const AsyncUploadCallback& asyncUploadCallback)
+std::size_t WopiStorage::uploadLocalFileToStorageAsync(
+    const Authorization& auth, LockContext& lockCtx, const std::string& saveAsPath,
+    const std::string& saveAsFilename, const bool isRename, const Attributes& attribs,
+    SocketPoll& socketPoll, const AsyncUploadCallback& asyncUploadCallback)
 {
     auto profileZone =
         std::make_shared<ProfileZone>(std::string("WopiStorage::uploadLocalFileToStorage"),
@@ -750,7 +748,7 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
         asyncUploadCallback(
             AsyncUpload(AsyncUpload::State::Error,
                 UploadResult(UploadResult::Result::FAILED, "Already in progress.")));
-        return;
+        return 0;
     }
 
     const bool isSaveAs = !saveAsPath.empty() && !saveAsFilename.empty();
@@ -764,7 +762,7 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
         asyncUploadCallback(
             AsyncUpload(AsyncUpload::State::Error,
                 UploadResult(UploadResult::Result::FAILED, "File not found.")));
-        return;
+        return 0;
     }
 
     const std::size_t size = (fileStat.good() ? fileStat.size() : 0);
@@ -911,7 +909,7 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
         // Make the request.
         _uploadHttpSession->asyncRequest(httpRequest, socketPoll);
 
-        return;
+        return size;
     }
     catch (const Poco::Exception& ex)
     {
@@ -929,6 +927,8 @@ void WopiStorage::uploadLocalFileToStorageAsync(const Authorization& auth, LockC
 
     asyncUploadCallback(AsyncUpload(
         AsyncUpload::State::Error, UploadResult(UploadResult::Result::FAILED, "Internal error.")));
+
+    return 0;
 }
 
 StorageBase::UploadResult
