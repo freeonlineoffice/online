@@ -153,6 +153,7 @@ class LayerDrawing {
 		targetElement: string,
 	): BoundingBoxType {
 		const layers = this.cachedDrawPages.get(slideHash);
+		if (!layers) return null;
 		for (const i in layers) {
 			const animatedInfo = layers[i].content as AnimatedShapeInfo;
 			if (
@@ -188,6 +189,7 @@ class LayerDrawing {
 			`LayerDrawing.getAnimatedLayerInfo(${slideHash}, ${targetElement})`,
 		);
 		const layers = this.cachedDrawPages.get(slideHash);
+		if (!layers) return null;
 		for (const i in layers) {
 			const animatedInfo = layers[i].content as AnimatedShapeInfo;
 			if (animatedInfo && animatedInfo.hash === targetElement)
@@ -201,6 +203,7 @@ class LayerDrawing {
 		targetElement: string,
 	): ImageBitmap {
 		const layers = this.cachedDrawPages.get(slideHash);
+		if (!layers) return null;
 		for (const i in layers) {
 			const animatedInfo = layers[i].content as AnimatedShapeInfo;
 			if (
@@ -404,12 +407,16 @@ class LayerDrawing {
 		if (!slideInfo.masterPageObjectsVisibility) {
 			return;
 		}
-		if (info.index === 0) {
+
+		if (
+			info.index === 0 ||
+			!this.cachedMasterPages.get(slideInfo.masterPage)
+		)
 			this.cachedMasterPages.set(
 				slideInfo.masterPage,
 				new Array<LayerEntry>(),
 			);
-		}
+
 		const layers = this.cachedMasterPages.get(slideInfo.masterPage);
 		if (layers.length !== info.index) {
 			window.app.console.log(
@@ -436,7 +443,7 @@ class LayerDrawing {
 	}
 
 	private handleDrawPageLayerMsg(info: LayerInfo, img: any) {
-		if (info.index === 0) {
+		if (info.index === 0 || !this.cachedDrawPages.get(info.slideHash)) {
 			this.cachedDrawPages.set(
 				info.slideHash,
 				new Array<LayerEntry>(),
@@ -549,10 +556,17 @@ class LayerDrawing {
 			return false;
 		}
 
+		var hasField = false;
 		for (const layer of layers) {
-			if (layer.isField) return false;
 			this.drawMasterPageLayer(layer, slideHash);
+			if (layer.isField) {
+				this.cachedMasterPages.delete(slideInfo.masterPage);
+				hasField = true;
+			}
 		}
+
+		if (hasField) return false;
+
 		return true;
 	}
 
