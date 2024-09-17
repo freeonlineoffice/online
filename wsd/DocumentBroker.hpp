@@ -1630,6 +1630,9 @@ private:
     /// Performs aggregated work after servicing all client sessions
     void processBatchUpdates();
 
+    /// Called when document conflict is detected (i.e. it changed in storage).
+    void handleDocumentConflict();
+
     /// The main state of the document.
     DocumentState _docState;
 
