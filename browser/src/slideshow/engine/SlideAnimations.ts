@@ -37,6 +37,33 @@ function getNodeChildren(aNode: ContainerNodeInfo): Array<AnimationNodeInfo> {
 	return aNode.children || [];
 }
 
+function isAttributeSupported(aNodeInfo: AnimateNodeInfo) {
+	return AnimatedElement.SupportedProperties.has(
+		aNodeInfo.attributeName.toLowerCase(),
+	);
+}
+
+function isTransformSupported(aNodeInfo: AnimateTransformNodeInfo) {
+	return AnimatedElement.SupportedProperties.has(
+		aNodeInfo.transformType.toLowerCase(),
+	);
+}
+
+function isTransitionFilterSupported(aNodeInfo: TransitionFilterNodeInfo) {
+	if (
+		aNodeInfo.transitionType === 'Fade' &&
+		aNodeInfo.transitionSubType === 'CrossFade'
+	) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isTargetSupported(aNodeInfo: AnimateNodeInfo) {
+	return !(aNodeInfo.subItem && aNodeInfo.subItem === 'OnlyText');
+}
+
 function createAnimationTree(
 	aAnimationRoot: AnimationNodeInfo,
 	aNodeContext: NodeContext,
@@ -55,6 +82,11 @@ function createAnimationNode(
 	let aCreatedNode = null;
 	let aCreatedContainer = null;
 
+	if (!isTargetSupported(aNodeInfo)) {
+		window.app.console.log(`createAnimationNode: target not supported`);
+		return null;
+	}
+
 	switch (eAnimationNodeType) {
 		case AnimationNodeType.Par:
 			aCreatedNode = aCreatedContainer = new ParallelTimeContainer(
@@ -67,7 +99,7 @@ function createAnimationNode(
 			window.app.console.log(
 				'createAnimationNode: Iterate not implemented',
 			);
-			return;
+			return null;
 		case AnimationNodeType.Seq:
 			aCreatedNode = aCreatedContainer = new SequentialTimeContainer(
 				aNodeInfo,
@@ -76,19 +108,37 @@ function createAnimationNode(
 			);
 			break;
 		case AnimationNodeType.Animate:
-			aCreatedNode = new PropertyAnimationNode(
-				aNodeInfo,
-				aParentNode,
-				aNodeContext,
-			);
-			break;
+			if (isAttributeSupported(aNodeInfo)) {
+				aCreatedNode = new PropertyAnimationNode(
+					aNodeInfo,
+					aParentNode,
+					aNodeContext,
+				);
+				break;
+			} else {
+				const attrName = (aNodeInfo as AnimateNodeInfo)
+					.attributeName;
+				window.app.console.log(
+					`createAnimationNode: PropertyAnimationNode: attribute '${attrName}' not supported`,
+				);
+				return null;
+			}
 		case AnimationNodeType.Set:
-			aCreatedNode = new AnimationSetNode(
-				aNodeInfo,
-				aParentNode,
-				aNodeContext,
-			);
-			break;
+			if (isAttributeSupported(aNodeInfo)) {
+				aCreatedNode = new AnimationSetNode(
+					aNodeInfo,
+					aParentNode,
+					aNodeContext,
+				);
+				break;
+			} else {
+				const attrName = (aNodeInfo as AnimateNodeInfo)
+					.attributeName;
+				window.app.console.log(
+					`createAnimationNode: AnimationSetNode: attribute '${attrName}' not supported`,
+				);
+				return null;
+			}
 		case AnimationNodeType.AnimateMotion:
 			window.app.console.log(
 				'createAnimationNode: AnimateMotion not implemented',
@@ -100,15 +150,29 @@ function createAnimationNode(
 			);
 			return null;
 		case AnimationNodeType.AnimateTransform:
-			aCreatedNode = new AnimationTransformNode(
-				aNodeInfo,
-				aParentNode,
-				aNodeContext,
-			);
-			break;
-		case AnimationNodeType.TransitionFilter: {
-			const aTransFilterInfo = aNodeInfo as TransitionFilterNodeInfo;
-			if (aTransFilterInfo.transitionType === 'Fade') {
+			if (
+				isTransformSupported(aNodeInfo as AnimateTransformNodeInfo)
+			) {
+				aCreatedNode = new AnimationTransformNode(
+					aNodeInfo,
+					aParentNode,
+					aNodeContext,
+				);
+				break;
+			} else {
+				const transfType = (aNodeInfo as AnimateTransformNodeInfo)
+					.transformType;
+				window.app.console.log(
+					`createAnimationNode: AnimationTransformNode: transform '${transfType}' not supported`,
+				);
+				return null;
+			}
+		case AnimationNodeType.TransitionFilter:
+			if (
+				isTransitionFilterSupported(
+					aNodeInfo as TransitionFilterNodeInfo,
+				)
+			) {
 				aCreatedNode = new AnimationTransitionFilterNode(
 					aNodeInfo,
 					aParentNode,
@@ -116,9 +180,15 @@ function createAnimationNode(
 				);
 				break;
 			} else {
+				const transitionFilterInfo =
+					aNodeInfo as TransitionFilterNodeInfo;
+				window.app.console.log(
+					`createAnimationNode: AnimationTransitionFilterNode: ` +
+						`transition '${transitionFilterInfo.transitionType}' ` +
+						`'${transitionFilterInfo.transitionSubType}' not supported`,
+				);
 				return null;
 			}
-		}
 		case AnimationNodeType.Audio:
 			window.app.console.log(
 				'createAnimationNode: Audio not implemented',
@@ -171,6 +241,19 @@ function createChildNode(
 		window.app.console.log('createChildNode: child node creation failed');
 		return false;
 	} else {
+		if (
+			aChildNode.isContainer() &&
+			!aChildNode.isMainSequenceRootNode()
+		) {
+			const aContainer = aChildNode as BaseContainerNode;
+			// an empty effect should be removed, but sibling effects shouldn't, so don't report failure
+			if (aContainer.isEmpty()) {
+				window.app.console.log(
+					`createChildNode: child-node(${aContainer.getId()}) is empty`,
+				);
+				return true; // neither append, nor fail
+			}
+		}
 		aParentNode.appendChildNode(aChildNode);
 		return true;
 	}
