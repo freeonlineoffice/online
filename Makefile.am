@@ -671,6 +671,37 @@ $(abs_srcdir)/compile_commands.json: $(JSON_COMPILE_SRC)
 
 compile_commands: $(abs_srcdir)/compile_commands.json
 
+$(abs_srcdir)/.clangd: config.d/clangd.am
+	@sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' $< > $@
+
+dot_clangd: $(abs_srcdir)/.clangd
+
+$(abs_srcdir)/Doxyfile.cpp.cfg: config.d/Doxyfile.cpp.in
+	@sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' -e 's|@LOOL_VERSION@|${LOOLWSD_VERSION}|g' $< > $@
+
+doxygen: $(abs_srcdir)/Doxyfile.cpp.cfg
+	rm -rf doc/cpp
+	mkdir -p doc/cpp
+	doxygen $(abs_srcdir)/Doxyfile.cpp.cfg
+
+$(abs_srcdir)/.vscode/settings.json: config.d/vscode/settings.json.am
+	mkdir -p $(abs_srcdir)/.vscode
+	sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' $< > $@
+
+$(abs_srcdir)/.vscode/online.code-workspace: config.d/vscode/online.code-workspace.am
+	mkdir -p $(abs_srcdir)/.vscode
+	sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' $< > $@
+
+gen-clangd: $(abs_srcdir)/compile_commands.json $(abs_srcdir)/.clangd
+
+gen-vscode: gen-clangd $(abs_srcdir)/.vscode/settings.json $(abs_srcdir)/.vscode/online.code-workspace
+
+clean-clangd:
+	cd $(abs_srcdir) && rm -f .clangd
+
+clean-vscode: clean-clangd
+	cd $(abs_srcdir) && rm -rf .vscode
+
 browser/node_modules: browser/package.json browser/node_shrinkpack
 	@cd browser && npm install
 
