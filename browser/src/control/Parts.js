@@ -123,6 +123,8 @@ L.Map.include({
 	selectPart: function (part, how, external) {
 		//TODO: Update/track selected parts(?).
 		var docLayer = this._docLayer;
+		var oldParts = docLayer._selectedParts.slice();
+		var newParts = docLayer._selectedParts;
 		var index = docLayer._selectedParts.indexOf(part);
 		if (index >= 0 && how != 1) {
 			// Remove (i.e. deselect)
@@ -131,6 +133,12 @@ L.Map.include({
 		else if (how != 0) {
 			// Add (i.e. select)
 			docLayer._selectedParts.push(part);
+		}
+
+		// did we change anything?
+		if (oldParts.length === newParts.length &&
+			oldParts.every((value, index) => { return value === newParts[index]; })) {
+			return;
 		}
 
 		this.fire('updateparts', {
