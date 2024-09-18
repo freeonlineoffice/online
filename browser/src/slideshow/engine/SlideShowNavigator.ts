@@ -146,8 +146,6 @@ class SlideShowNavigator {
 			'SlideShowNavigator.quit: current index: ' + this.currentSlide,
 		);
 		this.endPresentation(true);
-		this.currentSlide = undefined;
-		this.prevSlide = undefined;
 		this.removeHandlers();
 	}
 
@@ -222,6 +220,8 @@ class SlideShowNavigator {
 	}
 
 	endPresentation(force: boolean = false) {
+		this.currentSlide = undefined;
+		this.prevSlide = undefined;
 		this.presenter.endPresentation(force);
 	}
 
