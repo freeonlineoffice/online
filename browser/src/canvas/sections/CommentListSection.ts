@@ -755,9 +755,9 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			}
 
 			if (position) {
-				const rect = selectedComment.sectionProperties.container.getBoundingClientRect();
+				const rectHeight = selectedComment.getCommentHeight();
 				const annotationTop = position[1];
-				const annotationHeight = this.cssToCorePixels(rect.height);
+				const annotationHeight = this.cssToCorePixels(rectHeight);
 				const annotationBottom = position[1] + annotationHeight;
 
 				if (!this.isInViewPort([annotationTop, annotationBottom]) && position[1] !== 0 && annotation === selectedComment) {
@@ -1468,8 +1468,9 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			}
 		}
 
-		if (this.sectionProperties.docLayer._docType === 'text')
+		if (this.sectionProperties.docLayer._docType === 'text') {
 			this.updateThreadInfoIndicator();
+		}
 
 		if (CommentSection.pendingImport) {
 			app.socket.sendMessage('commandvalues command=.uno:ViewAnnotations');
@@ -1637,7 +1638,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 	private layoutUp (subList: any, actualPosition: Array<number>, lastY: number): number {
 		var height: number;
 		for (var i = 0; i < subList.length; i++) {
-			height = subList[i].sectionProperties.container.getBoundingClientRect().height;
+			height = subList[i].getCommentHeight();
 			lastY = subList[i].sectionProperties.data.anchorPix[1] + height < lastY ? subList[i].sectionProperties.data.anchorPix[1]: lastY - (height * app.dpiScale);
 			(new L.PosAnimation()).run(subList[i].sectionProperties.container, {x: Math.round(actualPosition[0] / app.dpiScale), y: Math.round(lastY / app.dpiScale)}, this.getAnimationDuration());
 			if (!subList[i].isEdit())
@@ -1689,7 +1690,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			else
 				(new L.PosAnimation()).run(subList[i].sectionProperties.container, {x: Math.round(actualPosition[0] / app.dpiScale), y: Math.round(lastY / app.dpiScale)}, this.getAnimationDuration());
 
-			lastY += (subList[i].sectionProperties.container.getBoundingClientRect().height * app.dpiScale);
+			lastY += (subList[i].getCommentHeight() * app.dpiScale);
 			if (!subList[i].isEdit())
 				subList[i].show();
 		}
@@ -1887,6 +1888,12 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 		}
 	}
 
+	private updateChildLines () : void {
+		for (let i = 0; i < this.sectionProperties.commentList.length; i++) {
+			this.sectionProperties.commentList[i].updateChildLines();
+		}
+	}
+
 	// Returns the root comment index of given id
 	private getRootIndexOf (id: any): number {
 		var index = this.getIndexOf(id);
@@ -2008,7 +2015,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 							var spaceBefore = this.sectionProperties.commentList[i].sectionProperties.container._leaflet_pos.y;
 							if (i > 0) {
 								spaceBefore -= this.sectionProperties.commentList[i-1].sectionProperties.container._leaflet_pos.y
-									+ this.sectionProperties.commentList[i-1].sectionProperties.container.getBoundingClientRect().height
+									+ this.sectionProperties.commentList[i-1].getCommentHeight()
 									+ this.sectionProperties.marginY;
 							} else {
 								spaceBefore += this.documentTopLeft[1];
@@ -2036,6 +2043,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 					}
 				}
 			}
+			this.updateChildLines();
 		}
 	}
 
