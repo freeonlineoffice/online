@@ -550,6 +550,10 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	width: 250px;
 }
 
+.lool-annotation.annotation-pop-up {
+	width: 75%;
+}
+
 .lool-annotation.tracked-deleted-comment-show {
 	opacity: 0.5;
 }
@@ -788,7 +792,7 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	vertical-align: top;
 }
 
-.cool-annotation-child-line {
+.lool-annotation-child-line {
 	border-style: none none dashed dashed;
 	border-width: thin;
 	border-color: black;
