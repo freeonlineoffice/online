@@ -146,6 +146,8 @@ class SlideShowNavigator {
 			'SlideShowNavigator.quit: current index: ' + this.currentSlide,
 		);
 		this.endPresentation(true);
+		this.currentSlide = undefined;
+		this.prevSlide = undefined;
 		this.removeHandlers();
 	}
 
@@ -175,7 +177,8 @@ class SlideShowNavigator {
 		if (nNewSlide >= this.theMetaPres.numberOfSlides) {
 			this.currentSlide = nNewSlide;
 			const force = nNewSlide > this.theMetaPres.numberOfSlides;
-			this.endPresentation(force);
+			if (force) this.quit();
+			else this.endPresentation(false);
 			return;
 		}
 		this.slideCompositor.fetchAndRun(nNewSlide, () => {
@@ -220,8 +223,6 @@ class SlideShowNavigator {
 	}
 
 	endPresentation(force: boolean = false) {
-		this.currentSlide = undefined;
-		this.prevSlide = undefined;
 		this.presenter.endPresentation(force);
 	}
 

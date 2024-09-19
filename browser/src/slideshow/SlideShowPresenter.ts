@@ -156,7 +156,7 @@ class SlideShowPresenter {
 			this.centerCanvas();
 		} else {
 			// we need to cleanup current/prev slide
-			this._slideShowNavigator.endPresentation(true);
+			this._slideShowNavigator.quit();
 		}
 	}
 
