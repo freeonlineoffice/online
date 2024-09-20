@@ -37,7 +37,11 @@ class FlipTilesTransition extends SimpleTransition {
 		for (const primitive of texturePrimitive) {
 			this.setBufferData(primitive.vertices);
 			applyOperations.call(this, t, primitive.operations);
-			this.gl.drawArrays(this.gl.TRIANGLES, 0, primitive.vertices.length);
+			this.gl.drawArrays(
+				this.gl.TRIANGLES,
+				0,
+				primitive.vertices.length,
+			);
 		}
 	}
 
@@ -110,7 +114,10 @@ function makeFlipTilesTransition(
 			aTile.operations.push(
 				makeSRotate(
 					vec3.fromValues(0, 1, 0),
-					calculateMidpoint(aTile.getVertex(1), aTile.getVertex(3)),
+					calculateMidpoint(
+						aTile.getVertex(1),
+						aTile.getVertex(3),
+					),
 					180,
 					true,
 					(x11[0] * x11[1]) / 2.0,
@@ -122,7 +129,10 @@ function makeFlipTilesTransition(
 			aTile.operations.push(
 				makeSRotate(
 					vec3.fromValues(0, 1, 0),
-					calculateMidpoint(aTile.getVertex(1), aTile.getVertex(3)),
+					calculateMidpoint(
+						aTile.getVertex(1),
+						aTile.getVertex(3),
+					),
 					-180,
 					false,
 					(x11[0] * x11[1]) / 2.0,
