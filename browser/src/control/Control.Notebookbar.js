@@ -467,11 +467,9 @@ L.Control.Notebookbar = L.Control.extend({
 
 	onDarkModeToggleChange: function() {
 		if (window.prefs.getBoolean('darkTheme')) {
-			$('#toggledarktheme').addClass('selected');
 			$('#invertbackground').show();
 		}
 		else {
-			$('#toggledarktheme').removeClass('selected');
 			$('#invertbackground').hide();
 		}
 	},
