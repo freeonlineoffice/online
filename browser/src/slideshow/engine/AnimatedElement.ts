@@ -208,7 +208,6 @@ const aPropertyGetterSetterMap = {
 type PropertyGetterSetterMapKeyType = keyof typeof aPropertyGetterSetterMap;
 
 interface AnimatedElementState {
-	aElement: AnimatedObjectType;
 	nCenterX: number;
 	nCenterY: number;
 	nScaleFactorX: number;
@@ -223,30 +222,41 @@ function BBoxToString(aBB: BoundingBoxType) {
 	return `{ x: ${aBB.x}, y: ${aBB.y}, width: ${aBB.width}, height: ${aBB.height} }`;
 }
 
-function getBBoxCenter(aBB: BoundingBoxType) {
-	return {
-		x: aBB.x + aBB.width / 2,
-		y: aBB.y + aBB.height / 2,
-	};
-}
-
 class AnimatedElement {
+	public static readonly SupportedProperties = new Set<string>([
+		'x',
+		'y',
+		'width',
+		'height',
+		'opacity',
+		'visibility',
+	]);
+
+	public static readonly SupportedTransformations = new Set<string>([
+		'translate',
+		'scale',
+	]);
+
 	private sId: string;
 	private slideHash: string;
 	private slideWidth: number;
 	private slideHeight: number;
+	private canvasWidth: number;
+	private canvasHeight: number;
+	private bIsValid: boolean;
+	private slideRenderer: SlideRenderer;
+	private animatedLayerInfo: AnimatedShapeInfo = null;
 	private aLayer: ImageBitmap = null;
+	private canvasScaleFactor: { x: number; y: number };
 	private aBaseBBox: BoundingBoxType = null;
+	private aBBoxInCanvas: BoundingBoxType;
 	private aBaseElement: AnimatedObjectType;
-	private aActiveBBox: BoundingBoxType;
-	private aActiveElement: AnimatedObjectType;
 	private nBaseCenterX: number = 0;
 	private nBaseCenterY: number = 0;
-	private aClipPath: SVGPathElement = null;
-	private aPreviousElement: AnimatedObjectType = null;
-	private aStateSet = new Map<number, AnimatedElementState>();
+	private aActiveBBox: BoundingBoxType;
+	private aActiveElement: AnimatedObjectType;
 	private eAdditiveMode = AdditiveMode.Replace;
-	private bIsUpdated = true;
+	private aStateSet = new Map<number, AnimatedElementState>();
 	private nCenterX: number;
 	private nCenterY: number;
 	private nScaleFactorX: number = 1.0;
@@ -255,20 +265,14 @@ class AnimatedElement {
 	private aTMatrix: DOMMatrix;
 	private nOpacity: number; // [0, 1]
 	private bVisible: boolean;
-	private aSlideShowContext: SlideShowContext;
+	private aClipPath: SVGPathElement = null;
 	private offscreenCanvas: OffscreenCanvas;
 	private canvasContext: OffscreenCanvasRenderingContext2D;
 	private runningAnimations: number = 0;
-	private animatedLayerInfo: AnimatedShapeInfo = null;
-	private slideRenderer: SlideRenderer;
-	private bIsValid: boolean = false;
 
-	public static readonly SupportedProperties = new Set<string>([
-		'x',
-		'y',
-		'opacity',
-		'visibility',
-	]);
+	private aSlideShowContext: SlideShowContext;
+	private aPreviousElement: AnimatedObjectType = null;
+	private bIsUpdated = true;
 
 	constructor(
 		sId: string,
@@ -281,106 +285,18 @@ class AnimatedElement {
 		this.slideHash = slideHash;
 		this.slideWidth = slideWidth;
 		this.slideHeight = slideHeight;
+		this.bIsValid = false;
 
 		const presenter: SlideShowPresenter = app.map.slideShowPresenter;
 		this.slideRenderer = presenter._slideRenderer;
 	}
 
+	getId() {
+		return this.sId;
+	}
+
 	public isValid() {
 		return this.bIsValid;
-	}
-
-	private init() {
-		this.animatedLayerInfo = this.getAnimatedLayerInfo();
-		if (!this.animatedLayerInfo) {
-			// create a dummy bounding box for not break animation engine
-			this.aBaseBBox = new DOMRect(0, 0, 1920, 1080);
-			window.app.console.log(
-				'AnimatedElement.init: not possible to retrieve animated layer info',
-			);
-			return;
-		}
-
-		this.aLayer = (this.animatedLayerInfo.content as ImageInfo).data;
-		if (!this.aLayer) {
-			window.app.console.log('AnimatedElement.init: layer not valid');
-		}
-
-		this.bIsValid = true;
-
-		const aBB = this.animatedLayerInfo.bounds;
-		this.aBaseBBox = this.cloneBBox(aBB);
-		console.debug(
-			'AnimatedElement.init: bounding box: this.aBaseBBox' +
-				BBoxToString(this.aBaseBBox),
-		);
-
-		this.offscreenCanvas = new OffscreenCanvas(
-			this.aLayer.width,
-			this.aLayer.height,
-		);
-		this.canvasContext = this.offscreenCanvas.getContext('2d');
-
-		this.aBaseElement = this.createBaseElement();
-		this.aActiveElement = this.clone(this.aBaseElement);
-
-		this.nBaseCenterX = this.aBaseBBox.x + this.aBaseBBox.width / 2;
-		this.nBaseCenterY = this.aBaseBBox.y + this.aBaseBBox.height / 2;
-		console.debug(
-			`AnimatedElement.init: base center: x: ${this.nBaseCenterX} y: ${this.nBaseCenterY}`,
-		);
-	}
-
-	private getAnimatedLayerInfo(): AnimatedShapeInfo {
-		ANIMDBG.print('AnimatedElement.getAnimatedLayerInfo');
-		const presenter: SlideShowPresenter = app.map.slideShowPresenter;
-		if (presenter) {
-			const compositor = presenter._slideCompositor;
-			if (compositor) {
-				return compositor.getAnimatedLayerInfo(
-					this.slideHash,
-					this.sId,
-				);
-			}
-		}
-		return null;
-	}
-
-	private createBaseElement(): AnimatedObjectType {
-		this.canvasContext.clearRect(
-			0,
-			0,
-			this.offscreenCanvas.width,
-			this.offscreenCanvas.height,
-		);
-		// TODO evaluate cropping to bounding box
-		// this.canvasContext.drawImage(this.aLayer, this.aBaseBBox.x, this.aBaseBBox.y, this.aBaseBBox.width, this.aBaseBBox.height);
-		this.canvasContext.drawImage(
-			this.aLayer,
-			0,
-			0,
-			this.aLayer.width,
-			this.aLayer.height,
-		);
-		return this.offscreenCanvas.transferToImageBitmap();
-	}
-
-	private clone(aElement: AnimatedObjectType): AnimatedObjectType {
-		if (!aElement) return null;
-		this.canvasContext.clearRect(
-			0,
-			0,
-			this.offscreenCanvas.width,
-			this.offscreenCanvas.height,
-		);
-		this.canvasContext.drawImage(
-			aElement,
-			0,
-			0,
-			aElement.width,
-			aElement.height,
-		);
-		return this.offscreenCanvas.transferToImageBitmap();
 	}
 
 	private cloneBBox(aBBox: BoundingBoxType): BoundingBoxType {
@@ -388,62 +304,92 @@ class AnimatedElement {
 		return new DOMRect(aBBox.x, aBBox.y, aBBox.width, aBBox.height);
 	}
 
-	private convertX(x: number) {
-		return Math.round((x * this.offscreenCanvas.width) / this.slideWidth);
-	}
-
-	private convertY(y: number) {
-		return Math.round(
-			(y * this.offscreenCanvas.height) / this.slideHeight,
-		);
-	}
-
-	private update() {
-		if (!this.bVisible) return;
-
-		const aElement = this.aBaseElement;
-		this.canvasContext.clearRect(
+	private createBaseElement(
+		layer: ImageBitmap,
+		bounds: BoundingBoxType,
+	): AnimatedObjectType {
+		const canvas = new OffscreenCanvas(bounds.width, bounds.height);
+		const context = canvas.getContext('2d');
+		context.drawImage(
+			layer,
+			bounds.x,
+			bounds.y,
+			bounds.width,
+			bounds.height,
 			0,
 			0,
-			this.offscreenCanvas.width,
-			this.offscreenCanvas.height,
+			bounds.width,
+			bounds.height,
 		);
-		this.canvasContext.globalAlpha = this.nOpacity;
-		const dx = this.convertX(this.nCenterX - this.nBaseCenterX);
-		const dy = this.convertY(this.nCenterY - this.nBaseCenterY);
+		return canvas.transferToImageBitmap();
+	}
+
+	private clone(aElement: AnimatedObjectType): AnimatedObjectType {
+		if (!aElement) return null;
+		const canvas = new OffscreenCanvas(aElement.width, aElement.height);
+		const context = canvas.getContext('2d');
+		context.drawImage(aElement, 0, 0, canvas.width, canvas.height);
+		return canvas.transferToImageBitmap();
+	}
+
+	public updateCanvasSize(size: [number, number]) {
+		this.canvasWidth = size[0];
+		this.canvasHeight = size[1];
+		this.canvasScaleFactor = {
+			x: this.canvasWidth / this.slideWidth,
+			y: this.canvasHeight / this.slideHeight,
+		};
+		console.debug(
+			`AnimatedElement.updateCanvasSize: (${this.canvasWidth}x${this.canvasHeight}), scale factor: ${this.canvasScaleFactor}`,
+		);
+
+		// init offset canvas
+		this.offscreenCanvas = new OffscreenCanvas(
+			this.canvasWidth,
+			this.canvasHeight,
+		);
+		this.canvasContext = this.offscreenCanvas.getContext('2d');
+	}
+
+	public updateAnimationInfo(animatedLayerInfo: AnimatedShapeInfo) {
+		if (!animatedLayerInfo) {
+			// create a dummy bounding box for not break animation engine
+			this.aBaseBBox = new DOMRect(0, 0, 1920, 1080);
+			window.app.console.log(
+				'AnimatedElement.updateAnimationInfo: passed info is not valid',
+			);
+			return;
+		}
+		this.animatedLayerInfo = animatedLayerInfo;
+
+		this.aLayer = (this.animatedLayerInfo.content as ImageInfo).data;
+		if (!this.aLayer) {
+			window.app.console.log(
+				'AnimatedElement.updateAnimationInfo: layer not valid',
+			);
+		}
+
+		this.aBaseBBox = this.cloneBBox(this.animatedLayerInfo.bounds);
+		({ x: this.nBaseCenterX, y: this.nBaseCenterY } = getRectCenter(
+			this.aBaseBBox,
+		));
+		this.aBBoxInCanvas = convert(this.canvasScaleFactor, this.aBaseBBox);
+		this.aBaseElement = this.createBaseElement(
+			this.aLayer,
+			this.aBBoxInCanvas,
+		);
 
 		console.debug(
-			`AnimatedElement.update:
-				element width: ${aElement.width}
-				element height: ${aElement.height}
-				base center: (${this.nBaseCenterX}, ${this.nBaseCenterY})
-				actual center: (${this.nCenterX}, ${this.nCenterY})
-				dx: ${dx}
-				dy: ${dy}`,
+			'AnimatedElement.updateAnimationInfo: ' +
+				`\n  aBaseBBox: ${BBoxToString(this.aBaseBBox)}` +
+				`\n  aBBoxInCanvas: ${BBoxToString(this.aBBoxInCanvas)}` +
+				`\n  base center: x: ${this.nBaseCenterX} y: ${this.nBaseCenterY}`,
 		);
-		this.canvasContext.drawImage(
-			aElement,
-			0,
-			0,
-			aElement.width,
-			aElement.height,
-			dx,
-			dy,
-			aElement.width,
-			aElement.height,
-		);
-		this.aActiveElement = this.offscreenCanvas.transferToImageBitmap();
+
+		this.bIsValid = true;
 	}
 
-	public getAnimatedLayer() {
-		this.update();
-		return this.bVisible ? this.aActiveElement : null;
-	}
-
-	private initElement() {
-		// TODO find a better place where to call this ?
-		this.init();
-
+	private resetProperties() {
 		this.nCenterX = this.nBaseCenterX;
 		this.nCenterY = this.nBaseCenterY;
 		this.nScaleFactorX = 1.0;
@@ -454,7 +400,7 @@ class AnimatedElement {
 		this.bVisible = this.animatedLayerInfo
 			? this.animatedLayerInfo.initVisible
 			: false;
-		this.aActiveBBox = this.cloneBBox(this.aBaseBBox);
+		// this.aActiveBBox = this.cloneBBox(this.aBaseBBox);
 	}
 
 	initClipPath() {
@@ -481,30 +427,94 @@ class AnimatedElement {
 		this.aClipPath = null;
 	}
 
-	getId() {
-		return this.sId;
-	}
-
-	getAdditiveMode() {
-		return this.eAdditiveMode;
-	}
-
-	setAdditiveMode(eAdditiveMode: AdditiveMode) {
-		this.eAdditiveMode = eAdditiveMode;
-	}
-
-	setToElement(aElement: AnimatedObjectType) {
-		if (!aElement) {
-			window.app.console.log(
-				'AnimatedElement(' +
-					this.getId() +
-					').setToElement: element is not valid',
-			);
-			return false;
+	// TODO unused, to be removed (?)
+	private getAnimatedLayerInfo(): AnimatedShapeInfo {
+		ANIMDBG.print('AnimatedElement.getAnimatedLayerInfo');
+		const presenter: SlideShowPresenter = app.map.slideShowPresenter;
+		if (presenter) {
+			const compositor = presenter._slideCompositor;
+			if (compositor) {
+				return compositor.getAnimatedLayerInfo(
+					this.slideHash,
+					this.sId,
+				);
+			}
 		}
+		return null;
+	}
 
-		this.aActiveElement = this.clone(aElement);
-		return true;
+	updateLayer(renderingContext: OffscreenCanvasRenderingContext2D) {
+		renderingContext.save();
+
+		// factor to convert from slide coordinate to canvas coordinate
+		const sf = this.canvasScaleFactor;
+
+		// renderingContext.scale(sf.x, sf.y);
+
+		renderingContext.globalAlpha = this.nOpacity;
+
+		const T = this.aTMatrix;
+		const transform = new DOMMatrix([
+			T.a,
+			T.b,
+			T.c,
+			T.d,
+			T.e * sf.x,
+			T.f * sf.y,
+		]);
+		renderingContext.setTransform(transform);
+
+		const aElement = this.aBaseElement;
+		console.debug(
+			`AnimatedElement(${this.sId}).updateLayer:
+				element width: ${aElement.width}
+				element height: ${aElement.height}
+				base center: (${this.nBaseCenterX}, ${this.nBaseCenterY})
+				actual center: (${this.nCenterX}, ${this.nCenterY})
+				transform: ${transform.toString()}`,
+		);
+
+		// renderingContext.drawImage(
+		// 	aElement,
+		// 	0,
+		// 	0,
+		// 	aElement.width,
+		// 	aElement.height,
+		// 	this.aBaseBBox.x,
+		// 	this.aBaseBBox.y,
+		// 	this.aBaseBBox.width,
+		// 	this.aBaseBBox.height,
+		// );
+
+		renderingContext.drawImage(
+			aElement,
+			0,
+			0,
+			aElement.width,
+			aElement.height,
+			this.aBBoxInCanvas.x,
+			this.aBBoxInCanvas.y,
+			aElement.width,
+			aElement.height,
+		);
+		renderingContext.restore();
+	}
+
+	private update() {
+		if (!this.bVisible) return;
+		this.canvasContext.clearRect(
+			0,
+			0,
+			this.offscreenCanvas.width,
+			this.offscreenCanvas.height,
+		);
+		this.updateLayer(this.canvasContext);
+		this.aActiveElement = this.offscreenCanvas.transferToImageBitmap();
+	}
+
+	public getAnimatedLayer() {
+		this.update();
+		return this.bVisible ? this.aActiveElement : null;
 	}
 
 	notifySlideStart(aSlideShowContext: SlideShowContext) {
@@ -518,7 +528,7 @@ class AnimatedElement {
 
 		// this.aActiveElement = this.clone(this.aBaseElement);
 
-		this.initElement();
+		this.resetProperties();
 		this.DBG('.notifySlideStart invoked');
 	}
 
@@ -554,6 +564,21 @@ class AnimatedElement {
 		// empty body
 	}
 
+	// TODO remove it
+	setToElement(aElement: AnimatedObjectType) {
+		if (!aElement) {
+			window.app.console.log(
+				'AnimatedElement(' +
+					this.getId() +
+					').setToElement: element is not valid',
+			);
+			return false;
+		}
+
+		this.aActiveElement = this.clone(aElement);
+		return true;
+	}
+
 	/** saveState
 	 *  Save the state of the managed animated element and append it to aStateSet
 	 *  using the passed animation node id as key.
@@ -570,7 +595,6 @@ class AnimatedElement {
 				')',
 		);
 		const aState: AnimatedElementState = {
-			aElement: null, // this.clone(this.aActiveElement),
 			nCenterX: this.nCenterX,
 			nCenterY: this.nCenterY,
 			nScaleFactorX: this.nScaleFactorX,
@@ -614,7 +638,6 @@ class AnimatedElement {
 		);
 
 		const aState = this.aStateSet.get(nAnimationNodeId);
-		// const bRet = this.setToElement(aState.aElement);
 		const bRet = true;
 		if (bRet) {
 			this.nCenterX = aState.nCenterX;
@@ -646,19 +669,19 @@ class AnimatedElement {
 		return this.nBaseCenterY;
 	}
 
-	setClipPath(aClipPath: SVGPathElement) {
-		// TODO: maybe we can reuse the path for creating a texture mask
-		if (this.aClipPath) {
-			// We need to translate the clip path to the top left corner of
-			// the element bounding box.
-			// var aTranslation = SVGIdentityMatrix.translate( this.aActiveBBox.x,
-			// 	this.aActiveBBox.y);
-			// aClipPath.matrixTransform( aTranslation );
-			const sPathData = aClipPath.getAttribute('d');
-			this.aClipPath.setAttribute('d', sPathData);
-		}
+	applyTransform() {
+		// empty body
 	}
 
+	getAdditiveMode() {
+		return this.eAdditiveMode;
+	}
+
+	setAdditiveMode(eAdditiveMode: AdditiveMode) {
+		this.eAdditiveMode = eAdditiveMode;
+	}
+
+	// Get/Set Properties
 	getX() {
 		return this.nCenterX;
 	}
@@ -683,17 +706,12 @@ class AnimatedElement {
 		return [this.getWidth(), this.getHeight()];
 	}
 
-	applyTransform() {
-		// empty body
-	}
-
 	setX(nNewCenterX: number) {
 		if (nNewCenterX === this.nCenterX) return;
 
 		this.aTMatrix.translateSelf(nNewCenterX - this.nCenterX, 0);
 		this.nCenterX = nNewCenterX;
-		window.app.console.log('AnimatedElement.setX(' + nNewCenterX + ')');
-		// this.update();
+		console.debug('AnimatedElement.setX(' + nNewCenterX + ')');
 	}
 
 	setY(nNewCenterY: number) {
@@ -701,8 +719,7 @@ class AnimatedElement {
 
 		this.aTMatrix.translateSelf(0, nNewCenterY - this.nCenterY);
 		this.nCenterY = nNewCenterY;
-		window.app.console.log('AnimatedElement.setY(' + nNewCenterY + ')');
-		// this.update();
+		console.debug('AnimatedElement.setY(' + nNewCenterY + ')');
 	}
 
 	setPos(aNewPos: [number, number]) {
@@ -718,14 +735,13 @@ class AnimatedElement {
 		);
 		this.nCenterX = nNewCenterX;
 		this.nCenterY = nNewCenterY;
-		window.app.console.log(
+		console.debug(
 			'AnimatedElement.setPos(' +
 				nNewCenterX +
 				', ' +
 				nNewCenterY +
 				')',
 		);
-		// this.update();
 	}
 
 	setWidth(nNewWidth: number) {
@@ -750,7 +766,7 @@ class AnimatedElement {
 			.translateSelf(this.nCenterX, this.nCenterY)
 			.rotateSelf(this.nRotationAngle)
 			.scaleSelf(nScaleFactorX, this.nScaleFactorY)
-			.translate(-this.nBaseCenterX, -this.nBaseCenterY);
+			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorX = nScaleFactorX;
 		window.app.console.log('AnimatedElement.setWidth(' + nNewWidth + ')');
@@ -778,7 +794,7 @@ class AnimatedElement {
 			.translateSelf(this.nCenterX, this.nCenterY)
 			.rotateSelf(this.nRotationAngle)
 			.scaleSelf(this.nScaleFactorX, nScaleFactorY)
-			.translate(-this.nBaseCenterX, -this.nBaseCenterY);
+			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorY = nScaleFactorY;
 		window.app.console.log(
@@ -832,7 +848,7 @@ class AnimatedElement {
 			.translateSelf(this.nCenterX, this.nCenterY)
 			.rotateSelf(this.nRotationAngle)
 			.scaleSelf(nScaleFactorX, nScaleFactorY)
-			.translate(-this.nBaseCenterX, -this.nBaseCenterY);
+			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorX = nScaleFactorX;
 		this.nScaleFactorY = nScaleFactorY;
@@ -847,8 +863,7 @@ class AnimatedElement {
 
 	setOpacity(nValue: number) {
 		this.nOpacity = clampN(nValue, 0, 1);
-		window.app.console.log('AnimatedElement.setOpacity(' + nValue + ')');
-		// this.update();
+		console.debug('AnimatedElement.setOpacity(' + nValue + ')');
 	}
 
 	getRotationAngle() {
@@ -861,7 +876,7 @@ class AnimatedElement {
 			.translateSelf(this.nCenterX, this.nCenterY)
 			.rotateSelf(nNewRotAngle)
 			.scaleSelf(this.nScaleFactorX, this.nScaleFactorY)
-			.translate(-this.nBaseCenterX, -this.nBaseCenterY);
+			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nRotationAngle = nNewRotAngle;
 		window.app.console.log(
@@ -875,9 +890,7 @@ class AnimatedElement {
 
 	setVisibility(sValue: string) {
 		this.bVisible = sValue === 'visible';
-		window.app.console.log(
-			'AnimatedElement.setVisibility(' + sValue + ')',
-		);
+		console.debug('AnimatedElement.setVisibility(' + sValue + ')');
 	}
 
 	getFillColor(): any {
@@ -908,6 +921,19 @@ class AnimatedElement {
 				aRGBValue +
 				') not implemented',
 		);
+	}
+
+	setClipPath(aClipPath: SVGPathElement) {
+		// TODO: maybe we can reuse the path for creating a texture mask
+		if (this.aClipPath) {
+			// We need to translate the clip path to the top left corner of
+			// the element bounding box.
+			// var aTranslation = SVGIdentityMatrix.translate( this.aActiveBBox.x,
+			// 	this.aActiveBBox.y);
+			// aClipPath.matrixTransform( aTranslation );
+			const sPathData = aClipPath.getAttribute('d');
+			this.aClipPath.setAttribute('d', sPathData);
+		}
 	}
 
 	DBG(sMessage: string, nTime?: number) {

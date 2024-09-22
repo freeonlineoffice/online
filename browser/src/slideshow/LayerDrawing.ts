@@ -477,6 +477,13 @@ class LayerDrawing {
 					)
 				)
 					return;
+				const animatedElement = this.helper.getAnimatedElement(
+					info.slideHash,
+					content.hash,
+				);
+				if (animatedElement) {
+					animatedElement.updateAnimationInfo(content);
+				}
 			}
 		}
 		layers.push(layerEntry);
