@@ -1174,7 +1174,7 @@ public:
                     {
                         eTagValue = httpResponse->get("ETag");
 
-                        std::string body = httpResponse->getBody();
+                        const std::string& body = httpResponse->getBody();
 
                         LOG_DBG("Got " << body.size() << " bytes for " << remoteServerURI.toString());
 
@@ -1858,7 +1858,7 @@ private:
             return false;
         }
 
-        const std::string body = httpResponse->getBody();
+        const std::string& body = httpResponse->getBody();
 
         std::string fontFile;
 
