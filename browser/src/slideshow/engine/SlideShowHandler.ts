@@ -375,8 +375,7 @@ class SlideShowHandler {
 		this.bIsTransitionRunning = false;
 		if (this.bIsRewinding) {
 			this.theMetaPres.getMetaSlideByIndex(nNewSlide).hide();
-			this.slideShowNavigator.displaySlide(nOldSlide, true);
-			this.skipAllEffects();
+			this.slideShowNavigator.rewindToPreviousSlide();
 			this.bIsRewinding = false;
 			return;
 		}
@@ -742,8 +741,7 @@ class SlideShowHandler {
 		}
 		if (this.isAnyEffectPlaying()) return;
 
-		this.slideShowNavigator.switchSlide(-1, true);
-		this.skipAllEffects();
+		this.slideShowNavigator.rewindToPreviousSlide();
 	}
 
 	/** rewindAllEffects
