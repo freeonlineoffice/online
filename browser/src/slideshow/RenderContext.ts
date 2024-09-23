@@ -97,7 +97,7 @@ class RenderContextGl extends RenderContext {
 
 	public deleteVertexArray(vao: WebGLVertexArrayObject): void {
 		const gl = this.getGl();
-		gl.deleteTexture(vao);
+		gl.deleteVertexArray(vao);
 	}
 
 	public createEmptySlide(): WebGLTexture | ImageBitmap {
