@@ -246,7 +246,8 @@ public:
     void onDocBrokerViewLoaded(const std::string&,
                                const std::shared_ptr<ClientSession>& session) override
     {
-        LOG_TST("View #" << _viewCount + 1 << " [" << session->getName() << "] loaded");
+        LOG_TST("View #" << _viewCount + 1 << " [" << session->getName()
+                         << "] loaded, phase: " << name(_phase));
 
         ++_viewCount;
         if (_viewCount == 1)
@@ -272,7 +273,7 @@ public:
     /// The document is modified. Disconnect editor.
     bool onDocumentModified(const std::string& message) override
     {
-        LOG_TST("onDocumentModified: [" << message << ']');
+        LOG_TST("onDocumentModified: [" << message << "], phase: " << name(_phase));
 
         // We get this twice, skip the second one.
         if (_phase != Phase::Upload)
@@ -289,7 +290,7 @@ public:
     void onDocBrokerRemoveSession(const std::string&,
                                   const std::shared_ptr<ClientSession>& session) override
     {
-        LOG_TST("Removing session [" << session->getName() << ']');
+        LOG_TST("Removing session [" << session->getName() << "], phase: " << name(_phase));
         if (_phase == Phase::Unlock)
         {
             // LOK_ASSERT_STATE(_phase, Phase::WaitUnload);
@@ -298,7 +299,7 @@ public:
 
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Destroyed dockey [" << docKey << ']');
+        LOG_TST("Destroyed dockey [" << docKey << "], phase: " << name(_phase));
         LOK_ASSERT_STATE(_phase, Phase::WaitUnload);
 
         TRANSITION_STATE(_phase, Phase::Done);
