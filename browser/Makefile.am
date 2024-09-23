@@ -190,6 +190,7 @@ LOOL_LIBS_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(LOOL_LIBS_JS))
 # this list includes both Javascript and Typescript generated files
 # in a rather precise order.
 LOOL_JS_LST =\
+	src/app/DocUtil.ts \
 	src/docstate.js \
 	src/docstatefunctions.js \
 	src/docdispatcher.ts \
@@ -1077,6 +1078,7 @@ pot:
 		src/docstate.js \
 		src/docstatefunctions.js \
 		src/docdispatcher.ts \
+		src/app/DocUtil.ts \
 		src/app/DocEvents.ts \
 		src/app/GraphicSelectionMiddleware.ts \
 		src/errormessages.js \
