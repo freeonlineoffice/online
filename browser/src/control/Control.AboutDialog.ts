@@ -225,12 +225,12 @@ class AboutDialog {
 			this.getVersionInfoFromClass('lokit-version') +
 			'\n';
 		text +=
-			'Served by: ' +
-			document.getElementById('os-info').innerText +
-			'\n';
-		text +=
 			'Server ID: ' +
 			document.getElementById('loolwsd-id').innerText +
+			'\n';
+		text +=
+			'WOPI host: ' +
+			document.getElementById('wopi-host-id').innerText +
 			'\n';
 		text = text.replace(/\u00A0/g, ' ');
 
