@@ -132,6 +132,7 @@ class SlideShowPresenter {
 	}
 
 	addHooks() {
+		this._map.on('presentationinfo', this.onSlideShowInfo, this);
 		this._map.on('newfullscreen', this._onStart, this);
 		this._map.on('newpresentinwindow', this._onStartInWindow, this);
 		L.DomEvent.on(
@@ -144,6 +145,7 @@ class SlideShowPresenter {
 	}
 
 	removeHooks() {
+		this._map.off('presentationinfo', this.onSlideShowInfo, this);
 		this._map.off('newfullscreen', this._onStart, this);
 		this._map.off('newpresentinwindow', this._onStartInWindow, this);
 		L.DomEvent.off(
