@@ -10,14 +10,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-interface TransitionInfo {
-	type: TransitionType;
-	subType?: TransitionSubType;
-	reverseDirection?: boolean;
-	fadeColor?: string;
-	duration?: number;
-}
-
 class SlideTransition {
 	slideInfo: SlideInfo;
 	aDuration: Duration;
@@ -123,7 +115,8 @@ class SlideTransition {
 			default:
 				console.log(
 					'Unknown transition type',
-					transitionParameters.slideInfo.transitionType,
+					transitionParameters.transitionFilterInfo
+						.transitionType,
 				);
 				return new SlideShow.NoTransition(transitionParameters);
 		}
