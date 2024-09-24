@@ -73,8 +73,7 @@ body {
 	top: -100em;
 }
 
-#wopi-host-id,
-#proxy-prefix-id {
+#wopi-host-id {
 	display: none !important;
 }
 
