@@ -61,7 +61,7 @@ public:
     {
         const std::string lockToken = request.get("X-WOPI-Lock", std::string());
         const std::string newLockState = request.get("X-WOPI-Override", std::string());
-        LOG_TST("In " << toString(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
+        LOG_TST("In " << name(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
                       << newLockState << ", for URI: " << request.getURI());
 
         if (_phase == Phase::Lock)
@@ -187,7 +187,7 @@ public:
     {
         const std::string lockToken = request.get("X-WOPI-Lock", std::string());
         const std::string newLockState = request.get("X-WOPI-Override", std::string());
-        LOG_TST("In " << toString(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
+        LOG_TST("In " << name(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
                       << newLockState << ", for URI: " << request.getURI());
 
         LOG_ASSERT_MSG(_checkFileInfoCount == 2, "Must have had two CheckFileInfo requests");
@@ -385,7 +385,7 @@ public:
     {
         const std::string lockToken = request.get("X-WOPI-Lock", std::string());
         const std::string newLockState = request.get("X-WOPI-Override", std::string());
-        LOG_TST("In " << toString(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
+        LOG_TST("In " << name(_phase) << ", X-WOPI-Lock: " << lockToken << ", X-WOPI-Override: "
                       << newLockState << ", for URI: " << request.getURI());
 
         if (_phase == Phase::Lock)
@@ -510,7 +510,7 @@ public:
     {
         const std::string lock = request.get("X-WOPI-Lock", std::string());
         const std::string newLockState = request.get("X-WOPI-Override", std::string());
-        LOG_TST("In " << toString(_phase) << ", X-WOPI-Lock: " << lock << ", X-WOPI-Override: "
+        LOG_TST("In " << name(_phase) << ", X-WOPI-Lock: " << lock << ", X-WOPI-Override: "
                       << newLockState << ", for URI: " << request.getURI());
 
         if (_phase == Phase::Lock)
@@ -629,6 +629,7 @@ UnitBase** unit_create_wsd_multi(void)
         new UnitWopiLock(), new UnitWopiLockReadOnly(), new UnitWopiLockFail(),
             new UnitWopiUnlock(), nullptr
     };
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
