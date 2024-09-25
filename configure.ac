@@ -1495,7 +1495,10 @@ AS_IF([test `uname -s` = "FreeBSD"],
 AS_IF([test -n "$with_compiler_plugins"],
       [CPPFLAGS="$CPPFLAGS -Xclang -load -Xclang ${with_compiler_plugins}/compilerplugins/obj/plugin.so -Xclang -add-plugin -Xclang loplugin -Xclang -plugin-arg-loplugin -Xclang --lool-base-path=\${abs_top_srcdir}"])
 
-LOOLWSD_CONFIGDIR=${sysconfdir}/${PACKAGE}
+if test "x${prefix}" = "xNONE"; then
+    prefix=/usr/local
+fi
+eval LOOLWSD_CONFIGDIR="${sysconfdir}/${PACKAGE}"
 AC_SUBST(LOOLWSD_CONFIGDIR)
 
 LOOLWSD_DATADIR=${datadir}/${PACKAGE}
