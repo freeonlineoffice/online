@@ -10,6 +10,7 @@ AM_CPPFLAGS = -pthread \
               -DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
               -DLOOLWSD_LOGLEVEL='"@LOOLWSD_LOGLEVEL@"' \
               -DDEBUG_ABSSRCDIR='"'$(realpath ${top_srcdir})'"' \
+              -DNUM_PRESPAWN_CHILDREN='"@NUM_PRESPAWN_CHILDREN@"' \
               -DTOPSRCDIR='"'$(realpath ${top_srcdir})'"' \
               -DGTKAPP \
               ${define_flags} \

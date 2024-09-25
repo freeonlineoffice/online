@@ -42,6 +42,7 @@ add_library(androidapp SHARED
 target_compile_definitions(androidapp PRIVATE
                            LOOLWSD_CONFIGDIR="/assets/etc/loolwsd"
                            LOOLWSD_LOGLEVEL="@LOOLWSD_LOGLEVEL@"
+                           NUM_PRESPAWN_CHILDREN="@NUM_PRESPAWN_CHILDREN@"
 )
 
 # According to the ABI, we need to use different source trees
