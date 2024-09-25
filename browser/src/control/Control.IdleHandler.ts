@@ -141,6 +141,9 @@ class IdleHandler {
 	}
 
 	_dim() {
+		if (this.map.slideShowPresenter && this.map.slideShowPresenter._checkAlreadyPresenting())
+			return; // do not stop presentation
+
 		this.map.fire('closealldialogs');
 		const message = this.getIdleMessage();
 
