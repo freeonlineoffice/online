@@ -2047,7 +2047,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "logging.file.property[7]", "false" },
         { "logging.file.property[7][@name]", "archive" },
         { "logging.file[@enable]", "false" },
-        { "logging.level", COOLWSD_LOGLEVEL },
+        { "logging.level", LOOLWSD_LOGLEVEL },
         { "logging.level_startup", "trace" },
         { "logging.lokit_sal_log", "-INFO-WARN" },
         { "logging.docstats", "false" },
@@ -2108,7 +2108,10 @@ void LOOLWSD::innerInitialize(Application& self)
         { "ssl.sts.enabled", "false" },
         { "ssl.sts.max_age", "31536000" },
         { "ssl.key_file_path", LOOLWSD_CONFIGDIR "/key.pem" },
-        { "ssl.termination", "true" },
+        { "ssl.termination", "false" },
+#if !MOBILEAPP
+        { "ssl.ssl_verification", SSL_VERIFY },
+#endif
         { "stop_on_config_change", "false" },
         { "storage.filesystem[@allow]", "false" },
         // "storage.ssl.enable" - deliberately not set; for back-compat
@@ -2487,7 +2490,7 @@ void LOOLWSD::innerInitialize(Application& self)
 
 #if ENABLE_SSL
     LOOLWSD::SSLEnabled.set(getConfigValue<bool>(conf, "ssl.enable", true));
-    LOOLWSD::SSLTermination.set(getConfigValue<bool>(conf, "ssl.termination", true));
+    LOOLWSD::SSLTermination.set(getConfigValue<bool>(conf, "ssl.termination", false));
 #endif
 
     LOG_INF("SSL support: SSL is " << (LOOLWSD::isSSLEnabled() ? "enabled." : "disabled."));
