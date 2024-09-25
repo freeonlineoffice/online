@@ -304,7 +304,11 @@ class SlideShowNavigator {
 			const slideInfo = this.theMetaPres.getSlideInfoByIndex(
 				this.currentSlide,
 			);
-			if (slideInfo.interactions.length == 0) {
+			if (
+				!slideInfo ||
+				!slideInfo.interactions ||
+				slideInfo.interactions.length == 0
+			) {
 				this.dispatchEffect();
 				return;
 			}
