@@ -78,6 +78,7 @@ endif
 
 AM_CPPFLAGS = -pthread -DLOOLWSD_DATADIR='"@LOOLWSD_DATADIR@"' \
 	      -DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
+	      -DLOOLWSD_LOGLEVEL='"@LOOLWSD_LOGLEVEL@"' \
 	      -DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
 	      ${include_paths}
 

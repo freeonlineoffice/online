@@ -8,6 +8,7 @@ define_flags = -DMOBILEAPP=1
 AM_CPPFLAGS = -pthread \
               -DLOOLWSD_DATADIR='"@LOOLWSD_DATADIR@"' \
               -DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
+              -DLOOLWSD_LOGLEVEL='"@LOOLWSD_LOGLEVEL@"' \
               -DDEBUG_ABSSRCDIR='"'$(realpath ${top_srcdir})'"' \
               -DTOPSRCDIR='"'$(realpath ${top_srcdir})'"' \
               -DGTKAPP \

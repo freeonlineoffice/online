@@ -39,7 +39,10 @@ add_library(androidapp SHARED
             ../../../../../wsd/TileCache.cpp
             ../../../../../wsd/loolwsd-fork.cpp)
 
-target_compile_definitions(androidapp PRIVATE LOOLWSD_CONFIGDIR="/assets/etc/loolwsd")
+target_compile_definitions(androidapp PRIVATE
+                           LOOLWSD_CONFIGDIR="/assets/etc/loolwsd"
+                           LOOLWSD_LOGLEVEL="@LOOLWSD_LOGLEVEL@"
+)
 
 # According to the ABI, we need to use different source trees
 if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
