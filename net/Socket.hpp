@@ -176,6 +176,7 @@ public:
     bool isClosed() const { return !_open; }
 
     Type type() const { return _type; }
+    bool isIPType() const { return Type::IPv4 == _type || Type::IPv6 == _type; }
     void setClientAddress(const std::string& address, unsigned int port=0) { _clientAddress = address; _clientPort=port; }
     const std::string& clientAddress() const { return _clientAddress; }
     unsigned int clientPort() const { return _clientPort; }
@@ -207,6 +208,10 @@ public:
         sent = _bytesSent;
         recv = _bytesRcvd;
     }
+
+    /// Checks whether socket is due for forced removal, e.g. by internal timeout or small throughput. Method will shutdown connection and socket on forced removal.
+    /// Returns true in case of forced removal, caller shall stop processing
+    virtual bool checkRemoval(std::chrono::steady_clock::time_point /* now */) { return false; }
 
     /// Shutdown the socket.
     /// TODO: Support separate read/write shutdown.
@@ -539,8 +544,9 @@ public:
     virtual int getPollEvents(std::chrono::steady_clock::time_point now,
                               int64_t &timeoutMaxMicroS) = 0;
 
-    /// Do we need to handle a timeout ?
-    virtual void checkTimeout(std::chrono::steady_clock::time_point /* now */) {}
+    /// Checks whether a timeout has occurred. Method will shutdown connection and socket on timeout.
+    /// Returns true in case of a timeout, caller shall stop processing
+    virtual bool checkTimeout(std::chrono::steady_clock::time_point /* now */) { return false; }
 
     /// Do some of the queued writing.
     virtual void performWrites(std::size_t capacity) = 0;
@@ -1043,6 +1049,7 @@ public:
         Socket(fd, type, creationTime),
         _pollTimeout( net::Defaults::get().SocketPollTimeout ),
         _httpTimeout( net::Defaults::get().HTTPTimeout ),
+        _minBytesPerSec( net::Defaults::get().MinBytesPerSec ),
         _hostname(std::move(host)),
         _wsState(WSState::HTTP),
         _isLocalHost(hostType == LocalHost),
@@ -1082,6 +1089,8 @@ public:
     const std::string& hostname() const { return _hostname; }
 
     std::ostream& stream(std::ostream& os) const override;
+
+    bool checkRemoval(std::chrono::steady_clock::time_point now) override;
 
     /// Just trigger the async shutdown.
     void shutdown() override
@@ -1423,10 +1432,10 @@ protected:
     {
         ASSERT_CORRECT_SOCKET_THREAD(this);
 
-        _socketHandler->checkTimeout(now);
-
         if (!events && _inBuffer.empty())
             return;
+
+        setLastSeenTime(now);
 
         bool closed = (events & (POLLHUP | POLLERR | POLLNVAL));
 
@@ -1713,6 +1722,8 @@ private:
     const std::chrono::microseconds _pollTimeout;
     /// defaults to 30s, see net::Defaults::HTTPTimeout
     const std::chrono::microseconds _httpTimeout;
+    /// defaults to 0 (disabled), see net::Defaults::MinBytesPerSec
+    const double _minBytesPerSec;
 
     /// The hostname (or IP) of the peer we are connecting to.
     const std::string _hostname;
