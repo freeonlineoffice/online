@@ -410,6 +410,7 @@ LOOL_JS_LST =\
 	src/control/Control.FormulaUsagePopup.ts \
 	src/control/Control.FormulaAutoCompletePopup.ts \
 	src/control/Control.AutoFillPreviewTooltip.ts \
+	src/control/Control.AddressInputField.ts \
 	src/control/Control.Zotero.js \
 	src/control/Search.js \
 	src/control/Permission.js \

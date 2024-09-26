@@ -210,7 +210,7 @@ nav:not(.spreadsheet-color-indicator)
 	align-items: flex-start;
 }
 #formulabar > .root-container > .formulabar {
-	grid-template-columns: 70px auto;
+	grid-template-columns: auto;
 }
 #toolbar-search {
 	height: 39px !important;
