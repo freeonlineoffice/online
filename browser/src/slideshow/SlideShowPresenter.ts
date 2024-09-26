@@ -115,6 +115,7 @@ class SlideShowPresenter {
 	_canvasLoader: CanvasLoader | null = null;
 	_isAnimationPlaying: boolean = false;
 	_isPresentInWindow: boolean = false;
+	private _pauseTimer: PauseTimerGl | PauseTimer2d;
 	private _slideShowHandler: SlideShowHandler;
 	private _slideShowNavigator: SlideShowNavigator;
 	private _metaPresentation: MetaPresentation;
@@ -394,17 +395,19 @@ class SlideShowPresenter {
 			renderContext instanceof RenderContextGl
 				? PauseTimerGl
 				: PauseTimer2d;
-		const pauseTimer: PauseTimer = new PauseTimerType(
+		this._pauseTimer = new PauseTimerType(
 			renderContext,
 			loopAndRepeatDuration,
 			onTimeoutHandler,
 		);
 
-		pauseTimer.startTimer();
+		this._pauseTimer.startTimer();
 	}
 
 	endPresentation(force: boolean) {
 		console.debug('SlideShowPresenter.endPresentation');
+		if (this._pauseTimer) this._pauseTimer.stopTimer();
+
 		const settings = this._presentationInfo;
 		if (force || !settings.isEndless) {
 			if (!force && this.exitSlideshowWithWarning()) {
