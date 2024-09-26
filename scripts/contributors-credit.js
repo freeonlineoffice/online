@@ -1,7 +1,7 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 
-const REPO = 'CollaboraOnline/online';
+const REPO = 'FreeOnlineOffice/online';
 const PER_PAGE = 100; // Maximum allowed per page
 const API_URL = `https://api.github.com/repos/${REPO}/contributors`;
 
@@ -11,12 +11,12 @@ let page = 1;
 const fixedText = `
 +++
 authors = [
-    "Collabora",
+    "FreeOnlineOffice",
 ]
 title = "Contributors"
 date = "2023-07-04"
 home_pos = "11"
-description = "COOL Contributors"
+description = "FreeOnlineOffice Contributors"
 tags = [
     "build",
     "make",
@@ -30,14 +30,14 @@ showimage = false
 +++
 
 # Contributors
-A huge shoutout to our incredible contributors! Your dedication and hard work are the backbone of the COOL project.
+A huge shoutout to our incredible contributors! Your dedication and hard work are the backbone of the FreeOnlineOffice project.
 
 <!--more-->
 This page is dedicated to showcasing your invaluable contributions.
 
-Welcome to the **COOL project** Contributors page! We’re grateful for our amazing team’s dedication. Each contributor’s name, role, and Gravatar mugshot are featured below.
+Welcome to the **FreeOnlineOffice project** Contributors page! We’re grateful for our amazing team’s dedication. Each contributor’s name, role, and Gravatar mugshot are featured below.
 
-Thank you all for making COOL a success!
+Thank you all for making FreeOnlineOffice a success!
 
 ## Meet Our Contributors:
 

@@ -212,15 +212,15 @@ UnitBase::TestResult UnitSession::testFilesCloseConnection()
     setTestname(__func__);
 
     const std::vector<std::string> documentURLs = {
-        // "/cool/getMetrics", // < Requires Admin
+        // "/lool/getMetrics", // < Requires Admin
         "/", // <
         "/favicon.ico",
         "/hosting/discovery",
         "/hosting/capabilities",
         "/robots.txt",
-        // "/cool/media",
-        // "/cool/clipboard",
-        // "/cool/file:\/\/.../ws",
+        // "/lool/media",
+        // "/lool/clipboard",
+        // "/lool/file:\/\/.../ws",
     };
     TerminatingPoll socketPoller(testname);
     socketPoller.runOnClientThread();

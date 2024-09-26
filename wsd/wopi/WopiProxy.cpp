@@ -268,7 +268,7 @@ void WopiProxy::download(const std::shared_ptr<TerminatingPoll>& poll, const std
                 << "]: " << httpResponse->statusLine().statusCode() << ' '
                 << httpResponse->statusLine().reasonPhrase()
                 << ". Headers: " << httpResponse->header()
-                << (failed ? "\tBody: [" + COOLProtocol::getAbbreviatedMessage(wopiResponse) + ']'
+                << (failed ? "\tBody: [" + LOOLProtocol::getAbbreviatedMessage(wopiResponse) + ']'
                            : std::string());
 
             if (failed)
