@@ -170,7 +170,7 @@ public:
 
 HostEntry resolveDNS(const std::string& addressToCheck)
 {
-    static DNSResolver resolver;
+    thread_local DNSResolver resolver;
     return resolver.resolveDNS(addressToCheck, std::string());
 }
 
