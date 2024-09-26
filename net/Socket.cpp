@@ -99,10 +99,10 @@ bool StreamSocket::socketpair(std::shared_ptr<StreamSocket> &parent,
     if (rc != 0)
         return false;
 
-    child = std::make_shared<StreamSocket>("save-child", pair[0], Socket::Type::Unix, true);
+    child = std::make_shared<StreamSocket>("save-child", pair[0], Socket::Type::Unix, true, HostType::Other);
     child->setNoShutdown();
     child->setClientAddress("save-child");
-    parent = std::make_shared<StreamSocket>("save-kit-parent", pair[1], Socket::Type::Unix, true);
+    parent = std::make_shared<StreamSocket>("save-kit-parent", pair[1], Socket::Type::Unix, true, HostType::Other);
     parent->setNoShutdown();
     parent->setClientAddress("save-parent");
 
@@ -143,7 +143,7 @@ static std::string X509_NAME_to_utf8(X509_NAME* name)
 
 bool SslStreamSocket::verifyCertificate()
 {
-    if (_verification == ssl::CertificateVerification::Disabled || net::isLocalhost(hostname()))
+    if (_verification == ssl::CertificateVerification::Disabled || isLocalHost())
     {
         return true;
     }
@@ -810,7 +810,7 @@ bool SocketPoll::insertNewUnixSocket(
 
     std::shared_ptr<StreamSocket> socket
         = StreamSocket::create<StreamSocket>(std::string(), fd, Socket::Type::Unix,
-                                             true, websocketHandler);
+                                             true, HostType::Other, websocketHandler);
     if (!socket)
     {
         LOG_ERR("Failed to create socket unix socket at " << location);
@@ -866,7 +866,8 @@ void SocketPoll::insertNewFakeSocket(
     else
     {
         std::shared_ptr<StreamSocket> socket;
-        socket = StreamSocket::create<StreamSocket>(std::string(), fd, Socket::Type::Unix, true, websocketHandler);
+        socket = StreamSocket::create<StreamSocket>(std::string(), fd, Socket::Type::Unix, true,
+                                                    HostType::Other, websocketHandler);
         if (socket)
         {
             LOG_TRC("Sending 'hello' instead of HTTP GET for now");
