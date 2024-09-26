@@ -56,7 +56,7 @@ class JSDialogMessageRouter {
 				(msgData.jsontype === 'notebookbar' &&
 					!isNotebookbarInitialized) ||
 				(msgData.jsontype === 'addressinputfield' &&
-					!app.socket._map.formulabar)
+					!app.socket._map.addressInputField)
 			) {
 				setTimeout(fireJSDialogEvent, 1000);
 				return;
