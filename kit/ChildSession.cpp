@@ -2304,7 +2304,7 @@ bool ChildSession::renderSlide(const StringVector& tokens)
 
     unsigned bufferWidth = suggestedWidth;
     unsigned bufferHeight = suggestedHeight;
-    bool success = getLOKitDocument()->createSlideRenderer(hash.c_str(), part,
+    bool success = getLOKitDocument()->createSlideRenderer(part,
                                                            &bufferWidth, &bufferHeight,
                                                            renderBackground, renderMasterPage);
     if (!success) {
