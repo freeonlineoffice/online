@@ -735,7 +735,9 @@ input[type='checkbox']:checked.autofilter,
 	margin: auto 5px;
 }
 
-.jsdialog.ui-grid-cell input[type='checkbox'] + label[for^='hidden-part-checkbox'] {
+.jsdialog.ui-grid-cell
+	input[type='checkbox']
+	+ label[for^='hidden-part-checkbox'] {
 	vertical-align: super;
 }
 
