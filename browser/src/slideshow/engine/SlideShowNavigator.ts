@@ -199,7 +199,9 @@ class SlideShowNavigator {
 				bSkipTransition,
 		);
 		if (nNewSlide === undefined || nNewSlide < 0) {
-			NAVDBG.print('SlideShowNavigator.displaySlide: unexpected nNewSlide');
+			NAVDBG.print(
+				'SlideShowNavigator.displaySlide: unexpected nNewSlide',
+			);
 			return;
 		}
 		if (nNewSlide >= this.theMetaPres.numberOfSlides) {
@@ -230,7 +232,9 @@ class SlideShowNavigator {
 			if (this.currentSlide !== undefined)
 				offset = Math.sign(nNewSlide - this.currentSlide);
 			if (offset === 0) {
-				NAVDBG.print('SlideShowNavigator.displaySlide: offset === 0');
+				NAVDBG.print(
+					'SlideShowNavigator.displaySlide: offset === 0',
+				);
 				return;
 			}
 			this.displaySlide(nNewSlide + offset, bSkipTransition);
