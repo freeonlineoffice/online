@@ -417,6 +417,7 @@ LOOL_JS_LST =\
 	src/control/VRuler.ts \
 	src/slideshow/SlideCache.ts \
 	src/slideshow/SlideCompositor.ts \
+	src/slideshow/LayerRenderer.ts \
 	src/slideshow/LayerDrawing.ts \
 	src/slideshow/LayersCompositor.ts \
 	src/slideshow/RenderContext.ts \
@@ -968,6 +969,7 @@ pot:
 		src/control/jsdialog/Widget.TreeView.js \
 		src/slideshow/SlideCache.ts \
 		src/slideshow/SlideCompositor.ts \
+		src/slideshow/LayerRenderer.ts \
 		src/slideshow/LayerDrawing.ts \
 		src/slideshow/LayersCompositor.ts \
 		src/slideshow/RenderContext.ts \
