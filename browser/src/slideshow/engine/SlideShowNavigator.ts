@@ -200,7 +200,9 @@ class SlideShowNavigator {
 		);
 
 		if (this.presenter && !this.presenter._checkAlreadyPresenting()) {
-			NAVDBG.print('SlideShowNavigator.displaySlide: no more presenting');
+			NAVDBG.print(
+				'SlideShowNavigator.displaySlide: no more presenting',
+			);
 			this.quit();
 			return;
 		}

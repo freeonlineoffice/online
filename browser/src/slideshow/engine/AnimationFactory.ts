@@ -290,6 +290,125 @@ class ClippingAnimation extends AnimationBase {
 	}
 }
 
+class TransitionFilterAnimation extends AnimationBase {
+	private nNodeId: number;
+	private aTransitionFilterInfo: TransitionFilterInfo;
+	private aAnimatableElement: AnimatedElement;
+	private bAnimationStarted: boolean;
+	private aTransition: TransitionBase;
+
+	constructor(
+		nNodeId: number,
+		transitionFilterInfo: TransitionFilterInfo,
+		aAnimatableElement: AnimatedElement,
+	) {
+		assert(
+			aAnimatableElement,
+			'TransitionFilterAnimation: animatable element is not valid',
+		);
+		ANIMDBG.print(
+			'TransitionFilterAnimation: Animated Element Id: ' +
+				aAnimatableElement.getId(),
+		);
+
+		super();
+
+		this.nNodeId = nNodeId;
+		this.aTransitionFilterInfo = transitionFilterInfo;
+		this.aAnimatableElement = aAnimatableElement;
+		this.bAnimationStarted = false;
+		this.aTransition = null;
+	}
+
+	getNodeId() {
+		return this.nNodeId;
+	}
+
+	start(aAnimatableElement: AnimatedElement): void {
+		assert(
+			this.aAnimatableElement.getId() === aAnimatableElement.getId(),
+			'TransitionFilterAnimation: animatable element mismatch',
+		);
+
+		if (!this.aTransition) {
+			const transitionParameters = this.createTransitionParameters(
+				this.aAnimatableElement,
+				this.aTransitionFilterInfo,
+			);
+			this.aTransition =
+				this.createShapeTransition(transitionParameters);
+		}
+
+		this.aAnimatableElement.notifyAnimationStart();
+		if (!this.bAnimationStarted) this.bAnimationStarted = true;
+	}
+
+	end(): void {
+		if (this.bAnimationStarted) {
+			this.bAnimationStarted = false;
+			this.aAnimatableElement.notifyAnimationEnd();
+		}
+	}
+
+	perform(nT: number): void {
+		this.aAnimatableElement.setTransitionFilterFrame(this, nT);
+	}
+
+	renderFrame(nT: number): void {
+		if (this.aTransition) {
+			this.aTransition.renderFrame(nT);
+		}
+	}
+
+	notifySlideEnd(): void {
+		// clean up resources
+		if (this.aTransition) {
+			this.aTransition.end();
+			this.aTransition = null;
+		}
+	}
+
+	getUnderlyingValue(): any {
+		window.app.console.log(
+			'TransitionFilterAnimation.getUnderlyingValue()',
+		);
+		return 0.0;
+	}
+
+	private createTransitionParameters(
+		aAnimatedElement: AnimatedElement,
+		transitionFilterInfo: TransitionFilterInfo,
+	) {
+		const transitionParameters = new TransitionParameters();
+		aAnimatedElement.setTransitionParameters(transitionParameters);
+		transitionParameters.transitionFilterInfo = transitionFilterInfo;
+		return transitionParameters;
+	}
+
+	private createShapeTransition(
+		transitionParameters: TransitionParameters,
+	): TransitionBase {
+		const type = this.aTransitionFilterInfo.transitionType;
+		switch (type) {
+			case TransitionType.ELLIPSEWIPE:
+				return SlideShow.EllipseWipeTransition(
+					transitionParameters,
+				);
+
+			case TransitionType.IRISWIPE:
+				return SlideShow.IrisWipeTransition(transitionParameters);
+
+			default:
+				console.log(
+					'Unknown transition type',
+					transitionParameters.transitionFilterInfo
+						.transitionType,
+				);
+				return new SlideShow.NoTransition(transitionParameters);
+		}
+	}
+}
+
 const aTransitionInfoTable: any = {};
 // type: fake transition
 aTransitionInfoTable[0] = {};
@@ -303,6 +422,7 @@ aTransitionInfoTable[0][0] = {
 	outInvertsSweep: false,
 	scaleIsotropically: false,
 };
+
 aTransitionInfoTable[TransitionType.FADE] = {};
 aTransitionInfoTable[TransitionType.FADE][TransitionSubType.CROSSFADE] =
 	aTransitionInfoTable[TransitionType.FADE][
@@ -316,6 +436,57 @@ aTransitionInfoTable[TransitionType.FADE][TransitionSubType.CROSSFADE] =
 		outInvertsSweep: true,
 		scaleIsotropically: false,
 	};
+
+aTransitionInfoTable[TransitionType.ELLIPSEWIPE] = {};
+aTransitionInfoTable[TransitionType.ELLIPSEWIPE][TransitionSubType.CIRCLE] = {
+	class: TransitionClass.ClipPoligon,
+	rotationAngle: 0.0,
+	scaleX: 1.0,
+	scaleY: 1.0,
+	reverseMethod: 3,
+	outInvertsSweep: true,
+	scaleIsotropically: true,
+};
+aTransitionInfoTable[TransitionType.ELLIPSEWIPE][TransitionSubType.HORIZONTAL] =
+	{
+		class: TransitionClass.ClipPoligon,
+		rotationAngle: 0.0,
+		scaleX: 1.0,
+		scaleY: 1.0,
+		reverseMethod: 3,
+		outInvertsSweep: true,
+		scaleIsotropically: false,
+	};
+aTransitionInfoTable[TransitionType.ELLIPSEWIPE][TransitionSubType.VERTICAL] = {
+	class: TransitionClass.ClipPoligon,
+	rotationAngle: 90.0,
+	scaleX: 1.0,
+	scaleY: 1.0,
+	reverseMethod: 3,
+	outInvertsSweep: true,
+	scaleIsotropically: false,
+};
+
+aTransitionInfoTable[TransitionType.IRISWIPE] = {};
+aTransitionInfoTable[TransitionType.IRISWIPE][TransitionSubType.RECTANGLE] = {
+	class: TransitionClass.ClipPoligon,
+	rotationAngle: 0.0,
+	scaleX: 1.0,
+	scaleY: 1.0,
+	reverseMethod: 3,
+	outInvertsSweep: true,
+	scaleIsotropically: false,
+};
+
+aTransitionInfoTable[TransitionType.IRISWIPE][TransitionSubType.DIAMOND] = {
+	class: TransitionClass.ClipPoligon,
+	rotationAngle: 45.0,
+	scaleX: Math.SQRT2,
+	scaleY: Math.SQRT2,
+	reverseMethod: 3,
+	outInvertsSweep: true,
+	scaleIsotropically: false,
+};
 
 function createShapeTransition(
 	aActivityParamSet: ActivityParamSet,
@@ -339,6 +510,13 @@ function createShapeTransition(
 		aAnimatedTransitionFilterNode.getTransitionMode() ==
 		TransitionMode.in;
 
+	const transitionFilterInfo = new TransitionFilterInfo(
+		eTransitionType,
+		eTransitionSubType,
+		bDirectionForward,
+		bModeIn,
+	);
+
 	let aTransitionInfo = null;
 	if (aTransitionInfoTable[eTransitionType])
 		aTransitionInfo =
@@ -357,16 +535,22 @@ function createShapeTransition(
 			return null;
 
 		case TransitionClass.ClipPoligon: {
-			const aParametricPolyPolygon = createClipPolyPolygon(
-				eTransitionType,
-				eTransitionSubType,
+			const aClippingAnimation = new TransitionFilterAnimation(
+				aAnimatedTransitionFilterNode.getId(),
+				transitionFilterInfo,
+				aAnimatedElement,
 			);
-			const aClippingAnimation = new ClippingAnimation(
-				aParametricPolyPolygon,
-				aTransitionInfo,
-				bDirectionForward,
-				bModeIn,
-			);
+
+			// const aParametricPolyPolygon = createClipPolyPolygon(
+			// 	eTransitionType,
+			// 	eTransitionSubType,
+			// );
+			// const aClippingAnimation = new ClippingAnimation(
+			// 	aParametricPolyPolygon,
+			// 	aTransitionInfo,
+			// 	bDirectionForward,
+			// 	bModeIn,
+			// );
 			return new SimpleActivity(
 				aActivityParamSet,
 				aClippingAnimation,
