@@ -139,7 +139,10 @@ L.Map.SlideShow = L.Handler.extend({
 			e.url = window.processLoolUrl({ url: e.url, type: 'slideshow' });
 		}
 
-		this._slideURL = e.url;
+		const embedURL = new URL(e.url);
+		embedURL.searchParams.append('attachment', 0);
+
+		this._slideURL = embedURL.toString();
 		window.app.console.debug('slide file url : ', this._slideURL);
 
 		this._startPlaying();

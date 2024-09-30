@@ -1700,7 +1700,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             // actually show it.
             const std::string contentType = getContentType(fileName);
             response.setContentType(contentType);
-            if (serveAsAttachment && contentType != "image/svg+xml")
+            if (serveAsAttachment)
                 response.set("Content-Disposition", "attachment; filename=\"" + fileName + '"');
 
 #if !MOBILEAPP
