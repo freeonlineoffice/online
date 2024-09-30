@@ -113,8 +113,9 @@ class Tooltip {
 		return rect;
 	}
 
-	show(elem) {
-		let content = elem.dataset.looltip,
+	show(elem, textContent) {
+		// `textContent` adds flexibility, enabling custom messages like document "Saved" instead of the fixed "lool-tooltip."
+		let content = textContent ? textContent : elem.dataset.looltip,
 			rectView = new DOMRect(
 				0,
 				0,
