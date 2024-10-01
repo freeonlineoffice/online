@@ -565,6 +565,10 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 				Author: {
 					type: 'string',
 					value: annotation.sectionProperties.data.author
+				},
+				Html: {
+					type: 'string',
+					value: annotation.sectionProperties.data.html
 				}
 			};
 			if (app.file.fileBasedView) {
@@ -598,13 +602,17 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 					type: 'string',
 					value: annotation.sectionProperties.data.id
 				},
-			        Author: {
+			  Author: {
 					type: 'string',
 					value: annotation.sectionProperties.data.author
 				},
 				Text: {
 					type: 'string',
 					value: annotation.sectionProperties.data.text
+				},
+				Html: {
+					type: 'string',
+					value: annotation.sectionProperties.data.html
 				}
 			};
 			this.map.sendUnoCommand('.uno:EditAnnotation', comment, true /* force */);
@@ -884,6 +892,10 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			Text: {
 				type: 'string',
 				value: annotation.sectionProperties.data.reply
+			},
+			Html: {
+				type: 'string',
+				value: annotation.sectionProperties.data.html
 			}
 		};
 
