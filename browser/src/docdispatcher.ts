@@ -122,6 +122,10 @@ class Dispatcher {
 			}
 		};
 
+		this.actionsMap['insertmultimedia'] = function () {
+			L.DomUtil.get('insertmultimedia').click();
+		};
+
 		this.actionsMap['charmapcontrol'] = function () {
 			app.map.sendUnoCommand('.uno:InsertSymbol');
 		};
