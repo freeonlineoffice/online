@@ -31,7 +31,7 @@ L.Control.Tabs = L.Control.extend({
 		var map = this._map;
 		var tableCell = document.getElementById('spreadsheet-toolbar');
 		this._tabsCont = L.DomUtil.create('div', 'spreadsheet-tabs-container', tableCell);
-		var that = this;
+
 		function areTabsMultiple() {
 			var numItems = $('.spreadsheet-tab').length;
 			if (numItems === 1) {
@@ -68,7 +68,7 @@ L.Control.Tabs = L.Control.extend({
 				name: _UNO('.uno:Show', 'spreadsheet', true),
 				callback: (this._showSheet).bind(this),
 				visible: function() {
-					return that._map.hasAnyHiddenPart();
+					return app.calc.isAnyPartHidden();
 				}
 			},
 			'.uno:Hide': {
@@ -154,12 +154,12 @@ L.Control.Tabs = L.Control.extend({
 						'Name' : this._menuItem['.uno:Name'],
 					}
 				);
-				if (this._map.hasAnyHiddenPart()) {
+				if (app.calc.isAnyPartHidden()) {
 					Object.assign(menuItemMobile, {
 						'Show' : this._menuItem['.uno:Show'],
 					});
 				}
-				if (this._map.getNumberOfVisibleParts() !== 1) {
+				if (app.calc.getVisiblePartCount() !== 1) {
 					Object.assign(menuItemMobile,
 						{
 							'Remove': this._menuItem['.uno:Remove'],
@@ -182,7 +182,7 @@ L.Control.Tabs = L.Control.extend({
 				}
 
 				for (var i = 0; i < parts; i++) {
-					if (e.hiddenParts.indexOf(i) !== -1)
+					if (app.calc.isPartHidden(i))
 						continue;
 
 					// create a drop zone indicator for the sheet tab
@@ -229,7 +229,7 @@ L.Control.Tabs = L.Control.extend({
 						}(i).bind(this));
 					}
 
-					if (e.protectedParts[i]) {
+					if (app.calc.isPartProtected(i)) {
 						L.DomUtil.addClass(tab, 'spreadsheet-tab-protected');
 					}
 					else {
