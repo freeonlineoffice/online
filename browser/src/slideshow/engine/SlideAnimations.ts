@@ -77,11 +77,6 @@ function isTransitionFilterSupported(
 			);
 }
 
-function isTargetSupported(aNodeInfo: AnimateNodeInfo) {
-	// return true;
-	return !(aNodeInfo.subItem && aNodeInfo.subItem === 'OnlyText');
-}
-
 function createAnimationTree(
 	aAnimationRoot: AnimationNodeInfo,
 	aNodeContext: NodeContext,
@@ -99,11 +94,6 @@ function createAnimationNode(
 	const eAnimationNodeType = getAnimationNodeType(aNodeInfo);
 	let aCreatedNode = null;
 	let aCreatedContainer = null;
-
-	if (!isTargetSupported(aNodeInfo)) {
-		window.app.console.log(`createAnimationNode: target not supported`);
-		return null;
-	}
 
 	switch (eAnimationNodeType) {
 		case AnimationNodeType.Par:
