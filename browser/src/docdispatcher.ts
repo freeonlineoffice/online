@@ -44,14 +44,18 @@ class Dispatcher {
 				if (
 					app.map &&
 					app.map.formulabar &&
-					(app.map.formulabar.hasFocus() || app.map.formulabar.isInEditMode())
+					(app.map.formulabar.hasFocus() ||
+						app.map.formulabar.isInEditMode())
 				) {
 					this.dispatch('acceptformula'); // save data from the edited cell on exit
 				}
 
 				app.map.fire('postMessage', {
 					msgId: 'close',
-					args: { EverModified: app.map._everModified, Deprecated: true },
+					args: {
+						EverModified: app.map._everModified,
+						Deprecated: true,
+					},
 				});
 				app.map.fire('postMessage', {
 					msgId: 'UI_Close',

@@ -35,7 +35,10 @@ class SaveState {
 			this.saveEle.classList.remove('savemodified');
 			// Dynamically set the content string for saving state
 			const savingText = _('Saving');
-			this.saveEle.style.setProperty('--save-state', `"${savingText}"`);
+			this.saveEle.style.setProperty(
+				'--save-state',
+				`"${savingText}"`,
+			);
 			this.saveEle.classList.add('saving');
 			this.saveIconEl.classList.add('rotate-icon'); // Start the icon rotation
 			this.saveEle.setAttribute('disabled', 'true'); // Disable the button
