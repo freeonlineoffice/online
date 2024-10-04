@@ -434,7 +434,6 @@ export class Comment extends CanvasSectionObject {
 
 		if (ev && this.sectionProperties.docLayer._docType === 'text') {
 			// special handling for mentions
-			// this.handleMentionInput(e, removeBefore);
 			this.handleMentionInput(ev);
 		}
 	}
@@ -481,7 +480,7 @@ export class Comment extends CanvasSectionObject {
 
 	private updateContent (): void {
 		if(this.sectionProperties.data.html)
-			this.sectionProperties.contentText.innerHTML = this.sectionProperties.data.html ? this.sectionProperties.data.html: ''
+			this.sectionProperties.contentText.innerHTML = this.sectionProperties.data.html ? this.sectionProperties.data.html: '';
 		else
 			this.sectionProperties.contentText.innerText = this.sectionProperties.data.text ? this.sectionProperties.data.text: '';
 		// Get the escaped HTML out and find for possible, useful links
@@ -1124,7 +1123,7 @@ export class Comment extends CanvasSectionObject {
 		if (!this.sectionProperties.isRemoved) {
 			$(this.sectionProperties.container).removeClass('annotation-active reply-annotation-container modify-annotation-container');
 			if (this.sectionProperties.contentText.origText !== this.sectionProperties.nodeModifyText.textContent ||
-			    this.sectionProperties.contentText.origHTML != this.sectionProperties.nodeModifyText.innerHTML ) {
+			    this.sectionProperties.contentText.origHTML !== this.sectionProperties.nodeModifyText.innerHTML ) {
 				if (!this.sectionProperties.contentText.uneditedHTML)
 					this.sectionProperties.contentText.uneditedHTML = this.sectionProperties.contentText.origHTML;
 				if (!this.sectionProperties.contentText.uneditedText)
