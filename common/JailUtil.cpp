@@ -12,16 +12,17 @@
 #include "FileUtil.hpp"
 #include "JailUtil.hpp"
 
+#include <fcntl.h>
 #include <sys/mount.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sysexits.h>
-#include <fcntl.h>
 #include <unistd.h>
 #ifdef __linux__
 #include <sys/sysmacros.h>
 #endif
 
+#include <csignal>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -359,7 +360,7 @@ void cleanupJails(const std::string& root)
                 try {
                     int pid = std::stoi(pidStr);
                     LOG_TRC("Checking pid for jail " << pid << " " << root);
-                    if (pid != getpid() && kill(pid, 0) == 0)
+                    if (pid != getpid() && ::kill(pid, 0) == 0)
                     {
                         LOG_TRC("Skipping cleaning jails directory for running loolwsd with pid " << pid);
                         skip = true;
