@@ -37,7 +37,7 @@ inline void setupKitEnvironment(const std::string& userInterface)
     ::setenv("CONFIGURATION_LAYERS", layers.c_str(),
              1 /* override */);
 
-    if (!Util::isMobileApp())
+    if constexpr (!Util::isMobileApp())
     {
         // No-caps tracing can spawn eg. glxinfo & other oddness.
         unsetenv("DISPLAY");

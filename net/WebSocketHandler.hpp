@@ -203,7 +203,7 @@ protected:
                      << static_cast<unsigned>(statusCode) << ", message: " << statusMessage);
             _shuttingDown = true;
 
-            if (!Util::isMobileApp())
+            if constexpr (!Util::isMobileApp())
             {
                 const size_t len = statusMessage.size();
                 std::vector<char> buf(2 + len);
@@ -534,7 +534,7 @@ protected:
     {
         std::shared_ptr<StreamSocket> socket = _socket.lock();
 
-        if (Util::isMobileApp())
+        if constexpr (Util::isMobileApp())
         {
             // No separate "upgrade" is going on
             if (socket && !socket->isWebSocket())

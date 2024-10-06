@@ -346,7 +346,7 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
 /// connected to any document.
 void LOOLWSD::alertAllUsersInternal(const std::string& msg)
 {
-    if (Util::isMobileApp())
+    if constexpr (Util::isMobileApp())
         return;
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
 
@@ -365,7 +365,7 @@ void LOOLWSD::alertAllUsersInternal(const std::string& msg)
 
 void LOOLWSD::alertUserInternal(const std::string& dockey, const std::string& msg)
 {
-    if (Util::isMobileApp())
+    if constexpr (Util::isMobileApp())
         return;
     std::lock_guard<std::mutex> docBrokersLock(DocBrokersMutex);
 
@@ -3077,7 +3077,7 @@ void LOOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessio
 
 void LOOLWSD::defineOptions(OptionSet& optionSet)
 {
-    if (Util::isMobileApp())
+    if constexpr (Util::isMobileApp())
         return;
     ServerApplication::defineOptions(optionSet);
 
@@ -3832,7 +3832,7 @@ private:
 
             auto child = std::make_shared<ChildProcess>(pid, jailId, socket, request);
 
-            if (!Util::isMobileApp())
+            if constexpr (!Util::isMobileApp())
                 UnitWSD::get().newChild(child);
 
             _pid = pid;

@@ -390,7 +390,7 @@ std::size_t LocalStorage::uploadLocalFileToStorageAsync(
 
 void LockContext::initSupportsLocks()
 {
-    if (Util::isMobileApp())
+    if constexpr (Util::isMobileApp())
         _supportsLocks = false;
     else
     {
