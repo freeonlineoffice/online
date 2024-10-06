@@ -18,7 +18,7 @@ class SlideTransition {
 
 	constructor(slideInfo: SlideInfo) {
 		this.slideInfo = slideInfo;
-		this.bIsValid = !!this.getType();
+		this.bIsValid = this.getType() !== undefined;
 		this.aDuration = new Duration(
 			this.slideInfo.transitionDuration + 'ms',
 		);
