@@ -681,6 +681,13 @@ nav.spreadsheet-color-indicator ~ #sidebar-dock-wrapper {
 	box-sizing: border-box;
 }
 
+.lool-annotation-textarea a:link,
+.lool-annotation-textarea a:visited,
+.lool-annotation-content a:link,
+.lool-annotation-content a:visited {
+	color: var(--color-hyperlink);
+}
+
 #input-modal-input.lool-annotation-textarea {
 	height: var(--annotation-input-size);
 }
