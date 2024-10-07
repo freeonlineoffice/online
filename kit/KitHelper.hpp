@@ -58,8 +58,6 @@ namespace LOKitHelper
         resultingString.pop_back();
         resultingString += "}";
 
-        std::cout << "Resulting string: " << resultingString << std::endl;
-
         return resultingString;
     }
 
