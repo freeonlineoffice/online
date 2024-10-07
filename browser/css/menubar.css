@@ -70,7 +70,7 @@
 #save {
 	display: flex;
 	font-size: var(--default-font-size);
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	position: relative;
 	background: transparent;
 	padding-inline-start: 2px;
@@ -91,7 +91,7 @@ nav.hasnotebookbar #save::after {
 nav.hasnotebookbar #save.saving::after {
 	content: 'Saving';
 	font-size: var(--default-font-size);
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	color: var(--color-main-text);
 }
 
