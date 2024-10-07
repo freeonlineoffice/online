@@ -111,7 +111,10 @@ class Mention extends L.Control.AutoCompletePopup {
 	}
 
 	callback(objectType: any, eventType: any, object: any, index: number) {
-		const comment = lool.Comment?.isAnyEdit();
+		const commentSection = app.sectionContainer.getSectionWithName(
+			L.CSections.CommentList.name,
+		);
+		const comment = commentSection?.getActiveEdit();
 		if (eventType === 'close') {
 			this.closeMentionPopup({
 				typingMention: false,
