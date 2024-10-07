@@ -70,6 +70,7 @@ interface SlideInfo {
 	hash: string;
 	index: number;
 	name: string;
+	notes: string;
 	empty: boolean;
 	hidden?: boolean;
 	masterPage: string;
@@ -196,6 +197,11 @@ class SlideShowPresenter {
 
 	public getCanvas(): HTMLCanvasElement {
 		return this._slideShowCanvas;
+	}
+
+	public getNotes(slide: number) {
+		const info = this.getSlideInfo(slide);
+		return info.notes;
 	}
 
 	_onFullScreenChange() {

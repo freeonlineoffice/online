@@ -414,6 +414,8 @@ class SlideShowHandler {
 
 			this.update();
 		} else this.notifyAnimationsEnd();
+
+		this.presenter._map.fire('transitionend', { slide: nNewSlide });
 	}
 
 	notifyInteractiveAnimationSequenceStart(nNodeId: number) {
