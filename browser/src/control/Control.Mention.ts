@@ -111,9 +111,7 @@ class Mention extends L.Control.AutoCompletePopup {
 	}
 
 	callback(objectType: any, eventType: any, object: any, index: number) {
-		const section = app.sectionContainer.getSectionWithName(
-			L.CSections.CommentList.name,
-		);
+		const comment = lool.Comment?.isAnyEdit();
 		if (eventType === 'close') {
 			this.closeMentionPopup({
 				typingMention: false,
@@ -123,8 +121,8 @@ class Mention extends L.Control.AutoCompletePopup {
 			const profileLink = this.itemList[index].profile;
 			const replacement = this.map._docLayer._mentionText.join('');
 
-			if (section?.sectionProperties?.selectedComment?.isEdit())
-				section.sectionProperties.selectedComment.autoCompleteMention(
+			if (comment)
+				comment.autoCompleteMention(
 					username,
 					profileLink,
 					replacement,
@@ -141,8 +139,7 @@ class Mention extends L.Control.AutoCompletePopup {
 			} as CloseMessageEvent);
 		} else if (eventType === 'keydown') {
 			if (object.key !== 'Tab' && object.key !== 'Shift') {
-				const comment = section?.sectionProperties?.selectedComment;
-				if (comment?.isEdit()) comment.focus();
+				if (comment) comment.focus();
 				else this.map.focus();
 				return true;
 			}
