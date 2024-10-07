@@ -479,6 +479,7 @@ LOOL_JS_LST =\
     src/slideshow/engine/AnimatedElement.ts \
     src/slideshow/Transition2d.ts \
     src/slideshow/Transition3d.ts \
+    src/slideshow/transition/ClippingTransition.ts \
 	src/slideshow/transition/FadeTransition.ts \
 	src/slideshow/transition/PlusTransition.ts \
 	src/slideshow/transition/CircleTransition.ts \
@@ -1028,6 +1029,7 @@ pot:
         src/slideshow/engine/animationnodes/PropertyAnimationNode.ts \
         src/slideshow/engine/AnimatedElement.ts \
         src/slideshow/Transition2d.ts \
+        src/slideshow/transition/ClippingTransition.ts \
 		src/slideshow/transition/FadeTransition.ts \
 		src/slideshow/CanvasLoader.ts \
 		src/slideshow/Transition3d.ts \
