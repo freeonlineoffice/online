@@ -837,7 +837,7 @@ L.Clipboard = L.Class.extend({
 
 	// Executes the navigator.clipboard.write() call, if it's available.
 	_navigatorClipboardWrite: function() {
-		if (!L.Browser.hasNavigatorClipboardWrite) {
+		if (!L.Browser.clipboardApiAvailable) {
 			// Show a visible warning, this should not happen in production.
 			this._map.uiManager.showSnackbar(
 				_('The async Clipboard API is not supported by your browser, switching to HTTPS is meant to fix that.')
@@ -901,8 +901,8 @@ L.Clipboard = L.Class.extend({
 			// Warn that the copy failed.
 			that._warnCopyPaste();
 			// Once broken, always broken.
-			L.Browser.hasNavigatorClipboardWrite = false;
-			window.prefs.set('hasNavigatorClipboardWrite', false);
+			L.Browser.clipboardApiAvailable = false;
+			window.prefs.set('clipboardApiAvailable', 'false');
 			// Prefetch selection, so next time copy will work with the keyboard.
 			app.socket.sendMessage('gettextselection mimetype=text/html,text/plain;charset=utf-8');
 		});
@@ -939,7 +939,7 @@ L.Clipboard = L.Class.extend({
 
 	// Executes the navigator.clipboard.read() call, if it's available.
 	_navigatorClipboardRead: function(isSpecial) {
-		if (!L.Browser.hasNavigatorClipboardRead) {
+		if (!L.Browser.clipboardApiAvailable) {
 			return false;
 		}
 
