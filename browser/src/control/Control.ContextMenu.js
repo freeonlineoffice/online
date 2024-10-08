@@ -156,6 +156,8 @@ L.Control.ContextMenu = L.Control.extend({
 				spellingContextMenu = true;
 				break;
 			} else if (menuItem.indexOf('.uno:AutoFill') !== -1) {
+				// we should close the autofill preview popup before open autofill context menu
+				map.fire('closeautofillpreviewpopup');
 				autoFillContextMenu = true;
 				break;
 			}
