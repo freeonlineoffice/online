@@ -2184,6 +2184,7 @@ void LOOLWSD::innerInitialize(Application& self)
         { "admin_console.logging.admin_action", "true" },
         { "wasm.enable", "false" },
         { "wasm.force", "false" },
+        { "document_signing.enable", "true" },
     };
 
     // Set default values, in case they are missing from the config file.

@@ -232,8 +232,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'accessibility': { focusBack: true,	combination: 'PR', de: null }
 					}
 				]
-			},
-			{
+		});
+		if (window.documentSigningEnabled) {
+			content.push({
 				'type': 'container',
 				'children': [
 					{
@@ -244,7 +245,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'accessibility': { focusBack: true, combination: 'SN' }
 					}
 				]
-			},
+			});
+		}
+		content.push(
 			{
 				'type': 'container',
 				'children': [

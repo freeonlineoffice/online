@@ -299,8 +299,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'command': '.uno:SetDocumentProperties'
 					}
 				]
-			},
-			{
+		});
+		if (window.documentSigningEnabled) {
+			content.push({
 				'type': 'container',
 				'children': [
 					{
@@ -311,7 +312,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'accessibility': { focusBack: true, combination: 'SN' }
 					}
 				]
-			},
+			});
+		}
+		content.push(
 			{
 				'type': 'container',
 				'children': [

@@ -301,8 +301,9 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 						'accessibility': { focusBack: true,	combination: 'I', de: 'I' }
 					}
 				]
-			},
-			{
+		});
+		if (window.documentSigningEnabled) {
+			content.push({
 				'type': 'container',
 				'children': [
 					{
@@ -314,6 +315,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 					}
 				]
 			});
+		}
 
 		content.push({
 			'type': 'container',
