@@ -391,6 +391,7 @@ LOOL_JS_LST =\
 	src/control/Control.SheetsBar.js \
 	src/control/Control.PresentationBar.js \
 	src/control/Control.TopToolbar.js \
+	src/control/Control.SaveState.ts \
 	src/control/Control.UIManager.js \
 	src/control/Control.DocumentNameInput.js \
 	src/control/Control.Notebookbar.js \
@@ -921,6 +922,7 @@ pot:
 		src/control/Control.Scroll.Annotation.js \
 		src/control/Control.MobileSearchBar.ts \
 		src/control/Control.ServerAuditDialog.ts \
+		src/control/Control.SaveState.ts \
 		src/control/Control.SheetsBar.js \
 		src/control/Control.Sidebar.ts \
 		src/control/Control.StatusBar.js \
