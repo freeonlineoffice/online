@@ -282,6 +282,13 @@ class FormulaBar {
 		return L.DomUtil.hasClass(input, 'focused');
 	}
 
+	isInEditMode() {
+		var acceptButton = this.parentContainer.querySelector('#acceptformula');
+		if (acceptButton)
+			return !acceptButton.classList.contains('hidden');
+		return false;
+	}
+
 	showFormulabar() {
 		if (this.parentContainer)
 			this.parentContainer.style.setProperty('display', 'table-cell');
