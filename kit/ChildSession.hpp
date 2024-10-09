@@ -129,6 +129,7 @@ public:
     std::string getViewRenderState() { return _viewRenderState; }
 
     bool isTileInsideVisibleArea(const TileDesc& tile) const;
+    bool isTileInsideVisibleArea(const TileCombined& tileCombined) const;
 
 private:
     bool loadDocument(const StringVector& tokens);
