@@ -2055,7 +2055,6 @@ void LOOLWSD::innerInitialize(Application& self)
         { "logging.disable_server_audit", "false" },
         { "browser_logging", "false" },
         { "mount_jail_tree", "true" },
-        { "mount_namespaces", "false" },
         { "net.connection_timeout_secs", "30" },
         { "net.listen", "any" },
         { "net.proto", "all" },
@@ -2610,7 +2609,7 @@ void LOOLWSD::innerInitialize(Application& self)
 #endif // CODE_COVERAGE
 
     // Setup the jails.
-    bool UseMountNamespaces = getConfigValue<bool>(conf, "mount_namespaces", false);
+    bool UseMountNamespaces = true;
 
     NoCapsForKit =
         Util::isKitInProcess() || !getConfigValue<bool>(conf, "security.capabilities", true);

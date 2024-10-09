@@ -545,8 +545,7 @@ COMMON_PARAMS = \
 	--o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
 	--o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
 	--o:ssl.ca_file_path="$(abs_top_srcdir)/etc/ca-chain.cert.pem" \
-	--o:admin_console.username=admin --o:admin_console.password=admin \
-	--o:mount_namespaces[@default]=true
+	--o:admin_console.username=admin --o:admin_console.password=admin
 
 run: setup-wsd
 	./loolwsd $(COMMON_PARAMS) \
