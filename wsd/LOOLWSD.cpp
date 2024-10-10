@@ -2184,6 +2184,12 @@ void LOOLWSD::innerInitialize(Application& self)
         { "wasm.enable", "false" },
         { "wasm.force", "false" },
         { "document_signing.enable", "true" },
+        { "extra_export_formats.impress_swf", "false" },
+        { "extra_export_formats.impress_bmp", "false" },
+        { "extra_export_formats.impress_gif", "false" },
+        { "extra_export_formats.impress_png", "false" },
+        { "extra_export_formats.impress_svg", "false" },
+        { "extra_export_formats.impress_tiff", "false" },
     };
 
     // Set default values, in case they are missing from the config file.
