@@ -450,6 +450,13 @@ asyncConnect(const std::string& host, const std::string& port, const bool isSSL,
     AsyncDNS::lookup(host, port, callback, dumpState);
 }
 
+#else //!MOBILEAPP
+
+bool HostEntry::isLocalhost() const
+{
+    return true;
+}
+
 #endif //!MOBILEAPP
 
 std::shared_ptr<StreamSocket>
