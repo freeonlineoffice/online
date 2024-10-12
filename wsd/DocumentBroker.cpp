@@ -1246,11 +1246,6 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
         session->setWritable(false);
         // TODO: Somewhere around here, we need to put "setAllowChangeComments" if we allow editing comments in readonly mode.
     }
-    else if (CommandControl::LockManager::isLockedReadOnlyUser()) // Readonly.
-    {
-        LOG_DBG("Setting session [" << sessionId << "] to readonly for LockedReadOnlyUser");
-        session->setWritable(false);
-    }
     else if (_isViewFileExtension) // PDF and the like: only commenting, no editing.
     {
         LOG_DBG("Setting session [" << sessionId << "] to readonly for ViewFileExtension ["

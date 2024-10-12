@@ -3106,30 +3106,10 @@ bool ChildSession::updateBlockingCommandStatus(const StringVector& tokens)
         sendTextFrameAndLogError("error: cmd=lockstatus kind=failure");
         return false;
     }
-    std::string blockedCommands;
-    if (restrictedStatus == "true")
-        blockedCommands += CommandControl::RestrictionManager::getRestrictedCommandListString();
-    if (lockStatus == "true")
-        blockedCommands += blockedCommands.empty()
-                               ? CommandControl::LockManager::getLockedCommandListString()
-                               : " " + CommandControl::LockManager::getLockedCommandListString();
 
-    getLOKitDocument()->setBlockedCommandList(_viewId, blockedCommands.c_str());
-    return true;
 }
 
-std::string ChildSession::getBlockedCommandType(std::string command)
-{
-    if(CommandControl::RestrictionManager::getRestrictedCommandList().find(command)
-    != CommandControl::RestrictionManager::getRestrictedCommandList().end())
-        return "restricted";
 
-    if (CommandControl::LockManager::getLockedCommandList().find(command) !=
-        CommandControl::LockManager::getLockedCommandList().end())
-        return "locked";
-
-    return "";
-}
 #endif
 
 bool ChildSession::sendProgressFrame(const char* id, const std::string& jsonProps,
@@ -3505,20 +3485,6 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         break;
     case LOK_CALLBACK_CONTENT_CONTROL:
         sendTextFrame("contentcontrol: " + payload);
-        break;
-    case LOK_COMMAND_BLOCKED:
-        {
-#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
-            LOG_INF("COMMAND_BLOCKED: " << payload);
-            Parser parser;
-            Poco::Dynamic::Var var = parser.parse(payload);
-            Object::Ptr object = var.extract<Object::Ptr>();
-
-            std::string cmd = object->get("cmd").toString();
-            sendTextFrame("blockedcommand: cmd=" + cmd +
-                    " kind=" + getBlockedCommandType(cmd) + " code=" + object->get("code").toString());
-#endif
-        }
         break;
     case LOK_CALLBACK_PRINT_RANGES:
         sendTextFrame("printranges: " + payload);

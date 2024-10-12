@@ -1403,13 +1403,7 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
         {
             oss << " batch=" << getBatchMode();
         }
-#if ENABLE_FEATURE_LOCK
-        sendLockedInfo();
-#endif
 
-#if ENABLE_FEATURE_RESTRICTION
-        sendRestrictionInfo();
-#endif
 
         return forwardToChild(oss.str(), docBroker);;
     }
@@ -1421,59 +1415,6 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
     return false;
 }
 
-#if ENABLE_FEATURE_LOCK
-void ClientSession::sendLockedInfo()
-{
-    Poco::JSON::Object::Ptr lockInfo = new Poco::JSON::Object();
-    CommandControl::LockManager::setTranslationPath(getLang());
-    lockInfo->set("IsLockedUser", CommandControl::LockManager::isLockedUser());
-    lockInfo->set("IsLockReadOnly", CommandControl::LockManager::isLockReadOnly());
-
-    // Poco:Dynamic:Var does not support std::unordred_set so converted to std::vector
-    std::vector<std::string> lockedCommandList(
-        CommandControl::LockManager::getLockedCommandList().begin(),
-        CommandControl::LockManager::getLockedCommandList().end());
-    lockInfo->set("LockedCommandList", lockedCommandList);
-    lockInfo->set("UnlockTitle", CommandControl::LockManager::getUnlockTitle());
-    lockInfo->set("UnlockLink", CommandControl::LockManager::getUnlockLink());
-    lockInfo->set("UnlockDescription", CommandControl::LockManager::getUnlockDescription());
-    lockInfo->set("WriterHighlights", CommandControl::LockManager::getWriterHighlights());
-    lockInfo->set("CalcHighlights", CommandControl::LockManager::getCalcHighlights());
-    lockInfo->set("ImpressHighlights", CommandControl::LockManager::getImpressHighlights());
-    lockInfo->set("DrawHighlights", CommandControl::LockManager::getDrawHighlights());
-
-    const Poco::URI unlockImageUri = CommandControl::LockManager::getUnlockImageUri();
-    if (!unlockImageUri.empty())
-        lockInfo->set("UnlockImageUrlPath", unlockImageUri.getPath());
-    CommandControl::LockManager::resetTransalatioPath();
-    std::ostringstream ossLockInfo;
-    lockInfo->stringify(ossLockInfo);
-    const std::string lockInfoString = ossLockInfo.str();
-    LOG_TRC("Sending feature locking info to client: " << lockInfoString);
-    sendTextFrame("featurelock: " + lockInfoString);
-}
-#endif
-
-#if ENABLE_FEATURE_RESTRICTION
-void ClientSession::sendRestrictionInfo()
-{
-    Poco::JSON::Object::Ptr restrictionInfo = new Poco::JSON::Object();
-    restrictionInfo->set("IsRestrictedUser",
-                         CommandControl::RestrictionManager::isRestrictedUser());
-
-    // Poco:Dynamic:Var does not support std::unordred_set so converted to std::vector
-    std::vector<std::string> restrictedCommandList(
-        CommandControl::RestrictionManager::getRestrictedCommandList().begin(),
-        CommandControl::RestrictionManager::getRestrictedCommandList().end());
-    restrictionInfo->set("RestrictedCommandList", restrictedCommandList);
-
-    std::ostringstream ossRestrictionInfo;
-    restrictionInfo->stringify(ossRestrictionInfo);
-    const std::string restrictionInfoString = ossRestrictionInfo.str();
-    LOG_TRC("Sending command restriction info to client: " << restrictionInfoString);
-    sendTextFrame("restrictedCommands: " + restrictionInfoString);
-}
-#endif
 
 bool ClientSession::getCommandValues(const char *buffer, int length, const StringVector& tokens,
                                      const std::shared_ptr<DocumentBroker>& docBroker)
@@ -2263,18 +2204,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
             _canonicalViewId = canonicalId;
         }
     }
-#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
-    else if (tokens.equals(0, "status:") && !isViewLoaded())
-    {
-        std::ostringstream blockingCommandStatus;
-        blockingCommandStatus << "blockingcommandstatus isRestrictedUser="
-                              << (CommandControl::RestrictionManager::isRestrictedUser() ? "true"
-                                                                                         : "false")
-                              << " isLockedUser="
-                              << (CommandControl::LockManager::isLockedUser() ? "true" : "false");
-        docBroker->forwardToChild(client_from_this(), blockingCommandStatus.str());
-    }
-#endif
+
     if (!isDocPasswordProtected())
     {
         if (tokens.equals(0, "tile:"))

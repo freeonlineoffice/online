@@ -327,7 +327,6 @@ WopiStorage::WOPIFileInfo::WOPIFileInfo(const FileInfo& fileInfo, Poco::JSON::Ob
 
     bool booleanFlag = false;
     JsonUtil::findJSONValue(object, "IsUserRestricted", booleanFlag);
-    CommandControl::RestrictionManager::setRestrictedUser(booleanFlag);
 
     if (JsonUtil::findJSONValue(object, "DisableChangeTrackingRecord", booleanFlag))
         _disableChangeTrackingRecord =

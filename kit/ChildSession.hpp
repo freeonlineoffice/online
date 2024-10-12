@@ -172,10 +172,6 @@ private:
     bool askSignatureStatus(const char* buffer, int length, const StringVector& tokens);
     bool renderShapeSelection(const StringVector& tokens);
     bool removeTextContext(const StringVector& tokens);
-#if ENABLE_FEATURE_LOCK || ENABLE_FEATURE_RESTRICTION
-    bool updateBlockingCommandStatus(const StringVector& tokens);
-    std::string getBlockedCommandType(std::string command);
-#endif
     bool handleZoteroMessage(const StringVector& tokens);
     bool formFieldEvent(const char* buffer, int length, const StringVector& tokens);
     bool contentControlEvent(const StringVector& tokens);
