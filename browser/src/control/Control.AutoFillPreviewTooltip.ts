@@ -84,7 +84,8 @@ class AutoFillPreviewTooltip extends L.Control.AutoCompletePopup {
 				return;
 			}
 
-			if (L.DomUtil.get(this.popupId)) this.closeAutoFillPreviewPopup();
+			if (L.DomUtil.get(this.popupId))
+				this.closeAutoFillPreviewPopup();
 			data = Object.assign({}, this.newPopupData);
 			data.children[0].children[0] = control;
 		}
