@@ -92,16 +92,13 @@ class Mention extends L.Control.AutoCompletePopup {
 		const commentSection = app.sectionContainer.getSectionWithName(
 			L.CSections.CommentList.name,
 		);
-		if (
-			entries.length === 0 &&
-			this.isMobile &&
-			commentSection?.isMobileCommentActive()
-		) {
+
+		const isMobileCommentActive = commentSection?.isMobileCommentActive();
+		const mobileCommentModalId = commentSection?.getMobileCommentModalId();
+		if (entries.length === 0 && this.isMobile && isMobileCommentActive) {
 			const control = this.getTreeJSON();
 			const data = this.getPopupJSON(control, { x: 0, y: 0 });
-			if (commentSection?.isMobileCommentActive()) {
-				data.id = 'modal-dialog-new-annotation-dialog';
-			}
+			if (isMobileCommentActive) data.id = mobileCommentModalId;
 			(data.control as TreeWidget).entries = [];
 			this.sendUpdate(data);
 			return;
@@ -140,8 +137,7 @@ class Mention extends L.Control.AutoCompletePopup {
 		const control = this.getTreeJSON();
 		if (L.DomUtil.get(this.popupId + 'List')) {
 			const data = this.getPopupJSON(control, cursorPos);
-			if (commentSection?.isMobileCommentActive())
-				data.id = 'modal-dialog-new-annotation-dialog';
+			if (isMobileCommentActive) data.id = mobileCommentModalId;
 			(data.control as TreeWidget).entries = entries;
 			this.sendUpdate(data);
 			return;
@@ -179,13 +175,13 @@ class Mention extends L.Control.AutoCompletePopup {
 			const commentSection = app.sectionContainer.getSectionWithName(
 				L.CSections.CommentList.name,
 			);
+			const isMobileCommentActive = commentSection?.isMobileCommentActive();
+			const mobileCommentModalId = commentSection?.getMobileCommentModalId();
 
-			if (commentSection?.isMobileCommentActive()) {
+			if (isMobileCommentActive) {
 				const control = this.getTreeJSON();
 				const data = this.getPopupJSON(control, { x: 0, y: 0 });
-				if (commentSection?.isMobileCommentActive()) {
-					data.id = 'modal-dialog-new-annotation-dialog';
-				}
+				if (isMobileCommentActive) data.id = mobileCommentModalId;
 				(data.control as TreeWidget).entries = [];
 				this.sendUpdate(data);
 			} else {
