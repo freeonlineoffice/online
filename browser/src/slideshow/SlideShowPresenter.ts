@@ -121,8 +121,11 @@ class SlideShowPresenter {
 	private _metaPresentation: MetaPresentation;
 	private _startSlide: number;
 	private _presentationInfoChanged: boolean = false;
+	private _cypressSVGPresentationTest: boolean = false;
 
 	constructor(map: any) {
+		this._cypressSVGPresentationTest =
+			L.Browser.cypressTest || 'Cypress' in window;
 		this._map = map;
 		this._init();
 		this.addHooks();
@@ -181,7 +184,7 @@ class SlideShowPresenter {
 	}
 
 	public isFullscreen() {
-		return !!this._fullscreen;
+		return !!this._fullscreen || !this._cypressSVGPresentationTest;
 	}
 
 	public getCanvas(): HTMLCanvasElement {
@@ -562,12 +565,30 @@ class SlideShowPresenter {
 		this._doInWindowPresentation();
 	}
 
+	_getProxyDocumentNode() {
+		if (this._cypressSVGPresentationTest)
+			return (this._slideShowWindowProxy as any as HTMLIFrameElement)
+				.contentWindow.document;
+		else this._getProxyDocumentNode();
+	}
+
 	_doInWindowPresentation() {
 		const popupTitle =
 			_('Windowed Presentation: ') + this._map['wopi'].BaseFileName;
 		const htmlContent = this._generateSlideWindowHtml(popupTitle);
 
-		this._slideShowWindowProxy = window.open('', '_blank', 'popup');
+		if (this._cypressSVGPresentationTest) {
+			this._slideShowWindowProxy = L.DomUtil.createWithId(
+				'iframe',
+				'slideshow-cypress-iframe',
+				document.body,
+			);
+			this._getProxyDocumentNode().open();
+			this._getProxyDocumentNode().write('<html><body></body></html>');
+			this._getProxyDocumentNode().close();
+		} else {
+			this._slideShowWindowProxy = window.open('', '_blank', 'popup');
+		}
 
 		if (!this._slideShowWindowProxy) {
 			this._map.uiManager.showInfoModal(
@@ -584,21 +605,18 @@ class SlideShowPresenter {
 			return;
 		}
 
-		this._slideShowWindowProxy.document.documentElement.innerHTML =
-			htmlContent;
-		this._slideShowWindowProxy.document.close();
+		this._getProxyDocumentNode().documentElement.innerHTML = htmlContent;
+		this._getProxyDocumentNode().close();
 		this._slideShowWindowProxy.focus();
 
 		// set body styles
-		this._slideShowWindowProxy.document.body.style.margin = '0';
-		this._slideShowWindowProxy.document.body.style.padding = '0';
-		this._slideShowWindowProxy.document.body.style.height = '100%';
-		this._slideShowWindowProxy.document.body.style.overflow = 'hidden';
+		this._getProxyDocumentNode().body.style.margin = '0';
+		this._getProxyDocumentNode().body.style.padding = '0';
+		this._getProxyDocumentNode().body.style.height = '100%';
+		this._getProxyDocumentNode().body.style.overflow = 'hidden';
 
 		const body =
-			this._slideShowWindowProxy.document.querySelector(
-				'#root-in-window',
-			);
+			this._getProxyDocumentNode().querySelector('#root-in-window');
 		this._presenterContainer = this._createPresenterHTML(
 			body,
 			window.screen.width,
