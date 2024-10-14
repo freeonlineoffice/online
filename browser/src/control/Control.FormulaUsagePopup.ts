@@ -51,7 +51,7 @@ class FormulaUsagePopup extends L.Control.AutoCompletePopup {
 	}
 
 	openFormulaUsagePopup(ev: FireEvent) {
-		this.openMentionPopup({ data: ev });
+		this.openPopup({ data: ev });
 		this.map.focus();
 	}
 
