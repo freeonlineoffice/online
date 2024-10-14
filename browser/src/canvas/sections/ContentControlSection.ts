@@ -298,7 +298,8 @@ export class ContentControlSection extends app.definitions.canvasSectionObject {
 			'cancellable': true,
 			'popupParent': '_POPOVER_',
 			'clickToClose': '_POPOVER_',
-			'id': 'contentControlModalpopup'
+			'id': 'contentControlModalpopup',
+			'isPopupPartialScreen': true
 		};
 
 		var entries = [];
