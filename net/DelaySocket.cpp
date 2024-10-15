@@ -21,9 +21,12 @@ std::once_flag Delay::DelayPollOnceFlag;
 /// Reads from fd, delays that and then writes to _dest.
 class DelaySocket : public Socket {
     int _delayMs;
-    enum State { ReadWrite,      // normal socket
-                 EofFlushWrites, // finish up writes and close
-                 Closed };
+    STATE_ENUM(State,
+               ReadWrite,      // normal socket
+               EofFlushWrites, // finish up writes and close
+               Closed
+              );
+
     State _state;
     std::shared_ptr<DelaySocket> _dest; // our writing twin.
 
@@ -48,7 +51,7 @@ class DelaySocket : public Socket {
 public:
     DelaySocket(int delayMs, int fd) :
         Socket (fd, Socket::Type::Unix), _delayMs(delayMs),
-        _state(ReadWrite)
+        _state(State::ReadWrite)
 	{
 //        setSocketBufferSize(Socket::DefaultSendBufferSize);
 	}
@@ -102,30 +105,30 @@ public:
     {
         switch (newState)
         {
-        case ReadWrite:
+        case State::ReadWrite:
             assert (false);
             break;
-        case EofFlushWrites:
-            assert (_state == ReadWrite);
+        case State::EofFlushWrites:
+            assert (_state == State::ReadWrite);
             assert (_dest);
             _dest->pushCloseChunk();
             _dest = nullptr;
             break;
-        case Closed:
-            if (_dest && _state == ReadWrite)
+        case State::Closed:
+            if (_dest && _state == State::ReadWrite)
                 _dest->pushCloseChunk();
             _dest = nullptr;
             shutdown();
             break;
         }
-        DELAY_LOG('#' << getFD() << " changed to state " << newState << '\n');
+        DELAY_LOG('#' << getFD() << " changed to state " << toStringShort(newState) << '\n');
         _state = newState;
     }
 
     void handlePoll(SocketDisposition &disposition,
                     std::chrono::steady_clock::time_point now, int events) override
     {
-        if (_state == ReadWrite && (events & POLLIN))
+        if (_state == State::ReadWrite && (events & POLLIN))
         {
             auto chunk = std::make_shared<WriteChunk>(_delayMs);
 
@@ -137,7 +140,7 @@ public:
             } while (len < 0 && errno == EINTR);
 
             if (len == 0) // EOF.
-                changeState(EofFlushWrites);
+                changeState(State::EofFlushWrites);
             else if (len >= 0)
             {
                 DELAY_LOG('#' << getFD() << " read " << len
@@ -151,14 +154,14 @@ public:
             else if (errno != EAGAIN && errno != EWOULDBLOCK)
             {
                 DELAY_LOG('#' << getFD() << " error : " << Util::symbolicErrno(errno) << ": " << strerror(errno) << '\n');
-                changeState(Closed); // FIXME - propagate the error ?
+                changeState(State::Closed); // FIXME - propagate the error ?
             }
         }
 
         if (_chunks.empty())
         {
-            if (_state == EofFlushWrites)
-                changeState(Closed);
+            if (_state == State::EofFlushWrites)
+                changeState(State::Closed);
         }
         else // Write if we have delayed enough.
         {
@@ -169,7 +172,7 @@ public:
                 if (chunk->getData().empty())
                 { // delayed error or close
                     DELAY_LOG('#' << getFD() << " handling delayed close\n");
-                    changeState(Closed);
+                    changeState(State::Closed);
                 }
                 else
                 {
@@ -191,7 +194,7 @@ public:
                                       << chunk->getData().size()
                                       << " queue: " << _chunks.size() << " error: "
                                       << Util::symbolicErrno(errno) << ": " << strerror(errno) << '\n');
-                            changeState(Closed);
+                            changeState(State::Closed);
                         }
                     }
                     else
@@ -212,10 +215,10 @@ public:
         if (events & (POLLERR | POLLHUP | POLLNVAL))
         {
             DELAY_LOG('#' << getFD() << " error events: " << events << '\n');
-            changeState(Closed);
+            changeState(State::Closed);
         }
 
-        if (_state == Closed)
+        if (_state == State::Closed)
             disposition.setClosed();
     }
 };
