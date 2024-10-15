@@ -2795,8 +2795,11 @@ L.Control.JSDialogBuilder = L.Control.extend({
 						app.colorLastSelection[data.command] = selectedColor;
 					}
 
+					if (parseInt(selectedColor) === -1) selectedColor = 'transparent';
+
 					valueNode.style.backgroundColor =
-						selectedColor[0] !== '#' ? '#' + selectedColor : selectedColor;
+						(selectedColor[0] !== '#' && selectedColor !== 'transparent')
+						? '#' + selectedColor : selectedColor;
 
 					// Make sure the border around the color indicator is not too bright
 					// when the color is black so to avoid weird contast artifacts
