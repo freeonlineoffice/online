@@ -357,6 +357,7 @@ LOOL_JS_LST =\
 	src/control/jsdialog/Util.StateChange.ts \
 	src/control/jsdialog/Widget.ButtonBox.ts \
 	src/control/jsdialog/Widget.Calendar.js \
+	src/control/jsdialog/Widget.ColorPickerButton.js \
 	src/control/jsdialog/Widget.ColorPicker.ts \
 	src/control/jsdialog/Widget.Combobox.js \
 	src/control/jsdialog/Widget.Containers.ts \
@@ -952,6 +953,7 @@ pot:
 		src/control/jsdialog/Util.StateChange.ts \
 		src/control/jsdialog/Widget.ButtonBox.ts \
 		src/control/jsdialog/Widget.Calendar.js \
+		src/control/jsdialog/Widget.ColorPickerButton.js \
 		src/control/jsdialog/Widget.ColorPicker.ts \
 		src/control/jsdialog/Widget.Combobox.js \
 		src/control/jsdialog/Widget.Containers.ts \
