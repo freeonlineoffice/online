@@ -66,6 +66,7 @@
 #include <common/JsonUtil.hpp>
 #include "KitHelper.hpp"
 #include "Kit.hpp"
+#include <NetUtil.hpp>
 #include <Protocol.hpp>
 #include <Log.hpp>
 #include <Png.hpp>
@@ -1448,7 +1449,7 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
     // FIXME: defer and queue a 2nd save if queued during save ...
 
     std::shared_ptr<StreamSocket> parentSocket, childSocket;
-    if (!StreamSocket::socketpair(parentSocket, childSocket))
+    if (!StreamSocket::socketpair(start, parentSocket, childSocket))
         return false;
 
     // To encode into the child process id for debugging
@@ -2909,7 +2910,7 @@ void documentViewCallback(const int type, const char* payload, void* data)
 int pollCallback(void* pData, int timeoutUs)
 {
     if (timeoutUs < 0)
-        timeoutUs = SocketPoll::DefaultPollTimeoutMicroS.count();
+        timeoutUs = net::Defaults::get().SocketPollTimeout.count();
 #ifndef IOS
     if (!pData)
         return 0;
