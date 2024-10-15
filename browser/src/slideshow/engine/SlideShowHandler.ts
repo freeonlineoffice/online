@@ -339,6 +339,8 @@ class SlideShowHandler {
 		this.aStartedEffectIndexMap = new Map();
 		this.aStartedEffectIndexMap.set(-1, undefined);
 
+		this.presenter._map.fire('transitionstart', { slide: nNewSlideIndex });
+
 		if (nOldSlideIndex !== undefined) {
 			const metaOldSlide =
 				this.theMetaPres.getMetaSlideByIndex(nOldSlideIndex);
@@ -414,8 +416,6 @@ class SlideShowHandler {
 
 			this.update();
 		} else this.notifyAnimationsEnd();
-
-		this.presenter._map.fire('transitionend', { slide: nNewSlide });
 	}
 
 	notifyInteractiveAnimationSequenceStart(nNodeId: number) {
