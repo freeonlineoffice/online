@@ -559,7 +559,7 @@ L.Clipboard = L.Class.extend({
 		return true; // prevent default
 	},
 
-	_isAnyInputFieldSelected: function() {
+	_isAnyInputFieldSelected: function(forCopy = false) {
 		if ($('#search-input').is(':focus'))
 			return true;
 
@@ -580,6 +580,13 @@ L.Clipboard = L.Class.extend({
 		if (app.view.commentHasFocus)
 		    return true;
 
+		if (forCopy) {
+			let selection = window.getSelection();
+			selection = selection && selection.toString();
+			if (selection && selection.length !== 0)
+				return true;
+		}
+
 		return false;
 	},
 
@@ -593,7 +600,7 @@ L.Clipboard = L.Class.extend({
 	_beforeSelect: function(ev) {
 		window.app.console.log('Got event ' + ev.type + ' setting up selection');
 
-		if (this._isAnyInputFieldSelected())
+		if (this._isAnyInputFieldSelected(ev.type === 'beforecopy'))
 			return;
 
 		this._beforeSelectImpl();
@@ -1002,7 +1009,7 @@ L.Clipboard = L.Class.extend({
 	_doCopyCut: function(ev, unoName) {
 		window.app.console.log(unoName);
 
-		if (this._isAnyInputFieldSelected())
+		if (this._isAnyInputFieldSelected(unoName === 'Copy'))
 			return;
 
 		if (this._downloadProgressStatus() === 'downloadButton')
