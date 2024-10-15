@@ -14,6 +14,7 @@ declare var SlideShow: any;
 // TODO TransitionType, TransitionSubType to be moved to a separate file: engine/TransitionType.ts
 
 enum TransitionType {
+	INVALID,
 	BARWIPE,
 	PINWHEELWIPE,
 	SLIDEWIPE,
@@ -34,6 +35,7 @@ enum TransitionType {
 }
 
 enum TransitionSubType {
+	DEFAULT,
 	LEFTTORIGHT,
 	TOPTOBOTTOM,
 	EIGHTBLADE,
@@ -78,6 +80,7 @@ enum TransitionSubType {
 }
 
 const stringToTransitionTypeMap: Record<string, TransitionType> = {
+	Invalid: TransitionType.INVALID,
 	BarWipe: TransitionType.BARWIPE,
 	PineWheelWipe: TransitionType.PINWHEELWIPE,
 	SlideWipe: TransitionType.SLIDEWIPE,
@@ -98,6 +101,7 @@ const stringToTransitionTypeMap: Record<string, TransitionType> = {
 };
 
 const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
+	Default: TransitionSubType.DEFAULT,
 	LeftToRight: TransitionSubType.LEFTTORIGHT,
 	TopToBottom: TransitionSubType.TOPTOBOTTOM,
 	'8Blade': TransitionSubType.EIGHTBLADE,
