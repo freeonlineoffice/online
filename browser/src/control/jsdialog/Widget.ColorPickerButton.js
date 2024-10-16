@@ -61,7 +61,9 @@ JSDialog.sendColorCommand = function (builder, data, color, themeData) {
 
 	if (data.id === 'fillgrad1') {
 		gradientItem =
-			builder.map['stateChangeHandler'].getItemValue('.uno:FillGradient');
+			builder.map['stateChangeHandler'].getItemValue(
+				'.uno:FillGradient',
+			);
 		gradientItem.startcolor = color;
 		builder.map.sendUnoCommand(
 			'.uno:FillGradient?FillGradientJSON:string=' +
@@ -70,7 +72,9 @@ JSDialog.sendColorCommand = function (builder, data, color, themeData) {
 		return;
 	} else if (data.id === 'fillgrad2') {
 		gradientItem =
-			builder.map['stateChangeHandler'].getItemValue('.uno:FillGradient');
+			builder.map['stateChangeHandler'].getItemValue(
+				'.uno:FillGradient',
+			);
 		gradientItem.endcolor = color;
 		builder.map.sendUnoCommand(
 			'.uno:FillGradient?FillGradientJSON:string=' +
@@ -160,7 +164,9 @@ JSDialog.colorPickerButton = function (parentContainer, data, builder) {
 			if (!colorToApply || colorToApply === '#') return;
 
 			var color =
-				colorToApply.indexOf('#') === 0 ? colorToApply.substr(1) : colorToApply;
+				colorToApply.indexOf('#') === 0
+					? colorToApply.substr(1)
+					: colorToApply;
 
 			JSDialog.sendColorCommand(builder, data, color);
 		};
@@ -182,7 +188,9 @@ JSDialog.colorPickerButton = function (parentContainer, data, builder) {
 		if (typeof menubutton === 'object') {
 			L.DomUtil.addClass(
 				menubutton.container,
-				data.class ? data.class + ' has-colorpicker' : 'has-colorpicker',
+				data.class
+					? data.class + ' has-colorpicker'
+					: 'has-colorpicker',
 			);
 
 			var valueNode = L.DomUtil.create(
@@ -194,16 +202,22 @@ JSDialog.colorPickerButton = function (parentContainer, data, builder) {
 
 			var updateFunction = function () {
 				if (app.colorLastSelection[data.command] !== undefined) {
-					var selectedColor = app.colorLastSelection[data.command];
+					var selectedColor =
+						app.colorLastSelection[data.command];
 				} else {
-					selectedColor = JSDialog.getCurrentColor(data, builder);
+					selectedColor = JSDialog.getCurrentColor(
+						data,
+						builder,
+					);
 					app.colorLastSelection[data.command] = selectedColor;
 				}
 
-				if (parseInt(selectedColor) === -1) selectedColor = 'transparent';
+				if (parseInt(selectedColor) === -1)
+					selectedColor = 'transparent';
 
 				valueNode.style.backgroundColor =
-					selectedColor[0] !== '#' && selectedColor !== 'transparent'
+					selectedColor[0] !== '#' &&
+					selectedColor !== 'transparent'
 						? '#' + selectedColor
 						: selectedColor;
 
