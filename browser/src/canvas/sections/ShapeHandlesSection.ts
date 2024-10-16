@@ -764,7 +764,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 	}
 
 	private getInnerRecrangleForGridSnap(selectedPart: any) {
-		return new cool.SimpleRectangle(
+		return new lool.SimpleRectangle(
 			selectedPart.leftBorder,
 			selectedPart.upperBorder,
 			(selectedPart.width - selectedPart.leftBorder - selectedPart.rightBorder),
@@ -774,10 +774,10 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 	private getCornerPointsForGridSnap(size: number[], position: number[], dragDistance: number[]) {
 		return [
-			new cool.SimplePoint((position[0] + dragDistance[0]) * app.pixelsToTwips, (position[1] + dragDistance[1]) * app.pixelsToTwips),
-			new cool.SimplePoint((size[0] + position[0] + dragDistance[0]) * app.pixelsToTwips, (position[1] + dragDistance[1]) * app.pixelsToTwips),
-			new cool.SimplePoint((position[0] + dragDistance[0]) * app.pixelsToTwips, (size[1] + position[1] + dragDistance[1]) * app.pixelsToTwips),
-			new cool.SimplePoint((size[0] + position[0] + dragDistance[0]) * app.pixelsToTwips, (size[1] + position[1] + dragDistance[1]) * app.pixelsToTwips),
+			new lool.SimplePoint((position[0] + dragDistance[0]) * app.pixelsToTwips, (position[1] + dragDistance[1]) * app.pixelsToTwips),
+			new lool.SimplePoint((size[0] + position[0] + dragDistance[0]) * app.pixelsToTwips, (position[1] + dragDistance[1]) * app.pixelsToTwips),
+			new lool.SimplePoint((position[0] + dragDistance[0]) * app.pixelsToTwips, (size[1] + position[1] + dragDistance[1]) * app.pixelsToTwips),
+			new lool.SimplePoint((size[0] + position[0] + dragDistance[0]) * app.pixelsToTwips, (size[1] + position[1] + dragDistance[1]) * app.pixelsToTwips),
 		];
 	}
 
