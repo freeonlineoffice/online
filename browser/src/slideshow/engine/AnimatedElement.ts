@@ -319,12 +319,6 @@ class AnimatedElement {
 		'scale',
 	]);
 
-	public static readonly SupportedGlTransitionFilters = new Set<string>([
-		'Fade',
-		'EllipseWipe',
-		'IrisWipe',
-	]);
-
 	public static readonly SupportedTransitionFilters = new Set<string>([
 		'Fade',
 	]);
