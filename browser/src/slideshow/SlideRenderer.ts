@@ -395,6 +395,9 @@ class SlideRendererGl extends SlideRenderer {
 			presenter._slideCompositor.getAnimatedSlide(
 				this._renderedSlideIndex,
 			);
+		app.map.fire('newslideshowframe', {
+			frame: slideImage,
+		});
 		this.updateTexture(this._slideTexture, slideImage);
 		return this._slideTexture;
 	}

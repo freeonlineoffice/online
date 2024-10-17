@@ -139,6 +139,10 @@ class Transition2d extends TransitionBase {
 
 		gl.bindVertexArray(this.vao);
 		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+		app.map.fire('newslideshowframe', {
+			frame: gl.canvas,
+		});
 	}
 }
 

@@ -63,18 +63,22 @@ class PresenterConsole {
 			return;
 		}
 
-		this._map.on('slidecached', this._onSlideCached, this);
-		this._map.on('transitionstart', this._onTransitionStart, this);
+		this._map.on('newslideshowframe', this._onNextFrame, this);
+		this._map.on('transitionend', this._onTransitionEnd, this);
 		this._map.on('tilepreview', this._onTilePreview, this);
 
 		this._computeCanvas(
-			this._proxyPresenter.document.querySelector('#current-presentation'),
+			this._proxyPresenter.document.querySelector(
+				'#current-presentation',
+			),
 		);
 
 		this._timer = setInterval(L.bind(this._onTimer, this), 1000);
 		this._ticks = 0;
 
-		this._previews = new Array(this._map.slideShowPresenter._getSlidesCount());
+		this._previews = new Array(
+			this._map.slideShowPresenter._getSlidesCount(),
+		);
 	}
 
 	_onPresentInConsole() {
@@ -100,6 +104,13 @@ class PresenterConsole {
 		);
 		this._proxyPresenter.document.close();
 
+		this._currentSlideCanvas =
+			this._proxyPresenter.document.querySelector(
+				'#current-presentation',
+			);
+		this._currentSlideContext =
+			this._currentSlideCanvas.getContext('bitmaprenderer');
+
 		this._proxyPresenter.addEventListener(
 			'resize',
 			L.bind(this._onResize, this),
@@ -112,7 +123,10 @@ class PresenterConsole {
 			'unload',
 			L.bind(this._onConsoleClose, this),
 		);
-		this._proxyPresenter.addEventListener('click', L.bind(this._onClick, this));
+		this._proxyPresenter.addEventListener(
+			'click',
+			L.bind(this._onClick, this),
+		);
 		this._proxyPresenter.addEventListener(
 			'keydown',
 			L.bind(this._onKeyDown, this),
@@ -127,24 +141,31 @@ class PresenterConsole {
 		this._proxyPresenter.document.body.style.minHeight = '100vh';
 		this._proxyPresenter.document.body.style.minWidth = '100vw';
 
-		let elem = this._proxyPresenter.document.querySelector('#main-content');
+		let elem =
+			this._proxyPresenter.document.querySelector('#main-content');
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'row';
 		elem.style.flexWrap = 'wrap';
 		elem.style.minWidth = '100vh';
 		elem.style.minHeight = '100vw';
 
-		elem = this._proxyPresenter.document.querySelector('#first-presentation');
+		elem = this._proxyPresenter.document.querySelector(
+			'#first-presentation',
+		);
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'column';
 		elem.style.flex = '1';
 
-		elem = this._proxyPresenter.document.querySelector('#second-presentation');
+		elem = this._proxyPresenter.document.querySelector(
+			'#second-presentation',
+		);
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'column';
 		elem.style.flex = '1';
 
-		elem = this._proxyPresenter.document.querySelector('#current-presentation');
+		elem = this._proxyPresenter.document.querySelector(
+			'#current-presentation',
+		);
 		elem.style.height = '50vh';
 		elem.style.width = '50vw';
 
@@ -226,20 +247,23 @@ class PresenterConsole {
 		delete this._currentIndex;
 		delete this._previews;
 		clearInterval(this._timer);
-		this._map.off('slidecached', this._onSlideCached, this);
-		this._map.off('transitionstart', this._onTransitionStart, this);
+		this._map.off('newslideshowframe', this._onNextFrame, this);
+		this._map.off('transitionend', this._onTransitionEnd, this);
 		this._map.off('tilepreview', this._onTilePreview, this);
 		this._map.on('newpresentinconsole', this._onPresentInConsole, this);
 	}
 
 	_onResize() {
-		let container = this._proxyPresenter.document.querySelector('#container');
+		let container =
+			this._proxyPresenter.document.querySelector('#container');
 		if (!container) {
 			return;
 		}
 		let rect = container.getBoundingClientRect();
 		let next =
-			this._proxyPresenter.document.querySelector('#next-presentation');
+			this._proxyPresenter.document.querySelector(
+				'#next-presentation',
+			);
 		if (next) {
 			next.style.width = rect.width + 'px';
 			next.style.height = rect.height + 'px';
@@ -247,17 +271,12 @@ class PresenterConsole {
 		}
 	}
 
-	_onTransitionStart(e) {
+	_onTransitionEnd(e) {
 		if (!this._proxyPresenter) {
 			return;
 		}
 
 		this._currentIndex = e.slide;
-
-		this.drawImage(
-			this._proxyPresenter.document.querySelector('#current-presentation'),
-			e.slide,
-		);
 
 		let notes = this._map.slideShowPresenter.getNotes(e.slide);
 		let elem = this._proxyPresenter.document.querySelector('#notes');
@@ -266,7 +285,9 @@ class PresenterConsole {
 		}
 
 		let next =
-			this._proxyPresenter.document.querySelector('#next-presentation');
+			this._proxyPresenter.document.querySelector(
+				'#next-presentation',
+			);
 		this.drawNext(next);
 	}
 
@@ -302,12 +323,18 @@ class PresenterConsole {
 
 		let preview = this._previews[this._currentIndex + 1];
 		if (!preview) {
-			elem.src = document.querySelector('meta[name="previewImg"]').content;
+			elem.src = document.querySelector(
+				'meta[name="previewImg"]',
+			).content;
 		} else {
 			elem.src = preview;
 		}
 
-		if (!preview || rect.width !== size.width || rect.height !== size.height) {
+		if (
+			!preview ||
+			rect.width !== size.width ||
+			rect.height !== size.height
+		) {
 			this._map.getPreview(
 				2000,
 				this._currentIndex + 1,
@@ -337,41 +364,21 @@ class PresenterConsole {
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 
-		ctx.fillText(_('Click to exit presentation...'), width / 2, height / 2);
+		ctx.fillText(
+			_('Click to exit presentation...'),
+			width / 2,
+			height / 2,
+		);
 
 		return offscreen.convertToBlob({ type: 'image/png' });
 	}
 
-	drawImage(canvas, slide) {
-		const bitmap =
-			this._map.slideShowPresenter._slideCompositor.getSlide(slide);
-		if (bitmap) {
-			createImageBitmap(bitmap).then(function (image) {
-				let renderer = canvas.getContext('bitmaprenderer');
-				renderer.transferFromImageBitmap(image);
-			});
-		}
-	}
-
-	_onSlideCached(e) {
-		if (!this._proxyPresenter) {
-			return;
-		}
-
-		if (this._currentIndex === undefined) {
-			return;
-		}
-
-		let slide = this._map.slideShowPresenter._slideCompositor.getSlideInfo(
-			e.slideHash,
-		);
-
-		if (this._currentIndex === slide.index) {
-			this.drawImage(
-				this._proxyPresenter.document.querySelector('#current-presentation'),
-				slide.index,
-			);
-		}
+	_onNextFrame(e) {
+		const bitmap = e.frame;
+		if (!bitmap) return;
+		createImageBitmap(bitmap).then((image) => {
+			this._currentSlideContext.transferFromImageBitmap(image);
+		});
 	}
 
 	_onTilePreview(e) {
@@ -389,7 +396,9 @@ class PresenterConsole {
 
 		if (this._currentIndex + 1 === e.part) {
 			let next =
-				this._proxyPresenter.document.querySelector('#next-presentation');
+				this._proxyPresenter.document.querySelector(
+					'#next-presentation',
+				);
 			next.src = this._previews[this._currentIndex + 1] = e.tile.src;
 		}
 	}
