@@ -385,9 +385,12 @@ L.Control.UIManager = L.Control.extend({
 		}
 
 		var startPresentationGet = this.map.isPresentationOrDrawing() && window.loolParams.get('startPresentation');
-		if (startPresentationGet === 'true' || startPresentationGet === '1') {
-			app.dispatcher.dispatch('presentation');
-		}
+		// check for "presentation" dispatch event only after document gets fully loaded
+		this.map.on('docloaded', function() {
+			if (startPresentationGet === 'true' || startPresentationGet === '1') {
+				app.dispatcher.dispatch('presentation');
+			}
+		});
 	},
 
 	initializeSidebar: function() {
