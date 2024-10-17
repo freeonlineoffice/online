@@ -569,7 +569,7 @@ class SlideShowPresenter {
 		if (this._cypressSVGPresentationTest)
 			return (this._slideShowWindowProxy as any as HTMLIFrameElement)
 				.contentWindow.document;
-		else this._getProxyDocumentNode();
+		else return this._slideShowWindowProxy.document;
 	}
 
 	_doInWindowPresentation() {
