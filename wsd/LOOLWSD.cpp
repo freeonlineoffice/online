@@ -2348,7 +2348,7 @@ void LOOLWSD::innerInitialize(Application& self)
     {
         net::Defaults& defaults = net::Defaults::get();
         net::Defaults::get().MaxConnections = std::max<size_t>(3, MAX_CONNECTIONS);
-        UnitWSD::get().configure(defaults);
+        UnitWSD::get().configNet(defaults);
     }
     // Trace Event Logging.
     EnableTraceEventLogging = getConfigValue<bool>(conf, "trace_event[@enable]", false);
