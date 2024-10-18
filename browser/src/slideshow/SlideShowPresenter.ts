@@ -184,7 +184,8 @@ class SlideShowPresenter {
 	}
 
 	public isFullscreen() {
-		return !!this._fullscreen || !this._cypressSVGPresentationTest;
+		if (this._cypressSVGPresentationTest) return false;
+		return !!this._fullscreen;
 	}
 
 	public getCanvas(): HTMLCanvasElement {
