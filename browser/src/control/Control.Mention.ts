@@ -94,7 +94,8 @@ class Mention extends L.Control.AutoCompletePopup {
 		);
 
 		const isMobileCommentActive = commentSection?.isMobileCommentActive();
-		const mobileCommentModalId = commentSection?.getMobileCommentModalId();
+		const mobileCommentModalId =
+			commentSection?.getMobileCommentModalId();
 		if (entries.length === 0 && this.isMobile && isMobileCommentActive) {
 			const control = this.getTreeJSON();
 			const data = this.getPopupJSON(control, { x: 0, y: 0 });
@@ -175,8 +176,10 @@ class Mention extends L.Control.AutoCompletePopup {
 			const commentSection = app.sectionContainer.getSectionWithName(
 				L.CSections.CommentList.name,
 			);
-			const isMobileCommentActive = commentSection?.isMobileCommentActive();
-			const mobileCommentModalId = commentSection?.getMobileCommentModalId();
+			const isMobileCommentActive =
+				commentSection?.isMobileCommentActive();
+			const mobileCommentModalId =
+				commentSection?.getMobileCommentModalId();
 
 			if (isMobileCommentActive) {
 				const control = this.getTreeJSON();
