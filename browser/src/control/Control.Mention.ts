@@ -195,6 +195,7 @@ class Mention extends L.Control.AutoCompletePopup {
 		}
 	}
 
+	// get partialMention excluding '@'
 	getPartialMention(): string {
 		return this.partialMention.join('').substring(1);
 	}
@@ -213,7 +214,9 @@ class Mention extends L.Control.AutoCompletePopup {
 				if (ch === '@') {
 					this.closeMentionPopup(false);
 				} else {
-					this.sendMentionPostMsg(this.getPartialMention());
+					const partialMention = this.getPartialMention();
+					if (partialMention !== '')
+						this.sendMentionPostMsg(this.getPartialMention());
 				}
 			} else {
 				this.partialMention.push(ev.data);
