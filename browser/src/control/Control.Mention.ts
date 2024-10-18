@@ -164,7 +164,8 @@ class Mention extends L.Control.AutoCompletePopup {
 		this.typingMention = typingMention;
 		const mentionPopup =
 			L.DomUtil.get(this.popupId) ||
-			L.DomUtil.get(this.popupId + 'List');
+			L.DomUtil.get(this.popupId + 'List') ||
+			L.DomUtil.get(this.popupId + 'fixedtext');
 		if (!mentionPopup) return;
 
 		this.map.jsdialog.focusToLastElement(this.popupId);
