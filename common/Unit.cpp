@@ -405,7 +405,7 @@ int UnitBase::uninit()
 std::shared_ptr<SocketPoll> UnitBase::socketPoll()
 {
     // We could be called from either a UnitWSD::DocBrokerDestroy (prisoner_poll)
-    // or from UnitWSD::invokeTest() (coolwsd main).
+    // or from UnitWSD::invokeTest() (loolwsd main).
     std::lock_guard<std::mutex> guard(_lockSocketPoll);
     if (!_socketPoll)
         _socketPoll = std::make_shared<SocketPoll>(getTestname());
