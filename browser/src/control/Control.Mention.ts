@@ -155,7 +155,7 @@ class Mention extends L.Control.AutoCompletePopup {
 		return {
 			id: this.popupId + 'fixedtext',
 			type: 'fixedtext',
-			text: 'no search results found!',
+			text: _('No search results found!'),
 			enabled: true,
 		} as TextWidget;
 	}
