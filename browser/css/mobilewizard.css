@@ -904,35 +904,17 @@ div#mobile-wizard-content .spinfieldcontainer .spinfieldimage.disabled {
 	box-shadow: 0 0 0px 8px var(--color-primary-lighter);
 	border-radius: 0.1px;
 }
-#mobile-wizard #buttonbefore {
-	background: url('images/sc_wrapleft.svg') no-repeat center;
-}
-#mobile-wizard #buttonafter {
-	background: url('images/sc_wrapright.svg') no-repeat center;
-}
-#mobile-wizard #buttonoptimal {
-	background: url('images/sc_wrapideal.svg') no-repeat center;
-}
-#mobile-wizard #buttonparallel {
-	background: url('images/sc_wrapmenu.svg') no-repeat center;
-}
-#mobile-wizard #buttonnone {
-	background: url('images/sc_wrapoff.svg') no-repeat center;
-}
-#mobile-wizard #buttonthrough {
-	background: url('images/sc_wrapthrough.svg') no-repeat center;
-}
-#mobile-wizard #top {
-	background: url('images/sc_aligntop.svg') no-repeat center;
-}
-#mobile-wizard #bottom {
-	background: url('images/sc_alignbottom.svg') no-repeat center;
-}
-#mobile-wizard #standard {
-	background: url('images/sc_alignverticalcenter.svg') no-repeat center;
-}
-.checkbutton,
-.radiobutton {
+#mobile-wizard #buttonbefore{background: url('images/sc_wrapleft.svg') no-repeat center;}
+#mobile-wizard #buttonafter{background: url('images/sc_wrapright.svg') no-repeat center;}
+#mobile-wizard #buttonoptimal{background: url('images/sc_wrapideal.svg') no-repeat center;}
+#mobile-wizard #buttonparallel{background: url('images/sc_wrapmenu.svg') no-repeat center;}
+#mobile-wizard #buttonnone{background: url('images/sc_wrapoff.svg') no-repeat center;}
+#mobile-wizard #buttonthrough{background: url('images/sc_wrapthrough.svg') no-repeat center;}
+#mobile-wizard #top{background: url('images/sc_aligntop.svg') no-repeat center;}
+#mobile-wizard #bottom{background: url('images/sc_alignbottom.svg') no-repeat center;}
+#mobile-wizard #standard{background: url('images/sc_alignverticalcenter.svg') no-repeat center;}
+#mobile-wizard .checkbutton,
+#mobile-wizard .radiobutton{
 	clear: both;
 	width: 92%;
 	margin: 0 4%;
@@ -1286,8 +1268,8 @@ label.disabled {
 
 #new-annotation-dialog .ui-textarea a:link,
 #new-annotation-dialog .ui-textarea a:visited,
-#mobile-wizard .cool-annotation-content a:link,
-#mobile-wizard .cool-annotation-content a:visited {
+#mobile-wizard .lool-annotation-content a:link,
+#mobile-wizard .lool-annotation-content a:visited {
 	color: var(--color-hyperlink);
 }
 
