@@ -13,6 +13,7 @@ declare var L: any;
 declare var app: any;
 declare var _: any;
 declare var Autolinker: any;
+declare var DOMPurify : any;
 declare var Hammer: any;
 
 namespace lool {
@@ -453,23 +454,27 @@ export class Comment extends CanvasSectionObject {
 		this.handleKeyDownForPopup(ev, 'mentionPopup');
 	}
 
+	private sanitize (html: string): string {
+		if (DOMPurify.isSupported) {
+			return DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+		}
+		return '';
+	}
+
 	private updateContent (): void {
 		if(this.sectionProperties.data.html)
-			this.sectionProperties.contentText.innerHTML = this.sectionProperties.data.html ? this.sectionProperties.data.html: '';
+			this.sectionProperties.contentText.innerHTML = this.sanitize(this.sectionProperties.data.html);
 		else
 			this.sectionProperties.contentText.innerText = this.sectionProperties.data.text ? this.sectionProperties.data.text: '';
 		// Get the escaped HTML out and find for possible, useful links
 		var linkedText = Autolinker.link(this.sectionProperties.contentText.outerHTML);
-		// Set the property of text field directly. This is insecure otherwise because it doesn't escape the input
-		// But we have already escaped the input before and only thing we are adding on top of that is Autolinker
-		// generated text.
-		this.sectionProperties.contentText.innerHTML = linkedText;
+		this.sectionProperties.contentText.innerHTML = this.sanitize(linkedText);
 		// Original unlinked text
 		this.sectionProperties.contentText.origText = this.sectionProperties.data.text ? this.sectionProperties.data.text: '';
 		this.sectionProperties.contentText.origHTML = this.sectionProperties.data.html;
 		this.sectionProperties.nodeModifyText.textContent = this.sectionProperties.data.text ? this.sectionProperties.data.text: '';
 		if (this.sectionProperties.data.html) {
-			this.sectionProperties.nodeModifyText.innerHTML = this.sectionProperties.data.html;
+			this.sectionProperties.nodeModifyText.innerHTML = this.sanitize(this.sectionProperties.data.html);
 		}
 		this.sectionProperties.contentAuthor.innerText = this.sectionProperties.data.author;
 
@@ -1037,7 +1042,7 @@ export class Comment extends CanvasSectionObject {
 		// It is mandatory to change these values before handleSaveCommentButton is called
 		// calling handleSaveCommentButton in onCancelClick causes problem because that is also called from many other events/function (i.e: onPartChange)
 		if (this.sectionProperties.contentText.origHTML) {
-			this.sectionProperties.nodeModifyText.innerHTML = this.sectionProperties.contentText.origHTML;
+			this.sectionProperties.nodeModifyText.innerHTML = this.sanitize(this.sectionProperties.contentText.origHTML);
 		}
 		else {
 			this.sectionProperties.nodeModifyText.textContent = this.sectionProperties.contentText.origText;
@@ -1059,7 +1064,7 @@ export class Comment extends CanvasSectionObject {
 		if (e)
 			L.DomEvent.stopPropagation(e);
 		if (this.sectionProperties.contentText.origHTML) {
-			this.sectionProperties.nodeModifyText.innerHTML = this.sectionProperties.contentText.origHTML;
+			this.sectionProperties.nodeModifyText.innerHTML = this.sanitize(this.sectionProperties.contentText.origHTML);
 		}
 		else {
 			this.sectionProperties.nodeModifyText.textContent = this.sectionProperties.contentText.origText;
