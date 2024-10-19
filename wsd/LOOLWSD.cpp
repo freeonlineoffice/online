@@ -2748,6 +2748,8 @@ void LOOLWSD::innerInitialize(Application& self)
     setenv("SAL_DISABLE_DEFAULTPRINTER", "true", 1);
     // Disable fsync - we're a state-less container
     setenv("SAL_DISABLE_FSYNC", "true", 1);
+    // Staticize our configuration to increase sharing
+    setenv("SAL_CONFIG_STATICIZE", "true", 1);
 
     // Log the connection and document limits.
 #if ENABLE_WELCOME_MESSAGE
