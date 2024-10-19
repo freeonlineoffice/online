@@ -1410,7 +1410,7 @@ label.disabled {
 	border: 1px solid var(--color-border);
 }
 
-.unotoolbutton.mobile-wizard .unobutton img{
+.unotoolbutton.mobile-wizard .unobutton img {
 	width: 24px;
 	height: 24px;
 }
