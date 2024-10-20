@@ -200,7 +200,8 @@ var getElementsFromId = function (
 		return getStateTableCellElements(data.text);
 	else if (id === 'slidestatus') return getSlideStatusElements(data.text);
 	else if (id === 'pagestatus') return getPageStatusElements(data.text);
-	else if (id === 'documentstatus') return getDocumentStatusElements(data.text);
+	else if (id === 'documentstatus')
+		return getDocumentStatusElements(data.text);
 };
 
 function htmlContent(
