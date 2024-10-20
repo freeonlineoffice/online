@@ -144,25 +144,8 @@
 #endif
 #endif
 
-using namespace LOOLProtocol;
-
-using Poco::DirectoryIterator;
-using Poco::Exception;
-using Poco::File;
-using Poco::Path;
-using Poco::URI;
-using Poco::Net::HTTPRequest;
-using Poco::Net::HTTPResponse;
-using Poco::Net::MessageHeader;
-using Poco::Net::NameValueCollection;
-using Poco::Util::Application;
-using Poco::Util::HelpFormatter;
 using Poco::Util::LayeredConfiguration;
-using Poco::Util::MissingOptionException;
 using Poco::Util::Option;
-using Poco::Util::OptionSet;
-using Poco::Util::ServerApplication;
-using Poco::Util::XMLConfiguration;
 
 /// Port for external clients to connect to
 int ClientPortNumber = 0;
@@ -1979,14 +1962,15 @@ void LOOLWSD::setupChildRoot(const bool UseMountNamespaces)
 
 #endif
 
-void LOOLWSD::innerInitialize(Application& self)
+void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 {
     if (!Util::isMobileApp() && geteuid() == 0 && CheckLoolUser)
     {
         throw std::runtime_error("Do not run as root. Please run as lool user.");
     }
 
-    Util::setApplicationPath(Poco::Path(Application::instance().commandPath()).parent().toString());
+    Util::setApplicationPath(
+        Poco::Path(Poco::Util::Application::instance().commandPath()).parent().toString());
 
     StartTime = std::chrono::steady_clock::now();
 
@@ -2185,7 +2169,7 @@ void LOOLWSD::innerInitialize(Application& self)
     // Load default configuration files, with name independent
     // of Poco's view of app-name, from local file if present.
     Poco::Path configPath("loolwsd.xml");
-    if (Application::findFile(configPath))
+    if (Poco::Util::Application::findFile(configPath))
         loadConfiguration(configPath.toString(), PRIO_DEFAULT);
     else
     {
@@ -2194,17 +2178,19 @@ void LOOLWSD::innerInitialize(Application& self)
     }
 
     // Load extra ("plug-in") configuration files, if present
-    File dir(ConfigDir);
+    Poco::File dir(ConfigDir);
     if (dir.exists() && dir.isDirectory())
     {
-        for (auto configFileIterator = DirectoryIterator(dir); configFileIterator != DirectoryIterator(); ++configFileIterator)
+        const Poco::DirectoryIterator end;
+        for (Poco::DirectoryIterator configFileIterator(dir); configFileIterator != end;
+             ++configFileIterator)
         {
             // Only accept configuration files ending in .xml
             const std::string configFile = configFileIterator.path().getFileName();
             if (configFile.length() > 4 && strcasecmp(configFile.substr(configFile.length() - 4).data(), ".xml") == 0)
             {
                 const std::string fullFileName = dir.path() + "/" + configFile;
-                PluginConfigurations.insert(new XMLConfiguration(fullFileName));
+                PluginConfigurations.insert(new Poco::Util::XMLConfiguration(fullFileName));
             }
         }
     }
@@ -2524,14 +2510,14 @@ void LOOLWSD::innerInitialize(Application& self)
     if (SysTemplate.empty())
     {
         LOG_FTL("Missing sys_template_path config entry.");
-        throw MissingOptionException("systemplate");
+        throw Poco::Util::MissingOptionException("systemplate");
     }
 
     ChildRoot = getPathFromConfig("child_root_path");
     if (ChildRoot.empty())
     {
         LOG_FTL("Missing child_root_path config entry.");
-        throw MissingOptionException("childroot");
+        throw Poco::Util::MissingOptionException("childroot");
     }
     else
     {
@@ -3083,7 +3069,7 @@ void LOOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessio
     }
 }
 
-void LOOLWSD::defineOptions(OptionSet& optionSet)
+void LOOLWSD::defineOptions(Poco::Util::OptionSet& optionSet)
 {
     if constexpr (Util::isMobileApp())
         return;
@@ -3295,7 +3281,7 @@ void LOOLWSD::initializeEnvOptions()
 
 void LOOLWSD::displayHelp()
 {
-    HelpFormatter helpFormatter(options());
+    Poco::Util::HelpFormatter helpFormatter(options());
     helpFormatter.setCommand(commandName());
     helpFormatter.setUsage("OPTIONS");
     helpFormatter.setHeader("Free Online Office WebSocket server.");
@@ -3507,7 +3493,8 @@ bool LOOLWSD::createForKit()
     std::unique_lock<std::mutex> newChildrenLock(NewChildrenMutex);
 
     StringVector args;
-    std::string parentPath = Path(Application::instance().commandPath()).parent().toString();
+    std::string parentPath =
+        Poco::Path(Poco::Util::Application::instance().commandPath()).parent().toString();
 
 #if STRACE_LOOLFORKIT
     // if you want to use this, you need to sudo setcap cap_fowner,cap_chown,cap_mknod,cap_sys_chroot=ep /usr/bin/strace
@@ -4367,7 +4354,7 @@ int LOOLWSD::innerMain()
     if (LoTemplate.empty())
     {
         LOG_FTL("Missing --lo-template-path option");
-        throw MissingOptionException("lotemplate");
+        throw Poco::Util::MissingOptionException("lotemplate");
     }
 
     if (FileServerRoot.empty())
