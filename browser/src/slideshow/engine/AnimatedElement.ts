@@ -909,24 +909,31 @@ class AnimatedElement {
 	}
 
 	setX(nNewCenterX: number) {
+		ANIMDBG.print('AnimatedElement.setX(' + nNewCenterX + ')');
 		if (nNewCenterX === this.nCenterX) return;
 
 		this.aTMatrix.translateSelf(nNewCenterX - this.nCenterX, 0);
 		this.nCenterX = nNewCenterX;
-		console.debug('AnimatedElement.setX(' + nNewCenterX + ')');
 	}
 
 	setY(nNewCenterY: number) {
+		ANIMDBG.print('AnimatedElement.setY(' + nNewCenterY + ')');
 		if (nNewCenterY === this.nCenterY) return;
 
 		this.aTMatrix.translateSelf(0, nNewCenterY - this.nCenterY);
 		this.nCenterY = nNewCenterY;
-		console.debug('AnimatedElement.setY(' + nNewCenterY + ')');
 	}
 
 	setPos(aNewPos: [number, number]) {
 		const nNewCenterX = aNewPos[0];
 		const nNewCenterY = aNewPos[1];
+		ANIMDBG.print(
+			'AnimatedElement.setPos(' +
+				nNewCenterX +
+				', ' +
+				nNewCenterY +
+				')',
+		);
 
 		if (nNewCenterX === this.nCenterX && nNewCenterY === this.nCenterY)
 			return;
@@ -937,30 +944,16 @@ class AnimatedElement {
 		);
 		this.nCenterX = nNewCenterX;
 		this.nCenterY = nNewCenterY;
-		console.debug(
-			'AnimatedElement.setPos(' +
-				nNewCenterX +
-				', ' +
-				nNewCenterY +
-				')',
-		);
 	}
 
 	setWidth(nNewWidth: number) {
-		ANIMDBG.print('AnimatedElement.setWidth: nNewWidth = ' + nNewWidth);
-		if (nNewWidth < 0) {
-			window.app.console.log(
-				'AnimatedElement(' +
-					this.getId() +
-					').setWidth: negative width!',
-			);
-			nNewWidth = 0;
-		}
+		ANIMDBG.print('AnimatedElement.setWidth(' + nNewWidth + ')');
 
 		const nBaseWidth = this.getBaseBBox().width;
 		let nScaleFactorX = nNewWidth / nBaseWidth;
 
-		if (nScaleFactorX < 1e-5) nScaleFactorX = 1e-5;
+		if (Math.abs(nScaleFactorX) < 1e-5)
+			nScaleFactorX = Math.sign(nScaleFactorX) * 1e-5;
 		if (nScaleFactorX == this.nScaleFactorX) return;
 
 		const aTMatrix = new DOMMatrix([1, 0, 0, 1, 0, 0]);
@@ -971,24 +964,17 @@ class AnimatedElement {
 			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorX = nScaleFactorX;
-		window.app.console.log('AnimatedElement.setWidth(' + nNewWidth + ')');
+		this.updateTransformationMatrix();
 	}
 
 	setHeight(nNewHeight: number) {
-		ANIMDBG.print('AnimatedElement.setWidth: nNewHeight = ' + nNewHeight);
-		if (nNewHeight < 0) {
-			window.app.console.log(
-				'AnimatedElement(' +
-					this.getId() +
-					').setWidth: negative height!',
-			);
-			nNewHeight = 0;
-		}
+		ANIMDBG.print('AnimatedElement.setHeight(' + nNewHeight + ')');
 
 		const nBaseHeight = this.getBaseBBox().height;
 		let nScaleFactorY = nNewHeight / nBaseHeight;
 
-		if (nScaleFactorY < 1e-5) nScaleFactorY = 1e-5;
+		if (Math.abs(nScaleFactorY) < 1e-5)
+			nScaleFactorY = Math.sign(nScaleFactorY) * 1e-5;
 		if (nScaleFactorY == this.nScaleFactorY) return;
 
 		const aTMatrix = new DOMMatrix([1, 0, 0, 1, 0, 0]);
@@ -999,45 +985,25 @@ class AnimatedElement {
 			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorY = nScaleFactorY;
-		window.app.console.log(
-			'AnimatedElement.setHeight(' + nNewHeight + ')',
-		);
+		this.updateTransformationMatrix();
 	}
 
 	setSize(aNewSize: [number, number]) {
-		let nNewWidth = aNewSize[0];
-		let nNewHeight = aNewSize[1];
+		const nNewWidth = aNewSize[0];
+		const nNewHeight = aNewSize[1];
 		ANIMDBG.print(
-			'AnimatedElement.setSize:  = [' +
-				nNewWidth +
-				',' +
-				nNewHeight +
-				']',
+			'AnimatedElement.setSize(' + nNewWidth + ', ' + nNewHeight + ')',
 		);
-		if (nNewWidth < 0) {
-			window.app.console.log(
-				'AnimatedElement(' +
-					this.getId() +
-					').setSize: negative width!',
-			);
-			nNewWidth = 0;
-		}
-		if (nNewHeight < 0) {
-			window.app.console.log(
-				'AnimatedElement(' +
-					this.getId() +
-					').setSize: negative height!',
-			);
-			nNewHeight = 0;
-		}
 
 		const nBaseWidth = this.getBaseBBox().width;
 		let nScaleFactorX = nNewWidth / nBaseWidth;
-		if (nScaleFactorX < 1e-5) nScaleFactorX = 1e-5;
+		if (Math.abs(nScaleFactorX) < 1e-5)
+			nScaleFactorX = Math.sign(nScaleFactorX) * 1e-5;
 
 		const nBaseHeight = this.getBaseBBox().height;
 		let nScaleFactorY = nNewHeight / nBaseHeight;
-		if (nScaleFactorY < 1e-5) nScaleFactorY = 1e-5;
+		if (Math.abs(nScaleFactorY) < 1e-5)
+			nScaleFactorY = Math.sign(nScaleFactorY) * 1e-5;
 
 		if (
 			nScaleFactorX == this.nScaleFactorX &&
@@ -1054,9 +1020,7 @@ class AnimatedElement {
 		this.aTMatrix = aTMatrix;
 		this.nScaleFactorX = nScaleFactorX;
 		this.nScaleFactorY = nScaleFactorY;
-		window.app.console.log(
-			'AnimatedElement.setSize(' + nNewWidth + ', ' + nNewHeight + ')',
-		);
+		this.updateTransformationMatrix();
 	}
 
 	getOpacity() {
@@ -1065,7 +1029,7 @@ class AnimatedElement {
 
 	setOpacity(nValue: number) {
 		this.nOpacity = clampN(nValue, 0, 1);
-		console.debug('AnimatedElement.setOpacity(' + nValue + ')');
+		ANIMDBG.print('AnimatedElement.setOpacity(' + nValue + ')');
 	}
 
 	getRotationAngle() {
@@ -1081,9 +1045,30 @@ class AnimatedElement {
 			.translateSelf(-this.nBaseCenterX, -this.nBaseCenterY);
 		this.aTMatrix = aTMatrix;
 		this.nRotationAngle = nNewRotAngle;
-		window.app.console.log(
+		this.updateTransformationMatrix();
+		ANIMDBG.print(
 			'AnimatedElement.setRotationAngle(' + nNewRotAngle + ')',
 		);
+	}
+
+	getSkewX() {
+		return this.nSkewX;
+	}
+
+	setSkewX(nSkewValue: number) {
+		this.nSkewX = nSkewValue;
+		this.updateTransformationMatrix();
+		ANIMDBG.print('AnimatedElement.setSkewX(' + nSkewValue + ')');
+	}
+
+	getSkewY() {
+		return this.nSkewY;
+	}
+
+	setSkewY(nSkewValue: number) {
+		this.nSkewY = nSkewValue;
+		this.updateTransformationMatrix();
+		ANIMDBG.print('AnimatedElement.setSkewY(' + nSkewValue + ')');
 	}
 
 	getVisibility(): boolean {
