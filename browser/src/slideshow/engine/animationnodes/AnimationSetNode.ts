@@ -1,8 +1,6 @@
 /* -*- tab-width: 4 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -32,10 +30,6 @@ class AnimationSetNode extends AnimationBaseNode2 {
 
 		const aActivityParamSet = this.fillActivityParams();
 
-		return new SetActivity(
-			aActivityParamSet,
-			aAnimation,
-			this.getToValue(),
-		);
+		return new SetActivity(aActivityParamSet, this, aAnimation);
 	}
 }
