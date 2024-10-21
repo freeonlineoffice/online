@@ -101,7 +101,7 @@ public:
     {
         Type,
         DocumentURI,
-        LegacyDocumentURI, //< Legacy, to be removed.
+        LegacyDocumentURI, ///< Legacy, to be removed.
         WOPISrc,
         Compat,
         SessionId,

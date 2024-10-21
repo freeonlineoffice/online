@@ -728,8 +728,8 @@ std::string LOOLWSD::MostVerboseLogLevelSettableFromClient = "notice";
 std::string LOOLWSD::LeastVerboseLogLevelSettableFromClient = "fatal";
 std::string LOOLWSD::UserInterface = "default";
 bool LOOLWSD::AnonymizeUserData = false;
-bool LOOLWSD::CheckLoolUser = true;
-bool LOOLWSD::CleanupOnly = false; //< If we should cleanup and exit.
+bool LOOLWSD::CheckCoolUser = true;
+bool LOOLWSD::CleanupOnly = false; ///< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
 #if ENABLE_SSL
 Util::RuntimeConstant<bool> LOOLWSD::SSLEnabled;
@@ -3660,9 +3660,9 @@ void LOOLWSD::sendMessageToForKit(const std::string& message)
 class PrisonerRequestDispatcher final : public WebSocketHandler
 {
     std::weak_ptr<ChildProcess> _childProcess;
-    int _pid; //< The Kit's PID (for logging).
-    int _socketFD; //< The socket FD to the Kit (for logging).
-    bool _associatedWithDoc; //< True when/if we get a DocBroker.
+    int _pid; ///< The Kit's PID (for logging).
+    int _socketFD; ///< The socket FD to the Kit (for logging).
+    bool _associatedWithDoc; ///< True when/if we get a DocBroker.
 
 public:
     PrisonerRequestDispatcher()

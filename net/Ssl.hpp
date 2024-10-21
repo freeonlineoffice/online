@@ -28,8 +28,8 @@ namespace ssl
 /// The certificate verification requirements.
 enum class CertificateVerification
 {
-    Disabled, //< No verification is performed or results ignored.
-    Required //< Certificate must be provided and will be verified.
+    Disabled, ///< No verification is performed or results ignored.
+    Required ///< Certificate must be provided and will be verified.
 };
 } // namespace ssl
 
