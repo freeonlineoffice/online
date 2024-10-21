@@ -104,10 +104,9 @@ class PresenterConsole {
 		);
 		this._proxyPresenter.document.close();
 
-		this._currentSlideCanvas =
-			this._proxyPresenter.document.querySelector(
-				'#current-presentation',
-			);
+		this._currentSlideCanvas = this._proxyPresenter.document.querySelector(
+			'#current-presentation',
+		);
 		this._currentSlideContext =
 			this._currentSlideCanvas.getContext('bitmaprenderer');
 
