@@ -277,10 +277,6 @@ class Mention extends L.Control.AutoCompletePopup {
 			},
 		};
 		this.map.sendUnoCommand('.uno:SetHyperlink', command, true);
-		this.map.fire('postMessage', {
-			msgId: 'UI_Mention',
-			args: { type: 'selected', username: username },
-		});
 	}
 
 	callback(objectType: any, eventType: any, object: any, index: number) {
@@ -307,6 +303,11 @@ class Mention extends L.Control.AutoCompletePopup {
 					profileLink,
 					replacement,
 				);
+
+			this.map.fire('postMessage', {
+				msgId: 'UI_Mention',
+				args: { type: 'selected', username: username },
+			});
 			this.closeMentionPopup(false);
 		} else if (eventType === 'keydown') {
 			if (object.key !== 'Tab' && object.key !== 'Shift') {
