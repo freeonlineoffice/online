@@ -27,6 +27,7 @@ class Mention extends L.Control.AutoCompletePopup {
 	debouceTimeoutId: NodeJS.Timeout;
 	partialMention: Array<string>;
 	typingMention: boolean;
+	cursorPosAtStart: Point;
 
 	constructor(map: ReturnType<typeof L.map>) {
 		super('mentionPopup', map);
@@ -36,6 +37,7 @@ class Mention extends L.Control.AutoCompletePopup {
 		this.newPopupData.isAutoCompletePopup = true;
 		this.typingMention = false;
 		this.partialMention = [];
+		this.cursorPosAtStart = { x: 0, y: 0 } as Point;
 	}
 
 	sendMentionPostMsg(partialText: string) {
@@ -113,7 +115,16 @@ class Mention extends L.Control.AutoCompletePopup {
 			return;
 		}
 
-		const cursorPos = this.getCursorPosition();
+		// change start position if cursor Y position changes.
+		// It happens when user is typing mention at the end where there is no
+		// horizontal space and whole '@mention' goes to new line
+		const currentPos = this.getCursorPosition();
+		let cursorPos = this.cursorPosAtStart;
+		if (this.cursorPosAtStart.y !== currentPos.y) {
+			cursorPos = currentPos;
+			this.cursorPosAtStart = currentPos;
+		}
+
 		if (entries.length === 0) {
 			// If the key pressed was a space, and there are no matches, then just
 			// dismiss the popup.
@@ -212,6 +223,7 @@ class Mention extends L.Control.AutoCompletePopup {
 			if (ev.data === '@') {
 				this.partialMention.push(ev.data);
 				this.typingMention = true;
+				this.cursorPosAtStart = this.getCursorPosition();
 			}
 			return;
 		}
