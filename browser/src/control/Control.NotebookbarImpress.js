@@ -3,7 +3,8 @@
  * L.Control.NotebookbarImpress
  */
 
-/* global _ _UNO */
+/* global _ _UNO app */
+
 L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 
 	getShortcutsBarData: function() {
@@ -356,7 +357,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					'command': 'presentinwindow',
 					'accessibility': { focusBack: true, combination: 'PW', de: null }
 				} : {},
-			!window.ThisIsAMobileApp ?
+			!window.ThisIsAMobileApp && app.isExperimentalMode() ?
 			        {
 					'id': 'view-presentation-in-console',
 					'type': 'bigcustomtoolitem',
