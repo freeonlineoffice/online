@@ -17,8 +17,9 @@
 /* global SlideShow _ */
 
 class PresenterConsole {
-	constructor(map) {
+	constructor(map, presenter) {
 		this._map = map;
+		this._presenter = presenter;
 		this._map.on('presentationinfo', this._onPresentationInfo, this);
 		this._map.on('newpresentinconsole', this._onPresentInConsole, this);
 	}
@@ -76,9 +77,7 @@ class PresenterConsole {
 		this._timer = setInterval(L.bind(this._onTimer, this), 1000);
 		this._ticks = 0;
 
-		this._previews = new Array(
-			this._map.slideShowPresenter._getSlidesCount(),
-		);
+		this._previews = new Array(this._presenter._getSlidesCount());
 	}
 
 	_onPresentInConsole() {
@@ -92,7 +91,7 @@ class PresenterConsole {
 			'popup,width=800,height=500,left=' + left + ',top=' + top,
 		);
 		if (!this._proxyPresenter) {
-			this._map.slideShowPresenter._notifyBlockedPresenting();
+			this._presenter._notifyBlockedPresenting();
 			return;
 		}
 
@@ -115,10 +114,13 @@ class PresenterConsole {
 			'resize',
 			L.bind(this._onResize, this),
 		);
-		this._map.slideShowPresenter._slideShowWindowProxy.addEventListener(
-			'unload',
-			L.bind(this._onWindowClose, this),
-		);
+
+		if (this._presenter._slideShowWindowProxy) {
+			this._presenter._slideShowWindowProxy.addEventListener(
+				'unload',
+				L.bind(this._onWindowClose, this),
+			);
+		}
 		this._proxyPresenter.addEventListener(
 			'unload',
 			L.bind(this._onConsoleClose, this),
@@ -187,11 +189,11 @@ class PresenterConsole {
 	}
 
 	_onKeyDown(e) {
-		this._map.slideShowPresenter.getNavigator().onKeyDown(e);
+		this._presenter.getNavigator().onKeyDown(e);
 	}
 
 	_onClick(e) {
-		this._map.slideShowPresenter.getNavigator().onClick(e);
+		this._presenter.getNavigator().onClick(e);
 	}
 
 	_onTimer() {
@@ -221,15 +223,15 @@ class PresenterConsole {
 		if (this._proxyPresenter && !this._proxyPresenter.closed)
 			this._proxyPresenter.close();
 
-		this._map.slideShowPresenter._stopFullScreen();
+		this._presenter._stopFullScreen();
 	}
 
 	_onConsoleClose() {
 		if (
-			this._map.slideShowPresenter._slideShowWindowProxy &&
-			!this._map.slideShowPresenter._slideShowWindowProxy.closed
+			this._presenter._slideShowWindowProxy &&
+			!this._presenter._slideShowWindowProxy.closed
 		)
-			this._map.slideShowPresenter._slideShowWindowProxy.close();
+			this._presenter._slideShowWindowProxy.close();
 
 		this._proxyPresenter.removeEventListener(
 			'resize',
@@ -278,7 +280,7 @@ class PresenterConsole {
 
 		this._currentIndex = e.slide;
 
-		let notes = this._map.slideShowPresenter.getNotes(e.slide);
+		let notes = this._presenter.getNotes(e.slide);
 		let elem = this._proxyPresenter.document.querySelector('#notes');
 		if (elem) {
 			elem.innerText = notes;
@@ -307,10 +309,7 @@ class PresenterConsole {
 			autoUpdate: false,
 		});
 
-		if (
-			this._currentIndex + 1 >=
-			this._map.slideShowPresenter._getSlidesCount()
-		) {
+		if (this._currentIndex + 1 >= this._presenter._getSlidesCount()) {
 			this.drawEnd(size).then(function (blob) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
@@ -405,12 +404,11 @@ class PresenterConsole {
 
 	_computeCanvas(canvas) {
 		let rect = canvas.getBoundingClientRect();
-		let size =
-			this._map.slideShowPresenter._slideCompositor.computeLayerResolution(
-				rect.width,
-				rect.height,
-			);
-		size = this._map.slideShowPresenter._slideCompositor.computeLayerSize(
+		let size = this._presenter._slideCompositor.computeLayerResolution(
+			rect.width,
+			rect.height,
+		);
+		size = this._presenter._slideCompositor.computeLayerSize(
 			size[0],
 			size[1],
 		);
