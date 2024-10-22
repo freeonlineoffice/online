@@ -1440,8 +1440,6 @@ public:
         return std::string();
     }
 
-protected:
-
     /// Called when a polling event is received.
     /// @events is the mask of events that triggered the wake.
     void handlePoll(SocketDisposition &disposition,
@@ -1566,7 +1564,6 @@ protected:
             disposition.setClosed();
     }
 
-public:
     /// Override to write data out to socket.
     /// Returns the last return from writeData.
     virtual int writeOutgoingData()
