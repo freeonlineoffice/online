@@ -27,6 +27,10 @@ class StatusBar extends JSDialog.Toolbar {
 		map.on('updatemodificationindicator', this.onUpdateModificationIndicator, this);
 	}
 
+	isSaveIndicatorActive() {
+		return window.useStatusbarSaveIndicator;
+	}
+
 	localizeStateTableCell(text) {
 		var stateArray = text.split(';');
 		var stateArrayLength = stateArray.length;
@@ -531,6 +535,9 @@ class StatusBar extends JSDialog.Toolbar {
 	}
 
 	onInitModificationIndicator(lastmodtime) {
+		if (!this.isSaveIndicatorActive())
+			return;
+
 		const docstatcontainer = document.getElementById('documentstatus-container');
 		if (lastmodtime == null) {
 			if (docstatcontainer !== null && docstatcontainer !== undefined) {
@@ -545,6 +552,9 @@ class StatusBar extends JSDialog.Toolbar {
 
 	// status can be '', 'SAVING', 'MODIFIED' or 'SAVED'
 	onUpdateModificationIndicator(e) {
+		if (!this.isSaveIndicatorActive())
+			return;
+
 		if (this._lastModstatus !== e.status) {
 			this.updateHtmlItem('DocumentStatus', e.status);
 			this._lastModStatus = e.status;
