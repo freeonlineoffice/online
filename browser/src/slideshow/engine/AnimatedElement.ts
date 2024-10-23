@@ -257,7 +257,7 @@ class TransitionFiltersManager {
 		this.filterQueue.push(nodeId);
 	}
 
-	public apply(): boolean {
+	public apply(properties?: AnimatedElementRenderProperties): boolean {
 		let applied = false;
 		this.filterQueue.forEach((nodeId) => {
 			const frameInfo = this.frameInfoMap.get(nodeId);
@@ -266,7 +266,7 @@ class TransitionFiltersManager {
 				ANIMDBG.print(
 					`TransitionFiltersManager.apply: node: ${nodeId}`,
 				);
-				frameInfo.animation.renderFrame(frameInfo.time);
+				frameInfo.animation.renderFrame(frameInfo.time, properties);
 			}
 		});
 		return applied;
@@ -512,7 +512,23 @@ class AnimatedElement {
 	public setTransitionParameters(
 		transitionParameters: TransitionParameters,
 	) {
-		this.createTFGLContext();
+		if (!this.tfContext) {
+			const layerCompositor = this.getLayerCompositor();
+			if (!layerCompositor) {
+				window.app.console.error(
+					'AnimatedElement.setTransitionParameters: layer compositor is undefined',
+				);
+				return;
+			}
+			this.tfContext = layerCompositor.getLayerRendererContext();
+			if (!this.tfContext) {
+				window.app.console.error(
+					'AnimatedElement.setTransitionParameters: layer renderer context is undefined',
+				);
+				return;
+			}
+		}
+
 		transitionParameters.context = this.tfContext;
 		transitionParameters.current = null;
 		transitionParameters.next = this.getTextureFromElement(
@@ -561,6 +577,14 @@ class AnimatedElement {
 		this.aClipPath = null;
 	}
 
+	private getLayerCompositor(): SlideCompositor {
+		const presenter: SlideShowPresenter = app.map.slideShowPresenter;
+		if (presenter) {
+			return presenter._slideCompositor;
+		}
+		return null;
+	}
+
 	// TODO unused, to be removed (?)
 	private getAnimatedLayerInfo(): AnimatedShapeInfo {
 		ANIMDBG.print('AnimatedElement.getAnimatedLayerInfo');
@@ -577,14 +601,16 @@ class AnimatedElement {
 		return null;
 	}
 
-	applyTransitionFilters(): boolean {
+	applyTransitionFilters(
+		properties?: AnimatedElementRenderProperties,
+	): boolean {
 		if (
 			this.transitionFiltersManager.isEmpty() ||
 			!this.isGlSupported()
 		) {
 			return false;
 		}
-		return this.transitionFiltersManager.apply();
+		return this.transitionFiltersManager.apply(properties);
 	}
 
 	updateLayer(renderingContext: OffscreenCanvasRenderingContext2D) {
@@ -650,17 +676,13 @@ class AnimatedElement {
 
 	renderLayer(renderer: LayerRenderer) {
 		if (!this.bVisible) return;
-		const applied = this.applyTransitionFilters();
 
 		const T = this.aTMatrix;
 
-		const aElement = applied
-			? this.tfCanvas.transferToImageBitmap()
-			: this.aBaseElement;
 		console.debug(
 			`AnimatedElement(${this.sId}).renderLayer:
-				element width: ${aElement.width}
-				element height: ${aElement.height}
+				element width: ${this.aBaseElement.width}
+				element height: ${this.aBaseElement.height}
 				base center: (${this.nBaseCenterX}, ${this.nBaseCenterY})
 				actual center: (${this.nCenterX}, ${this.nCenterY})
 				transform: ${T.toString()}`,
@@ -687,7 +709,9 @@ class AnimatedElement {
 			alpha: this.nOpacity,
 		};
 
-		renderer.drawBitmap(aElement, properties);
+		if (this.applyTransitionFilters(properties)) return;
+
+		renderer.drawBitmap(this.aBaseElement, properties);
 	}
 
 	private update() {
@@ -725,7 +749,6 @@ class AnimatedElement {
 
 	notifySlideEnd() {
 		this.transitionFiltersManager.clear();
-		this.deleteTFGLContext();
 	}
 
 	notifyAnimationStart() {
@@ -754,32 +777,6 @@ class AnimatedElement {
 
 	notifyNextEffectStart(nEffectIndex?: number) {
 		// empty body
-	}
-
-	private createTFGLContext() {
-		if (!this.tfCanvas) {
-			this.DBG('.createTFGLContext: canvas');
-			this.tfCanvas = new OffscreenCanvas(
-				this.aBaseElement.width,
-				this.aBaseElement.height,
-			);
-		}
-
-		if (!this.tfContext) {
-			this.DBG('.createTFGLContext: context');
-			this.tfContext = new RenderContextGl(this.tfCanvas);
-			if (!this.tfContext) {
-				this.tfContext = new RenderContext2d(this.tfCanvas);
-			}
-		}
-	}
-
-	private deleteTFGLContext() {
-		if (this.tfContext) {
-			this.DBG('.deleteTFGLContext');
-			this.tfContext = null;
-			this.tfCanvas = null;
-		}
 	}
 
 	// TODO remove it

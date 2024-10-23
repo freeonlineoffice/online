@@ -73,9 +73,12 @@ function SlideChangeTemplate<T extends AGConstructor<any>>(BaseType: T) {
 			this.isLastFrame = last;
 		}
 
-		public renderFrame(nT: number) {
+		public renderFrame(
+			nT: number,
+			properties?: AnimatedElementRenderProperties,
+		) {
 			if (nT !== null && nT >= 0.0) {
-				this.render(nT);
+				this.render(nT, properties);
 			}
 		}
 
@@ -89,7 +92,10 @@ function SlideChangeTemplate<T extends AGConstructor<any>>(BaseType: T) {
 				);
 		}
 
-		protected abstract render(nT: number): void;
+		protected abstract render(
+			nT: number,
+			properties?: AnimatedElementRenderProperties,
+		): void;
 
 		public getUnderlyingValue(): number {
 			return 0.0;

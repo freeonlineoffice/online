@@ -702,6 +702,10 @@ class LayerDrawing {
 			resHeight,
 		);
 	}
+
+	public getLayerRendererContext(): RenderContext {
+		return this.layerRenderer.getRenderContext();
+	}
 }
 
 SlideShow.LayerDrawing = LayerDrawing;

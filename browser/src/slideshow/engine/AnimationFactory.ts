@@ -286,9 +286,12 @@ class TransitionFilterAnimation extends AnimationBase {
 		this.aAnimatableElement.setTransitionFilterFrame(this, nT);
 	}
 
-	renderFrame(nT: number): void {
+	renderFrame(
+		nT: number,
+		properties?: AnimatedElementRenderProperties,
+	): void {
 		if (this.aTransition) {
-			this.aTransition.renderFrame(nT);
+			this.aTransition.renderFrame(nT, properties);
 		}
 	}
 
