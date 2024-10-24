@@ -337,10 +337,6 @@ class AnimatedElement {
 		'rotate',
 	]);
 
-	public static readonly SupportedTransitionFilters = new Set<string>([
-		'Fade',
-	]);
-
 	private sId: string;
 	private slideHash: string;
 	private slideWidth: number;
@@ -372,15 +368,8 @@ class AnimatedElement {
 	private nOpacity: number; // [0, 1]
 	private bVisible: boolean;
 	private aClipPath: SVGPathElement = null;
-	private offscreenCanvas: OffscreenCanvas;
-	private canvasContext: OffscreenCanvasRenderingContext2D;
 	private runningAnimations: number = 0;
 
-	private aSlideShowContext: SlideShowContext;
-	private aPreviousElement: AnimatedObjectType = null;
-	private bIsUpdated = true;
-
-	private tfCanvas: OffscreenCanvas;
 	private tfContext: RenderContextGl;
 	private transitionFiltersManager: TransitionFiltersManager;
 
@@ -458,13 +447,6 @@ class AnimatedElement {
 		console.debug(
 			`AnimatedElement.updateCanvasSize: (${this.canvasWidth}x${this.canvasHeight}), scale factor: ${this.canvasScaleFactor}`,
 		);
-
-		// init offset canvas
-		this.offscreenCanvas = new OffscreenCanvas(
-			this.canvasWidth,
-			this.canvasHeight,
-		);
-		this.canvasContext = this.offscreenCanvas.getContext('2d');
 	}
 
 	public updateAnimationInfo(animatedLayerInfo: AnimatedShapeInfo) {
@@ -585,22 +567,6 @@ class AnimatedElement {
 		return null;
 	}
 
-	// TODO unused, to be removed (?)
-	private getAnimatedLayerInfo(): AnimatedShapeInfo {
-		ANIMDBG.print('AnimatedElement.getAnimatedLayerInfo');
-		const presenter: SlideShowPresenter = app.map.slideShowPresenter;
-		if (presenter) {
-			const compositor = presenter._slideCompositor;
-			if (compositor) {
-				return compositor.getAnimatedLayerInfo(
-					this.slideHash,
-					this.sId,
-				);
-			}
-		}
-		return null;
-	}
-
 	applyTransitionFilters(
 		properties?: AnimatedElementRenderProperties,
 	): boolean {
@@ -613,15 +579,22 @@ class AnimatedElement {
 		return this.transitionFiltersManager.apply(properties);
 	}
 
-	updateLayer(renderingContext: OffscreenCanvasRenderingContext2D) {
-		const applied = this.applyTransitionFilters();
+	renderLayer(renderer: LayerRenderer) {
+		if (!this.bVisible) return;
+		if (renderer instanceof LayerRendererGl) this.renderLayerGl(renderer);
+		else if (renderer instanceof LayerRenderer2d)
+			this.renderLayer2d(renderer);
+	}
+
+	renderLayer2d(renderer: LayerRenderer2d) {
+		const renderContext = renderer.getRenderContext();
+		const renderingContext = renderContext.get2dOffscreen();
 
 		renderingContext.save();
+		// renderingContext.scale(sf.x, sf.y);
 
 		// factor to convert from slide coordinate to canvas coordinate
 		const sf = this.canvasScaleFactor;
-
-		// renderingContext.scale(sf.x, sf.y);
 
 		renderingContext.globalAlpha = this.nOpacity;
 
@@ -636,11 +609,9 @@ class AnimatedElement {
 		]);
 		renderingContext.setTransform(transform);
 
-		const aElement = applied
-			? this.tfCanvas.transferToImageBitmap()
-			: this.aBaseElement;
+		const aElement = this.aBaseElement;
 		console.debug(
-			`AnimatedElement(${this.sId}).updateLayer:
+			`AnimatedElement(${this.sId}).renderLayer2d:
 				element width: ${aElement.width}
 				element height: ${aElement.height}
 				base center: (${this.nBaseCenterX}, ${this.nBaseCenterY})
@@ -674,13 +645,11 @@ class AnimatedElement {
 		renderingContext.restore();
 	}
 
-	renderLayer(renderer: LayerRenderer) {
-		if (!this.bVisible) return;
-
+	renderLayerGl(renderer: LayerRendererGl) {
 		const T = this.aTMatrix;
 
 		console.debug(
-			`AnimatedElement(${this.sId}).renderLayer:
+			`AnimatedElement(${this.sId}).renderLayerGl:
 				element width: ${this.aBaseElement.width}
 				element height: ${this.aBaseElement.height}
 				base center: (${this.nBaseCenterX}, ${this.nBaseCenterY})
@@ -714,31 +683,7 @@ class AnimatedElement {
 		renderer.drawBitmap(this.aBaseElement, properties);
 	}
 
-	private update() {
-		if (!this.bVisible) return;
-		this.canvasContext.clearRect(
-			0,
-			0,
-			this.offscreenCanvas.width,
-			this.offscreenCanvas.height,
-		);
-		this.updateLayer(this.canvasContext);
-		this.aActiveElement = this.offscreenCanvas.transferToImageBitmap();
-	}
-
-	public getAnimatedLayer() {
-		ANIMDBG.print(`AnimatedElement(${this.getId()}).getAnimatedLayer`);
-		this.update();
-		return this.bVisible ? this.aActiveElement : null;
-	}
-
 	notifySlideStart(aSlideShowContext: SlideShowContext) {
-		if (!aSlideShowContext) {
-			window.app.console.log(
-				'AnimatedElement.notifySlideStart: slideshow context is not valid',
-			);
-		}
-		this.aSlideShowContext = aSlideShowContext;
 		this.runningAnimations = 0;
 
 		// this.aActiveElement = this.clone(this.aBaseElement);

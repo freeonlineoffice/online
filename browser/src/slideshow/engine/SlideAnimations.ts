@@ -59,22 +59,6 @@ function isTransformSupported(aNodeInfo: AnimateTransformNodeInfo) {
 	);
 }
 
-function isTransitionFilterSupported(
-	aNodeInfo: TransitionFilterNodeInfo,
-	isGlSupported: boolean,
-) {
-	if (!aNodeInfo.transitionType) {
-		console.error('slideshow: missing transition type');
-		return false;
-	}
-
-	return isGlSupported
-		? true // all supported
-		: AnimatedElement.SupportedTransitionFilters.has(
-				aNodeInfo.transitionType,
-			);
-}
-
 function createAnimationTree(
 	aAnimationRoot: AnimationNodeInfo,
 	aNodeContext: NodeContext,
@@ -173,29 +157,14 @@ function createAnimationNode(
 				);
 				return null;
 			}
-		case AnimationNodeType.TransitionFilter:
-			if (
-				isTransitionFilterSupported(
-					aNodeInfo as TransitionFilterNodeInfo,
-					aNodeContext.aContext.aSlideShowHandler.isGlSupported(),
-				)
-			) {
-				aCreatedNode = new AnimationTransitionFilterNode(
-					aNodeInfo,
-					aParentNode,
-					aNodeContext,
-				);
-				break;
-			} else {
-				const transitionFilterInfo =
-					aNodeInfo as TransitionFilterNodeInfo;
-				window.app.console.log(
-					`createAnimationNode: AnimationTransitionFilterNode: ` +
-						`transition '${transitionFilterInfo.transitionType}' ` +
-						`'${transitionFilterInfo.transitionSubType}' not supported`,
-				);
-				return null;
-			}
+		case AnimationNodeType.TransitionFilter: {
+			aCreatedNode = new AnimationTransitionFilterNode(
+				aNodeInfo,
+				aParentNode,
+				aNodeContext,
+			);
+			break;
+		}
 		case AnimationNodeType.Audio:
 			window.app.console.log(
 				'createAnimationNode: Audio not implemented',
