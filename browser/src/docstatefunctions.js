@@ -149,7 +149,8 @@ app.updateFollowingUsers = function () {
 				x: app.file.textCursor.rectangle.x2,
 				y: app.file.textCursor.rectangle.y2,
 			});
-		var cursorPositionInView = app.map._docLayer._isLatLngInView(cursorPos);
+		var cursorPositionInView =
+			app.map._docLayer._isLatLngInView(cursorPos);
 		if (
 			parseInt(app.getFollowedViewId()) ===
 				parseInt(app.map._docLayer._viewId) &&
