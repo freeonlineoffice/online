@@ -345,12 +345,7 @@ namespace Util
 
     std::string getLoolVersion() { return std::string(LOOLWSD_VERSION); }
 
-    std::string getLoolVersionHash()
-    {
-        std::string hash(LOOLWSD_VERSION_HASH);
-        hash.resize(std::min(8, (int)hash.length()));
-        return hash;
-    }
+    std::string getLoolVersionHash() { return std::string(LOOLWSD_VERSION_HASH); }
 
     void getVersionInfo(std::string& version, std::string& hash)
     {
