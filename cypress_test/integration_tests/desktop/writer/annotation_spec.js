@@ -330,7 +330,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	it('Insert comment with mention', function() {
 		desktopHelper.insertComment('some text0', false);
 		
-		cy.cGet('.cool-annotation').find('#annotation-modify-textarea-new').type(' @Ale');
+		cy.cGet('.lool-annotation').find('#annotation-modify-textarea-new').type(' @Ale');
 		cy.cGet('#mentionPopup').should('be.visible');
 		cy.cGet('#mentionPopupList li.jsdialog:nth-child(1)').type('{enter}');
 		
@@ -341,7 +341,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 
 		cy.cGet('#annotation-save-new').click();
 		
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1 a').should('exist');
 		cy.cGet('#annotation-content-area-1 a').should('have.text', '@Alexandra');
 		cy.cGet('#annotation-content-area-1 a').should('have.attr', 'href', 'https://github.com/CollaboraOnline/online');
@@ -351,7 +351,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	it('Modify comment by adding mention', function () {
 		desktopHelper.insertComment();
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain', 'some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Modify').click();
@@ -367,7 +367,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 		cy.cGet('#annotation-modify-textarea-1').should('have.text', 'some text0 @Alexandra');
 
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 
 		cy.cGet('#annotation-content-area-1 a').should('exist');
 		cy.cGet('#annotation-content-area-1 a').should('have.text', '@Alexandra');
@@ -378,7 +378,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	it('Reply to parent comment by adding mention', function() {
 		desktopHelper.insertComment();
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
@@ -400,7 +400,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	it('Reply to reply comment by adding mention', function() {
 		desktopHelper.insertComment();
 
-		cy.cGet('.cool-annotation-content-wrapper').should('exist');
+		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 		cy.cGet('#comment-annotation-menu-1').click();
 		cy.cGet('body').contains('.context-menu-item', 'Reply').click();
@@ -437,7 +437,7 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	it('Escape should close the mentionPopup, comment should be in focus', function() {
 		desktopHelper.insertComment('some text0', false);
 
-		cy.cGet('.cool-annotation').find('#annotation-modify-textarea-new').type(' @Ale');
+		cy.cGet('.lool-annotation').find('#annotation-modify-textarea-new').type(' @Ale');
 		cy.cGet('#mentionPopup').should('be.visible');
 		helper.typeIntoDocument('{esc}');
 
