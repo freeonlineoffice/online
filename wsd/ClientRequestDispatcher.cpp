@@ -720,8 +720,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
                 {
                     auto accessDetails = FileServerRequestHandler::ResourceAccessDetails(
                         mapAccessDetails.at("wopiSrc"),
-                        mapAccessDetails.at("accessToken"),
-                        mapAccessDetails.at("permission"));
+                        mapAccessDetails.at("accessToken"));
                     launchAsyncCheckFileInfo(_id, accessDetails, RequestVettingStations,
                                              RvsHighWatermark);
                 }
