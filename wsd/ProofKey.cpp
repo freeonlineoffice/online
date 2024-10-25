@@ -10,7 +10,6 @@
 #include <config.h>
 
 #include "ProofKey.hpp"
-#include "LOOLWSD.hpp"
 
 #include <algorithm>
 #include <cassert>

@@ -26,6 +26,7 @@
 #include <Poco/Net/NetException.h>
 #include <Poco/URI.h>
 
+#include <JsonUtil.hpp>
 #include <Log.hpp>
 #include <JsonUtil.hpp>
 #include <Util.hpp>

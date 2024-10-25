@@ -74,10 +74,8 @@
 #include <UserMessages.hpp>
 #include <Util.hpp>
 #include <JsonUtil.hpp>
-#include "Watermark.hpp"
 #include "RenderTiles.hpp"
 #include "KitWebSocket.hpp"
-#include "SetupKitEnvironment.hpp"
 #include <common/ConfigUtil.hpp>
 #include <common/TraceEvent.hpp>
 #include <common/Watchdog.hpp>
@@ -92,6 +90,9 @@
 
 #if MOBILEAPP
 #include "LOOLWSD.hpp"
+#ifndef IOS
+#include "SetupKitEnvironment.hpp"
+#endif
 #endif
 
 #ifdef IOS
@@ -105,7 +106,6 @@ using Poco::Exception;
 using Poco::File;
 using Poco::JSON::Object;
 using Poco::JSON::Parser;
-using Poco::URI;
 
 #ifndef BUILDING_TESTS
 using Poco::Path;
