@@ -40,7 +40,7 @@ public:
         // The user can override the ServerRoot with a new prefix.
         _pathPlus = LOOLWSD::ServiceRoot;
 
-        _ssl = (ConfigUtil::isSslEnabled() || LOOLWSD::isSSLTermination());
+        _ssl = (ConfigUtil::isSslEnabled() || ConfigUtil::isSSLTermination());
         _websocket = true;
         _schemeAuthority = LOOLWSD::ServerName.empty() ? host : LOOLWSD::ServerName;
 

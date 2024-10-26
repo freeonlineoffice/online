@@ -594,7 +594,8 @@ inline std::string getLaunchBase(bool asAdmin = false)
 {
     std::ostringstream oss;
     oss << "    ";
-    oss << ((ConfigUtil::isSslEnabled() || LOOLWSD::isSSLTermination()) ? "https://" : "http://");
+    oss << ((ConfigUtil::isSslEnabled() || ConfigUtil::isSSLTermination()) ? "https://"
+                                                                           : "http://");
 
     if (asAdmin)
     {
@@ -2531,7 +2532,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     IsProxyPrefixEnabled = ConfigUtil::getConfigValue<bool>(conf, "net.proxy_prefix", false);
 
     LOG_INF("SSL support: SSL is " << (ConfigUtil::isSslEnabled() ? "enabled." : "disabled."));
-    LOG_INF("SSL support: termination is " << (LOOLWSD::isSSLTermination() ? "enabled." : "disabled."));
+    LOG_INF("SSL support: termination is "
+            << (ConfigUtil::isSSLTermination() ? "enabled." : "disabled."));
 
     std::string allowedLanguages(config().getString("allowed_languages"));
     // Core <= 7.0.
@@ -2619,7 +2621,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     // Fixup some config entries to match out decisions/overrides.
     KitXmlConfig->setBool("ssl.enable", ConfigUtil::isSslEnabled());
-    KitXmlConfig->setBool("ssl.termination", isSSLTermination());
+    KitXmlConfig->setBool("ssl.termination", ConfigUtil::isSSLTermination());
 
     // We don't pass the config via command-line
     // to avoid dealing with escaping and other traps.
@@ -4110,7 +4112,7 @@ public:
            << "\n  Kit version: " << LOOLWSD::LOKitVersion << "\n  Ports: server "
            << ClientPortNumber << " prisoner " << MasterLocation
            << "\n  SSL: " << (ConfigUtil::isSslEnabled() ? "https" : "http")
-           << "\n  SSL-Termination: " << (LOOLWSD::isSSLTermination() ? "yes" : "no")
+           << "\n  SSL-Termination: " << (ConfigUtil::isSSLTermination() ? "yes" : "no")
            << "\n  Security " << (LOOLWSD::NoCapsForKit ? "no" : "") << " chroot, "
            << (LOOLWSD::NoSeccomp ? "no" : "") << " api lockdown"
            << "\n  Admin: " << (LOOLWSD::AdminEnabled ? "enabled" : "disabled")

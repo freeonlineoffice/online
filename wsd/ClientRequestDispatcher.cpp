@@ -1065,7 +1065,7 @@ bool ClientRequestDispatcher::handleWopiDiscoveryRequest(
     std::string xml = getFileContent("discovery.xml");
     std::string srvUrl =
 #if ENABLE_SSL
-        ((ConfigUtil::isSslEnabled() || LOOLWSD::isSSLTermination()) ? "https://" : "http://")
+        ((ConfigUtil::isSslEnabled() || ConfigUtil::isSSLTermination()) ? "https://" : "http://")
 #else
         "http://"
 #endif
