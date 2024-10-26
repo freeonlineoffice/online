@@ -691,10 +691,6 @@ bool LOOLWSD::AnonymizeUserData = false;
 bool LOOLWSD::CheckLoolUser = true;
 bool LOOLWSD::CleanupOnly = false; ///< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
-#if ENABLE_SSL
-ConfigUtil::RuntimeConstant<bool> LOOLWSD::SSLEnabled;
-ConfigUtil::RuntimeConstant<bool> LOOLWSD::SSLTermination;
-#endif
 unsigned LOOLWSD::MaxConnections;
 unsigned LOOLWSD::MaxDocuments;
 std::string LOOLWSD::HardwareResourceWarning = "ok";
@@ -2016,6 +2012,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     StartTime = std::chrono::steady_clock::now();
 
+    // Initialize the config subsystem.
     LayeredConfiguration& conf = config();
 
     // Add default values of new entries here, so there is a sensible default in case
@@ -2219,6 +2216,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     const std::string configFilePath =
         Poco::Util::Application::findFile(configPath) ? configPath.toString() : ConfigFile;
     loadConfiguration(configFilePath, PRIO_DEFAULT);
+
+    ConfigUtil::initialize(&config());
 
     // Load extra ("plug-in") configuration files, if present
     Poco::File dir(ConfigDir);
@@ -2531,11 +2530,6 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     IsProxyPrefixEnabled = ConfigUtil::getConfigValue<bool>(conf, "net.proxy_prefix", false);
 
-#if ENABLE_SSL
-    LOOLWSD::SSLEnabled.set(ConfigUtil::getConfigValue<bool>(conf, "ssl.enable", true));
-    LOOLWSD::SSLTermination.set(ConfigUtil::getConfigValue<bool>(conf, "ssl.termination", false));
-#endif
-
     LOG_INF("SSL support: SSL is " << (LOOLWSD::isSSLEnabled() ? "enabled." : "disabled."));
     LOG_INF("SSL support: termination is " << (LOOLWSD::isSSLTermination() ? "enabled." : "disabled."));
 
@@ -2632,9 +2626,6 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     std::ostringstream oss;
     KitXmlConfig->save(oss);
     setenv("LOOL_CONFIG", oss.str().c_str(), true);
-
-    // Initialize the config subsystem too.
-    ConfigUtil::initialize(&config());
 
     Util::sleepFromEnvIfSet("Loolwsd", "SLEEPFORDEBUGGER");
 

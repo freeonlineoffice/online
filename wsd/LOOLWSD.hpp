@@ -353,23 +353,9 @@ public:
         return HardwareResourceWarning;
     }
 
-    static bool isSSLEnabled()
-    {
-#if ENABLE_SSL
-        return !Util::isFuzzing() && LOOLWSD::SSLEnabled.get();
-#else
-        return false;
-#endif
-    }
+    static bool isSSLEnabled() { return ConfigUtil::isSslEnabled(); }
 
-    static bool isSSLTermination()
-    {
-#if ENABLE_SSL
-        return !Util::isFuzzing() && LOOLWSD::SSLTermination.get();
-#else
-        return false;
-#endif
-    }
+    static bool isSSLTermination() { return ConfigUtil::isSSLTermination(); }
 
     static std::shared_ptr<TerminatingPoll> getWebServerPoll();
 
@@ -481,11 +467,6 @@ protected:
     static void cleanup();
 
 private:
-#if ENABLE_SSL
-    static ConfigUtil::RuntimeConstant<bool> SSLEnabled;
-    static ConfigUtil::RuntimeConstant<bool> SSLTermination;
-#endif
-
 #if !MOBILEAPP
     void processFetchUpdate(SocketPoll& poll);
     static void setupChildRoot(const bool UseMountNamespaces);
