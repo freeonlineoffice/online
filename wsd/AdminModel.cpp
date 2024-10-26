@@ -14,6 +14,7 @@
 
 #include <chrono>
 #include <cmath>
+#include <csignal>
 #include <memory>
 #include <set>
 #include <sstream>

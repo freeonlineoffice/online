@@ -11,11 +11,11 @@
 
 #pragma once
 
-#include "LOOLWSD.hpp"
-#include "Log.hpp"
-#include "Util.hpp"
 #include <common/Authorization.hpp>
+#include <common/Common.hpp>
 #include <common/ConfigUtil.hpp>
+#include <common/Log.hpp>
+#include <wsd/LOOLWSD.hpp>
 
 #include <Poco/URI.h>
 

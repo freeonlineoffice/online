@@ -13,6 +13,7 @@
 #include "FileUtil.hpp"
 #include "HttpHelper.hpp"
 #include "HttpRequest.hpp"
+#include "Protocol.hpp"
 #include <LOOLWSD.hpp>
 #include <Exceptions.hpp>
 #include <Log.hpp>
