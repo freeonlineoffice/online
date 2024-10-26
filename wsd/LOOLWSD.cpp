@@ -692,8 +692,8 @@ bool LOOLWSD::CheckLoolUser = true;
 bool LOOLWSD::CleanupOnly = false; ///< If we should cleanup and exit.
 bool LOOLWSD::IsProxyPrefixEnabled = false;
 #if ENABLE_SSL
-Util::RuntimeConstant<bool> LOOLWSD::SSLEnabled;
-Util::RuntimeConstant<bool> LOOLWSD::SSLTermination;
+ConfigUtil::RuntimeConstant<bool> LOOLWSD::SSLEnabled;
+ConfigUtil::RuntimeConstant<bool> LOOLWSD::SSLTermination;
 #endif
 unsigned LOOLWSD::MaxConnections;
 unsigned LOOLWSD::MaxDocuments;
