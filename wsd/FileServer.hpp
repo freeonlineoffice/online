@@ -167,7 +167,7 @@ public:
     {
         // HSTS hardening. Disabled in debug builds.
 #if !ENABLE_DEBUG
-        if (LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination())
+        if (ConfigUtil::isSslEnabled() || LOOLWSD::isSSLTermination())
         {
             if (ConfigUtil::getConfigValue<bool>("ssl.sts.enabled", false))
             {

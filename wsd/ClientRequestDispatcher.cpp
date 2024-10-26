@@ -652,7 +652,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
     }
 
 #if !MOBILEAPP
-    if (!LOOLWSD::isSSLEnabled() && socket->sniffSSL())
+    if (!ConfigUtil::isSslEnabled() && socket->sniffSSL())
     {
         LOG_ERR("Looks like SSL/TLS traffic on plain http port");
         HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
@@ -1065,7 +1065,7 @@ bool ClientRequestDispatcher::handleWopiDiscoveryRequest(
     std::string xml = getFileContent("discovery.xml");
     std::string srvUrl =
 #if ENABLE_SSL
-        ((LOOLWSD::isSSLEnabled() || LOOLWSD::isSSLTermination()) ? "https://" : "http://")
+        ((ConfigUtil::isSslEnabled() || LOOLWSD::isSSLTermination()) ? "https://" : "http://")
 #else
         "http://"
 #endif
