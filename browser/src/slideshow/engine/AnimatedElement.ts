@@ -996,7 +996,6 @@ class AnimatedElement {
 
 		this.nScaleFactorX = nScaleFactorX;
 		this.updateTransformationMatrix();
-		window.app.console.log('AnimatedElement.setWidth(' + nNewWidth + ')');
 	}
 
 	setHeight(nNewHeight: number) {
@@ -1011,9 +1010,6 @@ class AnimatedElement {
 
 		this.nScaleFactorY = nScaleFactorY;
 		this.updateTransformationMatrix();
-		window.app.console.log(
-			'AnimatedElement.setHeight(' + nNewHeight + ')',
-		);
 	}
 
 	setSize(aNewSize: [number, number]) {
@@ -1042,9 +1038,6 @@ class AnimatedElement {
 		this.nScaleFactorX = nScaleFactorX;
 		this.nScaleFactorY = nScaleFactorY;
 		this.updateTransformationMatrix();
-		window.app.console.log(
-			'AnimatedElement.setSize(' + nNewWidth + ', ' + nNewHeight + ')',
-		);
 	}
 
 	getOpacity() {
@@ -1063,7 +1056,7 @@ class AnimatedElement {
 	setRotationAngle(nNewRotAngle: number) {
 		this.nRotationAngle = nNewRotAngle;
 		this.updateTransformationMatrix();
-		window.app.console.log(
+		ANIMDBG.print(
 			'AnimatedElement.setRotationAngle(' + nNewRotAngle + ')',
 		);
 	}
@@ -1075,9 +1068,7 @@ class AnimatedElement {
 	setSkewX(nSkewValue: number) {
 		this.nSkewX = nSkewValue;
 		this.updateTransformationMatrix();
-		window.app.console.log(
-			'AnimatedElement.setSkewX(' + nSkewValue + ')',
-		);
+		ANIMDBG.print('AnimatedElement.setSkewX(' + nSkewValue + ')');
 	}
 
 	getSkewY() {
@@ -1087,9 +1078,7 @@ class AnimatedElement {
 	setSkewY(nSkewValue: number) {
 		this.nSkewY = nSkewValue;
 		this.updateTransformationMatrix();
-		window.app.console.log(
-			'AnimatedElement.setSkewY(' + nSkewValue + ')',
-		);
+		ANIMDBG.print('AnimatedElement.setSkewY(' + nSkewValue + ')');
 	}
 
 	getVisibility(): boolean {
