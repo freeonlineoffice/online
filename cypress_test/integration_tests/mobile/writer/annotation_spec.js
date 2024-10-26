@@ -85,7 +85,7 @@ describe(['tagmobile'], 'Annotation tests.', function() {
 	function openCommentDialog() {
 		mobileHelper.openInsertionWizard();
 		cy.cGet('body').contains('.menu-entry-with-icon', 'Comment').click();
-		cy.cGet('.cool-annotation-table').should('exist');
+		cy.cGet('.lool-annotation-table').should('exist');
 	}
 
 	it('Inserting comment with @mention', function() {
