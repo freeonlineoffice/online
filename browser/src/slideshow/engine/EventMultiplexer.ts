@@ -90,6 +90,23 @@ class EventMultiplexer {
 		}
 	}
 
+	notifyMouseMove(aMouseEvent: any) {
+		const aMouseClickHandlerSet = this.aMouseClickHandlerSet.clone();
+		while (!aMouseClickHandlerSet.isEmpty()) {
+			const aHandlerEntry = aMouseClickHandlerSet.top();
+			aMouseClickHandlerSet.pop();
+			if (aHandlerEntry.aValue && aHandlerEntry.aValue.onMouseMove) {
+				if (
+					aHandlerEntry.aValue.onMouseMove(
+						aMouseEvent.x,
+						aMouseEvent.y,
+					)
+				)
+					break;
+			}
+		}
+	}
+
 	registerEvent(
 		eEventType: EventTrigger,
 		aNotifierId: number | string,
