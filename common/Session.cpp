@@ -11,15 +11,16 @@
 
 #include "Session.hpp"
 
+#include <common/Anonymizer.hpp>
+#include <common/Log.hpp>
+#include <common/Protocol.hpp>
+#include <common/Uri.hpp>
+#include <common/Util.hpp>
+
 #include <Poco/Exception.h>
 #include <Poco/Path.h>
 #include <Poco/String.h>
 #include <Poco/URI.h>
-
-#include <common/Uri.hpp>
-#include "Protocol.hpp"
-#include "Log.hpp"
-#include "Util.hpp"
 
 using namespace LOOLProtocol;
 
@@ -238,9 +239,9 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
         }
     }
 
-    Util::mapAnonymized(_userId, _userIdAnonym);
-    Util::mapAnonymized(_userName, _userNameAnonym);
-    Util::mapAnonymized(_jailedFilePath, _jailedFilePathAnonym);
+    Anonymizer::mapAnonymized(_userId, _userIdAnonym);
+    Anonymizer::mapAnonymized(_userName, _userNameAnonym);
+    Anonymizer::mapAnonymized(_jailedFilePath, _jailedFilePathAnonym);
 
     if (tokens.size() > offset)
     {

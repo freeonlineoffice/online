@@ -9,16 +9,17 @@
 
 #include <config.h>
 
-#include "Kit.hpp"
 #include "ChildSession.hpp"
-#include "MobileApp.hpp"
-#include "LOOLWSD.hpp"
+
+#include <common/Anonymizer.hpp>
+#include <common/Log.hpp>
+#include <common/Unit.hpp>
+#include <common/Util.hpp>
 
 #include <climits>
 #include <fstream>
 #include <memory>
 #include <sstream>
-#include <regex>
 
 #define LOK_USE_UNSTABLE_API
 #include <LibreOfficeKit/LibreOfficeKitEnums.h>
@@ -47,10 +48,7 @@
 #include <common/SpookyV2.h>
 #include <common/Uri.hpp>
 #include "KitHelper.hpp"
-#include <Log.hpp>
 #include <Png.hpp>
-#include <Util.hpp>
-#include <Unit.hpp>
 #include <Clipboard.hpp>
 #include <string>
 #include <CommandControl.hpp>
@@ -1278,7 +1276,7 @@ bool ChildSession::downloadAs(const StringVector& tokens)
     }
 
     // Obfuscate the new name.
-    Util::mapAnonymized(Uri::getFilenameFromURL(name), _docManager->getObfuscatedFileId());
+    Anonymizer::mapAnonymized(Uri::getFilenameFromURL(name), _docManager->getObfuscatedFileId());
 
     getTokenString(tokens[3], "format", format);
 

@@ -92,6 +92,7 @@
 #include <Poco/Util/ServerApplication.h>
 #include <Poco/Util/XMLConfiguration.h>
 
+#include <common/Anonymizer.hpp>
 #include <ClientRequestDispatcher.hpp>
 #include <Common.hpp>
 #include <Clipboard.hpp>
@@ -4485,7 +4486,7 @@ int LOOLWSD::innerMain()
 #endif
 
     // URI with /contents are public and we don't need to anonymize them.
-    Util::mapAnonymized("contents", "contents");
+    Anonymizer::mapAnonymized("contents", "contents");
 
     // Start the server.
     Server->start();

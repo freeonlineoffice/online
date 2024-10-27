@@ -15,6 +15,7 @@
 #include "CommandControl.hpp"
 #endif
 
+#include <common/Anonymizer.hpp>
 #include <Admin.hpp>
 #include <LOOLWSD.hpp>
 #include <ClientSession.hpp>
@@ -1812,7 +1813,8 @@ bool ClientRequestDispatcher::handleClientProxyRequest(const Poco::Net::HTTPRequ
     auto uriPublic = RequestDetails::sanitizeURI(url);
     const auto docKey = RequestDetails::getDocKey(uriPublic);
     const std::string fileId = Uri::getFilenameFromURL(docKey);
-    Util::mapAnonymized(fileId, fileId); // Identity mapping, since fileId is already obfuscated
+    Anonymizer::mapAnonymized(fileId,
+                              fileId); // Identity mapping, since fileId is already obfuscated
 
     LOG_INF("Starting Proxy request handler for session [" << _id << "] on url ["
                                                            << LOOLWSD::anonymizeUrl(url) << "].");
