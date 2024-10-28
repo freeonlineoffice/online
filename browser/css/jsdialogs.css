@@ -1905,7 +1905,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 	}
 
 	.jsdialog-overlay {
-		animation: fade reverse .3s;
+		animation: fade reverse 0.3s;
 	}
 }
 
