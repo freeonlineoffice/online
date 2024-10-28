@@ -928,6 +928,7 @@ class UnorderedListControl extends TreeViewControl {
 		super(data, builder);
 
 		this._container = L.DomUtil.create('ul', builder.options.cssClass + ' ui-treeview');
+		this._container.id = data.id;
 	}
 
 	fillRow(entry, builder, parent) {
@@ -949,6 +950,7 @@ class SimpleTableControl extends TreeViewControl {
 		super(data, builder);
 
 		this._container = L.DomUtil.create('table', builder.options.cssClass + ' ui-treeview');
+		this._container.id = data.id;
 
 		if (data.headers && data.headers.length > 0) {
 			this._container._thead = L.DomUtil.create('thead', builder.options.cssClass,
@@ -1042,6 +1044,7 @@ class ComplexTableControl extends TreeViewControl {
 		super(data, builder);
 
 		this._container = L.DomUtil.create('table', builder.options.cssClass + ' ui-treeview');
+		this._container.id = data.id;
 
 		if (data.headers && data.headers.length > 0) {
 			this._container._thead = L.DomUtil.create('thead', builder.options.cssClass,
