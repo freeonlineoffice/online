@@ -145,6 +145,15 @@ class PresenterConsole {
 
 		let elem =
 			this._proxyPresenter.document.querySelector('#main-content');
+		let slideShowBGColor = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue('--color-background-slideshow');
+		let slideShowColor = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue('--color-slideshow');
+
+		elem.style.backgroundColor = slideShowBGColor;
+		elem.style.color = slideShowColor;
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'row';
 		elem.style.flexWrap = 'wrap';
