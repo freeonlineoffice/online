@@ -1899,9 +1899,14 @@ input[type='number']:hover::-webkit-outer-spin-button {
 }
 
 /* dialog/popup fade animation */
+@media (prefers-reduced-motion: no-preference) {
+	.fadeout {
+		animation: fade 0.7s;
+	}
 
-.fadeout {
-	animation: fade 0.7s;
+	.jsdialog-overlay {
+		animation: fade reverse .3s;
+	}
 }
 
 @keyframes fade {
