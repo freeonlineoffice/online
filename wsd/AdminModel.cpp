@@ -573,6 +573,8 @@ void AdminModel::addDocument(const std::string& docKey, pid_t pid,
 
 void AdminModel::doRemove(std::map<std::string, std::unique_ptr<Document>>::iterator &docIt)
 {
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
+
     std::string docItKey = docIt->first;
     // don't send the routing_rmdoc if document is migrating
     if (getCurrentMigDoc() != docItKey)
@@ -710,6 +712,8 @@ unsigned AdminModel::getTotalActiveViews()
 
 std::vector<DocBasicInfo> AdminModel::getDocumentsSortedByIdle() const
 {
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
+
     std::vector<DocBasicInfo> docs;
     docs.reserve(_documents.size());
     for (const auto& it: _documents)
@@ -732,6 +736,8 @@ std::vector<DocBasicInfo> AdminModel::getDocumentsSortedByIdle() const
 
 void AdminModel::cleanupResourceConsumingDocs()
 {
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
+
     DocCleanupSettings& settings = _defDocProcSettings.getCleanupSettings();
 
     for (const auto& it: _documents)
@@ -1126,6 +1132,8 @@ void PrintKitAggregateMetrics(std::ostringstream &oss, const char* name, const c
 
 void AdminModel::getMetrics(std::ostringstream &oss)
 {
+    ASSERT_CORRECT_THREAD_OWNER(_owner);
+
     oss << "loolwsd_count " << getPidsFromProcName(std::regex("loolwsd"), nullptr) << std::endl;
     oss << "loolwsd_thread_count " << Util::getStatFromPid(getpid(), 19) << std::endl;
     oss << "loolwsd_cpu_time_seconds " << Util::getCpuUsage(getpid()) / sysconf (_SC_CLK_TCK) << std::endl;
