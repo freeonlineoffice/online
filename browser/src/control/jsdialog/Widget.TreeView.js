@@ -978,12 +978,11 @@ class SimpleTableControl extends TreeViewControl {
 		}
 	}
 
-	fillRow(data, entry, builder, level/*, parent*/) {
+	fillRow(data, entry, builder) {
 		let td, selectionElement;
 		let tr = L.DomUtil.create('tr', builder.options.cssClass + ' ui-listview-entry',
 					  this._container._tbody);
 		tr.setAttribute('role', 'row');
-		tr.setAttribute('aria-level', level);
 		if (entry.children && entry.children.length) {
 			tr.setAttribute('aria-expanded', 'false');
 		}
@@ -1016,9 +1015,12 @@ class SimpleTableControl extends TreeViewControl {
 
 // complex table treegrid, with children, with or no headers, columns > 1
 class ComplexTableControl extends TreeViewControl {
-	constructor(data, builder) {
+	static Selected = null;
+
+	constructor(data, builder, isRealTree) {
 		super(data, builder);
 
+		this._isRealTree = isRealTree;
 		this._container = L.DomUtil.create('table', builder.options.cssClass + ' ui-treeview');
 		this._container.id = data.id;
 
@@ -1135,7 +1137,8 @@ class ComplexTableControl extends TreeViewControl {
 		let tr = L.DomUtil.create('tr', builder.options.cssClass + ' ui-listview-entry',
 					  this._container._tbody);
 		tr.setAttribute('role', 'row');
-		tr.setAttribute('aria-level', level);
+		if (this._isRealTree)
+			tr.setAttribute('aria-level', level);
 
 		if (entry.children && entry.children.length) {
 			tr.setAttribute('aria-expanded', 'false');
@@ -1173,8 +1176,9 @@ class ComplexTableControl extends TreeViewControl {
 
 class TreeViewFactory {
 	constructor(data, builder) {
-		if (this.isRealTree(data) || this.isHeaderListBox(data))
-			this._implementation = new ComplexTableControl(data, builder);
+		const isRealTree = this.isRealTree(data);
+		if (isRealTree || this.isHeaderListBox(data))
+			this._implementation = new ComplexTableControl(data, builder, isRealTree);
 		else
 			this._implementation = new SimpleTableControl(data, builder);
 	}
