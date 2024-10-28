@@ -341,7 +341,9 @@ class PresenterConsole {
 		this._currentIndex = e.slide;
 
 		let next =
-			this._proxyPresenter.document.querySelector('#next-presentation');
+			this._proxyPresenter.document.querySelector(
+				'#next-presentation',
+			);
 		this._fetchPreview(this._currentIndex + 1, next);
 	}
 

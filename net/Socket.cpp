@@ -53,6 +53,8 @@
 #include <Log.hpp>
 #include <Watchdog.hpp>
 #include <wasm/base64.hpp>
+#include <common/ConfigUtil.hpp>
+#include <common/Unit.hpp>
 
 // Bug in pre C++17 where static constexpr must be defined. Fixed in C++17.
 constexpr std::chrono::microseconds SocketPoll::DefaultPollTimeoutMicroS;
@@ -1730,7 +1732,13 @@ namespace http
 {
 std::string getAgentString() { return "LOOLWSD HTTP Agent " + Util::getLoolVersion(); }
 
-std::string getServerString() { return "LOOLWSD HTTP Server " + Util::getLoolVersion(); }
+std::string getServerString()
+{
+    if (!UnitBase::isCppunitTesting())
+        if (config::getBool("security.server_signature", false))
+            return "LOOLWSD HTTP Server " + Util::getCoolVersion();
+    return "LOOLWSD HTTP Server";
+}
 }
 
 extern "C" {

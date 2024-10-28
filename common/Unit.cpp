@@ -49,6 +49,7 @@ namespace
 std::thread TimeoutThread;
 std::mutex TimeoutThreadMutex;
 std::condition_variable TimeoutConditionVariable;
+bool CppunitTesting = false;
 
 } // namespace
 
@@ -354,6 +355,16 @@ void UnitBase::rememberInstance(UnitType type, UnitBase* instance)
         assert(false);
         break;
     }
+}
+
+void UnitBase::setCppunitTesting(bool cppunitTesting)
+{
+    CppunitTesting = cppunitTesting;
+}
+
+bool UnitBase::isCppunitTesting()
+{
+    return CppunitTesting;
 }
 
 int UnitBase::uninit()
