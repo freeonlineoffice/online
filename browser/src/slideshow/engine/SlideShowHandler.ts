@@ -380,6 +380,8 @@ class SlideShowHandler {
 				},
 			);
 		}
+
+		this.presenter._map.fire('transitionstart', { slide: nNewSlideIndex });
 	}
 
 	notifyTransitionEnd(nNewSlide: number, nOldSlide: number | undefined) {
