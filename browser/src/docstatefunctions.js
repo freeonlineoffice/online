@@ -176,7 +176,8 @@ app.showAsyncDownloadError = function (response, initalMsg) {
 	reader.onload = function () {
 		if (reader.result === 'wrong server') {
 			initalMsg +=
-				initalMsg + _(', cluster configuration error: mis-matching serverid');
+				initalMsg +
+				_(', cluster configuration error: mis-matching serverid');
 			app.map.uiManager.showSnackbar(initalMsg, '', null, timeout);
 		} else {
 			app.map.uiManager.showSnackbar(initalMsg, '', null, timeout);

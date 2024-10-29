@@ -36,7 +36,6 @@
 #include "Exceptions.hpp"
 #include "LOOLWSD.hpp"
 #include "FileServer.hpp"
-#include <NetUtil.hpp>
 #include "Socket.hpp"
 #include "Storage.hpp"
 #include "TileCache.hpp"
@@ -138,7 +137,7 @@ public:
         TerminatingPoll(threadName),
         _docBroker(docBroker)
     {
-        setLimiter( net::Defaults::get().MaxConnections );
+        setLimiter( SocketPoll::DefaultMaxTCPConnections );
     }
 
     void pollingThread() override
@@ -368,14 +367,14 @@ void DocumentBroker::pollThread()
     std::chrono::time_point<std::chrono::steady_clock> migrationMsgStartTime;
     static const std::chrono::microseconds migrationMsgTimeout = std::chrono::seconds(
         LOOLWSD::getConfigValue<int>("indirection_endpoint.migration_timeout_secs", 180));
-    const std::chrono::microseconds PollTimeoutMicroS = net::Defaults::get().SocketPollTimeout;
 
     // Main polling loop goodness.
     while (!_stop && _poll->continuePolling() && !SigUtil::getTerminationFlag())
     {
         // Poll more frequently while unloading to cleanup sooner.
         const bool unloading = isMarkedToDestroy() || _docState.isUnloadRequested();
-        _poll->poll(unloading ? PollTimeoutMicroS / 16 : PollTimeoutMicroS);
+        _poll->poll(unloading ? SocketPoll::DefaultPollTimeoutMicroS / 16
+                              : SocketPoll::DefaultPollTimeoutMicroS);
 
         // Consolidate updates across multiple processed events.
         processBatchUpdates();
