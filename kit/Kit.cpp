@@ -3062,6 +3062,7 @@ void copyCertificateDatabaseToTmp(Poco::Path const& jailPath)
 }
 
 #endif
+
 } // namespace
 
 void lokit_main(
