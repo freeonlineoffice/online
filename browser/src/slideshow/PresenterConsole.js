@@ -200,6 +200,9 @@ class PresenterConsole {
 		elem.style.height = '50%';
 		this._ticks = 0;
 		this._onTimer();
+
+		// simulate resize to Firefox
+		this._onResize();
 	}
 
 	_onKeyDown(e) {
