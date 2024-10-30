@@ -46,6 +46,7 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 			return false;
 	};
 
+	var useListKeyboardNavigation = true;
 	for (var i in entries) {
 		var checkedValue = (entries[i].checked === undefined)
 			? undefined : (entries[i].uno && isChecked('.uno' + entries[i].uno));
@@ -64,6 +65,8 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 
 			case 'colorpicker':
 				entry = entries[i];
+				// for color picker we have a "KeyboardGridNavigation" function defined separately to handle custom cases
+				useListKeyboardNavigation = false;
 			break;
 
 			case 'action':
@@ -147,6 +150,12 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 	};
 
 	L.Map.THIS.fire('jsdialog', {data: json, callback: generateCallback(entries)});
+	const listContainer = JSDialog.GetDropdown(id);
+	if(useListKeyboardNavigation && listContainer) {
+		// attach list keybinding for arrow-key navigation in entry list
+		JSDialog.KeyboardListNavigation(listContainer);
+	}
+	
 };
 
 JSDialog.CloseDropdown = function (id) {
