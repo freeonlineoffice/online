@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "NetUtil.hpp"
 #include "memory"
 
 #include "Socket.hpp"
@@ -106,9 +107,13 @@ public:
                 const std::string msg = "Failed to accept. (errno: ";
                 throw std::runtime_error(msg + std::strerror(errno) + ')');
             }
-
-            LOG_TRC("Accepted client #" << clientSocket->getFD());
-            _clientPoller.insertNewSocket(std::move(clientSocket));
+            const size_t extConnCount = StreamSocket::getExternalConnectionCount();
+            if( 0 == net::Defaults.maxExtConnections || extConnCount <= net::Defaults.maxExtConnections )
+            {
+                LOG_TRC("Accepted client #" << clientSocket->getFD());
+                _clientPoller.insertNewSocket(std::move(clientSocket));
+            } else
+                LOG_WRN("Limiter rejected extConn[" << extConnCount << "/" << net::Defaults.maxExtConnections << "]: " << *clientSocket);
         }
     }
 
