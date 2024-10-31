@@ -3233,6 +3233,7 @@ void LOOLWSD::initializeEnvOptions()
         bool first = true;
         std::istringstream aliasGroupStream;
         aliasGroupStream.str(aliasGroup);
+        int j = 0;
         for (std::string alias; std::getline(aliasGroupStream, alias, ',');)
         {
             if (first)
@@ -3245,7 +3246,8 @@ void LOOLWSD::initializeEnvOptions()
             else
             {
                 _overrideSettings["storage.wopi.alias_groups.group[" + std::to_string(n) +
-                                  "].alias"] = alias;
+                                  "].alias[" + std::to_string(j) + ']'] = alias;
+                j++;
             }
         }
 
