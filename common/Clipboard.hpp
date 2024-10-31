@@ -11,12 +11,12 @@
 
 #pragma once
 
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <mutex>
 
-#include <stdlib.h>
 #include <Log.hpp>
 #include <Common.hpp>
 #include <Protocol.hpp>

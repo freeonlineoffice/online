@@ -19,7 +19,7 @@
 #if !MOBILEAPP
 
 #include <cassert>
-#include <errno.h>
+#include <cerrno>
 
 #include <Auth.hpp>
 #include <HostUtil.hpp>
