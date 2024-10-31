@@ -173,6 +173,7 @@ static int URPfromLoFDs[2] { -1, -1 };
 // socket buffer & event processing in a single, thread.
 bool pushToMainThread(LibreOfficeKitCallback cb, int type, const char *p, void *data);
 
+[[maybe_unused]]
 static LokHookFunction2* initFunction = nullptr;
 
 namespace
@@ -192,6 +193,7 @@ namespace
         return decoded.substr(7);
     }
 
+    [[maybe_unused]]
     void consistencyCheckFileExists(const std::string &uri)
     {
         std::string path = pathFromFileURL(uri);
