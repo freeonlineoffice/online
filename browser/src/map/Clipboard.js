@@ -1162,7 +1162,7 @@ L.Clipboard = L.Class.extend({
 		if (!this._downloadProgress || this._downloadProgress.isClosed())
 			return;
 
-		if (this._downloadProgressStatus() === 'downloadButton')
+		if (['downloadButton', 'confirmPasteButton'].includes(this._downloadProgressStatus()))
 			this._stopHideDownload();
 	},
 
