@@ -19,7 +19,7 @@
 class PresenterConsole {
 	constructor(map, presenter) {
 		this._map = map;
-		this._presenter = presenter;
+		this._presenter695f51c134cb5de4203f3aa54bc094983ef2e73a = presenter;
 		this._map.on('presentationinfo', this._onPresentationInfo, this);
 		this._map.on('newpresentinconsole', this._onPresentInConsole, this);
 	}
@@ -42,9 +42,11 @@ class PresenterConsole {
                                 </header>
                                 <main id="main-content">
                                      <div id="first-presentation">
+                                         <div id="title-current">Current Slide</div>
                                          <canvas id="current-presentation"></canvas>
                                      </div>
                                      <div id="second-presentation">
+                                         <div id="title-next">Next Slide</div>
                                          <div id='container'>
                                             <img id="next-presentation"></img>
                                          </div>
@@ -126,7 +128,8 @@ class PresenterConsole {
 
 		this._previews = new Array(this._presenter._getSlidesCount());
 		if (this._previews.length > 1) {
-			let button = this._proxyPresenter.document.querySelector('#prev');
+			let button =
+				this._proxyPresenter.document.querySelector('#prev');
 			button.disabled = false;
 			button = this._proxyPresenter.document.querySelector('#next');
 			button.disabled = false;
@@ -134,7 +137,8 @@ class PresenterConsole {
 			button.disabled = false;
 			button = this._proxyPresenter.document.querySelector('#pause');
 			button.disabled = false;
-			button = this._proxyPresenter.document.querySelector('#exchange');
+			button =
+				this._proxyPresenter.document.querySelector('#exchange');
 			button.disabled = false;
 			button = this._proxyPresenter.document.querySelector('#exit');
 			button.disabled = false;
@@ -231,6 +235,23 @@ class PresenterConsole {
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'column';
 		elem.style.flex = '1';
+		elem.style.height = '100vh';
+		elem.style.width = '60vw';
+		elem.style.marginTop = '5vw';
+		elem.style.marginLeft = elem.style.marginRight = '2vw';
+
+		elem = this._proxyPresenter.document.querySelector('#title-current');
+		elem.style.display = 'flex';
+		elem.style.flexDirection = 'column';
+		elem.style.justifyContent = 'center';
+		elem.style.alignItems = 'center';
+		elem.style.backgroundColor = 'transparent';
+		elem.style.color = 'white';
+
+		elem = this._proxyPresenter.document.querySelector(
+			'#current-presentation',
+		);
+		elem.style.width = '56vw';
 
 		elem = this._proxyPresenter.document.querySelector(
 			'#second-presentation',
@@ -238,16 +259,21 @@ class PresenterConsole {
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'column';
 		elem.style.flex = '1';
+		elem.style.height = '100vh';
+		elem.style.width = '40vw';
+		elem.style.marginTop = '5vw';
+		elem.style.marginLeft = elem.style.marginRight = '2vw';
 
-		elem = this._proxyPresenter.document.querySelector(
-			'#current-presentation',
-		);
-		elem.style.height = '50vh';
-		elem.style.width = '50vw';
+		elem = this._proxyPresenter.document.querySelector('#title-next');
+		elem.style.display = 'flex';
+		elem.style.flexDirection = 'column';
+		elem.style.justifyContent = 'center';
+		elem.style.alignItems = 'center';
+		elem.style.backgroundColor = 'transparent';
+		elem.style.color = 'white';
 
 		elem = this._proxyPresenter.document.querySelector('#container');
-		elem.style.height = '50vh';
-		elem.style.width = '50vw';
+		elem.style.width = '36vw';
 
 		elem = this._proxyPresenter.document.querySelector('#notes');
 		elem.style.height = '50%';
@@ -309,7 +335,8 @@ class PresenterConsole {
 		elem.style.borderColor = 'white';
 		elem.style.borderStyle = 'solid';
 
-		elem = this._proxyPresenter.document.querySelector('#timer-container');
+		elem =
+			this._proxyPresenter.document.querySelector('#timer-container');
 		elem.style.height = '33px';
 
 		elem = this._proxyPresenter.document.querySelector('#today');
@@ -588,11 +615,11 @@ class PresenterConsole {
 
 		this._currentIndex = e.slide;
 
-		let next =
+		let elem =
 			this._proxyPresenter.document.querySelector(
 				'#next-presentation',
 			);
-		this._fetchPreview(this._currentIndex + 1, next);
+		this._fetchPreview(this._currentIndex + 1, elem);
 	}
 
 	_onTransitionEnd(e) {
@@ -602,8 +629,17 @@ class PresenterConsole {
 
 		this._currentIndex = e.slide;
 
+		let elem =
+			this._proxyPresenter.document.querySelector('#title-current');
+		elem.innerText =
+			_('Current Slide, Slide') +
+			' ' +
+			(e.slide + 1) +
+			', ' +
+			this._previews.length;
+
 		let notes = this._presenter.getNotes(e.slide);
-		let elem = this._proxyPresenter.document.querySelector('#notes');
+		elem = this._proxyPresenter.document.querySelector('#notes');
 		if (elem) {
 			elem.innerText = notes;
 		}
