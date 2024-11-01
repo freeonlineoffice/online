@@ -55,9 +55,6 @@ L.Control.DownloadProgress = L.Control.extend({
 				msg, buttonText, this._onStartDownload.bind(this), this.options.snackbarTimeout);
 
 			this.setupKeyboardShortcutForSnackbar();
-
-			// Snackbars cannot get focus, but we are using it with a button and it requires to be focused. No need to change snackbar imp for now.
-			document.getElementById('button').focus(); // TODO: This "button" id is too generic. It could be something like "snackbar-button" etc.
 		} else {
 			this._map.uiManager.showInfoModal(modalId, this._getDialogTitle(), msg, '',
 				buttonText, this._onStartDownload.bind(this), true, modalId + '-response');
@@ -105,12 +102,14 @@ L.Control.DownloadProgress = L.Control.extend({
 		var buttonText = _('Copy') + L.Util.replaceCtrlAltInMac(' (Ctrl + C)');
 
 		if (inSnackbar) {
-			this._map.uiManager.showProgressBar(snackbarMsg, buttonText,
-				this._onConfirmCopyAction.bind(this), this.options.snackbarTimeout);
-
 			this._map.uiManager.setSnackbarProgress(100);
 
-			this.setupKeyboardShortcutForSnackbar();
+			this._map.uiManager.showSnackbar(
+				snackbarMsg, buttonText, this._onConfirmCopyAction.bind(this), this.options.snackbarTimeout);
+
+			setTimeout(() => {
+				this.setupKeyboardShortcutForSnackbar();
+			}, 100);
 		} else {
 			JSDialog.setMessageInModal(modalId, dialogMsg, '');
 			JSDialog.enableButtonInModal(modalId, modalId + '-response', true);
@@ -145,6 +144,10 @@ L.Control.DownloadProgress = L.Control.extend({
 
 	setupKeyboardShortcutForSnackbar: function () {
 		this._setupKeyboardShortcutForElement('snackbar-container', 'button');
+
+		// Snackbars cannot get focus, but we are using it with a button and it requires to be focused. No need to change snackbar imp for now.
+		if (document.getElementById('button'))
+			document.getElementById('button').focus(); // TODO: This "button" id is too generic. It could be something like "snackbar-button" etc.
 	},
 
 	// isLargeCopy specifies if we are copying and have to explain user the process
