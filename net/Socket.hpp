@@ -448,7 +448,7 @@ private:
 
     void init()
     {
-        if (_type != Type::Unix)
+        if (_type != Type::Unix && _fd >= 0)
             setNoDelay();
         _ignoreInput = false;
         _noShutdown = false;
