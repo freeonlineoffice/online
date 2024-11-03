@@ -14,7 +14,6 @@
 
 #include <cassert>
 #include <cstddef>
-#include <set>
 #include <string>
 #include <vector>
 

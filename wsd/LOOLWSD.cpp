@@ -9,13 +9,8 @@
 
 #include <config.h>
 
+
 #include "LOOLWSD.hpp"
-#if ENABLE_FEATURE_LOCK
-#include "CommandControl.hpp"
-#endif
-#if !MOBILEAPP
-#include <wsd/SpecialBrokers.hpp>
-#endif // !MOBILEAPP
 
 /* Default host used in the start test URI */
 #define LOOLWSD_TEST_HOST "localhost"
@@ -59,6 +54,10 @@
 #include <string>
 #include <thread>
 
+#if ENABLE_FEATURE_LOCK
+#include "CommandControl.hpp"
+#endif
+
 #if !MOBILEAPP
 
 #if ENABLE_SSL
@@ -67,7 +66,6 @@
 
 #include <cerrno>
 #include <stdexcept>
-#include <fstream>
 #include <unordered_map>
 
 #include "Admin.hpp"
@@ -75,6 +73,7 @@
 #include "FileServer.hpp"
 #include "UserMessages.hpp"
 #include <wsd/RemoteConfig.hpp>
+#include <wsd/SpecialBrokers.hpp>
 
 #endif // !MOBILEAPP
 
@@ -103,9 +102,6 @@
 #include <common/FileUtil.hpp>
 #include <common/JailUtil.hpp>
 #include <common/Watchdog.hpp>
-#if MOBILEAPP
-#  include <Kit.hpp>
-#endif
 #include <Log.hpp>
 #include <MobileApp.hpp>
 #include <Protocol.hpp>
@@ -125,6 +121,7 @@
 #include <ServerSocket.hpp>
 
 #if MOBILEAPP
+#include <Kit.hpp>
 #ifdef IOS
 #include "ios.h"
 #elif defined(GTKAPP)
