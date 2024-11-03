@@ -27,10 +27,7 @@ function createActivity(
 
 	// do we need to get an interpolator ?
 	if (!aInterpolator) {
-		aInterpolator = PropertyInterpolator.getInterpolator(
-			eCalcMode,
-			eValueType,
-		);
+		aInterpolator = PropertyInterpolator.getInterpolator(eValueType);
 	}
 
 	// is it cumulative ?
@@ -296,7 +293,7 @@ function extractAttributeValues(
 			break;
 		case PropertyValueType.Color:
 			for (i = 0; i < aValueSet.length; ++i) {
-				const aValue: any = null;
+				const aValue = colorParser(aValueSet[i]);
 				aValueList.push(aValue);
 			}
 			break;
