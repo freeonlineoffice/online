@@ -4034,7 +4034,7 @@ public:
         std::string version, hash;
         Util::getVersionInfo(version, hash);
 
-        os << "LOOLWSDServer: " << version << " - " << hash
+        os << "LOOLWSDServer: " << version << " - " << hash << " state dumping"
 #if !MOBILEAPP
            << "\n  Kit version: " << LOOLWSD::LOKitVersion
            << "\n  Ports: server " << ClientPortNumber << " prisoner " << MasterLocation
@@ -4047,7 +4047,7 @@ public:
 #endif
            << "\n  TerminationFlag: " << SigUtil::getTerminationFlag()
            << "\n  isShuttingDown: " << SigUtil::getShutdownRequestFlag()
-           << "\n  NewChildren: " << NewChildren.size()
+           << "\n  NewChildren: " << NewChildren.size() << " (" << NewChildren.capacity() << ')'
            << "\n  OutstandingForks: " << OutstandingForks
            << "\n  NumPreSpawnedChildren: " << LOOLWSD::NumPreSpawnedChildren
            << "\n  ChildSpawnTimeoutMs: " << ChildSpawnTimeoutMs
