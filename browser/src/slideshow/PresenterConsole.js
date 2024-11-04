@@ -610,11 +610,13 @@ class PresenterConsole {
 
 		let dateTime = new Date();
 		elem = this._proxyPresenter.document.querySelector('#today');
-		elem.innerText = dateTime.toLocaleDateString(String.Locale, {
-			hour: '2-digit',
-			minute: '2-digit',
-			second: '2-digit',
-		});
+		if (elem) {
+			elem.innerText = dateTime.toLocaleDateString(String.Locale, {
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+			});
+		}
 
 		let next =
 			this._proxyPresenter.document.querySelector(
@@ -768,6 +770,10 @@ class PresenterConsole {
 	}
 
 	drawNext(elem) {
+		if (!elem) {
+			return;
+		}
+
 		if (this._currentIndex === undefined) {
 			return;
 		}
