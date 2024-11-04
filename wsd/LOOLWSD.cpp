@@ -1190,6 +1190,14 @@ private:
     std::string expectedKind;
 };
 
+static void requestTerminateSpareKits()
+{
+    std::unique_lock<std::mutex> lock(NewChildrenMutex);
+    const int count = NewChildren.size();
+    for (int i = count - 1; i >= 0; --i)
+        NewChildren[i]->requestTermination();
+}
+
 class RemoteConfigPoll : public RemoteJSONPoll
 {
 public:
@@ -1848,6 +1856,13 @@ private:
         fonts[uri].pathName = fontFile;
 
         LOOLWSD::sendMessageToForKit("addfont " + fontFile);
+
+        // Request existing spare kits to quit, to get replaced with ones that
+        // include the new fonts.
+        if (PrisonerPoll)
+        {
+            PrisonerPoll->addCallback([]{ requestTerminateSpareKits(); });
+        }
 
         return true;
     }
