@@ -66,6 +66,9 @@ public:
                     exitTest(TestResult::Failed);
             });
     }
+
+    // ignore child being killed
+    void kitKilled(int /* count */) override {};
 };
 
 UnitBase *unit_create_wsd(void)
