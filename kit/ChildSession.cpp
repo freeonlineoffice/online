@@ -2757,7 +2757,8 @@ bool ChildSession::saveAs(const StringVector& tokens)
     {
         if (tokens.size() > 4)
         {
-            filterOptions += tokens.cat(' ', 4);
+            // Syntax is options=<options>, and <options> may contain spaces, account for that.
+            filterOptions += " " + tokens.cat(' ', 4);
         }
     }
 
