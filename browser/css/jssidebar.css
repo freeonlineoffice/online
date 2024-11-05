@@ -326,6 +326,11 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	color: var(--color-text-lighter);
 }
 
+#NavigatorDeck .ui-treeview-entry,
+#NavigatorDeck .ui-treeview-expanded-content {
+	margin-block-end: 8px;
+}
+
 #NavigatorDeck div.selected:not(.ui-listview-expandable-with-icon):not(:empty):not([aria-level='1'])::before {
 	content: '–';
 	/* good to move this into css var*/

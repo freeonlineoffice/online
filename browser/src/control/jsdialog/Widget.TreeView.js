@@ -1011,7 +1011,7 @@ class TreeViewControl {
 
 		// column for expander
 		if (this._isRealTree) {
-			td = L.DomUtil.create('div', '', tr);
+			td = L.DomUtil.create('div', 'ui-treeview-expander-column', tr);
 			rowElements.push(td);
 
 			if (entry.children && entry.children.length)
@@ -1040,8 +1040,10 @@ class TreeViewControl {
 			img = entry.columns[index].collapsedimage ? entry.columns[index].collapsedimage :
 				entry.columns[index].expandedimage;
 			if (img) {
+				L.DomUtil.addClass(td, 'ui-treeview-icon-column');
 				this.createImageColumn(text, builder, img);
 			} else if (entry.columns[index].collapsed || entry.columns[index].expanded) {
+				L.DomUtil.addClass(td, 'ui-treeview-icon-column');
 				icon = L.DomUtil.create('img', 'ui-listview-icon', text);
 
 				if (this._isNavigator)
