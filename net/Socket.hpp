@@ -1510,6 +1510,9 @@ public:
 
             try
             {
+                // Keep the current handler alive, while the incoming message is handled.
+                std::shared_ptr<ProtocolHandlerInterface> socketHandler(_socketHandler);
+
                 _socketHandler->handleIncomingMessage(disposition);
             }
             catch (const std::exception& exception)
