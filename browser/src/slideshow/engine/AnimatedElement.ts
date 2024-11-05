@@ -465,6 +465,7 @@ class AnimatedElement {
 
 	private tfContext: RenderContextGl;
 	private transitionFiltersManager: TransitionFiltersManager;
+	private aSlideShowContext: SlideShowContext;
 
 	constructor(
 		sId: string,
@@ -826,7 +827,21 @@ class AnimatedElement {
 	}
 
 	notifySlideStart(aSlideShowContext: SlideShowContext) {
+		if (!aSlideShowContext) {
+			window.app.console.log(
+				'AnimatedElement.notifySlideStart: slideshow context is not valid',
+			);
+		}
+		this.aSlideShowContext = aSlideShowContext;
+
 		this.runningAnimations = 0;
+
+		const aAnimatedLayerInfo =
+			this.aSlideShowContext.aSlideShowHandler.getAnimatedLayerInfo(
+				this.slideHash,
+				this.sId,
+			);
+		this.updateAnimationInfo(aAnimatedLayerInfo);
 
 		// this.aActiveElement = this.clone(this.aBaseElement);
 
