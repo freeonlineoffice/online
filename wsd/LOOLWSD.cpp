@@ -3351,7 +3351,7 @@ void LOOLWSD::processFetchUpdate(SocketPoll& poll)
 #if ENABLE_DEBUG
 std::string LOOLWSD::getServerURL()
 {
-    return getServiceURI(LOOLWSD_TEST_LOOL_UI);
+    return getServiceURI("");
 }
 #endif
 #endif
