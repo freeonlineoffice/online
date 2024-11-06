@@ -27,10 +27,11 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include <Poco/RegularExpression.h>
 #include <Poco/DirectoryIterator.h>
 #include <Poco/FileStream.h>
+#include <Poco/RegularExpression.h>
 #include <Poco/StreamCopier.h>
+#include <Poco/Util/LayeredConfiguration.h>
 
 #include <helpers.hpp>
 #include <Unit.hpp>
@@ -39,6 +40,7 @@
 #include <SslSocket.hpp>
 #endif
 #include <Log.hpp>
+#include <common/ConfigUtil.hpp>
 
 bool filterTests(CPPUNIT_NS::TestRunner& runner, CPPUNIT_NS::Test* testRegistry, const std::string& testName)
 {
@@ -97,6 +99,9 @@ int main(int argc, char** argv)
     const char* loglevel = verbose ? "trace" : "warning";
     const bool withColor = isatty(fileno(stderr));
     Log::initialize("tst", loglevel, withColor, false, {});
+
+    Poco::AutoPtr<Poco::Util::LayeredConfiguration> defConfig(new Poco::Util::LayeredConfiguration);
+    ConfigUtil::initialize(defConfig.get());
 
 #if ENABLE_SSL
     try
