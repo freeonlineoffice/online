@@ -617,6 +617,13 @@ class Dispatcher {
 			app.map.showResolvedComments(!val);
 		};
 
+		this.actionsMap['showannotations'] = function () {
+			const items = app.map['stateChangeHandler'];
+			let val = items.getItemValue('showannotations');
+			val = val === 'true' || val === true;
+			app.map.showComments(!val);
+		};
+
 		this.actionsMap['.uno:AcceptAllTrackedChanges'] = function () {
 			app.map.sendUnoCommand('.uno:AcceptAllTrackedChanges');
 			app.socket.sendMessage(
