@@ -173,6 +173,7 @@ static std::atomic<int> OutstandingForks(0);
 std::map<std::string, std::shared_ptr<DocumentBroker>> DocBrokers;
 std::mutex DocBrokersMutex;
 static Poco::AutoPtr<Poco::Util::XMLConfiguration> KitXmlConfig;
+static std::string LoggableConfigEntries;
 
 extern "C"
 {
@@ -2041,10 +2042,10 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         { "logging.file.property[0][@name]", "path" },
         { "logging.file.property[1]", "never" },
         { "logging.file.property[1][@name]", "rotation" },
-        { "logging.file.property[2]", "true" },
-        { "logging.file.property[2][@name]", "compress" },
-        { "logging.file.property[3]", "false" },
-        { "logging.file.property[3][@name]", "flush" },
+        { "logging.file.property[2]", "false" },
+        { "logging.file.property[2][@name]", "archive" },
+        { "logging.file.property[3]", "true" },
+        { "logging.file.property[3][@name]", "compress" },
         { "logging.file.property[4]", "10 days" },
         { "logging.file.property[4][@name]", "purgeAge" },
         { "logging.file.property[5]", "10" },
@@ -2052,7 +2053,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         { "logging.file.property[6]", "true" },
         { "logging.file.property[6][@name]", "rotateOnOpen" },
         { "logging.file.property[7]", "false" },
-        { "logging.file.property[7][@name]", "archive" },
+        { "logging.file.property[7][@name]", "flush" },
         { "logging.file[@enable]", "false" },
         { "logging.level", LOOLWSD_LOGLEVEL },
         { "logging.level_startup", "trace" },
@@ -2347,9 +2348,24 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 
     // First log entry.
     ServerName = config().getString("server_name");
-    LOG_INF("Initializing loolwsd server [" << ServerName << "]. Experimental features are "
-                                            << (EnableExperimental ? "enabled." : "disabled."));
+    LOG_INF("Initializing loolwsd " << Util::getLoolVersion() << " server [" << ServerName
+                                    << "]. Experimental features are "
+                                    << (EnableExperimental ? "enabled." : "disabled."));
 
+    const std::map<std::string, std::string> allConfigs = ConfigUtil::extractAll(&conf);
+    std::ostringstream ossConfig;
+    ossConfig << "Loaded config file [" << configFilePath << "] (non-default values):\n";
+    for (const auto& pair : allConfigs)
+    {
+        const auto it = DefAppConfig.find(pair.first);
+        if (it == DefAppConfig.end() || it->second != pair.second)
+        {
+            ossConfig << pair.first << ": " << pair.second << '\n';
+        }
+    }
+
+    LoggableConfigEntries = ossConfig.str();
+    LOG_INF(LoggableConfigEntries);
 
     // Initialize the UnitTest subsystem.
     if (!UnitWSD::init(UnitWSD::UnitType::Wsd, UnitTestLibrary))
@@ -4138,6 +4154,7 @@ public:
            << "\n  IsProxyPrefixEnabled: " << (LOOLWSD::IsProxyPrefixEnabled ? "yes" : "no")
            << "\n  OverrideWatermark: " << LOOLWSD::OverrideWatermark
            << "\n  UserInterface: " << LOOLWSD::UserInterface
+           << "\n  Config: " << LoggableConfigEntries
             ;
 
         std::string smap;
