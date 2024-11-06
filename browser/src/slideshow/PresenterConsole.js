@@ -401,6 +401,7 @@ class PresenterConsole {
 
 	_onToolbarClick(e) {
 		let target = e.target;
+		let elem;
 		if (!target) {
 			return;
 		}
@@ -422,6 +423,10 @@ class PresenterConsole {
 				break;
 			case 'pause':
 				this._pause = !this._pause;
+				elem = this._proxyPresenter.document.querySelector('#pause>label');
+				if (elem) {
+					elem.innerText = this._pause ? _('Resume') : _('Pause');
+				}
 				break;
 			case 'exchange':
 				this._presenter._slideShowWindowProxy.focus();
