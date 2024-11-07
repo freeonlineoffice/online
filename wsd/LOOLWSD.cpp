@@ -1213,14 +1213,6 @@ private:
     std::string expectedKind;
 };
 
-static void requestTerminateSpareKits()
-{
-    std::unique_lock<std::mutex> lock(NewChildrenMutex);
-    const int count = NewChildren.size();
-    for (int i = count - 1; i >= 0; --i)
-        NewChildren[i]->requestTermination();
-}
-
 class RemoteConfigPoll : public RemoteJSONPoll
 {
 public:
@@ -1880,12 +1872,7 @@ private:
 
         LOOLWSD::sendMessageToForKit("addfont " + fontFile);
 
-        // Request existing spare kits to quit, to get replaced with ones that
-        // include the new fonts.
-        if (PrisonerPoll)
-        {
-            PrisonerPoll->addCallback([]{ requestTerminateSpareKits(); });
-        }
+        LOOLWSD::requestTerminateSpareKits();
 
         return true;
     }
@@ -1923,6 +1910,23 @@ private:
     // The key of this map is the download URI of the font.
     std::map<std::string, FontData> fonts;
 };
+
+void LOOLWSD::requestTerminateSpareKits()
+{
+    // Request existing spare kits to quit, to get replaced with ones that
+    // include the new fonts.
+    if (PrisonerPoll)
+    {
+        PrisonerPoll->addCallback(
+            []
+            {
+                std::unique_lock<std::mutex> lock(NewChildrenMutex);
+                const int count = NewChildren.size();
+                for (int i = count - 1; i >= 0; --i)
+                    NewChildren[i]->requestTermination();
+            });
+    }
+}
 
 void LOOLWSD::setupChildRoot(const bool UseMountNamespaces)
 {

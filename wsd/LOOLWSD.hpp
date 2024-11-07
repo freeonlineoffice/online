@@ -475,6 +475,9 @@ public:
     /// Sends a message to ForKit through PrisonerPoll.
     static void sendMessageToForKit(const std::string& message);
 
+    /// Terminates spare kits that aren't assigned a document yet.
+    static void requestTerminateSpareKits();
+
     /// Checks forkit (and respawns), rebalances
     /// child kit processes and cleans up DocBrokers.
     static void doHousekeeping();
