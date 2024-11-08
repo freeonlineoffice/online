@@ -105,6 +105,9 @@ L.Clipboard = L.Class.extend({
 	},
 
 	getMetaBase: function() {
+		if (window.ThisIsAMobileApp) {
+			return 'collabora-online-mobile'; // makeHttpUrl does not work with the file:// protocol used in mobile apps...
+		}
 		return window.makeHttpUrl('');
 	},
 
