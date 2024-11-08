@@ -6959,30 +6959,24 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		// Apply delta.
 		var stop = false;
-		for (var i = 0; i < delta.length && !stop; ) {
-			switch (delta[i]) {
-				case 99: // 'c': // copy row
-					var count = delta[i + 1];
-					var srcRow = delta[i + 2];
-					var destRow = delta[i + 3];
-					if (this._debugDeltasDetail)
-						window.app.console.log(
-							'[' +
-								i +
-								']: copy ' +
-								count +
-								' row(s) ' +
-								srcRow +
-								' to ' +
-								destRow,
-						);
-					i += 4;
-					for (var cnt = 0; cnt < count; ++cnt) {
-						var src = (srcRow + cnt) * width * 4;
-						var dest = (destRow + cnt) * width * 4;
-						for (var j = 0; j < width * 4; ++j) {
-							imgData.data[dest + j] = oldData[src + j];
-						}
+		for (var i = 0; i < delta.length && !stop;)
+		{
+			switch (delta[i])
+			{
+			case 99: // 'c': // copy row
+				var count = delta[i+1];
+				var srcRow = delta[i+2];
+				var destRow = delta[i+3];
+				if (this._debugDeltasDetail)
+					window.app.console.log('[' + i + ']: copy ' + count + ' row(s) ' + srcRow + ' to ' + destRow);
+				i+= 4;
+				for (var cnt = 0; cnt < count; ++cnt)
+				{
+					var src = (srcRow + cnt) * width * 4;
+					var dest = (destRow + cnt) * width * 4;
+					for (var j = 0; j < width * 4; ++j)
+					{
+						imgData.data[dest + j] = oldData[src + j];
 					}
 				}
 				break;

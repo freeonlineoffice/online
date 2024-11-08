@@ -2326,7 +2326,10 @@ kbd,
 	margin: 0;
 }
 
-#DocumentPropertiesDialog #customprops #CustomInfoPage > .jsdialog.ui-scrollwindow:not(.formulabar) {
+#DocumentPropertiesDialog
+	#customprops
+	#CustomInfoPage
+	> .jsdialog.ui-scrollwindow:not(.formulabar) {
 	height: 540px;
 	max-height: none;
 }

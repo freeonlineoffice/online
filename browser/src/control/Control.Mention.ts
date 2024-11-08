@@ -224,7 +224,10 @@ class Mention extends L.Control.AutoCompletePopup {
 			const isAtSymbol = ev.data === '@';
 			const isLastCharAtOrSpace =
 				this.lastTypedChar === ' ' || this.lastTypedChar === '@';
-			if ((newPara && isAtSymbol) || (isAtSymbol && isLastCharAtOrSpace)) {
+			if (
+				(newPara && isAtSymbol) ||
+				(isAtSymbol && isLastCharAtOrSpace)
+			) {
 				this.partialMention.push(ev.data);
 				this.typingMention = true;
 				this.cursorPosAtStart = this.getCursorPosition();
