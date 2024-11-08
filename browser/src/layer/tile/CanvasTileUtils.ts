@@ -9,7 +9,7 @@
  */
 declare var L: any;
 
-namespace cool {
+namespace lool {
 	export abstract class CanvasTileUtils {
 		public static unpremultiply(
 			data: Uint8Array,
@@ -87,6 +87,6 @@ namespace cool {
 			return offset;
 		}
 	}
-} // namespace cool
+} // namespace lool
 
-L.CanvasTileUtils = cool.CanvasTileUtils;
+L.CanvasTileUtils = lool.CanvasTileUtils;

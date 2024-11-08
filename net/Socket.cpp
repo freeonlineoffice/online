@@ -1738,7 +1738,7 @@ std::string getServerString()
 {
     if (!UnitBase::isCppunitTesting())
         if (config::getBool("security.server_signature", false))
-            return "LOOLWSD HTTP Server " + Util::getCoolVersion();
+            return "LOOLWSD HTTP Server " + Util::getLoolVersion();
     return "LOOLWSD HTTP Server";
 }
 }
