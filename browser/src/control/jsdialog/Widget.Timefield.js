@@ -23,11 +23,7 @@
 /* global JSDialog */
 
 JSDialog.timeField = function (parentContainer, data, builder) {
-	var inputTimeField = L.DomUtil.create(
-		'input',
-		builder.options.cssClass + ' ui-timefield',
-		parentContainer,
-	);
+	var inputTimeField = L.DomUtil.create('input', builder.options.cssClass + ' ui-timefield', parentContainer);
 	inputTimeField.setAttribute('type', 'time');
 	inputTimeField.setAttribute('step', 1); // forces the display of seconds
 	inputTimeField.setAttribute('id', data.id);
@@ -38,13 +34,7 @@ JSDialog.timeField = function (parentContainer, data, builder) {
 
 		var attrdisabled = timefield.getAttribute('disabled');
 		if (attrdisabled !== 'disabled') {
-			builder.callback(
-				'spinfield',
-				'change',
-				timefield,
-				timefield.value,
-				builder,
-			);
+			builder.callback('spinfield', 'change', timefield, timefield.value, builder);
 		}
 	});
 

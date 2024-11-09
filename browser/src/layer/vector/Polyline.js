@@ -4,10 +4,11 @@
  */
 
 L.Polyline = L.Path.extend({
+
 	options: {
 		// how much to simplify the polyline on each zoom level
 		// more = better performance and smoother look, less = more accurate
-		smoothFactor: 1.0,
+		smoothFactor: 1.0
 		// noClip: false
 	},
 
@@ -27,15 +28,9 @@ L.Polyline = L.Path.extend({
 	},
 
 	getCenter: function () {
-		var i,
-			halfDist,
-			segDist,
-			dist,
-			p1,
-			p2,
-			ratio,
-			points = this._rings[0],
-			len = points.length;
+		var i, halfDist, segDist, dist, p1, p2, ratio,
+		    points = this._rings[0],
+		    len = points.length;
 
 		// polyline centroid algorithm; only uses the first ring if there are multiple
 
@@ -53,7 +48,7 @@ L.Polyline = L.Path.extend({
 				ratio = (dist - halfDist) / segDist;
 				return this._map.layerPointToLatLng([
 					p2.x - ratio * (p2.x - p1.x),
-					p2.y - ratio * (p2.y - p1.y),
+					p2.y - ratio * (p2.y - p1.y)
 				]);
 			}
 		}
@@ -71,7 +66,7 @@ L.Polyline = L.Path.extend({
 	// recursively convert latlngs input into actual LatLng instances; calculate bounds along the way
 	_convertLatLngs: function (latlngs) {
 		var result = [],
-			flat = this._flat(latlngs);
+		    flat = this._flat(latlngs);
 
 		for (var i = 0, len = latlngs.length; i < len; i++) {
 			if (flat) {
@@ -87,9 +82,7 @@ L.Polyline = L.Path.extend({
 
 	_flat: function (latlngs) {
 		// true if it's a flat array of latlngs; false if nested
-		return (
-			!L.Util.isArray(latlngs[0]) || typeof latlngs[0][0] !== 'object'
-		);
+		return !L.Util.isArray(latlngs[0]) || typeof latlngs[0][0] !== 'object';
 	},
 
 	_project: function () {
@@ -98,24 +91,21 @@ L.Polyline = L.Path.extend({
 
 		// project bounds as well to use later for Canvas hit detection/etc.
 		var w = this._clickTolerance(),
-			p = new L.Point(w, -w);
+		    p = new L.Point(w, -w);
 
 		if (this._latlngs.length) {
 			this._pxBounds = new L.Bounds(
-				this._latLngToPoint(this._bounds.getSouthWest())._subtract(
-					p,
-				),
-				this._latLngToPoint(this._bounds.getNorthEast())._add(p),
-			);
+				this._latLngToPoint(this._bounds.getSouthWest())._subtract(p),
+				this._latLngToPoint(this._bounds.getNorthEast())._add(p));
 		}
 	},
 
 	// recursively turns latlngs into a set of rings with projected coordinates
 	_projectLatlngs: function (latlngs, result) {
+
 		var flat = latlngs[0] instanceof L.LatLng,
-			len = latlngs.length,
-			i,
-			ring;
+		    len = latlngs.length,
+		    i, ring;
 
 		if (flat) {
 			ring = [];
@@ -148,36 +138,22 @@ L.Polyline = L.Path.extend({
 		this._parts = [];
 
 		var parts = this._parts,
-			bounds = this._renderer._bounds,
-			i,
-			j,
-			k,
-			len,
-			len2,
-			segment,
-			points;
+		    bounds = this._renderer._bounds,
+		    i, j, k, len, len2, segment, points;
 
 		for (i = 0, k = 0, len = this._rings.length; i < len; i++) {
 			points = this._rings[i];
 
 			for (j = 0, len2 = points.length; j < len2 - 1; j++) {
-				segment = L.LineUtil.clipSegment(
-					points[j],
-					points[j + 1],
-					bounds,
-					j,
-					true,
-				);
+				segment = L.LineUtil.clipSegment(points[j], points[j + 1], bounds, j, true);
 
-				if (!segment) {
-					continue;
-				}
+				if (!segment) { continue; }
 
 				parts[k] = parts[k] || [];
 				parts[k].push(segment[0]);
 
 				// if segment goes out of screen, or it's the last one, it's the end of the line part
-				if (segment[1] !== points[j + 1] || j === len2 - 2) {
+				if ((segment[1] !== points[j + 1]) || (j === len2 - 2)) {
 					parts[k].push(segment[1]);
 					k++;
 				}
@@ -188,7 +164,7 @@ L.Polyline = L.Path.extend({
 	// simplify each clipped part of the polyline for performance
 	_simplifyPoints: function () {
 		var parts = this._parts,
-			tolerance = this.options.smoothFactor;
+		    tolerance = this.options.smoothFactor;
 
 		for (var i = 0, len = parts.length; i < len; i++) {
 			parts[i] = L.LineUtil.simplify(parts[i], tolerance);
@@ -196,9 +172,7 @@ L.Polyline = L.Path.extend({
 	},
 
 	_update: function () {
-		if (!this._map) {
-			return;
-		}
+		if (!this._map) { return; }
 
 		this._clipPoints();
 		this._simplifyPoints();
@@ -207,7 +181,7 @@ L.Polyline = L.Path.extend({
 
 	_updatePath: function () {
 		this._renderer._updatePoly(this);
-	},
+	}
 });
 
 L.polyline = function (latlngs, options) {

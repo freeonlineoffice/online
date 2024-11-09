@@ -29,7 +29,8 @@ function _extractLabelText(data) {
 
 	for (var i = 0; i < data.children.length; i++) {
 		var label = _extractLabelText(data.children[i]);
-		if (label) return label;
+		if (label)
+			return label;
 	}
 
 	return '';
@@ -37,37 +38,19 @@ function _extractLabelText(data) {
 
 JSDialog.frame = function _frameHandler(parentContainer, data, builder) {
 	if (data.children.length > 1) {
-		var container = L.DomUtil.create(
-			'div',
-			'ui-frame-container ' + builder.options.cssClass,
-			parentContainer,
-		);
+		var container = L.DomUtil.create('div', 'ui-frame-container ' + builder.options.cssClass, parentContainer);
 		container.id = data.id;
 
-		var frame = L.DomUtil.create(
-			'div',
-			'ui-frame ' + builder.options.cssClass,
-			container,
-		);
+		var frame = L.DomUtil.create('div', 'ui-frame ' + builder.options.cssClass, container);
 		frame.id = data.id + '-frame';
-		var label = L.DomUtil.create(
-			'label',
-			'ui-frame-label ' + builder.options.cssClass,
-			frame,
-		);
-		label.innerText = builder._cleanText(
-			_extractLabelText(data.children[0]),
-		);
+		var label = L.DomUtil.create('label', 'ui-frame-label ' + builder.options.cssClass, frame);
+		label.innerText = builder._cleanText(_extractLabelText(data.children[0]));
 		label.id = data.children[0].id;
 		if (data.children[0].visible === false)
 			L.DomUtil.addClass(label, 'hidden');
 		builder.postProcess(frame, data.children[0]);
 
-		var frameChildren = L.DomUtil.create(
-			'div',
-			'ui-expander-content ' + builder.options.cssClass,
-			container,
-		);
+		var frameChildren = L.DomUtil.create('div', 'ui-expander-content ' + builder.options.cssClass, container);
 		frameChildren.id = data.id + '-content';
 		label.htmlFor = frameChildren.id;
 		$(frameChildren).addClass('expanded');
@@ -79,11 +62,7 @@ JSDialog.frame = function _frameHandler(parentContainer, data, builder) {
 
 		builder.build(frameChildren, children);
 	} else {
-		return builder._controlHandlers['container'](
-			parentContainer,
-			data,
-			builder,
-		);
+		return builder._controlHandlers['container'](parentContainer, data, builder);
 	}
 
 	return false;

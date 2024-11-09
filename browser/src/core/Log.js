@@ -13,42 +13,41 @@
 
 L.Log = {
 	log: function (msg, direction) {
-		if (!this._logs) this._logs = [];
+		if (!this._logs)
+			this._logs = [];
 		var time = Date.now();
-		if (!this.startTime) this.startTime = time;
+		if (!this.startTime)
+			this.startTime = time;
 
 		// Limit memory usage of log by only keeping the latest entries
 		var maxEntries = 100;
-		if (window.enableDebug) maxEntries = 1000;
+		if (window.enableDebug)
+			maxEntries = 1000;
 
-		if (time - this.startTime < 60 * 1000 /* ms */) maxEntries = 500; // enough to capture early start.
-		while (this._logs.length > maxEntries) this._logs.shift();
+		if (time - this.startTime < 60 * 1000 /* ms */)
+			maxEntries = 500; // enough to capture early start.
+		while (this._logs.length > maxEntries)
+			this._logs.shift();
 
 		// Limit memory usage of log by limiting length of message
 		var maxMsgLen = 128;
-		if (msg.length > maxMsgLen) msg = msg.substring(0, maxMsgLen);
+		if (msg.length > maxMsgLen)
+			msg = msg.substring(0, maxMsgLen);
 		msg = msg.replace(/(\r\n|\n|\r)/gm, ' ');
-		this._logs.push({ msg: msg, direction: direction, time: time });
+		this._logs.push({msg : msg, direction : direction, time : time});
 	},
 
 	_getEntries: function () {
-		if (!this._logs) this._logs = [];
+		if (!this._logs)
+			this._logs = [];
 		this._logs.sort(function (a, b) {
-			if (a.time < b.time) {
-				return -1;
-			}
-			if (a.time > b.time) {
-				return 1;
-			}
+			if (a.time < b.time) { return -1; }
+			if (a.time > b.time) { return 1; }
 			return 0;
 		});
 		var data = '';
 		for (var i = 0; i < this._logs.length; i++) {
-			data +=
-				this._logs[i].time +
-				'.' +
-				this._logs[i].direction +
-				'.' +
+			data += this._logs[i].time + '.' + this._logs[i].direction + '.' +
 				this._logs[i].msg;
 			data += '\n';
 		}
@@ -62,34 +61,18 @@ L.Log = {
 	},
 
 	save: function () {
-		var blob = new Blob([this._getEntries()], { type: 'text/csv' }),
-			e = document.createEvent('MouseEvents'),
-			a = document.createElement('a');
+		var blob = new Blob([this._getEntries()], {type: 'text/csv'}),
+		    e = document.createEvent('MouseEvents'),
+		    a = document.createElement('a');
 
 		a.download = Date.now() + '.csv';
 		a.href = window.URL.createObjectURL(blob);
-		a.dataset.downloadurl = ['text/csv', a.download, a.href].join(':');
-		e.initMouseEvent(
-			'click',
-			true,
-			false,
-			window,
-			0,
-			0,
-			0,
-			0,
-			0,
-			false,
-			false,
-			false,
-			false,
-			0,
-			null,
-		);
+		a.dataset.downloadurl =  ['text/csv', a.download, a.href].join(':');
+		e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 		a.dispatchEvent(e);
 	},
 
 	clear: function () {
 		this._logs = [];
-	},
+	}
 };

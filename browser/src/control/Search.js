@@ -2,7 +2,7 @@
 /* global app */
 
 L.Map.include({
-	search: function (text, backward, replaceString, command, expand) {
+	search: function (text, backward, replaceString,  command, expand) {
 		if (backward === undefined) {
 			backward = false;
 		}
@@ -12,54 +12,44 @@ L.Map.include({
 		if (replaceString === undefined) {
 			replaceString = '';
 		}
-		if (
-			this._docLayer._searchResults &&
-			text !== this._docLayer._searchTerm
-		) {
+		if (this._docLayer._searchResults && text !== this._docLayer._searchTerm)
+		{
 			this._docLayer._clearSearchResults();
 		}
 
 		var searchCmd = {
 			'SearchItem.SearchString': {
-				type: 'string',
+				'type': 'string'
 			},
 			'SearchItem.ReplaceString': {
-				type: 'string',
+				'type': 'string'
 			},
 			'SearchItem.Backward': {
-				type: 'boolean',
+				'type': 'boolean'
 			},
 			'SearchItem.SearchStartPointX': {
-				type: 'long',
+				'type': 'long'
 			},
 			'SearchItem.SearchStartPointY': {
-				type: 'long',
+				'type': 'long'
 			},
 			'SearchItem.Command': {
-				type: 'long',
-			},
+				'type': 'long'
+			}
 		};
 
 		this.fire('clearselection');
 		var viewTopLeftpx = this.project(this.getBounds().getNorthWest());
-		var docBoundsTopLeft = this.project(
-			this.options.maxBounds.getNorthWest(),
-		);
-		var topLeft = this.unproject(
-			new L.Point(
-				Math.max(viewTopLeftpx.x, docBoundsTopLeft.x),
-				Math.max(viewTopLeftpx.y, docBoundsTopLeft.y),
-			),
-		);
+		var docBoundsTopLeft = this.project(this.options.maxBounds.getNorthWest());
+		var topLeft = this.unproject(new L.Point(
+			Math.max(viewTopLeftpx.x, docBoundsTopLeft.x),
+			Math.max(viewTopLeftpx.y, docBoundsTopLeft.y)));
 		var topLeftTwips = this._docLayer._latLngToTwips(topLeft);
 
 		var searchStartPointX = topLeftTwips.x;
 		var searchStartPointY = topLeftTwips.y;
 		if (this._docLayer && this._docLayer._lastSearchResult && expand) {
-			var strTwips =
-				this._docLayer._lastSearchResult.twipsRectangles.match(
-					/\d+/g,
-				);
+			var strTwips = this._docLayer._lastSearchResult.twipsRectangles.match(/\d+/g);
 			if (strTwips != null) {
 				searchStartPointX = strTwips[0];
 				searchStartPointY = strTwips[1];
@@ -74,16 +64,11 @@ L.Map.include({
 		searchCmd['SearchItem.SearchStartPointY'].value = searchStartPointY;
 		searchCmd['SearchItem.Command'].value = command;
 		this._docLayer._searchRequested = true;
-		app.socket.sendMessage(
-			'uno .uno:ExecuteSearch ' + JSON.stringify(searchCmd),
-		);
+		app.socket.sendMessage('uno .uno:ExecuteSearch ' + JSON.stringify(searchCmd));
 	},
 
 	highlightAll: function (text) {
-		if (
-			this._docLayer._searchResults &&
-			text === this._docLayer._searchTerm
-		) {
+		if (this._docLayer._searchResults && text === this._docLayer._searchTerm) {
 			return;
 		}
 		this.search(text, false, 1);
@@ -92,5 +77,5 @@ L.Map.include({
 	resetSelection: function () {
 		this._docLayer._clearSearchResults();
 		app.socket.sendMessage('resetselection');
-	},
+	}
 });

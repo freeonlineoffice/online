@@ -5,6 +5,7 @@
 
 /* global app $ */
 L.Control.MobileWizard = L.Control.extend({
+
 	initialize: function (options) {
 		L.setOptions(this, options);
 	},
@@ -13,7 +14,8 @@ L.Control.MobileWizard = L.Control.extend({
 		this.map = map;
 
 		// for the moment, the mobile-wizard is mobile phone only
-		if (!window.mode.isMobile()) return;
+		if (!window.mode.isMobile())
+			return;
 
 		this.contents = [];
 
@@ -28,7 +30,7 @@ L.Control.MobileWizard = L.Control.extend({
 		this._setupBackButton();
 	},
 
-	onRemove: function () {
+	onRemove: function() {
 		this.map.off('mobilewizard', this._onMobileWizard, this);
 		this.map.off('closemobilewizard', this._closeWizard, this);
 		this.map.off('showwizardsidebar', this._showWizardSidebar, this);
@@ -38,24 +40,24 @@ L.Control.MobileWizard = L.Control.extend({
 		this.map.off('jsdialogaction', this.onJSAction, this);
 	},
 
-	_setupBackButton: function () {
+	_setupBackButton: function() {
 		this.backButton = $('#mobile-wizard-back');
-		this.backButton.click(function () {
-			history.back();
-		});
+		this.backButton.click(function() { history.back(); });
 	},
 
-	_showWizardSidebar: function (event) {
+	_showWizardSidebar: function(event) {
 		this.map.showSidebar = true;
-		if (!event || !event.noRefresh) this._refreshSidebar();
+		if (!event || !event.noRefresh)
+			this._refreshSidebar();
 	},
 
-	_closeWizard: function () {
+	_closeWizard: function() {
 		var items = this.contents.length;
-		while (items--) this.removeWindow(this.contents[0]);
+		while (items--)
+			this.removeWindow(this.contents[0]);
 	},
 
-	_hideWizard: function () {
+	_hideWizard: function() {
 		$('.jsdialog-overlay').remove();
 
 		// dialog
@@ -66,28 +68,18 @@ L.Control.MobileWizard = L.Control.extend({
 		}
 
 		if (window.commentWizard === true && app.sectionContainer) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.removeHighlighters();
+			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).removeHighlighters();
 		}
 
-		if (!this.contents.length) $('#mobile-wizard').hide();
+		if (!this.contents.length)
+			$('#mobile-wizard').hide();
 
-		document
-			.getElementById('mobile-wizard')
-			.classList.remove('menuwizard');
-		document
-			.getElementById('mobile-wizard')
-			.classList.remove('shapeswizard');
-		if (
-			!document
-				.getElementById('document-container')
-				.classList.contains('landscape')
-		) {
-			var pcw = document.getElementById(
-				'presentation-controls-wrapper',
-			);
-			if (pcw) pcw.style.display = 'block';
+		document.getElementById('mobile-wizard').classList.remove('menuwizard');
+		document.getElementById('mobile-wizard').classList.remove('shapeswizard');
+		if (!document.getElementById('document-container').classList.contains('landscape')) {
+			var pcw = document.getElementById('presentation-controls-wrapper');
+			if (pcw)
+				pcw.style.display = 'block';
 		}
 
 		if (this.map.isEditMode()) {
@@ -103,14 +95,17 @@ L.Control.MobileWizard = L.Control.extend({
 
 		window.pageMobileWizard = false;
 
-		if (window.mobileWizard === true) window.mobileWizard = false;
+		if (window.mobileWizard === true)
+			window.mobileWizard = false;
 
 		if (window.insertionMobileWizard === true)
 			window.insertionMobileWizard = false;
 
-		if (window.pageMobileWizard === true) window.pageMobilewizard = false;
+		if (window.pageMobileWizard === true)
+			window.pageMobilewizard = false;
 
-		if (window.commentWizard === true) window.commentWizard = false;
+		if (window.commentWizard === true)
+			window.commentWizard = false;
 
 		this._updateToolbarItemStateByClose();
 
@@ -118,18 +113,21 @@ L.Control.MobileWizard = L.Control.extend({
 			this.map.focus();
 		}
 
-		if (this.map.uiManager.sheetsBar) this.map.uiManager.sheetsBar.show();
+		if (this.map.uiManager.sheetsBar)
+			this.map.uiManager.sheetsBar.show();
 	},
 
-	isOpen: function () {
+	isOpen: function() {
 		return $('#mobile-wizard').is(':visible');
 	},
 
-	_updateToolbarItemStateByClose: function () {
+	_updateToolbarItemStateByClose: function() {
 		var toolbar = app.map.mobileTopBar;
-		if (toolbar) {
+		if (toolbar)
+		{
 			//if (window.mobileWizard === false && toolbar.get('mobile_wizard').checked)
 			//	toolbar.uncheck('mobile_wizard');
+
 			//if (window.insertionMobileWizard === false && toolbar.get('insertion_mobile_wizard').checked)
 			//	toolbar.uncheck('insertion_mobile_wizard');
 			//if (window.commentWizard === false && toolbar.get('comment_wizard').checked)
@@ -137,34 +135,27 @@ L.Control.MobileWizard = L.Control.extend({
 		}
 	},
 
-	goLevelDown: function (contentToShow, options) {
+	goLevelDown: function(contentToShow, options) {
 		if (this.contents.length)
-			this.contents[this.contents.length - 1].goLevelDown(
-				contentToShow,
-				options,
-			);
+			this.contents[this.contents.length - 1].goLevelDown(contentToShow, options);
 	},
 
-	goLevelUp: function () {
+	goLevelUp: function() {
 		if (this.contents.length)
 			this.contents[this.contents.length - 1].goLevelUp();
 	},
 
-	_onResize: function () {
-		L.DomUtil.updateElementsOrientation([
-			'mobile-wizard',
-			'mobile-wizard-content',
-		]);
+	_onResize: function() {
+		L.DomUtil.updateElementsOrientation(['mobile-wizard', 'mobile-wizard-content']);
 	},
 
-	selectedTab: function (tabText) {
-		var topWindow = this.contents.length
-			? this.contents[this.contents.length - 1]
-			: null;
-		if (topWindow) topWindow.selectedTab(tabText);
+	selectedTab: function(tabText) {
+		var topWindow = this.contents.length ? this.contents[this.contents.length - 1] : null;
+		if (topWindow)
+			topWindow.selectedTab(tabText);
 	},
 
-	_getContentForWindowId: function (id) {
+	_getContentForWindowId: function(id) {
 		for (var i in this.contents) {
 			if (this.contents[i].id === 'mobile-wizard-content-' + id)
 				return this.contents[i];
@@ -173,18 +164,17 @@ L.Control.MobileWizard = L.Control.extend({
 		return null;
 	},
 
-	_refreshSidebar: function (ms) {
+	_refreshSidebar: function(ms) {
 		ms = ms !== undefined ? ms : 400;
 		setTimeout(function () {
-			var message =
-				'dialogevent ' +
-				(window.sidebarId !== undefined ? window.sidebarId : -1) +
-				' {"id":"-1"}';
+			var message = 'dialogevent ' +
+			    (window.sidebarId !== undefined ? window.sidebarId : -1) +
+			    ' {"id":"-1"}';
 			app.socket.sendMessage(message);
 		}, ms);
 	},
 
-	_onMobileWizard: function (data) {
+	_onMobileWizard: function(data) {
 		var callback = data.callback;
 		data = data.data;
 		if (data) {
@@ -192,11 +182,9 @@ L.Control.MobileWizard = L.Control.extend({
 			if (existingWindow) {
 				existingWindow._onMobileWizard(data, callback);
 			} else {
-				var newWindow = L.control.mobileWizardWindow(
-					this,
-					'mobile-wizard-content-' + data.id,
-				);
-				for (var i in this.contents) this.contents[i].hideWindow();
+				var newWindow = L.control.mobileWizardWindow(this, 'mobile-wizard-content-' + data.id);
+				for (var i in this.contents)
+					this.contents[i].hideWindow();
 				this.contents.push(newWindow);
 				this.map.addControl(newWindow);
 				newWindow._onMobileWizard(data, callback);
@@ -204,7 +192,7 @@ L.Control.MobileWizard = L.Control.extend({
 		}
 	},
 
-	removeWindow: function (window) {
+	removeWindow: function(window) {
 		var pos = this.contents.indexOf(window);
 		if (pos >= 0) {
 			var wasPopup = false;
@@ -218,7 +206,8 @@ L.Control.MobileWizard = L.Control.extend({
 			if (this.contents.length) {
 				var parentWindow = this.contents[this.contents.length - 1];
 				parentWindow.showWindow();
-				if (wasPopup) parentWindow.goLevelUp();
+				if (wasPopup)
+					parentWindow.goLevelUp();
 			}
 			this._hideWizard();
 		}
@@ -227,7 +216,8 @@ L.Control.MobileWizard = L.Control.extend({
 	onJSUpdate: function (e) {
 		var data = e.data;
 
-		if (data.jsontype === 'notebookbar') return;
+		if (data.jsontype === 'notebookbar')
+			return;
 
 		var existingWindow = this._getContentForWindowId(data.id);
 		if (existingWindow) {
@@ -238,7 +228,8 @@ L.Control.MobileWizard = L.Control.extend({
 	onJSAction: function (e) {
 		var data = e.data;
 
-		if (data.jsontype === 'notebookbar') return;
+		if (data.jsontype === 'notebookbar')
+			return;
 
 		var existingWindow = this._getContentForWindowId(data.id);
 		if (existingWindow) {

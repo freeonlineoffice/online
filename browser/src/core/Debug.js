@@ -23,13 +23,13 @@
 /* global app L _ InvalidationRectangleSection */
 
 L.DebugManager = L.Class.extend({
-	initialize: function (map) {
+	initialize: function(map) {
 		this._map = map;
 		this.debugOn = false;
 		this.debugNeverStarted = true;
 	},
 
-	toggle: function () {
+	toggle: function() {
 		if (!this.debugOn) {
 			this._start();
 		} else {
@@ -40,7 +40,7 @@ L.DebugManager = L.Class.extend({
 		this._painter.update();
 	},
 
-	_start: function () {
+	_start: function() {
 		this._docLayer = this._map._docLayer;
 		this._painter = this._map._docLayer._painter;
 
@@ -49,15 +49,11 @@ L.DebugManager = L.Class.extend({
 
 		this._controls = {};
 		// Add header
-		this._controls['header'] = L.control
-			.layers({}, {}, { collapsed: false })
-			.addTo(this._map);
+		this._controls['header'] = L.control.layers({}, {}, {collapsed: false}).addTo(this._map);
 		var b = document.createElement('b');
 		b.append(_('Debug Tools'));
 		this._controls['header']._container.prepend(b);
-		this._controls['header']._container.append(
-			_('Ctrl+Shift+Alt+D to exit'),
-		);
+		this._controls['header']._container.append(_('Ctrl+Shift+Alt+D to exit'));
 
 		this._toolLayers = [];
 		this._addDebugTools();
@@ -69,13 +65,15 @@ L.DebugManager = L.Class.extend({
 
 		// Display debug info in About box
 		const wopiHostId = document.getElementById('wopi-host-id-cloned');
-		if (wopiHostId) wopiHostId.style.display = 'block';
+		if (wopiHostId)
+			wopiHostId.style.display = 'block';
 
 		const servedBy = document.getElementById('served-by-cloned');
-		if (servedBy) servedBy.style.display = 'flex';
+		if (servedBy)
+			servedBy.style.display = 'flex';
 	},
 
-	_stop: function () {
+	_stop: function() {
 		this.debugOn = false;
 
 		// Remove layers
@@ -91,18 +89,18 @@ L.DebugManager = L.Class.extend({
 
 		// Hide debug info in About box
 		const wopiHostId = document.getElementById('wopi-host-id-cloned');
-		if (wopiHostId) wopiHostId.style.display = 'none';
+		if (wopiHostId)
+			wopiHostId.style.display = 'none';
 
 		const servedBy = document.getElementById('served-by-cloned');
-		if (servedBy) servedBy.style.display = 'none';
+		if (servedBy)
+			servedBy.style.display = 'none';
 	},
 
 	_addDebugTool: function (tool) {
 		// Create control if it doesn't exist
 		if (!(tool.category in this._controls)) {
-			this._controls[tool.category] = L.control
-				.layers({}, {}, { collapsed: false })
-				.addTo(this._map);
+			this._controls[tool.category] = L.control.layers({}, {}, {collapsed: false}).addTo(this._map);
 			// Add a title
 			var b = document.createElement('b');
 			b.append(tool.category);
@@ -115,24 +113,16 @@ L.DebugManager = L.Class.extend({
 		this._controls[tool.category]._addLayer(layer, tool.name, true);
 		this._controls[tool.category]._update();
 
-		this._map.on(
-			'layeradd',
-			function (e) {
-				if (e.layer === layer) {
-					tool.onAdd();
-				}
-			},
-			this,
-		);
-		this._map.on(
-			'layerremove',
-			function (e) {
-				if (e.layer === layer) {
-					tool.onRemove();
-				}
-			},
-			this,
-		);
+		this._map.on('layeradd', function(e) {
+			if (e.layer === layer) {
+				tool.onAdd();
+			}
+		}, this);
+		this._map.on('layerremove', function(e) {
+			if (e.layer === layer) {
+				tool.onRemove();
+			}
+		}, this);
 		if (tool.startsOn) {
 			this._map.addLayer(layer);
 		}
@@ -376,8 +366,7 @@ L.DebugManager = L.Class.extend({
 			category: 'Functionality',
 			startsOn: false,
 			onAdd: function () {
-				self._typerLorem =
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n';
+				self._typerLorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n';
 				self._typerLoremPos = 0;
 				self._typerTimeout();
 			},
@@ -418,10 +407,7 @@ L.DebugManager = L.Class.extend({
 				category: 'Automated User',
 				startsOn: false,
 				onAdd: function () {
-					self._automatedUserAddTask(
-						this.name,
-						L.bind(self._automatedUserTypeCellFormula, self),
-					);
+					self._automatedUserAddTask(this.name, L.bind(self._automatedUserTypeCellFormula, self));
 				},
 				onRemove: function () {
 					self._automatedUserRemoveTask(this.name);
@@ -434,10 +420,7 @@ L.DebugManager = L.Class.extend({
 			category: 'Automated User',
 			startsOn: false,
 			onAdd: function () {
-				self._automatedUserAddTask(
-					this.name,
-					L.bind(self._automatedUserInsertTypeShape, self),
-				);
+				self._automatedUserAddTask(this.name, L.bind(self._automatedUserInsertTypeShape, self));
 			},
 			onRemove: function () {
 				self._automatedUserRemoveTask(this.name);
@@ -450,13 +433,7 @@ L.DebugManager = L.Class.extend({
 				category: 'Automated User',
 				startsOn: false,
 				onAdd: function () {
-					self._automatedUserAddTask(
-						this.name,
-						L.bind(
-							self._automatedUserResizeRowsColumns,
-							self,
-						),
-					);
+					self._automatedUserAddTask(this.name, L.bind(self._automatedUserResizeRowsColumns, self));
 				},
 				onRemove: function () {
 					self._automatedUserRemoveTask(this.name);
@@ -470,13 +447,7 @@ L.DebugManager = L.Class.extend({
 				category: 'Automated User',
 				startsOn: false,
 				onAdd: function () {
-					self._automatedUserAddTask(
-						this.name,
-						L.bind(
-							self._automatedUserInsertRowsColumns,
-							self,
-						),
-					);
+					self._automatedUserAddTask(this.name, L.bind(self._automatedUserInsertRowsColumns, self));
 				},
 				onRemove: function () {
 					self._automatedUserRemoveTask(this.name);
@@ -490,13 +461,7 @@ L.DebugManager = L.Class.extend({
 				category: 'Automated User',
 				startsOn: false,
 				onAdd: function () {
-					self._automatedUserAddTask(
-						this.name,
-						L.bind(
-							self._automatedUserDeleteRowsColumns,
-							self,
-						),
-					);
+					self._automatedUserAddTask(this.name, L.bind(self._automatedUserDeleteRowsColumns, self));
 				},
 				onRemove: function () {
 					self._automatedUserRemoveTask(this.name);
@@ -505,56 +470,37 @@ L.DebugManager = L.Class.extend({
 		}
 	},
 
-	_randomizeSettings: function () {
+	_randomizeSettings: function() {
 		// Toggle dark mode
 		var isDark = window.prefs.getBoolean('darkTheme');
 		if (Math.random() < 0.5) {
-			window.app.console.log(
-				'Randomize Settings: Toggle dark mode to ' +
-					(isDark ? 'Light' : 'Dark'),
-			);
+			window.app.console.log('Randomize Settings: Toggle dark mode to ' + (isDark?'Light':'Dark'));
 			this._map.uiManager.toggleDarkMode();
 		} else {
-			window.app.console.log(
-				'Randomize Settings: Leave dark mode as ' +
-					(isDark ? 'Dark' : 'Light'),
-			);
+			window.app.console.log('Randomize Settings: Leave dark mode as ' + (isDark?'Dark':'Light'));
 		}
 
 		// Set zoom
 		var targetZoom = Math.floor(Math.random() * 9) + 6; // 6 to 14, 50% to 200%
-		window.app.console.log(
-			'Randomize Settings: Set zoom to ' + targetZoom,
-		);
+		window.app.console.log('Randomize Settings: Set zoom to '+targetZoom);
 		this._map.setZoom(targetZoom, null, false);
 
 		// Toggle spell check
-		var isSpellCheck =
-			this._map['stateChangeHandler'].getItemValue('.uno:SpellOnline');
+		var isSpellCheck = this._map['stateChangeHandler'].getItemValue('.uno:SpellOnline');
 		if (Math.random() < 0.5) {
-			window.app.console.log(
-				'Randomize Settings: Toggle spell check to ' +
-					(isSpellCheck == 'true' ? 'off' : 'on'),
-			);
+			window.app.console.log('Randomize Settings: Toggle spell check to ' + (isSpellCheck=='true'?'off':'on'));
 			this._map.sendUnoCommand('.uno:SpellOnline');
 		} else {
-			window.app.console.log(
-				'Randomize Settings: Leave spell check as ' +
-					(isSpellCheck == 'true' ? 'on' : 'off'),
-			);
+			window.app.console.log('Randomize Settings: Leave spell check as ' + (isSpellCheck=='true'?'on':'off'));
 		}
 
 		// Toggle formatting marks
 		if (this._docLayer.isWriter()) {
 			if (Math.random() < 0.5) {
-				window.app.console.log(
-					'Randomize Settings: Toggle formatting marks',
-				);
+				window.app.console.log('Randomize Settings: Toggle formatting marks');
 				this._map.sendUnoCommand('.uno:ControlCodes');
 			} else {
-				window.app.console.log(
-					'Randomize Settings: Leave formatting marks',
-				);
+				window.app.console.log('Randomize Settings: Leave formatting marks');
 			}
 		}
 
@@ -565,47 +511,23 @@ L.DebugManager = L.Class.extend({
 			var maxX = docSize.x; //Math.min(docSize.x, 10000);
 			var maxY = docSize.y; //Math.min(docSize.y, 10000);
 			var positions = [
-				{ x: maxX, y: 0 }, // top right
-				{ x: 0, y: maxY }, // bottom left
-				{ x: maxX, y: maxY }, // bottom right
-				{ x: maxX / 2, y: maxY / 2 }, // center
+				{x: maxX, y: 0}, // top right
+				{x: 0, y: maxY}, // bottom left
+				{x: maxX, y: maxY}, // bottom right
+				{x: maxX/2, y: maxY/2}, // center
 			];
-			var pos =
-				positions[Math.floor(Math.random() * positions.length)];
+			var pos = positions[Math.floor(Math.random()*positions.length)];
 
 			// Calculate mouse click position
 			var viewSize = this._map.getSize();
-			var centerPos = {
-				x: pos.x + viewSize.x / 2,
-				y: pos.y + viewSize.y / 2,
-			};
+			var centerPos = {x: pos.x + viewSize.x/2, y: pos.y + viewSize.y/2};
 			var centerTwips = this._docLayer._pixelsToTwips(centerPos);
 
 			// Perform action
-			window.app.console.log(
-				'Randomize Settings: Move to ',
-				pos,
-				' click at ',
-				centerPos,
-				centerTwips,
-			);
+			window.app.console.log('Randomize Settings: Move to ',pos,' click at ', centerPos, centerTwips);
 			this._map.fire('scrollto', pos);
-			this._docLayer._postMouseEvent(
-				'buttondown',
-				centerTwips.x,
-				centerTwips.y,
-				1,
-				1,
-				0,
-			);
-			this._docLayer._postMouseEvent(
-				'buttonup',
-				centerTwips.x,
-				centerTwips.y,
-				1,
-				1,
-				0,
-			);
+			this._docLayer._postMouseEvent('buttondown', centerTwips.x, centerTwips.y, 1, 1, 0);
+			this._docLayer._postMouseEvent('buttonup', centerTwips.x, centerTwips.y, 1, 1, 0);
 		}
 
 		// Toggle sidebar
@@ -622,60 +544,39 @@ L.DebugManager = L.Class.extend({
 		this._painter.update();
 	},
 
-	_randomizeSidebar: function () {
-		var sidebars = [
-			'none',
-			'.uno:SidebarDeck.PropertyDeck',
-			'.uno:Navigator',
-		];
+	_randomizeSidebar: function() {
+		var sidebars = ['none','.uno:SidebarDeck.PropertyDeck','.uno:Navigator'];
 		if (this._docLayer.isImpress()) {
-			sidebars = sidebars.concat([
-				'.uno:SlideChangeWindow',
-				'.uno:CustomAnimation',
-				'.uno:MasterSlidesPanel',
-				'.uno:ModifyPage',
-			]);
+			sidebars = sidebars.concat(['.uno:SlideChangeWindow','.uno:CustomAnimation','.uno:MasterSlidesPanel','.uno:ModifyPage']);
 		}
-		var sidebar = sidebars[Math.floor(Math.random() * sidebars.length)];
-		window.app.console.log(
-			'Randomize Settings: Target sidebar: ' + sidebar,
-		);
+		var sidebar = sidebars[Math.floor(Math.random()*sidebars.length)];
+		window.app.console.log('Randomize Settings: Target sidebar: ' + sidebar);
 		if (this._map.sidebar && this._map.sidebar.isVisible()) {
 			// There is currently a sidebar
 			var currentSidebar = this._map.sidebar.getTargetDeck();
 			if (sidebar == 'none') {
-				window.app.console.log(
-					'Randomize Settings: Remove sidebar',
-				);
+				window.app.console.log('Randomize Settings: Remove sidebar');
 				// Send message for existing sidebar to remove it
 				this._map.sendUnoCommand(currentSidebar);
 			} else if (sidebar == currentSidebar) {
-				window.app.console.log(
-					'Randomize Settings: Leave sidebar as ' + sidebar,
-				);
+				window.app.console.log('Randomize Settings: Leave sidebar as ' + sidebar);
 			} else {
-				window.app.console.log(
-					'Randomize Settings: Switch sidebar to ' + sidebar,
-				);
+				window.app.console.log('Randomize Settings: Switch sidebar to ' + sidebar);
 				this._map.sendUnoCommand(sidebar);
 			}
 		} else {
 			// Sidebar currently hidden
 			// eslint-disable-next-line no-lonely-if
 			if (sidebar == 'none') {
-				window.app.console.log(
-					'Randomize Settings: Leave sidebar off',
-				);
+				window.app.console.log('Randomize Settings: Leave sidebar off');
 			} else {
-				window.app.console.log(
-					'Randomize Settings: Open sidebar ' + sidebar,
-				);
+				window.app.console.log('Randomize Settings: Open sidebar ' + sidebar);
 				this._map.sendUnoCommand(sidebar);
 			}
 		}
 	},
 
-	_automatedUserAddTask: function (name, taskFn) {
+	_automatedUserAddTask: function(name, taskFn) {
 		// task function takes phase number, returns waitTime
 		// When waitTime == 0, task is done.
 
@@ -687,65 +588,45 @@ L.DebugManager = L.Class.extend({
 		}
 	},
 
-	_automatedUserRemoveTask: function (name) {
+	_automatedUserRemoveTask: function(name) {
 		// Don't bother deleting function from _debugAutomatedUserTasks
 		// Remove from queue
 		if (this._automatedUserQueue.includes(name)) {
 			this._automatedUserQueue.splice(
 				this._automatedUserQueue.indexOf(name),
-				1,
-			);
+				1);
 		}
 	},
 
 	_automatedUserTimeout: function () {
 		if (!this._automatedUserTask) {
 			// Not in the middle of a task, pick a new one
-			window.app.console.log(
-				'Automated User: Pick a new task. Current queue: ',
-				this._automatedUserQueue,
-			);
+			window.app.console.log('Automated User: Pick a new task. Current queue: ',this._automatedUserQueue);
 			this._automatedUserTask = this._automatedUserQueue.shift();
 			this._automatedUserPhase = 0;
 		}
 
 		if (this._automatedUserTask && this._automatedUserPhase == 0) {
-			window.app.console.log(
-				'Automated User: Starting task ' + this._automatedUserTask,
-			);
+			window.app.console.log('Automated User: Starting task ' + this._automatedUserTask);
 			// Re-enqueue task
 			this._automatedUserQueue.push(this._automatedUserTask);
 		}
 
 		if (this._automatedUserTask) {
-			window.app.console.log(
-				'Automated User: Current task: ' +
-					this._automatedUserTask +
-					' Current phase: ' +
-					this._automatedUserPhase,
-			);
+			window.app.console.log('Automated User: Current task: ' + this._automatedUserTask + ' Current phase: ' + this._automatedUserPhase);
 			var taskFn = this._automatedUserTasks[this._automatedUserTask];
 			var waitTime = taskFn(this._automatedUserPhase);
 			this._automatedUserPhase++;
 			if (waitTime == 0) {
-				window.app.console.log(
-					'Automated User: Task complete: ' +
-						this._automatedUserTask,
-				);
+				window.app.console.log('Automated User: Task complete: ' + this._automatedUserTask);
 				this._automatedUserTask = undefined;
 				this._automatedUserPhase = 0;
 			}
-			this._automatedUserTimeoutId = setTimeout(
-				L.bind(this._automatedUserTimeout, this),
-				waitTime,
-			);
+			this._automatedUserTimeoutId = setTimeout(L.bind(this._automatedUserTimeout, this), waitTime);
 		} else {
 			window.app.console.log('Automated User: Waiting for tasks');
 			// Nothing in queue, check again in 1s
-			this._automatedUserTimeoutId = setTimeout(
-				L.bind(this._automatedUserTimeout, this),
-				1000,
-			);
+			this._automatedUserTimeoutId = setTimeout(L.bind(this._automatedUserTimeout, this), 1000);
 		}
 	},
 
@@ -754,25 +635,9 @@ L.DebugManager = L.Class.extend({
 		switch (phase) {
 			case 0:
 				window.app.console.log('Automated User: Click in center');
-				var pos = this._docLayer._latLngToTwips(
-					this._map.getCenter(),
-				);
-				this._docLayer._postMouseEvent(
-					'buttondown',
-					pos.x,
-					pos.y,
-					1,
-					1,
-					0,
-				);
-				this._docLayer._postMouseEvent(
-					'buttonup',
-					pos.x,
-					pos.y,
-					1,
-					1,
-					0,
-				);
+				var pos = this._docLayer._latLngToTwips(this._map.getCenter());
+				this._docLayer._postMouseEvent('buttondown',pos.x,pos.y,1,1,0);
+				this._docLayer._postMouseEvent('buttonup',pos.x,pos.y,1,1,0);
 				waitTime = 500;
 				break;
 			case 1:
@@ -799,13 +664,9 @@ L.DebugManager = L.Class.extend({
 				break;
 			case 5:
 				window.app.console.log('Automated User: Delete cells');
-				app.socket.sendMessage(
-					'removetextcontext id=0 before=0 after=1',
-				); //delete
+				app.socket.sendMessage('removetextcontext id=0 before=0 after=1'); //delete
 				this._docLayer.postKeyboardEvent('input', 0, 1025); //up
-				app.socket.sendMessage(
-					'removetextcontext id=0 before=0 after=1',
-				); //delete
+				app.socket.sendMessage('removetextcontext id=0 before=0 after=1'); //delete
 				waitTime = 500;
 				break;
 		}
@@ -817,51 +678,32 @@ L.DebugManager = L.Class.extend({
 		switch (phase) {
 			case 0:
 				window.app.console.log('Automated User: Insert Shape');
-				var shapes = ['rectangle', 'circle', 'diamond', 'pentagon'];
-				var shape =
-					shapes[Math.floor(Math.random() * shapes.length)];
-				this._map.sendUnoCommand('.uno:BasicShapes.' + shape);
+				var shapes = ['rectangle','circle','diamond','pentagon'];
+				var shape = shapes[Math.floor(Math.random() * shapes.length)];
+				this._map.sendUnoCommand('.uno:BasicShapes.'+shape);
 				waitTime = 1000;
 				break;
 			case 1:
 				window.app.console.log('Automated User: Type in Shape');
-				this._docLayer.postKeyboardEvent('input', 0, 1280); // enter to select text
+				this._docLayer.postKeyboardEvent('input',0, 1280); // enter to select text
 				this._typeText('textinshape', 100);
 				waitTime = 1500;
 				break;
 			case 2:
 				window.app.console.log('Automated User: Type Escape');
-				this._docLayer.postKeyboardEvent('input', 0, 1281); // esc
+				this._docLayer.postKeyboardEvent('input',0, 1281); // esc
 				waitTime = 500;
 				break;
 			case 3:
 				window.app.console.log('Automated User: Select Shape');
-				var pos = this._docLayer._latLngToTwips(
-					this._map.getCenter(),
-				);
-				this._docLayer._postMouseEvent(
-					'buttondown',
-					pos.x,
-					pos.y,
-					1,
-					1,
-					0,
-				);
-				this._docLayer._postMouseEvent(
-					'buttonup',
-					pos.x,
-					pos.y,
-					1,
-					1,
-					0,
-				);
+				var pos = this._docLayer._latLngToTwips(this._map.getCenter());
+				this._docLayer._postMouseEvent('buttondown',pos.x,pos.y,1,1,0);
+				this._docLayer._postMouseEvent('buttonup',pos.x,pos.y,1,1,0);
 				waitTime = 1000;
 				break;
 			case 4:
 				window.app.console.log('Automated User: Delete Shape');
-				app.socket.sendMessage(
-					'removetextcontext id=0 before=0 after=1',
-				);
+				app.socket.sendMessage('removetextcontext id=0 before=0 after=1');
 				waitTime = 1000;
 				break;
 		}
@@ -872,77 +714,45 @@ L.DebugManager = L.Class.extend({
 		var waitTime = 0;
 		switch (phase) {
 			case 0:
-				window.app.console.log(
-					'Automated User: Resize row smaller',
-				);
+				window.app.console.log('Automated User: Resize row smaller');
 				// Not necessary here, but nice to highlight the row being changed
-				app.sectionContainer
-					.getSectionWithName('row header')
-					._selectRow(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:RowHeight {"RowHeight":{"type":"unsigned short","value":200},"Row":{"type":"long","value":2}}',
-				);
+				app.sectionContainer.getSectionWithName('row header')._selectRow(1,0);
+				this._map.sendUnoCommand('.uno:RowHeight {"RowHeight":{"type":"unsigned short","value":200},"Row":{"type":"long","value":2}}');
 				waitTime = 2000;
 				break;
 			case 1:
 				window.app.console.log('Automated User: Resize row larger');
 				// Not necessary here, but nice to highlight the row being changed
-				app.sectionContainer
-					.getSectionWithName('row header')
-					._selectRow(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:RowHeight {"RowHeight":{"type":"unsigned short","value":2000},"Row":{"type":"long","value":2}}',
-				);
+				app.sectionContainer.getSectionWithName('row header')._selectRow(1,0);
+				this._map.sendUnoCommand('.uno:RowHeight {"RowHeight":{"type":"unsigned short","value":2000},"Row":{"type":"long","value":2}}');
 				waitTime = 2000;
 				break;
 			case 2:
 				window.app.console.log('Automated User: Resize row auto');
 				// Selecting row is necessary here
-				app.sectionContainer
-					.getSectionWithName('row header')
-					._selectRow(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:SetOptimalRowHeight {"aExtraHeight":{"type":"unsigned short","value":0}}',
-				);
+				app.sectionContainer.getSectionWithName('row header')._selectRow(1,0);
+				this._map.sendUnoCommand('.uno:SetOptimalRowHeight {"aExtraHeight":{"type":"unsigned short","value":0}}');
 				waitTime = 2000;
 				break;
 			case 3:
-				window.app.console.log(
-					'Automated User: Resize column smaller',
-				);
+				window.app.console.log('Automated User: Resize column smaller');
 				// Not necessary here, but nice to highlight the column being changed
-				app.sectionContainer
-					.getSectionWithName('column header')
-					._selectColumn(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:ColumnWidth {"ColumnWidth":{"type":"unsigned short","value":400},"Column":{"type":"long","value":2}}',
-				);
+				app.sectionContainer.getSectionWithName('column header')._selectColumn(1,0);
+				this._map.sendUnoCommand('.uno:ColumnWidth {"ColumnWidth":{"type":"unsigned short","value":400},"Column":{"type":"long","value":2}}');
 				waitTime = 2000;
 				break;
 			case 4:
-				window.app.console.log(
-					'Automated User: Resize column larger',
-				);
+				window.app.console.log('Automated User: Resize column larger');
 				// Not necessary here, but nice to highlight the column being changed
-				app.sectionContainer
-					.getSectionWithName('column header')
-					._selectColumn(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:ColumnWidth {"ColumnWidth":{"type":"unsigned short","value":8000},"Column":{"type":"long","value":2}}',
-				);
+				app.sectionContainer.getSectionWithName('column header')._selectColumn(1,0);
+				this._map.sendUnoCommand('.uno:ColumnWidth {"ColumnWidth":{"type":"unsigned short","value":8000},"Column":{"type":"long","value":2}}');
 				waitTime = 2000;
 				break;
 			case 5:
-				window.app.console.log(
-					'Automated User: Resize column auto',
-				);
+				window.app.console.log('Automated User: Resize column auto');
 				// Selecting column is necessary here
-				app.sectionContainer
-					.getSectionWithName('column header')
-					._selectColumn(1, 0);
-				this._map.sendUnoCommand(
-					'.uno:SetOptimalColumnWidthDirect {"aExtraHeight":{"type":"unsigned short","value":0}}',
-				);
+				app.sectionContainer.getSectionWithName('column header')._selectColumn(1,0);
+				this._map.sendUnoCommand('.uno:SetOptimalColumnWidthDirect {"aExtraHeight":{"type":"unsigned short","value":0}}');
 				waitTime = 2000;
 				break;
 		}
@@ -955,23 +765,15 @@ L.DebugManager = L.Class.extend({
 			case 0:
 				window.app.console.log('Automated User: Insert row');
 				// Select just this row first, doesn't work if multiple rows are selected
-				app.sectionContainer
-					.getSectionWithName('row header')
-					._selectRow(1, 0);
-				app.sectionContainer
-					.getSectionWithName('row header')
-					.insertRowAbove(1);
+				app.sectionContainer.getSectionWithName('row header')._selectRow(1,0);
+				app.sectionContainer.getSectionWithName('row header').insertRowAbove(1);
 				waitTime = 2000;
 				break;
 			case 1:
 				window.app.console.log('Automated User: Delete column');
 				// Select just this column first, doesn't work if multiple columns are selected
-				app.sectionContainer
-					.getSectionWithName('column header')
-					._selectColumn(1, 0);
-				app.sectionContainer
-					.getSectionWithName('column header')
-					.insertColumnBefore(1);
+				app.sectionContainer.getSectionWithName('column header')._selectColumn(1,0);
+				app.sectionContainer.getSectionWithName('column header').insertColumnBefore(1);
 				waitTime = 2000;
 				break;
 		}
@@ -984,55 +786,39 @@ L.DebugManager = L.Class.extend({
 			case 0:
 				window.app.console.log('Automated User: Delete row');
 				// Select just this row first, otherwise multiple rows could get deleted
-				app.sectionContainer
-					.getSectionWithName('row header')
-					._selectRow(1, 0);
-				app.sectionContainer
-					.getSectionWithName('row header')
-					.deleteRow(1);
+				app.sectionContainer.getSectionWithName('row header')._selectRow(1,0);
+				app.sectionContainer.getSectionWithName('row header').deleteRow(1);
 				waitTime = 2000;
 				break;
 			case 1:
 				window.app.console.log('Automated User: Delete column');
 				// Select just this column first, otherwise multiple columns could get deleted
-				app.sectionContainer
-					.getSectionWithName('column header')
-					._selectColumn(1, 0);
-				app.sectionContainer
-					.getSectionWithName('column header')
-					.deleteColumn(1);
+				app.sectionContainer.getSectionWithName('column header')._selectColumn(1,0);
+				app.sectionContainer.getSectionWithName('column header').deleteColumn(1);
 				waitTime = 2000;
 				break;
 		}
 		return waitTime;
 	},
 
-	_typerTimeout: function () {
-		var letter = this._typerLorem.charCodeAt(
-			this._typerLoremPos % this._typerLorem.length,
-		);
+	_typerTimeout: function() {
+		var letter = this._typerLorem.charCodeAt(this._typerLoremPos % this._typerLorem.length);
 		this._typeChar(letter);
 		this._typerLoremPos++;
-		this._typerTimeoutId = setTimeout(
-			L.bind(this._typerTimeout, this),
-			50,
-		);
+		this._typerTimeoutId = setTimeout(L.bind(this._typerTimeout, this), 50);
 	},
 
-	_typeText: function (text, delayMs) {
-		for (var i = 0; i < text.length; i++) {
+	_typeText: function(text, delayMs) {
+		for (var i=0; i<text.length; i++) {
 			if (delayMs) {
-				setTimeout(
-					L.bind(this._typeChar, this, text.charCodeAt(i)),
-					i * delayMs,
-				);
+				setTimeout(L.bind(this._typeChar, this, text.charCodeAt(i)), i*delayMs);
 			} else {
 				this._typeChar(text.charCodeAt(i));
 			}
 		}
 	},
 
-	_typeChar: function (charCode) {
+	_typeChar: function(charCode) {
 		if (this.tileInvalidationsOn) {
 			this.addTileInvalidationKeypress();
 		}
@@ -1043,24 +829,19 @@ L.DebugManager = L.Class.extend({
 		}
 	},
 
-	setOverlayMessage: function (id, message) {
+	setOverlayMessage: function(id, message) {
 		if (this.overlayOn) {
 			if (!this._overlayData[id]) {
 				var topLeftNames = ['tileData'];
-				var position = topLeftNames.includes(id)
-					? 'topleft'
-					: 'bottomleft';
-				this._overlayData[id] = L.control.attribution({
-					prefix: '',
-					position: position,
-				});
+				var position = topLeftNames.includes(id) ? 'topleft' : 'bottomleft';
+				this._overlayData[id] = L.control.attribution({prefix: '', position: position});
 				this._overlayData[id].addTo(this._map);
 			}
 			this._overlayData[id].setPrefix(message);
 		}
 	},
 
-	clearOverlayMessage: function (id) {
+	clearOverlayMessage: function(id) {
 		if (this.overlayOn) {
 			if (this._overlayData[id]) {
 				this._overlayData[id].remove();
@@ -1069,17 +850,11 @@ L.DebugManager = L.Class.extend({
 		}
 	},
 
-	getTimeArray: function () {
-		return {
-			count: 0,
-			ms: 0,
-			best: Number.MAX_SAFE_INTEGER,
-			worst: 0,
-			date: 0,
-		};
+	getTimeArray: function() {
+		return {count: 0, ms: 0, best: Number.MAX_SAFE_INTEGER, worst: 0, date: 0};
 	},
 
-	updateTimeArray: function (times, value) {
+	updateTimeArray: function(times, value) {
 		if (value < times.best) {
 			times.best = value;
 		}
@@ -1088,49 +863,24 @@ L.DebugManager = L.Class.extend({
 		}
 		times.ms += value;
 		times.count++;
-		return (
-			'best: ' +
-			times.best +
-			' ms, worst: ' +
-			times.worst +
-			' ms, avg: ' +
-			Math.round(times.ms / times.count) +
-			' ms, last: ' +
-			value +
-			' ms'
-		);
+		return 'best: ' + times.best + ' ms, worst: ' + times.worst + ' ms, avg: ' + Math.round(times.ms/times.count) + ' ms, last: ' + value + ' ms';
 	},
 
-	_tileDataShowOverlay: function () {
+	_tileDataShowOverlay: function() {
 		var messages = this._tileDataTotalMessages;
 		var loads = this._tileDataTotalLoads;
 		var deltas = this._tileDataTotalDeltas;
 		var updates = this._tileDataTotalUpdates;
 		var invalidates = this._tileDataTotalInvalidates;
-		this.setOverlayMessage(
-			'tileData',
-			'Total tile messages: ' +
-				messages +
-				'\n' +
-				'loads: ' +
-				loads +
-				' ' +
-				'deltas: ' +
-				deltas +
-				' ' +
-				'updates: ' +
-				updates +
-				'\n' +
-				'invalidates: ' +
-				invalidates +
-				'\n' +
-				'Tile update waste: ' +
-				Math.round((100.0 * updates) / (updates + deltas)) +
-				'%\n' +
-				'New Tile ratio: ' +
-				Math.round((100.0 * loads) / (loads + updates + deltas)) +
-				'%',
-		);
+		this.setOverlayMessage('tileData',
+			'Total tile messages: ' + messages + '\n' +
+			'loads: ' + loads + ' ' +
+			'deltas: ' + deltas + ' ' +
+			'updates: ' + updates + '\n' +
+			'invalidates: ' + invalidates + '\n' +
+			'Tile update waste: ' + Math.round(100.0 * updates / (updates + deltas)) + '%\n' +
+			'New Tile ratio: ' + Math.round(100.0 * loads / (loads + updates + deltas)) + '%'
+			);
 	},
 
 	tileDataAddMessage() {
@@ -1173,78 +923,56 @@ L.DebugManager = L.Class.extend({
 		this._tileDataShowOverlay();
 	},
 
-	_tileInvalidationTimeout: function () {
+	_tileInvalidationTimeout: function() {
 		for (var key in this._tileInvalidationMessages) {
 			if (key < this._tileInvalidationId - 5) {
 				delete this._tileInvalidationMessages[key];
 			}
 		}
-		this._tileInvalidationTimeoutId = setTimeout(
-			L.bind(this._tileInvalidationTimeout, this),
-			50,
-		);
+		this._tileInvalidationTimeoutId = setTimeout(L.bind(this._tileInvalidationTimeout, this), 50);
 	},
 
 	// key press times will be paired with the invalidation messages
-	addTileInvalidationKeypress: function () {
+	addTileInvalidationKeypress: function() {
 		if (!this.tileInvalidationsOn) {
 			return;
 		}
 		this._tileInvalidationKeypressQueue.push(+new Date());
 	},
 
-	addTileInvalidationMessage: function (message) {
+	addTileInvalidationMessage: function(message) {
 		if (!this.tileInvalidationsOn) {
 			return;
 		}
 
-		this._tileInvalidationMessages[this._tileInvalidationId - 1] =
-			message;
+		this._tileInvalidationMessages[this._tileInvalidationId - 1] = message;
 
 		var messages = '';
-		for (
-			var i = this._tileInvalidationId - 1;
-			i > this._tileInvalidationId - 6;
-			i--
-		) {
+		for (var i = this._tileInvalidationId - 1; i > this._tileInvalidationId - 6; i--) {
 			if (i >= 0 && this._tileInvalidationMessages[i]) {
-				messages +=
-					'' +
-					i +
-					': ' +
-					this._tileInvalidationMessages[i] +
-					'\n';
+				messages += '' + i + ': ' + this._tileInvalidationMessages[i] + '\n';
 			}
 		}
-		this.setOverlayMessage('tileInvalidationMessages', messages);
+		this.setOverlayMessage('tileInvalidationMessages',messages);
 	},
 
-	addTileInvalidationRectangle: function (
-		topLeftTwips,
-		bottomRightTwips,
-		command,
-	) {
+	addTileInvalidationRectangle: function(topLeftTwips, bottomRightTwips, command) {
 		if (!this.tileInvalidationsOn) {
 			return;
 		}
 
-		var signX = this._docLayer.isCalcRTL() ? -1 : 1;
+		var signX =  this._docLayer.isCalcRTL() ? -1 : 1;
 
 		var absTopLeftTwips = L.point(topLeftTwips.x * signX, topLeftTwips.y);
-		var absBottomRightTwips = L.point(
-			bottomRightTwips.x * signX,
-			bottomRightTwips.y,
-		);
+		var absBottomRightTwips = L.point(bottomRightTwips.x * signX, bottomRightTwips.y);
 
 		this._tileInvalidationMessages[this._tileInvalidationId] = command;
 		this._tileInvalidationId++;
 
 		const x = absTopLeftTwips.x * app.twipsToPixels;
 		const y = absTopLeftTwips.y * app.twipsToPixels;
-		const w =
-			(absBottomRightTwips.x - absTopLeftTwips.x) * app.twipsToPixels;
-		const h =
-			(absBottomRightTwips.y - absTopLeftTwips.y) * app.twipsToPixels;
+		const w = (absBottomRightTwips.x - absTopLeftTwips.x) * app.twipsToPixels;
+		const h = (absBottomRightTwips.y - absTopLeftTwips.y) * app.twipsToPixels;
 		InvalidationRectangleSection.setRectangle(x, y, w, h);
 
 		// There is not always an invalidation for every keypress.
@@ -1255,46 +983,32 @@ L.DebugManager = L.Class.extend({
 			var oldestKeypress = this._tileInvalidationKeypressQueue.shift();
 		} while (oldestKeypress && now - oldestKeypress > 1000);
 		if (oldestKeypress) {
-			var timeText = this.updateTimeArray(
-				this._tileInvalidationKeypressTimes,
-				now - oldestKeypress,
-			);
-			this.setOverlayMessage(
-				'tileInvalidationTime',
-				'Tile invalidation time: ' + timeText,
-			);
+			var timeText = this.updateTimeArray(this._tileInvalidationKeypressTimes, now - oldestKeypress);
+			this.setOverlayMessage('tileInvalidationTime', 'Tile invalidation time: ' + timeText);
 		}
 	},
 
-	_pingTimeout: function () {
+	_pingTimeout: function() {
 		// pings will be paired with the pong messages
 		this._pingQueue.push(+new Date());
 		app.socket.sendMessage('ping');
-		this._pingTimeoutId = setTimeout(
-			L.bind(this._pingTimeout, this),
-			2000,
-		);
+		this._pingTimeoutId = setTimeout(L.bind(this._pingTimeout, this), 2000);
 	},
 
-	reportPong: function (rendercount) {
+	reportPong: function(rendercount) {
 		if (!this.pingOn) {
 			return;
 		}
 
 		// TODO: move rendercount from pong to tile data tool
-		this.setOverlayMessage(
-			'rendercount',
-			'Server rendered tiles: ' + rendercount,
-		);
+		this.setOverlayMessage('rendercount', 'Server rendered tiles: ' + rendercount);
 
 		var oldestPing = this._pingQueue.shift();
 		if (oldestPing) {
 			var now = +new Date();
-			var timeText = this._map._debug.updateTimeArray(
-				this._pingTimes,
-				now - oldestPing,
-			);
+			var timeText = this._map._debug.updateTimeArray(this._pingTimes, now - oldestPing);
 			this.setOverlayMessage('ping', 'Server ping time: ' + timeText);
 		}
 	},
+
 });

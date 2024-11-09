@@ -6,10 +6,11 @@
 /* global _ */
 
 L.Map.mergeOptions({
-	printHandler: true,
+	printHandler: true
 });
 
 L.Map.Print = L.Handler.extend({
+
 	initialize: function (map) {
 		this._map = map;
 	},
@@ -37,7 +38,7 @@ L.Map.Print = L.Handler.extend({
 	},
 
 	_onInitPrint: function (e) {
-		var blob = new Blob([e.response], { type: 'application/pdf' });
+		var blob = new Blob([e.response], {type: 'application/pdf'});
 		var url = URL.createObjectURL(blob);
 		this._printIframe = L.DomUtil.create('iframe', '', document.body);
 		this._printIframe.title = _('Print dialog');
@@ -53,16 +54,13 @@ L.Map.Print = L.Handler.extend({
 		this._printIframe.contentWindow.focus(); // Required for IE
 		this._printIframe.contentWindow.print();
 		// couldn't find another way to remove it
-		setTimeout(
-			L.bind(this._closePrintIframe, this, this._printIframe),
-			300 * 1000,
-		);
+		setTimeout(L.bind(this._closePrintIframe, this, this._printIframe), 300 * 1000);
 	},
 
 	_closePrintIframe: function (printIframe) {
 		L.DomUtil.remove(printIframe);
 		this._map.focus();
-	},
+	}
 });
 
 L.Map.addInitHook('addHandler', 'printHandler', L.Map.Print);

@@ -5,10 +5,11 @@
  */
 
 L.Renderer = L.Layer.extend({
+
 	options: {
 		// how much to extend the clip area around the map view (relative to its size)
 		// e.g. 0.1 would be 10% of map view in each direction; defaults to clip with the map view
-		padding: 0,
+		padding: 0
 	},
 
 	initialize: function (options) {
@@ -28,15 +29,13 @@ L.Renderer = L.Layer.extend({
 
 		if (this._parentRenderer) {
 			this._parentRenderer.getContainer().appendChild(this._container);
-		} else {
+		}
+		else {
 			this.getPane().appendChild(this._container);
 		}
 
 		if (this.rendererId)
-			L.DomUtil.addClass(
-				this._container,
-				this.rendererId + '-svg-pane',
-			);
+			L.DomUtil.addClass(this._container, this.rendererId + '-svg-pane');
 
 		this._update();
 	},
@@ -47,7 +46,7 @@ L.Renderer = L.Layer.extend({
 
 	getEvents: function () {
 		var events = {
-			moveend: this._update,
+			moveend: this._update
 		};
 		return events;
 	},
@@ -62,15 +61,10 @@ L.Renderer = L.Layer.extend({
 		}
 
 		var p = this.options.padding,
-			size = this._map.getSize(),
-			min = this._map
-				.containerPointToLayerPointIgnoreSplits(size.multiplyBy(-p))
-				.round();
+		    size = this._map.getSize(),
+		    min = this._map.containerPointToLayerPointIgnoreSplits(size.multiplyBy(-p)).round();
 
-		this._bounds = new L.Bounds(
-			min,
-			min.add(size.multiplyBy(1 + p * 2)).round(),
-		);
+		this._bounds = new L.Bounds(min, min.add(size.multiplyBy(1 + p * 2)).round());
 		this._position = this._bounds.min;
 	},
 
@@ -93,27 +87,22 @@ L.Renderer = L.Layer.extend({
 	removeContainerClass: function (className) {
 		L.DomUtil.removeClass(this._container, className);
 	},
+
 });
+
 
 L.Map.include({
 	// used by each vector layer to decide which renderer to use
 	getRenderer: function (layer) {
-		var renderer =
-			layer.options.renderer ||
-			this._getPaneRenderer(layer.options.pane) ||
-			this.options.renderer ||
-			this._renderer;
+		var renderer = layer.options.renderer || this._getPaneRenderer(layer.options.pane) || this.options.renderer || this._renderer;
 
 		if (!renderer) {
 			if (this.getSplitPanesContext()) {
-				renderer = this._renderer =
-					(L.SVG && L.SplitPanesSVG && L.splitPanesSVG()) ||
-					(L.Canvas &&
-						L.SplitPanesCanvas &&
-						L.splitPanesCanvas());
-			} else {
-				renderer = this._renderer =
-					(L.SVG && L.svg()) || (L.Canvas && L.canvas());
+				renderer = this._renderer = (L.SVG && L.SplitPanesSVG && L.splitPanesSVG()) ||
+					(L.Canvas && L.SplitPanesCanvas && L.splitPanesCanvas());
+			}
+			else {
+				renderer = this._renderer = (L.SVG && L.svg()) || (L.Canvas && L.canvas());
 			}
 		}
 
@@ -133,17 +122,11 @@ L.Map.include({
 		var renderer = this._paneRenderers[name];
 		if (renderer === undefined) {
 			if (this.getSplitPanesContext()) {
-				renderer =
-					(L.SVG &&
-						L.SplitPanesSVG &&
-						L.splitPanesSVG({ pane: name })) ||
-					(L.Canvas &&
-						L.SplitPanesCanvas &&
-						L.splitPanesCanvas({ pane: name }));
-			} else {
-				renderer =
-					(L.SVG && L.svg({ pane: name })) ||
-					(L.Canvas && L.canvas({ pane: name }));
+				renderer = (L.SVG && L.SplitPanesSVG && L.splitPanesSVG({pane: name})) ||
+					(L.Canvas && L.SplitPanesCanvas && L.splitPanesCanvas({pane: name}));
+			}
+			else {
+				renderer = (L.SVG && L.svg({pane: name})) || (L.Canvas && L.canvas({pane: name}));
 			}
 
 			window.app.console.assert(renderer, 'Could create a renderer!');
@@ -151,5 +134,5 @@ L.Map.include({
 		}
 
 		return renderer;
-	},
+	}
 });

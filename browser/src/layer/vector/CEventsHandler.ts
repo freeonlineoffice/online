@@ -1,5 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 
+
 // Type of the data passed to event handlers.
 interface EventData {
 	position?: lool.Point;
@@ -10,11 +11,12 @@ type EventHandlerType = (data: EventData) => void;
 // Used as base class for classes that needs to setup
 // event handlers for real or synthetic events.
 abstract class CEventsHandler {
+
 	protected supportedEventNames = [
 		'add',
 		'remove',
 		'mouseenter',
-		'mouseleave',
+		'mouseleave'
 	];
 
 	private handlers = new Map<string, Set<EventHandlerType>>();
@@ -29,7 +31,8 @@ abstract class CEventsHandler {
 	protected addSupportedEvents(eventNames: string[]) {
 		for (var i = 0; i < eventNames.length; ++i) {
 			var eName = eventNames[i];
-			if (this.handlers.has(eName)) continue;
+			if (this.handlers.has(eName))
+				continue;
 
 			this.supportedEventNames.push(eName);
 			this.handlers.set(eName, new Set<EventHandlerType>());
@@ -39,11 +42,7 @@ abstract class CEventsHandler {
 	on(eventName: string, handler: EventHandlerType): boolean {
 		var handlerSet = this.handlers.get(eventName);
 		if (handlerSet === undefined) {
-			console.warn(
-				'Unknown event type: ' +
-					eventName +
-					' used to register a handler',
-			);
+			console.warn('Unknown event type: ' + eventName + ' used to register a handler');
 			return false;
 		}
 
@@ -53,11 +52,7 @@ abstract class CEventsHandler {
 	off(eventName: string, handler: EventHandlerType): boolean {
 		var handlerSet = this.handlers.get(eventName);
 		if (handlerSet === undefined) {
-			console.warn(
-				'Unknown event type: ' +
-					eventName +
-					' used to unregister a handler',
-			);
+			console.warn('Unknown event type: ' + eventName + ' used to unregister a handler');
 			return false;
 		}
 

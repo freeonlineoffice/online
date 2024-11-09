@@ -57,128 +57,40 @@ class CanvasSectionObject {
 	sectionProperties: any = {};
 	boundsList: Array<CanvasSectionObject> = []; // The sections those this section can propagate events to. Updated by container.
 
-	onInitialize(): void {
-		return;
-	}
-	onCursorPositionChanged(newPosition: any): void {
-		return;
-	}
-	onCellAddressChanged(): void {
-		return;
-	}
-	onMouseMove(
-		point: Array<number>,
-		dragDistance: Array<number>,
-		e: MouseEvent,
-	): void {
-		return;
-	}
-	onMouseDown(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	onMouseUp(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	setShowSection(show: boolean): void {
-		return;
-	}
-	onSectionShowStatusChange(): void {
-		return;
-	} /// Called when setShowSection is called.
-	isSectionShown(): boolean {
-		return;
-	}
-	onDocumentObjectVisibilityChange(): void {
-		return;
-	}
-	onMouseEnter(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	onMouseLeave(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	onClick(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	onDoubleClick(point: Array<number>, e: MouseEvent): void {
-		return;
-	}
-	onContextMenu(e?: MouseEvent): void {
-		return;
-	}
-	onMouseWheel(
-		point: Array<number>,
-		delta: Array<number>,
-		e: MouseEvent,
-	): void {
-		return;
-	}
-	onMultiTouchStart(e: TouchEvent): void {
-		return;
-	}
-	onMultiTouchMove(
-		point: Array<number>,
-		dragDistance: number,
-		e: TouchEvent,
-	): void {
-		return;
-	}
-	onMultiTouchEnd(e: TouchEvent): void {
-		return;
-	}
-	onResize(): void {
-		return;
-	}
-	onDraw(
-		frameCount?: number,
-		elapsedTime?: number,
-		subsetBounds?: lool.Bounds,
-	): void {
-		return;
-	}
-	onDrawArea(
-		area?: lool.Bounds,
-		paneTopLeft?: lool.Point,
-		canvasContext?: CanvasRenderingContext2D,
-	): void {
-		return;
-	} // area is the area to be painted using canvasContext.
-	onAnimationEnded(frameCount: number, elapsedTime: number): void {
-		return;
-	} // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
-	onNewDocumentTopLeft(size: Array<number>): void {
-		return;
-	}
-	onRemove(): void {
-		return;
-	} // This Function is called right before section is removed.
-	setDrawingOrder(drawingOrder: number): void {
-		return;
-	}
-	setZIndex(zIndex: number): void {
-		return;
-	}
-	bindToSection(sectionName: string): void {
-		return;
-	}
-	stopPropagating(): void {
-		return;
-	}
-	startAnimating(options: any): boolean {
-		return;
-	}
-	resetAnimation(): void {
-		return;
-	}
-	getTestDiv(): HTMLDivElement {
-		return;
-	}
-	setPosition(x: number, y: number): void {
-		return;
-	} // Document objects only.
-	isCalcRTL(): boolean {
-		return;
-	}
+	onInitialize(): void { return; }
+	onCursorPositionChanged(newPosition: any): void { return; }
+    onCellAddressChanged(): void { return; }
+	onMouseMove(point: Array<number>, dragDistance: Array<number>, e: MouseEvent): void { return; }
+	onMouseDown(point: Array<number>, e: MouseEvent): void { return; }
+	onMouseUp(point: Array<number>, e: MouseEvent): void { return; }
+	setShowSection(show: boolean): void { return; }
+    onSectionShowStatusChange(): void { return; } /// Called when setShowSection is called.
+    isSectionShown(): boolean { return; }
+	onDocumentObjectVisibilityChange(): void { return; }
+	onMouseEnter(point: Array<number>, e: MouseEvent): void { return; }
+	onMouseLeave(point: Array<number>, e: MouseEvent): void { return; }
+	onClick(point: Array<number>, e: MouseEvent): void { return; }
+	onDoubleClick(point: Array<number>, e: MouseEvent): void { return; }
+	onContextMenu(e?: MouseEvent): void { return; }
+	onMouseWheel(point: Array<number>, delta: Array<number>, e: MouseEvent): void { return; }
+	onMultiTouchStart(e: TouchEvent): void { return; }
+	onMultiTouchMove(point: Array<number>, dragDistance: number, e: TouchEvent): void { return; }
+	onMultiTouchEnd(e: TouchEvent): void { return; }
+	onResize(): void { return; }
+	onDraw(frameCount?: number, elapsedTime?: number, subsetBounds?: lool.Bounds): void { return; }
+	onDrawArea(area?: lool.Bounds, paneTopLeft?: lool.Point, canvasContext?: CanvasRenderingContext2D): void { return; } // area is the area to be painted using canvasContext.
+	onAnimationEnded(frameCount: number, elapsedTime: number): void { return; } // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
+	onNewDocumentTopLeft(size: Array<number>): void { return; }
+	onRemove(): void { return; } // This Function is called right before section is removed.
+	setDrawingOrder(drawingOrder: number): void { return; }
+	setZIndex(zIndex: number): void { return; }
+	bindToSection(sectionName: string): void { return; }
+	stopPropagating(): void { return; }
+	startAnimating(options: any): boolean { return; }
+	resetAnimation(): void { return; }
+	getTestDiv(): HTMLDivElement { return; }
+	setPosition(x: number, y: number): void { return; } // Document objects only.
+	isCalcRTL(): boolean { return; }
 
 	public getLineWidth(): number {
 		if (app.dpiScale > 1.0) {

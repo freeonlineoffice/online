@@ -10,54 +10,32 @@
 /* global app JSDialog $ */
 
 function isAnyInputFocused() {
-	if (!app.map) return false;
+	if (!app.map)
+		return false;
 
-	var hasTunneledDialogOpened = app.map.dialog
-		? app.map.dialog.hasOpenedDialog()
-		: false;
-	var hasJSDialogOpened = app.map.jsdialog
-		? app.map.jsdialog.hasDialogOpened()
-		: false;
-	var hasJSDialogFocused = L.DomUtil.hasClass(
-		document.activeElement,
-		'jsdialog',
-	);
+	var hasTunneledDialogOpened = app.map.dialog ? app.map.dialog.hasOpenedDialog() : false;
+	var hasJSDialogOpened = app.map.jsdialog ? app.map.jsdialog.hasDialogOpened() : false;
+	var hasJSDialogFocused = L.DomUtil.hasClass(document.activeElement, 'jsdialog');
 	var commentHasFocus = app.view.commentHasFocus;
-	var inputHasFocus =
-		$('input:focus').length > 0 ||
-		$('textarea.jsdialog:focus').length > 0;
+	var inputHasFocus = $('input:focus').length > 0 || $('textarea.jsdialog:focus').length > 0;
 
-	return (
-		hasTunneledDialogOpened ||
-		hasJSDialogOpened ||
-		hasJSDialogFocused ||
-		commentHasFocus ||
-		inputHasFocus
-	);
+	return hasTunneledDialogOpened || hasJSDialogOpened || hasJSDialogFocused
+		|| commentHasFocus || inputHasFocus;
 }
 
 function getFocusableElements(container) {
-	if (!container) return null;
+	if (!container)
+		return null;
 
-	var ret = container.querySelectorAll(
-		'[tabIndex="0"]:not(.jsdialog-begin-marker, .jsdialog-end-marker):not([disabled]):not(.hidden)',
-	);
+	var ret = container.querySelectorAll('[tabIndex="0"]:not(.jsdialog-begin-marker, .jsdialog-end-marker):not([disabled]):not(.hidden)');
 	if (!ret.length)
-		ret = container.querySelectorAll(
-			'input:not([disabled]):not(.hidden)',
-		);
+		ret = container.querySelectorAll('input:not([disabled]):not(.hidden)');
 	if (!ret.length)
-		ret = container.querySelectorAll(
-			'textarea:not([disabled]):not(.hidden)',
-		);
+		ret = container.querySelectorAll('textarea:not([disabled]):not(.hidden)');
 	if (!ret.length)
-		ret = container.querySelectorAll(
-			'select:not([disabled]):not(.hidden)',
-		);
+		ret = container.querySelectorAll('select:not([disabled]):not(.hidden)');
 	if (!ret.length)
-		ret = container.querySelectorAll(
-			'button:not([disabled]):not(.hidden)',
-		);
+		ret = container.querySelectorAll('button:not([disabled]):not(.hidden)');
 	return ret;
 }
 
@@ -83,14 +61,8 @@ function isFocusable(element) {
 
 /// close tab focus switching in cycle inside container
 function makeFocusCycle(container, failedToFindFocusFunc) {
-	var beginMarker = L.DomUtil.create(
-		'div',
-		'jsdialog autofilter jsdialog-begin-marker',
-	);
-	var endMarker = L.DomUtil.create(
-		'div',
-		'jsdialog autofilter jsdialog-end-marker',
-	);
+	var beginMarker = L.DomUtil.create('div', 'jsdialog autofilter jsdialog-begin-marker');
+	var endMarker = L.DomUtil.create('div', 'jsdialog autofilter jsdialog-end-marker');
 
 	beginMarker.tabIndex = 0;
 	endMarker.tabIndex = 0;
@@ -98,7 +70,7 @@ function makeFocusCycle(container, failedToFindFocusFunc) {
 	container.insertBefore(beginMarker, container.firstChild);
 	container.appendChild(endMarker);
 
-	container.addEventListener('focusin', function (event) {
+	container.addEventListener('focusin', function(event) {
 		if (event.target == endMarker) {
 			var firstFocusElement = getFocusableElements(container);
 			if (firstFocusElement && firstFocusElement.length) {
@@ -107,19 +79,14 @@ function makeFocusCycle(container, failedToFindFocusFunc) {
 			}
 		} else if (event.target == beginMarker) {
 			var focusables = getFocusableElements(container);
-			var lastFocusElement = focusables.length
-				? focusables[focusables.length - 1]
-				: null;
+			var lastFocusElement = focusables.length ? focusables[focusables.length - 1] : null;
 			if (lastFocusElement) {
 				lastFocusElement.focus();
 				return;
 			}
 		}
 
-		if (
-			(event.target == endMarker || event.target == beginMarker) &&
-			failedToFindFocusFunc
-		)
+		if ((event.target == endMarker || event.target == beginMarker) && failedToFindFocusFunc)
 			failedToFindFocusFunc();
 	});
 }
@@ -146,11 +113,11 @@ function findFocusableElement(element, direction) {
 }
 
 // Helper function to find the first focusable element within an element
-function findFocusableWithin(element, direction) {
+function findFocusableWithin(element, direction){
 	const focusableElements = Array.from(element.querySelectorAll('*'));
 	return direction === 'next'
-		? focusableElements.find(isFocusable)
-		: focusableElements.reverse().find(isFocusable);
+		? (focusableElements.find(isFocusable))
+		: (focusableElements.reverse().find(isFocusable));
 }
 
 JSDialog.IsAnyInputFocused = isAnyInputFocused;

@@ -4,21 +4,14 @@
  */
 
 L.Polygon = L.Polyline.extend({
+
 	options: {
-		fill: true,
+		fill: true
 	},
 
 	getCenter: function () {
-		var i,
-			j,
-			len,
-			p1,
-			p2,
-			f,
-			area,
-			x,
-			y,
-			points = this._rings[0];
+		var i, j, len, p1, p2, f, area, x, y,
+		    points = this._rings[0];
 
 		// polygon centroid algorithm; only uses the first ring if there are multiple
 
@@ -39,14 +32,10 @@ L.Polygon = L.Polyline.extend({
 
 	_convertLatLngs: function (latlngs) {
 		var result = L.Polyline.prototype._convertLatLngs.call(this, latlngs),
-			len = result.length;
+		    len = result.length;
 
 		// remove last point if it equals first one
-		if (
-			len >= 2 &&
-			result[0] instanceof L.LatLng &&
-			result[0].equals(result[len - 1])
-		) {
+		if (len >= 2 && result[0] instanceof L.LatLng && result[0].equals(result[len - 1])) {
 			result.pop();
 		}
 		return result;
@@ -63,8 +52,8 @@ L.Polygon = L.Polyline.extend({
 		// polygons need a different clipping algorithm so we redefine that
 
 		var bounds = this._renderer._bounds,
-			w = this.options.weight,
-			p = new L.Point(w, w);
+		    w = this.options.weight,
+		    p = new L.Point(w, w);
 
 		// increase clip padding by stroke width to avoid stroke on clip edges
 		bounds = new L.Bounds(bounds.min.subtract(p), bounds.max.add(p));
@@ -81,7 +70,7 @@ L.Polygon = L.Polyline.extend({
 
 	_updatePath: function () {
 		this._renderer._updatePoly(this, true);
-	},
+	}
 });
 
 L.polygon = function (latlngs, options) {

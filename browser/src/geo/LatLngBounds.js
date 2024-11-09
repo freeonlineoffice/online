@@ -3,11 +3,8 @@
  * L.LatLngBounds represents a rectangular area on the map in geographical coordinates.
  */
 
-L.LatLngBounds = function (southWest, northEast) {
-	// (LatLng, LatLng) or (LatLng[])
-	if (!southWest) {
-		return;
-	}
+L.LatLngBounds = function (southWest, northEast) { // (LatLng, LatLng) or (LatLng[])
+	if (!southWest) { return; }
 
 	var latlngs = northEast ? [southWest, northEast] : southWest;
 
@@ -17,28 +14,25 @@ L.LatLngBounds = function (southWest, northEast) {
 };
 
 L.LatLngBounds.prototype = {
+
 	// extend the bounds to contain the given point or bounds
-	extend: function (obj) {
-		// (LatLng) or (LatLngBounds)
+	extend: function (obj) { // (LatLng) or (LatLngBounds)
 		var sw = this._southWest,
-			ne = this._northEast,
-			sw2,
-			ne2;
+		    ne = this._northEast,
+		    sw2, ne2;
 
 		if (obj instanceof L.LatLng) {
 			sw2 = obj;
 			ne2 = obj;
+
 		} else if (obj instanceof L.LatLngBounds) {
 			sw2 = obj._southWest;
 			ne2 = obj._northEast;
 
-			if (!sw2 || !ne2) {
-				return this;
-			}
+			if (!sw2 || !ne2) { return this; }
+
 		} else {
-			return obj
-				? this.extend(L.latLng(obj) || L.latLngBounds(obj))
-				: this;
+			return obj ? this.extend(L.latLng(obj) || L.latLngBounds(obj)) : this;
 		}
 
 		if (!sw && !ne) {
@@ -55,24 +49,20 @@ L.LatLngBounds.prototype = {
 	},
 
 	// extend the bounds by a percentage
-	padVertically: function (bufferRatio) {
-		// (Number) -> LatLngBounds
+	padVertically: function (bufferRatio) { // (Number) -> LatLngBounds
 		var sw = this._southWest,
-			ne = this._northEast,
-			heightBuffer = Math.abs(sw.lat - ne.lat) * bufferRatio;
+		ne = this._northEast,
+		heightBuffer = Math.abs(sw.lat - ne.lat) * bufferRatio;
 
 		return new L.LatLngBounds(
-			new L.LatLng(sw.lat - heightBuffer, sw.lng),
-			new L.LatLng(ne.lat + heightBuffer, ne.lng),
-		);
+		        new L.LatLng(sw.lat - heightBuffer, sw.lng),
+		        new L.LatLng(ne.lat + heightBuffer, ne.lng));
 	},
 
-	getCenter: function () {
-		// -> LatLng
+	getCenter: function () { // -> LatLng
 		return new L.LatLng(
-			(this._southWest.lat + this._northEast.lat) / 2,
-			(this._southWest.lng + this._northEast.lng) / 2,
-		);
+		        (this._southWest.lat + this._northEast.lat) / 2,
+		        (this._southWest.lng + this._northEast.lng) / 2);
 	},
 
 	getSouthWest: function () {
@@ -115,7 +105,7 @@ L.LatLngBounds.prototype = {
 		return Math.abs(this.getNorth() - this.getSouth());
 	},
 
-	_getAsLatLngOrBounds(obj) {
+	_getAsLatLngOrBounds (obj) {
 		if (typeof obj[0] === 'number' || obj instanceof L.LatLng) {
 			obj = L.latLng(obj);
 		} else {
@@ -124,14 +114,12 @@ L.LatLngBounds.prototype = {
 		return obj;
 	},
 
-	contains: function (obj) {
-		// (LatLngBounds) or (LatLng) -> Boolean
+	contains: function (obj) { // (LatLngBounds) or (LatLng) -> Boolean
 		obj = this._getAsLatLngOrBounds(obj);
 
 		var sw = this._southWest,
-			ne = this._northEast,
-			sw2,
-			ne2;
+		    ne = this._northEast,
+		    sw2, ne2;
 
 		if (obj instanceof L.LatLngBounds) {
 			sw2 = obj.getSouthWest();
@@ -140,12 +128,8 @@ L.LatLngBounds.prototype = {
 			sw2 = ne2 = obj;
 		}
 
-		return (
-			sw2.lat >= sw.lat &&
-			ne2.lat <= ne.lat &&
-			sw2.lng >= sw.lng &&
-			ne2.lng <= ne.lng
-		);
+		return (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
+		       (sw2.lng >= sw.lng) && (ne2.lng <= ne.lng);
 	},
 
 	// Similar to contains() but for line selections,
@@ -158,9 +142,8 @@ L.LatLngBounds.prototype = {
 		obj = this._getAsLatLngOrBounds(obj);
 
 		var sw = this._southWest,
-			ne = this._northEast,
-			sw2,
-			ne2;
+		    ne = this._northEast,
+		    sw2, ne2;
 
 		if (obj instanceof L.LatLngBounds) {
 			sw2 = obj.getSouthWest();
@@ -171,35 +154,30 @@ L.LatLngBounds.prototype = {
 
 		// Assume the longitudes are 100% the document width,
 		// so always matches.
-		return sw2.lat >= sw.lat && ne2.lat <= ne.lat;
+		return (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat);
 	},
 
-	intersects: function (bounds) {
-		// (LatLngBounds)
+	intersects: function (bounds) { // (LatLngBounds)
 		bounds = L.latLngBounds(bounds);
 
 		var sw = this._southWest,
-			ne = this._northEast,
-			sw2 = bounds.getSouthWest(),
-			ne2 = bounds.getNorthEast(),
-			latIntersects = ne2.lat >= sw.lat && sw2.lat <= ne.lat,
-			lngIntersects = ne2.lng >= sw.lng && sw2.lng <= ne.lng;
+		    ne = this._northEast,
+		    sw2 = bounds.getSouthWest(),
+		    ne2 = bounds.getNorthEast(),
+
+		    latIntersects = (ne2.lat >= sw.lat) && (sw2.lat <= ne.lat),
+		    lngIntersects = (ne2.lng >= sw.lng) && (sw2.lng <= ne.lng);
 
 		return latIntersects && lngIntersects;
 	},
 
-	equals: function (bounds) {
-		// (LatLngBounds)
-		if (!bounds) {
-			return false;
-		}
+	equals: function (bounds) { // (LatLngBounds)
+		if (!bounds) { return false; }
 
 		bounds = L.latLngBounds(bounds);
 
-		return (
-			this._southWest.equals(bounds.getSouthWest()) &&
-			this._northEast.equals(bounds.getNorthEast())
-		);
+		return this._southWest.equals(bounds.getSouthWest()) &&
+		       this._northEast.equals(bounds.getNorthEast());
 	},
 
 	isValid: function () {
@@ -207,10 +185,7 @@ L.LatLngBounds.prototype = {
 	},
 
 	isInAny: function (latLngBoundsArray) {
-		window.app.console.assert(
-			Array.isArray(latLngBoundsArray),
-			'invalid argument type',
-		);
+		window.app.console.assert(Array.isArray(latLngBoundsArray), 'invalid argument type');
 
 		for (var i = 0; i < latLngBoundsArray.length; ++i) {
 			if (latLngBoundsArray[i].contains(this)) {
@@ -223,25 +198,18 @@ L.LatLngBounds.prototype = {
 
 	// Please do not remove even if unused. It can be useful in
 	// temporary console.log() etc.
-	toString: function () {
-		return (
-			'LatLngBounds(' +
-			this._southWest.toString() +
-			',' +
-			this._northEast.toString() +
-			')'
-		);
+	toString: function() {
+		return 'LatLngBounds(' + this._southWest.toString() + ',' + this._northEast.toString() + ')';
 	},
 };
 
-L.LatLngBounds.createDefault = function () {
+L.LatLngBounds.createDefault = function() {
 	return new L.LatLngBounds(new L.LatLng(0, 0), new L.LatLng(0, 0));
 };
 
 //TODO International date line?
 
-L.latLngBounds = function (a, b) {
-	// (LatLngBounds) or (LatLng, LatLng)
+L.latLngBounds = function (a, b) { // (LatLngBounds) or (LatLng, LatLng)
 	if (!a || a instanceof L.LatLngBounds) {
 		return a;
 	}

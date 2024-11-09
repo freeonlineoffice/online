@@ -24,12 +24,13 @@ class FormulaBar {
 		this.map.on('jsdialogaction', this.onJSAction, this);
 		this.map.on('doclayerinit', this.onDocLayerInit, this);
 
-		this.builder = new L.control.jsDialogBuilder({
-			mobileWizard: this,
-			map: this.map,
-			cssClass: 'formulabar jsdialog',
-			callback: this.callback.bind(this),
-		});
+		this.builder = new L.control.jsDialogBuilder(
+			{
+				mobileWizard: this,
+				map: this.map,
+				cssClass: 'formulabar jsdialog',
+				callback: this.callback.bind(this)
+			});
 
 		this.createFormulabar('');
 	}
@@ -44,7 +45,8 @@ class FormulaBar {
 
 	onDocLayerInit() {
 		var docType = this.map.getDocType();
-		if (docType == 'spreadsheet') this.showFormulabar();
+		if (docType == 'spreadsheet')
+			this.showFormulabar();
 	}
 
 	createFormulabar(text) {
@@ -58,13 +60,13 @@ class FormulaBar {
 							id: 'functiondialog',
 							type: 'toolitem',
 							text: _('Function Wizard'),
-							command: '.uno:FunctionDialog',
+							command: '.uno:FunctionDialog'
 						},
 						{
 							id: 'AutoSumMenu:AutoSumMenu',
 							type: 'menubutton',
 							class: 'AutoSumMenu',
-							command: '.uno:AutoSumMenu',
+							command: '.uno:AutoSumMenu'
 						},
 						{
 							id: 'startformula',
@@ -76,15 +78,15 @@ class FormulaBar {
 							id: 'acceptformula',
 							type: 'customtoolitem',
 							text: _('Accept'),
-							visible: false,
+							visible: false
 						},
 						{
 							id: 'cancelformula',
 							type: 'customtoolitem',
 							text: _UNO('.uno:Cancel', 'spreadsheet'),
-							visible: false,
-						},
-					],
+							visible: false
+						}
+					]
 				},
 				{
 					id: 'formulabar-toolbox',
@@ -93,17 +95,15 @@ class FormulaBar {
 						{
 							id: 'sc_input_window',
 							type: 'formulabaredit',
-							text: text ? text : '',
+							text: text ? text : ''
 						},
 						{
 							id: 'expand',
 							type: 'pushbutton',
 							text: '',
 							symbol: 'SPIN_DOWN',
-						},
-					],
-				},
-			];
+						}]
+				}];
 		} else {
 			var data = [
 				{
@@ -114,22 +114,19 @@ class FormulaBar {
 							id: 'functiondialog',
 							type: 'toolitem',
 							text: _('Function Wizard'),
-							command: '.uno:FunctionDialog',
-						},
-						{
+							command: '.uno:FunctionDialog'
+						}, {
 							id: 'sc_input_window',
 							type: 'formulabaredit',
-							text: text ? text : '',
+							text: text ? text : ''
 						},
 						{
 							id: 'expand',
 							type: 'pushbutton',
 							text: '',
 							symbol: 'SPIN_DOWN',
-						},
-					],
-				},
-			];
+						}]
+				}];
 		}
 
 		this.parentContainer.replaceChildren();
@@ -144,14 +141,14 @@ class FormulaBar {
 				data: {
 					jsontype: 'formulabar',
 					id: this.builder.windowId,
-					control_id: 'expand',
+					'control_id': 'expand',
 					control: {
 						id: 'expand',
 						type: 'pushbutton',
 						text: '',
-						symbol: 'SPIN_DOWN',
-					},
-				},
+						symbol: 'SPIN_DOWN'
+					}
+				}
 			});
 		} else {
 			L.DomUtil.addClass(input, 'expanded');
@@ -160,14 +157,14 @@ class FormulaBar {
 				data: {
 					jsontype: 'formulabar',
 					id: this.builder.windowId,
-					control_id: 'expand',
+					'control_id': 'expand',
 					control: {
 						id: 'expand',
 						type: 'pushbutton',
 						text: '',
-						symbol: 'SPIN_UP',
-					},
-				},
+						symbol: 'SPIN_UP'
+					}
+				}
 			});
 		}
 	}
@@ -175,17 +172,15 @@ class FormulaBar {
 	callback(objectType, eventType, object, data, builder) {
 		if (object.id === 'expand') {
 			var input = this.getInputField();
-			if (input) this.toggleMultiLine(input);
+			if (input)
+				this.toggleMultiLine(input);
 			return;
 		}
 
 		// in the core we have DrawingArea not TextView
 		if (object.id.indexOf('sc_input_window') === 0) {
 			objectType = 'drawingarea';
-			if (
-				(eventType === 'keypress' && data === UNOKey.RETURN) ||
-				data === UNOKey.ESCAPE
-			)
+			if (eventType === 'keypress' && data === UNOKey.RETURN || data === UNOKey.ESCAPE)
 				builder.map.focus();
 			else if (eventType === 'grab_focus') {
 				this.focusField();
@@ -193,13 +188,7 @@ class FormulaBar {
 			}
 		}
 
-		builder._defaultCallbackHandler(
-			objectType,
-			eventType,
-			object,
-			data,
-			builder,
-		);
+		builder._defaultCallbackHandler(objectType, eventType, object, data, builder);
 	}
 
 	focusField() {
@@ -212,28 +201,31 @@ class FormulaBar {
 
 	enable() {
 		var input = this.getInputField();
-		if (!input) return;
+		if (!input)
+			return;
 
 		input.enable();
 	}
 
 	disable() {
 		var input = this.getInputField();
-		if (!input) return;
+		if (!input)
+			return;
 
 		input.disable();
 	}
 
 	hasFocus() {
 		var input = this.getInputField();
-		if (!input) return false;
+		if (!input)
+			return false;
 		return L.DomUtil.hasClass(input, 'focused');
 	}
 
 	isInEditMode() {
-		var acceptButton =
-			this.parentContainer.querySelector('#acceptformula');
-		if (acceptButton) return !acceptButton.classList.contains('hidden');
+		var acceptButton = this.parentContainer.querySelector('#acceptformula');
+		if (acceptButton)
+			return !acceptButton.classList.contains('hidden');
 		return false;
 	}
 
@@ -251,30 +243,26 @@ class FormulaBar {
 	}
 
 	showButton(action, show) {
-		this.onJSAction({
-			data: {
-				jsontype: 'formulabar',
-				id: this.builder.windowId,
+		this.onJSAction(
+			{
 				data: {
-					control_id: action,
-					action_type: show ? 'show' : 'hide',
-				},
-			},
-		});
+					jsontype: 'formulabar',
+					id: this.builder.windowId,
+					data: {
+						'control_id': action,
+						'action_type': show ? 'show' : 'hide'
+					}
+				}
+			});
 	}
 
 	getControl(controlId) {
-		if (!this.parentContainer) return;
+		if (!this.parentContainer)
+			return;
 
-		var control = this.parentContainer.querySelector(
-			"[id='" + controlId + "']",
-		);
+		var control = this.parentContainer.querySelector('[id=\'' + controlId + '\']');
 		if (!control)
-			window.app.console.warn(
-				'formulabar update: not found control with id: "' +
-					controlId +
-					'"',
-			);
+			window.app.console.warn('formulabar update: not found control with id: "' + controlId + '"');
 
 		return control;
 	}
@@ -285,23 +273,25 @@ class FormulaBar {
 
 	onFormulaBar(e) {
 		var data = e.data;
-		if (data.jsontype !== 'formulabar') return;
+		if (data.jsontype !== 'formulabar')
+			return;
 
-		console.warn(
-			'formulabar: old style formulabar full update - to fix in core',
-		);
+		console.warn('formulabar: old style formulabar full update - to fix in core');
 		return;
 	}
 
-	onJSUpdate(e) {
+	onJSUpdate (e) {
 		var data = e.data;
-		if (data.jsontype !== 'formulabar') return;
+		if (data.jsontype !== 'formulabar')
+			return;
 
 		var control = this.getControl(data.control.id);
-		if (!control) return;
+		if (!control)
+			return;
 
 		var parent = control.parentNode;
-		if (!parent) return;
+		if (!parent)
+			return;
 
 		control.style.visibility = 'hidden';
 		var temporaryParent = L.DomUtil.create('div');
@@ -310,24 +300,23 @@ class FormulaBar {
 		L.DomUtil.remove(control);
 	}
 
-	onJSAction(e) {
+	onJSAction (e) {
 		var data = e.data;
 
-		if (data.jsontype !== 'formulabar') return;
+		if (data.jsontype !== 'formulabar')
+			return;
 
-		if (!this.builder) return;
+		if (!this.builder)
+			return;
 
 		this.builder.setWindowId(data.id);
 
 		var innerData = data ? data.data : null;
 
 		if (this.parentContainer.firstChild) {
-			var messageForInputField =
-				innerData && innerData.control_id === 'sc_input_window';
-			var isSetTextMessage =
-				innerData && innerData.action_type === 'setText';
-			var isGrabFocusMessage =
-				innerData && innerData.action_type === 'grab_focus';
+			var messageForInputField = innerData && innerData.control_id === 'sc_input_window';
+			var isSetTextMessage = innerData && innerData.action_type === 'setText';
+			var isGrabFocusMessage = innerData && innerData.action_type === 'grab_focus';
 
 			if (messageForInputField && isGrabFocusMessage) {
 				this.focusField();
@@ -344,7 +333,8 @@ class FormulaBar {
 			}
 
 			this.builder.executeAction(this.parentContainer, innerData);
-		} else this.createFormulabar(innerData.text);
+		} else
+			this.createFormulabar(innerData.text);
 	}
 }
 

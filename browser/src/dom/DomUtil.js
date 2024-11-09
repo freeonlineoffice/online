@@ -9,8 +9,8 @@ L.DomUtil = {
 	},
 
 	getStyle: function (el, style) {
-		var value =
-			el.style[style] || (el.currentStyle && el.currentStyle[style]);
+
+		var value = el.style[style] || (el.currentStyle && el.currentStyle[style]);
 
 		if ((!value || value === 'auto') && document.defaultView) {
 			var css = document.defaultView.getComputedStyle(el, null);
@@ -21,10 +21,12 @@ L.DomUtil = {
 	},
 
 	setStyle: function (el, style, value) {
-		if (el !== undefined) el.style[style] = value;
+		if (el !== undefined)
+			el.style[style] = value;
 	},
 
 	create: function (tagName, className, container) {
+
 		var el = document.createElement(tagName);
 		el.className = className;
 
@@ -36,6 +38,7 @@ L.DomUtil = {
 	},
 
 	createWithId: function (tagName, id, container) {
+
 		var el = document.createElement(tagName);
 		el.id = id;
 
@@ -77,10 +80,7 @@ L.DomUtil = {
 			return el.classList.contains(name);
 		}
 		var className = L.DomUtil.getClass(el);
-		return (
-			className.length > 0 &&
-			new RegExp('(^|\\s)' + name + '(\\s|$)').test(className)
-		);
+		return className.length > 0 && new RegExp('(^|\\s)' + name + '(\\s|$)').test(className);
 	},
 
 	addClass: function (el, name) {
@@ -95,10 +95,7 @@ L.DomUtil = {
 			}
 		} else if (!L.DomUtil.hasClass(el, name)) {
 			var className = L.DomUtil.getClass(el);
-			L.DomUtil.setClass(
-				el,
-				(className ? className + ' ' : '') + name,
-			);
+			L.DomUtil.setClass(el, (className ? className + ' ' : '') + name);
 		}
 	},
 
@@ -110,15 +107,7 @@ L.DomUtil = {
 		if (el.classList !== undefined) {
 			el.classList.remove(name);
 		} else {
-			L.DomUtil.setClass(
-				el,
-				L.Util.trim(
-					(' ' + L.DomUtil.getClass(el) + ' ').replace(
-						' ' + name + ' ',
-						' ',
-					),
-				),
-			);
+			L.DomUtil.setClass(el, L.Util.trim((' ' + L.DomUtil.getClass(el) + ' ').replace(' ' + name + ' ', ' ')));
 		}
 	},
 
@@ -138,14 +127,14 @@ L.DomUtil = {
 	},
 
 	getClass: function (el) {
-		return el.className.baseVal === undefined
-			? el.className
-			: el.className.baseVal;
+		return el.className.baseVal === undefined ? el.className : el.className.baseVal;
 	},
 
 	setOpacity: function (el, value) {
+
 		if ('opacity' in el.style) {
 			el.style.opacity = value;
+
 		} else if ('filter' in el.style) {
 			L.DomUtil._setOpacityIE(el, value);
 		}
@@ -153,7 +142,7 @@ L.DomUtil = {
 
 	_setOpacityIE: function (el, value) {
 		var filter = false,
-			filterName = 'DXImageTransform.Microsoft.Alpha';
+		    filterName = 'DXImageTransform.Microsoft.Alpha';
 
 		// filters collection throws an error if we try to retrieve a filter that doesn't exist
 		try {
@@ -161,23 +150,21 @@ L.DomUtil = {
 		} catch (e) {
 			// don't set opacity to 1 if we haven't already set an opacity,
 			// it isn't needed and breaks transparent pngs.
-			if (value === 1) {
-				return;
-			}
+			if (value === 1) { return; }
 		}
 
 		value = Math.round(value * 100);
 
 		if (filter) {
-			filter.Enabled = value !== 100;
+			filter.Enabled = (value !== 100);
 			filter.Opacity = value;
 		} else {
-			el.style.filter +=
-				' progid:' + filterName + '(opacity=' + value + ')';
+			el.style.filter += ' progid:' + filterName + '(opacity=' + value + ')';
 		}
 	},
 
 	testProp: function (props) {
+
 		var style = document.documentElement.style;
 
 		for (var i = 0; i < props.length; i++) {
@@ -192,17 +179,10 @@ L.DomUtil = {
 		var pos = offset || new L.Point(0, 0);
 
 		el.style[L.DomUtil.TRANSFORM] =
-			'translate3d(' +
-			pos.x +
-			'px,' +
-			pos.y +
-			'px' +
-			',0)' +
-			(scale ? ' scale(' + scale + ')' : '');
+			'translate3d(' + pos.x + 'px,' + pos.y + 'px' + ',0)' + (scale ? ' scale(' + scale + ')' : '');
 	},
 
-	setPosition: function (el, point, no3d) {
-		// (HTMLElement, Point[, Boolean])
+	setPosition: function (el, point, no3d) { // (HTMLElement, Point[, Boolean])
 
 		/*eslint-disable */
 		el._leaflet_pos = point;
@@ -223,15 +203,12 @@ L.DomUtil = {
 		return el._leaflet_pos;
 	},
 
-	isPortrait: function () {
-		return (
-			window.matchMedia &&
-			window.matchMedia('(orientation: portrait)').matches
-		);
+	isPortrait: function() {
+		return window.matchMedia && window.matchMedia('(orientation: portrait)').matches;
 	},
 
 	// Add/remove a portrait or landscape class from the list of elementns.
-	updateElementsOrientation: function (elements) {
+	updateElementsOrientation: function(elements) {
 		var remove = 'portrait';
 		var add = 'landscape';
 		if (L.DomUtil.isPortrait()) {
@@ -245,41 +222,28 @@ L.DomUtil = {
 			L.DomUtil.removeClass(domElement, remove);
 			L.DomUtil.addClass(domElement, add);
 		}
-	},
+	}
 };
+
 
 (function () {
 	// prefix style property names
 
-	L.DomUtil.TRANSFORM = L.DomUtil.testProp([
-		'transform',
-		'WebkitTransform',
-		'OTransform',
-		'MozTransform',
-		'msTransform',
-	]);
+	L.DomUtil.TRANSFORM = L.DomUtil.testProp(
+		['transform', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform']);
 
-	L.DomUtil.TRANSFORM_ORIGIN = L.DomUtil.testProp([
-		'transformOrigin',
-		'msTransformOrigin',
-		'WebkitTransformOrigin',
-	]);
+	L.DomUtil.TRANSFORM_ORIGIN = L.DomUtil.testProp(
+		['transformOrigin', 'msTransformOrigin', 'WebkitTransformOrigin']);
 
 	// webkitTransition comes first because some browser versions that drop vendor prefix don't do
 	// the same for the transitionend event, in particular the Android 4.1 stock browser
 
-	var transition = (L.DomUtil.TRANSITION = L.DomUtil.testProp([
-		'webkitTransition',
-		'transition',
-		'OTransition',
-		'MozTransition',
-		'msTransition',
-	]));
+	var transition = L.DomUtil.TRANSITION = L.DomUtil.testProp(
+		['webkitTransition', 'transition', 'OTransition', 'MozTransition', 'msTransition']);
 
 	L.DomUtil.TRANSITION_END =
-		transition === 'webkitTransition' || transition === 'OTransition'
-			? transition + 'End'
-			: 'transitionend';
+			transition === 'webkitTransition' || transition === 'OTransition' ? transition + 'End' : 'transitionend';
+
 
 	if ('onselectstart' in document) {
 		L.DomUtil.disableTextSelection = function () {
@@ -288,14 +252,10 @@ L.DomUtil = {
 		L.DomUtil.enableTextSelection = function () {
 			L.DomEvent.off(window, 'selectstart', L.DomEvent.preventDefault);
 		};
+
 	} else {
-		var userSelectProperty = L.DomUtil.testProp([
-			'userSelect',
-			'WebkitUserSelect',
-			'OUserSelect',
-			'MozUserSelect',
-			'msUserSelect',
-		]);
+		var userSelectProperty = L.DomUtil.testProp(
+			['userSelect', 'WebkitUserSelect', 'OUserSelect', 'MozUserSelect', 'msUserSelect']);
 
 		L.DomUtil.disableTextSelection = function () {
 			if (userSelectProperty) {
@@ -306,8 +266,7 @@ L.DomUtil = {
 		};
 		L.DomUtil.enableTextSelection = function () {
 			if (userSelectProperty) {
-				document.documentElement.style[userSelectProperty] =
-					this._userSelect;
+				document.documentElement.style[userSelectProperty] = this._userSelect;
 				delete this._userSelect;
 			}
 		};
@@ -328,9 +287,7 @@ L.DomUtil = {
 		L.DomEvent.on(window, 'keydown', L.DomUtil.restoreOutline, this);
 	};
 	L.DomUtil.restoreOutline = function () {
-		if (!this._outlineElement) {
-			return;
-		}
+		if (!this._outlineElement) { return; }
 		this._outlineElement.style.outline = this._outlineStyle;
 		delete this._outlineElement;
 		delete this._outlineStyle;

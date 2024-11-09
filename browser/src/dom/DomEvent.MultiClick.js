@@ -5,9 +5,10 @@
  */
 
 L.extend(L.DomEvent, {
+
 	addMultiClickListener: function (obj, handler, id, type) {
 		var last = [],
-			delay = 250;
+		    delay = 250;
 
 		function onClick(e) {
 			var now = Date.now();
@@ -16,20 +17,20 @@ L.extend(L.DomEvent, {
 				delta = now - (last[last.length - 1] || now);
 			}
 
-			var doubleTap = delta > 0 && delta <= delay;
+			var doubleTap = (delta > 0 && delta <= delay);
 
 			var tripleTap = false;
 			if (last.length > 1 && doubleTap) {
 				var delta2 = last[last.length - 1] - last[last.length - 2];
-				tripleTap = delta2 > 0 && delta2 <= delay;
+				tripleTap = (delta2 > 0 && delta2 <= delay);
 			}
 
 			if (tripleTap) {
+
 				var quadTap = false;
 				if (last.length > 2 && tripleTap) {
-					var delta3 =
-						last[last.length - 2] - last[last.length - 3];
-					quadTap = delta3 > 0 && delta3 <= delay;
+					var delta3 = last[last.length - 2] - last[last.length - 3];
+					quadTap = (delta3 > 0 && delta3 <= delay);
 				}
 
 				// We can't modify e as it's a native DOM object, hence we copy
@@ -42,10 +43,11 @@ L.extend(L.DomEvent, {
 					button: e.button,
 					target: e.target,
 					pointerType: e.pointerType,
-					isMouseEvent: e instanceof MouseEvent,
+					isMouseEvent: e instanceof MouseEvent
 				};
 
-				if (type == eOut.type) handler(eOut);
+				if (type == eOut.type)
+					handler(eOut);
 			}
 
 			last.push(now);
@@ -64,5 +66,5 @@ L.extend(L.DomEvent, {
 		obj.removeEventListener('click', obj['_leaflet_click' + id], false);
 
 		return this;
-	},
+	}
 });

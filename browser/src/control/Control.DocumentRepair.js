@@ -21,14 +21,14 @@ L.Control.DocumentRepair = L.Control.extend({
 			responses: [
 				{
 					id: 'ok',
-					response: 1,
+					response: 1
 				},
 				{
 					id: 'cancel',
-					response: 0,
+					response: 0
 				},
 			],
-			init_focus_id: 'ok',
+			'init_focus_id': 'ok',
 			enabled: true,
 			children: [
 				{
@@ -60,22 +60,22 @@ L.Control.DocumentRepair = L.Control.extend({
 											id: 'cancel',
 											type: 'pushbutton',
 											text: _('Cancel'),
-											enabled: true,
+											enabled: true
 										},
 										{
 											id: 'ok',
 											type: 'pushbutton',
 											text: _('OK'),
 											enabled: true,
-											has_default: true,
-										},
+											'has_default': true,
+										}
 									],
 									vertical: false,
-									layoutstyle: 'end',
+									layoutstyle: 'end'
 								},
 							],
 						},
-					],
+					]
 				},
 			],
 		};
@@ -88,45 +88,33 @@ L.Control.DocumentRepair = L.Control.extend({
 			callback: this._onAction.bind(this),
 		};
 
-		this._map.fire(
-			window.mode.isMobile() ? 'mobilewizard' : 'jsdialog',
-			dialogBuildEvent,
-		);
+
+		this._map.fire(window.mode.isMobile() ? 'mobilewizard' : 'jsdialog', dialogBuildEvent);
 
 		return this;
 	},
 
 	createAction: function (type, index, comment, viewId, dateTime, action) {
-		this.actions.push({
-			text: comment,
-			columns: [type, comment, viewId, dateTime].map(function (item) {
+		this.actions.push({ 'text': comment, 'columns': [
+			type,
+			comment,
+			viewId,
+			dateTime
+		].map(
+			function (item) {
 				return { text: item };
-			}),
-			row: index,
-			action: action,
-		});
+			}
+		), 'row': index, 'action': action});
 	},
 
 	fillAction: function (actions, type, action) {
 		for (var iterator = 0; iterator < actions.length; ++iterator) {
 			// No user name if the user in question is already disconnected.
-			var userName = actions[iterator].userName
-				? actions[iterator].userName
-				: '';
-			if (
-				parseInt(actions[iterator].viewId) ===
-				this._map._docLayer._viewId
-			) {
+			var userName = actions[iterator].userName ? actions[iterator].userName : '';
+			if (parseInt(actions[iterator].viewId) === this._map._docLayer._viewId) {
 				userName = _('You');
 			}
-			this.createAction(
-				type,
-				actions[iterator].index,
-				actions[iterator].comment,
-				userName,
-				this.transformTimestamp(actions[iterator].dateTime),
-				action,
-			);
+			this.createAction(type, actions[iterator].index, actions[iterator].comment, userName, this.transformTimestamp(actions[iterator].dateTime), action);
 		}
 	},
 
@@ -140,20 +128,15 @@ L.Control.DocumentRepair = L.Control.extend({
 					control: {
 						id: 'versions',
 						type: 'treelistbox',
-						headers: [
-							_('Type'),
-							_('What?'),
-							_('Who?'),
-							_('When?'),
-						].map(function (item) {
-							return { text: item };
-						}),
+						headers: [_('Type'), _('What?'), _('Who?'), _('When?')].map(
+							function(item) { return { text: item }; }
+						),
 						text: '',
 						enabled: true,
 						entries: this.actions,
 					},
 				},
-				callback: this._onAction.bind(this),
+				callback: this._onAction.bind(this)
 			};
 		} else {
 			var dialogUpdateEvent = {
@@ -164,15 +147,12 @@ L.Control.DocumentRepair = L.Control.extend({
 					control: {
 						id: 'versions',
 						type: 'fixedtext',
-						text: _(
-							'You have not done anything to rollback yet...',
-						),
+						text: _('You have not done anything to rollback yet...'),
 					},
 				},
 			};
 		}
-		if (window.mode.isMobile())
-			window.mobileDialogId = dialogUpdateEvent.data.id;
+		if (window.mode.isMobile()) window.mobileDialogId = dialogUpdateEvent.data.id;
 		this._map.fire('jsdialogupdate', dialogUpdateEvent);
 	},
 
@@ -181,7 +161,7 @@ L.Control.DocumentRepair = L.Control.extend({
 		this.fillAction(data.Undo.actions, _('Undo'), 'Undo');
 	},
 
-	_onAction: function (element, action, data, index) {
+	_onAction: function(element, action, data, index) {
 		if (element === 'dialog' && action === 'close') return;
 		if (element === 'treeview') {
 			var entry = data.entries[parseInt(index)];
@@ -191,24 +171,17 @@ L.Control.DocumentRepair = L.Control.extend({
 			};
 			return;
 		}
-		if (
-			element === 'responsebutton' &&
-			data.id == 'ok' &&
-			this.selected
-		) {
+		if (element === 'responsebutton' && data.id == 'ok' && this.selected) {
 			this._onOk(this.selected.action, this.selected.index);
 		}
 
 		var closeEvent = {
-			data: {
+		    data: {
 				action: 'close',
 				id: 'DocumentRepairDialog',
-			},
+			}
 		};
-		this._map.fire(
-			window.mode.isMobile() ? 'closemobilewizard' : 'jsdialog',
-			closeEvent,
-		);
+		this._map.fire(window.mode.isMobile() ? 'closemobilewizard' : 'jsdialog', closeEvent);
 		console.log('Closed after' + element + ' ' + action);
 	},
 
@@ -216,12 +189,12 @@ L.Control.DocumentRepair = L.Control.extend({
 		var command = {
 			Repair: {
 				type: 'boolean',
-				value: true,
-			},
+				value: true
+			}
 		};
 		command[action] = {
 			type: 'unsigned short',
-			value: index + 1,
+			value: index + 1
 		};
 		this._map.sendUnoCommand('.uno:' + action, command, true);
 	},
@@ -229,18 +202,10 @@ L.Control.DocumentRepair = L.Control.extend({
 	// Transform timestamp from ISO8601 to human readable format with Local time
 	transformTimestamp: function (timestamp) {
 		var d = new Date(timestamp.split(',')[0] + 'Z');
-		var dateOptions = {
-			year: 'numeric',
-			month: '2-digit',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit',
-			second: '2-digit',
-			hour12: true,
-		};
+		var dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
 		var formattedDateTime = d.toLocaleString(String.locale, dateOptions);
 		return formattedDateTime;
-	},
+	}
 });
 
 L.control.documentRepair = function (options) {

@@ -4,7 +4,7 @@
  */
 
 L.Map.mergeOptions({
-	doubleClickZoom: false,
+	doubleClickZoom: false
 });
 
 L.Map.DoubleClickZoom = L.Handler.extend({
@@ -18,15 +18,13 @@ L.Map.DoubleClickZoom = L.Handler.extend({
 
 	_onDoubleClick: window.touch.mouseOnly(function (e) {
 		var map = this._map,
-			oldZoom = map.getZoom(),
-			zoom = e.originalEvent.shiftKey
-				? Math.ceil(oldZoom) - 1
-				: Math.floor(oldZoom) + 1;
+		    oldZoom = map.getZoom(),
+		    zoom = e.originalEvent.shiftKey ? Math.ceil(oldZoom) - 1 : Math.floor(oldZoom) + 1;
 
 		if (map.options.doubleClickZoom === 'center') {
 			map.setZoom(zoom);
 		} else {
 			map.setZoomAround(e.containerPoint, zoom);
 		}
-	}),
+	})
 });

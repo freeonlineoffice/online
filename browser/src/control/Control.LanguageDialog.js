@@ -5,6 +5,7 @@
 
 /* global _ app */
 L.Control.LanguageDialog = L.Control.extend({
+
 	onAdd: function (map) {
 		this.map = map;
 		map.on('morelanguages', this._onLanguageDialog, this);
@@ -14,57 +15,53 @@ L.Control.LanguageDialog = L.Control.extend({
 		map.off('morelanguages', this._onLanguageDialog, this);
 	},
 
-	_onItemSelected: function (language) {
-		var unoCommand =
-			'.uno:LanguageStatus?Language:string=' +
-			this.applyTo +
-			'_' +
-			language;
+	_onItemSelected: function(language) {
+		var unoCommand = '.uno:LanguageStatus?Language:string=' + this.applyTo + '_' + language;
 		this.map.sendUnoCommand(unoCommand, null, true);
 	},
 
-	_getSelectedLanguage: function () {
-		var languageAndCode = this._map['stateChangeHandler'].getItemValue(
-			'.uno:LanguageStatus',
-		);
+	_getSelectedLanguage: function() {
+		var languageAndCode = this._map['stateChangeHandler'].getItemValue('.uno:LanguageStatus');
 		var split = languageAndCode.split(';');
 		var language = '';
-		if (split.length > 1) language = split[0];
-		else window.app.console.error('Language not found');
+		if (split.length > 1)
+			language = split[0];
+		else
+			window.app.console.error('Language not found');
 		return language;
 	},
 
-	_onLanguageDialog: function (e) {
+	_onLanguageDialog: function(e) {
 		var languageEntries = [];
 		this.selectedLanguage = this._getSelectedLanguage();
 
 		switch (e.applyto) {
-			case 'all':
-				this.applyTo = 'Default';
-				break;
-			case 'paragraph':
-				this.applyTo = 'Paragraph';
-				break;
-			case 'selection':
-				this.applyTo = 'Current';
-				break;
-			default:
-				this.applyTo = 'Default';
-				break;
+		case 'all':
+			this.applyTo = 'Default';
+			break;
+		case 'paragraph':
+			this.applyTo = 'Paragraph';
+			break;
+		case 'selection':
+			this.applyTo = 'Current';
+			break;
+		default:
+			this.applyTo = 'Default';
+			break;
 		}
 
 		languageEntries.push({
-			columns: [{ text: _('None (Do not check spelling)') }],
+			columns: [ { text: _('None (Do not check spelling)') } ],
 			row: 'LANGUAGE_NONE',
-			selected: 'LANGUAGE_NONE' === this.selectedLanguage,
+			selected: 'LANGUAGE_NONE' === this.selectedLanguage
 		});
 
 		var that = this;
 		app.languages.forEach(function (language) {
 			languageEntries.push({
-				columns: [{ text: language.neutral }],
+				columns: [ { text: language.neutral } ],
 				row: language.neutral,
-				selected: language.neutral === that.selectedLanguage,
+				selected: language.neutral === that.selectedLanguage
 			});
 		});
 
@@ -77,11 +74,11 @@ L.Control.LanguageDialog = L.Control.extend({
 			responses: [
 				{
 					id: 'ok',
-					response: 1,
+					response: 1
 				},
 				{
 					id: 'cancel',
-					response: 0,
+					response: 0
 				},
 			],
 			children: [
@@ -93,8 +90,8 @@ L.Control.LanguageDialog = L.Control.extend({
 						{
 							type: 'treelistbox',
 							id: 'languages',
-							headers: [{ text: _('Language') }],
-							entries: languageEntries,
+							headers: [ { text: _('Language') } ],
+							entries: languageEntries
 						},
 						{
 							id: 'LanguageDialog-buttonbox',
@@ -107,17 +104,17 @@ L.Control.LanguageDialog = L.Control.extend({
 								},
 								{
 									id: 'ok',
-									has_default: true,
+									'has_default': true,
 									type: 'pushbutton',
 									text: _('OK'),
-								},
+								}
 							],
 							vertical: false,
-							layoutstyle: 'end',
-						},
-					],
-				},
-			],
+							layoutstyle: 'end'
+						}
+					]
+				}
+			]
 		};
 
 		var dialogBuildEvent = {
@@ -125,17 +122,15 @@ L.Control.LanguageDialog = L.Control.extend({
 			callback: this._onAction.bind(this),
 		};
 
-		this.map.fire(
-			window.mode.isMobile() ? 'mobilewizard' : 'jsdialog',
-			dialogBuildEvent,
-		);
+		this.map.fire(window.mode.isMobile() ? 'mobilewizard' : 'jsdialog', dialogBuildEvent);
 	},
 
 	_onAction: function (element, action, data, index) {
 		if (element === 'responsebutton' && data.id === 'ok')
 			this._onItemSelected(this.selectedLanguage);
 		else if (element === 'treeview') {
-			if (action == 'select') this.selectedLanguage = index;
+			if (action == 'select')
+				this.selectedLanguage = index;
 			return;
 		}
 
@@ -143,13 +138,10 @@ L.Control.LanguageDialog = L.Control.extend({
 			data: {
 				action: 'close',
 				id: 'LanguageDialog',
-			},
+			}
 		};
-		this.map.fire(
-			window.mode.isMobile() ? 'closemobilewizard' : 'jsdialog',
-			closeEvent,
-		);
-	},
+		this.map.fire(window.mode.isMobile() ? 'closemobilewizard' : 'jsdialog', closeEvent);
+	}
 });
 
 L.control.languageDialog = function (options) {

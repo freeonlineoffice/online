@@ -29,7 +29,8 @@ L.Map.VersionBar = L.Handler.extend({
 				laterDate.setTime(timeValue + 432000000);
 			}
 
-			if (currentDate > laterDate) app.socket.sendMessage('infobar');
+			if (currentDate > laterDate)
+				app.socket.sendMessage('infobar');
 		}
 	},
 
@@ -37,33 +38,16 @@ L.Map.VersionBar = L.Handler.extend({
 		if (e && e.loolwsd_version) {
 			var latestVersion = e.loolwsd_version.split('.');
 			var currentVersion = app.socket.WSDServer.Version.split('.');
-			var snackbarMessage = _(
-				'Your Free Online Office server needs updating. Version {0} is available.',
-			);
-			var length = Math.max(
-				latestVersion.length,
-				currentVersion.length,
-			);
+			var snackbarMessage = _('Your Free Online Office server needs updating. Version {0} is available.');
+			var length = Math.max(latestVersion.length, currentVersion.length);
 			for (var i = 0; i < length; i++) {
-				var v1 =
-					i < latestVersion.length
-						? parseInt(latestVersion[i])
-						: 0;
-				var v2 =
-					i < currentVersion.length
-						? parseInt(currentVersion[i])
-						: 0;
+				var v1 = i < latestVersion.length ? parseInt(latestVersion[i]) : 0;
+				var v2 = i < currentVersion.length ? parseInt(currentVersion[i]) : 0;
 
 				if (v1 > v2) {
 					var currentDate = new Date();
-					window.prefs.set(
-						'InfoBarLaterDate',
-						currentDate.getTime(),
-					);
-					snackbarMessage = snackbarMessage.replace(
-						'{0}',
-						e.loolwsd_version,
-					);
+					window.prefs.set('InfoBarLaterDate', currentDate.getTime());
+					snackbarMessage = snackbarMessage.replace('{0}', e.loolwsd_version);
 					this._map.uiManager.showSnackbar(snackbarMessage);
 					break;
 				}
@@ -72,7 +56,7 @@ L.Map.VersionBar = L.Handler.extend({
 				}
 			}
 		}
-	},
+	}
 });
 
 if (window.prefs.canPersist) {

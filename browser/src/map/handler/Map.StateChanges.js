@@ -6,10 +6,11 @@
 /* global $ app */
 /*eslint no-extend-native:0*/
 L.Map.mergeOptions({
-	stateChangeHandler: true,
+	stateChangeHandler: true
 });
 
 L.Map.StateChangeHandler = L.Handler.extend({
+
 	initialize: function (map) {
 		this._map = map;
 		// Contains the items for which state will be tracked
@@ -25,22 +26,18 @@ L.Map.StateChangeHandler = L.Handler.extend({
 		this._map.off('commandstatechanged', this._onStateChanged, this);
 	},
 
-	_onStateChanged: function (e) {
-		var slideMasterPageItem = this._map[
-			'stateChangeHandler'
-		].getItemValue('.uno:SlideMasterPage');
+	_onStateChanged: function(e) {
+		var slideMasterPageItem = this._map['stateChangeHandler'].getItemValue('.uno:SlideMasterPage');
 		var state;
 
-		if (typeof e.state == 'object') {
+		if (typeof (e.state) == 'object') {
 			state = e.state;
-		} else if (typeof e.state == 'string') {
+		} else if (typeof (e.state) == 'string') {
 			var firstIndex = e.state.indexOf('{');
 			var lastIndex = e.state.lastIndexOf('}');
 
 			if (firstIndex !== -1 && lastIndex !== -1) {
-				state = JSON.parse(
-					e.state.substring(firstIndex, lastIndex + 1),
-				);
+				state = JSON.parse(e.state.substring(firstIndex, lastIndex + 1));
 			} else {
 				state = e.state;
 			}
@@ -54,32 +51,19 @@ L.Map.StateChangeHandler = L.Handler.extend({
 		}
 
 		if (e.commandName === '.uno:SlideMasterPage') {
-			this._map._docLayer._selectedMode =
-				state === true || state === 'true' ? 1 : 0;
+			this._map._docLayer._selectedMode = (state === true || state === 'true') ? 1 : 0;
 		}
 
 		if (e.commandName === '.uno:FormatPaintbrush') {
 			if (state === 'true')
-				$('.leaflet-pane.leaflet-map-pane').addClass(
-					'bucket-cursor',
-				);
+				$('.leaflet-pane.leaflet-map-pane').addClass('bucket-cursor');
 			else
-				$('.leaflet-pane.leaflet-map-pane').removeClass(
-					'bucket-cursor',
-				);
+				$('.leaflet-pane.leaflet-map-pane').removeClass('bucket-cursor');
 		}
 
-		if (
-			e.commandName === '.uno:StartWithPresentation' &&
-			(state === true || state === 'true')
-		) {
-			let startPresentationParam =
-				window.loolParams.get('startPresentation');
-			if (
-				startPresentationParam === '' ||
-				startPresentationParam === 'true' ||
-				startPresentationParam === '1'
-			) {
+		if (e.commandName === '.uno:StartWithPresentation' && (state === true || state === 'true')) {
+			let startPresentationParam = window.loolParams.get('startPresentation');
+			if (startPresentationParam === '' || startPresentationParam === 'true' || startPresentationParam === '1') {
 				app.dispatcher.dispatch('presentation');
 			}
 		}
@@ -90,27 +74,23 @@ L.Map.StateChangeHandler = L.Handler.extend({
 			$('#document-container').removeClass('slide-normal-mode');
 			$('#document-container').addClass('slide-master-mode');
 		}
-		if (
-			!slideMasterPageItem ||
-			slideMasterPageItem == 'false' ||
-			slideMasterPageItem == 'undefined'
-		) {
+		if (!slideMasterPageItem || slideMasterPageItem == 'false' || slideMasterPageItem == 'undefined') {
 			$('#document-container').removeClass('slide-master-mode');
 			$('#document-container').addClass('slide-normal-mode');
 		}
 	},
 
-	getItems: function () {
+	getItems: function() {
 		return this._items;
 	},
 
-	getItemValue: function (unoCmd) {
+	getItemValue: function(unoCmd) {
 		unoCmd = this.ensureUnoCommandPrefix(unoCmd);
 
 		return this._items[unoCmd];
 	},
 
-	setItemValue: function (unoCmd, value) {
+	setItemValue: function(unoCmd, value) {
 		unoCmd = this.ensureUnoCommandPrefix(unoCmd);
 
 		this._items[unoCmd] = value;
@@ -121,7 +101,7 @@ L.Map.StateChangeHandler = L.Handler.extend({
 			return '.uno:' + unoCmd;
 		}
 		return unoCmd;
-	},
+	}
 });
 
 L.Map.addInitHook('addHandler', 'stateChangeHandler', L.Map.StateChangeHandler);

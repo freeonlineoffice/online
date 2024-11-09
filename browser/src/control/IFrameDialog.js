@@ -4,9 +4,10 @@
  */
 
 L.IFrameDialog = L.Class.extend({
+
 	options: {
 		prefix: 'iframe-none',
-		method: 'get',
+		method: 'get'
 	},
 
 	initialize: function (url, params, element, options) {
@@ -15,15 +16,8 @@ L.IFrameDialog = L.Class.extend({
 		this._loading = false;
 		L.setOptions(this, options);
 
-		this._container = L.DomUtil.create(
-			'div',
-			this.options.prefix + '-wrap',
-		);
-		content = L.DomUtil.create(
-			'div',
-			this.options.prefix + '-content',
-			this._container,
-		);
+		this._container = L.DomUtil.create('div', this.options.prefix + '-wrap');
+		content = L.DomUtil.create('div', this.options.prefix + '-content', this._container);
 
 		this._container.style.display = 'none';
 		// this should be set for making it focusable
@@ -33,11 +27,7 @@ L.IFrameDialog = L.Class.extend({
 
 		this.fillParams(url, params, form);
 
-		this._iframe = L.DomUtil.create(
-			'iframe',
-			this.options.prefix + '-modal',
-			content,
-		);
+		this._iframe = L.DomUtil.create('iframe', this.options.prefix + '-modal', content);
 		this._iframe.name = form.target;
 
 		if (this.options.id) {
@@ -82,11 +72,12 @@ L.IFrameDialog = L.Class.extend({
 		}, 1000);
 	},
 
-	clearTimeout: function () {
+	clearTimeout: function ()
+	{
 		clearTimeout(this._errorTimer);
 	},
 
-	focus: function () {
+	focus: function() {
 		if (this._container) {
 			this._container.focus();
 		}
@@ -103,9 +94,7 @@ L.IFrameDialog = L.Class.extend({
 	},
 
 	queryContainer: function () {
-		return document.body.querySelector(
-			'.' + this.options.prefix + '-wrap',
-		);
+		return document.body.querySelector('.' + this.options.prefix + '-wrap');
 	},
 
 	postMessage: function (msg) {
@@ -120,11 +109,11 @@ L.IFrameDialog = L.Class.extend({
 	show: function () {
 		this._container.style.display = '';
 		this.focus();
-	},
+	}
 });
 
 // Close when pressing Escape
-window.addEventListener('keyup', function iframeKeyupListener(e) {
+window.addEventListener('keyup', function iframeKeyupListener (e) {
 	if (e.keyCode === 27 || e.key === 'Escape') {
 		window.postMessage('{"MessageId":"welcome-close"}', '*');
 	}

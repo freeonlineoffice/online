@@ -1,8 +1,9 @@
 /* -*- js-indent-level: 8 -*- */
 
 L.Layer = L.Evented.extend({
+
 	options: {
-		pane: 'overlayPane',
+		pane: 'overlayPane'
 	},
 
 	addTo: function (map) {
@@ -22,9 +23,7 @@ L.Layer = L.Evented.extend({
 	},
 
 	getPane: function (name) {
-		return this._map.getPane(
-			name ? this.options[name] || name : this.options.pane,
-		);
+		return this._map.getPane(name ? (this.options[name] || name) : this.options.pane);
 	},
 
 	addInteractiveTarget: function (targetEl) {
@@ -41,9 +40,7 @@ L.Layer = L.Evented.extend({
 		var map = e.target;
 
 		// check in case layer gets added and then removed before the map is ready
-		if (!map.hasLayer(this)) {
-			return;
-		}
+		if (!map.hasLayer(this)) { return; }
 
 		this._map = map;
 		this._zoomAnimated = map._zoomAnimated;
@@ -55,16 +52,15 @@ L.Layer = L.Evented.extend({
 		}
 
 		this.fire('add');
-		map.fire('layeradd', { layer: this });
-	},
+		map.fire('layeradd', {layer: this});
+	}
 });
+
 
 L.Map.include({
 	addLayer: function (layer) {
 		var id = L.stamp(layer);
-		if (this._layers[id]) {
-			return layer;
-		}
+		if (this._layers[id]) { return layer; }
 		this._layers[id] = layer;
 
 		layer._mapToAdd = this;
@@ -81,9 +77,7 @@ L.Map.include({
 	removeLayer: function (layer) {
 		var id = L.stamp(layer);
 
-		if (!this._layers[id]) {
-			return this;
-		}
+		if (!this._layers[id]) { return this; }
 
 		if (this._loaded) {
 			layer.onRemove(this);
@@ -96,7 +90,7 @@ L.Map.include({
 		delete this._layers[id];
 
 		if (this._loaded) {
-			this.fire('layerremove', { layer: layer });
+			this.fire('layerremove', {layer: layer});
 			layer.fire('remove');
 		}
 
@@ -106,7 +100,7 @@ L.Map.include({
 	},
 
 	hasLayer: function (layer) {
-		return !!layer && L.stamp(layer) in this._layers;
+		return !!layer && (L.stamp(layer) in this._layers);
 	},
 
 	eachLayer: function (method, context) {
@@ -142,20 +136,14 @@ L.Map.include({
 
 	_updateZoomLevels: function () {
 		var minZoom = Infinity,
-			maxZoom = -Infinity,
-			oldZoomSpan = this._getZoomSpan();
+		    maxZoom = -Infinity,
+		    oldZoomSpan = this._getZoomSpan();
 
 		for (var i in this._zoomBoundLayers) {
 			var options = this._zoomBoundLayers[i].options;
 
-			minZoom =
-				options.minZoom === undefined
-					? minZoom
-					: Math.min(minZoom, options.minZoom);
-			maxZoom =
-				options.maxZoom === undefined
-					? maxZoom
-					: Math.max(maxZoom, options.maxZoom);
+			minZoom = options.minZoom === undefined ? minZoom : Math.min(minZoom, options.minZoom);
+			maxZoom = options.maxZoom === undefined ? maxZoom : Math.max(maxZoom, options.maxZoom);
 		}
 
 		this._layersMaxZoom = maxZoom === -Infinity ? undefined : maxZoom;
@@ -164,24 +152,19 @@ L.Map.include({
 		if (oldZoomSpan !== this._getZoomSpan()) {
 			this.fire('zoomlevelschange');
 		}
-	},
+	}
 });
 
 // Used in L.Marker and L.Popup for computing layer position from latlng optionally with offsets
 // with or without freeze-panes. This also indicates in the returned object
 // whether the object should be visible or not when freeze panes are active.
-L.Layer.getLayerPositionVisibility = function (
-	latlng,
-	boundingClientRect,
-	map,
-	offset,
-) {
+L.Layer.getLayerPositionVisibility = function (latlng, boundingClientRect, map, offset) {
 	var splitPanesContext = map.getSplitPanesContext();
 
 	if (!splitPanesContext) {
 		return {
 			position: map.latLngToLayerPoint(latlng).round(),
-			visibility: 'visible',
+			visibility: 'visible'
 		};
 	}
 
@@ -195,12 +178,13 @@ L.Layer.getLayerPositionVisibility = function (
 	var mapPanePos = map._getMapPanePos();
 	var mirrorX = map._docLayer.isCalcRTL();
 	var layerSplitPos = splitPos.subtract(mapPanePos);
-	if (mirrorX) layerSplitPos.x = map._size.x - splitPos.x - mapPanePos.x;
+	if (mirrorX)
+		layerSplitPos.x = map._size.x - splitPos.x - mapPanePos.x;
 
 	var makeHidden = false;
 
 	if (splitPos.x) {
-		layerSplitPos.x += mirrorX ? -1 : 1;
+		layerSplitPos.x += (mirrorX ? -1 : 1);
 	}
 
 	if (splitPos.y) {
@@ -215,36 +199,22 @@ L.Layer.getLayerPositionVisibility = function (
 		// fixed region.
 		// mirroring should always be done in container coordinates.
 		// In the fixed region, document coordinates and container coordinates are the same.
-		layerPos.x =
-			(mirrorX ? map._size.x - docPosWithOffset.x : docPos.x) -
-			mapPanePos.x;
-		layerPosWithOffset.x =
-			(mirrorX ? map._size.x - docPos.x : docPosWithOffset.x) -
-			mapPanePos.x;
+		layerPos.x = (mirrorX ? map._size.x - docPosWithOffset.x : docPos.x) - mapPanePos.x;
+		layerPosWithOffset.x = (mirrorX ? map._size.x - docPos.x : docPosWithOffset.x) - mapPanePos.x;
 		if (splitPos.x - docPosWithOffset.x <= eps.x) {
 			// Hide the object if it is close to the split *and* the non-fixed region has moved away from the fixed.
-			makeHidden = mapPanePos.x !== pixelOrigin.x;
+			makeHidden = (mapPanePos.x !== pixelOrigin.x);
 		}
-	} else {
+	}
+	else {
 		// Movable region.
 		// Mirroring should always be done in container coordinates.
 		// The mirrorX expression does the following:
 		// The document coordinate is first converted to container coordinate,
 		// then it is mirrored w.r.t the container and finally converted to layer coordinate.
-		layerPos.x = mirrorX
-			? map._size.x -
-				(docPosWithOffset.x - pixelOrigin.x + mapPanePos.x) -
-				mapPanePos.x
-			: docPos.x - pixelOrigin.x;
-		layerPosWithOffset.x = mirrorX
-			? map._size.x -
-				(docPos.x - pixelOrigin.x + mapPanePos.x) -
-				mapPanePos.x
-			: docPosWithOffset.x - pixelOrigin.x;
-		if (
-			(!mirrorX && layerPosWithOffset.x < layerSplitPos.x) ||
-			(mirrorX && layerPosWithOffset.x >= layerSplitPos.x)
-		) {
+		layerPos.x = mirrorX ? map._size.x - (docPosWithOffset.x - pixelOrigin.x + mapPanePos.x) - mapPanePos.x : docPos.x - pixelOrigin.x;
+		layerPosWithOffset.x = mirrorX ? map._size.x - (docPos.x - pixelOrigin.x + mapPanePos.x) - mapPanePos.x : docPosWithOffset.x - pixelOrigin.x;
+		if ((!mirrorX && layerPosWithOffset.x < layerSplitPos.x) || (mirrorX && layerPosWithOffset.x >= layerSplitPos.x)) {
 			// do not encroach the fixed region.
 			makeHidden = true;
 		}
@@ -256,9 +226,10 @@ L.Layer.getLayerPositionVisibility = function (
 		layerPosWithOffset.y = docPosWithOffset.y - mapPanePos.y;
 		if (splitPos.y - docPosWithOffset.y <= eps.y) {
 			// Hide the marker if it is close to the split *and* the non-fixed region has moved away from the fixed.
-			makeHidden = mapPanePos.y !== pixelOrigin.y;
+			makeHidden = (mapPanePos.y !== pixelOrigin.y);
 		}
-	} else {
+	}
+	else {
 		layerPos.y = docPos.y - pixelOrigin.y;
 		layerPosWithOffset.y = docPosWithOffset.y - pixelOrigin.y;
 		if (layerPosWithOffset.y < layerSplitPos.y) {
@@ -269,6 +240,6 @@ L.Layer.getLayerPositionVisibility = function (
 
 	return {
 		position: layerPos,
-		visibility: makeHidden ? 'hidden' : 'visible',
+		visibility: makeHidden ? 'hidden' : 'visible'
 	};
 };

@@ -7,20 +7,17 @@
 
 L.Control.PermissionSwitch = L.Control.extend({
 	options: {
-		position: 'topleft',
+		position: 'topleft'
 	},
 
 	onAdd: function () {
 		var partName = 'leaflet-control-editviewswitch',
-			container = L.DomUtil.create('label', partName + ' leaflet-bar');
+		    container = L.DomUtil.create('label', partName + ' leaflet-bar');
 
 		this._checkBox = L.DomUtil.create('input', 'editview-cb', container);
 		this._checkBox.type = 'checkbox';
 		L.DomEvent.on(this._checkBox, 'change', this._onChange, this);
-		app.events.on(
-			'updatepermission',
-			this._onUpdatePermission.bind(this),
-		);
+		app.events.on('updatepermission', this._onUpdatePermission.bind(this));
 		container.appendChild(document.createTextNode('Enable editing'));
 		return container;
 	},
@@ -28,7 +25,8 @@ L.Control.PermissionSwitch = L.Control.extend({
 	_onChange: function () {
 		if (this._checkBox.checked) {
 			this._map.setPermission('edit');
-		} else {
+		}
+		else {
 			this._map.setPermission('view');
 		}
 		this._map.focus();
@@ -38,14 +36,16 @@ L.Control.PermissionSwitch = L.Control.extend({
 		if (e.detail.perm === 'edit') {
 			this._checkBox.checked = true;
 			this._checkBox.disabled = false;
-		} else if (e.detail.perm === 'view') {
+		}
+		else if (e.detail.perm === 'view') {
 			this._checkBox.checked = false;
 			this._checkBox.disabled = false;
-		} else if (e.detail.perm === 'readonly') {
+		}
+		else if (e.detail.perm === 'readonly') {
 			this._checkBox.checked = false;
 			this._checkBox.disabled = true;
 		}
-	},
+	}
 });
 
 L.control.permissionSwitch = function (options) {

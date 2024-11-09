@@ -47,15 +47,10 @@ abstract class CPath extends CEventsHandler {
 		super();
 		this.setStyleOptions(options);
 
-		this.radius =
-			options.radius !== undefined ? options.radius : this.radius;
-		this.radiusY =
-			options.radiusY !== undefined ? options.radiusY : this.radiusY;
+		this.radius = options.radius !== undefined ? options.radius : this.radius;
+		this.radiusY = options.radiusY !== undefined ? options.radiusY : this.radiusY;
 		this.point = options.point !== undefined ? options.point : this.point;
-		this.toCompatUnits =
-			options.toCompatUnits !== undefined
-				? options.toCompatUnits
-				: this.toCompatUnits;
+		this.toCompatUnits = options.toCompatUnits !== undefined ? options.toCompatUnits : this.toCompatUnits;
 
 		this.viewId = CPath.getViewId(options);
 		if (options.groupType !== undefined)
@@ -68,52 +63,27 @@ abstract class CPath extends CEventsHandler {
 	}
 
 	static getViewId(options: any): number {
-		if (options.viewId === undefined || options.viewId === null)
-			// Own cell cursor/selection
+		if (options.viewId === undefined || options.viewId === null) // Own cell cursor/selection
 			return -1;
-		else return parseInt(options.viewId);
+		else
+			return parseInt(options.viewId);
 	}
 
 	setStyleOptions(options: any) {
 		this.name = options.name !== undefined ? options.name : this.name;
-		this.stroke =
-			options.stroke !== undefined ? options.stroke : this.stroke;
+		this.stroke = options.stroke !== undefined ? options.stroke : this.stroke;
 		this.color = options.color !== undefined ? options.color : this.color;
-		this.weight =
-			options.weight !== undefined ? options.weight : this.weight;
-		this.opacity =
-			options.opacity !== undefined ? options.opacity : this.opacity;
-		this.lineCap =
-			options.lineCap !== undefined ? options.lineCap : this.lineCap;
-		this.lineJoin =
-			options.lineJoin !== undefined
-				? options.lineJoin
-				: this.lineJoin;
+		this.weight = options.weight !== undefined ? options.weight : this.weight;
+		this.opacity = options.opacity !== undefined ? options.opacity : this.opacity;
+		this.lineCap = options.lineCap !== undefined ? options.lineCap : this.lineCap;
+		this.lineJoin = options.lineJoin !== undefined ? options.lineJoin : this.lineJoin;
 		this.fill = options.fill !== undefined ? options.fill : this.fill;
-		this.fillColor =
-			options.fillColor !== undefined
-				? options.fillColor
-				: this.fillColor;
-		this.fillOpacity =
-			options.fillOpacity !== undefined
-				? options.fillOpacity
-				: this.fillOpacity;
-		this.fillRule =
-			options.fillRule !== undefined
-				? options.fillRule
-				: this.fillRule;
-		this.cursorType =
-			options.cursorType !== undefined
-				? options.cursorType
-				: this.cursorType;
-		this.thickness =
-			options.thickness !== undefined
-				? options.thickness
-				: this.thickness;
-		this.interactive =
-			options.interactive !== undefined
-				? options.interactive
-				: this.interactive;
+		this.fillColor = options.fillColor !== undefined ? options.fillColor : this.fillColor;
+		this.fillOpacity = options.fillOpacity !== undefined ? options.fillOpacity : this.fillOpacity;
+		this.fillRule = options.fillRule !== undefined ? options.fillRule : this.fillRule;
+		this.cursorType = options.cursorType !== undefined ? options.cursorType : this.cursorType;
+		this.thickness = options.thickness !== undefined ? options.thickness : this.thickness;
+		this.interactive = options.interactive !== undefined ? options.interactive : this.interactive;
 		this.fixed = options.fixed !== undefined ? options.fixed : this.fixed;
 	}
 
@@ -137,7 +107,8 @@ abstract class CPath extends CEventsHandler {
 
 	// Used by cypress tests to assert on the bounds of CPaths.
 	protected updateTestData() {
-		if (!this.testDiv) return;
+		if (!this.testDiv)
+			return;
 		var bounds = this.getBounds();
 		if (this.empty() || !bounds.isValid()) {
 			this.testDiv.innerText = '{}';
@@ -150,7 +121,7 @@ abstract class CPath extends CEventsHandler {
 			top: Math.round(topLeft.y),
 			left: Math.round(topLeft.x),
 			width: Math.round(size.x),
-			height: Math.round(size.y),
+			height: Math.round(size.y)
 		});
 	}
 
@@ -176,15 +147,16 @@ abstract class CPath extends CEventsHandler {
 	}
 
 	onMouseEnter(position: lool.Point) {
-		this.fire('mouseenter', { position: position });
+		this.fire('mouseenter', {position: position});
 	}
 
 	onMouseLeave(position: lool.Point) {
-		this.fire('mouseleave', { position: position });
+		this.fire('mouseleave', {position: position});
 	}
 
 	redraw(oldBounds: lool.Bounds) {
-		if (this.renderer) this.renderer.updatePath(this, oldBounds);
+		if (this.renderer)
+			this.renderer.updatePath(this, oldBounds);
 	}
 
 	setStyle(style: any) {
@@ -202,7 +174,7 @@ abstract class CPath extends CEventsHandler {
 			// Ignore freeze-panes.
 			var fixedMapArea = new lool.Bounds(
 				new lool.Point(0, 0),
-				viewBounds.getSize(),
+				viewBounds.getSize()
 			);
 			this.updatePath(fixedMapArea, fixedMapArea);
 			this.updateTestData();
@@ -210,9 +182,9 @@ abstract class CPath extends CEventsHandler {
 		}
 
 		var splitPanesContext = this.renderer.getSplitPanesContext();
-		var paneBoundsList: Array<lool.Bounds> = splitPanesContext
-			? splitPanesContext.getPxBoundList()
-			: [viewBounds];
+		var paneBoundsList: Array<lool.Bounds> = splitPanesContext ?
+			splitPanesContext.getPxBoundList() :
+			[viewBounds];
 
 		let maxXBound = 0;
 		let maxYBound = 0;
@@ -223,30 +195,18 @@ abstract class CPath extends CEventsHandler {
 		}
 
 		for (var i = 0; i < paneBoundsList.length; ++i) {
-			var panePaintArea = paintArea
-				? paintArea.clone()
-				: paneBoundsList[i].clone();
+			var panePaintArea = paintArea ? paintArea.clone() : paneBoundsList[i].clone();
 			var paneArea = paneBoundsList[i];
 			if (paintArea) {
-				if (!paneArea.intersects(panePaintArea)) continue;
 
-				panePaintArea.min.x = Math.max(
-					panePaintArea.min.x,
-					paneArea.min.x,
-				);
-				panePaintArea.min.y = Math.max(
-					panePaintArea.min.y,
-					paneArea.min.y,
-				);
+				if (!paneArea.intersects(panePaintArea))
+					continue;
 
-				panePaintArea.max.x = Math.min(
-					panePaintArea.max.x,
-					paneArea.max.x,
-				);
-				panePaintArea.max.y = Math.min(
-					panePaintArea.max.y,
-					paneArea.max.y,
-				);
+				panePaintArea.min.x = Math.max(panePaintArea.min.x, paneArea.min.x);
+				panePaintArea.min.y = Math.max(panePaintArea.min.y, paneArea.min.y);
+
+				panePaintArea.max.x = Math.min(panePaintArea.max.x, paneArea.max.x);
+				panePaintArea.max.y = Math.min(panePaintArea.max.y, paneArea.max.y);
 			}
 
 			let freezeX: boolean;
@@ -269,11 +229,7 @@ abstract class CPath extends CEventsHandler {
 		this.updateTestData();
 	}
 
-	updatePath(
-		paintArea?: lool.Bounds,
-		paneBounds?: lool.Bounds,
-		freezePane?: { freezeX: boolean; freezeY: boolean },
-	) {
+	updatePath(paintArea?: lool.Bounds, paneBounds?: lool.Bounds, freezePane?: { freezeX: boolean, freezeY: boolean }) {
 		// Overridden in implementations.
 	}
 
@@ -337,7 +293,7 @@ enum PathGroupType {
 	CellSelection, // bottom.
 	TextSelection,
 	CellCursor,
-	Other, // top.
+	Other  // top.
 }
 
 class CPathGroup {
@@ -347,9 +303,7 @@ class CPathGroup {
 		this.paths = paths;
 	}
 
-	forEach(
-		callback: (path: CPath, index: number, pathArray: CPath[]) => void,
-	) {
+	forEach(callback: (path: CPath, index: number, pathArray: CPath[]) => void) {
 		this.paths.forEach(callback);
 	}
 

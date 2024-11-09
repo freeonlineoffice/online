@@ -14,21 +14,17 @@ L.DivIcon = L.Icon.extend({
 		bgPos: (Point)
 		*/
 		className: 'leaflet-div-icon',
-		html: false,
+		html: false
 	},
 
 	createIcon: function (oldIcon) {
-		var div =
-				oldIcon && oldIcon.tagName === 'DIV'
-					? oldIcon
-					: document.createElement('div'),
-			options = this.options;
+		var div = (oldIcon && oldIcon.tagName === 'DIV') ? oldIcon : document.createElement('div'),
+		    options = this.options;
 
 		div.innerHTML = options.html !== false ? options.html : '';
 
 		if (options.bgPos) {
-			div.style.backgroundPosition =
-				-options.bgPos.x + 'px ' + -options.bgPos.y + 'px';
+			div.style.backgroundPosition = (-options.bgPos.x) + 'px ' + (-options.bgPos.y) + 'px';
 		}
 		this._setIconStyles(div, 'icon');
 
@@ -37,7 +33,7 @@ L.DivIcon = L.Icon.extend({
 
 	createShadow: function () {
 		return null;
-	},
+	}
 });
 
 L.divIcon = function (options) {
