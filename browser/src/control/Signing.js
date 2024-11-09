@@ -6,7 +6,7 @@
 /* global _ app */
 
 L.Map.include({
-	onChangeSignStatus: function(signstatus) {
+	onChangeSignStatus: function (signstatus) {
 		// Have a non-empty status text by default, so a signatures -> no signatures
 		// transition updates the status bar.
 		var statusText = _('The document is not signed.');
@@ -17,37 +17,50 @@ L.Map.include({
 		// This is meant to be in sync with core.git
 		// include/sfx2/signaturestate.hxx, SignatureState.
 		switch (signstatus) {
-		case '0': // SignatureState::NOSIGNATURES
-			break;
-		case '1': // SignatureState::OK
-			statusText = _('This document is digitally signed and the signature is valid.');
-			statusIcon = 'sign_ok';
-			break;
-		case '2': // SignatureState::BROKEN
-			statusText = _('This document has an invalid signature.');
-			statusIcon = 'sign_not_ok';
-			break;
-		case '3': // SignatureState::INVALID
-			statusText = _('The signature was valid, but the document has been modified.');
-			statusIcon = 'sign_not_ok';
-			break;
-		case '4': // SignatureState::NOTVALIDATED
-			statusText = _('The signature is OK, but the certificate could not be validated.');
-			statusIcon = 'sign_not_ok';
-			break;
-		case '5': // SignatureState::PARTIAL_OK
-			statusText = _('The signature is OK, but the document is only partially signed.');
-			statusIcon = 'sign_not_ok';
-			break;
-		case '6': // SignatureState::NOTVALIDATED_PARTIAL_OK
-			statusText = _('The signature is OK, but the certificate could not be validated and the document is only partially signed.');
-			statusIcon = 'sign_not_ok';
-			break;
+			case '0': // SignatureState::NOSIGNATURES
+				break;
+			case '1': // SignatureState::OK
+				statusText = _(
+					'This document is digitally signed and the signature is valid.',
+				);
+				statusIcon = 'sign_ok';
+				break;
+			case '2': // SignatureState::BROKEN
+				statusText = _('This document has an invalid signature.');
+				statusIcon = 'sign_not_ok';
+				break;
+			case '3': // SignatureState::INVALID
+				statusText = _(
+					'The signature was valid, but the document has been modified.',
+				);
+				statusIcon = 'sign_not_ok';
+				break;
+			case '4': // SignatureState::NOTVALIDATED
+				statusText = _(
+					'The signature is OK, but the certificate could not be validated.',
+				);
+				statusIcon = 'sign_not_ok';
+				break;
+			case '5': // SignatureState::PARTIAL_OK
+				statusText = _(
+					'The signature is OK, but the document is only partially signed.',
+				);
+				statusIcon = 'sign_not_ok';
+				break;
+			case '6': // SignatureState::NOTVALIDATED_PARTIAL_OK
+				statusText = _(
+					'The signature is OK, but the certificate could not be validated and the document is only partially signed.',
+				);
+				statusIcon = 'sign_not_ok';
+				break;
 		}
 
 		if (signstatus === '0') {
 			let signstatusElement = document.querySelector('#signstatus');
-			if (signstatusElement && signstatusElement.classList.contains('hidden')) {
+			if (
+				signstatusElement &&
+				signstatusElement.classList.contains('hidden')
+			) {
 				// Had no signatures and have no signatures: can skip the update.
 				return;
 			}
@@ -57,7 +70,10 @@ L.Map.include({
 			if (!window.mode.isMobile())
 				app.map.statusBar.showSigningItem(statusIcon, statusText);
 			else if (app.map.mobileTopBar.showSigningItem)
-				app.map.mobileTopBar.showSigningItem(statusIcon, statusText);
+				app.map.mobileTopBar.showSigningItem(
+					statusIcon,
+					statusText,
+				);
 		}
-	}
+	},
 });

@@ -11,7 +11,7 @@
 /* global app _ */
 
 L.TextInput = L.Layer.extend({
-	initialize: function() {
+	initialize: function () {
 		this._className = 'TextInput';
 
 		// Flag to denote the composing state, derived from
@@ -42,8 +42,10 @@ L.TextInput = L.Layer.extend({
 		this._hasWorkingSelectionStart = undefined; // does it work ?
 		this._ignoreNextBackspace = false;
 
-		this._preSpaceChar = '<img id="pre-space" alt=" " aria-hidden="true">';
-		this._postSpaceChar = '<img id="post-space" alt=" " aria-hidden="true">';
+		this._preSpaceChar =
+			'<img id="pre-space" alt=" " aria-hidden="true">';
+		this._postSpaceChar =
+			'<img id="post-space" alt=" " aria-hidden="true">';
 		this._initialContent = this._preSpaceChar + this._postSpaceChar;
 
 		// Debug flag, used in fancyLog(). See the debug() method.
@@ -56,9 +58,9 @@ L.TextInput = L.Layer.extend({
 		this._cursorHandler = L.marker(new L.LatLng(0, 0), {
 			icon: L.divIcon({
 				className: 'leaflet-cursor-handler',
-				iconSize: null
+				iconSize: null,
 			}),
-			draggable: true
+			draggable: true,
 		}).on('dragend', this._onCursorHandlerDragEnd, this);
 
 		// Auto-correct characters can trigger auto-correction, but
@@ -66,43 +68,42 @@ L.TextInput = L.Layer.extend({
 		// cf. SvxAutoCorrect::IsAutoCorrectChar
 		this._autoCorrectChars = {
 			// tab, newline - handled elsewhere
-			' ':  [ 32, 0,      0, 1284 ],
-			'!':  [ 33, 0,      0, 4353 ],
-			'"':  [ 34, 0,      0, 4353 ],
-			'%':  [ 37, 0,      0, 4357 ],
-			'\'': [ 39, 0,      0,  192 ],
-			'*':  [ 42, 0,      0, 4360 ],
-			',':  [ 44, 0,      0, 1291 ],
-			'-':  [ 45, 0,      0, 1288 ],
-			'.':  [ 46, 0,      0,  190 ],
-			'/':  [ 47, 0,      0,  191 ],
-			':':  [ 58, 0,      0, 5413 ],
-			';':  [ 59, 0,      0, 1317 ],
-			'?':  [ 63, 0,      0, 4287 ],
-			'_':  [ 95, 0,      0, 5384 ]
+			' ': [32, 0, 0, 1284],
+			'!': [33, 0, 0, 4353],
+			'"': [34, 0, 0, 4353],
+			'%': [37, 0, 0, 4357],
+			"'": [39, 0, 0, 192],
+			'*': [42, 0, 0, 4360],
+			',': [44, 0, 0, 1291],
+			'-': [45, 0, 0, 1288],
+			'.': [46, 0, 0, 190],
+			'/': [47, 0, 0, 191],
+			':': [58, 0, 0, 5413],
+			';': [59, 0, 0, 1317],
+			'?': [63, 0, 0, 4287],
+			_: [95, 0, 0, 5384],
 		};
 
 		// unoKeyCode values of the digits.
 		this._unoKeyMap = {
-			'48': 96,   // 0
-			'49': 97,   // 1
-			'50': 98,   // 2
-			'51': 99,   // 3
-			'52': 100,  // 4
-			'53': 101,  // 5
-			'54': 102,  // 6
-			'55': 103,  // 7
-			'56': 104,  // 8
-			'57': 105   // 9
+			48: 96, // 0
+			49: 97, // 1
+			50: 98, // 2
+			51: 99, // 3
+			52: 100, // 4
+			53: 101, // 5
+			54: 102, // 6
+			55: 103, // 7
+			56: 104, // 8
+			57: 105, // 9
 		};
-
 	},
 
-	hasAccessibilitySupport: function() {
+	hasAccessibilitySupport: function () {
 		return false;
 	},
 
-	onAdd: function() {
+	onAdd: function () {
 		if (this._container) {
 			this.getPane().appendChild(this._container);
 			this.update();
@@ -125,22 +126,27 @@ L.TextInput = L.Layer.extend({
 
 		if (window.ThisIsTheiOSApp) {
 			var that = this;
-			window.MagicToGetHWKeyboardWorking = function() {
+			window.MagicToGetHWKeyboardWorking = function () {
 				var that2 = that;
-				window.MagicKeyDownHandler = function(e) {
+				window.MagicKeyDownHandler = function (e) {
 					that2._onKeyDown(e);
 				};
-				window.MagicKeyUpHandler = function(e) {
+				window.MagicKeyUpHandler = function (e) {
 					that2._onKeyUp(e);
 				};
 			};
 			window.postMobileMessage('FOCUSIFHWKBD');
 		}
 
-		L.DomEvent.on(this._map.getContainer(), 'mousedown touchstart', this._abortComposition, this);
+		L.DomEvent.on(
+			this._map.getContainer(),
+			'mousedown touchstart',
+			this._abortComposition,
+			this,
+		);
 	},
 
-	onRemove: function() {
+	onRemove: function () {
 		window.MagicToGetHWKeyboardWorking = null;
 		window.MagicKeyDownHandler = null;
 		window.MagicKeyUpHandler = null;
@@ -153,7 +159,12 @@ L.TextInput = L.Layer.extend({
 			this._map.off('commandresult', this._onCommandResult, this);
 		}
 		L.DomEvent.off(this._textArea, 'focus blur', this._onFocusBlur, this);
-		L.DomEvent.off(this._map.getContainer(), 'mousedown touchstart', this._abortComposition, this);
+		L.DomEvent.off(
+			this._map.getContainer(),
+			'mousedown touchstart',
+			this._abortComposition,
+			this,
+		);
 
 		this._map.removeLayer(this._cursorHandler);
 	},
@@ -166,7 +177,7 @@ L.TextInput = L.Layer.extend({
 		this._textArea.removeAttribute('disabled');
 	},
 
-	_onPermission: function(e) {
+	_onPermission: function (e) {
 		if (e.detail.perm === 'edit') {
 			this._textArea.removeAttribute('disabled');
 		} else {
@@ -174,9 +185,8 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	_onCommandResult: function(e) {
-		if (this.hasAccessibilitySupport())
-			return;
+	_onCommandResult: function (e) {
+		if (this.hasAccessibilitySupport()) return;
 
 		if (e.commandName === '.uno:Undo' || e.commandName === '.uno:Redo') {
 			//undoing something does not trigger any input method
@@ -192,21 +202,23 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	hasFocus: function() {
+	hasFocus: function () {
 		return this._textArea && this._textArea === document.activeElement;
 	},
 
-	_onFocusBlur: function(ev) {
+	_onFocusBlur: function (ev) {
 		this._fancyLog(ev.type, '');
 		this._statusLog('_onFocusBlur');
-		var onoff = (ev.type === 'focus' ? L.DomEvent.on : L.DomEvent.off).bind(L.DomEvent);
+		var onoff = (
+			ev.type === 'focus' ? L.DomEvent.on : L.DomEvent.off
+		).bind(L.DomEvent);
 
 		// Debug - connect first for saner logging.
 		onoff(
 			this._textArea,
 			'copy cut compositionstart compositionupdate compositionend select keydown keypress keyup beforeinput textInput textinput input',
 			this._onEvent,
-			this
+			this,
 		);
 
 		// we already do the same in _onBeforeInput, anyway for Safari on iOS is too late:
@@ -215,7 +227,10 @@ L.TextInput = L.Layer.extend({
 		if (ev.type === 'focus') {
 			if (!this._isSelectionValid() || this._isCursorAtBeginning()) {
 				if (this.hasAccessibilitySupport()) {
-					this._setSelectionRange(this._lastSelectionStart, this._lastSelectionEnd);
+					this._setSelectionRange(
+						this._lastSelectionStart,
+						this._lastSelectionEnd,
+					);
 				} else {
 					this._emptyArea();
 				}
@@ -226,12 +241,27 @@ L.TextInput = L.Layer.extend({
 
 		onoff(this._textArea, 'input', this._onInput, this);
 		onoff(this._textArea, 'beforeinput', this._onBeforeInput, this);
-		onoff(this._textArea, 'compositionstart', this._onCompositionStart, this);
-		onoff(this._textArea, 'compositionupdate', this._onCompositionUpdate, this);
+		onoff(
+			this._textArea,
+			'compositionstart',
+			this._onCompositionStart,
+			this,
+		);
+		onoff(
+			this._textArea,
+			'compositionupdate',
+			this._onCompositionUpdate,
+			this,
+		);
 		onoff(this._textArea, 'compositionend', this._onCompositionEnd, this);
 		onoff(this._textArea, 'keydown', this._onKeyDown, this);
 		onoff(this._textArea, 'keyup', this._onKeyUp, this);
-		onoff(this._textArea, 'copy cut paste', this._map._handleDOMEvent, this._map);
+		onoff(
+			this._textArea,
+			'copy cut paste',
+			this._map._handleDOMEvent,
+			this._map,
+		);
 
 		app.idleHandler.notifyActive();
 
@@ -243,7 +273,7 @@ L.TextInput = L.Layer.extend({
 	// Focus the textarea/contenteditable
 	// @acceptInput (only on "mobile" (= mobile phone) or on iOS and Android in general) true if we want to
 	// accept key input, and show the virtual keyboard.
-	focus: function(acceptInput) {
+	focus: function (acceptInput) {
 		// Note that the acceptInput parameter intentionally
 		// is a tri-state boolean: undefined, false, or true.
 
@@ -261,12 +291,23 @@ L.TextInput = L.Layer.extend({
 
 		// Trick to avoid showing the software keyboard: Set the textarea
 		// read-only before focus() and reset it again after the blur()
-		if (!window.ThisIsTheiOSApp && navigator.platform !== 'iPhone' && !window.mode.isChromebook()) {
-			if (window.keyboard.guessOnscreenKeyboard() && acceptInput !== true)
+		if (
+			!window.ThisIsTheiOSApp &&
+			navigator.platform !== 'iPhone' &&
+			!window.mode.isChromebook()
+		) {
+			if (
+				window.keyboard.guessOnscreenKeyboard() &&
+				acceptInput !== true
+			)
 				this._textArea.setAttribute('readonly', true);
 		}
 
-		if (!window.ThisIsTheiOSApp && navigator.platform !== 'iPhone' && !window.keyboard.guessOnscreenKeyboard()) {
+		if (
+			!window.ThisIsTheiOSApp &&
+			navigator.platform !== 'iPhone' &&
+			!window.keyboard.guessOnscreenKeyboard()
+		) {
 			this._textArea.focus();
 		} else if (acceptInput === true) {
 			// On the iPhone, only call the textarea's focus() when we get an explicit
@@ -288,8 +329,15 @@ L.TextInput = L.Layer.extend({
 			this._textArea.focus();
 		}
 
-		if (!window.ThisIsTheiOSApp && navigator.platform !== 'iPhone' && !window.mode.isChromebook()) {
-			if (window.keyboard.guessOnscreenKeyboard() && acceptInput !== true) {
+		if (
+			!window.ThisIsTheiOSApp &&
+			navigator.platform !== 'iPhone' &&
+			!window.mode.isChromebook()
+		) {
+			if (
+				window.keyboard.guessOnscreenKeyboard() &&
+				acceptInput !== true
+			) {
 				this._setAcceptInput(false);
 				this._textArea.blur();
 				this._textArea.removeAttribute('readonly');
@@ -303,93 +351,108 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	blur: function() {
+	blur: function () {
 		this._setAcceptInput(false);
-		if (!window.ThisIsTheiOSApp && navigator.platform !== 'iPhone' && !window.mode.isChromebook())
+		if (
+			!window.ThisIsTheiOSApp &&
+			navigator.platform !== 'iPhone' &&
+			!window.mode.isChromebook()
+		)
 			this._textArea.blur();
 	},
 
 	// Returns true if the last focus was to accept input.
 	// Used to restore the keyboard.
-	canAcceptKeyboardInput: function() {
+	canAcceptKeyboardInput: function () {
 		return this._acceptInput;
 	},
 
 	// Marks the content of the textarea/contenteditable as selected,
 	// for system clipboard interaction.
-	select: function() {
+	select: function () {
 		this._setSelectionRange(0, this.getPlainTextContent().length);
 	},
 
-	getValue: function() {
+	getValue: function () {
 		return this.getPlainTextContent();
 	},
 
-	getPlainTextContent: function() {
-		return 	this._textArea.textContent;
+	getPlainTextContent: function () {
+		return this._textArea.textContent;
 	},
 
-	getHTML: function() {
-		return 	this._textArea.innerHTML;
+	getHTML: function () {
+		return this._textArea.innerHTML;
 	},
 
-	_wrapContent: function(content) {
+	_wrapContent: function (content) {
 		var wrappedContent = this.hasAccessibilitySupport()
-			? '<span id="readable-content" aria-hidden="false">' + content + '</span>'
+			? '<span id="readable-content" aria-hidden="false">' +
+				content +
+				'</span>'
 			: content;
 		return content.length === 0
 			? this._initialContent
 			: this._preSpaceChar + wrappedContent + this._postSpaceChar;
 	},
 
-	resetContent: function() {
+	resetContent: function () {
 		this._textArea.innerHTML = this._initialContent;
 	},
 
 	// Convert an array of Unicode code points to a string of UTF-16 code units. Workaround
 	// for String.fromCodePoint() that is missing in IE.
-	codePointsToString: function(codePoints) {
+	codePointsToString: function (codePoints) {
 		var result = '';
 		for (var i = 0; i < codePoints.length; ++i) {
-			if (codePoints[i] <= 0xFFFF)
-				result = (result +
-					String.fromCharCode(codePoints[i]));
+			if (codePoints[i] <= 0xffff)
+				result = result + String.fromCharCode(codePoints[i]);
 			else
-				result = (result +
-					String.fromCharCode(((codePoints[i] - 0x10000) >> 10) + 0xD800) +
-					String.fromCharCode(((codePoints[i] - 0x10000) % 0x400) + 0xDC00));
+				result =
+					result +
+					String.fromCharCode(
+						((codePoints[i] - 0x10000) >> 10) + 0xd800,
+					) +
+					String.fromCharCode(
+						((codePoints[i] - 0x10000) % 0x400) + 0xdc00,
+					);
 		}
 		return result;
 	},
 
 	// As the name says, this returns this._textArea.value as an array of numbers that are
 	// Unicode code points. *Not* UTF-16 code units.
-	getValueAsCodePoints: function(value) {
+	getValueAsCodePoints: function (value) {
 		// this._logCharCodeSequence(value);
 		var arr = [];
 		var code;
-		for (var i = 0; i < value.length; ++i)
-		{
+		for (var i = 0; i < value.length; ++i) {
 			code = value.charCodeAt(i);
 			arr.push(code);
 		}
 		return arr;
 	},
 
-	update: function() {
+	update: function () {
 		if (this._container && this._map && this._latlng) {
-			var position = this._map.latLngToLayerPoint(this._latlng).round();
+			var position = this._map
+				.latLngToLayerPoint(this._latlng)
+				.round();
 			this._setPos(position);
 		}
 	},
 
-	_initLayout: function() {
+	_initLayout: function () {
 		this._container = L.DomUtil.create('div', 'clipboard-container');
 		this._container.id = 'doc-clipboard-container';
 		// The textarea allows the keyboard to pop up and so on.
 		// Note that the contents of the textarea are NOT deleted on each composed
 		// word, in order to make
-		this._textArea = L.DomUtil.create('div', 'clipboard', this._container);
+		this._textArea = L.DomUtil.create(
+			'div',
+			'clipboard',
+			this._container,
+		);
 		this._textArea.id = 'clipboard-area';
 		this._textArea.setAttribute('contenteditable', 'true');
 		this._textArea.setAttribute('autocapitalize', 'off');
@@ -398,7 +461,11 @@ L.TextInput = L.Layer.extend({
 		this._textArea.setAttribute('autocomplete', 'off');
 		this._textArea.setAttribute('spellcheck', 'false');
 
-		this._textAreaLabel = L.DomUtil.create('label', 'visuallyhidden', this._container);
+		this._textAreaLabel = L.DomUtil.create(
+			'label',
+			'visuallyhidden',
+			this._container,
+		);
 		this._textAreaLabel.setAttribute('for', 'clipboard-area');
 		this._textAreaLabel.innerHTML = 'clipboard area';
 		if (this.hasAccessibilitySupport()) {
@@ -416,16 +483,16 @@ L.TextInput = L.Layer.extend({
 
 		if (L.Browser.cypressTest) {
 			var that = this;
-			this._textArea._hasAccessibilitySupport = function() {
+			this._textArea._hasAccessibilitySupport = function () {
 				return that.hasAccessibilitySupport();
 			};
-			this._textArea._wrapContent = function(content) {
+			this._textArea._wrapContent = function (content) {
 				return that._wrapContent(content);
 			};
-			this._textArea._getSelectionStart = function() {
+			this._textArea._getSelectionStart = function () {
 				return that._getSelectionStart();
 			};
-			this._textArea._getSelectionEnd = function() {
+			this._textArea._getSelectionEnd = function () {
 				return that._getSelectionEnd();
 			};
 		}
@@ -437,23 +504,35 @@ L.TextInput = L.Layer.extend({
 		if (!this.hasAccessibilitySupport()) {
 			var warningMessage =
 				_('Screen reader support for text content is disabled. ') +
-				_('You need to enable it both at server level and in the UI. ') +
-				_('Look for the accessibility section in loolwsd.xml for server setting. ') +
-				_('Also check the voice over toggle under %parentControl.').replace(
+				_(
+					'You need to enable it both at server level and in the UI. ',
+				) +
+				_(
+					'Look for the accessibility section in loolwsd.xml for server setting. ',
+				) +
+				_(
+					'Also check the voice over toggle under %parentControl.',
+				).replace(
 					'%parentControl',
-					window.userInterfaceMode === 'notebookbar' ? _('the Help tab') : _('the View menu')
+					window.userInterfaceMode === 'notebookbar'
+						? _('the Help tab')
+						: _('the View menu'),
 				);
 			this._textArea.setAttribute('aria-description', warningMessage);
 		}
 	},
 
-	_setupStyles: function() {
+	_setupStyles: function () {
 		if (this._isDebugOn) {
 			// Style for debugging
 			this._container.style.opacity = 0.5;
 			this._textArea.style.cssText = 'border:1px solid red !important';
-			this._textArea.style.width = L.Browser.cypressTest ? '1px' : '120px';
-			this._textArea.style.height = L.Browser.cypressTest ? '1px' : '50px';
+			this._textArea.style.width = L.Browser.cypressTest
+				? '1px'
+				: '120px';
+			this._textArea.style.height = L.Browser.cypressTest
+				? '1px'
+				: '50px';
 			this._textArea.style.overflow = 'display';
 
 			this._textArea.style.fontSize = '20px';
@@ -469,25 +548,34 @@ L.TextInput = L.Layer.extend({
 		this._textArea.style['white-space'] = 'pre';
 	},
 
-	debug: function(debugOn) {
+	debug: function (debugOn) {
 		this._isDebugOn = !!debugOn;
 		this._setupStyles();
 	},
 
-	activeElement: function() {
+	activeElement: function () {
 		return this._textArea;
 	},
 
 	// Displays the caret and the under-caret marker.
 	// Fetches the coordinates of the caret from the map's doclayer.
-	showCursor: function() {
-		if (!this._map._docLayer._cursorMarker || !this._map._docLayer._tileWidthTwips) {
+	showCursor: function () {
+		if (
+			!this._map._docLayer._cursorMarker ||
+			!this._map._docLayer._tileWidthTwips
+		) {
 			return;
 		}
 
 		// Fetch top and bottom coords of caret
-		var top = this._map._docLayer._twipsToLatLng({ x: app.file.textCursor.rectangle.x1, y: app.file.textCursor.rectangle.y1 });
-		var bottom = this._map._docLayer._twipsToLatLng({ x: app.file.textCursor.rectangle.x1, y: app.file.textCursor.rectangle.y2 });
+		var top = this._map._docLayer._twipsToLatLng({
+			x: app.file.textCursor.rectangle.x1,
+			y: app.file.textCursor.rectangle.y1,
+		});
+		var bottom = this._map._docLayer._twipsToLatLng({
+			x: app.file.textCursor.rectangle.x1,
+			y: app.file.textCursor.rectangle.y2,
+		});
 
 		if (!this._map._docLayer._cursorMarker.isDomAttached()) {
 			// Display caret
@@ -497,7 +585,10 @@ L.TextInput = L.Layer.extend({
 
 		// Move and display under-caret marker
 
-		if (window.touch.currentlyUsingTouchscreen() && this._map._docLayer._textCSelections.empty()) {
+		if (
+			window.touch.currentlyUsingTouchscreen() &&
+			this._map._docLayer._textCSelections.empty()
+		) {
 			this._cursorHandler.setLatLng(bottom).addTo(this._map);
 		} else {
 			this._map.removeLayer(this._cursorHandler);
@@ -507,13 +598,13 @@ L.TextInput = L.Layer.extend({
 		this._latlng = L.latLng(top);
 		this.update();
 		// shape handlers hidden (if selected)
-		this._map.fire('handlerstatus', {hidden: true});
+		this._map.fire('handlerstatus', { hidden: true });
 		if (this._map._docLoaded && this._map.getDocType() === 'spreadsheet')
 			this._map.onFormulaBarFocus();
 	},
 
 	// Hides the caret and the under-caret marker.
-	hideCursor: function() {
+	hideCursor: function () {
 		if (!this._map._docLayer._cursorMarker) {
 			return;
 		}
@@ -521,10 +612,10 @@ L.TextInput = L.Layer.extend({
 			this._map._docLayer._cursorMarker.remove();
 		this._map.removeLayer(this._cursorHandler);
 		// shape handlers visible again (if selected)
-		this._map.fire('handlerstatus', {hidden: false});
+		this._map.fire('handlerstatus', { hidden: false });
 	},
 
-	_setPos: function(pos) {
+	_setPos: function (pos) {
 		// the offset is needed since we have to move away from the edited text
 		// or double clicks for selecting text doesn't work properly
 		if (L.Browser.cypressTest) {
@@ -535,22 +626,20 @@ L.TextInput = L.Layer.extend({
 			// position causing a test failure.
 			pos.x += 10;
 			pos.y += 10;
-		}
-		else {
+		} else {
 			pos.y += this._isDebugOn ? 50 : 200;
 		}
 		L.DomUtil.setPosition(this._container, pos);
 	},
 
 	// Generic handle attached to most text area events, just for debugging purposes.
-	_onEvent: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onEvent: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 		var msg = {
 			inputType: ev.inputType,
 			data: ev.data,
 			key: ev.key,
-			isComposing: ev.isComposing
+			isComposing: ev.isComposing,
 		};
 
 		if ('key' in ev) {
@@ -562,12 +651,10 @@ L.TextInput = L.Layer.extend({
 		this._fancyLog(ev.type, msg);
 	},
 
-	_fancyLog: function(type, payload) {
+	_fancyLog: function (type, payload) {
 		// Avoid unhelpful exceptions
-		if (payload === undefined)
-			payload = 'undefined';
-		else if (payload === null)
-			payload = 'null';
+		if (payload === undefined) payload = 'undefined';
+		else if (payload === null) payload = 'null';
 
 		// Pretty-print on console (but only if "tile layer debug mode" is active)
 		if (this._isDebugOn) {
@@ -576,58 +663,65 @@ L.TextInput = L.Layer.extend({
 			state += this._ignoreNextBackspace ? 'I' : '-';
 			state += ' ';
 
-			var textSel = this._getSelectionStart() + '!' + this._getSelectionEnd();
+			var textSel =
+				this._getSelectionStart() + '!' + this._getSelectionEnd();
 			state += textSel + ' ';
 
 			var sel = window.getSelection();
 			var content = this.getValue();
-			if (sel === null)
-				state += '-1';
-			else
-			{
+			if (sel === null) state += '-1';
+			else {
 				state += sel.rangeCount;
 
 				state += ' ';
 				var cursorPos = -1;
-				for (var i = 0; i < sel.rangeCount; ++i)
-				{
+				for (var i = 0; i < sel.rangeCount; ++i) {
 					var range = sel.getRangeAt(i);
-					state += range.startOffset + '-' + range.endOffset + ' ';
-					if (cursorPos < 0)
-						cursorPos = range.startOffset;
+					state +=
+						range.startOffset + '-' + range.endOffset + ' ';
+					if (cursorPos < 0) cursorPos = range.startOffset;
 				}
 				if (sel.toString() !== '')
 					state += ': "' + sel.toString() + '" ';
 
 				// inject probable cursor
 				if (cursorPos >= 0)
-					content = content.slice(0, cursorPos) + '|' + content.slice(cursorPos);
+					content =
+						content.slice(0, cursorPos) +
+						'|' +
+						content.slice(cursorPos);
 			}
 
 			state += '[' + this._deleteHint + '] ';
 
 			window.app.console.log(
-				+ new Date() + ' %cINPUT%c: ' + state
-				+ '"' + content + '" ' + type + '%c ',
+				+new Date() +
+					' %cINPUT%c: ' +
+					state +
+					'"' +
+					content +
+					'" ' +
+					type +
+					'%c ',
 				'background:#bfb;color:black',
 				'color:green',
 				'color:black',
-				JSON.stringify(payload)
+				JSON.stringify(payload),
 			);
 		}
 	},
 
-	_handleMisplacedCursorAtBeginning: function(ev) {
+	_handleMisplacedCursorAtBeginning: function (ev) {
 		// It seems some inputs e.g. GBoard can magically move the cursor from " | " to "|  "
-		window.app.console.log('Oh dear, gboard sabotaged our cursor position, fixing');
+		window.app.console.log(
+			'Oh dear, gboard sabotaged our cursor position, fixing',
+		);
 		// But when we detect the problem only emit a delete when we have one.
-		if (ev.inputType && ev.inputType === 'deleteContentBackward')
-		{
+		if (ev.inputType && ev.inputType === 'deleteContentBackward') {
 			this._removeTextContent(1, 0);
 			// Having mended it we now get a real backspace on input (sometimes)
 			this._ignoreNextBackspace = true;
-		}
-		else if (this.hasAccessibilitySupport()) {
+		} else if (this.hasAccessibilitySupport()) {
 			this._setCursorPosition(this._getLastCursorPosition());
 		}
 		if (!this.hasAccessibilitySupport()) {
@@ -638,20 +732,22 @@ L.TextInput = L.Layer.extend({
 	// Backspaces and deletes at the beginning / end are filtered out, so
 	// we get a beforeinput, but no input for them. Sometimes we can end up
 	// in a state where we lost our leading / terminal chars and can't recover
-	_onBeforeInput: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onBeforeInput: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 		this._statusLog('_onBeforeInput [');
 		this._ignoreNextBackspace = false;
 		if (!this._isSelectionValid()) {
 			this._emptyArea();
-		}
-		else if (this._isInitialContent() && this._isCursorAtBeginning()) {
+		} else if (this._isInitialContent() && this._isCursorAtBeginning()) {
 			this._handleMisplacedCursorAtBeginning(ev);
 		}
 		// Firefox is not able to delete the <img> post space. Since no 'input' event is generated,
 		// we need to handle a <delete> at the end of the paragraph, here.
-		if (L.Browser.gecko && this._isCursorAtEnd() && this._deleteHint === 'delete') {
+		if (
+			L.Browser.gecko &&
+			this._isCursorAtEnd() &&
+			this._deleteHint === 'delete'
+		) {
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending delete');
 			}
@@ -661,23 +757,28 @@ L.TextInput = L.Layer.extend({
 		this._statusLog('_onBeforeInput ]');
 	},
 
-	_isDigit: function(asciiChar) {
+	_isDigit: function (asciiChar) {
 		return asciiChar >= 48 && asciiChar <= 57;
 	},
 
-	_hasFormulaBarFocus: function() {
-		return 	this._map && this._map.formulabar && this._map.formulabar.hasFocus();
+	_hasFormulaBarFocus: function () {
+		return (
+			this._map &&
+			this._map.formulabar &&
+			this._map.formulabar.hasFocus()
+		);
 	},
 
 	// Fired when text has been inputed, *during* and after composing/spellchecking
-	_onInput: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onInput: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 		this._statusLog('_onInput [');
 		app.idleHandler.notifyActive();
 
 		if (this._ignoreInputCount > 0) {
-			window.app.console.log('ignoring synthetic input ' + this._ignoreInputCount);
+			window.app.console.log(
+				'ignoring synthetic input ' + this._ignoreInputCount,
+			);
 			return;
 		}
 
@@ -698,16 +799,17 @@ L.TextInput = L.Layer.extend({
 
 		// We use a different leading and terminal space character
 		// to differentiate backspace from delete, then replace the character.
-		if (!this._hasPreSpace()) { // missing initial space
+		if (!this._hasPreSpace()) {
+			// missing initial space
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending backspace');
 			}
-			if (!ignoreBackspace)
-				this._removeTextContent(1, 0);
+			if (!ignoreBackspace) this._removeTextContent(1, 0);
 			this._emptyArea();
 			return;
 		}
-		if (!this._hasPostSpace()) { // missing trailing space.
+		if (!this._hasPostSpace()) {
+			// missing trailing space.
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending delete');
 			}
@@ -726,30 +828,48 @@ L.TextInput = L.Layer.extend({
 		// And that is caused because after entering the first character
 		// cursor position is never updated by keyboard (I know it is strange)
 		// so here we manually correct the position
-		if (window.mode.isMobile() && content.length === 1 && this._lastContent.length === 0)
+		if (
+			window.mode.isMobile() &&
+			content.length === 1 &&
+			this._lastContent.length === 0
+		)
 			this._setCursorPosition(1);
 
 		var matchTo = 0;
 		var sharedLength = Math.min(content.length, this._lastContent.length);
-		while (matchTo < sharedLength && content[matchTo] === this._lastContent[matchTo])
+		while (
+			matchTo < sharedLength &&
+			content[matchTo] === this._lastContent[matchTo]
+		)
 			matchTo++;
 
 		if (this._map._debug.logKeyboardEvents) {
-			window.app.console.log('Comparison matchAt ' + matchTo + '\n' +
-				'\tnew "' + this.codePointsToString(content) + '" (' + content.length + ')' + '\n' +
-				'\told "' + this.codePointsToString(this._lastContent) + '" (' + this._lastContent.length + ')');
+			window.app.console.log(
+				'Comparison matchAt ' +
+					matchTo +
+					'\n' +
+					'\tnew "' +
+					this.codePointsToString(content) +
+					'" (' +
+					content.length +
+					')' +
+					'\n' +
+					'\told "' +
+					this.codePointsToString(this._lastContent) +
+					'" (' +
+					this._lastContent.length +
+					')',
+			);
 		}
 
 		var removeBefore = this._lastContent.length - matchTo;
 		var removeAfter = 0;
 
-		if (this._lastContent.length > content.length)
-		{
+		if (this._lastContent.length > content.length) {
 			// Pressing '<space><delete>' can delete our terminal space
 			// such that subsequent deletes will do nothing; need to
 			// detect and reset in this case.
-			if (this._deleteHint === 'delete')
-			{
+			if (this._deleteHint === 'delete') {
 				removeBefore--;
 				removeAfter++;
 			}
@@ -759,8 +879,7 @@ L.TextInput = L.Layer.extend({
 			this._removeTextContent(removeBefore, removeAfter);
 
 		var newText = content;
-		if (matchTo > 0)
-			newText = newText.slice(matchTo);
+		if (matchTo > 0) newText = newText.slice(matchTo);
 
 		this._lastContent = content;
 
@@ -769,8 +888,7 @@ L.TextInput = L.Layer.extend({
 		}
 
 		// was a 'delete' and we need to reset world.
-		if (removeAfter > 0)
-			this._emptyArea();
+		if (removeAfter > 0) this._emptyArea();
 
 		// special handling for formula bar
 		this._finishFormulabarEditing(content, matchTo);
@@ -788,20 +906,26 @@ L.TextInput = L.Layer.extend({
 	_sendNewText: function (ev, content, newText) {
 		// When the cell formatted as percent, to trig percentage sign addition
 		// automatically we send the first digit character as KeyEvent.
-		if (this._map.getDocType() === 'spreadsheet' &&
-			content.length === 1 && ev.inputType === 'insertText' &&
-			this._isDigit(newText) && window.mode.isDesktop()) {
+		if (
+			this._map.getDocType() === 'spreadsheet' &&
+			content.length === 1 &&
+			ev.inputType === 'insertText' &&
+			this._isDigit(newText) &&
+			window.mode.isDesktop()
+		) {
 			this._sendKeyEvent(newText, this._unoKeyMap[newText], 'input');
-		}
-		else {
+		} else {
 			this._sendText(this.codePointsToString(newText));
 		}
 	},
 
-	_finishFormulabarEditing: function(content, matchTo) {
+	_finishFormulabarEditing: function (content, matchTo) {
 		if (this._hasFormulaBarFocus() && content.length) {
 			var contentString = this.codePointsToString(content);
-			if (contentString[matchTo] === '\n' || contentString.charCodeAt(matchTo) === 13) {
+			if (
+				contentString[matchTo] === '\n' ||
+				contentString.charCodeAt(matchTo) === 13
+			) {
 				app.dispatcher.dispatch('acceptformula');
 			}
 		}
@@ -809,13 +933,16 @@ L.TextInput = L.Layer.extend({
 
 	// Sends the given (UTF-8) string of text to loolwsd, as IME (text composition)
 	// messages
-	_sendText: function(text) {
+	_sendText: function (text) {
 		// this._logCharCodeSequence(text);
 		this._fancyLog('send-text-to-loolwsd', text);
 
 		// MSIE/Edge cannot compare a string to "\n" for whatever reason,
 		// so compare charcode as well
-		if (text === '\n' || (text.length === 1 && text.charCodeAt(0) === 13)) {
+		if (
+			text === '\n' ||
+			(text.length === 1 && text.charCodeAt(0) === 13)
+		) {
 			this._sendNewlineEvent();
 		} else {
 			// The composition messages doesn't play well with line breaks inside
@@ -844,7 +971,7 @@ L.TextInput = L.Layer.extend({
 	// always catch deleteContentBackward/deleteContentForward input events
 	// (some combination of browser + input method don't fire those on an
 	// empty contenteditable).
-	_emptyArea: function(noSelect) {
+	_emptyArea: function (noSelect) {
 		this._statusLog('_emptyArea [');
 		this._fancyLog('empty-area');
 
@@ -868,7 +995,8 @@ L.TextInput = L.Layer.extend({
 		if (!noSelect && document.getElementById(this._textArea.id)) {
 			this._setCursorPosition(0);
 			if (this._hasWorkingSelectionStart === undefined)
-				this._hasWorkingSelectionStart = (this._getSelectionStart() === 0);
+				this._hasWorkingSelectionStart =
+					this._getSelectionStart() === 0;
 		}
 
 		this._fancyLog('empty-area-end');
@@ -876,13 +1004,13 @@ L.TextInput = L.Layer.extend({
 		this._ignoreInputCount--;
 	},
 
-	_onCompositionStart: function(/*ev*/) {
+	_onCompositionStart: function (/*ev*/) {
 		this._isComposing = true;
 	},
 
 	// Handled only in legacy situations ('input' events with an inputType
 	// property are preferred).
-	_onCompositionUpdate: function(ev) {
+	_onCompositionUpdate: function (ev) {
 		app.idleHandler.notifyActive();
 		this._onInput(ev);
 	},
@@ -892,10 +1020,11 @@ L.TextInput = L.Layer.extend({
 	// to handle since Chrome also fires "input/insertText" events.
 	// The approach here is to use "compositionend" events *only in Chrome* to mark
 	// the composing text as committed to the text area.
-	_onCompositionEnd: function(ev) {
+	_onCompositionEnd: function (ev) {
 		app.idleHandler.notifyActive();
 		this._isComposing = false;
-		if (ev.data && ev.data.charCodeAt(ev.data.length-1) === 10) // 10 === charCode('\n')
+		if (ev.data && ev.data.charCodeAt(ev.data.length - 1) === 10)
+			// 10 === charCode('\n')
 			this._newlineHint = true;
 		if (this.hasAccessibilitySupport()) {
 			if (!this._isWrappedBySpan()) {
@@ -912,10 +1041,9 @@ L.TextInput = L.Layer.extend({
 	// on a timeout.
 	// Very difficult to handle right now, so the strategy is to panic and
 	// empty the text area.
-	_abortComposition: function(ev) {
+	_abortComposition: function (ev) {
 		this._fancyLog('abort-composition', ev.type);
-		if (this._isComposing)
-			this._isComposing = false;
+		if (this._isComposing) this._isComposing = false;
 		if (this.hasAccessibilitySupport()) {
 			this._isLeftRightArrow = 0;
 			this._updateFocusedParagraph();
@@ -928,7 +1056,9 @@ L.TextInput = L.Layer.extend({
 	_handleKeyDownForPopup: function (ev, id) {
 		var popup = L.DomUtil.get(id);
 		if (popup) {
-			const entries = document.querySelectorAll('#' + id + ' span.ui-treeview-cell');
+			const entries = document.querySelectorAll(
+				'#' + id + ' span.ui-treeview-cell',
+			);
 			if (ev.key === 'ArrowDown') {
 				const initialFocusElement = entries[0];
 				if (initialFocusElement) {
@@ -938,21 +1068,27 @@ L.TextInput = L.Layer.extend({
 					ev.stopPropagation();
 				}
 			} else if (ev.key === 'Enter' && entries.length === 1) {
-					const event = new KeyboardEvent('keydown', {
-						key: 'Enter',
-						bubbles: true,
-						cancelable: true,
-					});
-					entries[0].dispatchEvent(event);
-					ev.preventDefault();
-					ev.stopPropagation();
-			} else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight' ||
-				ev.key === 'ArrowUp' || ev.key === 'Home' ||
-				ev.key === 'End' || ev.key === 'PageUp' ||
-				ev.key === 'PageDown' || ev.key === 'Enter' ||
-				ev.key === 'Escape' || ev.key === 'Control' ||
-				ev.key === 'Tab') {
-
+				const event = new KeyboardEvent('keydown', {
+					key: 'Enter',
+					bubbles: true,
+					cancelable: true,
+				});
+				entries[0].dispatchEvent(event);
+				ev.preventDefault();
+				ev.stopPropagation();
+			} else if (
+				ev.key === 'ArrowLeft' ||
+				ev.key === 'ArrowRight' ||
+				ev.key === 'ArrowUp' ||
+				ev.key === 'Home' ||
+				ev.key === 'End' ||
+				ev.key === 'PageUp' ||
+				ev.key === 'PageDown' ||
+				ev.key === 'Enter' ||
+				ev.key === 'Escape' ||
+				ev.key === 'Control' ||
+				ev.key === 'Tab'
+			) {
 				if (id === 'mentionPopup')
 					this._map.mention.closeMentionPopup(false);
 				else if (id === 'formulaautocompletePopup')
@@ -962,17 +1098,14 @@ L.TextInput = L.Layer.extend({
 		return popup;
 	},
 
-	_onKeyDown: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onKeyDown: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 
 		if (app.UI.notebookbarAccessibility)
 			app.UI.notebookbarAccessibility.onDocumentKeyDown(ev);
 
-		if (ev.keyCode === 8)
-			this._deleteHint = 'backspace';
-		else if (ev.keyCode === 46)
-			this._deleteHint = 'delete';
+		if (ev.keyCode === 8) this._deleteHint = 'backspace';
+		else if (ev.keyCode === 46) this._deleteHint = 'delete';
 		else {
 			this._deleteHint = '';
 		}
@@ -983,28 +1116,42 @@ L.TextInput = L.Layer.extend({
 		// with no selection in a text element with contenteditable='true'. Since no copy/cut event
 		// is emitted, Clipboard.copy/cut is never invoked. So we need to emit it manually.
 		// To be honest it seems a Firefox bug. We need to check if they fix it in later version.
-		if (!this.hasAccessibilitySupport() && !L.Browser.win &&
-			L.Browser.gecko && L.Browser.geckoVersion >= '117.0' && L.Browser.geckoVersion <= '120.0' &&
-			ev.ctrlKey && window.getSelection().isCollapsed) {
+		if (
+			!this.hasAccessibilitySupport() &&
+			!L.Browser.win &&
+			L.Browser.gecko &&
+			L.Browser.geckoVersion >= '117.0' &&
+			L.Browser.geckoVersion <= '120.0' &&
+			ev.ctrlKey &&
+			window.getSelection().isCollapsed
+		) {
 			if (ev.key === 'c') {
 				document.execCommand('copy');
-			}
-			else if (ev.key === 'x') {
+			} else if (ev.key === 'x') {
 				document.execCommand('cut');
 			}
 		}
 
 		if (this.hasAccessibilitySupport()) {
-			if ((this._hasAnySelection && !this._isEditingInSelection && this._map.getDocType() !== 'spreadsheet') ||
-				(!this._hasAnySelection && this._map.getDocType() === 'presentation')) {
+			if (
+				(this._hasAnySelection &&
+					!this._isEditingInSelection &&
+					this._map.getDocType() !== 'spreadsheet') ||
+				(!this._hasAnySelection &&
+					this._map.getDocType() === 'presentation')
+			) {
 				if (!L.Browser.cypressTest) {
 					var allowedKeyEvent =
-						this._map.keyboard.allowedKeyCodeWhenNotEditing[ev.keyCode] ||
+						this._map.keyboard.allowedKeyCodeWhenNotEditing[
+							ev.keyCode
+						] ||
 						ev.ctrlKey ||
 						ev.altKey ||
 						(this._newlineHint && ev.shiftKey);
 					if (!allowedKeyEvent) {
-						window.console.log('TextInput._onKeyDown: any input default prevented since no shape editing is active.');
+						window.console.log(
+							'TextInput._onKeyDown: any input default prevented since no shape editing is active.',
+						);
 						ev.preventDefault();
 					}
 				}
@@ -1023,9 +1170,14 @@ L.TextInput = L.Layer.extend({
 				// If we are at paragraph begin/end and left/right arrow is pressed, we need to prevent default behaviour
 				if (this._isLeftRightArrow) {
 					clearTimeout(this._onNavigationEndTimeout);
-					if (!this._isSelectionValid() || this._isComposing ||
-						(this._isLeftRightArrow > 0 && this._isCursorAtEnd()) ||
-						(this._isLeftRightArrow < 0 && this._isCursorAtStart())) {
+					if (
+						!this._isSelectionValid() ||
+						this._isComposing ||
+						(this._isLeftRightArrow > 0 &&
+							this._isCursorAtEnd()) ||
+						(this._isLeftRightArrow < 0 &&
+							this._isCursorAtStart())
+					) {
 						this._log('_onKeyDown: preventDefault');
 						ev.preventDefault();
 					}
@@ -1034,7 +1186,10 @@ L.TextInput = L.Layer.extend({
 				if (this._isLeftRightArrow) {
 					if (this._listPrefixLength > 0) {
 						var cursorPosition = this._getSelectionEnd();
-						if (cursorPosition === this._listPrefixLength && this._isLeftRightArrow < 0) {
+						if (
+							cursorPosition === this._listPrefixLength &&
+							this._isLeftRightArrow < 0
+						) {
 							// if caret is at begin of list entry content: "1. |Item 1" and shift+left arrow is pressed,
 							// then caret is moved at the end of previous paragraph, if any; or it's not moved at all
 							// if we are at the document beginning; so we only need to prevent default behaviour
@@ -1047,9 +1202,14 @@ L.TextInput = L.Layer.extend({
 						}
 						// if caret is ahead of list prefix: "|1. Item 1" and right arrow is pressed, with or without shift,
 						// caret is moved at begin of list entry content: "1. |Item 1", nothing is selected
-						if (cursorPosition === 0 && this._isLeftRightArrow > 0) {
+						if (
+							cursorPosition === 0 &&
+							this._isLeftRightArrow > 0
+						) {
 							ev.preventDefault();
-							this._updateCursorPosition(this._listPrefixLength);
+							this._updateCursorPosition(
+								this._listPrefixLength,
+							);
 						}
 					}
 
@@ -1064,11 +1224,21 @@ L.TextInput = L.Layer.extend({
 						if (!selection.isCollapsed) {
 							// The case where a left arrow is pressed with caret at the beginning of a list entry content
 							// is already handled earlier.
-							if (!(this._listPrefixLength > 0 &&
-								this._lastCursorPosition === this._listPrefixLength && this._isLeftRightArrow < 0)) {
-								this._log('_onKeyDown: pressed left/right arrows with selected text');
+							if (
+								!(
+									this._listPrefixLength > 0 &&
+									this._lastCursorPosition ===
+										this._listPrefixLength &&
+									this._isLeftRightArrow < 0
+								)
+							) {
+								this._log(
+									'_onKeyDown: pressed left/right arrows with selected text',
+								);
 								ev.preventDefault();
-								var pos = this._lastCursorPosition + this._isLeftRightArrow;
+								var pos =
+									this._lastCursorPosition +
+									this._isLeftRightArrow;
 								// _updateCursorPosition takes care to normalize pos value
 								this._updateCursorPosition(pos);
 							}
@@ -1080,9 +1250,19 @@ L.TextInput = L.Layer.extend({
 
 		// We want to open drowdown menu when cursor is above a dropdown content control.
 		if (ev.code === 'Space' || ev.code === 'Enter') {
-			if (this._map['stateChangeHandler'].getItemValue('.uno:ContentControlProperties') === 'enabled') {
-				if (app.sectionContainer.doesSectionExist(L.CSections.ContentControl.name)) {
-					var section = app.sectionContainer.getSectionWithName(L.CSections.ContentControl.name);
+			if (
+				this._map['stateChangeHandler'].getItemValue(
+					'.uno:ContentControlProperties',
+				) === 'enabled'
+			) {
+				if (
+					app.sectionContainer.doesSectionExist(
+						L.CSections.ContentControl.name,
+					)
+				) {
+					var section = app.sectionContainer.getSectionWithName(
+						L.CSections.ContentControl.name,
+					);
 					section.onClickDropdown(ev);
 				}
 			}
@@ -1093,16 +1273,21 @@ L.TextInput = L.Layer.extend({
 			// This is the key combination (Alt+C or Alt+Shift+C) for focusing on the comment menu.
 
 			// On Calc, first press opens the comment, second press focuses on it.
-			section = app.sectionContainer.getSectionWithName(L.CSections.CommentList.name);
+			section = app.sectionContainer.getSectionWithName(
+				L.CSections.CommentList.name,
+			);
 			if (section) {
 				if (section.sectionProperties.selectedComment) {
-					var id = section.sectionProperties.selectedComment.sectionProperties.menu.id;
+					var id =
+						section.sectionProperties.selectedComment
+							.sectionProperties.menu.id;
 					var element = document.getElementById(id);
-					if (element)
-						element.focus();
-				}
-				else if (this._map._docLayer._docType === 'spreadsheet') {
-					if (section.sectionProperties.calcCurrentComment !== null)
+					if (element) element.focus();
+				} else if (this._map._docLayer._docType === 'spreadsheet') {
+					if (
+						section.sectionProperties.calcCurrentComment !==
+						null
+					)
 						section.sectionProperties.calcCurrentComment.show();
 				}
 			}
@@ -1117,32 +1302,43 @@ L.TextInput = L.Layer.extend({
 	// whitespace around the caret.
 	// Across browsers, arrow up/down / home / end would move the caret to
 	// the beginning/end of the textarea/contenteditable.
-	_onKeyUp: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onKeyUp: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 
 		app.idleHandler.notifyActive();
-		if (!this.hasAccessibilitySupport() && !this._isComposing &&
-			(ev.key === 'ArrowLeft' || ev.key === 'ArrowRight' ||
-			ev.key === 'ArrowUp' || ev.key === 'ArrowDown' ||
-			ev.key === 'Home' || ev.key === 'End' ||
-			ev.key === 'PageUp' || ev.key === 'PageDown' ||
-			ev.key === 'Escape')) {
+		if (
+			!this.hasAccessibilitySupport() &&
+			!this._isComposing &&
+			(ev.key === 'ArrowLeft' ||
+				ev.key === 'ArrowRight' ||
+				ev.key === 'ArrowUp' ||
+				ev.key === 'ArrowDown' ||
+				ev.key === 'Home' ||
+				ev.key === 'End' ||
+				ev.key === 'PageUp' ||
+				ev.key === 'PageDown' ||
+				ev.key === 'Escape')
+		) {
 			this._emptyArea();
 		}
 
 		if (this.hasAccessibilitySupport()) {
 			if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
 				clearTimeout(this._onNavigationEndTimeout);
-				this._onNavigationEndTimeout = setTimeout(function () {
-					if (this._isLeftRightArrow) {
-						this._isLeftRightArrow = 0;
-						this._updateFocusedParagraph();
-					}
-				}.bind(this), 1000);
-			}
-			else if (ev.key === 'Shift') {
-				if (this._isLeftRightArrow/* && this._remotePosition !== undefined*/) {
+				this._onNavigationEndTimeout = setTimeout(
+					function () {
+						if (this._isLeftRightArrow) {
+							this._isLeftRightArrow = 0;
+							this._updateFocusedParagraph();
+						}
+					}.bind(this),
+					1000,
+				);
+			} else if (ev.key === 'Shift') {
+				if (
+					this
+						._isLeftRightArrow /* && this._remotePosition !== undefined*/
+				) {
 					this._isLeftRightArrow = 0;
 					this._updateFocusedParagraph();
 				}
@@ -1156,9 +1352,11 @@ L.TextInput = L.Layer.extend({
 	// Used in the deleteContentBackward for deleting multiple characters with a single
 	// message.
 	// Will remove characters from the queue first, if there are any.
-	_removeTextContent: function(before, after) {
+	_removeTextContent: function (before, after) {
 		if (this._map._debug.logKeyboardEvents) {
-			window.app.console.log('Remove ' + before + ' before, and ' + after + ' after');
+			window.app.console.log(
+				'Remove ' + before + ' before, and ' + after + ' after',
+			);
 		}
 
 		this._followMyCursor();
@@ -1167,69 +1365,78 @@ L.TextInput = L.Layer.extend({
 		/// TODO: Ask Marco about it
 		app.socket.sendMessage(
 			'removetextcontext id=' +
-			this._map.getWinId() +
-			' before=' + before +
-			' after=' + after
+				this._map.getWinId() +
+				' before=' +
+				before +
+				' after=' +
+				after,
 		);
 	},
 
-	_followMyCursor: function() {
+	_followMyCursor: function () {
 		if (this._map && this._map.userList)
-		this._map.userList.followUser(this._map._docLayer._getViewId());
+			this._map.userList.followUser(this._map._docLayer._getViewId());
 	},
 
 	// Tiny helper - encapsulates sending a 'textinput' websocket message.
 	// sends a pair of "input" for a composition update pair with an "end"
-	_sendCompositionEvent: function(text) {
+	_sendCompositionEvent: function (text) {
 		// this._logCharCodeSequence(text);
 
 		// We want to trigger auto-correction, but not if we may
 		// have to delete a count of characters in the future,
 		// which is specific to crazy mobile keyboard / IMEs:
-		if (!window.mode.isMobile() && !window.mode.isTablet() &&
-			this._autoCorrectChars[text])
-		{
+		if (
+			!window.mode.isMobile() &&
+			!window.mode.isTablet() &&
+			this._autoCorrectChars[text]
+		) {
 			var codes = this._autoCorrectChars[text];
 			this._sendKeyEvent(codes[0], codes[1], 'input');
 			this._sendKeyEvent(codes[2], codes[3], 'up');
-		}
-		else
-		{
+		} else {
 			var encodedText = encodeURIComponent(text);
 			var winId = this._map.getWinId();
 			this._followMyCursor();
 			app.socket.sendMessage(
-				'textinput id=' + winId + ' text=' + encodedText);
+				'textinput id=' + winId + ' text=' + encodedText,
+			);
 		}
 	},
 
 	// Tiny helper - encapsulates sending a 'key' or 'windowkey' websocket message
 	// "type" can be "input" (default) or "up"
-	_sendKeyEvent: function(charCode, unoKeyCode, type) {
+	_sendKeyEvent: function (charCode, unoKeyCode, type) {
 		this._followMyCursor();
 		if (!type) {
 			type = 'input';
 		}
 		if (this._map.editorHasFocus() || this._hasFormulaBarFocus()) {
 			app.socket.sendMessage(
-				'key type=' + type + ' char=' + charCode + ' key=' + unoKeyCode + '\n'
+				'key type=' +
+					type +
+					' char=' +
+					charCode +
+					' key=' +
+					unoKeyCode +
+					'\n',
 			);
 		} else {
 			app.socket.sendMessage(
 				'windowkey id=' +
-				this._map.getWinId() +
-				' type=' +
-				type +
-				' char=' +
-				charCode +
-				' key=' +
-				unoKeyCode +
-				'\n'
+					this._map.getWinId() +
+					' type=' +
+					type +
+					' char=' +
+					charCode +
+					' key=' +
+					unoKeyCode +
+					'\n',
 			);
 		}
 	},
 
-	_sendNewlineEvent: function() {
+	_sendNewlineEvent: function () {
 		// The composition messages doesn't play well with just a line break,
 		// therefore send a keystroke.
 		var unoKeyCode = this._linebreakHint ? 5376 : 1280;
@@ -1242,18 +1449,33 @@ L.TextInput = L.Layer.extend({
 		this._emptyArea();
 		if (this.hasAccessibilitySupport()) {
 			this._setSelectionFlag(false);
-			if (pos === 0 && !empty)
-				this._requestFocusedParagraph();
+			if (pos === 0 && !empty) this._requestFocusedParagraph();
 		}
 	},
 
-	_onCursorHandlerDragEnd: function(ev) {
-		var cursorPos = this._map._docLayer._latLngToTwips(ev.target.getLatLng());
-		this._map._docLayer._postMouseEvent('buttondown', cursorPos.x, cursorPos.y, 1, 1, 0);
-		this._map._docLayer._postMouseEvent('buttonup', cursorPos.x, cursorPos.y, 1, 1, 0);
+	_onCursorHandlerDragEnd: function (ev) {
+		var cursorPos = this._map._docLayer._latLngToTwips(
+			ev.target.getLatLng(),
+		);
+		this._map._docLayer._postMouseEvent(
+			'buttondown',
+			cursorPos.x,
+			cursorPos.y,
+			1,
+			1,
+			0,
+		);
+		this._map._docLayer._postMouseEvent(
+			'buttonup',
+			cursorPos.x,
+			cursorPos.y,
+			1,
+			1,
+			0,
+		);
 	},
 
-	_setCursorPosition: function(pos) {
+	_setCursorPosition: function (pos) {
 		try {
 			this._setSelectionRange(pos, pos);
 		} catch (err) {
@@ -1261,13 +1483,13 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	setSwitchedToEditMode: function() {
+	setSwitchedToEditMode: function () {
 		if (this.hasAccessibilitySupport()) {
 			this._justSwitchedToEditMode = true;
 		}
 	},
 
-	_setAcceptInput: function(accept) {
+	_setAcceptInput: function (accept) {
 		if (L.Browser.cypressTest && this._textArea) {
 			// This is used to track whether we *intended*
 			// the keyboard to be visible or hidden.
@@ -1278,63 +1500,92 @@ L.TextInput = L.Layer.extend({
 		}
 		if (!this.hasAccessibilitySupport()) {
 			this._acceptInput = accept;
-		}
-		else if (this._acceptInput !== accept) {
+		} else if (this._acceptInput !== accept) {
 			this._acceptInput = accept;
-			if (this._justSwitchedToEditMode && accept && this._isInitialContent()) {
+			if (
+				this._justSwitchedToEditMode &&
+				accept &&
+				this._isInitialContent()
+			) {
 				// We need to make the paragraph at the cursor position focused in core
 				// so its content is sent to the editable area.
 				this._justSwitchedToEditMode = false;
 				if (this._map._docLayer && app.file.textCursor.visible) {
-					window.app.console.log('A11yTextInput._setAcceptInput: going to emit a synthetic click after switching to edit mode.');
+					window.app.console.log(
+						'A11yTextInput._setAcceptInput: going to emit a synthetic click after switching to edit mode.',
+					);
 					let center = app.file.textCursor.rectangle.center;
 					center[0] = Math.round(center[0]);
 					center[1] = Math.round(center[1]);
-					this._map._docLayer._postMouseEvent('buttondown', center[0], center[1], 1, 1, 0);
-					this._map._docLayer._postMouseEvent('buttonup', center[0], center[1], 1, 1, 0);
+					this._map._docLayer._postMouseEvent(
+						'buttondown',
+						center[0],
+						center[1],
+						1,
+						1,
+						0,
+					);
+					this._map._docLayer._postMouseEvent(
+						'buttonup',
+						center[0],
+						center[1],
+						1,
+						1,
+						0,
+					);
 				}
 			}
 		}
 	},
 
-	_hasPreSpace: function() {
+	_hasPreSpace: function () {
 		var child = this._textArea.firstChild;
 		return child && child.id === 'pre-space';
 	},
 
-	_hasPostSpace: function() {
+	_hasPostSpace: function () {
 		var child = this._textArea.lastChild;
 		return child && child.id === 'post-space';
 	},
 
-	_isInitialContent: function() {
+	_isInitialContent: function () {
 		var children = this._textArea.childNodes;
-		return children.length === 2 && this._hasPreSpace() && this._hasPostSpace();
+		return (
+			children.length === 2 &&
+			this._hasPreSpace() &&
+			this._hasPostSpace()
+		);
 	},
 
-	_isCursorAtBeginning: function() {
+	_isCursorAtBeginning: function () {
 		var selection = window.getSelection();
 		return selection.isCollapsed && this._getSelectionStart() === -1;
 	},
 
-	_isSelectionValid: function() {
-		return typeof this._getSelectionStart() === 'number' && typeof this._getSelectionEnd() === 'number';
+	_isSelectionValid: function () {
+		return (
+			typeof this._getSelectionStart() === 'number' &&
+			typeof this._getSelectionEnd() === 'number'
+		);
 	},
 
-	_isCursorAtStart: function() {
+	_isCursorAtStart: function () {
 		var selection = window.getSelection();
 		return selection.isCollapsed && this._getSelectionStart() === 0;
 	},
 
-	_isCursorAtEnd: function() {
+	_isCursorAtEnd: function () {
 		var selection = window.getSelection();
-		return selection.isCollapsed && this._getSelectionEnd() === this.getPlainTextContent().length;
+		return (
+			selection.isCollapsed &&
+			this._getSelectionEnd() === this.getPlainTextContent().length
+		);
 	},
 
 	// When the cursor is on a text node return the position wrt the whole plain text content
 	// When the cursor is on a pre- / post-space node return -1 / -2
 	// Otherwise return undefined
-	_getSelection: function(isStart) {
+	_getSelection: function (isStart) {
 		var selection = window.getSelection();
 		var node, offset;
 		if (isStart) {
@@ -1345,27 +1596,33 @@ L.TextInput = L.Layer.extend({
 			offset = selection.focusOffset;
 		}
 
-		if (!node)
-			return;
-		if (node.id === 'pre-space')      // cursor position: <div><img>|</img> ... <img></img></div>
+		if (!node) return;
+		if (node.id === 'pre-space')
+			// cursor position: <div><img>|</img> ... <img></img></div>
 			return -1;
-		if (node.id === 'post-space')     // cursor position: <div><img></img> ... <img>|</img></div>
+		if (node.id === 'post-space')
+			// cursor position: <div><img></img> ... <img>|</img></div>
 			return -2;
 		if (node.id === this._textArea.id) {
 			if (this._hasPreSpace()) {
-				if (offset === 0)         // cursor position: <div>|<img></img> ... <img></img></div>
+				if (offset === 0)
+					// cursor position: <div>|<img></img> ... <img></img></div>
 					return -1;
-				else if (offset === 1)    // cursor position: <div><img></img>| ... <img></img></div>
+				else if (offset === 1)
+					// cursor position: <div><img></img>| ... <img></img></div>
 					return 0;
 			} else if (this._hasPostSpace()) {
-				if (offset === node.childNodes.length)    // cursor position: <div><img></img> ... <img></img>|</div>
+				if (offset === node.childNodes.length)
+					// cursor position: <div><img></img> ... <img></img>|</div>
 					return -2;
 			}
 		}
-		if (node.nodeType !== Node.TEXT_NODE)
-			return;
+		if (node.nodeType !== Node.TEXT_NODE) return;
 
-		var walker = document.createTreeWalker(this._textArea, NodeFilter.SHOW_TEXT);
+		var walker = document.createTreeWalker(
+			this._textArea,
+			NodeFilter.SHOW_TEXT,
+		);
 		var currentNode = walker.nextNode();
 		var pos = 0;
 		while (currentNode) {
@@ -1377,18 +1634,18 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	_getSelectionStart: function() {
+	_getSelectionStart: function () {
 		return this._getSelection(true);
 	},
 
-	_getSelectionEnd: function() {
+	_getSelectionEnd: function () {
 		return this._getSelection(false);
 	},
 
 	// set the selection range
 	// start/end refer to the string represented by the whole plain text content
 	// it's not possible to set range start/end position at <img> delimiters
-	_setSelectionRange: function(start, end) {
+	_setSelectionRange: function (start, end) {
 		this._statusLog('_setSelectionRange [');
 		var selection = window.getSelection();
 		selection.removeAllRanges();
@@ -1405,40 +1662,55 @@ L.TextInput = L.Layer.extend({
 
 		// Normalize input parameters
 		var l = this.getPlainTextContent().length;
-		if (start < 0)
-			start = 0;
-		if (end < 0)
-			end = 0;
-		if (start > l)
-			start = l;
-		if (end > l)
-			end = l;
+		if (start < 0) start = 0;
+		if (end < 0) end = 0;
+		if (start > l) start = l;
+		if (end > l) end = l;
 		if (start > end) {
 			var t = start;
 			start = end;
 			end = t;
 		}
-		var msg = '_setSelectionRange:\n' +
-			'    start: ' + start + ', end: ' + end +'\n';
+		var msg =
+			'_setSelectionRange:\n' +
+			'    start: ' +
+			start +
+			', end: ' +
+			end +
+			'\n';
 
 		var startContainer = null;
-		var walker = document.createTreeWalker(this._textArea, NodeFilter.SHOW_TEXT);
+		var walker = document.createTreeWalker(
+			this._textArea,
+			NodeFilter.SHOW_TEXT,
+		);
 		var currentNode = walker.nextNode(); // first text node in <div>
 		var pos = 0;
 		// walker iterates over text nodes only
 		while (currentNode) {
-			msg += '    current node: ' + currentNode + ', text content: "' + currentNode.textContent + '"\n';
+			msg +=
+				'    current node: ' +
+				currentNode +
+				', text content: "' +
+				currentNode.textContent +
+				'"\n';
 			var len = currentNode.textContent.length;
-			msg += '    pos: ' + pos + ', len: ' + len +'\n';
+			msg += '    pos: ' + pos + ', len: ' + len + '\n';
 			if (!startContainer && start <= pos + len) {
 				startContainer = currentNode;
 				range.setStart(currentNode, start - pos);
-				msg += '    current node set as start: offset: ' + (start - pos) + '\n';
+				msg +=
+					'    current node set as start: offset: ' +
+					(start - pos) +
+					'\n';
 			}
 			// The range end is set only after the range start has been set.
 			if (startContainer && end <= pos + len) {
 				range.setEnd(currentNode, end - pos);
-				msg += '    current node set as end:   offset: ' + (end - pos) + '\n';
+				msg +=
+					'    current node set as end:   offset: ' +
+					(end - pos) +
+					'\n';
 				break;
 			}
 			pos += len;
@@ -1451,47 +1723,52 @@ L.TextInput = L.Layer.extend({
 		this._statusLog('_setSelectionRange ]');
 	},
 
-	_logCharCodeSequence: function(text) {
+	_logCharCodeSequence: function (text) {
 		var s = '[';
 		for (var ii = 0; ii < text.length; ++ii) {
-			if (ii > 0)
-				s = s + ',';
+			if (ii > 0) s = s + ',';
 			s = s + '0x' + text.charCodeAt(ii).toString(16);
 		}
 		s = s + ']';
 		window.app.console.log('L.' + this._className + '._sendText: ' + s);
 	},
 
-	_log: function(msg) {
-		if (!this._isDebugOn)
-			return;
+	_log: function (msg) {
+		if (!this._isDebugOn) return;
 		window.app.console.log(msg);
 	},
 
-	_statusLog: function(header) {
-		if (!this._isDebugOn)
-			return;
+	_statusLog: function (header) {
+		if (!this._isDebugOn) return;
 
 		var msg = this._className + ' ' + header + '\n';
-		msg += '  _lastContent: ' + this._lastContent  +'\n';
-		msg += '  _lastContent: >' + this.codePointsToString(this._lastContent) + '<\n';
+		msg += '  _lastContent: ' + this._lastContent + '\n';
+		msg +=
+			'  _lastContent: >' +
+			this.codePointsToString(this._lastContent) +
+			'<\n';
 		if (this.hasAccessibilitySupport()) {
 			msg += '  _remotePosition: ' + this._remotePosition + '\n';
-			msg += '  _lastCursorPosition: ' + this._getLastCursorPosition() + '\n';
-			msg += '  _lastSelectionStart: ' + this._lastSelectionStart + '\n';
+			msg +=
+				'  _lastCursorPosition: ' +
+				this._getLastCursorPosition() +
+				'\n';
+			msg +=
+				'  _lastSelectionStart: ' + this._lastSelectionStart + '\n';
 			msg += '  _lastSelectionEnd: ' + this._lastSelectionEnd + '\n';
 			msg += '  _hasSelection: ' + this._hasSelection + '\n';
 		}
 		msg += '  SelectionStart: ' + this._getSelectionStart() + '\n';
 		msg += '  SelectionEnd: ' + this._getSelectionEnd() + '\n';
-		msg += '  active element: ' + document.activeElement +'\n';
+		msg += '  active element: ' + document.activeElement + '\n';
 		msg += '  _isComposing: ' + this._isComposing + '\n';
 		var textArea = this._textArea;
 		msg += '  editable element: ' + '\n';
-		msg += '    innerHTML: >' +  textArea.innerHTML + '<\n';
-		msg += '    innerText: >' +  textArea.innerText + '<\n';
-		msg += '    textContent: >' +  textArea.textContent + '<\n';
-		msg += '    has focus: ' + (textArea === document.activeElement) + '\n';
+		msg += '    innerHTML: >' + textArea.innerHTML + '<\n';
+		msg += '    innerText: >' + textArea.innerText + '<\n';
+		msg += '    textContent: >' + textArea.textContent + '<\n';
+		msg +=
+			'    has focus: ' + (textArea === document.activeElement) + '\n';
 		msg += '    has pre space: ' + this._hasPreSpace() + '\n';
 		msg += '    has post space: ' + this._hasPostSpace() + '\n';
 
@@ -1512,7 +1789,10 @@ L.TextInput = L.Layer.extend({
 		msg += '    anchorNode: ' + selection.anchorNode + '\n';
 		if (selection.anchorNode) {
 			msg += '      name: ' + selection.anchorNode.nodeName + '\n';
-			msg += '      textContent: >' + selection.anchorNode.textContent + '<\n';
+			msg +=
+				'      textContent: >' +
+				selection.anchorNode.textContent +
+				'<\n';
 			for (i = 0; i < children.length; ++i) {
 				if (children[i] === selection.anchorNode) {
 					msg += '      equal to child: ' + i + '\n';
@@ -1524,7 +1804,10 @@ L.TextInput = L.Layer.extend({
 		msg += '    focusNode: ' + selection.focusNode + '\n';
 		if (selection.focusNode) {
 			msg += '      name: ' + selection.focusNode.nodeName + '\n';
-			msg += '      textContent: >' + selection.focusNode.textContent + '<\n';
+			msg +=
+				'      textContent: >' +
+				selection.focusNode.textContent +
+				'<\n';
 			for (i = 0; i < children.length; ++i) {
 				if (children[i] === selection.focusNode) {
 					msg += '      equal to child: ' + i + '\n';
@@ -1533,16 +1816,22 @@ L.TextInput = L.Layer.extend({
 				}
 			}
 		}
-		msg += '    editable element contains anchorNode: ' + textArea.contains(selection.anchorNode) + '\n';
-		msg += '    anchorNode == focusNode ? ' + (selection.anchorNode === selection.focusNode) + '\n';
+		msg +=
+			'    editable element contains anchorNode: ' +
+			textArea.contains(selection.anchorNode) +
+			'\n';
+		msg +=
+			'    anchorNode == focusNode ? ' +
+			(selection.anchorNode === selection.focusNode) +
+			'\n';
 		msg += '    anchorOffset: ' + selection.anchorOffset + '\n';
 		msg += '    focusOffset: ' + selection.focusOffset + '\n';
 		msg += '    is collapsed: ' + selection.isCollapsed + '\n';
 
 		window.app.console.log(msg);
-	}
+	},
 });
 
-L.textInput = function() {
+L.textInput = function () {
 	return new L.TextInput();
 };

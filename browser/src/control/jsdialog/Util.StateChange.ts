@@ -28,7 +28,10 @@ function onStateChange(element: Element, callback: StateChangeCallback) {
 	};
 
 	var enableObserver = new MutationObserver(enabledCallback);
-	enableObserver.observe(element, { attributeFilter: ['disabled'], attributeOldValue: true });
+	enableObserver.observe(element, {
+		attributeFilter: ['disabled'],
+		attributeOldValue: true,
+	});
 }
 
 function synchronizeDisabledState(source: Element, targets: Array<Element>) {

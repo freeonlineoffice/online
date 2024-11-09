@@ -5,7 +5,6 @@
  */
 
 L.LayerGroup = L.Layer.extend({
-
 	initialize: function (layers) {
 		this._layers = {};
 
@@ -43,7 +42,10 @@ L.LayerGroup = L.Layer.extend({
 	},
 
 	hasLayer: function (layer) {
-		return !!layer && (layer in this._layers || this.getLayerId(layer) in this._layers);
+		return (
+			!!layer &&
+			(layer in this._layers || this.getLayerId(layer) in this._layers)
+		);
 	},
 
 	clearLayers: function () {
@@ -55,7 +57,8 @@ L.LayerGroup = L.Layer.extend({
 
 	invoke: function (methodName) {
 		var args = Array.prototype.slice.call(arguments, 1),
-		    i, layer;
+			i,
+			layer;
 
 		for (i in this._layers) {
 			layer = this._layers[i];
@@ -102,7 +105,7 @@ L.LayerGroup = L.Layer.extend({
 
 	getLayerId: function (layer) {
 		return L.stamp(layer);
-	}
+	},
 });
 
 L.layerGroup = function (layers) {

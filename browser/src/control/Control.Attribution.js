@@ -6,7 +6,7 @@
 L.Control.Attribution = L.Control.extend({
 	options: {
 		position: 'bottomright',
-		prefix: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>'
+		prefix: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>',
 	},
 
 	initialize: function (options) {
@@ -15,7 +15,10 @@ L.Control.Attribution = L.Control.extend({
 
 	onAdd: function () {
 		if (!this._container) {
-			this._container = L.DomUtil.create('div', 'leaflet-control-attribution');
+			this._container = L.DomUtil.create(
+				'div',
+				'leaflet-control-attribution',
+			);
 			L.DomEvent.disableClickPropagation(this._container);
 		}
 
@@ -31,10 +34,12 @@ L.Control.Attribution = L.Control.extend({
 	},
 
 	_update: function () {
-		if (!this._map) { return; }
+		if (!this._map) {
+			return;
+		}
 
 		this._container.innerText = this.options.prefix;
-	}
+	},
 });
 
 L.control.attribution = function (options) {

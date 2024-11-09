@@ -23,7 +23,11 @@ class TopToolbar extends JSDialog.Toolbar {
 		app.events.on('contextchange', this.onContextChange.bind(this));
 
 		if (!window.mode.isMobile()) {
-			map.on('updatetoolbarcommandvalues', this.updateCommandValues, this);
+			map.on(
+				'updatetoolbarcommandvalues',
+				this.updateCommandValues,
+				this,
+			);
 		}
 	}
 
@@ -39,7 +43,11 @@ class TopToolbar extends JSDialog.Toolbar {
 		this.map.off('commandstatechanged', this.onCommandStateChanged, this);
 
 		if (!window.mode.isMobile()) {
-			this.map.off('updatetoolbarcommandvalues', this.updateCommandValues, this);
+			this.map.off(
+				'updatetoolbarcommandvalues',
+				this.updateCommandValues,
+				this,
+			);
 		}
 	}
 
@@ -59,26 +67,36 @@ class TopToolbar extends JSDialog.Toolbar {
 	}
 
 	callback(objectType, eventType, object, data, builder) {
-		if (object.id === 'fontnamecombobox' || object.id === 'fontsizecombobox' || object.id === 'styles') {
+		if (
+			object.id === 'fontnamecombobox' ||
+			object.id === 'fontsizecombobox' ||
+			object.id === 'styles'
+		) {
 			// managed by non-JSDialog code
 			return;
 		}
 
-		this.builder._defaultCallbackHandler(objectType, eventType, object, data, builder);
+		this.builder._defaultCallbackHandler(
+			objectType,
+			eventType,
+			object,
+			data,
+			builder,
+		);
 	}
 
 	onStyleSelect(e) {
 		var style = e.target.value;
 		if (style.startsWith('.uno:')) {
 			this.map.sendUnoCommand(style);
-		}
-		else if (this.map.getDocType() === 'text') {
+		} else if (this.map.getDocType() === 'text') {
 			this.map.applyStyle(style, 'ParagraphStyles');
-		}
-		else if (this.map.getDocType() === 'spreadsheet') {
+		} else if (this.map.getDocType() === 'spreadsheet') {
 			this.map.applyStyle(style, 'CellStyles');
-		}
-		else if (this.map.getDocType() === 'presentation' || this.map.getDocType() === 'drawing') {
+		} else if (
+			this.map.getDocType() === 'presentation' ||
+			this.map.getDocType() === 'drawing'
+		) {
 			this.map.applyLayout(style);
 		}
 		this.map.focus();
@@ -98,111 +116,673 @@ class TopToolbar extends JSDialog.Toolbar {
 
 	getToolItems() {
 		var items = [
-			{type: 'customtoolitem',  id: 'closemobile', desktop: false, mobile: false, tablet: true, visible: false},
-			{type: 'customtoolitem',  id: 'save', command: 'save', text: _UNO('.uno:Save'), lockUno: '.uno:Save'},
-			{type: 'customtoolitem',  id: 'print', command: 'print', text: _UNO('.uno:Print', 'text'), mobile: false, tablet: false, lockUno: '.uno:Print'},
-			{type: 'menubutton',  id: 'printoptions',  command: 'printoptions', noLabel: true, text: _UNO('.uno:Print', 'text'), mobile: false, tablet: false, lockUno: '.uno:Print',
-				menu: [
-					{id: 'print-active-sheet', action: 'print-active-sheet', text: _('Active Sheet')},
-					{id: 'print-all-sheets', action: 'print-all-sheets', text: _('All Sheets')},
-				]
+			{
+				type: 'customtoolitem',
+				id: 'closemobile',
+				desktop: false,
+				mobile: false,
+				tablet: true,
+				visible: false,
 			},
-			{type: 'separator', orientation: 'vertical', id: 'savebreak', mobile: false},
-			{type: 'toolitem',  id: 'undo', text: _UNO('.uno:Undo'), command: '.uno:Undo', mobile: false},
-			{type: 'toolitem',  id: 'redo', text: _UNO('.uno:Redo'), command: '.uno:Redo', mobile: false},
-			{type: 'separator', orientation: 'vertical', id: 'redobreak', mobile: false, tablet: false,},
-			{type: 'toolitem',  id: 'formatpaintbrush', text: _UNO('.uno:FormatPaintbrush'), command: '.uno:FormatPaintbrush', mobile: false},
-			{type: 'toolitem',  id: 'reset', text: _UNO('.uno:ResetAttributes', 'text'), visible: false, command: '.uno:ResetAttributes', mobile: false},
-			{type: 'toolitem',  id: 'resetimpress', class: 'unoResetAttributes', text: _UNO('.uno:SetDefault', 'presentation', 'true'), visible: false, command: '.uno:SetDefault', mobile: false},
-			{type: 'separator', orientation: 'vertical', id: 'breakreset', invisible: true, mobile: false, tablet: false,},
-			{type: 'listbox', id: 'styles', text: _('Default Style'), desktop: true, mobile: false, tablet: false},
-			{type: 'listbox', id: 'fontnamecombobox', text: 'Carlito', command: '.uno:CharFontName', mobile: false},
-			{type: 'listbox', id: 'fontsizecombobox', text: '12 pt', command: '.uno:FontHeight', mobile: false,},
-			{type: 'separator', orientation: 'vertical', id: 'breakfontsizes', invisible: true, mobile: false, tablet: false},
-			{type: 'toolitem',  id: 'bold', text: _UNO('.uno:Bold'), command: '.uno:Bold'},
-			{type: 'toolitem',  id: 'italic', text: _UNO('.uno:Italic'), command: '.uno:Italic'},
-			{type: 'toolitem',  id: 'underline', text: _UNO('.uno:Underline'), command: '.uno:Underline'},
-			{type: 'toolitem',  id: 'strikeout', text: _UNO('.uno:Strikeout'), command: '.uno:Strikeout'},
-			{type: 'separator', orientation: 'vertical', id: 'breakformatting'},
-			{type: 'colorlistbox',  id: 'fontcolorwriter:ColorPickerMenu', command: '.uno:FontColor', text: _UNO('.uno:FontColor'), visible: false, lockUno: '.uno:FontColor'},
-			{type: 'colorlistbox',  id: 'fontcolor:ColorPickerMenu', command: '.uno:Color', text: _UNO('.uno:FontColor'), lockUno: '.uno:FontColor'},
-			{type: 'colorlistbox',  id: 'backcolor:ColorPickerMenu', command: '.uno:CharBackColor', text: _UNO('.uno:CharBackColor', 'text'), visible: false, lockUno: '.uno:CharBackColor'},
-			{type: 'colorlistbox',  id: 'backgroundcolor:ColorPickerMenu', command: '.uno:BackgroundColor', text: _UNO('.uno:BackgroundColor'), visible: false, lockUno: '.uno:BackgroundColor'},
-			{type: 'separator', orientation: 'vertical' , id: 'breakcolor', mobile:false},
-			{type: 'toolitem',  id: 'leftpara',  command: '.uno:LeftPara', text: _UNO('.uno:LeftPara', '', true), visible: false},
-			{type: 'toolitem',  id: 'centerpara',  command: '.uno:CenterPara', text: _UNO('.uno:CenterPara', '', true), visible: false},
-			{type: 'toolitem',  id: 'rightpara',  command: '.uno:RightPara', text: _UNO('.uno:RightPara', '', true), visible: false},
-			{type: 'toolitem',  id: 'justifypara', command: '.uno:JustifyPara', text: _UNO('.uno:JustifyPara', '', true), visible: false, unosheet: ''},
-			{type: 'separator', orientation: 'vertical', id: 'breakpara', visible: false},
-			{type: 'menubutton',  id: 'setborderstyle:BorderStyleMenu', noLabel: true, command: '.uno:SetBorderStyle', text: _('Borders'), visible: false},
-			{type: 'toolitem',  id: 'togglemergecells', text: _UNO('.uno:ToggleMergeCells', 'spreadsheet', true), visible: false, command: '.uno:ToggleMergeCells'},
-			{type: 'separator', orientation: 'vertical', id: 'breakmergecells', visible: false},
-			{type: 'menubutton', id: 'textalign', command: 'justifypara', noLabel: true, text: _UNO('.uno:TextAlign'), visible: false, lockUno: '.uno:TextAlign',
+			{
+				type: 'customtoolitem',
+				id: 'save',
+				command: 'save',
+				text: _UNO('.uno:Save'),
+				lockUno: '.uno:Save',
+			},
+			{
+				type: 'customtoolitem',
+				id: 'print',
+				command: 'print',
+				text: _UNO('.uno:Print', 'text'),
+				mobile: false,
+				tablet: false,
+				lockUno: '.uno:Print',
+			},
+			{
+				type: 'menubutton',
+				id: 'printoptions',
+				command: 'printoptions',
+				noLabel: true,
+				text: _UNO('.uno:Print', 'text'),
+				mobile: false,
+				tablet: false,
+				lockUno: '.uno:Print',
 				menu: [
-					{id: 'alignleft', text: _UNO('.uno:AlignLeft', 'spreadsheet', true), icon: 'alignleft', uno: '.uno:AlignLeft'},
-					{id: 'alignhorizontalcenter', text: _UNO('.uno:AlignHorizontalCenter', 'spreadsheet', true), icon: 'alignhorizontal', uno: '.uno:AlignHorizontalCenter'},
-					{id: 'alignright', text: _UNO('.uno:AlignRight', 'spreadsheet', true), icon: 'alignright', uno: '.uno:AlignRight'},
-					{id: 'alignblock', text: _UNO('.uno:AlignBlock', 'spreadsheet', true), icon: 'alignblock', uno: '.uno:AlignBlock'},
-					{type: 'separator'},
-					{id: 'aligntop', text: _UNO('.uno:AlignTop', 'spreadsheet', true), icon: 'aligntop', uno: '.uno:AlignTop'},
-					{id: 'alignvcenter', text: _UNO('.uno:AlignVCenter', 'spreadsheet', true), icon: 'alignvcenter', uno: '.uno:AlignVCenter'},
-					{id: 'alignbottom', text: _UNO('.uno:AlignBottom', 'spreadsheet', true), icon: 'alignbottom', uno: '.uno:AlignBottom'},
-				]},
-			{type: 'menubutton',  id: 'linespacing',  command: 'linespacing', noLabel: true, text: _UNO('.uno:FormatSpacingMenu'), visible: false, lockUno: '.uno:FormatSpacingMenu',
-				menu: [
-					{id: 'spacepara1', text: _UNO('.uno:SpacePara1'), uno: '.uno:SpacePara1'},
-					{id: 'spacepara15', text: _UNO('.uno:SpacePara15'), uno: '.uno:SpacePara15'},
-					{id: 'spacepara2', text: _UNO('.uno:SpacePara2'), uno: '.uno:SpacePara2'},
-					{type: 'separator'},
-					{id: 'paraspaceincrease', text: _UNO('.uno:ParaspaceIncrease'), uno: '.uno:ParaspaceIncrease'},
-					{id: 'paraspacedecrease', text: _UNO('.uno:ParaspaceDecrease'), uno: '.uno:ParaspaceDecrease'}
+					{
+						id: 'print-active-sheet',
+						action: 'print-active-sheet',
+						text: _('Active Sheet'),
+					},
+					{
+						id: 'print-all-sheets',
+						action: 'print-all-sheets',
+						text: _('All Sheets'),
+					},
 				],
 			},
-			{type: 'toolitem',  id: 'wraptextbutton', text: _UNO('.uno:WrapText', 'spreadsheet', true), visible: false, command: '.uno:WrapText'},
-			{type: 'separator', orientation: 'vertical', id: 'breakspacing', visible: false},
-			{type: 'toolitem',  id: 'defaultnumbering', text: _UNO('.uno:DefaultNumbering', '', true), visible: false, command: '.uno:DefaultNumbering'},
-			{type: 'toolitem',  id: 'defaultbullet', text: _UNO('.uno:DefaultBullet', '', true), visible: false, command: '.uno:DefaultBullet'},
-			{type: 'separator', orientation: 'vertical', id: 'breakbullet', visible: false},
-			{type: 'toolitem',  id: 'incrementindent', text: _UNO('.uno:IncrementIndent', '', true), command: '.uno:IncrementIndent', visible: false},
-			{type: 'toolitem',  id: 'decrementindent', text: _UNO('.uno:DecrementIndent', '', true), command: '.uno:DecrementIndent', visible: false},
-			{type: 'separator', orientation: 'vertical', id: 'breakindent', visible: false},
-			{type: 'menubutton', id: 'conditionalformatdialog:ConditionalFormatMenu', noLabel: true, text: _UNO('.uno:ConditionalFormatMenu', 'spreadsheet', true), visible: false, lockUno: '.uno:ConditionalFormatMenu'},
-			{type: 'toolitem',  id: 'sortascending', text: _UNO('.uno:SortAscending', 'spreadsheet', true), command: '.uno:SortAscending', visible: false},
-			{type: 'toolitem',  id: 'sortdescending', text: _UNO('.uno:SortDescending', 'spreadsheet', true), command: '.uno:SortDescending', visible: false},
-			{type: 'separator', orientation: 'vertical', id: 'breaksorting', visible: false},
-			{type: 'toolitem',  id: 'numberformatcurrency', text: _UNO('.uno:NumberFormatCurrency', 'spreadsheet', true), visible: false, command: '.uno:NumberFormatCurrency'},
-			{type: 'toolitem',  id: 'numberformatpercent', text: _UNO('.uno:NumberFormatPercent', 'spreadsheet', true), visible: false, command: '.uno:NumberFormatPercent'},
-			{type: 'toolitem',  id: 'numberformatdecdecimals', text: _UNO('.uno:NumberFormatDecDecimals', 'spreadsheet', true), visible: false, command: '.uno:NumberFormatDecDecimals'},
-			{type: 'toolitem',  id: 'numberformatincdecimals', text: _UNO('.uno:NumberFormatIncDecimals', 'spreadsheet', true), visible: false, command: '.uno:NumberFormatIncDecimals'},
-			{type: 'separator', orientation: 'vertical',   id: 'break-number', visible: false},
-			{type: 'button', id: 'gridvisible', img: 'gridvisible', hint: _UNO('.uno:GridVisible'), uno: 'GridVisible', hidden: true},
-			{type: 'button', id: 'griduse', img: 'griduse', hint: _UNO('.uno:GridUse'), uno: 'GridUse', hidden: true},
-			{type: 'menubutton',  id: 'inserttable:InsertTableMenu', command: 'inserttable', noLabel: true, text: _('Insert table'), visible: false, lockUno: '.uno:InsertTable'},
-			{type: 'menubutton', id: 'menugraphic:InsertImageMenu', noLabel: true, command: '.uno:InsertGraphic', text: _UNO('.uno:InsertGraphic', '', true), visible: false, lockUno: '.uno:InsertGraphic'},
-			{type: 'toolitem',  id: 'insertobjectchart', text: _UNO('.uno:InsertObjectChart', '', true), command: '.uno:InsertObjectChart'},
-			{type: 'menubutton',  id: 'insertshapes:InsertShapesMenu', command: '.uno:BasicShapes', noLabel: true, text: _('Insert shapes')},
-			{type: 'toolitem',  id: 'insertline', text: _UNO('.uno:Line', '', true), command: '.uno:Line'},
-			{type: 'menubutton',  id: 'insertconnectors:InsertConnectorsMenu', command: 'connector', noLabel: true, text: _('Insert connectors'), visible: false},
-			{type: 'separator', orientation: 'vertical',   id: 'breakinsert', desktop: true},
-			{type: 'customtoolitem',  id: 'inserttextbox', text: _UNO('.uno:Text', '', true), command: 'inserttextbox', visible: false},
-			{type: 'customtoolitem',  id: 'insertannotation', text: _UNO('.uno:InsertAnnotation', '', true), visible: false, lockUno: '.uno:InsertAnnotation'},
-			{type: 'customtoolitem',  id: 'inserthyperlink',  command: 'inserthyperlink', text: _UNO('.uno:HyperlinkDialog', '', true), lockUno: '.uno:HyperlinkDialog'},
-			{type: 'toolitem',  id: 'insertsymbol', text: _UNO('.uno:InsertSymbol', '', true), command: '.uno:InsertSymbol'},
-			{type: 'spacer', id: 'topspacer'},
-			{type: 'separator', orientation: 'vertical', id: 'breaksidebar', visible: false},
-			{type: 'toolitem',  id: 'sidebar', text: _UNO('.uno:Sidebar', '', true), command: '.uno:SidebarDeck.PropertyDeck', visible: false},
-			{type: 'toolitem',  id: 'modifypage', text: _UNO('.uno:ModifyPage', 'presentation', true), command: '.uno:ModifyPage', visible: false},
-			{type: 'toolitem',  id: 'slidechangewindow', text: _UNO('.uno:SlideChangeWindow', 'presentation', true), command: '.uno:SlideChangeWindow', visible: false},
-			{type: 'toolitem',  id: 'customanimation', text: _UNO('.uno:CustomAnimation', 'presentation', true), command: '.uno:CustomAnimation', visible: false},
-			{type: 'toolitem',  id: 'masterslidespanel', text: _UNO('.uno:MasterSlidesPanel', 'presentation', true), command: '.uno:MasterSlidesPanel', visible: false},
-			{type: 'toolitem',  id: 'navigator', text: _UNO('.uno:Navigator'), command: '.uno:Navigator', visible: false},
-			{type: 'customtoolitem',  id: 'fold', text: _('Hide Menu'), desktop: true, mobile: false, visible: true},
-			{type: 'customtoolitem',  id: 'hamburger-tablet', desktop: false, mobile: false, tablet: true, iosapptablet: false, visible: false},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'savebreak',
+				mobile: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'undo',
+				text: _UNO('.uno:Undo'),
+				command: '.uno:Undo',
+				mobile: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'redo',
+				text: _UNO('.uno:Redo'),
+				command: '.uno:Redo',
+				mobile: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'redobreak',
+				mobile: false,
+				tablet: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'formatpaintbrush',
+				text: _UNO('.uno:FormatPaintbrush'),
+				command: '.uno:FormatPaintbrush',
+				mobile: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'reset',
+				text: _UNO('.uno:ResetAttributes', 'text'),
+				visible: false,
+				command: '.uno:ResetAttributes',
+				mobile: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'resetimpress',
+				class: 'unoResetAttributes',
+				text: _UNO('.uno:SetDefault', 'presentation', 'true'),
+				visible: false,
+				command: '.uno:SetDefault',
+				mobile: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakreset',
+				invisible: true,
+				mobile: false,
+				tablet: false,
+			},
+			{
+				type: 'listbox',
+				id: 'styles',
+				text: _('Default Style'),
+				desktop: true,
+				mobile: false,
+				tablet: false,
+			},
+			{
+				type: 'listbox',
+				id: 'fontnamecombobox',
+				text: 'Carlito',
+				command: '.uno:CharFontName',
+				mobile: false,
+			},
+			{
+				type: 'listbox',
+				id: 'fontsizecombobox',
+				text: '12 pt',
+				command: '.uno:FontHeight',
+				mobile: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakfontsizes',
+				invisible: true,
+				mobile: false,
+				tablet: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'bold',
+				text: _UNO('.uno:Bold'),
+				command: '.uno:Bold',
+			},
+			{
+				type: 'toolitem',
+				id: 'italic',
+				text: _UNO('.uno:Italic'),
+				command: '.uno:Italic',
+			},
+			{
+				type: 'toolitem',
+				id: 'underline',
+				text: _UNO('.uno:Underline'),
+				command: '.uno:Underline',
+			},
+			{
+				type: 'toolitem',
+				id: 'strikeout',
+				text: _UNO('.uno:Strikeout'),
+				command: '.uno:Strikeout',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakformatting',
+			},
+			{
+				type: 'colorlistbox',
+				id: 'fontcolorwriter:ColorPickerMenu',
+				command: '.uno:FontColor',
+				text: _UNO('.uno:FontColor'),
+				visible: false,
+				lockUno: '.uno:FontColor',
+			},
+			{
+				type: 'colorlistbox',
+				id: 'fontcolor:ColorPickerMenu',
+				command: '.uno:Color',
+				text: _UNO('.uno:FontColor'),
+				lockUno: '.uno:FontColor',
+			},
+			{
+				type: 'colorlistbox',
+				id: 'backcolor:ColorPickerMenu',
+				command: '.uno:CharBackColor',
+				text: _UNO('.uno:CharBackColor', 'text'),
+				visible: false,
+				lockUno: '.uno:CharBackColor',
+			},
+			{
+				type: 'colorlistbox',
+				id: 'backgroundcolor:ColorPickerMenu',
+				command: '.uno:BackgroundColor',
+				text: _UNO('.uno:BackgroundColor'),
+				visible: false,
+				lockUno: '.uno:BackgroundColor',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakcolor',
+				mobile: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'leftpara',
+				command: '.uno:LeftPara',
+				text: _UNO('.uno:LeftPara', '', true),
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'centerpara',
+				command: '.uno:CenterPara',
+				text: _UNO('.uno:CenterPara', '', true),
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'rightpara',
+				command: '.uno:RightPara',
+				text: _UNO('.uno:RightPara', '', true),
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'justifypara',
+				command: '.uno:JustifyPara',
+				text: _UNO('.uno:JustifyPara', '', true),
+				visible: false,
+				unosheet: '',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakpara',
+				visible: false,
+			},
+			{
+				type: 'menubutton',
+				id: 'setborderstyle:BorderStyleMenu',
+				noLabel: true,
+				command: '.uno:SetBorderStyle',
+				text: _('Borders'),
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'togglemergecells',
+				text: _UNO('.uno:ToggleMergeCells', 'spreadsheet', true),
+				visible: false,
+				command: '.uno:ToggleMergeCells',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakmergecells',
+				visible: false,
+			},
+			{
+				type: 'menubutton',
+				id: 'textalign',
+				command: 'justifypara',
+				noLabel: true,
+				text: _UNO('.uno:TextAlign'),
+				visible: false,
+				lockUno: '.uno:TextAlign',
+				menu: [
+					{
+						id: 'alignleft',
+						text: _UNO('.uno:AlignLeft', 'spreadsheet', true),
+						icon: 'alignleft',
+						uno: '.uno:AlignLeft',
+					},
+					{
+						id: 'alignhorizontalcenter',
+						text: _UNO(
+							'.uno:AlignHorizontalCenter',
+							'spreadsheet',
+							true,
+						),
+						icon: 'alignhorizontal',
+						uno: '.uno:AlignHorizontalCenter',
+					},
+					{
+						id: 'alignright',
+						text: _UNO(
+							'.uno:AlignRight',
+							'spreadsheet',
+							true,
+						),
+						icon: 'alignright',
+						uno: '.uno:AlignRight',
+					},
+					{
+						id: 'alignblock',
+						text: _UNO(
+							'.uno:AlignBlock',
+							'spreadsheet',
+							true,
+						),
+						icon: 'alignblock',
+						uno: '.uno:AlignBlock',
+					},
+					{ type: 'separator' },
+					{
+						id: 'aligntop',
+						text: _UNO('.uno:AlignTop', 'spreadsheet', true),
+						icon: 'aligntop',
+						uno: '.uno:AlignTop',
+					},
+					{
+						id: 'alignvcenter',
+						text: _UNO(
+							'.uno:AlignVCenter',
+							'spreadsheet',
+							true,
+						),
+						icon: 'alignvcenter',
+						uno: '.uno:AlignVCenter',
+					},
+					{
+						id: 'alignbottom',
+						text: _UNO(
+							'.uno:AlignBottom',
+							'spreadsheet',
+							true,
+						),
+						icon: 'alignbottom',
+						uno: '.uno:AlignBottom',
+					},
+				],
+			},
+			{
+				type: 'menubutton',
+				id: 'linespacing',
+				command: 'linespacing',
+				noLabel: true,
+				text: _UNO('.uno:FormatSpacingMenu'),
+				visible: false,
+				lockUno: '.uno:FormatSpacingMenu',
+				menu: [
+					{
+						id: 'spacepara1',
+						text: _UNO('.uno:SpacePara1'),
+						uno: '.uno:SpacePara1',
+					},
+					{
+						id: 'spacepara15',
+						text: _UNO('.uno:SpacePara15'),
+						uno: '.uno:SpacePara15',
+					},
+					{
+						id: 'spacepara2',
+						text: _UNO('.uno:SpacePara2'),
+						uno: '.uno:SpacePara2',
+					},
+					{ type: 'separator' },
+					{
+						id: 'paraspaceincrease',
+						text: _UNO('.uno:ParaspaceIncrease'),
+						uno: '.uno:ParaspaceIncrease',
+					},
+					{
+						id: 'paraspacedecrease',
+						text: _UNO('.uno:ParaspaceDecrease'),
+						uno: '.uno:ParaspaceDecrease',
+					},
+				],
+			},
+			{
+				type: 'toolitem',
+				id: 'wraptextbutton',
+				text: _UNO('.uno:WrapText', 'spreadsheet', true),
+				visible: false,
+				command: '.uno:WrapText',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakspacing',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'defaultnumbering',
+				text: _UNO('.uno:DefaultNumbering', '', true),
+				visible: false,
+				command: '.uno:DefaultNumbering',
+			},
+			{
+				type: 'toolitem',
+				id: 'defaultbullet',
+				text: _UNO('.uno:DefaultBullet', '', true),
+				visible: false,
+				command: '.uno:DefaultBullet',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakbullet',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'incrementindent',
+				text: _UNO('.uno:IncrementIndent', '', true),
+				command: '.uno:IncrementIndent',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'decrementindent',
+				text: _UNO('.uno:DecrementIndent', '', true),
+				command: '.uno:DecrementIndent',
+				visible: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakindent',
+				visible: false,
+			},
+			{
+				type: 'menubutton',
+				id: 'conditionalformatdialog:ConditionalFormatMenu',
+				noLabel: true,
+				text: _UNO(
+					'.uno:ConditionalFormatMenu',
+					'spreadsheet',
+					true,
+				),
+				visible: false,
+				lockUno: '.uno:ConditionalFormatMenu',
+			},
+			{
+				type: 'toolitem',
+				id: 'sortascending',
+				text: _UNO('.uno:SortAscending', 'spreadsheet', true),
+				command: '.uno:SortAscending',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'sortdescending',
+				text: _UNO('.uno:SortDescending', 'spreadsheet', true),
+				command: '.uno:SortDescending',
+				visible: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breaksorting',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'numberformatcurrency',
+				text: _UNO(
+					'.uno:NumberFormatCurrency',
+					'spreadsheet',
+					true,
+				),
+				visible: false,
+				command: '.uno:NumberFormatCurrency',
+			},
+			{
+				type: 'toolitem',
+				id: 'numberformatpercent',
+				text: _UNO('.uno:NumberFormatPercent', 'spreadsheet', true),
+				visible: false,
+				command: '.uno:NumberFormatPercent',
+			},
+			{
+				type: 'toolitem',
+				id: 'numberformatdecdecimals',
+				text: _UNO(
+					'.uno:NumberFormatDecDecimals',
+					'spreadsheet',
+					true,
+				),
+				visible: false,
+				command: '.uno:NumberFormatDecDecimals',
+			},
+			{
+				type: 'toolitem',
+				id: 'numberformatincdecimals',
+				text: _UNO(
+					'.uno:NumberFormatIncDecimals',
+					'spreadsheet',
+					true,
+				),
+				visible: false,
+				command: '.uno:NumberFormatIncDecimals',
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'break-number',
+				visible: false,
+			},
+			{
+				type: 'button',
+				id: 'gridvisible',
+				img: 'gridvisible',
+				hint: _UNO('.uno:GridVisible'),
+				uno: 'GridVisible',
+				hidden: true,
+			},
+			{
+				type: 'button',
+				id: 'griduse',
+				img: 'griduse',
+				hint: _UNO('.uno:GridUse'),
+				uno: 'GridUse',
+				hidden: true,
+			},
+			{
+				type: 'menubutton',
+				id: 'inserttable:InsertTableMenu',
+				command: 'inserttable',
+				noLabel: true,
+				text: _('Insert table'),
+				visible: false,
+				lockUno: '.uno:InsertTable',
+			},
+			{
+				type: 'menubutton',
+				id: 'menugraphic:InsertImageMenu',
+				noLabel: true,
+				command: '.uno:InsertGraphic',
+				text: _UNO('.uno:InsertGraphic', '', true),
+				visible: false,
+				lockUno: '.uno:InsertGraphic',
+			},
+			{
+				type: 'toolitem',
+				id: 'insertobjectchart',
+				text: _UNO('.uno:InsertObjectChart', '', true),
+				command: '.uno:InsertObjectChart',
+			},
+			{
+				type: 'menubutton',
+				id: 'insertshapes:InsertShapesMenu',
+				command: '.uno:BasicShapes',
+				noLabel: true,
+				text: _('Insert shapes'),
+			},
+			{
+				type: 'toolitem',
+				id: 'insertline',
+				text: _UNO('.uno:Line', '', true),
+				command: '.uno:Line',
+			},
+			{
+				type: 'menubutton',
+				id: 'insertconnectors:InsertConnectorsMenu',
+				command: 'connector',
+				noLabel: true,
+				text: _('Insert connectors'),
+				visible: false,
+			},
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breakinsert',
+				desktop: true,
+			},
+			{
+				type: 'customtoolitem',
+				id: 'inserttextbox',
+				text: _UNO('.uno:Text', '', true),
+				command: 'inserttextbox',
+				visible: false,
+			},
+			{
+				type: 'customtoolitem',
+				id: 'insertannotation',
+				text: _UNO('.uno:InsertAnnotation', '', true),
+				visible: false,
+				lockUno: '.uno:InsertAnnotation',
+			},
+			{
+				type: 'customtoolitem',
+				id: 'inserthyperlink',
+				command: 'inserthyperlink',
+				text: _UNO('.uno:HyperlinkDialog', '', true),
+				lockUno: '.uno:HyperlinkDialog',
+			},
+			{
+				type: 'toolitem',
+				id: 'insertsymbol',
+				text: _UNO('.uno:InsertSymbol', '', true),
+				command: '.uno:InsertSymbol',
+			},
+			{ type: 'spacer', id: 'topspacer' },
+			{
+				type: 'separator',
+				orientation: 'vertical',
+				id: 'breaksidebar',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'sidebar',
+				text: _UNO('.uno:Sidebar', '', true),
+				command: '.uno:SidebarDeck.PropertyDeck',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'modifypage',
+				text: _UNO('.uno:ModifyPage', 'presentation', true),
+				command: '.uno:ModifyPage',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'slidechangewindow',
+				text: _UNO('.uno:SlideChangeWindow', 'presentation', true),
+				command: '.uno:SlideChangeWindow',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'customanimation',
+				text: _UNO('.uno:CustomAnimation', 'presentation', true),
+				command: '.uno:CustomAnimation',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'masterslidespanel',
+				text: _UNO('.uno:MasterSlidesPanel', 'presentation', true),
+				command: '.uno:MasterSlidesPanel',
+				visible: false,
+			},
+			{
+				type: 'toolitem',
+				id: 'navigator',
+				text: _UNO('.uno:Navigator'),
+				command: '.uno:Navigator',
+				visible: false,
+			},
+			{
+				type: 'customtoolitem',
+				id: 'fold',
+				text: _('Hide Menu'),
+				desktop: true,
+				mobile: false,
+				visible: true,
+			},
+			{
+				type: 'customtoolitem',
+				id: 'hamburger-tablet',
+				desktop: false,
+				mobile: false,
+				tablet: true,
+				iosapptablet: false,
+				visible: false,
+			},
 		];
 
 		this.customItems.forEach((customButton) => {
 			var found = items.find((item) => {
-				return item.id.toLowerCase() === customButton.beforeId.toLowerCase();
+				return (
+					item.id.toLowerCase() ===
+					customButton.beforeId.toLowerCase()
+				);
 			});
 
 			var position = items.indexOf(found);
@@ -232,7 +812,10 @@ class TopToolbar extends JSDialog.Toolbar {
 		var items = this.getToolItems();
 		this.builder.build(this.parentContainer, items);
 
-		JSDialog.MakeScrollable(this.parentContainer, this.parentContainer.querySelector('div'));
+		JSDialog.MakeScrollable(
+			this.parentContainer,
+			this.parentContainer.querySelector('div'),
+		);
 		JSDialog.RefreshScrollables();
 
 		if (this.map.isRestrictedUser()) {
@@ -254,8 +837,7 @@ class TopToolbar extends JSDialog.Toolbar {
 		this.map.createFontSelector('#fontnamecombobox-input');
 
 		// on mode switch NB -> Compact
-		if (this.map._docLoadedOnce)
-			this.onDocLayerInit();
+		if (this.map._docLoadedOnce) this.onDocLayerInit();
 
 		// if app opens direct in compact mode then we need to set the saveState first
 		this.map.saveState = new app.definitions.saveState(this.map);
@@ -265,83 +847,173 @@ class TopToolbar extends JSDialog.Toolbar {
 		var docType = this.map.getDocType();
 
 		switch (docType) {
-		case 'spreadsheet':
-			if (this.parentContainer) {
-				['reset', 'textalign', 'wraptextbutton', 'breakspacing', 'insertannotation', 'conditionalformatdialog',
-					'numberformatcurrency', 'numberformatpercent',
-					'numberformatincdecimals', 'numberformatdecdecimals', 'break-number', 'togglemergecells', 'breakmergecells',
-					'setborderstyle', 'sortascending', 'sortdescending', 'breaksorting', 'backgroundcolor', 'breaksidebar', 'sidebar', 'printoptions'
-				].forEach((id) => {
-					this.showItem(id, true);
-				});
+			case 'spreadsheet':
+				if (this.parentContainer) {
+					[
+						'reset',
+						'textalign',
+						'wraptextbutton',
+						'breakspacing',
+						'insertannotation',
+						'conditionalformatdialog',
+						'numberformatcurrency',
+						'numberformatpercent',
+						'numberformatincdecimals',
+						'numberformatdecdecimals',
+						'break-number',
+						'togglemergecells',
+						'breakmergecells',
+						'setborderstyle',
+						'sortascending',
+						'sortdescending',
+						'breaksorting',
+						'backgroundcolor',
+						'breaksidebar',
+						'sidebar',
+						'printoptions',
+					].forEach((id) => {
+						this.showItem(id, true);
+					});
 
-				this.showItem('print', false);
-				this.showItem('styles', false);
-			}
+					this.showItem('print', false);
+					this.showItem('styles', false);
+				}
 
-			$('#toolbar-wrapper').addClass('spreadsheet');
-			if (window.mode.isTablet()) {
-				$(this.map.options.documentContainer).addClass('tablet');
-				$('#toolbar-wrapper').addClass('tablet');
-			}
+				$('#toolbar-wrapper').addClass('spreadsheet');
+				if (window.mode.isTablet()) {
+					$(this.map.options.documentContainer).addClass(
+						'tablet',
+					);
+					$('#toolbar-wrapper').addClass('tablet');
+				}
 
-			break;
-		case 'text':
-			if (this.parentContainer) {
-				['fontcolorwriter', 'reset', 'leftpara', 'centerpara', 'rightpara', 'justifypara', 'breakpara', 'linespacing',
-					'breakspacing', 'defaultbullet', 'defaultnumbering', 'breakbullet', 'incrementindent', 'decrementindent',
-					'breakindent', 'inserttable', 'insertannotation', 'backcolor', 'breaksidebar', 'sidebar'
-				].forEach((id) => {
-					this.showItem(id, true);
-				});
+				break;
+			case 'text':
+				if (this.parentContainer) {
+					[
+						'fontcolorwriter',
+						'reset',
+						'leftpara',
+						'centerpara',
+						'rightpara',
+						'justifypara',
+						'breakpara',
+						'linespacing',
+						'breakspacing',
+						'defaultbullet',
+						'defaultnumbering',
+						'breakbullet',
+						'incrementindent',
+						'decrementindent',
+						'breakindent',
+						'inserttable',
+						'insertannotation',
+						'backcolor',
+						'breaksidebar',
+						'sidebar',
+					].forEach((id) => {
+						this.showItem(id, true);
+					});
 
-				this.showItem('printoptions', false);
-				this.showItem('fontcolor', false);
-			}
-			break;
-		case 'presentation':
-			// Fill the style select box if not yet filled
-			if ($('#styles-input')[0] && $('#styles-input')[0].length === 1) {
-				var data = [''];
-				// Inserts a separator element
-				data = data.concat({text: '\u2500\u2500\u2500\u2500\u2500\u2500', enabled: false});
+					this.showItem('printoptions', false);
+					this.showItem('fontcolor', false);
+				}
+				break;
+			case 'presentation':
+				// Fill the style select box if not yet filled
+				if (
+					$('#styles-input')[0] &&
+					$('#styles-input')[0].length === 1
+				) {
+					var data = [''];
+					// Inserts a separator element
+					data = data.concat({
+						text: '\u2500\u2500\u2500\u2500\u2500\u2500',
+						enabled: false,
+					});
 
-				L.Styles.impressLayout.forEach(function(layout) {
-					data = data.concat({id: layout.id, text: _(layout.text)});
-				}, this);
+					L.Styles.impressLayout.forEach(function (layout) {
+						data = data.concat({
+							id: layout.id,
+							text: _(layout.text),
+						});
+					}, this);
 
-				$('#styles-input').select2({
-					data: data,
-					placeholder: _UNO('.uno:LayoutStatus', 'presentation')
-				});
-				$('#styles-input').on('select2:select', this.onStyleSelect.bind(this));
-			}
+					$('#styles-input').select2({
+						data: data,
+						placeholder: _UNO(
+							'.uno:LayoutStatus',
+							'presentation',
+						),
+					});
+					$('#styles-input').on(
+						'select2:select',
+						this.onStyleSelect.bind(this),
+					);
+				}
 
-			if (this.parentContainer) {
-				['resetimpress', 'breaksidebar', 'modifypage',
-					'leftpara', 'centerpara', 'rightpara', 'justifypara', 'breakpara', 'linespacing',
-					'gridvisible', 'griduse',
-					'breakspacing', 'defaultbullet', 'defaultnumbering', 'breakbullet', 'inserttextbox', 'inserttable',  'insertannotation', 'backcolor',
-					'breaksidebar', 'modifypage', 'slidechangewindow', 'customanimation', 'masterslidespanel', 'navigator'
-				].forEach((id) => {
-					this.showItem(id, true);
-				});
+				if (this.parentContainer) {
+					[
+						'resetimpress',
+						'breaksidebar',
+						'modifypage',
+						'leftpara',
+						'centerpara',
+						'rightpara',
+						'justifypara',
+						'breakpara',
+						'linespacing',
+						'gridvisible',
+						'griduse',
+						'breakspacing',
+						'defaultbullet',
+						'defaultnumbering',
+						'breakbullet',
+						'inserttextbox',
+						'inserttable',
+						'insertannotation',
+						'backcolor',
+						'breaksidebar',
+						'modifypage',
+						'slidechangewindow',
+						'customanimation',
+						'masterslidespanel',
+						'navigator',
+					].forEach((id) => {
+						this.showItem(id, true);
+					});
 
-				this.showItem('printoptions', false);
-			}
-			break;
-		case 'drawing':
-			if (this.parentContainer) {
-				['leftpara', 'centerpara', 'rightpara', 'justifypara', 'breakpara', 'linespacing', 'gridvisible', 'griduse',
-					'breakspacing', 'defaultbullet', 'defaultnumbering', 'breakbullet', 'inserttextbox', 'inserttable', 'backcolor',
-					'breaksidebar', 'sidebar', 'insertconnectors'
-				].forEach((id) => {
-					this.showItem(id, true);
-				});
+					this.showItem('printoptions', false);
+				}
+				break;
+			case 'drawing':
+				if (this.parentContainer) {
+					[
+						'leftpara',
+						'centerpara',
+						'rightpara',
+						'justifypara',
+						'breakpara',
+						'linespacing',
+						'gridvisible',
+						'griduse',
+						'breakspacing',
+						'defaultbullet',
+						'defaultnumbering',
+						'breakbullet',
+						'inserttextbox',
+						'inserttable',
+						'backcolor',
+						'breaksidebar',
+						'sidebar',
+						'insertconnectors',
+					].forEach((id) => {
+						this.showItem(id, true);
+					});
 
-				this.showItem('printoptions', false);
-			}
-			break;
+					this.showItem('printoptions', false);
+				}
+				break;
 		}
 
 		this.updateVisibilityForToolbar();
@@ -376,7 +1048,11 @@ class TopToolbar extends JSDialog.Toolbar {
 		// On desktop we only have Save and Print buttons before the first
 		// splitter/break. Hide the splitter if we hid both save and print.
 		// TODO: Apply the same logic to mobile/tablet to avoid beginning with a splitter.
-		if (window.mode.isDesktop() && e.HideSaveOption && e.HidePrintOption) {
+		if (
+			window.mode.isDesktop() &&
+			e.HideSaveOption &&
+			e.HidePrintOption
+		) {
 			this.showItem('savebreak', false);
 		}
 
@@ -399,66 +1075,88 @@ class TopToolbar extends JSDialog.Toolbar {
 			var styles = [];
 			var topStyles = [];
 			commandValues = this.map.getToolbarCommandValues(e.commandName);
-			if (typeof commandValues === 'undefined')
-				return;
+			if (typeof commandValues === 'undefined') return;
 			var commands = commandValues.Commands;
 			if (commands && commands.length > 0) {
-
 				commands.forEach(function (command) {
 					var translated = command.text;
 					if (L.Styles.styleMappings[command.text]) {
 						// if it's in English, translate it
-						translated = L.Styles.styleMappings[command.text].toLocaleString();
+						translated =
+							L.Styles.styleMappings[
+								command.text
+							].toLocaleString();
 					}
-					data = data.concat({id: command.id, text: translated });
+					data = data.concat({
+						id: command.id,
+						text: translated,
+					});
 				}, this);
 			}
 
 			if (this.map.getDocType() === 'text') {
 				styles = commandValues.ParagraphStyles.slice(7);
 				topStyles = commandValues.ParagraphStyles.slice(0, 7);
-			}
-			else if (this.map.getDocType() === 'spreadsheet') {
+			} else if (this.map.getDocType() === 'spreadsheet') {
 				styles = commandValues.CellStyles;
-			}
-			else if (this.map.getDocType() === 'presentation') {
+			} else if (this.map.getDocType() === 'presentation') {
 				// styles are not applied for presentation
 				return;
 			}
 
 			if (topStyles.length > 0) {
 				// Inserts a separator element
-				data = data.concat({text: '\u2500\u2500\u2500\u2500\u2500\u2500', enabled: false});
+				data = data.concat({
+					text: '\u2500\u2500\u2500\u2500\u2500\u2500',
+					enabled: false,
+				});
 
 				topStyles.forEach(function (style) {
-					data = data.concat({id: style, text: L.Styles.styleMappings[style].toLocaleString()});
+					data = data.concat({
+						id: style,
+						text: L.Styles.styleMappings[
+							style
+						].toLocaleString(),
+					});
 				}, this);
 			}
 
 			if (styles !== undefined && styles.length > 0) {
 				// Inserts a separator element
-				data = data.concat({text: '\u2500\u2500\u2500\u2500\u2500\u2500', enabled: false});
+				data = data.concat({
+					text: '\u2500\u2500\u2500\u2500\u2500\u2500',
+					enabled: false,
+				});
 
 				styles.forEach(function (style) {
 					var localeStyle;
 					if (style.startsWith('outline')) {
 						var outlineLevel = style.split('outline')[1];
-						localeStyle = 'Outline'.toLocaleString() + ' ' + outlineLevel;
+						localeStyle =
+							'Outline'.toLocaleString() +
+							' ' +
+							outlineLevel;
 					} else {
 						localeStyle = L.Styles.styleMappings[style];
-						localeStyle = localeStyle === undefined ? style : localeStyle.toLocaleString();
+						localeStyle =
+							localeStyle === undefined
+								? style
+								: localeStyle.toLocaleString();
 					}
 
-					data = data.concat({id: style, text: localeStyle});
+					data = data.concat({ id: style, text: localeStyle });
 				}, this);
 			}
 
 			$('#styles-input').select2({
 				data: data,
-				placeholder: _('Style')
+				placeholder: _('Style'),
 			});
 			$('#styles-input').val(this.stylesSelectValue).trigger('change');
-			$('#styles-input').on('select2:select', this.onStyleSelect.bind(this));
+			$('#styles-input').on(
+				'select2:select',
+				this.onStyleSelect.bind(this),
+			);
 		}
 	}
 
@@ -488,9 +1186,9 @@ class TopToolbar extends JSDialog.Toolbar {
 			});
 			if (!found) {
 				// we need to add the size
-				$('#styles-input')
-					.append($('<option></option>')
-						.text(state));
+				$('#styles-input').append(
+					$('<option></option>').text(state),
+				);
 			}
 
 			this.stylesSelectValue = state;
@@ -503,7 +1201,7 @@ class TopToolbar extends JSDialog.Toolbar {
 	onCommandStateChanged(e) {
 		this.processStateChangedCommand(e.commandName, e.state);
 	}
-};
+}
 
 JSDialog.TopToolbar = function (map) {
 	return new TopToolbar(map);

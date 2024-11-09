@@ -6,11 +6,9 @@
  */
 
 class CPolygon extends CPolyline {
-
 	constructor(pointSet: CPointSet, options: any) {
 		super(pointSet, options);
-		if (options.fill === undefined)
-			this.fill = true;
+		if (options.fill === undefined) this.fill = true;
 	}
 
 	getCenter(): lool.Point {
@@ -42,8 +40,11 @@ class CPolygon extends CPolyline {
 		return new lool.Point(x / area, y / area);
 	}
 
-	updatePath(paintArea?: lool.Bounds, paneBounds?: lool.Bounds, freezePane?: { freezeX: boolean, freezeY: boolean }) {
-
+	updatePath(
+		paintArea?: lool.Bounds,
+		paneBounds?: lool.Bounds,
+		freezePane?: { freezeX: boolean; freezeY: boolean },
+	) {
 		this.parts = this.rings;
 
 		// remove last point in the rings/parts if it equals first one
@@ -56,7 +57,13 @@ class CPolygon extends CPolyline {
 		}
 
 		this.simplifyPoints();
-		this.renderer.updatePoly(this, true /* closed? */, paintArea, paneBounds, freezePane);
+		this.renderer.updatePoly(
+			this,
+			true /* closed? */,
+			paintArea,
+			paneBounds,
+			freezePane,
+		);
 	}
 
 	anyRingBoundContains(corePxPoint: lool.Point): boolean {
@@ -67,8 +74,7 @@ class CPolygon extends CPolyline {
 				ringBound.extend(ring[pointIdx]);
 			}
 
-			if (ring.length && ringBound.contains(corePxPoint))
-				return true;
+			if (ring.length && ringBound.contains(corePxPoint)) return true;
 		}
 
 		return false;

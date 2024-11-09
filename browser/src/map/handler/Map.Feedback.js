@@ -7,18 +7,16 @@
 
 L.Map.mergeOptions({
 	feedback: !window.ThisIsAMobileApp,
-	feedbackTimeout: 30000
+	feedbackTimeout: 30000,
 });
 
 L.Map.Feedback = L.Handler.extend({
-
 	addHooks: function () {
 		this.initialized = false;
 
 		if (this._map.wopi)
 			this._map.on('updateviewslist', this.onUpdateList, this);
-		else
-			this._map.on('docloaded', this.onDocLoaded, this);
+		else this._map.on('docloaded', this.onDocLoaded, this);
 
 		L.DomEvent.on(window, 'message', this.onMessage, this);
 	},
@@ -28,20 +26,17 @@ L.Map.Feedback = L.Handler.extend({
 	},
 
 	removeIframe: function () {
-		if (this._iframeDialog)
-			this._iframeDialog.remove()
+		if (this._iframeDialog) this._iframeDialog.remove();
 	},
 
 	onUpdateList: function () {
 		var docLayer = this._map._docLayer || {};
 
-		if (docLayer && docLayer._viewId == 0)
-			this.onDocLoaded();
+		if (docLayer && docLayer._viewId == 0) this.onDocLoaded();
 	},
 
 	onDocLoaded: function () {
-		if (this.initialized)
-			return;
+		if (this.initialized) return;
 
 		this.initialized = true;
 
@@ -63,18 +58,36 @@ L.Map.Feedback = L.Handler.extend({
 				laterDate.setTime(timeValue + 432000000);
 			}
 
-			if (docCount > 15 && currentDate > laterDate && window.autoShowFeedback)
-				setTimeout(L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
+			if (
+				docCount > 15 &&
+				currentDate > laterDate &&
+				window.autoShowFeedback
+			)
+				setTimeout(
+					L.bind(this.onFeedback, this),
+					this._map.options.feedbackTimeout,
+				);
 		}
 	},
 
 	onFeedback: function () {
-		if (this._map.welcome && this._map.welcome.isVisible && this._map.welcome.isVisible()) {
-			setTimeout(L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
+		if (
+			this._map.welcome &&
+			this._map.welcome.isVisible &&
+			this._map.welcome.isVisible()
+		) {
+			setTimeout(
+				L.bind(this.onFeedback, this),
+				this._map.options.feedbackTimeout,
+			);
 			return;
 		}
 
-		if (this._map.welcome && this._map.welcome.isVisible && this._map.welcome.isVisible())
+		if (
+			this._map.welcome &&
+			this._map.welcome.isVisible &&
+			this._map.welcome.isVisible()
+		)
 			setTimeout(L.bind(this.onFeedback, this), 3000);
 		else {
 			this.askForFeedbackDialog();
@@ -85,7 +98,8 @@ L.Map.Feedback = L.Handler.extend({
 		this._map.uiManager.showSnackbar(
 			_('Please send us your feedback'),
 			_('OK'),
-			this.showFeedbackDialog.bind(this));
+			this.showFeedbackDialog.bind(this),
+		);
 	},
 
 	showFeedbackDialog: function () {
@@ -96,22 +110,31 @@ L.Map.Feedback = L.Handler.extend({
 		lokitHash = lokitHash ? lokitHash.innerText : '';
 		var wopiHostId = document.querySelector('#wopi-host-id') || {};
 		wopiHostId = wopiHostId ? wopiHostId.innerText : '';
-		var proxyPrefixEnabled = window.socketProxy ? "True" : "False";
+		var proxyPrefixEnabled = window.socketProxy ? 'True' : 'False';
 
-		var cssVar = getComputedStyle(document.documentElement).getPropertyValue('--co-primary-element');
-		var params = [{ mobile : window.mode.isMobile() },
-			      { cssvar : cssVar},
-			      { wsdhash : window.app.socket.WSDServer.Hash },
-			      { 'lokit_hash' : lokitHash },
-			      { 'wopi_host_id' : wopiHostId },
-			      { 'proxy_prefix_enabled' : proxyPrefixEnabled }];
+		var cssVar = getComputedStyle(
+			document.documentElement,
+		).getPropertyValue('--co-primary-element');
+		var params = [
+			{ mobile: window.mode.isMobile() },
+			{ cssvar: cssVar },
+			{ wsdhash: window.app.socket.WSDServer.Hash },
+			{ lokit_hash: lokitHash },
+			{ wopi_host_id: wopiHostId },
+			{ proxy_prefix_enabled: proxyPrefixEnabled },
+		];
 
 		var options = {
 			prefix: 'iframe-dialog',
 			id: 'iframe-feedback',
 		};
 
-		this._iframeDialog = L.iframeDialog(window.feedbackUrl, params, null, options);
+		this._iframeDialog = L.iframeDialog(
+			window.feedbackUrl,
+			params,
+			null,
+			options,
+		);
 	},
 
 	onError: function () {
@@ -120,19 +143,16 @@ L.Map.Feedback = L.Handler.extend({
 	},
 
 	onMessage: function (e) {
-		if (typeof e.data !== 'string')
-			return; // Some extensions may inject scripts resulting in load events that are not strings
+		if (typeof e.data !== 'string') return; // Some extensions may inject scripts resulting in load events that are not strings
 
-		if (e.data.startsWith('updatecheck-show'))
-			return;
+		if (e.data.startsWith('updatecheck-show')) return;
 
 		var data = e.data;
 		data = JSON.parse(data).MessageId;
 
 		if (data == 'feedback-show') {
 			this._iframeDialog.show();
-		}
-		else if (data == 'feedback-never') {
+		} else if (data == 'feedback-never') {
 			window.prefs.set('WSDFeedbackEnabled', false);
 			window.prefs.remove('WSDFeedbackCount');
 			this.removeIframe();
@@ -145,17 +165,22 @@ L.Map.Feedback = L.Handler.extend({
 			window.prefs.set('WSDFeedbackEnabled', false);
 			window.prefs.remove('WSDFeedbackCount');
 			var that = this;
-			setTimeout(function() {
+			setTimeout(function () {
 				that._iframeDialog.remove();
 			}, 400);
-
-		} else if (data == 'iframe-feedback-load' && !this._iframeDialog.isVisible()) {
+		} else if (
+			data == 'iframe-feedback-load' &&
+			!this._iframeDialog.isVisible()
+		) {
 			this.removeIframe();
-			setTimeout(L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
+			setTimeout(
+				L.bind(this.onFeedback, this),
+				this._map.options.feedbackTimeout,
+			);
 		} else if (data.endsWith('close')) {
 			this.removeIframe();
 		}
-	}
+	},
 });
 if (window.feedbackUrl && window.prefs.canPersist) {
 	L.Map.addInitHook('addHandler', 'feedback', L.Map.Feedback);

@@ -9,18 +9,18 @@ L.LOUtil = {
 	// Maybe move the color logic to separate file when it becomes complex
 	darkColors: [
 		[198, 146, 0],
-		[6,  70, 162],
-		[87, 157,  28],
-		[105,  43, 157],
-		[197,   0,  11],
+		[6, 70, 162],
+		[87, 157, 28],
+		[105, 43, 157],
+		[197, 0, 11],
 		[0, 128, 128],
-		[140, 132,  0],
-		[53,  85, 107],
-		[209, 118,   0]
+		[140, 132, 0],
+		[53, 85, 107],
+		[209, 118, 0],
 	],
 
 	// https://stackoverflow.com/a/32726412
-	onRemoveHTMLElement: function(element, onDetachCallback) {
+	onRemoveHTMLElement: function (element, onDetachCallback) {
 		var observer = new MutationObserver(function () {
 			function isDetached(el) {
 				return !el.closest('html');
@@ -33,8 +33,8 @@ L.LOUtil = {
 		});
 
 		observer.observe(document, {
-			 childList: true,
-			 subtree: true
+			childList: true,
+			subtree: true,
 		});
 	},
 
@@ -49,11 +49,11 @@ L.LOUtil = {
 		var x = spinnerCanvas.width / 2;
 		var y = spinnerCanvas.height / 2;
 		var radius = y - context.lineWidth / 2;
-		spinnerInterval = setInterval(function() {
+		spinnerInterval = setInterval(function () {
 			context.clearRect(0, 0, x * 2, y * 2);
 			// Move to center
 			context.translate(x, y);
-			context.rotate(spinnerSpeed * Math.PI / 180);
+			context.rotate((spinnerSpeed * Math.PI) / 180);
 			context.translate(-x, -y);
 			context.beginPath();
 			context.arc(x, y, radius, 0, Math.PI * 1.3);
@@ -63,46 +63,59 @@ L.LOUtil = {
 		return spinnerInterval;
 	},
 
-	getViewIdColor: function(viewId) {
+	getViewIdColor: function (viewId) {
 		var color = this.darkColors[(viewId + 1) % this.darkColors.length];
-		return (color[2] | (color[1] << 8) | (color[0] << 16));
+		return color[2] | (color[1] << 8) | (color[0] << 16);
 	},
 
-	rgbToHex: function(color) {
+	rgbToHex: function (color) {
 		return '#' + ('000000' + color.toString(16)).slice(-6);
 	},
 
-	stringToBounds: function(bounds) {
+	stringToBounds: function (bounds) {
 		var numbers = bounds.match(/\d+/g);
 		var topLeft = L.point(parseInt(numbers[0]), parseInt(numbers[1]));
-		var bottomRight = topLeft.add(L.point(parseInt(numbers[2]), parseInt(numbers[3])));
+		var bottomRight = topLeft.add(
+			L.point(parseInt(numbers[2]), parseInt(numbers[3])),
+		);
 		return L.bounds(topLeft, bottomRight);
 	},
 
-	stringToRectangles: function(strRect) {
+	stringToRectangles: function (strRect) {
 		var matches = strRect.match(/\d+/g);
 		var rectangles = [];
 		if (matches !== null) {
 			for (var itMatch = 0; itMatch < matches.length; itMatch += 4) {
-				var topLeft = L.point(parseInt(matches[itMatch]), parseInt(matches[itMatch + 1]));
-				var size = L.point(parseInt(matches[itMatch + 2]), parseInt(matches[itMatch + 3]));
+				var topLeft = L.point(
+					parseInt(matches[itMatch]),
+					parseInt(matches[itMatch + 1]),
+				);
+				var size = L.point(
+					parseInt(matches[itMatch + 2]),
+					parseInt(matches[itMatch + 3]),
+				);
 				var topRight = topLeft.add(L.point(size.x, 0));
 				var bottomLeft = topLeft.add(L.point(0, size.y));
 				var bottomRight = topLeft.add(size);
-				rectangles.push([bottomLeft, bottomRight, topLeft, topRight]);
+				rectangles.push([
+					bottomLeft,
+					bottomRight,
+					topLeft,
+					topRight,
+				]);
 			}
 		}
 		return rectangles;
 	},
 
 	// Some items will only present in dark mode so we will not check errors for those in other mode
-	onlydarkModeItems : ['invertbackground'],
+	onlydarkModeItems: ['invertbackground'],
 
 	// Common images used in all modes, so the default one will be used.
 	commonItems: ['serverauditok', 'serverauditerror'],
 
 	// Helper function to strip '.svg' suffix and 'lc_' prefix
-	stripName: function(name) {
+	stripName: function (name) {
 		// Remove the '.svg' suffix
 		var strippedName = name.replace(/\.svg$/, '');
 
@@ -114,14 +127,14 @@ L.LOUtil = {
 		return strippedName;
 	},
 
-	isDarkModeItem: function(name) {
+	isDarkModeItem: function (name) {
 		var strippedName = this.stripName(name);
-		
+
 		// Check if the stripped name is in the onlydarkModeItems array
 		return this.onlydarkModeItems.includes(strippedName);
 	},
 
-	isCommonForAllMode: function(name) {
+	isCommonForAllMode: function (name) {
 		var strippedName = this.stripName(name);
 
 		// Check if the stripped name is in the commonItems array
@@ -129,19 +142,16 @@ L.LOUtil = {
 	},
 
 	/// unwind things to get a good absolute URL
-	getURL: function(path) {
-		if (path === '')
-			return '';
-		if (window.host === '' && window.serviceRoot === '')
-			return path; // mobile app
+	getURL: function (path) {
+		if (path === '') return '';
+		if (window.host === '' && window.serviceRoot === '') return path; // mobile app
 
 		var url = window.makeHttpUrl('/browser/' + window.versionPath);
-		if (path.substr(0,1) !== '/')
-			url += '/';
+		if (path.substr(0, 1) !== '/') url += '/';
 		url += path;
 		return url;
 	},
-	setImage: function(img, name, map) {
+	setImage: function (img, name, map) {
 		var setupIcon = function () {
 			img.src = this.getImageURL(name);
 			this.checkIfImageExists(img);
@@ -150,42 +160,49 @@ L.LOUtil = {
 
 		map.on('themechanged', setupIcon, this);
 	},
-	setUserImage: function(img, map, viewId) {
+	setUserImage: function (img, map, viewId) {
 		// set avatar image if it exist in user extract info
 		var defaultImage = L.LOUtil.getImageURL('user.svg');
 		var viewInfo = map._viewInfo[viewId];
 		if (
-			viewInfo !== undefined
-			&& viewInfo.userextrainfo !== undefined
-			&& viewInfo.userextrainfo.avatar !== undefined
+			viewInfo !== undefined &&
+			viewInfo.userextrainfo !== undefined &&
+			viewInfo.userextrainfo.avatar !== undefined
 		) {
 			// set user avatar
 			img.src = viewInfo.userextrainfo.avatar;
 			// Track if error event is already bound to this image
-			img.addEventListener('error', function () {
-				img.src = defaultImage;
-				this.checkIfImageExists(img, true);
-			}.bind(this), {once:true});
+			img.addEventListener(
+				'error',
+				function () {
+					img.src = defaultImage;
+					this.checkIfImageExists(img, true);
+				}.bind(this),
+				{ once: true },
+			);
 			return;
 		}
 		img.src = defaultImage;
 		this.checkIfImageExists(img, true);
 	},
 
-	getImageURL: function(imgName) {
+	getImageURL: function (imgName) {
 		var defaultImageURL = this.getURL('images/' + imgName);
-	
+
 		// Check if the image name is in the commonItems list and return the normal image path
 		if (this.isCommonForAllMode(imgName)) {
 			return defaultImageURL;
 		}
-	
+
 		if (window.prefs.getBoolean('darkTheme')) {
 			return this.getURL('images/dark/' + imgName);
 		}
-	
-		var dummyEmptyImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-		defaultImageURL = this.isDarkModeItem(imgName) ? dummyEmptyImg : defaultImageURL;
+
+		var dummyEmptyImg =
+			'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+		defaultImageURL = this.isDarkModeItem(imgName)
+			? dummyEmptyImg
+			: defaultImageURL;
 		return defaultImageURL;
 	},
 
@@ -195,23 +212,40 @@ L.LOUtil = {
 				return;
 			}
 
-			if (imageElement.src && imageElement.src.includes('/images/branding/dark/')) {
-				imageElement.src = imageElement.src.replace('/images/branding/dark/', '/images/dark/');
+			if (
+				imageElement.src &&
+				imageElement.src.includes('/images/branding/dark/')
+			) {
+				imageElement.src = imageElement.src.replace(
+					'/images/branding/dark/',
+					'/images/dark/',
+				);
 				e.loUtilProcessed = true;
 				return;
 			}
-			if (imageElement.src && (imageElement.src.includes('/images/dark/') || imageElement.src.includes('/images/branding/'))) {
-				imageElement.src = imageElement.src.replace('/images/dark/', '/images/');
-				imageElement.src = imageElement.src.replace('/images/branding/', '/images/');
+			if (
+				imageElement.src &&
+				(imageElement.src.includes('/images/dark/') ||
+					imageElement.src.includes('/images/branding/'))
+			) {
+				imageElement.src = imageElement.src.replace(
+					'/images/dark/',
+					'/images/',
+				);
+				imageElement.src = imageElement.src.replace(
+					'/images/branding/',
+					'/images/',
+				);
 				e.loUtilProcessed = true;
 				return;
 			}
 
 			if (imageIsLayoutCritical) {
-                imageElement.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-                // We cannot set visibility: hidden because that would hide other attributes of the image, e.g. its border
+				imageElement.src =
+					'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				// We cannot set visibility: hidden because that would hide other attributes of the image, e.g. its border
 				e.loUtilProcessed = true;
-                return;
+				return;
 			}
 
 			imageElement.style.display = 'none';
@@ -220,9 +254,13 @@ L.LOUtil = {
 	},
 	/// oldFileName = Example.odt, suffix = new
 	/// returns: Example_new.odt
-	generateNewFileName: function(oldFileName, suffix) {
+	generateNewFileName: function (oldFileName, suffix) {
 		var idx = oldFileName.lastIndexOf('.');
-		return oldFileName.substring(0, idx) + suffix + oldFileName.substring(idx);
+		return (
+			oldFileName.substring(0, idx) +
+			suffix +
+			oldFileName.substring(idx)
+		);
 	},
 
 	commandWithoutIcon: [
@@ -232,26 +270,39 @@ L.LOUtil = {
 		'MTR_FLD_COL_SPACING',
 		'rows',
 		'cols',
-		'None'
+		'None',
 	],
 
-	existsIconForCommand: function(command, docType) {
-		var commandName = command.startsWith('.uno:') ? command.substring('.uno:'.length) : command;
+	existsIconForCommand: function (command, docType) {
+		var commandName = command.startsWith('.uno:')
+			? command.substring('.uno:'.length)
+			: command;
 		var res = !this.commandWithoutIcon.find(function (el) {
 			return el.startsWith(commandName);
 		});
-		if (commandName.indexOf('?')!== -1) {
-			if (commandName.indexOf('SpellCheckIgnore') !== -1 || commandName.indexOf('SpellCheckIgnoreAll') !== -1)
+		if (commandName.indexOf('?') !== -1) {
+			if (
+				commandName.indexOf('SpellCheckIgnore') !== -1 ||
+				commandName.indexOf('SpellCheckIgnoreAll') !== -1
+			)
 				return true;
 
-			if ((docType === 'spreadsheet' || docType === 'presentation') &&
-				commandName.indexOf('LanguageStatus') !== -1)
+			if (
+				(docType === 'spreadsheet' || docType === 'presentation') &&
+				commandName.indexOf('LanguageStatus') !== -1
+			)
 				return true;
 
-			if (commandName === 'LanguageStatus?Language:string=Current_LANGUAGE_NONE' ||
-				commandName === 'LanguageStatus?Language:string=Current_RESET_LANGUAGES' ||
-				commandName === 'LanguageStatus?Language:string=Paragraph_LANGUAGE_NONE' ||
-				commandName === 'LanguageStatus?Language:string=Paragraph_RESET_LANGUAGES')
+			if (
+				commandName ===
+					'LanguageStatus?Language:string=Current_LANGUAGE_NONE' ||
+				commandName ===
+					'LanguageStatus?Language:string=Current_RESET_LANGUAGES' ||
+				commandName ===
+					'LanguageStatus?Language:string=Paragraph_LANGUAGE_NONE' ||
+				commandName ===
+					'LanguageStatus?Language:string=Paragraph_RESET_LANGUAGES'
+			)
 				return true;
 
 			return false;
@@ -260,53 +311,77 @@ L.LOUtil = {
 	},
 
 	/// Searching in JSON trees for data with a given field
-	findItemWithAttributeRecursive: function(node, idName, idValue) {
+	findItemWithAttributeRecursive: function (node, idName, idValue) {
 		var found = null;
-		if (node[idName] === idValue)
-			return node;
-		if (node.children)
-		{
+		if (node[idName] === idValue) return node;
+		if (node.children) {
 			for (var i = 0; !found && i < node.children.length; i++)
-				found = L.LOUtil.findItemWithAttributeRecursive(node.children[i], idName, idValue);
+				found = L.LOUtil.findItemWithAttributeRecursive(
+					node.children[i],
+					idName,
+					idValue,
+				);
 		}
 		return found;
 	},
 
 	/// Searching in JSON trees for an identifier and return the index in parent
-	findIndexInParentByAttribute: function(node, idName, idValue) {
-		if (node.children)
-		{
+	findIndexInParentByAttribute: function (node, idName, idValue) {
+		if (node.children) {
 			for (var i = 0; i < node.children.length; i++)
-				if (node.children[i][idName] === idValue)
-					return i;
+				if (node.children[i][idName] === idValue) return i;
 		}
 		return -1;
 	},
 
-	_doRectanglesIntersect: function (rectangle1, rectangle2) { // Format: (x, y, w, h).
+	_doRectanglesIntersect: function (rectangle1, rectangle2) {
+		// Format: (x, y, w, h).
 		// Don't use equality in comparison, that's not an intersection.
-		if (Math.abs((rectangle1[0] + rectangle1[2] * 0.5) - (rectangle2[0] + rectangle2[2] * 0.5)) < rectangle1[2] + rectangle2[2]) {
-			if (Math.abs((rectangle1[1] + rectangle1[3] * 0.5) - (rectangle2[1] + rectangle2[3] * 0.5)) < rectangle1[3] + rectangle2[3])
+		if (
+			Math.abs(
+				rectangle1[0] +
+					rectangle1[2] * 0.5 -
+					(rectangle2[0] + rectangle2[2] * 0.5),
+			) <
+			rectangle1[2] + rectangle2[2]
+		) {
+			if (
+				Math.abs(
+					rectangle1[1] +
+						rectangle1[3] * 0.5 -
+						(rectangle2[1] + rectangle2[3] * 0.5),
+				) <
+				rectangle1[3] + rectangle2[3]
+			)
 				return true;
-			else
-				return false;
-		}
-		else
-			return false;
+			else return false;
+		} else return false;
 	},
 
 	// Returns the intersecting area of 2 rectangles. Rectangle format: (x, y, w, h). Return format is the same or null.
 	_getIntersectionRectangle: function (rectangle1, rectangle2) {
 		if (this._doRectanglesIntersect(rectangle1, rectangle2)) {
-			var x = (rectangle1[0] > rectangle2[0] ? rectangle1[0]: rectangle2[0]);
-			var y = (rectangle1[1] > rectangle2[1] ? rectangle1[1]: rectangle2[1]);
-			var w = (rectangle1[0] + rectangle1[2] < rectangle2[0] + rectangle2[2] ? rectangle1[0] + rectangle1[2] - x: rectangle2[0] + rectangle2[2] - x);
-			var h = (rectangle1[1] + rectangle1[3] < rectangle2[1] + rectangle2[3] ? rectangle1[1] + rectangle1[3] - y: rectangle2[1] + rectangle2[3] - y);
+			var x =
+				rectangle1[0] > rectangle2[0]
+					? rectangle1[0]
+					: rectangle2[0];
+			var y =
+				rectangle1[1] > rectangle2[1]
+					? rectangle1[1]
+					: rectangle2[1];
+			var w =
+				rectangle1[0] + rectangle1[2] <
+				rectangle2[0] + rectangle2[2]
+					? rectangle1[0] + rectangle1[2] - x
+					: rectangle2[0] + rectangle2[2] - x;
+			var h =
+				rectangle1[1] + rectangle1[3] <
+				rectangle2[1] + rectangle2[3]
+					? rectangle1[1] + rectangle1[3] - y
+					: rectangle2[1] + rectangle2[3] - y;
 
 			return [x, y, w, h];
-		}
-		else
-			return null;
+		} else return null;
 	},
 
 	getFileExtension: function (map) {
@@ -316,13 +391,17 @@ L.LOUtil = {
 
 	isFileODF: function (map) {
 		var ext = this.getFileExtension(map);
-		return ext === 'odt' || ext === 'ods' || ext === 'odp' || ext == 'odg';
+		return (
+			ext === 'odt' || ext === 'ods' || ext === 'odp' || ext == 'odg'
+		);
 	},
 
 	containsDOMRect: function (viewRect, rect) {
-		return (rect.top >= viewRect.top &&
+		return (
+			rect.top >= viewRect.top &&
 			rect.right <= viewRect.right &&
 			rect.bottom <= viewRect.bottom &&
-			rect.left >= viewRect.left)
-	}
+			rect.left >= viewRect.left
+		);
+	},
 };

@@ -4,11 +4,11 @@
  */
 L.Map.include({
 	scroll: function (x, y, options) {
-		if (typeof (x) !== 'number' || typeof (y) !== 'number') {
+		if (typeof x !== 'number' || typeof y !== 'number') {
 			return;
 		}
 		this._setUpdateOffsetEvt(options);
-		this.panBy(new L.Point(x, y), {animate: false});
+		this.panBy(new L.Point(x, y), { animate: false });
 	},
 
 	scrollOffset: function () {
@@ -23,22 +23,31 @@ L.Map.include({
 	scrollTop: function (y, options) {
 		this._setUpdateOffsetEvt(options);
 		var offset = this.scrollOffset();
-		window.app.console.debug('scrollTop: ' + y + ' ' + offset.y + ' ' + (y - offset.y));
-		this.panBy(new L.Point(0, y - offset.y), {animate: false});
+		window.app.console.debug(
+			'scrollTop: ' + y + ' ' + offset.y + ' ' + (y - offset.y),
+		);
+		this.panBy(new L.Point(0, y - offset.y), { animate: false });
 	},
 
 	scrollLeft: function (x, options) {
 		this._setUpdateOffsetEvt(options);
 		var offset = this.scrollOffset();
-		this.panBy(new L.Point(x - offset.x, 0), {animate: false});
+		this.panBy(new L.Point(x - offset.x, 0), { animate: false });
 	},
 
 	_setUpdateOffsetEvt: function (e) {
 		if (e && e.update === true) {
-			this.on('moveend', this._docLayer._updateScrollOffset, this._docLayer);
-		}
-		else {
-			this.off('moveend', this._docLayer._updateScrollOffset, this._docLayer);
+			this.on(
+				'moveend',
+				this._docLayer._updateScrollOffset,
+				this._docLayer,
+			);
+		} else {
+			this.off(
+				'moveend',
+				this._docLayer._updateScrollOffset,
+				this._docLayer,
+			);
 		}
 	},
 });

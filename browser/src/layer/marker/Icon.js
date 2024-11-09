@@ -36,12 +36,17 @@ L.Icon = L.Class.extend({
 
 		if (!src) {
 			if (name === 'icon') {
-				throw new Error('iconUrl not set in Icon options (see the docs).');
+				throw new Error(
+					'iconUrl not set in Icon options (see the docs).',
+				);
 			}
 			return null;
 		}
 
-		var img = this._createImg(src, oldIcon && oldIcon.tagName === 'IMG' ? oldIcon : null);
+		var img = this._createImg(
+			src,
+			oldIcon && oldIcon.tagName === 'IMG' ? oldIcon : null,
+		);
 		this._setIconStyles(img, name);
 
 		return img;
@@ -50,23 +55,27 @@ L.Icon = L.Class.extend({
 	_setIconStyles: function (img, name) {
 		var options = this.options;
 		var size = L.point(options[name + 'Size']);
-		var anchor = L.point(name === 'shadow' && options.shadowAnchor || options.iconAnchor ||
-		            size && size.x !== undefined && size.y !== undefined && size.divideBy(2, true));
+		var anchor = L.point(
+			(name === 'shadow' && options.shadowAnchor) ||
+				options.iconAnchor ||
+				(size &&
+					size.x !== undefined &&
+					size.y !== undefined &&
+					size.divideBy(2, true)),
+		);
 
-		img.className = 'leaflet-marker-' + name + ' ' + (options.className || '');
+		img.className =
+			'leaflet-marker-' + name + ' ' + (options.className || '');
 
 		if (anchor) {
-			img.style.marginLeft = (-anchor.x) + 'px';
-			img.style.marginTop  = (-anchor.y) + 'px';
+			img.style.marginLeft = -anchor.x + 'px';
+			img.style.marginTop = -anchor.y + 'px';
 		}
 
 		if (size) {
-			if (size.x !== undefined)
-				img.style.width  = size.x + 'px';
-			if (size.y !== undefined)
-				img.style.height = size.y + 'px';
+			if (size.x !== undefined) img.style.width = size.x + 'px';
+			if (size.y !== undefined) img.style.height = size.y + 'px';
 		}
-
 	},
 
 	_createImg: function (src, el) {
@@ -76,8 +85,11 @@ L.Icon = L.Class.extend({
 	},
 
 	_getIconUrl: function (name) {
-		return L.Browser.retina && this.options[name + 'RetinaUrl'] || this.options[name + 'Url'];
-	}
+		return (
+			(L.Browser.retina && this.options[name + 'RetinaUrl']) ||
+			this.options[name + 'Url']
+		);
+	},
 });
 
 L.icon = function (options) {

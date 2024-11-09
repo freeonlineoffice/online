@@ -5,7 +5,6 @@
  */
 
 class CRectangle extends CPolygon {
-
 	constructor(bounds: lool.Bounds, options: any) {
 		super(CRectangle.boundsToPointSet(bounds), options);
 	}
@@ -18,7 +17,13 @@ class CRectangle extends CPolygon {
 		if (!bounds.isValid()) {
 			return new CPointSet();
 		}
-		return CPointSet.fromPointArray([bounds.getTopLeft(), bounds.getTopRight(), bounds.getBottomRight(), bounds.getBottomLeft(), bounds.getTopLeft()]);
+		return CPointSet.fromPointArray([
+			bounds.getTopLeft(),
+			bounds.getTopRight(),
+			bounds.getBottomRight(),
+			bounds.getBottomLeft(),
+			bounds.getTopLeft(),
+		]);
 	}
 }
 
@@ -36,7 +41,6 @@ function getOptionsClone(baseOpts: any): any {
 
 // CCellSelection is used for drawing of the self and view cell-range selections on the canvas.
 class CCellSelection extends CPathGroup {
-
 	private selectionWeight: number = 2;
 	private borderPaths: CPolygon[];
 	private innerContrastBorder: CPolygon;
@@ -59,18 +63,30 @@ class CCellSelection extends CPathGroup {
 	// using CPointSet data-structure.
 	setPointSet(pointSet: CPointSet) {
 		const outerPointSet = pointSet;
-		outerPointSet.applyOffset(new lool.Point(0.5, 0.5), false /* centroidSymmetry */, true /* preRound */);
+		outerPointSet.applyOffset(
+			new lool.Point(0.5, 0.5),
+			false /* centroidSymmetry */,
+			true /* preRound */,
+		);
 
 		const borderPointSets: CPointSet[] = [];
 
 		for (let idx = 0; idx < this.selectionWeight; ++idx) {
 			const pixels = idx; // device pixels from real cell-border.
 			const borderPset = outerPointSet.clone();
-			borderPset.applyOffset(new lool.Point(-pixels, -pixels), true /* centroidSymmetry */, false /* preRound */);
+			borderPset.applyOffset(
+				new lool.Point(-pixels, -pixels),
+				true /* centroidSymmetry */,
+				false /* preRound */,
+			);
 			borderPointSets.push(borderPset);
 		}
 		const contrastBorderPointSet = outerPointSet.clone();
-		contrastBorderPointSet.applyOffset(new lool.Point(-this.selectionWeight, -this.selectionWeight), true /* centroidSymmetry */, false /* preRound */);
+		contrastBorderPointSet.applyOffset(
+			new lool.Point(-this.selectionWeight, -this.selectionWeight),
+			true /* centroidSymmetry */,
+			false /* preRound */,
+		);
 
 		if (this.borderPaths && this.innerContrastBorder) {
 			console.assert(this.borderPaths.length === this.selectionWeight);
@@ -79,7 +95,6 @@ class CCellSelection extends CPathGroup {
 				borderPath.setPointSet(borderPointSets[index]);
 			});
 			this.innerContrastBorder.setPointSet(contrastBorderPointSet);
-
 		} else {
 			this.borderPaths = [];
 			for (let index = 0; index < this.selectionWeight; ++index) {
@@ -88,7 +103,10 @@ class CCellSelection extends CPathGroup {
 				borderOpt.fillOpacity = undefined;
 				borderOpt.fill = false;
 				borderOpt.name += '-border-' + index;
-				const borderPath = new CPolygon(borderPointSets[index], borderOpt);
+				const borderPath = new CPolygon(
+					borderPointSets[index],
+					borderOpt,
+				);
 				this.borderPaths.push(borderPath);
 				this.push(borderPath);
 			}
@@ -97,7 +115,10 @@ class CCellSelection extends CPathGroup {
 			contrastBorderOpt.name += '-contrast-border';
 			contrastBorderOpt.color = 'white';
 			contrastBorderOpt.fill = true;
-			this.innerContrastBorder = new CPolygon(contrastBorderPointSet, contrastBorderOpt);
+			this.innerContrastBorder = new CPolygon(
+				contrastBorderPointSet,
+				contrastBorderOpt,
+			);
 			this.push(this.innerContrastBorder);
 		}
 	}
@@ -109,8 +130,7 @@ class CCellSelection extends CPathGroup {
 	}
 
 	anyRingBoundContains(corePxPoint: lool.Point): boolean {
-		if (!this.borderPaths || !this.borderPaths.length)
-			return false;
+		if (!this.borderPaths || !this.borderPaths.length) return false;
 
 		return this.borderPaths[0].anyRingBoundContains(corePxPoint);
 	}

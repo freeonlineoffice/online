@@ -18,13 +18,15 @@ L.Util = {
 	},
 
 	// create an object from a given prototype
-	create: Object.create || (function () {
-		function F() {}
-		return function (proto) {
-			F.prototype = proto;
-			return new F();
-		};
-	})(),
+	create:
+		Object.create ||
+		(function () {
+			function F() {}
+			return function (proto) {
+				F.prototype = proto;
+				return new F();
+			};
+		})(),
 
 	// bind a function to be called with a given context
 	bind: function (fn, obj) {
@@ -37,7 +39,12 @@ L.Util = {
 		var args = slice.call(arguments, 2);
 
 		return function () {
-			return fn.apply(obj, args.length ? args.concat(slice.call(arguments)) : arguments);
+			return fn.apply(
+				obj,
+				args.length
+					? args.concat(slice.call(arguments))
+					: arguments,
+			);
 		};
 	},
 
@@ -68,7 +75,6 @@ L.Util = {
 			if (lock) {
 				// called too soon, queue to call later
 				args = arguments;
-
 			} else {
 				// call and lock until later
 				fn.apply(context, arguments);
@@ -83,13 +89,17 @@ L.Util = {
 	// wrap the given number to lie within a certain range (used for wrapping longitude)
 	wrapNum: function (x, range, includeMax) {
 		var max = range[1],
-		    min = range[0],
-		    d = max - min;
-		return x === max && includeMax ? x : ((x - min) % d + d) % d + min;
+			min = range[0],
+			d = max - min;
+		return x === max && includeMax
+			? x
+			: ((((x - min) % d) + d) % d) + min;
 	},
 
 	// do nothing (used as a noop throughout the code)
-	falseFn: function () { return false; },
+	falseFn: function () {
+		return false;
+	},
 
 	// round a given number to a given precision
 	formatNum: function (num, digits) {
@@ -110,15 +120,14 @@ L.Util = {
 
 	// removes prefix from string if string starts with that prefix
 	trimStart: function (str, prefix) {
-		if (str.indexOf(prefix) === 0)
-			return str.substring(prefix.length);
+		if (str.indexOf(prefix) === 0) return str.substring(prefix.length);
 		return str;
 	},
 
 	// removes suffix from string if string ends with that suffix
 	trimEnd: function (str, suffix) {
 		var suffixIndex = str.lastIndexOf(suffix);
-		if (suffixIndex !== -1 && (str.length - suffix.length === suffixIndex))
+		if (suffixIndex !== -1 && str.length - suffix.length === suffixIndex)
 			return str.substring(0, suffixIndex);
 		return str;
 	},
@@ -139,11 +148,11 @@ L.Util = {
 		return obj.options;
 	},
 
-	round: function(x, e) {
+	round: function (x, e) {
 		if (!e) {
 			return Math.round(x);
 		}
-		var f = 1.0/e;
+		var f = 1.0 / e;
 		return Math.round(x * f) * e;
 	},
 
@@ -154,7 +163,6 @@ L.Util = {
 
 			if (value === undefined) {
 				throw new Error('No value provided for variable ' + str);
-
 			} else if (typeof value === 'function') {
 				value = value(data);
 			}
@@ -164,18 +172,23 @@ L.Util = {
 
 	templateRe: /\{ *([\w_]+) *\}/g,
 
-	isArray: Array.isArray || function (obj) {
-		return (Object.prototype.toString.call(obj) === '[object Array]');
-	},
+	isArray:
+		Array.isArray ||
+		function (obj) {
+			return Object.prototype.toString.call(obj) === '[object Array]';
+		},
 
 	// minimal image URI, set to an image when disposing to flush memory
-	emptyImageUrl: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
+	emptyImageUrl:
+		'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
 
-	toggleFullScreen: function() {
-		if (!document.fullscreenElement &&
+	toggleFullScreen: function () {
+		if (
+			!document.fullscreenElement &&
 			!document.mozFullscreenElement &&
 			!document.msFullscreenElement &&
-			!document.webkitFullscreenElement) {
+			!document.webkitFullscreenElement
+		) {
 			if (document.documentElement.requestFullscreen) {
 				document.documentElement.requestFullscreen();
 			} else if (document.documentElement.msRequestFullscreen) {
@@ -183,7 +196,9 @@ L.Util = {
 			} else if (document.documentElement.mozRequestFullScreen) {
 				document.documentElement.mozRequestFullScreen();
 			} else if (document.documentElement.webkitRequestFullscreen) {
-				document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+				document.documentElement.webkitRequestFullscreen(
+					Element.ALLOW_KEYBOARD_INPUT,
+				);
 			}
 		} else if (document.exitFullscreen) {
 			document.exitFullscreen();
@@ -196,27 +211,33 @@ L.Util = {
 		}
 	},
 
-	isEmpty: function(o) {
+	isEmpty: function (o) {
 		return !(o && o.length);
 	},
 
-	mm100thToInch: function(mm) {
+	mm100thToInch: function (mm) {
 		return mm / 2540;
 	},
 
-	getTextWidth: function(text, font) {
-		var canvas = L.Util.getTextWidth._canvas || (L.Util.getTextWidth._canvas = document.createElement('canvas'));
+	getTextWidth: function (text, font) {
+		var canvas =
+			L.Util.getTextWidth._canvas ||
+			(L.Util.getTextWidth._canvas = document.createElement('canvas'));
 		var context = canvas.getContext('2d');
 		context.font = font;
 		var metrics = context.measureText(text);
 		return Math.floor(metrics.width);
 	},
 
-	replaceCtrlAltInMac: function(msg) {
+	replaceCtrlAltInMac: function (msg) {
 		if (L.Browser.mac) {
 			var ctrl = /Ctrl/g;
 			var alt = /Alt/g;
-			if (String.locale.startsWith('de') || String.locale.startsWith('dsb') || String.locale.startsWith('hsb')) {
+			if (
+				String.locale.startsWith('de') ||
+				String.locale.startsWith('dsb') ||
+				String.locale.startsWith('hsb')
+			) {
 				ctrl = /Strg/g;
 			}
 			if (String.locale.startsWith('lt')) {
@@ -231,21 +252,28 @@ L.Util = {
 		return msg;
 	},
 
-	randomString: function(len) {
+	randomString: function (len) {
 		var result = '';
-		var ValidCharacters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		var ValidCharacters =
+			'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		for (var i = 0; i < len; i++) {
-			result += ValidCharacters.charAt(Math.floor(Math.random() * ValidCharacters.length));
+			result += ValidCharacters.charAt(
+				Math.floor(Math.random() * ValidCharacters.length),
+			);
 		}
 		return result;
-	}
+	},
 };
 
 (function () {
 	// inspired by http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 
 	function getPrefixed(name) {
-		return window['webkit' + name] || window['moz' + name] || window['ms' + name];
+		return (
+			window['webkit' + name] ||
+			window['moz' + name] ||
+			window['ms' + name]
+		);
 	}
 
 	var lastTime = 0;
@@ -253,16 +281,23 @@ L.Util = {
 	// fallback for IE 7-8
 	function timeoutDefer(fn) {
 		var time = +new Date(),
-		    timeToCall = Math.max(0, 16 - (time - lastTime));
+			timeToCall = Math.max(0, 16 - (time - lastTime));
 
 		lastTime = time + timeToCall;
 		return window.setTimeout(fn, timeToCall);
 	}
 
-	var requestFn = window.requestAnimationFrame || getPrefixed('RequestAnimationFrame') || timeoutDefer,
-	    cancelFn = window.cancelAnimationFrame || getPrefixed('CancelAnimationFrame') ||
-	               getPrefixed('CancelRequestAnimationFrame') || function (id) { window.clearTimeout(id); };
-
+	var requestFn =
+			window.requestAnimationFrame ||
+			getPrefixed('RequestAnimationFrame') ||
+			timeoutDefer,
+		cancelFn =
+			window.cancelAnimationFrame ||
+			getPrefixed('CancelAnimationFrame') ||
+			getPrefixed('CancelRequestAnimationFrame') ||
+			function (id) {
+				window.clearTimeout(id);
+			};
 
 	L.Util.requestAnimFrame = function (fn, context, immediate) {
 		if (immediate && requestFn === timeoutDefer) {
@@ -279,19 +314,19 @@ L.Util = {
 	};
 
 	// on IE11 Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER are not supported
-	L.Util.MAX_SAFE_INTEGER = Math.pow(2, 53)-1;
+	L.Util.MAX_SAFE_INTEGER = Math.pow(2, 53) - 1;
 	L.Util.MIN_SAFE_INTEGER = -L.Util.MAX_SAFE_INTEGER;
 })();
 
 if (!String.prototype.startsWith) {
-	String.prototype.startsWith = function(searchString, position) {
+	String.prototype.startsWith = function (searchString, position) {
 		position = position || 0;
 		return this.substr(position, searchString.length) === searchString;
 	};
 }
 
 if (!Element.prototype.remove) {
-	Element.prototype.remove = function() {
+	Element.prototype.remove = function () {
 		if (this.parentNode) {
 			this.parentNode.removeChild(this);
 		}

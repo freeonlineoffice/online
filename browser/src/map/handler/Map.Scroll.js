@@ -14,13 +14,19 @@ L.Map.mergeOptions({
 });
 
 L.Map.Scroll = L.Handler.extend({
-	_mouseOnlyPreventDefault: window.touch.mouseOnly(L.DomEvent.preventDefault),
+	_mouseOnlyPreventDefault: window.touch.mouseOnly(
+		L.DomEvent.preventDefault,
+	),
 	addHooks: function () {
-		L.DomEvent.on(this._map._container, {
-			wheel: this._onWheelScroll,
-			mousewheel: this._onWheelScroll,
-			MozMousePixelScroll: this._mouseOnlyPreventDefault
-		}, this);
+		L.DomEvent.on(
+			this._map._container,
+			{
+				wheel: this._onWheelScroll,
+				mousewheel: this._onWheelScroll,
+				MozMousePixelScroll: this._mouseOnlyPreventDefault,
+			},
+			this,
+		);
 
 		this._delta = 0;
 		this._vertical = 1;
@@ -29,14 +35,18 @@ L.Map.Scroll = L.Handler.extend({
 	},
 
 	removeHooks: function () {
-		L.DomEvent.off(this._map._container, {
-			mousewheel: this._onWheelScroll,
-			MozMousePixelScroll: this._mouseOnlyPreventDefault
-		}, this);
+		L.DomEvent.off(
+			this._map._container,
+			{
+				mousewheel: this._onWheelScroll,
+				MozMousePixelScroll: this._mouseOnlyPreventDefault,
+			},
+			this,
+		);
 	},
 
 	_onWheelScroll: window.touch.mouseOnly(function (e) {
-		var delta =  -1 * e.deltaY; // L.DomEvent.getWheelDelta(e);
+		var delta = -1 * e.deltaY; // L.DomEvent.getWheelDelta(e);
 		var debounce = this._map.options.wheelDebounceTime;
 
 		this._delta = delta;
@@ -56,10 +66,13 @@ L.Map.Scroll = L.Handler.extend({
 			var minX = Math.round(rectangle[0] * app.twipsToPixels);
 			var maxX = minX + Math.round(rectangle[2] * app.twipsToPixels);
 			var viewBounds = this._map.getPixelBoundsCore();
-			var useMouseXCenter = viewBounds.min.x >= 0 && viewBounds.max.x <= maxX;
+			var useMouseXCenter =
+				viewBounds.min.x >= 0 && viewBounds.max.x <= maxX;
 
-			this._zoomCenter = new L.LatLng(mousePos.lat, useMouseXCenter ? mousePos.lng : viewCenter.lng);
-
+			this._zoomCenter = new L.LatLng(
+				mousePos.lat,
+				useMouseXCenter ? mousePos.lng : viewCenter.lng,
+			);
 		} else {
 			this._zoomCenter = viewCenter;
 		}
@@ -84,8 +97,10 @@ L.Map.Scroll = L.Handler.extend({
 		var map = this._map;
 		var mapZoom = map.getZoom();
 
-		var newAnimation = !lastScrollTime ||
-			(this._zoomScrollTime - lastScrollTime) > this._map.options.wheelZoomStepEndAfter;
+		var newAnimation =
+			!lastScrollTime ||
+			this._zoomScrollTime - lastScrollTime >
+				this._map.options.wheelZoomStepEndAfter;
 
 		if (newAnimation && this._inZoomAnimation) {
 			// Animation is on-going. Send this frame request to the ongoing one?
@@ -103,7 +118,9 @@ L.Map.Scroll = L.Handler.extend({
 		this._delta = 0;
 		this._startTime = null;
 
-		if (!delta) { return; }
+		if (!delta) {
+			return;
+		}
 
 		// Compute current zoom-frame's level.
 		var prevZoom = newAnimation ? mapZoom : this._zoom;
@@ -114,12 +131,16 @@ L.Map.Scroll = L.Handler.extend({
 			return;
 		}
 
-		this._stopZoomInterpolateRAFAt = this._zoomScrollTime.valueOf() + this._map.options.wheelZoomStepEndAfter;
+		this._stopZoomInterpolateRAFAt =
+			this._zoomScrollTime.valueOf() +
+			this._map.options.wheelZoomStepEndAfter;
 
 		if (newAnimation) {
 			this._inZoomAnimation = true;
 			this._map._docLayer.preZoomAnimation(this._zoomCenter);
-			this._zoomInterpolateRAF = requestAnimationFrame(this._zoomInterpolateRAFFunc.bind(this));
+			this._zoomInterpolateRAF = requestAnimationFrame(
+				this._zoomInterpolateRAFFunc.bind(this),
+			);
 		}
 	},
 
@@ -129,26 +150,33 @@ L.Map.Scroll = L.Handler.extend({
 		var toZoom = this._zoom; // This can vary while RAF is running.
 		var step = this._map.options.zoomLevelStepSize;
 		var zoomOut = toZoom < lastZoom;
-		var frameZoom = zoomOut ? Math.max(toZoom, lastZoom - step) :
-			Math.min(toZoom, lastZoom + step);
+		var frameZoom = zoomOut
+			? Math.max(toZoom, lastZoom - step)
+			: Math.min(toZoom, lastZoom + step);
 
 		if (frameZoom !== toZoom)
 			this._map._docLayer.zoomStep(frameZoom, this._zoomCenter);
 
 		this._lastFrameZoom = frameZoom;
-		var now = (new Date()).valueOf();
+		var now = new Date().valueOf();
 		if (now < this._stopZoomInterpolateRAFAt)
-			this._zoomInterpolateRAF = requestAnimationFrame(this._zoomInterpolateRAFFunc.bind(this));
-		else
-			this._stopZoomAnimation();
+			this._zoomInterpolateRAF = requestAnimationFrame(
+				this._zoomInterpolateRAFFunc.bind(this),
+			);
+		else this._stopZoomAnimation();
 	},
 
 	_stopZoomAnimation: function () {
 		cancelAnimationFrame(this._zoomInterpolateRAF); // Already cancelled by now ?
 		var zoom = this._zoom;
-		var lastCenter = new L.LatLng(this._zoomCenter.lat, this._zoomCenter.lng);
+		var lastCenter = new L.LatLng(
+			this._zoomCenter.lat,
+			this._zoomCenter.lng,
+		);
 		var map = this._map;
-		map._docLayer.zoomStepEnd(zoom, lastCenter,
+		map._docLayer.zoomStepEnd(
+			zoom,
+			lastCenter,
 			// mapUpdater
 			function (newMapCenter) {
 				map.setView(newMapCenter || lastCenter, zoom);
@@ -158,6 +186,7 @@ L.Map.Scroll = L.Handler.extend({
 				map._docLayer.postZoomAnimation();
 				this._inZoomAnimation = false;
 			}.bind(this),
-			true /* noGap */);
+			true /* noGap */,
+		);
 	},
 });

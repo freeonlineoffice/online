@@ -13,7 +13,6 @@
 
 /* global _ JSDialog app */
 class SheetsBar {
-
 	constructor(map, showNavigation = true) {
 		this.showNavigation = showNavigation;
 		this.onAdd(map);
@@ -22,12 +21,11 @@ class SheetsBar {
 	onAdd(map) {
 		this.map = map;
 		this.parentContainer = L.DomUtil.get('spreadsheet-toolbar');
-		this.builder = new L.control.jsDialogBuilder(
-			{
-				mobileWizard: this,
-				map: this.map,
-				cssClass: 'jsdialog'
-			});
+		this.builder = new L.control.jsDialogBuilder({
+			mobileWizard: this,
+			map: this.map,
+			cssClass: 'jsdialog',
+		});
 
 		this.create();
 
@@ -46,7 +44,7 @@ class SheetsBar {
 						type: 'customtoolitem',
 						text: _('Scroll to the first sheet'),
 						command: 'firstrecord',
-						visible: this.showNavigation
+						visible: this.showNavigation,
 					},
 					{
 						id: 'prevrecord',
@@ -54,7 +52,7 @@ class SheetsBar {
 						text: _('Scroll left'),
 						command: 'prevrecord',
 						visible: this.showNavigation,
-						pressAndHold: true
+						pressAndHold: true,
 					},
 					{
 						id: 'nextrecord',
@@ -62,23 +60,23 @@ class SheetsBar {
 						text: _('Scroll right'),
 						command: 'nextrecord',
 						visible: this.showNavigation,
-						pressAndHold: true
+						pressAndHold: true,
 					},
 					{
 						id: 'lastrecord',
 						type: 'customtoolitem',
 						text: _('Scroll to the last sheet'),
 						command: 'lastrecord',
-						visible: this.showNavigation
+						visible: this.showNavigation,
 					},
 					{
 						id: 'insertsheet',
 						type: 'customtoolitem',
 						text: _('Insert sheet'),
-						command: 'insertsheet'
-					}
-				]
-			}
+						command: 'insertsheet',
+					},
+				],
+			},
 		];
 
 		this.parentContainer.replaceChildren();
@@ -104,8 +102,8 @@ class SheetsBar {
 
 	enableInsertion(enable) {
 		this.builder.executeAction(this.parentContainer, {
-			'control_id': 'insertsheet',
-			'action_type': enable ? 'enable' : 'disable'
+			control_id: 'insertsheet',
+			action_type: enable ? 'enable' : 'disable',
 		});
 	}
 

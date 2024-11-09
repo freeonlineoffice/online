@@ -5,9 +5,8 @@
 
 /* global brandProductName $ */
 L.ProgressOverlay = L.Layer.extend({
-
 	options: {
-		spinnerSpeed: 30
+		spinnerSpeed: 30,
 	},
 
 	initialize: function (size) {
@@ -20,50 +19,72 @@ L.ProgressOverlay = L.Layer.extend({
 	// create layout but don't add to the DOM yet
 	_initLayout: function () {
 		this._container = L.DomUtil.create('div', 'leaflet-progress-layer');
-		this._spinner = L.DomUtil.create('div', 'leaflet-progress-spinner', this._container);
-		this._spinnerCanvas = L.DomUtil.create('canvas', 'leaflet-progress-spinner-canvas', this._spinner);
+		this._spinner = L.DomUtil.create(
+			'div',
+			'leaflet-progress-spinner',
+			this._container,
+		);
+		this._spinnerCanvas = L.DomUtil.create(
+			'canvas',
+			'leaflet-progress-spinner-canvas',
+			this._spinner,
+		);
 
-		var productName = (typeof brandProductName !== 'undefined') ? brandProductName : 'Free Online Office';
-		this._brandLabel = L.DomUtil.create('div', 'leaflet-progress-label brand-label', this._container);
+		var productName =
+			typeof brandProductName !== 'undefined'
+				? brandProductName
+				: 'Free Online Office';
+		this._brandLabel = L.DomUtil.create(
+			'div',
+			'leaflet-progress-label brand-label',
+			this._container,
+		);
 		this._brandLabel.innerHTML = productName;
 
-
-		this._label = L.DomUtil.create('div', 'leaflet-progress-label', this._container);
-		this._progress = L.DomUtil.create('div', 'leaflet-progress', this._container);
+		this._label = L.DomUtil.create(
+			'div',
+			'leaflet-progress-label',
+			this._container,
+		);
+		this._progress = L.DomUtil.create(
+			'div',
+			'leaflet-progress',
+			this._container,
+		);
 		this._bar = L.DomUtil.create('span', '', this._progress);
 		this._value = L.DomUtil.create('span', '', this._bar);
 
 		L.DomUtil.setStyle(this._value, 'line-height', this._size.y + 'px');
 
-		this._container.style.width  = this._size.x + 'px';
+		this._container.style.width = this._size.x + 'px';
 
-		L.DomEvent
-			.disableClickPropagation(this._progress)
-			.disableScrollPropagation(this._container);
+		L.DomEvent.disableClickPropagation(
+			this._progress,
+		).disableScrollPropagation(this._container);
 	},
 
-	shutdownTimer: function() {
-		if (this.intervalTimer)
-			clearInterval(this.intervalTimer);
+	shutdownTimer: function () {
+		if (this.intervalTimer) clearInterval(this.intervalTimer);
 		this.intervalTimer = undefined;
 
-		if (this._spinnerInterval)
-			clearInterval(this._spinnerInterval);
+		if (this._spinnerInterval) clearInterval(this._spinnerInterval);
 		this._spinnerInterval = undefined;
 	},
 
-	showSpinner: function() {
+	showSpinner: function () {
 		L.DomUtil.get('document-container').appendChild(this._container);
-		this._spinnerInterval = L.LOUtil.startSpinner(this._spinnerCanvas, this.options.spinnerSpeed);
+		this._spinnerInterval = L.LOUtil.startSpinner(
+			this._spinnerCanvas,
+			this.options.spinnerSpeed,
+		);
 	},
 
-	hideSpinner: function() {
-		if (this._container)
-			$(this._container).remove();
+	hideSpinner: function () {
+		if (this._container) $(this._container).remove();
 	},
 
 	// Show the progress bar, but only if things seem slow
-	delayedStart: function(map, label, bar) {
+	delayedStart: function (map, label, bar) {
 		this.setLabel(label);
 		this.setBar(false);
 		this.setValue(0);
@@ -72,29 +93,27 @@ L.ProgressOverlay = L.Layer.extend({
 
 		var self = this;
 		self.state = 0;
-		this.intervalTimer = setInterval(
-			function() {
-				self.state = self.state + 1;
-				switch (self.state) {
+		this.intervalTimer = setInterval(function () {
+			self.state = self.state + 1;
+			switch (self.state) {
 				// 0.5s -> start the spinner
 				case 1:
 					self.showSpinner();
 					break;
 				// 2s -> enable the progress bar if we have one & it's low
 				case 4:
-					if (self._percent < 80)
-						self.setBar(bar);
+					if (self._percent < 80) self.setBar(bar);
 					break;
 				// 3s -> show the bar if it's not up.
 				case 6:
 					self.setBar(bar);
 					break;
-				}
-			}, 500 /* ms */);
+			}
+		}, 500 /* ms */);
 	},
 
 	// Hide ourselves if there is anything to hide
-	end: function() {
+	end: function () {
 		this.shutdownTimer();
 		this.hideSpinner();
 	},
@@ -109,8 +128,7 @@ L.ProgressOverlay = L.Layer.extend({
 		if (this._container) {
 			if (bar) {
 				this._progress.style.visibility = '';
-			}
-			else {
+			} else {
 				this._progress.style.visibility = 'hidden';
 			}
 		}
@@ -122,7 +140,7 @@ L.ProgressOverlay = L.Layer.extend({
 			this._bar.style.width = value + '%';
 			this._value.innerHTML = value + '%';
 		}
-	}
+	},
 });
 
 L.progressOverlay = function (size) {

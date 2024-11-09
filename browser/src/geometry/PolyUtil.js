@@ -11,11 +11,16 @@ L.PolyUtil = {};
  */
 L.PolyUtil.clipPolygon = function (points, bounds, round) {
 	var clippedPoints,
-	    edges = [1, 4, 2, 8],
-	    i, j, k,
-	    a, b,
-	    len, edge, p,
-	    lu = L.LineUtil;
+		edges = [1, 4, 2, 8],
+		i,
+		j,
+		k,
+		a,
+		b,
+		len,
+		edge,
+		p,
+		lu = L.LineUtil;
 
 	for (i = 0, len = points.length; i < len; i++) {
 		points[i]._code = lu._getBitCode(points[i], bounds);
@@ -40,7 +45,7 @@ L.PolyUtil.clipPolygon = function (points, bounds, round) {
 				}
 				clippedPoints.push(a);
 
-			// else if b is inside the clip window (a->b enters the screen)
+				// else if b is inside the clip window (a->b enters the screen)
 			} else if (!(b._code & edge)) {
 				p = lu._getEdgeIntersection(b, a, edge, bounds, round);
 				p._code = lu._getBitCode(p, bounds);
@@ -61,10 +66,18 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 		for (var j = i + 1; j < rectangles.length; j++) {
 			for (var k = 0; k < rectangles[i].length; k++) {
 				for (var l = 0; l < rectangles[j].length; l++) {
-					if (Math.abs(rectangles[i][k].x - rectangles[j][l].x) < eps) {
+					if (
+						Math.abs(
+							rectangles[i][k].x - rectangles[j][l].x,
+						) < eps
+					) {
 						rectangles[j][l].x = rectangles[i][k].x;
 					}
-					if (Math.abs(rectangles[i][k].y - rectangles[j][l].y) < eps) {
+					if (
+						Math.abs(
+							rectangles[i][k].y - rectangles[j][l].y,
+						) < eps
+					) {
 						rectangles[j][l].y = rectangles[i][k].y;
 					}
 				}
@@ -77,8 +90,7 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 		for (j = 0; j < rectangles[i].length; j++) {
 			if (points[rectangles[i][j]]) {
 				delete points[rectangles[i][j]];
-			}
-			else {
+			} else {
 				points[rectangles[i][j]] = rectangles[i][j];
 			}
 		}
@@ -104,11 +116,9 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 
 		if (a[0] < b[0] || (a[0] === b[0] && a[1] < b[1])) {
 			return -1;
-		}
-		else if (a[0] === b[0] && a[1] === b[1]) {
+		} else if (a[0] === b[0] && a[1] === b[1]) {
 			return 0;
-		}
-		else {
+		} else {
 			return 1;
 		}
 	}
@@ -123,11 +133,9 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 
 		if (a[1] < b[1] || (a[1] === b[1] && a[0] < b[0])) {
 			return -1;
-		}
-		else if (a[0] === b[0] && a[1] === b[1]) {
+		} else if (a[0] === b[0] && a[1] === b[1]) {
 			return 0;
-		}
-		else {
+		} else {
 			return 1;
 		}
 	}
@@ -170,13 +178,15 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 				var nextVertex = edgesV[curr];
 				delete edgesV[curr];
 				p.push([nextVertex, 1]);
-			}
-			else {
+			} else {
 				nextVertex = edgesH[curr];
 				delete edgesH[curr];
 				p.push([nextVertex, 0]);
 			}
-			if (p[p.length - 1][0] === p[0][0] && p[p.length - 1][1] === p[0][1]) {
+			if (
+				p[p.length - 1][0] === p[0][0] &&
+				p[p.length - 1][1] === p[0][1]
+			) {
 				p.pop();
 				break;
 			}
@@ -185,16 +195,14 @@ L.PolyUtil.rectanglesToPolygons = function (rectangles, docLayer, dontConvert) {
 		for (i = 0; i < p.length; i++) {
 			if (!dontConvert)
 				polygon.push(docLayer._twipsToLatLng(points[p[i][0]]));
-			else
-				polygon.push(points[p[i][0]]);
+			else polygon.push(points[p[i][0]]);
 			delete edgesH[p[i][0]];
 			delete edgesV[p[i][0]];
 		}
 
 		if (!dontConvert)
 			polygon.push(docLayer._twipsToLatLng(points[p[0][0]]));
-		else
-			polygon.push(points[p[0][0]]);
+		else polygon.push(points[p[0][0]]);
 
 		edgesHKeys = getKeys(edgesH);
 		polygons.push(polygon);

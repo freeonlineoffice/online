@@ -28,14 +28,28 @@ class Cursor {
 	private domAttached: boolean = false;
 
 	// position and size should be in core pixels.
-	constructor(position: lool.Point, size: lool.Point, map: any, options: any) {
-		this.opacity = options.opacity !== undefined ? options.opacity : this.opacity;
-		this.zIndex = options.zIndex !== undefined ? options.zIndex : this.zIndex;
+	constructor(
+		position: lool.Point,
+		size: lool.Point,
+		map: any,
+		options: any,
+	) {
+		this.opacity =
+			options.opacity !== undefined ? options.opacity : this.opacity;
+		this.zIndex =
+			options.zIndex !== undefined ? options.zIndex : this.zIndex;
 		this.blink = options.blink !== undefined ? options.blink : this.blink;
 		this.color = options.color !== undefined ? options.color : this.color;
-		this.header = options.header !== undefined ? options.header : this.header;
-		this.headerName = options.headerName !== undefined ? options.headerName : this.headerName;
-		this.headerTimeout = options.headerTimeout !== undefined ? options.headerTimeout : this.headerTimeout;
+		this.header =
+			options.header !== undefined ? options.header : this.header;
+		this.headerName =
+			options.headerName !== undefined
+				? options.headerName
+				: this.headerName;
+		this.headerTimeout =
+			options.headerTimeout !== undefined
+				? options.headerTimeout
+				: this.headerTimeout;
 
 		this.position = position;
 		this.size = size;
@@ -59,8 +73,7 @@ class Cursor {
 
 		if (this.map._docLayer.isCalc())
 			this.map.on('splitposchanged move', this.update, this);
-		else
-			this.map.on('move', this.update, this);
+		else this.map.on('move', this.update, this);
 
 		window.addEventListener('blur', this.onFocusBlur.bind(this));
 		window.addEventListener('focus', this.onFocusBlur.bind(this));
@@ -68,7 +81,11 @@ class Cursor {
 	}
 
 	setMouseCursor() {
-		if (this.domAttached && this.container && this.container.querySelector('.blinking-cursor') !== null) {
+		if (
+			this.domAttached &&
+			this.container &&
+			this.container.querySelector('.blinking-cursor') !== null
+		) {
 			if (this.map._docLayer._docType === 'presentation') {
 				$('.leaflet-interactive').css('cursor', 'text');
 			} else {
@@ -77,11 +94,15 @@ class Cursor {
 		}
 	}
 	setMouseCursorForTextBox() {
-		if (this.domAttached && this.container && this.container.querySelector('.blinking-cursor') !== null) {
+		if (
+			this.domAttached &&
+			this.container &&
+			this.container.querySelector('.blinking-cursor') !== null
+		) {
 			$('.leaflet-interactive').css('cursor', 'text');
 		}
 		this.addCursorClass(app.file.textCursor.visible);
-		this.setOpacity(app.file.textCursor.visible ? 1: 0);
+		this.setOpacity(app.file.textCursor.visible ? 1 : 0);
 	}
 
 	remove() {
@@ -110,8 +131,7 @@ class Cursor {
 	addCursorClass(visible: boolean) {
 		if (visible)
 			L.DomUtil.removeClass(this.cursor, 'blinking-cursor-hidden');
-		else
-			L.DomUtil.addClass(this.cursor, 'blinking-cursor-hidden');
+		else L.DomUtil.addClass(this.cursor, 'blinking-cursor-hidden');
 	}
 
 	isVisible(): boolean {
@@ -123,10 +143,10 @@ class Cursor {
 	}
 
 	onResize() {
-		if (window.devicePixelRatio !== 1 )
-			this.cursor.style.width = this.width / window.devicePixelRatio + 'px';
-		else
-			this.cursor.style.removeProperty('width');
+		if (window.devicePixelRatio !== 1)
+			this.cursor.style.width =
+				this.width / window.devicePixelRatio + 'px';
+		else this.cursor.style.removeProperty('width');
 	}
 
 	// position and size should be in core pixels.
@@ -141,13 +161,12 @@ class Cursor {
 	}
 
 	private update() {
-		if (!this.container || !this.map || !this.map.hasDocBounds())
-			return;
+		if (!this.container || !this.map || !this.map.hasDocBounds()) return;
 
 		var docBounds = <lool.Bounds>this.map.getCorePxDocBounds();
 		var inDocCursor = docBounds.contains(this.position);
 		// Calculate position and size in CSS pixels.
-		var viewBounds = <lool.Bounds>(this.map.getPixelBoundsCore());
+		var viewBounds = <lool.Bounds>this.map.getPixelBoundsCore();
 		var spCxt = this.map.getSplitPanesContext();
 		var origin = viewBounds.min.clone();
 		var paneSize = viewBounds.getSize();
@@ -157,16 +176,14 @@ class Cursor {
 			if (this.position.x <= splitPos.x && this.position.x >= 0) {
 				origin.x = 0;
 				paneSize.x = splitPos.x;
-			}
-			else {
+			} else {
 				paneSize.x -= splitPos.x;
 			}
 
 			if (this.position.y <= splitPos.y && this.position.y >= 0) {
 				origin.y = 0;
 				paneSize.y = splitPos.y;
-			}
-			else {
+			} else {
 				paneSize.y -= splitPos.y;
 			}
 		}
@@ -175,9 +192,13 @@ class Cursor {
 		if (inDocCursor) {
 			var cursorOffset = new lool.Point(
 				origin.x ? canvasOffset.x - splitPos.x : canvasOffset.x,
-				origin.y ? canvasOffset.y - splitPos.y : canvasOffset.y);
+				origin.y ? canvasOffset.y - splitPos.y : canvasOffset.y,
+			);
 			var paneBounds = new lool.Bounds(new lool.Point(0, 0), paneSize);
-			var cursorBounds = new lool.Bounds(cursorOffset, cursorOffset.add(this.size));
+			var cursorBounds = new lool.Bounds(
+				cursorOffset,
+				cursorOffset.add(this.size),
+			);
 
 			if (!paneBounds.contains(cursorBounds)) {
 				this.container.style.visibility = 'hidden';
@@ -194,7 +215,10 @@ class Cursor {
 
 		var tileSectionPos = this.map._docLayer.getTileSectionPos();
 		// Compute tile-section offset in css pixels.
-		var pos = canvasOffset.add(tileSectionPos)._divideBy(app.dpiScale)._round();
+		var pos = canvasOffset
+			.add(tileSectionPos)
+			._divideBy(app.dpiScale)
+			._round();
 		var size = this.size.divideBy(app.dpiScale)._round();
 		this.setSize(size);
 		this.setPos(pos);
@@ -202,8 +226,7 @@ class Cursor {
 	}
 
 	setOpacity(opacity: number) {
-		if (this.container)
-			L.DomUtil.setOpacity(this.cursor, opacity);
+		if (this.container) L.DomUtil.setOpacity(this.cursor, opacity);
 		if (this.cursorHeader)
 			L.DomUtil.setOpacity(this.cursorHeader, opacity);
 	}
@@ -219,9 +242,12 @@ class Cursor {
 			L.DomUtil.setStyle(this.cursorHeader, 'visibility', 'visible');
 
 			clearTimeout(this.blinkTimeout);
-			this.blinkTimeout = setTimeout(L.bind(function () {
-				this.hideCursorHeader();
-			}, this), this.headerTimeout);
+			this.blinkTimeout = setTimeout(
+				L.bind(function () {
+					this.hideCursorHeader();
+				}, this),
+				this.headerTimeout,
+			);
 		}
 	}
 
@@ -233,16 +259,31 @@ class Cursor {
 	private initLayout() {
 		this.container = L.DomUtil.create('div', 'leaflet-cursor-container');
 		if (this.header) {
-			this.cursorHeader = L.DomUtil.create('div', 'leaflet-cursor-header', this.container);
+			this.cursorHeader = L.DomUtil.create(
+				'div',
+				'leaflet-cursor-header',
+				this.container,
+			);
 
 			this.cursorHeader.textContent = this.headerName;
 
 			clearTimeout(this.blinkTimeout);
-			this.blinkTimeout = setTimeout(L.bind(function () {
-				L.DomUtil.setStyle(this._cursorHeader, 'visibility', 'hidden');
-			}, this), this.headerTimeout);
+			this.blinkTimeout = setTimeout(
+				L.bind(function () {
+					L.DomUtil.setStyle(
+						this._cursorHeader,
+						'visibility',
+						'hidden',
+					);
+				}, this),
+				this.headerTimeout,
+			);
 		}
-		this.cursor = L.DomUtil.create('div', 'leaflet-cursor', this.container);
+		this.cursor = L.DomUtil.create(
+			'div',
+			'leaflet-cursor',
+			this.container,
+		);
 		if (this.blink) {
 			L.DomUtil.addClass(this.cursor, 'blinking-cursor');
 		}
@@ -252,9 +293,9 @@ class Cursor {
 			L.DomUtil.setStyle(this.cursor, 'background', this.color);
 		}
 
-		L.DomEvent
-			.disableClickPropagation(this.cursor)
-			.disableScrollPropagation(this.container);
+		L.DomEvent.disableClickPropagation(
+			this.cursor,
+		).disableScrollPropagation(this.container);
 
 		let cursorCss = getComputedStyle(this.cursor, null);
 		this.width = parseFloat(cursorCss.getPropertyValue('width'));
@@ -282,30 +323,44 @@ class Cursor {
 
 	private setSize(size: lool.Point) {
 		this.cursor.style.height = size.y + 'px';
-		this.container.style.top = '-' + (this.container.clientHeight - size.y - 2) / 2 + 'px';
+		this.container.style.top =
+			'-' + (this.container.clientHeight - size.y - 2) / 2 + 'px';
 	}
 
-	static hotSpot = new Map<string, lool.Point>([['fill', new lool.Point(7, 16)]]);
+	static hotSpot = new Map<string, lool.Point>([
+		['fill', new lool.Point(7, 16)],
+	]);
 
-	static customCursors = [
-		'fill'
-	];
+	static customCursors = ['fill'];
 
 	static imagePath: string;
 
 	static isCustomCursor(cursorName: string): boolean {
-		return (Cursor.customCursors.indexOf(cursorName) !== -1);
+		return Cursor.customCursors.indexOf(cursorName) !== -1;
 	}
 
 	static getCustomCursor(cursorName: string) {
 		var customCursor;
 
 		if (Cursor.isCustomCursor(cursorName)) {
-			var cursorHotSpot = Cursor.hotSpot.get(cursorName) || new lool.Point(0, 0);
-			customCursor = L.Browser.ie ? // IE10 does not like item with left/top position in the url list
-				'url(' + Cursor.imagePath + '/' + cursorName + '.cur), default' :
-				'url(' + Cursor.imagePath + '/' + cursorName + '.png) ' + cursorHotSpot.x + ' ' + cursorHotSpot.y + ', default';
+			var cursorHotSpot =
+				Cursor.hotSpot.get(cursorName) || new lool.Point(0, 0);
+			customCursor = L.Browser.ie // IE10 does not like item with left/top position in the url list
+				? 'url(' +
+					Cursor.imagePath +
+					'/' +
+					cursorName +
+					'.cur), default'
+				: 'url(' +
+					Cursor.imagePath +
+					'/' +
+					cursorName +
+					'.png) ' +
+					cursorHotSpot.x +
+					' ' +
+					cursorHotSpot.y +
+					', default';
 		}
 		return customCursor;
-	};
+	}
 }

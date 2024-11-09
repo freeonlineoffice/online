@@ -21,9 +21,8 @@ app.definitions.Socket = L.Class.extend({
 
 	getParameterValue: function (s) {
 		var i = s.indexOf('=');
-		if (i === -1)
-			return undefined;
-		return s.substring(i+1);
+		if (i === -1) return undefined;
+		return s.substring(i + 1);
 	},
 
 	initialize: function (map) {
@@ -36,11 +35,14 @@ app.definitions.Socket = L.Class.extend({
 		this._slurpDuringTransaction = false;
 	},
 
-	getWebSocketBaseURI: function(map) {
-		return window.makeWsUrlWopiSrc('/lool/', map.options.doc + '?' + $.param(map.options.docParams));
+	getWebSocketBaseURI: function (map) {
+		return window.makeWsUrlWopiSrc(
+			'/lool/',
+			map.options.doc + '?' + $.param(map.options.docParams),
+		);
 	},
 
-	connect: function(socket) {
+	connect: function (socket) {
 		var map = this._map;
 		map.options.docParams['permission'] = app.getPermission();
 		if (this.socket) {
@@ -51,11 +53,26 @@ app.definitions.Socket = L.Class.extend({
 		} else if (window.ThisIsAMobileApp) {
 			// We have already opened the FakeWebSocket over in global.js
 			// But do we then set this.socket at all? Is this case ever reached?
-		} else	{
+		} else {
 			try {
-				this.socket = window.createWebSocket(this.getWebSocketBaseURI(map));
+				this.socket = window.createWebSocket(
+					this.getWebSocketBaseURI(map),
+				);
 			} catch (e) {
-				this._map.fire('error', {msg: _('Oops, there is a problem connecting to {productname}: ').replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Free Online Office')) + e, cmd: 'socket', kind: 'failed', id: 3});
+				this._map.fire('error', {
+					msg:
+						_(
+							'Oops, there is a problem connecting to {productname}: ',
+						).replace(
+							'{productname}',
+							typeof brandProductName !== 'undefined'
+								? brandProductName
+								: 'Free Online Office',
+						) + e,
+					cmd: 'socket',
+					kind: 'failed',
+					id: 3,
+				});
 				return;
 			}
 		}
@@ -65,11 +82,18 @@ app.definitions.Socket = L.Class.extend({
 		this.socket.onopen = L.bind(this._onSocketOpen, this);
 		this.socket.onmessage = L.bind(this._slurpMessage, this);
 		this.socket.binaryType = 'arraybuffer';
-		if (map.options.docParams.access_token && parseInt(map.options.docParams.access_token_ttl)) {
+		if (
+			map.options.docParams.access_token &&
+			parseInt(map.options.docParams.access_token_ttl)
+		) {
 			var tokenExpiryWarning = 900 * 1000; // Warn when 15 minutes remain
 			clearTimeout(this._accessTokenExpireTimeout);
-			this._accessTokenExpireTimeout = setTimeout(L.bind(this._sessionExpiredWarning, this),
-			                                            parseInt(map.options.docParams.access_token_ttl) - Date.now() - tokenExpiryWarning);
+			this._accessTokenExpireTimeout = setTimeout(
+				L.bind(this._sessionExpiredWarning, this),
+				parseInt(map.options.docParams.access_token_ttl) -
+					Date.now() -
+					tokenExpiryWarning,
+			);
 		}
 
 		// process messages for early socket connection
@@ -79,31 +103,52 @@ app.definitions.Socket = L.Class.extend({
 	_emptyQueue: function () {
 		if (window.queueMsg && window.queueMsg.length > 0) {
 			for (var it = 0; it < window.queueMsg.length; it++) {
-				this._slurpMessage({data: window.queueMsg[it], textMsg: window.queueMsg[it]});
+				this._slurpMessage({
+					data: window.queueMsg[it],
+					textMsg: window.queueMsg[it],
+				});
 			}
 			window.queueMsg = [];
 		}
 	},
 
-	_sessionExpiredWarning: function() {
+	_sessionExpiredWarning: function () {
 		clearTimeout(this._accessTokenExpireTimeout);
 		var expirymsg = errorMessages.sessionexpiry;
-		if (parseInt(this._map.options.docParams.access_token_ttl) - Date.now() <= 0) {
+		if (
+			parseInt(this._map.options.docParams.access_token_ttl) -
+				Date.now() <=
+			0
+		) {
 			expirymsg = errorMessages.sessionexpired;
 		}
-		var dateTime = new Date(parseInt(this._map.options.docParams.access_token_ttl));
-		var dateOptions = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-		var timerepr = dateTime.toLocaleDateString(String.locale, dateOptions);
-		this._map.fire('warn', {msg: expirymsg.replace('{time}', timerepr)});
+		var dateTime = new Date(
+			parseInt(this._map.options.docParams.access_token_ttl),
+		);
+		var dateOptions = {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+		};
+		var timerepr = dateTime.toLocaleDateString(
+			String.locale,
+			dateOptions,
+		);
+		this._map.fire('warn', {
+			msg: expirymsg.replace('{time}', timerepr),
+		});
 
 		// If user still doesn't refresh the session, warn again periodically
-		this._accessTokenExpireTimeout = setTimeout(L.bind(this._sessionExpiredWarning, this),
-		                                            120 * 1000);
+		this._accessTokenExpireTimeout = setTimeout(
+			L.bind(this._sessionExpiredWarning, this),
+			120 * 1000,
+		);
 	},
 
-	setUnloading: function() {
-		if (this.socket.setUnloading)
-			this.socket.setUnloading();
+	setUnloading: function () {
+		if (this.socket.setUnloading) this.socket.setUnloading();
 	},
 
 	close: function () {
@@ -114,11 +159,11 @@ app.definitions.Socket = L.Class.extend({
 
 		// Reset wopi's app loaded so that reconnecting again informs outerframe about initialization
 		this._map['wopi'].resetAppLoaded();
-		this._map.fire('docloaded', {status: false});
+		this._map.fire('docloaded', { status: false });
 		clearTimeout(this._accessTokenExpireTimeout);
 	},
 
-	connected: function() {
+	connected: function () {
 		return this.socket && this.socket.readyState === 1;
 	},
 
@@ -130,17 +175,22 @@ app.definitions.Socket = L.Class.extend({
 
 		if (!app.idleHandler._active) {
 			// Avoid communicating when we're inactive.
-			if (typeof msg !== 'string')
-				return;
+			if (typeof msg !== 'string') return;
 
-			if (!msg.startsWith('useractive') && !msg.startsWith('userinactive')) {
-				window.app.console.log('Ignore outgoing message due to inactivity: "' + msg + '"');
+			if (
+				!msg.startsWith('useractive') &&
+				!msg.startsWith('userinactive')
+			) {
+				window.app.console.log(
+					'Ignore outgoing message due to inactivity: "' +
+						msg +
+						'"',
+				);
 				return;
 			}
 		}
 
-		if (this._map.uiManager && this._map.uiManager.isUIBlocked())
-			return;
+		if (this._map.uiManager && this._map.uiManager.isUIBlocked()) return;
 
 		var socketState = this.socket.readyState;
 		if (socketState === 2 || socketState === 3) {
@@ -149,36 +199,43 @@ app.definitions.Socket = L.Class.extend({
 
 		if (socketState === 1) {
 			this._doSend(msg);
-		}
-		else {
+		} else {
 			// push message while trying to connect socket again.
 			this._msgQueue.push(msg);
 		}
 	},
 
-	sendTraceEvent: function(name, ph, timeRange, args, id, tid) {
+	sendTraceEvent: function (name, ph, timeRange, args, id, tid) {
 		if (timeRange === undefined)
 			timeRange = 'ts=' + Math.round(performance.now() * 1000);
-		if (!id)
-			id = 1;
-		if (!tid)
-			tid = 1;
-		this.sendMessage('TRACEEVENT name=' + JSON.stringify(name) + ' ph=' + ph +
-				 ' ' + timeRange + ' id=' + id + ' tid=' + tid +
-				 this._stringifyArgs(args));
+		if (!id) id = 1;
+		if (!tid) tid = 1;
+		this.sendMessage(
+			'TRACEEVENT name=' +
+				JSON.stringify(name) +
+				' ph=' +
+				ph +
+				' ' +
+				timeRange +
+				' id=' +
+				id +
+				' tid=' +
+				tid +
+				this._stringifyArgs(args),
+		);
 	},
 
-	_doSend: function(msg) {
+	_doSend: function (msg) {
 		// Only attempt to log text frames, not binary ones.
-		if (typeof msg === 'string')
-			this._logSocket('OUTGOING', msg);
+		if (typeof msg === 'string') this._logSocket('OUTGOING', msg);
 
 		this.socket.send(msg);
 	},
 
-	_getParameterByName: function(url, name) {
+	_getParameterByName: function (url, name) {
 		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'), results = regex.exec(url);
+		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+			results = regex.exec(url);
 		return results === null ? '' : results[1].replace(/\+/g, ' ');
 	},
 
@@ -204,7 +261,14 @@ app.definitions.Socket = L.Class.extend({
 		var now0 = Date.now();
 		var now1 = performance.now();
 		var now2 = Date.now();
-		this._doSend('loolclient ' + this.ProtocolVersionNumber + ' ' + ((now0 + now2) / 2) + ' ' + now1);
+		this._doSend(
+			'loolclient ' +
+				this.ProtocolVersionNumber +
+				' ' +
+				(now0 + now2) / 2 +
+				' ' +
+				now1,
+		);
 
 		var msg = 'load url=' + encodeURIComponent(this._map.options.doc);
 		if (this._map._docLayer) {
@@ -225,11 +289,12 @@ app.definitions.Socket = L.Class.extend({
 			msg += ' deviceFormFactor=' + window.deviceFormFactor;
 		}
 
-		msg += ' timezone=' + Intl.DateTimeFormat().resolvedOptions().timeZone;
+		msg +=
+			' timezone=' + Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 		if (this._map.options.renderingOptions) {
 			var options = {
-				'rendering': this._map.options.renderingOptions
+				rendering: this._map.options.renderingOptions,
 			};
 			msg += ' options=' + JSON.stringify(options);
 		}
@@ -241,7 +306,10 @@ app.definitions.Socket = L.Class.extend({
 		const darkTheme = window.prefs.getBoolean('darkTheme');
 		msg += ' darkTheme=' + darkTheme;
 
-		const darkBackground = window.prefs.getBoolean('darkBackgroundForTheme.' + (darkTheme ? 'dark' : 'light'), darkTheme);
+		const darkBackground = window.prefs.getBoolean(
+			'darkBackgroundForTheme.' + (darkTheme ? 'dark' : 'light'),
+			darkTheme,
+		);
 		msg += ' darkBackground=' + darkBackground;
 		this._map.uiManager.initDarkBackgroundUI(darkBackground);
 
@@ -266,60 +334,82 @@ app.definitions.Socket = L.Class.extend({
 
 	// Returns true if, and only if, we are ready to start loading
 	// the tiles and rendering the document.
-	_isReady: function() {
-		if (window.bundlejsLoaded == false || window.fullyLoadedAndReady == false) {
+	_isReady: function () {
+		if (
+			window.bundlejsLoaded == false ||
+			window.fullyLoadedAndReady == false
+		) {
 			return false;
 		}
 
-		if (typeof this._map == 'undefined' ||
+		if (
+			typeof this._map == 'undefined' ||
 			isNaN(this._map.options.tileWidthTwips) ||
-			isNaN(this._map.options.tileHeightTwips)) {
+			isNaN(this._map.options.tileHeightTwips)
+		) {
 			return false;
 		}
 
 		var center = this._map.getCenter();
-		if (isNaN(center.lat) || isNaN(center.lng) || isNaN(this._map.getZoom())) {
+		if (
+			isNaN(center.lat) ||
+			isNaN(center.lng) ||
+			isNaN(this._map.getZoom())
+		) {
 			return false;
 		}
 
 		return true;
 	},
 
-	_logSocket: function(type, msg) {
-		var logMessage = this._map._debug.debugNeverStarted || this._map._debug.logIncomingMessages;
-		if (!logMessage)
-			return;
+	_logSocket: function (type, msg) {
+		var logMessage =
+			this._map._debug.debugNeverStarted ||
+			this._map._debug.logIncomingMessages;
+		if (!logMessage) return;
 
-		if (window.ThisIsTheGtkApp)
-			window.postMobileDebug(type + ' ' + msg);
+		if (window.ThisIsTheGtkApp) window.postMobileDebug(type + ' ' + msg);
 
 		var debugOn = this._map._debug.debugOn;
 
 		if (this._map._debug.overlayOn) {
-			this._map._debug.setOverlayMessage('postMessage',type+': '+msg);
+			this._map._debug.setOverlayMessage(
+				'postMessage',
+				type + ': ' + msg,
+			);
 		}
 
-		if (!debugOn && msg.length > 256) // for reasonable performance.
-			msg = msg.substring(0,256) + '<truncated ' + (msg.length - 256) + 'chars>';
+		if (!debugOn && msg.length > 256)
+			// for reasonable performance.
+			msg =
+				msg.substring(0, 256) +
+				'<truncated ' +
+				(msg.length - 256) +
+				'chars>';
 
 		var status = '';
-		if (!window.fullyLoadedAndReady)
-			status += '[!fullyLoadedAndReady]';
-		if (!window.bundlejsLoaded)
-			status += '[!bundlejsLoaded]';
+		if (!window.fullyLoadedAndReady) status += '[!fullyLoadedAndReady]';
+		if (!window.bundlejsLoaded) status += '[!bundlejsLoaded]';
 
 		L.Log.log(msg, type + status);
 
-		if (!window.protocolDebug && !debugOn)
-			return;
+		if (!window.protocolDebug && !debugOn) return;
 
 		var color = type === 'OUTGOING' ? 'color:red' : 'color:#2e67cf';
-		window.app.console.log(+new Date() + ' %c' + type + status + '%c: ' + msg.concat(' ').replace(' ', '%c '),
-			     'background:#ddf;color:black', color, 'color:');
+		window.app.console.log(
+			+new Date() +
+				' %c' +
+				type +
+				status +
+				'%c: ' +
+				msg.concat(' ').replace(' ', '%c '),
+			'background:#ddf;color:black',
+			color,
+			'color:',
+		);
 	},
 
-	_queueSlurpEventEmission: function(delayMS) {
-
+	_queueSlurpEventEmission: function (delayMS) {
 		if (this._slurpTimer && this._slurpTimerDelay != delayMS) {
 			// The timer already exists, but now want to change timeout _slurpTimerDelay to delayMS.
 			// Cancel it and reschedule by replacement with another timer using the desired delayMS
@@ -331,12 +421,10 @@ app.definitions.Socket = L.Class.extend({
 			var now = Date.now();
 			var sinceLaunchMS = now - this._slurpTimerLaunchTime;
 			delayMS -= sinceLaunchMS;
-			if (delayMS <= 0)
-				delayMS = 1;
+			if (delayMS <= 0) delayMS = 1;
 		}
 
-		if (!this._slurpTimer)
-		{
+		if (!this._slurpTimer) {
 			var that = this;
 			if (!that._slurpTimerLaunchTime) {
 				// The initial launch of the timer, rescheduling replacements retain
@@ -357,10 +445,12 @@ app.definitions.Socket = L.Class.extend({
 		}
 	},
 
-	_emitSlurpedEvents: function() {
+	_emitSlurpedEvents: function () {
 		var queueLength = this._slurpQueue.length;
-		var completeEventWholeFunction = this.createCompleteTraceEvent('emitSlurped-' + String(queueLength),
-									       {'_slurpQueue.length' : String(queueLength)});
+		var completeEventWholeFunction = this.createCompleteTraceEvent(
+			'emitSlurped-' + String(queueLength),
+			{ '_slurpQueue.length': String(queueLength) },
+		);
 		if (this._map && this._map._docLayer) {
 			this._map._docLayer.pauseDrawing();
 			this._map._docLayer.beginTransaction();
@@ -368,17 +458,29 @@ app.definitions.Socket = L.Class.extend({
 
 			// Queue an instant timeout early to try to measure the
 			// re-rendering delay before we get back to the main-loop.
-			if (this.traceEventRecordingToggle)
-			{
+			if (this.traceEventRecordingToggle) {
 				var that = this;
 				if (!that._renderEventTimer)
-					that._renderEventTimer = setTimeout(function() {
+					that._renderEventTimer = setTimeout(function () {
 						var now = performance.now();
 						var delta = now - that._renderEventTimerStart;
-						if (delta >= 2 /* ms */) // significant
-						{
-							that.sendTraceEvent(name, 'X', 'ts=' + Math.round(that._renderEventTimerStart * 1000) +
-									    ' dur=' + Math.round((now - that._renderEventTimerStart) * 1000));
+						if (delta >= 2 /* ms */) {
+							// significant
+							that.sendTraceEvent(
+								name,
+								'X',
+								'ts=' +
+									Math.round(
+										that._renderEventTimerStart *
+											1000,
+									) +
+									' dur=' +
+									Math.round(
+										(now -
+											that._renderEventTimerStart) *
+											1000,
+									),
+							);
 							that._renderEventTimerStart = undefined;
 						}
 						that._renderEventTimer = undefined;
@@ -393,56 +495,77 @@ app.definitions.Socket = L.Class.extend({
 
 				if (evt.isComplete()) {
 					var textMsg;
-					if (typeof (evt.data) === 'string') {
+					if (typeof evt.data === 'string') {
 						textMsg = evt.data.replace(/\s+/g, '.');
-					}
-					else if (typeof (evt.data) === 'object') {
+					} else if (typeof evt.data === 'object') {
 						textMsg = evt.textMsg.replace(/\s+/g, '.');
 					}
 
-					var completeEventOneMessage = this.createCompleteTraceEventFromEvent(textMsg);
+					var completeEventOneMessage =
+						this.createCompleteTraceEventFromEvent(textMsg);
 					try {
 						// it is - are you ?
 						this._onMessage(evt);
-					}
-					catch (e)
-					{
+					} catch (e) {
 						// unpleasant - but stops this one problem event
 						// stopping an unknown number of others.
-						let msg = 'Exception ' + e + ' emitting event ' + evt.data + '\n' + e.stack;
+						let msg =
+							'Exception ' +
+							e +
+							' emitting event ' +
+							evt.data +
+							'\n' +
+							e.stack;
 						window.app.console.error(msg);
 
 						// When debugging let QA know something is up.
 						if (window.enableDebug || L.Browser.cypressTest)
 							this._map.uiManager.showInfoModal(
-								'lool_alert', '', msg, '', _('Close'), function() { /* Do nothing. */ }, false);
+								'lool_alert',
+								'',
+								msg,
+								'',
+								_('Close'),
+								function () {
+									/* Do nothing. */
+								},
+								false,
+							);
 
 						// If we're cypress testing, fail the run. Cypress will fail anyway, but this way we may get
 						// a nice error in the logs rather than guessing that the run failed from our popup blocking input...
-						if (L.Browser.cypressTest && window.parent !== window && e !== null) {
-							console.log("Sending event error to Cypress...", e);
+						if (
+							L.Browser.cypressTest &&
+							window.parent !== window &&
+							e !== null
+						) {
+							console.log(
+								'Sending event error to Cypress...',
+								e,
+							);
 							window.parent.postMessage(e);
 						}
-
-					}
-					finally {
+					} finally {
 						if (completeEventOneMessage)
 							completeEventOneMessage.finish();
 					}
 				} else {
 					// Stop emitting, re-start when we async images load.
-					this._slurpQueue = this._slurpQueue.slice(i, queueLength);
+					this._slurpQueue = this._slurpQueue.slice(
+						i,
+						queueLength,
+					);
 					complete = false;
 					break;
 				}
 			}
-		}
-		finally {
+		} finally {
 			if (completeEventWholeFunction)
 				completeEventWholeFunction.finish();
 		}
 
-		if (complete) // Finished all elements in the queue.
+		if (complete)
+			// Finished all elements in the queue.
 			this._slurpQueue = [];
 
 		if (this._map) {
@@ -477,87 +600,97 @@ app.definitions.Socket = L.Class.extend({
 	// producer/consumer issues that can fill a multi-second long
 	// buffer of web-socket messages in the client that we can't
 	// process so - slurp and then emit at idle - its faster to delay!
-	_slurpMessage: function(e) {
+	_slurpMessage: function (e) {
 		this._extractTextImg(e);
 
 		// Some messages - we want to process & filter early.
 		var docLayer = this._map ? this._map._docLayer : undefined;
-		if (docLayer && docLayer.filterSlurpedMessage(e))
-			return;
+		if (docLayer && docLayer.filterSlurpedMessage(e)) return;
 
 		var predictedTiles = docLayer ? docLayer.predictTilesToSlurp() : 0;
 		// scale delay, to a max of 50ms, according to the number of
 		// tiles predicted to arrive.
 		var delayMS = Math.max(Math.min(predictedTiles, 50), 1);
 
-		if (!this._slurpQueue)
-			this._slurpQueue = [];
+		if (!this._slurpQueue) this._slurpQueue = [];
 		this._slurpQueue.push(e);
 		this._queueSlurpEventEmission(delayMS);
 	},
 
 	// make profiling easier
-	_extractCopyObject: function(e) {
+	_extractCopyObject: function (e) {
 		var index;
 
 		e.imgBytes = new Uint8Array(e.data);
 
 		// search for the first newline which marks the end of the message
 		index = e.imgBytes.indexOf(10);
-		if (index < 0)
-			index = e.imgBytes.length;
+		if (index < 0) index = e.imgBytes.length;
 
-		e.textMsg = String.fromCharCode.apply(null, e.imgBytes.subarray(0, index));
+		e.textMsg = String.fromCharCode.apply(
+			null,
+			e.imgBytes.subarray(0, index),
+		);
 
 		e.imgIndex = index + 1;
 	},
 
 	// convert to string of bytes without blowing the stack if data is large.
-	_strFromUint8: function(prefix, data) {
-		var i, chunk = 4096;
+	_strFromUint8: function (prefix, data) {
+		var i,
+			chunk = 4096;
 		var strBytes = prefix;
 		for (i = 0; i < data.length; i += chunk)
-			strBytes += String.fromCharCode.apply(null, data.slice(i, i + chunk));
+			strBytes += String.fromCharCode.apply(
+				null,
+				data.slice(i, i + chunk),
+			);
 		strBytes += String.fromCharCode.apply(null, data.slice(i));
 		return strBytes;
 	},
 
-	_extractImage: function(e) {
+	_extractImage: function (e) {
 		var img;
 		var data = e.imgBytes.subarray(e.imgIndex);
 		var prefix = '';
 		// FIXME: so we prepend the PNG pre-byte here having removed it in TileCache::appendBlob
-		if (data[0] != 0x89)
-			prefix = String.fromCharCode(0x89);
-		img = 'data:image/png;base64,' + window.btoa(this._strFromUint8(prefix,data));
-		if (L.Browser.cypressTest && window.prefs.getBoolean('image_validation_test')) {
-			if (!window.imgDatas)
-				window.imgDatas = [];
+		if (data[0] != 0x89) prefix = String.fromCharCode(0x89);
+		img =
+			'data:image/png;base64,' +
+			window.btoa(this._strFromUint8(prefix, data));
+		if (
+			L.Browser.cypressTest &&
+			window.prefs.getBoolean('image_validation_test')
+		) {
+			if (!window.imgDatas) window.imgDatas = [];
 			window.imgDatas.push(img);
 		}
 		return img;
 	},
 
 	_extractTextImg: function (e) {
-
-		if ((window.ThisIsTheiOSApp || window.ThisIsTheEmscriptenApp) && typeof (e.data) === 'string') {
+		if (
+			(window.ThisIsTheiOSApp || window.ThisIsTheEmscriptenApp) &&
+			typeof e.data === 'string'
+		) {
 			// Another fix for issue #5843 limit splitting on the first newline
 			// to only certain message types on iOS. Also, fix mangled UTF-8
 			// text on iOS in jsdialogs when using languages like Greek and
 			// Japanese by only setting the image bytes for only the same set
 			// of message types.
-			if (window.ThisIsTheEmscriptenApp ||
-					e.data.startsWith('tile:') ||
-					e.data.startsWith('tilecombine:') ||
-					e.data.startsWith('delta:') ||
-					e.data.startsWith('renderfont:') ||
-					e.data.startsWith('rendersearchlist:') ||
-					e.data.startsWith('slidelayer:') ||
-					e.data.startsWith('windowpaint:')) {
+			if (
+				window.ThisIsTheEmscriptenApp ||
+				e.data.startsWith('tile:') ||
+				e.data.startsWith('tilecombine:') ||
+				e.data.startsWith('delta:') ||
+				e.data.startsWith('renderfont:') ||
+				e.data.startsWith('rendersearchlist:') ||
+				e.data.startsWith('slidelayer:') ||
+				e.data.startsWith('windowpaint:')
+			) {
 				var index;
 				index = e.data.indexOf('\n');
-				if (index < 0)
-					index = e.data.length;
+				if (index < 0) index = e.data.length;
 				e.imgBytes = new Uint8Array(e.data.length);
 				for (var i = 0; i < e.data.length; i++) {
 					e.imgBytes[i] = e.data.charCodeAt(i);
@@ -567,34 +700,40 @@ app.definitions.Socket = L.Class.extend({
 			} else {
 				e.textMsg = e.data;
 			}
-		} else if (typeof (e.data) === 'string') {
+		} else if (typeof e.data === 'string') {
 			e.textMsg = e.data;
-		} else if (typeof (e.data) === 'object') {
+		} else if (typeof e.data === 'object') {
 			this._extractCopyObject(e);
 		}
 		e.isComplete = function () {
-			if (this.image)
-				return !!this.imageIsComplete;
+			if (this.image) return !!this.imageIsComplete;
 			return true;
 		};
 
 		var isTile = e.textMsg.startsWith('tile:');
 		var isDelta = e.textMsg.startsWith('delta:');
-		if (!isTile && !isDelta &&
-		    !e.textMsg.startsWith('renderfont:') &&
+		if (
+			!isTile &&
+			!isDelta &&
+			!e.textMsg.startsWith('renderfont:') &&
 			!e.textMsg.startsWith('slidelayer:') &&
-		    !e.textMsg.startsWith('windowpaint:'))
+			!e.textMsg.startsWith('windowpaint:')
+		)
 			return;
 
-		if (e.textMsg.indexOf(' nopng') !== -1)
-			return;
+		if (e.textMsg.indexOf(' nopng') !== -1) return;
 
 		// pass deltas through quickly.
-		if (e.imgBytes && (isTile || isDelta) && e.imgBytes[e.imgIndex] != 80 /* P(ng) */)
-		{
+		if (
+			e.imgBytes &&
+			(isTile || isDelta) &&
+			e.imgBytes[e.imgIndex] != 80 /* P(ng) */
+		) {
 			// window.app.console.log('Passed through delta object');
-			e.image = { rawData: e.imgBytes.subarray(e.imgIndex),
-				    isKeyframe: isTile };
+			e.image = {
+				rawData: e.imgBytes.subarray(e.imgIndex),
+				isKeyframe: isTile,
+			};
 			e.imageIsComplete = true;
 			return;
 		}
@@ -612,14 +751,16 @@ app.definitions.Socket = L.Class.extend({
 		// PNG dialog bits
 		var that = this;
 		e.image = new Image();
-		e.image.onload = function() {
+		e.image.onload = function () {
 			e.imageIsComplete = true;
 			that._queueSlurpEventEmission(1);
 			if (e.image.completeTraceEvent)
 				e.image.completeTraceEvent.finish();
 		};
-		e.image.onerror = function(err) {
-			window.app.console.log('Failed to load image ' + img + ' fun ' + err);
+		e.image.onerror = function (err) {
+			window.app.console.log(
+				'Failed to load image ' + img + ' fun ' + err,
+			);
 			e.imageIsComplete = true;
 			that._queueSlurpEventEmission(1);
 			if (e.image.completeTraceEvent)
@@ -634,7 +775,10 @@ app.definitions.Socket = L.Class.extend({
 		if (command.errorCode) {
 			// X509_verify_cert_error_string output
 			var authError = window.atob(command.errorCode);
-			var verifyError = errorMessages.verificationerror.replace('{errormessage}', authError);
+			var verifyError = errorMessages.verificationerror.replace(
+				'{errormessage}',
+				authError,
+			);
 			unauthorizedMsg += ' ' + verifyError;
 		}
 		return unauthorizedMsg;
@@ -660,42 +804,86 @@ app.definitions.Socket = L.Class.extend({
 				// If our connection was lost and is ready again, we will not need to refresh the page.
 				oldVersion = this.WSDServer.Version;
 
-				window.app.console.assert(this._map.options.wopiSrc === window.wopiSrc,
-					'wopiSrc mismatch!: ' + this._map.options.wopiSrc + ' != ' + window.wopiSrc);
+				window.app.console.assert(
+					this._map.options.wopiSrc === window.wopiSrc,
+					'wopiSrc mismatch!: ' +
+						this._map.options.wopiSrc +
+						' != ' +
+						window.wopiSrc,
+				);
 				// If another file is opened, we will not refresh the page.
-				if (this._map.options.previousWopiSrc && this._map.options.wopiSrc) {
-					if (this._map.options.previousWopiSrc !== this._map.options.wopiSrc)
+				if (
+					this._map.options.previousWopiSrc &&
+					this._map.options.wopiSrc
+				) {
+					if (
+						this._map.options.previousWopiSrc !==
+						this._map.options.wopiSrc
+					)
 						sameFile = false;
 				}
 			}
 
-			this.WSDServer = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			this.WSDServer = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 
 			if (oldVersion && sameFile) {
 				if (this.WSDServer.Version !== oldVersion) {
-					var reloadMessage = _('Server is now reachable. We have to refresh the page now.');
+					var reloadMessage = _(
+						'Server is now reachable. We have to refresh the page now.',
+					);
 					if (window.mode.isMobile())
 						reloadMessage = _('Server is now reachable...');
 
-					var reloadFunc = function() { window.location.reload(); };
+					var reloadFunc = function () {
+						window.location.reload();
+					};
 					if (!this._map['wopi'].DisableInactiveMessages)
-						this._map.uiManager.showSnackbar(reloadMessage, _('RELOAD'), reloadFunc);
+						this._map.uiManager.showSnackbar(
+							reloadMessage,
+							_('RELOAD'),
+							reloadFunc,
+						);
 					else
-						this._map.fire('postMessage', {msgId: 'Reloading', args: {Reason: 'Reconnected'}});
+						this._map.fire('postMessage', {
+							msgId: 'Reloading',
+							args: { Reason: 'Reconnected' },
+						});
 					setTimeout(reloadFunc, 5000);
 				}
 			}
 			if (window.indirectSocket) {
-				if (window.expectedServerId && window.expectedServerId != this.WSDServer.Id) {
+				if (
+					window.expectedServerId &&
+					window.expectedServerId != this.WSDServer.Id
+				) {
 					if (this.IndirectSocketReconnectCount++ >= 3) {
-						var msg = errorMessages.clusterconfiguration.replace('{productname}', (typeof brandProductName !== 'undefined' ? brandProductName : 'Free Online Office'));
+						var msg =
+							errorMessages.clusterconfiguration.replace(
+								'{productname}',
+								typeof brandProductName !== 'undefined'
+									? brandProductName
+									: 'Free Online Office',
+							);
 						msg = msg.replace('{0}', window.expectedServerId);
 						msg = msg.replace('{1}', window.routeToken);
 						msg = msg.replace('{2}', this.WSDServer.Id);
-						this._map.uiManager.showInfoModal('wrong-server-modal', _('Cluster configuration warning'), msg, '', _('OK'), null, false);
+						this._map.uiManager.showInfoModal(
+							'wrong-server-modal',
+							_('Cluster configuration warning'),
+							msg,
+							'',
+							_('OK'),
+							null,
+							false,
+						);
 						this.IndirectSocketReconnectCount = 0;
 					} else {
-						this._map.showBusy(_('Wrong server, reconnecting...'), false);
+						this._map.showBusy(
+							_('Wrong server, reconnecting...'),
+							false,
+						);
 						this.manualReconnect(3000);
 						// request to indirection server to sanity check the tokens
 						this.sendMessage('routetokensanitycheck');
@@ -704,101 +892,131 @@ app.definitions.Socket = L.Class.extend({
 				}
 			}
 
-			document.getElementById('loolwsd-version-label').textContent = _('LOOLWSD version:');
+			document.getElementById('loolwsd-version-label').textContent =
+				_('LOOLWSD version:');
 			var h = this.WSDServer.Hash;
-			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
+			if (
+				parseInt(h, 16).toString(16) ===
+				h.toLowerCase().replace(/^0+/, '')
+			) {
 				const anchor = document.createElement('a');
-				anchor.setAttribute('href', 'https://github.com/CollaboraOnline/online/commits/' + h);
+				anchor.setAttribute(
+					'href',
+					'https://github.com/CollaboraOnline/online/commits/' +
+						h,
+				);
 				anchor.setAttribute('target', '_blank');
 				anchor.textContent = h;
 
-				const versionContainer = document.getElementById('loolwsd-version');
+				const versionContainer =
+					document.getElementById('loolwsd-version');
 				versionContainer.replaceChildren();
 
-				versionContainer.appendChild(document.createTextNode(this.WSDServer.Version));
+				versionContainer.appendChild(
+					document.createTextNode(this.WSDServer.Version),
+				);
 
 				let span = document.createElement('span');
 				span.appendChild(document.createTextNode('git hash:\xA0'));
 				span.appendChild(anchor);
-				span.appendChild(document.createTextNode(this.WSDServer.Options));
+				span.appendChild(
+					document.createTextNode(this.WSDServer.Options),
+				);
 				versionContainer.appendChild(span);
-			}
-			else {
-				document.getElementById('loolwsd-version').textContent = this.WSDServer.Version;
+			} else {
+				document.getElementById('loolwsd-version').textContent =
+					this.WSDServer.Version;
 			}
 
 			if (!window.ThisIsAMobileApp) {
 				var idUri = window.makeHttpUrl('/hosting/discovery');
 				$('#served-by-label').text(_('Served by:'));
-				$('#loolwsd-id').html('<a target="_blank" href="' + idUri + '">' + this.WSDServer.Id + '</a>');
+				$('#loolwsd-id').html(
+					'<a target="_blank" href="' +
+						idUri +
+						'">' +
+						this.WSDServer.Id +
+						'</a>',
+				);
 			}
 
 			// TODO: For now we expect perfect match in protocol versions
 			if (this.WSDServer.Protocol !== this.ProtocolVersionNumber) {
-				this._map.fire('error', {msg: _('Unsupported server version.')});
+				this._map.fire('error', {
+					msg: _('Unsupported server version.'),
+				});
 			}
-		}
-		else if (textMsg.startsWith('lokitversion ')) {
-			document.getElementById('lokit-version-label').textContent = _('LOKit version:');
+		} else if (textMsg.startsWith('lokitversion ')) {
+			document.getElementById('lokit-version-label').textContent =
+				_('LOKit version:');
 
-			const lokitVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			const lokitVersionObj = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 
-			const versionContainer = document.getElementById('lokit-version');
+			const versionContainer =
+				document.getElementById('lokit-version');
 			versionContainer.replaceChildren();
-			versionContainer.appendChild(document.createTextNode(lokitVersionObj.ProductName + '\xA0' + lokitVersionObj.ProductVersion + lokitVersionObj.ProductExtension));
+			versionContainer.appendChild(
+				document.createTextNode(
+					lokitVersionObj.ProductName +
+						'\xA0' +
+						lokitVersionObj.ProductVersion +
+						lokitVersionObj.ProductExtension,
+				),
+			);
 
 			h = lokitVersionObj.BuildId.substring(0, 7);
-			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
+			if (
+				parseInt(h, 16).toString(16) ===
+				h.toLowerCase().replace(/^0+/, '')
+			) {
 				const anchor = document.createElement('a');
 				anchor.setAttribute('target', '_blank');
-				anchor.setAttribute('href', 'https://hub.libreoffice.org/git-core/' + h);
+				anchor.setAttribute(
+					'href',
+					'https://hub.libreoffice.org/git-core/' + h,
+				);
 				anchor.textContent = 'git hash: ' + h;
 
 				const span = document.createElement('span');
 				span.appendChild(anchor);
 				versionContainer.appendChild(span);
-			}
-			else {
+			} else {
 				const span = document.createElement('span');
 				span.textContent = 'git hash:\xA0' + h;
 				versionContainer.appendChild(span);
 			}
 
-			this.TunnelledDialogImageCacheSize = lokitVersionObj.tunnelled_dialog_image_cache_size;
-		}
-		else if (textMsg.startsWith('enabletraceeventlogging ')) {
+			this.TunnelledDialogImageCacheSize =
+				lokitVersionObj.tunnelled_dialog_image_cache_size;
+		} else if (textMsg.startsWith('enabletraceeventlogging ')) {
 			this.enableTraceEventLogging = true;
-		}
-		else if (textMsg.startsWith('osinfo ')) {
+		} else if (textMsg.startsWith('osinfo ')) {
 			var osInfo = textMsg.replace('osinfo ', '');
 			var osInfoElement = document.getElementById('os-info');
-			if (osInfoElement)
-				osInfoElement.innerText = osInfo;
-		}
-		else if (textMsg.startsWith('clipboardkey: ')) {
+			if (osInfoElement) osInfoElement.innerText = osInfo;
+		} else if (textMsg.startsWith('clipboardkey: ')) {
 			var key = textMsg.substring('clipboardkey: '.length);
-			if (this._map._clip)
-				this._map._clip.setKey(key);
-		}
-		else if (textMsg.startsWith('perm:')) {
+			if (this._map._clip) this._map._clip.setKey(key);
+		} else if (textMsg.startsWith('perm:')) {
 			var perm = textMsg.substring('perm:'.length).trim();
 
 			// Never make the permission more permissive than it originally was.
-			if (!app.isReadOnly())
-				app.setPermission(perm);
+			if (!app.isReadOnly()) app.setPermission(perm);
 
 			if (this._map._docLayer)
 				this._map.setPermission(app.file.permission);
 
 			app.file.disableSidebar = app.isReadOnly();
 			return;
-		}
-		else if (textMsg.startsWith('filemode:')) {
-			var json = JSON.parse(textMsg.substring('filemode:'.length).trim());
+		} else if (textMsg.startsWith('filemode:')) {
+			var json = JSON.parse(
+				textMsg.substring('filemode:'.length).trim(),
+			);
 
 			// Never make the permission more permissive than it originally was.
-			if (!app.isReadOnly() && json.readOnly)
-			{
+			if (!app.isReadOnly() && json.readOnly) {
 				app.setPermission('readonly');
 			}
 
@@ -807,55 +1025,68 @@ app.definitions.Socket = L.Class.extend({
 			}
 
 			app.setCommentEditingPermission(json.editComment); // May be allowed even in readonly mode.
-		}
-		else if (textMsg.startsWith('lockfailed:')) {
-			this._map.onLockFailed(textMsg.substring('lockfailed:'.length).trim());
+		} else if (textMsg.startsWith('lockfailed:')) {
+			this._map.onLockFailed(
+				textMsg.substring('lockfailed:'.length).trim(),
+			);
 			return;
-		}
-		else if (textMsg.startsWith('wopi: ')) {
+		} else if (textMsg.startsWith('wopi: ')) {
 			// Handle WOPI related messages
-			var wopiInfo = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			var wopiInfo = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			this._map.fire('wopiprops', wopiInfo);
 			return;
-		}
-		else if (textMsg.startsWith('loadstorage: ')) {
+		} else if (textMsg.startsWith('loadstorage: ')) {
 			if (textMsg.substring(textMsg.indexOf(':') + 2) === 'failed') {
-				window.app.console.debug('Loading document from a storage failed');
+				window.app.console.debug(
+					'Loading document from a storage failed',
+				);
 				this._map.fire('postMessage', {
 					msgId: 'App_LoadingStatus',
 					args: {
-						Status: 'Failed'
-					}
+						Status: 'Failed',
+					},
 				});
 			}
-		}
-		else if (textMsg.startsWith('lastmodtime: ')) {
+		} else if (textMsg.startsWith('lastmodtime: ')) {
 			var time = textMsg.substring(textMsg.indexOf(' ') + 1);
 			this._map.updateModificationIndicator(time);
 			return;
-		}
-		else if (textMsg.startsWith('commandresult: ')) {
-			var commandresult = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
-			if (commandresult['command'] === 'savetostorage' || commandresult['command'] === 'save') {
+		} else if (textMsg.startsWith('commandresult: ')) {
+			var commandresult = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
+			if (
+				commandresult['command'] === 'savetostorage' ||
+				commandresult['command'] === 'save'
+			) {
 				var postMessageObj = {
 					success: commandresult['success'],
 					result: commandresult['result'],
-					errorMsg: commandresult['errorMsg']
+					errorMsg: commandresult['errorMsg'],
 				};
 
-				this._map.fire('postMessage', {msgId: 'Action_Save_Resp', args: postMessageObj});
+				this._map.fire('postMessage', {
+					msgId: 'Action_Save_Resp',
+					args: postMessageObj,
+				});
 			} else if (commandresult['command'] === 'load') {
 				postMessageObj = {
 					success: commandresult['success'],
 					result: commandresult['result'],
-					errorMsg: commandresult['errorMsg']
+					errorMsg: commandresult['errorMsg'],
 				};
-				this._map.fire('postMessage', {msgId: 'Action_Load_Resp', args: postMessageObj});
+				this._map.fire('postMessage', {
+					msgId: 'Action_Load_Resp',
+					args: postMessageObj,
+				});
 			}
 			return;
-		}
-		else if (textMsg.startsWith('migrate:') && window.indirectSocket) {
-			var migrate = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+		} else if (textMsg.startsWith('migrate:') && window.indirectSocket) {
+			var migrate = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			var afterSave = migrate.afterSave;
 			app.idleHandler._serverRecycling = false;
 			if (!afterSave) {
@@ -863,7 +1094,12 @@ app.definitions.Socket = L.Class.extend({
 				this._map.uiManager.closeAll();
 				if (this._map.isEditMode()) {
 					this._map.setPermission('view');
-					this._map.uiManager.showSnackbar(_('Document is getting migrated'), null, null, 3000);
+					this._map.uiManager.showSnackbar(
+						_('Document is getting migrated'),
+						null,
+						null,
+						3000,
+					);
 				}
 				if (migrate.saved) {
 					window.routeToken = migrate.routeToken;
@@ -882,8 +1118,7 @@ app.definitions.Socket = L.Class.extend({
 				window.migrating = false;
 			}
 			return;
-		}
-		else if (textMsg.startsWith('close: ')) {
+		} else if (textMsg.startsWith('close: ')) {
 			textMsg = textMsg.substring('close: '.length);
 			msg = '';
 			var postMsgData = {};
@@ -892,38 +1127,39 @@ app.definitions.Socket = L.Class.extend({
 			if (textMsg === 'ownertermination') {
 				msg = _('Session terminated by document owner');
 				postMsgData['Reason'] = 'OwnerTermination';
-			}
-			else if (textMsg === 'idle' || textMsg === 'oom') {
+			} else if (textMsg === 'idle' || textMsg === 'oom') {
 				app.idleHandler._documentIdle = true;
 				this._map._docLayer._documentInfo = undefined;
 				postMsgData['Reason'] = 'DocumentIdle';
-				if (textMsg === 'oom')
-					postMsgData['Reason'] = 'OOM';
-			}
-			else if (textMsg === 'shuttingdown') {
-				msg = _('Server is shutting down for maintenance (auto-saving)');
+				if (textMsg === 'oom') postMsgData['Reason'] = 'OOM';
+			} else if (textMsg === 'shuttingdown') {
+				msg = _(
+					'Server is shutting down for maintenance (auto-saving)',
+				);
 				postMsgData['Reason'] = 'ShuttingDown';
 				app.idleHandler._active = false;
 				app.idleHandler._serverRecycling = true;
-			}
-			else if (textMsg === 'docdisconnected') {
+			} else if (textMsg === 'docdisconnected') {
 				msg = _('Oops, there is a problem connecting the document');
 				postMsgData['Reason'] = 'DocumentDisconnected';
-			}
-			else if (textMsg === 'recycling') {
-				msg = _('Server is down, restarting automatically. Please wait.');
+			} else if (textMsg === 'recycling') {
+				msg = _(
+					'Server is down, restarting automatically. Please wait.',
+				);
 				app.idleHandler._active = false;
 				app.idleHandler._serverRecycling = true;
 
 				// Prevent reconnecting the world at the same time.
 				var min = 5000;
 				var max = 10000;
-				var timeoutMs = Math.floor(Math.random() * (max - min) + min);
+				var timeoutMs = Math.floor(
+					Math.random() * (max - min) + min,
+				);
 
 				var socket = this;
 				var map = this._map;
 				clearTimeout(this.timer);
-				this.timer = setInterval(function() {
+				this.timer = setInterval(function () {
 					if (socket.connected()) {
 						// We're connected: cancel timer and dialog.
 						clearTimeout(this.timer);
@@ -936,20 +1172,26 @@ app.definitions.Socket = L.Class.extend({
 						window.app.console.warn('Cannot load document.');
 					}
 				}, timeoutMs);
-			}
-			else if (textMsg.startsWith('documentconflict')) {
-				msg = _('Document has changed in storage. Loading the new document. Your version is available as revision.');
+			} else if (textMsg.startsWith('documentconflict')) {
+				msg = _(
+					'Document has changed in storage. Loading the new document. Your version is available as revision.',
+				);
 				showMsgAndReload = true;
-			}
-			else if (textMsg.startsWith('versionrestore:')) {
-				textMsg = textMsg.substring('versionrestore:'.length).trim();
+			} else if (textMsg.startsWith('versionrestore:')) {
+				textMsg = textMsg
+					.substring('versionrestore:'.length)
+					.trim();
 				if (textMsg === 'prerestore_ack') {
-					msg = _('Restoring older revision. Any unsaved changes will be available in version history');
-					this._map.fire('postMessage', {msgId: 'App_VersionRestore', args: {Status: 'Pre_Restore_Ack'}});
+					msg = _(
+						'Restoring older revision. Any unsaved changes will be available in version history',
+					);
+					this._map.fire('postMessage', {
+						msgId: 'App_VersionRestore',
+						args: { Status: 'Pre_Restore_Ack' },
+					});
 					showMsgAndReload = true;
 				}
-			}
-			else if (textMsg.startsWith('reloadafterrename')) {
+			} else if (textMsg.startsWith('reloadafterrename')) {
 				msg = _('Reloading the document after rename');
 				showMsgAndReload = true;
 			}
@@ -967,7 +1209,7 @@ app.definitions.Socket = L.Class.extend({
 				map = this._map;
 				var that = this;
 				clearTimeout(this.timer);
-				this.timer = setInterval(function() {
+				this.timer = setInterval(function () {
 					try {
 						// Activate and cancel timer and dialogs.
 						app.idleHandler._activate();
@@ -987,7 +1229,10 @@ app.definitions.Socket = L.Class.extend({
 
 			if (postMsgData['Reason']) {
 				// Tell WOPI host about it which should handle this situation
-				this._map.fire('postMessage', {msgId: 'Session_Closed', args: postMsgData});
+				this._map.fire('postMessage', {
+					msgId: 'Session_Closed',
+					args: postMsgData,
+				});
 			}
 
 			if (textMsg === 'ownertermination') {
@@ -995,20 +1240,20 @@ app.definitions.Socket = L.Class.extend({
 			}
 
 			return;
-		}
-		else if (textMsg.startsWith('error:')
-			&& (command.errorCmd === 'storage'
-			|| command.errorCmd === 'saveas')
-			|| command.errorCmd === 'downloadas'
-			|| command.errorCmd === 'exportas')  {
-
+		} else if (
+			(textMsg.startsWith('error:') &&
+				(command.errorCmd === 'storage' ||
+					command.errorCmd === 'saveas')) ||
+			command.errorCmd === 'downloadas' ||
+			command.errorCmd === 'exportas'
+		) {
 			if (command.errorCmd === 'saveas') {
 				this._map.fire('postMessage', {
 					msgId: 'Action_Save_Resp',
 					args: {
 						success: false,
-						result: command.errorKind
-					}
+						result: command.errorKind,
+					},
 				});
 			}
 
@@ -1016,35 +1261,25 @@ app.definitions.Socket = L.Class.extend({
 			var storageError;
 			if (command.errorKind === 'savediskfull') {
 				storageError = errorMessages.storage.savediskfull;
-			}
-			else if (command.errorKind === 'savetoolarge') {
+			} else if (command.errorKind === 'savetoolarge') {
 				storageError = errorMessages.storage.savetoolarge;
-			}
-			else if (command.errorKind === 'savefailed') {
+			} else if (command.errorKind === 'savefailed') {
 				storageError = errorMessages.storage.savefailed;
-			}
-			else if (command.errorKind === 'renamefailed') {
+			} else if (command.errorKind === 'renamefailed') {
 				storageError = errorMessages.storage.renamefailed;
-			}
-			else if (command.errorKind === 'saveunauthorized') {
+			} else if (command.errorKind === 'saveunauthorized') {
 				storageError = errorMessages.storage.saveunauthorized;
-			}
-			else if (command.errorKind === 'saveasfailed') {
+			} else if (command.errorKind === 'saveasfailed') {
 				storageError = errorMessages.storage.saveasfailed;
-			}
-			else if (command.errorKind === 'loadfailed') {
+			} else if (command.errorKind === 'loadfailed') {
 				storageError = errorMessages.storage.loadfailed;
 				// Since this is a document load failure, wsd will disconnect the socket anyway,
 				// better we do it first so that another error message doesn't override this one
 				// upon socket close.
 				this.close();
-			}
-			else if (command.errorKind === 'documentconflict')
-			{
-				if (this._map.isReadOnlyMode())
-					return;
-				else
-					this._showDocumentConflictPopUp();
+			} else if (command.errorKind === 'documentconflict') {
+				if (this._map.isReadOnlyMode()) return;
+				else this._showDocumentConflictPopUp();
 
 				return;
 			}
@@ -1055,38 +1290,48 @@ app.definitions.Socket = L.Class.extend({
 				var tmpLink = document.createElement('a');
 				tmpLink.href = this._map.options.doc;
 				// Insert the storage server address to be more friendly
-				storageError = storageError.replace('%storageserver', tmpLink.host);
+				storageError = storageError.replace(
+					'%storageserver',
+					tmpLink.host,
+				);
 
 				// show message to the user in Control.AlertDialog
-				this._map.fire('warn', {msg: storageError});
+				this._map.fire('warn', { msg: storageError });
 
 				// send to wopi handler so we can respond
 				var postMessageObj = {
 					success: false,
 					cmd: command.errorCmd,
 					result: command.errorKind,
-					errorMsg: storageError
+					errorMsg: storageError,
 				};
 
-				this._map.fire('postMessage', {msgId: 'Action_Save_Resp', args: postMessageObj});
+				this._map.fire('postMessage', {
+					msgId: 'Action_Save_Resp',
+					args: postMessageObj,
+				});
 
 				return;
 			}
-		}
-		else if (textMsg.startsWith('error:') && command.errorCmd === 'internal') {
+		} else if (
+			textMsg.startsWith('error:') &&
+			command.errorCmd === 'internal'
+		) {
 			this._map.hideBusy();
 			this._map._fatal = true;
 			if (command.errorKind === 'diskfull') {
-				this._map.fire('error', {msg: errorMessages.diskfull});
-			}
-			else if (command.errorKind === 'unauthorized') {
+				this._map.fire('error', { msg: errorMessages.diskfull });
+			} else if (command.errorKind === 'unauthorized') {
 				var postMessageObj = {
 					errorType: 'websocketunauthorized',
 					success: false,
 					errorMsg: this._buildUnauthorizedMessage(command),
 					result: '',
 				};
-				this._map.fire('postMessage', { msgId: 'Action_Load_Resp', args: postMessageObj });
+				this._map.fire('postMessage', {
+					msgId: 'Action_Load_Resp',
+					args: postMessageObj,
+				});
 			}
 
 			if (this._map._docLayer) {
@@ -1096,8 +1341,10 @@ app.definitions.Socket = L.Class.extend({
 			this.close();
 
 			return;
-		}
-		else if (textMsg.startsWith('error:') && command.errorCmd === 'load') {
+		} else if (
+			textMsg.startsWith('error:') &&
+			command.errorCmd === 'load'
+		) {
 			this._map.hideBusy();
 			this.close();
 
@@ -1109,8 +1356,7 @@ app.definitions.Socket = L.Class.extend({
 				var passwordType = errorKind.split(':')[1];
 				if (passwordType === 'to-view') {
 					msg += _('Document requires password to view.');
-				}
-				else if (passwordType === 'to-modify') {
+				} else if (passwordType === 'to-modify') {
 					msg += _('Document requires password to modify.');
 					msg += ' ';
 					msg += _('Hit Cancel to open in view-only mode.');
@@ -1120,32 +1366,46 @@ app.definitions.Socket = L.Class.extend({
 				msg = _('Wrong password provided. Please try again.');
 			} else if (errorKind.startsWith('faileddocloading')) {
 				this._map._fatal = true;
-				this._map.fire('error', {msg: errorMessages.faileddocloading});
+				this._map.fire('error', {
+					msg: errorMessages.faileddocloading,
+				});
 			} else if (errorKind.startsWith('docloadtimeout')) {
 				this._map._fatal = true;
-				this._map.fire('error', {msg: errorMessages.docloadtimeout});
+				this._map.fire('error', {
+					msg: errorMessages.docloadtimeout,
+				});
 			} else if (errorKind.startsWith('docunloading')) {
 				// The document is unloading. Have to wait a bit.
 				app.idleHandler._active = false;
 
 				clearTimeout(this.timer);
 				if (this.ReconnectCount++ >= 10) {
-					this._map.fire('error', {msg: errorMessages.docunloadinggiveup});
+					this._map.fire('error', {
+						msg: errorMessages.docunloadinggiveup,
+					});
 					return; // Give up.
 				}
 
-				this.timer = setInterval(function() {
-					try {
-						// Activate and cancel timer and dialogs.
-						app.idleHandler._activate();
-					} catch (error) {
-						window.app.console.warn('Cannot activate map');
-					}
-				// .5, 2, 4.5, 8, 12.5, 18, 24.5, 32, 40.5 seconds
-				}, 500 * this.ReconnectCount * this.ReconnectCount); // Quadratic back-off.
+				this.timer = setInterval(
+					function () {
+						try {
+							// Activate and cancel timer and dialogs.
+							app.idleHandler._activate();
+						} catch (error) {
+							window.app.console.warn(
+								'Cannot activate map',
+							);
+						}
+						// .5, 2, 4.5, 8, 12.5, 18, 24.5, 32, 40.5 seconds
+					},
+					500 * this.ReconnectCount * this.ReconnectCount,
+				); // Quadratic back-off.
 
 				if (this.ReconnectCount > 1) {
-					this._map.showBusy(errorMessages.docunloadingretry, false);
+					this._map.showBusy(
+						errorMessages.docunloadingretry,
+						false,
+					);
 				}
 			}
 
@@ -1153,139 +1413,196 @@ app.definitions.Socket = L.Class.extend({
 				this._askForDocumentPassword(passwordType, msg);
 				return;
 			}
-		}
-		else if (textMsg.startsWith('error:') && command.errorCmd === 'dialogevent' && command.errorKind === 'cantchangepass') {
+		} else if (
+			textMsg.startsWith('error:') &&
+			command.errorCmd === 'dialogevent' &&
+			command.errorKind === 'cantchangepass'
+		) {
 			var msg = _('Only the document owner can change the password.');
-			this._map.uiManager.showInfoModal('lool_alert', '', msg, '', _('OK'));
+			this._map.uiManager.showInfoModal(
+				'lool_alert',
+				'',
+				msg,
+				'',
+				_('OK'),
+			);
 			return;
-		}
-		else if (textMsg.startsWith('error:') && !this._map._docLayer) {
+		} else if (textMsg.startsWith('error:') && !this._map._docLayer) {
 			textMsg = textMsg.substring(6);
 			if (command.errorKind === 'hardlimitreached') {
-
 				textMsg = errorMessages.limitreachedprod;
 				textMsg = textMsg.replace('{0}', command.params[0]);
 				textMsg = textMsg.replace('{1}', command.params[1]);
-			}
-			else if (command.errorKind === 'serviceunavailable') {
+			} else if (command.errorKind === 'serviceunavailable') {
 				textMsg = errorMessages.serviceunavailable;
 			}
 			this._map._fatal = true;
 			app.idleHandler._active = false; // Practically disconnected.
-			this._map.fire('error', {msg: textMsg});
-		}
-		else if (textMsg.startsWith('fontsmissing:')) {
-			var fontsMissingObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			this._map.fire('error', { msg: textMsg });
+		} else if (textMsg.startsWith('fontsmissing:')) {
+			var fontsMissingObj = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			var msg = ' ';
 			for (var i = 0; i < fontsMissingObj.fontsmissing.length; ++i) {
-				if (i > 0)
-					msg += ', ';
+				if (i > 0) msg += ', ';
 				msg += fontsMissingObj.fontsmissing[i];
 			}
 
-			if (this._map.welcome && !this._map.welcome.isGuest() && this._map.welcome.shouldWelcome() && window.autoShowWelcome)
-			{
-				setTimeout(function() {
-					this._map.uiManager.showInfoModal('fontsmissing', _('Missing Fonts'), msg, null, _('Close'));
-				}.bind(this), 20000);
+			if (
+				this._map.welcome &&
+				!this._map.welcome.isGuest() &&
+				this._map.welcome.shouldWelcome() &&
+				window.autoShowWelcome
+			) {
+				setTimeout(
+					function () {
+						this._map.uiManager.showInfoModal(
+							'fontsmissing',
+							_('Missing Fonts'),
+							msg,
+							null,
+							_('Close'),
+						);
+					}.bind(this),
+					20000,
+				);
+			} else {
+				this._map.uiManager.showInfoModal(
+					'fontsmissing',
+					_('Missing Fonts'),
+					msg,
+					null,
+					_('Close'),
+				);
 			}
-			else
-			{
-				this._map.uiManager.showInfoModal('fontsmissing', _('Missing Fonts'), msg, null, _('Close'));
-			}
-		}
-		else if (textMsg.startsWith('info:') && command.errorCmd === 'socket') {
-			if (command.errorKind === 'limitreached' && !this.WasShownLimitDialog) {
+		} else if (
+			textMsg.startsWith('info:') &&
+			command.errorCmd === 'socket'
+		) {
+			if (
+				command.errorKind === 'limitreached' &&
+				!this.WasShownLimitDialog
+			) {
 				this.WasShownLimitDialog = true;
 				textMsg = errorMessages.limitreached;
 				textMsg = textMsg.replace('{docs}', command.params[0]);
-				textMsg = textMsg.replace('{connections}', command.params[1]);
-				textMsg = textMsg.replace('{productname}', (typeof brandProductName !== 'undefined' ?
-					brandProductName : 'Free Online Office'));
-				this._map.fire('infobar',
-					{
-						msg: textMsg,
-						action: L.Util.getProduct(),
-						actionLabel: errorMessages.infoandsupport
-					});
+				textMsg = textMsg.replace(
+					'{connections}',
+					command.params[1],
+				);
+				textMsg = textMsg.replace(
+					'{productname}',
+					typeof brandProductName !== 'undefined'
+						? brandProductName
+						: 'Free Online Office',
+				);
+				this._map.fire('infobar', {
+					msg: textMsg,
+					action: L.Util.getProduct(),
+					actionLabel: errorMessages.infoandsupport,
+				});
 			}
-		}
-		else if (textMsg.startsWith('pong ') && this._map._debug.pingOn) {
+		} else if (textMsg.startsWith('pong ') && this._map._debug.pingOn) {
 			this._map._debug.reportPong(command.rendercount);
-		}
-		else if (textMsg.startsWith('saveas:') || textMsg.startsWith('renamefile:')) {
+		} else if (
+			textMsg.startsWith('saveas:') ||
+			textMsg.startsWith('renamefile:')
+		) {
 			this._renameOrSaveAsCallback(textMsg, command);
-		}
-		else if (textMsg.startsWith('exportas:')) {
+		} else if (textMsg.startsWith('exportas:')) {
 			this._exportAsCallback(command);
-		}
-		else if (textMsg.startsWith('warn:')) {
+		} else if (textMsg.startsWith('warn:')) {
 			var len = 'warn: '.length;
 			textMsg = textMsg.substring(len);
 			if (textMsg.startsWith('saveas:')) {
-				var userName = command.username ? command.username : _('Someone');
-				var message = _('{username} saved this document as {filename}. Do you want to join?').replace('{username}', userName).replace('{filename}', command.filename);
+				var userName = command.username
+					? command.username
+					: _('Someone');
+				var message = _(
+					'{username} saved this document as {filename}. Do you want to join?',
+				)
+					.replace('{username}', userName)
+					.replace('{filename}', command.filename);
 
-				this._map.uiManager.showConfirmModal('save-as-warning', '', message, _('OK'), function() {
-					this._renameOrSaveAsCallback(textMsg, command);
-				}.bind(this));
+				this._map.uiManager.showConfirmModal(
+					'save-as-warning',
+					'',
+					message,
+					_('OK'),
+					function () {
+						this._renameOrSaveAsCallback(textMsg, command);
+					}.bind(this),
+				);
 			}
-		}
-		else if (window.ThisIsAMobileApp && textMsg.startsWith('mobile:')) {
+		} else if (window.ThisIsAMobileApp && textMsg.startsWith('mobile:')) {
 			// allow passing some events easily from the mobile app
 			var mobileEvent = textMsg.substring('mobile: '.length);
 			this._map.fire(mobileEvent);
-		}
-		else if (textMsg.startsWith('blockui:')) {
+		} else if (textMsg.startsWith('blockui:')) {
 			textMsg = textMsg.substring('blockui:'.length).trim();
 			msg = null;
 
 			if (textMsg === 'rename') {
-				msg = _('The document is being renamed and will reload shortly');
-			}
-			else if (textMsg === 'switchingtooffline') {
-				msg = _('The document is switching to Offline mode and will reload shortly');
+				msg = _(
+					'The document is being renamed and will reload shortly',
+				);
+			} else if (textMsg === 'switchingtooffline') {
+				msg = _(
+					'The document is switching to Offline mode and will reload shortly',
+				);
 			}
 
-			this._map.fire('blockUI', {message: msg});
+			this._map.fire('blockUI', { message: msg });
 			return;
-		}
-		else if (textMsg.startsWith('unblockui:')) {
+		} else if (textMsg.startsWith('unblockui:')) {
 			this._map.fire('unblockUI');
 			return;
-		}
-		else if (textMsg.startsWith('featurelock: ')) {
+		} else if (textMsg.startsWith('featurelock: ')) {
 			// Handle feature locking related messages
-			var lockInfo = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			var lockInfo = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			this._map._setLockProps(lockInfo);
 			return;
-		}
-		else if (textMsg.startsWith('restrictedCommands: ')) {
+		} else if (textMsg.startsWith('restrictedCommands: ')) {
 			// Handle restriction related messages
-			var restrictionInfo = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			var restrictionInfo = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			this._map._setRestrictions(restrictionInfo);
 			return;
-		}
-		else if (textMsg.startsWith('blockedcommand: ')) {
-			var blockedInfo = app.socket.parseServerCmd(textMsg.substring(16));
+		} else if (textMsg.startsWith('blockedcommand: ')) {
+			var blockedInfo = app.socket.parseServerCmd(
+				textMsg.substring(16),
+			);
 			if (blockedInfo.errorKind === 'restricted')
-				window.app.console.log('Restricted command "' + blockedInfo.errorCmd + '" was blocked');
+				window.app.console.log(
+					'Restricted command "' +
+						blockedInfo.errorCmd +
+						'" was blocked',
+				);
 			else if (blockedInfo.errorKind === 'locked')
 				this._map.openUnlockPopup(blockedInfo.errorCmd);
 			return;
-		}
-		else if (textMsg.startsWith('updateroutetoken') && window.indirectSocket) {
+		} else if (
+			textMsg.startsWith('updateroutetoken') &&
+			window.indirectSocket
+		) {
 			window.routeToken = textMsg.split(' ')[1];
-			window.app.console.log('updated routeToken: ' + window.routeToken);
-		}
-		else if (textMsg.startsWith('reload')) {
+			window.app.console.log(
+				'updated routeToken: ' + window.routeToken,
+			);
+		} else if (textMsg.startsWith('reload')) {
 			// Switching modes.
 			window.location.reload(false);
-		}
-		else if (!textMsg.startsWith('tile:') && !textMsg.startsWith('delta:') &&
-			     !textMsg.startsWith('renderfont:') && !textMsg.startsWith('slidelayer:') &&
-			     !textMsg.startsWith('windowpaint:')) {
-
+		} else if (
+			!textMsg.startsWith('tile:') &&
+			!textMsg.startsWith('delta:') &&
+			!textMsg.startsWith('renderfont:') &&
+			!textMsg.startsWith('slidelayer:') &&
+			!textMsg.startsWith('windowpaint:')
+		) {
 			if (imgBytes !== undefined) {
 				try {
 					// if it's not a tile, parse the whole message
@@ -1309,48 +1626,66 @@ app.definitions.Socket = L.Class.extend({
 		}
 
 		if (textMsg.startsWith('status:')) {
-			this._onStatusMsg(textMsg, JSON.parse(textMsg.replace('status:', '').replace('statusupdate:', '')));
+			this._onStatusMsg(
+				textMsg,
+				JSON.parse(
+					textMsg
+						.replace('status:', '')
+						.replace('statusupdate:', ''),
+				),
+			);
 			return;
 		}
 
 		// These can arrive very early during the startup, and never again.
 		if (textMsg.startsWith('progress:')) {
 			var info = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
-			if (!info)
-			{
-				window.app.console.error('Missing info in progress: message');
+			if (!info) {
+				window.app.console.error(
+					'Missing info in progress: message',
+				);
 				return;
 			}
 			info.statusType = info.id;
 			info.background = info.type == 'bg';
 
-			if (info.id == 'find' || info.id == 'connect' || info.id == 'ready')
-			{
-				this._map.showBusy(window.ThisIsAMobileApp? _('Loading...'): _('Connecting...'), true);
-				if (info.id == "ready") {
+			if (
+				info.id == 'find' ||
+				info.id == 'connect' ||
+				info.id == 'ready'
+			) {
+				this._map.showBusy(
+					window.ThisIsAMobileApp
+						? _('Loading...')
+						: _('Connecting...'),
+					true,
+				);
+				if (info.id == 'ready') {
 					// We're connected: cancel timer and dialog.
 					this.ReconnectCount = 0;
 					clearTimeout(this.timer);
 				}
 			} else if (info.id == 'start' || info.id == 'setvalue')
 				this._map.fire('statusindicator', info);
-
 			else if (info.id == 'finish') {
 				this._map.fire('statusindicator', info);
 				this._map._fireInitComplete('statusindicatorfinish');
 				// show shutting down popup after saving is finished
 				// if we show the popup just after the shuttingdown messsage, it will be overwitten by save popup
 				if (app.idleHandler._serverRecycling) {
-					this._map.showBusy(_('Server is shutting down'), false);
+					this._map.showBusy(
+						_('Server is shutting down'),
+						false,
+					);
 				}
 			} else
-				window.app.console.error('Unknown progress status ' + info.id);
+				window.app.console.error(
+					'Unknown progress status ' + info.id,
+				);
 			return;
-		}
-		else if (textMsg.startsWith('jsdialog:')) {
+		} else if (textMsg.startsWith('jsdialog:')) {
 			this._onJSDialog(textMsg, e.callback);
-		}
-		else if (textMsg.startsWith('hyperlinkclicked:')) {
+		} else if (textMsg.startsWith('hyperlinkclicked:')) {
 			this._onHyperlinkClickedMsg(textMsg);
 		}
 
@@ -1358,10 +1693,13 @@ app.definitions.Socket = L.Class.extend({
 			var postMessageObj = {
 				success: true,
 				result: 'exportas',
-				errorMsg: ''
+				errorMsg: '',
 			};
 
-			this._map.fire('postMessage', {msgId: 'Action_Save_Resp', args: postMessageObj});
+			this._map.fire('postMessage', {
+				msgId: 'Action_Save_Resp',
+				args: postMessageObj,
+			});
 			// intentional falltrough
 		}
 
@@ -1372,32 +1710,55 @@ app.definitions.Socket = L.Class.extend({
 		}
 	},
 
-	_exportAsCallback: function(command) {
+	_exportAsCallback: function (command) {
 		this._map.hideBusy();
-		this._map.uiManager.showInfoModal('exported-success', _('Exported to storage'), _('Successfully exported: ') + decodeURIComponent(command.filename), '', _('OK'));
+		this._map.uiManager.showInfoModal(
+			'exported-success',
+			_('Exported to storage'),
+			_('Successfully exported: ') +
+				decodeURIComponent(command.filename),
+			'',
+			_('OK'),
+		);
 	},
 
-	_askForDocumentPassword: function(passwordType, msg) {
-		this._map.uiManager.showInputModal('password-popup', '', msg, '', _('OK'), function(data) {
-			if (data) {
-				this._map._docPassword = data;
-				if (window.ThisIsAMobileApp) {
-					window.postMobileMessage('loadwithpassword password=' + data);
+	_askForDocumentPassword: function (passwordType, msg) {
+		this._map.uiManager.showInputModal(
+			'password-popup',
+			'',
+			msg,
+			'',
+			_('OK'),
+			function (data) {
+				if (data) {
+					this._map._docPassword = data;
+					if (window.ThisIsAMobileApp) {
+						window.postMobileMessage(
+							'loadwithpassword password=' + data,
+						);
+					}
+					this._map.loadDocument();
+				} else if (passwordType === 'to-modify') {
+					this._map._docPassword = '';
+					this._map.loadDocument();
+				} else {
+					this._map.fire('postMessage', {
+						msgId: 'UI_Cancel_Password',
+					});
+					this._map.hideBusy();
 				}
-				this._map.loadDocument();
-			} else if (passwordType === 'to-modify') {
-				this._map._docPassword = '';
-				this._map.loadDocument();
-			} else {
-				this._map.fire('postMessage', {msgId: 'UI_Cancel_Password'});
-				this._map.hideBusy();
-			}
-		}.bind(this), true /* password input */);
+			}.bind(this),
+			true /* password input */,
+		);
 	},
 
-	_renameOrSaveAsCallback: function(textMsg, command) {
+	_renameOrSaveAsCallback: function (textMsg, command) {
 		this._map.hideBusy();
-		if (command !== undefined && command.url !== undefined && command.url !== '') {
+		if (
+			command !== undefined &&
+			command.url !== undefined &&
+			command.url !== ''
+		) {
 			var url = command.url;
 
 			// setup for loading the new document, and trigger the load
@@ -1412,20 +1773,28 @@ app.definitions.Socket = L.Class.extend({
 				this._map.fire('postMessage', {
 					msgId: 'File_Rename',
 					args: {
-						NewName: command.filename
-					}
+						NewName: command.filename,
+					},
 				});
 			} else if (textMsg.startsWith('saveas:')) {
-				var accessToken = this._getParameterByName(url, 'access_token');
-				var accessTokenTtl = this._getParameterByName(url, 'access_token_ttl');
+				var accessToken = this._getParameterByName(
+					url,
+					'access_token',
+				);
+				var accessTokenTtl = this._getParameterByName(
+					url,
+					'access_token_ttl',
+				);
 
 				if (accessToken !== undefined) {
 					if (accessTokenTtl === undefined) {
 						accessTokenTtl = 0;
 					}
-					this._map.options.docParams = { 'access_token': accessToken, 'access_token_ttl': accessTokenTtl };
-				}
-				else {
+					this._map.options.docParams = {
+						access_token: accessToken,
+						access_token_ttl: accessTokenTtl,
+					};
+				} else {
 					this._map.options.docParams = {};
 				}
 
@@ -1440,20 +1809,20 @@ app.definitions.Socket = L.Class.extend({
 					msgId: 'Action_Save_Resp',
 					args: {
 						success: true,
-						fileName: decodeURIComponent(command.filename)
-					}
+						fileName: decodeURIComponent(command.filename),
+					},
 				});
 			}
 		}
 		// var name = command.name; - ignored, we get the new name via the wopi's BaseFileName
 	},
 
-	_delayMessage: function(textMsg) {
-		var message = {msg: textMsg};
+	_delayMessage: function (textMsg) {
+		var message = { msg: textMsg };
 		this._delayedMessages.push(message);
 	},
 
-	_handleDelayedMessages: function(docLayer) {
+	_handleDelayedMessages: function (docLayer) {
 		this._handlingDelayedMessages = true;
 
 		while (this._delayedMessages.length) {
@@ -1463,19 +1832,22 @@ app.definitions.Socket = L.Class.extend({
 			} catch (e) {
 				// unpleasant - but stops this one problem
 				// event stopping an unknown number of others.
-				window.app.console.error('Exception ' + e + ' emitting event ' + message, e.stack);
+				window.app.console.error(
+					'Exception ' + e + ' emitting event ' + message,
+					e.stack,
+				);
 			}
 		}
 
 		this._handlingDelayedMessages = false;
 	},
 
-	_onStatusMsg: function(textMsg, command) {
+	_onStatusMsg: function (textMsg, command) {
 		var that = this;
 
 		if (!this._isReady()) {
 			// Retry in a bit.
-			setTimeout(function() {
+			setTimeout(function () {
 				that._onStatusMsg(textMsg, command);
 			}, 10);
 			return;
@@ -1489,7 +1861,9 @@ app.definitions.Socket = L.Class.extend({
 			var tileWidthTwips = this._map.options.tileWidthTwips;
 			var tileHeightTwips = this._map.options.tileHeightTwips;
 			if (this._map.options.zoom !== this._map.options.defaultZoom) {
-				var scale = this._map.options.crs.scale(this._map.options.defaultZoom - this._map.options.zoom);
+				var scale = this._map.options.crs.scale(
+					this._map.options.defaultZoom - this._map.options.zoom,
+				);
 				tileWidthTwips = Math.round(tileWidthTwips * scale);
 				tileHeightTwips = Math.round(tileHeightTwips * scale);
 			}
@@ -1499,20 +1873,22 @@ app.definitions.Socket = L.Class.extend({
 				tileWidthTwips: tileWidthTwips / app.dpiScale,
 				tileHeightTwips: tileHeightTwips / app.dpiScale,
 				docType: command.type,
-				viewId: command.viewid
+				viewId: command.viewid,
 			};
 			if (command.type === 'text')
 				docLayer = new L.WriterTileLayer(options);
 			else if (command.type === 'spreadsheet')
 				docLayer = new L.CalcTileLayer(options);
-			else if (command.type === 'presentation' || command.type === 'drawing')
+			else if (
+				command.type === 'presentation' ||
+				command.type === 'drawing'
+			)
 				docLayer = new L.ImpressTileLayer(options);
 
 			this._map._docLayer = docLayer;
 			this._map.addLayer(docLayer);
 			this._map.fire('doclayerinit');
-		}
-		else if (this._reconnecting) {
+		} else if (this._reconnecting) {
 			// we are reconnecting ...
 			this._map._docLayer._resetClientVisArea();
 			this._map._docLayer._refreshTilesInBackground();
@@ -1537,7 +1913,7 @@ app.definitions.Socket = L.Class.extend({
 				window.initializedUI();
 		}
 
-		this._map.fire('docloaded', {status: true});
+		this._map.fire('docloaded', { status: true });
 		if (this._map._docLayer) {
 			this._map._docLayer._onMessage(textMsg);
 
@@ -1556,11 +1932,13 @@ app.definitions.Socket = L.Class.extend({
 		}
 	},
 
-	_onJSDialog: function(textMsg, callback) {
+	_onJSDialog: function (textMsg, callback) {
 		var msgData = JSON.parse(textMsg.substring('jsdialog:'.length + 1));
 
 		if (msgData.children && !L.Util.isArray(msgData.children)) {
-			window.app.console.warn('_onJSDialogMsg: The children\'s data should be created of array type');
+			window.app.console.warn(
+				"_onJSDialogMsg: The children's data should be created of array type",
+			);
 			return;
 		}
 
@@ -1576,11 +1954,15 @@ app.definitions.Socket = L.Class.extend({
 		if (textMsg.indexOf(coordinatesMsgStart) !== -1) {
 			var coordpos = textMsg.indexOf(coordinatesMsgStart);
 			link = textMsg.substring(hyperlinkMsgStart.length, coordpos);
-			coords = textMsg.substring(coordpos+coordinatesMsgStart.length);
-		} else
-			link = textMsg.substring(hyperlinkMsgStart.length);
+			coords = textMsg.substring(
+				coordpos + coordinatesMsgStart.length,
+			);
+		} else link = textMsg.substring(hyperlinkMsgStart.length);
 
-		this._map.fire('hyperlinkclicked', {url: link, coordinates: coords});
+		this._map.fire('hyperlinkclicked', {
+			url: link,
+			coordinates: coords,
+		});
 	},
 
 	_onSocketError: function () {
@@ -1592,14 +1974,21 @@ app.definitions.Socket = L.Class.extend({
 	_onSocketClose: function (event) {
 		window.app.console.debug('_onSocketClose:');
 		if (!this._map._docLoadedOnce && this.ReconnectCount === 0) {
-			var errorMsg, errorType = '';
+			var errorMsg,
+				errorType = '';
 			var reason = event.reason;
 			if (reason && reason.startsWith('error:')) {
 				var command = this.parseServerCmd(reason);
-				if (command.errorCmd === 'internal' && command.errorKind === 'unauthorized') {
+				if (
+					command.errorCmd === 'internal' &&
+					command.errorKind === 'unauthorized'
+				) {
 					errorType = 'websocketunauthorized';
 					errorMsg = this._buildUnauthorizedMessage(command);
-				} else if (command.errorCmd === 'storage' && command.errorKind === 'loadfailed') {
+				} else if (
+					command.errorCmd === 'storage' &&
+					command.errorKind === 'loadfailed'
+				) {
 					errorType = 'websocketloadfailed';
 					errorMsg = errorMessages.storage.loadfailed;
 				} else {
@@ -1610,18 +1999,25 @@ app.definitions.Socket = L.Class.extend({
 				errorType = 'websocketproxyfailure';
 				errorMsg = errorMessages.websocketproxyfailure;
 			}
-			this._map.fire('error', { msg: errorMsg, cmd: 'socket', kind: 'closed', id: 4 });
+			this._map.fire('error', {
+				msg: errorMsg,
+				cmd: 'socket',
+				kind: 'closed',
+				id: 4,
+			});
 			var postMessageObj = {
 				errorType: errorType,
 				success: false,
 				errorMsg: errorMsg,
 				result: '',
 			};
-			this._map.fire('postMessage', { msgId: 'Action_Load_Resp', args: postMessageObj });
+			this._map.fire('postMessage', {
+				msgId: 'Action_Load_Resp',
+				args: postMessageObj,
+			});
 			return;
 		}
-		if (this.ReconnectCount > 0)
-			return;
+		if (this.ReconnectCount > 0) return;
 
 		var isActive = app.idleHandler._active;
 		this._map.hideBusy();
@@ -1645,12 +2041,19 @@ app.definitions.Socket = L.Class.extend({
 
 		if (isActive && this._reconnecting) {
 			// Don't show this before first transparently trying to reconnect.
-			this._map.fire('error', {msg: _('Well, this is embarrassing, we cannot connect to your document. Please try again.'), cmd: 'socket', kind: 'closed', id: 4});
+			this._map.fire('error', {
+				msg: _(
+					'Well, this is embarrassing, we cannot connect to your document. Please try again.',
+				),
+				cmd: 'socket',
+				kind: 'closed',
+				id: 4,
+			});
 		}
 
 		// Reset wopi's app loaded so that reconnecting again informs outerframe about initialization
 		this._map['wopi'].resetAppLoaded();
-		this._map.fire('docloaded', {status: false});
+		this._map.fire('docloaded', { status: false });
 
 		// We need to make sure that the message slurping processes the
 		// events first, because there could have been a message like
@@ -1671,8 +2074,14 @@ app.definitions.Socket = L.Class.extend({
 			this._map.setPermission('view');
 		}
 
-		if (!this._map['wopi'].DisableInactiveMessages && app.sectionContainer && !app.sectionContainer.testing)
-			this._map.uiManager.showSnackbar(_('The server has been disconnected.'));
+		if (
+			!this._map['wopi'].DisableInactiveMessages &&
+			app.sectionContainer &&
+			!app.sectionContainer.testing
+		)
+			this._map.uiManager.showSnackbar(
+				_('The server has been disconnected.'),
+			);
 	},
 
 	parseServerCmd: function (msg) {
@@ -1681,171 +2090,147 @@ app.definitions.Socket = L.Class.extend({
 		for (var i = 0; i < tokens.length; i++) {
 			if (tokens[i].substring(0, 9) === 'tileposx=') {
 				command.x = parseInt(tokens[i].substring(9));
-			}
-			else if (tokens[i].substring(0, 9) === 'tileposy=') {
+			} else if (tokens[i].substring(0, 9) === 'tileposy=') {
 				command.y = parseInt(tokens[i].substring(9));
-			}
-			else if (tokens[i].substring(0, 2) === 'x=') {
+			} else if (tokens[i].substring(0, 2) === 'x=') {
 				command.x = parseInt(tokens[i].substring(2));
-			}
-			else if (tokens[i].substring(0, 2) === 'y=') {
+			} else if (tokens[i].substring(0, 2) === 'y=') {
 				command.y = parseInt(tokens[i].substring(2));
-			}
-			else if (tokens[i].substring(0, 10) === 'tilewidth=') {
+			} else if (tokens[i].substring(0, 10) === 'tilewidth=') {
 				command.tileWidth = parseInt(tokens[i].substring(10));
-			}
-			else if (tokens[i].substring(0, 11) === 'tileheight=') {
+			} else if (tokens[i].substring(0, 11) === 'tileheight=') {
 				command.tileHeight = parseInt(tokens[i].substring(11));
-			}
-			else if (tokens[i].substring(0, 6) === 'width=') {
+			} else if (tokens[i].substring(0, 6) === 'width=') {
 				command.width = parseInt(tokens[i].substring(6));
-			}
-			else if (tokens[i].substring(0, 7) === 'height=') {
+			} else if (tokens[i].substring(0, 7) === 'height=') {
 				command.height = parseInt(tokens[i].substring(7));
-			}
-			else if (tokens[i].substring(0, 5) === 'part=') {
+			} else if (tokens[i].substring(0, 5) === 'part=') {
 				command.part = parseInt(tokens[i].substring(5));
-			}
-			else if (tokens[i].substring(0, 6) === 'parts=') {
+			} else if (tokens[i].substring(0, 6) === 'parts=') {
 				command.parts = parseInt(tokens[i].substring(6));
-			}
-			else if (tokens[i].substring(0, 5) === 'mode=') {
+			} else if (tokens[i].substring(0, 5) === 'mode=') {
 				command.mode = parseInt(tokens[i].substring(5));
-			}
-			else if (tokens[i].substring(0, 8) === 'current=') {
+			} else if (tokens[i].substring(0, 8) === 'current=') {
 				command.selectedPart = parseInt(tokens[i].substring(8));
-			}
-			else if (tokens[i].substring(0, 3) === 'id=') {
+			} else if (tokens[i].substring(0, 3) === 'id=') {
 				// remove newline characters
-				command.id = tokens[i].substring(3).replace(/(\r\n|\n|\r)/gm, '');
-			}
-			else if (tokens[i].substring(0, 5) === 'type=') {
+				command.id = tokens[i]
+					.substring(3)
+					.replace(/(\r\n|\n|\r)/gm, '');
+			} else if (tokens[i].substring(0, 5) === 'type=') {
 				// remove newline characters
-				command.type = tokens[i].substring(5).replace(/(\r\n|\n|\r)/gm, '');
-			}
-			else if (tokens[i].substring(0, 4) === 'cmd=') {
+				command.type = tokens[i]
+					.substring(5)
+					.replace(/(\r\n|\n|\r)/gm, '');
+			} else if (tokens[i].substring(0, 4) === 'cmd=') {
 				command.errorCmd = tokens[i].substring(4);
-			}
-			else if (tokens[i].substring(0, 5) === 'code=') {
+			} else if (tokens[i].substring(0, 5) === 'code=') {
 				command.errorCode = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 5) === 'kind=') {
+			} else if (tokens[i].substring(0, 5) === 'kind=') {
 				command.errorKind = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 5) === 'jail=') {
+			} else if (tokens[i].substring(0, 5) === 'jail=') {
 				command.jail = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 4) === 'dir=') {
+			} else if (tokens[i].substring(0, 4) === 'dir=') {
 				command.dir = tokens[i].substring(4);
-			}
-			else if (tokens[i].substring(0, 11) === 'downloadid=') {
+			} else if (tokens[i].substring(0, 11) === 'downloadid=') {
 				command.downloadid = tokens[i].substring(11);
-			}
-			else if (tokens[i].substring(0, 5) === 'name=') {
+			} else if (tokens[i].substring(0, 5) === 'name=') {
 				command.name = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 9) === 'filename=') {
+			} else if (tokens[i].substring(0, 9) === 'filename=') {
 				command.filename = tokens[i].substring(9);
-			}
-			else if (tokens[i].substring(0, 5) === 'port=') {
+			} else if (tokens[i].substring(0, 5) === 'port=') {
 				command.port = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 5) === 'font=') {
+			} else if (tokens[i].substring(0, 5) === 'font=') {
 				command.font = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 5) === 'char=') {
+			} else if (tokens[i].substring(0, 5) === 'char=') {
 				command.char = tokens[i].substring(5);
-			}
-			else if (tokens[i].substring(0, 4) === 'url=') {
+			} else if (tokens[i].substring(0, 4) === 'url=') {
 				command.url = tokens[i].substring(4);
-			}
-			else if (tokens[i].substring(0, 7) === 'viewid=') {
+			} else if (tokens[i].substring(0, 7) === 'viewid=') {
 				command.viewid = tokens[i].substring(7);
-			}
-			else if (tokens[i].substring(0, 8) === 'nviewid=') {
+			} else if (tokens[i].substring(0, 8) === 'nviewid=') {
 				command.nviewid = tokens[i].substring(8);
-			}
-			else if (tokens[i].substring(0, 7) === 'params=') {
+			} else if (tokens[i].substring(0, 7) === 'params=') {
 				command.params = tokens[i].substring(7).split(',');
-			}
-			else if (tokens[i].substring(0, 12) === 'rendercount=') {
+			} else if (tokens[i].substring(0, 12) === 'rendercount=') {
 				command.rendercount = parseInt(tokens[i].substring(12));
-			}
-			else if (tokens[i].startsWith('wid=')) {
+			} else if (tokens[i].startsWith('wid=')) {
 				command.wireId = this.getParameterValue(tokens[i]);
-			}
-			else if (tokens[i].substring(0, 6) === 'title=') {
+			} else if (tokens[i].substring(0, 6) === 'title=') {
 				command.title = tokens[i].substring(6);
-			}
-			else if (tokens[i].substring(0, 12) === 'dialogwidth=') {
+			} else if (tokens[i].substring(0, 12) === 'dialogwidth=') {
 				command.dialogwidth = tokens[i].substring(12);
-			}
-			else if (tokens[i].substring(0, 13) === 'dialogheight=') {
+			} else if (tokens[i].substring(0, 13) === 'dialogheight=') {
 				command.dialogheight = tokens[i].substring(13);
-			}
-			else if (tokens[i].substring(0, 10) === 'rectangle=') {
+			} else if (tokens[i].substring(0, 10) === 'rectangle=') {
 				command.rectangle = tokens[i].substring(10);
-			}
-			else if (tokens[i].substring(0, 12) === 'hiddenparts=') {
+			} else if (tokens[i].substring(0, 12) === 'hiddenparts=') {
 				var hiddenparts = tokens[i].substring(12).split(',');
 				command.hiddenparts = [];
 				hiddenparts.forEach(function (item) {
 					command.hiddenparts.push(parseInt(item));
 				});
-			}
-			else if (tokens[i].startsWith('rtlparts=')) {
+			} else if (tokens[i].startsWith('rtlparts=')) {
 				var rtlParts = tokens[i].substring(9).split(',');
 				command.rtlParts = [];
 				rtlParts.forEach(function (item) {
 					command.rtlParts.push(parseInt(item));
 				});
-			}
-			else if (tokens[i].startsWith('protectedparts=')) {
+			} else if (tokens[i].startsWith('protectedparts=')) {
 				var protectedParts = tokens[i].substring(15).split(',');
 				command.protectedParts = [];
 				protectedParts.forEach(function (item) {
 					command.protectedParts.push(parseInt(item));
 				});
-			}
-			else if (tokens[i].startsWith('hash=')) {
+			} else if (tokens[i].startsWith('hash=')) {
 				command.hash = tokens[i].substring('hash='.length);
-			}
-			else if (tokens[i] === 'nopng') {
+			} else if (tokens[i] === 'nopng') {
 				command.nopng = true;
-			}
-			else if (tokens[i].substring(0, 9) === 'username=') {
+			} else if (tokens[i].substring(0, 9) === 'username=') {
 				command.username = tokens[i].substring(9);
-			}
-			else if (tokens[i].startsWith('pagerectangles=')) {
-				command.pageRectangleList = tokens[i].substring(15).split(';');
-				command.pageRectangleList = command.pageRectangleList.map(function(element) {
-					element = element.split(',');
-					return [parseInt(element[0]), parseInt(element[1]), parseInt(element[2]), parseInt(element[3])];
-				});
-			}
-			else if (tokens[i].startsWith('lastcolumn=')) {
+			} else if (tokens[i].startsWith('pagerectangles=')) {
+				command.pageRectangleList = tokens[i]
+					.substring(15)
+					.split(';');
+				command.pageRectangleList = command.pageRectangleList.map(
+					function (element) {
+						element = element.split(',');
+						return [
+							parseInt(element[0]),
+							parseInt(element[1]),
+							parseInt(element[2]),
+							parseInt(element[3]),
+						];
+					},
+				);
+			} else if (tokens[i].startsWith('lastcolumn=')) {
 				command.lastcolumn = parseInt(tokens[i].substring(11));
-			}
-			else if (tokens[i].startsWith('lastrow=')) {
+			} else if (tokens[i].startsWith('lastrow=')) {
 				command.lastrow = parseInt(tokens[i].substring(8));
-			}
-			else if (tokens[i].startsWith('readonly=')) {
+			} else if (tokens[i].startsWith('readonly=')) {
 				command.readonly = parseInt(tokens[i].substring(9));
 			}
 		}
 		if (command.tileWidth && command.tileHeight && this._map._docLayer) {
 			var defaultZoom = this._map.options.zoom;
-			var scale = command.tileWidth / this._map._docLayer.options.tileWidthTwips;
+			var scale =
+				command.tileWidth /
+				this._map._docLayer.options.tileWidthTwips;
 			// scale = 1.2 ^ (defaultZoom - zoom)
 			// zoom = defaultZoom -log(scale) / log(1.2)
-			command.zoom = Math.round(defaultZoom - Math.log(scale) / Math.log(1.2));
+			command.zoom = Math.round(
+				defaultZoom - Math.log(scale) / Math.log(1.2),
+			);
 		}
 		return command;
 	},
 
 	setTraceEventLogging: function (enabled) {
 		this.traceEventRecordingToggle = enabled;
-		this.sendMessage('traceeventrecording ' + (this.traceEventRecordingToggle ? 'start' : 'stop'));
+		this.sendMessage(
+			'traceeventrecording ' +
+				(this.traceEventRecordingToggle ? 'start' : 'stop'),
+		);
 
 		// Just as a test, uncomment this to toggle SAL_WARN and
 		// SAL_INFO selection between two states: 1) the default
@@ -1862,7 +2247,7 @@ app.definitions.Socket = L.Class.extend({
 	traceEventRecordingToggle: false,
 
 	_stringifyArgs: function (args) {
-		return (args == null ? '' : (' args=' + JSON.stringify(args)));
+		return args == null ? '' : ' args=' + JSON.stringify(args);
 	},
 
 	asyncTraceEventCounter: 0,
@@ -1871,8 +2256,7 @@ app.definitions.Socket = L.Class.extend({
 	asyncTracePseudoThread: 1,
 
 	createAsyncTraceEvent: function (name, args) {
-		if (!this.traceEventRecordingToggle)
-			return null;
+		if (!this.traceEventRecordingToggle) return null;
 
 		var result = {};
 		result.id = this.asyncTraceEventCounter++;
@@ -1880,13 +2264,27 @@ app.definitions.Socket = L.Class.extend({
 		result.active = true;
 		result.args = args;
 
-		this.sendTraceEvent(name, 'S', undefined, args, result.id, result.tid);
+		this.sendTraceEvent(
+			name,
+			'S',
+			undefined,
+			args,
+			result.id,
+			result.tid,
+		);
 
 		var that = this;
 		result.finish = function () {
 			that.asyncTracePseudoThread--;
 			if (this.active) {
-				that.sendTraceEvent(name, 'F', undefined, this.args, this.id, this.tid);
+				that.sendTraceEvent(
+					name,
+					'F',
+					undefined,
+					this.args,
+					this.id,
+					this.tid,
+				);
 				this.active = false;
 			}
 		};
@@ -1898,8 +2296,7 @@ app.definitions.Socket = L.Class.extend({
 	},
 
 	createCompleteTraceEvent: function (name, args) {
-		if (!this.traceEventRecordingToggle)
-			return null;
+		if (!this.traceEventRecordingToggle) return null;
 
 		var result = {};
 		result.active = true;
@@ -1909,9 +2306,15 @@ app.definitions.Socket = L.Class.extend({
 		result.finish = function () {
 			if (this.active) {
 				var now = performance.now();
-				that.sendTraceEvent(name, 'X', 'ts=' + Math.round(this.begin * 1000) +
-						    ' dur=' + Math.round((now - this.begin) * 1000),
-						    args);
+				that.sendTraceEvent(
+					name,
+					'X',
+					'ts=' +
+						Math.round(this.begin * 1000) +
+						' dur=' +
+						Math.round((now - this.begin) * 1000),
+					args,
+				);
 				this.active = false;
 			}
 		};
@@ -1922,26 +2325,21 @@ app.definitions.Socket = L.Class.extend({
 	},
 
 	// something we can grok quickly in the trace viewer
-	createCompleteTraceEventFromEvent: function(textMsg) {
-		if (!this.traceEventRecordingToggle)
-			return null;
+	createCompleteTraceEventFromEvent: function (textMsg) {
+		if (!this.traceEventRecordingToggle) return null;
 
 		var pretty;
-		if (!textMsg)
-			pretty = 'blob';
+		if (!textMsg) pretty = 'blob';
 		else {
 			var idx = textMsg.indexOf(':');
-			if (idx > 0)
-				pretty = textMsg.substring(0,idx);
-			else if (textMsg.length < 25)
-				pretty = textMsg;
-			else
-				pretty = textMsg.substring(0, 25);
+			if (idx > 0) pretty = textMsg.substring(0, idx);
+			else if (textMsg.length < 25) pretty = textMsg;
+			else pretty = textMsg.substring(0, 25);
 		}
 		return this.createCompleteTraceEvent(pretty, { message: textMsg });
 	},
 
-	manualReconnect: function(timeout) {
+	manualReconnect: function (timeout) {
 		if (this._map._docLayer) {
 			this._map._docLayer.removeAllViews();
 		}
@@ -1957,5 +2355,5 @@ app.definitions.Socket = L.Class.extend({
 		}, timeout);
 	},
 
-	threadLocalLoggingLevelToggle: false
+	threadLocalLoggingLevelToggle: false,
 });

@@ -892,8 +892,12 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (window.Worker && !window.ThisIsAMobileApp) {
 			window.app.console.info('Creating CanvasTileWorker');
 			this._worker = new Worker('src/layer/tile/CanvasTileWorker.js');
-			this._worker.addEventListener('message', (e) => this._onWorkerMessage(e));
-			this._worker.addEventListener('error', (e) => this._disableWorker(e));
+			this._worker.addEventListener('message', (e) =>
+				this._onWorkerMessage(e),
+			);
+			this._worker.addEventListener('error', (e) =>
+				this._disableWorker(e),
+			);
 		}
 	},
 
@@ -1545,10 +1549,10 @@ L.CanvasTileLayer = L.Layer.extend({
 					this.invalidFrom >= this.wireId || !this.hasContent()
 				);
 			},
-			needsRehydration: function() {
+			needsRehydration: function () {
 				return !this.imgDataCache && this.hasKeyframe();
 			},
-			hasKeyframe: function() {
+			hasKeyframe: function () {
 				return this.rawKeyframe && this.rawKeyframe.length > 0;
 			},
 			hasPendingUpdate: function () {
@@ -1570,15 +1574,14 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	// Make the given tile current and rehydrates if necessary. Returns true if the tile
 	// has pending updates.
-	_makeTileCurrent: function(tile) {
+	_makeTileCurrent: function (tile) {
 		tile.current = true;
 
-		if (tile.needsRehydration())
-			this.rehydrateTile(tile);
+		if (tile.needsRehydration()) this.rehydrateTile(tile);
 		return tile.hasPendingUpdate();
 	},
 
-	_getToolbarCommandsValues: function() {
+	_getToolbarCommandsValues: function () {
 		for (var i = 0; i < this._map.unoToolbarCommands.length; i++) {
 			var command = this._map.unoToolbarCommands[i];
 			app.socket.sendMessage('commandvalues command=' + command);
@@ -5003,43 +5006,62 @@ L.CanvasTileLayer = L.Layer.extend({
 		++this._inTransaction;
 	},
 
-	_decompressPendingDeltas: function(message) {
+	_decompressPendingDeltas: function (message) {
 		if (this._worker) {
 			this._worker.postMessage(
 				{
-					'message': message,
-					'deltas': this._pendingDeltas,
-					'tileSize': window.tileSize,
-				}, this._pendingDeltas.map((x) => x.rawDelta.buffer));
+					message: message,
+					deltas: this._pendingDeltas,
+					tileSize: window.tileSize,
+				},
+				this._pendingDeltas.map((x) => x.rawDelta.buffer),
+			);
 			++this._pendingTransactions;
 		} else {
 			for (var e of this._pendingDeltas) {
 				// Synchronous path
 				var tile = this._tiles[e.key];
 				var deltas = window.fzstd.decompress(e.rawDelta);
-				if (e.isKeyframe)
-				{
+				if (e.isKeyframe) {
 					if (this._debugDeltas)
-						window.app.console.log('Applying a raw RLE keyframe of length ' + deltas.length +
-										' hex: ' + hex2string(deltas, deltas.length));
+						window.app.console.log(
+							'Applying a raw RLE keyframe of length ' +
+								deltas.length +
+								' hex: ' +
+								hex2string(deltas, deltas.length),
+						);
 
 					var width = window.tileSize;
 					var height = window.tileSize;
-					var resultu8 = new Uint8ClampedArray(width * height * 4);
-					L.CanvasTileUtils.unrle(deltas, width, height, resultu8);
+					var resultu8 = new Uint8ClampedArray(
+						width * height * 4,
+					);
+					L.CanvasTileUtils.unrle(
+						deltas,
+						width,
+						height,
+						resultu8,
+					);
 					deltas = resultu8;
 
 					if (this._debugDeltas)
-						window.app.console.log('Applied keyframe of total size ' + resultu8.length +
-										' at stream offset 0');
+						window.app.console.log(
+							'Applied keyframe of total size ' +
+								resultu8.length +
+								' at stream offset 0',
+						);
 				}
-				this._applyDelta(tile, e.rawDelta, deltas, e.isKeyframe, e.wireMessage, true);
-				if (e.isKeyframe)
-					--tile.hasPendingKeyframe;
-				else
-					--tile.hasPendingDelta;
-				if (!tile.hasPendingUpdate())
-					this._tileReady(tile.coords);
+				this._applyDelta(
+					tile,
+					e.rawDelta,
+					deltas,
+					e.isKeyframe,
+					e.wireMessage,
+					true,
+				);
+				if (e.isKeyframe) --tile.hasPendingKeyframe;
+				else --tile.hasPendingDelta;
+				if (!tile.hasPendingUpdate()) this._tileReady(tile.coords);
 			}
 		}
 		this._pendingDeltas.length = 0;
@@ -5054,18 +5076,20 @@ L.CanvasTileLayer = L.Layer.extend({
 		--this._inTransaction;
 
 		// Ignore transactions that did nothing
-		if (this._pendingDeltas.length === 0 && !this._hasPendingTransactions()) {
+		if (
+			this._pendingDeltas.length === 0 &&
+			!this._hasPendingTransactions()
+		) {
 			if (callback) callback();
 			return;
 		}
 
 		this._transactionCallbacks.push(callback);
-		if (this._inTransaction !== 0)
-			return;
+		if (this._inTransaction !== 0) return;
 
 		try {
 			this._decompressPendingDeltas('endTransaction');
-		} catch(e) {
+		} catch (e) {
 			window.app.console.error('Failed to decompress pending deltas');
 			this._inTransaction = 0;
 			this._disableWorker(e);
@@ -5724,7 +5748,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		);
 	},
 
-	_isTileReadyToDraw: function(tile) {
+	_isTileReadyToDraw: function (tile) {
 		return !!tile.imgDataCache;
 	},
 
@@ -6009,10 +6033,11 @@ L.CanvasTileLayer = L.Layer.extend({
 			var redraw = false;
 			for (i = 0; i < queue.length; i++) {
 				var tempTile = this._tiles[this._tileCoordsToKey(queue[i])];
-				if (tempTile)
-					redraw |= this._makeTileCurrent(tempTile);
+				if (tempTile) redraw |= this._makeTileCurrent(tempTile);
 			}
-			this.endTransaction(redraw ? () => app.sectionContainer.requestReDraw() : null);
+			this.endTransaction(
+				redraw ? () => app.sectionContainer.requestReDraw() : null,
+			);
 		}
 
 		if (checkOnly) {
@@ -6059,12 +6084,13 @@ L.CanvasTileLayer = L.Layer.extend({
 					var tile = this._tiles[key];
 					if (tile && !tile.needsFetch())
 						redraw |= this._makeTileCurrent(tile);
-					else
-						queue.push(coords);
+					else queue.push(coords);
 				}
 			}
 		}
-		this.endTransaction(redraw ? () => app.sectionContainer.requestReDraw() : null);
+		this.endTransaction(
+			redraw ? () => app.sectionContainer.requestReDraw() : null,
+		);
 
 		return queue;
 	},
@@ -6086,7 +6112,12 @@ L.CanvasTileLayer = L.Layer.extend({
 		// currently processing a transaction
 		var size = map.getSize();
 		if (size.x === 0 || size.y === 0) {
-			setTimeout(function () { this._update(); }.bind(this), 1);
+			setTimeout(
+				function () {
+					this._update();
+				}.bind(this),
+				1,
+			);
 			return;
 		}
 
@@ -6267,12 +6298,13 @@ L.CanvasTileLayer = L.Layer.extend({
 					tile = this._tiles[key];
 					if (tile && !tile.needsFetch())
 						redraw |= this._makeTileCurrent(tile);
-					else
-						queue.push(coords);
+					else queue.push(coords);
 				}
 			}
 		}
-		this.endTransaction(redraw ? () => app.sectionContainer.requestReDraw() : null);
+		this.endTransaction(
+			redraw ? () => app.sectionContainer.requestReDraw() : null,
+		);
 
 		if (queue.length !== 0) {
 			var tileCombineQueue = [];
@@ -6340,8 +6372,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		// If we're pre-fetching, we may end up rehydrating tiles, so begin a transaction
 		// so that they're grouped together.
-		if (preFetch)
-			this.beginTransaction();
+		if (preFetch) this.beginTransaction();
 
 		var redraw = false;
 		for (var i = 0; i < coordsQueue.length; i++) {
@@ -6370,7 +6401,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 
 		if (preFetch)
-			this.endTransaction(redraw ? () => app.sectionContainer.requestReDraw() : null);
+			this.endTransaction(
+				redraw ? () => app.sectionContainer.requestReDraw() : null,
+			);
 
 		// sort the tiles by the rows
 		coordsQueue.sort(function (a, b) {
@@ -6575,16 +6608,29 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	rehydrateTile: function(tile)
-	{
+	rehydrateTile: function (tile) {
 		if (tile.hasKeyframe() && tile.hasPendingKeyframe === 0) {
 			// Re-hydrate tile from cached raw deltas.
 			if (this._debugDeltas)
-				window.app.console.log('Restoring a tile from cached delta at ' +
-							   this._tileCoordsToKey(tile.coords));
-			this._applyCompressedDelta(tile, tile.rawKeyframe, true, false, false);
+				window.app.console.log(
+					'Restoring a tile from cached delta at ' +
+						this._tileCoordsToKey(tile.coords),
+				);
+			this._applyCompressedDelta(
+				tile,
+				tile.rawKeyframe,
+				true,
+				false,
+				false,
+			);
 			if (tile.rawDeltas && tile.rawDeltas.length > 0)
-				this._applyCompressedDelta(tile, tile.rawDeltas, false, false, false);
+				this._applyCompressedDelta(
+					tile,
+					tile.rawDeltas,
+					false,
+					false,
+					false,
+				);
 		}
 	},
 
@@ -6760,33 +6806,44 @@ L.CanvasTileLayer = L.Layer.extend({
 		return ctx;
 	},
 
-	_applyCompressedDelta: function(tile, rawDelta, isKeyframe, wireMessage, rehydrate = true) {
+	_applyCompressedDelta: function (
+		tile,
+		rawDelta,
+		isKeyframe,
+		wireMessage,
+		rehydrate = true,
+	) {
 		if (this._inTransaction === 0)
-			window.app.console.warn('applyCompressedDelta called outside of transaction');
+			window.app.console.warn(
+				'applyCompressedDelta called outside of transaction',
+			);
 
 		if (rehydrate && !tile.canvas && !isKeyframe)
 			this.rehydrateTile(tile);
 
 		// We need to own rawDelta for it to hang around outside of a transaction (which happens
 		// with workers enabled). If we're rehydrating, we already own it.
-		if (this._worker && !rehydrate)
-			rawDelta = new Uint8Array(rawDelta);
+		if (this._worker && !rehydrate) rawDelta = new Uint8Array(rawDelta);
 
-		var e =
-			{
-				key: this._tileCoordsToKey(tile.coords),
-				rawDelta: rawDelta,
-				isKeyframe: isKeyframe,
-				wireMessage: wireMessage
-			};
-		if (isKeyframe)
-			++tile.hasPendingKeyframe;
-		else
-			++tile.hasPendingDelta;
+		var e = {
+			key: this._tileCoordsToKey(tile.coords),
+			rawDelta: rawDelta,
+			isKeyframe: isKeyframe,
+			wireMessage: wireMessage,
+		};
+		if (isKeyframe) ++tile.hasPendingKeyframe;
+		else ++tile.hasPendingDelta;
 		this._pendingDeltas.push(e);
 	},
 
-	_applyDelta: function(tile, rawDelta, deltas, isKeyframe, wireMessage, deltasNeedUnpremultiply) {
+	_applyDelta: function (
+		tile,
+		rawDelta,
+		deltas,
+		isKeyframe,
+		wireMessage,
+		deltasNeedUnpremultiply,
+	) {
 		// 'Uint8Array' rawDelta
 
 		if (this._debugDeltas)
@@ -6854,10 +6911,10 @@ L.CanvasTileLayer = L.Layer.extend({
 			tile.rawKeyframe = rawDelta; // overwrite
 			tile.rawDeltas = new Uint8Array(0);
 			offset = deltas.length;
-		}
-		else if (!tile.rawKeyframe)
-		{
-			window.app.console.warn('Unusual: attempt to append a delta when we have no keyframe.');
+		} else if (!tile.rawKeyframe) {
+			window.app.console.warn(
+				'Unusual: attempt to append a delta when we have no keyframe.',
+			);
 			return;
 		} // assume we already have a delta.
 		else {
@@ -6894,10 +6951,13 @@ L.CanvasTileLayer = L.Layer.extend({
 			var delta = !offset ? deltas : deltas.subarray(offset);
 
 			// Debugging paranoia: if we get this wrong bad things happen.
-			if (delta.length >= canvas.width * canvas.height * 4)
-			{
-				window.app.console.warn('Unusual delta possibly mis-tagged, suspicious size vs. type ' +
-						       delta.length + ' vs. ' + (canvas.width * canvas.height * 4));
+			if (delta.length >= canvas.width * canvas.height * 4) {
+				window.app.console.warn(
+					'Unusual delta possibly mis-tagged, suspicious size vs. type ' +
+						delta.length +
+						' vs. ' +
+						canvas.width * canvas.height * 4,
+				);
 			}
 
 			if (!imgData)
@@ -6917,7 +6977,14 @@ L.CanvasTileLayer = L.Layer.extend({
 			// copy old data to work from:
 			var oldData = new Uint8ClampedArray(imgData.data);
 
-			var len = this._applyDeltaChunk(imgData, delta, oldData, canvas.width, canvas.height, deltasNeedUnpremultiply);
+			var len = this._applyDeltaChunk(
+				imgData,
+				delta,
+				oldData,
+				canvas.width,
+				canvas.height,
+				deltasNeedUnpremultiply,
+			);
 			if (this._debugDeltas)
 				window.app.console.log(
 					'Applied chunk ' +
@@ -6942,7 +7009,14 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (traceEvent) traceEvent.finish();
 	},
 
-	_applyDeltaChunk: function(imgData, delta, oldData, width, height, needsUnpremultiply) {
+	_applyDeltaChunk: function (
+		imgData,
+		delta,
+		oldData,
+		width,
+		height,
+		needsUnpremultiply,
+	) {
 		var pixSize = width * height * 4;
 		if (this._debugDeltas)
 			window.app.console.log(
@@ -6967,52 +7041,72 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		// Apply delta.
 		var stop = false;
-		for (var i = 0; i < delta.length && !stop;)
-		{
-			switch (delta[i])
-			{
-			case 99: // 'c': // copy row
-				var count = delta[i+1];
-				var srcRow = delta[i+2];
-				var destRow = delta[i+3];
-				if (this._debugDeltasDetail)
-					window.app.console.log('[' + i + ']: copy ' + count + ' row(s) ' + srcRow + ' to ' + destRow);
-				i+= 4;
-				for (var cnt = 0; cnt < count; ++cnt)
-				{
-					var src = (srcRow + cnt) * width * 4;
-					var dest = (destRow + cnt) * width * 4;
-					for (var j = 0; j < width * 4; ++j)
-					{
-						imgData.data[dest + j] = oldData[src + j];
+		for (var i = 0; i < delta.length && !stop; ) {
+			switch (delta[i]) {
+				case 99: // 'c': // copy row
+					var count = delta[i + 1];
+					var srcRow = delta[i + 2];
+					var destRow = delta[i + 3];
+					if (this._debugDeltasDetail)
+						window.app.console.log(
+							'[' +
+								i +
+								']: copy ' +
+								count +
+								' row(s) ' +
+								srcRow +
+								' to ' +
+								destRow,
+						);
+					i += 4;
+					for (var cnt = 0; cnt < count; ++cnt) {
+						var src = (srcRow + cnt) * width * 4;
+						var dest = (destRow + cnt) * width * 4;
+						for (var j = 0; j < width * 4; ++j) {
+							imgData.data[dest + j] = oldData[src + j];
+						}
 					}
-				}
-				break;
-			case 100: // 'd': // new run
-				destRow = delta[i+1];
-				var destCol = delta[i+2];
-				var span = delta[i+3];
-				offset = destRow * width * 4 + destCol * 4;
-				if (this._debugDeltasDetail)
-					window.app.console.log('[' + i + ']: apply new span of size ' + span +
-							       ' at pos ' + destCol + ', ' + destRow + ' into delta at byte: ' + offset);
-				i += 4;
-				span *= 4;
-				if (needsUnpremultiply)
-					L.CanvasTileUtils.unpremultiply(delta, span, i);
-				for (var j = 0; j < span; ++j)
-					imgData.data[offset++] = delta[i+j];
-				i += span;
-				// imgData.data[offset - 2] = 256; // debug - blue terminator
-				break;
-			case 116: // 't': // terminate delta new one next
-				stop = true;
-				i++;
-				break;
-			default:
-				console.log('[' + i + ']: ERROR: Unknown delta code ' + delta[i]);
-				i = delta.length;
-				break;
+					break;
+				case 100: // 'd': // new run
+					destRow = delta[i + 1];
+					var destCol = delta[i + 2];
+					var span = delta[i + 3];
+					offset = destRow * width * 4 + destCol * 4;
+					if (this._debugDeltasDetail)
+						window.app.console.log(
+							'[' +
+								i +
+								']: apply new span of size ' +
+								span +
+								' at pos ' +
+								destCol +
+								', ' +
+								destRow +
+								' into delta at byte: ' +
+								offset,
+						);
+					i += 4;
+					span *= 4;
+					if (needsUnpremultiply)
+						L.CanvasTileUtils.unpremultiply(delta, span, i);
+					for (var j = 0; j < span; ++j)
+						imgData.data[offset++] = delta[i + j];
+					i += span;
+					// imgData.data[offset - 2] = 256; // debug - blue terminator
+					break;
+				case 116: // 't': // terminate delta new one next
+					stop = true;
+					i++;
+					break;
+				default:
+					console.log(
+						'[' +
+							i +
+							']: ERROR: Unknown delta code ' +
+							delta[i],
+					);
+					i = delta.length;
+					break;
 			}
 		}
 
@@ -7097,9 +7191,13 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 
 		// updates don't need more chattiness with a tileprocessed
-		if (hasContent)
-		{
-			this._applyCompressedDelta(tile, img.rawData, img.isKeyframe, true);
+		if (hasContent) {
+			this._applyCompressedDelta(
+				tile,
+				img.rawData,
+				img.isKeyframe,
+				true,
+			);
 		}
 
 		this._queueAcknowledgement(tileMsgObj);
@@ -7117,16 +7215,15 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	_disableWorker: function(e) {
+	_disableWorker: function (e) {
 		if (e)
 			window.app.console.error('Worker-related error encountered', e);
-		if (!this._worker)
-			return;
+		if (!this._worker) return;
 
 		window.app.console.log('Disabling worker thread');
 		try {
 			this._worker.terminate();
-		} catch(e) {
+		} catch (e) {
 			window.app.console.error('Error terminating worker thread', e);
 		}
 
@@ -7140,40 +7237,50 @@ L.CanvasTileLayer = L.Layer.extend({
 		this.redraw();
 	},
 
-	_onWorkerMessage: function(e) {
+	_onWorkerMessage: function (e) {
 		switch (e.data.message) {
-		case 'endTransaction':
-			for (var x of e.data.deltas) {
-				var tile = this._tiles[x.key];
-				if (!tile) {
-					window.app.console.warn('Tile deleted during rawDelta decompression.');
-					continue;
+			case 'endTransaction':
+				for (var x of e.data.deltas) {
+					var tile = this._tiles[x.key];
+					if (!tile) {
+						window.app.console.warn(
+							'Tile deleted during rawDelta decompression.',
+						);
+						continue;
+					}
+					this._applyDelta(
+						tile,
+						x.rawDelta,
+						x.deltas,
+						x.isKeyframe,
+						x.wireMessage,
+						false,
+					);
+					if (x.isKeyframe) --tile.hasPendingKeyframe;
+					else --tile.hasPendingDelta;
+					if (!tile.hasPendingUpdate())
+						this._tileReady(tile.coords);
 				}
-				this._applyDelta(tile, x.rawDelta, x.deltas, x.isKeyframe, x.wireMessage, false);
-				if (x.isKeyframe)
-					--tile.hasPendingKeyframe;
-				else
-					--tile.hasPendingDelta;
-				if (!tile.hasPendingUpdate())
-					this._tileReady(tile.coords);
-			}
 
-			if (this._pendingTransactions === 0)
-				window.app.console.warn('Unexpectedly received decompressed deltas');
-			else
-				--this._pendingTransactions;
+				if (this._pendingTransactions === 0)
+					window.app.console.warn(
+						'Unexpectedly received decompressed deltas',
+					);
+				else --this._pendingTransactions;
 
-			if (!this._hasPendingTransactions()) {
-				while (this._transactionCallbacks.length) {
-					var callback = this._transactionCallbacks.pop();
-					if (callback) callback();
+				if (!this._hasPendingTransactions()) {
+					while (this._transactionCallbacks.length) {
+						var callback = this._transactionCallbacks.pop();
+						if (callback) callback();
+					}
 				}
-			}
-			break;
+				break;
 
-		default:
-			window.app.console.error('Unrecognised message from worker');
-			this._disableWorker();
+			default:
+				window.app.console.error(
+					'Unrecognised message from worker',
+				);
+				this._disableWorker();
 		}
 	},
 

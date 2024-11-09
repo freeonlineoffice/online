@@ -7,24 +7,45 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 class TextSelectionHandle extends HTMLObjectSection {
 	public rectangle: lool.SimpleRectangle = null; // This is the rectangle sent from the core side.
 
-	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint,  extraClass: string = "", showSection: boolean = false) {
-		super(sectionName, objectWidth, objectHeight, documentPosition, extraClass, showSection);
+	constructor(
+		sectionName: string,
+		objectWidth: number,
+		objectHeight: number,
+		documentPosition: lool.SimplePoint,
+		extraClass: string = '',
+		showSection: boolean = false,
+	) {
+		super(
+			sectionName,
+			objectWidth,
+			objectHeight,
+			documentPosition,
+			extraClass,
+			showSection,
+		);
 	}
 
 	onDrag(point: number[]) {
 		(<any>window).IgnorePanning = true;
-		const candidateX = Math.round((this.myTopLeft[0] + point[0]) / app.dpiScale);
-		const candidateY = Math.round((this.myTopLeft[1] + point[1]) / app.dpiScale);
+		const candidateX = Math.round(
+			(this.myTopLeft[0] + point[0]) / app.dpiScale,
+		);
+		const candidateY = Math.round(
+			(this.myTopLeft[1] + point[1]) / app.dpiScale,
+		);
 
 		this.sectionProperties.objectDiv.style.left = candidateX + 'px';
 		this.sectionProperties.objectDiv.style.top = candidateY + 'px';
 
-		app.map.fire('handleautoscroll', {pos: { x: candidateX, y: candidateY }, map: app.map});
+		app.map.fire('handleautoscroll', {
+			pos: { x: candidateX, y: candidateY },
+			map: app.map,
+		});
 	}
 
 	setOpacity(value: number) {
@@ -38,18 +59,26 @@ class TextSelectionHandle extends HTMLObjectSection {
 		const y = this.position[1] + point[1];
 		this.setPosition(x, y);
 
-		app.map.fire('scrollvelocity', {vx: 0, vy: 0});
+		app.map.fire('scrollvelocity', { vx: 0, vy: 0 });
 		const type = this.name === 'selection_start_handle' ? 'start' : 'end';
 
-		if (type === 'start')
-			x += 30 / app.dpiScale;
+		if (type === 'start') x += 30 / app.dpiScale;
 
 		if (!app.map._docLayer.isCalcRTL()) {
-			app.map._docLayer._postSelectTextEvent(type, Math.round(x * app.pixelsToTwips), Math.round(y * app.pixelsToTwips));
-		}
-		else {
-			const referenceX = app.file.viewedRectangle.pX1 + (app.file.viewedRectangle.pX2 - this.position[0]);
-			app.map._docLayer._postSelectTextEvent(type, Math.round(referenceX * app.pixelsToTwips), Math.round(y * app.pixelsToTwips));
+			app.map._docLayer._postSelectTextEvent(
+				type,
+				Math.round(x * app.pixelsToTwips),
+				Math.round(y * app.pixelsToTwips),
+			);
+		} else {
+			const referenceX =
+				app.file.viewedRectangle.pX1 +
+				(app.file.viewedRectangle.pX2 - this.position[0]);
+			app.map._docLayer._postSelectTextEvent(
+				type,
+				Math.round(referenceX * app.pixelsToTwips),
+				Math.round(y * app.pixelsToTwips),
+			);
 		}
 	}
 
@@ -64,8 +93,7 @@ class TextSelectionHandle extends HTMLObjectSection {
 	onDocumentObjectVisibilityChange(): void {
 		if (this.showSection && this.isVisible)
 			this.sectionProperties.objectDiv.style.display = '';
-		else
-			this.sectionProperties.objectDiv.style.display = 'none';
+		else this.sectionProperties.objectDiv.style.display = 'none';
 	}
 
 	onClick(point: number[], e: MouseEvent): void {

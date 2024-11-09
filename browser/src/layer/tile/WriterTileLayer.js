@@ -5,17 +5,26 @@
 
 /* global app GraphicSelection */
 L.WriterTileLayer = L.CanvasTileLayer.extend({
-
 	newAnnotation: function (comment) {
 		if (app.file.textCursor.visible) {
-			comment.anchorPos = [app.file.textCursor.rectangle.x2, app.file.textCursor.rectangle.y1];
+			comment.anchorPos = [
+				app.file.textCursor.rectangle.x2,
+				app.file.textCursor.rectangle.y1,
+			];
 		} else if (GraphicSelection.hasActiveSelection()) {
 			// An image is selected, then guess the anchor based on the graphic selection.
-			comment.anchorPos = [GraphicSelection.rectangle.x1, GraphicSelection.rectangle.y2];
+			comment.anchorPos = [
+				GraphicSelection.rectangle.x1,
+				GraphicSelection.rectangle.y2,
+			];
 		}
 
-		var annotation = app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).add(comment);
-		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).modify(annotation);
+		var annotation = app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.add(comment);
+		app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.modify(annotation);
 	},
 
 	beforeAdd: function (map) {
@@ -34,19 +43,22 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (values.comments) {
-			values.comments.forEach(function(comment) {
+			values.comments.forEach(function (comment) {
 				comment.id = comment.id.toString();
 				comment.parent = comment.parentId.toString();
 			});
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).importComments(values.comments);
-		}
-		else if (values.redlines && values.redlines.length > 0) {
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).importChanges(values.redlines);
-		}
-		else if (this._map.zotero && values.userDefinedProperties) {
-			this._map.zotero.handleCustomProperty(values.userDefinedProperties);
-		}
-		else if (this._map.zotero && values.fields) {
+			app.sectionContainer
+				.getSectionWithName(L.CSections.CommentList.name)
+				.importComments(values.comments);
+		} else if (values.redlines && values.redlines.length > 0) {
+			app.sectionContainer
+				.getSectionWithName(L.CSections.CommentList.name)
+				.importChanges(values.redlines);
+		} else if (this._map.zotero && values.userDefinedProperties) {
+			this._map.zotero.handleCustomProperty(
+				values.userDefinedProperties,
+			);
+		} else if (this._map.zotero && values.fields) {
 			this._map.zotero.onFieldValue(values.fields);
 		} else if (this._map.zotero && values.field) {
 			this._map.zotero.handleFieldUnderCursor(values.field);
@@ -61,13 +73,20 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		} else if (this._map.zotero && values.sections) {
 			this._map.zotero.onFieldValue(values.sections);
 		} else {
-			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(this, textMsg);
+			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
+				this,
+				textMsg,
+			);
 		}
 	},
 
 	_onInvalidateTilesMsg: function (textMsg) {
 		var command = app.socket.parseServerCmd(textMsg);
-		if (command.x === undefined || command.y === undefined || command.part === undefined) {
+		if (
+			command.x === undefined ||
+			command.y === undefined ||
+			command.part === undefined
+		) {
 			var strTwips = textMsg.match(/\d+/g);
 			command.x = parseInt(strTwips[0]);
 			command.y = parseInt(strTwips[1]);
@@ -76,26 +95,36 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			command.part = this._selectedPart;
 		}
 
-		if (isNaN(command.mode))
-			command.mode = this._selectedMode;
+		if (isNaN(command.mode)) command.mode = this._selectedMode;
 
 		command.part = 0;
 		var topLeftTwips = new L.Point(command.x, command.y);
 		var offset = new L.Point(command.width, command.height);
 		var bottomRightTwips = topLeftTwips.add(offset);
 		if (this._debug.tileInvalidationsOn) {
-			this._debug.addTileInvalidationRectangle(topLeftTwips, bottomRightTwips, textMsg);
+			this._debug.addTileInvalidationRectangle(
+				topLeftTwips,
+				bottomRightTwips,
+				textMsg,
+			);
 		}
 		var invalidBounds = new L.Bounds(topLeftTwips, bottomRightTwips);
-		var visibleTopLeft = this._latLngToTwips(this._map.getBounds().getNorthWest());
-		var visibleBottomRight = this._latLngToTwips(this._map.getBounds().getSouthEast());
+		var visibleTopLeft = this._latLngToTwips(
+			this._map.getBounds().getNorthWest(),
+		);
+		var visibleBottomRight = this._latLngToTwips(
+			this._map.getBounds().getSouthEast(),
+		);
 		var visibleArea = new L.Bounds(visibleTopLeft, visibleBottomRight);
 		var needsNewTiles = false;
 		for (var key in this._tiles) {
 			var coords = this._tiles[key].coords;
 			var bounds = this._coordsToTileBounds(coords);
-			if (coords.part === command.part && coords.mode === command.mode &&
-				invalidBounds.intersects(bounds)) {
+			if (
+				coords.part === command.part &&
+				coords.mode === command.mode &&
+				invalidBounds.intersects(bounds)
+			) {
 				if (visibleArea.intersects(bounds)) {
 					needsNewTiles = true;
 				}
@@ -110,7 +139,10 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		this._previewInvalidations.push(invalidBounds);
 		// 1s after the last invalidation, update the preview
 		clearTimeout(this._previewInvalidator);
-		this._previewInvalidator = setTimeout(L.bind(this._invalidatePreviews, this), this.options.previewInvalidationTimeout);
+		this._previewInvalidator = setTimeout(
+			L.bind(this._invalidatePreviews, this),
+			this.options.previewInvalidationTimeout,
+		);
 	},
 
 	_onSetPartMsg: function (textMsg) {
@@ -120,13 +152,15 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			this._map.fire('pagenumberchanged', {
 				currentPage: part,
 				pages: this._pages,
-				docType: this._docType
+				docType: this._docType,
 			});
 		}
 	},
 
 	_onStatusMsg: function (textMsg) {
-		const statusJSON = JSON.parse(textMsg.replace('status:', '').replace('statusupdate:', ''));
+		const statusJSON = JSON.parse(
+			textMsg.replace('status:', '').replace('statusupdate:', ''),
+		);
 
 		if (app.socket._reconnecting) {
 			// persist cursor position on reconnection
@@ -134,23 +168,58 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			// of the first paragraph of the document so we want to ignore that
 			// to eliminate document jumping while reconnecting
 			this.persistCursorPositionInWriter = true;
-			this._postMouseEvent('buttondown', this.lastCursorPos.center[0], this.lastCursorPos.center[1], 1, 1, 0);
-			this._postMouseEvent('buttonup', this.lastCursorPos.center[0], this.lastCursorPos.center[1], 1, 1, 0);
+			this._postMouseEvent(
+				'buttondown',
+				this.lastCursorPos.center[0],
+				this.lastCursorPos.center[1],
+				1,
+				1,
+				0,
+			);
+			this._postMouseEvent(
+				'buttonup',
+				this.lastCursorPos.center[0],
+				this.lastCursorPos.center[1],
+				1,
+				1,
+				0,
+			);
 		}
-		if (!statusJSON.width || !statusJSON.height || this._documentInfo === textMsg)
+		if (
+			!statusJSON.width ||
+			!statusJSON.height ||
+			this._documentInfo === textMsg
+		)
 			return;
 
-		var sizeChanged = statusJSON.width !== this._docWidthTwips || statusJSON.height !== this._docHeightTwips;
+		var sizeChanged =
+			statusJSON.width !== this._docWidthTwips ||
+			statusJSON.height !== this._docHeightTwips;
 
 		if (statusJSON.viewid !== undefined) this._viewId = statusJSON.viewid;
 
-		console.assert(this._viewId >= 0, 'Incorrect viewId received: ' + this._viewId);
+		console.assert(
+			this._viewId >= 0,
+			'Incorrect viewId received: ' + this._viewId,
+		);
 
 		if (sizeChanged) {
 			this._docWidthTwips = statusJSON.width;
 			this._docHeightTwips = statusJSON.height;
-			app.file.size.twips = [this._docWidthTwips, this._docHeightTwips];
-			app.file.size.pixels = [Math.round(this._tileSize * (this._docWidthTwips / this._tileWidthTwips)), Math.round(this._tileSize * (this._docHeightTwips / this._tileHeightTwips))];
+			app.file.size.twips = [
+				this._docWidthTwips,
+				this._docHeightTwips,
+			];
+			app.file.size.pixels = [
+				Math.round(
+					this._tileSize *
+						(this._docWidthTwips / this._tileWidthTwips),
+				),
+				Math.round(
+					this._tileSize *
+						(this._docHeightTwips / this._tileHeightTwips),
+				),
+			];
 			app.view.size.pixels = app.file.size.pixels.slice();
 			this._docType = statusJSON.type;
 			this._updateMaxBounds(true);
@@ -158,7 +227,8 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 
 		this._documentInfo = textMsg;
 		this._selectedPart = 0;
-		this._selectedMode = (statusJSON.mode !== undefined) ? statusJSON.mode : 0;
+		this._selectedMode =
+			statusJSON.mode !== undefined ? statusJSON.mode : 0;
 		this._parts = 1;
 		this._currentPage = statusJSON.selectedpart;
 		this._pages = statusJSON.partscount;
@@ -166,7 +236,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		this._map.fire('pagenumberchanged', {
 			currentPage: this._currentPage,
 			pages: this._pages,
-			docType: this._docType
+			docType: this._docType,
 		});
 		this._resetPreFetching(true);
 	},

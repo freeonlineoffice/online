@@ -33,25 +33,24 @@ function _sendSimpleSelection(edit, builder) {
 
 function _multiLineEditControl(parentContainer, data, builder, callback) {
 	var controlType = 'textarea';
-	if (data.contenteditable)
-		controlType = 'div';
+	if (data.contenteditable) controlType = 'div';
 	else if (data.cursor && (data.cursor === 'false' || data.cursor === false))
 		controlType = 'p';
 
-	let edit = L.DomUtil.create(controlType, 'ui-textarea ' + builder.options.cssClass, parentContainer);
-	if (data.contenteditable)
-		edit.setAttribute('contenteditable', 'true');
+	let edit = L.DomUtil.create(
+		controlType,
+		'ui-textarea ' + builder.options.cssClass,
+		parentContainer,
+	);
+	if (data.contenteditable) edit.setAttribute('contenteditable', 'true');
 
-	if (controlType === 'textarea')
-		edit.value = builder._cleanText(data.text);
+	if (controlType === 'textarea') edit.value = builder._cleanText(data.text);
 	else if (controlType === 'p') {
 		data.text = data.text.replace(/(?:\r\n|\r|\n)/g, '<br>');
 		edit.textContent = builder._cleanText(data.text);
 	} else if (controlType === 'div') {
-		if (data.html)
-			edit.innerHTML = data.html;
-		else
-			edit.textContent = builder._cleanText(data.text);
+		if (data.html) edit.innerHTML = data.html;
+		else edit.textContent = builder._cleanText(data.text);
 	}
 
 	edit.id = data.id;
@@ -61,11 +60,12 @@ function _multiLineEditControl(parentContainer, data, builder, callback) {
 	}
 
 	function _keyupChangeHandler() {
-		if (callback)
-			callback(this.value);
+		if (callback) callback(this.value);
 
 		builder.callback('edit', 'change', edit, this.value, builder);
-		setTimeout(function () { _sendSimpleSelection(edit, builder); }, 0);
+		setTimeout(function () {
+			_sendSimpleSelection(edit, builder);
+		}, 0);
 	}
 
 	edit.addEventListener('keyup', _keyupChangeHandler);
@@ -80,8 +80,7 @@ function _multiLineEditControl(parentContainer, data, builder, callback) {
 		_sendSimpleSelection(event.target, builder);
 	});
 
-	if (data.hidden)
-		L.DomUtil.addClass(edit, 'hidden');
+	if (data.hidden) L.DomUtil.addClass(edit, 'hidden');
 
 	return false;
 }

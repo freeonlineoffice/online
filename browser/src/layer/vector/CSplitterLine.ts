@@ -5,7 +5,6 @@
  */
 
 class CSplitterLine extends CRectangle {
-
 	private isHoriz: boolean = true; // splitter divides X axis (vertical line) ?
 	private map: any;
 	private origOpacity: number;
@@ -22,8 +21,7 @@ class CSplitterLine extends CRectangle {
 		// Splitters should always be behind other overlays.
 		this.zIndex = -Infinity;
 
-		if (options.isHoriz !== undefined)
-			this.isHoriz = options.isHoriz;
+		if (options.isHoriz !== undefined) this.isHoriz = options.isHoriz;
 
 		this.map = map;
 
@@ -52,8 +50,7 @@ class CSplitterLine extends CRectangle {
 		const tsManager = this.map._docLayer._painter;
 		const splitPos = tsManager.getSplitPos();
 
-		if ((this.isHoriz && !splitPos.x) || (!this.isHoriz && !splitPos.y)
-		) {
+		if ((this.isHoriz && !splitPos.x) || (!this.isHoriz && !splitPos.y)) {
 			return false;
 		}
 
@@ -93,14 +90,15 @@ class CSplitterLine extends CRectangle {
 		// Let the lines be long enough so as to cover the map area at the
 		// highest possible zoom level. This makes splitter's
 		// zoom animation easier.
-		var maxZoom : number = this.map.zoomToFactor(this.map.options.maxZoom);
+		var maxZoom: number = this.map.zoomToFactor(this.map.options.maxZoom);
 		var start = new lool.Point(
-			this.isHoriz ? splitPos.x - thickup: 0,
-			this.isHoriz ? 0 : splitPos.y - thickup);
+			this.isHoriz ? splitPos.x - thickup : 0,
+			this.isHoriz ? 0 : splitPos.y - thickup,
+		);
 		var end = new lool.Point(
 			this.isHoriz ? splitPos.x + thickdown : mapSize.x * maxZoom,
-			this.isHoriz ? mapSize.y * maxZoom : splitPos.y + thickdown)
-			._round();
+			this.isHoriz ? mapSize.y * maxZoom : splitPos.y + thickdown,
+		)._round();
 
 		this.inactive = this.isHoriz ? !splitPos.x : !splitPos.y;
 		return new lool.Bounds(start, end);

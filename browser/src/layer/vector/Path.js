@@ -4,7 +4,6 @@
  */
 
 L.Path = L.Layer.extend({
-
 	options: {
 		stroke: true,
 		color: '#3388ff',
@@ -40,7 +39,7 @@ L.Path = L.Layer.extend({
 	getEvents: function () {
 		return {
 			viewreset: this._project,
-			moveend: this._update
+			moveend: this._update,
 		};
 	},
 
@@ -88,14 +87,15 @@ L.Path = L.Layer.extend({
 	},
 
 	addPathNode: function (pathNode, actualRenderer) {
-
 		this._path = undefined;
 
 		if (!this._pathNodeCollection) {
 			this._pathNodeCollection = new L.Path.PathNodeCollection();
 		}
 
-		this._pathNodeCollection.add(new L.Path.PathNodeData(pathNode, actualRenderer));
+		this._pathNodeCollection.add(
+			new L.Path.PathNodeData(pathNode, actualRenderer),
+		);
 	},
 
 	getPathNode: function (actualRenderer) {
@@ -113,15 +113,15 @@ L.Path = L.Layer.extend({
 	setCursorType: function (cursorType) {
 		this._pathNodeCollection.setCursorType(cursorType);
 	},
-
 });
 
 L.Path.PathNodeData = L.Class.extend({
-
 	initialize: function (pathNode, actualRenderer) {
-
 		window.app.console.assert(pathNode, 'invalid pathNode argument!');
-		window.app.console.assert(actualRenderer, 'invalid actualRenderer argument!');
+		window.app.console.assert(
+			actualRenderer,
+			'invalid actualRenderer argument!',
+		);
 
 		if (!(pathNode instanceof Node)) {
 			window.app.console.error('Not a node instance!');
@@ -148,25 +148,33 @@ L.Path.PathNodeData = L.Class.extend({
 	},
 
 	setCustomField: function (fieldName, value) {
-		window.app.console.assert(typeof fieldName === 'string' && fieldName, 'invalid fieldName');
+		window.app.console.assert(
+			typeof fieldName === 'string' && fieldName,
+			'invalid fieldName',
+		);
 		this._data[fieldName] = value;
 	},
 
 	getCustomField: function (fieldName) {
-		window.app.console.assert(typeof fieldName === 'string' && fieldName, 'invalid fieldName');
+		window.app.console.assert(
+			typeof fieldName === 'string' && fieldName,
+			'invalid fieldName',
+		);
 		return this._data[fieldName];
 	},
 
 	clearCustomField: function (fieldName) {
-		window.app.console.assert(typeof fieldName === 'string' && fieldName, 'invalid fieldName');
+		window.app.console.assert(
+			typeof fieldName === 'string' && fieldName,
+			'invalid fieldName',
+		);
 		delete this._data[fieldName];
 	},
 
 	addOrRemoveClass: function (className, add) {
 		if (add) {
 			L.DomUtil.addClass(this._pathNode, className);
-		}
-		else {
+		} else {
 			L.DomUtil.removeClass(this._pathNode, className);
 		}
 	},
@@ -174,7 +182,6 @@ L.Path.PathNodeData = L.Class.extend({
 	setCursorType: function (cursorType) {
 		this._pathNode.style.cursor = cursorType;
 	},
-
 });
 
 L.Path.PathNodeData.key = function (layer) {
@@ -182,15 +189,15 @@ L.Path.PathNodeData.key = function (layer) {
 };
 
 L.Path.PathNodeCollection = L.Class.extend({
-
 	initialize: function () {
 		this.clear();
 	},
 
 	add: function (pathNodeData) {
-
-		window.app.console.assert(pathNodeData instanceof L.Path.PathNodeData,
-			'invalid pathNodeData argument!');
+		window.app.console.assert(
+			pathNodeData instanceof L.Path.PathNodeData,
+			'invalid pathNodeData argument!',
+		);
 
 		this._collection[pathNodeData.key()] = pathNodeData;
 	},
@@ -200,8 +207,10 @@ L.Path.PathNodeCollection = L.Class.extend({
 	},
 
 	getPathNode: function (actualRenderer) {
-
-		window.app.console.assert(actualRenderer, 'invalid actualRenderer argument!');
+		window.app.console.assert(
+			actualRenderer,
+			'invalid actualRenderer argument!',
+		);
 		var key = L.Path.PathNodeData.key(actualRenderer);
 		var nodeData = this._collection[key];
 
@@ -229,5 +238,4 @@ L.Path.PathNodeCollection = L.Class.extend({
 			nodeData.setCursorType(cursorType);
 		});
 	},
-
 });
