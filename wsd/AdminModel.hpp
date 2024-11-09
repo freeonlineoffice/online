@@ -381,6 +381,8 @@ public:
 
     void addRecvStats(uint64_t recv);
 
+    void addConnectionStats(size_t connections);
+
     void setCpuStatsSize(unsigned size);
 
     void setMemStatsSize(unsigned size);
@@ -450,6 +452,8 @@ private:
 
     std::string getRecvActivity();
 
+    std::string getConnectionActivity();
+
     std::string getCpuStats();
 
     unsigned getTotalActiveViews();
@@ -475,6 +479,9 @@ private:
 
     std::list<unsigned> _recvStats;
     unsigned _recvStatsSize = 200;
+
+    std::list<size_t> _connStats;
+    unsigned _connStatsSize = 200;
 
     uint64_t _sentBytesTotal = 0;
     uint64_t _recvBytesTotal = 0;
