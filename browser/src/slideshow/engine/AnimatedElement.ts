@@ -444,6 +444,7 @@ class AnimatedElement {
 	private aActiveElement: AnimatedObjectType;
 	private eAdditiveMode = AdditiveMode.Replace;
 	private aStateSet = new Map<number, AnimatedElementState>();
+	private aStateOnNextEffectSet = new Map<number, AnimatedElementState>();
 	private nCenterX: number;
 	private nCenterY: number;
 	private nScaleFactorX: number = 1.0;
@@ -462,6 +463,10 @@ class AnimatedElement {
 	private bVisible: boolean;
 	private aClipPath: SVGPathElement = null;
 	private runningAnimations: number = 0;
+
+	private nCurrentEffect: number;
+	// effect -> animation nodes
+	private activeAnimationNodes = new Map<number, Set<number>>();
 
 	private tfContext: RenderContextGl;
 	private transitionFiltersManager: TransitionFiltersManager;
@@ -835,6 +840,9 @@ class AnimatedElement {
 		this.aSlideShowContext = aSlideShowContext;
 
 		this.runningAnimations = 0;
+		this.activeAnimationNodes.clear();
+		this.nCurrentEffect = undefined;
+		this.aStateOnNextEffectSet.clear();
 
 		const aAnimatedLayerInfo =
 			this.aSlideShowContext.aSlideShowHandler.getAnimatedLayerInfo(
@@ -877,8 +885,9 @@ class AnimatedElement {
 		}
 	}
 
-	notifyNextEffectStart(nEffectIndex?: number) {
-		// empty body
+	notifyNextEffectStart(nEffectIndex: number) {
+		this.nCurrentEffect = nEffectIndex;
+		this.activeAnimationNodes.set(this.nCurrentEffect, new Set());
 	}
 
 	// TODO remove it
@@ -928,6 +937,22 @@ class AnimatedElement {
 			transitionFiltersState: this.transitionFiltersManager.getState(),
 		};
 		this.aStateSet.set(nAnimationNodeId, aState);
+
+		// if it's the first animation for current effect set as the state
+		// on effect started
+		const currentEffectNodes = this.activeAnimationNodes.get(
+			this.nCurrentEffect,
+		);
+		if (currentEffectNodes) {
+			currentEffectNodes.add(nAnimationNodeId);
+			if (currentEffectNodes.size === 1)
+				this.aStateOnNextEffectSet.set(this.nCurrentEffect, aState);
+		} else {
+			window.app.console.log(
+				`AnimatedElement(${this.getId()}).saveState(${nAnimationNodeId}): ` +
+					`current effect not found: ${this.nCurrentEffect}`,
+			);
+		}
 	}
 
 	/** restoreState
@@ -960,7 +985,23 @@ class AnimatedElement {
 				')',
 		);
 
-		const aState = this.aStateSet.get(nAnimationNodeId);
+		let aState = this.aStateSet.get(nAnimationNodeId);
+
+		this.activeAnimationNodes.forEach((nodes, effect, map) => {
+			if (nodes.has(nAnimationNodeId)) {
+				nodes.delete(nAnimationNodeId);
+				// if an effect has been completely removed restore the state saved
+				// when effect started
+				if (nodes.size === 0) {
+					map.delete(effect);
+					const state = this.aStateOnNextEffectSet.get(effect);
+					if (state) aState = state;
+					this.aStateOnNextEffectSet.delete(effect);
+				}
+				return;
+			}
+		});
+
 		const bRet = true;
 		if (bRet) {
 			this.nCenterX = aState.nCenterX;
@@ -970,7 +1011,7 @@ class AnimatedElement {
 			this.nRotationAngle = aState.nRotationAngle;
 			this.nSkewX = aState.nSkewX;
 			this.nSkewY = aState.nSkewY;
-			this.aTMatrix = aState.aTMatrix;
+			this.aTMatrix = DOMMatrix.fromMatrix(aState.aTMatrix);
 			this.nOpacity = aState.nOpacity;
 			this.aFillColor = aState.aFillColor;
 			this.aLineColor = aState.aLineColor;
@@ -980,6 +1021,8 @@ class AnimatedElement {
 				aState.transitionFiltersState,
 			);
 		}
+		this.aStateSet.delete(nAnimationNodeId);
+
 		// we need to trigger at least one request animation frame for SlideRenderer.render method
 		// maybe we could implement a SlideRenderer.oneShot method.
 		this.notifyAnimationStart();
