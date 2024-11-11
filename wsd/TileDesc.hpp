@@ -130,6 +130,11 @@ public:
                _mode == other._mode;
     }
 
+    bool operator!=(const TileDesc& other) const
+    {
+        return !(*this == other);
+    }
+
     // used to cache a hash of the key elements compared in ==
     uint32_t equalityHash() const
     {
