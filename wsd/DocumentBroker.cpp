@@ -33,7 +33,6 @@
 #include <Poco/StreamCopier.h>
 #include <Poco/URI.h>
 
-#include "Admin.hpp"
 #include "Authorization.hpp"
 #include "ClientSession.hpp"
 #include "Common.hpp"
@@ -63,12 +62,13 @@
 #include <wsd/Process.hpp>
 
 #if !MOBILEAPP
+#include "Admin.hpp"
 #include <wopi/CheckFileInfo.hpp>
 #include <wopi/StorageConnectionManager.hpp>
 #include <net/HttpHelper.hpp>
+#include <sys/wait.h>
 #endif
 #include <sys/types.h>
-#include <sys/wait.h>
 
 using namespace LOOLProtocol;
 
@@ -3141,7 +3141,7 @@ void DocumentBroker::setLoaded()
         LOG_INF("Document [" << _docKey << "] loaded in " << _loadDuration
                              << ", saving-timeout set to " << _saveManager.getSavingTimeout()
                              << ", doc PSS: " << Util::getMemoryUsagePSS(_childProcess->getPid())
-                             << " KB, total PSS: " << Util::getProcessTreePss(getpid()) << " KB");
+                             << " KB, total PSS: " << Util::getProcessTreePss(Util::getProcessId()) << " KB");
 
         if(_unitWsd != nullptr)
         {
@@ -4505,6 +4505,8 @@ bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> 
     return false;
 }
 
+#if !MOBILEAPP
+
 void DocumentBroker::handleClipboardRequest(ClipboardRequest type,  const std::shared_ptr<StreamSocket> &socket,
                                             const std::string &viewId, const std::string &tag,
                                             const std::shared_ptr<std::string> &data)
@@ -4562,6 +4564,8 @@ void DocumentBroker::handleMediaRequest(const std::string_view range,
         }
     }
 }
+
+#endif
 
 bool DocumentBroker::requestTileRendering(TileDesc& tile, bool forceKeyframe, int version,
                                           const std::chrono::steady_clock::time_point now,
@@ -5246,7 +5250,7 @@ void DocumentBroker::dumpState(std::ostream& os)
     os << "\n  backgroundAutoSave: " << (_backgroundAutoSave?"true":"false");
     os << "\n  backgroundManualSave: " << (_backgroundManualSave?"true":"false");
     os << "\n  isViewFileExtension: " << _isViewFileExtension;
-    os << "\n  Total PSS: " << Util::getProcessTreePss(getpid()) << " KB";
+    os << "\n  Total PSS: " << Util::getProcessTreePss(Util::getProcessId()) << " KB";
     if (childPid)
         os << "\n  Doc PSS: " << Util::getProcessTreePss(childPid) << " KB";
     if constexpr (!Util::isMobileApp())

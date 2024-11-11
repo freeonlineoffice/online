@@ -829,7 +829,7 @@ size_t Admin::getTotalMemoryUsage() const
     // memory to the forkit; and then count only dirty pages in the clients
     // since we know that they share everything else with the forkit.
     const size_t forkitRssKb = Util::getMemoryUsageRSS(_forKitPid);
-    const size_t wsdPssKb = Util::getMemoryUsagePSS(getpid());
+    const size_t wsdPssKb = Util::getMemoryUsagePSS(Util::getProcessId());
     const size_t kitsDirtyKb = _model.getKitsMemoryUsage();
     const size_t totalMem = wsdPssKb + forkitRssKb + kitsDirtyKb;
 
@@ -839,7 +839,7 @@ size_t Admin::getTotalMemoryUsage() const
 size_t Admin::getTotalCpuUsage() const
 {
     const size_t forkitJ = Util::getCpuUsage(_forKitPid);
-    const size_t wsdJ = Util::getCpuUsage(getpid());
+    const size_t wsdJ = Util::getCpuUsage(Util::getProcessId());
 
     if (_lastJiffies == 0)
     {

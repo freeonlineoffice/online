@@ -169,7 +169,7 @@ void Session::parseDocOptions(const StringVector& tokens, int& part, std::string
         }
         else if (name == "timezone")
         {
-            _timezone= std::move(value);
+            _timeZone= std::move(value);
             ++offset;
         }
         else if (name == "watermarkText")
@@ -358,7 +358,7 @@ void Session::dumpState(std::ostream& os)
        << "\n\t\tuserId: " << Anonymizer::anonymize(_userId)
        << "\n\t\tuserName: " << Anonymizer::anonymize(_userName)
        << "\n\t\tlang: " << _lang
-       << "\n\t\ttimezone: " << _timezone
+       << "\n\t\ttimezone: " << _timeZone
        << '\n';
 }
 

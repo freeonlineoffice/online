@@ -545,15 +545,6 @@ asyncConnect(const std::string& host, const std::string& port, const bool isSSL,
     AsyncDNS::lookup(host, callback, dumpState);
 }
 
-#else //!MOBILEAPP
-
-bool HostEntry::isLocalhost() const
-{
-    return true;
-}
-
-#endif //!MOBILEAPP
-
 std::shared_ptr<StreamSocket>
 connect(const std::string& host, const std::string& port, const bool isSSL,
         const std::shared_ptr<ProtocolHandlerInterface>& protocolHandler)
@@ -650,6 +641,15 @@ connect(std::string uri, const std::shared_ptr<ProtocolHandlerInterface>& protoc
 
     return connect(host, port, isSsl, protocolHandler);
 }
+
+#else //!MOBILEAPP
+
+bool HostEntry::isLocalhost() const
+{
+    return true;
+}
+
+#endif //!MOBILEAPP
 
 bool parseUri(std::string uri, std::string& scheme, std::string& host, std::string& port,
               std::string& pathAndQuery)

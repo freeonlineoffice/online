@@ -280,15 +280,9 @@ namespace Util
         return replace(std::move(r), "\n", " / ");
     }
 
-#if defined __linux__
-    static thread_local pid_t ThreadTid = 0;
-
-    pid_t getThreadId()
-#else
     static thread_local long ThreadTid = 0;
 
     long getThreadId()
-#endif
     {
         // Avoid so many redundant system calls
 #if defined __linux__
@@ -353,7 +347,7 @@ namespace Util
         TraceEvent::emitOneRecordingIfEnabled("{\"name\":\"thread_name\",\"ph\":\"M\",\"args\":{\"name\":\""
                                               + s
                                               + "\"},\"pid\":"
-                                              + std::to_string(getpid())
+                                              + std::to_string(Util::getProcessId())
                                               + ",\"tid\":"
                                               + std::to_string(Util::getThreadId())
                                               + "},\n");
@@ -883,8 +877,8 @@ namespace Util
             {
                 std::cerr << domain << ": Sleeping " << delaySecs
                           << " seconds to give you time to attach debugger to process "
-                          << getpid() << std::endl
-                          << "sudo gdb --pid=" << getpid() << std::endl;
+                          << Util::getProcessId() << std::endl
+                          << "sudo gdb --pid=" << Util::getProcessId() << std::endl;
                 std::this_thread::sleep_for(std::chrono::seconds(delaySecs));
             }
         }

@@ -9,12 +9,14 @@
 
 #pragma once
 
+#if !MOBILEAPP
 #include <poll.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#endif
 
 #include <atomic>
 #include <cassert>
@@ -162,15 +164,12 @@ public:
             return;
 
         // Doesn't block on sockets; no error handling needed.
-        if constexpr (!Util::isMobileApp())
-        {
-            ::close(_fd);
-            LOG_DBG("Closed socket " << toStringImpl());
-        }
-        else
-        {
-            fakeSocketClose(_fd);
-        }
+#if !MOBILEAPP
+        ::close(_fd);
+        LOG_DBG("Closed socket " << toStringImpl());
+#else
+        fakeSocketClose(_fd);
+#endif
     }
 
     /// Returns true if this socket FD has been shutdown, but not necessarily closed.
@@ -223,10 +222,11 @@ public:
         {
             LOG_TRC("Socket shutdown RDWR. " << *this);
             setShutdown();
-            if constexpr (!Util::isMobileApp())
-                ::shutdown(_fd, SHUT_RDWR);
-            else
-                fakeSocketShutdown(_fd);
+#if !MOBILEAPP
+            ::shutdown(_fd, SHUT_RDWR);
+#else
+            fakeSocketShutdown(_fd);
+#endif
         }
     }
 
@@ -247,6 +247,7 @@ public:
     /// Returns the total capacity of all data buffers.
     virtual std::size_t totalBufferCapacity() const { return 0; }
 
+#if !MOBILEAPP
     /// manage latency issues around packet aggregation
     void setNoDelay()
     {
@@ -267,10 +268,10 @@ public:
         }
     }
 
-#if !MOBILEAPP
     /// Uses peercreds to get prisoner PID if present or -1
     int getPid() const;
-#endif
+
+#endif // !MOBILEAPP
 
     /// Sets the kernel socket send buffer in size bytes.
     /// Note: TCP will allocate twice this size for admin purposes,
@@ -397,7 +398,11 @@ public:
     // close in advance of the ctor
     void closeFD(const SocketPoll& /*rPoll*/)
     {
+#if !MOBILEAPP
         ::close(_fd);
+#else
+        fakeSocketClose(_fd);
+#endif
         // Invalidate the FD by negating to preserve the original value.
         if (_fd > 0)
             _fd = -_fd;
@@ -469,8 +474,10 @@ private:
 
     void init()
     {
+#if !MOBILEAPP
         if (_type != Type::Unix && _fd >= 0)
             setNoDelay();
+#endif
         _ignoreInput = false;
         _noShutdown = false;
         _sendBufferSize = DefaultSendBufferSize;
@@ -888,10 +895,11 @@ public:
         // wakeup the main-loop.
         int rc;
         do {
-            if constexpr (!Util::isMobileApp())
-                rc = ::write(fd, "w", 1);
-            else
-                rc = fakeSocketWrite(fd, "w", 1);
+#if !MOBILEAPP
+            rc = ::write(fd, "w", 1);
+#else
+            rc = fakeSocketWrite(fd, "w", 1);
+#endif
         } while (rc == -1 && errno == EINTR);
 
         if (rc == -1 && errno != EAGAIN && errno != EWOULDBLOCK)
@@ -1163,7 +1171,9 @@ private:
     std::thread::id _owner;
     /// Flag the thread to stop.
     std::atomic<int64_t> _threadStarted;
+#if !MOBILEAPP
     std::atomic<uint64_t> _watchdogTime;
+#endif
 
     /// Time-stamp for profiling
     int _ownerThreadId;
@@ -1343,6 +1353,8 @@ public:
             writeOutgoingData();
     }
 
+#if !MOBILEAPP
+
     /// Sends data with file descriptor as control data.
     /// Can be used only with Unix sockets.
     void sendFDs(const char* data, const uint64_t len, const std::vector<int>& fds)
@@ -1391,6 +1403,7 @@ public:
         else
             LOG_TRC("Wrote " << wrote << " bytes of " << len);
     }
+#endif // !MOBILEAPP
 
     /// Reads data by invoking readData() and buffering.
     /// Returns the last return from writeData. 0 implies socket is closed.
@@ -1829,6 +1842,7 @@ protected:
             _socketHandler->onHandshakeFail();
     }
 
+#if !MOBILEAPP
     /// Reads data with file descriptors as control data if received.
     /// Can be used only with Unix sockets.
     int readFDs(char* buf, int len, std::vector<int>& fds)
@@ -1872,6 +1886,7 @@ protected:
 
         return ret;
     }
+#endif // !MOBILEAPP
 
     /// Override to handle reading of socket data differently.
     virtual int readData(char* buf, int len)

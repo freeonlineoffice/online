@@ -105,8 +105,12 @@
 #include <wsd/Process.hpp>
 #include <common/JsonUtil.hpp>
 #include <common/FileUtil.hpp>
+
+#if !MOBILEAPP
 #include <common/JailUtil.hpp>
 #include <common/Watchdog.hpp>
+#endif
+
 #include <common/Log.hpp>
 #include <MobileApp.hpp>
 #include <Protocol.hpp>
@@ -1528,10 +1532,10 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
             {
                 fprintf(TraceEventFile, "[\n");
                 // Output a metadata event that tells that this is the WSD process
-                fprintf(TraceEventFile, "{\"name\":\"process_name\",\"ph\":\"M\",\"args\":{\"name\":\"WSD\"},\"pid\":%d,\"tid\":%ld},\n",
-                        getpid(), (long) Util::getThreadId());
-                fprintf(TraceEventFile, "{\"name\":\"thread_name\",\"ph\":\"M\",\"args\":{\"name\":\"Main\"},\"pid\":%d,\"tid\":%ld},\n",
-                        getpid(), (long) Util::getThreadId());
+                fprintf(TraceEventFile, "{\"name\":\"process_name\",\"ph\":\"M\",\"args\":{\"name\":\"WSD\"},\"pid\":%ld,\"tid\":%ld},\n",
+                        Util::getProcessId(), Util::getThreadId());
+                fprintf(TraceEventFile, "{\"name\":\"thread_name\",\"ph\":\"M\",\"args\":{\"name\":\"Main\"},\"pid\":%ld,\"tid\":%ld},\n",
+                        Util::getProcessId(), Util::getThreadId());
             }
         }
     }
@@ -1727,7 +1731,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         CleanupChildRoot = ChildRoot;
 
         // Encode the process id into the path for parallel re-use of jails/
-        ChildRoot += std::to_string(getpid()) + '-' + Util::rng::getHexString(8) + '/';
+        ChildRoot += std::to_string(Util::getProcessId()) + '-' + Util::rng::getHexString(8) + '/';
 
         LOG_DBG("Normalizing childroot: " << ChildRoot);
         ChildRoot = Poco::Path(ChildRoot).makeDirectory().makeAbsolute().toString();
@@ -3652,7 +3656,9 @@ int LOOLWSD::innerMain()
     // allocate port & hold temporarily.
     std::shared_ptr<ServerSocket> serverPort = Server->findClientPort();
 
+#if !MOBILEAPP
     TmpFontDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH;
+#endif
 
     // Start the internal prisoner server and spawn forkit,
     // which in turn forks first child.
@@ -3872,8 +3878,10 @@ int LOOLWSD::innerMain()
 
     SigUtil::addActivity("shutting down");
 
+#if !MOBILEAPP
     // Lots of polls will stop; stop watching them first.
     SocketPoll::PollWatchdog.reset();
+#endif
 
     // Stop the listening to new connections
     // and wait until sockets close.
@@ -3897,7 +3905,6 @@ int LOOLWSD::innerMain()
 
     // atexit handlers tend to free Admin before Documents
     LOG_INF("Exiting. Cleaning up lingering documents.");
-#if !MOBILEAPP
     if (remoteFontConfigThread)
     {
         LOG_DBG("Stopping remote font config thread");
@@ -3911,7 +3918,6 @@ int LOOLWSD::innerMain()
                 "now.");
         SigUtil::requestShutdown();
     }
-#endif
 
     SigUtil::addActivity("wait save & close");
 
@@ -4109,10 +4115,6 @@ void LOOLWSD::cleanup([[maybe_unused]] int returnValue)
 
 int LOOLWSD::main(const std::vector<std::string>& /*args*/)
 {
-#if MOBILEAPP && !defined IOS
-    SigUtil::resetTerminationFlags();
-#endif
-
     int returnValue = EXIT_SOFTWARE;
 
     try {

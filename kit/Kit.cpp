@@ -80,11 +80,11 @@
 #include "RenderTiles.hpp"
 #include "KitWebSocket.hpp"
 #include <common/ConfigUtil.hpp>
-#include <common/TraceEvent.hpp>
-#include <common/Watchdog.hpp>
 #include <common/Uri.hpp>
 
 #if !MOBILEAPP
+#include <common/TraceEvent.hpp>
+#include <common/Watchdog.hpp>
 #include <common/security.h>
 #include <common/SigUtil.hpp>
 #include <common/Seccomp.hpp>
@@ -1353,9 +1353,10 @@ bool Document::joinThreads()
     if (!getLOKit()->joinThreads())
         return false;
 
+#if !MOBILEAPP
     if (SocketPoll::PollWatchdog)
         SocketPoll::PollWatchdog->joinThread();
-
+#endif
     _deltaPool.stop();
     return true;
 }
@@ -1367,8 +1368,10 @@ void Document::startThreads()
 
     getLOKit()->startThreads();
 
+#if !MOBILEAPP
     if (SocketPoll::PollWatchdog)
         SocketPoll::PollWatchdog->startThread();
+#endif
 }
 
 void Document::handleSaveMessage(const std::string &)
@@ -2663,7 +2666,7 @@ void Document::flushAndExit(int code)
 void Document::dumpState(std::ostream& oss)
 {
     oss << "Kit Document:\n"
-        << "\n\tpid: " << getpid()
+        << "\n\tpid: " << Util::getProcessId()
         << "\n\tstop: " << _stop
         << "\n\tjailId: " << _jailId
         << "\n\tdocKey: " << _docKey
