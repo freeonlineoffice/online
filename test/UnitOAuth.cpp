@@ -79,7 +79,7 @@ public:
             }
             else
             {
-                LOK_ASSERT_FAIL("Unexpected phase: " + toString(_phase));
+                LOK_ASSERT_FAIL("Unexpected phase: " << name(_phase));
             }
         }
         catch (const std::exception& ex)
@@ -156,7 +156,7 @@ public:
                 passTest("Finished all cases successfully");
                 break;
             default:
-                LOK_ASSERT_FAIL("Unexpected phase: " + toString(_phase));
+                LOK_ASSERT_FAIL("Unexpected phase: " << name(_phase));
         }
 
         return true;

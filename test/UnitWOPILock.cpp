@@ -84,7 +84,7 @@ public:
         }
         else
         {
-            LOK_ASSERT_FAIL("Unexpected lock-state change while in " + toString(_phase));
+            LOK_ASSERT_FAIL("Unexpected lock-state change while in " << name(_phase));
         }
 
         return nullptr; // Success.
@@ -212,7 +212,7 @@ public:
         }
         else
         {
-            LOK_ASSERT_FAIL("Unexpected lock-state change while in " + toString(_phase));
+            LOK_ASSERT_FAIL("Unexpected lock-state change while in " << name(_phase));
         }
 
         return nullptr; // Success.
@@ -414,7 +414,7 @@ public:
         }
         else
         {
-            LOK_ASSERT_FAIL("Unexpected lock-state change while in " + toString(_phase));
+            LOK_ASSERT_FAIL("Unexpected lock-state change while in " << name(_phase));
         }
 
         return nullptr; // Success.
@@ -534,7 +534,7 @@ public:
         }
         else
         {
-            LOK_ASSERT_FAIL("Unexpected lock-state change while in " + toString(_phase));
+            LOK_ASSERT_FAIL("Unexpected lock-state change while in " << name(_phase));
         }
 
         return nullptr; // Success.
@@ -687,7 +687,7 @@ public:
         }
         else
         {
-            LOK_ASSERT_FAIL("Unexpected lock-state change while in " + toString(_phase));
+            LOK_ASSERT_FAIL("Unexpected lock-state change while in " << name(_phase));
         }
 
         return nullptr; // Success.

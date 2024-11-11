@@ -491,7 +491,8 @@ void HTTPServerTest::testConvertToWithForwardedIP_Deny()
     }
     catch(const Poco::Exception& exc)
     {
-        LOK_ASSERT_FAIL(exc.displayText() + ": " + (exc.nested() ? exc.nested()->displayText() : ""));
+        LOK_ASSERT_FAIL(exc.displayText()
+                        << ": " << (exc.nested() ? exc.nested()->displayText() : ""));
     }
 }
 
@@ -549,7 +550,8 @@ void HTTPServerTest::testConvertToWithForwardedIP_Allow()
     }
     catch(const Poco::Exception& exc)
     {
-        LOK_ASSERT_FAIL(exc.displayText() + ": " + (exc.nested() ? exc.nested()->displayText() : ""));
+        LOK_ASSERT_FAIL(exc.displayText()
+                        << ": " << (exc.nested() ? exc.nested()->displayText() : ""));
     }
 }
 
@@ -601,7 +603,8 @@ void HTTPServerTest::testConvertToWithForwardedIP_DenyMulti()
     }
     catch(const Poco::Exception& exc)
     {
-        LOK_ASSERT_FAIL(exc.displayText() + ": " + (exc.nested() ? exc.nested()->displayText() : ""));
+        LOK_ASSERT_FAIL(exc.displayText()
+                        << ": " << (exc.nested() ? exc.nested()->displayText() : ""));
     }
 }
 
