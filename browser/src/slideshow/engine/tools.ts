@@ -232,7 +232,7 @@ class RGBColor {
 			1.0,
 		]);
 	}
-
+	/* eslint-disable */
 	toString(bClamped: boolean = false): string {
 		let aRGBColor;
 		if (bClamped) {
@@ -247,6 +247,8 @@ class RGBColor {
 
 		return 'rgb(' + nRed + ',' + nGreen + ',' + nBlue + ')';
 	}
+
+	/* eslint-enable */
 
 	static interpolate(
 		aStartRGB: RGBColor,
