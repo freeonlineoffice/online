@@ -39,7 +39,7 @@ public:
     std::unique_ptr<http::Response>
     assertGetFileRequest(const Poco::Net::HTTPRequest& /*request*/) override
     {
-        LOG_TST("Testing " << toString(_scenario));
+        LOG_TST("Testing " << name(_scenario));
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         assertGetFileCount();
@@ -50,7 +50,7 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& /*request*/) override
     {
-        LOG_TST("Testing " << toString(_scenario));
+        LOG_TST("Testing " << name(_scenario));
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         assertPutFileCount();
@@ -74,7 +74,7 @@ public:
 
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Testing " << toString(_scenario) << " with dockey [" << docKey << "] closed.");
+        LOG_TST("Testing " << name(_scenario) << " with dockey [" << docKey << "] closed.");
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         std::string expectedContents;

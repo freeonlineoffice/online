@@ -70,7 +70,7 @@ public:
 
     void invokeWSDTest() override
     {
-        LOG_TRC("invokeWSDTest: " << toString(_phase));
+        LOG_TRC("invokeWSDTest: " << name(_phase));
         switch (_phase)
         {
             case Phase::Load:
