@@ -1279,7 +1279,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
     std::string brandCSS(Poco::format(linkCSS, responseRoot, std::string(BRANDING)));
     std::string brandJS(Poco::format(scriptJS, responseRoot, std::string(BRANDING)));
 
-    if (ConfigUtil::isSupportKeyEnabled())
+    if constexpr (ConfigUtil::isSupportKeyEnabled())
     {
         const std::string keyString = config.getString("support_key", "");
         SupportKey key(keyString);
@@ -1682,7 +1682,7 @@ void FileServerRequestHandler::preprocessAdminFile(const HTTPRequest& request,
     std::string brandJS(Poco::format(scriptJS, responseRoot, std::string(BRANDING)));
     std::string brandFooter;
 
-    if (ConfigUtil::isSupportKeyEnabled())
+    if constexpr (ConfigUtil::isSupportKeyEnabled())
     {
         const auto& config = Application::instance().config();
         const std::string keyString = config.getString("support_key", "");

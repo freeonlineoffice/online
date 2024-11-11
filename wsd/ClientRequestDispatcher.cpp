@@ -171,7 +171,7 @@ findOrCreateDocBroker(DocumentBroker::ChildType type, const std::string& uri,
             LOG_WRN("Maximum number of open documents of "
                     << LOOLWSD::MaxDocuments << " reached while loading new session [" << id
                     << "] for docKey [" << docKey << ']');
-            if (ConfigUtil::isSupportKeyEnabled())
+            if constexpr (ConfigUtil::isSupportKeyEnabled())
             {
                 const std::string error = Poco::format(PAYLOAD_UNAVAILABLE_LIMIT_REACHED,
                                                        LOOLWSD::MaxDocuments, LOOLWSD::MaxConnections);
@@ -1951,7 +1951,7 @@ bool ClientRequestDispatcher::handleClientWsUpgrade(const Poco::Net::HTTPRequest
         {
             LOG_INF("Limit on maximum number of connections of " << LOOLWSD::MaxConnections
                                                                  << " reached.");
-            if (ConfigUtil::isSupportKeyEnabled())
+            if constexpr (ConfigUtil::isSupportKeyEnabled())
             {
                 shutdownLimitReached(ws);
                 return true;
