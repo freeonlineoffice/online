@@ -479,7 +479,7 @@ else
 CLEANUP_COMMAND=if test -s ./loolwsd -a -x ./loolwsd; then echo "Cleaning up..." && ./loolwsd --disable-lool-user-checking --cleanup --o:logging.level=trace || rm -f ./loolwsd; fi
 endif
 
-CLEANUP_COVERAGE=rm -rf ${abs_top_srcdir}/gcov; find . -iname "*.gc??" -delete
+CLEANUP_COVERAGE=rm -rf ${abs_top_srcdir}/gcov; find . -iname "*.gcda" -delete
 
 if HAVE_LO_PATH
 
