@@ -151,7 +151,7 @@ class PresenterConsole {
 
 		if (this._slides) {
 			let img;
-			let elem = this._slides.querySelector('#slides');
+			let elem = this._slides.querySelector('#slides-preview');
 			for (let index = 0; index < this._previews.length; index++) {
 				img = this._proxyPresenter.document.createElement('img');
 				img.src = document.querySelector(
@@ -242,7 +242,7 @@ class PresenterConsole {
 			.getPropertyValue('--color-slideshow');
 		let slideShowFontFamily = window
 			.getComputedStyle(document.documentElement)
-			.getPropertyValue('--cool-font');
+			.getPropertyValue('--lool-font');
 
 		elem.style.backgroundColor = slideShowBGColor;
 		elem.style.color = slideShowColor;
@@ -318,7 +318,6 @@ class PresenterConsole {
 		this._notes.appendChild(elem);
 		elem = this._proxyPresenter.document.createElement('div');
 		elem.style.textAlign = 'center';
-		let button = this._proxyPresenter.document.createElement('button');
 
 		this._notes.appendChild(elem);
 
@@ -326,7 +325,7 @@ class PresenterConsole {
 		this._slides.style.height = '100%';
 		this._slides.style.width = '100%';
 		elem = this._proxyPresenter.document.createElement('div');
-		elem.id = 'slides';
+		elem.id = 'slides-preview';
 		elem.style.overflow = 'auto';
 		elem.style.height = '80vh';
 		elem.style.width = '100%';
@@ -335,12 +334,6 @@ class PresenterConsole {
 			'click',
 			L.bind(this._onClickSlides, this),
 		);
-		elem = this._proxyPresenter.document.createElement('div');
-		elem.style.textAlign = 'center';
-		button = this._proxyPresenter.document.createElement('button');
-		button.innerText = _('Close');
-		button.addEventListener('click', L.bind(this._onHideSlides, this));
-		elem.appendChild(button);
 		this._slides.appendChild(elem);
 
 		elem = this._proxyPresenter.document.querySelector('#toolbar');
@@ -462,7 +455,16 @@ class PresenterConsole {
 				}
 				break;
 			case 'slides':
-				this._onShowSlides();
+				// toggle based on slides preview present or not
+				if (
+					this._proxyPresenter.document.querySelector(
+						'#slides-preview',
+					)
+				) {
+					this._onHideSlides();
+				} else {
+					this._onShowSlides();
+				}
 				break;
 		}
 
@@ -471,7 +473,7 @@ class PresenterConsole {
 
 	_onShowSlides() {
 		let elem = this._proxyPresenter.document.querySelector('#slides');
-		elem.disable = true;
+		this.toggleButtonState(elem, true);
 
 		elem =
 			this._proxyPresenter.document.querySelector(
@@ -507,7 +509,7 @@ class PresenterConsole {
 		}
 	}
 
-	_onHideSlides(e) {
+	_onHideSlides() {
 		let elem = this._proxyPresenter.document.querySelector(
 			'#presentation-content',
 		);
@@ -526,8 +528,7 @@ class PresenterConsole {
 		elem.appendChild(this._second);
 
 		elem = this._proxyPresenter.document.querySelector('#slides');
-		elem.disable = false;
-		e.stopPropagation();
+		this.toggleButtonState(elem, false);
 	}
 
 	_onClickSlides(e) {
@@ -944,7 +945,7 @@ class PresenterConsole {
 		this._previews[e.part] = e.tile.src;
 		this._lastIndex = e.part;
 
-		let elem = this._slides.querySelector('#slides');
+		let elem = this._slides.querySelector('#slides-preview');
 		let img = elem.children.item(e.part);
 		if (img) {
 			img.src = e.tile.src;
