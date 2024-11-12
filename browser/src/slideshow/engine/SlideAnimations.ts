@@ -195,8 +195,17 @@ function createAnimationNode(
 					aNodeContext,
 				)
 			) {
-				aCreatedContainer.removeAllChildrenNodes();
-				break;
+				// Discard the whole effect except animation node is a Set node and
+				// it's not the only node included into the effect.
+				if (
+					!(
+						aChildrenArray.length !== 1 &&
+						getAnimationNodeType(aChildrenArray[i]) === AnimationNodeType.Set
+					)
+				) {
+					aCreatedContainer.removeAllChildrenNodes();
+					break;
+				}
 			}
 		}
 	}
