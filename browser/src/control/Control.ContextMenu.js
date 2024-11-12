@@ -127,6 +127,7 @@ L.Control.ContextMenu = L.Control.extend({
 	_onKeyDown: function(e) {
 		if (e.originalEvent.keyCode === 27 /* ESC */) {
 			$.contextMenu('destroy', '.leaflet-layer');
+			this.hasContextMenu = false;
 		}
 	},
 
@@ -398,6 +399,5 @@ L.installContextMenu = function(options) {
 			$menu.css('right', $menu.css('left'));
 		};
 	}
-
 	$.contextMenu(options);
 };
