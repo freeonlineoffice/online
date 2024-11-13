@@ -1118,8 +1118,9 @@ L.Control.Zotero = L.Control.extend({
 			}
 		}
 		if (element === 'edit' && data.id === 'zoterosearch') {
-			if (data.value)
-				document.getElementById('zoterolist').filterEntries(data.value);
+			const query = data.querySelector('input').value;
+			if (query)
+				document.getElementById('zoterolist').filterEntries(query);
 			return;
 		}
 		if (data.id == 'ok') {
