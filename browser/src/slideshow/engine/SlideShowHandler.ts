@@ -846,7 +846,7 @@ class SlideShowHandler {
 
 		this.notifySlideStart(nNewSlide, nOldSlide);
 
-		if (this.isEnabled() && !bSkipSlideTransition) {
+		if (this.isEnabled() && this.isGlSupported() && !bSkipSlideTransition) {
 			// create slide transition and add to activity queue
 			if (
 				(nOldSlide === undefined && this.isStarting) ||
