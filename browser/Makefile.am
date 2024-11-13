@@ -162,7 +162,7 @@ $(eval $(call file_targets,$(LOOL_CSS)))
 WORKER_NODE_MODULES_JS =\
 	node_modules/fzstd/umd/index.js
 
-$(srcdir)/src/layer/tile/CanvasTileWorker.js: \
+$(DIST_FOLDER)/src/layer/tile/CanvasTileWorker.js: \
 	$(srcdir)/src/layer/tile/CanvasTileWorker.js.m4 \
 	$(srcdir)/src/layer/tile/CanvasTileWorkerSrc.js \
 	$(WORKER_NODE_MODULES_JS)
@@ -281,7 +281,6 @@ LOOL_JS_LST =\
 	src/layer/marker/Cursor.ts \
 	src/layer/vector/CanvasOverlay.ts \
 	src/canvas/sections/ScrollSection.ts \
-	src/layer/tile/CanvasTileWorker.js \
 	src/layer/tile/CanvasTileLayer.js \
 	src/layer/vector/CDarkOverlay.ts \
 	src/layer/SplitPanesContext.ts \
@@ -560,7 +559,7 @@ LOOL_TS_SRC = $(filter %.ts,$(LOOL_JS_WEBORDER))
 
 # beware these are not helpfully ordered
 LOOL_TS_JS_DST = $(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_TS_SRC))
-LOOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_SRC)) $(LOOL_TS_JS_DST)
+LOOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_SRC)) $(LOOL_TS_JS_DST) $(DIST_FOLDER)/src/layer/tile/CanvasTileWorker.js
 # should be no lingering / obsolete files:
 LOOL_ASSERT_INTERSECT = $(filter $(LOOL_JS_SRC), $(patsubst %.ts,%.js,$(LOOL_TS_SRC)))
 
@@ -1112,7 +1111,6 @@ pot:
 		src/app/DocEvents.ts \
 		src/app/GraphicSelectionMiddleware.ts \
 		src/errormessages.js \
-		src/layer/tile/CanvasTileWorker.js \
 		src/layer/tile/CanvasTileLayer.js \
 		src/canvas/sections/CommentListSection.ts \
 		src/canvas/sections/CommentSection.ts \
