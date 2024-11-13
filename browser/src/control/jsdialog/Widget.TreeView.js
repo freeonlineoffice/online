@@ -949,6 +949,12 @@ class TreeViewControl {
 		if (entry.enabled === false)
 			selectionElement.disabled = true;
 
+		if (treeViewData.enabled !== false) {
+			selectionElement.addEventListener('change', () => {
+				this.changeCheckboxStateOnClick(selectionElement, treeViewData, builder, entry);
+			});
+		}
+
 		return selectionElement;
 	}
 
@@ -1158,20 +1164,15 @@ class TreeViewControl {
 				() => { this.expandEntry(tr, treeViewData, entry, builder); };
 
 		if (expander && entry.children && entry.children.length) {
-			if (entry.ondemand)
+			if (entry.ondemand) {
 				L.DomEvent.on(expander, 'click', expandFunction);
-			else
-				$(expander).click(toggleFunction);
-
-			// block expand/collapse on checkbox
-			if (entry.state)
-				$(selectionElement).click((e) => { e.preventDefault(); });
-		}
-
-		if (selectionElement && treeViewData.enabled !== false) {
-			$(selectionElement).change(() => {
-				this.changeCheckboxStateOnClick(selectionElement, treeViewData, builder, entry);
-			});
+			} else {
+				$(expander).click(((e) => {
+					if (entry.state && e.target === selectionElement)
+						e.preventDefault(); // do not toggle on checkbox
+					toggleFunction();
+				}));
+			}
 		}
 	}
 
@@ -1215,6 +1216,9 @@ class TreeViewControl {
 	createClickFunction(parentContainer, checkbox, select, activate,
 		builder, treeViewData, entry) {
 		return (e) => {
+			if (e.target === checkbox)
+				return; // allow default handler to trigger change event
+
 			if (L.DomUtil.hasClass(parentContainer, 'disabled')) {
 				e.preventDefault();
 				return;
