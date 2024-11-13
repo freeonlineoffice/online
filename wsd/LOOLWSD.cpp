@@ -672,6 +672,7 @@ std::string LOOLWSD::ServerName;
 std::string LOOLWSD::FileServerRoot;
 std::string LOOLWSD::ServiceRoot;
 std::string LOOLWSD::TmpFontDir;
+std::string LOOLWSD::TmpTemplateDir;
 std::string LOOLWSD::LOKitVersion;
 std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
@@ -1340,6 +1341,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         { "extra_export_formats.impress_png", "false" },
         { "extra_export_formats.impress_svg", "false" },
         { "extra_export_formats.impress_tiff", "false" },
+        { "remote_template_config.url", ""},
+        { "remote_font_config.url", ""},
     };
 
     // Set default values, in case they are missing from the config file.
@@ -3596,7 +3599,8 @@ int LOOLWSD::innerMain()
     assert(Server && "The LOOLWSDServer instance does not exist.");
     Server->findClientPort();
 
-    TmpFontDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH;
+    TmpFontDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH + "/fonts";
+    TmpTemplateDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH + "/templates";
 
     // Start the internal prisoner server and spawn forkit,
     // which in turn forks first child.
@@ -3667,6 +3671,18 @@ int LOOLWSD::innerMain()
     catch (const Poco::Exception&)
     {
         LOG_DBG("No remote_font_config");
+    }
+
+    std::unique_ptr<RemoteTemplateConfigPoll> remoteTemplateConfigThread;
+    try
+    {
+        // Fetch font settings from server if configured
+        remoteTemplateConfigThread = std::make_unique<RemoteTemplateConfigPoll>(config());
+        remoteTemplateConfigThread->start();
+    }
+    catch (const Poco::Exception&)
+    {
+        LOG_DBG("No remote_template_config");
     }
 #endif
 
