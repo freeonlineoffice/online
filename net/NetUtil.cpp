@@ -295,6 +295,7 @@ AsyncDNS::~AsyncDNS()
 
 void AsyncDNS::resolveDNS()
 {
+    Util::setThreadName("asyncdns");
     std::unique_lock<std::mutex> guard(_lock);
     while (true)
     {
