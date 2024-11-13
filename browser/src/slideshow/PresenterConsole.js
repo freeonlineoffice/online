@@ -265,10 +265,10 @@ class PresenterConsole {
 		elem.style.display = 'flex';
 		elem.style.flexDirection = 'column';
 		elem.style.flex = '1';
-		elem.style.height = '100vh';
-		elem.style.width = '60vw';
+		// consistent gap between label and presentation preview
+		elem.style.gap = '2vh';
 		elem.style.marginTop = '5vw';
-		elem.style.marginLeft = elem.style.marginRight = '2vw';
+		elem.style.marginLeft = '2vw';
 
 		elem = this._proxyPresenter.document.querySelector('#title-current');
 		elem.style.display = 'flex';
@@ -281,7 +281,9 @@ class PresenterConsole {
 		elem = this._proxyPresenter.document.querySelector(
 			'#current-presentation',
 		);
+		// this will handle the responsiveness on resize for current-presentation window
 		elem.style.width = '56vw';
+		elem.style.height = '67vh';
 
 		this._second = elem = this._proxyPresenter.document.querySelector(
 			'#second-presentation',
@@ -290,10 +292,9 @@ class PresenterConsole {
 		elem.style.flexDirection = 'column';
 		elem.style.alignItems = 'center';
 		elem.style.flex = '1';
-		elem.style.height = '100vh';
-		elem.style.width = '40vw';
+		// consistent gap between label and presentation preview
+		elem.style.gap = '2vh';
 		elem.style.marginTop = '5vw';
-		elem.style.marginLeft = elem.style.marginRight = '2vw';
 
 		elem = this._proxyPresenter.document.querySelector('#title-next');
 		elem.style.display = 'flex';
@@ -353,6 +354,7 @@ class PresenterConsole {
 		elem.style.position = 'fixed';
 		elem.style.bottom = 0;
 		elem.style.width = '100%';
+		elem.style.gap = '1vw';
 		elem.addEventListener('click', L.bind(this._onToolbarClick, this));
 
 		let list = this._proxyPresenter.document.querySelectorAll('button');
@@ -378,20 +380,16 @@ class PresenterConsole {
 
 		elem =
 			this._proxyPresenter.document.querySelector('#timer-container');
-		elem.style.height = '33px';
+		elem.style.display = 'flex';
+		elem.style.flexDirection = 'column';
 
 		elem = this._proxyPresenter.document.querySelector('#today');
-		elem.style.paddingLeft = '4px';
-		elem.style.paddingRight = '4px';
-		elem.style.textAlign = 'center';
-		elem.style.verticalAlign = 'middle';
 		elem.style.fontSize = 'large';
 		elem.style.fontWeight = 'bold';
 		elem.style.color = 'white';
 
 		elem = this._proxyPresenter.document.querySelector('#timer');
 		elem.style.textAlign = 'center';
-		elem.style.verticalAlign = 'middle';
 		elem.style.fontSize = 'large';
 		elem.style.fontWeight = 'bold';
 		elem.style.color = 'yellow';
@@ -571,7 +569,9 @@ class PresenterConsole {
 		elem = this._proxyPresenter.document.querySelector(
 			'#current-presentation',
 		);
-		elem.style.width = '50vw';
+		// Adjust the height and width after displaying notes to improve the visibility of the current and next slide preview for the user.
+		elem.style.width = '45vw';
+		elem.style.height = '53vh';
 
 		elem = this._proxyPresenter.document.querySelector(
 			'#second-presentation',
@@ -602,7 +602,9 @@ class PresenterConsole {
 		elem = this._proxyPresenter.document.querySelector(
 			'#current-presentation',
 		);
+		// reset to it's original value after hide notes
 		elem.style.width = '56vw';
+		elem.style.height = '67vh';
 
 		elem = this._proxyPresenter.document.querySelector(
 			'#second-presentation',
