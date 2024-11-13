@@ -230,15 +230,16 @@ public:
     };
 
     DocumentBroker(ChildType type, const std::string& uri, const Poco::URI& uriPublic,
-                   const std::string& docKey, unsigned mobileAppDocId,
+                   const std::string& docKey, const std::string& configId,
+                   unsigned mobileAppDocId,
                    std::unique_ptr<WopiStorage::WOPIFileInfo> wopiFileInfo);
 
 protected:
     /// Used by derived classes.
     DocumentBroker(ChildType type, const std::string& uri, const Poco::URI& uriPublic,
-                   const std::string& docKey)
-        : DocumentBroker(type, uri, uriPublic, docKey, /*mobileAppDocId=*/0,
-                         /*wopiFileInfo=*/nullptr)
+                   const std::string& docKey, const std::string& configId)
+        : DocumentBroker(type, uri, uriPublic, docKey, configId,
+                         /*mobileAppDocId=*/0, /*wopiFileInfo=*/nullptr)
     {
     }
 
@@ -1670,6 +1671,8 @@ private:
 
     /// Unique DocBroker ID for tracing and debugging.
     static std::atomic<unsigned> DocBrokerId;
+
+    std::string _configId;
 
     // Relevant only in the mobile apps
     const unsigned _mobileAppDocId;

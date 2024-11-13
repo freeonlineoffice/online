@@ -32,7 +32,8 @@
 
 extern std::pair<std::shared_ptr<DocumentBroker>, std::string>
 findOrCreateDocBroker(DocumentBroker::ChildType type, const std::string& uri,
-                      const std::string& docKey, const std::string& id, const Poco::URI& uriPublic,
+                      const std::string& docKey, const std::string& configId,
+                      const std::string& id, const Poco::URI& uriPublic,
                       unsigned mobileAppDocId,
                       std::unique_ptr<WopiStorage::WOPIFileInfo> wopiFileInfo);
 
@@ -202,7 +203,7 @@ void RequestVettingStation::handleRequest(const std::string& id,
                                   << docKey << ']');
 
                     // Create the DocBroker.
-                    if (createDocBroker(docKey, url, uriPublic))
+                    if (createDocBroker(docKey, "", url, uriPublic))
                     {
                         assert(_docBroker && "Must have docBroker");
                         createClientSession(docKey, url, uriPublic, isReadOnly);
@@ -237,7 +238,7 @@ void RequestVettingStation::handleRequest(const std::string& id,
                     {
                         std::string sslVerifyResult = _checkFileInfo->getSslVerifyMessage();
                         // We have a valid CheckFileInfo result; Create the DocBroker.
-                        if (createDocBroker(docKey, url, uriPublic))
+                        if (createDocBroker(docKey, "", url, uriPublic))
                         {
                             assert(_docBroker && "Must have docBroker");
                             createClientSession(docKey, url, uriPublic, isReadOnly);
@@ -297,7 +298,7 @@ void RequestVettingStation::checkFileInfo(const Poco::URI& uri, bool isReadOnly,
             LOG_DBG("WOPI::CheckFileInfo succeeded and will create DocBroker ["
                     << docKey << "] now with URL: [" << url << ']');
 
-            if (createDocBroker(docKey, url, uriPublic))
+            if (createDocBroker(docKey, "", url, uriPublic))
             {
                 assert(_docBroker && "Must have docBroker");
                 if (_ws)
@@ -333,12 +334,15 @@ void RequestVettingStation::checkFileInfo(const Poco::URI& uri, bool isReadOnly,
 }
 #endif //!MOBILEAPP
 
-bool RequestVettingStation::createDocBroker(const std::string& docKey, const std::string& url,
+bool RequestVettingStation::createDocBroker(const std::string& docKey,
+                                            const std::string& configId,
+                                            const std::string& url,
                                             const Poco::URI& uriPublic)
 {
     // Request a kit process for this doc.
     const auto [docBroker, error] =
-        findOrCreateDocBroker(DocumentBroker::ChildType::Interactive, url, docKey, _id, uriPublic,
+        findOrCreateDocBroker(DocumentBroker::ChildType::Interactive, url, docKey,
+                              configId, _id, uriPublic,
                               _mobileAppDocId, /*wopiFileInfo=*/nullptr);
 
     _docBroker = docBroker;
