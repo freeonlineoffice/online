@@ -5017,6 +5017,9 @@ L.CanvasTileLayer = L.Layer.extend({
 				// Synchronous path
 				var tile = this._tiles[e.key];
 				var deltas = window.fzstd.decompress(e.rawDelta);
+
+				var keyframeDeltaSize = 0;
+				var keyframeImage = null;
 				if (e.isKeyframe)
 				{
 					if (this._debugDeltas)
@@ -5026,14 +5029,16 @@ L.CanvasTileLayer = L.Layer.extend({
 					var width = window.tileSize;
 					var height = window.tileSize;
 					var resultu8 = new Uint8ClampedArray(width * height * 4);
-					L.CanvasTileUtils.unrle(deltas, width, height, resultu8);
-					deltas = resultu8;
+					keyframeDeltaSize = L.CanvasTileUtils.unrle(deltas, width, height, resultu8);
+					keyframeImage = new ImageData(resultu8, width, height);
 
 					if (this._debugDeltas)
 						window.app.console.log('Applied keyframe of total size ' + resultu8.length +
 										' at stream offset 0');
 				}
-				this._applyDelta(tile, e.rawDelta, deltas, e.isKeyframe, e.wireMessage, true);
+
+				this._applyDelta(tile, e.rawDelta, deltas, keyframeDeltaSize, keyframeImage, e.wireMessage, true);
+
 				if (e.isKeyframe)
 					--tile.hasPendingKeyframe;
 				else
@@ -6786,21 +6791,15 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._pendingDeltas.push(e);
 	},
 
-	_applyDelta: function(tile, rawDelta, deltas, isKeyframe, wireMessage, deltasNeedUnpremultiply) {
+	_applyDelta: function(tile, rawDelta, deltas, keyframeDeltaSize, keyframeImage, wireMessage, deltasNeedUnpremultiply) {
 		// 'Uint8Array' rawDelta
 
 		if (this._debugDeltas)
-			window.app.console.log(
-				'Applying a raw ' +
-					(isKeyframe ? 'keyframe' : 'delta') +
-					' of length ' +
-					rawDelta.length +
-					(this._debugDeltasDetail
-						? ' hex: ' + hex2string(rawDelta, rawDelta.length)
-						: ''),
-			);
+			window.app.console.log('Applying a raw ' + (keyframeDeltaSize ? 'keyframe' : 'delta') +
+					       ' of length ' + rawDelta.length +
+					       (this._debugDeltasDetail ? (' hex: ' + hex2string(rawDelta, rawDelta.length)) : ''));
 
-		if (isKeyframe) {
+		if (keyframeDeltaSize) {
 			// Important to do this before ensuring the context, or we'll needlessly
 			// reconstitute the old keyframe from compressed data.
 			tile.rawKeyframe = null;
@@ -6815,7 +6814,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		// if re-creating a canvas from rawKeyframe/rawDeltas don't update counts
 		if (wireMessage) {
-			if (isKeyframe) {
+			if (keyframeDeltaSize) {
 				tile.loadCount++;
 				tile.deltaCount = 0;
 				tile.updateCount = 0;
@@ -6841,19 +6840,16 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 		// else - re-constituting from tile.rawData
 
-		var traceEvent = app.socket.createCompleteTraceEvent(
-			'L.CanvasTileLayer.applyDelta',
-			{ keyFrame: isKeyframe, length: rawDelta.length },
-		);
+		var traceEvent = app.socket.createCompleteTraceEvent('L.CanvasTileLayer.applyDelta',
+								     { keyFrame: !!keyframeDeltaSize, length: rawDelta.length });
 
 		// store the compressed version for later in its current
 		// form as byte arrays, so that we can manage our canvases
 		// better.
-		var offset = 0;
-		if (isKeyframe) {
+		if (keyframeDeltaSize)
+		{
 			tile.rawKeyframe = rawDelta; // overwrite
 			tile.rawDeltas = new Uint8Array(0);
-			offset = deltas.length;
 		}
 		else if (!tile.rawKeyframe)
 		{
@@ -6873,14 +6869,12 @@ L.CanvasTileLayer = L.Layer.extend({
 		// apply potentially several deltas in turn.
 		var i = 0;
 
-		// FIXME:used clamped array ... as a 2nd parameter
-		var imgData;
-
 		// May have been changed by _ensureContext garbage collection
 		var canvas = tile.canvas;
 
-		if (isKeyframe)
-			imgData = new ImageData(deltas, canvas.width, canvas.height);
+		// If it's a new keyframe, use the given image and offset
+		var imgData = keyframeImage;
+		var offset = keyframeDeltaSize;
 
 		while (offset < deltas.length) {
 			if (this._debugDeltas)
@@ -7149,7 +7143,12 @@ L.CanvasTileLayer = L.Layer.extend({
 					window.app.console.warn('Tile deleted during rawDelta decompression.');
 					continue;
 				}
-				this._applyDelta(tile, x.rawDelta, x.deltas, x.isKeyframe, x.wireMessage, false);
+				
+				var keyframeImage = null;
+				if (x.isKeyframe)
+					keyframeImage = new ImageData(x.keyframeBuffer, e.data.tileSize, e.data.tileSize);
+				this._applyDelta(tile, x.rawDelta, x.deltas, x.keyframeDeltaSize, keyframeImage, x.wireMessage, false);
+
 				if (x.isKeyframe)
 					--tile.hasPendingKeyframe;
 				else
