@@ -89,10 +89,6 @@ class PresenterConsole {
 										<label>${labels[5]}</label>
 									</button>
 									<div id="separator"></div>
-									<div id="timer-container">
-										<div id="today"> </div>
-										<div id="timer"></div>
-									</div>
 									<button type="button" id="pause" disabled>
 										<img src="images/presenterscreen-ButtonPauseTimerNormal.png">
 										<label>${labels[6]}</label>
@@ -388,13 +384,10 @@ class PresenterConsole {
 		elem.style.textAlign = 'right';
 		elem.style.fontSize = 'large';
 		elem.style.fontWeight = 'bold';
-		elem.style.color = 'white';
 
 		elem = this._proxyPresenter.document.querySelector('#timer');
-		elem.style.textAlign = 'center';
 		elem.style.fontSize = 'large';
 		elem.style.fontWeight = 'bold';
-		elem.style.color = 'yellow';
 
 		this._ticks = 0;
 		this._onTimer();
@@ -826,10 +819,12 @@ class PresenterConsole {
 			this._proxyPresenter.document.querySelector('#title-current');
 		if (elem) {
 			elem.innerText =
-				_('Current Slide, Slide') +
+				_('Slide') +
 				' ' +
 				(e.slide + 1) +
-				', ' +
+				' ' +
+				_('of') +
+				' ' +
 				this._previews.length;
 		}
 
