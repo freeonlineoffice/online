@@ -184,7 +184,7 @@
         <host desc="Localhost access by name">localhost</host>
       </lok_allow>
       <content_security_policy desc="Customize the CSP header by specifying one or more policy-directive, separated by semicolons. See w3.org/TR/CSP2"></content_security_policy>
-      <frame_ancestors desc="OBSOLETE: Use content_security_policy. Specify who is allowed to embed the Collabora Online iframe (loolwsd and WOPI host are always allowed). Separate multiple hosts by space."></frame_ancestors>
+      <frame_ancestors desc="OBSOLETE: Use content_security_policy. Specify who is allowed to embed the Free Online Office iframe (loolwsd and WOPI host are always allowed). Separate multiple hosts by space."></frame_ancestors>
       <connection_timeout_secs desc="Specifies the connection, send, recv timeout in seconds for connections initiated by loolwsd (such as WOPI connections)." type="int" default="30"></connection_timeout_secs>
 
       <!-- this setting radically changes how online works, it should not be used in a production environment -->
@@ -323,9 +323,9 @@
         <url desc="URL of optional JSON file that lists fonts to be included in Online" type="string" default=""></url>
     </remote_font_config>
 
-    <home_mode>
-        <enable desc="Enable more configuration options for home users" type="bool" default="false">false</enable>
-    </home_mode>
+    <remote_asset_config>
+        <url desc="URL of optional JSON file that lists fonts and impress template to be included in Online" type="string" default=""></url>
+    </remote_asset_config>
 
     <fonts_missing>
         <handling desc="How to handle fonts mising in a document: 'report', 'log', 'both', or 'ignore'" type="string" default="log">log</handling>
