@@ -441,6 +441,7 @@ class SlideRendererGl extends SlideRenderer {
 			videoRenderInfo.deleteResources(this._context);
 		}
 		this.deleteCurrentSlideTexture();
+		if (this._context) this._context.clear();
 	}
 
 	private initTexture() {

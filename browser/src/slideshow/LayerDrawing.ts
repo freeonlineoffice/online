@@ -123,6 +123,10 @@ class LayerDrawing {
 		);
 	}
 
+	public deleteResources() {
+		this.layerRenderer.dispose();
+	}
+
 	private getSlideInfo(slideHash: string): SlideInfo {
 		return this.helper.getSlideInfo(slideHash);
 	}

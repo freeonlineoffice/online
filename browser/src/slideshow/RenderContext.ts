@@ -53,6 +53,8 @@ abstract class RenderContext {
 
 	public abstract is2dGl(): boolean;
 
+	public abstract clear(): void;
+
 	public abstract loadTexture(
 		image: HTMLImageElement,
 		isMipMapEnable?: boolean,
@@ -86,6 +88,10 @@ class RenderContextGl extends RenderContext {
 
 	public is2dGl(): boolean {
 		return false;
+	}
+
+	public clear() {
+		this.gl = null;
 	}
 
 	public loadTexture(
@@ -245,6 +251,10 @@ class RenderContext2d extends RenderContext {
 
 	public is2dGl(): boolean {
 		return true;
+	}
+
+	public clear() {
+		this.gl = null;
 	}
 
 	public loadTexture(
