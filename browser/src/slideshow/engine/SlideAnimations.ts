@@ -200,7 +200,8 @@ function createAnimationNode(
 				if (
 					!(
 						aChildrenArray.length !== 1 &&
-						getAnimationNodeType(aChildrenArray[i]) === AnimationNodeType.Set
+						getAnimationNodeType(aChildrenArray[i]) ===
+							AnimationNodeType.Set
 					)
 				) {
 					aCreatedContainer.removeAllChildrenNodes();
