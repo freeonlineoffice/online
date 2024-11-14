@@ -162,12 +162,12 @@ $(eval $(call file_targets,$(LOOL_CSS)))
 WORKER_NODE_MODULES_JS =\
 	node_modules/fzstd/umd/index.js
 
-$(DIST_FOLDER)/src/layer/tile/CanvasTileWorker.js: \
+$(DIST_FOLDER)/src/layer/tile/TileWorker.js: \
 	$(srcdir)/src/layer/tile/CanvasTileWorker.js.m4 \
 	$(srcdir)/src/layer/tile/CanvasTileWorkerSrc.js \
 	$(WORKER_NODE_MODULES_JS)
 
-	@echo "Generating CanvasTileWorker.js..."
+	@echo "Generating TileWorker.js..."
 	m4 -PE -DDEBUG=$(ENABLE_DEBUG) \
 		-DNODE_MODULES_JS=$(subst $(SPACE),$(COMMA),$(WORKER_NODE_MODULES_JS)) \
 		-DWORKER_JS=$(srcdir)/src/layer/tile/CanvasTileWorkerSrc.js \
@@ -558,8 +558,8 @@ LOOL_JS_SRC = $(filter %.js,$(LOOL_JS_WEBORDER))
 LOOL_TS_SRC = $(filter %.ts,$(LOOL_JS_WEBORDER))
 
 # beware these are not helpfully ordered
-LOOL_TS_JS_DST = $(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_TS_SRC))
-LOOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_SRC)) $(LOOL_TS_JS_DST) $(DIST_FOLDER)/src/layer/tile/CanvasTileWorker.js
+lOOL_TS_JS_DST = $(patsubst src/%.ts,$(DIST_FOLDER)/src/%.js,$(LOOL_TS_SRC))
+LOOL_JS_DST = $(patsubst src/%.js,$(DIST_FOLDER)/src/%.js,$(LOOL_JS_SRC)) $(LOOL_TS_JS_DST) $(DIST_FOLDER)/src/layer/tile/TileWorker.js
 # should be no lingering / obsolete files:
 LOOL_ASSERT_INTERSECT = $(filter $(LOOL_JS_SRC), $(patsubst %.ts,%.js,$(LOOL_TS_SRC)))
 
