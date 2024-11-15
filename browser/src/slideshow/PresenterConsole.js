@@ -128,7 +128,10 @@ class PresenterConsole {
 			),
 		);
 
-		this._timer = setInterval(L.bind(this._onTimer, this), 1000);
+		this._timer = this._proxyPresenter.setInterval(
+			L.bind(this._onTimer, this),
+			1000,
+		);
 		this._ticks = 0;
 		this._pause = false;
 
@@ -807,11 +810,13 @@ class PresenterConsole {
 			'keydown',
 			L.bind(this._onKeyDown, this),
 		);
+		this._proxyPresenter.clearInterval(this._timer);
+
 		delete this._proxyPresenter;
 		delete this._currentIndex;
 		delete this._lastIndex;
 		delete this._previews;
-		clearInterval(this._timer);
+
 		this._map.off('newslideshowframe', this._onNextFrame, this);
 		this._map.off('transitionstart', this._onTransitionStart, this);
 		this._map.off('transitionend', this._onTransitionEnd, this);
