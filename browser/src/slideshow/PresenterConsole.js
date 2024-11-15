@@ -225,10 +225,6 @@ class PresenterConsole {
 			L.bind(this._onConsoleClose, this),
 		);
 		this._proxyPresenter.addEventListener(
-			'click',
-			L.bind(this._onClick, this),
-		);
-		this._proxyPresenter.addEventListener(
 			'keydown',
 			L.bind(this._onKeyDown, this),
 		);
@@ -393,6 +389,12 @@ class PresenterConsole {
 		nextSlideContainer.style.display = 'flex';
 		nextSlideContainer.style.flexDirection = 'column';
 		nextSlideContainer.style.gap = '2vw';
+
+		elem =
+			this._proxyPresenter.document.querySelector(
+				'#next-presentation',
+			);
+		elem.addEventListener('click', L.bind(this._onClickPreview, this));
 
 		this._notes = this._proxyPresenter.document.createElement('div');
 		this._notes.style.height = 'inherit';
@@ -717,7 +719,7 @@ class PresenterConsole {
 		this._presenter.getNavigator().onKeyDown(e);
 	}
 
-	_onClick(e) {
+	_onClickPreview(e) {
 		this._presenter.getNavigator().onClick(e);
 	}
 
@@ -1059,10 +1061,6 @@ class PresenterConsole {
 		this._proxyPresenter.removeEventListener(
 			'resize',
 			L.bind(this._onResize, this),
-		);
-		this._proxyPresenter.removeEventListener(
-			'click',
-			L.bind(this._onClick, this),
 		);
 		this._proxyPresenter.removeEventListener(
 			'keydown',
