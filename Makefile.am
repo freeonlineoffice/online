@@ -118,7 +118,7 @@ shared_sources = common/FileUtil.cpp \
                  common/Unit.cpp \
                  common/Uri.cpp \
                  common/Util.cpp \
-                 common/Util-desktop.cpp \
+                 common/Util-server.cpp \
                  common/ConfigUtil.cpp \
                  common/Authorization.cpp \
                  common/CommandControl.cpp \
@@ -188,7 +188,7 @@ connect_SOURCES = tools/Connect.cpp \
                   common/Protocol.cpp \
                   common/StringVector.cpp \
                   common/Util.cpp \
-                  common/Util-desktop.cpp
+                  common/Util-server.cpp
 
 lokitclient_SOURCES = common/Log.cpp \
                       common/DummyTraceEventEmitter.cpp \
@@ -197,7 +197,7 @@ lokitclient_SOURCES = common/Log.cpp \
                       common/StringVector.cpp \
                       common/TraceEvent.cpp \
                       common/Util.cpp \
-                      common/Util-desktop.cpp
+                      common/Util-server.cpp
 
 noinst_LIBRARIES = libsimd.a
 libsimd_a_SOURCES = kit/DeltaSimd.c
@@ -284,7 +284,7 @@ clientnb_SOURCES = net/clientnb.cpp \
                    common/Log.cpp \
                    common/StringVector.cpp \
                    common/Util.cpp \
-                   common/Util-desktop.cpp
+                   common/Util-server.cpp
 
 loolmount_SOURCES = tools/mount.cpp \
                     common/LoolMount.cpp
@@ -296,7 +296,7 @@ loolbench_SOURCES = tools/Benchmark.cpp \
 		    common/Log.cpp \
                     common/StringVector.cpp \
                     common/Util.cpp \
-                    common/Util-desktop.cpp \
+                    common/Util-server.cpp \
                     common/Simd.cpp
 loolbench_LDADD = libsimd.a
 
@@ -315,7 +315,7 @@ loolconfig_SOURCES = tools/Config.cpp \
 		     common/Log.cpp \
 		     common/StringVector.cpp \
 		     common/Util.cpp \
-		     common/Util-desktop.cpp
+		     common/Util-server.cpp
 
 loolsocketdump_SOURCES = tools/WebSocketDump.cpp \
 			 common/DummyTraceEventEmitter.cpp \
