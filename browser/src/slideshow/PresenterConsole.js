@@ -276,7 +276,8 @@ class PresenterConsole {
 		elem.style.marginLeft = '2vw';
 
 		// Apply common button style to every button in Current slide division
-		let currentSlideActionButtons = this._first.querySelectorAll('button');
+		let currentSlideActionButtons =
+			this._first.querySelectorAll('button');
 		currentSlideActionButtons.forEach((button) => {
 			button.style.display = 'flex';
 			button.style.flexDirection = 'column';
@@ -303,18 +304,20 @@ class PresenterConsole {
 		elem.style.height = '67vh';
 
 		// slideshow-control-container
-		let slideshowControlContainer = this._proxyPresenter.document.querySelector(
-			'#slideshow-control-container',
-		);
+		let slideshowControlContainer =
+			this._proxyPresenter.document.querySelector(
+				'#slideshow-control-container',
+			);
 		slideshowControlContainer.style.display = 'flex';
 		slideshowControlContainer.style.gap = '2vw';
 		slideshowControlContainer.style.alignItems = 'center';
 		slideshowControlContainer.style.marginTop = '1vh';
 
 		// Select the parent container by its ID
-		let navigationContainer = this._proxyPresenter.document.getElementById(
-			'navigation-container',
-		);
+		let navigationContainer =
+			this._proxyPresenter.document.getElementById(
+				'navigation-container',
+			);
 
 		// Add the necessary styles to make elements appear in a row
 		navigationContainer.style.display = 'flex';
@@ -323,9 +326,10 @@ class PresenterConsole {
 		navigationContainer.style.gap = '0.5vw'; // Adjust gap as needed
 
 		// Select all button elements inside #navigation-container
-		let navigationButtons = this._proxyPresenter.document.querySelectorAll(
-			'#navigation-container button',
-		);
+		let navigationButtons =
+			this._proxyPresenter.document.querySelectorAll(
+				'#navigation-container button',
+			);
 
 		// Apply additional style for navigation button
 		navigationButtons.forEach((button) => {
@@ -344,7 +348,10 @@ class PresenterConsole {
 		actionBtnContainer.style.display = 'flex';
 		actionBtnContainer.style.gap = '1vw';
 
-		this._first.addEventListener('click', L.bind(this._onToolbarClick, this));
+		this._first.addEventListener(
+			'click',
+			L.bind(this._onToolbarClick, this),
+		);
 
 		let notesSeparator =
 			this._proxyPresenter.document.querySelector('#notes-separator');
@@ -412,6 +419,11 @@ class PresenterConsole {
 			'click',
 			L.bind(this._onClickSlides, this),
 		);
+
+		elem = this._proxyPresenter.document.createElement('div');
+		elem.style.textAlign = 'center';
+
+		elem.appendChild(this.addCloseButton());
 		this._slides.appendChild(elem);
 
 		elem = this._proxyPresenter.document.querySelector('#toolbar');
@@ -590,7 +602,7 @@ class PresenterConsole {
 
 		let notesSeparator =
 			this._proxyPresenter.document.querySelector('#notes-separator');
-		notesSeparator.remove();
+		notesSeparator.style.display = 'none';
 		this._first.remove();
 		this._second.remove();
 
@@ -623,8 +635,9 @@ class PresenterConsole {
 		this._slides.remove();
 		let notesSeparator =
 			this._proxyPresenter.document.querySelector('#notes-separator');
-		elem.appendChild(this._first);
-		elem.appendChild(notesSeparator);
+		notesSeparator.style.display = 'block';
+		// Insert `this._first` before `notesSeparator`
+		elem.insertBefore(this._first, notesSeparator);
 		elem.appendChild(this._second);
 
 		elem = this._proxyPresenter.document.querySelector('#slides');
@@ -990,6 +1003,43 @@ class PresenterConsole {
 		);
 
 		return offscreen.convertToBlob({ type: 'image/png' });
+	}
+
+	addCloseButton() {
+		let slidesCloseButton =
+			this._proxyPresenter.document.createElement('button');
+		slidesCloseButton.innerText = _('Close');
+		slidesCloseButton.style.borderRadius = '5px';
+		slidesCloseButton.style.padding = '6px 18px';
+		slidesCloseButton.addEventListener(
+			'click',
+			L.bind(this._onHideSlides, this),
+		);
+
+		// Add hover effect (minimal changes)
+		slidesCloseButton.addEventListener('mouseenter', () => {
+			slidesCloseButton.style.backgroundColor = '#d2d2d2'; // Slightly darker shade
+			slidesCloseButton.style.boxShadow =
+				'0 2px 4px rgba(0, 0, 0, 0.1)'; // Add a soft shadow
+		});
+
+		// Remove hover effect
+		slidesCloseButton.addEventListener('mouseleave', () => {
+			slidesCloseButton.style.backgroundColor = '#f1f1f1'; // Reset to original color
+			slidesCloseButton.style.boxShadow = 'none'; // Remove shadow
+		});
+
+		// Add click effect
+		slidesCloseButton.addEventListener('mousedown', () => {
+			slidesCloseButton.style.backgroundColor = '#bebebe'; // Slightly darker on click
+		});
+
+		// Remove click effect when mouse is released
+		slidesCloseButton.addEventListener('mouseup', () => {
+			slidesCloseButton.style.backgroundColor = '#d2d2d2'; // Back to hover state color
+		});
+
+		return slidesCloseButton;
 	}
 
 	_onNextFrame(e) {
