@@ -71,7 +71,7 @@ void UnitSave::testKeepOrigFile()
     }
 
     // Then make sure the original file is not removed:
-    std::vector<std::shared_ptr<DocumentBroker>> brokers = COOLWSD::getBrokersTestOnly();
+    std::vector<std::shared_ptr<DocumentBroker>> brokers = LOOLWSD::getBrokersTestOnly();
     LOK_ASSERT(brokers.size() > 0);
     std::shared_ptr<DocumentBroker> broker = brokers[0];
     StorageBase* storage = broker->getStorage();
