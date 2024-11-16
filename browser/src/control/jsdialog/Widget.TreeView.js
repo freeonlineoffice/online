@@ -1038,8 +1038,6 @@ class SimpleTableControl extends TreeViewControl {
 
 // complex table treegrid, with children, with or no headers, columns > 1
 class ComplexTableControl extends TreeViewControl {
-	static Selected = null;
-
 	constructor(data, builder) {
 		super(data, builder);
 
