@@ -1397,7 +1397,8 @@ label.disabled {
 	border-bottom: 1px solid var(--color-border-lighter);
 }
 
-#contentControlList.mobile-wizard, #mentionPopupList.mobile-wizard {
+#contentControlList.mobile-wizard,
+#mentionPopupList.mobile-wizard {
 	margin: 0;
 	border-color: transparent;
 	width: 100%;
