@@ -15,8 +15,6 @@
 #include "Socket.hpp"
 #include "Log.hpp"
 
-#include <Poco/Net/SocketAddress.h>
-
 class SocketFactory
 {
 public:
