@@ -885,7 +885,8 @@ class PresenterConsole {
 		// timeControlContainer should also maintain it's width based on current-slide-container width, better for responsive view
 		let timeControlContainer =
 			this._proxyPresenter.document.querySelector('#timer-container');
-		timeControlContainer.style.width = this._currentSlideCanvas.style.width;
+		timeControlContainer.style.width =
+			this._currentSlideCanvas.style.width;
 	}
 
 	_onTransitionStart(e) {
@@ -929,10 +930,11 @@ class PresenterConsole {
 			if (notes) elem = this._notes.querySelector('#notes');
 			if (elem) {
 				elem.innerText =
-					notes.toLowerCase() ===
-					'click to add notes'.toLowerCase()
-						? 'No Notes'
-						: notes;
+					notes &&
+					notes.toLowerCase() !==
+						'click to add notes'.toLowerCase()
+						? notes
+						: _('No Notes');
 			}
 		}
 
