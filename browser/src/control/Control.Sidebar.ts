@@ -197,6 +197,7 @@ class Sidebar {
 					sidebarData.children[i].visible === false
 				) {
 					sidebarData.children.splice(i, 1);
+					continue;
 				}
 
 				if (
