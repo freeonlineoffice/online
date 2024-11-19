@@ -1667,7 +1667,8 @@ bool ChildSession::insertFile(const StringVector& tokens)
     if (type == "graphic" ||
         type == "graphicurl" ||
         type == "selectbackground" ||
-        type == "multimedia")
+        type == "multimedia" ||
+        type == "multimediaurl" )
     {
         std::string url;
 
@@ -1684,7 +1685,7 @@ bool ChildSession::insertFile(const StringVector& tokens)
                 }
                 url = "file://" + jailDoc + "insertfile/" + name;
             }
-            else if (type == "graphicurl")
+            else if (type == "graphicurl" || type == "multimediaurl")
             {
                 URI::decode(name, url);
                 if (!Util::toLower(url).starts_with("http"))
@@ -1711,7 +1712,7 @@ bool ChildSession::insertFile(const StringVector& tokens)
 
         std::string command;
         std::string arguments;
-        if (type == "multimedia") {
+        if (type == "multimedia" || type == "multimediaurl") {
             command = ".uno:InsertAVMedia";
             arguments = "{"
                 "\"URL\":{"
