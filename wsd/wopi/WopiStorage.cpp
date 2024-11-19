@@ -45,7 +45,6 @@
 
 #include <cassert>
 #include <chrono>
-#include <iconv.h>
 #include <memory>
 #include <string>
 
