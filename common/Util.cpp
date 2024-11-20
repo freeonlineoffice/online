@@ -74,9 +74,6 @@
 #include "Protocol.hpp"
 #include "TraceEvent.hpp"
 
-std::unordered_map<std::string, std::string> AnonymizedStrings;
-std::mutex AnonymizedMutex;
-
 namespace Util
 {
     namespace rng
