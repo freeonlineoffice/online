@@ -247,6 +247,12 @@ class PresenterConsole {
 		this.slideSelectionColor = window
 			.getComputedStyle(document.documentElement)
 			.getPropertyValue('--orange1-txt-primary-color');
+		this.PresenterConsoleBtnHoverColor = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue('--color-main-text');
+		this.PresenterConsoleBtnRadius = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue('--border-radius');
 
 		mainContentContainer.style.backgroundColor = slideShowBGColor;
 		mainContentContainer.style.color = this.slideShowColor;
@@ -586,6 +592,13 @@ class PresenterConsole {
 				button.addEventListener(
 					'mouseenter',
 					function () {
+						// Add hover effect for enabled button only
+						if (!button.disable)
+							button.style.backgroundColor =
+								this.PresenterConsoleBtnHoverColor;
+
+						button.style.borderRadius =
+							this.PresenterConsoleBtnRadius;
 						const tooltipText =
 							button.getAttribute('data-looltip') ||
 							'Button'; // Default text if no attribute
@@ -594,7 +607,17 @@ class PresenterConsole {
 				);
 
 				const hideTooltip = this._hideTooltip.bind(this);
-				button.addEventListener('mouseleave', hideTooltip);
+				button.addEventListener(
+					'mouseleave',
+					function () {
+						// Remove hover effect
+						if (!button.disable)
+							button.style.backgroundColor = 'transparent';
+
+						// Hide tooltip
+						this._hideTooltip();
+					}.bind(this),
+				);
 				// for slides view change element on screen to show all the slides in that case tooltip should be hidden
 				if (
 					button.getAttribute('data-looltip') ===
