@@ -179,6 +179,56 @@ bool pushToMainThread(LibreOfficeKitCallback cb, int type, const char *p, void *
 [[maybe_unused]]
 static LokHookFunction2* initFunction = nullptr;
 
+class BackgroundSaveWatchdog
+{
+public:
+    BackgroundSaveWatchdog(unsigned mobileAppDocId)
+        : _saveCompleted(false)
+        , _watchdogThread(
+            // mobileAppDocId is on the stack, so capture it by value.
+              [mobileAppDocId, this]()
+              {
+                  Util::setThreadName("kitbgsv_" + Util::encodeId(mobileAppDocId, 3) + "_wdg");
+
+                  const auto timeout = std::chrono::seconds(
+                      ConfigUtil::getInt("per_document.bgsave_timeout_secs", 60));
+
+                  std::unique_lock<std::mutex> lock(_watchdogMutex);
+
+                  LOG_TRC("Starting bgsave watchdog with " << timeout << " timeout");
+                  if (_watchdogCV.wait_for(lock, timeout,
+                                           [this]() { return _saveCompleted.load(); }))
+                  {
+                      // Done!
+                      LOG_TRC("BgSave finished in time");
+                  }
+                  else
+                  {
+                      // Failed!
+                      LOG_WRN("BgSave timed out and will self-destroy");
+                      Log::shutdown(); // Flush logs.
+                      // raise(3) will exit the current thread, not the process.
+                      ::kill(0, SIGKILL); // kill(2) is trapped by seccomp.
+                  }
+              })
+    {
+    }
+
+    void complete()
+    {
+        _saveCompleted = true;
+        _watchdogCV.notify_all();
+    }
+
+private:
+    std::atomic_bool _saveCompleted; ///< Defend against spurious wakes.
+    std::thread _watchdogThread;
+    std::condition_variable _watchdogCV;
+    std::mutex _watchdogMutex;
+};
+
+static std::unique_ptr<BackgroundSaveWatchdog> BgSaveWatchdog;
+
 namespace
 {
     // for later consistency checking.
