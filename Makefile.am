@@ -112,8 +112,7 @@ endif
 AM_ETAGSFLAGS = --c++-kinds=+p --fields=+iaS --extra=+q -R --totals=yes --exclude=browser *
 AM_CTAGSFLAGS = $(AM_ETAGSFLAGS)
 
-shared_sources = common/Anonymizer.cpp \
-                 common/FileUtil.cpp \
+shared_sources = common/FileUtil.cpp \
                  common/JailUtil.cpp \
                  common/Log.cpp \
                  common/Protocol.cpp \
@@ -303,7 +302,7 @@ loolmap_SOURCES = tools/map.cpp
 
 loolbench_SOURCES = tools/Benchmark.cpp \
                     common/DummyTraceEventEmitter.cpp \
-		    common/Log.cpp \
+                    common/Log.cpp \
                     common/StringVector.cpp \
                     common/Util.cpp \
                     common/Util-server.cpp \
@@ -321,7 +320,6 @@ loolstress_SOURCES = tools/Stress.cpp \
 
 loolconfig_SOURCES = tools/Config.cpp \
                     tools/ConfigMigrationAssistant.cpp \
-                    common/Anonymizer.cpp \
                     common/ConfigUtil.cpp \
                     common/Crypto.cpp \
                     common/DummyTraceEventEmitter.cpp \
