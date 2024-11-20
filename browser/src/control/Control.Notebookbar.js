@@ -61,7 +61,6 @@ L.Control.Notebookbar = L.Control.extend({
 
 		$('#toolbar-wrapper').addClass('hasnotebookbar');
 		$('.main-nav').addClass('hasnotebookbar');
-		$('.main-nav').addClass(docType + '-color-indicator');
 		document.getElementById('document-container').classList.add('notebookbar-active');
 
 		var docLogoHeader = L.DomUtil.create('div', '');
@@ -108,7 +107,6 @@ L.Control.Notebookbar = L.Control.extend({
 		$('.main-nav #document-header').remove();
 		$('.main-nav').removeClass('hasnotebookbar');
 		$('#toolbar-wrapper').removeClass('hasnotebookbar');
-		$('.main-nav').removeClass(this._map.getDocType() + '-color-indicator');
 		$('.main-nav #document-header').remove();
 		this.clearNotebookbar();
 	},

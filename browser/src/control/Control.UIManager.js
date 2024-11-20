@@ -323,6 +323,7 @@ L.Control.UIManager = L.Control.extend({
 		var hasShare = this.map.wopi.EnableShare;
 
 		document.body.setAttribute('data-userInterfaceMode', currentMode);
+		document.body.setAttribute('data-docType', docType);
 
 		if (hasShare)
 			document.body.setAttribute('data-integratorSidebar', 'true');
