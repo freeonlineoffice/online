@@ -30,8 +30,12 @@ img.sidebar.ui-drawing-area {
 	padding: 0;
 	box-sizing: border-box;
 }
-[data-userinterfacemode='classic'] #document-container:not(.mobile) + #sidebar-dock-wrapper,
-[data-docType='spreadsheet'] #document-container:not(.mobile) + #sidebar-dock-wrapper {
+[data-userinterfacemode='classic']
+	#document-container:not(.mobile)
+	+ #sidebar-dock-wrapper,
+[data-docType='spreadsheet']
+	#document-container:not(.mobile)
+	+ #sidebar-dock-wrapper {
 	border-inline-start: 1px solid var(--color-border);
 }
 .sidebar .menu-entry-icon {
