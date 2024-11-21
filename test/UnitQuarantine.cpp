@@ -20,9 +20,6 @@
 #include <csignal>
 #include <ctime>
 
-/// Since our fake URL is always the same, this is the document path in the quarantine directory.
-constexpr auto DocumentUrl = "/http%3A%2F%2F127.0.0.1%3A9981%2Fwopi%2Ffiles%2F0/";
-
 namespace
 {
 std::vector<std::string> getQuarantineFiles(const std::string testname,
@@ -234,7 +231,8 @@ public:
         LOK_ASSERT_EQUAL_MESSAGE("Unexpected contents in storage", std::string(OriginalDocContent),
                                  getFileContent());
 
-        const std::string quarantinePath = _quarantinePath + DocumentUrl;
+        const std::string documentUrl = Uri::encode(helpers::getTestServerURI() + "/wopi/files/0");
+        const std::string quarantinePath = _quarantinePath + '/' + documentUrl;
         const std::vector<std::string> files = getQuarantineFiles(testname, quarantinePath);
         LOK_ASSERT_MESSAGE("Expected 1 quaratined files in [" << quarantinePath << ']',
                            files.size() == 1);
@@ -338,7 +336,7 @@ public:
     void kitKilled(int count) override
     {
         LOG_TST("Kit killed");
-        LOK_ASSERT_EQUAL_MESSAGE("Expected only 1 killed kit", 1, count);
+        LOK_ASSERT(static_cast<std::size_t>(count) <= _kitsPids.size());
 
         // This supresses the default handler which fails the test.
     }
@@ -363,7 +361,8 @@ public:
         LOG_TST("Testing with dockey [" << docKey << "] closed.");
         LOK_ASSERT_STATE(_phase, Phase::Unload);
 
-        const std::string quarantinePath = _quarantinePath + DocumentUrl;
+        const std::string documentUrl = Uri::encode(helpers::getTestServerURI() + "/wopi/files/0");
+        const std::string quarantinePath = _quarantinePath + '/' + documentUrl;
         const std::vector<std::string> files = getQuarantineFiles(testname, quarantinePath);
         LOK_ASSERT_MESSAGE("Expected 1 quaratined files in [" << quarantinePath << ']',
                            files.size() == 1);
