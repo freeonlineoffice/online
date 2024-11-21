@@ -14,7 +14,6 @@
 #include "testlog.hpp"
 #include "FileUtil.hpp"
 #include <wsd/DocumentBroker.hpp>
-#include <wsd/Process.hpp>
 
 #include <Poco/Net/HTTPRequest.h>
 #include <csignal>
