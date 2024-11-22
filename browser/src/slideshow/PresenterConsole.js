@@ -225,7 +225,7 @@ class PresenterConsole {
 
 		this._proxyPresenter.document.body.style.margin = '0';
 		this._proxyPresenter.document.body.style.padding = '0';
-		this._proxyPresenter.document.body.style.overflow = 'hidden';
+		this._proxyPresenter.document.body.style.overflowX = 'hidden';
 
 		this._proxyPresenter.document.body.style.display = 'flex';
 		this._proxyPresenter.document.body.style.flexDirection = 'column';
@@ -262,12 +262,19 @@ class PresenterConsole {
 		mainContentContainer.style.minWidth = '100vw';
 		mainContentContainer.style.minHeight = '100vh';
 
+		// Disable text selection
+		mainContentContainer.style.userSelect = 'none'; //Firefox, Chrome etc.
+
+		this._proxyPresenter.document.body.style.backgroundColor =
+			slideShowBGColor;
+
 		elem = this._proxyPresenter.document.querySelector(
 			'#presentation-content',
 		);
 		elem.style.display = 'flex';
 		elem.style.flexWrap = 'wrap';
 		elem.style.gap = '3vw';
+		elem.style.marginBottom = '10px';
 
 		this._first = elem = this._proxyPresenter.document.querySelector(
 			'#first-presentation',
@@ -397,16 +404,18 @@ class PresenterConsole {
 		elem.addEventListener('click', L.bind(this._onClickPreview, this));
 
 		this._notes = this._proxyPresenter.document.createElement('div');
-		this._notes.style.height = 'inherit';
+		this._notes.style.height = '45vh';
 		this._notes.style.width = '25vw';
 		this._notes.style.paddingTop = '10px';
 		this._notes.style.borderTop = '2px solid transparent';
 		this._notes.style.fontSize = '24px';
+		this._notes.style.overflowX = 'hidden';
 
 		elem = this._proxyPresenter.document.createElement('div');
 		elem.id = 'notes';
-		elem.style.height = '90%';
+		elem.style.height = '100%';
 		elem.style.width = '100%';
+		elem.style.userSelect = 'text'; // Enables text selection
 
 		this._notes.appendChild(elem);
 
@@ -635,8 +644,10 @@ class PresenterConsole {
 
 		let currentFontSize = parseInt(this._notes.style.fontSize);
 		let newFontSize = currentFontSize + increment;
-		let zoomInBtn = this._proxyPresenter.document.querySelector('#increase');
-		let zoomOutBtn = this._proxyPresenter.document.querySelector('#decrease');
+		let zoomInBtn =
+			this._proxyPresenter.document.querySelector('#increase');
+		let zoomOutBtn =
+			this._proxyPresenter.document.querySelector('#decrease');
 
 		// Ensure the font size stays within bounds
 		if (newFontSize >= MIN_FONT_SIZE && newFontSize <= MAX_FONT_SIZE) {
