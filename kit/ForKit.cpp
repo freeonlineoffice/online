@@ -553,7 +553,7 @@ static void printArgumentHelp()
 }
 
 extern "C" {
-    static void wakeupPoll(uint32_t /*pid*/)
+    static void wakeupPoll(int /*pid*/)
     {
         if (ForKitPoll)
             ForKitPoll->wakeup();
