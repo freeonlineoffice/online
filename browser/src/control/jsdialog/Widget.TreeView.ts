@@ -364,8 +364,7 @@ class TreeViewControl {
 		parent: HTMLElement,
 	) {
 		const tr = L.DomUtil.create('div', 'ui-treeview-entry', parent);
-		let dummyColumns =
-			this._columns - (entry.columns ? entry.columns.length : 0);
+		let dummyColumns = 0;
 		if (this._hasState) dummyColumns++;
 		tr.style.gridColumn = '1 / ' + (this._columns + dummyColumns + 1);
 
@@ -508,15 +507,6 @@ class TreeViewControl {
 					builder.options.cssClass + ' ui-treeview-expander',
 					td,
 				);
-		}
-
-		// dummy columns (for missing elements in current row - eg. icon)
-		let dummyColumns =
-			this._columns - (entry.columns ? entry.columns.length : 0);
-		if (this._isRealTree) dummyColumns--;
-		for (let index = dummyColumns; index > 0; index--) {
-			td = L.DomUtil.create('div', '', tr);
-			rowElements.push(td);
 		}
 
 		// regular columns
@@ -1178,11 +1168,7 @@ class TreeViewControl {
 					parent,
 				);
 
-				let dummyColumns =
-					this._columns -
-					(entries[index].columns
-						? entries[index].columns.length
-						: 0);
+				let dummyColumns = 0;
 				if (this._hasState) dummyColumns++;
 				subGrid.style.gridColumn =
 					'1 / ' + (this._columns + dummyColumns + 1);
@@ -1234,25 +1220,34 @@ class TreeViewControl {
 				},
 				// use the longest entry - naive approach
 			)
-			.reduce((prev: Array<string>, next: Array<string>): Array<string> => {
-				if (!next || prev.length > next.length) return prev;
-				return next;
-			});
+			.reduce(
+				(
+					prev: Array<string>,
+					next: Array<string>,
+				): Array<string> => {
+					if (!next || prev.length > next.length) return prev;
+					return next;
+				},
+			);
 
 		// put missing dummy columns where are missing
 		entires.forEach((entry: TreeEntryJSON) => {
 			const currentColumns = entry.columns;
-			const missingColumns = columnTypes.length - currentColumns.length;
+			const missingColumns =
+				columnTypes.length - currentColumns.length;
 			if (missingColumns <= 0) return;
 
 			const newColumns = Array<TreeColumnJSON>();
 			let i = 0;
 			while (i < columnTypes.length) {
 				if (currentColumns.length > i) {
-					const currentType = this.getColumnType(currentColumns[i]);
+					const currentType = this.getColumnType(
+						currentColumns[i],
+					);
 					if (currentType === 'separator') break; // don't add new columns - full width
 
-					if (currentType !== columnTypes[i]) newColumns.push({ text: '' });
+					if (currentType !== columnTypes[i])
+						newColumns.push({ text: '' });
 					else {
 						newColumns.push(currentColumns[i]);
 						i++;
