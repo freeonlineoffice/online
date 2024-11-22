@@ -358,6 +358,7 @@ LOOL_JS_LST =\
 	src/control/Control.LokDialog.js \
 	src/control/Control.AlertDialog.js \
 	src/control/Control.Tooltip.js \
+	src/control/Control.ESignature.ts \
 	src/control/ColorPicker.ts \
 	src/control/jsdialog/Component.Toolbar.ts \
 	src/control/jsdialog/Definitions.Menu.ts \
@@ -748,7 +749,7 @@ $(DIST_FOLDER)/global.js: $(srcdir)/js/global.js
 	@mkdir -p $(dir $@)
 	$(call global_file)
 
-$(INTERMEDIATE_DIR)/LOOL_JS.m4:
+$(INTERMEDIATE_DIR)/LOOL_JS.m4: $(LOOL_JS_DST)
 	@rm -f LOOL_JS.m4
 	$(foreach file,$(NODE_MODULES_JS) $(LOOL_LIBS_JS) $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)), $(shell echo -n $(file), >> $(INTERMEDIATE_DIR)/LOOL_JS.m4))
 # remove last ","
