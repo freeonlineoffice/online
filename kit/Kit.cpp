@@ -3129,6 +3129,7 @@ void lokit_main(
     {
         AnonymizationSalt = std::stoull(anonymizationSalt);
         AnonymizeUserData = true;
+        Anonymizer::initialize(AnonymizeUserData, AnonymizationSalt);
     }
 
     LOG_INF("User-data anonymization is " << (AnonymizeUserData ? "enabled." : "disabled."));
