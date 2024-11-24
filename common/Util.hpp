@@ -19,7 +19,6 @@
 #include <cstdint>
 #include <cstring>
 #include <algorithm>
-#include <atomic>
 #include <limits>
 #include <mutex>
 #include <ratio>
@@ -27,8 +26,8 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include <string_view>
 #include <utility>
-#include <inttypes.h>
 #include <cctype>
 
 #include <memory.h>
