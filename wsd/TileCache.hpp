@@ -203,7 +203,7 @@ struct TileData
             os << "deltas: ";
             for (size_t i = 0; i < _wids.size(); ++i)
             {
-                os << i << ": " << _wids[i] << " -> " << _offsets[i] << " ";
+                os << i << ": " << _wids[i] << " -> " << _offsets[i] << ' ';
             }
             os << (tooLarge() ? "too-large " : "");
         }
