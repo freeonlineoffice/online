@@ -82,7 +82,8 @@ struct Histogram {
             if (_buckets[last] > 0)
                 break;
 
-        std::cout << legend << " " << _items << " items, max #: " << max << " too long: " << _tooLong << "\n";
+        std::cout << legend << ' ' << _items << " items, max #: " << max
+                  << " too long: " << _tooLong << "\n";
 
         const double chrsPerFreq = 60.0 / max;
         for (size_t i = firstBucket; i <= last; ++i)
@@ -336,7 +337,8 @@ struct Stats {
 
         if(file.tellp() == 0)
         {
-            file << "Commit Hash" << "," << "Date" << "," << "Test" << "," << "Phase" << "," << "Metric" << "," << "Value";
+            file << "Commit Hash" << ',' << "Date" << ',' << "Test" << ',' << "Phase" << ','
+                 << "Metric" << ',' << "Value";
             file << "\n";
         }
 
@@ -351,7 +353,8 @@ struct Stats {
 
         for(size_t i = 0; i < perfData.size(); i++)
         {
-            file << commitHash << "," << formattedDate << "," << _testType << "," << perfData[i].phase << "," << perfData[i].metric << "," << perfData[i].data;
+            file << commitHash << ',' << formattedDate << ',' << _testType << ','
+                 << perfData[i].phase << ',' << perfData[i].metric << ',' << perfData[i].data;
             file << "\n";
         }
     }
@@ -394,7 +397,7 @@ public:
         assert(_stats && "stats must be provided");
 
         static std::atomic<int> number;
-        _logPre = "[" + std::to_string(++number) + "] ";
+        _logPre = '[' + std::to_string(++number) + "] ";
         std::cerr << "Attempt connect to " << uri << " for trace " << _trace << "\n";
         getNextRecord();
         _start = std::chrono::steady_clock::now() + std::chrono::milliseconds(delayMs);
@@ -521,7 +524,7 @@ public:
             // load url=file%3A%2F%2F%2Ftmp%2Fhello-world.odt deviceFormFactor=desktop
             out = "load url=" + _uri; // already encoded
             for (size_t i = 2; i < tokens.size(); ++i)
-                out += " " + tokens[i];
+                out += ' ' + tokens[i];
             std::cerr << _logPre << "msg " << out << "\n";
         }
 
