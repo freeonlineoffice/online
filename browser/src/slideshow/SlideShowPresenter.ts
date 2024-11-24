@@ -125,6 +125,7 @@ class SlideShowPresenter {
 	private _startSlide: number;
 	private _presentationInfoChanged: boolean = false;
 	private _cypressSVGPresentationTest: boolean = false;
+	private _onKeyDownHandler: (e: KeyboardEvent) => void;
 
 	constructor(map: any) {
 		this._cypressSVGPresentationTest =
@@ -169,6 +170,9 @@ class SlideShowPresenter {
 		this._slideShowNavigator.disable();
 		this._slideShowHandler.setNavigator(this._slideShowNavigator);
 		this._slideShowNavigator.setPresenter(this);
+		this._onKeyDownHandler = this._slideShowNavigator.onKeyDown.bind(
+			this._slideShowNavigator,
+		);
 	}
 
 	private onUpdateParts() {
@@ -209,12 +213,7 @@ class SlideShowPresenter {
 		this._fullscreen = document.fullscreenElement;
 		if (this._fullscreen) {
 			// window.addEventListener('keydown', this._onCanvasKeyDown.bind(this));
-			window.addEventListener(
-				'keydown',
-				this._slideShowNavigator.onKeyDown.bind(
-					this._slideShowNavigator,
-				),
-			);
+			window.addEventListener('keydown', this._onKeyDownHandler);
 			this.centerCanvas();
 		} else {
 			// we need to cleanup current/prev slide
@@ -229,12 +228,7 @@ class SlideShowPresenter {
 		this._slideRenderer.deleteResources();
 
 		// window.removeEventListener('keydown', this._onCanvasKeyDown.bind(this));
-		window.removeEventListener(
-			'keydown',
-			this._slideShowNavigator.onKeyDown.bind(
-				this._slideShowNavigator,
-			),
-		);
+		window.removeEventListener('keydown', this._onKeyDownHandler);
 
 		L.DomUtil.remove(this._slideShowCanvas);
 		this._slideShowCanvas = null;
@@ -502,9 +496,7 @@ class SlideShowPresenter {
 		);
 		this._slideShowWindowProxy.addEventListener(
 			'keydown',
-			this._slideShowNavigator.onKeyDown.bind(
-				this._slideShowNavigator,
-			),
+			this._onKeyDownHandler,
 		);
 
 		const slideShowWindow = this._slideShowWindowProxy;
