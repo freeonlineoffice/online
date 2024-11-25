@@ -36,10 +36,10 @@
 
 #include <unistd.h>
 #include <sysexits.h>
+#include <sys/resource.h>
+#include <sys/wait.h>
 
 #include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/resource.h>
 
 #include <cassert>
 #include <clocale>
@@ -1278,10 +1278,12 @@ void LOOLWSD::setupChildRoot(const bool UseMountNamespaces)
 
 void LOOLWSD::innerInitialize(Poco::Util::Application& self)
 {
-    if (!Util::isMobileApp() && geteuid() == 0 && CheckLoolUser)
+#if !MOBILEAPP
+    if (geteuid() == 0 && CheckLoolUser)
     {
         throw std::runtime_error("Do not run as root. Please run as lool user.");
     }
+#endif
 
     Util::setApplicationPath(
         Poco::Path(Poco::Util::Application::instance().commandPath()).parent().toString());
@@ -3500,6 +3502,7 @@ private:
                                           now, *WebServerPoll, factory);
         }
 
+#if !MOBILEAPP
         if (!socket)
         {
             LOG_FTL("Failed to listen on Server port(s) (" << firstPortNumber << '-'
@@ -3507,7 +3510,6 @@ private:
             Util::forcedExit(EX_SOFTWARE);
         }
 
-#if !MOBILEAPP
         LOG_INF('#' << socket->getFD() << " Listening to client connections on port "
                     << ClientPortNumber);
 #else
@@ -4258,11 +4260,11 @@ void dump_state()
 
 #if !MOBILEAPP
     Admin::dumpMetrics();
-#endif
 
     std::lock_guard<std::mutex> docBrokerLock(DocBrokersMutex);
     std::lock_guard<std::mutex> newChildLock(NewChildrenMutex);
     forwardSignal(SIGUSR1);
+#endif
 }
 
 void lslr_childroot()
@@ -4274,6 +4276,7 @@ void lslr_childroot()
 
 void forwardSigUsr2()
 {
+#if !MOBILEAPP
     LOG_TRC("forwardSigUsr2");
 
     if (Util::isKitInProcess())
@@ -4283,6 +4286,7 @@ void forwardSigUsr2()
     std::lock_guard<std::mutex> newChildLock(NewChildrenMutex);
 
     forwardSignal(SIGUSR2);
+#endif
 }
 
 void forwardSignal(const int signum)
@@ -4298,7 +4302,6 @@ void forwardSignal(const int signum)
         LOG_INF("Sending " << name << " to forkit " << LOOLWSD::ForKitProcId);
         ::kill(LOOLWSD::ForKitProcId, signum);
     }
-#endif
 
     for (const auto& child : NewChildren)
     {
@@ -4318,6 +4321,7 @@ void forwardSignal(const int signum)
             ::kill(docBroker->getPid(), signum);
         }
     }
+#endif
 }
 
 // Avoid this in the Util::isFuzzing() case because libfuzzer defines its own main().

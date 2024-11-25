@@ -125,6 +125,7 @@ shared_sources = common/FileUtil.cpp \
                  common/SigUtil-server.cpp \
                  common/SpookyV2.cpp \
                  common/Unit.cpp \
+                 common/Unit-server.cpp \
                  common/Uri.cpp \
                  common/Util.cpp \
                  common/Util-server.cpp \
