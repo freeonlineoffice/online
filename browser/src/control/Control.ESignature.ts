@@ -21,18 +21,6 @@ namespace lool {
 
 	export interface HashSendResponse {
 		doc_id: string;
-		available_methods: Array<string>;
-		message: string;
-	}
-
-	export interface SignedResponse {
-		type: string;
-		error: string;
-	}
-
-	export interface ReceiveSignatureResponse {
-		status: string;
-		signed_file_contents: string;
 	}
 
 	/**
@@ -49,51 +37,6 @@ namespace lool {
 		// Timestamp of the hash extraction
 		signatureTime: number;
 
-		// Identifier of the document on the eIDEasy side
-		docId: string;
-
-		// The popup window we opened.
-		popup: Window;
-
-		availableProviderIDs: Array<string>;
-
-		// Provider ID to name map.
-		static providerNames: { [name: string]: string } = {
-			// The /api/client-config API would provide this, but having the data here
-			// saves us from fetching the same data every time for every user.
-			'id-signature': 'Estonian ID card',
-			'mid-signature': 'Estonian Mobile-ID',
-			'lt-mid-signature': 'Lithuanian Mobile-ID',
-			'smart-id-signature': 'Smart-ID',
-			'be-id-signature': 'Belgian ID card',
-			'lt-id-signature': 'Lithuanian ID card',
-			'lv-id-signature': 'Latvian ID card',
-			'lv-eparaksts-mobile-signature': 'Latvian eParaksts Mobile',
-			'fi-id-signature': 'Finnish ID card',
-			'at-handy-signatur-signature': 'Austrian Handy-Signatur',
-			'evrotrust-signature': 'Evrotrust',
-			'd-trust-sign-me-qes-signature': 'D-Trust sign-me',
-			'certeurope-usb-token-signature': 'CertEurope USB token',
-			'certsign-usb-token-signature': 'certSIGN USB token',
-			'zealid-signature': 'ZealID app',
-			'audkenni-qes-signature': 'Audkenni',
-			'simply-sign-qes-signature': 'SimplySign',
-			'halcom-qes-signature': 'Halcom',
-			'hr-id-signature': 'Croatian ID Card',
-			'uanataca-qes-signature': 'Uanataca',
-			'itsme-qes-signature': 'Itsme',
-			'harica-qes-signature': 'Harica',
-			'lt-id-qes-signature': 'LT ID',
-			'trust-asia-signature': 'TrustAsia',
-			'buypass-qes-signature': 'Buypass',
-			'cert-store-qes-signature': 'Local Certificate',
-			'fi-ftn-intesi-adv-signature':
-				'Finnish Trust Network / Luottamusverkosto',
-			'cz-id-signature': 'Czech ID Card',
-			'es-lleida-advanced-signature': 'Lleida',
-			'serpro-id-advanced-signature': 'SerproID',
-		};
-
 		constructor(url: string, secret: string, clientId: string) {
 			this.url = url;
 			this.secret = secret;
@@ -107,6 +50,7 @@ namespace lool {
 			app.socket.sendMessage('commandvalues command=.uno:Signature');
 		}
 
+		// Handles the command values response for .uno:Signature
 		onCommandValues(event: CommandValuesResponse): void {
 			if (event.commandName != '.uno:Signature') {
 				return;
@@ -122,7 +66,6 @@ namespace lool {
 			// Step 2: send the hash, get a document ID.
 			const url =
 				this.url + '/api/signatures/prepare-files-for-signing';
-			const redirectUrl = window.makeHttpUrl('/lool/signature');
 			const body = {
 				secret: this.secret,
 				client_id: this.clientId,
@@ -138,9 +81,6 @@ namespace lool {
 				],
 				// Learn about possible providers
 				return_available_methods: true,
-				signature_redirect: redirectUrl,
-				// Automatic file download will not happen after signing
-				nodownload: true,
 			};
 			const headers = {
 				'Content-Type': 'application/json',
