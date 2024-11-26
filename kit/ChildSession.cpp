@@ -110,6 +110,7 @@ ChildSession::ChildSession(const std::shared_ptr<ProtocolHandlerInterface>& prot
     , _URPContext(nullptr)
     , _hasURP(false)
 {
+#if !MOBILEAPP
     if (isURPEnabled())
     {
         LOG_WRN("URP is enabled in the config: Starting a URP tunnel for this session ["
@@ -121,7 +122,7 @@ ChildSession::ChildSession(const std::shared_ptr<ProtocolHandlerInterface>& prot
             LOG_INF("Failed to start a URP bridge for this session [" << getName()
                                                                       << "], disabling URP");
     }
-
+#endif
     LOG_INF("ChildSession ctor [" << getName() << "]. JailRoot: [" << _jailRoot << ']');
 }
 

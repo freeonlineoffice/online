@@ -1612,6 +1612,8 @@ bool Document::forkToSave(const std::function<void()>& childSave, int viewId)
     return true;
 }
 
+#if !MOBILEAPP
+
 void Document::reapZombieChildren()
 {
     /// Normally, we reap children when the WebSocket is disconnected.
@@ -1631,6 +1633,8 @@ void Document::reapZombieChildren()
         }
     }
 }
+
+#endif
 
 namespace
 {

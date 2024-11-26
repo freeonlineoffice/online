@@ -4269,12 +4269,16 @@ void dump_state()
 #endif
 }
 
+#if !MOBILEAPP
+
 void lslr_childroot()
 {
     std::cout << "lslr: " << LOOLWSD::ChildRoot << "\n";
     FileUtil::lslr(LOOLWSD::ChildRoot.c_str());
     std::cout << std::flush;
 }
+
+#endif
 
 void forwardSigUsr2()
 {
