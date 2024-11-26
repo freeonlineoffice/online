@@ -116,6 +116,7 @@ class SlideShowPresenter {
 	_slideShowCanvas: HTMLCanvasElement = null;
 	_slideShowWindowProxy: ReturnType<typeof window.open> = null;
 	_windowCloseInterval: ReturnType<typeof setInterval> = null;
+	_pauseRenderTimer: number = null;
 	_slideRenderer: SlideRenderer = null;
 	_canvasLoader: CanvasLoader | null = null;
 	private _pauseTimer: PauseTimerGl | PauseTimer2d;
@@ -481,15 +482,24 @@ class SlideShowPresenter {
 		else return this._slideShowWindowProxy.document;
 	}
 
+	_requestPauseFrame() {
+		if (!document.hidden) return;
+
+		const logRefresh = function () {
+			console.debug(
+				'_requestPauseFrame: after onTabSwitch pause was activated',
+			);
+		};
+		requestAnimationFrame(logRefresh);
+	}
+
 	onTabSwitch() {
 		const windowDocument = this._getProxyDocumentNode().documentElement;
 
 		if (document.hidden) this._stylePauseOverlay(windowDocument, true);
 		else this._stylePauseOverlay(windowDocument, false);
 
-		requestAnimationFrame(function ab() {
-			console.debug('render after onTabSwitch handler');
-		});
+		this._requestPauseFrame();
 	}
 
 	_doInWindowPresentation() {
@@ -515,6 +525,12 @@ class SlideShowPresenter {
 			return;
 		}
 
+		// allow rendering in paused mode in Firefox at least 1 per sec
+		// Chrome doesn't draw anything when main window is hidden
+		this._pauseRenderTimer = this._slideShowWindowProxy.setInterval(
+			this._requestPauseFrame.bind(this),
+			1000,
+		);
 		const deactivateFunc = this.onTabSwitch.bind(this);
 		document.addEventListener('visibilitychange', deactivateFunc);
 
@@ -569,6 +585,9 @@ class SlideShowPresenter {
 					document.removeEventListener(
 						'visibilitychange',
 						deactivateFunc,
+					);
+					this._slideShowWindowProxy.clearInterval(
+						this._pauseRenderTimer,
 					);
 					clearInterval(this._windowCloseInterval);
 					this._slideShowNavigator.quit();
