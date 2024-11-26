@@ -449,7 +449,7 @@ class SlideShowPresenter {
 			</head>
 			<body>
 				<div id="root-in-window"></div>
-				<div id="overlay-in-window" style="display: none">
+				<div id="overlay-in-window">
 					<span>${pauseText}</span>
 				</div>
 			</body>
