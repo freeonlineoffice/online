@@ -536,17 +536,42 @@ void RemoteConfigPoll::fetchMonitors(std::map<std::string, std::string>& newAppC
 }
 
 
-bool RemoteAssetConfigPoll::getNewAssets(const Poco::JSON::Object::Ptr& remoteJson,
+bool RemoteAssetConfigPoll::getFontAssets(const Poco::JSON::Object::Ptr& remoteJson,
+                                          const std::string& fontJsonKey)
+{
+    // First mark all fonts we have downloaded previously as "inactive" to be able to check if
+    // some asset gets deleted from the list in the JSON file.
+    for (auto& it : fonts)
+        it.second.active = false;
+
+    return getNewAssets(remoteJson->getArray(fontJsonKey), fontJsonKey, fonts);
+}
+
+bool RemoteAssetConfigPoll::getTemplateAssets(const Poco::JSON::Object::Ptr& remoteJson,
+                                              const std::string& templateType)
+{
+    // First mark all templates we have downloaded previously as "inactive" to be able to check if
+    // some asset gets deleted from the list in the JSON file.
+    for (auto& it : templates)
+        it.second.active = false;
+
+    auto templateObj = remoteJson->getObject("templates");
+
+    if (!templateObj)
+    {
+        LOG_WRN("The templates property does not exist");
+        return false;
+    }
+
+    return getNewAssets(templateObj->getArray(templateType), templateType, templates);
+}
+
+bool RemoteAssetConfigPoll::getNewAssets(const Poco::JSON::Array::Ptr& assetsPtr,
                                          const std::string& assetJsonKey,
                                          std::map<std::string, AssetData>& assets)
 {
-    // First mark all assets we have downloaded previously as "inactive" to be able to check if
-    // some asset gets deleted from the list in the JSON file.
-    for (auto& it : assets)
-        it.second.active = false;
-
     bool reDownloadConfig = false;
-    auto assetsPtr = remoteJson->getArray(assetJsonKey);
+
     if (!assetsPtr)
     {
         LOG_WRN("The [" + assetJsonKey + "] property does not exist or is not an array");
@@ -634,13 +659,14 @@ bool RemoteAssetConfigPoll::getNewAssets(const Poco::JSON::Object::Ptr& remoteJs
     return reDownloadConfig;
 }
 
-std::string RemoteAssetConfigPoll::removeTemplate(const std::string& uri)
+std::string RemoteAssetConfigPoll::removeTemplate(const std::string& uri,
+                                                  const std::string& tmpPath)
 {
     const Poco::URI assetUri{ uri };
     const std::string& path = assetUri.getPath();
     const std::string filename = path.substr(path.find_last_of('/') + 1);
     std::string assetFile;
-    assetFile.append(LOOLWSD::TmpTemplateDir);
+    assetFile.append(tmpPath);
     assetFile.append("/");
     assetFile.append(filename);
     FileUtil::removeFile(assetFile);
@@ -653,11 +679,11 @@ void RemoteAssetConfigPoll::reDownloadConfigFile(std::map<std::string, AssetData
     LOG_DBG("Downloaded asset has been updated or a asset has been removed.");
 
     // remove inactive templates
-    if (assetType == "templates")
+    if (assetType == "presnt")
     {
         for (const auto& it : assets)
             if (!it.second.active)
-                removeTemplate(it.second.pathName);
+                removeTemplate(it.second.pathName, LOOLWSD::TmpPresntTemplateDir);
     }
 
     assets.clear();
@@ -673,13 +699,13 @@ void RemoteAssetConfigPoll::reDownloadConfigFile(std::map<std::string, AssetData
 
 void RemoteAssetConfigPoll::handleJSON(const Poco::JSON::Object::Ptr& remoteJson)
 {
-    bool reDownloadFontConfig = getNewAssets(remoteJson, "fonts", fonts);
-    bool reDownloadTemplateConfig = getNewAssets(remoteJson, "templates", templates);
+    bool reDownloadFontConfig = getFontAssets(remoteJson, "fonts");
+    bool reDownloadTemplateConfig = getTemplateAssets(remoteJson, "presnt");
 
     if (reDownloadFontConfig)
         reDownloadConfigFile(fonts, "fonts");
     if (reDownloadTemplateConfig)
-        reDownloadConfigFile(templates, "templates");
+        reDownloadConfigFile(templates, "presnt");
 }
 
 bool RemoteAssetConfigPoll::handleUnchangedAssets(std::map<std::string, AssetData>& assets)
@@ -720,7 +746,7 @@ void RemoteAssetConfigPoll::handleUnchangedJSON()
     if (reDownloadFontConfig)
         reDownloadConfigFile(fonts, "fonts");
     if (reDownloadTemplateConfig)
-        reDownloadConfigFile(templates, "templates");
+        reDownloadConfigFile(templates, "presnt");
 }
 
 bool RemoteAssetConfigPoll::downloadPlain(const std::string& uri,
@@ -814,8 +840,8 @@ bool RemoteAssetConfigPoll::finishDownload(
         // And in reality, it is a bit unclear how likely it even is that assets downloaded through
         // this mechanism even will be updated.
         assetFile = LOOLWSD::TmpFontDir + '/' + Util::encodeId(Util::rng::getNext()) + ".ttf";
-    else if (assetType == "templates")
-        assetFile = removeTemplate(uri);
+    else if (assetType == "presnt")
+        assetFile = removeTemplate(uri, LOOLWSD::TmpPresntTemplateDir);
 
     std::ofstream assetStream(assetFile);
     assetStream.write(body.data(), body.size());

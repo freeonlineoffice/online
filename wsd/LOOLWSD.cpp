@@ -672,7 +672,7 @@ std::string LOOLWSD::ServerName;
 std::string LOOLWSD::FileServerRoot;
 std::string LOOLWSD::ServiceRoot;
 std::string LOOLWSD::TmpFontDir;
-std::string LOOLWSD::TmpTemplateDir;
+std::string LOOLWSD::TmpPresntTemplateDir;
 std::string LOOLWSD::LOKitVersion;
 std::string LOOLWSD::ConfigFile = LOOLWSD_CONFIGDIR "/loolwsd.xml";
 std::string LOOLWSD::ConfigDir = LOOLWSD_CONFIGDIR "/conf.d";
@@ -3600,7 +3600,7 @@ int LOOLWSD::innerMain()
     Server->findClientPort();
 
     TmpFontDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH + "/fonts";
-    TmpTemplateDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH + "/templates";
+    TmpPresntTemplateDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH + "/templates/presnt";
 
     // Start the internal prisoner server and spawn forkit,
     // which in turn forks first child.
