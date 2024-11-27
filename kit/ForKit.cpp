@@ -27,6 +27,7 @@
 #include <map>
 #include <thread>
 #include <chrono>
+#include <utility>
 
 #include <Poco/Path.h>
 #include <Poco/URI.h>
@@ -110,9 +111,9 @@ class ServerWSHandler final : public WebSocketHandler
     std::string _socketName;
 
 public:
-    ServerWSHandler(const std::string& socketName) :
-        WebSocketHandler(/* isClient = */ true, /* isMasking */ false),
-        _socketName(socketName)
+    explicit ServerWSHandler(std::string socketName)
+        : WebSocketHandler(/* isClient = */ true, /* isMasking */ false)
+        , _socketName(std::move(socketName))
     {
     }
 
