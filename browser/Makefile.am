@@ -1020,6 +1020,7 @@ CLEANFILES = tscompile.done $(INTERMEDIATE_DIR)/lool-src.js $(DIST_FOLDER)/bundl
 
 ctags:
 	@$(CTAGS) --language-force=JavaScript $(LOOL_JS_SRC) $(srcdir)/js/global.js
+	@$(CTAGS) --language-force=TypeScript --extra=+q --append=yes $(LOOL_TS_SRC)
 
 $(abs_srcdir)/jsconfig.json:
 	@printf "{\n \
