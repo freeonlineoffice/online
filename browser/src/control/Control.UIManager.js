@@ -13,6 +13,8 @@ L.Control.UIManager = L.Control.extend({
 	customButtons: [], // added by WOPI InsertButton
 	hiddenButtons: {},
 	hiddenCommands: {},
+	// Hidden Notebookbar tabs.
+	hiddenTabs: {},
 
 	onAdd: function (map) {
 		this.map = map;
@@ -940,6 +942,21 @@ L.Control.UIManager = L.Control.extend({
 		$('#document-container').removeClass('tabs-collapsed');
 
 		this.map._docLayer._syncTileContainerSize();
+	},
+
+	showNotebookTab: function(id, show) {
+		if (show) {
+			delete this.hiddenTabs[id];
+		} else {
+			this.hiddenTabs[id] = true;
+		}
+		if (this.notebookbar) {
+			this.notebookbar.refreshContextTabsVisibility();
+		}
+	},
+
+	isTabVisible: function(name) {
+		return !(name in this.hiddenTabs);
 	},
 
 	isNotebookbarCollapsed: function() {
