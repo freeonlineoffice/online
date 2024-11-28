@@ -2360,7 +2360,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 		var content = [
 			{
 				'type': 'bigtoolitem',
-				'text': _UNO('.uno:TableDialog', 'text'),
+				'text': _UNO('.uno:TableDialog', 'text', true),
 				'command': '.uno:TableDialog'
 			},
 			{
@@ -2371,12 +2371,12 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 						'children': [
 							{
 								'type': 'toolitem',
-								'text': _UNO('.uno:InsertColumnsBefore', 'text'),
+								'text': _UNO('.uno:InsertColumnsBefore', 'text', true),
 								'command': '.uno:InsertColumnsBefore'
 							},
 							{
 								'type': 'toolitem',
-								'text': _UNO('.uno:InsertColumnsAfter', 'text'),
+								'text': _UNO('.uno:InsertColumnsAfter', 'text', true),
 								'command': '.uno:InsertColumnsAfter'
 							},
 							{
@@ -2391,12 +2391,12 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 						'children': [
 							{
 								'type': 'toolitem',
-								'text': _UNO('.uno:InsertRowsBefore', 'text'),
+								'text': _UNO('.uno:InsertRowsBefore', 'text', true),
 								'command': '.uno:InsertRowsBefore'
 							},
 							{
 								'type': 'toolitem',
-								'text': _UNO('.uno:InsertRowsAfter', 'text'),
+								'text': _UNO('.uno:InsertRowsAfter', 'text', true),
 								'command': '.uno:InsertRowsAfter'
 							},
 							{
