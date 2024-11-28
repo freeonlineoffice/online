@@ -708,13 +708,13 @@ browser/node_modules: browser/package.json browser/node_shrinkpack
 	@cd browser && npm install
 
 eslint: browser/node_modules
-	@make -C browser eslint
+	@$(MAKE) -C browser eslint
 
 prettier: browser/node_modules
-	@make -C browser prettier
+	@$(MAKE) -C browser prettier
 
 prettier-write: browser/node_modules
-	@make -C browser prettier-write
+	@$(MAKE) -C browser prettier-write
 
 stress_file=$(abs_top_srcdir)/test/data/hello-world.odt
 trace_dir=$(abs_top_srcdir)/test/traces
