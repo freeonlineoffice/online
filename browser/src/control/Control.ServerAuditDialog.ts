@@ -237,14 +237,14 @@ class ServerAuditDialog {
 									id: 'ok',
 									type: 'pushbutton',
 									text: _('OK'),
-								},
+								} as PushButtonWidget,
 							],
 							layoutstyle: 'end',
-						},
+						} as ButtonBoxWidget,
 					],
-				},
+				} as ContainerWidgetJSON,
 			],
-		} as any as JSDialogJSON;
+		} as JSDialogJSON;
 	}
 
 	public close() {
