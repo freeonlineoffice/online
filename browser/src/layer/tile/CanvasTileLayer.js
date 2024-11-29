@@ -3723,8 +3723,15 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._references.clear();
 	},
 
-	_postMouseEvent: function (type, x, y, count, buttons, modifier) {
-		if (!this._map._docLoaded) return;
+	_resetReferencesMarks: function () {
+		this._referencesAll = [];
+		this._clearReferences();
+		this._updateReferenceMarks();
+	},
+
+	_postMouseEvent: function(type, x, y, count, buttons, modifier) {
+		if (!this._map._docLoaded)
+			return;
 
 		if (this._map.calcInputBarHasFocus() && type === 'move') {
 			// When the Formula-bar has the focus, sending
