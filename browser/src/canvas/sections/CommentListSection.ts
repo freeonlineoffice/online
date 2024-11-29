@@ -87,6 +87,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 	static autoSavedComment: lool.Comment;
 	static commentWasAutoAdded: boolean = false;
 	static pendingImport: boolean = false;
+	static importingComments: boolean = false; // active during comments insertion, disable scroll
 
 	// To associate comment id with its index in commentList array.
 	private idIndexMap: Map<any, number>;
@@ -840,6 +841,9 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 	}
 
 	private scrollCommentIntoView (comment: Comment) {
+		if (CommentSection.importingComments)
+			return;
+
 		const docType = this.sectionProperties.docLayer._docType;
 		let anchorPosition: Array<number> = null;
 		const rootComment = this.sectionProperties.commentList[this.getRootIndexOf(comment.sectionProperties.data.id)];
@@ -2325,6 +2329,9 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 			CommentSection.pendingImport = true;
 			return;
 		}
+
+		CommentSection.importingComments = true;
+
 		this.clearList();
 		commentList = this.turnIntoAList(commentList);
 
@@ -2362,6 +2369,8 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 
 		if (!(<any>window).mode.isMobile() && (this.sectionProperties.docLayer._docType === 'presentation' || this.sectionProperties.docLayer._docType === 'drawing'))
 			this.showHideComments();
+
+		CommentSection.importingComments = false;
 	}
 
 	// Accepts redlines/changes comments.
