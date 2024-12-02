@@ -425,8 +425,7 @@ int Config::main(const std::vector<std::string>& args)
 
         for (std::size_t i = 1; i < args.size(); ++i)
         {
-            std::cout << '[' << args[i]
-                      << "]: " << Anonymizer::anonymizeUrl(args[i], AnonymizationSalt) << std::endl;
+            std::cout << '[' << args[i] << "]: " << Anonymizer::anonymizeUrl(args[i]) << std::endl;
         }
     }
     else if (args[0] == "generate-proof-key")
