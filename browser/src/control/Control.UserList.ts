@@ -541,6 +541,7 @@ class UserList extends L.Control {
 			listItem.appendChild(userLabelContainer);
 			listItem.addEventListener('click', () => {
 				this.followUser(viewId);
+				JSDialog.CloseDropdown('userlist');
 			});
 
 			return listItem;
