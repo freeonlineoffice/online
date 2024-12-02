@@ -679,7 +679,7 @@ void RemoteAssetConfigPoll::reDownloadConfigFile(std::map<std::string, AssetData
     LOG_DBG("Downloaded asset has been updated or a asset has been removed.");
 
     // remove inactive templates
-    if (assetType == "presnt")
+    if (assetType == "presentation")
     {
         for (const auto& it : assets)
             if (!it.second.active)
@@ -700,12 +700,12 @@ void RemoteAssetConfigPoll::reDownloadConfigFile(std::map<std::string, AssetData
 void RemoteAssetConfigPoll::handleJSON(const Poco::JSON::Object::Ptr& remoteJson)
 {
     bool reDownloadFontConfig = getFontAssets(remoteJson, "fonts");
-    bool reDownloadTemplateConfig = getTemplateAssets(remoteJson, "presnt");
+    bool reDownloadTemplateConfig = getTemplateAssets(remoteJson, "presentation");
 
     if (reDownloadFontConfig)
         reDownloadConfigFile(fonts, "fonts");
     if (reDownloadTemplateConfig)
-        reDownloadConfigFile(templates, "presnt");
+        reDownloadConfigFile(templates, "presentation");
 }
 
 bool RemoteAssetConfigPoll::handleUnchangedAssets(std::map<std::string, AssetData>& assets)
@@ -746,7 +746,7 @@ void RemoteAssetConfigPoll::handleUnchangedJSON()
     if (reDownloadFontConfig)
         reDownloadConfigFile(fonts, "fonts");
     if (reDownloadTemplateConfig)
-        reDownloadConfigFile(templates, "presnt");
+        reDownloadConfigFile(templates, "presentation");
 }
 
 bool RemoteAssetConfigPoll::downloadPlain(const std::string& uri,
@@ -840,7 +840,7 @@ bool RemoteAssetConfigPoll::finishDownload(
         // And in reality, it is a bit unclear how likely it even is that assets downloaded through
         // this mechanism even will be updated.
         assetFile = LOOLWSD::TmpFontDir + '/' + Util::encodeId(Util::rng::getNext()) + ".ttf";
-    else if (assetType == "presnt")
+    else if (assetType == "presentation")
         assetFile = removeTemplate(uri, LOOLWSD::TmpPresntTemplateDir);
 
     std::ofstream assetStream(assetFile);
