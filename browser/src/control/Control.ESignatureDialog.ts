@@ -8,7 +8,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace cool {
+namespace lool {
 	export interface SignatureProvider {
 		action_type: string;
 		name: string;
@@ -79,8 +79,8 @@ namespace cool {
 				id: this.id,
 				dialogid: this.id,
 				type: 'dialog',
-				text: _('Select provider'),
-				title: _('Select provider'),
+				text: _('Insert Electronic Signature'),
+				title: _('Insert Electronic Signature'),
 				jsontype: 'dialog',
 				responses: [
 					{
@@ -116,7 +116,16 @@ namespace cool {
 			data: any,
 			builder: any,
 		) {
-			if (eventType === 'response' || object.id === 'ok') this.close();
+			if (eventType === 'response' || object.id === 'ok') {
+				const providers = <HTMLSelectElement>(
+					document.querySelector(
+						'#ESignatureDialog select#providerlb-input',
+					)
+				);
+				const providerIndex = providers.selectedIndex;
+				this.close();
+				app.map.eSignature.handleSelectedProvider(providerIndex);
+			}
 		}
 
 		open(): void {
@@ -129,6 +138,6 @@ namespace cool {
 	}
 }
 
-JSDialog.eSignatureDialog = (providers: Array<cool.SignatureProvider>) => {
-	return new cool.ESignatureDialog(providers);
+JSDialog.eSignatureDialog = (providers: Array<lool.SignatureProvider>) => {
+	return new lool.ESignatureDialog(providers);
 };
