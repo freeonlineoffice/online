@@ -323,20 +323,20 @@ int main(int argc, char* argv[])
                                  });
 
     std::thread([]
-                {
-                    assert(loolwsd == nullptr);
-                    char *argv[2];
-                    argv[0] = strdup("mobile");
-                    argv[1] = nullptr;
-                    Util::setThreadName("app");
-                    while (true)
-                    {
-                        loolwsd = new LOOLWSD();
-                        loolwsd->run(1, argv);
-                        delete loolwsd;
-                        LOG_TRC("One run of LOOLWSD completed");
-                    }
-                }).detach();
+    {
+        assert(loolwsd == nullptr);
+        char *argv[2];
+        argv[0] = strdup("mobile");
+        argv[1] = nullptr;
+        Util::setThreadName("app");
+        while (true)
+        {
+            loolwsd = new LOOLWSD();
+            loolwsd->run(1, argv);
+            delete loolwsd;
+            LOG_TRC("One run of LOOLWSD completed");
+        }
+    }).detach();
 
     fakeClientFd = fakeSocketSocket();
 
