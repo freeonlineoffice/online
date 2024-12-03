@@ -5267,7 +5267,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			}
 
 			if (oldSize.x !== newSize.x || oldSize.y !== newSize.y) {
-				this._map.invalidateSize();
+				this._map.invalidateSize({}, oldSize);
 			}
 
 			var hasMobileWizardOpened = this._map.uiManager.mobileWizard
