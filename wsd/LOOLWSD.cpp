@@ -166,8 +166,11 @@ static std::mutex NewChildrenMutex;
 static std::condition_variable NewChildrenCV;
 static std::vector<std::shared_ptr<ChildProcess> > NewChildren;
 
-static std::chrono::steady_clock::time_point LastForkRequestTime = std::chrono::steady_clock::now();
-static int OutstandingForks(0);
+static std::atomic<int> TotalOutstandingForks(0);
+std::map<std::string, int> OutstandingForks;
+std::map<std::string, std::chrono::steady_clock::time_point> LastForkRequestTimes;
+std::map<std::string, std::shared_ptr<ForKitProcess>> SubForKitProcs;
+std::map<std::string, std::chrono::steady_clock::time_point> LastSubForKitBrokerExitTimes;
 std::map<std::string, std::shared_ptr<DocumentBroker>> DocBrokers;
 std::mutex DocBrokersMutex;
 static Poco::AutoPtr<Poco::Util::XMLConfiguration> KitXmlConfig;
@@ -405,6 +408,11 @@ void cleanupDocBrokers()
     Util::assertIsLocked(DocBrokersMutex);
 
     const size_t count = DocBrokers.size();
+
+    std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
+
+    std::set<std::string> activeConfigs;
+
     for (auto it = DocBrokers.begin(); it != DocBrokers.end(); )
     {
         std::shared_ptr<DocumentBroker> docBroker = it->second;
@@ -412,11 +420,13 @@ void cleanupDocBrokers()
         // Remove only when not alive.
         if (!docBroker->isAlive())
         {
+            LastSubForKitBrokerExitTimes[docBroker->getConfigId()] = now;
             LOG_INF("Removing DocumentBroker for docKey [" << it->first << "].");
             docBroker->dispose();
             it = DocBrokers.erase(it);
             continue;
         } else {
+            activeConfigs.insert(docBroker->getConfigId());
             ++it;
         }
     }
@@ -432,6 +442,33 @@ void cleanupDocBrokers()
                     }
                 });
 
+        CONFIG_STATIC const std::size_t IdleServerSettingsTimeoutSecs =
+            ConfigUtil::getConfigValue<int>("serverside_config.idle_timeout_secs", 3600);
+
+        // consider shutting down unused subforkits
+        for (auto it = SubForKitProcs.begin(); it != SubForKitProcs.end(); )
+        {
+            const std::string& configId = it->first;
+            if (configId.empty()) {
+                // ignore primordial forkit
+                ++it;
+            } else if (activeConfigs.contains(configId)) {
+                LOG_DBG("subforkit " << configId << " has active document, keep it");
+                ++it;
+            } else if (OutstandingForks[configId] > 0) {
+                LOG_DBG("subforkit " << configId << " has a pending fork underway, keep it");
+                ++it;
+            } else if (now - LastSubForKitBrokerExitTimes[configId] < std::chrono::seconds(IdleServerSettingsTimeoutSecs)) {
+                LOG_DBG("subforkit " << configId << " recently used, keep it");
+                ++it;
+            } else {
+                LOG_DBG("subforkit " << configId << " is unused, dropping it");
+                LastSubForKitBrokerExitTimes.erase(configId);
+                OutstandingForks.erase(configId);
+                it = SubForKitProcs.erase(it);
+            }
+        }
+
 #if !MOBILEAPP && ENABLE_DEBUG
         if (LOOLWSD::SingleKit && DocBrokers.empty())
         {
@@ -445,7 +482,7 @@ void cleanupDocBrokers()
 #if !MOBILEAPP
 
 /// Forks as many children as requested.
-static void forkChildren(const int number)
+static void forkChildren(const std::string& configId, const int number)
 {
     if (Util::isKitInProcess())
         return;
@@ -459,24 +496,35 @@ static void forkChildren(const int number)
 
         const std::string message = "spawn " + std::to_string(number) + '\n';
         LOG_DBG("MasterToForKit: " << message.substr(0, message.length() - 1));
-        LOOLWSD::sendMessageToForKit(message);
-        OutstandingForks += number;
-        LastForkRequestTime = std::chrono::steady_clock::now();
+
+        if (LOOLWSD::sendMessageToForKit(message, configId))
+        {
+            TotalOutstandingForks += number;
+            OutstandingForks[configId] += number;
+            LastForkRequestTimes[configId] = std::chrono::steady_clock::now();
+        }
     }
 }
 
-bool COOLWSD::spawnSubForKit(const std::string& id)
+bool LOOLWSD::ensureSubForKit(const std::string& configId)
 {
     if (Util::isKitInProcess())
         return false;
 
-    LOG_TRC("Request forkit to spawn subForKit " << id);
+    LOG_TRC("Request forkit to spawn subForKit " << configId);
 
-    COOLWSD::checkDiskSpaceAndWarnClients(false);
+    auto it = SubForKitProcs.find(configId);
+    if (it != SubForKitProcs.end())
+    {
+        LOG_TRC("subForKit " << configId << " already running");
+        return false;
+    }
 
-    const std::string aMessage = "addforkit " + id + '\n';
+    LOOLWSD::checkDiskSpaceAndWarnClients(false);
+
+    const std::string aMessage = "addforkit " + configId + '\n';
     LOG_DBG("MasterToForKit: " << aMessage.substr(0, aMessage.length() - 1));
-    COOLWSD::sendMessageToForKit(aMessage);
+    LOOLWSD::sendMessageToForKit(aMessage);
 
     return true;
 }
@@ -508,38 +556,45 @@ static bool cleanupChildren()
 }
 
 /// Decides how many children need spawning and spawns.
-static void rebalanceChildren(int balance)
+static void rebalanceChildren(const std::string& configId, int balance)
 {
     Util::assertIsLocked(NewChildrenMutex);
 
-    const size_t available = NewChildren.size();
+    size_t available = 0;
+    for (const auto& elem : NewChildren)
+    {
+        if (elem->getConfigId() == configId)
+            ++available;
+    }
+
     LOG_TRC("Rebalance children to " << balance << ", have " << available << " and "
-                                     << OutstandingForks << " outstanding requests");
+                                     << OutstandingForks[configId] << " outstanding requests");
 
     // Do the cleanup first.
     const bool rebalance = cleanupChildren();
 
-    const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTime);
+    const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTimes[configId]);
     const auto durationMs = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
-    if (OutstandingForks != 0 && durationMs >= std::chrono::milliseconds(ChildSpawnTimeoutMs))
+    if (OutstandingForks[configId] != 0 && durationMs >= std::chrono::milliseconds(ChildSpawnTimeoutMs))
     {
         // Children taking too long to spawn.
         // Forget we had requested any, and request anew.
-        LOG_WRN("ForKit not responsive for " << durationMs << " forking " << OutstandingForks
+        LOG_WRN("ForKit not responsive for " << durationMs << " forking " << OutstandingForks[configId]
                                              << " children. Resetting.");
-        OutstandingForks = 0;
+        TotalOutstandingForks -= OutstandingForks[configId];
+        OutstandingForks[configId] = 0;
     }
 
     balance -= available;
-    balance -= OutstandingForks;
+    balance -= OutstandingForks[configId];
 
-    if (balance > 0 && (rebalance || OutstandingForks == 0))
+    if (balance > 0 && (rebalance || OutstandingForks[configId] == 0))
     {
         LOG_DBG("prespawnChildren: Have " << available << " spare "
                                           << (available == 1 ? "child" : "children") << ", and "
-                                          << OutstandingForks << " outstanding, forking " << balance
+                                          << OutstandingForks[configId] << " outstanding, forking " << balance
                                           << " more. Time since last request: " << durationMs);
-        forkChildren(balance);
+        forkChildren(configId, balance);
     }
 }
 
@@ -550,7 +605,9 @@ static void prespawnChildren()
     // Rebalance if not forking already.
     std::unique_lock<std::mutex> lock(NewChildrenMutex, std::defer_lock);
     if (lock.try_lock())
-        rebalanceChildren(LOOLWSD::NumPreSpawnedChildren);
+    {
+        rebalanceChildren("", LOOLWSD::NumPreSpawnedChildren);
+    }
 }
 
 #endif
@@ -559,13 +616,18 @@ static size_t addNewChild(std::shared_ptr<ChildProcess> child)
 {
     assert(child && "Adding null child");
     const auto pid = child->getPid();
+    const std::string& configId = child->getConfigId();
 
     std::unique_lock<std::mutex> lock(NewChildrenMutex);
 
-    --OutstandingForks;
+    --TotalOutstandingForks;
+    --OutstandingForks[configId];
     // Prevent from going -ve if we have unexpected children.
-    if (OutstandingForks < 0)
-        ++OutstandingForks;
+    if (OutstandingForks[configId] < 0)
+    {
+        ++TotalOutstandingForks;
+        ++OutstandingForks[configId];
+    }
 
     if (LOOLWSD::IsBindMountingEnabled)
     {
@@ -574,7 +636,7 @@ static size_t addNewChild(std::shared_ptr<ChildProcess> child)
         ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
     }
 
-    LOG_TRC("Adding a new child " << pid << " to NewChildren, have " << OutstandingForks
+    LOG_TRC("Adding a new child " << pid << " to NewChildren, have " << OutstandingForks[configId]
                                   << " outstanding requests");
     SigUtil::addActivity("added child " + std::to_string(pid));
     NewChildren.emplace_back(std::move(child));
@@ -741,12 +803,13 @@ public:
         _forKitProc = forKitProc;
     }
 
-    void sendMessageToForKit(const std::string& msg)
+    void sendMessageToForKit(const std::string& msg,
+                             const std::weak_ptr<ForKitProcess>& proc)
     {
         if (std::this_thread::get_id() == getThreadOwner())
         {
             // Speed up sending the message if the request comes from owner thread
-            std::shared_ptr<ForKitProcess> forKitProc = _forKitProc.lock();
+            std::shared_ptr<ForKitProcess> forKitProc = proc.lock();
             if (forKitProc)
             {
                 forKitProc->sendTextFrame(msg);
@@ -757,14 +820,19 @@ public:
             // Put the message in the owner's thread queue to be send later
             // because WebSocketHandler is not thread safe and otherwise we
             // should synchronize inside WebSocketHandler.
-            addCallback([this, msg]{
-                std::shared_ptr<ForKitProcess> forKitProc = _forKitProc.lock();
+            addCallback([proc, msg]{
+                std::shared_ptr<ForKitProcess> forKitProc = proc.lock();
                 if (forKitProc)
                 {
                     forKitProc->sendTextFrame(msg);
                 }
             });
         }
+    }
+
+    void sendMessageToForKit(const std::string& msg)
+    {
+        sendMessageToForKit(msg, _forKitProc);
     }
 
 private:
@@ -793,10 +861,13 @@ std::shared_ptr<ChildProcess> getNewChild_Blocks(SocketPoll &destPoll, const std
 #if !MOBILEAPP
     assert(mobileAppDocId == 0 && "Unexpected to have mobileAppDocId in the non-mobile build");
 
-    int numPreSpawn = LOOLWSD::NumPreSpawnedChildren;
-    ++numPreSpawn; // Replace the one we'll dispatch just now.
-    LOG_DBG("getNewChild: Rebalancing children to " << numPreSpawn);
-    rebalanceChildren(numPreSpawn);
+    if (configId.empty() || SubForKitProcs.contains(configId))
+    {
+        int numPreSpawn = LOOLWSD::NumPreSpawnedChildren;
+        ++numPreSpawn; // Replace the one we'll dispatch just now.
+        LOG_DBG("getNewChild: Rebalancing children of config[" << configId << "] to " << numPreSpawn);
+        rebalanceChildren(configId, numPreSpawn);
+    }
 
     const auto timeout = std::chrono::milliseconds(ChildSpawnTimeoutMs / 2);
     LOG_TRC("Waiting for a new child for a max of " << timeout);
@@ -2535,7 +2606,7 @@ void PrisonPoll::wakeupHook()
 #if !MOBILEAPP
     LOG_TRC("PrisonerPoll - wakes up with " << NewChildren.size() <<
             " new children and " << DocBrokers.size() << " brokers and " <<
-            OutstandingForks << " kits forking");
+            TotalOutstandingForks << " kits forking");
 
     if (!LOOLWSD::checkAndRestoreForKit())
     {
@@ -2667,12 +2738,15 @@ bool LOOLWSD::createForKit()
     ForKitProc = nullptr;
     PrisonerPoll->setForKitProcess(ForKitProc);
 
+    const std::string defaultConfigId;
+
     // ForKit always spawns one.
-    ++OutstandingForks;
+    ++TotalOutstandingForks;
+    ++OutstandingForks[defaultConfigId];
 
     LOG_INF("Launching forkit process: " << forKitPath << ' ' << args.cat(' ', 0));
 
-    LastForkRequestTime = std::chrono::steady_clock::now();
+    LastForkRequestTimes[defaultConfigId] = std::chrono::steady_clock::now();
     int child = createForkit(forKitPath, args);
     ForKitProcId = child;
 
@@ -2681,19 +2755,32 @@ bool LOOLWSD::createForKit()
     // Init the Admin manager
     Admin::instance().setForKitPid(ForKitProcId);
 
-    const int balance = LOOLWSD::NumPreSpawnedChildren - OutstandingForks;
+    const int balance = LOOLWSD::NumPreSpawnedChildren - OutstandingForks[defaultConfigId];
     if (balance > 0)
-        rebalanceChildren(balance);
+        rebalanceChildren(defaultConfigId, balance);
 
     return ForKitProcId != -1;
 }
 
-void LOOLWSD::sendMessageToForKit(const std::string& message)
+bool LOOLWSD::sendMessageToForKit(const std::string& message, const std::string& configId)
 {
-    if (PrisonerPoll)
+    if (!PrisonerPoll)
+        return false;
+
+    if (configId.empty())
     {
         PrisonerPoll->sendMessageToForKit(message);
+        return true;
     }
+
+    auto it = SubForKitProcs.find(configId);
+    if (it == SubForKitProcs.end())
+    {
+        LOG_WRN("subforkit: " << configId << " doesn't exist yet, dropping message: " << message);
+        return false;
+    }
+    PrisonerPoll->sendMessageToForKit(message, it->second);
+    return true;
 }
 
 #endif // !MOBILEAPP
@@ -2767,14 +2854,18 @@ private:
         {
             LOG_WRN("Unassociated Kit (" << _pid << ") disconnected unexpectedly");
 
+            std::string configId;
             std::unique_lock<std::mutex> lock(NewChildrenMutex);
             auto it = std::find(NewChildren.begin(), NewChildren.end(), child);
             if (it != NewChildren.end())
+            {
+                configId = (*it)->getConfigId();
                 NewChildren.erase(it);
+            }
             else
                 LOG_WRN("Unknown Kit process closed with pid " << (child ? child->getPid() : -1));
 #if !MOBILEAPP
-            rebalanceChildren(LOOLWSD::NumPreSpawnedChildren);
+            rebalanceChildren(configId, LOOLWSD::NumPreSpawnedChildren);
 #endif
         }
     }
@@ -2840,16 +2931,39 @@ private:
             Poco::URI requestURI(request.getUrl());
             if (requestURI.getPath() == FORKIT_URI)
             {
-                if (socket->getPid() != LOOLWSD::ForKitProcId)
+                // New ForKit is spawned.
+                const Poco::URI::QueryParameters params = requestURI.getQueryParameters();
+                const int pid = socket->getPid();
+                for (const auto& param : params)
                 {
-                    LOG_WRN("Connection request received on "
-                            << FORKIT_URI << " endpoint from unexpected ForKit process. Skipped");
-                    return;
+                    if (param.first == "configid")
+                        configId = param.second;
                 }
-                LOOLWSD::ForKitProc = std::make_shared<ForKitProcess>(LOOLWSD::ForKitProcId, socket, request);
-                LOG_ASSERT_MSG(socket->getInBuffer().empty(), "Unexpected data in prisoner socket");
-                socket->getInBuffer().clear();
-                PrisonerPoll->setForKitProcess(LOOLWSD::ForKitProc);
+
+                if (configId.empty()) // primordial forkit
+                {
+                    if (pid != LOOLWSD::ForKitProcId)
+                    {
+                        LOG_WRN("Connection request received on "
+                                << FORKIT_URI << " endpoint from unexpected ForKit process. Skipped");
+                        return;
+                    }
+                    LOOLWSD::ForKitProc = std::make_shared<ForKitProcess>(LOOLWSD::ForKitProcId, socket, request);
+                    LOG_ASSERT_MSG(socket->getInBuffer().empty(), "Unexpected data in prisoner socket");
+                    socket->getInBuffer().clear();
+                    PrisonerPoll->setForKitProcess(LOOLWSD::ForKitProc);
+                }
+                else
+                {
+                    LOG_INF("subforkit [" << configId << "], seen as created.");
+                    SubForKitProcs[configId] = std::make_shared<ForKitProcess>(pid, socket, request);
+                    LOG_ASSERT_MSG(socket->getInBuffer().empty(), "Unexpected data in prisoner socket");
+                    socket->getInBuffer().clear();
+                    // created subforkit for a reason, create spare early
+                    std::unique_lock<std::mutex> lock(NewChildrenMutex);
+                    rebalanceChildren(configId, LOOLWSD::NumPreSpawnedChildren);
+                }
+
                 return;
             }
             if (requestURI.getPath() != NEW_CHILD_URI)
@@ -2858,7 +2972,7 @@ private:
                 return;
             }
 
-            const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTime);
+            const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTimes[configId]);
             const auto durationMs = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
             LOG_TRC("New child spawned after " << durationMs << " of requesting");
 
@@ -3119,7 +3233,7 @@ public:
            << "\n  TerminationFlag: " << SigUtil::getTerminationFlag()
            << "\n  isShuttingDown: " << SigUtil::getShutdownRequestFlag()
            << "\n  NewChildren: " << NewChildren.size() << " (" << NewChildren.capacity() << ')'
-           << "\n  OutstandingForks: " << OutstandingForks
+           << "\n  OutstandingForks: " << TotalOutstandingForks
            << "\n  NumPreSpawnedChildren: " << LOOLWSD::NumPreSpawnedChildren
            << "\n  ChildSpawnTimeoutMs: " << ChildSpawnTimeoutMs
            << "\n  Document Brokers: " << DocBrokers.size()
