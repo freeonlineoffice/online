@@ -464,6 +464,8 @@ class SlideShowPresenter {
 			this._slideShowWindowProxy == null ||
 			this._slideShowWindowProxy.closed
 		) {
+			// enable present in console on closeSlideShowWindow
+			this._enablePresenterConsole(false);
 			return;
 		}
 		this._slideShowWindowProxy.opener.focus();
@@ -719,6 +721,13 @@ class SlideShowPresenter {
 		);
 	}
 
+	_enablePresenterConsole(state: boolean) {
+		this._map.fire('commandstatechanged', {
+			commandName: 'presenterconsole',
+			disabled: state,
+		});
+	}
+
 	_checkPresentationDisabled() {
 		return this._map['wopi'].DisablePresentation;
 	}
@@ -752,7 +761,8 @@ class SlideShowPresenter {
 		if (!this._onPrepareScreen(true))
 			// opens full screen, has to be on user interaction
 			return;
-
+		// disable present in console onStartInWindow
+		this._enablePresenterConsole(true);
 		this._startSlide = that?.startSlideNumber ?? 0;
 		app.socket.sendMessage('getpresentationinfo');
 	}
