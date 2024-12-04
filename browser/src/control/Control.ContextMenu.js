@@ -170,7 +170,7 @@ L.Control.ContextMenu = L.Control.extend({
 		} else {
 			L.installContextMenu({
 				selector: '.leaflet-layer',
-				className: 'lool-font',
+				className: 'lool-font on-the-fly-context-menu',
 				trigger: 'none',
 				zIndex: 1500,
 				build: function() {
