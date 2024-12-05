@@ -877,7 +877,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
             //              Util::dumpHex(std::cerr, socket->getInBuffer(), "clipboard:\n"); // lots of data ...
             servedSync = handleClipboardRequest(request, message, disposition, socket);
         }
-        else if (requestDetails.equals(RequestDetails::Field::Type, "cool") &&
+        else if (requestDetails.equals(RequestDetails::Field::Type, "lool") &&
                  requestDetails.equals(1, "signature"))
         {
             servedSync = handleSignatureRequest(request, socket);
