@@ -122,6 +122,7 @@ namespace lool {
 			// Step 2: send the hash, get a document ID.
 			const url =
 				this.url + '/api/signatures/prepare-files-for-signing';
+			const redirectUrl = window.makeHttpUrl('/lool/signature');
 			const body = {
 				secret: this.secret,
 				client_id: this.clientId,
@@ -137,6 +138,9 @@ namespace lool {
 				],
 				// Learn about possible providers
 				return_available_methods: true,
+				signature_redirect: redirectUrl,
+				// Automatic file download will not happen after signing
+				nodownload: true,
 			};
 			const headers = {
 				'Content-Type': 'application/json',
@@ -196,6 +200,9 @@ namespace lool {
 		// Handles the selected provider from the dialog
 		handleSelectedProvider(providerIndex: number): void {
 			const provider = this.availableProviderIDs[providerIndex];
+			app.console.log(
+				'attempting to esign using the "' + provider + '" provider',
+			);
 
 			let url = this.url + '/single-method-signature';
 			url += '?client_id=' + this.clientId;
