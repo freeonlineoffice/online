@@ -788,15 +788,7 @@ std::shared_ptr<ChildProcess> getNewChild_Blocks(SocketPoll &destPoll, unsigned 
     int numPreSpawn = LOOLWSD::NumPreSpawnedChildren;
     ++numPreSpawn; // Replace the one we'll dispatch just now.
     LOG_DBG("getNewChild: Rebalancing children to " << numPreSpawn);
-    if (rebalanceChildren(numPreSpawn) < 0)
-    {
-        LOG_DBG("getNewChild: rebalancing of children failed. Scheduling housekeeping to recover.");
-
-        LOOLWSD::doHousekeeping();
-
-        // Let the caller retry after a while.
-        return nullptr;
-    }
+    rebalanceChildren(numPreSpawn);
 
     const auto timeout = std::chrono::milliseconds(ChildSpawnTimeoutMs / 2);
     LOG_TRC("Waiting for a new child for a max of " << timeout);
