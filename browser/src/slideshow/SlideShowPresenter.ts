@@ -620,7 +620,10 @@ class SlideShowPresenter {
 			'keydown',
 			this._onKeyDownHandler,
 		);
-
+		this._slideShowWindowProxy.addEventListener(
+			'unload',
+			L.bind(this._closeSlideShowWindow, this),
+		);
 		const slideShowWindow = this._slideShowWindowProxy;
 		this._map.uiManager.showSnackbar(
 			_('Presenting in window'),
@@ -753,6 +756,7 @@ class SlideShowPresenter {
 	}
 
 	_notifyBlockedPresenting() {
+		this._enablePresenterConsole(false);
 		this._map.uiManager.showInfoModal(
 			'popup-blocked-modal',
 			_('Windowed Presentation Blocked'),
