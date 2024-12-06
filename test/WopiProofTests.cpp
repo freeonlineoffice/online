@@ -44,7 +44,7 @@ class WopiProofTests : public CPPUNIT_NS::TestFixture
     BIGNUM *Base64ToNum(const std::string &str)
     {
         std::vector<unsigned char> vec = Proof::Base64ToBytes(str);
-        return BN_bin2bn(&vec[0], vec.size(), nullptr);
+        return BN_bin2bn(vec.data(), vec.size(), nullptr);
     }
 
     void verifySignature(const std::string &access,
@@ -95,8 +95,8 @@ void WopiProofTests::verifySignature(const std::string &access,
     std::vector<unsigned char> digest = digestEngine.digest();
 
     LOK_ASSERT_EQUAL(1, RSA_verify(digestEngine.nid(),
-                                   &digest[0], digest.size(),
-                                   &msgProof[0], msgProof.size(),
+                                   digest.data(), digest.size(),
+                                   msgProof.data(), msgProof.size(),
                                    rsa));
 
     RSA_free(rsa);
