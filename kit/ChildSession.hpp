@@ -128,6 +128,8 @@ public:
 
     std::string getViewRenderState() { return _viewRenderState; }
 
+    float getTilePriority(const TileDesc &desc) const;
+
     bool isTileInsideVisibleArea(const TileDesc& tile) const;
     bool isTileInsideVisibleArea(const TileCombined& tileCombined) const;
 
