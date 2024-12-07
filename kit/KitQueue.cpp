@@ -629,6 +629,11 @@ void KitQueue::dumpState(std::ostream& oss)
     for (TileDesc &it : _tileQueue)
         oss << "\t\t" << i++ << ": " << it.serialize() << "\n";
 
+    oss << "\tTile Queue size: " << _tileQueue.size() << "\n";
+    i = 0;
+    for (TileDesc &it : _tileQueue)
+        oss << "\t\t" << i++ << ": " << it.serialize() << "\n";
+
     oss << "\tCallbacks size: " << _callbacks.size() << "\n";
     i = 0;
     for (auto &it : _callbacks)

@@ -3814,4 +3814,21 @@ void ChildSession::updateCursorPositionJSON(const std::string &rect)
     updateCursorPosition(command->get("rectangle").toString());
 }
 
+
+void ChildSession::updateCursorPosition(const std::string &rect)
+{
+    Util::Rectangle r(rect);
+    if (r.getWidth() != 0 && r.getHeight() != 0)
+        _cursorPosition = r;
+    // else 'EMPTY' eg.
+}
+
+void ChildSession::updateCursorPositionJSON(const std::string &rect)
+{
+    Poco::JSON::Parser parser;
+    const Poco::Dynamic::Var result = parser.parse(rect);
+    const auto& command = result.extract<Poco::JSON::Object::Ptr>();
+    updateCursorPosition(command->get("rectangle").toString());
+}
+
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
