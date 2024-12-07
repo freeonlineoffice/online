@@ -130,9 +130,6 @@ public:
 
     float getTilePriority(const TileDesc &desc) const;
 
-    bool isTileInsideVisibleArea(const TileDesc& tile) const;
-    bool isTileInsideVisibleArea(const TileCombined& tileCombined) const;
-
 private:
     bool loadDocument(const StringVector& tokens);
     bool saveDocumentBackground(const StringVector &tokens);
