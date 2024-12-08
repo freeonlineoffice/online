@@ -104,7 +104,7 @@ public:
         if (::kill(_pid, 0) == 0)
         {
             LOG_INF("Killing child [" << _pid << "].");
-#if CODE_COVERAGE || VALGRIND_COOLFORKIT
+#if CODE_COVERAGE || VALGRIND_LOOLFORKIT
             constexpr auto signal = SIGTERM;
 #else
             constexpr auto signal = SIGKILL;
@@ -137,7 +137,7 @@ public:
             if (_ws)
             {
                 LOG_TRC("Send to " << _name << " message: ["
-                                   << COOLProtocol::getAbbreviatedMessage(data) << ']');
+                                   << LOOLProtocol::getAbbreviatedMessage(data) << ']');
                 _ws->sendMessage(data.c_str(), data.size(),
                                  (binary ? WSOpCode::Binary : WSOpCode::Text), flush);
                 return true;
@@ -146,13 +146,13 @@ public:
         catch (const std::exception& exc)
         {
             LOG_ERR("Failed to send " << _name << " [" << _pid << "] data ["
-                                      << COOLProtocol::getAbbreviatedMessage(data)
+                                      << LOOLProtocol::getAbbreviatedMessage(data)
                                       << "] due to: " << exc.what());
             throw;
         }
 
         LOG_WRN("No socket to " << _name << " to send ["
-                                << COOLProtocol::getAbbreviatedMessage(data) << ']');
+                                << LOOLProtocol::getAbbreviatedMessage(data) << ']');
         return false;
     }
 
