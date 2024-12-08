@@ -21,7 +21,7 @@
 #include <net/HttpRequest.hpp>
 #include <net/Socket.hpp>
 #include <wsd/Admin.hpp>
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 #include <wsd/HostUtil.hpp>
 #include <wsd/wopi/StorageConnectionManager.hpp>
 
@@ -39,7 +39,7 @@ void RemoteJSONPoll::start()
     {
         if (remoteServerURI.empty())
         {
-            LOG_INF("Remote " << _expectedKind << " is not specified in coolwsd.xml");
+            LOG_INF("Remote " << _expectedKind << " is not specified in loolwsd.xml");
             return; // no remote config server setup.
         }
 #if !ENABLE_DEBUG
@@ -171,7 +171,6 @@ void RemoteConfigPoll::handleJSON(const Poco::JSON::Object::Ptr& remoteJson)
 
     HostUtil::parseAliases(_conf);
 
-    handleOptions(remoteJson);
 }
 
 void RemoteConfigPoll::fetchLockedHostPatterns(std::map<std::string, std::string>& newAppConfig,
@@ -200,7 +199,7 @@ void RemoteConfigPoll::fetchLockedHostPatterns(std::map<std::string, std::string
             return;
         }
 
-        //use feature_lock.locked_hosts[@allow] entry from coolwsd.xml if feature_lock.locked_hosts.allow key doesnot exist in json
+        //use feature_lock.locked_hosts[@allow] entry from loolwsd.xml if feature_lock.locked_hosts.allow key doesnot exist in json
         Poco::Dynamic::Var allow =
             !lockedHost->has("allow")
                 ? Poco::Dynamic::Var(_conf.getBool("feature_lock.locked_hosts[@allow]"))
@@ -231,7 +230,7 @@ void RemoteConfigPoll::fetchLockedHostPatterns(std::map<std::string, std::string
                 std::make_pair(path + "[@disabled_commands]", booleanToString(disabledCommands)));
         }
 
-        //if number of locked wopi host patterns defined in coolwsd.xml are greater than number of host
+        //if number of locked wopi host patterns defined in loolwsd.xml are greater than number of host
         //fetched from json, overwrite the remaining host from config file to empty strings and
         //set read_only and disabled_commands to false
         for (;; ++i)
@@ -537,23 +536,6 @@ void RemoteConfigPoll::fetchMonitors(std::map<std::string, std::string>& newAppC
     }
 }
 
-void RemoteConfigPoll::handleOptions(const Poco::JSON::Object::Ptr& remoteJson)
-{
-    try
-    {
-        std::string buyProduct;
-        JsonUtil::findJSONValue(remoteJson, "buy_product_url", buyProduct);
-        Poco::URI buyProductUri(buyProduct);
-        {
-            std::lock_guard<std::mutex> lock(COOLWSD::RemoteConfigMutex);
-            COOLWSD::BuyProductUrl = buyProductUri.toString();
-        }
-    }
-    catch (const std::exception& exc)
-    {
-        LOG_ERR("handleOptions: Exception " << exc.what());
-    }
-}
 
 void RemoteFontConfigPoll::handleJSON(const Poco::JSON::Object::Ptr& remoteJson)
 {
@@ -760,7 +742,7 @@ bool RemoteFontConfigPoll::finishDownload(const std::string& uri,
     // And in reality, it is a bit unclear how likely it even is that fonts downloaded through
     // this mechanism even will be updated.
     const std::string fontFile =
-        COOLWSD::TmpFontDir + '/' + Util::encodeId(Util::rng::getNext()) + ".ttf";
+        LOOLWSD::TmpFontDir + '/' + Util::encodeId(Util::rng::getNext()) + ".ttf";
 
     std::ofstream fontStream(fontFile);
     fontStream.write(body.data(), body.size());
@@ -774,9 +756,9 @@ bool RemoteFontConfigPoll::finishDownload(const std::string& uri,
                    << ']');
     fonts[uri].pathName = fontFile;
 
-    COOLWSD::sendMessageToForKit("addfont " + fontFile);
+    LOOLWSD::sendMessageToForKit("addfont " + fontFile);
 
-    COOLWSD::requestTerminateSpareKits();
+    LOOLWSD::requestTerminateSpareKits();
 
     return true;
 }
@@ -789,7 +771,7 @@ void RemoteFontConfigPoll::restartForKitAndReDownloadConfigFile()
     // Clear the saved ETag of the remote font configuration file so that it will be
     // re-downloaded, and all fonts mentioned in it re-downloaded and fed to ForKit.
     _eTagValue.clear();
-    COOLWSD::sendMessageToForKit("exit");
+    LOOLWSD::sendMessageToForKit("exit");
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
