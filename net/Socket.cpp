@@ -1789,10 +1789,11 @@ std::string getAgentString() { return "LOOLWSD HTTP Agent " + Util::getLoolVersi
 
 std::string getServerString()
 {
-    if (!UnitBase::isCppunitTesting())
-        if (config::getBool("security.server_signature", false))
-            return "LOOLWSD HTTP Server " + Util::getLoolVersion();
-    return "LOOLWSD HTTP Server";
+    CONFIG_STATIC const bool sig = ConfigUtil::getBool("security.server_signature", false);
+    if (sig)
+        return "LOOLWSD HTTP Server " + Util::getLoolVersion();
+
+    return " ";
 }
 }
 
