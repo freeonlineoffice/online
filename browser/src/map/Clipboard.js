@@ -32,6 +32,7 @@ L.Clipboard = L.Class.extend({
 		// Tracks waiting for UNO commands to complete
 		this._commandCompletion = [];
 		this._map.on('commandresult', this._onCommandResult, this);
+		this._map.on('clipboardchanged', this._onCommandResult, this);
 
 		div.setAttribute('id', this._dummyDivName);
 		div.style.userSelect = 'text !important';
@@ -680,12 +681,12 @@ L.Clipboard = L.Class.extend({
 	},
 
 	// Encourage browser(s) to actually execute the command
-	_execCopyCutPaste: function(operation, cmd) {
+	_execCopyCutPaste: function(operation, cmd, params) {
 		var serial = this._clipboardSerial;
 
 		this._unoCommandForCopyCutPaste = cmd;
 
-		if (operation !== 'paste' && this._navigatorClipboardWrite()) {
+		if (operation !== 'paste' && cmd !== undefined && this._navigatorClipboardWrite(params)) {
 			// This is the codepath where an UNO command initiates the clipboard
 			// operation.
 			return;
@@ -805,7 +806,7 @@ L.Clipboard = L.Class.extend({
 
 	// Gets status of a copy/paste command from the remote Kit
     _onCommandResult: function(e) {
-        if (e.commandName === '.uno:Copy' || e.commandName === '.uno:Cut')
+        if (e.commandName === '.uno:Copy' || e.commandName === '.uno:Cut' || e.commandName === '.uno:CopyHyperlinkLocation')
 		{
 			window.app.console.log('Resolve clipboard command promise ' + e.commandName);
 			while (this._commandCompletion.length > 0)
@@ -816,8 +817,8 @@ L.Clipboard = L.Class.extend({
 		}
 	},
 
-	_sendCommandAndWaitForCompletion: function(command) {
-		if (command !== '.uno:Copy' && command !== '.uno:Cut') {
+	_sendCommandAndWaitForCompletion: function(command, params) {
+		if (command !== '.uno:Copy' && command !== '.uno:Cut' && command !== '.uno:CopyHyperlinkLocation') {
 			console.error(`_sendCommandAndWaitForCompletion was called with '${command}', but anything except Copy or Cut will never complete`);
 			return null;
 		}
@@ -827,7 +828,8 @@ L.Clipboard = L.Class.extend({
 			return null;
 		}
 
-		app.socket.sendMessage('uno ' + command);
+		if (!params) app.socket.sendMessage('uno ' + command);
+		else app.map.sendUnoCommand(command, params);
 
 		return new Promise((resolve, reject) => {
 			window.app.console.log('New ' + command + ' promise');
@@ -847,7 +849,7 @@ L.Clipboard = L.Class.extend({
 	},
 
 	// Executes the navigator.clipboard.write() call, if it's available.
-	_navigatorClipboardWrite: function() {
+	_navigatorClipboardWrite: function(params) {
 		if (!L.Browser.clipboardApiAvailable && !window.ThisIsTheiOSApp) {
 			return false;
 		}
@@ -856,13 +858,13 @@ L.Clipboard = L.Class.extend({
 			return false;
 		}
 
-		this._asyncAttemptNavigatorClipboardWrite();
+		this._asyncAttemptNavigatorClipboardWrite(params);
 		return true;
 	},
 
-	_asyncAttemptNavigatorClipboardWrite: async function() {
+	_asyncAttemptNavigatorClipboardWrite: async function(params) {
 		const command = this._unoCommandForCopyCutPaste;
-		const check_ = await this._sendCommandAndWaitForCompletion(command);
+		const check_ = await this._sendCommandAndWaitForCompletion(command, params);
 
 		if (check_ === null)
 			return; // Either wrong command or a pending event.
@@ -1031,8 +1033,8 @@ L.Clipboard = L.Class.extend({
 
 	// Pull UNO clipboard commands out from menus and normal user input.
 	// We try to massage and re-emit these, to get good security event / credentials.
-	filterExecCopyPaste: function(cmd) {
-		if (this._map['wopi'].DisableCopy && (cmd === '.uno:Copy' || cmd === '.uno:Cut')) {
+	filterExecCopyPaste: function(cmd, params) {
+		if (this._map['wopi'].DisableCopy && (cmd === '.uno:Copy' || cmd === '.uno:Cut' || cmd === '.uno:CopyHyperlinkLocation')) {
 			// perform internal operations
 			app.socket.sendMessage('uno ' + cmd);
 			return true;
@@ -1044,8 +1046,8 @@ L.Clipboard = L.Class.extend({
 			return true;
 		}
 
-		if (cmd === '.uno:Copy' || (L.Browser.mobile && L.Browser.safari && cmd === '.uno:CopyHyperlinkLocation')) {
-			this._execCopyCutPaste('copy', cmd);
+		if (cmd === '.uno:Copy' || cmd === '.uno:CopyHyperlinkLocation') {
+			this._execCopyCutPaste('copy', cmd, params);
 		} else if (cmd === '.uno:Cut') {
 			this._execCopyCutPaste('cut', cmd);
 		} else if (cmd === '.uno:Paste') {
