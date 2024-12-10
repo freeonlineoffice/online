@@ -126,7 +126,14 @@ class LayerDrawing {
 		);
 	}
 
+	public isDisposed() {
+		return this.layerRenderer && this.layerRenderer.isDisposed();
+	}
 	public deleteResources() {
+		this.requestedSlideHash = null;
+		this.prefetchedSlideHash = null;
+		this.nextRequestedSlideHash = null;
+		this.nextPrefetchedSlideHash = null;
 		this.layerRenderer.dispose();
 	}
 
@@ -167,6 +174,8 @@ class LayerDrawing {
 	}
 
 	public composeLayers(slideHash: string): void {
+		if (this.isDisposed()) return;
+
 		this.drawBackground(slideHash);
 		this.drawMasterPage(slideHash);
 		this.drawDrawPage(slideHash);
@@ -258,6 +267,8 @@ class LayerDrawing {
 	}
 
 	private requestSlideImpl(slideHash: string, prefetch: boolean = false) {
+		if (this.isDisposed()) return;
+
 		console.debug(
 			'LayerDrawing.requestSlideImpl: slide hash: ' +
 				slideHash +
@@ -340,6 +351,8 @@ class LayerDrawing {
 	}
 
 	onSlideLayerMsg(e: any) {
+		if (this.isDisposed()) return;
+
 		const info = e.message;
 		if (!info) {
 			window.app.console.log(
@@ -620,6 +633,8 @@ class LayerDrawing {
 	}
 
 	onSlideRenderingComplete(e: any) {
+		if (this.isDisposed()) return;
+
 		if (!e.success) {
 			const slideHash =
 				this.requestedSlideHash || this.prefetchedSlideHash;
