@@ -37,6 +37,10 @@
 
 using namespace helpers;
 
+// The default is KIT_PID_TIMEOUT_MS, but we may have to wait for loolforkit to restart, which
+// may take up to the default CHILD_SPAWN_TIMEOUT_MS which is larger than KIT_PID_TIMEOUT_MS
+const std::chrono::milliseconds timeoutMs = std::chrono::milliseconds(KIT_PID_TIMEOUT_MS + CHILD_SPAWN_TIMEOUT_MS);
+
 /// Tests the HTTP WebSocket API of loolwsd. The server has to be started manually before running this test.
 class HTTPCrashTest : public CPPUNIT_NS::TestFixture
 {
@@ -94,9 +98,6 @@ public:
     {
         _socketPoll->joinThread();
         resetTestStartTime();
-        // The default is KIT_PID_TIMEOUT_MS, but we may have to wait for loolforkit to restart, which
-        // may take up to the default CHILD_SPAWN_TIMEOUT_MS which is larger than KIT_PID_TIMEOUT_MS
-        const std::chrono::milliseconds timeoutMs = std::chrono::milliseconds(KIT_PID_TIMEOUT_MS + CHILD_SPAWN_TIMEOUT_MS);
         waitForKitPidsReady("tearDown", timeoutMs);
         resetTestStartTime();
     }
@@ -229,7 +230,7 @@ void HTTPCrashTest::testCrashForkit()
         helpers::killAllKitProcesses(testname);
 
         // Forkit should restart
-        waitForKitPidsReady(testname);
+        waitForKitPidsReady(testname, timeoutMs);
 
         TST_LOG("Communicating after kill.");
         socket = loadDocAndGetSession(_socketPoll, "empty.odt", _uri, testname);
