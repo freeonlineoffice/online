@@ -240,8 +240,6 @@ export class Comment extends CanvasSectionObject {
 		var isRTL = document.documentElement.dir === 'rtl';
 		this.sectionProperties.container = L.DomUtil.create('div', 'lool-annotation' + (isRTL ? ' rtl' : ''));
 		this.sectionProperties.container.id = 'comment-container-' + this.sectionProperties.data.id;
-		this.sectionProperties.container.addEventListener('focusin', this.onContainerGotFocus.bind(this));
-		this.sectionProperties.container.addEventListener('focusout', this.onContainerLostFocus.bind(this));
 
 		var mobileClass = (<any>window).mode.isMobile() ? ' wizard-comment-box': '';
 
@@ -259,14 +257,6 @@ export class Comment extends CanvasSectionObject {
 		// We make comment directly visible when its transitioned to its determined position
 		if (lool.CommentSection.autoSavedComment)
 			this.sectionProperties.container.style.visibility = 'hidden';
-	}
-
-	private onContainerGotFocus() {
-		app.view.commentHasFocus = true;
-	}
-
-	private onContainerLostFocus() {
-		app.view.commentHasFocus = false;
 	}
 
 	private createAuthorTable (): void {
@@ -1123,7 +1113,6 @@ export class Comment extends CanvasSectionObject {
 				}
 			}
 		}
-		app.view.commentHasFocus = false;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -1191,6 +1180,16 @@ export class Comment extends CanvasSectionObject {
 					return commentList[i];
 		}
 		return null;
+	}
+
+	public static isAnyFocus(): boolean {
+		const comment_: Comment = Comment.isAnyEdit();
+
+		// We have a comment in edit mode. Is it focused?
+		if (comment_ && (document.activeElement === comment_.sectionProperties.nodeModifyText || document.activeElement === comment_.sectionProperties.nodeReplyText))
+			return true;
+
+		return false;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

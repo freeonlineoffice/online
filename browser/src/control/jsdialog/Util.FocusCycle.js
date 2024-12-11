@@ -7,7 +7,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-/* global app JSDialog $ */
+/* global app JSDialog $ cool */
 
 function isAnyInputFocused() {
 	if (!app.map)
@@ -16,7 +16,7 @@ function isAnyInputFocused() {
 	var hasTunneledDialogOpened = app.map.dialog ? app.map.dialog.hasOpenedDialog() : false;
 	var hasJSDialogOpened = app.map.jsdialog ? app.map.jsdialog.hasDialogOpened() : false;
 	var hasJSDialogFocused = L.DomUtil.hasClass(document.activeElement, 'jsdialog');
-	var commentHasFocus = app.view.commentHasFocus;
+	var commentHasFocus = cool.Comment.isAnyFocus();
 	var inputHasFocus = $('input:focus').length > 0 || $('textarea.jsdialog:focus').length > 0;
 
 	return hasTunneledDialogOpened || hasJSDialogOpened || hasJSDialogFocused

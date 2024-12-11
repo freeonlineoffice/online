@@ -4,7 +4,7 @@
  * local & remote clipboard data.
  */
 
-/* global app DocUtil _ brandProductName $ ClipboardItem Promise GraphicSelection */
+/* global app DocUtil _ brandProductName $ ClipboardItem Promise GraphicSelection cool */
 
 // Get all interesting clipboard related events here, and handle
 // download logic in one place ...
@@ -585,7 +585,7 @@ L.Clipboard = L.Class.extend({
 			&& !this.isPasteSpecialDialogOpen())
 			return true;
 
-		if (app.view.commentHasFocus)
+		if (cool.Comment.isAnyFocus())
 		    return true;
 
 		if (forCopy) {
