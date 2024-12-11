@@ -1274,6 +1274,20 @@ float ChildSession::getTilePriority(const std::chrono::steady_clock::time_point 
     else if (isReadOnly())
         score /= 2;
 
+    // previews are less interesting
+    if (tile.isPreview())
+        score /= 3.0;
+
+    // interacted the keyboard recently ?
+    score *= 2000 / std::clamp<float>(getInactivityMS(now), 250, 4000);
+
+    // readonly viewers are less high priority
+    if (isReadOnly())
+        score /= 2;
+
+    // FIXME: proximity to the center of a viewing area should bump priority
+    // for smarter pre-loading / rendering around the view.
+
     return score;
 }
 
