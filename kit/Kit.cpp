@@ -1147,63 +1147,7 @@ void Document::trimAfterInactivity()
             "] [" << lokCallbackTypeToString(type) <<
             "] [" << payload << "].");
 
-    // when we examine the content of the JSON
-    std::string targetViewId;
-
-    if (type == LOK_CALLBACK_CELL_CURSOR)
-    {
-        StringVector tokens(StringVector::tokenize(payload, ','));
-        // Payload may be 'EMPTY'.
-        if (tokens.size() == 4)
-        {
-            int cursorX = std::stoi(tokens[0]);
-            int cursorY = std::stoi(tokens[1]);
-            int cursorWidth = std::stoi(tokens[2]);
-            int cursorHeight = std::stoi(tokens[3]);
-
-            queue->updateCursorPosition(0, 0, cursorX, cursorY, cursorWidth, cursorHeight);
-        }
-    }
-    else if (type == LOK_CALLBACK_INVALIDATE_VISIBLE_CURSOR)
-    {
-        Poco::JSON::Parser parser;
-        const Poco::Dynamic::Var result = parser.parse(payload);
-        const auto& command = result.extract<Poco::JSON::Object::Ptr>();
-        std::string rectangle = command->get("rectangle").toString();
-        StringVector tokens(StringVector::tokenize(rectangle, ','));
-        // Payload may be 'EMPTY'.
-        if (tokens.size() == 4)
-        {
-            int cursorX = std::stoi(tokens[0]);
-            int cursorY = std::stoi(tokens[1]);
-            int cursorWidth = std::stoi(tokens[2]);
-            int cursorHeight = std::stoi(tokens[3]);
-
-            queue->updateCursorPosition(0, 0, cursorX, cursorY, cursorWidth, cursorHeight);
-        }
-    }
-    else if (type == LOK_CALLBACK_INVALIDATE_VIEW_CURSOR ||
-             type == LOK_CALLBACK_CELL_VIEW_CURSOR)
-    {
-        Poco::JSON::Parser parser;
-        const Poco::Dynamic::Var result = parser.parse(payload);
-        const auto& command = result.extract<Poco::JSON::Object::Ptr>();
-        targetViewId = command->get("viewId").toString();
-        std::string part = command->get("part").toString();
-        std::string text = command->get("rectangle").toString();
-        StringVector tokens(StringVector::tokenize(text, ','));
-        // Payload may be 'EMPTY'.
-        if (tokens.size() == 4)
-        {
-            int cursorX = std::stoi(tokens[0]);
-            int cursorY = std::stoi(tokens[1]);
-            int cursorWidth = std::stoi(tokens[2]);
-            int cursorHeight = std::stoi(tokens[3]);
-
-            queue->updateCursorPosition(std::stoi(targetViewId), std::stoi(part), cursorX, cursorY, cursorWidth, cursorHeight);
-        }
-    }
-    else if (type == LOK_CALLBACK_DOCUMENT_PASSWORD_RESET)
+    if (type == LOK_CALLBACK_DOCUMENT_PASSWORD_RESET)
     {
         Document* document = dynamic_cast<Document*>(descriptor->getDoc());
         Poco::JSON::Object::Ptr object;
@@ -1337,7 +1281,6 @@ void Document::onUnload(const ChildSession& session)
     }
 
     const int viewId = session.getViewId();
-    _queue->removeCursorPosition(viewId);
 
     // Unload the view.
     _loKitDocument->setView(viewId);
@@ -2282,7 +2225,7 @@ bool Document::forwardToChild(const std::string& prefix, const std::vector<char>
     return std::string();
 }
 
-float Document::getTilePriority(const TileDesc &desc) const
+float Document::getTilePriority(const std::chrono::steady_clock::time_point &now, const TileDesc &desc) const
 {
     float maxPrio = std::numeric_limits<float>::min();
 
@@ -2295,7 +2238,7 @@ float Document::getTilePriority(const TileDesc &desc) const
         if (session->getCanonicalViewId() != desc.getNormalizedViewId())
             continue;
 
-        maxPrio = std::max<int>(maxPrio, session->getTilePriority(desc));
+        maxPrio = std::max<int>(maxPrio, session->getTilePriority(now, desc));
     }
     if (maxPrio == std::numeric_limits<float>::min())
         LOG_WRN("No sessions match this viewId " << desc.getNormalizedViewId());
