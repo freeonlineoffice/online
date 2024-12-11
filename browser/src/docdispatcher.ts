@@ -472,7 +472,7 @@ class Dispatcher {
 		this.actionsMap['presentation'] = this.actionsMap[
 			'fullscreen-presentation'
 		] = () => {
-			if (app.map._debug.debugOn || app.isExperimentalMode())
+			if ((window as any).canvasSlideshowEnabled)
 				app.map.fire('newfullscreen');
 			else app.map.fire('fullscreen');
 		};
@@ -480,7 +480,7 @@ class Dispatcher {
 		this.actionsMap['presentation-currentslide'] = this.actionsMap[
 			'presentation-currentslide'
 		] = () => {
-			if (app.map._debug.debugOn || app.isExperimentalMode())
+			if ((window as any).canvasSlideshowEnabled)
 				app.map.fire('newfullscreen', {
 					startSlideNumber: app.map.getCurrentPartNumber(),
 				});
@@ -493,13 +493,13 @@ class Dispatcher {
 		this.actionsMap['presentinwindow'] = this.actionsMap[
 			'present-in-window'
 		] = () => {
-			if (app.map._debug.debugOn || app.isExperimentalMode())
+			if ((window as any).canvasSlideshowEnabled)
 				app.map.fire('newpresentinwindow');
 			else app.map.fire('presentinwindow');
 		};
 
 		this.actionsMap['presenterconsole'] = () => {
-			if (app.map._debug.debugOn || app.isExperimentalMode())
+			if ((window as any).canvasSlideshowEnabled)
 				app.map.fire('newpresentinconsole');
 		};
 
