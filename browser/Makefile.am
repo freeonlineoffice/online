@@ -53,7 +53,7 @@ LOOL_IMAGES_SRC = $(shell find $(srcdir)/images -name '*.*')
 LOOL_IMAGES_DST = $(patsubst $(srcdir)/%,$(DIST_FOLDER)/%,$(LOOL_IMAGES_SRC))
 LOOL_IMAGES_CUSTOM_SRC = $(shell if test -n "$(CUSTOM_ICONS_DIRECTORY)"; then find $(CUSTOM_ICONS_DIRECTORY) -name '*.*'; fi)
 LOOL_IMAGES_CUSTOM_DST = $(patsubst $(CUSTOM_ICONS_DIRECTORY)/%,$(DIST_FOLDER)/images/%,$(LOOL_IMAGES_CUSTOM_SRC))
-LOOL_L10N_SRC = $(shell find $(srcdir)/l10n -name '*.*')
+LOOL_L10N_SRC = $(shell find $(srcdir)/l10n -name '*.json')
 if !ENABLE_MOBILEAPP
 LOOL_L10N_DST =  $(patsubst $(srcdir)/l10n/%,$(DIST_FOLDER)/l10n/%,$(LOOL_L10N_SRC))
 endif
