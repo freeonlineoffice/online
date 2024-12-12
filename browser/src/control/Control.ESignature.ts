@@ -63,6 +63,8 @@ namespace lool {
 
 		availableProviderIDs: Array<string>;
 
+		availableCountryCodes: Array<string>;
+
 		// Provider ID to name map.
 		static providerNames: { [name: string]: string } = {
 			// The /api/client-config API would provide this, but having the data here
@@ -263,15 +265,23 @@ namespace lool {
 
 			this.docId = response.doc_id;
 			this.availableProviderIDs = response.available_methods;
+			const availableProviderConfigs = response.method_configs;
+			const countries = this.createCountryList(
+				availableProviderConfigs,
+			);
 			const providers = this.createProviders(
 				this.availableProviderIDs,
 			);
-			const dialog = JSDialog.eSignatureDialog(providers);
+			const dialog = JSDialog.eSignatureDialog(countries, providers);
 			dialog.open();
 		}
 
 		// Handles the selected provider from the dialog
-		handleSelectedProvider(providerIndex: number): void {
+		handleSelectedProvider(
+			countryIndex: number,
+			providerIndex: number,
+		): void {
+			const country = this.availableCountryCodes[countryIndex];
 			const provider = this.availableProviderIDs[providerIndex];
 			app.console.log(
 				'attempting to esign using the "' + provider + '" provider',
@@ -281,6 +291,7 @@ namespace lool {
 			url += '?client_id=' + this.clientId;
 			url += '&doc_id=' + this.docId;
 			url += '&method=' + provider;
+			url += '&country=' + country;
 
 			const lang = window.loolParams.get('lang');
 			if (lang) {
@@ -381,6 +392,31 @@ namespace lool {
 						'"',
 				);
 				return { action_type: id, name: id };
+			});
+		}
+
+		createCountryList(
+			availableProviderConfigs: Array<MethodConfig>,
+		): Array<lool.Country> {
+			let codes = new Array<string>();
+			for (const config of availableProviderConfigs) {
+				for (const code of config.supported_countries) {
+					codes.push(code);
+				}
+			}
+			codes = [...new Set(codes)].sort();
+			this.availableCountryCodes = codes;
+			return codes.map((code) => {
+				const countryName = ESignature.countryNames[code];
+				if (countryName) {
+					return { code: code, name: countryName };
+				}
+				app.console.log(
+					'failed to find a human-readable name for country "' +
+						code +
+						'"',
+				);
+				return { code: code, name: code };
 			});
 		}
 	}

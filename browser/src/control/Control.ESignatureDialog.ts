@@ -123,8 +123,17 @@ namespace lool {
 					)
 				);
 				const providerIndex = providers.selectedIndex;
+				const countries = <HTMLSelectElement>(
+					document.querySelector(
+						'#ESignatureDialog select#countrylb-input',
+					)
+				);
+				const countryIndex = countries.selectedIndex;
 				this.close();
-				app.map.eSignature.handleSelectedProvider(providerIndex);
+				app.map.eSignature.handleSelectedProvider(
+					countryIndex,
+					providerIndex,
+				);
 			}
 		}
 
