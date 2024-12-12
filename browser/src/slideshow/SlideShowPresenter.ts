@@ -197,6 +197,12 @@ class SlideShowPresenter {
 			: 0;
 	}
 
+	_getRepeatDuration() {
+		return this._presentationInfo
+			? this._presentationInfo.loopAndRepeatDuration
+			: 0;
+	}
+
 	public isSlideHidden(slideNumber: number) {
 		const slideInfo = this.getSlideInfo(slideNumber);
 		return slideInfo ? slideInfo.hidden : true;
