@@ -33,6 +33,10 @@ QUIET_TSC = $(QUIET_TSC_$(V))
 QUIET_TSC_ = $(QUIET_TSC_$(AM_DEFAULT_VERBOSITY))
 QUIET_TSC_0 = @echo "  TSC     " $@;
 
+QUIET_ESLINT = $(QUIET_ESLINT_$(V))
+QUIET_ESLINT_ = $(QUIET_ESLINT_$(AM_DEFAULT_VERBOSITY))
+QUIET_ESLINT_0 = @echo "  ESLINT  " $@;
+
 MOCHA_DIR = $(srcdir)/mocha_tests
 MOCHA_TS_FILES = $(wildcard $(MOCHA_DIR)/*.ts)
 MOCHA_TS_JS_FILES := $(MOCHA_TS_FILES:.ts=.js)
@@ -639,7 +643,7 @@ define global_file
 endef
 
 define run_eslint_check
-	@$(NODE) node_modules/eslint/bin/eslint.js \
+	$(QUIET_ESLINT) $(NODE) node_modules/eslint/bin/eslint.js \
 		--resolve-plugins-relative-to $(abs_builddir) \
 		--ignore-path $(srcdir)/.eslintignore \
 		--config .eslintrc \
@@ -724,7 +728,6 @@ $(DIST_FOLDER)/admin-bundle.js: $(LOOL_ADMIN_DST) \
 
 $(INTERMEDIATE_DIR)/admin-src.js: $(LOOL_ADMIN_TS_JS) $(LOOL_ADMIN_JS)
 	@mkdir -p $(dir $@)
-	@echo "Checking for admin JS errors..."
 	$(call run_eslint_check,--ignore-pattern $(LOOL_ADMIN_TS_JS) $(srcdir)/admin/src)
 	$(call run_prettier_check,--debug-check $(srcdir)/admin/src)
 	@awk 'FNR == 1 {print ""} 1' $(LOOL_ADMIN_TS_JS) $(patsubst %.js,$(srcdir)/%.js,$(LOOL_ADMIN_JS)) > $@
@@ -735,7 +738,6 @@ $(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DS
 	$(abs_top_srcdir)/scripts/unocommands.py --check $(abs_top_srcdir)
 	@printf "Checking for obsolete JS build intermediates in this makefile... "
 	@if ! test "z$(LOOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(LOOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
-	@echo "Checking for lool JS errors..."
 	$(call run_eslint_check,$(srcdir)/src $(srcdir)/js)
 	$(call run_prettier_check,--debug-check $(srcdir)/src $(srcdir)/js/global.js)
 	@echo "Bundling lool..."
