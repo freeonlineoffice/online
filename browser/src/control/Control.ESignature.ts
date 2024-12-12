@@ -26,9 +26,17 @@ namespace lool {
 		result: any;
 	}
 
+	// Describes one provider
+	export interface MethodConfig {
+		// Name of the provider
+		action_type: string;
+		supported_countries: Array<string>;
+	}
+
 	export interface HashSendResponse {
 		doc_id: string;
 		available_methods: Array<string>;
+		method_configs: Array<MethodConfig>;
 		message: string;
 	}
 
@@ -101,6 +109,9 @@ namespace lool {
 			'es-lleida-advanced-signature': 'Lleida',
 			'serpro-id-advanced-signature': 'SerproID',
 		};
+
+		// Country code to name map
+		static countryNames: { [name: string]: string } = undefined;
 
 		constructor(url: string, clientId: string) {
 			this.url = url;
@@ -240,6 +251,8 @@ namespace lool {
 				],
 				// Learn about possible providers
 				return_available_methods: true,
+				// Learn about which provider is available in which country
+				return_method_configs: true,
 				signature_redirect: redirectUrl,
 				// Automatic file download will not happen after signing
 				nodownload: true,
@@ -268,6 +281,9 @@ namespace lool {
 			const availableProviderConfigs = response.method_configs;
 			const countries = this.createCountryList(
 				availableProviderConfigs,
+			);
+			const providers = this.createProviders(
+				this.availableProviderIDs,
 			);
 			const providers = this.createProviders(
 				this.availableProviderIDs,
