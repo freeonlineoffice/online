@@ -312,7 +312,8 @@ loolbench_LDADD = libsimd.a
 loolconvert_SOURCES = tools/Tool.cpp
 
 loolstress_TDOC_CPPFLAGS = -DTDOC=\"$(abs_top_srcdir)/test/data\"
-loolstress_CPPFLAGS = ${loolstress_TDOC_CPPFLAGS} ${include_paths}
+loolstress_CPPFLAGS = ${loolstress_TDOC_CPPFLAGS} ${include_paths} \
+			$(AM_CPPFLAGS)
 loolstress_SOURCES = tools/Stress.cpp \
                      common/DummyTraceEventEmitter.cpp \
                      $(shared_sources)
