@@ -38,6 +38,7 @@ RuntimeConstant<bool> SslTermination;
 // NOTE: This is sorted, please keep it sorted as it's friendlier to readers.
 static const std::map<std::string, std::string> DefAppConfig = {
     { "accessibility.enable", "false" },
+    { "admin_console.enable", "true" },
     { "admin_console.enable_pam", "false" },
     { "admin_console.logging.admin_action", "true" },
     { "admin_console.logging.admin_login", "true" },
@@ -191,9 +192,13 @@ static const std::map<std::string, std::string> DefAppConfig = {
 #if ENABLE_FEATURE_RESTRICTION
     { "restricted_commands", "" },
 #endif
+    { "security.allow_external_scripting", "false" },
     { "security.capabilities", "true" },
+    { "security.enable_macros_execution", "false" },
     { "security.enable_metrics_unauthenticated", "false" },
+    { "security.enable_websocket_urp", "false" },
     { "security.jwt_expiry_secs", "1800" },
+    { "security.macro_security_level", "1" },
     { "security.seccomp", "true" },
     { "security.server_signature", "false" },
     { "server_name", "" },
@@ -225,6 +230,8 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "storage.wopi.max_file_size", "0" },
     { "storage.wopi[@allow]", "true" },
     { "sys_template_path", "systemplate" },
+    { "trace.filter.message", "" },
+    { "trace.outgoing.record", "false" },
     { "trace.path[@compress]", "true" },
     { "trace.path[@snapshot]", "false" },
     { "trace[@enable]", "false" },
@@ -234,6 +241,8 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "user_interface.use_integration_theme", "true" },
     { "wasm.enable", "false" },
     { "wasm.force", "false" },
+    { "watermark.opacity", "" },
+    { "watermark.text", "" },
     { "welcome.enable", "false" },
     { "zotero.enable", "true" },
 };
@@ -299,12 +308,17 @@ std::map<std::string, std::string> extractAll(const Poco::Util::AbstractConfigur
     // their children concatenated, which is worse than useless.
     // E.g. logging.file: /tmp/loolwsd.lognevertimestamptrue10 days10truefalse
     map.erase("admin_console.logging");
+    map.erase("feature_lock.locked_hosts");
     map.erase("logging.anonymize");
     map.erase("logging.file");
     map.erase("net.lok_allow");
     map.erase("net.post_allow");
     map.erase("per_document.cleanup");
     map.erase("ssl.sts");
+    map.erase("storage.filesystem");
+    map.erase("storage.wopi");
+    map.erase("trace.filter");
+    map.erase("trace.outgoing");
 
     // Redact sensitive entries.
     for (auto& pair : map)
