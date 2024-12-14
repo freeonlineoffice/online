@@ -1265,6 +1265,47 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
                       << std::endl;
         }
     }
+
+    // Do the same for ui command logging
+    const auto logToFileUICmd = ConfigUtil::getConfigValue<bool>(conf, "logging_ui_cmd.file[@enable]", false);
+    std::map<std::string, std::string> logPropertiesUICmd;
+    for (std::size_t i = 0; ; ++i)
+    {
+        const std::string confPath = "logging_ui_cmd.file.property[" + std::to_string(i) + ']';
+        const std::string confName = config().getString(confPath + "[@name]", "");
+        if (!confName.empty())
+        {
+            const std::string value = config().getString(confPath, "");
+            logPropertiesUICmd.emplace(confName, value);
+        }
+        else if (!config().has(confPath))
+        {
+            break;
+        }
+    }
+
+    // Setup the logfile envar for the kit processes.
+    if (logToFileUICmd)
+    {
+        const auto it = logPropertiesUICmd.find("path");
+        if (it != logPropertiesUICmd.end())
+        {
+            setenv("LOOL_LOGFILE_UICMD", "1", true);
+            setenv("LOOL_LOGFILENAME_UICMD", it->second.c_str(), true);
+            std::cerr << "\nLogging UI Commands to file: " << it->second.c_str() << std::endl;
+        }
+        const bool merge = ConfigUtil::getConfigValue<bool>(conf, "logging_ui_cmd.merge", true);
+        const bool logEndtime =
+            ConfigUtil::getConfigValue<bool>(conf, "logging_ui_cmd.merge_display_end_time", false);
+        if (merge)
+        {
+            setenv("LOOL_LOG_UICMD_MERGE", "1", true);
+        }
+        if (logEndtime)
+        {
+            setenv("LOOL_LOG_UICMD_END_TIME", "1", true);
+        }
+    }
 #endif
 
     // Log at trace level until we complete the initialization.
