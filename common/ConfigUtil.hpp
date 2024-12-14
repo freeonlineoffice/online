@@ -197,8 +197,8 @@ public:
 };
 
 template <typename T>
-static bool getSafeConfig(Poco::Util::LayeredConfiguration& config, const std::string& name,
-                          T& value)
+static bool getRawConfig(Poco::Util::LayeredConfiguration& config, const std::string& name,
+                         T& value)
 {
     try
     {
@@ -217,7 +217,7 @@ static T getConfigValue(Poco::Util::LayeredConfiguration& config, const std::str
                         const T def)
 {
     T value = def;
-    if (getSafeConfig(config, name, value) || getSafeConfig(config, name + "[@default]", value))
+    if (getRawConfig(config, name, value) || getRawConfig(config, name + "[@default]", value))
     {
         return value;
     }
