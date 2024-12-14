@@ -19,7 +19,6 @@
 
 namespace ConfigUtil
 {
-static Poco::AutoPtr<Poco::Util::XMLConfiguration> XmlConfig;
 static const Poco::Util::AbstractConfiguration* Config{ 0 };
 
 #if ENABLE_SSL
@@ -261,6 +260,9 @@ void initialize(const Poco::Util::AbstractConfiguration* config)
 
 void initialize(const std::string& xml)
 {
+    static Poco::AutoPtr<Poco::Util::XMLConfiguration> XmlConfig;
+    assert(!XmlConfig && "Config is already initialized.");
+
     std::istringstream iss(xml);
     XmlConfig.reset(new Poco::Util::XMLConfiguration(iss));
     initialize(XmlConfig);
