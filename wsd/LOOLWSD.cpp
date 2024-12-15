@@ -1182,12 +1182,6 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         }
     }
 
-    // Override any settings passed on the command-line or via environment variables
-    if (UseEnvVarOptions)
-        initializeEnvOptions();
-    Poco::AutoPtr<AppConfigMap> overrideConfig(new AppConfigMap(_overrideSettings));
-    conf.addWriteable(overrideConfig, PRIO_APPLICATION); // Highest priority
-
     if (!UnitTestLibrary.empty())
     {
         UnitWSD::defaultConfigure(conf);
