@@ -34,6 +34,7 @@ RuntimeConstant<bool> SslTermination;
 // 2) in the 'default' attribute in loolwsd.xml, which is for documentation
 // 3) the default parameter of getConfigValue() call. That is used when the
 //    setting is present in loolwsd.xml, but empty (i.e. use the default).
+// NOTE: Poco doesn't index the first entry in an array, so omit '[0]'.
 // NOTE: This is sorted, please keep it sorted as it's friendlier to readers.
 static const std::map<std::string, std::string> DefAppConfig = {
     { "accessibility.enable", "false" },
@@ -69,9 +70,9 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "feature_lock.locked_commands", LOCKED_COMMANDS },
     { "feature_lock.locked_hosts.fallback[@disabled_commands]", "false" },
     { "feature_lock.locked_hosts.fallback[@read_only]", "false" },
-    { "feature_lock.locked_hosts.host[0]", "localhost" },
-    { "feature_lock.locked_hosts.host[0][@disabled_commands]", "false" },
-    { "feature_lock.locked_hosts.host[0][@read_only]", "false" },
+    { "feature_lock.locked_hosts.host", "localhost" },
+    { "feature_lock.locked_hosts.host[@disabled_commands]", "false" },
+    { "feature_lock.locked_hosts.host[@read_only]", "false" },
     { "feature_lock.locked_hosts[@allow]", "false" },
     { "feature_lock.unlock_description", UNLOCK_DESCRIPTION },
     { "feature_lock.unlock_link", UNLOCK_LINK },
@@ -102,8 +103,8 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "logging.disable_server_audit", "false" },
     { "logging.disabled_areas", "Socket,WebSocket,Admin,Pixel" },
     { "logging.docstats", "false" },
-    { "logging.file.property[0]", "loolwsd.log" },
-    { "logging.file.property[0][@name]", "path" },
+    { "logging.file.property", "coolwsd.log" },
+    { "logging.file.property[@name]", "path" },
     { "logging.file.property[1]", "never" },
     { "logging.file.property[1][@name]", "rotation" },
     { "logging.file.property[2]", "timestamp" },
@@ -126,8 +127,8 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "logging.most_verbose_level_settable_from_client", "notice" },
     { "logging.protocol", "false" },
     { "logging.userstats", "false" },
-    { "logging_ui_cmd.file.property[0]", "loolwsd-ui-cmd.log" },
-    { "logging_ui_cmd.file.property[0][@name]", "path" },
+    { "logging_ui_cmd.file.property", "coolwsd-ui-cmd.log" },
+    { "logging_ui_cmd.file.property[@name]", "path" },
     { "logging_ui_cmd.file.property[1]", "10" },
     { "logging_ui_cmd.file.property[1][@name]", "purgeCount" },
     { "logging_ui_cmd.file.property[2]", "true" },
