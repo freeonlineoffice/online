@@ -84,7 +84,7 @@ std::map<std::string, std::string> extractAll(const Poco::Util::AbstractConfigur
 
     // These keys have no values, but Poco gives us the values of
     // their children concatenated, which is worse than useless.
-    // E.g. logging.file: /tmp/coolwsd.lognevertimestamptrue10 days10truefalse
+    // E.g. logging.file: /tmp/loolwsd.lognevertimestamptrue10 days10truefalse
     map.erase("admin_console.logging");
     map.erase("logging.anonymize");
     map.erase("logging.file");

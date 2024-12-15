@@ -19,7 +19,7 @@ describe(['tagdesktop'], 'Electronic sign operations.', function() {
 		cy.getFrameWindow().then(function(win) {
 			const sendUnoCommand = cy.stub(win.app.map, 'sendUnoCommand');
 			sendUnoCommand.withArgs('.uno:PrepareSignature').as('sendHash').callsFake((commandName, args) => {
-				expect(args.body.signature_redirect).to.satisfy(url => url.endsWith('/cool/signature'));
+				expect(args.body.signature_redirect).to.satisfy(url => url.endsWith('/lool/signature'));
 				// File name is like esign-Create-an-electronic-signature--0wvs9.pdf
 				expect(args.body.files[0].fileName).to.match(/^esign.*pdf$/i);
 				win.app.map.fire('commandresult', {commandName: '.uno:PrepareSignature', success: true, result: sendHashResult});

@@ -189,13 +189,13 @@ private:
     int priority(const TileDesc &desc);
 
 private:
-    /// Queue of incoming messages from coolwsd
+    /// Queue of incoming messages from loolwsd
     std::vector<Payload> _queue;
 
-    /// Queue of incoming tile requests from coolwsd
+    /// Queue of incoming tile requests from loolwsd
     std::vector<TileDesc> _tileQueue;
 
-    /// Queue of callbacks from Kit to send out to coolwsd
+    /// Queue of callbacks from Kit to send out to loolwsd
     std::vector<Callback> _callbacks;
 
     std::map<int, CursorPosition> _cursorPositions;

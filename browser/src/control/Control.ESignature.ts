@@ -201,7 +201,7 @@ namespace lool {
 			url += '&doc_id=' + this.docId;
 			url += '&method=' + provider;
 
-			const lang = window.coolParams.get('lang');
+			const lang = window.loolParams.get('lang');
 			if (lang) {
 				// Two letter ISO 639-1 language code is wanted, but it seems to
 				// accept our xx-YY version.

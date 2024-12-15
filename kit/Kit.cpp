@@ -3003,7 +3003,7 @@ int pollCallback(void* data, int timeoutUs)
 #endif
 }
 
-// Do we have any pending input events from coolwsd ?
+// Do we have any pending input events from loolwsd ?
 // FIXME: we could helpfully poll our incoming socket too here.
 bool anyInputCallback(void* data)
 {
