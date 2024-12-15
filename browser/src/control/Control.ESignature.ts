@@ -285,9 +285,6 @@ namespace lool {
 			const providers = this.createProviders(
 				this.availableProviderIDs,
 			);
-			const providers = this.createProviders(
-				this.availableProviderIDs,
-			);
 			const dialog = JSDialog.eSignatureDialog(countries, providers);
 			dialog.open();
 		}
