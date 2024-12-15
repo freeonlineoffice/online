@@ -403,7 +403,10 @@ class PathAnimation extends AnimationBase {
 
 	perform(nT: number): void {
 		let aOutPos = this.parametricPath(nT);
-		aOutPos = [aOutPos[0] * this.slideWidth, aOutPos[1] * this.slideHeight];
+		aOutPos = [
+			aOutPos[0] * this.slideWidth,
+			aOutPos[1] * this.slideHeight,
+		];
 		aOutPos = [aOutPos[0] + this.centerX, aOutPos[1] + this.centerY];
 
 		this.aAnimatableElement.setPos(aOutPos);
