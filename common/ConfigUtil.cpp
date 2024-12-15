@@ -32,9 +32,9 @@ RuntimeConstant<bool> SslTermination;
 // update their config files, and we are backward compatible.
 // These defaults should be the same
 // 1) here
-// 2) in the 'default' attribute in coolwsd.xml, which is for documentation
+// 2) in the 'default' attribute in loolwsd.xml, which is for documentation
 // 3) the default parameter of getConfigValue() call. That is used when the
-//    setting is present in coolwsd.xml, but empty (i.e. use the default).
+//    setting is present in loolwsd.xml, but empty (i.e. use the default).
 // NOTE: This is sorted, please keep it sorted as it's friendlier to readers.
 static const std::map<std::string, std::string> DefAppConfig = {
     { "accessibility.enable", "false" },
@@ -97,7 +97,7 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "logging.color", "true" },
     { "logging.disable_server_audit", "false" },
     { "logging.docstats", "false" },
-    { "logging.file.property[0]", "coolwsd.log" },
+    { "logging.file.property[0]", "loolwsd.log" },
     { "logging.file.property[0][@name]", "path" },
     { "logging.file.property[1]", "never" },
     { "logging.file.property[1][@name]", "rotation" },
@@ -114,12 +114,12 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "logging.file.property[7]", "false" },
     { "logging.file.property[7][@name]", "flush" },
     { "logging.file[@enable]", "false" },
-    { "logging.level", COOLWSD_LOGLEVEL },
+    { "logging.level", LOOLWSD_LOGLEVEL },
     { "logging.level_startup", "trace" },
     { "logging.lokit_sal_log", "-INFO-WARN" },
     { "logging.protocol", "false" },
     { "logging.userstats", "false" },
-    { "logging_ui_cmd.file.property[0]", "coolwsd-ui-cmd.log" },
+    { "logging_ui_cmd.file.property[0]", "loolwsd-ui-cmd.log" },
     { "logging_ui_cmd.file.property[0][@name]", "path" },
     { "logging_ui_cmd.file.property[1]", "never" },
     { "logging_ui_cmd.file.property[1][@name]", "rotation" },
@@ -202,15 +202,15 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "security.seccomp", "true" },
     { "security.server_signature", "false" },
     { "server_name", "" },
-    { "ssl.ca_file_path", COOLWSD_CONFIGDIR "/ca-chain.cert.pem" },
-    { "ssl.cert_file_path", COOLWSD_CONFIGDIR "/cert.pem" },
+    { "ssl.ca_file_path", LOOLWSD_CONFIGDIR "/ca-chain.cert.pem" },
+    { "ssl.cert_file_path", LOOLWSD_CONFIGDIR "/cert.pem" },
     { "ssl.cipher_list", "" },
     { "ssl.enable", "true" },
     { "ssl.hpkp.max_age[@enable]", "true" },
     { "ssl.hpkp.report_uri[@enable]", "false" },
     { "ssl.hpkp[@enable]", "false" },
     { "ssl.hpkp[@report_only]", "false" },
-    { "ssl.key_file_path", COOLWSD_CONFIGDIR "/key.pem" },
+    { "ssl.key_file_path", LOOLWSD_CONFIGDIR "/key.pem" },
 #if !MOBILEAPP
     { "ssl.ssl_verification", SSL_VERIFY },
 #endif
