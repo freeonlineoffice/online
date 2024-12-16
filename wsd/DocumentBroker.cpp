@@ -1517,7 +1517,7 @@ void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession> se
 {
     auto installFinishedCB = [this, session, userSettingsUri](bool success){
         if (success)
-            forwardToChild(session, "addxcu");
+            forwardToChild(session, "addconfig");
         else
         {
             const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
