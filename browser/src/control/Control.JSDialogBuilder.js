@@ -366,7 +366,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 		if (data.enabled === false) {
 			div.disabled = true;
-			spinfield.setAttribute('disabled', '');
+			spinfield.setAttribute('disabled', 'true');
 		}
 
 		JSDialog.SynchronizeDisabledState(div, [spinfield]);
@@ -1673,12 +1673,13 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		listboxArrow.id = 'listbox-arrow-' + data.id;
 
 
-		JSDialog.SynchronizeDisabledState(container, [listbox]);
-
 		if (data.enabled === false) {
 			container.disabled = true;
 			listbox.disabled = true;
+			container.setAttribute('disabled', 'true');
 		}
+
+		JSDialog.SynchronizeDisabledState(container, [listbox]);
 
 		$(listbox).change(() => {
 			if ($(listbox).val())
@@ -2378,7 +2379,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					}
 
 					if (disabled)
-						div.setAttribute('disabled', '');
+						div.setAttribute('disabled', 'true');
 					else
 						div.removeAttribute('disabled');
 				};
@@ -2398,7 +2399,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			}
 
 			if (disabled) {
-				div.setAttribute('disabled', '');
+				div.setAttribute('disabled', 'true');
 			}
 
 			var selectFn = function() {
@@ -2491,7 +2492,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		builder._preventDocumentLosingFocusOnClick(div);
 
 		if (data.enabled === 'false' || data.enabled === false)
-			div.setAttribute('disabled', '');
+			div.setAttribute('disabled', 'true');
 
 		builder.map.hideRestrictedItems(data, controls['container'], controls['container']);
 		builder.map.disableLockedItem(data, controls['container'], controls['container']);
@@ -2506,7 +2507,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					if (builder.map.tooltip)
 						builder.map.tooltip.show(elem, builder.map.getLastModDateValue()); // Show the tooltip with the correct content
 				}));
-	
+
 				$(elem).on('mouseleave', function() {
 					if (builder.map.tooltip)
 						builder.map.tooltip.hide(elem);
@@ -2823,7 +2824,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			break;
 
 		case 'disable':
-			control.setAttribute('disabled', '');
+			control.setAttribute('disabled', 'true');
 			control.disabled = true;
 			break;
 

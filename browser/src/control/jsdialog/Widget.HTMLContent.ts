@@ -217,7 +217,7 @@ function htmlContent(
 	if (data.enabled === false && parentContainer.firstChild)
 		(parentContainer.firstChild as HTMLElement).setAttribute(
 			'disabled',
-			'',
+			'true',
 		);
 }
 
