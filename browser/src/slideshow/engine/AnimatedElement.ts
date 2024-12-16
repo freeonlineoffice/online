@@ -1281,7 +1281,9 @@ class AnimatedElement {
 
 	setDefaultDimColor(aRGBValue: RGBColor) {
 		window.app.console.log(
-			'AnimatedElement.setDefaultDimColor(' + aRGBValue.toString() + ')',
+			'AnimatedElement.setDefaultDimColor(' +
+				aRGBValue.toString() +
+				')',
 		);
 
 		this.aDimColor = aRGBValue;
