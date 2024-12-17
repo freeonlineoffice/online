@@ -166,8 +166,9 @@ abstract class AutoCompletePopup {
 		const canvasEl = this.map._docLayer._canvas.getBoundingClientRect();
 		const offsetX = isSpreadsheetRTL
 			? 0
-			: app.sectionContainer.getSectionWithName(L.CSections.RowHeader.name)
-					.size[0];
+			: app.sectionContainer.getSectionWithName(
+					L.CSections.RowHeader.name,
+				).size[0];
 		const offsetY = app.sectionContainer.getSectionWithName(
 			L.CSections.ColumnHeader.name,
 		).size[1];
