@@ -382,8 +382,10 @@ namespace lool {
 		createProviders(
 			providerIds: Array<string>,
 		): Array<lool.SignatureProvider> {
-			// Set the only tested provider as preferred.
-			const preferred = 'smart-id-signature';
+			// Providers can be in-context or redirect-based.  Most real-world providers
+			// are redirect-based, set the only tested non-in-context provider as
+			// preferred.
+			const preferred = 'd-trust-sign-me-qes-signature';
 			const index = providerIds.indexOf(preferred);
 			if (index != -1) {
 				providerIds.splice(index, /*deleteCount=*/ 1);
@@ -419,6 +421,14 @@ namespace lool {
 			}
 			codes = [...new Set(codes)].sort();
 			this.availableCountryCodes = codes;
+			// Set the country for the default provider as preferred.
+			const preferred = 'DE';
+			const index = codes.indexOf(preferred);
+			if (index != -1) {
+				codes.splice(index, /*deleteCount=*/ 1);
+				codes.splice(/*start=*/ 0, /*deleteCount=*/ 0, preferred);
+			}
+
 			return codes.map((code) => {
 				const countryName = ESignature.countryNames[code];
 				if (countryName) {
