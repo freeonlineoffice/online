@@ -1249,7 +1249,10 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 				this.sectionProperties.selectedComment.hide();
 		}
 
-		this.update();
+		var previousAnimationState = this.disableLayoutAnimation;
+		this.disableLayoutAnimation = true;
+		this.update(true);
+		this.disableLayoutAnimation = previousAnimationState;
 	}
 
 	private showHideComments (): void {
@@ -2009,8 +2012,8 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 		this.disableLayoutAnimation = false;
 	}
 
-	private layout (zoom: any = null): void {
-		if (zoom)
+	private layout (immediate: any = null): void {
+		if (immediate)
 			this.doLayout();
 		else if (!this.sectionProperties.layoutTimer) {
 			this.sectionProperties.layoutTimer = setTimeout(function() {
@@ -2020,10 +2023,10 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 		} // else - avoid excessive re-layout
 	}
 
-	private update (): void {
+	private update (immediate: boolean = false): void {
 		if (this.sectionProperties.docLayer._docType === 'text')
 			this.updateThreadInfoIndicator();
-		this.layout();
+		this.layout(immediate);
 	}
 
 	private updateThreadInfoIndicator(): void {
