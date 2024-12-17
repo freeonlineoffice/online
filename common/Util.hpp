@@ -489,7 +489,7 @@ namespace Util
         return trimmed(std::string(s));
     }
 
-#ifdef IOS
+#if !HAVE_MEMRCHR
 
     inline void *memrchr(const void *s, int c, size_t n)
     {
