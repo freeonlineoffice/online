@@ -140,11 +140,6 @@ _LibreOfficeKit* loKitPtr = nullptr;
 /// flush sockets with a 'processtoidle' -> 'idle' reply.
 static std::chrono::steady_clock::time_point ProcessToIdleDeadline;
 
-#ifndef BUILDING_TESTS
-static bool AnonymizeUserData = false;
-static uint64_t AnonymizationSalt = 82589933;
-#endif
-
 static bool EnableWebsocketURP = false;
 static int URPStartCount = 0;
 
@@ -2127,7 +2122,7 @@ bool Document::forwardToChild(const std::string& prefix, const std::vector<char>
 
         std::string abbrMessage;
 #ifndef BUILDING_TESTS
-        if (AnonymizeUserData)
+        if (Anonymizer::enabled())
         {
             abbrMessage = "...";
         }
@@ -3127,12 +3122,11 @@ void lokit_main(
 
     if (const char* anonymizationSalt = std::getenv("LOOL_ANONYMIZATION_SALT"))
     {
-        AnonymizationSalt = std::stoull(anonymizationSalt);
-        AnonymizeUserData = true;
-        Anonymizer::initialize(AnonymizeUserData, AnonymizationSalt);
+        const auto salt = std::stoull(anonymizationSalt);
+        Anonymizer::initialize(true, salt);
     }
 
-    LOG_INF("User-data anonymization is " << (AnonymizeUserData ? "enabled." : "disabled."));
+    LOG_INF("User-data anonymization is " << (Anonymizer::enabled() ? "enabled." : "disabled."));
 
     const char* enableWebsocketURP = std::getenv("ENABLE_WEBSOCKET_URP");
     EnableWebsocketURP = enableWebsocketURP && std::string(enableWebsocketURP) == "true";
@@ -3776,7 +3770,7 @@ TileWireId getCurrentWireId(bool increment)
 std::string anonymizeUrl(const std::string& url)
 {
 #ifndef BUILDING_TESTS
-    return AnonymizeUserData ? Anonymizer::anonymizeUrl(url) : url;
+    return Anonymizer::anonymizeUrl(url);
 #else
     return url;
 #endif
@@ -3928,7 +3922,7 @@ bool globalPreinit(const std::string &loTemplate)
 std::string anonymizeUsername(const std::string& username)
 {
 #ifndef BUILDING_TESTS
-    return AnonymizeUserData ? Anonymizer::anonymize(username) : username;
+    return Anonymizer::anonymize(username);
 #else
     return username;
 #endif
