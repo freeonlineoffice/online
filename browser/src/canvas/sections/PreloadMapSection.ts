@@ -39,7 +39,8 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 		);
 
 		// Get the 'main' view
-		var viewRange = tileRanges.length == 4 ? tileRanges[3] : tileRanges[0];
+		var viewRange =
+			tileRanges.length == 4 ? tileRanges[3] : tileRanges[0];
 
 		var offx = 50;
 		var offy = 400;
@@ -51,11 +52,15 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 
 		// stop annoying jitter as the view fits different numbers of tiles.
 		var viewWidth = Math.floor(
-			(this._map.getPixelBoundsCore().getSize().x + docLayer._tileSize - 1) /
+			(this._map.getPixelBoundsCore().getSize().x +
+				docLayer._tileSize -
+				1) /
 				docLayer._tileSize,
 		);
 		var viewHeight = Math.floor(
-			(this._map.getPixelBoundsCore().getSize().y + docLayer._tileSize - 1) /
+			(this._map.getPixelBoundsCore().getSize().y +
+				docLayer._tileSize -
+				1) /
 				docLayer._tileSize,
 		);
 
@@ -68,7 +73,11 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 		console.log('Render preload map ' + viewHeight);
 		for (var p = -1; p <= 1; ++p) {
 			for (var j = tileRange.min.y; j <= tileRange.max.y; ++j) {
-				for (var i: number = tileRange.min.x; i <= tileRange.max.x; ++i) {
+				for (
+					var i: number = tileRange.min.x;
+					i <= tileRange.max.x;
+					++i
+				) {
 					var tile = undefined;
 
 					if (i >= 0 && j >= 0 && part + p >= 0) {
@@ -95,7 +104,9 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 					else canvas.fillStyle = 'rgba(0, 255, 0, 0.5)'; // green
 					canvas.fillRect(
 						offx + (i - tileRange.min.x) * sizePix,
-						offy + (j - tileRange.min.y) * sizePix + voffset * p,
+						offy +
+							(j - tileRange.min.y) * sizePix +
+							voffset * p,
 						sizePix,
 						sizePix,
 					);
