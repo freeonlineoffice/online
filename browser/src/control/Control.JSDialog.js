@@ -368,6 +368,9 @@ L.Control.JSDialog = L.Control.extend({
 			// we avoid duplicated ids in unotoolbuttons - try with class
 			if (!clickToCloseElement)
 				clickToCloseElement = popupParent.querySelector('.uno' + clickToCloseId);
+			// might be treeview entry
+			if (!clickToCloseElement)
+				instance.clickToCloseText = instance.clickToClose;
 		} else if (clickToCloseId) {
 			// fallback
 			clickToCloseElement = L.DomUtil.get(clickToCloseId);
@@ -444,6 +447,12 @@ L.Control.JSDialog = L.Control.extend({
 				var childButton = parent.querySelector('[id=\'' + instance.clickToCloseId + '\']');
 				if (childButton)
 					parent = childButton;
+			} else if (instance.clickToCloseText && parent) { // treeview entry for context menu
+				var treeNodes = parent.querySelectorAll('span.ui-treeview-cell-text');
+				if (treeNodes && treeNodes.length) {
+					treeNodes = Array.from(treeNodes);
+					parent = treeNodes.find((value) => { return value.innerText == instance.clickToCloseText; });
+				}
 			}
 
 			if (!parent && instance.popupParent === '_POPOVER_') {
