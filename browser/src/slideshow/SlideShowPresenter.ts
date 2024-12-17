@@ -464,6 +464,7 @@ class SlideShowPresenter {
 			this._slideShowWindowProxy.parentElement.removeChild(
 				this._slideShowWindowProxy,
 			);
+			this._map.fire('presentinwindowclose');
 			this._slideShowWindowProxy = null;
 		}
 		// enable present in console on closeSlideShowWindow
