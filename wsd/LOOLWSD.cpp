@@ -3077,6 +3077,7 @@ public:
            << "\n  IsProxyPrefixEnabled: " << (LOOLWSD::IsProxyPrefixEnabled ? "yes" : "no")
            << "\n  OverrideWatermark: " << LOOLWSD::OverrideWatermark
            << "\n  UserInterface: " << LOOLWSD::UserInterface
+           << "\n  Total PSS: " << Util::getProcessTreePss(getpid()) << " KB"
            << "\n  Config: " << LoggableConfigEntries
             ;
 

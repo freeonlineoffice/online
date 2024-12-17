@@ -2632,8 +2632,10 @@ void DocumentBroker::setLoaded()
         const auto minTimeoutSecs = ((_loadDuration * 4).count() + 500) / 1000;
         _saveManager.setSavingTimeout(
             std::max(std::chrono::seconds(minTimeoutSecs), std::chrono::seconds(5)));
-        LOG_DBG("Document loaded in " << _loadDuration << ", saving-timeout set to "
-                                      << _saveManager.getSavingTimeout());
+        LOG_INF("Document [" << _docKey << "] loaded in " << _loadDuration
+                             << ", saving-timeout set to " << _saveManager.getSavingTimeout()
+                             << ", doc PSS: " << Util::getMemoryUsagePSS(_childProcess->getPid())
+                             << " KB, total PSS: " << Util::getProcessTreePss(getpid()) << " KB");
 
         if(_unitWsd != nullptr)
         {
@@ -4569,6 +4571,7 @@ void DocumentBroker::dumpState(std::ostream& os)
     os << "\n  backgroundAutoSave: " << (_backgroundAutoSave?"true":"false");
     os << "\n  backgroundManualSave: " << (_backgroundManualSave?"true":"false");
     os << "\n  isViewFileExtension: " << _isViewFileExtension;
+    os << "\n  Total PSS: " << Util::getProcessTreePss(getpid()) << " KB";
 #if !MOBILEAPP
     os << "\n  last quarantined version: "
        << (_quarantine && _quarantine->isEnabled() ? _quarantine->lastQuarantinedFilePath()
