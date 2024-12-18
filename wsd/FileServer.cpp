@@ -580,6 +580,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             Poco::JSON::Object::Ptr xcuEntry = new Poco::JSON::Object();
             std::string uri = LOOLWSD::getServerURL() + prefix + cwd + xcu;
             xcuEntry->set("uri", Util::trim(uri));
+            xcuEntry->set("stamp", etagString);
             configInfo->set("xcu", xcuEntry);
         }
 
