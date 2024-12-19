@@ -202,7 +202,7 @@ class PresenterConsole {
 				this._onImpressModeChanged,
 				this,
 			);
-			this._onPresentInConsole();
+			setTimeout(this._onPresentInConsole.bind(this), 500);
 		}
 	}
 

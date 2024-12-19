@@ -583,9 +583,10 @@ class SlideShowPresenter {
 			const startSlide = {
 				startSlideNumber: this._startSlide,
 			};
-			inWindow
-				? this._onStartInWindow(startSlide)
-				: this._onStart(startSlide);
+			const startSlideshow = inWindow
+				? this._onStartInWindow
+				: this._onStart;
+			setTimeout(startSlideshow.bind(this, startSlide), 500);
 		}
 	}
 
