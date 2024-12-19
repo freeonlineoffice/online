@@ -42,6 +42,10 @@ export class Comment extends CanvasSectionObject {
 	map: any;
 	pendingInit: boolean = true;
 
+	cachedCommentHeight: number | null = null;
+	cachedIsEdit: boolean = false;
+	hidden: boolean | null = null;
+
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	constructor (data: any, options: any, commentListSectionPointer: lool.CommentSection) {
 		super();
@@ -319,7 +323,7 @@ export class Comment extends CanvasSectionObject {
 									posY: this.sectionProperties.children[i].sectionProperties.container._leaflet_pos.y});
 		}
 		childPositions.sort((a, b) => { return a.posY - b.posY; });
-		let lastPosY = this.sectionProperties.container._leaflet_pos.y + this.getCommentHeight();
+		let lastPosY = this.sectionProperties.container._leaflet_pos.y + this.getCommentHeight(false);
 		let i = 0;
 		for (; i < childPositions.length; i++) {
 			if (this.sectionProperties.childLines[i] === undefined) {
@@ -781,6 +785,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
 		this.sectionProperties.collapsedInfoNode.style.visibility = '';
+		this.cachedIsEdit = false;
 	}
 
 	private showCalc() {
@@ -788,6 +793,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.contentNode.style.display = '';
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
+		this.cachedIsEdit = false;
 
 		this.positionCalcComment();
 		if (!(<any>window).mode.isMobile()) {
@@ -820,6 +826,7 @@ export class Comment extends CanvasSectionObject {
 			this.sectionProperties.nodeModify.style.display = 'none';
 			this.sectionProperties.nodeReply.style.display = 'none';
 			this.sectionProperties.contentNode.style.display = '';
+			this.cachedIsEdit = false;
 			if (this.isSelected() || !this.isCollapsed) {
 				this.sectionProperties.container.style.visibility = '';
 			}
@@ -843,6 +850,9 @@ export class Comment extends CanvasSectionObject {
 
 	public show(): void {
 		this.doPendingInitializationInView(true /* force */);
+
+		if (this.hidden === false && !this.isEdit()) return;
+
 		this.showMarker();
 
 		// On mobile, container shouldn't be 'document-container', but it is 'document-container' on initialization. So we hide the comment until comment wizard is opened.
@@ -851,11 +861,16 @@ export class Comment extends CanvasSectionObject {
 
 		if (lool.CommentSection.commentWasAutoAdded)
 			return;
-		if (this.sectionProperties.docLayer._docType === 'text')
+
+		// We don't cache the hidden state for spreadsheets. Only one comment can be
+		// visible and they're hidden when scrolling, so it's easier this way.
+		if (this.sectionProperties.docLayer._docType === 'text') {
 			this.showWriter();
-		else if (this.sectionProperties.docLayer._docType === 'presentation' || this.sectionProperties.docLayer._docType === 'drawing')
+			this.hidden = false;
+		} else if (this.sectionProperties.docLayer._docType === 'presentation' || this.sectionProperties.docLayer._docType === 'drawing') {
 			this.showImpressDraw();
-		else if (this.sectionProperties.docLayer._docType === 'spreadsheet')
+			this.hidden = false;
+		} else if (this.sectionProperties.docLayer._docType === 'spreadsheet')
 			this.showCalc();
 
 		this.setLayoutClass();
@@ -867,12 +882,15 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.nodeReply.style.display = 'none';
 		this.sectionProperties.showSelectedCoordinate = false;
 		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
+		this.cachedIsEdit = false;
+		this.hidden = true;
 	}
 
 	private hideCalc() {
 		this.sectionProperties.container.style.visibility = 'hidden';
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = 'none';
+		this.cachedIsEdit = false;
 
 		if (this.sectionProperties.commentListSection.sectionProperties.selectedComment === this)
 			this.sectionProperties.commentListSection.sectionProperties.selectedComment = null;
@@ -890,8 +908,10 @@ export class Comment extends CanvasSectionObject {
 
 			this.sectionProperties.nodeModify.style.display = 'none';
 			this.sectionProperties.nodeReply.style.display = 'none';
+			this.cachedIsEdit = false;
 		}
 		L.DomUtil.removeClass(this.sectionProperties.container, 'lool-annotation-collapsed-show');
+		this.hidden = true;
 	}
 
 	// check if this is "our" autosaved comment
@@ -906,7 +926,7 @@ export class Comment extends CanvasSectionObject {
 	}
 
 	public hide (): void {
-		if (this.isEdit()) {
+		if (this.hidden === true || this.isEdit()) {
 			return;
 		}
 
@@ -1090,6 +1110,7 @@ export class Comment extends CanvasSectionObject {
 			return;
 		}
 		if (!this.sectionProperties.commentContainerRemoved) {
+			this.cachedIsEdit = false;
 			$(this.sectionProperties.container).removeClass('annotation-active reply-annotation-container modify-annotation-container');
 			this.removeLastBRTag(this.sectionProperties.nodeModifyText);
 			if (this.sectionProperties.contentText.origText !== this.sectionProperties.nodeModifyText.innerText ||
@@ -1127,6 +1148,8 @@ export class Comment extends CanvasSectionObject {
 		}
 		else {
 			this.sectionProperties.nodeReply.style.display = 'none';
+			if (!this.sectionProperties.nodeModify || this.sectionProperties.nodeModify.style.display === 'none')
+				this.cachedIsEdit = false;
 		}
 	}
 
@@ -1153,6 +1176,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.contentNode.style.display = '';
 		this.sectionProperties.nodeModify.style.display = 'none';
 		this.sectionProperties.nodeReply.style.display = '';
+		this.cachedIsEdit = true;
 		return this;
 	}
 
@@ -1163,12 +1187,12 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.nodeReply.style.display = 'none';
 		this.sectionProperties.container.style.visibility = '';
 		this.sectionProperties.contentNode.style.display = 'none';
+		this.cachedIsEdit = true;
 		return this;
 	}
 
 	public isEdit (): boolean {
-		return !this.pendingInit && ((this.sectionProperties.nodeModify && this.sectionProperties.nodeModify.style.display !== 'none') ||
-		       (this.sectionProperties.nodeReply && this.sectionProperties.nodeReply.style.display !== 'none'));
+		return this.cachedIsEdit;
 	}
 
 	public isModifying(): boolean {
@@ -1534,8 +1558,13 @@ export class Comment extends CanvasSectionObject {
 		return 1; // Comment list not fully initialized but we know we are not root
 	}
 
-	public getCommentHeight(): number {
-		return this.sectionProperties.container.getBoundingClientRect().height  - this.sectionProperties.childLinesNode.getBoundingClientRect().height;
+	public getCommentHeight(invalidateCache: boolean = true): number {
+		if (invalidateCache)
+			this.cachedCommentHeight = null;
+		if (this.cachedCommentHeight === null)
+			this.cachedCommentHeight = this.sectionProperties.container.getBoundingClientRect().height
+			- this.sectionProperties.childLinesNode.getBoundingClientRect().height;
+		return this.cachedCommentHeight;
 	}
 
 	public setCollapsed(): void {
