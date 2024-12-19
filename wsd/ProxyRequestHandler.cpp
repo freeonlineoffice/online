@@ -86,7 +86,7 @@ void ProxyRequestHandler::handleRequest(const std::string& relPath,
     sessionProxy->setFinishedHandler(std::move(proxyCallback));
 
     http::Session::ConnectFailCallback connectFailCallback =
-        [socket]() {
+        [socket](const std::shared_ptr<http::Session>& /* session */) {
             HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
     };
     sessionProxy->setConnectFailHandler(std::move(connectFailCallback));
