@@ -730,6 +730,8 @@ export class ScrollSection extends CanvasSectionObject {
 	}
 
 	public scrollVerticalWithOffset (offset: number): boolean {
+		this.calculateYMinMax();
+
 		if (offset > 0) {
 			if (this.documentTopLeft[1] + offset > this.sectionProperties.yMax)
 				offset = this.sectionProperties.yMax - this.documentTopLeft[1];
@@ -754,6 +756,8 @@ export class ScrollSection extends CanvasSectionObject {
 	}
 
 	public scrollHorizontalWithOffset (offset: number): void {
+		this.calculateXMinMax();
+
 		if (this.isRTL()) {
 			offset = -offset;
 		}
