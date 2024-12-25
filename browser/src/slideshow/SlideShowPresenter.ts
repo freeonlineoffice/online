@@ -517,7 +517,10 @@ class SlideShowPresenter {
 		);
 		this._slideShowCanvas.focus();
 
-		window.addEventListener('resize', this.onSlideWindowResize.bind(this));
+		window.addEventListener(
+			'resize',
+			this.onSlideWindowResize.bind(this),
+		);
 		this._getProxyDocumentNode().addEventListener(
 			'keydown',
 			this._onKeyDownHandler,
@@ -557,7 +560,10 @@ class SlideShowPresenter {
 		this._slideShowCanvas = null;
 		this._presenterContainer = null;
 		this._slideShowWindowProxy = null;
-		window.removeEventListener('resize', this.onSlideWindowResize.bind(this));
+		window.removeEventListener(
+			'resize',
+			this.onSlideWindowResize.bind(this),
+		);
 		window.removeEventListener(
 			'beforeunload',
 			this.slideshowWindowCleanUp.bind(this),
