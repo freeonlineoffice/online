@@ -85,6 +85,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 
 	map: any;
 	static autoSavedComment: lool.Comment;
+	static needFocus: lool.Comment;
 	static commentWasAutoAdded: boolean = false;
 	static pendingImport: boolean = false;
 	static importingComments: boolean = false; // active during comments insertion, disable scroll
@@ -1532,6 +1533,9 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 				if (autoSavedComment) {
 					var isOurComment = annotation.isAutoSaved();
 					if (isOurComment) {
+						if (app.definitions.CommentSection.needFocus) {
+							app.definitions.CommentSection.needFocus = annotation;
+						}
 						annotation.sectionProperties.container.style.visibility = 'visible';
 						annotation.sectionProperties.autoSave.innerText = _('Autosaved');
 						if (app.map._docLayer._docType === 'spreadsheet')
