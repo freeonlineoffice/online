@@ -197,7 +197,11 @@ class PresenterConsole {
 	_onImpressModeChanged(e) {
 		if (this._waitForExitingNotesMode && e.mode === 0) {
 			this._waitForExitingNotesMode = false;
-			this._map.off('impressmodechanged', this._onImpressModeChanged, this);
+			this._map.off(
+				'impressmodechanged',
+				this._onImpressModeChanged,
+				this,
+			);
 			this._onPresentInConsole();
 		}
 	}
@@ -213,7 +217,11 @@ class PresenterConsole {
 			// since it's only due to the mode change
 			this._presenter._skipNextSlideShowInfoChangedMsg = true;
 			this._waitForExitingNotesMode = true;
-			this._map.on('impressmodechanged', this._onImpressModeChanged, this);
+			this._map.on(
+				'impressmodechanged',
+				this._onImpressModeChanged,
+				this,
+			);
 			app.map.sendUnoCommand('.uno:NormalMultiPaneGUI');
 			return;
 		}

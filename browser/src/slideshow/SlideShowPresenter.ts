@@ -574,12 +574,18 @@ class SlideShowPresenter {
 
 	_onImpressModeChangedImpl(e: any, inWindow: boolean) {
 		if (this._onImpressModeChanged && e.mode === 0) {
-			this._map.off('impressmodechanged', this._onImpressModeChanged, this);
+			this._map.off(
+				'impressmodechanged',
+				this._onImpressModeChanged,
+				this,
+			);
 			this._onImpressModeChanged = null;
 			const startSlide = {
 				startSlideNumber: this._startSlide,
 			};
-			inWindow ? this._onStartInWindow(startSlide) : this._onStart(startSlide);
+			inWindow
+				? this._onStartInWindow(startSlide)
+				: this._onStart(startSlide);
 		}
 	}
 
@@ -615,7 +621,11 @@ class SlideShowPresenter {
 			this._onImpressModeChanged = function (e: any) {
 				this._onImpressModeChangedImpl(e, inWindow);
 			};
-			this._map.on('impressmodechanged', this._onImpressModeChanged, this);
+			this._map.on(
+				'impressmodechanged',
+				this._onImpressModeChanged,
+				this,
+			);
 			app.map.sendUnoCommand('.uno:NormalMultiPaneGUI');
 			return false;
 		}

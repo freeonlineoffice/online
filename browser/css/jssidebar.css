@@ -369,12 +369,24 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 }
 
 /* Styles deck */
-#StyleListPanelPanelExpander [id='2'] button { background: transparent url('images/lc_parastyle.svg') no-repeat center; }
-#StyleListPanelPanelExpander [id='1'] button { background: transparent url('images/lc_charstyle.svg') no-repeat center; }
-#StyleListPanelPanelExpander [id='3'] button { background: transparent url('images/lc_framestyle.svg') no-repeat center; }
-#StyleListPanelPanelExpander [id='4'] button { background: transparent url('images/lc_pagestyle.svg') no-repeat center; }
-#StyleListPanelPanelExpander [id='5'] button { background: transparent url('images/lc_liststyle.svg') no-repeat center; }
-#StyleListPanelPanelExpander [id='6'] button { background: transparent url('images/lc_tablestyle.svg') no-repeat center; }
+#StyleListPanelPanelExpander [id='2'] button {
+	background: transparent url('images/lc_parastyle.svg') no-repeat center;
+}
+#StyleListPanelPanelExpander [id='1'] button {
+	background: transparent url('images/lc_charstyle.svg') no-repeat center;
+}
+#StyleListPanelPanelExpander [id='3'] button {
+	background: transparent url('images/lc_framestyle.svg') no-repeat center;
+}
+#StyleListPanelPanelExpander [id='4'] button {
+	background: transparent url('images/lc_pagestyle.svg') no-repeat center;
+}
+#StyleListPanelPanelExpander [id='5'] button {
+	background: transparent url('images/lc_liststyle.svg') no-repeat center;
+}
+#StyleListPanelPanelExpander [id='6'] button {
+	background: transparent url('images/lc_tablestyle.svg') no-repeat center;
+}
 
 #StyleListPanelPanelExpander #left.toolbox button {
 	background-size: cover;
@@ -391,7 +403,9 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 /* required to dynamically resize treeviews or lists inside sidebar */
 .sidebar-container,
 .sidebar-container > .root-container.jsdialog.sidebar,
-.sidebar-container > .root-container.jsdialog.sidebar > .vertical.jsdialog.sidebar {
+.sidebar-container
+	> .root-container.jsdialog.sidebar
+	> .vertical.jsdialog.sidebar {
 	height: 100%;
 }
 
