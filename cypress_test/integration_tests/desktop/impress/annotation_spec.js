@@ -33,9 +33,9 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 		cy.cGet('#annotation-content-area-1').should('contain','some text0');
 		cy.cGet('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
-		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
+		cy.cGet('#annotation-modify-textarea-1').type(', some other text');
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
+		cy.cGet('#annotation-content-area-1').should('contain','some text0, some other text');
 		cy.cGet('.leaflet-marker-icon').should('exist');
 	});
 
@@ -90,9 +90,9 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 		cy.cGet('.lool-annotation-table .avatar-img').click();
 		cy.cGet('.lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
-		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
+		cy.cGet('#annotation-modify-textarea-1').type(', some other text');
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('#annotation-content-area-1').should('contain','some other text, some text0');
+		cy.cGet('#annotation-content-area-1').should('contain','some text0, some other text');
 		cy.cGet('.leaflet-marker-icon').should('exist');
 	});
 
@@ -260,14 +260,14 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
-		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
+		cy.cGet('#annotation-modify-textarea-1').type(', some other text');
 		cy.cGet('#map').focus();
 		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		helper.reloadDocument(newFilePath);
 		cy.cGet('.leaflet-marker-icon').should('exist');
-		cy.cGet('.lool-annotation-content > div').should('have.text','some other text, some text0');
+		cy.cGet('.lool-annotation-content > div').should('have.text','some text0, some other text');
 	});
 
 	it('Modify autosave save', function() {
@@ -276,17 +276,17 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
-		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
+		cy.cGet('#annotation-modify-textarea-1').type(', some other text');
 		cy.cGet('#map').focus();
 		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('#annotation-save-1').click();
-		cy.cGet('#annotation-content-area-1').should('have.text','some other text, some text0');
+		cy.cGet('#annotation-content-area-1').should('have.text','some text0, some other text');
 		cy.cGet('.leaflet-marker-icon').should('exist');
 
 		helper.reloadDocument(newFilePath);
 		cy.cGet('.leaflet-marker-icon').should('exist');
-		cy.cGet('.lool-annotation-content > div').should('have.text','some other text, some text0');
+		cy.cGet('.lool-annotation-content > div').should('have.text','some text0, some other text');
 	});
 
 	it('Modify autosave cancel', function() {
@@ -295,7 +295,7 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
 		cy.cGet('.lool-annotation-content-wrapper:visible .lool-annotation-menu').click();
 		cy.cGet('body').contains('.context-menu-item','Modify').click();
-		cy.cGet('#annotation-modify-textarea-1').type('some other text, ');
+		cy.cGet('#annotation-modify-textarea-1').type(', some other text');
 		cy.cGet('#map').focus();
 		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
