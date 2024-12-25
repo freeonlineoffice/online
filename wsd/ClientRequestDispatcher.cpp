@@ -1213,7 +1213,7 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
         sendResult(CheckStatus::NoScheme);
         return true;
     }
-    // if the wopi hosts uses https, so must cool or it will have Mixed Content errors
+    // if the wopi hosts uses https, so must lool or it will have Mixed Content errors
     if (protocol == http::Session::Protocol::HttpSsl &&
 #if ENABLE_SSL
         !(ConfigUtil::isSslEnabled() || ConfigUtil::isSSLTermination())
@@ -1328,7 +1328,7 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
     };
 
     httpProbeSession->setFinishedHandler(std::move(finishHandler));
-    httpProbeSession->asyncRequest(httpRequest, *COOLWSD::getWebServerPoll());
+    httpProbeSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
 
     return true;
 }
