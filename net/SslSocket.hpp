@@ -366,7 +366,7 @@ private:
                     return rc;
                 }
 
-                // Fallthrough...
+                [[fallthrough]];
             default:
             {
                 // Effectively an EAGAIN error at the BIO layer
