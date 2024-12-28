@@ -1488,12 +1488,11 @@ bool StreamSocket::checkRemoval(std::chrono::steady_clock::time_point now)
             if (!isClosed())
             {
                 // Note: Ensure proper semantics of onDisconnect()
-                LOG_WRN("Socket still open post onDisconnect(), forced shutdown.");
-                shutdown(); // signal
-                closeConnection(); // real -> setClosed()
+                LOG_WRN("Socket still open post onDisconnect(), forcing shutdown");
             }
         }
-        else
+
+        if (!isClosed())
         {
             shutdown(); // signal
             closeConnection(); // real -> setClosed()
