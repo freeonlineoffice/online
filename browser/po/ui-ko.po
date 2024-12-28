@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-25 23:02+0100\n"
+"POT-Creation-Date: 2024-12-28 13:25+0100\n"
 "PO-Revision-Date: 2020-08-30 15:35+0000\n"
 "Last-Translator: 김주현 <kjh000121@gmail.com>\n"
 "Language-Team: Korean <https://weblate.documentfoundation.org/projects/"
@@ -478,7 +478,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1929
+#: src/control/Control.JSDialogBuilder.js:1931
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -632,15 +632,15 @@ msgstr ""
 msgid "Delete"
 msgstr "삭제"
 
-#: src/control/Control.ContextMenu.js:246
+#: src/control/Control.ContextMenu.js:251
 msgid "Paste Special"
 msgstr "선택적으로 붙여넣기"
 
-#: src/control/Control.ContextMenu.js:253
+#: src/control/Control.ContextMenu.js:258
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:258
+#: src/control/Control.ContextMenu.js:263
 msgid "Fill Series"
 msgstr ""
 
@@ -807,44 +807,44 @@ msgstr "색"
 msgid "Select range"
 msgstr "변경 사항 거부"
 
-#: src/control/Control.JSDialogBuilder.js:1646
+#: src/control/Control.JSDialogBuilder.js:1648
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "글꼴 이름"
 
-#: src/control/Control.JSDialogBuilder.js:1648 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "글꼴 크기"
 
-#: src/control/Control.JSDialogBuilder.js:1650
+#: src/control/Control.JSDialogBuilder.js:1652
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "스타일"
 
-#: src/control/Control.JSDialogBuilder.js:1915
+#: src/control/Control.JSDialogBuilder.js:1917
 #, fuzzy
 msgid "reply"
 msgstr "답변"
 
-#: src/control/Control.JSDialogBuilder.js:1918
+#: src/control/Control.JSDialogBuilder.js:1920
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1993
+#: src/control/Control.JSDialogBuilder.js:1995
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2742
+#: src/control/Control.JSDialogBuilder.js:2752
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "열"
 
-#: src/control/Control.JSDialogBuilder.js:2743
+#: src/control/Control.JSDialogBuilder.js:2753
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "행"
 
-#: src/control/Control.JSDialogBuilder.js:2763
+#: src/control/Control.JSDialogBuilder.js:2773
 #, fuzzy
 msgid "Insert Table"
 msgstr "표 삽입"
@@ -3021,8 +3021,9 @@ msgid "Named Range"
 msgstr ""
 
 #: src/layer/tile/CanvasTileLayer.js:4895
+#, fuzzy
 msgid "No Comments"
-msgstr ""
+msgstr "추가 설명"
 
 #: src/main.js:138
 msgid "Warning! The browser you are using is not supported."

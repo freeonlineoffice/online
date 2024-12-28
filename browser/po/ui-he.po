@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-25 23:02+0100\n"
+"POT-Creation-Date: 2024-12-28 13:25+0100\n"
 "PO-Revision-Date: 2022-05-28 20:14+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/collabora-online/"
@@ -475,7 +475,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1929
+#: src/control/Control.JSDialogBuilder.js:1931
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -627,15 +627,15 @@ msgstr "שחרור"
 msgid "Delete"
 msgstr "מחיקה"
 
-#: src/control/Control.ContextMenu.js:246
+#: src/control/Control.ContextMenu.js:251
 msgid "Paste Special"
 msgstr "הדבקה מיוחדת"
 
-#: src/control/Control.ContextMenu.js:253
+#: src/control/Control.ContextMenu.js:258
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:258
+#: src/control/Control.ContextMenu.js:263
 msgid "Fill Series"
 msgstr ""
 
@@ -800,43 +800,43 @@ msgstr "צבע"
 msgid "Select range"
 msgstr "בחירת טווח"
 
-#: src/control/Control.JSDialogBuilder.js:1646
+#: src/control/Control.JSDialogBuilder.js:1648
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "שם הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1648 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "גודל הגופן"
 
-#: src/control/Control.JSDialogBuilder.js:1650
+#: src/control/Control.JSDialogBuilder.js:1652
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "סגנון"
 
-#: src/control/Control.JSDialogBuilder.js:1915
+#: src/control/Control.JSDialogBuilder.js:1917
 msgid "reply"
 msgstr "תגובה"
 
-#: src/control/Control.JSDialogBuilder.js:1918
+#: src/control/Control.JSDialogBuilder.js:1920
 msgid "replies"
 msgstr "תגובות"
 
-#: src/control/Control.JSDialogBuilder.js:1993
+#: src/control/Control.JSDialogBuilder.js:1995
 msgid "Insert Comment"
 msgstr "הוספת הערה"
 
-#: src/control/Control.JSDialogBuilder.js:2742
+#: src/control/Control.JSDialogBuilder.js:2752
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "שורות"
 
-#: src/control/Control.JSDialogBuilder.js:2743
+#: src/control/Control.JSDialogBuilder.js:2753
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/control/Control.JSDialogBuilder.js:2763
+#: src/control/Control.JSDialogBuilder.js:2773
 msgid "Insert Table"
 msgstr "הוספת טבלה"
 

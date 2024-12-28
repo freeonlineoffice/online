@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-25 23:02+0100\n"
+"POT-Creation-Date: 2024-12-28 13:25+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Upper Sorbian <https://hosted.weblate.org/projects/"
@@ -479,7 +479,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1929
+#: src/control/Control.JSDialogBuilder.js:1931
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -631,15 +631,15 @@ msgstr ""
 msgid "Delete"
 msgstr "Zhašeć"
 
-#: src/control/Control.ContextMenu.js:246
+#: src/control/Control.ContextMenu.js:251
 msgid "Paste Special"
 msgstr "Wobsah zasadźić"
 
-#: src/control/Control.ContextMenu.js:253
+#: src/control/Control.ContextMenu.js:258
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:258
+#: src/control/Control.ContextMenu.js:263
 msgid "Fill Series"
 msgstr ""
 
@@ -808,44 +808,44 @@ msgstr "Barba"
 msgid "Select range"
 msgstr "Wobłuk wubrać"
 
-#: src/control/Control.JSDialogBuilder.js:1646
+#: src/control/Control.JSDialogBuilder.js:1648
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "Mjeno pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1648 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "Wulkosć pisma"
 
-#: src/control/Control.JSDialogBuilder.js:1650
+#: src/control/Control.JSDialogBuilder.js:1652
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:1915
+#: src/control/Control.JSDialogBuilder.js:1917
 #, fuzzy
 msgid "reply"
 msgstr "Wotmołwić"
 
-#: src/control/Control.JSDialogBuilder.js:1918
+#: src/control/Control.JSDialogBuilder.js:1920
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1993
+#: src/control/Control.JSDialogBuilder.js:1995
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2742
+#: src/control/Control.JSDialogBuilder.js:2752
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "Linki"
 
-#: src/control/Control.JSDialogBuilder.js:2743
+#: src/control/Control.JSDialogBuilder.js:2753
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "Špalty"
 
-#: src/control/Control.JSDialogBuilder.js:2763
+#: src/control/Control.JSDialogBuilder.js:2773
 #, fuzzy
 msgid "Insert Table"
 msgstr "Tabelu zasadźić"
@@ -3045,8 +3045,9 @@ msgid "Named Range"
 msgstr ""
 
 #: src/layer/tile/CanvasTileLayer.js:4895
+#, fuzzy
 msgid "No Comments"
-msgstr ""
+msgstr "Komentary składować"
 
 #: src/main.js:138
 msgid "Warning! The browser you are using is not supported."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-25 23:02+0100\n"
+"POT-Creation-Date: 2024-12-28 13:25+0100\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/collabora-online/"
@@ -477,7 +477,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1929
+#: src/control/Control.JSDialogBuilder.js:1931
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -629,15 +629,15 @@ msgstr "Odomknúť"
 msgid "Delete"
 msgstr "Zmazať"
 
-#: src/control/Control.ContextMenu.js:246
+#: src/control/Control.ContextMenu.js:251
 msgid "Paste Special"
 msgstr "Vložiť inak"
 
-#: src/control/Control.ContextMenu.js:253
+#: src/control/Control.ContextMenu.js:258
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:258
+#: src/control/Control.ContextMenu.js:263
 msgid "Fill Series"
 msgstr ""
 
@@ -806,43 +806,43 @@ msgstr "Farba"
 msgid "Select range"
 msgstr "Zvoliť rozsah"
 
-#: src/control/Control.JSDialogBuilder.js:1646
+#: src/control/Control.JSDialogBuilder.js:1648
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "Názov písma"
 
-#: src/control/Control.JSDialogBuilder.js:1648 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "Veľkosť písma"
 
-#: src/control/Control.JSDialogBuilder.js:1650
+#: src/control/Control.JSDialogBuilder.js:1652
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Štýl"
 
-#: src/control/Control.JSDialogBuilder.js:1915
+#: src/control/Control.JSDialogBuilder.js:1917
 msgid "reply"
 msgstr "odpovedať"
 
-#: src/control/Control.JSDialogBuilder.js:1918
+#: src/control/Control.JSDialogBuilder.js:1920
 msgid "replies"
 msgstr "odpovedí"
 
-#: src/control/Control.JSDialogBuilder.js:1993
+#: src/control/Control.JSDialogBuilder.js:1995
 msgid "Insert Comment"
 msgstr "Vložiť komentár"
 
-#: src/control/Control.JSDialogBuilder.js:2742
+#: src/control/Control.JSDialogBuilder.js:2752
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "Riadky"
 
-#: src/control/Control.JSDialogBuilder.js:2743
+#: src/control/Control.JSDialogBuilder.js:2753
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "Stĺpce"
 
-#: src/control/Control.JSDialogBuilder.js:2763
+#: src/control/Control.JSDialogBuilder.js:2773
 msgid "Insert Table"
 msgstr "Vložiť tabuľku"
 
