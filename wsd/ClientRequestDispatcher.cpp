@@ -1104,7 +1104,7 @@ STATE_ENUM(CheckStatus,
     UnspecifiedError,
     ConnectionAborted,
     CertificateValidation,
-    SSLHandshakeFail,
+    SslHandshakeFail,
     MissingSsl,
     NotHttps,
     NoScheme,
@@ -1263,7 +1263,7 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
             }
 
             if (result == net::AsyncConnectResult::SSLHandShakeFailure) {
-                status = CheckStatus::SSLHandshakeFail;
+                status = CheckStatus::SslHandshakeFail;
             }
 
             if (!probeSession->getSslVerifyMessage().empty())
