@@ -25,7 +25,7 @@ class MobileSearchBar extends Toolbar {
 				text: _('Hide the search bar'),
 			},
 			{
-				type: 'edit',
+				type: 'searchedit',
 				id: 'search',
 				placeholder: _('Search'),
 				text: '',
@@ -57,7 +57,6 @@ class MobileSearchBar extends Toolbar {
 	create() {
 		var items = this.getToolItems();
 		this.builder.build(this.parentContainer, items);
-		(window as any).setupSearchInput();
 	}
 }
 
