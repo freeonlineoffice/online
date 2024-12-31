@@ -551,6 +551,7 @@ class TreeViewControl {
 					'ui-treeview-expandable-with-icon',
 				);
 				icon.tabIndex = -1;
+				icon.alt = ''; //In this case, it is advisable to use an empty alt tag for the icons, as the information of the function is available in text form
 			} else if (
 				entry.columns[index].link &&
 				!this.isSeparator(entry.columns[index])
