@@ -298,7 +298,7 @@ void HTTPServerTest::assertHTTPFilesExist(const Poco::URI& uri, Poco::RegularExp
 
             Poco::Net::HTTPResponse responseScript;
             session->receiveResponse(responseScript);
-            std::string msg("cool.html references: " + scriptString + " which should exist.");
+            std::string msg("lool.html references: " + scriptString + " which should exist.");
             LOK_ASSERT_EQUAL_MESSAGE(msg, Poco::Net::HTTPResponse::HTTP_OK, responseScript.getStatus());
 
             if (!mimetype.empty())
