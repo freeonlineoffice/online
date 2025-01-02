@@ -678,8 +678,12 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 			this._setAnchor('tilesSection', tilesSection,
 				[[L.CSections.ColumnHeader.name, 'bottom', 'top'], [L.CSections.RowHeader.name, '-left', 'right']]);
-
-			this._layoutIsRTL = true;
+			
+			// Do not set layoutIsRtl to true prematurely. If set before all sections are defined 
+			// (e.g., during load with onStatusMsg), some sections may not update to their correct positions. 
+			// Ensure all sections are adjusted first, then set layoutIsRtl to true to show that they have moved.
+			if (rowHeaderSection)
+				this._layoutIsRTL = true;
 
 			sectionContainer.reNewAllSections(true);
 			this._syncTileContainerSize();
@@ -687,7 +691,6 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		} else if (!sheetIsRTL && this._layoutIsRTL === true) {
 
 			console.log('debug: in RTL -> LTR canvas section adjustments');
-			this._layoutIsRTL = false;
 			var sectionContainer = app.sectionContainer;
 
 			var tilesSection = sectionContainer.getSectionWithName(L.CSections.Tiles.name);
@@ -716,6 +719,9 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 			columnHeaderSection.anchor = [[L.CSections.ColumnGroup.name, 'bottom', 'top'], [L.CSections.CornerHeader.name, 'right', 'left']];
 			columnHeaderSection.expand = ['right'];
+
+			if (rowHeaderSection)
+				this._layoutIsRTL = false;
 
 			tilesSection.anchor = [[L.CSections.ColumnHeader.name, 'bottom', 'top'], [L.CSections.RowHeader.name, 'right', 'left']];
 
