@@ -18,10 +18,11 @@
 class Tooltip {
 	constructor(options) {
 		this._options = L.extend({ timeout: 150 }, options);
+		let win = this._options.window ? this._options.window : window;
 		this._container = L.DomUtil.create(
 			'div',
 			'looltip-text',
-			document.body,
+			win.document.body,
 		);
 		this._container.id = 'looltip';
 		this._container.addEventListener(
@@ -33,7 +34,6 @@ class Tooltip {
 			L.bind(this.mouseLeave, this),
 		);
 
-		let win = this._options.window ? this._options.window : window;
 		win.addEventListener('keydown', L.bind(this.keyDown, this), {
 			capture: true,
 			passive: true,
@@ -43,8 +43,9 @@ class Tooltip {
 	beginShow(elem) {
 		if (this._cancel) return;
 
-		clearTimeout(this._showTimeout);
-		this._showTimeout = setTimeout(
+		let win = this._options.window ? this._options.window : window;
+		win.clearTimeout(this._showTimeout);
+		this._showTimeout = win.setTimeout(
 			L.bind(this.show, this, elem),
 			this._options.timeout,
 		);
@@ -53,10 +54,11 @@ class Tooltip {
 	beginHide(elem) {
 		if (this._cancel) return;
 
-		clearTimeout(this._showTimeout);
-		clearTimeout(this._hideTimeout);
+		let win = this._options.window ? this._options.window : window;
+		win.clearTimeout(this._showTimeout);
+		win.clearTimeout(this._hideTimeout);
 		if (this._current)
-			this._hideTimeout = setTimeout(
+			this._hideTimeout = win.setTimeout(
 				L.bind(this.hide, this, elem),
 				this._options.timeout,
 			);
@@ -161,9 +163,10 @@ class Tooltip {
 
 	mouseEnter() {
 		if (this._current) {
+			let win = this._options.window ? this._options.window : window;
 			this._cancel = true;
-			clearTimeout(this._hideTimeout);
-			clearTimeout(this._showTimeout);
+			win.clearTimeout(this._hideTimeout);
+			win.clearTimeout(this._showTimeout);
 		}
 	}
 
