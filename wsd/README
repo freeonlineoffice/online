@@ -8,22 +8,23 @@ LibreOffice Online WebSocket server has the following dependencies:
 
 * libpng
 * Poco library: https://pocoproject.org/
+* OpenSSL (when configured with --enable-ssl)
+* libzstd
 * libcap-dev (Debian/Ubuntu) / libcap-progs (SUSE/openSUSE) / libcap-devel (RedHat/CentOS)
 * libpam-dev (Debian/Ubuntu) / pam-devel (RedHat/CentOS/SUSE/openSUSE)
+
+On Debian distros, this boils down to:
+apt install libssl-dev libpng-dev libcap-dev libzstd-dev libpam-dev libcppunit libcppunit-dev
 
 If your Linux distro doesn't provide a Poco package (versions 1.7.5 and
 newer should work), you can build it yourself and install in a
 location of your choice.
 
-On openSUSE Leap 15.1, you can use:
+To build it, the following can be used:
+./configure --no-tests --no-samples --omit=Zip,Data,Data/SQLite,Data/ODBC,Data/MySQL,MongoDB,PDF --prefix=/usr
+make install
 
-    zypper ar http://download.opensuse.org/repositories/devel:/libraries:/c_c++/openSUSE_Leap_15.1/devel:libraries:c_c++.repo
-    zypper in poco-devel libcap-progs python3-polib libcap-devel npm
-
-Similar repos exist for other openSUSE and SLE releases.
-
-Building
---------
+## Building
 
 loolwsd uses autoconf/automake, so especially when building from .git
 (as opposed to from a distribution tarball) you need to run:
@@ -47,15 +48,6 @@ If you have self-built Poco, add the following to ./configure:
     --with-poco-includes=<POCOINST>/include --with-poco-libs=<POCOINST>/lib
 
 where <POCOINST> means the Poco installation location.
-
-If you have the Poco debugging libraries (eg. you have a self-built
-Poco), you can add --enable-debug to the configure options for
-additional debugging.
-
-For Windows, a proper VS2013 project is needed.
-
-There is still unconditional debugging output etc. This is a work in
-progress.
 
 Running
 -------
