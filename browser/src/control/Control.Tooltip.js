@@ -32,6 +32,12 @@ class Tooltip {
 			'mouseleave',
 			L.bind(this.mouseLeave, this),
 		);
+
+		let win = this._options.window ? this._options.window : window;
+		win.addEventListener('keydown', L.bind(this.keyDown, this), {
+			capture: true,
+			passive: true,
+		});
 	}
 
 	beginShow(elem) {
@@ -164,6 +170,13 @@ class Tooltip {
 	mouseLeave() {
 		this._cancel = false;
 		this.beginHide();
+	}
+
+	keyDown(e) {
+		let key = e.key.toUpperCase();
+		if (key === 'ESCAPE') {
+			this.mouseLeave();
+		}
 	}
 }
 
