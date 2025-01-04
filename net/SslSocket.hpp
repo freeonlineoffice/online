@@ -14,6 +14,7 @@
 #include <net/Socket.hpp>
 
 #include <openssl/ssl.h>
+#include <openssl/err.h>
 
 #include <cerrno>
 #include <sstream>
@@ -310,6 +311,8 @@ private:
         // Handle errors in the error-queue.
         const int ret = handleSslError(rc, last_errno, context);
         errno = last_errno; // Restore errno.
+
+        ERR_clear_error(); // Make sure we leave no errors in the queue.
 
         return ret;
     }
