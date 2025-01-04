@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-28 13:25+0100\n"
+"POT-Creation-Date: 2025-01-04 12:10+0100\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (New Zealand) <https://hosted.weblate.org/projects/"
@@ -213,7 +213,7 @@ msgstr "Refresh Log"
 msgid "Channel Filter:"
 msgstr "Channel Filter:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:484
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:485
 #: src/control/Control.StatusBar.js:206 src/control/Control.StatusBar.js:209
 msgid "None"
 msgstr "None"
@@ -474,7 +474,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1931
+#: src/control/Control.JSDialogBuilder.js:1889
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -748,102 +748,102 @@ msgstr "Idle document - please click to reload and resume editing"
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Idle document - please tap to reload and resume editing"
 
-#: src/control/Control.JSDialog.js:265
+#: src/control/Control.JSDialog.js:273
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:487
+#: src/control/Control.JSDialogBuilder.js:488
 msgid "Solid"
 msgstr "Solid"
 
-#: src/control/Control.JSDialogBuilder.js:490
+#: src/control/Control.JSDialogBuilder.js:491
 msgid "Linear"
 msgstr "Linear"
 
-#: src/control/Control.JSDialogBuilder.js:493
+#: src/control/Control.JSDialogBuilder.js:494
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:496
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:499
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Ellipsoid"
 msgstr "Ellipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:503
+#: src/control/Control.JSDialogBuilder.js:504
 msgid "Quadratic"
 msgstr "Quadratic"
 
-#: src/control/Control.JSDialogBuilder.js:506
+#: src/control/Control.JSDialogBuilder.js:507
 msgid "Square"
 msgstr "Square"
 
-#: src/control/Control.JSDialogBuilder.js:509
+#: src/control/Control.JSDialogBuilder.js:510
 msgid "Fixed size"
 msgstr "Fixed size"
 
-#: src/control/Control.JSDialogBuilder.js:1421
+#: src/control/Control.JSDialogBuilder.js:1422
 msgid "From"
 msgstr "From"
 
-#: src/control/Control.JSDialogBuilder.js:1424
+#: src/control/Control.JSDialogBuilder.js:1425
 msgid "To"
 msgstr "To"
 
-#: src/control/Control.JSDialogBuilder.js:1427
+#: src/control/Control.JSDialogBuilder.js:1428
 msgid "Color"
 msgstr "Colour"
 
-#: src/control/Control.JSDialogBuilder.js:1546
+#: src/control/Control.JSDialogBuilder.js:1504
 msgid "Select range"
 msgstr "Select range"
 
-#: src/control/Control.JSDialogBuilder.js:1648
+#: src/control/Control.JSDialogBuilder.js:1606
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "Font Name"
 
-#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1608 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "Font Size"
 
-#: src/control/Control.JSDialogBuilder.js:1652
+#: src/control/Control.JSDialogBuilder.js:1610
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Style"
 
-#: src/control/Control.JSDialogBuilder.js:1917
+#: src/control/Control.JSDialogBuilder.js:1875
 msgid "reply"
 msgstr "Reply"
 
-#: src/control/Control.JSDialogBuilder.js:1920
+#: src/control/Control.JSDialogBuilder.js:1878
 msgid "replies"
 msgstr "replies"
 
-#: src/control/Control.JSDialogBuilder.js:1995
+#: src/control/Control.JSDialogBuilder.js:1953
 msgid "Insert Comment"
 msgstr "Insert Comment"
 
-#: src/control/Control.JSDialogBuilder.js:2752
+#: src/control/Control.JSDialogBuilder.js:2710
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "Rows"
 
-#: src/control/Control.JSDialogBuilder.js:2753
+#: src/control/Control.JSDialogBuilder.js:2711
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "Columns"
 
-#: src/control/Control.JSDialogBuilder.js:2773
+#: src/control/Control.JSDialogBuilder.js:2731
 msgid "Insert Table"
 msgstr "Insert table"
 
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:352
 #: src/control/Control.Menubar.js:354 src/control/Control.Menubar.js:356
 #: src/control/Control.Menubar.js:543 src/control/Control.Menubar.js:682
-#: src/control/Control.Menubar.js:964 src/control/Control.StatusBar.js:527
+#: src/control/Control.Menubar.js:964 src/control/Control.StatusBar.js:526
 msgid "None (Do not check spelling)"
 msgstr "None (Do not check spelling)"
 
@@ -963,7 +963,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:92 src/control/Control.Menubar.js:420
 #: src/control/Control.Menubar.js:579 src/control/Control.Menubar.js:724
-#: src/control/Control.Toolbar.js:1182
+#: src/control/Control.Toolbar.js:1119
 msgid "Close document"
 msgstr "Close document"
 
@@ -1433,7 +1433,7 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1470 src/control/Control.StatusBar.js:526
+#: src/control/Control.Menubar.js:1470 src/control/Control.StatusBar.js:525
 msgid "Reset to Default Language"
 msgstr "Reset to Default Language"
 
@@ -1482,15 +1482,15 @@ msgstr "Hide the search bar"
 msgid "Clear the search field"
 msgstr "Clear the search field"
 
-#: src/control/Control.MobileWizardBuilder.js:526
+#: src/control/Control.MobileWizardBuilder.js:528
 msgid "Background Color"
 msgstr "Background Colour"
 
-#: src/control/Control.MobileWizardBuilder.js:528
+#: src/control/Control.MobileWizardBuilder.js:530
 msgid "Gradient Start"
 msgstr "Gradient Start"
 
-#: src/control/Control.MobileWizardBuilder.js:530
+#: src/control/Control.MobileWizardBuilder.js:532
 msgid "Gradient End"
 msgstr "Gradient End"
 
@@ -2010,33 +2010,33 @@ msgstr "Selection count"
 msgid "Cancel the search"
 msgstr "Cancel the search"
 
-#: src/control/Control.StatusBar.js:406
+#: src/control/Control.StatusBar.js:405
 msgid ""
 "To prevent accidental changes, the author has set this file to open as view-"
 "only"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:456
+#: src/control/Control.StatusBar.js:455
 msgid "Select multiple cells"
 msgstr "Select multiple cells"
 
-#: src/control/Control.StatusBar.js:459
+#: src/control/Control.StatusBar.js:458
 msgid "Insert mode: inactive"
 msgstr "Insert mode: inactive"
 
-#: src/control/Control.StatusBar.js:470
+#: src/control/Control.StatusBar.js:469
 msgid "Selection mode: inactive"
 msgstr "Selection mode: inactive"
 
-#: src/control/Control.StatusBar.js:543
+#: src/control/Control.StatusBar.js:542
 msgid "Set Language for All text"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:546
+#: src/control/Control.StatusBar.js:545
 msgid "Set Language for Paragraph"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:547
+#: src/control/Control.StatusBar.js:546
 msgid "Set Language for Selection"
 msgstr ""
 
@@ -2073,7 +2073,7 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Enter new sheet name"
 
-#: src/control/Control.Toolbar.js:1044
+#: src/control/Control.Toolbar.js:981
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -3273,19 +3273,19 @@ msgstr ""
 msgid "Zoom Out"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1283
+#: src/slideshow/PresenterConsole.js:1288
 msgid "Slide {0} of {1}"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1308
+#: src/slideshow/PresenterConsole.js:1313
 msgid "No Notes"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1415
+#: src/slideshow/PresenterConsole.js:1420
 msgid "Repeat in {0} seconds"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1421
+#: src/slideshow/PresenterConsole.js:1426
 #: src/slideshow/SlideShowPresenter.ts:383
 msgid "Click to exit presentation..."
 msgstr ""

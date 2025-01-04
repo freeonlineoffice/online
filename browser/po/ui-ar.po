@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-28 13:25+0100\n"
+"POT-Creation-Date: 2025-01-04 12:10+0100\n"
 "PO-Revision-Date: 2022-02-11 21:22+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/collabora-online/"
@@ -217,7 +217,7 @@ msgstr "أنعش السجل"
 msgid "Channel Filter:"
 msgstr "مرشح القناة:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:484
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:485
 #: src/control/Control.StatusBar.js:206 src/control/Control.StatusBar.js:209
 msgid "None"
 msgstr "بلا"
@@ -478,7 +478,7 @@ msgid "Show comment bigger"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1221
-#: src/control/Control.JSDialogBuilder.js:1931
+#: src/control/Control.JSDialogBuilder.js:1889
 #: src/layer/tile/CanvasTileLayer.js:4861
 #: src/layer/tile/CanvasTileLayer.js:4876
 msgid "Comment"
@@ -752,102 +752,102 @@ msgstr "المستند خامل - رجاءً انقر عليه لإعادة تح
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "المستند خامل - رجاءاً انقر عليه لإعادة تحميله ومتابعة التحرير"
 
-#: src/control/Control.JSDialog.js:265
+#: src/control/Control.JSDialog.js:273
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:487
+#: src/control/Control.JSDialogBuilder.js:488
 msgid "Solid"
 msgstr "صلب"
 
-#: src/control/Control.JSDialogBuilder.js:490
+#: src/control/Control.JSDialogBuilder.js:491
 msgid "Linear"
 msgstr "خطي"
 
-#: src/control/Control.JSDialogBuilder.js:493
+#: src/control/Control.JSDialogBuilder.js:494
 msgid "Axial"
 msgstr "محوري"
 
-#: src/control/Control.JSDialogBuilder.js:496
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Radial"
 msgstr "شعاعي"
 
-#: src/control/Control.JSDialogBuilder.js:499
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Ellipsoid"
 msgstr "بيضاوي"
 
-#: src/control/Control.JSDialogBuilder.js:503
+#: src/control/Control.JSDialogBuilder.js:504
 msgid "Quadratic"
 msgstr "تربيعي"
 
-#: src/control/Control.JSDialogBuilder.js:506
+#: src/control/Control.JSDialogBuilder.js:507
 msgid "Square"
 msgstr "مربع"
 
-#: src/control/Control.JSDialogBuilder.js:509
+#: src/control/Control.JSDialogBuilder.js:510
 msgid "Fixed size"
 msgstr "حجم ثابت"
 
-#: src/control/Control.JSDialogBuilder.js:1421
+#: src/control/Control.JSDialogBuilder.js:1422
 msgid "From"
 msgstr "من"
 
-#: src/control/Control.JSDialogBuilder.js:1424
+#: src/control/Control.JSDialogBuilder.js:1425
 msgid "To"
 msgstr "إلى"
 
-#: src/control/Control.JSDialogBuilder.js:1427
+#: src/control/Control.JSDialogBuilder.js:1428
 msgid "Color"
 msgstr "لون"
 
-#: src/control/Control.JSDialogBuilder.js:1546
+#: src/control/Control.JSDialogBuilder.js:1504
 msgid "Select range"
 msgstr "اختر نطاقا"
 
-#: src/control/Control.JSDialogBuilder.js:1648
+#: src/control/Control.JSDialogBuilder.js:1606
 #: src/control/Control.NotebookbarBuilder.js:146
 msgid "Font Name"
 msgstr "اسم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1650 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1608 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "حجم الخط"
 
-#: src/control/Control.JSDialogBuilder.js:1652
+#: src/control/Control.JSDialogBuilder.js:1610
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "النمط"
 
-#: src/control/Control.JSDialogBuilder.js:1917
+#: src/control/Control.JSDialogBuilder.js:1875
 msgid "reply"
 msgstr "رد"
 
-#: src/control/Control.JSDialogBuilder.js:1920
+#: src/control/Control.JSDialogBuilder.js:1878
 msgid "replies"
 msgstr "ردود"
 
-#: src/control/Control.JSDialogBuilder.js:1995
+#: src/control/Control.JSDialogBuilder.js:1953
 msgid "Insert Comment"
 msgstr "إدراج تعليق"
 
-#: src/control/Control.JSDialogBuilder.js:2752
+#: src/control/Control.JSDialogBuilder.js:2710
 #: src/control/Control.Menubar.js:879
 msgid "Rows"
 msgstr "صفوف"
 
-#: src/control/Control.JSDialogBuilder.js:2753
+#: src/control/Control.JSDialogBuilder.js:2711
 #: src/control/Control.Menubar.js:882
 msgid "Columns"
 msgstr "أعمدة"
 
-#: src/control/Control.JSDialogBuilder.js:2773
+#: src/control/Control.JSDialogBuilder.js:2731
 msgid "Insert Table"
 msgstr "إدراج جدول"
 
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:352
 #: src/control/Control.Menubar.js:354 src/control/Control.Menubar.js:356
 #: src/control/Control.Menubar.js:543 src/control/Control.Menubar.js:682
-#: src/control/Control.Menubar.js:964 src/control/Control.StatusBar.js:527
+#: src/control/Control.Menubar.js:964 src/control/Control.StatusBar.js:526
 msgid "None (Do not check spelling)"
 msgstr "بلا (لا تدقّق الإملاء)"
 
@@ -967,7 +967,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:92 src/control/Control.Menubar.js:420
 #: src/control/Control.Menubar.js:579 src/control/Control.Menubar.js:724
-#: src/control/Control.Toolbar.js:1182
+#: src/control/Control.Toolbar.js:1119
 msgid "Close document"
 msgstr "أغلق المستند"
 
@@ -1437,7 +1437,7 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1470 src/control/Control.StatusBar.js:526
+#: src/control/Control.Menubar.js:1470 src/control/Control.StatusBar.js:525
 msgid "Reset to Default Language"
 msgstr "صفّر إلى اللغة المبدئيّة"
 
@@ -1486,15 +1486,15 @@ msgstr "إخفاء شريط البحث"
 msgid "Clear the search field"
 msgstr "امسح حقل البحث"
 
-#: src/control/Control.MobileWizardBuilder.js:526
+#: src/control/Control.MobileWizardBuilder.js:528
 msgid "Background Color"
 msgstr "لون الخلفية"
 
-#: src/control/Control.MobileWizardBuilder.js:528
+#: src/control/Control.MobileWizardBuilder.js:530
 msgid "Gradient Start"
 msgstr "بدء التدرج"
 
-#: src/control/Control.MobileWizardBuilder.js:530
+#: src/control/Control.MobileWizardBuilder.js:532
 msgid "Gradient End"
 msgstr "نهاية التدرج"
 
@@ -2014,33 +2014,33 @@ msgstr "مقدار التحديد"
 msgid "Cancel the search"
 msgstr "ألغِ البحث"
 
-#: src/control/Control.StatusBar.js:406
+#: src/control/Control.StatusBar.js:405
 msgid ""
 "To prevent accidental changes, the author has set this file to open as view-"
 "only"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:456
+#: src/control/Control.StatusBar.js:455
 msgid "Select multiple cells"
 msgstr "حدد عدة خلايا"
 
-#: src/control/Control.StatusBar.js:459
+#: src/control/Control.StatusBar.js:458
 msgid "Insert mode: inactive"
 msgstr "وضع الإدراج: غير نشط"
 
-#: src/control/Control.StatusBar.js:470
+#: src/control/Control.StatusBar.js:469
 msgid "Selection mode: inactive"
 msgstr "وضع التحديد: غير نشط"
 
-#: src/control/Control.StatusBar.js:543
+#: src/control/Control.StatusBar.js:542
 msgid "Set Language for All text"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:546
+#: src/control/Control.StatusBar.js:545
 msgid "Set Language for Paragraph"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:547
+#: src/control/Control.StatusBar.js:546
 msgid "Set Language for Selection"
 msgstr ""
 
@@ -2077,7 +2077,7 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "أدخل اسم جديد للورقة"
 
-#: src/control/Control.Toolbar.js:1044
+#: src/control/Control.Toolbar.js:981
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -3271,19 +3271,19 @@ msgstr ""
 msgid "Zoom Out"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1283
+#: src/slideshow/PresenterConsole.js:1288
 msgid "Slide {0} of {1}"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1308
+#: src/slideshow/PresenterConsole.js:1313
 msgid "No Notes"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1415
+#: src/slideshow/PresenterConsole.js:1420
 msgid "Repeat in {0} seconds"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1421
+#: src/slideshow/PresenterConsole.js:1426
 #: src/slideshow/SlideShowPresenter.ts:383
 msgid "Click to exit presentation..."
 msgstr ""
