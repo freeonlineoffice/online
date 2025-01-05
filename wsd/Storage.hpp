@@ -21,6 +21,7 @@
 
 #include <memory>
 #include <string>
+#include <string_view>
 #include <chrono>
 
 class LockContext;
@@ -452,7 +453,7 @@ protected:
     /// Sanitize a URI by removing authorization tokens.
     void sanitizeUri(Poco::URI& uri)
     {
-        static const std::string access_token("access_token");
+        constexpr std::string_view access_token("access_token");
 
         Poco::URI::QueryParameters queryParams = uri.getQueryParameters();
         for (auto& param : queryParams)
