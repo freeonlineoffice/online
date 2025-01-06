@@ -117,8 +117,8 @@ bool enterUserNS(uid_t uid, gid_t gid)
 
 bool loolmount(const std::string& arg, std::string source, std::string target, bool silent = false)
 {
-    source = Util::trim(source, '/');
-    target = Util::trim(target, '/');
+    source = Util::rtrim(source, '/');
+    target = Util::rtrim(target, '/');
 
     if (isMountNamespacesEnabled())
     {
