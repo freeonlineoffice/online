@@ -800,6 +800,7 @@ input[type='checkbox']:checked.autofilter,
 
 .jsdialog .radiobutton > label {
 	vertical-align: middle;
+	white-space: nowrap;
 }
 
 .jsdialog input[type='radio'][disabled='disabled'] ~ label {
