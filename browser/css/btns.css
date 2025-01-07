@@ -143,6 +143,7 @@ button.jsdialog img {
 
 .ui-button-box .jsdialog.ui-pushbutton:not(.hidden) {
 	display: initial !important;
+	font-size: var(--default-font-size);
 }
 
 .ui-pushbutton[disabled] {
