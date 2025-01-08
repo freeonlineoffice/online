@@ -100,6 +100,7 @@ L.Control.ContextMenu = L.Control.extend({
 
 	onAdd: function (map) {
 		this._prevMousePos = null;
+		this._autoFillContextMenu = false;
 
 		map._contextMenu = this;
 		map.on('locontextmenu', this._onContextMenu, this);
@@ -110,6 +111,12 @@ L.Control.ContextMenu = L.Control.extend({
 	},
 
 	_onClosePopup: function () {
+
+		if (this._autoFillContextMenu) {
+			this._autoFillContextMenu = false;
+			app.map._docLayer._resetReferencesMarks();
+		}
+
 		$.contextMenu('destroy', '.leaflet-layer');
 		this.hasContextMenu = false;
 	},
@@ -159,7 +166,7 @@ L.Control.ContextMenu = L.Control.extend({
 			} else if (menuItem.indexOf('.uno:AutoFill') !== -1) {
 				// we should close the autofill preview popup before open autofill context menu
 				map.fire('closeautofillpreviewpopup');
-				autoFillContextMenu = true;
+				this._autoFillContextMenu = autoFillContextMenu = true;
 				break;
 			}
 		}
