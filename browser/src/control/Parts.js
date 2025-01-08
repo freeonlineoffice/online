@@ -112,9 +112,7 @@ L.Map.include({
 			docLayer._invalidatePreviews();
 		}
 		docLayer._drawSearchResults();
-		if (!this._searchRequested) {
-			this.focus();
-		}
+		this.focus();
 	},
 
 	// part is the part index/id

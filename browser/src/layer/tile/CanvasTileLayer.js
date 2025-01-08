@@ -2959,7 +2959,6 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_onSearchNotFoundMsg: function (textMsg) {
 		this._clearSearchResults();
-		this._searchRequested = false;
 		var originalPhrase = textMsg.substring(16);
 		this._map.fire('search', {
 			originalPhrase: originalPhrase,
@@ -3010,7 +3009,6 @@ L.CanvasTileLayer = L.Layer.extend({
 	},
 
 	_onSearchResultSelection: function (textMsg) {
-		this._searchRequested = false;
 		textMsg = textMsg.substring(23);
 		var obj = JSON.parse(textMsg);
 		var originalPhrase = obj.searchString;
@@ -3037,13 +3035,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._lastSearchResult = results[0];
 		}
 		this._searchTerm = originalPhrase;
-		this._map.fire('search', {
-			originalPhrase: originalPhrase,
-			count: count,
-			highlightAll: highlightAll,
-			results: results,
-		});
-		app.setFollowingUser(this._viewId);
+		this._map.fire('search', {originalPhrase: originalPhrase, count: count, highlightAll: highlightAll, results: results});
+		app.setFollowingUser(this._viewId, /* instant jump */ true);
 	},
 
 	_clearSearchResults: function () {
