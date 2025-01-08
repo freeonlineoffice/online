@@ -114,8 +114,9 @@ define npm_source
 	done
 endef
 
-LOOL_ADMIN_TS =\
-	admin/src/ModalDialogCreator.ts
+LOOL_ADMIN_TS = \
+	admin/src/ModalDialogCreator.ts \
+	admin/src/integrator/AdminIntegratorSettings.ts
 
 LOOL_ADMIN_TS_JS = $(patsubst %.ts,$(TYPESCRIPT_JS_DIR)/%.js,$(LOOL_ADMIN_TS))
 
