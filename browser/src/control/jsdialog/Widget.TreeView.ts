@@ -810,6 +810,7 @@ class TreeViewControl {
 		L.DomUtil.addClass(span, 'selected');
 		span.setAttribute('aria-selected', 'true');
 		span.tabIndex = 0;
+		span.focus();
 		if (checkbox) checkbox.removeAttribute('tabindex');
 	}
 
