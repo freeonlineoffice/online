@@ -531,7 +531,7 @@ L.Control.JSDialog = L.Control.extend({
 
 		var positionNotSet = !instance.container.style || !instance.container.style.marginInlineStart;
 		if (calculated || positionNotSet)
-			this.updatePosition(instance.container, instance.posx, instance.posy);
+			this.setNewPosition(instance.container, instance.posx, instance.posy);
 	},
 
 	centerDialogPosition: function (instance) {
@@ -594,7 +594,7 @@ L.Control.JSDialog = L.Control.extend({
 		// make margin from canvas top and not from window top
 		instance.posy = top + offsetY + canvasEl.top;
 
-		this.updatePosition(instance.container, instance.posx, instance.posy);
+		this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
 	},
 
 	isChildAutoFilter: function(instance) {
@@ -628,7 +628,7 @@ L.Control.JSDialog = L.Control.extend({
 		if (instance.posy + height > window.innerHeight)
 			instance.posy = window.innerHeight - height;
 
-		this.updatePosition(instance.container, instance.posx, instance.posy);
+		this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
 	},
 
 	closePopupsOnTabChange: function() {
@@ -755,8 +755,9 @@ L.Control.JSDialog = L.Control.extend({
 			// AutoPopup  will calculate poup position for Autofilter Popup
 			if (instance.isAutofilter && !instance.isAutoFillPreviewTooltip)
 				this.calculateAutoFilterPosition(instance);
-			else if (instance.isAutoFillPreviewTooltip || instance.isAutoCompletePopup)
-				this.updatePosition(instance.container, instance.posx, instance.posy);
+			else if (instance.isAutoFillPreviewTooltip || instance.isAutoCompletePopup){
+				this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
+			}
 
 			this.dialogs[instance.id] = instance;
 
@@ -862,11 +863,11 @@ L.Control.JSDialog = L.Control.extend({
 			target.translateX = newX;
 			target.translateY = newY;
 
-			this.updatePosition(target.container, newX, newY);
+			this.setNewPosition(target.container, newX, newY);
 		}
 	},
 
-	updatePosition: function (target, newX, newY) {
+	updateAutoPopPosition: function (target, newX, newY) {
 		var width = target.getBoundingClientRect().width;
 		var dialogBottom = newY + target.getBoundingClientRect().height;
 		var windowBottom = window.innerHeight;
@@ -878,6 +879,10 @@ L.Control.JSDialog = L.Control.extend({
 		if (dialogBottom > windowBottom)
 			newY = newY - (dialogBottom - windowBottom + 10);
 
+		this.setNewPosition(target, newX, newY);
+	},
+
+	setNewPosition(target, newX, newY) {
 		target.style.marginInlineStart = newX + 'px';
 		target.style.marginTop = newY + 'px';
 	},
