@@ -223,8 +223,11 @@ class ServerAuditDialog {
 							id: 'auditlist',
 							type: 'treelistbox',
 							headers: [
-								/* icon */ { text: _('Status') },
-								{ text: _('Help') },
+								/* icon */ {
+									text: _('Status'),
+									sortable: false,
+								},
+								{ text: _('Help'), sortable: false },
 							],
 							entries: entries,
 							enabled: entries.length > 0,
