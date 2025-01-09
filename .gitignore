@@ -61,6 +61,7 @@ test/samples/calc-edit.ods
 test/fakesockettest
 test/unithttplib
 test/*.csv
+test/uploaded
 jsstress
 
 *.o
