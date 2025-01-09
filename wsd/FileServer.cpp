@@ -474,7 +474,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
             {
                 Poco::JSON::Object::Ptr browserSettings = new Poco::JSON::Object();
-                std::string uri = COOLWSD::getServerURL() + "/wopi/settings/browserconfig.json";
+                std::string uri = LOOLWSD::getServerURL() + "/wopi/settings/browserconfig.json";
                 browserSettings->set("uri", Util::trim(uri));
                 browserSettings->set("stamp", etagString);
                 fileInfo->set("BrowserSettings", browserSettings);
@@ -564,8 +564,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
     void handlePresetRequest(const std::string& kind, const std::string& etagString,
                              const std::string& prefix,
                              const std::shared_ptr<StreamSocket>& socket,
-                             std::vector<asset>& items,
-                             const std::string& xcu)
+                             std::vector<asset>& items)
     {
         Poco::JSON::Object::Ptr configInfo = new Poco::JSON::Object();
         configInfo->set("kind", kind);
@@ -585,18 +584,11 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
                 configAutoTexts->add(configEntry);
             else if (item.first == "wordbook")
                 configDictionaries->add(configEntry);
+            else if (item.first == "xcu")
+                configInfo->set("xcu", configEntry);
         }
         configInfo->set("autotext", configAutoTexts);
         configInfo->set("wordbook", configDictionaries);
-
-        if (!xcu.empty())
-        {
-            Poco::JSON::Object::Ptr xcuEntry = new Poco::JSON::Object();
-            std::string uri = LOOLWSD::getServerURL() + prefix + cwd + xcu;
-            xcuEntry->set("uri", Util::trim(uri));
-            xcuEntry->set("stamp", etagString);
-            configInfo->set("xcu", xcuEntry);
-        }
 
         std::ostringstream jsonStream;
         configInfo->stringify(jsonStream);
@@ -716,6 +708,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
                     assetVec.push_back(asset("autotext", filePath));
                 else if (ext == "dic")
                     assetVec.push_back(asset("wordbook", filePath));
+                else if (ext == "xcu")
+                    assetVec.push_back(asset("xcu", filePath));
                 LOG_TRC("Found preset file[" << filePath << ']');
             }
         };
@@ -746,14 +740,12 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             if (configPath == "/userconfig.json")
             {
                 auto items = getAssetVec(PresetType::User);
-                handlePresetRequest("user", etagString, prefix, socket, items,
-                                    "/test/data/configuser.xcu");
+                handlePresetRequest("user", etagString, prefix, socket, items);
             }
             else if (configPath == "/sharedconfig.json")
             {
                 auto items = getAssetVec(PresetType::Shared);
-                handlePresetRequest("shared", etagString, prefix, socket, items,
-                                    "/test/data/configshared.xcu");
+                handlePresetRequest("shared", etagString, prefix, socket, items);
             }
             else if (configPath == "/browserconfig.json")
             {
@@ -803,6 +795,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             std::streamsize size = fileContent.size();
 
             std::ofstream outfile;
+            // TODO: hardcoded save to shared directory, add support for user directory
+            // when adminIntegratorSettings allow it
             const std::string testSharedDir = "test/data/presets/shared/upload";
             Poco::File(testSharedDir).createDirectories();
             LOG_DBG("Saving uploaded file[" << fileName << "] to directory[" << testSharedDir
@@ -1990,7 +1984,7 @@ void FileServerRequestHandler::uploadFileToNextcloud(const Poco::Net::HTTPReques
             throw std::runtime_error("Missing access token in request.");
         }
 
-        const std::string wopiUrl = COOLWSD::getServerURL() + "/wopi/settings/upload";
+        const std::string wopiUrl = LOOLWSD::getServerURL() + "/wopi/settings/upload";
 
 
         Poco::Net::HTTPRequest wopiRequest(Poco::Net::HTTPRequest::HTTP_POST, wopiUrl);
@@ -1998,7 +1992,7 @@ void FileServerRequestHandler::uploadFileToNextcloud(const Poco::Net::HTTPReques
         wopiRequest.setContentType("application/octet-stream");
         wopiRequest.setContentLength(fileContent.size());
 
-        Poco::Net::HTTPClientSession session(COOLWSD::getServerURL(), 443);
+        Poco::Net::HTTPClientSession session(LOOLWSD::getServerURL(), 443);
         session.setTimeout(Poco::Timespan(30, 0));
 
         std::ostream& requestStream = session.sendRequest(wopiRequest);
@@ -2040,7 +2034,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(
     const ServerURL cnxDetails(requestDetails);
     const std::string responseRoot = cnxDetails.getResponseRoot();
 
-    static const std::string scriptJS("<script src=\"%s/browser/" COOLWSD_VERSION_HASH "/%s.js\"></script>");
+    static const std::string scriptJS("<script src=\"%s/browser/" LOOLWSD_VERSION_HASH "/%s.js\"></script>");
     static const std::string footerPage("<footer class=\"footer has-text-centered\"><strong>Key:</strong> %s &nbsp;&nbsp;<strong>Expiry Date:</strong> %s</footer>");
 
     const std::string relPath = getRequestPathname(request, requestDetails);
@@ -2078,7 +2072,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(
 
     Poco::replaceInPlace(adminFile, std::string("<!--%BRANDING_JS%-->"), brandJS);
     Poco::replaceInPlace(adminFile, std::string("<!--%FOOTER%-->"), brandFooter);
-    Poco::replaceInPlace(adminFile, std::string("%VERSION%"), std::string(COOLWSD_VERSION_HASH));
+    Poco::replaceInPlace(adminFile, std::string("%VERSION%"), std::string(LOOLWSD_VERSION_HASH));
     Poco::replaceInPlace(adminFile, std::string("%SERVICE_ROOT%"), responseRoot);
 
     ContentSecurityPolicy csp;
@@ -2105,7 +2099,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(
 
     response.set("Last-Modified", Util::getHttpTimeNow());
     response.set("Cache-Control", "max-age=11059200");
-    response.set("ETag", COOLWSD_VERSION_HASH);
+    response.set("ETag", LOOLWSD_VERSION_HASH);
 
     response.add("X-Content-Type-Options", "nosniff");
     response.add("X-XSS-Protection", "1; mode=block");
