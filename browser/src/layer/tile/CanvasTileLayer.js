@@ -1274,7 +1274,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_isLatLngInView: function (position) {
 		var centerOffset = this._map._getCenterOffset(position);
-		var viewHalf = this._map._getCenterLayerPoint();
+		var viewHalf = this._map.getSize()._divideBy(2);
 		var positionInView =
 			centerOffset.x > -viewHalf.x &&
 			centerOffset.x < viewHalf.x &&
@@ -3036,7 +3036,15 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 		this._searchTerm = originalPhrase;
 		this._map.fire('search', {originalPhrase: originalPhrase, count: count, highlightAll: highlightAll, results: results});
-		app.setFollowingUser(this._viewId, /* instant jump */ true);
+
+		app.setFollowingUser(this._viewId);
+
+		// always jump to search result - we already received cell / text cursor before so we need
+		// to force it in case we had following OFF
+		if (app.file.textCursor.visible)
+			this._onUpdateCursor(/* scroll */ true);
+		else if (app.calc.cellCursorVisible)
+			this._onUpdateCellCursor(/* scroll */ true);
 	},
 
 	_clearSearchResults: function () {
