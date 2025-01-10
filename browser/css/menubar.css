@@ -138,9 +138,8 @@ nav.hasnotebookbar #save.saved::after {
 	display: none;
 }
 .main-nav {
-	height: var(
-		--header-height
-	); /* on mouseover menubar items, border emerges */
+	box-sizing: border-box;
+	height: var(--header-height); /* on mouseover menubar items, border emerges */
 	width: 100%;
 	background: var(--color-background-lighter);
 	padding: 3px 3px 3px 0;
