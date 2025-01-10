@@ -41,6 +41,10 @@ QUIET_PRETTIER = $(QUIET_PRETTIER_$(V))
 QUIET_PRETTIER_ = $(QUIET_PRETTIER_$(AM_DEFAULT_VERBOSITY))
 QUIET_PRETTIER_0 = @echo "  PRETTIER" $@;
 
+QUIET_M4 = $(QUIET_M4_$(V))
+QUIET_M4_ = $(QUIET_M4_$(AM_DEFAULT_VERBOSITY))
+QUIET_M4_0 = @echo "  M4      " $@;
+
 MOCHA_DIR = $(srcdir)/mocha_tests
 MOCHA_TS_FILES = $(wildcard $(MOCHA_DIR)/*.ts)
 MOCHA_TS_JS_FILES := $(MOCHA_TS_FILES:.ts=.js)
@@ -179,8 +183,7 @@ $(DIST_FOLDER)/src/layer/tile/TileWorker.js: \
 	$(srcdir)/src/layer/tile/CanvasTileWorkerSrc.js \
 	$(WORKER_NODE_MODULES_JS)
 
-	@echo "Generating TileWorker.js..."
-	m4 -PE -DDEBUG=$(ENABLE_DEBUG) \
+	$(QUIET_M4) m4 -PE -DDEBUG=$(ENABLE_DEBUG) \
 		-DNODE_MODULES_JS=$(subst $(SPACE),$(COMMA),$(WORKER_NODE_MODULES_JS)) \
 		-DWORKER_JS=$(srcdir)/src/layer/tile/CanvasTileWorkerSrc.js \
 		$(srcdir)/src/layer/tile/CanvasTileWorker.js.m4 > $@
@@ -598,7 +601,7 @@ LOOL_JS_BUNDLE = $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER))
 define bundle_lool
 	$(if $(IS_SEPARATE),\
 		@touch $@,
-		@m4 -PE -DIOSAPP=$(ENABLE_IOSAPP) \
+		$(QUIET_M4) m4 -PE -DIOSAPP=$(ENABLE_IOSAPP) \
 			-DGTKAPP=$(ENABLE_GTKAPP) \
 			-DANDROIDAPP=$(ENABLE_ANDROIDAPP) \
 			-DMOBILEAPPNAME="$(APP_NAME)" \
@@ -626,12 +629,12 @@ endef
 define bundle_all
 	$(if $(IS_SEPARATE),\
 		@touch $@,\
-		@echo "Uglify lool js files..."
-		@m4 -PE -DL10N_IOS_ALL_JS=$(L10N_IOS_ALL_JS) \
+		$(QUIET_M4) m4 -PE -DL10N_IOS_ALL_JS=$(L10N_IOS_ALL_JS) \
 			-DNODE_MODULES_JS=$(subst $(SPACE),$(COMMA),$(NODE_MODULES_JS)) \
 			-DLOOL_LIBS_JS=$(subst $(SPACE),$(COMMA),$(LOOL_LIBS_JS_SRC)) \
 			-DLOOL_JS=$(INTERMEDIATE_DIR)/lool-src.js \
 			$(srcdir)/bundle.js.m4 > $(INTERMEDIATE_DIR)/bundle.js
+		@echo "Uglify lool js files..."
 		@$(NODE) node_modules/uglify-js/bin/uglifyjs \
 			-O max_line_len=100 \
 			$(INTERMEDIATE_DIR)/bundle.js \
@@ -784,8 +787,7 @@ $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
 	$(INTERMEDIATE_DIR)/LOOL_JS.m4 \
 	| $(DIST_FOLDER)/bundle.js
 
-	@echo "Generating lool.html..."
-	m4 -PE -I $(INTERMEDIATE_DIR) \
+	$(QUIET_M4) m4 -PE -I $(INTERMEDIATE_DIR) \
 	    -DBUNDLE=$(IS_BUNDLE) \
 		-DIOSAPP=$(ENABLE_IOSAPP) \
 		-DGTKAPP=$(ENABLE_GTKAPP) \
