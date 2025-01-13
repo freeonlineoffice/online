@@ -28,7 +28,6 @@
 #include <string>
 #include <thread>
 
-/// Save torture testcase.
 class UnitPerf : public UnitWSD
 {
     void testPerf(std::string testType, std::string fileType, std::string tracesStr);
