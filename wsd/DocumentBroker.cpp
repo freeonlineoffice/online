@@ -3710,6 +3710,12 @@ std::size_t DocumentBroker::removeSession(const std::shared_ptr<ClientSession>& 
                                      << ", DontSaveIfUnmodified: " << dontSaveIfUnmodified
                                      << ", IsPossiblyModified: " << isPossiblyModified());
 
+#if !MOBILEAPP
+        /// make sure to upload preset to WOPIHost
+        const std::string& jailPresetsPath = FileUtil::buildLocalPathToJail(
+        COOLWSD::EnableMountNamespaces, getJailRoot(), JAILED_CONFIG_ROOT);
+        session->uploadPresetsToWopiHost(jailPresetsPath, Uri::decode(getDocKey()));
+#endif
 #ifndef IOS
         if (activeSessionCount <= 1)
         {
@@ -4677,6 +4683,7 @@ bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& sessio
             msg += " jail=" + _uriJailed;
             msg += " xjail=" + _uriJailedAnonym;
             msg += ' ' + tokens.cat(' ', 2);
+#if !MOBILEAPP
             if (_asyncInstallTask)
             {
                 auto sendLoad = [selfWeak = weak_from_this(), this, msg, binary](bool success) {
@@ -4690,6 +4697,7 @@ bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& sessio
                 _asyncInstallTask->appendCallback(sendLoad);
                 return true;
             }
+#endif
             return _childProcess->sendFrame(msg, binary);
         }
     }
