@@ -905,6 +905,12 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             return;
         }
 
+        if (endPoint == "fetch-shared-config")
+        {
+            fetchWopiSettingConfigs(request, message, socket);
+            return;
+        }
+
         // Is this a file we read at startup - if not; it's not for serving.
         if (FileHash.find(relPath) == FileHash.end() &&
             FileHash.find(relPath + ".br") == FileHash.end())
@@ -1408,6 +1414,7 @@ static const std::string CSS_VARS = "<!--%CSS_VARIABLES%-->";
 static const std::string POSTMESSAGE_ORIGIN = "%POSTMESSAGE_ORIGIN%";
 static const std::string BRANDING_THEME = "%BRANDING_THEME%";
 static const std::string CHECK_FILE_INFO_OVERRIDE = "%CHECK_FILE_INFO_OVERRIDE%";
+static const std::string WOPI_SETTING_BASE_URL = "%WOPI_SETTING_BASE_URL%";
 
 /// Per user request variables.
 /// Holds access_token, css_variables, postmessage_origin, etc.
@@ -1494,6 +1501,8 @@ public:
         extractVariable(form, "theme", BRANDING_THEME);
 
         extractVariable(form, "checkfileinfo_override", CHECK_FILE_INFO_OVERRIDE);
+
+        extractVariable(form, "wopi_setting_base_url", WOPI_SETTING_BASE_URL);
 
     }
 
@@ -1959,6 +1968,70 @@ void FilePartHandler::handlePart(const Poco::Net::MessageHeader& header, std::is
     }
 }
 
+void FileServerRequestHandler::fetchWopiSettingConfigs( const Poco::Net::HTTPRequest& request,
+                                                        Poco::MemoryInputStream& message,
+                                                        const std::shared_ptr<StreamSocket>& socket)
+{
+    try
+    {
+        Poco::Net::HTMLForm form(request, message);
+
+        // todo: better to return request with some kind of response
+        if (!form.has("sharedConfigUrl"))
+            throw std::runtime_error("sharedConfigUrl missing in payload");
+        if (!form.has("accessToken"))
+            throw std::runtime_error("accessToken missing in payload");
+
+        std::string sharedConfigUrl = form.get("sharedConfigUrl");
+        std::string token = form.get("accessToken");
+
+        LOG_INF("Fetching shared config from URL: " << sharedConfigUrl);
+
+        Poco::URI sharedUri(sharedConfigUrl);
+        sharedUri.addQueryParameter("fileId", "-1");
+        // todo: dynamic type
+        sharedUri.addQueryParameter("type", "systemconfig");
+        sharedUri.addQueryParameter("access_token", token);
+
+
+        Authorization auth(Authorization::Type::Token, token);
+        auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
+        httpRequest.setVerb(http::Request::VERB_GET);
+        httpRequest.header().set("Content-Type", "application/json");
+
+        LOG_DBG("fetchWopiSettingConfigs: Fetching shared config URL: " << sharedUri.toString());
+        auto httpSession = StorageConnectionManager::getHttpSession(sharedUri);
+        auto httpResponse = httpSession->syncRequest(httpRequest);
+
+        if (httpResponse->statusLine().statusCode() != http::StatusCode::OK)
+        {
+            std::ostringstream responseContent;
+            responseContent << httpResponse->getBody();
+            throw std::runtime_error("Integrator wopi call failed: " +
+                                     httpResponse->statusLine().reasonPhrase() +
+                                     ". Response: " + responseContent.str());
+        }
+
+        std::string sharedConfigJson = httpResponse->getBody();
+
+        http::Response clientResponse(http::StatusCode::OK);
+        clientResponse.set("Content-Type", "application/json; charset=utf-8");
+
+        clientResponse.set("Cache-Control", "no-cache");
+        clientResponse.setBody(sharedConfigJson);
+
+        socket->send(clientResponse);
+        LOG_INF("Shared config fetched and returned successfully.");
+    }
+    catch (const std::exception& ex)
+    {
+        // Log the error and send back an error response.
+        LOG_ERR("Error in fetchWopiSettingConfigs: " << ex.what());
+        sendError(http::StatusCode::InternalServerError, request, socket, "Fetch Shared Config Error", ex.what());
+    }
+}
+
+
 void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPRequest& request,
                                                      const RequestDetails& /*requestDetails*/,
                                                      Poco::MemoryInputStream& message,
@@ -1980,11 +2053,23 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
 
         std::string token = authorizationHeader.substr(7);
 
-        std::string fileId = "/settings/userconfig/wordbook/" + fileName;
+        if (!form.has("filePath")) {
+            throw BadRequestException("Missing required field: filePath.");
+        }
+        std::string filePath = form.get("filePath");
+
+        // Check for the required "wopiSettingBaseUrl" field.
+        if (!form.has("wopiSettingBaseUrl")) {
+            throw BadRequestException("Missing required field: wopiSettingBaseUrl.");
+        }
+        std::string wopiSettingBaseUrl = form.get("wopiSettingBaseUrl");
+
+
+        std::string fileId = filePath + fileName;
 
         // TODO : Handle integrator wopi url dynamically
         // TODO : Extract integrator wopi fileupload stuff so we can re-use it
-        Poco::URI wopiUri("http://nextcloud.local/index.php/apps/richdocuments/wopi/settings/upload");
+        Poco::URI wopiUri(wopiSettingBaseUrl + "/upload");
         wopiUri.addQueryParameter("fileId", fileId);
         wopiUri.addQueryParameter("access_token", token);
 
@@ -2012,7 +2097,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
         }
 
         http::Response httpResponseToClient(http::StatusCode::OK);
-        httpResponseToClient.setBody("File uploaded successfully to Nextcloud.");
+        httpResponseToClient.setBody("File uploaded successfully to Integrator.");
         socket->send(httpResponseToClient);
     }
     catch (const std::exception& ex)
@@ -2042,6 +2127,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(
 
     Poco::replaceInPlace(adminFile, ACCESS_TOKEN, urv[ACCESS_TOKEN]);
     Poco::replaceInPlace(adminFile, ACCESS_TOKEN_TTL, urv[ACCESS_TOKEN_TTL]);
+    Poco::replaceInPlace(adminFile, WOPI_SETTING_BASE_URL, urv[WOPI_SETTING_BASE_URL]);
     Poco::replaceInPlace(adminFile, ACCESS_HEADER, urv[ACCESS_HEADER]);
     bool enableDebug = false;
 #if ENABLE_DEBUG
