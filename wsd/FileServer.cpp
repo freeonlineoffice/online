@@ -718,11 +718,6 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
         LOG_DBG("Looking for preset files in directory[" << searchDir << ']');
         searchInDir(searchDir);
-
-        // check for uploaded files
-        searchDir.append("/upload");
-        LOG_DBG("Looking for preset files in directory[" << searchDir << ']');
-        searchInDir(searchDir);
         return assetVec;
     }
 
@@ -820,7 +815,6 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
                 else if (type == "systemconfig")
                     dirPath.append("shared");
 
-                dirPath.append("/upload/");
                 Poco::File(dirPath).createDirectories();
 
                 LOG_DBG("Saving uploaded file[" << fileName << "] to directory[" << dirPath << ']');
@@ -862,7 +856,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             std::ofstream outfile;
             // TODO: hardcoded save to shared directory, add support for user directory
             // when adminIntegratorSettings allow it
-            const std::string testSharedDir = "test/data/presets/shared/upload";
+            const std::string testSharedDir = "test/data/presets/shared";
             Poco::File(testSharedDir).createDirectories();
             LOG_DBG("Saving uploaded file[" << fileName << "] to directory[" << testSharedDir
                                             << ']');
