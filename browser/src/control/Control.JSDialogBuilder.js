@@ -1842,7 +1842,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		annotation.update();
 		annotation.setExpanded();
 		annotation.hideMarker();
-		annotation.sectionProperties.annotationMarker = null;
 	},
 
 	_rootCommentControl: function(parentContainer, data, builder) {
