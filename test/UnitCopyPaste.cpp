@@ -77,6 +77,9 @@ public:
         // This failed when either case didn't add the custom header.
         LOK_ASSERT_EQUAL(std::string("true"), httpResponse->get("X-LOOL-Clipboard"));
 
+        // We should mark clipboard responses as non-cacheable.
+        LOK_ASSERT_EQUAL(std::string("no-cache"), httpResponse->get("Cache-Control"));
+
         LOG_TST("getClipboard: sent request: " << clipPathAndQuery);
 
         try {
