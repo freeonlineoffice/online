@@ -45,6 +45,10 @@ QUIET_M4 = $(QUIET_M4_$(V))
 QUIET_M4_ = $(QUIET_M4_$(AM_DEFAULT_VERBOSITY))
 QUIET_M4_0 = @echo "  M4      " $@;
 
+QUIET_ECHO = $(QUIET_ECHO_$(V))
+QUIET_ECHO_ = $(QUIET_ECHO_$(AM_DEFAULT_VERBOSITY))
+QUIET_ECHO_0 = @echo "  ECHO    " $@;
+
 MOCHA_DIR = $(srcdir)/mocha_tests
 MOCHA_TS_FILES = $(wildcard $(MOCHA_DIR)/*.ts)
 MOCHA_TS_JS_FILES := $(MOCHA_TS_FILES:.ts=.js)
@@ -771,7 +775,7 @@ $(DIST_FOLDER)/global.js: $(srcdir)/js/global.js
 	$(call global_file)
 
 $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist: $(LOOL_JS_DST)
-	echo $(LOOL_JS_DST) > $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp
+	$(QUIET_ECHO) echo $(LOOL_JS_DST) > $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp
 	if cmp -s $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist; then rm $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp; else mv $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist; fi
 
 $(INTERMEDIATE_DIR)/LOOL_JS.m4: $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist
