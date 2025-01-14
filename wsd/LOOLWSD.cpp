@@ -295,7 +295,7 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
             if (!alias.empty())
             {
                 LOG_INF_S("Adding trusted LOK_ALLOW alias: [" << alias << ']');
-                allowed.push_back(alias);
+                allowed.push_back(std::move(alias));
             }
         }
     }
