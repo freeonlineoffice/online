@@ -40,7 +40,10 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 
 	private sendAnnotationPositionChange(newPosition: number[]): void {
 		if (app.file.fileBasedView) {
-			app.map.setPart(this.sectionProperties.docLayer._selectedPart, false);
+			app.map.setPart(
+				this.sectionProperties.docLayer._selectedPart,
+				false,
+			);
 			newPosition[1] -= this.sectionProperties.data.yAddition;
 		}
 
@@ -76,11 +79,14 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 			if (this.sectionProperties.parent === null) return;
 
 			if (this.sectionProperties.dragStartPosition === null)
-				this.sectionProperties.dragStartPosition = this.position.slice();
+				this.sectionProperties.dragStartPosition =
+					this.position.slice();
 
 			this.setPosition(
-				this.sectionProperties.dragStartPosition[0] + dragDistance[0],
-				this.sectionProperties.dragStartPosition[1] + dragDistance[1],
+				this.sectionProperties.dragStartPosition[0] +
+					dragDistance[0],
+				this.sectionProperties.dragStartPosition[1] +
+					dragDistance[1],
 			);
 		}
 	}
