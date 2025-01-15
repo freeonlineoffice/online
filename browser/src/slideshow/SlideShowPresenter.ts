@@ -128,6 +128,7 @@ class SlideShowPresenter {
 	private _cypressSVGPresentationTest: boolean = false;
 	private _onKeyDownHandler: (e: KeyboardEvent) => void;
 	private _onImpressModeChanged: any = null;
+	private _startingPresentation: boolean = false;
 
 	constructor(map: any) {
 		this._cypressSVGPresentationTest =
@@ -178,7 +179,8 @@ class SlideShowPresenter {
 	}
 
 	private onUpdateParts() {
-		if (this._checkAlreadyPresenting()) this.onSlideShowInfoChanged();
+		if (this._checkAlreadyPresenting() && !this._startingPresentation)
+			this.onSlideShowInfoChanged();
 	}
 
 	public getNavigator() {
@@ -431,6 +433,7 @@ class SlideShowPresenter {
 		}
 
 		this._canvasLoader.startLoader();
+		this._startingPresentation = false;
 	}
 
 	public stopLoader(): void {
@@ -747,7 +750,7 @@ class SlideShowPresenter {
 			return;
 		// disable slide sorter or it will receive key events
 		this._map._docLayer._preview.partsFocused = false;
-
+		this._startingPresentation = true;
 		app.socket.sendMessage('getpresentationinfo');
 	}
 
@@ -759,6 +762,7 @@ class SlideShowPresenter {
 			return;
 		// disable present in console onStartInWindow
 		this._enablePresenterConsole(true);
+		this._startingPresentation = true;
 		app.socket.sendMessage('getpresentationinfo');
 	}
 
