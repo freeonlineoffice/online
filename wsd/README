@@ -90,7 +90,7 @@ Improvements to that script are very likely needed on various distros.
 The ${ROOTFORJAILS} directory above is a presumably initially empty
 directory under which loolwsd will create chroot jails for editing
 each specific document.
-Warning: the jails directory and its contents are deleted by coolwsd.
+Warning: the jails directory and its contents are deleted by loolwsd.
 
 As loolwsd uses hardlinks to "copy" the contents of both
 ${SYSTEMPLATE} and the ${MASTER}/instdir directories into each chroot
@@ -209,7 +209,7 @@ be obtained as described above.
 Debugging
 ---------
 
-When debugging, you want to pass `--o:num_prespawn_children=1` to coolwsd
+When debugging, you want to pass `--o:num_prespawn_children=1` to loolwsd
 to limit the number of concurrently running processes.
 
 When a crash happens too early, you also want to
