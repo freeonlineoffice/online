@@ -127,26 +127,26 @@ class HRuler extends Ruler {
 		this._firstLineMarker = document.createElement('div');
 		this._firstLineMarker.id = 'lo-fline-marker';
 		this._firstLineMarker.classList.add(
-			'cool-ruler-indentation-marker-down',
+			'lool-ruler-indentation-marker-down',
 		);
 		this._rFace.appendChild(this._firstLineMarker);
 
 		// Paragraph indentation..
 		this._pStartMarker = document.createElement('div');
 		this._pStartMarker.id = 'lo-pstart-marker';
-		this._pStartMarker.classList.add('cool-ruler-indentation-marker-up');
+		this._pStartMarker.classList.add('lool-ruler-indentation-marker-up');
 		this._rFace.appendChild(this._pStartMarker);
 
 		// Paragraph end..
 		this._pEndMarker = document.createElement('div');
 		this._pEndMarker.id = 'lo-pend-marker';
-		this._pEndMarker.classList.add('cool-ruler-indentation-marker-up');
+		this._pEndMarker.classList.add('lool-ruler-indentation-marker-up');
 		this._rFace.appendChild(this._pEndMarker);
 
 		// While one of the markers is being dragged, a vertical line should be visible in order to indicate the new position of the marker..
 		this._markerVerticalLine = L.DomUtil.create(
 			'div',
-			'cool-ruler-indentation-marker-center',
+			'lool-ruler-indentation-marker-center',
 		);
 		this._rFace.appendChild(this._markerVerticalLine);
 
@@ -276,7 +276,7 @@ class HRuler extends Ruler {
 	_initLayout() {
 		this._rWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler leaflet-bar leaflet-control leaflet-control-custom',
+			'lool-ruler leaflet-bar leaflet-control leaflet-control-custom',
 		);
 		this._rWrapper.style.visibility = 'hidden';
 
@@ -288,30 +288,30 @@ class HRuler extends Ruler {
 		}
 		this._rFace = L.DomUtil.create(
 			'div',
-			'cool-ruler-face',
+			'lool-ruler-face',
 			this._rWrapper,
 		);
 		this._rMarginWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler-marginwrapper',
+			'lool-ruler-marginwrapper',
 			this._rFace,
 		);
 		// BP => Break Points
 		this._rBPWrapper = L.DomUtil.create(
 			'div',
-			'cool-ruler-breakwrapper',
+			'lool-ruler-breakwrapper',
 			this._rFace,
 		);
 		this._rBPContainer = L.DomUtil.create(
 			'div',
-			'cool-ruler-breakcontainer',
+			'lool-ruler-breakcontainer',
 			this._rBPWrapper,
 		);
 
 		// Tab stops
 		this._rTSContainer = L.DomUtil.create(
 			'div',
-			'cool-ruler-horizontal-tabstopcontainer',
+			'lool-ruler-horizontal-tabstopcontainer',
 			this._rMarginWrapper,
 		);
 		L.DomEvent.on(
@@ -514,11 +514,11 @@ class HRuler extends Ruler {
 		for (var num = 0; num <= this.options.pageWidth / 1000 + 1; num++) {
 			var marker = L.DomUtil.create(
 				'div',
-				'cool-ruler-maj',
+				'lool-ruler-maj',
 				this._rBPContainer,
 			);
 			// The - 1 is to compensate for the left and right .5px borders of
-			// cool-ruler-maj in leaflet.css.
+			// lool-ruler-maj in leaflet.css.
 			marker.style.width =
 				this.options.DraggableConvertRatio * 1000 - 1 + 'px';
 			if (this.options.displayNumber) {
@@ -545,16 +545,16 @@ class HRuler extends Ruler {
 			var currentTabstop: any = this.options.tabs[tabstopIndex];
 			switch (currentTabstop.style) {
 				case 0:
-					markerClass = 'cool-ruler-tabstop-left';
+					markerClass = 'lool-ruler-tabstop-left';
 					break;
 				case 1:
-					markerClass = 'cool-ruler-tabstop-right';
+					markerClass = 'lool-ruler-tabstop-right';
 					break;
 				case 2:
-					markerClass = 'cool-ruler-tabstop-center';
+					markerClass = 'lool-ruler-tabstop-center';
 					break;
 				case 3:
-					markerClass = 'cool-ruler-tabstop-decimal';
+					markerClass = 'lool-ruler-tabstop-decimal';
 					break;
 			}
 			if (markerClass != null) {
@@ -582,32 +582,32 @@ class HRuler extends Ruler {
 			this.options.marginSet = true;
 			this._lMarginMarker = L.DomUtil.create(
 				'div',
-				'cool-ruler-margin cool-ruler-left',
+				'lool-ruler-margin lool-ruler-left',
 				this._rFace,
 			);
 			this._rMarginMarker = L.DomUtil.create(
 				'div',
-				'cool-ruler-margin cool-ruler-right',
+				'lool-ruler-margin lool-ruler-right',
 				this._rFace,
 			);
 			this._lMarginDrag = L.DomUtil.create(
 				'div',
-				'cool-ruler-drag cool-ruler-left',
+				'lool-ruler-drag lool-ruler-left',
 				this._rMarginWrapper,
 			);
 			this._lToolTip = L.DomUtil.create(
 				'div',
-				'cool-ruler-ltooltip',
+				'lool-ruler-ltooltip',
 				this._lMarginDrag,
 			);
 			this._rMarginDrag = L.DomUtil.create(
 				'div',
-				'cool-ruler-drag cool-ruler-right',
+				'lool-ruler-drag lool-ruler-right',
 				this._rMarginWrapper,
 			);
 			this._rToolTip = L.DomUtil.create(
 				'div',
-				'cool-ruler-rtooltip',
+				'lool-ruler-rtooltip',
 				this._rMarginDrag,
 			);
 			var lMarginTooltipText = _('Left Margin');
@@ -806,7 +806,7 @@ class HRuler extends Ruler {
 		this._initialposition = e.clientX;
 		this._lastposition = this._initialposition;
 
-		if (L.DomUtil.hasClass(dragableElem, 'cool-ruler-right')) {
+		if (L.DomUtil.hasClass(dragableElem, 'lool-ruler-right')) {
 			L.DomUtil.addClass(this._rMarginDrag, 'leaflet-drag-moving');
 			this._rFace.style.cursor = 'w-resize';
 		} else {
@@ -923,8 +923,8 @@ class HRuler extends Ruler {
 		this.currentPositionInTwips = position;
 		this.currentTabStopIndex = tabstopNumber;
 		$.contextMenu({
-			selector: '.cool-ruler-horizontal-tabstopcontainer',
-			className: 'cool-font',
+			selector: '.lool-ruler-horizontal-tabstopcontainer',
+			className: 'lool-font',
 			items: {
 				inserttabstop: {
 					name: _('Insert tabstop'),
