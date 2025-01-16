@@ -604,20 +604,22 @@ body {
 }
 
 .lool-annotation-info-collapsed {
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: 0;
 	padding: 0;
 	background-color: var(--color-primary);
 	color: var(--color-primary-text);
 	font-weight: bold;
 	font-family: var(--lool-font);
-	font-size: 20px;
+	font-size: var(--default-font-size);
 	border: 1px solid var(--color-primary);
 	border-radius: 50%;
 	z-index: 10;
 	position: relative;
-	width: var(--btn-size);
-	height: var(--btn-size);
+	width: var(--btn-size-s);
+	height: var(--btn-size-s);
 	left: -6px;
 	top: -15px;
 }
@@ -716,8 +718,16 @@ body {
 	height: 32px;
 	width: 32px;
 	padding: 0;
+	opacity: 0.9;
 }
-.lool-annotation-img .avatar-img {
+
+.lool-annotation.collapsed-comment .lool-annotation-img:hover {
+	cursor: pointer;
+	opacity: 1;
+	box-shadow: 0px 4px 10px var(--color-box-shadow);
+}
+
+.lool-annotation-img .avatar-img{
 	border: none;
 }
 .lool-annotation-img > .avatar-img {
