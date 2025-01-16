@@ -446,13 +446,14 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             fileInfo->set("UserId", userId);
             fileInfo->set("UserFriendlyName", userNameString);
 
-            // just files into two seperate config etags based on basename
-            char configSuffix = (localFile->fileName.empty() || toupper(localFile->fileName[0]) <= 'M') ?
-                '1' : '2';
+            //allow &configid to override etag to force another subforkit
+            std::string configId = requestDetails.getParam("configid");
+            if (configId.empty())
+                configId = "default";
+
             const auto& config = Application::instance().config();
             std::string etagString = "\"" LOOLWSD_VERSION_HASH +
-                config.getString("ver_suffix", "") + '-' + configSuffix + "\"";
-
+                config.getString("ver_suffix", "") + '-' + configId + "\"";
 
             // authentication token to get these settings??
             {
@@ -1547,6 +1548,11 @@ public:
 
         extractVariable(form, "checkfileinfo_override", CHECK_FILE_INFO_OVERRIDE);
 
+
+#if ENABLE_DEBUG
+        extractVariable(form, "configid", DEBUG_WOPI_CONFIG_ID);
+#endif
+
         extractVariable(form, "wopi_setting_base_url", WOPI_SETTING_BASE_URL);
 
     }
@@ -1961,7 +1967,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
     socket->send(httpResponse);
     LOG_TRC("Sent file: " << relPath << ": " << preprocess);
 
-    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN]);
+    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN], urv[DEBUG_WOPI_CONFIG_ID]);
 }
 
 void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,
