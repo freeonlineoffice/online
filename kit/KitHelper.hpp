@@ -93,7 +93,7 @@ namespace LOKitHelper
                 mode = getMode(partData);
         }
 
-        resultInfo["parts"] = resultingPartsArray;
+        resultInfo["parts"] = std::move(resultingPartsArray);
     }
 
     inline void fetchWriterSpecificData(LibreOfficeKitDocument *loKitDocument, std::unordered_map<std::string, std::string> &resultInfo)

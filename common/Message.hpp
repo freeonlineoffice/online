@@ -197,7 +197,9 @@ private:
     std::string getForwardToken(const char* buffer, int length)
     {
         std::string forward = LOOLProtocol::getFirstToken(buffer, length);
-        return (forward.find('-') != std::string::npos ? forward : std::string());
+        if (forward.find('-') != std::string::npos)
+           return forward;
+        return std::string();
     }
 
     std::vector<char> copyDataAfterOffset(const char *p, size_t len, size_t fromOffset)
