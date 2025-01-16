@@ -1839,7 +1839,7 @@ void DocumentBroker::parseBrowserSettings(const std::shared_ptr<ClientSession>& 
         return;
     }
     std::ostringstream jsonStream;
-    browserSettings->stringify(jsonStream);
+    browserSettings->stringify(jsonStream, 2);
     session->sendTextFrame("browsersetting: " + jsonStream.str());
     std::string spellOnline, darkTheme, darkBackgroundForTheme;
     JsonUtil::findJSONValue(browserSettings, "spellOnline", spellOnline);
@@ -1855,6 +1855,7 @@ void DocumentBroker::parseBrowserSettings(const std::shared_ptr<ClientSession>& 
     ClientSession::BrowserSetting browserSetting{ darkTheme, darkBackgroundForTheme, spellOnline };
     session->setBrowserSetting(browserSetting);
     session->setSentBrowserSetting(true);
+    session->setBrowserSettingsJSON(browserSettings);
 }
 
 bool DocumentBroker::processPlugins(std::string& localPath)
