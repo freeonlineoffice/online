@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a layer with canvas based rendering.
  */
 
-/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier Uint8ClampedArray Uint8Array */
+/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier Uint8ClampedArray Uint8Array OtherViewCellCursorSection */
 
 /*eslint no-extend-native:0*/
 if (typeof String.prototype.startsWith !== 'function') {
@@ -2812,17 +2812,12 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 
 		if (obj.rectangle.match('EMPTY'))
-			app.definitions.otherViewCellCursorSection.removeView(viewId);
+			OtherViewCellCursorSection.removeView(viewId);
 		else {
 			let strTwips = obj.rectangle.match(/\d+/g);
 			strTwips = this._convertRawTwipsToTileTwips(strTwips);
 
-			app.definitions.otherViewCellCursorSection.addOrUpdateOtherViewCellCursor(
-				viewId,
-				this._map.getViewName(viewId),
-				strTwips,
-				parseInt(obj.part),
-			);
+			OtherViewCellCursorSection.addOrUpdateOtherViewCellCursor(viewId, this._map.getViewName(viewId), strTwips, parseInt(obj.part));
 			CursorHeaderSection.deletePopUpNow(viewId);
 		}
 
@@ -2831,16 +2826,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	goToCellViewCursor: function (viewId) {
-		if (
-			app.definitions.otherViewCellCursorSection.doesViewCursorExist(
-				viewId,
-			)
-		) {
-			const viewCursorSection =
-				app.definitions.otherViewCellCursorSection.getViewCursorSection(
-					viewId,
-				);
+	goToCellViewCursor: function(viewId) {
+		if (OtherViewCellCursorSection.doesViewCursorExist(viewId)) {
+			const viewCursorSection = OtherViewCellCursorSection.getViewCursorSection(viewId);
 
 			if (
 				this._selectedPart !==
@@ -2859,9 +2847,7 @@ L.CanvasTileLayer = L.Layer.extend({
 				);
 			}
 
-			app.definitions.otherViewCellCursorSection.showPopUpForView(
-				viewId,
-			);
+			OtherViewCellCursorSection.showPopUpForView(viewId);
 		}
 	},
 
@@ -2906,7 +2892,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		app.definitions.otherViewCursorSection.removeView(viewId);
 
-		app.definitions.otherViewCellCursorSection.removeView(viewId);
+		OtherViewCellCursorSection.removeView(viewId);
 		app.definitions.otherViewGraphicSelectionSection.removeView(viewId);
 		this._map.removeView(viewId);
 	},
