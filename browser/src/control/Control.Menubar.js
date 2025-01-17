@@ -636,7 +636,6 @@ L.Control.Menubar = L.Control.extend({
 					{name: _UNO('.uno:InsertPagesField', 'presentation'), uno: '.uno:InsertPagesField'},
 				]},
 				{name: _UNO('.uno:InsertSignatureLine'), id: 'insert-signatureline', type: 'action'},
-				{name: _('Electronic signature...'), id: 'insert-esignature', type: 'action'},
 			]},
 			{name: _UNO('.uno:FormatMenu', 'presentation'), id: 'format', type: 'menu', menu: [
 				{uno: '.uno:FontDialog'},
@@ -1374,7 +1373,6 @@ L.Control.Menubar = L.Control.extend({
 			'downloadas-ods', 'downloadas-xls', 'downloadas-xlsx', 'downloadas-csv', 'closedocument', // file menu
 			!(L.Browser.ie || L.Browser.edge) ? 'fullscreen' : undefined, 'zoomin', 'zoomout', 'zoomreset', 'showstatusbar', 'showresolved', 'showannotations', 'toggledarktheme', // view menu
 			'insert-signatureline', // insert menu
-			() => app.map.eSignature ? 'insert-esignature' : undefined, // insert menu
 			'about', 'keyboard-shortcuts', 'latestupdates', 'feedback', 'serveraudit', 'online-help', 'report-an-issue', // help menu
 			'insertcomment'
 		]
@@ -2003,12 +2001,11 @@ L.Control.Menubar = L.Control.extend({
 					},
 				};
 				app.map.sendUnoCommand('.uno:InsertSignatureLine', args);
+				let finishMessage = _('The signature line can now be moved or resized as needed.');
+				let finishFunc = () => app.map.eSignature.insert();
+				app.map.uiManager.showSnackbar(finishMessage, _('Finish electronic signing'), finishFunc, -1);
 			} else {
 				app.map.sendUnoCommand('.uno:InsertSignatureLine');
-			}
-		} else if (id === 'insert-esignature') {
-			if (this._map.eSignature) {
-				this._map.eSignature.insert();
 			}
 		} else if (id === 'insertgraphic') {
 			L.DomUtil.get('insertgraphic').click();
