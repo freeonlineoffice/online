@@ -486,6 +486,7 @@ void cleanupDocBrokers()
                 LastSubForKitBrokerExitTimes.erase(configId);
                 OutstandingForks.erase(configId);
                 it = SubForKitProcs.erase(it);
+                UnitWSD::get().killSubForKit(configId);
             }
         }
 
@@ -3011,6 +3012,8 @@ private:
                     // created subforkit for a reason, create spare early
                     std::unique_lock<std::mutex> lock(NewChildrenMutex);
                     rebalanceChildren(configId, LOOLWSD::NumPreSpawnedChildren);
+
+                    UnitWSD::get().newSubForKit(SubForKitProcs[configId], configId);
                 }
 
                 return;
