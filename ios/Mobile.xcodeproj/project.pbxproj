@@ -3918,7 +3918,6 @@
 					"DISABLE_DYNLOADING=1",
 					"ENABLE_DEBUG=1",
 					"LOOLWSD_CONFIGDIR='\".\"'",
-					"LOOLWSD_LOGLEVEL='\"trace\"'",
 					"NUM_PRESPAWN_CHILDREN='\"1\"'",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3983,7 +3982,6 @@
 					"IOS=IOS",
 					"DISABLE_DYNLOADING=1",
 					"LOOLWSD_CONFIGDIR='\".\"'",
-					"LOOLWSD_LOGLEVEL='\"warning\"'",
 					"NUM_PRESPAWN_CHILDREN='\"1\"'",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
