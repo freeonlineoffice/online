@@ -3074,6 +3074,7 @@ public:
         std::string version, hash;
         Util::getVersionInfo(version, hash);
 
+        THREAD_UNSAFE_DUMP_BEGIN
         os << "LOOLWSDServer: " << version << " - " << hash << " state dumping"
 #if !MOBILEAPP
            << "\n  Kit version: " << LOOLWSD::LOKitVersion << "\n  Ports: server "
@@ -3117,6 +3118,7 @@ public:
            << "\n  Total PSS: " << Util::getProcessTreePss(getpid()) << " KB"
            << "\n  Config: " << LoggableConfigEntries
             ;
+        THREAD_UNSAFE_DUMP_END
 
         std::string smap;
         if (const ssize_t size = FileUtil::readFile("/proc/self/smaps_rollup", smap); size <= 0)

@@ -264,6 +264,7 @@ void AsyncDNS::joinThread()
 
 void AsyncDNS::dumpQueueState(std::ostream& os) const
 {
+    THREAD_UNSAFE_DUMP_BEGIN
     // NOT thread-safe
     Lookup activeLookup = _activeLookup;
     std::queue<Lookup> lookups = _lookups;
@@ -280,6 +281,7 @@ void AsyncDNS::dumpQueueState(std::ostream& os) const
         os << "    callback: " << lookups.front().dumpState() << '\n';
         lookups.pop();
     }
+    THREAD_UNSAFE_DUMP_END
 }
 
 AsyncDNS::AsyncDNS()
