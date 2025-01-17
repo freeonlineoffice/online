@@ -482,6 +482,9 @@ if test -n "$with_logfile" ; then
    LOOLWSD_LOGFILE="$with_logfile"
 fi
 AC_SUBST(LOOLWSD_LOGFILE)
+AC_DEFINE_UNQUOTED([LOOLWSD_LOGFILE],["$LOOLWSD_LOGFILE"],[Default location of loolwsd log file])
+AC_SUBST(LOOLWSD_LOGFILE_UICMD)
+AC_DEFINE_UNQUOTED([LOOLWSD_LOGFILE_UICMD],["$LOOLWSD_LOGFILE_UICMD"],[Default location of loolwsd UI command log file])
 
 if test -n "$with_trace_event_file" ; then
    LOOLWSD_TRACEEVENTFILE="$with_trace_event_file"

@@ -15,6 +15,21 @@
 /* Free Online Office core git hash if present */
 #undef CORE_VERSION_HASH
 
+/* Options passed to configure script */
+#undef LOOLWSD_BUILDCONFIG
+
+/* Default location of loolwsd log file */
+#undef LOOLWSD_LOGFILE
+
+/* Default location of loolwsd UI command log file */
+#undef LOOLWSD_LOGFILE_UICMD
+
+/* Destination for Trace Event output */
+#undef LOOLWSD_TRACEEVENTFILE
+
+/* The user-name which is allowed to run loolwsd and its tools */
+#undef LOOL_USER_ID
+
 /* Whether to disable SECCOMP */
 #undef DISABLE_SECCOMP
 
