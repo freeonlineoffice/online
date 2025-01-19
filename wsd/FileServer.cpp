@@ -1480,6 +1480,7 @@ static const std::string POSTMESSAGE_ORIGIN = "%POSTMESSAGE_ORIGIN%";
 static const std::string BRANDING_THEME = "%BRANDING_THEME%";
 static const std::string CHECK_FILE_INFO_OVERRIDE = "%CHECK_FILE_INFO_OVERRIDE%";
 static const std::string WOPI_SETTING_BASE_URL = "%WOPI_SETTING_BASE_URL%";
+static const std::string IFRAME_TYPE = "%IFRAME_TYPE%";
 
 /// Per user request variables.
 /// Holds access_token, css_variables, postmessage_origin, etc.
@@ -1574,6 +1575,7 @@ public:
 
         extractVariable(form, "wopi_setting_base_url", WOPI_SETTING_BASE_URL);
 
+        extractVariable(form, "iframe_type", IFRAME_TYPE);
     }
 
     const std::string& operator[](const std::string& key) const
@@ -2051,16 +2053,18 @@ void FileServerRequestHandler::fetchWopiSettingConfigs( const Poco::Net::HTTPReq
             throw std::runtime_error("sharedConfigUrl missing in payload");
         if (!form.has("accessToken"))
             throw std::runtime_error("accessToken missing in payload");
+        if (!form.has("type"))
+            throw std::runtime_error("type missing in payload");
 
         std::string sharedConfigUrl = form.get("sharedConfigUrl");
         std::string token = form.get("accessToken");
+        std::string type = form.get("type");
 
         LOG_INF("Fetching shared config from URL: " << sharedConfigUrl);
 
         Poco::URI sharedUri(sharedConfigUrl);
         sharedUri.addQueryParameter("fileId", "-1");
-        // todo: dynamic type
-        sharedUri.addQueryParameter("type", "systemconfig");
+        sharedUri.addQueryParameter("type", type);
         sharedUri.addQueryParameter("access_token", token);
 
 
@@ -2248,10 +2252,11 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     }
 }
 
-void FileServerRequestHandler::preprocessIntegratorAdminFile(
-    const HTTPRequest& request, http::Response& response, const RequestDetails& requestDetails,
-    Poco::MemoryInputStream& message,
-    const std::shared_ptr<StreamSocket>& socket)
+void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& request,
+                                                            http::Response& response,
+                                                            const RequestDetails& requestDetails,
+                                                            Poco::MemoryInputStream& message,
+                                                            const std::shared_ptr<StreamSocket>& socket)
 {
     const ServerURL cnxDetails(requestDetails);
     const std::string responseRoot = cnxDetails.getResponseRoot();
@@ -2270,6 +2275,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(
     Poco::replaceInPlace(adminFile, ACCESS_TOKEN_TTL, urv[ACCESS_TOKEN_TTL]);
     Poco::replaceInPlace(adminFile, WOPI_SETTING_BASE_URL, urv[WOPI_SETTING_BASE_URL]);
     Poco::replaceInPlace(adminFile, ACCESS_HEADER, urv[ACCESS_HEADER]);
+    Poco::replaceInPlace(adminFile, IFRAME_TYPE, urv[IFRAME_TYPE]);
     bool enableDebug = false;
 #if ENABLE_DEBUG
     enableDebug = true;
