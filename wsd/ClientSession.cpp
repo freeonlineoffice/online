@@ -1380,7 +1380,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
 
 #if !MOBILEAPP
 // TODO: make this async
-void ClientSession::sendBrowserSettingUpdate(const std::string& docKey)
+void ClientSession::uploadBrowserSettingsToWopiHost(const std::string& docKey)
 {
     Poco::URI uriObject(docKey);
 
@@ -1389,10 +1389,12 @@ void ClientSession::sendBrowserSettingUpdate(const std::string& docKey)
     size_t pos = path.find("/files/");
     if (pos != std::string::npos)
         path = path.substr(0, pos);
-    path.append("/settings/update");
+    path.append("/settings/upload");
     uriObject.setPath(path);
 
-    uriObject.addQueryParameter("key", "browsersettings");
+    const std::string& filePath = "settings/userconfig/browsersettings/browsersettings.json";
+    uriObject.addQueryParameter("fileId", filePath);
+
     const std::string& uriAnonym = COOLWSD::anonymizeUrl(uriObject.toString());
 
     LOG_DBG("Uploading updated browserSettings to wopiHost[" << uriAnonym << ']');
@@ -1442,7 +1444,8 @@ void ClientSession::updateBrowserSettingsJSON(const std::string& key, const std:
         std::ostringstream jsonStream;
         _browserSettingsJSON->stringify(jsonStream, 2);
     }
-    sendBrowserSettingUpdate(Uri::decode(docKey));
+
+    uploadBrowserSettingsToWopiHost(Uri::decode(docKey));
 }
 
 #endif
@@ -2954,7 +2957,6 @@ void ClientSession::onDisconnect()
 #if !MOBILEAPP
 // TODO: replace fileId with filePath
 // TODO: make uploadPresets async similar to asyncInstallPreset(?)
-// wopihost/wopi/settings/upload?fileId=userconfig/wordbook/filename.dic
 void ClientSession::uploadPresetsToWopiHost(const std::string& jailPresetsPath,
                                             const std::string& docKey)
 {
@@ -2976,7 +2978,7 @@ void ClientSession::uploadPresetsToWopiHost(const std::string& jailPresetsPath,
     const auto fileNames = FileUtil::getDirEntries(searchDir);
     for (auto& fileName : fileNames)
     {
-        std::string filePath = "userconfig/wordbook/";
+        std::string filePath = "settings/userconfig/wordbook/";
         filePath.append(fileName);
         uriObject.addQueryParameter("fileId", filePath);
         auto httpRequest = StorageConnectionManager::createHttpRequest(uriObject, _auth);
