@@ -340,10 +340,17 @@ namespace lool {
 
 			// Step 3: sign the hash.
 			this.popup = window.open(url, '_blank', features);
+
+			const message = _(
+				'The document is being signed and will be availably shortly',
+			);
+			app.map.fire('showbusy', { label: message });
 		}
 
 		// Handles the 'sign hash' response
 		handleSigned(response: SignedResponse): void {
+			app.map.fire('hidebusy');
+
 			if (response.type != 'SUCCESS') {
 				app.console.log('failed to sign: ' + response.error);
 				return;
@@ -368,7 +375,7 @@ namespace lool {
 			const args = {
 				body: body,
 			};
-			app.map.sendUnoCommand('.uno:DownloadSignature', args);
+			app.map.sendUnoCommand('.uno:DownloadSignature', args, /*force=*/ true);
 		}
 
 		// Handles the 'receive signature' response JSON
@@ -395,7 +402,7 @@ namespace lool {
 					value: response.signed_file_contents,
 				},
 			};
-			app.map.sendUnoCommand('.uno:Signature', args);
+			app.map.sendUnoCommand('.uno:Signature', args, /*force=*/ true);
 		}
 
 		// Turns a list of provider IDs into a list of signature providers
