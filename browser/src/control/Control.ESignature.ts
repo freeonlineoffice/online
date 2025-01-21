@@ -292,9 +292,17 @@ namespace lool {
 			// Providers can be in-context or redirect-based.  Most real-world providers
 			// are redirect-based, set the only tested non-in-context provider as
 			// preferred.
-			dialog.setDefaultProviderId('d-trust-sign-me-qes-signature');
+			const defaultProviderId = window.prefs.get(
+				'eSignatureDefaultProviderId',
+				'd-trust-sign-me-qes-signature',
+			);
+			dialog.setDefaultProviderId(defaultProviderId);
 			// Set the country for the default provider as preferred.
-			dialog.setDefaultCountryCode('DE');
+			const defaultCountryCode = window.prefs.get(
+				'eSignatureDefaultCountryCode',
+				'DE',
+			);
+			dialog.setDefaultCountryCode(defaultCountryCode);
 			dialog.open();
 		}
 
@@ -308,6 +316,8 @@ namespace lool {
 					providerId +
 					'" provider',
 			);
+			window.prefs.set('eSignatureDefaultCountryCode', countryCode);
+			window.prefs.set('eSignatureDefaultProviderId', providerId);
 
 			let url = this.url + '/single-method-signature';
 			url += '?client_id=' + this.clientId;
