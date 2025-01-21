@@ -75,6 +75,9 @@ namespace lool {
 
 		showSignaturesOnNextUpdate = false;
 
+		// Tracks when the signature popup is open.
+		signInProgress = false;
+
 		// Provider ID to name map.
 		static providerNames: { [name: string]: string } = {
 			// The /api/client-config API would provide this, but having the data here
@@ -339,6 +342,7 @@ namespace lool {
 			features += ', height=' + window.screen.height / 2;
 
 			// Step 3: sign the hash.
+			this.signInProgress = true;
 			this.popup = window.open(url, '_blank', features);
 
 			const message = _(
@@ -386,6 +390,7 @@ namespace lool {
 			if (!this.closePopup()) {
 				return;
 			}
+			this.signInProgress = false;
 
 			// Step 4: fetch the signature.
 			const body = {
