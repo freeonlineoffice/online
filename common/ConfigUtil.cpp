@@ -269,7 +269,7 @@ static const std::map<std::string, std::string> DefAppConfig = {
     { "trace.path[@compress]", "true" },
     { "trace.path[@snapshot]", "false" },
     { "trace[@enable]", "false" },
-    { "trace_event.path", COOLWSD_TRACEEVENTFILE },
+    { "trace_event.path", LOOLWSD_TRACEEVENTFILE },
     { "trace_event[@enable]", "false" },
     { "user_interface.mode", "default" },
     { "user_interface.statusbar_save_indicator", "true" },
