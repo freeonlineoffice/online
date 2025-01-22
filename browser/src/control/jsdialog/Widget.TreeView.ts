@@ -1642,7 +1642,7 @@ JSDialog.treeView = function (
 	treeView.build(data, builder, parentContainer);
 	parentContainer.appendChild(treeView._container);
 
-	(treeView._container as any).updateRenders = (pos: number | string) => {
+	const updateRenders: CustomEntryRenderCallback = (pos: number | string) => {
 		const row = treeView.findEntryWithRow(data.entries, pos);
 		if (!row) {
 			console.error(
@@ -1677,6 +1677,8 @@ JSDialog.treeView = function (
 
 		treeView._rows.set(String(pos), newRow[0]);
 	};
+
+	(treeView._container as any).updateRenders = updateRenders;
 
 	return false;
 };
