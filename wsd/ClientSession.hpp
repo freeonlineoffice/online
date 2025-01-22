@@ -286,7 +286,7 @@ public:
         _browserSettingsJSON = std::move(jsonObject);
     }
 
-    Poco::SharedPtr<Poco::JSON::Object> getSentBrowserSettingJSON()
+    Poco::SharedPtr<Poco::JSON::Object> getBrowserSettingJSON()
     {
         return _browserSettingsJSON;
     }
