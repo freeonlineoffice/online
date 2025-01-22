@@ -553,7 +553,8 @@ public:
                              const std::string& presetsPath);
 
     void sendBrowserSettingsSync(const std::shared_ptr<ClientSession>& session,
-                                const std::string& userSettingsUri);
+                                 const std::string& userSettingsUri);
+
 
     static void parseBrowserSettings(const std::shared_ptr<ClientSession>& session,
                                      const Poco::JSON::Object::Ptr& settings);
@@ -1721,6 +1722,7 @@ private:
 
 #if !MOBILEAPP
     Admin& _admin;
+    std::map<std::string, std::filesystem::file_time_type> _presetTimestamp;
 #endif
 
     // Last member.
