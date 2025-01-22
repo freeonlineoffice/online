@@ -3992,12 +3992,9 @@ void DocumentBroker::syncBrowserSettings(const std::string& userId, const std::s
     }
 }
 
-void DocumentBroker::uploadPresetsToWopiHost(const Authorization& auth)
+Poco::URI DocumentBroker::getPresetUploadBaseUrl(const std::string& docKey)
 {
-    const std::string& jailPresetsPath = FileUtil::buildLocalPathToJail(
-        LOOLWSD::EnableMountNamespaces, getJailRoot(), JAILED_CONFIG_ROOT);
-
-    Poco::URI uriObject(Uri::decode(_docKey));
+    Poco::URI uriObject(Uri::decode(docKey));
 
     // extract base wopiUri from docKey
     std::string path = uriObject.getPath();
@@ -4006,6 +4003,15 @@ void DocumentBroker::uploadPresetsToWopiHost(const Authorization& auth)
         path = path.substr(0, pos);
     path.append("/settings/upload");
     uriObject.setPath(path);
+    return uriObject;
+}
+
+void DocumentBroker::uploadPresetsToWopiHost(const Authorization& auth)
+{
+    const std::string& jailPresetsPath = FileUtil::buildLocalPathToJail(
+        LOOLWSD::EnableMountNamespaces, getJailRoot(), JAILED_CONFIG_ROOT);
+
+    Poco::URI uriObject = DocumentBroker::getPresetUploadBaseUrl(_docKey);
 
     LOG_DBG("Uploading presets from jailPath[" << jailPresetsPath << "] to wopiHost["
                                                << uriObject.toString() << ']');
@@ -4053,15 +4059,7 @@ void DocumentBroker::uploadPresetsToWopiHost(const Authorization& auth)
 void DocumentBroker::uploadBrowserSettingsToWopiHost(const std::shared_ptr<ClientSession>& session)
 {
     const Authorization& auth = session->getAuthorization();
-    Poco::URI uriObject(Uri::decode(_docKey));
-
-    // extract base wopiUri from docKey
-    std::string path = uriObject.getPath();
-    size_t pos = path.find("/files/");
-    if (pos != std::string::npos)
-        path = path.substr(0, pos);
-    path.append("/settings/upload");
-    uriObject.setPath(path);
+    Poco::URI uriObject = DocumentBroker::getPresetUploadBaseUrl(_docKey);
 
     const std::string& filePath = "settings/userconfig/browsersettings/browsersettings.json";
     uriObject.addQueryParameter("fileId", filePath);
