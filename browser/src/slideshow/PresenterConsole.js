@@ -162,6 +162,8 @@ class PresenterConsole {
 		this._visibleSlidesCount = this._presenter.getVisibleSlidesCount();
 		this._previews = new Array(this._getSlidesCount());
 
+		this._disableButton(this._prevButton); // On start by default we should disable the prev button
+
 		if (this._slides) {
 			let img;
 			let elem = this._slides.querySelector('#slides-preview');
@@ -270,6 +272,12 @@ class PresenterConsole {
 			'keydown',
 			L.bind(this._onKeyDown, this),
 		);
+
+		// Declare some basic elements that we will use often in next function calls
+		this._prevButton =
+			this._proxyPresenter.document.querySelector('#prev');
+		this._nextButton =
+			this._proxyPresenter.document.querySelector('#next');
 
 		this._proxyPresenter.document.body.style.margin = '0';
 		this._proxyPresenter.document.body.style.padding = '0';
@@ -827,12 +835,14 @@ class PresenterConsole {
 		}
 
 		switch (target.id) {
-			case 'prev':
+			case 'prev': {
 				this._presenter.getNavigator().rewindEffect();
 				break;
-			case 'next':
-				this._presenter.getNavigator().dispatchEffect();
+			}
+			case 'next': {
+				this._enableButton(this._prevButton);
 				break;
+			}
 			case 'pause':
 				this._pause = !this._pause;
 				this._pauseButton();
@@ -1274,7 +1284,7 @@ class PresenterConsole {
 		}
 
 		this._currentIndex = e.slide;
-
+		const isFirstSlide = this._currentIndex == 0;
 		let elem =
 			this._proxyPresenter.document.querySelector('#title-current');
 		if (elem) {
@@ -1282,6 +1292,8 @@ class PresenterConsole {
 				.replace('{0}', this._getVisibleIndex(e.slide) + 1)
 				.replace('{1}', this._visibleSlidesCount);
 		}
+		if (isFirstSlide) this._disableButton(this._prevButton);
+		else this._enableButton(this._prevButton);
 
 		elem =
 			this._proxyPresenter.document.querySelector(
