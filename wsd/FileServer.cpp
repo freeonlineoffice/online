@@ -959,7 +959,6 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             return;
         }
 
-        // TODO: Only respond to authenticated POST request, needs to implement authentication
         if (endPoint == "adminIntegratorSettings.html")
         {
             preprocessIntegratorAdminFile(request, response, requestDetails, message, socket);
@@ -2258,7 +2257,6 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
     }
 
     Poco::replaceInPlace(adminFile, std::string("<!--%BRANDING_JS%-->"), brandJS);
-    Poco::replaceInPlace(adminFile, std::string("<!--%FOOTER%-->"), brandFooter);
     Poco::replaceInPlace(adminFile, std::string("%VERSION%"), std::string(LOOLWSD_VERSION_HASH));
     Poco::replaceInPlace(adminFile, std::string("%SERVICE_ROOT%"), responseRoot);
 
