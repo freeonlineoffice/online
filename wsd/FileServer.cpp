@@ -499,7 +499,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
         {
             std::shared_ptr<LocalFileInfo> localFile =
                 LocalFileInfo::getOrCreateFile(localPath,path.getFileName());
-            auto ss = std::ostringstream{};
+            std::ostringstream ss;
             std::ifstream inputFile(localFile->localPath);
             ss << inputFile.rdbuf();
 
@@ -601,7 +601,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             if (FileUtil::Stat(Poco::Path(LOOLWSD::FileServerRoot, browserSettingPath).toString())
                     .exists())
             {
-                auto ss = std::ostringstream{};
+                std::ostringstream ss;
                 std::ifstream inputFile(browserSettingPath);
                 ss << inputFile.rdbuf();
 
@@ -718,7 +718,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
             std::shared_ptr<LocalFileInfo> localFile =
                 LocalFileInfo::getOrCreateFile(configPath, path.getFileName());
-            auto ss = std::ostringstream{};
+            std::ostringstream ss;
             std::ifstream inputFile(localFile->localPath);
             ss << inputFile.rdbuf();
 
