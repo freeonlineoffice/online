@@ -19,7 +19,7 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 		sectionName: string,
 		objectWidth: number,
 		objectHeight: number,
-		documentPosition: cool.SimplePoint,
+		documentPosition: lool.SimplePoint,
 		extraClass: string = '',
 		showSection: boolean = false,
 		parentSection: any, // Parent section.

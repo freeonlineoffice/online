@@ -12,7 +12,7 @@
 class ContentControlDropdownSubSection extends HTMLObjectSection {
 	constructor(
 		sectionName: string,
-		documentPosition: cool.SimplePoint,
+		documentPosition: lool.SimplePoint,
 		visible: boolean = true,
 		dropdownMarkerWidth: number,
 		dropdownMarkerHeight: number,
@@ -66,9 +66,11 @@ class ContentControlDropdownSubSection extends HTMLObjectSection {
 			$('#datepicker').hide();
 		} else {
 			var datePicker = document.getElementById('datepicker');
-			datePicker.style.left = String(this.myTopLeft[0] / app.dpiScale) + 'px';
+			datePicker.style.left =
+				String(this.myTopLeft[0] / app.dpiScale) + 'px';
 			datePicker.style.top =
-				String((this.myTopLeft[1] + this.size[1]) / app.dpiScale) + 'px';
+				String((this.myTopLeft[1] + this.size[1]) / app.dpiScale) +
+				'px';
 			$('#datepicker').show();
 		}
 	}
