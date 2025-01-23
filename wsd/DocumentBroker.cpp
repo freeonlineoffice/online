@@ -1592,7 +1592,7 @@ private:
 public:
     PresetsInstallTask(SocketPoll& poll, const std::string& configId,
                        const std::string& presetsPath,
-                       std::function<void(bool)> installFinishedCB)
+                       const std::function<void(bool)>& installFinishedCB)
         : _poll(poll)
         , _reportedStatus(false)
         , _overallSuccess(true)
@@ -1608,12 +1608,12 @@ public:
         return _installingPresets.empty();
     }
 
-    void appendCallback(std::function<void(bool)> installFinishedCB)
+    void appendCallback(const std::function<void(bool)>& installFinishedCB)
     {
         _installFinishedCBs.emplace_back(installFinishedCB);
     }
 
-    void install(Poco::JSON::Object::Ptr settings)
+    void install(const Poco::JSON::Object::Ptr& settings)
     {
         std::vector<CacheQuery> presets;
         if (!settings)
