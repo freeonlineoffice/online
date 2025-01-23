@@ -3,6 +3,8 @@
  * L.Util contains various utility functions used throughout Leaflet code.
  */
 
+/* global lool */
+
 L.Util = {
 	// extend an object with properties of one or more other objects
 	extend: function (dest) {
@@ -42,91 +44,33 @@ L.Util = {
 	},
 
 	// return unique ID of an object
-	stamp: function (obj) {
-		/*eslint-disable */
-		obj._leaflet_id = obj._leaflet_id || ++L.Util.lastId;
-		return obj._leaflet_id;
-		/*eslint-enable */
-	},
-
-	lastId: 0,
+	stamp: lool.Util.stamp,
 
 	// return a function that won't be called more often than the given interval
-	throttle: function (fn, time, context) {
-		var lock, args, wrapperFn, later;
-
-		later = function () {
-			// reset lock and call if queued
-			lock = false;
-			if (args) {
-				wrapperFn.apply(context, args);
-				args = false;
-			}
-		};
-
-		wrapperFn = function () {
-			if (lock) {
-				// called too soon, queue to call later
-				args = arguments;
-
-			} else {
-				// call and lock until later
-				fn.apply(context, arguments);
-				setTimeout(later, time);
-				lock = true;
-			}
-		};
-
-		return wrapperFn;
-	},
+	throttle: lool.Util.throttle,
 
 	// wrap the given number to lie within a certain range (used for wrapping longitude)
-	wrapNum: function (x, range, includeMax) {
-		var max = range[1],
-		    min = range[0],
-		    d = max - min;
-		return x === max && includeMax ? x : ((x - min) % d + d) % d + min;
-	},
+	wrapNum: lool.Util.wrapNum,
 
 	// do nothing (used as a noop throughout the code)
-	falseFn: function () { return false; },
+	falseFn: lool.Util.falseFn,
 
 	// round a given number to a given precision
-	formatNum: function (num, digits) {
-		var pow = Math.pow(10, digits || 5);
-		return Math.round(num * pow) / pow;
-	},
+	formatNum: lool.Util.formatNum,
 
 	// removes given prefix and suffix from the string if exists
 	// if suffix is not specified prefix is trimmed from both end of string
 	// trim whitespace from both sides of a string if prefix and suffix are not given
-	trim: function (str, prefix, suffix) {
-		if (!prefix)
-			return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, '');
-		var result = this.trimStart(str, prefix);
-		result = this.trimEnd(result, suffix);
-		return result;
-	},
+	trim: lool.Util.trim,
 
 	// removes prefix from string if string starts with that prefix
-	trimStart: function (str, prefix) {
-		if (str.indexOf(prefix) === 0)
-			return str.substring(prefix.length);
-		return str;
-	},
+	trimStart: lool.Util.trimStart,
 
 	// removes suffix from string if string ends with that suffix
-	trimEnd: function (str, suffix) {
-		var suffixIndex = str.lastIndexOf(suffix);
-		if (suffixIndex !== -1 && (str.length - suffix.length === suffixIndex))
-			return str.substring(0, suffixIndex);
-		return str;
-	},
+	trimEnd: lool.Util.trimEnd,
 
 	// split a string into words
-	splitWords: function (str) {
-		return L.Util.trim(str).split(/\s+/);
-	},
+	splitWords: lool.Util.splitWords,
 
 	// set options to an object, inheriting parent's options as well
 	setOptions: function (obj, options) {
@@ -139,106 +83,29 @@ L.Util = {
 		return obj.options;
 	},
 
-	round: function(x, e) {
-		if (!e) {
-			return Math.round(x);
-		}
-		var f = 1.0/e;
-		return Math.round(x * f) * e;
-	},
+	round: lool.Util.round,
 
 	// super-simple templating facility, used for TileLayer URLs
-	template: function (str, data) {
-		return str.replace(L.Util.templateRe, function (str, key) {
-			var value = data[key];
+	template: lool.Util.template,
 
-			if (value === undefined) {
-				throw new Error('No value provided for variable ' + str);
-
-			} else if (typeof value === 'function') {
-				value = value(data);
-			}
-			return value;
-		});
-	},
-
-	templateRe: /\{ *([\w_]+) *\}/g,
-
-	isArray: Array.isArray || function (obj) {
-		return (Object.prototype.toString.call(obj) === '[object Array]');
-	},
+	isArray: lool.Util.isArray,
 
 	// minimal image URI, set to an image when disposing to flush memory
-	emptyImageUrl: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
+	emptyImageUrl: lool.Util.emptyImageUrl,
 
-	toggleFullScreen: function() {
-		if (!document.fullscreenElement &&
-			!document.mozFullscreenElement &&
-			!document.msFullscreenElement &&
-			!document.webkitFullscreenElement) {
-			if (document.documentElement.requestFullscreen) {
-				document.documentElement.requestFullscreen();
-			} else if (document.documentElement.msRequestFullscreen) {
-				document.documentElement.msRequestFullscreen();
-			} else if (document.documentElement.mozRequestFullScreen) {
-				document.documentElement.mozRequestFullScreen();
-			} else if (document.documentElement.webkitRequestFullscreen) {
-				document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-			}
-		} else if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.msExitFullscreen) {
-			document.msExitFullscreen();
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		}
-	},
+	toggleFullScreen: lool.Util.toggleFullScreen,
 
-	isEmpty: function(o) {
-		return !(o && o.length);
-	},
+	isEmpty: lool.Util.isEmpty,
 
-	mm100thToInch: function(mm) {
-		return mm / 2540;
-	},
+	mm100thToInch: lool.Util.mm100thToInch,
 
-	getTextWidth: function(text, font) {
-		var canvas = L.Util.getTextWidth._canvas || (L.Util.getTextWidth._canvas = document.createElement('canvas'));
-		var context = canvas.getContext('2d');
-		context.font = font;
-		var metrics = context.measureText(text);
-		return Math.floor(metrics.width);
-	},
+	getTextWidth: lool.Util.getTextWidth,
 
-	replaceCtrlAltInMac: function(msg) {
-		if (L.Browser.mac) {
-			var ctrl = /Ctrl/g;
-			var alt = /Alt/g;
-			if (String.locale.startsWith('de') || String.locale.startsWith('dsb') || String.locale.startsWith('hsb')) {
-				ctrl = /Strg/g;
-			}
-			if (String.locale.startsWith('lt')) {
-				ctrl = /Vald/g;
-			}
-			if (String.locale.startsWith('sl')) {
-				ctrl = /Krmilka/gi;
-				alt = /Izmenjalka/gi;
-			}
-			return msg.replace(ctrl, '⌘').replace(alt, '⌥');
-		}
-		return msg;
-	},
+	getProduct: lool.Util.getProduct,
 
-	randomString: function(len) {
-		var result = '';
-		var ValidCharacters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-		for (var i = 0; i < len; i++) {
-			result += ValidCharacters.charAt(Math.floor(Math.random() * ValidCharacters.length));
-		}
-		return result;
-	}
+	replaceCtrlAltInMac: lool.Util.replaceCtrlAltInMac,
+
+	randomString: lool.Util.randomString,
 };
 
 (function () {

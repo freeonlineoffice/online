@@ -239,6 +239,7 @@ LOOL_JS_LST =\
 	src/unocommands.js \
 	src/UNO/Key.js \
 	src/core/Log.js \
+	src/core/LoolUtil.ts \
 	src/core/Util.js \
 	src/core/LOUtil.js \
 	src/core/geometry.ts \
