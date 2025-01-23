@@ -297,8 +297,6 @@ public:
 
 #if !MOBILEAPP
     void updateBrowserSettingsJSON(const std::string& key, const std::string& value);
-    void uploadPresetsToWopiHost(const std::string& jailPresetPath, const std::string& docKey, std::map<std::string, std::filesystem::file_time_type>& presetMap);
-    void uploadBrowserSettingsToWopiHost(const std::string& docKey);
 #endif
 
 private:
