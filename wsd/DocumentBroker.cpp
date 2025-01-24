@@ -1176,12 +1176,12 @@ bool DocumentBroker::download(
     // we do sync request to make sure the browser setting json sent before document starts to load
     if (session && !userSettingsUri.empty())
     {
-        LOG_DBG("BrowserSetting for docKey ["
+        LOG_DBG("browsersetting for docKey ["
                 << _docKey << "] for session #" << session->getId()
                 << (session->getSentBrowserSetting() ? " already exists" : " is missing"));
         if (!session->getSentBrowserSetting())
         {
-            sendBrowserSettingsSync(session, userSettingsUri);
+            getBrowserSettingSync(session, userSettingsUri);
             if (!session->getSentBrowserSetting())
             {
                 const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
@@ -1501,8 +1501,8 @@ private:
     std::set<std::string> _installingPresets;
     std::vector<std::function<void(bool)>> _installFinishedCBs;
 
-    void asyncInstall(const std::string& uri, const std::string& stamp,
-                      const std::string& fileName)
+    void asyncInstall(const std::string& uri, const std::string& stamp, const std::string& fileName,
+                      const std::shared_ptr<ClientSession>& session)
     {
         auto presetInstallFinished = [this](const std::string& id, bool presetResult)
         {
@@ -1514,9 +1514,8 @@ private:
 
         installPresetStarted(id);
 
-        DocumentBroker::asyncInstallPreset(_poll, _configId, uri,
-                                           stamp, fileName, id,
-                                           presetInstallFinished);
+        DocumentBroker::asyncInstallPreset(_poll, _configId, uri, stamp, fileName, id,
+                                           presetInstallFinished, session);
     }
 
     void installPresetStarted(const std::string& id)
@@ -1570,6 +1569,25 @@ private:
         }
     }
 
+    void addBrowserSetting(Poco::JSON::Object::Ptr settings, std::vector<CacheQuery>& queries)
+    {
+        if (!settings->has("browsersetting"))
+            return;
+
+        auto browsersetting = settings->get("browsersetting").extract<Poco::JSON::Array::Ptr>();
+        if (browsersetting->empty())
+            return;
+
+        auto firstElem = browsersetting->get(0).extract<Poco::JSON::Object::Ptr>();
+        if (!firstElem)
+            return;
+
+        const std::string uri = JsonUtil::getJSONValue<std::string>(firstElem, "uri");
+        const std::string stamp = JsonUtil::getJSONValue<std::string>(firstElem, "stamp");
+
+        queries.emplace_back(uri, stamp, "browsersetting.json");
+    }
+
     void addXcu(Poco::JSON::Object::Ptr settings, std::vector<CacheQuery>& queries)
     {
         if (!settings->has("xcu"))
@@ -1613,13 +1631,15 @@ public:
         _installFinishedCBs.emplace_back(installFinishedCB);
     }
 
-    void install(const Poco::JSON::Object::Ptr& settings)
+    void install(const Poco::JSON::Object::Ptr& settings,
+                 const std::shared_ptr<ClientSession>& session)
     {
         std::vector<CacheQuery> presets;
         if (!settings)
             _overallSuccess = false;
         else
         {
+            addBrowserSetting(settings, presets);
             addGroup(settings, "autotext", presets);
             addGroup(settings, "wordbook", presets);
             addXcu(settings, presets);
@@ -1633,7 +1653,7 @@ public:
         {
             LOG_INF("Async fetch of presets for " << _configId << " launched");
             for (const auto& preset : presets)
-                asyncInstall(preset._uri, preset._stamp, preset._dest);
+                asyncInstall(preset._uri, preset._stamp, preset._dest, session);
         }
         else
         {
@@ -1692,45 +1712,86 @@ void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession>& s
     });
 }
 
-void DocumentBroker::sendBrowserSettingsSync(const std::shared_ptr<ClientSession>& session,
-                                            const std::string& userSettingsUri)
+std::shared_ptr<const http::Response>
+DocumentBroker::sendHttpSyncRequest(const std::string& url, const std::string& logContext)
+{
+    const Poco::URI uri{ url };
+    std::shared_ptr<http::Session> httpSession(StorageConnectionManager::getHttpSession(uri));
+    http::Request request(uri.getPathAndQuery());
+
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(url);
+    LOG_DBG("Getting " << logContext << " from [" << uriAnonym << "] using sync request");
+    std::shared_ptr<const http::Response> httpResponse = httpSession->syncRequest(request);
+    const http::StatusLine statusLine = httpResponse->statusLine();
+
+    LOG_TRC("sendHttpSyncRequest returned " << statusLine.statusCode() << " when fetching "
+                                            << logContext << " json");
+
+    if (statusLine.statusCode() != http::StatusCode::OK)
+    {
+        LOG_ERR("Failed to get " << logContext << " json from [" << uriAnonym << "] with status["
+                                 << statusLine.reasonPhrase() << ']');
+        return nullptr;
+    }
+
+    return httpResponse;
+}
+
+void DocumentBroker::sendBrowserSetting(const std::shared_ptr<ClientSession>& session)
+{
+    auto browsersetting = session->getBrowserSettingJSON();
+    std::ostringstream jsonStream;
+    browsersetting->stringify(jsonStream, 2);
+    const std::string& jsonStr = jsonStream.str();
+    LOG_TRC("Sending browsersetting json[" << jsonStr << ']');
+    session->sendTextFrame("browsersetting: " + jsonStr);
+    session->setSentBrowserSetting(true);
+}
+
+void DocumentBroker::getBrowserSettingSync(const std::shared_ptr<ClientSession>& session,
+                                           const std::string& userSettingsUri)
 {
     if (session == nullptr || session->getSentBrowserSetting())
         return;
 
-    // Download the json for browser settings
-    const Poco::URI settingsUri{ userSettingsUri };
-    std::shared_ptr<http::Session> httpSession(
-        StorageConnectionManager::getHttpSession(settingsUri));
-    http::Request request(settingsUri.getPathAndQuery());
-
-    const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
-    LOG_DBG("Getting settings from [" << uriAnonym << "] using sync request");
-
-    const std::shared_ptr<const http::Response> httpResponse = httpSession->syncRequest(request);
-
-    LOG_TRC("DocumentBroker::sendBrowserSettingSync returned "
-            << httpResponse->statusLine().statusCode());
-
-    const bool failed = (httpResponse->statusLine().statusCode() != http::StatusCode::OK);
-    if (failed)
-    {
-        if (httpResponse->statusLine().statusCode() == http::StatusCode::Forbidden)
-            LOG_ERR("Access denied to [" << uriAnonym << ']');
-        else
-            LOG_ERR("Invalid URI or access denied to [" << uriAnonym << ']');
+    const auto userSettingsResponse = sendHttpSyncRequest(userSettingsUri, "usersetting");
+    if (!userSettingsResponse)
         return;
-    }
 
-    const std::string& body = httpResponse->getBody();
+    const std::string& body = userSettingsResponse->getBody();
     Poco::JSON::Object::Ptr settings;
-
     if (!JsonUtil::parseJSON(body, settings))
     {
-        LOG_ERR("Parse of userconfig json: " << uriAnonym << " failed");
+        LOG_ERR("Failed to parse usersetting json");
         return;
     }
-    DocumentBroker::parseBrowserSettings(session, settings);
+
+    const auto browsersetting = settings->getArray("browsersetting");
+    if (!browsersetting || browsersetting->size() == 0)
+    {
+        LOG_INF("browsersetting doesn't exist in usersetting json or empty");
+        sendBrowserSetting(session);
+        return;
+    }
+
+    const auto firstElem = browsersetting->get(0).extract<Poco::JSON::Object::Ptr>();
+    if (!firstElem)
+    {
+        sendBrowserSetting(session);
+        return;
+    }
+
+    const std::string browsersettingUri = JsonUtil::getJSONValue<std::string>(firstElem, "uri");
+
+    const auto browsersettingResponse = sendHttpSyncRequest(browsersettingUri, "browsersetting");
+    if (!browsersettingResponse)
+    {
+        sendBrowserSetting(session);
+        return;
+    }
+
+    parseBrowserSettings(session, browsersettingResponse->getBody());
+    sendBrowserSetting(session);
 }
 
 struct PresetRequest
@@ -1768,7 +1829,7 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSet
         if (SigUtil::getShutdownRequestFlag())
         {
             LOG_DBG("Shutdown flagged, giving up on in-flight requests");
-            presetTasks->install(nullptr);
+            presetTasks->install(nullptr, nullptr);
             return;
         }
 
@@ -1781,7 +1842,7 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSet
         {
             LOG_ERR("Failed to get settings json from [" << uriAnonym << "] with status["
                                                          << statusLine.reasonPhrase() << ']');
-            presetTasks->install(nullptr);
+            presetTasks->install(nullptr, nullptr);
             return;
         }
 
@@ -1791,13 +1852,11 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSet
         if (!JsonUtil::parseJSON(body, settings))
         {
             LOG_ERR("Parse of userSettings json: " << uriAnonym << " failed");
-            presetTasks->install(nullptr);
+            presetTasks->install(nullptr, nullptr);
             return;
         }
-        if (session != nullptr && !session->getSentBrowserSetting())
-            DocumentBroker::parseBrowserSettings(session, settings);
 
-        presetTasks->install(settings);
+        presetTasks->install(settings, session);
     };
 
     httpSession->setFinishedHandler(std::move(finishedCallback));
@@ -1808,10 +1867,11 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSet
     return presetTasks;
 }
 
-void DocumentBroker::asyncInstallPreset(SocketPoll& poll, const std::string& configId,
-                                        const std::string& presetUri, const std::string& presetStamp,
-                                        const std::string& presetFile, const std::string& id,
-                                        const std::function<void(const std::string&, bool)>& finishedCB)
+void DocumentBroker::asyncInstallPreset(
+    SocketPoll& poll, const std::string& configId, const std::string& presetUri,
+    const std::string& presetStamp, const std::string& presetFile, const std::string& id,
+    const std::function<void(const std::string&, bool)>& finishedCB,
+    const std::shared_ptr<ClientSession>& session)
 {
     const std::string uriAnonym = LOOLWSD::anonymizeUrl(presetUri);
     LOG_DBG("Getting preset from [" << uriAnonym << ']');
@@ -1858,25 +1918,33 @@ void DocumentBroker::asyncInstallPreset(SocketPoll& poll, const std::string& con
     httpSession->asyncRequest(request, poll);
 
     const std::shared_ptr<http::Response> presetHttpResponse = httpSession->response();
+
+    if (presetFile == "browsersetting.json")
+    {
+        if (session == nullptr || session->getSentBrowserSetting())
+            return;
+        const std::string& body = presetHttpResponse->getBody();
+        DocumentBroker::parseBrowserSettings(session, body);
+        DocumentBroker::sendBrowserSetting(session);
+        return;
+    }
     presetHttpResponse->saveBodyToFile(presetFile);
 }
 
 void DocumentBroker::parseBrowserSettings(const std::shared_ptr<ClientSession>& session,
-                                          const Poco::JSON::Object::Ptr& settings)
+                                          const std::string& responseBody)
 {
-    Poco::JSON::Object::Ptr browserSettings = settings->getObject("browserSettings");
-    if (browserSettings.isNull())
+    Poco::JSON::Parser parser;
+    auto result = parser.parse(responseBody);
+    auto browsersetting = result.extract<Poco::JSON::Object::Ptr>();
+    if (browsersetting.isNull())
     {
-        LOG_INF("json key[browserSettings] doesn't exist in user config json");
-        browserSettings = session->getBrowserSettingJSON();
+        LOG_INF("browsersetting.json is empty");
+        return;
     }
-    std::ostringstream jsonStream;
-    browserSettings->stringify(jsonStream, 2);
-    session->sendTextFrame("browsersetting: " + jsonStream.str());
-    session->setSentBrowserSetting(true);
 
-    LOG_DBG("Setting _browserSettingsJSON for clientsession[" << session->getId() << ']');
-    session->setBrowserSettingsJSON(browserSettings);
+    LOG_TRC("Setting _browserSettingsJSON for clientsession[" << session->getId() << ']');
+    session->setBrowserSettingsJSON(browsersetting);
 }
 
 bool DocumentBroker::processPlugins(std::string& localPath)
@@ -4076,7 +4144,7 @@ void DocumentBroker::uploadBrowserSettingsToWopiHost(const std::shared_ptr<Clien
     const Authorization& auth = session->getAuthorization();
     Poco::URI uriObject = DocumentBroker::getPresetUploadBaseUrl(_docKey);
 
-    const std::string& filePath = "/settings/userconfig/browsersettings/browsersettings.json";
+    const std::string& filePath = "/settings/userconfig/browsersetting/browsersetting.json";
     uriObject.addQueryParameter("fileId", filePath);
     auth.authorizeURI(uriObject);
 
@@ -4098,14 +4166,14 @@ void DocumentBroker::uploadBrowserSettingsToWopiHost(const std::shared_ptr<Clien
         const http::StatusLine statusLine = httpResponse->statusLine();
         if (statusLine.statusCode() != http::StatusCode::OK)
         {
-            LOG_ERR("Failed to upload updated browser settings to wopiHost["
+            LOG_ERR("Failed to upload updated browsersetting to wopiHost["
                     << uriAnonym << "] with status[" << statusLine.reasonPhrase() << ']');
             return;
         }
-        LOG_TRC("Successfully uploaded browsersettings to WopiHost");
+        LOG_TRC("Successfully uploaded browsersetting to wopiHost");
     };
 
-    LOG_DBG("Uploading updated browserSettings to wopiHost[" << uriAnonym << ']');
+    LOG_DBG("Uploading updated browsersetting to wopiHost[" << uriAnonym << ']');
     httpSession->setFinishedHandler(std::move(finishedCallback));
     httpSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
 }
