@@ -1184,7 +1184,7 @@ bool DocumentBroker::download(
             sendBrowserSettingsSync(session, userSettingsUri);
             if (!session->getSentBrowserSetting())
             {
-                const std::string uriAnonym = COOLWSD::anonymizeUrl(userSettingsUri);
+                const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
                 LOG_ERR("Request to uri["
                         << uriAnonym
                         << "] failed or timedout while adding session #" + session->getId());
@@ -1669,7 +1669,7 @@ void DocumentBroker::sendBrowserSettingsSync(const std::shared_ptr<ClientSession
     http::Request request(settingsUri.getPathAndQuery());
     request.set("User-Agent", http::getAgentString());
 
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(userSettingsUri);
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
     LOG_DBG("Getting settings from [" << uriAnonym << "] using sync request");
 
     const std::shared_ptr<const http::Response> httpResponse = httpSession->syncRequest(request);
@@ -3673,7 +3673,7 @@ std::size_t DocumentBroker::removeSession(const std::shared_ptr<ClientSession>& 
 #if !MOBILEAPP
         /// make sure to upload preset to WOPIHost
         const std::string& jailPresetsPath = FileUtil::buildLocalPathToJail(
-        COOLWSD::EnableMountNamespaces, getJailRoot(), JAILED_CONFIG_ROOT);
+        LOOLWSD::EnableMountNamespaces, getJailRoot(), JAILED_CONFIG_ROOT);
         session->uploadPresetsToWopiHost(jailPresetsPath, Uri::decode(getDocKey()));
 #endif
 #ifndef IOS
