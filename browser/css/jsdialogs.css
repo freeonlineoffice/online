@@ -593,7 +593,7 @@ td.jsdialog > [id^='table-box']:not(.sidebar) {
 }
 
 #ServerAuditDialog .ui-treeview-headers div.ui-treeview-icon-column {
-	width: 0px /* prevent display of ui-treeview-icon-column in ui-treeview-header */
+	width: 0px; /* prevent display of ui-treeview-icon-column in ui-treeview-header */
 }
 
 #ServerAuditDialog .ui-treeview-headers > div:nth-last-child(1) {
