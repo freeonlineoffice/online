@@ -1367,7 +1367,7 @@ bool ClientSession::_handleInput(const char *buffer, int length)
             std::string value;
             getTokenString(tokens[2], "key", key);
             getTokenString(tokens[3], "value", value);
-            COOLWSD::syncUsersBrowserSettings(getUserId(), key, value);
+            LOOLWSD::syncUsersBrowserSettings(getUserId(), key, value);
         }
     }
 #endif
