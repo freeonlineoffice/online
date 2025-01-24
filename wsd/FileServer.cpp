@@ -442,13 +442,13 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             fileInfo->set("UserFriendlyName", userNameString);
 
             const auto& config = Application::instance().config();
-            static std::string etagString = "\"" COOLWSD_VERSION_HASH +
+            static std::string etagString = "\"" LOOLWSD_VERSION_HASH +
                 config.getString("ver_suffix", "") + "\"";
 
             // authentication token to get these settings??
             {
                 Poco::JSON::Object::Ptr sharedSettings = new Poco::JSON::Object();
-                std::string uri = COOLWSD::getServerURL() + "/wopi/settings/sharedconfig.json";
+                std::string uri = LOOLWSD::getServerURL() + "/wopi/settings/sharedconfig.json";
                 sharedSettings->set("uri", Util::trim(uri));
                 sharedSettings->set("stamp", etagString);
                 fileInfo->set("SharedSettings", sharedSettings);
@@ -456,7 +456,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
             {
                 Poco::JSON::Object::Ptr userSettings = new Poco::JSON::Object();
-                std::string uri = COOLWSD::getServerURL() + "/wopi/settings/userconfig.json";
+                std::string uri = LOOLWSD::getServerURL() + "/wopi/settings/userconfig.json";
                 userSettings->set("uri", Util::trim(uri));
                 userSettings->set("stamp", etagString);
                 fileInfo->set("UserSettings", userSettings);
@@ -554,8 +554,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
         for (std::string autotext : items)
         {
             Poco::JSON::Object::Ptr configAutoTextEntry = new Poco::JSON::Object();
-            std::string uri = COOLWSD::getServerURL() + prefix + cwd + autotext;
-            //COOLWSD::getServerURL tediously includes spaces at the start
+            std::string uri = LOOLWSD::getServerURL() + prefix + cwd + autotext;
+            //LOOLWSD::getServerURL tediously includes spaces at the start
             configAutoTextEntry->set("uri", Util::trim(uri));
             configAutoTexts->add(configAutoTextEntry);
         }
@@ -564,7 +564,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
         if (!xcu.empty())
         {
             Poco::JSON::Object::Ptr xcuEntry = new Poco::JSON::Object();
-            std::string uri = COOLWSD::getServerURL() + prefix + cwd + xcu;
+            std::string uri = LOOLWSD::getServerURL() + prefix + cwd + xcu;
             xcuEntry->set("uri", Util::trim(uri));
             configInfo->set("xcu", xcuEntry);
         }

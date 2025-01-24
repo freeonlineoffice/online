@@ -1445,7 +1445,7 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
     std::string userSettingsUri = wopiFileInfo->getUserSettingsUri();
     if (_sessions.empty() && !userSettingsUri.empty())
     {
-        std::string jailPresetsPath = FileUtil::buildLocalPathToJail(COOLWSD::EnableMountNamespaces,
+        std::string jailPresetsPath = FileUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces,
                                                                      getJailRoot(),
                                                                      JAILED_CONFIG_ROOT);
         asyncInstallPresets(session, userSettingsUri, jailPresetsPath);
@@ -1520,7 +1520,7 @@ void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession> se
             forwardToChild(session, "addxcu");
         else
         {
-            const std::string uriAnonym = COOLWSD::anonymizeUrl(userSettingsUri);
+            const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
             LOG_ERR("Failed to load all settings from [" << uriAnonym << ']');
             stop("configfailed");
         }
@@ -1543,7 +1543,7 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll,
     http::Request request(settingsUri.getPathAndQuery());
     request.set("User-Agent", http::getAgentString());
 
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(userSettingsUri);
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
     LOG_DBG("Getting settings from [" << uriAnonym << ']');
 
     // When result arrives, extract uris of what we want to install to the jail's user presets
@@ -1643,7 +1643,7 @@ void DocumentBroker::asyncInstallPreset(SocketPoll& poll, const std::string& pre
     http::Request request(autotextUri.getPathAndQuery());
     request.set("User-Agent", http::getAgentString());
 
-    const std::string uriAnonym = COOLWSD::anonymizeUrl(presetUri);
+    const std::string uriAnonym = LOOLWSD::anonymizeUrl(presetUri);
     LOG_DBG("Getting autotext from [" << uriAnonym << ']');
 
     http::Session::FinishedCallback finishedCallback =
