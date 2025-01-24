@@ -1437,6 +1437,7 @@ static const std::string CSS_VARS = "<!--%CSS_VARIABLES%-->";
 static const std::string POSTMESSAGE_ORIGIN = "%POSTMESSAGE_ORIGIN%";
 static const std::string BRANDING_THEME = "%BRANDING_THEME%";
 static const std::string CHECK_FILE_INFO_OVERRIDE = "%CHECK_FILE_INFO_OVERRIDE%";
+static const std::string DEBUG_WOPI_CONFIG_ID = "%DEBUG_WOPI_CONFIG_ID%";
 static const std::string WOPI_SETTING_BASE_URL = "%WOPI_SETTING_BASE_URL%";
 static const std::string IFRAME_TYPE = "%IFRAME_TYPE%";
 
