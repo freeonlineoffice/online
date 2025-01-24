@@ -3,7 +3,7 @@
  * Impress tile layer is used to display a presentation document
  */
 
-/* global app $ L cool */
+/* global app $ L lool */
 
 L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
@@ -108,7 +108,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
 		commentData.parthash = app.impress.partList[this._selectedPart].hash;
 
-		const comment = new cool.Comment(commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
+		const comment = new lool.Comment(commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
 
 		var annotation = app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).add(comment);
 		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).modify(annotation);
