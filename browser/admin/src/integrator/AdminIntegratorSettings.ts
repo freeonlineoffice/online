@@ -41,7 +41,9 @@ function init(): void {
 }
 
 function bindEventListeners(): void {
-	const uploadAutotextButton = document.getElementById('uploadAutotextButton');
+	const uploadAutotextButton = document.getElementById(
+		'uploadAutotextButton',
+	);
 	if (uploadAutotextButton) {
 		uploadAutotextButton.addEventListener('click', () => {
 			console.log('Upload Autotext clicked.');
@@ -49,7 +51,9 @@ function bindEventListeners(): void {
 		});
 	}
 
-	const uploadWordbookButton = document.getElementById('uploadWordbookButton');
+	const uploadWordbookButton = document.getElementById(
+		'uploadWordbookButton',
+	);
 	if (uploadWordbookButton) {
 		uploadWordbookButton.addEventListener('click', () => {
 			console.log('Upload Wordbook clicked.');
@@ -114,7 +118,8 @@ async function uploadFile(filePath: string): Promise<void> {
 
 		fileStatus.textContent = `File "${file.name}" uploaded successfully!`;
 	} catch (error: unknown) {
-		const message = error instanceof Error ? error.message : 'Unknown error';
+		const message =
+			error instanceof Error ? error.message : 'Unknown error';
 		fileStatus.textContent = `Error: ${message}`;
 	} finally {
 		fileInput.value = '';
@@ -146,7 +151,9 @@ async function fetchAndPopulateSharedConfigs(): Promise<void> {
 		});
 
 		if (!response.ok) {
-			throw new Error(`Could not fetch shared config: ${response.statusText}`);
+			throw new Error(
+				`Could not fetch shared config: ${response.statusText}`,
+			);
 		}
 
 		const data: SharedConfigData = await response.json();
