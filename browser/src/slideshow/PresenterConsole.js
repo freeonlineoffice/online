@@ -834,7 +834,8 @@ class PresenterConsole {
 			return;
 		}
 
-		const isLastSlide = this._currentIndex + 1 == this._visibleSlidesCount;
+		const isLastSlide =
+			this._currentIndex + 1 == this._visibleSlidesCount;
 		switch (target.id) {
 			case 'prev': {
 				this._presenter.getNavigator().rewindEffect();
