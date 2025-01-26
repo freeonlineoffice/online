@@ -188,7 +188,8 @@ static std::chrono::milliseconds careerSpanMs(std::chrono::milliseconds::zero())
 #endif
 
 /// The timeout for a child to spawn, initially high, then reset to the default.
-int ChildSpawnTimeoutMs = CHILD_SPAWN_TIMEOUT_MS;
+std::atomic<std::chrono::milliseconds> ChildSpawnTimeoutMs =
+    std::chrono::milliseconds(CHILD_SPAWN_TIMEOUT_MS);
 std::atomic<unsigned> LOOLWSD::NumConnections;
 std::unordered_set<std::string> LOOLWSD::EditFileExtensions;
 
@@ -598,7 +599,7 @@ static void rebalanceChildren(const std::string& configId, int balance)
 
     const auto duration = (std::chrono::steady_clock::now() - LastForkRequestTimes[configId]);
     const auto durationMs = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
-    if (OutstandingForks[configId] != 0 && durationMs >= std::chrono::milliseconds(ChildSpawnTimeoutMs))
+    if (OutstandingForks[configId] != 0 && durationMs >= ChildSpawnTimeoutMs.load())
     {
         // Children taking too long to spawn.
         // Forget we had requested any, and request anew.
@@ -656,7 +657,7 @@ static size_t addNewChild(std::shared_ptr<ChildProcess> child)
     {
         // Reset the child-spawn timeout to the default, now that we're set.
         // But only when mounting is enabled. Otherwise, copying is always slow.
-        ChildSpawnTimeoutMs = CHILD_TIMEOUT_MS;
+        ChildSpawnTimeoutMs = std::chrono::milliseconds(CHILD_TIMEOUT_MS);
     }
 
     LOG_TRC("Adding a new child " << pid << " with config " << configId
@@ -886,7 +887,7 @@ std::shared_ptr<ChildProcess> getNewChild_Blocks(SocketPoll &destPoll, const std
 #if !MOBILEAPP
     assert(mobileAppDocId == 0 && "Unexpected to have mobileAppDocId in the non-mobile build");
 
-    int spawnTimeoutMs = ChildSpawnTimeoutMs / 2;
+    std::chrono::milliseconds spawnTimeoutMs = ChildSpawnTimeoutMs.load() / 2;
 
     if (configId.empty() || SubForKitProcs.contains(configId))
     {
@@ -898,11 +899,11 @@ std::shared_ptr<ChildProcess> getNewChild_Blocks(SocketPoll &destPoll, const std
     else
     {
         // configId exists, and no SubForKitProcs for it seen yet, be more generous for startup time.
-        spawnTimeoutMs = CHILD_SPAWN_TIMEOUT_MS;
+        spawnTimeoutMs = std::chrono::milliseconds(CHILD_SPAWN_TIMEOUT_MS);
         LOG_DBG("getNewChild: awaiting subforkit[" << configId << "], timeout of " << spawnTimeoutMs << "ms");
     }
 
-    const auto timeout = std::chrono::milliseconds(spawnTimeoutMs);
+    const std::chrono::milliseconds timeout = spawnTimeoutMs;
     LOG_TRC("Waiting for a new child for a max of " << timeout);
 #else // MOBILEAPP
     const auto timeout = std::chrono::hours(100);
@@ -2692,7 +2693,7 @@ bool LOOLWSD::createForKit()
     SigUtil::addActivity("spawning new forkit");
 
     // Creating a new forkit is always a slow process.
-    ChildSpawnTimeoutMs = CHILD_SPAWN_TIMEOUT_MS;
+    ChildSpawnTimeoutMs = std::chrono::milliseconds(CHILD_SPAWN_TIMEOUT_MS);
 
     std::unique_lock<std::mutex> newChildrenLock(NewChildrenMutex);
 
@@ -3297,7 +3298,7 @@ public:
            << "\n  NewChildren: " << NewChildren.size() << " (" << NewChildren.capacity() << ')'
            << "\n  OutstandingForks: " << TotalOutstandingForks
            << "\n  NumPreSpawnedChildren: " << LOOLWSD::NumPreSpawnedChildren
-           << "\n  ChildSpawnTimeoutMs: " << ChildSpawnTimeoutMs
+           << "\n  ChildSpawnTimeoutMs: " << ChildSpawnTimeoutMs.load()
            << "\n  Document Brokers: " << DocBrokers.size()
 #if !MOBILEAPP
            << "\n  of which ConvertTo: " << ConvertToBroker::getInstanceCount()
@@ -3659,7 +3660,7 @@ int LOOLWSD::innerMain()
         else
         {
             int retry = (LOOLWSD::NoCapsForKit ? 150 : 50);
-            const auto timeout = std::chrono::milliseconds(ChildSpawnTimeoutMs);
+            const auto timeout = ChildSpawnTimeoutMs.load();
             while (retry-- > 0 && !SigUtil::getShutdownRequestFlag())
             {
                 LOG_INF("Waiting for a new child for a max of " << timeout);
