@@ -22,6 +22,7 @@
 #include <atomic>
 #include <string>
 #include <map>
+#include <unordered_map>
 
 namespace ConfigUtil
 {
@@ -29,7 +30,8 @@ namespace ConfigUtil
 class AppConfigMap final : public Poco::Util::MapConfiguration
 {
 public:
-    AppConfigMap(const std::map<std::string, std::string>& map)
+    AppConfigMap() = default;
+    AppConfigMap(const std::unordered_map<std::string, std::string>& map)
     {
         for (const auto& pair : map)
         {
@@ -105,7 +107,7 @@ void initialize(const Poco::Util::AbstractConfiguration* config);
 bool isInitialized();
 
 /// Returns the default config.
-const std::map<std::string, std::string>& getDefaultAppConfig();
+const std::unordered_map<std::string, std::string>& getDefaultAppConfig();
 
 /// Extract all entries as key-value pairs. We use map to have the entries sorted.
 std::map<std::string, std::string> extractAll(const Poco::Util::AbstractConfiguration& config);
