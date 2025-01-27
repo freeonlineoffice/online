@@ -155,7 +155,7 @@ public:
         if (auto settingsJSON = wopiInfo->getObject("SharedSettings"))
         {
             JsonUtil::findJSONValue(settingsJSON, "uri", _uri);
-            _configId = Cache::getConfigId(_uri);
+            _configId = "shared-" + Cache::getConfigId(_uri);
 
             std::string stamp;
             JsonUtil::findJSONValue(settingsJSON, "stamp", stamp);
@@ -213,7 +213,8 @@ void RequestVettingStation::launchInstallPresets()
     // if this wopi server has some shared settings we want to have a subForKit for those settings
     std::string presetsPath = Poco::Path(LOOLWSD::ChildRoot, JailUtil::CHILDROOT_TMP_SHARED_PRESETS_PATH).toString();
     // ensure the server config is downloaded and populate a subforkit when config is available
-    DocumentBroker::asyncInstallPresets(*_poll, sharedSettings.getUri(), presetsPath, nullptr, finishedCallback);
+    DocumentBroker::asyncInstallPresets(*_poll, configId, sharedSettings.getUri(), presetsPath,
+                                        nullptr, finishedCallback);
 }
 
 #endif

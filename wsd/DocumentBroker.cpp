@@ -1473,7 +1473,8 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
         std::string jailPresetsPath = FileUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces,
                                                                      getJailRoot(),
                                                                      JAILED_CONFIG_ROOT);
-        asyncInstallPresets(session, userSettingsUri, jailPresetsPath);
+        std::string configId = "user-" + userId + "-" + Cache::getConfigId(userSettingsUri);
+        asyncInstallPresets(session, configId, userSettingsUri, jailPresetsPath);
     }
 
     // Pass the ownership to the client session.
@@ -1631,6 +1632,7 @@ public:
 };
 
 void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession>& session,
+                                         const std::string& configId,
                                          const std::string& userSettingsUri,
                                          const std::string& presetsPath)
 {
@@ -1669,7 +1671,8 @@ void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession>& s
             stop("configfailed");
         }
     };
-    _asyncInstallTask = asyncInstallPresets(*_poll, userSettingsUri, presetsPath, session, installFinishedCB);
+    _asyncInstallTask = asyncInstallPresets(*_poll, configId, userSettingsUri,
+                                            presetsPath, session, installFinishedCB);
     _asyncInstallTask->appendCallback([selfWeak = weak_from_this(), this](bool){
         std::shared_ptr<DocumentBroker> selfLifecycle = selfWeak.lock();
         if (!selfLifecycle)
@@ -1770,7 +1773,8 @@ struct PresetRequest
 };
 
 std::shared_ptr<PresetsInstallTask>
-DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSettingsUri,
+DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& configId,
+                                    const std::string& userSettingsUri,
                                     const std::string& presetsPath,
                                     const std::shared_ptr<ClientSession>& session,
                                     const std::function<void(bool)>& installFinishedCB)
@@ -1783,15 +1787,13 @@ DocumentBroker::asyncInstallPresets(SocketPoll& poll, const std::string& userSet
     const std::string uriAnonym = LOOLWSD::anonymizeUrl(userSettingsUri);
     LOG_DBG("Getting settings from [" << uriAnonym << ']');
 
-    std::string configId = Cache::getConfigId(userSettingsUri);
-
     auto presetTasks = std::make_shared<PresetsInstallTask>(poll, configId, presetsPath,
                                                             installFinishedCB);
 
     // When result arrives, extract uris of what we want to install to the jail's user presets
     // and async download and install those.
     http::Session::FinishedCallback finishedCallback =
-        [configId, uriAnonym, presetsPath, presetTasks,
+        [uriAnonym, presetsPath, presetTasks,
          session](const std::shared_ptr<http::Session>& configSession)
     {
         if (SigUtil::getShutdownRequestFlag())
