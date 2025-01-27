@@ -3787,20 +3787,14 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		this._sendClientVisibleArea();
 
-		app.socket.sendMessage(
-			'mouse type=' +
-				type +
-				' x=' +
-				x +
-				' y=' +
-				y +
-				' count=' +
-				count +
-				' buttons=' +
-				buttons +
-				' modifier=' +
-				modifier,
-		);
+		const verticalOffset = this.getFiledBasedViewVerticalOffset();
+		if (verticalOffset) {
+			y -= verticalOffset;
+		}
+
+		app.socket.sendMessage('mouse type=' + type +
+				' x=' + x + ' y=' + y + ' count=' + count +
+				' buttons=' + buttons + ' modifier=' + modifier);
 
 		if (type === 'buttondown') this._clearSearchResults();
 
@@ -3810,6 +3804,19 @@ L.CanvasTileLayer = L.Layer.extend({
 			(type === 'buttondown' || type === 'buttonup')
 		)
 			app.setFollowingUser(this._map._docLayer._getViewId());
+	},
+
+	// If viewing multi-page PDF files, get the twips offset of the current part. This is
+	// needed, because core has multiple draw pages in such a case, but we have just one canvas.
+	getFiledBasedViewVerticalOffset: function() {
+		if (!app.file.fileBasedView) {
+			return;
+		}
+
+		const additionPerPart = this._partHeightTwips + this._spaceBetweenParts;
+		const verticalOffset = additionPerPart * this._selectedPart;
+
+		return verticalOffset;
 	},
 
 	// Given a character code and a UNO keycode, send a "key" message to loolwsd.
