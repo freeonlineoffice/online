@@ -400,9 +400,7 @@ L.Control.UIManager = L.Control.extend({
 
 		this.map.on('changeuimode', this.onChangeUIMode, this);
 
-		if (typeof window.initializedUI === 'function') {
-			window.initializedUI();
-		}
+		this.refreshTheme();
 
 		var startPresentationGet = this.map.isPresentationOrDrawing() && window.loolParams.get('startPresentation');
 		// check for "presentation" dispatch event only after document gets fully loaded
@@ -1049,6 +1047,14 @@ L.Control.UIManager = L.Control.extend({
 			this.refreshNotebookbar();
 		else
 			this.refreshMenubar();
+
+		this.refreshTheme();
+	},
+
+	refreshTheme: function () {
+		if (typeof window.initializedUI === 'function') {
+			window.initializedUI();
+		}
 	},
 
 	onUpdateViews: function () {
