@@ -59,6 +59,10 @@ abstract class SlideCompositor {
 	public abstract getLayerRendererContext(): RenderContext;
 
 	public abstract deleteResources(): void;
+
+	public abstract pauseVideos(slideHash: string): void;
+
+	public abstract notifyTransitionEnd(slideHash: string): void;
 }
 
 SlideShow.SlideCompositor = SlideCompositor;

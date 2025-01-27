@@ -192,10 +192,12 @@ class ServerAuditDialog {
 
 	private countErrors(): number {
 		return (
-			(app.serverAudit?.filter((entry: AuditEntry) => entry.status !== 'ok')
-				.length ?? 0) +
-			(app.clientAudit?.filter((entry: AuditEntry) => entry.status !== 'ok')
-				.length ?? 0)
+			(app.serverAudit?.filter(
+				(entry: AuditEntry) => entry.status !== 'ok',
+			).length ?? 0) +
+			(app.clientAudit?.filter(
+				(entry: AuditEntry) => entry.status !== 'ok',
+			).length ?? 0)
 		);
 	}
 
@@ -247,7 +249,9 @@ class ServerAuditDialog {
 									text:
 										countErrors === 1
 											? _('1 issue found')
-											: _('%COUNT% issues found').replaceAll(
+											: _(
+													'%COUNT% issues found',
+												).replaceAll(
 													'%COUNT%',
 													countErrors,
 												),
