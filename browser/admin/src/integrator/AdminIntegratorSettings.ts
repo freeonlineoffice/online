@@ -77,7 +77,7 @@ function createConfigSection(config: SectionConfig): HTMLDivElement {
 	const sectionEl = document.createElement('div');
 	sectionEl.classList.add('section');
 
-	const headingEl = document.createElement('h3');
+	const DdingEl = document.createElement('h3');
 	headingEl.textContent = config.sectionTitle;
 
 	const ulEl = document.createElement('ul');
@@ -429,8 +429,7 @@ function populateList(
 					);
 				}
 
-				// On success - remove li
-				listEl.removeChild(li);
+				await fetchAndPopulateSharedConfigs();
 			} catch (error: unknown) {
 				console.error('Error deleting file:', error);
 			}
@@ -450,20 +449,27 @@ function populateSharedConfigUI(data: ConfigData): void {
 		populateList('autotextList', data.autotext, '/autotext');
 	if (data.wordbook)
 		populateList('wordbookList', data.wordbook, '/wordbook');
-	if (data.browsersetting && data.browsersetting.length > 0) {
-		const button = document.getElementById(
-			'uploadBrowserSettingsButton',
-		) as HTMLButtonElement | null;
-		if (button) {
-			button.disabled = true;
-		}
 
+	const browserSettingButton = document.getElementById(
+		'uploadBrowserSettingsButton',
+	) as HTMLButtonElement | null;
+
+	if (!browserSettingButton) {
+		console.error('Something went wrong');
+		return;
+	}
+
+	if (data.browsersetting && data.browsersetting.length > 0) {
+		browserSettingButton.style.display = 'none';
+	} else {
+		browserSettingButton.style.removeProperty('display');
+	}
+	if (data.browsersetting)
 		populateList(
 			'BrowserSettingsList',
 			data.browsersetting,
 			'/browsersetting',
 		);
-	}
 }
 
 document.addEventListener('DOMContentLoaded', init);
