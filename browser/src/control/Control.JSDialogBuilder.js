@@ -2337,10 +2337,12 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					if (state && state === 'true') {
 						$(button).addClass('selected');
 						$(div).addClass('selected');
+						button.setAttribute('aria-pressed', true);
 					}
 					else {
 						$(button).removeClass('selected');
 						$(div).removeClass('selected');
+						button.setAttribute('aria-pressed', false);
 					}
 
 					if (disabled)
@@ -2370,11 +2372,13 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			var selectFn = function() {
 				L.DomUtil.addClass(button, 'selected');
 				L.DomUtil.addClass(div, 'selected');
+				button.setAttribute('aria-pressed', true);
 			};
 
 			var unSelectFn = function() {
 				L.DomUtil.removeClass(button, 'selected');
 				L.DomUtil.removeClass(div, 'selected');
+				button.setAttribute('aria-pressed', false);
 			};
 
 			div.onSelect = selectFn;
