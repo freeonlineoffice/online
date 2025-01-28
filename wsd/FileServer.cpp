@@ -741,7 +741,6 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             std::string filePath;
             for (const auto& param : params)
             {
-                // TODO: replace fileId with filePath
                 if (param.first == "fileId")
                     filePath = param.second;
             }
@@ -990,10 +989,6 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 
                 if (!LOOLWSD::AdminEnabled)
                     throw Poco::FileAccessDeniedException("Admin console disabled");
-
-                // TODO: Do we need to make sure admin is authenticated for JS files ?
-                // if (!FileServerRequestHandler::isAdminLoggedIn(request, response))
-                //     throw Poco::Net::NotAuthenticatedException("Invalid admin login");
 
                 // Ask UAs to block if they detect any XSS attempt
                 response.add("X-XSS-Protection", "1; mode=block");
@@ -2267,11 +2262,8 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
     csp.appendDirective("frame-src", "'self'");
     csp.appendDirective("frame-src", "blob:"); // Equivalent to unsafe-eval!
     csp.appendDirective("connect-src", "'self'");
-    // TODO: we have inline script tag and css in admin panel. can't have following CSPs
-    // csp.appendDirective("default-src", "'none'");
-    // csp.appendDirective("script-src", "'self'");
-    // csp.appendDirective("script-src", "'unsafe-eval'");
-    // csp.appendDirective("style-src", "'self'");
+    csp.appendDirective("script-src", "'self'");
+    csp.appendDirective("script-src", "'unsafe-eval'");
     csp.appendDirective("font-src", "'self'");
     csp.appendDirective("object-src", "'self'");
     csp.appendDirective("media-src", "'self'");
