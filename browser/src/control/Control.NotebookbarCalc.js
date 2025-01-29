@@ -3,7 +3,7 @@
  * L.Control.NotebookbarCalc
  */
 
-/* global _ _UNO app */
+/* global _ _UNO */
 L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 
 	getTabs: function() {
@@ -2008,13 +2008,13 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:ParagraphDialog',
 				'accessibility': { focusBack: true,	combination: 'PD', de: null }
 			},
-			app.isExperimentalMode() ? {
+			{
 				'id': 'format-style-dialog',
 				'type': 'bigtoolitem',
 				'text': _('Style list'),
 				'command': '.uno:SidebarDeck.StyleListDeck',
 				'accessibility': { focusBack: false, combination: 'SD', de: null }
-			} : {},
+			},
 			{
 				'id': 'format-page-format-dialog',
 				'type': 'bigtoolitem',
