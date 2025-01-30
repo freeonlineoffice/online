@@ -2028,7 +2028,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     sharedUri.addQueryParameter("fileId", "-1");
     sharedUri.addQueryParameter("type", type);
 
-    const std::string& uriAnonym = COOLWSD::anonymizeUrl(sharedUri.toString());
+    const std::string& uriAnonym = LOOLWSD::anonymizeUrl(sharedUri.toString());
 
     Authorization auth(Authorization::Type::Token, accessToken);
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
@@ -2065,7 +2065,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     LOG_DBG("Fetching wopi setting config from WopiHost[" << uriAnonym << ']');
     auto httpSession = StorageConnectionManager::getHttpSession(sharedUri);
     httpSession->setFinishedHandler(std::move(finishedCallback));
-    httpSession->asyncRequest(httpRequest, *COOLWSD::getWebServerPoll());
+    httpSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
 }
 
 void FileServerRequestHandler::deleteWopiSettingConfigs(
@@ -2089,7 +2089,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     Poco::URI sharedUri(sharedConfigUrl);
     sharedUri.addQueryParameter("access_token", accessToken);
     sharedUri.addQueryParameter("fileId", fileId);
-    const std::string& uriAnonym = COOLWSD::anonymizeUrl(sharedUri.toString());
+    const std::string& uriAnonym =LOOLWSD::anonymizeUrl(sharedUri.toString());
 
     Authorization auth(Authorization::Type::Token, accessToken);
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
@@ -2132,7 +2132,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
 
     LOG_DBG("Deleting presetfile with fileId[" << fileId << "] from WopiHost[" << uriAnonym << ']');
     httpSession->setFinishedHandler(std::move(finishedCallback));
-    httpSession->asyncRequest(httpRequest, *COOLWSD::getWebServerPoll());
+    httpSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
 }
 
 void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPRequest& request,
@@ -2173,7 +2173,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     const std::string& fileId = filePath + fileName;
     wopiUri.addQueryParameter("fileId", fileId);
     wopiUri.addQueryParameter("access_token", token);
-    const std::string& uriAnonym = COOLWSD::anonymizeUrl(wopiUri.toString());
+    const std::string& uriAnonym = LOOLWSD::anonymizeUrl(wopiUri.toString());
 
     Authorization auth(Authorization::Type::Token, token);
     auto httpRequest = StorageConnectionManager::createHttpRequest(wopiUri, auth);
@@ -2208,7 +2208,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
 
     LOG_DBG("Uploading presetfile[" << fileName << "] to wopiHost[" << uriAnonym << ']');
     httpSession->setFinishedHandler(std::move(finishedCallback));
-    httpSession->asyncRequest(httpRequest, *COOLWSD::getWebServerPoll());
+    httpSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
 }
 
 void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& request,
