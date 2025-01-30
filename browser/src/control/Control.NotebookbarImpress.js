@@ -536,6 +536,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-undoredo-break', orientation: 'vertical' },
 			{
 				'id': 'home-paste:PasteMenu',
 				'type': 'menubutton',
@@ -588,6 +589,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-resertattributes-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -716,6 +718,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-fontcombobox-break', orientation: 'vertical' },
 			{
 				'id': 'home-insert-annotation',
 				'type': 'bigtoolitem',
@@ -723,6 +726,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:InsertAnnotation',
 				'accessibility': { focusBack: false, combination: 'ZC', de: 'ZC' }
 			},
+			{ type: 'separator', id: 'home-insertannotation-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -830,6 +834,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-linespacingmenu-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -891,6 +896,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-fillcolormenu-break', orientation: 'vertical' },
 			{
 				'id': 'home-text',
 				'type': 'bigtoolitem',
@@ -898,6 +904,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:Text',
 				'accessibility': { focusBack: true, combination: 'TI', de: null }
 			},
+			{ type: 'separator', id: 'home-inserttext-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -985,6 +992,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-insertobjectchart-break', orientation: 'vertical' },
 			{
 				'id': 'home-presentation',
 				'class': 'unoPresentation',
@@ -993,6 +1001,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': 'presentation',
 				'accessibility': { focusBack: true, combination: 'PT', de: null }
 			},
+			{ type: 'separator', id: 'home-presentation-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
