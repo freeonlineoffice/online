@@ -1415,9 +1415,10 @@ void ClientSession::overrideDocOption()
         return;
     }
 
-    std::string spellOnline, darkTheme, darkBackgroundForTheme;
+    std::string spellOnline, darkTheme, darkBackgroundForTheme, accessibilityState;
     JsonUtil::findJSONValue(_browserSettingsJSON, "spellOnline", spellOnline);
     JsonUtil::findJSONValue(_browserSettingsJSON, "darkTheme", darkTheme);
+    JsonUtil::findJSONValue(_browserSettingsJSON, "accessibilityState", accessibilityState);
     Poco::JSON::Object::Ptr darkBackgroundObj =
         _browserSettingsJSON->getObject("darkBackgroundForTheme");
     if (!darkBackgroundObj.isNull())
@@ -1443,6 +1444,12 @@ void ClientSession::overrideDocOption()
     {
         setSpellOnline(spellOnline);
         LOG_DBG("Overriding parsed docOption spellOnline[" << spellOnline << ']');
+    }
+
+    if (!accessibilityState.empty())
+    {
+        setAccessibilityState(accessibilityState == "true" ? true : false);
+        LOG_DBG("Overriding parsed docOption accessibilityState[" << accessibilityState << ']');
     }
 }
 

@@ -296,6 +296,8 @@ public:
 
     bool getAccessibilityState() const { return _accessibilityState; }
 
+    void setAccessibilityState(bool val) { _accessibilityState = val; }
+
     void disableSpellCheckIfReadOnly();
 
 protected:
