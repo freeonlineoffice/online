@@ -212,7 +212,7 @@ class AboutDialog {
 		if (e.key === 'd') {
 			this.map._debug.toggle();
 		} else if (e.key === 'l') {
-			// L toggges the Online logging level between the default (whatever
+			// L toggles the Online logging level between the default (whatever
 			// is set in loolwsd.xml or on the loolwsd command line) and the
 			// most verbose a client is allowed to set (which also can be set in
 			// loolwsd.xml or on the loolwsd command line).

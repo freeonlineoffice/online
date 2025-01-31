@@ -27,6 +27,33 @@
 class Document;
 class ChildSession;
 
+struct LogUiCommandsLine {
+    std::chrono::steady_clock::time_point _timeStart;
+    std::chrono::steady_clock::time_point _timeEnd;
+    int _repeat = 0;
+    int _undoChange = 0;
+    std::string _cmd;
+    std::string _subCmd;
+};
+
+class LogUiCommands {
+public:
+    ChildSession* _session;
+    int _lastUndoCount = 0;
+    const StringVector* _tokens;
+    LogUiCommands(ChildSession* session, const StringVector* tokens) : _session(session),_tokens(tokens) {}
+    ~LogUiCommands();
+private:
+    // list the commands to log here.
+    std::set<std::string> _cmdToLog = {
+        "uno", "key", "mouse", "textinput", "removetextcontext",
+        "paste", "insertfile", "dialogevent" };
+    // list the the uno commands here, that are not to log. It will search these strings as a prefixes
+    std::set<std::string> _unoCmdToNotLog = {
+        ".uno:SidebarShow", ".uno:ToolbarMode" };
+    void logLine(LogUiCommandsLine &line, bool isUndoChange=false);
+};
+
 enum class LokEventTargetEnum
 {
     Document,

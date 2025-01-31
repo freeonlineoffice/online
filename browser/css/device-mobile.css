@@ -577,7 +577,7 @@ textarea.lool-annotation-textarea {
 #mobile-wizard.popup #busylabel {
 	border-bottom: none !important;
 	font-size: 100% !important;
-	/* inherits margin top and bototm from jsdialogs.css */
+	/* inherits margin top and bottom from jsdialogs.css */
 	margin-inline: 2px !important;
 }
 
@@ -612,7 +612,7 @@ textarea.lool-annotation-textarea {
 	margin-bottom: 24px;
 }
 
-/* Feeback dialog */
+/* Feedback dialog */
 .iframe-dialog-wrap {
 	left: 0;
 	top: 0;
@@ -624,7 +624,7 @@ textarea.lool-annotation-textarea {
 .iframe-dialog-modal {
 	position: absolute;
 	width: 100%;
-	height: 564px; /* incrase height to account for stacked buttons*/
+	height: 564px; /* increase height to account for stacked buttons*/
 	bottom: 0;
 }
 @media only screen and (max-height: 500px) {
@@ -660,7 +660,7 @@ textarea.lool-annotation-textarea {
 	flex-direction: column;
 }
 
-/* hide not usefull style options on mobile */
+/* hide not useful style options on mobile */
 div#fontstyletoolbox + div#style.mobile-wizard {
 	display: none !important;
 }

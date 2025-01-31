@@ -1802,7 +1802,7 @@ class CanvasSectionContainer {
 		this.context.setTransform(1, 0, 0, 1, 0, 0);
 
 		var subsetBounds: lool.Bounds = null;
-		// if there is a tileSubset we only want to draw the miniumum region of its bounds
+		// if there is a tileSubset we only want to draw the minimum region of its bounds
 		if (tileSubset) {
 			const tileSection: lool.TilesSection = (this.getSectionWithName(L.CSections.Tiles.name) as any) as lool.TilesSection;
 			if (tileSection && this.shouldDrawSection((tileSection as any) as CanvasSectionObject)) {

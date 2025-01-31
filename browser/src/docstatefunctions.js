@@ -174,17 +174,17 @@ app.updateFollowingUsers = function () {
 	}
 };
 
-app.showAsyncDownloadError = function (response, initalMsg) {
+app.showAsyncDownloadError = function (response, initialMsg) {
 	const reader = new FileReader();
 	const timeout = 10000;
 	reader.onload = function () {
 		if (reader.result === 'wrong server') {
-			initalMsg += _(
+			initialMsg += _(
 				', cluster configuration error: mis-matching serverid',
 			);
-			app.map.uiManager.showSnackbar(initalMsg, '', null, timeout);
+			app.map.uiManager.showSnackbar(initialMsg, '', null, timeout);
 		} else {
-			app.map.uiManager.showSnackbar(initalMsg, '', null, timeout);
+			app.map.uiManager.showSnackbar(initialMsg, '', null, timeout);
 		}
 	};
 	reader.readAsText(response);

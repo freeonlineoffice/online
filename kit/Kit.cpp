@@ -1014,7 +1014,7 @@ void Document::trimIfInactive()
             return;
         }
     }
-    // TODO: be more clever - detect if we mutated the documen
+    // TODO: be more clever - detect if we mutated the document
     // recently, measure memory pressure etc.
     LOG_DBG("Sessions are all inactive - trim memory");
     SigUtil::addActivity("trimIfInactive");
@@ -1250,7 +1250,7 @@ void Document::onUnload(const ChildSession& session)
     // If we have no more sessions, we have nothing more to do.
     if (!Util::isMobileApp() && _sessions.empty())
     {
-        // Sanitiy check.
+        // Sanity check.
         std::ostringstream msg;
         const int views = _loKitDocument->getViewsCount();
         if (views > 1 || isBackgroundSaveProcess())
@@ -3798,7 +3798,7 @@ void consistencyCheckJail()
         if (failedTmp || failedLo || failedUser)
         {
             LOG_ERR("A fatal system error indicates that, outside the control of LOOL "
-                    "major structural changes have occured in our filesystem. These are "
+                    "major structural changes have occurred in our filesystem. These are "
                     "potentially indicative of an operator damaging the system, and will "
                     "inevitably cause document data-loss and/or malfunction.");
             warned = true;
@@ -3810,7 +3810,7 @@ void consistencyCheckJail()
     }
 }
 
-/// Fetch the latest montonically incrementing wire-id
+/// Fetch the latest monotonically incrementing wire-id
 TileWireId getCurrentWireId(bool increment)
 {
     return RenderTiles::getCurrentWireId(increment);

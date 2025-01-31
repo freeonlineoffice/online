@@ -787,7 +787,7 @@ int forkit_main(int argc, char** argv)
     // * the user is 'lool' (privileged user)
     // * the user is 'root', and --disable-lool-user-checking was provided
     // Alternatively allow running in non-privileged mode (with --nocaps), if:
-    // * the user is a non-priviled user, the binary is not privileged
+    // * the user is a non-privileged user, the binary is not privileged
     //   either (no caps set), and --disable-lool-user-checking was provided
 
     Util::sleepFromEnvIfSet("Forkit", "SLEEPFORDEBUGGER");

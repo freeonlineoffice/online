@@ -2451,7 +2451,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 		$(controls.button).on('click', clickFunction);
 		$(controls.label).on('click', clickFunction);
-		// We need a way to also handle the cutom tooltip for any tool button like save in shortcut bar
+		// We need a way to also handle the custom tooltip for any tool button like save in shortcut bar
 		if (data.isCustomTooltip) {
 			this._handleCutomTooltip(div, builder);
 		}

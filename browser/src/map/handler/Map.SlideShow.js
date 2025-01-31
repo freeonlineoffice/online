@@ -134,6 +134,15 @@ L.Map.SlideShow = L.Handler.extend({
 		}
 	},
 
+	_stopFullScreen: function () {
+		L.DomUtil.remove(this._slideShow);
+		this._slideShow = null;
+		// #7102 on exit from fullscreen we don't get a 'focus' event
+		// in Chrome so a later second attempt at launching a presentation
+		// fails
+		this._map.focus();
+	},
+
 	_onSlideDownloadReady: function (e) {
 		if ('processLoolUrl' in window) {
 			e.url = window.processLoolUrl({ url: e.url, type: 'slideshow' });
