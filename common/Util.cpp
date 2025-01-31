@@ -621,15 +621,6 @@ namespace Util
         return ss.str();
     }
 
-    bool isFuzzing()
-    {
-#if LIBFUZZER
-        return true;
-#else
-        return false;
-#endif
-    }
-
     std::map<std::string, std::string> stringVectorToMap(const std::vector<std::string>& strvector, const char delimiter)
     {
         std::map<std::string, std::string> result;
