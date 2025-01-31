@@ -287,6 +287,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-undoredo-break', orientation: 'vertical' },
 			{
 				'id': 'home-paste:PasteMenu',
 				'type': 'menubutton',
@@ -338,6 +339,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-resertattributes-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Format',
 				'type': 'container',
@@ -469,6 +471,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-fontcombobox-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Align',
 				'type': 'container',
@@ -586,6 +589,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-pararighttoleft-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Number',
 				'type': 'container',
@@ -669,6 +673,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-numberformatdecrementdecimals-break', orientation: 'vertical' },
 			{
 				'id': 'home-merge-cells',
 				'type': 'bigtoolitem',
@@ -676,6 +681,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:ToggleMergeCells',
 				'accessibility': { focusBack: true,	combination: 'M', de: null }
 			},
+			{ type: 'separator', id: 'home-mergecells-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Cell1',
 				'type': 'container',
@@ -749,6 +755,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-columnoperations-break', orientation: 'vertical' },
 			{
 				'id': 'home-conditional-format-menu:ConditionalFormatMenu',
 				'type': 'menubutton',
@@ -756,6 +763,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:ConditionalFormatMenu',
 				'accessibility': { focusBack: true,	combination: 'L', de: null }
 			},
+			{ type: 'separator', id: 'home-conditionalformatmenu-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Style2',
 				'type': 'container',
@@ -817,6 +825,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-styleapplybad-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -847,6 +856,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 					],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'home-replace-break', orientation: 'vertical' },
 			{
 				'id': 'Home-Section-Find',
 				'type': 'container',
