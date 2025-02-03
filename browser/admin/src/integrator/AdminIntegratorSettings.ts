@@ -79,7 +79,7 @@ function createConfigSection(config: SectionConfig): HTMLDivElement {
 	const sectionEl = document.createElement('div');
 	sectionEl.classList.add('section');
 
-	const DdingEl = document.createElement('h3');
+	const headingEl = document.createElement('h3');
 	headingEl.textContent = config.sectionTitle;
 
 	const ulEl = document.createElement('ul');
