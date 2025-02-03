@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-25 20:04+0100\n"
+"POT-Creation-Date: 2025-02-03 12:11+0100\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
@@ -145,7 +145,7 @@ msgid "Network Graph"
 msgstr "Grafik Jaringan"
 
 #: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:511
-#: src/canvas/sections/CommentSection.ts:159
+#: src/canvas/sections/CommentSection.ts:157
 #: src/control/Control.Notebookbar.js:262
 #: src/control/Control.NotebookbarCalc.js:102
 #: src/control/Control.NotebookbarDraw.js:19
@@ -237,8 +237,8 @@ msgstr "Aras Log"
 #: admin/admin.strings.js:55 src/canvas/sections/CommentListSection.ts:162
 #: src/control/Control.AlertDialog.js:23 src/control/Control.AlertDialog.js:29
 #: src/control/Control.AlertDialog.js:92 src/control/Control.AlertDialog.js:99
-#: src/control/Control.Zotero.js:179 src/core/Socket.js:418
-#: src/core/Socket.js:1189 src/core/Socket.js:1194
+#: src/control/Control.Zotero.js:179 src/core/Socket.js:419
+#: src/core/Socket.js:1190 src/core/Socket.js:1195
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Tutup"
@@ -308,12 +308,12 @@ msgstr ""
 #: src/control/Parts.js:482 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:722 src/control/Toolbar.js:819
-#: src/core/Socket.js:695 src/core/Socket.js:1159 src/core/Socket.js:1229
-#: src/core/Socket.js:1380 src/core/Socket.js:1384 src/docdispatcher.ts:526
+#: src/core/Socket.js:696 src/core/Socket.js:1160 src/core/Socket.js:1230
+#: src/core/Socket.js:1381 src/core/Socket.js:1385 src/docdispatcher.ts:526
 #: src/main.js:83 src/main.js:86 src/main.js:139 src/map/Clipboard.js:1260
 #: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:56
-#: src/map/handler/Map.SlideShow.js:160 src/map/handler/Map.SlideShow.js:288
-#: src/map/handler/Map.SlideShow.js:299 src/map/handler/Map.WOPI.js:673
+#: src/map/handler/Map.SlideShow.js:169 src/map/handler/Map.SlideShow.js:297
+#: src/map/handler/Map.SlideShow.js:308 src/map/handler/Map.WOPI.js:673
 #: src/slideshow/SlideShowPresenter.ts:686
 #: src/slideshow/SlideShowPresenter.ts:701
 #: src/slideshow/SlideShowPresenter.ts:716
@@ -324,14 +324,14 @@ msgstr "OK"
 #: admin/src/AdminClusterOverview.js:551 admin/src/AdminSocketOverview.js:100
 #: admin/src/AdminSocketOverview.js:423 admin/src/AdminSocketSettings.js:37
 #: src/canvas/sections/CommentListSection.ts:506
-#: src/canvas/sections/CommentSection.ts:158
-#: src/canvas/sections/CommentSection.ts:161
+#: src/canvas/sections/CommentSection.ts:156
+#: src/canvas/sections/CommentSection.ts:159
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1303 src/control/Control.UIManager.js:1370
-#: src/control/Control.UIManager.js:1505 src/control/Control.UIManager.js:1664
+#: src/control/Control.UIManager.js:1309 src/control/Control.UIManager.js:1376
+#: src/control/Control.UIManager.js:1511 src/control/Control.UIManager.js:1670
 #: src/control/Control.Zotero.js:320 src/control/Toolbar.js:814
 msgid "Cancel"
 msgstr "Batal"
@@ -416,15 +416,15 @@ msgstr " menit"
 msgid " s"
 msgstr " d"
 
-#: js/global.js:1474
+#: js/global.js:1475
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1476
+#: js/global.js:1477
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1478
+#: js/global.js:1479
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
@@ -441,7 +441,7 @@ msgid "Modify"
 msgstr "Ubah"
 
 #: src/canvas/sections/CommentListSection.ts:1168
-#: src/canvas/sections/CommentSection.ts:162
+#: src/canvas/sections/CommentSection.ts:160
 msgid "Reply"
 msgstr "Balas"
 
@@ -478,13 +478,13 @@ msgid "Show on the side"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1204
-msgid "Show comment bigger"
+msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1232
 #: src/control/Control.JSDialogBuilder.js:1883
-#: src/layer/tile/CanvasTileLayer.js:4843
-#: src/layer/tile/CanvasTileLayer.js:4858
+#: src/layer/tile/CanvasTileLayer.js:4859
+#: src/layer/tile/CanvasTileLayer.js:4874
 msgid "Comment"
 msgstr "Komentar"
 
@@ -521,21 +521,21 @@ msgstr ""
 msgid "Another user has updated comments. Would you like to proceed updating?"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:304
+#: src/canvas/sections/CommentSection.ts:303
 msgid "Open menu"
 msgstr "Buka Menu"
 
+#: src/canvas/sections/CommentSection.ts:364
 #: src/canvas/sections/CommentSection.ts:365
-#: src/canvas/sections/CommentSection.ts:366
 msgid "Accept change"
 msgstr "Terima Perubahan"
 
+#: src/canvas/sections/CommentSection.ts:371
 #: src/canvas/sections/CommentSection.ts:372
-#: src/canvas/sections/CommentSection.ts:373
 msgid "Reject change"
 msgstr "Tolak Perubahan"
 
-#: src/canvas/sections/CommentSection.ts:396
+#: src/canvas/sections/CommentSection.ts:395
 msgid "Resolved"
 msgstr "Terselesaikan"
 
@@ -992,10 +992,10 @@ msgstr "Perbaiki"
 #: src/control/Control.Menubar.js:438 src/control/Control.Menubar.js:444
 #: src/control/Control.Menubar.js:598 src/control/Control.Menubar.js:604
 #: src/control/Control.Menubar.js:744 src/control/Control.Menubar.js:750
-#: src/control/Control.NotebookbarCalc.js:1170
+#: src/control/Control.NotebookbarCalc.js:1180
 #: src/control/Control.NotebookbarDraw.js:339
 #: src/control/Control.NotebookbarImpress.js:379
-#: src/control/Control.NotebookbarWriter.js:1430
+#: src/control/Control.NotebookbarWriter.js:1436
 #: src/control/Control.StatusBar.js:271
 msgid "Reset zoom"
 msgstr "Atur ulang zum"
@@ -1023,10 +1023,10 @@ msgstr ""
 #: src/control/Control.Menubar.js:611 src/control/Control.Menubar.js:756
 #: src/control/Control.Menubar.js:1033 src/control/Control.Menubar.js:1086
 #: src/control/Control.Menubar.js:1147 src/control/Control.Menubar.js:1207
-#: src/control/Control.NotebookbarCalc.js:1244
+#: src/control/Control.NotebookbarCalc.js:1254
 #: src/control/Control.NotebookbarDraw.js:439
 #: src/control/Control.NotebookbarImpress.js:494
-#: src/control/Control.NotebookbarWriter.js:1510
+#: src/control/Control.NotebookbarWriter.js:1516
 msgid "Dark Mode"
 msgstr ""
 
@@ -1034,10 +1034,10 @@ msgstr ""
 #: src/control/Control.Menubar.js:612 src/control/Control.Menubar.js:757
 #: src/control/Control.Menubar.js:1034 src/control/Control.Menubar.js:1087
 #: src/control/Control.Menubar.js:1148 src/control/Control.Menubar.js:1208
-#: src/control/Control.NotebookbarCalc.js:1251
+#: src/control/Control.NotebookbarCalc.js:1261
 #: src/control/Control.NotebookbarDraw.js:446
 #: src/control/Control.NotebookbarImpress.js:501
-#: src/control/Control.NotebookbarWriter.js:1517
+#: src/control/Control.NotebookbarWriter.js:1523
 msgid "Invert Background"
 msgstr ""
 
@@ -1055,10 +1055,10 @@ msgstr "Semua"
 
 #: src/control/Control.Menubar.js:183 src/control/Control.Menubar.js:478
 #: src/control/Control.Menubar.js:626 src/control/Control.Menubar.js:781
-#: src/control/Control.NotebookbarCalc.js:1375
+#: src/control/Control.NotebookbarCalc.js:1385
 #: src/control/Control.NotebookbarDraw.js:1267
-#: src/control/Control.NotebookbarImpress.js:1267
-#: src/control/Control.NotebookbarWriter.js:1113
+#: src/control/Control.NotebookbarImpress.js:1239
+#: src/control/Control.NotebookbarWriter.js:1119
 msgid "Smart Picker"
 msgstr ""
 
@@ -1078,38 +1078,38 @@ msgid "References"
 msgstr "~Acuan"
 
 #: src/control/Control.Menubar.js:293
-#: src/control/Control.NotebookbarWriter.js:1877
+#: src/control/Control.NotebookbarWriter.js:1883
 msgid "Update Index"
 msgstr ""
 
 #: src/control/Control.Menubar.js:302
-#: src/control/Control.NotebookbarWriter.js:1973
+#: src/control/Control.NotebookbarWriter.js:1979
 msgid "Add Citation"
 msgstr ""
 
 #: src/control/Control.Menubar.js:303
-#: src/control/Control.NotebookbarWriter.js:1985
+#: src/control/Control.NotebookbarWriter.js:1991
 msgid "Add Citation Note"
 msgstr ""
 
 #: src/control/Control.Menubar.js:304
-#: src/control/Control.NotebookbarWriter.js:1960
+#: src/control/Control.NotebookbarWriter.js:1966
 msgid "Add Bibliography"
 msgstr ""
 
 #: src/control/Control.Menubar.js:306
-#: src/control/Control.NotebookbarWriter.js:2003
+#: src/control/Control.NotebookbarWriter.js:2009
 msgid "Refresh Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:307
-#: src/control/Control.NotebookbarWriter.js:2015
+#: src/control/Control.NotebookbarWriter.js:2021
 #: src/control/Control.Zotero.js:1435
 msgid "Unlink Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.js:308
-#: src/control/Control.NotebookbarWriter.js:2027
+#: src/control/Control.NotebookbarWriter.js:2033
 msgid "Citation Preferences"
 msgstr ""
 
@@ -1139,7 +1139,7 @@ msgstr "Sisip Tabel"
 #: src/control/Control.NotebookbarDraw.js:280
 #: src/control/Control.NotebookbarImpress.js:299
 #: src/control/Control.NotebookbarWriter.js:299
-#: src/control/Control.NotebookbarWriter.js:1393
+#: src/control/Control.NotebookbarWriter.js:1399
 msgid "Properties"
 msgstr ""
 
@@ -1423,10 +1423,10 @@ msgstr ""
 #: src/control/Control.Menubar.js:987 src/control/Control.Menubar.js:1053
 #: src/control/Control.Menubar.js:1118 src/control/Control.Menubar.js:1173
 #: src/control/Control.MobileSearchBar.ts:30
-#: src/control/Control.NotebookbarCalc.js:830
+#: src/control/Control.NotebookbarCalc.js:839
 #: src/control/Control.NotebookbarDraw.js:979
-#: src/control/Control.NotebookbarImpress.js:1043
-#: src/control/Control.NotebookbarWriter.js:878
+#: src/control/Control.NotebookbarImpress.js:1015
+#: src/control/Control.NotebookbarWriter.js:884
 #: src/control/Control.StatusBar.js:244 src/control/Control.Zotero.js:208
 #: src/control/Toolbar.js:573
 msgid "Search"
@@ -1478,7 +1478,7 @@ msgstr ""
 msgid "Finish electronic signing"
 msgstr ""
 
-#: src/control/Control.Menubar.js:2194
+#: src/control/Control.Menubar.js:2199
 msgid "file type icon"
 msgstr "ikon jenis berkas"
 
@@ -1658,157 +1658,164 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:597
+#: src/control/Control.NotebookbarCalc.js:601
 msgid "General"
 msgstr "Umum"
 
-#: src/control/Control.NotebookbarCalc.js:598
+#: src/control/Control.NotebookbarCalc.js:602
 msgid "Number"
 msgstr "Nomor"
 
-#: src/control/Control.NotebookbarCalc.js:599
+#: src/control/Control.NotebookbarCalc.js:603
 msgid "Percent"
 msgstr "Persen"
 
-#: src/control/Control.NotebookbarCalc.js:600
+#: src/control/Control.NotebookbarCalc.js:604
 msgid "Currency"
 msgstr "Mata uang"
 
-#: src/control/Control.NotebookbarCalc.js:601
-#: src/control/Control.NotebookbarWriter.js:1386
+#: src/control/Control.NotebookbarCalc.js:605
+#: src/control/Control.NotebookbarWriter.js:1392
 #: src/control/Control.Zotero.js:1070 src/control/Control.Zotero.js:1508
 msgid "Date"
 msgstr "Tanggal"
 
-#: src/control/Control.NotebookbarCalc.js:602
+#: src/control/Control.NotebookbarCalc.js:606
 msgid "Time"
 msgstr "Waktu"
 
-#: src/control/Control.NotebookbarCalc.js:603
+#: src/control/Control.NotebookbarCalc.js:607
 msgid "Scientific"
 msgstr "Ilmiah"
 
-#: src/control/Control.NotebookbarCalc.js:604
+#: src/control/Control.NotebookbarCalc.js:608
 msgid "Fraction"
 msgstr "Pecahan"
 
-#: src/control/Control.NotebookbarCalc.js:605
+#: src/control/Control.NotebookbarCalc.js:609
 msgid "Boolean Value"
 msgstr "Nilai Boolean"
 
-#: src/control/Control.NotebookbarCalc.js:606 src/control/Toolbar.js:786
+#: src/control/Control.NotebookbarCalc.js:610 src/control/Toolbar.js:786
 msgid "Text"
 msgstr "Teks"
 
-#: src/control/Control.NotebookbarCalc.js:770
+#: src/control/Control.NotebookbarCalc.js:778
 msgid "Default"
 msgstr "Baku"
 
-#: src/control/Control.NotebookbarCalc.js:777
+#: src/control/Control.NotebookbarCalc.js:785
 msgid "Heading 1"
 msgstr "Tajuk 1"
 
-#: src/control/Control.NotebookbarCalc.js:784
+#: src/control/Control.NotebookbarCalc.js:792
 msgid "Heading 2"
 msgstr "Tajuk 2"
 
-#: src/control/Control.NotebookbarCalc.js:797
+#: src/control/Control.NotebookbarCalc.js:805
 msgid "Good"
 msgstr "Baik"
 
-#: src/control/Control.NotebookbarCalc.js:804
+#: src/control/Control.NotebookbarCalc.js:812
 msgid "Neutral"
 msgstr "Netral"
 
-#: src/control/Control.NotebookbarCalc.js:811
+#: src/control/Control.NotebookbarCalc.js:819
 msgid "Bad"
 msgstr "Buruk"
 
-#: src/control/Control.NotebookbarCalc.js:916
+#: src/control/Control.NotebookbarCalc.js:850
+#: src/control/Control.NotebookbarDraw.js:990
+#: src/control/Control.NotebookbarImpress.js:1026
+#: src/control/Control.NotebookbarWriter.js:895
+msgid "Replace"
+msgstr ""
+
+#: src/control/Control.NotebookbarCalc.js:926
 msgid "Row Height"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:924
+#: src/control/Control.NotebookbarCalc.js:934
 msgid "Column Width"
 msgstr "Lebar Kolom"
 
-#: src/control/Control.NotebookbarCalc.js:937
+#: src/control/Control.NotebookbarCalc.js:947
 msgid "Insert Rows Above"
 msgstr "Sisipkan Baris Di Atas"
 
-#: src/control/Control.NotebookbarCalc.js:944
+#: src/control/Control.NotebookbarCalc.js:954
 msgid "Insert Columns Before"
 msgstr "Sisipkan Kolom Sebelum"
 
-#: src/control/Control.NotebookbarCalc.js:951
+#: src/control/Control.NotebookbarCalc.js:961
 msgid "Delete Rows"
 msgstr "Hapus Baris"
 
-#: src/control/Control.NotebookbarCalc.js:963
+#: src/control/Control.NotebookbarCalc.js:973
 msgid "Insert Rows Below"
 msgstr "Sisipkan Baris Di Bawah"
 
-#: src/control/Control.NotebookbarCalc.js:970
+#: src/control/Control.NotebookbarCalc.js:980
 msgid "Insert Columns After"
 msgstr "Sisipkan Kolom Setelah"
 
-#: src/control/Control.NotebookbarCalc.js:977
+#: src/control/Control.NotebookbarCalc.js:987
 msgid "Delete Columns"
 msgstr "Hapus Kolom"
 
-#: src/control/Control.NotebookbarCalc.js:1156
+#: src/control/Control.NotebookbarCalc.js:1166
 #: src/control/Control.NotebookbarDraw.js:325
 #: src/control/Control.NotebookbarImpress.js:341
-#: src/control/Control.NotebookbarWriter.js:1409
+#: src/control/Control.NotebookbarWriter.js:1415
 msgid "Read mode"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1207
+#: src/control/Control.NotebookbarCalc.js:1217
 #: src/control/Control.NotebookbarDraw.js:376
 #: src/control/Control.NotebookbarImpress.js:416
-#: src/control/Control.NotebookbarWriter.js:1467
+#: src/control/Control.NotebookbarWriter.js:1473
 msgid "Compact view"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1220
+#: src/control/Control.NotebookbarCalc.js:1230
 #: src/control/Control.NotebookbarDraw.js:413
 #: src/control/Control.NotebookbarImpress.js:453
-#: src/control/Control.NotebookbarWriter.js:1504
+#: src/control/Control.NotebookbarWriter.js:1510
 msgid "Collapse Tabs"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1232
+#: src/control/Control.NotebookbarCalc.js:1242
 #: src/control/Control.NotebookbarDraw.js:401
 #: src/control/Control.NotebookbarImpress.js:441
-#: src/control/Control.NotebookbarWriter.js:1492
+#: src/control/Control.NotebookbarWriter.js:1498
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1325
+#: src/control/Control.NotebookbarCalc.js:1335
 msgid "Sparkline"
 msgstr "Grafik mini"
 
-#: src/control/Control.NotebookbarCalc.js:1383
+#: src/control/Control.NotebookbarCalc.js:1393
 #: src/control/Control.NotebookbarDraw.js:1275
-#: src/control/Control.NotebookbarImpress.js:1287
-#: src/control/Control.NotebookbarWriter.js:1133
+#: src/control/Control.NotebookbarImpress.js:1259
+#: src/control/Control.NotebookbarWriter.js:1139
 msgid "Assistant"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1467
-#: src/control/Control.NotebookbarCalc.js:2366
+#: src/control/Control.NotebookbarCalc.js:1477
+#: src/control/Control.NotebookbarCalc.js:2376
 #: src/control/Control.NotebookbarDraw.js:859
 #: src/control/Control.NotebookbarDraw.js:1361
-#: src/control/Control.NotebookbarImpress.js:915
-#: src/control/Control.NotebookbarImpress.js:1380
-#: src/control/Control.NotebookbarImpress.js:2439
-#: src/control/Control.NotebookbarWriter.js:1069
-#: src/control/Control.NotebookbarWriter.js:2870
+#: src/control/Control.NotebookbarImpress.js:919
+#: src/control/Control.NotebookbarImpress.js:1352
+#: src/control/Control.NotebookbarImpress.js:2411
+#: src/control/Control.NotebookbarWriter.js:1075
+#: src/control/Control.NotebookbarWriter.js:2876
 msgid "Shapes"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2014
-#: src/control/Control.NotebookbarWriter.js:929
+#: src/control/Control.NotebookbarCalc.js:2024
+#: src/control/Control.NotebookbarWriter.js:935
 msgid "Style list"
 msgstr ""
 
@@ -1825,7 +1832,7 @@ msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:389
 #: src/control/Control.NotebookbarImpress.js:429
-#: src/control/Control.NotebookbarWriter.js:1480
+#: src/control/Control.NotebookbarWriter.js:1486
 msgid "Ruler"
 msgstr ""
 
@@ -1839,7 +1846,7 @@ msgid "Master"
 msgstr ""
 
 #: src/control/Control.NotebookbarImpress.js:348
-#: src/control/Control.NotebookbarImpress.js:1029
+#: src/control/Control.NotebookbarImpress.js:1000
 msgid "Presentation"
 msgstr "Presentasi"
 
@@ -1872,19 +1879,19 @@ msgstr ""
 msgid "Screen Reading"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1358
+#: src/control/Control.NotebookbarWriter.js:1364
 msgid "Rich Text"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1365
+#: src/control/Control.NotebookbarWriter.js:1371
 msgid "Checkbox"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1372
+#: src/control/Control.NotebookbarWriter.js:1378
 msgid "Dropdown"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1379
+#: src/control/Control.NotebookbarWriter.js:1385
 msgid "Picture"
 msgstr ""
 
@@ -2128,7 +2135,7 @@ msgstr "Sisipkan bentuk"
 msgid "Insert connectors"
 msgstr "Sisip konektor"
 
-#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.js:833
+#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.js:831
 msgid "Hide Menu"
 msgstr ""
 
@@ -2136,7 +2143,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:856
+#: src/control/Control.UIManager.js:854
 msgid "Show Menu"
 msgstr ""
 
@@ -2208,7 +2215,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:234 src/core/Socket.js:1329
+#: src/control/Control.Zotero.js:234 src/core/Socket.js:1330
 msgid "Loading..."
 msgstr "Memuat..."
 
@@ -2589,69 +2596,69 @@ msgstr ""
 msgid "Ctrl+Shift+Alt+D to exit"
 msgstr ""
 
-#: src/core/Socket.js:58
+#: src/core/Socket.js:59
 #, fuzzy
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr "Ups, ada masalah saat menghubungkan %productName: "
 
-#: src/core/Socket.js:676
+#: src/core/Socket.js:677
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr ""
 "Server sekarang dapat dijangkau. Kita harus me-refresh halaman sekarang."
 
-#: src/core/Socket.js:678
+#: src/core/Socket.js:679
 msgid "Server is now reachable..."
 msgstr "Server sekarang dapat dijangkau..."
 
-#: src/core/Socket.js:682
+#: src/core/Socket.js:683
 msgid "RELOAD"
 msgstr "MUAT ULANG"
 
-#: src/core/Socket.js:695
+#: src/core/Socket.js:696
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:698
+#: src/core/Socket.js:699
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:707
+#: src/core/Socket.js:708
 msgid "LOOLWSD version:"
 msgstr "Versi LOOLWSD:"
 
-#: src/core/Socket.js:732
+#: src/core/Socket.js:733
 msgid "Served by:"
 msgstr "Dilayani oleh:"
 
-#: src/core/Socket.js:738
+#: src/core/Socket.js:739
 msgid "Unsupported server version."
 msgstr "Versi server tidak didukung."
 
-#: src/core/Socket.js:742
+#: src/core/Socket.js:743
 msgid "LOKit version:"
 msgstr "Versi LOKit:"
 
-#: src/core/Socket.js:866
+#: src/core/Socket.js:867
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:893
+#: src/core/Socket.js:894
 msgid "Session terminated by document owner"
 msgstr "Sesi diakhiri oleh pemilik dokumen"
 
-#: src/core/Socket.js:904
+#: src/core/Socket.js:905
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Pelden dimatikan untuk pemeliharaan (penyimpanan otomatis)"
 
-#: src/core/Socket.js:910
+#: src/core/Socket.js:911
 msgid "Oops, there is a problem connecting the document"
 msgstr "Ups, ada masalah saat menghubungkan dokumen"
 
-#: src/core/Socket.js:914
+#: src/core/Socket.js:915
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Server mati, layanan akan dimulai ulang otomatis. Tunggu sebentar."
 
-#: src/core/Socket.js:941
+#: src/core/Socket.js:942
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -2659,7 +2666,7 @@ msgstr ""
 "Dokumen telah berubah dalam penyimpanan. Memuat dokumen baru. Versi Anda "
 "tersedia sebagai revisi."
 
-#: src/core/Socket.js:947
+#: src/core/Socket.js:948
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -2667,63 +2674,63 @@ msgstr ""
 "Memulihkan revisi yang lebih lama. Setiap perubahan yang belum disimpan akan "
 "tersedia dalam riwayat versi"
 
-#: src/core/Socket.js:953
+#: src/core/Socket.js:954
 msgid "Reloading the document after rename"
 msgstr "Memuat ulang dokumen setelah mengganti nama"
 
-#: src/core/Socket.js:1111
+#: src/core/Socket.js:1112
 msgid "Document requires password to view."
 msgstr "Dokumen perlu sandi untuk menilik."
 
-#: src/core/Socket.js:1114
+#: src/core/Socket.js:1115
 msgid "Document requires password to modify."
 msgstr "Dokumen perlu sandi untuk mengubah."
 
-#: src/core/Socket.js:1116
+#: src/core/Socket.js:1117
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Tekan Batal untuk membuka dalam mode hanya tilik."
 
-#: src/core/Socket.js:1120
+#: src/core/Socket.js:1121
 msgid "Wrong password provided. Please try again."
 msgstr "Sandi salah. Harap coba lagi."
 
-#: src/core/Socket.js:1158
+#: src/core/Socket.js:1159
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1189 src/core/Socket.js:1194
+#: src/core/Socket.js:1190 src/core/Socket.js:1195
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1226
+#: src/core/Socket.js:1227
 msgid "Someone"
 msgstr "Seseorang"
 
-#: src/core/Socket.js:1227
+#: src/core/Socket.js:1228
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1244
+#: src/core/Socket.js:1245
 msgid "The document is being renamed and will reload shortly"
 msgstr "Dokumen sedang diganti namanya dan akan segera dimuat ulang"
 
-#: src/core/Socket.js:1247
+#: src/core/Socket.js:1248
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1329
+#: src/core/Socket.js:1330
 msgid "Connecting..."
 msgstr "Menghubungkan..."
 
-#: src/core/Socket.js:1344
+#: src/core/Socket.js:1345
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1380
+#: src/core/Socket.js:1381
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1380
+#: src/core/Socket.js:1381
 msgid "Successfully exported: "
 msgstr ""
 
@@ -3064,7 +3071,7 @@ msgstr "Fungsi"
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4877
+#: src/layer/tile/CanvasTileLayer.js:4893
 msgid "No Comments"
 msgstr "Tidak ada komentar"
 
@@ -3174,12 +3181,12 @@ msgstr ""
 msgid "Empty Slide Show"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:158
+#: src/map/handler/Map.SlideShow.js:167
 #: src/slideshow/SlideShowPresenter.ts:711
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:159
+#: src/map/handler/Map.SlideShow.js:168
 #: src/slideshow/SlideShowPresenter.ts:713
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
@@ -3187,46 +3194,46 @@ msgid ""
 "sharing."
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:163
+#: src/map/handler/Map.SlideShow.js:172
 #: src/slideshow/SlideShowPresenter.ts:492
 msgid "Windowed Presentation: "
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:193
+#: src/map/handler/Map.SlideShow.js:202
 #: src/slideshow/SlideShowPresenter.ts:539
 msgid "Presenting in window"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:194
+#: src/map/handler/Map.SlideShow.js:203
 #: src/slideshow/SlideShowPresenter.ts:540
 msgid "Close Presentation"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:221
+#: src/map/handler/Map.SlideShow.js:230
 msgid "Presenting in fullscreen"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:222
+#: src/map/handler/Map.SlideShow.js:231
 #, fuzzy
 msgid "End Presentation"
 msgstr "Presentasi"
 
-#: src/map/handler/Map.SlideShow.js:286
+#: src/map/handler/Map.SlideShow.js:295
 #: src/slideshow/SlideShowPresenter.ts:698
 msgid "Already presenting"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:287
+#: src/map/handler/Map.SlideShow.js:296
 #: src/slideshow/SlideShowPresenter.ts:699
 msgid "You are already presenting this document"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:297
+#: src/map/handler/Map.SlideShow.js:306
 #: src/slideshow/SlideShowPresenter.ts:736
 msgid "Presentation disabled"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:298
+#: src/map/handler/Map.SlideShow.js:307
 #: src/slideshow/SlideShowPresenter.ts:737
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
@@ -3306,19 +3313,19 @@ msgstr ""
 msgid "Zoom Out"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1297
+#: src/slideshow/PresenterConsole.js:1302
 msgid "Slide {0} of {1}"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1324
+#: src/slideshow/PresenterConsole.js:1329
 msgid "No Notes"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1431
+#: src/slideshow/PresenterConsole.js:1436
 msgid "Repeat in {0} seconds"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1437
+#: src/slideshow/PresenterConsole.js:1442
 #: src/slideshow/SlideShowPresenter.ts:385
 msgid "Click to exit presentation..."
 msgstr ""
