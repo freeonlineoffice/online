@@ -536,7 +536,8 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         // All other commands are such that they always require a LibreOfficeKitDocument session,
         // i.e. need to be handled in a child process.
 
-        assert(tokens.equals(0, "clientzoom") ||
+        assert(Util::isFuzzing() ||
+               tokens.equals(0, "clientzoom") ||
                tokens.equals(0, "clientvisiblearea") ||
                tokens.equals(0, "outlinestate") ||
                tokens.equals(0, "downloadas") ||
@@ -840,7 +841,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         }
         else
         {
-            assert(false && "Unknown command token.");
+            assert(Util::isFuzzing() && "Unknown command token.");
         }
     }
 
