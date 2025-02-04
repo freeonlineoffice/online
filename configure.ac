@@ -356,7 +356,7 @@ AC_ARG_WITH([compiler-plugins],
 
 AC_ARG_ENABLE(coplugin,
     AS_HELP_STRING([--enable-coplugin],
-        [Enables building of a clang plugin that performs COOL-specific checks.])
+        [Enables building of a clang plugin that performs LOOL-specific checks.])
 )
 
 AC_ARG_ENABLE([werror],
