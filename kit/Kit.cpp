@@ -2376,7 +2376,8 @@ void Document::drainQueue()
             }
             else if (tokens.equals(0, "tile") || tokens.equals(0, "tilecombine"))
             {
-                assert(false && "Should not have incoming tile requests in message queue");
+                assert(Util::isFuzzing() &&
+                       "Should not have incoming tile requests in message queue");
             }
             else if (tokens.startsWith(0, "child-"))
             {
@@ -2391,7 +2392,7 @@ void Document::drainQueue()
             }
             else if (tokens.equals(0, "callback"))
             {
-                assert(false && "callbacks cannot now appear on the incoming queue");
+                assert(Util::isFuzzing() && "callbacks cannot now appear on the incoming queue");
             }
             else
             {
