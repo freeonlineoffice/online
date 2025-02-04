@@ -89,7 +89,8 @@ class LOUtil {
 	}
 
 	public static getViewIdColor(viewId: number): number {
-		const color = LOUtil.darkColors[(viewId + 1) % LOUtil.darkColors.length];
+		const color =
+			LOUtil.darkColors[(viewId + 1) % LOUtil.darkColors.length];
 		return color[2] | (color[1] << 8) | (color[0] << 16);
 	}
 
@@ -125,7 +126,12 @@ class LOUtil {
 				const topRight = topLeft.add(L.point(size.x, 0));
 				const bottomLeft = topLeft.add(L.point(0, size.y));
 				const bottomRight = topLeft.add(size);
-				rectangles.push([bottomLeft, bottomRight, topLeft, topRight]);
+				rectangles.push([
+					bottomLeft,
+					bottomRight,
+					topLeft,
+					topRight,
+				]);
 			}
 		}
 		return rectangles;
@@ -136,7 +142,10 @@ class LOUtil {
 	public static onlydarkModeItems: string[] = ['invertbackground'];
 
 	// Common images used in all modes, so the default one will be used.
-	public static commonItems: string[] = ['serverauditok', 'serverauditerror'];
+	public static commonItems: string[] = [
+		'serverauditok',
+		'serverauditerror',
+	];
 
 	// Helper function to strip '.svg' suffix and 'lc_' prefix.
 	public static stripName(name: string): string {
@@ -172,14 +181,20 @@ class LOUtil {
 		if (customWindow.host === '' && customWindow.serviceRoot === '')
 			return path; // mobile app
 
-		let url = customWindow.makeHttpUrl('/browser/' + customWindow.versionPath);
+		let url = customWindow.makeHttpUrl(
+			'/browser/' + customWindow.versionPath,
+		);
 		if (path.substr(0, 1) !== '/') url += '/';
 
 		url += path;
 		return url;
 	}
 
-	public static setImage(img: HTMLImageElement, name: string, map: any): void {
+	public static setImage(
+		img: HTMLImageElement,
+		name: string,
+		map: any,
+	): void {
 		const setupIcon = function () {
 			img.src = LOUtil.getImageURL(name);
 			LOUtil.checkIfImageExists(img);
@@ -297,7 +312,11 @@ class LOUtil {
 		suffix: string,
 	): string {
 		const idx = oldFileName.lastIndexOf('.');
-		return oldFileName.substring(0, idx) + suffix + oldFileName.substring(idx);
+		return (
+			oldFileName.substring(0, idx) +
+			suffix +
+			oldFileName.substring(idx)
+		);
 	}
 
 	public static commandWithoutIcon: string[] = [
@@ -415,14 +434,22 @@ class LOUtil {
 		rectangle2: number[],
 	): number[] | null {
 		if (this._doRectanglesIntersect(rectangle1, rectangle2)) {
-			var x = rectangle1[0] > rectangle2[0] ? rectangle1[0] : rectangle2[0];
-			var y = rectangle1[1] > rectangle2[1] ? rectangle1[1] : rectangle2[1];
+			var x =
+				rectangle1[0] > rectangle2[0]
+					? rectangle1[0]
+					: rectangle2[0];
+			var y =
+				rectangle1[1] > rectangle2[1]
+					? rectangle1[1]
+					: rectangle2[1];
 			var w =
-				rectangle1[0] + rectangle1[2] < rectangle2[0] + rectangle2[2]
+				rectangle1[0] + rectangle1[2] <
+				rectangle2[0] + rectangle2[2]
 					? rectangle1[0] + rectangle1[2] - x
 					: rectangle2[0] + rectangle2[2] - x;
 			var h =
-				rectangle1[1] + rectangle1[3] < rectangle2[1] + rectangle2[3]
+				rectangle1[1] + rectangle1[3] <
+				rectangle2[1] + rectangle2[3]
 					? rectangle1[1] + rectangle1[3] - y
 					: rectangle2[1] + rectangle2[3] - y;
 
@@ -437,7 +464,9 @@ class LOUtil {
 
 	public static isFileODF(map: any): boolean {
 		var ext = LOUtil.getFileExtension(map);
-		return ext === 'odt' || ext === 'ods' || ext === 'odp' || ext == 'odg';
+		return (
+			ext === 'odt' || ext === 'ods' || ext === 'odp' || ext == 'odg'
+		);
 	}
 
 	public static containsDOMRect(

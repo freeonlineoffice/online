@@ -1,4 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
+/* global app */
 /*
 * Control.Menubar
 */
@@ -44,7 +45,7 @@ L.Control.MenubarShortcuts = {
 			shortcut = shortcut.replace('Ctrl', 'Krmilka').replace('Alt', 'izmenjalka').replace('Shift', 'dvigalka');
 		}
 
-		var newText = _(text).replace('~', '') + ' (' + L.Util.replaceCtrlAltInMac(shortcut) + ')';
+		var newText = _(text).replace('~', '') + ' (' + app.util.replaceCtrlAltInMac(shortcut) + ')';
 
 		return newText;
 	}
@@ -2073,7 +2074,7 @@ L.Control.Menubar = L.Control.extend({
 		} else if (id === 'zoomreset') {
 			app.dispatcher.dispatch('zoomreset');
 		} else if (id === 'fullscreen') {
-			L.toggleFullScreen();
+			app.util.toggleFullScreen();
 		} else if (id === 'showruler') {
 			app.dispatcher.dispatch('showruler');
 		} else if (id === 'togglea11ystate') {

@@ -74,7 +74,7 @@ L.Control.Zotero = L.Control.extend({
 			}
 			var that = this;
 			this.citationCluster[values.citationID] = [];
-			var citationString = L.Util.trim(values.properties.plainCitation, this.settings.layout.prefix, this.settings.layout.suffix);
+			var citationString = app.util.trim(values.properties.plainCitation, this.settings.layout.prefix, this.settings.layout.suffix);
 			var citations = citationString.split(this.settings.layout.delimiter);
 			var itemUriList = [];
 			values.citationItems.forEach(function(item, i) {
@@ -83,7 +83,7 @@ L.Control.Zotero = L.Control.extend({
 				var itemUri = item.uris[0];
 				var citationId = that.extractItemKeyFromLink(itemUri);
 				that.citationCluster[values.citationID].push(citationId);
-				that.citations[citationId] = L.Util.trim(citations[i], that.settings.group.prefix, that.settings.group.suffix);
+				that.citations[citationId] = app.util.trim(citations[i], that.settings.group.prefix, that.settings.group.suffix);
 				that.setCitationNumber(that.citations[citationId]);
 				itemUriList.push(itemUri);
 			});
@@ -510,7 +510,7 @@ L.Control.Zotero = L.Control.extend({
 				this.settings.citationNumber = 1;
 			this.citations[citationId] = this.settings.citationNumber++;
 		} else {
-			this.citations[citationId] = L.Util.trim(text, this.settings.layout.prefix, this.settings.layout.suffix);
+			this.citations[citationId] = app.util.trim(text, this.settings.layout.prefix, this.settings.layout.suffix);
 		}
 
 		return this.settings.group.prefix + this.citations[citationId] + this.settings.group.suffix;
@@ -536,7 +536,7 @@ L.Control.Zotero = L.Control.extend({
 			});
 		});
 
-		citationString = this.settings.layout.prefix + L.Util.trimEnd(citationString, this.settings.layout.delimiter) + this.settings.layout.suffix;
+		citationString = this.settings.layout.prefix + app.util.trimEnd(citationString, this.settings.layout.delimiter) + this.settings.layout.suffix;
 		// last-child works here only because its a single chain of nodes
 		var innerText = citationNode.querySelector('*:last-child');
 		if (!innerText)
@@ -564,7 +564,7 @@ L.Control.Zotero = L.Control.extend({
 
 	getCitationJSONString: function(items) {
 		var resultJSON = {};
-		resultJSON['citationID'] = L.Util.randomString(10);
+		resultJSON['citationID'] = app.util.randomString(10);
 
 		var citationNode = this.handleCitationText(items);
 
@@ -906,7 +906,7 @@ L.Control.Zotero = L.Control.extend({
 		dataNode.setAttribute('data-version', '3');
 
 		var sessionNode = xmlDoc.createElement('session');
-		sessionNode.setAttribute('id', L.Util.randomString(8));
+		sessionNode.setAttribute('id', app.util.randomString(8));
 
 		dataNode.appendChild(sessionNode);
 
@@ -1600,10 +1600,10 @@ L.Control.Zotero = L.Control.extend({
 			field['FieldResult'] = {type: 'string', value: citationString};
 		} else if (this.getFieldType() === 'ReferenceMark') {
 			field['TypeName'] = {type: 'string', value: 'SetRef'};
-			field['Name'] = {type: 'string', value: 'ZOTERO_ITEM CSL_CITATION ' + cslJSON + ' RND' + L.Util.randomString(10)};
+			field['Name'] = {type: 'string', value: 'ZOTERO_ITEM CSL_CITATION ' + cslJSON + ' RND' + app.util.randomString(10)};
 			field['Content'] = {type: 'string', value: citationString};
 		} else if (this.getFieldType() == 'Bookmark') {
-			field['Bookmark'] = {type: 'string', value: 'ZOTERO_BREF_' + L.Util.randomString(12)};
+			field['Bookmark'] = {type: 'string', value: 'ZOTERO_BREF_' + app.util.randomString(12)};
 			field['BookmarkText'] = {type: 'string', value: citationString};
 		}
 
@@ -1679,7 +1679,7 @@ L.Control.Zotero = L.Control.extend({
 					'value': {
 						'Bookmark': {
 							'type': 'string',
-							'value': 'ZOTERO_BREF_' + L.Util.randomString(12)
+							'value': 'ZOTERO_BREF_' + app.util.randomString(12)
 						},
 						'BookmarkText': {
 							'type': 'string',
@@ -1700,10 +1700,10 @@ L.Control.Zotero = L.Control.extend({
 			field['FieldCommand'] = {type: 'string', value: 'ADDIN ZOTERO_BIBL ' + JSON.stringify(this.settings.bib) + ' CSL_BIBLIOGRAPHY'};
 			field['FieldResult'] = {type: 'string', value: html};
 		} else if (this.getFieldType() == 'Bookmark') {
-			field['Bookmark'] = {type: 'string', value: 'ZOTERO_BREF_' + L.Util.randomString(12)};
+			field['Bookmark'] = {type: 'string', value: 'ZOTERO_BREF_' + app.util.randomString(12)};
 			field['BookmarkText'] = {type: 'string', value: html};
 		} else {
-			field['RegionName'] = {type: 'string', value: 'ZOTERO_BIBL ' + JSON.stringify(this.settings.bib) + ' CSL_BIBLIOGRAPHY ' + ' RND' + L.Util.randomString(10)};
+			field['RegionName'] = {type: 'string', value: 'ZOTERO_BIBL ' + JSON.stringify(this.settings.bib) + ' CSL_BIBLIOGRAPHY ' + ' RND' + app.util.randomString(10)};
 			field['Content'] = {type: 'string', value: html};
 		}
 
