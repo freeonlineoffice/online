@@ -59,7 +59,7 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 		cy.cGet('.lool-annotation-content > div').should('include.text','some reply text');
 	});
 
-	it('Tab Nevigation', function() {
+	it('Tab Navigation', function() {
 		desktopHelper.insertComment(undefined, false);
 
 		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
