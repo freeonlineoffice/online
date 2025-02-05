@@ -2413,6 +2413,9 @@ static std::string getCapabilitiesJson(bool convertToAvailable)
     // Set that this is a proxy.php-enabled instance
     capabilities->set("hasProxyPrefix", LOOLWSD::IsProxyPrefixEnabled);
 
+    // Set if this instance supports Setting Iframe
+    capabilities->set("hasSettingIframeSupport", ConfigUtil::getBool("setting_iframe.enable", true));
+
     // Set if this instance supports Zotero
     capabilities->set("hasZoteroSupport", ConfigUtil::getBool("zotero.enable", true));
 
