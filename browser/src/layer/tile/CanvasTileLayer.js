@@ -2511,24 +2511,16 @@ L.CanvasTileLayer = L.Layer.extend({
 			if (this._map._clip) this._map._clip.clearSelection();
 		} else {
 			var strTwips = textMsg.match(/\d+/g);
-
-			var topLeftTwips = new L.Point(
-				parseInt(strTwips[0]),
-				parseInt(strTwips[1]),
-			);
-			var offset = new L.Point(
-				parseInt(strTwips[2]),
-				parseInt(strTwips[3]),
-			);
+			var topLeftTwips = new L.Point(parseInt(strTwips[0]), parseInt(strTwips[1]));
+			var offset = new L.Point(parseInt(strTwips[2]), parseInt(strTwips[3]));
 			var bottomRightTwips = topLeftTwips.add(offset);
 			let _cellCursorTwips = this._convertToTileTwipsSheetArea(
 				new L.Bounds(topLeftTwips, bottomRightTwips),
 			);
 
-			app.calc.cellAddress = new app.definitions.simplePoint(
-				parseInt(strTwips[4]),
-				parseInt(strTwips[5]),
-			);
+			app.calc.cellAddress = new app.definitions.simplePoint(parseInt(strTwips[4]), parseInt(strTwips[5]));
+			app.calc.cellCursorTopLeftTwips = topLeftTwips;
+			app.calc.cellCursorOffset = offset;
 			let tempRectangle = _cellCursorTwips.toRectangle();
 			app.calc.cellCursorRectangle =
 				new app.definitions.simpleRectangle(

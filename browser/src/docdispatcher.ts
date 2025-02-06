@@ -488,6 +488,7 @@ class Dispatcher {
 		this.actionsMap['columnrowhighlight'] = function () {
 			var newState = !app.map.uiManager.getHighlightMode();
 			app.map.uiManager.setHighlightMode(newState);
+			app.map._docLayer.updateHighlight();
 		};
 	}
 
