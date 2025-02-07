@@ -2302,7 +2302,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			} else if (builder.options.useInLineLabelsForUnoButtons === true) {
 				$(div).addClass('no-label');
 			} else {
-				builder.map.uiManager.enableTooltip(div);
 				$(div).addClass('no-label');
 			}
 
