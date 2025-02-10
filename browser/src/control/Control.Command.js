@@ -3,7 +3,7 @@
  * Feature blocking handler
  */
 
-/* global $ _ */
+/* global $ _ app */
 
 L.Map.include({
 
@@ -47,7 +47,7 @@ L.Map.include({
 			if (window.mode.isMobile()) {
 				var overlay = L.DomUtil.create('div', 'locking-overlay', DOMParentElement);
 				var lock = L.DomUtil.create('img', 'locking-overlay-lock', overlay);
-				L.LOUtil.setImage(lock, 'lc_lock.svg', this);
+				app.LOUtil.setImage(lock, 'lc_lock.svg', this);
 			}
 
 			$(DOMParentElement).click(function(event) {

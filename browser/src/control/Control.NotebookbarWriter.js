@@ -3,7 +3,7 @@
  * L.Control.NotebookbarWriter
  */
 
-/* global _ _UNO */
+/* global _ _UNO app */
 
 var fileTabName = 'File';
 var homeTabName = 'Home';
@@ -1068,7 +1068,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 	},
 
 	getInsertTab: function() {
-		var isODF = L.LOUtil.isFileODF(this._map);
+		var isODF = app.LOUtil.isFileODF(this._map);
 		var content = [
 			{
 				'id': 'insert-insert-page-break',
@@ -2665,7 +2665,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 	},
 
 	getDrawTab: function() {
-		var isODF = L.LOUtil.isFileODF(this._map);
+		var isODF = app.LOUtil.isFileODF(this._map);
 		var content = [
 			{
 				'type': 'bigtoolitem',

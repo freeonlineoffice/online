@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-/* global JSDialog $ */
+/* global JSDialog app $ */
 
 JSDialog.comboboxEntry = function (parentContainer, data, builder) {
 	var entry = L.DomUtil.create('div', 'ui-combobox-entry ' + builder.options.cssClass, parentContainer);
@@ -34,7 +34,7 @@ JSDialog.comboboxEntry = function (parentContainer, data, builder) {
 
 	if (data.icon) {
 		var icon = L.DomUtil.create('img', 'ui-combobox-icon', entry);
-		builder._isStringCloseToURL(data.icon) ? icon.src = data.icon : L.LOUtil.setImage(icon,  builder._createIconURL(data.icon), builder.map);
+		builder._isStringCloseToURL(data.icon) ? icon.src = data.icon : app.LOUtil.setImage(icon,  builder._createIconURL(data.icon), builder.map);
 	}
 
 	if (data.hint) {
