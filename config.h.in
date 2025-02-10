@@ -9,11 +9,35 @@
 /* Define to 1 if this is a code-coverage build. */
 #undef CODE_COVERAGE
 
-/* Static config values are enabled in release builds for performance */
-#undef CONFIG_STATIC_TYPE
+/* Enable permanent anonymization in logs */
+#undef LOOLWSD_ANONYMIZE_USER_DATA
 
-/* Free Online Office core git hash if present */
-#undef CORE_VERSION_HASH
+/* Options passed to configure script */
+#undef LOOLWSD_BUILDCONFIG
+
+/* Directory that contains configuration of loolwsd */
+#undef LOOLWSD_CONFIGDIR
+
+/* Default loolwsd loglevel */
+#undef LOOLWSD_LOGLEVEL
+
+/* Default location of loolwsd log file */
+#undef LOOLWSD_LOGFILE
+
+/* Default location of loolwsd UI command log file */
+#undef LOOLWSD_LOGFILE_UICMD
+
+/* Destination for Trace Event output */
+#undef LOOLWSD_TRACEEVENTFILE
+
+/* The user-name which is allowed to run loolwsd and its tools */
+#undef LOOL_USER_ID
+
+/* Default number of pre-spawn children */
+#undef NUM_PRESPAWN_CHILDREN
+
+/* Absolute path to the top-level source directory */
+#undef DEBUG_ABSSRCDIR
 
 /* Whether to disable SECCOMP */
 #undef DISABLE_SECCOMP
@@ -130,27 +154,6 @@
 
 /* Enable logging of test assertions */
 #undef LOK_LOG_ASSERTIONS
-
-/* Enable permanent anonymization in logs */
-#undef LOOLWSD_ANONYMIZE_USER_DATA
-
-/* Default location of loolwsd log file */
-#undef LOOLWSD_LOGFILE
-
-/* Default location of loolwsd UI command log file */
-#undef LOOLWSD_LOGFILE_UICMD
-
-/* Destination for Trace Event output */
-#undef LOOLWSD_TRACEEVENTFILE
-
-/* Free Online Office WebSocket server version */
-#undef LOOLWSD_VERSION
-
-/* LibreOffice Online git hash if present */
-#undef LOOLWSD_VERSION_HASH
-
-/* The user-name which is allowed to run loolwsd and its tools */
-#undef LOOL_USER_ID
 
 /* Path to LibreOffice installation */
 #undef LO_PATH

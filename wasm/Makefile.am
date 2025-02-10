@@ -13,10 +13,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/wsd \
 	-I@LOBUILDDIR@/workdir/UnpackedTarball/libpng \
 	-I@LOBUILDDIR@/workdir/UnpackedTarball/zlib \
-	-DLOOLWSD_CONFIGDIR='"@LOOLWSD_CONFIGDIR@"' \
-	-DLOOLWSD_LOGLEVEL='"@LOOLWSD_LOGLEVEL@"' \
-	-DDEBUG_ABSSRCDIR='"@abs_srcdir@"' \
-	-DNUM_PRESPAWN_CHILDREN='"@NUM_PRESPAWN_CHILDREN@"' \
 	-DMOBILEAPP=1
 
 bin_PROGRAMS = online
