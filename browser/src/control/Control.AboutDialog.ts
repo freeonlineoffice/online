@@ -186,7 +186,7 @@ class AboutDialog {
 			'modal-dialog-about-dialog-box-copybutton',
 		);
 		copyversion.setAttribute(
-			'title',
+			'data-cooltip',
 			_('Copy all version information in English'),
 		);
 		var img = L.DomUtil.create('img', null, null);
@@ -199,7 +199,7 @@ class AboutDialog {
 			'click',
 			this.copyVersionInfoToClipboard.bind(this),
 		);
-		this.map.uiManager.enableTooltip(copyversion);
+		L.control.attachTooltipEventListener(copyversion, this.map);
 		var aboutok = document.getElementById(
 			'modal-dialog-about-dialog-box-yesbutton',
 		);
