@@ -4354,7 +4354,7 @@ void DocumentBroker::sendTileCombine(const TileCombined& newTileCombined)
     _childProcess->sendTextFrame(req);
 }
 
-void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool forceKeyframe,
+void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool canForceKeyframe,
                                                const std::shared_ptr<ClientSession>& session)
 {
     ASSERT_CORRECT_THREAD();
@@ -4362,7 +4362,7 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
     assert(!tileCombined.hasDuplicates());
 
     LOG_TRC("TileCombined request for " << tileCombined.serialize() << " from " <<
-            (forceKeyframe ? "client" : "wsd"));
+            (canForceKeyframe ? "client" : "wsd"));
     if (!hasTileCache())
     {
         LOG_WRN("Combined tile request without a loaded document?");
@@ -4378,7 +4378,7 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
         tile.setVersion(++_tileVersion);
 
         // client can force keyframe with an oldWid == 0 on tile
-        if (forceKeyframe && tile.getOldWireId() == 0)
+        if (canForceKeyframe && tile.getOldWireId() == 0)
         {
             // combinedtiles requests direct from the browser get flagged.
             // The browser may have dropped / cleaned its cache, so we can't
@@ -4396,9 +4396,14 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
         bool tooLarge = cachedTile && cachedTile->tooLarge();
         if(!cachedTile || !cachedTile->isValid() || tooLarge)
         {
+            bool forceKeyFrame = false;
             if (!cachedTile || tooLarge)
+            {
+                forceKeyFrame = true;
                 tile.forceKeyframe();
-            requestTileRendering(tile, /*forceKeyFrame*/ true, now, tilesNeedsRendering, session);
+            }
+
+            requestTileRendering(tile, forceKeyFrame, now, tilesNeedsRendering, session);
         }
     }
     if (hasOldWireId)
