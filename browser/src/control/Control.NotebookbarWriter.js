@@ -100,24 +100,25 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 		];
 	},
 
-	getFullJSON: function(selectedId) {
-		var t = this.getNotebookbar(
-			[
-				this.getFileTab(),
-				this.getHomeTab(),
-				this.getInsertTab(),
-				this.getLayoutTab(),
-				this.getReferencesTab(),
-				this.getReviewTab(),
-				this.getFormatTab(),
-				this.getFormTab(),
-				this.getTableTab(),
-				this.getDrawTab(),
-				this.getViewTab(),
-				this.getHelpTab()
-			 ], selectedId);
+	getTabsJSON: function () {
+		return [
+			this.getFileTab(),
+			this.getHomeTab(),
+			this.getInsertTab(),
+			this.getLayoutTab(),
+			this.getReferencesTab(),
+			this.getReviewTab(),
+			this.getFormatTab(),
+			this.getFormTab(),
+			this.getTableTab(),
+			this.getDrawTab(),
+			this.getViewTab(),
+			this.getHelpTab()
+		]
+	},
 
-		return t;
+	getFullJSON: function (selectedId) {
+		return this.getNotebookbar(this.getTabsJSON(), selectedId);
 	},
 
 	getFileTab: function() {
@@ -2951,7 +2952,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			{
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:Crop'),
-				'command': '.uno:Crop'
+				'command': '.uno:Crop',
+				'context': 'Graphic'
 			},
 		];
 
