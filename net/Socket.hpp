@@ -158,6 +158,10 @@ public:
     {
         LOG_TRC("Socket dtor");
 
+        // explicit closeFD called, or initial createSocket failure
+        if (_fd < 0)
+            return;
+
         // Doesn't block on sockets; no error handling needed.
         if constexpr (!Util::isMobileApp())
         {
@@ -408,6 +412,18 @@ public:
         _ignoreInput = true;
     }
 
+    // arg to emphasize what is allowed do this
+    // close in advance of the ctor
+    void closeFD(const SocketPoll& /*rPoll*/)
+    {
+        ::close(_fd);
+        // Invalidate the FD by negating to preserve the original value.
+        if (_fd > 0)
+            _fd = -_fd;
+        else if (_fd == 0) // Unlikely, but technically possible.
+            _fd = -1;
+    }
+
 protected:
     /// Construct based on an existing socket fd.
     /// Used by accept() only.
@@ -476,7 +492,7 @@ private:
     std::string _clientAddress;
     const Type _type;
     unsigned int _clientPort;
-    const int _fd;
+    int _fd;
     /// True if this socket is closed.
     bool _closed;
 
