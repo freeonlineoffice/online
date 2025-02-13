@@ -139,7 +139,7 @@ L.Control.DocumentNameInput = L.Control.extend({
 			// set the document name into the name field
 			$('#document-name-input').val(e.BreadcrumbDocName !== undefined ? e.BreadcrumbDocName : e.BaseFileName);
 			var input = L.DomUtil.get('document-name-input');
-			input.setAttribute('data-cooltip', input.value);
+			input.setAttribute('data-looltip', input.value);
 			L.control.attachTooltipEventListener(input, this.map);
 		}
 		if (!e.UserCanNotWriteRelative && !this.map.isReadOnlyMode()) {

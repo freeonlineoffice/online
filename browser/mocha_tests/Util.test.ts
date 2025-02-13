@@ -187,19 +187,19 @@ describe('Util static members tests', function () {
 		});
 
 		it('no substitutions', function () {
-			assert.strictEqual(Util.template('cool apps', {'cool': 32}), 'cool apps');
+			assert.strictEqual(Util.template('lool apps', {'lool': 32}), 'lool apps');
 		});
 
 		it('one key one substitution', function () {
-			assert.strictEqual(Util.template('cool {  app  } abcd', {'cool': 32, 'app': 'calc'}), 'cool calc abcd');
+			assert.strictEqual(Util.template('lool {  app  } abcd', {'lool': 32, 'app': 'calc'}), 'lool calc abcd');
 		});
 
 		it('one key two substitutions', function () {
-			assert.strictEqual(Util.template('A {app   } cool {   app} abcd', {'cool': 32, 'app': 'calc'}), 'A calc cool calc abcd');
+			assert.strictEqual(Util.template('A {app   } lool {   app} abcd', {'lool': 32, 'app': 'calc'}), 'A calc lool calc abcd');
 		});
 
 		it('two keys multiple substitutions', function () {
-			assert.strictEqual(Util.template('A) {  app1}, B) {app2 }, C) { app2}, D) { app1 } ', {'cool': 32, 'app': 'calc', 'app1': 'draw', 'app2': 'impress'}), 'A) draw, B) impress, C) impress, D) draw ');
+			assert.strictEqual(Util.template('A) {  app1}, B) {app2 }, C) { app2}, D) { app1 } ', {'lool': 32, 'app': 'calc', 'app1': 'draw', 'app2': 'impress'}), 'A) draw, B) impress, C) impress, D) draw ');
 		});
 
 		it('key function', function () {

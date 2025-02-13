@@ -34,7 +34,7 @@ function _drawingAreaControl (parentContainer, data, builder) {
 	image.tabIndex = 0;
 	image.draggable = false;
 	image.ondragstart = function() { return false; };
-	image.setAttribute('data-cooltip', data.text);
+	image.setAttribute('data-looltip', data.text);
 
 	if (builder.map) {
 		L.control.attachTooltipEventListener(image, builder.map);

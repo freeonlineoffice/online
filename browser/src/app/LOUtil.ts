@@ -99,28 +99,28 @@ class LOUtil {
 		return '#' + ('000000' + color.toString(16)).slice(-6);
 	}
 
-	public static stringToBounds(bounds: string): cool.Bounds {
+	public static stringToBounds(bounds: string): lool.Bounds {
 		const numbers = bounds.match(/\d+/g);
-		const topLeft = cool.Point.toPoint(
+		const topLeft = lool.Point.toPoint(
 			parseInt(numbers[0]),
 			parseInt(numbers[1]),
 		);
 		const bottomRight = topLeft.add(
 			L.point(parseInt(numbers[2]), parseInt(numbers[3])),
 		);
-		return cool.Bounds.toBounds(topLeft, bottomRight);
+		return lool.Bounds.toBounds(topLeft, bottomRight);
 	}
 
-	public static stringToRectangles(strRect: string): cool.Point[][] {
+	public static stringToRectangles(strRect: string): lool.Point[][] {
 		const matches = strRect.match(/\d+/g);
-		const rectangles: cool.Point[][] = [];
+		const rectangles: lool.Point[][] = [];
 		if (matches !== null) {
 			for (let itMatch = 0; itMatch < matches.length; itMatch += 4) {
-				const topLeft = cool.Point.toPoint(
+				const topLeft = lool.Point.toPoint(
 					parseInt(matches[itMatch]),
 					parseInt(matches[itMatch + 1]),
 				);
-				const size = cool.Point.toPoint(
+				const size = lool.Point.toPoint(
 					parseInt(matches[itMatch + 2]),
 					parseInt(matches[itMatch + 3]),
 				);
@@ -482,8 +482,8 @@ class LOUtil {
 		);
 	}
 
-	public static Rectangle = cool.Rectangle;
-	public static createRectangle = cool.createRectangle;
+	public static Rectangle = lool.Rectangle;
+	public static createRectangle = lool.createRectangle;
 }
 
 app.LOUtil = LOUtil;

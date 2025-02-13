@@ -186,7 +186,7 @@ class AboutDialog {
 			'modal-dialog-about-dialog-box-copybutton',
 		);
 		copyversion.setAttribute(
-			'data-cooltip',
+			'data-looltip',
 			_('Copy all version information in English'),
 		);
 		var img = L.DomUtil.create('img', null, null);

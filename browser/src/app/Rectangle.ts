@@ -9,7 +9,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace cool {
+namespace lool {
 	/**
 	 * Represents a rectangle object which works with core pixels.
 	 * x1 and y1 should always <= x2 and y2. In other words width >= 0 && height >= 0 is a precondition.
