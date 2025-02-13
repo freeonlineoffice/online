@@ -9,7 +9,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 
 	getShortcutsBarData: function() {
 		return [
-			!this._map['wopi'].HideSaveOption ?
+			!this.map['wopi'].HideSaveOption ?
 				{
 					'id': 'shortcutstoolbox',
 					'type': 'toolbox',
@@ -177,7 +177,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 	getFileTab: function() {
 		var content = [];
 
-		if (!this._map['wopi'].HideSaveOption) {
+		if (!this.map['wopi'].HideSaveOption) {
 			content.push(
 			{
 				'type': 'toolbox',
@@ -193,7 +193,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].UserCanNotWriteRelative) {
+		if (!this.map['wopi'].UserCanNotWriteRelative) {
 			content.push(
 				(window.prefs.get('saveAsMode') === 'group') ?
 				{
@@ -214,7 +214,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			);
 		}
 
-		if (!this._map['wopi'].UserCanNotWriteRelative) {
+		if (!this.map['wopi'].UserCanNotWriteRelative) {
 			content.push(
 			{
 				'id': 'exportas:ExportAsMenu',
@@ -231,7 +231,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'id': 'file-shareas-rev-history',
 				'type': 'container',
 				'children': [
-					(this._map['wopi'].EnableShare) ?
+					(this.map['wopi'].EnableShare) ?
 						{
 							'id': 'ShareAs',
 							'class': 'unoShareAs',
@@ -256,7 +256,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			}
 		);
 
-		if (!this._map['wopi'].HidePrintOption) {
+		if (!this.map['wopi'].HidePrintOption) {
 			content.push(
 			{
 				'id': 'file-print:PrintOptions',
@@ -283,7 +283,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].HideExportOption) {
+		if (!this.map['wopi'].HideExportOption) {
 			content.push({
 				'id': 'downloadas:DownloadAsMenu',
 				'command': 'downloadas',
@@ -294,7 +294,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].HideRepairOption) {
+		if (!this.map['wopi'].HideRepairOption) {
 			content.push({
 				'type': 'container',
 				'children': [
@@ -710,7 +710,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 										'text': _UNO('.uno:FontworkGalleryFloater'),
 										'command': '.uno:FontworkGalleryFloater',
 										// Fontwork export/import not supported in other formats.
-										'visible': (app.LOUtil.isFileODF(this._map)) ? 'true' : 'false',
+										'visible': (app.LOUtil.isFileODF(this.map)) ? 'true' : 'false',
 										'accessibility': { focusBack: true, combination: 'FL', de: null }
 									},
 									{
@@ -1234,7 +1234,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
-			(this._map['wopi'].EnableRemoteLinkPicker) ? {
+			(this.map['wopi'].EnableRemoteLinkPicker) ? {
 				'type': 'container',
 				'children': [
 					{
@@ -1273,7 +1273,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': 'hyperlinkdialog',
 				'accessibility': { focusBack: true, combination: 'IL', de: null }
 			},
-			(this._map['wopi'].EnableRemoteAIContent) ? {
+			(this.map['wopi'].EnableRemoteAIContent) ? {
 				'id': 'insert-insert-remote-ai-content',
 				'class': 'unoremoteaicontent',
 				'type': 'bigcustomtoolitem',
@@ -1403,7 +1403,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 								'text': _UNO('.uno:FontworkGalleryFloater'),
 								'command': '.uno:FontworkGalleryFloater',
 								// Fontwork export/import not supported in other formats.
-								'visible': app.LOUtil.isFileODF(this._map) ? 'true' : 'false',
+								'visible': app.LOUtil.isFileODF(this.map) ? 'true' : 'false',
 								'accessibility': { focusBack: true, combination: 'FW', de: null }
 							}
 						]
@@ -2466,7 +2466,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 								'text': _UNO('.uno:FontworkGalleryFloater'),
 								'command': '.uno:FontworkGalleryFloater',
 								// Fontwork export/import not supported in other formats.
-								'visible': (app.LOUtil.isFileODF(this._map)) ? 'true' : 'false',
+								'visible': (app.LOUtil.isFileODF(this.map)) ? 'true' : 'false',
 								'accessibility': { focusBack: true, combination: 'FW', de: null }
 							}
 						]

@@ -95,7 +95,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 	getFileTab: function() {
 		var content = [];
 
-		if (!this._map['wopi'].HideSaveOption) {
+		if (!this.map['wopi'].HideSaveOption) {
 			content.push({
 				'type': 'toolbox',
 				'children': [
@@ -110,7 +110,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].UserCanNotWriteRelative) {
+		if (!this.map['wopi'].UserCanNotWriteRelative) {
 			content.push(
 				(window.prefs.get('saveAsMode') === 'group') ? {
 					'id': 'saveas:SaveAsMenu',
@@ -130,7 +130,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			);
 		}
 
-		if (!this._map['wopi'].UserCanNotWriteRelative) {
+		if (!this.map['wopi'].UserCanNotWriteRelative) {
 			content.push({
 				'id': 'exportas:ExportAsMenu',
 				'command': 'exportas',
@@ -146,7 +146,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'file-shareas-rev-history',
 				'type': 'container',
 				'children': [
-					this._map['wopi'].EnableShare ?
+					this.map['wopi'].EnableShare ?
 						{
 							'id': 'ShareAs',
 							'class': 'unoShareAs',
@@ -171,7 +171,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			}
 		);
 
-		if (!this._map['wopi'].HidePrintOption) {
+		if (!this.map['wopi'].HidePrintOption) {
 			content.push({
 				'id': 'Data-Print:Print',
 				'type': 'menubutton',
@@ -196,7 +196,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].HideExportOption) {
+		if (!this.map['wopi'].HideExportOption) {
 			content.push({
 				'id': 'downloadas:DownloadAsMenu',
 				'command': 'downloadas',
@@ -207,7 +207,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
-		if (!this._map['wopi'].HideRepairOption) {
+		if (!this.map['wopi'].HideRepairOption) {
 			content.push({
 				'type': 'container',
 				'children': [
@@ -1388,7 +1388,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:HyperlinkDialog',
 				'accessibility': { focusBack: true,	combination: 'I2', de: null }
 			},
-			(this._map['wopi'].EnableRemoteLinkPicker) ? {
+			(this.map['wopi'].EnableRemoteLinkPicker) ? {
 				'id': 'insert-smart-picker',
 				'class': 'unoremotelink',
 				'type': 'bigcustomtoolitem',
@@ -1396,7 +1396,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'command': 'remotelink',
 				'accessibility': { focusBack: true,	combination: 'LR', de: null }
 			} : {},
-			(this._map['wopi'].EnableRemoteAIContent) ? {
+			(this.map['wopi'].EnableRemoteAIContent) ? {
 				'id': 'insert-insert-remote-ai-content',
 				'class': 'unoremoteaicontent',
 				'type': 'bigcustomtoolitem',
@@ -1520,7 +1520,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 								'text': _UNO('.uno:FontworkGalleryFloater'),
 								'command': '.uno:FontworkGalleryFloater',
 								// Fontwork export/import not supported in other formats.
-								'visible': (app.LOUtil.isFileODF(this._map)) ? 'true' : 'false',
+								'visible': (app.LOUtil.isFileODF(this.map)) ? 'true' : 'false',
 								'accessibility': { focusBack: true,	combination: 'IF', de: null }
 							}
 						]
@@ -2419,7 +2419,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 								'text': _UNO('.uno:FontworkGalleryFloater'),
 								'command': '.uno:FontworkGalleryFloater',
 								// Fontwork export/import not supported in other formats.
-								'visible': (app.LOUtil.isFileODF(this._map)) ? 'true' : 'false',
+								'visible': (app.LOUtil.isFileODF(this.map)) ? 'true' : 'false',
 								'accessibility': { focusBack: true,	combination: 'FW', de: null }
 							}
 						]
