@@ -414,7 +414,7 @@ class LOUtil {
 					rectangle1[2] * 0.5 -
 					(rectangle2[0] + rectangle2[2] * 0.5),
 			) <
-			rectangle1[2] + rectangle2[2]
+			0.5 * (rectangle1[2] + rectangle2[2])
 		) {
 			if (
 				Math.abs(
@@ -422,7 +422,7 @@ class LOUtil {
 						rectangle1[3] * 0.5 -
 						(rectangle2[1] + rectangle2[3] * 0.5),
 				) <
-				rectangle1[3] + rectangle2[3]
+				0.5 * (rectangle1[3] + rectangle2[3])
 			)
 				return true;
 			else return false;
