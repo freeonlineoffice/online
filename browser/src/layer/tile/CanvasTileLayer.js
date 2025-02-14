@@ -3769,12 +3769,11 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		if (type === 'buttondown') this._clearSearchResults();
 
-		if (
-			this._map &&
-			this._map._docLayer &&
-			(type === 'buttondown' || type === 'buttonup')
-		)
-			app.setFollowingUser(this._map._docLayer._getViewId());
+		if (type === 'buttondown')
+			this._clearSearchResults();
+
+		if (this._map && this._map._docLayer && (type === 'buttondown' || type === 'buttonup'))
+			this._map.userList.followUser(this._map._docLayer._getViewId(), false);
 	},
 
 	// If viewing multi-page PDF files, get the twips offset of the current part. This is
