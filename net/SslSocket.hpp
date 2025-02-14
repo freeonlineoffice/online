@@ -235,7 +235,7 @@ public:
 
 private:
     /// The possible next I/O operation that SSL want to do.
-    enum class SslWantsTo
+    enum class SslWantsTo : std::uint8_t
     {
         Neither,
         Read,
