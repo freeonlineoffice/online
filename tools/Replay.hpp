@@ -17,19 +17,19 @@
 
 #include "Socket.hpp"
 #include "WebSocketHandler.hpp"
+#include <TraceFile.hpp>
+#include <Util.hpp>
+#include <common/Log.hpp>
 #include <net/Ssl.hpp>
+#include <wsd/TileDesc.hpp>
 #if ENABLE_SSL
 #  include <SslSocket.hpp>
 #endif
 
-#include <TraceFile.hpp>
-#include <wsd/TileDesc.hpp>
-
 #include <iostream>
 #include <fstream>
 #include <ctime>
-#include <Util.hpp>
-#include <common/Log.hpp>
+#include <utility>
 
 struct PerfMetricInfo
 {
@@ -95,7 +95,8 @@ struct Histogram {
         }
     }
 
-    std::vector<PerfMetricInfo> getLatencyStats(std::string typeOfLatency, const std::string& testPhase)
+    std::vector<PerfMetricInfo> getLatencyStats(const std::string& typeOfLatency,
+                                                const std::string& testPhase)
     {
         size_t totalTiles = _items;
         size_t subTenCount = _buckets[0];
@@ -185,8 +186,8 @@ struct Stats {
         return totalDirtyPss;
     }
 
-    void accumulate(std::unordered_map<std::string, MessageStat> &map,
-                    const std::string token, size_t size)
+    void accumulate(std::unordered_map<std::string, MessageStat>& map, const std::string& token,
+                    size_t size)
     {
         auto it = map.find(token);
         MessageStat st = { 0, 0 };
@@ -304,32 +305,29 @@ struct Stats {
         }
     }
 
-    PerfMetricInfo getStressStats(size_t runMs, const std::string& testPhase)
+    PerfMetricInfo getStressStats(size_t runMs, std::string testPhase)
     {
-        PerfMetricInfo stressStats = {testPhase, "Stress run (ms)", runMs};
-        return  stressStats;
+        return PerfMetricInfo(std::move(testPhase), "Stress run (ms)", runMs);
     }
 
-    PerfMetricInfo getCPUUSageStats(size_t cpuUsage, const std::string testPhase)
+    PerfMetricInfo getCPUUSageStats(size_t cpuUsage, std::string testPhase)
     {
-        PerfMetricInfo cpuStats = {testPhase, "CPU Usage (us)", cpuUsage};
-        return cpuStats;
+        return PerfMetricInfo(std::move(testPhase), "CPU Usage (us)", cpuUsage);
     }
 
     std::vector<PerfMetricInfo> getNetworkStats(size_t recievedKb, size_t sentKb, const std::string& testPhase)
     {
         std::vector<PerfMetricInfo> networkStatsList;
 
-        networkStatsList.push_back(PerfMetricInfo{testPhase, "Bytes recieved (kB)", recievedKb});
-        networkStatsList.push_back(PerfMetricInfo{testPhase, "Bytes sent (kB)", sentKb});
+        networkStatsList.emplace_back(testPhase, "Bytes recieved (kB)", recievedKb);
+        networkStatsList.emplace_back(testPhase, "Bytes sent (kB)", sentKb);
 
         return networkStatsList;
     }
 
-    PerfMetricInfo getPeakMemoryUsageStats(size_t peakMemory, const std::string& testPhase)
+    PerfMetricInfo getPeakMemoryUsageStats(size_t peakMemory, std::string testPhase)
     {
-        PerfMetricInfo peakMemoryStats = {testPhase, "Peak memory usage (kB)", peakMemory};
-        return peakMemoryStats;
+        return PerfMetricInfo(std::move(testPhase), "Peak memory usage (kB)", peakMemory);
     }
 
     void dumpPerfStatsToCSV(std::vector<PerfMetricInfo> perfData)
