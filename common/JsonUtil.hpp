@@ -175,7 +175,7 @@ static char getEscapementChar(char ch)
     }
 }
 
-static void writeEscapedSequence(uint32_t ch, std::vector<char>& buf)
+inline void writeEscapedSequence(uint32_t ch, std::string& buf)
 {
     switch (ch)
     {
@@ -206,10 +206,10 @@ static void writeEscapedSequence(uint32_t ch, std::vector<char>& buf)
     }
 }
 
-inline std::string escapeJSONValue(std::string val)
+inline std::string escapeJSONValue(const std::string_view val)
 {
-    std::vector<char> buf;
-    buf.reserve(val.size() + 10); // some small initial extra space for escaping
+    std::string buf;
+    buf.reserve(val.size() + 64); // some small initial extra space for escaping
     for (size_t i = 0; i < val.size(); ++i)
     {
         const char ch = val[i];
@@ -239,7 +239,8 @@ inline std::string escapeJSONValue(std::string val)
                 break;
         }
     }
-    return std::string(buf.data(), buf.size());
+
+    return buf;
 }
 
 /// Extract all json entries into a map.
