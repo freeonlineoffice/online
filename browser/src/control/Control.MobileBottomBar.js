@@ -121,7 +121,7 @@ class MobileBottomBar extends JSDialog.Toolbar {
 					]},
 				{type: 'toolitem', id: 'flipvertical', text: _UNO('.uno:FlipVertical', 'text', true), command: '.uno:FlipVertical', context: ['Draw', 'DrawLine', '3DObject', 'MultiObject', 'Graphic', 'DrawFontwork']},
 				{type: 'toolitem', id: 'fliphorizontal', text: _UNO('.uno:FlipHorizontal', 'text', true), command: '.uno:FlipHorizontal', context: ['Draw', 'DrawLine', '3DObject', 'MultiObject', 'Graphic', 'DrawFontwork']},
-				{type: 'toolitem', id: 'crop', text: _UNO('.uno:Crop'), command: '.uno:Crop', context: ['Graphic'] },
+				{type: 'toolitem', id: 'crop', text: _UNO('.uno:Crop'), command: '.uno:Crop', context: ['Graphic']},
 			];
 		} else if (this.docType == 'spreadsheet') {
 			return [
@@ -189,6 +189,7 @@ class MobileBottomBar extends JSDialog.Toolbar {
 					]},
 				{type: 'toolitem', id: 'numberformatincdecimals', text: _UNO('.uno:NumberFormatIncDecimals', 'spreadsheet', true), command: '.uno:NumberFormatIncDecimals', disabled: true},
 				{type: 'toolitem', id: 'numberformatdecdecimals', text: _UNO('.uno:NumberFormatDecDecimals', 'spreadsheet', true), command: '.uno:NumberFormatDecDecimals', disabled: true},
+				{type: 'toolitem', id: 'crop', text: _UNO('.uno:Crop'), command: '.uno:Crop', context: ['Graphic']},
 			];
 		} else if ((this.docType == 'presentation') || (this.docType == 'drawing')) {
 			return [
@@ -268,6 +269,7 @@ class MobileBottomBar extends JSDialog.Toolbar {
 					]},
 				{type: 'toolitem', id: 'flipvertical', text: _UNO('.uno:FlipVertical', '', true), command: '.uno:FlipVertical', context: ['Draw', 'DrawLine', '3DObject', 'MultiObject', 'Graphic', 'DrawFontwork']},
 				{type: 'toolitem', id: 'fliphorizontal', text: _UNO('.uno:FlipHorizontal', '', true), command: '.uno:FlipHorizontal', context: ['Draw', 'DrawLine', '3DObject', 'MultiObject', 'Graphic', 'DrawFontwork']},
+				{type: 'toolitem', id: 'crop', text: _UNO('.uno:Crop'), command: '.uno:Crop', context: ['Graphic']},
 			];
 		}
 	}
