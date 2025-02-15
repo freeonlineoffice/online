@@ -4415,7 +4415,8 @@ void DocumentBroker::handleTileCombinedRequest(TileCombined& tileCombined, bool 
                 tile.forceKeyframe();
             }
 
-            requestTileRendering(tile, forceKeyFrame, now, tilesNeedsRendering, session);
+            bool bumpVersion = false; // already done above
+            requestTileRendering(tile, forceKeyFrame, bumpVersion, now, tilesNeedsRendering, session);
         }
     }
     if (hasOldWireId)
@@ -4577,7 +4578,7 @@ void DocumentBroker::handleMediaRequest(const std::string_view range,
     }
 }
 
-bool DocumentBroker::requestTileRendering(TileDesc& tile, bool forceKeyframe,
+bool DocumentBroker::requestTileRendering(TileDesc& tile, bool forceKeyframe, bool bumpVersion,
                                           const std::chrono::steady_clock::time_point &now,
                                           std::vector<TileDesc>& tilesNeedsRendering,
                                           const std::shared_ptr<ClientSession>& session)
@@ -4586,7 +4587,9 @@ bool DocumentBroker::requestTileRendering(TileDesc& tile, bool forceKeyframe,
     if (!tileCache().hasTileBeingRendered(tile, &now) || // There is no in progress rendering of the given tile
         tileCache().getTileBeingRenderedVersion(tile) < tile.getVersion()) // We need a newer version
     {
-        tile.setVersion(++_tileVersion);
+        if (bumpVersion)
+            tile.setVersion(++_tileVersion);
+
         if (forceKeyframe)
         {
             LOG_TRC("Forcing keyframe for tile was oldwid " << tile.getOldWireId());
@@ -4644,7 +4647,9 @@ void DocumentBroker::sendRequestedTiles(const std::shared_ptr<ClientSession>& se
             else
             {
                 // Not cached, needs rendering.
-                allSamePartAndSize &= requestTileRendering(tile, !cachedTile, now, tilesNeedsRendering, session);
+                bool bumpVersion = true;
+                bool forceKeyFrame = !cachedTile;
+                allSamePartAndSize &= requestTileRendering(tile, forceKeyFrame, bumpVersion, now, tilesNeedsRendering, session);
             }
             requestedTiles.pop_front();
         }
