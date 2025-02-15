@@ -121,7 +121,7 @@ public:
             shutdown();
             break;
         }
-        DELAY_LOG('#' << getFD() << " changed to state " << toStringShort(newState) << '\n');
+        DELAY_LOG('#' << getFD() << " changed to state " << nameShort(newState) << '\n');
         _state = newState;
     }
 
