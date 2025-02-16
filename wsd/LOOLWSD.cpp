@@ -236,7 +236,7 @@ std::string removeProtocolAndPort(const std::string& host)
         result = host;
 
     // port
-    pos = result.find(":");
+    pos = result.find(':');
     if (pos != std::string::npos)
     {
         if (pos == 0)
