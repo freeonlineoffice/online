@@ -335,7 +335,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
                 DocChanged = 1010  // Document changed externally in storage
             };
 
-        std::string getLastModifiedTime()
+        std::string getLastModifiedTime() const
         {
             return Util::getIso8601FracformatTime(fileLastModifiedTime);
         }
@@ -357,19 +357,17 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
     public:
         // Lookup a file in our file-list
-        static std::shared_ptr<LocalFileInfo> getOrCreateFile(const std::string &lpath, const std::string &fname)
+        static const std::shared_ptr<LocalFileInfo>& getOrCreateFile(const std::string& lpath,
+                                                                     const std::string& fname)
         {
-            auto it = std::find_if(fileInfoVec.begin(), fileInfoVec.end(), [&lpath](const std::shared_ptr<LocalFileInfo>& obj)
-            {
-                return obj->localPath == lpath;
-            });
+            const auto it = std::find_if(fileInfoVec.begin(), fileInfoVec.end(),
+                                         [&lpath](const std::shared_ptr<LocalFileInfo>& obj)
+                                         { return obj->localPath == lpath; });
 
             if (it != fileInfoVec.end())
                 return *it;
 
-            auto fileInfo = std::make_shared<LocalFileInfo>(lpath, fname);
-            fileInfoVec.emplace_back(fileInfo);
-            return fileInfo;
+            return fileInfoVec.emplace_back(std::make_shared<LocalFileInfo>(lpath, fname));
         }
     };
     std::atomic<unsigned> lastLocalId;
@@ -417,7 +415,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
         if (request.getMethod() == "GET" && !path.toString().ends_with(suffix))
         {
-            std::shared_ptr<LocalFileInfo> localFile =
+            const std::shared_ptr<LocalFileInfo>& localFile =
                 LocalFileInfo::getOrCreateFile(localPath, path.getFileName());
 
             std::string userId = std::to_string(lastLocalId++);
@@ -502,8 +500,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
         }
         else if(request.getMethod() == "GET" && path.toString().ends_with(suffix))
         {
-            std::shared_ptr<LocalFileInfo> localFile =
-                LocalFileInfo::getOrCreateFile(localPath,path.getFileName());
+            const std::shared_ptr<LocalFileInfo>& localFile =
+                LocalFileInfo::getOrCreateFile(localPath, path.getFileName());
             std::ostringstream ss;
             std::ifstream inputFile(localFile->localPath);
             ss << inputFile.rdbuf();
@@ -517,8 +515,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
         }
         else if (request.getMethod() == "POST" && path.toString().ends_with(suffix))
         {
-            std::shared_ptr<LocalFileInfo> localFile =
-                LocalFileInfo::getOrCreateFile(localPath,path.getFileName());
+            const std::shared_ptr<LocalFileInfo>& localFile =
+                LocalFileInfo::getOrCreateFile(localPath, path.getFileName());
             std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
             if (wopiTimestamp.empty())
                 wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
@@ -730,7 +728,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
                 throw BadRequestException("Invalid URI: " + configPath);
             }
 
-            std::shared_ptr<LocalFileInfo> localFile =
+            const std::shared_ptr<LocalFileInfo>& localFile =
                 LocalFileInfo::getOrCreateFile(configPath, path.getFileName());
             std::ostringstream ss;
             std::ifstream inputFile(localFile->localPath);
