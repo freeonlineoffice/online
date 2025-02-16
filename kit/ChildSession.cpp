@@ -3302,7 +3302,6 @@ bool ChildSession::updateBlockingCommandStatus(const StringVector& tokens)
 
 }
 
-
 #endif
 
 bool ChildSession::sendProgressFrame(const char* id, const std::string& jsonProps,

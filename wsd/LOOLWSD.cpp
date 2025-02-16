@@ -240,7 +240,7 @@ std::string removeProtocolAndPort(const std::string& host)
     if (pos != std::string::npos)
     {
         if (pos == 0)
-            return "";
+            return std::string();
 
         result = result.substr(0, pos);
     }
@@ -696,7 +696,7 @@ inline std::string getLaunchBase(bool asAdmin = false)
         auto passwd = ConfigUtil::getConfigValue<std::string>("admin_console.password", "");
 
         if (user.empty() || passwd.empty())
-            return "";
+            return std::string();
 
         oss << user << ':' << passwd << '@';
     }

@@ -4173,7 +4173,7 @@ std::string DocumentBroker::getDownloadURL(const std::string& downloadId)
     if (found != _registeredDownloadLinks.end())
         return found->second;
 
-    return "";
+    return std::string();
 }
 
 void DocumentBroker::unregisterDownloadId(const std::string& downloadId)
