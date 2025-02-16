@@ -1516,7 +1516,7 @@ private:
 
         if (_port != "80" && _port != "443")
         {
-            host.append(":");
+            host.push_back(':');
             host.append(_port);
         }
         _request.set("Host", std::move(host)); // Make sure the host is set.
