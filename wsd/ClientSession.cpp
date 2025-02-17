@@ -1421,11 +1421,13 @@ void ClientSession::overrideDocOption()
     JsonUtil::findJSONValue(_browserSettingsJSON, "accessibilityState", accessibilityState);
     Poco::JSON::Object::Ptr darkBackgroundObj =
         _browserSettingsJSON->getObject("darkBackgroundForTheme");
-    if (!darkBackgroundObj.isNull())
-    {
+
+    // follow darkTheme preference if darkBackgroundForTheme is not set
+    if (darkBackgroundObj.isNull())
+        setDarkBackground(darkTheme);
+    else
         JsonUtil::findJSONValue(darkBackgroundObj, darkTheme == "true" ? "dark" : "light",
                                 darkBackgroundForTheme);
-    }
 
     if (!darkTheme.empty())
     {
