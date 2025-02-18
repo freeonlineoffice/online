@@ -2090,7 +2090,7 @@ void FileServerRequestHandler::fetchDictionaries(const Poco::Net::HTTPRequest& r
     Poco::URI dicUrl(fileUrl);
     dicUrl.addQueryParameter("access_token", accessToken);
 
-    const std::string& uriAnonym = COOLWSD::anonymizeUrl(dicUrl.toString());
+    const std::string& uriAnonym = LOOLWSD::anonymizeUrl(dicUrl.toString());
     Authorization auth(Authorization::Type::Token, accessToken);
     auto httpRequest = StorageConnectionManager::createHttpRequest(dicUrl, auth);
     httpRequest.setVerb(http::Request::VERB_GET);
