@@ -117,6 +117,7 @@ endef
 
 LOOL_ADMIN_TS = \
 	admin/src/ModalDialogCreator.ts \
+	admin/src/integrator/WordBook.ts \
 	admin/src/integrator/AdminIntegratorSettings.ts
 
 LOOL_ADMIN_TS_JS = $(patsubst %.ts,$(TYPESCRIPT_JS_DIR)/%.js,$(LOOL_ADMIN_TS))
