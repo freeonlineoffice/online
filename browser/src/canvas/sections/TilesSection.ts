@@ -260,15 +260,15 @@ export class TilesSection extends app.definitions.canvasSectionObject {
 				var tileRange = tileRanges[rangeIdx];
 				for (var j = tileRange.min.y; j <= tileRange.max.y; ++j) {
 					for (var i: number = tileRange.min.x; i <= tileRange.max.x; ++i) {
-						var coords = new L.TileCoordData(
+						var coords = new TileCoordData(
 							i * ctx.tileSize.x,
 							j * ctx.tileSize.y,
 							zoom,
 							part,
 							mode);
 
-						var key = coords.key();
-						var tile = docLayer._tiles[key];
+						const key = coords.key();
+						const tile = docLayer._tiles[key];
 
 						if (!callback(tile, coords))
 							return;
@@ -492,15 +492,15 @@ export class TilesSection extends app.definitions.canvasSectionObject {
 
 		for (var j = tileRange.min.y; j <= tileRange.max.y; ++j) {
 			for (var i = tileRange.min.x; i <= tileRange.max.x; ++i) {
-				var coords = new L.TileCoordData(
+				const coords = new TileCoordData(
 					i * ctx.tileSize.x,
 					j * ctx.tileSize.y,
 					zoom,
 					part,
 					mode);
 
-				var key = coords.key();
-				var tile = docLayer._tiles[key];
+				const key = coords.key();
+				const tile = docLayer._tiles[key];
 				if (tile)
 					callback(tile, coords, this);
 			}
