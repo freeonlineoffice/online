@@ -314,7 +314,8 @@ class SettingIframe {
 			let textValue = await response.text();
 			console.debug('textValue: ', textValue);
 
-			const wordbook = await this.wordbook.parseWordbookFileAsync(textValue);
+			const wordbook =
+				await this.wordbook.parseWordbookFileAsync(textValue);
 			const fileName = this.getFilename(fileId, false);
 			this.wordbook.stopLoader();
 			this.wordbook.openWordbookEditor(fileName, wordbook);
