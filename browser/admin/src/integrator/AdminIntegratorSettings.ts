@@ -292,6 +292,7 @@ class SettingIframe {
 	}
 
 	private async fetchWordbookFile(fileId: string): Promise<void> {
+		this.wordbook.startLoader();
 		const formData = new FormData();
 		formData.append('fileUrl', fileId);
 		formData.append('accessToken', window.accessToken ?? '');
@@ -315,11 +316,13 @@ class SettingIframe {
 
 			const wordbook = await this.wordbook.parseWordbookFileAsync(textValue);
 			const fileName = this.getFilename(fileId, false);
+			this.wordbook.stopLoader();
 			this.wordbook.openWordbookEditor(fileName, wordbook);
 		} catch (error: unknown) {
 			const message =
 				error instanceof Error ? error.message : 'Unknown error';
 			console.error(`Error uploading file: ${message}`);
+			this.wordbook.stopLoader();
 		}
 	}
 
