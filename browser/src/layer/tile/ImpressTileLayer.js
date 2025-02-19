@@ -3,7 +3,7 @@
  * Impress tile layer is used to display a presentation document
  */
 
-/* global app $ L lool */
+/* global app $ L lool TilesPreFetcher */
 
 L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
@@ -320,7 +320,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 			else if (statusJSON.parts.length > 0 && statusJSON.parts[0].gridVisible === true)
 				app.map.stateChangeHandler.setItemValue('.uno:GridVisible', 'true');
 
-			this._resetPreFetching(true);
+			TilesPreFetcher.resetPreFetching(true);
 
 			var refreshAnnotation = this._documentInfo !== textMsg;
 

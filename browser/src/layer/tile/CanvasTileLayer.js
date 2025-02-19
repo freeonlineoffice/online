@@ -1177,7 +1177,7 @@ L.CanvasTileLayer = L.Layer.extend({
 	},
 
 	_moveStart: function () {
-		this._resetPreFetching();
+		TilesPreFetcher.resetPreFetching();
 		this._moveInProgress = true;
 		this._moveTileRequests = [];
 	},
@@ -1192,7 +1192,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (!this._moveInProgress) return;
 
 		this._update();
-		this._resetPreFetching(true);
+		TilesPreFetcher.resetPreFetching(true);
 		this._onCurrentPageUpdate();
 	},
 
@@ -5402,7 +5402,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		map._removeZoomLimit(this);
 		this._container = null;
 		this._tileZoom = null;
-		this._clearPreFetch();
+		TilesPreFetcher.clearPreFetch();
 		clearTimeout(this._previewInvalidator);
 
 		if (!this._cellCSelections.empty()) {
@@ -6473,27 +6473,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	_preFetchTiles: function (forceBorderCalc) {
-		if (this._prefetcher) {
-			this._prefetcher.preFetchTiles(forceBorderCalc);
-		}
-	},
-
-	_resetPreFetching: function (resetBorder) {
-		if (!this._prefetcher) {
-			this._prefetcher = new TilesPreFetcher(this);
-		}
-
-		this._prefetcher.resetPreFetching(resetBorder);
-	},
-
-	_clearPreFetch: function () {
-		if (this._prefetcher) {
-			this._prefetcher.clearPreFetch();
-		}
-	},
-
-	rehydrateTile: function (tile) {
+	rehydrateTile: function(tile)
+	{
 		if (tile.hasKeyframe() && tile.hasPendingKeyframe === 0) {
 			// Re-hydrate tile from cached raw deltas.
 			if (this._debugDeltas)
