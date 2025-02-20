@@ -4,7 +4,7 @@
  */
 
 /* global app _ lool */
-/* global _ JSDialog app OtherViewCellCursorSection */
+/* global _ JSDialog app OtherViewCellCursorSection TileManager */
 
 L.Map.include({
 	/*
@@ -107,8 +107,8 @@ L.Map.include({
 		app.definitions.otherViewGraphicSelectionSection.updateVisibilities();
 		docLayer.eachView(docLayer._viewSelections, docLayer._onUpdateTextViewSelection, docLayer);
 		docLayer._clearSelections(calledFromSetPartHandler);
-		docLayer._updateOnChangePart();
-		docLayer._pruneTiles();
+		TileManager.updateOnChangePart();
+		TileManager.pruneTiles();
 		docLayer._prevSelectedPartNeedsUpdate = true;
 		if (docLayer._invalidatePreviews) {
 			docLayer._invalidatePreviews();

@@ -241,6 +241,7 @@ L.CanvasTileLayer.include({
 		var message = JSON.parse(textMsg);
 		this._currentTableMarkerJson = textMsg;
 		this._currentTableData = message;
+		this._map.fire('resettopbottompagespacing',{disableMarker:this._map._docLayer.hasTableSelection()});
 	},
 	_addSelectionMarkers: function (type, positions, start, end) {
 		if (positions.length < 2)

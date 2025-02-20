@@ -9,6 +9,18 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+// debugging aid.
+function hex2string(inData: any, length: number) {
+	var hexified = [];
+	var data = new Uint8Array(inData);
+	for (var i = 0; i < length; i++) {
+		var hex = data[i].toString(16);
+		var paddedHex = ('00' + hex).slice(-2);
+		hexified.push(paddedHex);
+	}
+	return hexified.join('');
+}
+
 class TileCoordData {
 	x: number;
 	y: number;
@@ -19,14 +31,14 @@ class TileCoordData {
 	constructor(
 		left: number,
 		top: number,
-		zoom: number,
-		part: number,
-		mode: number,
+		zoom: number = null,
+		part: number = null,
+		mode: number = null,
 	) {
 		this.x = left;
 		this.y = top;
-		this.z = zoom;
-		this.part = part;
+		this.z = zoom !== null ? zoom : app.map.getZoom();
+		this.part = part !== null ? part : app.map._docLayer._selectedPart;
 		this.mode = mode !== undefined ? mode : 0;
 	}
 
@@ -34,7 +46,7 @@ class TileCoordData {
 		return new L.Point(this.x, this.y);
 	}
 
-	key() {
+	key(): string {
 		return (
 			this.x +
 			':' +
@@ -48,7 +60,7 @@ class TileCoordData {
 		);
 	}
 
-	toString() {
+	toString(): string {
 		return (
 			'{ left : ' +
 			this.x +
@@ -64,7 +76,7 @@ class TileCoordData {
 		);
 	}
 
-	public static parseKey = function (key: string) {
+	public static parseKey(key: string): TileCoordData {
 		window.app.console.assert(
 			typeof key === 'string',
 			'key should be a string',
@@ -73,7 +85,11 @@ class TileCoordData {
 		const mode = k.length === 4 ? +k[4] : 0;
 		window.app.console.assert(k.length >= 5, 'invalid key format');
 		return new TileCoordData(+k[0], +k[1], +k[2], +k[3], mode);
-	};
+	}
+
+	public static keyToTileCoords(key: string): TileCoordData {
+		return TileCoordData.parseKey(key);
+	}
 }
 
 class PaneBorder {
@@ -1852,7 +1868,7 @@ class TileManager {
 		var hasContent = img != null;
 
 		// obscure case: we could have garbage collected the
-		// keyframe content in JS but loolwsd still thinks we have
+		// keyframe content in JS but coolwsd still thinks we have
 		// it and now we just have a delta with nothing to apply
 		// it to; if so, mark it bad to re-fetch.
 		if (

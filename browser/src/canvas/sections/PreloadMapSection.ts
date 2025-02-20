@@ -34,8 +34,8 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 		var zoom = Math.round(this._map.getZoom());
 		var part = docLayer._selectedPart;
 		var tileRanges = ctx.paneBoundsList.map(
-			docLayer._pxBoundsToTileRange,
-			docLayer,
+			TileManager.pxBoundsToTileRange,
+			TileManager,
 		);
 
 		// Get the 'main' view

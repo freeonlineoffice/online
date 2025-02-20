@@ -1,6 +1,13 @@
 /* -*- js-indent-level: 8 -*- */
 
 /*
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
  * Calc tile layer is used to display a spreadsheet document
  */
 
@@ -1078,7 +1085,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		if (!this._gotFirstCellCursor) {
 			// Drawing is disabled from CalcTileLayer construction, enable it now.
 			this._gotFirstCellCursor = true;
-			this._update();
+			TileManager.update();
 			this.enableDrawing();
 		}
 		if (this._map.uiManager.getHighlightMode()) {

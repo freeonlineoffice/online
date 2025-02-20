@@ -20,7 +20,7 @@
  * - &randomUser=true URL parameter (global.js)
  */
 
-/* global app L _ InvalidationRectangleSection */
+/* global app L _ InvalidationRectangleSection TileManager */
 
 L.DebugManager = L.Class.extend({
 	initialize: function(map) {
@@ -1053,7 +1053,7 @@ L.DebugManager = L.Class.extend({
 			this.reportEventDelay(performance.now() - this._eventDelayWatchStart);
 		}, 0);
 	},
-	
+
 	reportEventDelay: function(delayMs) {
 		if (!this.eventDelayWatchdog)
 			return;

@@ -2,7 +2,6 @@
 /*
  * Impress tile layer is used to display a presentation document
  */
-
 /* global app $ L lool TileManager */
 
 L.ImpressTileLayer = L.CanvasTileLayer.extend({
@@ -271,7 +270,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (app.file.fileBasedView)
-			this._updateFileBasedView();
+			TileManager.updateFileBasedView();
 	},
 
 	_invalidateAllPreviews: function () {
