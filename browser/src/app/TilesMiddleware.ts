@@ -1341,9 +1341,16 @@ class TileManager {
 			} else if (app.map._docLayer._moveInProgress) {
 				// While we are actively scrolling, filter out duplicate
 				// (still) missing tiles requests during the scroll.
-				if (app.map._docLayer._moveTileRequests.includes(coordsQueue[i].key()))
+				if (
+					app.map._docLayer._moveTileRequests.includes(
+						coordsQueue[i].key(),
+					)
+				)
 					coordsQueue.splice(i, 1);
-				else app.map._docLayer._moveTileRequests.push(coordsQueue[i].key());
+				else
+					app.map._docLayer._moveTileRequests.push(
+						coordsQueue[i].key(),
+					);
 			}
 		}
 	}
