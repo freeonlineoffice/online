@@ -104,8 +104,6 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 			var range = partBounds[p];
 			for (var j = range.min.y; j <= range.max.y; ++j) {
 				for (var i: number = range.min.x; i <= range.max.x; ++i) {
-					var tile = undefined;
-
 					if (i >= 0 && j >= 0 && range.part >= 0) {
 						var coords = new TileCoordData(
 							i * ctx.tileSize.x,
@@ -115,7 +113,7 @@ class PreloadMapSection extends app.definitions.canvasSectionObject {
 							docLayer._selectedMode,
 						);
 						var key = coords.key();
-						tile = docLayer._tiles[key];
+						const tile: Tile = TileManager.get(key);
 
 						if (!tile)
 							canvas.fillStyle =

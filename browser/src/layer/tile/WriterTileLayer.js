@@ -1,5 +1,12 @@
 /* -*- js-indent-level: 8 -*- */
 /*
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
  * Writer tile layer is used to display a text document
  */
 
@@ -93,8 +100,8 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		var visibleBottomRight = this._latLngToTwips(this._map.getBounds().getSouthEast());
 		var visibleArea = new L.Bounds(visibleTopLeft, visibleBottomRight);
 		var needsNewTiles = false;
-		for (var key in this._tiles) {
-			var coords = this._tiles[key].coords;
+		for (var key in TileManager.tiles) {
+			var coords = TileManager.get(key).coords;
 			var bounds = this._coordsToTileBounds(coords);
 			if (coords.part === command.part && coords.mode === command.mode &&
 				invalidBounds.intersects(bounds)) {
