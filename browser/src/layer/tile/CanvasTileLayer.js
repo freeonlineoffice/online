@@ -1966,23 +1966,46 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	// Returns a guess of how many tiles are yet to arrive
-	predictTilesToSlurp: function () {
-		var map = this._map;
-		if (!map) return 0;
-		var size = map.getSize();
+	_onInvalidateTilesMsg: function (textMsg) {
+		const command = app.socket.parseServerCmd(textMsg);
+		if (command.x === undefined || command.y === undefined || command.part === undefined) {
+			var strTwips = textMsg.match(/\d+/g);
+			command.x = parseInt(strTwips[0]);
+			command.y = parseInt(strTwips[1]);
+			command.width = parseInt(strTwips[2]);
+			command.height = parseInt(strTwips[3]);
+			command.part = this._selectedPart;
+		}
 
-		if (size.x === 0 || size.y === 0) return 0;
+		if (isNaN(command.mode))
+			command.mode = this._selectedMode;
 
-		var zoom = Math.round(map.getZoom());
-		var pixelBounds = map.getPixelBoundsCore(map.getCenter(), zoom);
+		const invalidArea = new app.definitions.simpleRectangle(command.x, command.y, command.width, command.height);
+		TileManager.overlapInvalidatedRectangleWithView(command.part, command.mode, command.wireId, invalidArea, textMsg);
 
-		var queue = this._getMissingTiles(pixelBounds, zoom);
+		if (this._docType === 'presentation' || this._docType === 'drawing') {
+			if (command.part === this._selectedPart &&
+				command.mode === this._selectedMode &&
+				command.part !== this._lastValidPart) {
+				this._map.fire('updatepart', {part: this._lastValidPart, docType: this._docType});
+				this._lastValidPart = command.part;
+				this._map.fire('updatepart', {part: command.part, docType: this._docType});
+			}
 
-		return queue.length;
+			const preview = this._map._docPreviews ? this._map._docPreviews[command.part] : null;
+			if (preview) { preview.invalid = true; }
+
+			const topLeftTwips = new L.Point(command.x, command.y);
+			const offset = new L.Point(command.width, command.height);
+			const bottomRightTwips = topLeftTwips.add(offset);
+			this._previewInvalidations.push(new L.Bounds(topLeftTwips, bottomRightTwips));
+			// 1s after the last invalidation, update the preview
+			clearTimeout(this._previewInvalidator);
+			this._previewInvalidator = setTimeout(L.bind(this._invalidatePreviews, this), this.options.previewInvalidationTimeout);
+		}
 	},
 
-	handleInvalidateTilesMsg: function (textMsg) {
+	handleInvalidateTilesMsg: function(textMsg) {
 		var payload = textMsg.substring('invalidatetiles:'.length + 1);
 		if (!payload.startsWith('EMPTY')) {
 			this._onInvalidateTilesMsg(textMsg);
