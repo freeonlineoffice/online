@@ -2015,14 +2015,13 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             if (serveAsAttachment)
                 response.set("Content-Disposition", "attachment; filename=\"" + fileName + '"');
 
-#if !MOBILEAPP
+
             if (LOOLWSD::WASMState != LOOLWSD::WASMActivationState::Disabled)
             {
                 response.add("Cross-Origin-Opener-Policy", "same-origin");
                 response.add("Cross-Origin-Embedder-Policy", "require-corp");
                 response.add("Cross-Origin-Resource-Policy", "cross-origin");
             }
-#endif // !MOBILEAPP
 
             try
             {
