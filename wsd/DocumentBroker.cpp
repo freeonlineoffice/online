@@ -1490,7 +1490,7 @@ DocumentBroker::updateSessionWithWopiInfo(const std::shared_ptr<ClientSession>& 
     return templateSource;
 }
 
-class PresetsInstallTask
+class PresetsInstallTask : public std::enable_shared_from_this<PresetsInstallTask>
 {
 private:
     SocketPoll& _poll;
@@ -1540,6 +1540,7 @@ private:
 
     void completed()
     {
+        auto selfLifecycle = shared_from_this();
         _reportedStatus = true;
         for (const auto& cb : _installFinishedCBs)
             cb(_overallSuccess);
