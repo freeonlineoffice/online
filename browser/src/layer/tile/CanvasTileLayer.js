@@ -5532,33 +5532,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	_pruneTiles: function () {
-		// update tile.current for the view
-		if (app.file.fileBasedView) this._updateFileBasedView(true);
-
-		this._garbageCollect();
-	},
-
-	_getTilePos: function (coords) {
-		return coords.getPos();
-	},
-
-	_pxBoundsToTileRanges: function (bounds) {
-		if (!this._splitPanesContext) {
-			return [this._pxBoundsToTileRange(bounds)];
-		}
-
-		var boundList = this._splitPanesContext.getPxBoundList(bounds);
-		return boundList.map(this._pxBoundsToTileRange, this);
-	},
-
-	_pxBoundsToTileRange: function (bounds) {
-		return new L.Bounds(
-			bounds.min.divideBy(this._tileSize).floor(),
-			bounds.max.divideBy(this._tileSize).floor(),
-		);
-	},
-
 	_cssPixelsToCore: function (cssPixels) {
 		return cssPixels.multiplyBy(app.dpiScale);
 	},
