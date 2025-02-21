@@ -364,12 +364,10 @@ L.DebugManager = L.Class.extend({
 			category: 'Logging',
 			startsOn: false,
 			onAdd: function () {
-				self._docLayer._debugDeltas = true;
-				self._docLayer._debugDeltasDetail = true;
+				TileManager.setDebugDeltas(true);
 			},
 			onRemove: function () {
-				self._docLayer._debugDeltas = false;
-				self._docLayer._debugDeltasDetail = false;
+				TileManager.setDebugDeltas(false);
 			},
 		});
 
@@ -1080,7 +1078,7 @@ L.DebugManager = L.Class.extend({
 
 			if (delayMs > very_slow_time_threshold) {
 				let msg = _('Event handling has been delayed for an unexpectedly long time: {0}ms');
-				this._map.uiManager.showInfoModal('cool_alert', '', msg.replace('{0}', delayMs), '', _('OK'));
+				this._map.uiManager.showInfoModal('lool_alert', '', msg.replace('{0}', delayMs), '', _('OK'));
 			}
 		}
 	},
