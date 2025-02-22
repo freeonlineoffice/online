@@ -454,9 +454,6 @@ protected:
     /// Explicitly marks this socket closed, i.e. rejected from polling and potentially shutdown
     void setClosed() { _closed = true; }
 
-    /// Explicitly marks this socket and the given SocketDisposition closed
-    void setClosed(SocketDisposition &disposition) { setClosed(); disposition.setClosed(); }
-
 private:
     /// Create socket of the given type.
     /// return >= 0 for a successfully created socket, -1 on error
@@ -1594,7 +1591,8 @@ public:
         {
             LOG_TRC("Closed. Firing onDisconnect.");
             _socketHandler->onDisconnect();
-            setClosed(disposition);
+            setClosed();
+            disposition.setClosed();
         }
         else if (isClosed())
             disposition.setClosed();
