@@ -520,7 +520,9 @@ class TilesPreFetcher {
 	private static preFetchPartTiles(part: number, mode: number): void {
 		this.updateProperties();
 
-		const tileRange = this._docLayer._pxBoundsToTileRange(this._pixelBounds);
+		const tileRange = this._docLayer._pxBoundsToTileRange(
+			this._pixelBounds,
+		);
 		const tileCombineQueue = [];
 
 		for (let j = tileRange.min.y; j <= tileRange.max.y; j++) {
@@ -548,7 +550,8 @@ class TilesPreFetcher {
 	public static initPreFetchPartTiles() {
 		if (!this.checkDocLayer()) return;
 
-		const targetPart = this._docLayer._selectedPart + app.map._partsDirection;
+		const targetPart =
+			this._docLayer._selectedPart + app.map._partsDirection;
 
 		if (targetPart < 0 || targetPart >= this._docLayer._parts) return;
 
