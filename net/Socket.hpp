@@ -1461,6 +1461,7 @@ public:
                     const int events) override
     {
         ASSERT_CORRECT_SOCKET_THREAD(this);
+        assert((getFD() >= 0 || isClosed()) && "Socket is closed but not marked correctly");
 
         if (_socketHandler->checkTimeout(now))
         {
@@ -1718,6 +1719,7 @@ protected:
     virtual int readData(char* buf, int len)
     {
         ASSERT_CORRECT_SOCKET_THREAD(this);
+        assert((getFD() >= 0 || isClosed()) && "Socket is closed but not marked correctly");
 
         // avoided in readIncomingData
         if (ignoringInput())
@@ -1742,6 +1744,8 @@ protected:
     virtual int writeData(const char* buf, const int len)
     {
         ASSERT_CORRECT_SOCKET_THREAD(this);
+        assert((getFD() >= 0 || isClosed()) && "Socket is closed but not marked correctly");
+
 #if !MOBILEAPP
 #if ENABLE_DEBUG
         if (simulateSocketError(false))
