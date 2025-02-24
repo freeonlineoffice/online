@@ -11,7 +11,6 @@
     "@types/mocha": "10.0.10",
     "@types/node": "20.8.3",
     "@types/offscreencanvas": "^2019.7.3",
-    "@types/w2ui": "^1.4.37",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "autolinker": "4.1.0",
