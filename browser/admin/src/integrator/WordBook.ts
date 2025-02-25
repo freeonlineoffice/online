@@ -134,7 +134,9 @@ class WordBook {
 			if (newWord) {
 				this.currWordbookFile.words.push(newWord);
 				if (this.virtualWordList) {
-					this.virtualWordList.refresh(this.currWordbookFile.words);
+					this.virtualWordList.refresh(
+						this.currWordbookFile.words,
+					);
 					this.virtualWordList.scrollToBottom();
 				}
 				newWordInput.value = '';
@@ -170,7 +172,9 @@ class WordBook {
 		submitButton.textContent = 'Submit';
 		submitButton.className = 'button button--vue-primary';
 		submitButton.addEventListener('click', async () => {
-			const updatedContent = this.buildWordbookFile(this.currWordbookFile);
+			const updatedContent = this.buildWordbookFile(
+				this.currWordbookFile,
+			);
 			console.debug('Updated Dictionary Content:\n', updatedContent);
 			await (window as any).settingIframe.uploadWordbookFile(
 				fileName,
@@ -356,7 +360,10 @@ class VirtualWordList {
 		const scrollTop = this.container.scrollTop;
 		let firstIndex = Math.floor(scrollTop / this.itemHeight);
 
-		const maxFirstIndex = Math.max(0, this.words.length - this.pool.length);
+		const maxFirstIndex = Math.max(
+			0,
+			this.words.length - this.pool.length,
+		);
 		if (firstIndex > maxFirstIndex) {
 			firstIndex = maxFirstIndex;
 		}
@@ -366,7 +373,11 @@ class VirtualWordList {
 		for (let i = 0; i < this.pool.length; i++) {
 			const wordIndex = firstIndex + i;
 			if (wordIndex < this.words.length) {
-				this.renderItem(this.pool[i], this.words[wordIndex], wordIndex);
+				this.renderItem(
+					this.pool[i],
+					this.words[wordIndex],
+					wordIndex,
+				);
 			} else {
 				this.pool[i].innerHTML = '';
 			}
