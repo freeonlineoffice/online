@@ -61,6 +61,7 @@ constexpr const char NEW_CHILD_URI[] = "/loolws/newchild";
 constexpr const char FORKIT_URI[] = "/loolws/forkit";
 
 constexpr const char CAPABILITIES_END_POINT[] = "/hosting/capabilities";
+constexpr const char SETTING_IFRAME_END_POINT[] = "admin/adminIntegratorSettings.html";
 
 /// The file suffix used to mark the file slated for uploading.
 constexpr const char TO_UPLOAD_SUFFIX[] = ".upload";
