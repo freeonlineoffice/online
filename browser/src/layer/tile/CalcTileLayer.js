@@ -49,7 +49,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				anchorPos: app.calc.cellCursorRectangle.toArray(),
 				id: 'new',
 				tab: this._selectedPart,
-				dateTime: new Date().toDateString(),
+				dateTime: new Date().toISOString(),
 				author: this._map.getViewName(this._viewId)
 			};
 
