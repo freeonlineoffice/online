@@ -1868,7 +1868,7 @@ class TileManager {
 		var hasContent = img != null;
 
 		// obscure case: we could have garbage collected the
-		// keyframe content in JS but coolwsd still thinks we have
+		// keyframe content in JS but loolwsd still thinks we have
 		// it and now we just have a delta with nothing to apply
 		// it to; if so, mark it bad to re-fetch.
 		if (

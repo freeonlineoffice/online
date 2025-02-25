@@ -249,7 +249,7 @@ if __name__ == "__main__":
         if file.endswith('calc.fods'):
             generateCalc(src, dest, base, extn)
         elif file.endswith('writer-large.fodt'):
-            if 'COOL_WRITER_LARGE' in os.environ:
+            if 'LOOL_WRITER_LARGE' in os.environ:
                 generateWriter(src, dest, base, extn)
         else:
             copyFile(src, dest, base, extn)

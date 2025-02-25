@@ -903,7 +903,7 @@ getthumbnail x=<Width> y=<Height>
     - y=<Height> : Sets the height of the thumbnail.
 
     Usage:
-    Sent via HTTP POST to /cool/get-thumbnail with the document file.
+    Sent via HTTP POST to /lool/get-thumbnail with the document file.
 
     Optionally, specify a target to generate a thumbnail for a specific element (e.g., a table, image, or heading).
 
