@@ -2035,7 +2035,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
             }
             catch (const std::exception& exception)
             {
-                LOG_ERR("unocommandresult parsing failure: " << exception.what());
+                LOG_ERR("Failed to handle [" << firstLine << "]: " << exception.what());
             }
         }
         else
