@@ -36,9 +36,9 @@ using namespace LOOLProtocol;
 TileCache::TileCache(std::string docURL, const std::chrono::system_clock::time_point& modifiedTime,
                      bool dontCache)
     : _docURL(std::move(docURL))
-    , _dontCache(dontCache)
     , _cacheSize(0)
     , _maxCacheSize(1024 * 1024)
+    , _dontCache(dontCache)
 {
 #ifndef BUILDING_TESTS
     LOG_INF("TileCache ctor for uri [" << LOOLWSD::anonymizeUrl(_docURL) <<

@@ -885,8 +885,8 @@ std::size_t WopiStorage::uploadLocalFileToStorageAsync(
             WopiUploadDetails details = { filePathAnonym,
                                           uriAnonym,
                                           httpResponse->statusLine().reasonPhrase(),
-                                          httpResponse->statusLine().statusCode(),
                                           size,
+                                          httpResponse->statusLine().statusCode(),
                                           isSaveAs,
                                           isRename };
 

@@ -37,8 +37,8 @@ public:
     };
 
 private:
-    Type _type;
     std::string _data;
+    Type _type;
 
 public:
     Authorization()
@@ -47,8 +47,8 @@ public:
     }
 
     Authorization(Type type, const std::string& data)
-        : _type(type)
-        , _data(data)
+        : _data(data)
+        , _type(type)
     {
     }
 

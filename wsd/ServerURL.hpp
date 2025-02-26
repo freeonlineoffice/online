@@ -19,10 +19,10 @@
  */
 class ServerURL
 {
-    bool        _ssl;
-    bool        _websocket;
     std::string _schemeAuthority;
     std::string _pathPlus;
+    bool        _ssl;
+    bool        _websocket;
 public:
     ServerURL(const RequestDetails &requestDetails)
     {
