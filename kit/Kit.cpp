@@ -185,6 +185,8 @@ public:
                   const auto timeout = std::chrono::seconds(
                       ConfigUtil::getInt("per_document.bgsave_timeout_secs", 120));
 
+                  const auto saveStart = std::chrono::steady_clock::now();
+
                   std::unique_lock<std::mutex> lock(_watchdogMutex);
 
                   LOG_TRC("Starting bgsave watchdog with " << timeout << " timeout");
@@ -196,8 +198,11 @@ public:
                   }
                   else
                   {
+                      auto saveDuration = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - saveStart);
+
                       // Failed!
-                      LOG_WRN("BgSave timed out and will self-destroy process " << getpid());
+                      LOG_WRN("BgSave timed out and will self-destroy process " << getpid() <<
+                              " (config timeout: " << timeout << ", real timeout: " << saveDuration << ")");
                       Log::shutdown(); // Flush logs.
                       // this attempts to get the saving-thread to generate a backtrace
                       Util::killThreadById(savingTid, SIGABRT);
