@@ -24,7 +24,9 @@ class TilePrioritizer
 {
 public:
     virtual ~TilePrioritizer() {}
-    virtual float getTilePriority(const std::chrono::steady_clock::time_point &, const TileDesc &) const { return 0.0; }
+    virtual float getTilePriority(const TileDesc &) const { return 0.0; }
+    typedef std::pair<int, float> ViewIdInactivity;
+    virtual std::vector<ViewIdInactivity> getViewIdsByInactivity() const { return {}; }
 };
 
 /// Queue for handling the Kit's messaging needs
@@ -81,14 +83,15 @@ public:
     Payload pop();
     Payload get() { return pop(); }
 
-    /// Tiles are special manage a separate queue of them
-    void clearTileQueue() { _tileQueue.clear(); }
+    /// Tiles are special manage separate queues of them
+    void clearTileQueue() { _tileQueues.clear(); }
     void pushTileQueue(const Payload &value);
     void pushTileCombineRequest(const Payload &value);
     /// Pops the highest priority TileCombined from the
     /// render queue, with it's priority.
     TileCombined popTileQueue(float &priority);
-    size_t getTileQueueSize() const { return _tileQueue.size(); }
+    size_t getTileQueueSize() const;
+    bool isTileQueueEmpty() const;
 
     /// Obtain the next callback
     Callback getCallback()
@@ -166,12 +169,17 @@ private:
     /// the queue.
     void deprioritizePreviews();
 
+    std::vector<TileDesc>* getTileQueue(int viewid);
+    std::vector<TileDesc>& ensureTileQueue(int viewid);
+    TileCombined popTileQueue(std::vector<TileDesc>& tileQueue, float &priority);
+
 private:
     /// Queue of incoming messages from loolwsd
     std::vector<Payload> _queue;
 
-    /// Queue of incoming tile requests from loolwsd
-    std::vector<TileDesc> _tileQueue;
+    /// Queues of incoming tile requests from loolwsd
+    typedef std::pair<int, std::vector<TileDesc>> viewTileQueue;
+    std::vector<viewTileQueue> _tileQueues;
 
     /// Queue of callbacks from Kit to send out to loolwsd
     std::vector<Callback> _callbacks;

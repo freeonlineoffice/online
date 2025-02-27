@@ -1239,7 +1239,7 @@ bool ChildSession::clientVisibleArea(const StringVector& tokens)
     return true;
 }
 
-float ChildSession::getTilePriority(const std::chrono::steady_clock::time_point &now, const TileDesc &tile) const
+float ChildSession::getTilePriority(const TileDesc &tile) const
 {
     float score = tile.intersects(_clientVisibleArea) ? 2.0 : 1.0;
 
@@ -1247,10 +1247,6 @@ float ChildSession::getTilePriority(const std::chrono::steady_clock::time_point 
     if (tile.getPart() == _currentPart)
     {
         if (tile.intersects(_cursorPosition))
-            score *= 2.0;
-
-        // interacted with the keyboard/mouse recently ?
-        if (getInactivityMS(now) < 200 /* ms */) // typing etc.
             score *= 2.0;
 
         // pre-loading near the viewing area is also more important than far away
