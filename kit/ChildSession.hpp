@@ -155,7 +155,7 @@ public:
 
     std::string getViewRenderState() { return _viewRenderState; }
 
-    float getTilePriority(const TileDesc &desc) const;
+    TilePrioritizer::Priority getTilePriority(const TileDesc &desc) const;
 
 private:
     bool loadDocument(const StringVector& tokens);
