@@ -238,6 +238,7 @@ LOOL_JS_LST =\
 	src/docdispatcher.ts \
 	src/app/DocEvents.ts \
 	src/app/GraphicSelectionMiddleware.ts \
+	src/app/MultiPageViewLayout.ts \
 	src/app/TilesMiddleware.ts \
 	src/app/SearchService.ts \
 	src/app/Rectangle.ts \
