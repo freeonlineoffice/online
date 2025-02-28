@@ -272,7 +272,7 @@ public:
     /// Process an SVG to replace embedded file:/// media URIs with public http URLs.
     std::string processSVGContent(const std::string& svg);
 
-    int  getCanonicalViewId() const { return _canonicalViewId; }
+    CanonicalViewId getCanonicalViewId() const { return _canonicalViewId; }
 
     bool getSentBrowserSetting() const { return _sentBrowserSetting; }
 
@@ -452,7 +452,7 @@ private:
     bool _isZoteroUserInfoSet = false;
 
     /// the canonical id unique to the set of rendering properties of this session
-    int _canonicalViewId;
+    CanonicalViewId _canonicalViewId;
 
     /// If server audit was already sent
     bool _sentAudit;

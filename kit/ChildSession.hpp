@@ -143,9 +143,9 @@ public:
     }
 
     // Only called by kit.
-    void setCanonicalViewId(int viewId) { _canonicalViewId = viewId; }
+    void setCanonicalViewId(CanonicalViewId viewId) { _canonicalViewId = viewId; }
 
-    int  getCanonicalViewId() { return _canonicalViewId; }
+    CanonicalViewId getCanonicalViewId() const { return _canonicalViewId; }
 
     void setViewRenderState(const std::string& state) { _viewRenderState = state; }
 
@@ -321,7 +321,7 @@ private:
     std::string _viewRenderState;
 
     /// the canonical id unique to the set of rendering properties of this session
-    int _canonicalViewId;
+    CanonicalViewId _canonicalViewId;
 
     /// whether we are dumping tiles as they are being drawn
     bool _isDumpingTiles;

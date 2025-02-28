@@ -291,7 +291,7 @@ void DeltaTests::testRleComplex()
 
     DeltaGenerator::DeltaData data(
         textWid, reinterpret_cast<unsigned char*>(text.data()),
-        0, 0, 256, 256, TileLocation(9, 9, 9, 0, 1, 0), 256, 256);
+        0, 0, 256, 256, TileLocation(9, 9, 9, 0, CanonicalViewId(1), 0), 256, 256);
 
     size_t off = 0;
     for (int y = 0; y < 256; ++y)
@@ -328,13 +328,13 @@ void DeltaTests::testRleRandom()
 
     DeltaGenerator::DeltaData data(
         1, randomImg.data(), 0, 0, 256, 256,
-        TileLocation(9, 9, 9, 0, 1, 0), 256, 256);
+        TileLocation(9, 9, 9, 0, CanonicalViewId(1), 0), 256, 256);
 
     // Compress
     std::vector<char> output;
     size_t size = gen.compressOrDelta(
         randomImg.data(), 0, 0, 256, 256, 256, 256,
-        TileLocation(42, 2, 3, 0, 1, 0),
+        TileLocation(42, 2, 3, 0, CanonicalViewId(1), 0),
         output, 1, true, false, LOK_TILEMODE_RGBA);
     LOK_ASSERT(size > 1);
     LOK_ASSERT(output[0] == 'Z');
@@ -362,7 +362,7 @@ void DeltaTests::testRleIdentical()
 
     DeltaGenerator::DeltaData data(
         textWid, reinterpret_cast<unsigned char*>(text.data()),
-        0, 0, 256, 256, TileLocation(9, 9, 9, 0, 1, 0), 256, 256);
+        0, 0, 256, 256, TileLocation(9, 9, 9, 0, CanonicalViewId(1), 0), 256, 256);
 
     std::vector<char> text2 =
         Png::loadPng(TDOC "/delta-graphic2.png", height, width, rowBytes);
@@ -371,7 +371,7 @@ void DeltaTests::testRleIdentical()
 
     DeltaGenerator::DeltaData data2(
         textWid, reinterpret_cast<unsigned char*>(text.data()),
-        0, 0, 256, 256, TileLocation(9, 9, 9, 0, 1, 0), 256, 256);
+        0, 0, 256, 256, TileLocation(9, 9, 9, 0, CanonicalViewId(1), 0), 256, 256);
 
     // find identical rows
     for (int y = 0; y < 256; ++y)
@@ -425,14 +425,16 @@ void DeltaTests::testDeltaSequence()
     LOK_ASSERT(gen.createDelta(
                        reinterpret_cast<unsigned char *>(text.data()),
                        0, 0, width, height, width, height,
-                       TileLocation(1, 2, 3, 0, 1, 0), delta, textWid, false, LOK_TILEMODE_RGBA, rleData) == false);
+                       TileLocation(1, 2, 3, 0, CanonicalViewId(1), 0), delta,
+                       textWid, false, LOK_TILEMODE_RGBA, rleData) == false);
     LOK_ASSERT(delta.empty());
 
     // Build a delta between text2 & textWid
     LOK_ASSERT(gen.createDelta(
                        reinterpret_cast<unsigned char *>(text2.data()),
                        0, 0, width, height, width, height,
-                       TileLocation(1, 2, 3, 0, 1, 0), delta, text2Wid, false, LOK_TILEMODE_RGBA, rleData) == true);
+                       TileLocation(1, 2, 3, 0, CanonicalViewId(1), 0), delta,
+                       text2Wid, false, LOK_TILEMODE_RGBA, rleData) == true);
     LOK_ASSERT(delta.size() > 0);
     checkzDelta(delta, "text2 to textWid");
 
@@ -445,7 +447,8 @@ void DeltaTests::testDeltaSequence()
     LOK_ASSERT(gen.createDelta(
                        reinterpret_cast<unsigned char *>(text.data()),
                        0, 0, width, height, width, height,
-                       TileLocation(1, 2, 3, 0, 1, 0), two2one, textWid, false, LOK_TILEMODE_RGBA, rleData) == true);
+                       TileLocation(1, 2, 3, 0, CanonicalViewId(1), 0), two2one,
+                       textWid, false, LOK_TILEMODE_RGBA, rleData) == true);
     LOK_ASSERT(two2one.size() > 0);
     checkzDelta(two2one, "text to text2Wid");
 
@@ -484,14 +487,16 @@ void DeltaTests::testDeltaCopyOutOfBounds()
     LOK_ASSERT(gen.createDelta(
                        reinterpret_cast<unsigned char *>(text.data()),
                        0, 0, width, height, width, height,
-                       TileLocation(1, 2, 3, 0, 1, 0), delta, textWid, false, LOK_TILEMODE_RGBA, rleData) == false);
+                       TileLocation(1, 2, 3, 0, CanonicalViewId(1), 0), delta,
+                       textWid, false, LOK_TILEMODE_RGBA, rleData) == false);
     LOK_ASSERT(delta.empty());
 
     // Build a delta between the two frames
     LOK_ASSERT(gen.createDelta(
                        reinterpret_cast<unsigned char *>(text2.data()),
                        0, 0, width, height, width, height,
-                       TileLocation(1, 2, 3, 0, 1, 0), delta, text2Wid, false, LOK_TILEMODE_RGBA, rleData) == true);
+                       TileLocation(1, 2, 3, 0, CanonicalViewId(1), 0), delta,
+                       text2Wid, false, LOK_TILEMODE_RGBA, rleData) == true);
     LOK_ASSERT(delta.size() > 0);
     checkzDelta(delta, "copy out of bounds");
 
