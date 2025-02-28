@@ -62,9 +62,9 @@ namespace TileParse
 class TileDesc final
 {
 public:
-    TileDesc(int normalizedViewId, int part, int mode, int width, int height, int tilePosX, int tilePosY, int tileWidth,
+    TileDesc(int canonicalViewId, int part, int mode, int width, int height, int tilePosX, int tilePosY, int tileWidth,
              int tileHeight, int ver, int imgSize, int id)
-        : _normalizedViewId(normalizedViewId)
+        : _canonicalViewId(canonicalViewId)
         , _part(part)
         , _mode(mode)
         , _width(width)
@@ -79,7 +79,7 @@ public:
         , _oldWireId(0)
         , _wireId(0)
     {
-        if (_normalizedViewId < 0 ||
+        if (_canonicalViewId < 0 ||
             _part < 0 ||
             _mode < 0 ||
             _width <= 0 ||
@@ -94,8 +94,8 @@ public:
         }
     }
 
-    int getNormalizedViewId() const { return _normalizedViewId; }
-    void setNormalizedViewId(const int normalizedViewId) { _normalizedViewId = normalizedViewId; }
+    int getCanonicalViewId() const { return _canonicalViewId; }
+    void setCanonicalViewId(const int canonicalViewId) { _canonicalViewId = canonicalViewId; }
     int getPart() const { return _part; }
     int getEditMode() const { return _mode; }
     int getWidth() const { return _width; }
@@ -127,7 +127,7 @@ public:
                _tileWidth == other._tileWidth &&
                _tileHeight == other._tileHeight &&
                _id == other._id &&
-               _normalizedViewId == other._normalizedViewId &&
+               _canonicalViewId == other._canonicalViewId &&
                _mode == other._mode;
     }
 
@@ -140,12 +140,12 @@ public:
     // with previews at the end.
     bool operator<(const TileDesc& other) const
     {
-        return std::tie(_normalizedViewId, _id,
+        return std::tie(_canonicalViewId, _id,
                         _mode, _part,
                         _height, _width,
                         _tileHeight, _tileWidth,
                         _tilePosY, _tilePosX) <
-               std::tie(other._normalizedViewId, other._id,
+               std::tie(other._canonicalViewId, other._id,
                         other._mode, other._part,
                         other._height, other._width,
                         other._tileHeight, other._tileWidth,
@@ -155,7 +155,7 @@ public:
     // used to cache a hash of the key elements compared in ==
     uint32_t equalityHash() const
     {
-        uint32_t a = _normalizedViewId << 17;
+        uint32_t a = _canonicalViewId << 17;
         uint32_t b = _tilePosX << 7;
 
         a ^= _part;
@@ -240,7 +240,7 @@ public:
             other.getHeight() != getHeight() ||
             other.getTileWidth() != getTileWidth() ||
             other.getTileHeight() != getTileHeight() ||
-            other.getNormalizedViewId() != getNormalizedViewId())
+            other.getCanonicalViewId() != getCanonicalViewId())
         {
             return false;
         }
@@ -278,7 +278,7 @@ public:
     {
         std::ostringstream oss;
         oss << prefix
-            << " nviewid=" << _normalizedViewId
+            << " nviewid=" << _canonicalViewId
             << " part=" << _part
             << " width=" << _width
             << " height=" << _height
@@ -317,7 +317,7 @@ public:
     std::string debugName() const
     {
         std::ostringstream oss;
-        oss << '(' << getNormalizedViewId() << ',' << getPart() << ',' << getEditMode() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
+        oss << '(' << getCanonicalViewId() << ',' << getPart() << ',' << getEditMode() << ',' << getTilePosX() << ',' << getTilePosY() << ')';
         return oss.str();
     }
 
@@ -407,12 +407,12 @@ public:
     {
         std::ostringstream tileID;
         tileID << getPart() << ':' << getEditMode() << ':' << getTilePosX() << ':' << getTilePosY()
-                << ':' << getTileWidth() << ':' << getTileHeight() << ':' << getNormalizedViewId();
+                << ':' << getTileWidth() << ':' << getTileHeight() << ':' << getCanonicalViewId();
         return tileID.str();
     }
 
 private:
-    int _normalizedViewId;
+    int _canonicalViewId;
     int _part;
     int _mode; ///< Used in Impress for EditMode::(Page|MasterPage), 0 = default
     int _width;
@@ -434,13 +434,13 @@ private:
 class TileCombined
 {
 private:
-    TileCombined(int normalizedViewId, int part, int mode, int width, int height,
+    TileCombined(int canonicalViewId, int part, int mode, int width, int height,
                  const std::string& tilePositionsX, const std::string& tilePositionsY,
                  int tileWidth, int tileHeight, const std::string& vers,
                  const std::string& imgSizes,
                  const std::string& oldWireIds,
                  const std::string& wireIds) :
-        _normalizedViewId(normalizedViewId),
+        _canonicalViewId(canonicalViewId),
         _part(part),
         _mode(mode),
         _width(width),
@@ -529,7 +529,7 @@ private:
                 throw BadArgumentException("Invalid tilecombine descriptor. wireIdToken: " + wireIdTokens[i]);
             }
 
-            _tiles.emplace_back(_normalizedViewId, _part, _mode, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1);
+            _tiles.emplace_back(_canonicalViewId, _part, _mode, _width, _height, x, y, _tileWidth, _tileHeight, ver, imgSize, -1);
             _tiles.back().setOldWireId(oldWireId);
             _tiles.back().setWireId(wireId);
             _aabbox.extend(_tiles.back().toAABBox());
@@ -537,7 +537,7 @@ private:
     }
 protected:
     TileCombined() :
-        _normalizedViewId(-1),
+        _canonicalViewId(-1),
         _part(-1),
         _mode(-1),
         _width(-1),
@@ -552,7 +552,7 @@ protected:
     }
 
 public:
-    int getNormalizedViewId() const { return _normalizedViewId; }
+    int getCanonicalViewId() const { return _canonicalViewId; }
     int getPart() const { return _part; }
     int getEditMode() const { return _mode; }
     int getWidth() const { return _width; }
@@ -569,12 +569,12 @@ public:
     std::vector<TileDesc>& getTiles() { return _tiles; }
     void setHasOldWireId() { _hasOldWids = true; }
 
-    void setNormalizedViewId(int viewId)
+    void setCanonicalViewId(int viewId)
     {
         for (auto& tile : _tiles)
-            tile.setNormalizedViewId(viewId);
+            tile.setCanonicalViewId(viewId);
 
-        _normalizedViewId = viewId;
+        _canonicalViewId = viewId;
     }
 
     bool hasDuplicates() const
@@ -609,7 +609,7 @@ public:
         std::ostringstream oss;
         int num = 0;
         oss << prefix
-            << " nviewid=" << _normalizedViewId
+            << " nviewid=" << _canonicalViewId
             << " part=" << _part
             << " width=" << _width
             << " height=" << _height
@@ -786,7 +786,7 @@ public:
         }
 
         vers.seekp(-1, std::ios_base::cur); // Remove last comma.
-        return TileCombined(tiles[0].getNormalizedViewId(), tiles[0].getPart(), tiles[0].getEditMode(),
+        return TileCombined(tiles[0].getCanonicalViewId(), tiles[0].getPart(), tiles[0].getEditMode(),
                             tiles[0].getWidth(), tiles[0].getHeight(),
                             xs.str(), ys.str(), tiles[0].getTileWidth(), tiles[0].getTileHeight(),
                             vers.str(), "", oldhs.str(), hs.str());
@@ -800,7 +800,7 @@ public:
         _height = desc.getHeight();
         _tileWidth = desc.getTileWidth();
         _tileHeight = desc.getTileHeight();
-        _normalizedViewId = desc.getNormalizedViewId();
+        _canonicalViewId = desc.getCanonicalViewId();
         _tiles.push_back(desc);
         _isCombined = false;
         _hasWids = desc.getWireId() != 0;
@@ -816,7 +816,7 @@ public:
 
 protected:
     std::vector<TileDesc> _tiles;
-    int _normalizedViewId;
+    int _canonicalViewId;
     int _part;
     int _mode;
     int _width;
