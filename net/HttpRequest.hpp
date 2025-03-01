@@ -1387,7 +1387,7 @@ public:
         std::shared_ptr<StreamSocket> socket = _socket.lock();
         if (socket)
         {
-            socket->closeConnection();
+            socket->shutdownConnection();
         }
     }
 
@@ -1688,7 +1688,7 @@ private:
         {
             LOG_TRC("onDisconnect");
             socket->shutdown(); // Flag for shutdown for housekeeping in SocketPoll.
-            socket->closeConnection(); // Immediately disconnect.
+            socket->shutdownConnection(); // Immediately disconnect.
             _socket.reset();
         }
 
@@ -1996,7 +1996,7 @@ public:
         LOG_TRC("disconnect");
         if (_socket)
         {
-            _socket->closeConnection();
+            _socket->shutdownConnection();
         }
     }
 
@@ -2148,7 +2148,7 @@ private:
             LOG_TRC("onDisconnect");
 
             _socket->shutdown(); // Flag for shutdown for housekeeping in SocketPoll.
-            _socket->closeConnection(); // Immediately disconnect.
+            _socket->shutdownConnection(); // Immediately disconnect.
             _socket.reset();
         }
 

@@ -1092,7 +1092,7 @@ public:
         if (!_shutdownSignalled)
         {
             _shutdownSignalled = true;
-            StreamSocket::closeConnection();
+            StreamSocket::shutdownConnection();
         }
         if (isExternalCountedConnection())
             --ExternalConnectionCount;
@@ -1125,10 +1125,7 @@ public:
     }
 
     /// Perform the real shutdown.
-    virtual void closeConnection()
-    {
-        Socket::shutdown();
-    }
+    virtual void shutdownConnection() { Socket::shutdown(); }
 
     int getPollEvents(std::chrono::steady_clock::time_point now,
                       int64_t &timeoutMaxMicroS) override
@@ -1562,7 +1559,7 @@ public:
             if (_shutdownSignalled && _outBuffer.empty())
             {
                 LOG_TRC("Shutdown Signaled. Close Connection.");
-                closeConnection();
+                shutdownConnection();
                 closed = true;
                 break;
             }
