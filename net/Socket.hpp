@@ -1307,8 +1307,7 @@ public:
 
                 if (len > 0)
                 {
-                    LOG_ASSERT_MSG(len <= ssize_t(sizeof(buf)),
-                                   "Read more data than the buffer size");
+                    assert(len <= ssize_t(sizeof(buf)) && "Read more data than the buffer size");
                     notifyBytesRcvd(len);
                     _inBuffer.append(&buf[0], len);
                 }
