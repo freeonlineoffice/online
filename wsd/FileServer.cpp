@@ -2355,7 +2355,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
 
     response.setBody(std::move(adminFile));
     socket->send(response);
-    LOG_TRC("Sent file: " << relPath << ": " << adminFile);
+    LOG_TRC("Sent file: " << relPath << ": " << response.getBody());
 }
 
 
