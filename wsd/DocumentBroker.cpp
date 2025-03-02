@@ -614,7 +614,7 @@ void DocumentBroker::pollThread()
             case DocumentState::Activity::Save:
             case DocumentState::Activity::SaveAs:
             {
-                if (_docState.isDisconnected())
+                if (_docState.isKitDisconnected())
                 {
                     // We will never save. No need to wait for timeout.
                     LOG_DBG("Doc disconnected while saving. Ending save activity.");
@@ -810,7 +810,7 @@ void DocumentBroker::pollThread()
     _poll->stop();
 
 #if !MOBILEAPP
-    if (dataLoss || _docState.disconnected() == DocumentState::Disconnected::Unexpected)
+    if (dataLoss || _docState.kitDisconnected() == DocumentState::KitDisconnected::Unexpected)
     {
         // Quarantine the last copy, if different.
         LOG_WRN((dataLoss ? "Data loss " : "Crash ")
@@ -5011,9 +5011,9 @@ void DocumentBroker::disconnectedFromKit(bool unexpected)
 {
     ASSERT_CORRECT_THREAD();
 
-    // Always set the disconnected flag.
-    _docState.setDisconnected(unexpected ? DocumentState::Disconnected::Unexpected
-                                         : DocumentState::Disconnected::Normal);
+    // Always set the kit disconnected flag.
+    _docState.setKitDisconnected(unexpected ? DocumentState::KitDisconnected::Unexpected
+                                            : DocumentState::KitDisconnected::Normal);
     if (_closeReason.empty())
     {
         // If we have a reason to close, no advantage in clobbering it.
