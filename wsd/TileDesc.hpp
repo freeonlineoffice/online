@@ -179,6 +179,16 @@ public:
         return a ^ b;
     }
 
+    TileDesc makeTileForGridPos(int gridX, int gridY) const
+    {
+        TileDesc tile(*this);
+
+        tile._tilePosX = gridX * tile._tileWidth;
+        tile._tilePosY = gridY * tile._tileHeight;
+
+        return tile;
+    }
+
     /// Returns the tile's AABBox, i.e. tile-position + tile-extend
     Util::Rectangle toAABBox() const
     {
@@ -257,30 +267,6 @@ public:
             return false;
         }
         return true;
-    }
-
-    bool onSameRow(const TileDesc& other) const
-    {
-        if (!sameTileCombineParams(other))
-            return false;
-
-        return other.getTilePosY() + other.getTileHeight() >= getTilePosY() &&
-               other.getTilePosY() <= getTilePosY() + getTileHeight();
-    }
-
-    bool canCombine(const TileDesc& other) const
-    {
-        if (isPreview() || other.isPreview())
-            return false;
-
-        if (!onSameRow(other))
-            return false;
-
-        const int gridX = getTilePosX() / getTileWidth();
-        const int gridXOther = other.getTilePosX() / other.getTileWidth();
-        const int delta = gridX - gridXOther;
-        // a 4k screen - is sixteen 256 pixel wide tiles wide.
-        return (delta >= -16 && delta <= 16);
     }
 
     /// Serialize this instance into a string.
