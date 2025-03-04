@@ -188,8 +188,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		var maxDocSize = this.sheetGeometry.getSize('tiletwips');
-		var newDocWidth = Math.min(maxDocSize.x, this._docWidthTwips);
-		var newDocHeight = Math.min(maxDocSize.y, this._docHeightTwips);
+		var newDocWidth = Math.min(maxDocSize.x, app.file.size.x);
+		var newDocHeight = Math.min(maxDocSize.y, app.file.size.y);
 
 		var lastCellPixel = this.sheetGeometry.getCellRect(this._lastColumn, this._lastRow);
 		var isCalcRTL = this._map._docLayer.isCalcRTL();
@@ -220,18 +220,18 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		var extendedLimit = false;
 
-		if (!limitWidth && maxDocSize.x > this._docWidthTwips) {
-			newDocWidth = Math.min(this._docWidthTwips + mapSizeTwips.x, maxDocSize.x);
+		if (!limitWidth && maxDocSize.x > app.file.size.x) {
+			newDocWidth = Math.min(app.file.size.x + mapSizeTwips.x, maxDocSize.x);
 			extendedLimit = true;
 		}
 
-		if (!limitHeight && maxDocSize.y > this._docHeightTwips) {
-			newDocHeight = Math.min(this._docHeightTwips + mapSizeTwips.y, maxDocSize.y);
+		if (!limitHeight && maxDocSize.y > app.file.size.y) {
+			newDocHeight = Math.min(app.file.size.y + mapSizeTwips.y, maxDocSize.y);
 			extendedLimit = true;
 		}
 
-		var shouldRestrict = (newDocWidth !== this._docWidthTwips ||
-				newDocHeight !== this._docHeightTwips);
+		var shouldRestrict = (newDocWidth !== app.file.size.x ||
+				newDocHeight !== app.file.size.y);
 
 		if (!shouldRestrict) {
 			return;
@@ -244,8 +244,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		var bottomRight = this._map.unproject(newSizePx);
 
 		this._docPixelSize = newSizePx.clone();
-		this._docWidthTwips = newDocWidth;
-		this._docHeightTwips = newDocHeight;
+		app.file.size.x = newDocWidth;
+		app.file.size.y = newDocHeight;
 		app.file.size = new cool.SimplePoint(newDocWidth, newDocHeight);
 		app.view.size = app.file.size.clone();
 
@@ -439,10 +439,9 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 			if (statusJSON.readonly) this._map.setPermission('readonly');
 
-			this._docWidthTwips = statusJSON.width;
-			this._docHeightTwips = statusJSON.height;
+			app.file.size.x = statusJSON.width;
+			app.file.size.y = statusJSON.height;
 
-			app.file.size = new cool.SimplePoint(this._docWidthTwips, this._docHeightTwips);
 			app.view.size = app.file.size.clone();
 
 			this._docType = statusJSON.type;
@@ -470,7 +469,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			console.assert(this._viewId >= 0, 'Incorrect viewId received: ' + this._viewId);
 
 			var mapSize = this._map.getSize();
-			var sizePx = this._twipsToPixels(new L.Point(this._docWidthTwips, this._docHeightTwips));
+			var sizePx = this._twipsToPixels(new L.Point(app.file.size.x, app.file.size.y));
 			var width = sizePx.x;
 			var height = sizePx.y;
 
@@ -1248,7 +1247,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			return this.sheetGeometry.getSize('corepixels');
 		}
 
-		return this._twipsToPixels(new L.Point(this._docWidthTwips, this._docHeightTwips));
+		return this._twipsToPixels(new L.Point(app.file.size.x, app.file.size.y));
 	},
 
 	_calculateScrollForNewCellCursor: function () {

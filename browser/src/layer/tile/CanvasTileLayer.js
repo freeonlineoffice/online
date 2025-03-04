@@ -1067,14 +1067,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		// cells downwards and to the right, like we have on desktop
 		var viewSize = this._map.getSize();
 		var scale = this._map.getZoomScale(newZoom);
-		var width =
-			(this._docWidthTwips / this._tileWidthTwips) *
-			this._tileSize *
-			scale;
-		var height =
-			(this._docHeightTwips / this._tileHeightTwips) *
-			this._tileSize *
-			scale;
+		var width = app.file.size.x / this._tileWidthTwips * this._tileSize * scale;
+		var height = app.file.size.y / this._tileHeightTwips * this._tileSize * scale;
 		if (width < viewSize.x || height < viewSize.y) {
 			// if after zoomimg the document becomes smaller than the viewing area
 			width = Math.max(width, viewSize.x);
@@ -1912,9 +1906,10 @@ L.CanvasTileLayer = L.Layer.extend({
 					+ ' ';
 			}
 			msg += 'x=0 y=0 ';
-			msg += 'width=' + this._docWidthTwips + ' ';
-			msg += 'height=' + this._docHeightTwips;
-			if (wireIdToken !== undefined) msg += ' ' + wireIdToken;
+			msg += 'width=' + app.file.size.x + ' ';
+			msg += 'height=' + app.file.size.y;
+			if (wireIdToken !== undefined)
+				msg += ' ' + wireIdToken;
 			this._onInvalidateTilesMsg(msg);
 		}
 	},
@@ -4316,9 +4311,7 @@ L.CanvasTileLayer = L.Layer.extend({
 	_fitWidthZoom: function (e, maxZoom) {
 		if (this.isCalc()) return;
 
-		if (isNaN(this._docWidthTwips)) {
-			return;
-		}
+		if (app.file.size.x === 0) { return; }
 		var oldSize = e ? e.oldSize : this._map.getSize();
 		var newSize = e ? e.newSize : this._map.getSize();
 
@@ -4331,8 +4324,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			return;
 		}
 
-		var widthTwips = (newSize.x * this._tileWidthTwips) / this._tileSize;
-		var ratio = widthTwips / this._docWidthTwips;
+		var widthTwips = newSize.x * this._tileWidthTwips / this._tileSize;
+		var ratio = widthTwips / app.file.size.x;
 
 		maxZoom = maxZoom ? maxZoom : 10;
 		var zoom = this._map.getScaleZoom(ratio, 10);
@@ -5289,10 +5282,7 @@ L.CanvasTileLayer = L.Layer.extend({
 	},
 
 	_updateMaxBounds: function (sizeChanged) {
-		if (
-			this._docWidthTwips === undefined ||
-			this._docHeightTwips === undefined
-		) {
+		if (app.file.size.x === 0 || app.file.size.y === 0) {
 			return;
 		}
 
