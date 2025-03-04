@@ -2380,14 +2380,14 @@ class TileManager {
 		if (intersectionAreaRectangle) {
 			var minLocalX =
 				Math.floor(
-					intersectionAreaRectangle[0] / app.tile.size.pixels[0],
-				) * app.tile.size.pixels[0];
+					intersectionAreaRectangle[0] / app.tile.size.pX,
+				) * app.tile.size.pX;
 			var maxLocalX =
 				Math.floor(
 					(intersectionAreaRectangle[0] +
 						intersectionAreaRectangle[2]) /
-						app.tile.size.pixels[0],
-				) * app.tile.size.pixels[0];
+						app.tile.size.pX,
+				) * app.tile.size.pX;
 
 			var startPart = Math.floor(
 				intersectionAreaRectangle[1] / partHeightPixels,
@@ -2395,8 +2395,7 @@ class TileManager {
 			var startY =
 				app.file.viewedRectangle.pY1 - startPart * partHeightPixels;
 			startY =
-				Math.floor(startY / app.tile.size.pixels[1]) *
-				app.tile.size.pixels[1];
+				Math.floor(startY / app.tile.size.pY) * app.tile.size.pY;
 
 			var endPart = Math.ceil(
 				(intersectionAreaRectangle[1] +
@@ -2407,24 +2406,22 @@ class TileManager {
 				app.file.viewedRectangle.pY1 +
 				app.file.viewedRectangle.pY2 -
 				endPart * partHeightPixels;
-			endY =
-				Math.floor(endY / app.tile.size.pixels[1]) *
-				app.tile.size.pixels[1];
+			endY = Math.floor(endY / app.tile.size.pY) * app.tile.size.pY;
 
 			var vTileCountPerPart = Math.ceil(
-				partHeightPixels / app.tile.size.pixels[1],
+				partHeightPixels / app.tile.size.pY,
 			);
 
 			for (var i = startPart; i < endPart; i++) {
 				for (
 					var j = minLocalX;
 					j <= maxLocalX;
-					j += app.tile.size.pixels[0]
+					j += app.tile.size.pX
 				) {
 					for (
 						var k = 0;
-						k <= vTileCountPerPart * app.tile.size.pixels[0];
-						k += app.tile.size.pixels[1]
+						k <= vTileCountPerPart * app.tile.size.pX;
+						k += app.tile.size.pY
 					)
 						if (
 							(i !== startPart || k >= startY) &&
