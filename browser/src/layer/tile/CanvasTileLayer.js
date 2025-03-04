@@ -384,8 +384,9 @@ L.TileSectionManager = L.Class.extend({
 				),
 			);
 			return tileBounds.intersectsAny(ctx.paneBoundsList);
-		} else {
-			var ratio = this._layer._tileSize / this._layer._tileHeightTwips;
+		}
+		else {
+			var ratio = this._layer._tileSize / app.tile.size.y;
 			var partHeightPixels = Math.round((this._layer._partHeightTwips + this._layer._spaceBetweenParts) * ratio);
 			return app.LOUtil._doRectanglesIntersect(app.file.viewedRectangle.pToArray(), [coords.x, coords.y + partHeightPixels * coords.part, app.tile.size.pX, app.tile.size.pY]);
 		}
@@ -991,16 +992,12 @@ L.CanvasTileLayer = L.Layer.extend({
 				this._updateMaxBounds();
 			}
 
-			app.tile.size.pX = app.tile.size.pY = this._tileSize;
-			if (this._tileWidthTwips === undefined) {
-				this._tileWidthTwips = this.options.tileWidthTwips;
+			if (app.tile.size.x === 0 || app.tile.size.y === 0) {
+				let tileWidthTwips = this.options.tileWidthTwips;
+				app.twipsToPixels =  TileManager.tileSize / tileWidthTwips;
+				app.pixelsToTwips = 1 / app.twipsToPixels;
+				app.tile.size.pX = app.tile.size.pY = TileManager.tileSize;
 			}
-			if (this._tileHeightTwips === undefined) {
-				this._tileHeightTwips = this.options.tileHeightTwips;
-			}
-
-			app.twipsToPixels = app.tile.size.pX / this._tileWidthTwips;
-			app.pixelsToTwips = 1 / app.twipsToPixels;
 
 			if (!L.Browser.mobileWebkit)
 				TileManager.update(this._map.getCenter(), tileZoom);
@@ -1039,12 +1036,12 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_updateTileTwips: function () {
 		// smaller zoom = zoom in
-		var factor = Math.pow(1.2, (this._map.options.zoom - this._tileZoom));
-		this._tileWidthTwips = Math.round(this.options.tileWidthTwips * factor);
-		this._tileHeightTwips = Math.round(this.options.tileHeightTwips * factor);
+		const factor = Math.pow(1.2, (this._map.options.zoom - this._tileZoom));
+		const tileWidthTwips = Math.round(this.options.tileWidthTwips * factor);
 
-		app.twipsToPixels = app.tile.size.pX / this._tileWidthTwips;
+		app.twipsToPixels = TileManager.tileSize / tileWidthTwips;
 		app.pixelsToTwips = 1 / app.twipsToPixels;
+		app.tile.size.pX = app.tile.size.pY = TileManager.tileSize;
 
 		if (this._docType === 'spreadsheet')
 			this._syncTileContainerSize();
@@ -1058,8 +1055,8 @@ L.CanvasTileLayer = L.Layer.extend({
 		// cells downwards and to the right, like we have on desktop
 		var viewSize = this._map.getSize();
 		var scale = this._map.getZoomScale(newZoom);
-		var width = app.file.size.x / this._tileWidthTwips * this._tileSize * scale;
-		var height = app.file.size.y / this._tileHeightTwips * this._tileSize * scale;
+		var width = app.file.size.x / app.tile.size.x * this._tileSize * scale;
+		var height = app.file.size.y / app.tile.size.y * this._tileSize * scale;
 		if (width < viewSize.x || height < viewSize.y) {
 			// if after zoomimg the document becomes smaller than the viewing area
 			width = Math.max(width, viewSize.x);
@@ -1151,24 +1148,12 @@ L.CanvasTileLayer = L.Layer.extend({
 	_sendClientZoom: function (forceUpdate) {
 		if (!this._map._docLoaded) return;
 
-		var newClientZoom =
-			'tilepixelwidth=' +
-			this._tileWidthPx +
-			' ' +
-			'tilepixelheight=' +
-			this._tileHeightPx +
-			' ' +
-			'tiletwipwidth=' +
-			this._tileWidthTwips +
-			' ' +
-			'tiletwipheight=' +
-			this._tileHeightTwips +
-			' ' +
-			'dpiscale=' +
-			window.devicePixelRatio +
-			' ' +
-			'zoom=' +
-			this._map.getZoom();
+		var newClientZoom = 'tilepixelwidth=' + this._tileWidthPx + ' ' +
+		    'tilepixelheight=' + this._tileHeightPx + ' ' +
+		    'tiletwipwidth=' + app.tile.size.x + ' ' +
+		    'tiletwipheight=' + app.tile.size.y + ' ' +
+		    'dpiscale=' + window.devicePixelRatio + ' ' +
+		    'zoom=' + this._map.getZoom()
 
 		if (this._clientZoom !== newClientZoom || forceUpdate) {
 			// the zoom level has changed
@@ -4315,7 +4300,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			return;
 		}
 
-		var widthTwips = newSize.x * this._tileWidthTwips / this._tileSize;
+		var widthTwips = newSize.x * app.tile.size.x / this._tileSize;
 		var ratio = widthTwips / app.file.size.x;
 
 		maxZoom = maxZoom ? maxZoom : 10;
@@ -4346,18 +4331,12 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 	},
 
-	requestCellCursor: function () {
-		app.socket.sendMessage(
-			'commandvalues command=.uno:CellCursor' +
-				'?outputHeight=' +
-				this._tileWidthPx +
-				'&outputWidth=' +
-				this._tileHeightPx +
-				'&tileHeight=' +
-				this._tileWidthTwips +
-				'&tileWidth=' +
-				this._tileHeightTwips,
-		);
+	requestCellCursor: function() {
+		app.socket.sendMessage('commandvalues command=.uno:CellCursor'
+			+ '?outputHeight=' + this._tileWidthPx
+			+ '&outputWidth=' + this._tileHeightPx
+			+ '&tileHeight=' + app.tile.size.x
+			+ '&tileWidth=' + app.tile.size.y);
 	},
 
 	_invalidateAllPreviews: function () {
@@ -5216,9 +5195,8 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_twipsToCorePixels: function (twips) {
 		return new L.Point(
-			(twips.x / this._tileWidthTwips) * this._tileSize,
-			(twips.y / this._tileHeightTwips) * this._tileSize,
-		);
+			twips.x * app.twipsToPixels,
+			twips.y * app.twipsToPixels);
 	},
 
 	_twipsToCorePixelsBounds: function (twips) {
@@ -5230,26 +5208,20 @@ L.CanvasTileLayer = L.Layer.extend({
 
 	_corePixelsToTwips: function (corePixels) {
 		return new L.Point(
-			corePixels.x / this._tileSize * this._tileWidthTwips,
-			corePixels.y / this._tileSize * this._tileHeightTwips);
+			corePixels.x * app.pixelsToTwips,
+			corePixels.y * app.pixelsToTwips);
 	},
 
 	_twipsToCssPixels: function (twips) {
 		return new L.Point(
-			(twips.x / this._tileWidthTwips) *
-				(this._tileSize / app.dpiScale),
-			(twips.y / this._tileHeightTwips) *
-				(this._tileSize / app.dpiScale),
-		);
+			(twips.x / app.tile.size.x) * (this._tileSize / app.dpiScale),
+			(twips.y / app.tile.size.y) * (this._tileSize / app.dpiScale));
 	},
 
 	_cssPixelsToTwips: function (pixels) {
 		return new L.Point(
-			((pixels.x * app.dpiScale) / this._tileSize) *
-				this._tileWidthTwips,
-			((pixels.y * app.dpiScale) / this._tileSize) *
-				this._tileHeightTwips,
-		);
+			(pixels.x * app.dpiScale) * app.pixelsToTwips,
+			(pixels.y * app.dpiScale) * app.pixelsToTwips);
 	},
 
 	_twipsToLatLng: function (twips, zoom) {
@@ -5316,11 +5288,9 @@ L.CanvasTileLayer = L.Layer.extend({
 			if (!found) parts.push({ part: queue[i].part });
 			found = false;
 		}
-
-		var ratio = this._tileSize / this._tileHeightTwips;
-		var partHeightPixels = Math.round(
-			(this._partHeightTwips + this._spaceBetweenParts) * ratio,
-		);
+=
+		var ratio = this._tileSize / app.tile.size.y;
+		var partHeightPixels = Math.round((this._partHeightTwips + this._spaceBetweenParts) * ratio);
 		var partWidthPixels = Math.round(this._partWidthTwips * ratio);
 
 		var rectangle;
