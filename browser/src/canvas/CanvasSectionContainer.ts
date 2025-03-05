@@ -170,8 +170,8 @@ class CanvasSectionContainer {
 	private documentBottomRight: Array<number> = [0, 0];
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D;
-	private right: number;
-	private bottom: number;
+	private width: number;
+	private height: number;
 	private positionOnMouseDown: Array<number> = null;
 	private positionOnMouseUp: Array<number> = null;
 	private positionOnClick: Array<number> = null;
@@ -505,12 +505,12 @@ class CanvasSectionContainer {
 		return this.canvas.getBoundingClientRect();
 	}
 
-	public getCanvasRight(): number {
-		return this.right;
+	public getWidth(): number {
+		return this.width;
 	}
 
-	public getCanvasBottom(): number {
-		return this.bottom;
+	public getHeight(): number {
+		return this.height;
 	}
 
 	public isDraggingSomething(): boolean {
@@ -1355,7 +1355,7 @@ class CanvasSectionContainer {
 		newWidth = Math.floor(newWidth * app.dpiScale);
 		newHeight = Math.floor(newHeight * app.dpiScale);
 
-		if (this.right === newWidth && this.bottom === newHeight && this.documentAnchor)
+		if (this.width === newWidth && this.height === newHeight && this.documentAnchor)
 			return;
 
 		// Drawing may happen asynchronously so backup the old contents to avoid
@@ -1383,8 +1383,8 @@ class CanvasSectionContainer {
 			this.clearCanvas();
 
 		this.clearMousePositions();
-		this.right = this.canvas.width;
-		this.bottom = this.canvas.height;
+		this.width = this.canvas.width;
+		this.height = this.canvas.height;
 
 		this.reNewAllSections();
 	}
@@ -1462,7 +1462,7 @@ class CanvasSectionContainer {
 		}
 
 		if (minX === Infinity)
-			return this.right; // There is nothing on the right of this section.
+			return this.width; // There is nothing on the right of this section.
 		else
 			return minX - app.roundedDpiScale; // Don't overlap with the section on the right.
 	}
@@ -1500,7 +1500,7 @@ class CanvasSectionContainer {
 			}
 		}
 		if (minY === Infinity)
-			return this.bottom; // There is nothing on the left of this section.
+			return this.height; // There is nothing on the left of this section.
 		else
 			return minY - app.roundedDpiScale; // Don't overlap with the section on the bottom.
 	}
@@ -1568,9 +1568,9 @@ class CanvasSectionContainer {
 		if (typeof section.anchor[index] === 'string' || section.anchor[index].length === 1) {
 			var anchor: string = typeof section.anchor[index] === 'string' ? section.anchor[index]: section.anchor[index][0];
 			if (index === 0)
-				return anchor === 'top' ? section.position[1]: (this.bottom - (section.position[1] + section.size[1]));
+				return anchor === 'top' ? section.position[1]: (this.height - (section.position[1] + section.size[1]));
 			else
-				return anchor === 'left' ? section.position[0]: (this.right - (section.position[0] + section.size[0]));
+				return anchor === 'left' ? section.position[0]: (this.width - (section.position[0] + section.size[0]));
 		}
 		else {
 			// If we are here, it means section's edge(s) will be snapped to another section's edges.
@@ -1627,10 +1627,10 @@ class CanvasSectionContainer {
 					// No target section is found. Use fallback.
 					var anchor: string = section.anchor[index][count - 1];
 					if (index === 0) {
-						return anchor === 'top' ? section.position[1]: (this.bottom - (section.position[1] + section.size[1]));
+						return anchor === 'top' ? section.position[1]: (this.height - (section.position[1] + section.size[1]));
 					}
 					else {
-						return anchor === 'left' ? section.position[0]: (this.right - (section.position[0] + section.size[0]));
+						return anchor === 'left' ? section.position[0]: (this.width - (section.position[0] + section.size[0]));
 					}
 				}
 			}
