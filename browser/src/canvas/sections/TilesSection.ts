@@ -364,8 +364,8 @@ export class TilesSection extends app.definitions.canvasSectionObject {
 			for (let j = 0; j < MultiPageViewLayout.rows[i].rectangles.length; j++) {
 				const rectangle = MultiPageViewLayout.rows[i].rectangles[j];
 				this.context.strokeStyle = "red";
-				this.context.strokeRect(rectangle[0], rectangle[1], rectangle[2], rectangle[3]);
-				this.context.fillRect(rectangle[0], rectangle[1], rectangle[2], rectangle[3]);
+				this.context.strokeRect(rectangle[0], rectangle[1] - app.file.viewedRectangle.pY1, rectangle[2], rectangle[3]);
+				this.context.fillRect(rectangle[0], rectangle[1] - app.file.viewedRectangle.pY1, rectangle[2], rectangle[3]);
 			}
 		}
 	}

@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a layer with canvas based rendering.
  */
 
-/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager */
+/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager MultiPageViewLayout */
 
 function clamp(num, min, max)
 {
@@ -4662,12 +4662,9 @@ L.CanvasTileLayer = L.Layer.extend({
 			var documentBounds = this._map.getPixelBoundsCore();
 			var documentPos = documentBounds.min;
 			var documentEndPos = documentBounds.max;
-			app.sectionContainer.setDocumentBounds([
-				documentPos.x,
-				documentPos.y,
-				documentEndPos.x,
-				documentEndPos.y,
-			]);
+			app.sectionContainer.setDocumentBounds([documentPos.x, documentPos.y, documentEndPos.x, documentEndPos.y]);
+			MultiPageViewLayout.resetViewLayout();
+			TileManager.udpateLayoutView();
 		}
 	},
 
