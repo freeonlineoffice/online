@@ -234,6 +234,7 @@ LOOL_LIBS_JS_DST = $(patsubst %.js,$(DIST_FOLDER)/%.js,$(LOOL_LIBS_JS))
 LOOL_JS_LST =\
 	src/app/DocUtil.ts \
 	src/app/LocaleService.ts \
+	src/app/LayoutingService.ts \
 	src/docstate.js \
 	src/docstatefunctions.js \
 	src/docdispatcher.ts \

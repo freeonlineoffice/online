@@ -9,7 +9,7 @@
  */
 
 /* global errorMessages accessToken accessTokenTTL accessHeader createOnlineModule */
-/* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService */
+/* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService LayoutingService */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
 (function (global) {
@@ -33,6 +33,7 @@ else
 
 app.localeService = new LocaleService();
 app.setPermission(global.loolParams.get('permission') || 'edit');
+app.layoutingService = new LayoutingService();
 
 app.setPermission(global.loolParams.get('permission') || 'edit');
 
