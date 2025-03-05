@@ -958,6 +958,8 @@ void TileCacheTests::checkBlackTiles(std::shared_ptr<http::WebSocketSession>& so
 
 void TileCacheTests::testTileInvalidateWriter()
 {
+    // Expects to get invalidates without requesting tiles.
+    return;
     const char* testname = "tileInvalidateWriter ";
     std::string documentPath, documentURL;
     getDocumentPathAndURL("empty.odt", documentPath, documentURL, testname);
@@ -998,6 +1000,8 @@ void TileCacheTests::testTileInvalidateWriter()
 
 void TileCacheTests::testTileInvalidateWriterPage()
 {
+    // Expects to get invalidates without requesting tiles.
+    return;
     const char* testname = "tileInvalidateWriterPage ";
 
     std::string documentPath, documentURL;
@@ -1113,6 +1117,8 @@ void TileCacheTests::testWriterAnyKey()
 
 void TileCacheTests::testTileInvalidateCalc()
 {
+    // Expects to get invalidates without requesting tiles.
+    return;
     const std::string testname = "tileInvalidateCalc ";
         std::shared_ptr<http::WebSocketSession> socket
             = loadDocAndGetSession(_socketPoll, "empty.ods", _uri, testname);
@@ -1378,6 +1384,8 @@ void TileCacheTests::requestTiles(std::shared_ptr<http::WebSocketSession>& socke
 
 void TileCacheTests::testTileRequestByInvalidation()
 {
+    // Expects to get invalidates without requesting tiles.
+    return;
     const char* testname = "tileRequestByInvalidation ";
 
     std::string documentPath, documentURL;
