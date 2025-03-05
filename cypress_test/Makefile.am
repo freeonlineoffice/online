@@ -178,6 +178,8 @@ define start_loolwsd
 	$(if $(loolwsd),true,$(call start_loolwsd_instance))
 endef
 
+# Use 'ulimit' to intentionally reduce the maximum number of open file descriptors: if 1024 is not
+# enough, then probably we leak them.
 define start_loolwsd_instance
 	$(eval FREE_PORT:=$(shell $(GET_PORT_BINARY) --host=127.0.0.1 $(ALLOWED_PORTS)))
 	export $FREE_PORT
@@ -191,8 +193,10 @@ define start_loolwsd_instance
 	$(V)fc-cache "@LO_PATH@"/share/fonts/truetype
 	$(V)echo
 	$(V)mkdir -p $(dir $(LOOLWSD_OUTPUT))
-	../loolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
-			--o:child_root_path="@JAILS_PATH@" --o:storage.filesystem[@allow]=true \
+	ulimit -n 1024; ../loolwsd --o:sys_template_path="@SYSTEMPLATE_PATH@" \
+			--o:child_root_path="@JAILS_PATH@" \
+			--o:cache_files.path="@CACHE_PATH@" \
+			--o:storage.filesystem[@allow]=true \
 			--disable-ssl --forcecaching \
 			--o:ssl.cert_file_path="$(abs_top_srcdir)/etc/cert.pem" \
 			--o:ssl.key_file_path="$(abs_top_srcdir)/etc/key.pem" \
