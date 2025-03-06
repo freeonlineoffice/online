@@ -1398,10 +1398,10 @@ class TileManager {
 				' ' +
 				(mode !== 0 ? 'mode=' + mode + ' ' : '') +
 				'width=' +
-				app.map._docLayer._tileWidthPx +
+				this.tileSize +
 				' ' +
 				'height=' +
-				app.map._docLayer._tileHeightPx +
+				this.tileSize +
 				' ' +
 				'tileposx=' +
 				tilePositionsX.join(',') +
