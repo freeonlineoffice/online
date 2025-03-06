@@ -1380,8 +1380,8 @@ class TileManager {
 				);
 
 				const twips = new L.Point(
-					Math.floor(coords.x * app.pixelsToTwips),
-					Math.floor(coords.y * app.pixelsToTwips),
+					Math.floor(coords.x / this.tileSize) * app.tile.size.x,
+					Math.floor(coords.y / this.tileSize) * app.tile.size.y,
 				);
 
 				tilePositionsX.push(twips.x);
