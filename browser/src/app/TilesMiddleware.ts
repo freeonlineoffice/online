@@ -2309,7 +2309,10 @@ class TileManager {
 		Marks the visible ones as current.
 	*/
 	public static udpateLayoutView(bounds: any): any {
-		const queue = this.getMissingTiles(bounds, Math.round(app.map.getZoom()));
+		const queue = this.getMissingTiles(
+			bounds,
+			Math.round(app.map.getZoom()),
+		);
 
 		if (queue.length > 0) this.addTiles(queue, false);
 	}

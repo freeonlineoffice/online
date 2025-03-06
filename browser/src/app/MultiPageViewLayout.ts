@@ -71,7 +71,10 @@ class MultiPageViewLayout {
 				);
 				if (nextIntersection !== null) {
 					if (intersection === null)
-						intersection = [nextIntersection[0], nextIntersection[1]];
+						intersection = [
+							nextIntersection[0],
+							nextIntersection[1],
+						];
 					else {
 						if (nextIntersection[0] < intersection[0])
 							intersection[0] = nextIntersection[0];
@@ -90,7 +93,11 @@ class MultiPageViewLayout {
 		const viewedRectangle = app.file.viewedRectangle.pToArray();
 		let intersection: Array<number> = null;
 
-		for (let i = this.rows.length - 1; i >= 0 && intersection === null; i--) {
+		for (
+			let i = this.rows.length - 1;
+			i >= 0 && intersection === null;
+			i--
+		) {
 			for (let j = this.rows[i].rectangles.length - 1; j >= 0; j--) {
 				const nextIntersection = LOUtil._getIntersectionRectangle(
 					viewedRectangle,
@@ -103,11 +110,21 @@ class MultiPageViewLayout {
 							nextIntersection[1] + nextIntersection[3],
 						];
 					else {
-						if (nextIntersection[0] + nextIntersection[2] > intersection[0])
-							intersection[0] = nextIntersection[0] + nextIntersection[2];
+						if (
+							nextIntersection[0] + nextIntersection[2] >
+							intersection[0]
+						)
+							intersection[0] =
+								nextIntersection[0] +
+								nextIntersection[2];
 
-						if (nextIntersection[1] + nextIntersection[3] > intersection[1])
-							intersection[1] = nextIntersection[1] + nextIntersection[3];
+						if (
+							nextIntersection[1] + nextIntersection[3] >
+							intersection[1]
+						)
+							intersection[1] =
+								nextIntersection[1] +
+								nextIntersection[3];
 					}
 				}
 			}
