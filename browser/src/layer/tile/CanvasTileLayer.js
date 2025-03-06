@@ -355,18 +355,16 @@ L.TileSectionManager = L.Class.extend({
 
 		var viewBounds = this._map.getPixelBoundsCore();
 		var splitPanesContext = this._layer.getSplitPanesContext();
-		var paneBoundsList = splitPanesContext
-			? splitPanesContext.getPxBoundList(viewBounds)
-			: [viewBounds];
-		var canvasCorePx = new L.Point(this._pixWidth, this._pixHeight);
+		var paneBoundsList = splitPanesContext ?
+		    splitPanesContext.getPxBoundList(viewBounds) :
+		    [viewBounds];
 
 		return {
-			canvasSize: canvasCorePx,
-			tileSize: tileSize,
-			viewBounds: viewBounds,
-			paneBoundsList: paneBoundsList,
-			paneBoundsActive: splitPanesContext ? true : false,
-			splitPos: this.getSplitPos(),
+			 tileSize: tileSize,
+			 viewBounds: viewBounds,
+			 paneBoundsList: paneBoundsList,
+			 paneBoundsActive: splitPanesContext ? true: false,
+			 splitPos: this.getSplitPos(),
 		};
 	},
 
