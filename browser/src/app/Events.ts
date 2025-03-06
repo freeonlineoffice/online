@@ -142,7 +142,9 @@ class Evented extends BaseClass {
 			typeIndex.set(id, { fn: fn, ctx: context });
 
 			// keep track of the number of keys in the index to quickly check if it's empty
-			const count = this._numEvents.has(type) ? this._numEvents.get(type) : 0;
+			const count = this._numEvents.has(type)
+				? this._numEvents.get(type)
+				: 0;
 
 			this._numEvents.set(type, count + 1);
 		}
@@ -241,7 +243,11 @@ class Evented extends BaseClass {
 
 		let listener: CallbackWithContext | CallbackWithoutContext;
 		if (foreignCtxtId) {
-			listener = this._removeHandlerForeignCtxt(foreignCtxtId, type, fn);
+			listener = this._removeHandlerForeignCtxt(
+				foreignCtxtId,
+				type,
+				fn,
+			);
 		} else {
 			listener = this._removeHandlerSelfCtxt(type, fn);
 		}
@@ -328,7 +334,10 @@ class Evented extends BaseClass {
 	}
 
 	public listens(type: string, propagate?: boolean): boolean {
-		if (this.hasContextListeners(type) || this.hasNoContextListener(type)) {
+		if (
+			this.hasContextListeners(type) ||
+			this.hasNoContextListener(type)
+		) {
 			return true;
 		}
 
