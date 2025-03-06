@@ -291,7 +291,6 @@ static const std::unordered_map<std::string, std::string> DefAppConfig = {
     { "watermark.text", "" },
     { "welcome.enable", "false" },
     { "zotero.enable", "true" },
-    { "setting_iframe.enable", "true" },
 };
 
 void initialize(const Poco::Util::AbstractConfiguration* config)
