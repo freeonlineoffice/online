@@ -689,11 +689,6 @@ void KitQueue::dumpState(std::ostream& oss)
     for (Payload &it : _queue)
         oss << "\t\t" << i++ << ": " << LOOLProtocol::getFirstLine(it) << "\n";
 
-    oss << "\tTile Queue size: " << _tileQueue.size() << "\n";
-    i = 0;
-    for (TileDesc &it : _tileQueue)
-        oss << "\t\t" << i++ << ": " << it.serialize() << "\n";
-
     oss << "\tTile Queues count: " << _tileQueues.size() << "\n";
     for (auto& queue : _tileQueues)
     {
