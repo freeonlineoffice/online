@@ -2776,6 +2776,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			&& data.type !== 'time'
 			&& data.type !== 'separator'
 			&& data.type !== 'spacer'
+			&& data.type !== 'edit'
 			)
 			control.setAttribute('tabIndex', '0');
 	},
