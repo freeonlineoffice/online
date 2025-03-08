@@ -34,7 +34,7 @@
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
-    "stylelint": "16.14.1",
+    "stylelint": "16.15.0",
     "tmp": "0.2.3",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
