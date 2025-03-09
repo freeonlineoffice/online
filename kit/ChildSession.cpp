@@ -139,7 +139,7 @@ void ChildSession::disconnect()
     {
         if (_viewId >= 0)
         {
-            if (_docManager)
+            if (_docManager != nullptr)
             {
                 _docManager->onUnload(*this);
 
