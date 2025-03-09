@@ -154,7 +154,8 @@ bool isConfigAuthOk(const std::string& userProvidedUsr, const std::string& userP
         LOG_ERR("Admin Console username missing, admin console disabled.");
         return false;
     }
-    else if (user != userProvidedUsr)
+
+    if (user != userProvidedUsr)
     {
         LOG_ERR("Admin Console wrong username.");
         return false;
@@ -498,7 +499,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
             return;
         }
-        else if(request.getMethod() == "GET" && path.toString().ends_with(suffix))
+
+        if (request.getMethod() == "GET" && path.toString().ends_with(suffix))
         {
             const std::shared_ptr<LocalFileInfo>& localFile =
                 LocalFileInfo::getOrCreateFile(localPath, path.getFileName());
@@ -513,7 +515,8 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             socket->send(httpResponse);
             return;
         }
-        else if (request.getMethod() == "POST" && path.toString().ends_with(suffix))
+
+        if (request.getMethod() == "POST" && path.toString().ends_with(suffix))
         {
             const std::shared_ptr<LocalFileInfo>& localFile =
                 LocalFileInfo::getOrCreateFile(localPath, path.getFileName());
@@ -891,12 +894,13 @@ void FileServerRequestHandler::handleRequest(const HTTPRequest& request,
         // handle here:
 
 #if ENABLE_DEBUG
-        if (relPath.starts_with("/wopi/files")) {
+        if (relPath.starts_with("/wopi/files"))
+        {
             handleWopiRequest(request, requestDetails, message, socket);
             return;
         }
-        else if (relPath.starts_with("/wopi/settings") ||
-                 relPath.ends_with("/wopi/settings/upload"))
+
+        if (relPath.starts_with("/wopi/settings") || relPath.ends_with("/wopi/settings/upload"))
         {
             handleSettingsRequest(request, etagString, message, socket);
             return;

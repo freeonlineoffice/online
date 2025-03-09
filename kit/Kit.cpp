@@ -128,8 +128,7 @@ int getCurrentThreadCount()
 {
     if (threadCounter)
         return threadCounter->count();
-    else
-        return -1;
+    return -1;
 }
 
 #endif
@@ -820,8 +819,8 @@ bool Document::postMessage(const char* data, int size, const WSOpCode code) cons
                 assert(false);
                 return false;
             }
-            else
-                return socket->sendMessage(data, size, code, /*flush=*/true) > 0;
+
+            return socket->sendMessage(data, size, code, /*flush=*/true) > 0;
         }
         else
             LOG_TRC("Failed to forward to parent of save process: connection closed.");

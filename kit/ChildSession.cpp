@@ -701,10 +701,18 @@ bool ChildSession::_handleInput(const char *buffer, int length)
                 // disable watchdog while saving
                 WatchdogGuard watchdogGuard;
 
-                return unoCommand(unoSave);
+                std::chrono::steady_clock::time_point timeStart = std::chrono::steady_clock::now();
+                bool result = unoCommand(unoSave);
+                if (result)
+                {
+                    LogUiCommands uiLog(this);
+                    uiLog.logSaveLoad("save", Poco::URI(getJailedFilePath()).getPath(), timeStart);
+                }
+
+                return result;
             }
-            else
-                return true;
+
+            return true;
         }
         else if (tokens.equals(0, "selecttext"))
         {
@@ -3310,12 +3318,14 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         LOG_TRC("Skipping callback [" << typeName << "] on closing session " << getName());
         return;
     }
-    else if (isDisconnected())
+
+    if (isDisconnected())
     {
         LOG_TRC("Skipping callback [" << typeName << "] on disconnected session " << getName());
         return;
     }
-    else if (!isActive())
+
+    if (!isActive())
     {
         rememberEventsForInactiveUser(type, payload);
 
