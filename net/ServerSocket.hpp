@@ -18,7 +18,7 @@
 class SocketFactory
 {
 public:
-    virtual std::shared_ptr<Socket> create(const int fd, Socket::Type type) = 0;
+    virtual std::shared_ptr<Socket> create(int fd, Socket::Type type) = 0;
 };
 
 /// A non-blocking, streaming socket.
@@ -109,7 +109,7 @@ public:
     }
 
 protected:
-    bool isUnrecoverableAcceptError(const int cause);
+    bool isUnrecoverableAcceptError(int cause);
     /// Create a Socket instance from the accepted socket FD.
     std::shared_ptr<Socket> createSocketFromAccept(int fd, Socket::Type type) const
     {

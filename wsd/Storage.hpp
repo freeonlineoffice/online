@@ -414,7 +414,7 @@ public:
     virtual std::size_t
     uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
                                   const std::string& saveAsPath, const std::string& saveAsFilename,
-                                  const bool isRename, const Attributes&, SocketPoll&,
+                                  bool isRename, const Attributes&, SocketPoll&,
                                   const AsyncUploadCallback& asyncUploadCallback) = 0;
 
     /// Get the progress state of an asynchronous LocalFileToStorage upload.
@@ -559,7 +559,7 @@ public:
     std::size_t
     uploadLocalFileToStorageAsync(const Authorization& auth, LockContext& lockCtx,
                                   const std::string& saveAsPath, const std::string& saveAsFilename,
-                                  const bool isRename, const Attributes&, SocketPoll&,
+                                  bool isRename, const Attributes&, SocketPoll&,
                                   const AsyncUploadCallback& asyncUploadCallback) override;
 
 private:
