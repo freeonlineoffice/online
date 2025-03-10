@@ -328,8 +328,7 @@ void LOOLWSD::alertAllUsersInternal(const std::string& msg)
 }
 
 #if !MOBILEAPP
-void LOOLWSD::syncUsersBrowserSettings(const std::string& userId, const std::string& key,
-                                       const std::string& value)
+void LOOLWSD::syncUsersBrowserSettings(const std::string& userId, const std::string& json)
 {
     if constexpr (Util::isMobileApp())
         return;
@@ -340,8 +339,8 @@ void LOOLWSD::syncUsersBrowserSettings(const std::string& userId, const std::str
     for (auto& brokerIt : DocBrokers)
     {
         std::shared_ptr<DocumentBroker> docBroker = brokerIt.second;
-        docBroker->addCallback([userId, key, value, docBroker]()
-                               { docBroker->syncBrowserSettings(userId, key, value); });
+        docBroker->addCallback([userId, json, docBroker]()
+                               { docBroker->syncBrowserSettings(userId, json); });
     }
 }
 #endif
