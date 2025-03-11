@@ -100,6 +100,7 @@
 
 #ifdef IOS
 #include "ios.h"
+#include "DocumentBroker.hpp"
 #endif
 
 using Poco::Exception;
@@ -115,6 +116,11 @@ using namespace LOOLProtocol;
 using JsonUtil::makePropertyValue;
 
 extern "C" { void dump_kit_state(void); /* easy for gdb */ }
+
+#ifdef IOS
+extern std::map<std::string, std::shared_ptr<DocumentBroker>> DocBrokers;
+extern std::mutex DocBrokersMutex;
+#endif
 
 #if !MOBILEAPP
 
@@ -1984,6 +1990,12 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
         LOG_DBG("Returned lokit::documentLoad(" << anonymizeUrl(pURL) << ") in " << elapsed);
 #ifdef IOS
         DocumentData::get(_mobileAppDocId).loKitDocument = _loKitDocument.get();
+        {
+            std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex);
+            auto docBrokerIt = DocBrokers.find(_docKey);
+            assert(docBrokerIt != DocBrokers.end());
+            DocumentData::get(_mobileAppDocId).docBroker = docBrokerIt->second;
+        }
 #endif
         if (!_loKitDocument || !_loKitDocument->get())
         {
