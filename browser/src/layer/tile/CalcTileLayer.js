@@ -1092,8 +1092,6 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			if (!textMsg.match('EMPTY'))
 				this._highlightColAndRow(textMsg);
 		}
-		else
-			this._resetReferencesMarks();
 	},
 
 	updateHighlight: function () {
@@ -1103,7 +1101,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				this._highlightColAndRow(updateMsg);
 			}
 			else
-				this._resetReferencesMarks();
+				this._resetReferencesMarks('focuscell');
 		}
 	},
 
@@ -1118,9 +1116,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		else
 			strTwips = textMsg.match(/\d+/g);
 
-		this._resetReferencesMarks();
+		this._resetReferencesMarks('focuscell');
 		var references = [];
-		this._referencesAll = [];
 		var rectangles = [];
 		var strColor = getComputedStyle(document.documentElement).getPropertyValue('--column-row-highlight');
 		var maxCol = 268435455;
@@ -1160,7 +1157,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				weight: 2 * app.dpiScale,
 				opacity: 0.25});
 
-			references.push({mark: reference, part: part});
+			references.push({mark: reference, part: part, type: 'focuscell'});
 			this._referencesAll.push(references[i]);
 		}
 		this._updateReferenceMarks();
