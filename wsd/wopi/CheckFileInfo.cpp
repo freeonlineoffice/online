@@ -110,32 +110,30 @@ void CheckFileInfo::checkFileInfo(int redirectLimit)
             _state = State::Fail;
 
             if (httpResponse->statusLine().statusCode() == http::StatusCode::Forbidden)
-            {
                 LOG_ERR("Access denied to [" << uriAnonym << ']');
-                return;
-            }
-
-            LOG_ERR("Invalid URI or access denied to [" << uriAnonym << ']');
-            return;
-        }
-
-        if (parseResponseAndValidate(wopiResponse))
-        {
-            LOG_DBG("WOPI::CheckFileInfo ("
-                    << callDurationMs
-                    << "): " << (LOOLWSD::AnonymizeUserData ? "obfuscated" : wopiResponse));
-
-            _state = State::Pass;
+            else
+                LOG_ERR("Invalid URI or access denied to [" << uriAnonym << ']');
         }
         else
         {
-            _state = State::Fail;
+            if (parseResponseAndValidate(wopiResponse))
+            {
+                LOG_DBG("WOPI::CheckFileInfo ("
+                        << callDurationMs
+                        << "): " << (LOOLWSD::AnonymizeUserData ? "obfuscated" : wopiResponse));
 
-            LOG_ERR("WOPI::CheckFileInfo ("
-                    << callDurationMs
-                    << ") failed or no valid JSON payload returned. Access denied. "
-                       "Original response: ["
-                    << LOOLProtocol::getAbbreviatedMessage(wopiResponse) << ']');
+                _state = State::Pass;
+            }
+            else
+            {
+                _state = State::Fail;
+
+                LOG_ERR("WOPI::CheckFileInfo ("
+                        << callDurationMs
+                        << ") failed or no valid JSON payload returned. Access denied. "
+                           "Original response: ["
+                        << LOOLProtocol::getAbbreviatedMessage(wopiResponse) << ']');
+            }
         }
 
         if (_onFinishCallback)
