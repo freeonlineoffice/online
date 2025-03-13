@@ -1426,7 +1426,8 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
         return false;
     }
 
-    if (!joinThreads())
+    ThreadDropper threadGuard;
+    if (!threadGuard.dropThreads(this))
     {
         LOG_WRN("Failed to join threads before async save");
         return false;
@@ -1504,6 +1505,8 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
         SigUtil::addActivity("forked background save process: " +
                              std::to_string(pid));
 
+        threadGuard.clear();
+
         SigUtil::dieOnParentDeath();
 
         childSocket.reset();
@@ -1572,7 +1575,8 @@ bool Document::forkToSave(const std::function<void()> &childSave, int viewId)
 
         getLOKit()->setForkedChild(false);
 
-        startThreads();
+        // now, rather than waiting for the destructor
+        threadGuard.startThreads();
 
         // What better time than to reap while saving?
         reapZombieChildren();
