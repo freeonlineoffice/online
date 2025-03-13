@@ -133,6 +133,7 @@ shared_sources = common/FileUtil.cpp \
                  common/Simd.cpp \
                  common/LoolMount.cpp \
                  kit/KitQueue.cpp \
+                 kit/LogUI.cpp \
                  net/DelaySocket.cpp \
                  net/HttpRequest.cpp \
                  net/HttpHelper.cpp \

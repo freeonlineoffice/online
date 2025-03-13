@@ -41,18 +41,18 @@
 
 #include <atomic>
 #include <cassert>
+#include <chrono>
 #include <climits>
 #include <condition_variable>
-#include <chrono>
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <iostream>
 #include <memory>
-#include <string>
-#include <sstream>
-#include <thread>
 #include <mutex>
+#include <sstream>
+#include <string>
+#include <thread>
 
 #define LOK_USE_UNSTABLE_API
 #include <LibreOfficeKit/LibreOfficeKitInit.h>
@@ -781,6 +781,11 @@ Document::Document(const std::shared_ptr<lok::Office>& loKit, const std::string&
     assert(singletonDocument == nullptr);
     singletonDocument = this;
 #endif
+    // Open file for UI Logging
+    if (Log::isLogUIEnabled())
+    {
+        logUiCmd.createTmpFile(_docId);
+    }
 }
 
 Document::~Document()
@@ -1151,7 +1156,7 @@ void Document::trimAfterInactivity()
     assert(descriptor && "Null callback data.");
     assert(descriptor->getDoc() && "Null Document instance.");
 
-    std::shared_ptr<KitQueue> queue = descriptor->getDoc()->_queue;
+    std::unique_ptr<KitQueue> &queue = descriptor->getDoc()->_queue;
     assert(queue && "Null KitQueue.");
 
     const std::string payload = p ? p : "(nil)";
@@ -1287,6 +1292,12 @@ void Document::onUnload(const ChildSession& session)
 
         LOG_INF("Document [" << anonymizeUrl(_url) << "] has no more sessions" << msg.str()
                              << "; exiting bluntly");
+
+        // Save UI log from kit to a permanent place
+        if (Log::isLogUIEnabled())
+        {
+            logUiCmd.saveLogFile();
+        }
 
         flushAndExit(EX_OK);
         return;
@@ -3232,6 +3243,13 @@ void lokit_main(
     {
         logProperties["path"] = std::string(logFilename);
     }
+    const bool logToFileUICmd = std::getenv("LOOL_LOGFILE_UICMD");
+    const char* logFilenameUICmd = std::getenv("LOOL_LOGFILENAME_UICMD");
+    std::map<std::string, std::string> logPropertiesUICmd;
+    if (logToFileUICmd && logFilenameUICmd)
+    {
+        logPropertiesUICmd["path"] = std::string(logFilenameUICmd);
+    }
 
     Util::rng::reseed();
 
@@ -3239,7 +3257,8 @@ void lokit_main(
     const std::string LogLevelStartup = logLevelStartup ? logLevelStartup : "trace";
 
     const bool bTraceStartup = (std::getenv("LOOL_TRACE_STARTUP") != nullptr);
-    Log::initialize("kit", bTraceStartup ? LogLevelStartup : logLevel, logColor, logToFile, logProperties);
+    Log::initialize("kit", bTraceStartup ? LogLevelStartup : LogLevel, logColor, logToFile,
+                    logProperties, logToFileUICmd, logPropertiesUICmd);
     if (bTraceStartup && LogLevel != LogLevelStartup)
     {
         LOG_INF("Setting log-level to [" << LogLevelStartup << "] and delaying "

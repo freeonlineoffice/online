@@ -18,6 +18,7 @@
 #include <common/Session.hpp>
 #include <common/ThreadPool.hpp>
 #include <kit/KitQueue.hpp>
+#include <kit/LogUI.hpp>
 
 #include <wsd/TileDesc.hpp>
 
@@ -247,6 +248,7 @@ public:
     }
 
     unsigned getMobileAppDocId() const { return _mobileAppDocId; }
+    const std::string getDocId() const { return _docId; }
 
     /// See if we should clear out our memory
     void trimIfInactive();
@@ -404,7 +406,7 @@ public:
     /// Are we currently performing a load ?
     bool isLoadOngoing() const { return _duringLoad > 0; }
 
-    std::shared_ptr<KitQueue> getQueue() const { return _queue; }
+    LogUiCmd& getLogUiCmd() { return logUiCmd; }
 
 private:
     void postForceModifiedCommand(bool modified);
@@ -428,7 +430,7 @@ private:
 #ifdef __ANDROID__
     static std::shared_ptr<lok::Document> _loKitDocumentForAndroidOnly;
 #endif
-    std::shared_ptr<KitQueue> _queue;
+    std::unique_ptr<KitQueue> _queue;
 
     // Connection to the loolwsd process
     std::shared_ptr<WebSocketHandler> _websocketHandler;
@@ -471,6 +473,8 @@ private:
 
     const unsigned _mobileAppDocId;
     int _duringLoad;
+
+    LogUiCmd logUiCmd;
 };
 
 /// main function of the forkit process or thread

@@ -228,6 +228,7 @@ int main (int argc, char **argv)
     }
 
     Log::initialize("WebSocketDump", "trace", true, false,
+                    std::map<std::string, std::string>(), false,
                     std::map<std::string, std::string>());
 
     LoolConfig config;

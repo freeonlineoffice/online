@@ -41,8 +41,11 @@ public:
     ChildSession* _session;
     int _lastUndoCount = 0;
     const StringVector* _tokens;
+    bool _skipDestructor = false;
     LogUiCommands(ChildSession* session, const StringVector* tokens) : _session(session),_tokens(tokens) {}
+    LogUiCommands(ChildSession* session) : _session(session),_tokens(nullptr),_skipDestructor(true) {}
     ~LogUiCommands();
+    void logSaveLoad(std::string cmd, const std::string & path, std::chrono::steady_clock::time_point timeStart);
 private:
     // list the commands to log here.
     std::set<std::string> _cmdToLog = {
@@ -156,6 +159,13 @@ public:
     std::string getViewRenderState() { return _viewRenderState; }
 
     TilePrioritizer::Priority getTilePriority(const TileDesc &desc) const;
+
+    void saveLogUiBackground()
+#if defined(BUILDING_TESTS)
+    {}
+#else
+    ;
+#endif
 
 private:
     bool loadDocument(const StringVector& tokens);
@@ -335,6 +345,11 @@ private:
     bool _hasURP;
 
     // When state is added - please update dumpState above.
+
+    friend class LogUiCommands;
+    int _lastUiCmdLinesLoggedCount = 0;
+    LogUiCommandsLine _lastUiCmdLinesLogged[2];
+    std::chrono::steady_clock::time_point _logUiSaveBackGroundTimeStart;
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

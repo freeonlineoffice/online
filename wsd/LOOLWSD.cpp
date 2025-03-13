@@ -1361,6 +1361,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     // disable color since this isn't going to the terminal.
     constexpr bool withColor = false;
     constexpr bool logToFile = false;
+    constexpr bool logToFileUICmd = false;
 #else
     const bool withColor =
         ConfigUtil::getConfigValue<bool>(conf, "logging.color", true) && isatty(fileno(stderr));
@@ -1446,7 +1447,7 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
         ConfigUtil::getConfigValue<std::string>(conf, "logging.level_startup", "trace");
     setenv("LOOL_LOGLEVEL_STARTUP", LogLevelStartup.c_str(), true);
 
-    Log::initialize("wsd", LogLevelStartup, withColor, logToFile, logProperties);
+    Log::initialize("wsd", LogLevelStartup, withColor, logToFile, logProperties, logToFileUICmd, logPropertiesUICmd);
     if (LogLevel != LogLevelStartup)
     {
         LOG_INF("Setting log-level to [" << LogLevelStartup << "] and delaying setting to ["
