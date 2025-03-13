@@ -917,7 +917,9 @@ class TileManager {
 		// Don't paint the tile, only dirty the sectionsContainer if it is in the visible area.
 		// _emitSlurpedTileEvents() will repaint canvas (if it is dirty).
 		if (
-			app.isRectangleVisibleInTheDisplayedArea(this.coordsToTileBounds(coords))
+			app.isRectangleVisibleInTheDisplayedArea(
+				this.coordsToTileBounds(coords),
+			)
 		)
 			app.sectionContainer.setDirty(coords);
 	}
@@ -2093,6 +2095,8 @@ class TileManager {
 	}
 
 	public static update(center: any = null, zoom: number = null) {
+		if (app.file.writer.multiPageView) return;
+
 		const map: any = app.map;
 
 		if (
@@ -2316,6 +2320,24 @@ class TileManager {
 		);
 
 		if (queue.length > 0) this.addTiles(queue, false);
+	}
+
+	public static getVisibleCoordList(
+		rectangle: cool.SimpleRectangle = app.file.viewedRectangle,
+	) {
+		const coordList = Array<TileCoordData>();
+		const zoom = app.map.getZoom();
+
+		for (const [key, value] of Object.entries(this.tiles)) {
+			const coords = (value as Tile).coords;
+			if (
+				coords.z === zoom
+				//rectangle.intersectsRectangle(this.coordsToTileBounds(coords))
+			)
+				coordList.push(coords);
+		}
+
+		return coordList;
 	}
 
 	public static updateFileBasedView(
