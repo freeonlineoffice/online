@@ -8,8 +8,8 @@
 	--jquery-ui-font: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
 
 	--docs-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	--docs--pre-font: 'Consolas', 'Menlo', 'Lucida Console', 'Courier New',
-		monospace;
+	--docs--pre-font:
+		'Consolas', 'Menlo', 'Lucida Console', 'Courier New', monospace;
 
 	/* Shared color for cell and selection border */
 	--cell-cursor-selection-border-color: var(--color-primary);
