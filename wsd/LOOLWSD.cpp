@@ -3879,6 +3879,12 @@ int LOOLWSD::innerMain()
     // atexit handlers tend to free Admin before Documents
     LOG_INF("Exiting. Cleaning up lingering documents.");
 #if !MOBILEAPP
+    if (remoteFontConfigThread)
+    {
+        LOG_DBG("Stopping remote font config thread");
+        remoteFontConfigThread->stop();
+    }
+
     if (!SigUtil::getShutdownRequestFlag())
     {
         // This shouldn't happen, but it's fail safe to always cleanup properly.
