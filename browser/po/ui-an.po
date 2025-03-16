@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-08 22:52+0100\n"
+"POT-Creation-Date: 2025-03-16 16:23+0100\n"
 "PO-Revision-Date: 2020-08-04 07:34+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fito@libreoffice.org>\n"
 "Language-Team: Aragonese <https://weblate.documentfoundation.org/projects/"
@@ -231,7 +231,7 @@ msgstr ""
 #: src/control/Control.AlertDialog.js:23 src/control/Control.AlertDialog.js:29
 #: src/control/Control.AlertDialog.js:92 src/control/Control.AlertDialog.js:99
 #: src/control/Control.Zotero.js:183 src/core/Socket.js:427
-#: src/core/Socket.js:1198 src/core/Socket.js:1203
+#: src/core/Socket.js:1199 src/core/Socket.js:1204
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr ""
@@ -298,9 +298,9 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
 #: src/control/Parts.js:464 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:915 src/control/Toolbar.js:1027
-#: src/core/Debug.js:1081 src/core/Socket.js:704 src/core/Socket.js:1168
-#: src/core/Socket.js:1238 src/core/Socket.js:1389 src/core/Socket.js:1393
+#: src/control/Toolbar.js:891 src/control/Toolbar.js:1003
+#: src/core/Debug.js:1081 src/core/Socket.js:704 src/core/Socket.js:1169
+#: src/core/Socket.js:1239 src/core/Socket.js:1390 src/core/Socket.js:1394
 #: src/docdispatcher.ts:547 src/main.js:83 src/main.js:86 src/main.js:139
 #: src/map/Clipboard.js:1257 src/map/handler/Map.Feedback.js:87
 #: src/map/handler/Map.SlideShow.js:56 src/map/handler/Map.SlideShow.js:169
@@ -321,10 +321,10 @@ msgstr "Acceptar"
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1342 src/control/Control.UIManager.js:1409
-#: src/control/Control.UIManager.js:1544 src/control/Control.UIManager.js:1703
-#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:1022
-#: src/core/Socket.js:1414
+#: src/control/Control.UIManager.js:1346 src/control/Control.UIManager.js:1413
+#: src/control/Control.UIManager.js:1548 src/control/Control.UIManager.js:1707
+#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:998
+#: src/core/Socket.js:1415
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -408,15 +408,15 @@ msgstr ""
 msgid " s"
 msgstr ""
 
-#: js/global.js:1485
+#: js/global.js:1511
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1487
+#: js/global.js:1513
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1489
+#: js/global.js:1515
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
@@ -475,8 +475,8 @@ msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1233
 #: src/control/Control.JSDialogBuilder.js:1884
-#: src/layer/tile/CanvasTileLayer.js:4619
-#: src/layer/tile/CanvasTileLayer.js:4634
+#: src/layer/tile/CanvasTileLayer.js:4625
+#: src/layer/tile/CanvasTileLayer.js:4640
 msgid "Comment"
 msgstr ""
 
@@ -495,7 +495,7 @@ msgid ""
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1469 src/core/Socket.js:1418
+#: src/canvas/sections/CommentListSection.ts:1469 src/core/Socket.js:1419
 msgid "Overwrite"
 msgstr ""
 
@@ -1336,78 +1336,78 @@ msgid "Focus Cell"
 msgstr ""
 
 #: src/control/Control.Menubar.js:858
-#: src/control/jsdialog/Definitions.Menu.ts:309
+#: src/control/jsdialog/Definitions.Menu.ts:327
 msgid "Highlight cells with..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:859
-#: src/control/jsdialog/Definitions.Menu.ts:312
+#: src/control/jsdialog/Definitions.Menu.ts:330
 msgid "Values greater than..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:860
-#: src/control/jsdialog/Definitions.Menu.ts:316
+#: src/control/jsdialog/Definitions.Menu.ts:334
 msgid "Values less than..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:861
-#: src/control/jsdialog/Definitions.Menu.ts:320
+#: src/control/jsdialog/Definitions.Menu.ts:338
 msgid "Values equal to..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:862
-#: src/control/jsdialog/Definitions.Menu.ts:324
+#: src/control/jsdialog/Definitions.Menu.ts:342
 msgid "Values between..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:863
-#: src/control/jsdialog/Definitions.Menu.ts:328
+#: src/control/jsdialog/Definitions.Menu.ts:346
 msgid "Values duplicate..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:864
-#: src/control/jsdialog/Definitions.Menu.ts:332
+#: src/control/jsdialog/Definitions.Menu.ts:350
 msgid "Containing text..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:866 src/control/Control.Menubar.js:876
-#: src/control/jsdialog/Definitions.Menu.ts:337
-#: src/control/jsdialog/Definitions.Menu.ts:371
+#: src/control/jsdialog/Definitions.Menu.ts:355
+#: src/control/jsdialog/Definitions.Menu.ts:389
 msgid "More highlights..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:868
-#: src/control/jsdialog/Definitions.Menu.ts:343
+#: src/control/jsdialog/Definitions.Menu.ts:361
 msgid "Top/Bottom Rules..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:869
-#: src/control/jsdialog/Definitions.Menu.ts:346
+#: src/control/jsdialog/Definitions.Menu.ts:364
 msgid "Top N elements..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:870
-#: src/control/jsdialog/Definitions.Menu.ts:350
+#: src/control/jsdialog/Definitions.Menu.ts:368
 msgid "Top N percent..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:871
-#: src/control/jsdialog/Definitions.Menu.ts:354
+#: src/control/jsdialog/Definitions.Menu.ts:372
 msgid "Bottom N elements..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:872
-#: src/control/jsdialog/Definitions.Menu.ts:358
+#: src/control/jsdialog/Definitions.Menu.ts:376
 msgid "Bottom N percent..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:873
-#: src/control/jsdialog/Definitions.Menu.ts:362
+#: src/control/jsdialog/Definitions.Menu.ts:380
 msgid "Above Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.js:874
-#: src/control/jsdialog/Definitions.Menu.ts:366
+#: src/control/jsdialog/Definitions.Menu.ts:384
 msgid "Below Average..."
 msgstr ""
 
@@ -1419,7 +1419,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1039
 #: src/control/Control.NotebookbarWriter.js:913
 #: src/control/Control.StatusBar.js:245 src/control/Control.Zotero.js:212
-#: src/control/Toolbar.js:701
+#: src/control/Toolbar.js:677
 msgid "Search"
 msgstr ""
 
@@ -1678,7 +1678,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:615 src/control/Toolbar.js:994
+#: src/control/Control.NotebookbarCalc.js:615 src/control/Toolbar.js:970
 msgid "Text"
 msgstr ""
 
@@ -1994,6 +1994,7 @@ msgid "On"
 msgstr ""
 
 #: src/control/Control.StatusBar.js:177
+#: src/control/jsdialog/Definitions.Menu.ts:310
 msgid "Off"
 msgstr ""
 
@@ -2120,7 +2121,7 @@ msgstr ""
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:200 src/control/Control.UIManager.js:864
+#: src/control/Control.TopToolbar.js:200 src/control/Control.UIManager.js:868
 msgid "Hide Menu"
 msgstr ""
 
@@ -2128,7 +2129,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:887
+#: src/control/Control.UIManager.js:891
 msgid "Show Menu"
 msgstr ""
 
@@ -2198,7 +2199,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:238 src/core/Socket.js:1338
+#: src/control/Control.Zotero.js:238 src/core/Socket.js:1339
 msgid "Loading..."
 msgstr ""
 
@@ -2440,11 +2441,11 @@ msgstr ""
 msgid "Renaming..."
 msgstr ""
 
-#: src/control/Toolbar.js:978
+#: src/control/Toolbar.js:954
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:1006
+#: src/control/Toolbar.js:982
 msgid "Link"
 msgstr ""
 
@@ -2492,11 +2493,19 @@ msgstr ""
 msgid "Very Loose"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:441
+#: src/control/jsdialog/Definitions.Menu.ts:315
+msgid "All users"
+msgstr ""
+
+#: src/control/jsdialog/Definitions.Menu.ts:320
+msgid "This user"
+msgstr ""
+
+#: src/control/jsdialog/Definitions.Menu.ts:459
 msgid "From Beginning"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:445
+#: src/control/jsdialog/Definitions.Menu.ts:463
 msgid "From Current Slide"
 msgstr ""
 
@@ -2667,91 +2676,91 @@ msgstr ""
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:1120
+#: src/core/Socket.js:1121
 msgid "Document requires password to view."
 msgstr ""
 
-#: src/core/Socket.js:1123
+#: src/core/Socket.js:1124
 msgid "Document requires password to modify."
 msgstr ""
 
-#: src/core/Socket.js:1125
+#: src/core/Socket.js:1126
 msgid "Hit Cancel to open in view-only mode."
 msgstr ""
 
-#: src/core/Socket.js:1129
+#: src/core/Socket.js:1130
 msgid "Wrong password provided. Please try again."
 msgstr ""
 
-#: src/core/Socket.js:1167
+#: src/core/Socket.js:1168
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1198 src/core/Socket.js:1203
+#: src/core/Socket.js:1199 src/core/Socket.js:1204
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1235
+#: src/core/Socket.js:1236
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1236
+#: src/core/Socket.js:1237
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1253
+#: src/core/Socket.js:1254
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1256
+#: src/core/Socket.js:1257
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1338
+#: src/core/Socket.js:1339
 msgid "Connecting..."
 msgstr ""
 
-#: src/core/Socket.js:1353
+#: src/core/Socket.js:1354
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1389
+#: src/core/Socket.js:1390
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1389
+#: src/core/Socket.js:1390
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1417
+#: src/core/Socket.js:1418
 msgid "Discard"
 msgstr ""
 
-#: src/core/Socket.js:1429
+#: src/core/Socket.js:1430
 msgid "Save to new file"
 msgstr ""
 
-#: src/core/Socket.js:1439
+#: src/core/Socket.js:1440
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:1440
+#: src/core/Socket.js:1441
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr ""
 
-#: src/core/Socket.js:1703
+#: src/core/Socket.js:1704
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 
-#: src/core/Socket.js:1720
+#: src/core/Socket.js:1721
 msgid "Reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:1730
+#: src/core/Socket.js:1731
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -3040,15 +3049,15 @@ msgstr ""
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2037
+#: src/layer/tile/CanvasTileLayer.js:2038
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2362
+#: src/layer/tile/CanvasTileLayer.js:2363
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4653
+#: src/layer/tile/CanvasTileLayer.js:4659
 msgid "No Comments"
 msgstr ""
 
