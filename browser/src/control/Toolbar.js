@@ -403,16 +403,6 @@ L.Map.include({
 			command.startsWith('.uno:Navigator') || command.startsWith('.uno:SidebarDeck') ||
 			command.startsWith('.uno:EditStyle')) {
 
-		if (
-			(command.startsWith('.uno:Sidebar') &&
-				!command.startsWith('.uno:SidebarShow')) ||
-			command.startsWith('.uno:SlideChangeWindow') ||
-			command.startsWith('.uno:CustomAnimation') ||
-			command.startsWith('.uno:MasterSlidesPanel') ||
-			command.startsWith('.uno:ModifyPage') ||
-			command.startsWith('.uno:Navigator') ||
-			command.startsWith('.uno:SidebarDeck')
-		) {
 			// sidebar control is present only in desktop/tablet case
 			if (this.sidebar) {
 				if (this.sidebar.isVisible()) {
@@ -495,30 +485,17 @@ L.Map.include({
 			}
 		}
 
-		if (this.uiManager.isUIBlocked()) return;
-		if (
-			(this.dialog.hasOpenedDialog() ||
-				(this.jsdialog && this.jsdialog.hasDialogOpened())) &&
-			!command.startsWith('.uno:ToolbarMode') &&
-			!force
-		) {
-			console.debug(
-				'Cannot execute: ' + command + ' when dialog is opened.',
-			);
+		if (this.uiManager.isUIBlocked())
+			return;
+		if ((this.dialog.hasOpenedDialog() || (this.jsdialog && this.jsdialog.hasDialogOpened()))
+			&& !command.startsWith('.uno:ToolbarMode') && !force) {
+			console.debug('Cannot execute: ' + command + ' when dialog is opened.');
 			this.dialog.blinkOpenDialog();
-		} else if (
-			(this.isEditMode() || isAllowedInReadOnly) &&
-			!this.messageNeedsToBeRedirected(command)
-		) {
-			app.socket.sendMessage(
-				'uno ' + command + (json ? ' ' + JSON.stringify(json) : ''),
-			);
+		} else if ((this.isEditMode() || isAllowedInReadOnly) && !this.messageNeedsToBeRedirected(command)) {
+			app.socket.sendMessage('uno ' + command + (json ? ' ' + JSON.stringify(json) : ''));
 			// user interaction turns off the following of other users
 			if (map.userList && map._docLayer && map._docLayer._viewId)
-				map.userList.followUser(
-					map._docLayer._viewId,
-					/* do instant scroll */ false,
-				);
+				map.userList.followUser(map._docLayer._viewId, /* do instant scroll */ false);
 		}
 	},
 
