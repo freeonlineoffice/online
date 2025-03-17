@@ -799,11 +799,11 @@ coverage-clean:
 # possibly related to https://gcc.gnu.org/wiki/TemplateParmsDwarf
 check-struct-packing:
 	@echo Note: results only reliable with clang++ and CXXFLAGS=-fno-eliminate-unused-debug-types
-	@if pahole -D/usr/include -x ProtocolHandlerInterface -P coolwsd 2> /dev/null | grep .; then \
-		echo you can examine each candidate with pahole -S -R --class_name=CANDIDATE coolwsd; \
+	@if pahole -D/usr/include -x ProtocolHandlerInterface -P loolwsd 2> /dev/null | grep .; then \
+		echo you can examine each candidate with pahole -S -R --class_name=CANDIDATE loolwsd; \
 		exit 1; \
 	fi
-	@echo coolwsd struct packing is acceptably optimal
+	@echo loolwsd struct packing is acceptably optimal
 
 czech: check
 	@echo "This should do something much cooler"

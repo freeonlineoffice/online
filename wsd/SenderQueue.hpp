@@ -78,7 +78,7 @@ public:
         std::string lastStr = "";
         for (const Item &item : _queue)
         {
-            std::string itemStr = COOLProtocol::getAbbreviatedMessage(
+            std::string itemStr = LOOLProtocol::getAbbreviatedMessage(
                 item->data().data(), item->size());
             if (lastStr == itemStr && !item->isBinary())
                 repeats++;
