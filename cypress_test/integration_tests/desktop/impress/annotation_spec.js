@@ -324,7 +324,7 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('.modify-annotation [id^=annotation-cancel-]').click();
-		cy.cGet('[id^=annotation-content-area-]').should('have.text','some text0');)
+		cy.cGet('[id^=annotation-content-area-]').should('have.text','some text0');
 		cy.cGet('.annotation-marker').should('be.visible');
 
 		helper.reloadDocument(newFilePath);
