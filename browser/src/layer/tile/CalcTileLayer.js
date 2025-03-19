@@ -11,7 +11,7 @@
  * Calc tile layer is used to display a spreadsheet document
  */
 
-/* global app CPolyUtil CPolygon TileManager cool */
+/* global app CPolyUtil CPolygon TileManager lool */
 
 L.CalcTileLayer = L.CanvasTileLayer.extend({
 	options: {
@@ -246,7 +246,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		this._docPixelSize = newSizePx.clone();
 		app.file.size.x = newDocWidth;
 		app.file.size.y = newDocHeight;
-		app.file.size = new cool.SimplePoint(newDocWidth, newDocHeight);
+		app.file.size = new lool.SimplePoint(newDocWidth, newDocHeight);
 		app.view.size = app.file.size.clone();
 
 		this._map.setMaxBounds(new L.LatLngBounds(topLeft, bottomRight));

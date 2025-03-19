@@ -1,4 +1,4 @@
-interface COOLTouch {
+interface LOOLTouch {
 	isTouchEvent: (e: Event | HammerInput) => boolean;
 	touchOnly: <F extends (e: Event | HammerInput) => void>(
 		f: F,
@@ -14,5 +14,5 @@ interface COOLTouch {
 }
 
 interface Window {
-	touch: COOLTouch;
+	touch: LOOLTouch;
 }

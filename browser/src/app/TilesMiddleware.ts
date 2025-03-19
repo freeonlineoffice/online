@@ -2323,7 +2323,7 @@ class TileManager {
 	}
 
 	public static getVisibleCoordList(
-		rectangle: cool.SimpleRectangle = app.file.viewedRectangle,
+		rectangle: lool.SimpleRectangle = app.file.viewedRectangle,
 	) {
 		const coordList = Array<TileCoordData>();
 		const zoom = app.map.getZoom();
