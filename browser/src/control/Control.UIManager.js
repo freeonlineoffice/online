@@ -67,6 +67,10 @@ L.Control.UIManager = L.Control.extend({
 	// UI initialization
 
 	getCurrentMode: function() {
+		// no notebookbar on mobile
+		if (window.mode.isMobile())
+			return 'classic';
+
 		return this.shouldUseNotebookbarMode() ? 'notebookbar' : 'classic';
 	},
 
