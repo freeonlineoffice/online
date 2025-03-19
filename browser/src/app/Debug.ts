@@ -1483,7 +1483,7 @@ class DebugManager {
 				this._map.uiManager.showInfoModal(
 					'lool_alert',
 					'',
-					msg.replace('{0}', delayMs),
+					msg.replace('{0}', delayMs.toString()),
 					'',
 					_('OK'),
 				);
