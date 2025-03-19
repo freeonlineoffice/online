@@ -34,7 +34,8 @@ class LayoutRow {
 	private adjustY() {
 		for (let i = 0; i < this.rectangles.length; i++) {
 			this.rectangles[i][1] =
-				this.startY + Math.round((this.height - this.rectangles[i][3]) / 2);
+				this.startY +
+				Math.round((this.height - this.rectangles[i][3]) / 2);
 		}
 	}
 
@@ -44,7 +45,9 @@ class LayoutRow {
 		this.rectangles.push(rectangle);
 		this.width +=
 			rectangle[2] +
-			(this.rectangles.length > 0 ? MultiPageViewLayout.gapBetweenPages : 0);
+			(this.rectangles.length > 0
+				? MultiPageViewLayout.gapBetweenPages
+				: 0);
 
 		this.height = Math.max(this.height, rectangle[3]);
 
@@ -99,10 +102,14 @@ class MultiPageViewLayout {
 
 			row.addRectangle(rectangles.shift());
 
-			while (row.width < this.availableWidth && rectangles.length > 0) {
+			while (
+				row.width < this.availableWidth &&
+				rectangles.length > 0
+			) {
 				const next = rectangles[0];
 				if (
-					row.width + next[2] + this.gapBetweenPages < this.availableWidth &&
+					row.width + next[2] + this.gapBetweenPages <
+						this.availableWidth &&
 					row.rectangles.length < this.maxRowsSize
 				)
 					row.addRectangle(rectangles.shift());
