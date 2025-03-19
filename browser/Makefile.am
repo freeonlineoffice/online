@@ -248,6 +248,7 @@ LOOL_JS_LST =\
 	src/app/Util.ts \
 	src/app/LOUtil.ts \
 	src/app/Log.ts \
+	src/app/Debug.ts \
 	src/Leaflet.js \
 	src/errormessages.js \
 	src/unocommands.js \
@@ -256,7 +257,6 @@ LOOL_JS_LST =\
 	src/core/Class.js \
 	src/core/Events.js \
 	src/core/Socket.js \
-	src/core/Debug.js \
 	src/geometry/Point.ts \
 	src/geometry/Bounds.ts \
 	src/geometry/Transformation.ts \
