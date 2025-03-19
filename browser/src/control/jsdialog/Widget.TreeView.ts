@@ -58,7 +58,6 @@
  */
 
 declare var JSDialog: any;
-declare var app: any;
 
 // TODO: remove this hack
 var lastClickHelperRow: string | number = -1;

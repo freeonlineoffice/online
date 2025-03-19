@@ -12,7 +12,6 @@
 
 // We will keep below definitions until we use tsconfig.json.
 declare var L: any;
-declare var app: any;
 
 namespace lool {
 

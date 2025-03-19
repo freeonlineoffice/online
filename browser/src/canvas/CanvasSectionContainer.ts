@@ -10,7 +10,6 @@
  */
 
 declare var L: any;
-declare var app: any;
 
 // Below class and CanvasSectionObject class are for managing the canvas layout.
 /*
@@ -185,7 +184,7 @@ class CanvasSectionContainer {
 	private multiTouch: boolean = false;
 	private touchCenter: Array<number> = null;
 	private longPressTimer: any = null;
-	private clearColor: string = '#f8f9fa';
+	clearColor: string = '#f8f9fa';
 	private documentBackgroundColor = '#ffffff'; // This is the background color of the document
 	private useCSSForBackgroundColor = true;
 	private touchEventInProgress: boolean = false; // This prevents multiple calling of mouse down and up events.
@@ -871,7 +870,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private propagateOnMouseWheel(section: CanvasSectionObject, position: Array<number>, delta: Array<number>, e: MouseEvent) {
+	private propagateOnMouseWheel(section: CanvasSectionObject, position: Array<number>, delta: Array<number>, e: WheelEvent) {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
@@ -994,7 +993,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private onClick (e: MouseEvent) {
+	onClick (e: MouseEvent) {
 		if (!this.draggingSomething) { // Prevent click event after dragging.
 			if (this.positionOnMouseDown !== null && this.positionOnMouseUp !== null) {
 				this.positionOnClick = this.convertPositionToCanvasLocale(e);
@@ -1012,7 +1011,7 @@ class CanvasSectionContainer {
 		this.clearMousePositions();
 	}
 
-	private onDoubleClick (e: MouseEvent) {
+	onDoubleClick (e: MouseEvent) {
 		this.positionOnDoubleClick = this.convertPositionToCanvasLocale(e);
 
 		var section: CanvasSectionObject = this.findSectionContainingPoint(this.positionOnDoubleClick);
@@ -1098,7 +1097,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private onMouseDown (e: MouseEvent) { // Ignore this event, just rely on this.draggingSomething variable.
+	onMouseDown (e: MouseEvent) { // Ignore this event, just rely on this.draggingSomething variable.
 		if (e.button === 0 && !this.touchEventInProgress) { // So, we only handle left button.
 			this.clearMousePositions();
 			this.positionOnMouseDown = this.convertPositionToCanvasLocale(e);
@@ -1140,7 +1139,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private onContextMenu (e: MouseEvent) {
+	onContextMenu (e: MouseEvent) {
 		var mousePosition = this.convertPositionToCanvasLocale(e);
 		var section: CanvasSectionObject = this.findSectionContainingPoint(mousePosition);
 		if (section) {
@@ -1232,7 +1231,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private onTouchMove (e: TouchEvent) {
+	onTouchMove (e: TouchEvent) {
 		// Sometimes onTouchStart is fired for another element. In this case, we return.
 		if (this.positionOnMouseDown === null)
 			return;
@@ -1267,7 +1266,7 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private onTouchEnd (e: TouchEvent) { // Should be ignored unless this.draggingSomething = true.
+	onTouchEnd (e: TouchEvent) { // Should be ignored unless this.draggingSomething = true.
 		this.stopLongPress();
 		if (!this.multiTouch) {
 			this.positionOnMouseUp = this.convertPositionToCanvasLocale(e);
@@ -1292,7 +1291,7 @@ class CanvasSectionContainer {
 		this.touchEventInProgress = true;
 	}
 
-	private onTouchCancel (e: TouchEvent) {
+	onTouchCancel (e: TouchEvent) {
 		this.clearMousePositions();
 		this.stopLongPress();
 	}

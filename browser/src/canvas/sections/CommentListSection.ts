@@ -52,7 +52,6 @@ L.Map.include({
 
 
 declare var L: any;
-declare var app: any;
 declare var JSDialog: any;
 
 namespace lool {

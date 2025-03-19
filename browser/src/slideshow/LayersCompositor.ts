@@ -13,7 +13,6 @@
  * LayersCompositor generates slide from layers
  */
 
-declare var app: any;
 declare var SlideShow: any;
 
 class LayersCompositor extends SlideCompositor {
