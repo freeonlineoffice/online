@@ -4051,6 +4051,8 @@ void LOOLWSD::cleanup([[maybe_unused]] int returnValue)
         FileRequestHandler.reset();
         JWTAuth::cleanup();
 
+        Util::forcedExit(returnValue);
+
         TraceDumper.reset();
 
         Socket::InhibitThreadChecks = true;
