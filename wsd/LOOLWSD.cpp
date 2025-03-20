@@ -3372,6 +3372,9 @@ public:
 
         os << '\n';
         LOOLWSD::SavedClipboards->dumpState(os);
+
+        os << '\n';
+        FileServerRequestHandler::dumpState(os);
 #endif
 
         os << "\nDocument Broker polls " << "[ " << DocBrokers.size() << " ]:\n";
