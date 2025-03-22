@@ -12,6 +12,7 @@
 #include "ChildSession.hpp"
 
 #include <common/Anonymizer.hpp>
+#include <common/HexUtil.hpp>
 #include <common/Log.hpp>
 #include <common/Unit.hpp>
 #include <common/Util.hpp>

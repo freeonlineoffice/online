@@ -11,6 +11,7 @@
 
 #include <config.h>
 
+#include <common/HexUtil.hpp>
 #include <common/Log.hpp>
 #include <common/Util.hpp>
 #include <common/Protocol.hpp>
@@ -46,7 +47,7 @@ private:
     void handleMessage(const std::vector<char> &data) override
     {
         std::cout << "WebSocket message data:\n";
-        Util::dumpHex(std::cout, data, "", "    ", false);
+        HexUtil::dumpHex(std::cout, data, "", "    ", false);
     }
 };
 

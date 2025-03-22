@@ -11,6 +11,7 @@
 
 #include "RequestDetails.hpp"
 
+#include <common/HexUtil.hpp>
 #include <common/Log.hpp>
 #include <common/Util.hpp>
 #if !MOBILEAPP
@@ -147,7 +148,7 @@ void RequestDetails::dehexify()
         const std::string encoded =
             _uriString.substr(start, (end == std::string::npos) ? end : end - start);
         std::string decoded;
-        Util::dataFromHexString(encoded, decoded);
+        HexUtil::dataFromHexString(encoded, decoded);
         res += decoded;
 
         res += _uriString.substr(end); // Concatenate the remainder.

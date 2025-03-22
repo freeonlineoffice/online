@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <common/HexUtil.hpp>
 #include <common/Util.hpp>
 
 #include <assert.h>
@@ -99,7 +100,7 @@ public:
         if (size() > 0 || _offset > 0)
             os << prefix << "Buffer size: " << size() << " offset: " << _offset << '\n';
         if (_buffer.size() > 0)
-            Util::dumpHex(os, _buffer, legend, prefix);
+            HexUtil::dumpHex(os, _buffer, legend, prefix);
     }
 
     // various std::vector API compatibility functions

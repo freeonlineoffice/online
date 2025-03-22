@@ -14,7 +14,8 @@
 #include <random>
 
 #include <Delta.hpp>
-#include <Util.hpp>
+#include <common/HexUtil.hpp>
+#include <common/Util.hpp>
 #include <Png.hpp>
 
 #include <cppunit/extensions/HelperMacros.h>
@@ -63,7 +64,7 @@ void checkzDelta(const std::vector<char> &zDelta, const char *legend)
 
 #if DEBUG_DELTA_TESTS
     std::cout << "zdelta: " << legend << "\n";
-    Util::dumpHex(std::cout, zDelta, "");
+    HexUtil::dumpHex(std::cout, zDelta, "");
 #else
     (void)legend;
 #endif
@@ -112,7 +113,7 @@ void checkzDelta(const std::vector<char> &zDelta, const char *legend)
 #if DEBUG_DELTA_TESTS
             std::cout << "d(new pixels) to row " << destRow << " col " << destCol << " number of pixels: " << length << "\n";
             std::vector<char> data(delta.data() + 1, delta.data() + i + length * 4);
-            std::cout << Util::stringifyHexLine(data, 0) << "\n";
+            std::cout << HexUtil::stringifyHexLine(data, 0) << "\n";
 #endif
             i += 4 * length;
             break;
@@ -238,8 +239,8 @@ void DeltaTests::assertEqual(const std::vector<char> &a,
                     std::cout<< '\n';
             }
             std::cout << " size " << len << '\n';
-            Util::dumpHex(std::cout, a, "a");
-            Util::dumpHex(std::cout, b, "b");
+            HexUtil::dumpHex(std::cout, a, "a");
+            HexUtil::dumpHex(std::cout, b, "b");
             LOK_ASSERT(false);
         }
     }

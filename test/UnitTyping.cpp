@@ -12,6 +12,7 @@
 #include <config.h>
 
 #include <LOOLWSD.hpp>
+#include <common/HexUtil.hpp>
 #include <Exceptions.hpp>
 #include <Log.hpp>
 #include <Unit.hpp>
@@ -121,7 +122,7 @@ public:
             result.length() != responseLen + 1 + sizeof(correct) ||
             memcmp(result.c_str() + responseLen + 1, (const char *)correct, sizeof(correct)))
         {
-            LOK_ASSERT_FAIL("Error: wrong textselectioncontent:\n" << Util::dumpHex(result));
+            LOK_ASSERT_FAIL("Error: wrong textselectioncontent:\n" << HexUtil::dumpHex(result));
             return TestResult::Failed;
         }
 
