@@ -5372,14 +5372,12 @@ std::string DocumentBroker::getEmbeddedMediaPath(const std::string& id)
     // and this would need to be accessed from WSD through the JailRoot path.
     // But, when we have NoCapsForKit there is no jail, so the media file ends
     // up in the host (AppImage) /tmp
-    const std::string path = LOOLWSD::NoCapsForKit ? "/" + localPath :
+    return LOOLWSD::NoCapsForKit ? "/" + localPath :
         FileUtil::buildLocalPathToJail(
             LOOLWSD::EnableMountNamespaces, LOOLWSD::ChildRoot + _jailId, localPath);
 #else
-    const std::string path = getJailRoot() + "/" + localPath;
+    return getJailRoot() + "/" + localPath;
 #endif
-
-    return path;
 }
 
 void DocumentBroker::onUrpMessage(const char* data, size_t len)
