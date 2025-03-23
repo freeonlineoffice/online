@@ -77,11 +77,11 @@ std::map<std::string, std::string> GetQueryParams(const Poco::URI& uri)
 static void addStorageDebugCookie([[maybe_unused]] Poco::Net::HTTPRequest& request)
 {
 #if ENABLE_DEBUG
-    static const char* CoolStorageCookie = std::getenv("COOL_STORAGE_COOKIE");
-    if (CoolStorageCookie != nullptr)
+    static const char* LoolStorageCookie = std::getenv("LOOL_STORAGE_COOKIE");
+    if (LoolStorageCookie != nullptr)
     {
         const StringVector cookieTokens =
-            StringVector::tokenize(std::string(CoolStorageCookie), ':');
+            StringVector::tokenize(std::string(LoolStorageCookie), ':');
         if (cookieTokens.size() == 2)
         {
             Poco::Net::NameValueCollection nvcCookies;
