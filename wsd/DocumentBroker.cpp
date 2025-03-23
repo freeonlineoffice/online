@@ -5357,8 +5357,8 @@ void DocumentBroker::removeEmbeddedMedia(const std::string& json)
 
 // This is used on mobile to allow our custom URL handling to get the media path
 // 
-// on iOS this works through CoolURLSchemeHandler.mm, which handles cool:/cool/media?Tag=... requests in much the same way as
-// https://.../cool/media?Tag=... would be handled by COOLWSD on a server. As part of that, we need to get the media path from
+// on iOS this works through LoolURLSchemeHandler.mm, which handles lool:/lool/media?Tag=... requests in much the same way as
+// https://.../lool/media?Tag=... would be handled by LOOLWSD on a server. As part of that, we need to get the media path from
 // the tag using this function
 std::string DocumentBroker::getEmbeddedMediaPath(const std::string& id)
 {
@@ -5401,9 +5401,9 @@ std::string DocumentBroker::getEmbeddedMediaPath(const std::string& id)
     // and this would need to be accessed from WSD through the JailRoot path.
     // But, when we have NoCapsForKit there is no jail, so the media file ends
     // up in the host (AppImage) /tmp
-    const std::string path = COOLWSD::NoCapsForKit ? "/" + localPath :
+    const std::string path = LOOLWSD::NoCapsForKit ? "/" + localPath :
         FileUtil::buildLocalPathToJail(
-            COOLWSD::EnableMountNamespaces, COOLWSD::ChildRoot + _jailId, localPath);
+            LOOLWSD::EnableMountNamespaces, LOOLWSD::ChildRoot + _jailId, localPath);
 #else
     const std::string path = getJailRoot() + "/" + localPath;
 #endif
