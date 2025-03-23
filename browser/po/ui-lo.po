@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-16 16:23+0100\n"
+"POT-Creation-Date: 2025-03-23 12:43+0100\n"
 "PO-Revision-Date: 2020-12-08 13:30+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/collabora-online/ui/"
@@ -145,7 +145,7 @@ msgid "Network Graph"
 msgstr "ກຣາຟເນັດເວີກ"
 
 #: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:511
-#: src/canvas/sections/CommentSection.ts:157
+#: src/canvas/sections/CommentSection.ts:156
 #: src/control/Control.Notebookbar.js:269
 #: src/control/Control.NotebookbarCalc.js:105
 #: src/control/Control.NotebookbarDraw.js:19
@@ -311,24 +311,24 @@ msgstr ""
 #: src/map/Clipboard.js:1257 src/map/handler/Map.Feedback.js:87
 #: src/map/handler/Map.SlideShow.js:56 src/map/handler/Map.SlideShow.js:169
 #: src/map/handler/Map.SlideShow.js:297 src/map/handler/Map.SlideShow.js:308
-#: src/map/handler/Map.WOPI.js:679 src/slideshow/SlideShowPresenter.ts:686
-#: src/slideshow/SlideShowPresenter.ts:701
-#: src/slideshow/SlideShowPresenter.ts:716
-#: src/slideshow/SlideShowPresenter.ts:739
+#: src/map/handler/Map.WOPI.js:679 src/slideshow/SlideShowPresenter.ts:698
+#: src/slideshow/SlideShowPresenter.ts:713
+#: src/slideshow/SlideShowPresenter.ts:728
+#: src/slideshow/SlideShowPresenter.ts:751
 msgid "OK"
 msgstr "ຕົກລົງ"
 
 #: admin/src/AdminClusterOverview.js:551 admin/src/AdminSocketOverview.js:100
 #: admin/src/AdminSocketOverview.js:423 admin/src/AdminSocketSettings.js:37
 #: src/canvas/sections/CommentListSection.ts:506
-#: src/canvas/sections/CommentSection.ts:156
-#: src/canvas/sections/CommentSection.ts:159
+#: src/canvas/sections/CommentSection.ts:155
+#: src/canvas/sections/CommentSection.ts:158
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:71
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.js:1346 src/control/Control.UIManager.js:1413
-#: src/control/Control.UIManager.js:1548 src/control/Control.UIManager.js:1707
+#: src/control/Control.UIManager.js:1350 src/control/Control.UIManager.js:1417
+#: src/control/Control.UIManager.js:1552 src/control/Control.UIManager.js:1711
 #: src/control/Control.Zotero.js:352 src/control/Toolbar.js:998
 #: src/core/Socket.js:1415
 msgid "Cancel"
@@ -414,15 +414,15 @@ msgstr " ນາທີ"
 msgid " s"
 msgstr " ວິນາທີ"
 
-#: js/global.js:1511
+#: js/global.js:1518
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1513
+#: js/global.js:1520
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1515
+#: js/global.js:1522
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgid "Modify"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1169
-#: src/canvas/sections/CommentSection.ts:160
+#: src/canvas/sections/CommentSection.ts:159
 msgid "Reply"
 msgstr ""
 
@@ -481,8 +481,8 @@ msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1233
 #: src/control/Control.JSDialogBuilder.js:1884
-#: src/layer/tile/CanvasTileLayer.js:4625
-#: src/layer/tile/CanvasTileLayer.js:4640
+#: src/layer/tile/CanvasTileLayer.js:4490
+#: src/layer/tile/CanvasTileLayer.js:4505
 msgid "Comment"
 msgstr "ຄຳເຫັນ"
 
@@ -514,21 +514,21 @@ msgstr ""
 msgid "Autosaved"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:303
+#: src/canvas/sections/CommentSection.ts:302
 msgid "Open menu"
 msgstr ""
 
+#: src/canvas/sections/CommentSection.ts:363
 #: src/canvas/sections/CommentSection.ts:364
-#: src/canvas/sections/CommentSection.ts:365
 msgid "Accept change"
 msgstr ""
 
+#: src/canvas/sections/CommentSection.ts:370
 #: src/canvas/sections/CommentSection.ts:371
-#: src/canvas/sections/CommentSection.ts:372
 msgid "Reject change"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:395
+#: src/canvas/sections/CommentSection.ts:394
 msgid "Resolved"
 msgstr ""
 
@@ -803,7 +803,7 @@ msgid "Select range"
 msgstr "ເລືອກຊ່ວງ"
 
 #: src/control/Control.JSDialogBuilder.js:1615
-#: src/control/Control.NotebookbarBuilder.js:145
+#: src/control/Control.NotebookbarBuilder.js:144
 msgid "Font Name"
 msgstr "ຊືຟັອນ"
 
@@ -846,7 +846,7 @@ msgstr "ປ້ອນເຂົ້າໃສ່ຕາຕະລາງ"
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.js:354
 #: src/control/Control.Menubar.js:356 src/control/Control.Menubar.js:358
 #: src/control/Control.Menubar.js:546 src/control/Control.Menubar.js:686
-#: src/control/Control.Menubar.js:972 src/control/Control.StatusBar.js:540
+#: src/control/Control.Menubar.js:972 src/control/Control.StatusBar.js:541
 msgid "None (Do not check spelling)"
 msgstr "ບໍ່ມີ (ບໍ່ຕ້ອງກວດການສະກົດ)"
 
@@ -860,29 +860,29 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:68 src/control/Control.Menubar.js:83
 #: src/control/Control.Menubar.js:1007
-#: src/control/Control.NotebookbarBuilder.js:337
-#: src/control/Control.NotebookbarBuilder.js:550
+#: src/control/Control.NotebookbarBuilder.js:326
+#: src/control/Control.NotebookbarBuilder.js:539
 msgid "ODF text document (.odt)"
 msgstr "ເອກະສານ ODF (.odt)"
 
 #: src/control/Control.Menubar.js:69 src/control/Control.Menubar.js:84
 #: src/control/Control.Menubar.js:1008
-#: src/control/Control.NotebookbarBuilder.js:349
-#: src/control/Control.NotebookbarBuilder.js:562
+#: src/control/Control.NotebookbarBuilder.js:338
+#: src/control/Control.NotebookbarBuilder.js:551
 msgid "Word 2003 Document (.doc)"
 msgstr "ເອກະສານ Word 2003 (.doc)"
 
 #: src/control/Control.Menubar.js:70 src/control/Control.Menubar.js:85
 #: src/control/Control.Menubar.js:1009
-#: src/control/Control.NotebookbarBuilder.js:345
-#: src/control/Control.NotebookbarBuilder.js:558
+#: src/control/Control.NotebookbarBuilder.js:334
+#: src/control/Control.NotebookbarBuilder.js:547
 msgid "Word Document (.docx)"
 msgstr "ເອກະສານ Word (.docx)"
 
 #: src/control/Control.Menubar.js:71 src/control/Control.Menubar.js:86
 #: src/control/Control.Menubar.js:1010
-#: src/control/Control.NotebookbarBuilder.js:341
-#: src/control/Control.NotebookbarBuilder.js:554
+#: src/control/Control.NotebookbarBuilder.js:330
+#: src/control/Control.NotebookbarBuilder.js:543
 msgid "Rich Text (.rtf)"
 msgstr "Rich Text (.rtf)"
 
@@ -905,25 +905,25 @@ msgstr "ນຳອອກເປັນ"
 #: src/control/Control.Menubar.js:1062 src/control/Control.Menubar.js:1070
 #: src/control/Control.Menubar.js:1127 src/control/Control.Menubar.js:1134
 #: src/control/Control.Menubar.js:1182 src/control/Control.Menubar.js:1192
-#: src/control/Control.NotebookbarBuilder.js:358
-#: src/control/Control.NotebookbarBuilder.js:396
-#: src/control/Control.NotebookbarBuilder.js:432
+#: src/control/Control.NotebookbarBuilder.js:347
+#: src/control/Control.NotebookbarBuilder.js:385
+#: src/control/Control.NotebookbarBuilder.js:421
+#: src/control/Control.NotebookbarBuilder.js:600
 #: src/control/Control.NotebookbarBuilder.js:611
-#: src/control/Control.NotebookbarBuilder.js:622
-#: src/control/Control.NotebookbarBuilder.js:629
-#: src/control/Control.NotebookbarBuilder.js:636
+#: src/control/Control.NotebookbarBuilder.js:618
+#: src/control/Control.NotebookbarBuilder.js:625
 #: src/control/Control.NotebookbarDraw.js:242
 msgid "PDF Document (.pdf)"
 msgstr "ເອກະສານ PDF (.pdf)"
 
 #: src/control/Control.Menubar.js:75 src/control/Control.Menubar.js:87
 #: src/control/Control.Menubar.js:997 src/control/Control.Menubar.js:1011
-#: src/control/Control.NotebookbarBuilder.js:353
-#: src/control/Control.NotebookbarBuilder.js:615
+#: src/control/Control.NotebookbarBuilder.js:342
+#: src/control/Control.NotebookbarBuilder.js:604
 msgid "EPUB (.epub)"
 msgstr ""
 
-#: src/control/Control.Menubar.js:77 src/control/Control.UIManager.js:224
+#: src/control/Control.Menubar.js:77 src/control/Control.UIManager.js:228
 #, fuzzy
 msgid "Rename Document"
 msgstr "ຊ້ອມແຊມເອກະສານ"
@@ -953,9 +953,9 @@ msgstr "ດາວໂຫລດເປັນ"
 #: src/control/Control.Menubar.js:576 src/control/Control.Menubar.js:715
 #: src/control/Control.Menubar.js:1006 src/control/Control.Menubar.js:1071
 #: src/control/Control.Menubar.js:1135 src/control/Control.Menubar.js:1193
-#: src/control/Control.NotebookbarBuilder.js:368
-#: src/control/Control.NotebookbarBuilder.js:402
-#: src/control/Control.NotebookbarBuilder.js:444
+#: src/control/Control.NotebookbarBuilder.js:357
+#: src/control/Control.NotebookbarBuilder.js:391
+#: src/control/Control.NotebookbarBuilder.js:433
 #, fuzzy
 msgid "PDF Document (.pdf) as..."
 msgstr "ເອກະສານ PDF (.pdf)"
@@ -985,7 +985,7 @@ msgstr "ຊ້ອມແຊມ"
 #: src/control/Control.Menubar.js:439 src/control/Control.Menubar.js:445
 #: src/control/Control.Menubar.js:599 src/control/Control.Menubar.js:605
 #: src/control/Control.Menubar.js:745 src/control/Control.Menubar.js:751
-#: src/control/Control.NotebookbarCalc.js:1192
+#: src/control/Control.NotebookbarCalc.js:1198
 #: src/control/Control.NotebookbarDraw.js:345
 #: src/control/Control.NotebookbarImpress.js:403
 #: src/control/Control.NotebookbarWriter.js:1465
@@ -1016,7 +1016,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:612 src/control/Control.Menubar.js:757
 #: src/control/Control.Menubar.js:1037 src/control/Control.Menubar.js:1090
 #: src/control/Control.Menubar.js:1151 src/control/Control.Menubar.js:1211
-#: src/control/Control.NotebookbarCalc.js:1266
+#: src/control/Control.NotebookbarCalc.js:1272
 #: src/control/Control.NotebookbarDraw.js:445
 #: src/control/Control.NotebookbarImpress.js:518
 #: src/control/Control.NotebookbarWriter.js:1545
@@ -1027,7 +1027,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:613 src/control/Control.Menubar.js:758
 #: src/control/Control.Menubar.js:1038 src/control/Control.Menubar.js:1091
 #: src/control/Control.Menubar.js:1152 src/control/Control.Menubar.js:1212
-#: src/control/Control.NotebookbarCalc.js:1273
+#: src/control/Control.NotebookbarCalc.js:1279
 #: src/control/Control.NotebookbarDraw.js:452
 #: src/control/Control.NotebookbarImpress.js:525
 #: src/control/Control.NotebookbarWriter.js:1552
@@ -1035,7 +1035,7 @@ msgid "Invert Background"
 msgstr ""
 
 #: src/control/Control.Menubar.js:141 src/control/Control.Menubar.js:761
-#: src/control/Control.NotebookbarCalc.js:2036
+#: src/control/Control.NotebookbarCalc.js:2042
 #: src/control/Control.NotebookbarWriter.js:846
 #: src/control/Control.NotebookbarWriter.js:964
 msgid "Style list"
@@ -1055,7 +1055,7 @@ msgstr "ທັງຫມົດ"
 
 #: src/control/Control.Menubar.js:184 src/control/Control.Menubar.js:479
 #: src/control/Control.Menubar.js:627 src/control/Control.Menubar.js:784
-#: src/control/Control.NotebookbarCalc.js:1397
+#: src/control/Control.NotebookbarCalc.js:1403
 #: src/control/Control.NotebookbarDraw.js:1273
 #: src/control/Control.NotebookbarImpress.js:1263
 #: src/control/Control.NotebookbarWriter.js:1148
@@ -1200,22 +1200,22 @@ msgstr "ການດັດແກ້ຄັ້ງຫລ້າສຸດ"
 
 #: src/control/Control.Menubar.js:391 src/control/Control.Menubar.js:404
 #: src/control/Control.Menubar.js:1072
-#: src/control/Control.NotebookbarBuilder.js:410
-#: src/control/Control.NotebookbarBuilder.js:584
+#: src/control/Control.NotebookbarBuilder.js:399
+#: src/control/Control.NotebookbarBuilder.js:573
 msgid "ODF presentation (.odp)"
 msgstr "ODF presentation (.odp)"
 
 #: src/control/Control.Menubar.js:392 src/control/Control.Menubar.js:405
 #: src/control/Control.Menubar.js:1073
-#: src/control/Control.NotebookbarBuilder.js:422
-#: src/control/Control.NotebookbarBuilder.js:592
+#: src/control/Control.NotebookbarBuilder.js:411
+#: src/control/Control.NotebookbarBuilder.js:581
 msgid "PowerPoint 2003 Presentation (.ppt)"
 msgstr "PowerPoint 2003 Presentation (.ppt)"
 
 #: src/control/Control.Menubar.js:393 src/control/Control.Menubar.js:406
 #: src/control/Control.Menubar.js:1074
-#: src/control/Control.NotebookbarBuilder.js:418
-#: src/control/Control.NotebookbarBuilder.js:588
+#: src/control/Control.NotebookbarBuilder.js:407
+#: src/control/Control.NotebookbarBuilder.js:577
 msgid "PowerPoint Presentation (.pptx)"
 msgstr "PowerPoint Presentation (.pptx)"
 
@@ -1225,47 +1225,47 @@ msgid "Save Comments"
 msgstr "ຄຳເຫັນ"
 
 #: src/control/Control.Menubar.js:407
-#: src/control/Control.NotebookbarBuilder.js:426
+#: src/control/Control.NotebookbarBuilder.js:415
 msgid "HTML Document (.html)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:408
-#: src/control/Control.NotebookbarBuilder.js:457
+#: src/control/Control.NotebookbarBuilder.js:446
 msgid "Shockwave Flash (.swf)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:409
-#: src/control/Control.NotebookbarBuilder.js:469
+#: src/control/Control.NotebookbarBuilder.js:458
 msgid "Scalable Vector Graphics (.svg)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:410
-#: src/control/Control.NotebookbarBuilder.js:481
+#: src/control/Control.NotebookbarBuilder.js:470
 msgid "Current slide as Bitmap (.bmp)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:411
-#: src/control/Control.NotebookbarBuilder.js:493
+#: src/control/Control.NotebookbarBuilder.js:482
 msgid "Current slide as Graphics Interchange Format (.gif)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:412
-#: src/control/Control.NotebookbarBuilder.js:505
+#: src/control/Control.NotebookbarBuilder.js:494
 msgid "Current slide as Portable Network Graphics (.png)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:413
-#: src/control/Control.NotebookbarBuilder.js:517
+#: src/control/Control.NotebookbarBuilder.js:506
 msgid "Current slide as Tag Image File Format (.tiff)"
 msgstr ""
 
 #: src/control/Control.Menubar.js:419
-#: src/control/Control.NotebookbarBuilder.js:655
+#: src/control/Control.NotebookbarBuilder.js:644
 msgid "Full Page Slides"
 msgstr ""
 
 #: src/control/Control.Menubar.js:420
-#: src/control/Control.NotebookbarBuilder.js:659
+#: src/control/Control.NotebookbarBuilder.js:648
 msgid "Notes Pages"
 msgstr ""
 
@@ -1304,30 +1304,30 @@ msgstr ""
 
 #: src/control/Control.Menubar.js:577 src/control/Control.Menubar.js:1075
 #: src/control/Control.Menubar.js:1136
-#: src/control/Control.NotebookbarBuilder.js:414
-#: src/control/Control.NotebookbarBuilder.js:527
+#: src/control/Control.NotebookbarBuilder.js:403
+#: src/control/Control.NotebookbarBuilder.js:516
 #, fuzzy
 msgid "ODF Drawing (.odg)"
 msgstr "ODF presentation (.odp)"
 
 #: src/control/Control.Menubar.js:704 src/control/Control.Menubar.js:716
 #: src/control/Control.Menubar.js:1194
-#: src/control/Control.NotebookbarBuilder.js:376
-#: src/control/Control.NotebookbarBuilder.js:569
+#: src/control/Control.NotebookbarBuilder.js:365
+#: src/control/Control.NotebookbarBuilder.js:558
 msgid "ODF spreadsheet (.ods)"
 msgstr "ສເປຣດຊີດ ODF (.ods)"
 
 #: src/control/Control.Menubar.js:705 src/control/Control.Menubar.js:717
 #: src/control/Control.Menubar.js:1195
-#: src/control/Control.NotebookbarBuilder.js:384
-#: src/control/Control.NotebookbarBuilder.js:577
+#: src/control/Control.NotebookbarBuilder.js:373
+#: src/control/Control.NotebookbarBuilder.js:566
 msgid "Excel 2003 Spreadsheet (.xls)"
 msgstr "ສເປຣດຊີດ Excel 2003 (.xls)"
 
 #: src/control/Control.Menubar.js:706 src/control/Control.Menubar.js:718
 #: src/control/Control.Menubar.js:1196
-#: src/control/Control.NotebookbarBuilder.js:380
-#: src/control/Control.NotebookbarBuilder.js:573
+#: src/control/Control.NotebookbarBuilder.js:369
+#: src/control/Control.NotebookbarBuilder.js:562
 msgid "Excel Spreadsheet (.xlsx)"
 msgstr "ສເປຣດຊີດ Excel (.xlsx)"
 
@@ -1346,7 +1346,7 @@ msgid "All Sheets"
 msgstr ""
 
 #: src/control/Control.Menubar.js:764
-#: src/control/Control.NotebookbarCalc.js:1170
+#: src/control/Control.NotebookbarCalc.js:1176
 msgid "Focus Cell"
 msgstr ""
 
@@ -1429,7 +1429,7 @@ msgstr ""
 #: src/control/Control.Menubar.js:991 src/control/Control.Menubar.js:1057
 #: src/control/Control.Menubar.js:1122 src/control/Control.Menubar.js:1177
 #: src/control/Control.MobileSearchBar.ts:30
-#: src/control/Control.NotebookbarCalc.js:844
+#: src/control/Control.NotebookbarCalc.js:850
 #: src/control/Control.NotebookbarDraw.js:985
 #: src/control/Control.NotebookbarImpress.js:1039
 #: src/control/Control.NotebookbarWriter.js:913
@@ -1450,7 +1450,7 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.js:1481 src/control/Control.StatusBar.js:539
+#: src/control/Control.Menubar.js:1481 src/control/Control.StatusBar.js:540
 msgid "Reset to Default Language"
 msgstr "ຕັ້ງຄ່າກັບໄປໃຊ້ພາສາພື້ນຖານ"
 
@@ -1532,25 +1532,25 @@ msgstr "ຄວາມຊັນ"
 msgid "Share"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:215
+#: src/control/Control.NotebookbarBuilder.js:214
 msgid "Tap to expand"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:216
-#: src/control/Control.NotebookbarBuilder.js:261
+#: src/control/Control.NotebookbarBuilder.js:215
+#: src/control/Control.NotebookbarBuilder.js:260
 msgid "Tap to collapse"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:363
-#: src/control/Control.NotebookbarBuilder.js:392
+#: src/control/Control.NotebookbarBuilder.js:352
+#: src/control/Control.NotebookbarBuilder.js:381
 msgid "HTML File (.html)"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:388
+#: src/control/Control.NotebookbarBuilder.js:377
 msgid "CSV File (.csv)"
 msgstr ""
 
-#: src/control/Control.NotebookbarBuilder.js:531
+#: src/control/Control.NotebookbarBuilder.js:520
 msgid "Image (.png)"
 msgstr ""
 
@@ -1657,7 +1657,7 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:315
 #: src/control/Control.NotebookbarImpress.js:349
 #: src/control/Control.NotebookbarWriter.js:326
-#: src/control/Control.UIManager.js:224
+#: src/control/Control.UIManager.js:228
 msgid "Rename"
 msgstr ""
 
@@ -1705,116 +1705,116 @@ msgstr ""
 msgid "Text"
 msgstr "ເຕັກ"
 
-#: src/control/Control.NotebookbarCalc.js:783
+#: src/control/Control.NotebookbarCalc.js:789
 msgid "Default"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:790
+#: src/control/Control.NotebookbarCalc.js:796
 msgid "Heading 1"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:797
+#: src/control/Control.NotebookbarCalc.js:803
 msgid "Heading 2"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:810
+#: src/control/Control.NotebookbarCalc.js:816
 msgid "Good"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:817
+#: src/control/Control.NotebookbarCalc.js:823
 msgid "Neutral"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:824
+#: src/control/Control.NotebookbarCalc.js:830
 msgid "Bad"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:855
+#: src/control/Control.NotebookbarCalc.js:861
 #: src/control/Control.NotebookbarDraw.js:996
 #: src/control/Control.NotebookbarImpress.js:1050
 #: src/control/Control.NotebookbarWriter.js:924
 msgid "Replace"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:931
+#: src/control/Control.NotebookbarCalc.js:937
 msgid "Row Height"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:939
+#: src/control/Control.NotebookbarCalc.js:945
 msgid "Column Width"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:952
+#: src/control/Control.NotebookbarCalc.js:958
 #, fuzzy
 msgid "Insert Rows Above"
 msgstr "ປ້ອນເຂົ້າໃສ່ຕາຕະລາງ"
 
-#: src/control/Control.NotebookbarCalc.js:959
+#: src/control/Control.NotebookbarCalc.js:965
 #, fuzzy
 msgid "Insert Columns Before"
 msgstr "ປ້ອນຊີດຫລັງຈາກນີ້"
 
-#: src/control/Control.NotebookbarCalc.js:966
+#: src/control/Control.NotebookbarCalc.js:972
 #, fuzzy
 msgid "Delete Rows"
 msgstr "ລືບ"
 
-#: src/control/Control.NotebookbarCalc.js:978
+#: src/control/Control.NotebookbarCalc.js:984
 #, fuzzy
 msgid "Insert Rows Below"
 msgstr "ປ້ອນຊີດ"
 
-#: src/control/Control.NotebookbarCalc.js:985
+#: src/control/Control.NotebookbarCalc.js:991
 #, fuzzy
 msgid "Insert Columns After"
 msgstr "ປ້ອນຊີດກ່ອນຫນ້ານີ້"
 
-#: src/control/Control.NotebookbarCalc.js:992
+#: src/control/Control.NotebookbarCalc.js:998
 #, fuzzy
 msgid "Delete Columns"
 msgstr "ຖັນ"
 
-#: src/control/Control.NotebookbarCalc.js:1178
+#: src/control/Control.NotebookbarCalc.js:1184
 #: src/control/Control.NotebookbarDraw.js:331
 #: src/control/Control.NotebookbarImpress.js:365
 #: src/control/Control.NotebookbarWriter.js:1444
 msgid "Read mode"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1229
+#: src/control/Control.NotebookbarCalc.js:1235
 #: src/control/Control.NotebookbarDraw.js:382
 #: src/control/Control.NotebookbarImpress.js:440
 #: src/control/Control.NotebookbarWriter.js:1502
 msgid "Compact view"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1242
+#: src/control/Control.NotebookbarCalc.js:1248
 #: src/control/Control.NotebookbarDraw.js:419
 #: src/control/Control.NotebookbarImpress.js:477
 #: src/control/Control.NotebookbarWriter.js:1539
 msgid "Collapse Tabs"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1254
+#: src/control/Control.NotebookbarCalc.js:1260
 #: src/control/Control.NotebookbarDraw.js:407
 #: src/control/Control.NotebookbarImpress.js:465
 #: src/control/Control.NotebookbarWriter.js:1527
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1347
+#: src/control/Control.NotebookbarCalc.js:1353
 msgid "Sparkline"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1405
+#: src/control/Control.NotebookbarCalc.js:1411
 #: src/control/Control.NotebookbarDraw.js:1281
 #: src/control/Control.NotebookbarImpress.js:1283
 #: src/control/Control.NotebookbarWriter.js:1168
 msgid "Assistant"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1489
-#: src/control/Control.NotebookbarCalc.js:2388
+#: src/control/Control.NotebookbarCalc.js:1495
+#: src/control/Control.NotebookbarCalc.js:2394
 #: src/control/Control.NotebookbarDraw.js:865
 #: src/control/Control.NotebookbarDraw.js:1367
 #: src/control/Control.NotebookbarImpress.js:943
@@ -2073,23 +2073,19 @@ msgstr ""
 msgid "Select multiple cells"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:465
-msgid "Insert mode: inactive"
-msgstr ""
-
-#: src/control/Control.StatusBar.js:478
+#: src/control/Control.StatusBar.js:479
 msgid "Selection mode: inactive"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:556
+#: src/control/Control.StatusBar.js:557
 msgid "Set Language for All text"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:559
+#: src/control/Control.StatusBar.js:560
 msgid "Set Language for Paragraph"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:560
+#: src/control/Control.StatusBar.js:561
 msgid "Set Language for Selection"
 msgstr ""
 
@@ -2153,15 +2149,15 @@ msgstr "ປ້ອນເຂົ້າໃສ່ຕາຕະລາງ"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:200 src/control/Control.UIManager.js:868
+#: src/control/Control.TopToolbar.js:200 src/control/Control.UIManager.js:872
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UIManager.js:224
+#: src/control/Control.UIManager.js:228
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.js:891
+#: src/control/Control.UIManager.js:895
 msgid "Show Menu"
 msgstr ""
 
@@ -2815,19 +2811,19 @@ msgstr "ທ່ານແນ່ໃຈແລ້ວບໍ່ວ່າຕ້ອງກ
 msgid "Are you sure you want to delete this page?"
 msgstr "ທ່ານແນ່ໃຈແລ້ວບໍ່ວ່າຈະລຶບຫນ້ານີ້?"
 
-#: src/docstate.js:93
+#: src/docstate.js:87
 msgid "Standard"
 msgstr ""
 
-#: src/docstate.js:106
+#: src/docstate.js:100
 msgid "Theme colors"
 msgstr ""
 
-#: src/docstate.js:107
+#: src/docstate.js:101
 msgid "Document colors"
 msgstr ""
 
-#: src/docstatefunctions.js:198
+#: src/docstatefunctions.js:203
 msgid ", cluster configuration error: mis-matching serverid"
 msgstr ""
 
@@ -3067,39 +3063,39 @@ msgstr ""
 msgid "{0} deleted"
 msgstr ""
 
-#: src/layer/marker/TextInput.js:439
+#: src/layer/marker/TextInput.js:442
 msgid "Screen reader support for text content is disabled. "
 msgstr ""
 
-#: src/layer/marker/TextInput.js:440
+#: src/layer/marker/TextInput.js:443
 msgid "You need to enable it both at server level and in the UI. "
 msgstr ""
 
-#: src/layer/marker/TextInput.js:441
+#: src/layer/marker/TextInput.js:444
 msgid "Look for the accessibility section in loolwsd.xml for server setting. "
 msgstr ""
 
-#: src/layer/marker/TextInput.js:442
+#: src/layer/marker/TextInput.js:445
 msgid "Also check the voice over toggle under {parentControl}."
 msgstr ""
 
-#: src/layer/marker/TextInput.js:444
+#: src/layer/marker/TextInput.js:447
 msgid "the Help tab"
 msgstr ""
 
-#: src/layer/marker/TextInput.js:444
+#: src/layer/marker/TextInput.js:447
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2038
+#: src/layer/tile/CanvasTileLayer.js:1965
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2363
+#: src/layer/tile/CanvasTileLayer.js:2290
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4659
+#: src/layer/tile/CanvasTileLayer.js:4524
 #, fuzzy
 msgid "No Comments"
 msgstr "ຄຳເຫັນ"
@@ -3155,15 +3151,15 @@ msgstr ""
 msgid "Close popup to ignore paste special"
 msgstr ""
 
-#: src/map/Map.js:216
+#: src/map/Map.js:217
 msgid "Initializing..."
 msgstr ""
 
-#: src/map/Map.js:461 src/map/Map.js:464 src/map/Map.js:467 src/map/Map.js:470
+#: src/map/Map.js:462 src/map/Map.js:465 src/map/Map.js:468 src/map/Map.js:471
 msgid "Last saved:"
 msgstr ""
 
-#: src/map/Map.js:1487
+#: src/map/Map.js:1488
 msgid "Please wait!"
 msgstr ""
 
@@ -3194,17 +3190,17 @@ msgstr ""
 msgid "Print dialog"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:55 src/slideshow/SlideShowPresenter.ts:683
+#: src/map/handler/Map.SlideShow.js:55 src/slideshow/SlideShowPresenter.ts:695
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:167
-#: src/slideshow/SlideShowPresenter.ts:711
+#: src/slideshow/SlideShowPresenter.ts:723
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:168
-#: src/slideshow/SlideShowPresenter.ts:713
+#: src/slideshow/SlideShowPresenter.ts:725
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -3212,17 +3208,17 @@ msgid ""
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:172
-#: src/slideshow/SlideShowPresenter.ts:492
+#: src/slideshow/SlideShowPresenter.ts:507
 msgid "Windowed Presentation: "
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:202
-#: src/slideshow/SlideShowPresenter.ts:539
+#: src/slideshow/SlideShowPresenter.ts:554
 msgid "Presenting in window"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:203
-#: src/slideshow/SlideShowPresenter.ts:540
+#: src/slideshow/SlideShowPresenter.ts:555
 msgid "Close Presentation"
 msgstr ""
 
@@ -3235,22 +3231,22 @@ msgid "End Presentation"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:295
-#: src/slideshow/SlideShowPresenter.ts:698
+#: src/slideshow/SlideShowPresenter.ts:710
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:296
-#: src/slideshow/SlideShowPresenter.ts:699
+#: src/slideshow/SlideShowPresenter.ts:711
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:306
-#: src/slideshow/SlideShowPresenter.ts:736
+#: src/slideshow/SlideShowPresenter.ts:748
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:307
-#: src/slideshow/SlideShowPresenter.ts:737
+#: src/slideshow/SlideShowPresenter.ts:749
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
@@ -3333,7 +3329,7 @@ msgid "Repeat in {0} seconds"
 msgstr ""
 
 #: src/slideshow/PresenterConsole.js:1442
-#: src/slideshow/SlideShowPresenter.ts:385
+#: src/slideshow/SlideShowPresenter.ts:400
 msgid "Click to exit presentation..."
 msgstr ""
 
