@@ -3831,7 +3831,7 @@ int LOOLWSD::innerMain()
         }
 
 #if !MOBILEAPP
-        SavedClipboards->checkexpiry();
+        SavedClipboards->checkexpiry(timeNow);
 
         const std::chrono::milliseconds durationFetch
             = std::chrono::duration_cast<std::chrono::milliseconds>(timeNow - stampFetch);
