@@ -144,7 +144,7 @@ class SnackbarController {
 			eventType: string,
 			object: any,
 			data: any,
-			builder: any,
+			builder: JSBuilder,
 		) => {
 			window.app.console.debug(
 				"control: '" +
