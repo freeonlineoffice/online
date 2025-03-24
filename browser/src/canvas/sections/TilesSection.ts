@@ -66,7 +66,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	paintWithPanes (tile: any, ctx: any, async: boolean, now: Date): void {
+	paintWithPanes (tile: any, ctx: any, async: boolean): void {
 		var tileTopLeft = tile.coords.getPos();
 		var tileBounds = new L.Bounds(tileTopLeft, tileTopLeft.add(new L.Point(TileManager.tileSize, TileManager.tileSize)));
 
@@ -86,7 +86,7 @@ export class TilesSection extends CanvasSectionObject {
 				paneOffset.x = Math.min(paneOffset.x, viewBounds.min.x);
 				paneOffset.y = Math.min(paneOffset.y, viewBounds.min.y);
 
-				this.drawTileInPane(tile, tileBounds, paneBounds, paneOffset, this.context, async, now);
+				this.drawTileInPane(tile, tileBounds, paneBounds, paneOffset, this.context, async);
 			}
 		}
 	}
@@ -147,7 +147,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	drawTileInPane (tile: any, tileBounds: any, paneBounds: any, paneOffset: any, canvasCtx: CanvasRenderingContext2D, clearBackground: boolean, now: Date): void {
+	drawTileInPane (tile: any, tileBounds: any, paneBounds: any, paneOffset: any, canvasCtx: CanvasRenderingContext2D, clearBackground: boolean): void {
 		// intersect - to avoid state thrash through clipping
 		var crop = new L.Bounds(tileBounds.min, tileBounds.max);
 		crop.min.x = Math.max(paneBounds.min.x, tileBounds.min.x);
@@ -173,7 +173,7 @@ export class TilesSection extends CanvasSectionObject {
 			}
 
 			this.beforeDraw(canvasCtx);
-			this.drawTileToCanvasCrop(tile, now, canvasCtx,
+			this.drawTileToCanvasCrop(tile, canvasCtx,
 									  crop.min.x - tileBounds.min.x,
 									  crop.min.y - tileBounds.min.y,
 									  cropWidth, cropHeight,
@@ -194,7 +194,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	paintSimple (tile: any, ctx: any, async: boolean, now: Date): void {
+	paintSimple (tile: any, ctx: any, async: boolean): void {
 		ctx.viewBounds.round();
 		var offset = new L.Point(tile.coords.getPos().x - ctx.viewBounds.min.x, tile.coords.getPos().y - ctx.viewBounds.min.y);
 
@@ -213,11 +213,11 @@ export class TilesSection extends CanvasSectionObject {
 			offset.y = tile.coords.part * partHeightPixels + tile.coords.y - this.documentTopLeft[1];
 		}
 
-		this.drawTileToCanvas(tile, now, this.context, offset.x, offset.y, TileManager.tileSize, TileManager.tileSize);
+		this.drawTileToCanvas(tile, this.context, offset.x, offset.y, TileManager.tileSize, TileManager.tileSize);
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public paint (tile: any, ctx: any, async: boolean, now: Date): void {
+	public paint (tile: any, ctx: any, async: boolean): void {
 		if (this.containerObject.isInZoomAnimation() || this.sectionProperties.tsManager.waitForTiles())
 			return;
 
@@ -227,9 +227,9 @@ export class TilesSection extends CanvasSectionObject {
 		this.containerObject.setPenPosition(this);
 
 		if (ctx.paneBoundsActive === true)
-			this.paintWithPanes(tile, ctx, async, now);
+			this.paintWithPanes(tile, ctx, async);
 		else
-			this.paintSimple(tile, ctx, async, now);
+			this.paintSimple(tile, ctx, async);
 	}
 
 	private forEachTileInView(zoom: number, part: number, mode: number, ctx: any,
@@ -405,7 +405,6 @@ export class TilesSection extends CanvasSectionObject {
 
 					this.drawTileToCanvasCrop(
 						TileManager.get(coords.key()),
-						new Date(),
 						this.context,
 						sX, sY,
 						intersection[2],
@@ -453,7 +452,6 @@ export class TilesSection extends CanvasSectionObject {
 
 		var docLayer = this.sectionProperties.docLayer;
 		var doneTiles = new Set();
-		var now = new Date();
 		this.forEachTileInView(zoom, part, mode, ctx, function (tile: any, coords: TileCoordData): boolean {
 
 			if (doneTiles.has(coords.key()))
@@ -467,7 +465,7 @@ export class TilesSection extends CanvasSectionObject {
 			if (tile && TileManager.isValidTile(coords)) {
 				if (!this.isJSDOM) { // perf-test code
 					if (tile.isReadyToDraw() || this.map._debug.tileOverlaysOn) { // Ensure tile is loaded
-						this.paint(tile, ctx, false /* async? */, now);
+						this.paint(tile, ctx, false /* async? */);
 					}
 				}
 			}
@@ -619,17 +617,17 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public ensureCanvas(tile: any, now: Date): void
+	public ensureCanvas(tile: any): void
 	{
-		TileManager.ensureCanvas(tile, now, false);
+		TileManager.ensureCanvas(tile, false);
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public drawTileToCanvas(tile: any, now: Date, canvas: CanvasRenderingContext2D,
+	public drawTileToCanvas(tile: any, canvas: CanvasRenderingContext2D,
 							dx: number, dy: number, dWidth: number, dHeight: number): void
 	{
-		this.ensureCanvas(tile, now);
-		this.drawTileToCanvasCrop(tile, now, canvas,
+		this.ensureCanvas(tile);
+		this.drawTileToCanvasCrop(tile, canvas,
 								  0, 0, tile.canvas.width, tile.canvas.height,
 								  dx, dy, dWidth, dHeight);
 	}
@@ -667,11 +665,11 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	public drawTileToCanvasCrop(tile: any, now: Date, canvas: CanvasRenderingContext2D,
+	public drawTileToCanvasCrop(tile: any, canvas: CanvasRenderingContext2D,
 								sx: number, sy: number, sWidth: number, sHeight: number,
 								dx: number, dy: number, dWidth: number, dHeight: number): void
 	{
-		this.ensureCanvas(tile, now);
+		this.ensureCanvas(tile);
 
 		/* if (!(tile.wireId % 4)) // great for debugging tile grid alignment.
 				canvas.drawImage(this.checkpattern, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
@@ -863,7 +861,6 @@ export class TilesSection extends CanvasSectionObject {
 			var relScale = (bestZoomSrc == zoom) ? 1 : this.map.getZoomScale(bestZoomSrc, zoom);
 
 			this.beforeDraw(canvasContext);
-			var now = new Date();
 			this.forEachTileInArea(docRangeScaled, bestZoomSrc, part, mode, ctx, function (tile, coords, section): boolean {
 				if (!tile || !tile.isReadyToDraw() || !TileManager.isValidTile(coords))
 					return false;
@@ -889,7 +886,7 @@ export class TilesSection extends CanvasSectionObject {
 				var paneOffset = crop.min.subtract(docRangeScaled.min.subtract(destPosScaled));
 				if (cropWidth && cropHeight) {
 						section.drawTileToCanvasCrop(
-								tile, now, canvasContext,
+								tile, canvasContext,
 								tileOffset.x, tileOffset.y, // source x, y
 								cropWidth, cropHeight, // source size
 								// Destination x, y, w, h (In non-Chrome browsers it leaves lines without the 0.5 correction).
