@@ -275,8 +275,8 @@ void HttpRequestTests::testSimpleGet()
     constexpr auto URL = "/";
 
     // Start the polling thread.
-    SocketPoll pollThread("AsyncReqPoll");
-    pollThread.startThread();
+    std::shared_ptr<SocketPoll> pollThread = std::make_shared<SocketPoll>("AsyncReqPoll");
+    pollThread->startThread();
 
     http::Request httpRequest(URL);
 
@@ -332,7 +332,7 @@ void HttpRequestTests::testSimpleGet()
         LOK_ASSERT_EQUAL(pocoResponse.second, httpResponse->getBody());
     }
 
-    pollThread.joinThread();
+    pollThread->joinThread();
 }
 
 void HttpRequestTests::testSimpleGetSync()
@@ -504,8 +504,8 @@ void HttpRequestTests::test500GetStatuses()
     };
 
     // Start the polling thread.
-    SocketPoll pollThread("AsyncReqPoll");
-    pollThread.startThread();
+    std::shared_ptr<SocketPoll> pollThread = std::make_shared<SocketPoll>("AsyncReqPoll");
+    pollThread->startThread();
 
     constexpr http::StatusLine::StatusCodeClass statusCodeClasses[] = {
         http::StatusLine::StatusCodeClass::Informational,
@@ -586,7 +586,7 @@ void HttpRequestTests::test500GetStatuses()
         }
     }
 
-    pollThread.joinThread();
+    pollThread->joinThread();
 }
 
 void HttpRequestTests::testSimplePost_External()
@@ -597,8 +597,8 @@ void HttpRequestTests::testSimplePost_External()
     const char* URL = "/post";
 
     // Start the polling thread.
-    SocketPoll pollThread("AsyncReqPoll");
-    pollThread.startThread();
+    std::shared_ptr<SocketPoll> pollThread = std::make_shared<SocketPoll>("AsyncReqPoll");
+    pollThread->startThread();
 
     http::Request httpRequest(URL, http::Request::VERB_POST);
 
@@ -646,7 +646,7 @@ void HttpRequestTests::testSimplePost_External()
     std::cerr << "[" << body << "]\n";
     LOK_ASSERT(body.find(data) != std::string::npos);
 
-    pollThread.joinThread();
+    pollThread->joinThread();
 }
 
 void HttpRequestTests::testTimeout()

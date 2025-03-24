@@ -3510,7 +3510,7 @@ private:
 };
 
 #if !MOBILEAPP
-void LOOLWSD::processFetchUpdate(SocketPoll& poll)
+void LOOLWSD::processFetchUpdate(const std::shared_ptr<SocketPoll>& poll)
 {
     try
     {
@@ -3735,7 +3735,7 @@ int LOOLWSD::innerMain()
 #endif
 
     /// The main-poll does next to nothing:
-    SocketPoll mainWait("main");
+    std::shared_ptr<SocketPoll> mainWait = std::make_shared<SocketPoll>("main");
 
     SigUtil::addActivity("loolwsd accepting connections");
 
@@ -3790,7 +3790,7 @@ int LOOLWSD::innerMain()
     if (ConfigUtil::getConfigValue<bool>("stop_on_config_change", false))
     {
         std::shared_ptr<InotifySocket> inotifySocket = std::make_shared<InotifySocket>(startStamp);
-        mainWait.insertNewSocket(inotifySocket);
+        mainWait->insertNewSocket(inotifySocket);
     }
 #endif
 #endif
@@ -3812,7 +3812,7 @@ int LOOLWSD::innerMain()
             waitMicroS /= 4;
         }
 
-        mainWait.poll(waitMicroS);
+        mainWait->poll(waitMicroS);
 
         // Wake the prisoner poll to spawn some children, if necessary.
         PrisonerPoll->wakeup();

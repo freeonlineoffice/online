@@ -1427,7 +1427,7 @@ void ClientSession::uploadBrowserSettingsToWopiHost()
     LOG_DBG("Uploading browsersetting json [" << jsonStream.str() << "] to wopiHost[" << uriAnonym
                                               << ']');
     httpSession->setFinishedHandler(std::move(finishedCallback));
-    httpSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
+    httpSession->asyncRequest(httpRequest, LOOLWSD::getWebServerPoll());
 }
 
 void ClientSession::updateBrowserSettingsJSON(const std::string& json)

@@ -1346,7 +1346,7 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
     };
 
     httpProbeSession->setFinishedHandler(std::move(finishHandler));
-    httpProbeSession->asyncRequest(httpRequest, *LOOLWSD::getWebServerPoll());
+    httpProbeSession->asyncRequest(httpRequest, LOOLWSD::getWebServerPoll());
 
     return true;
 }

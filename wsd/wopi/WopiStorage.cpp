@@ -358,7 +358,7 @@ StorageBase::LockUpdateResult WopiStorage::updateLockState(const Authorization& 
 
 void WopiStorage::updateLockStateAsync(const Authorization& auth, LockContext& lockCtx,
                                        LockState lock, const Attributes& attribs,
-                                       SocketPoll& socketPoll,
+                                       const std::shared_ptr<SocketPoll>& socketPoll,
                                        const AsyncLockStateCallback& asyncLockStateCallback)
 {
     auto profileZone = std::make_shared<ProfileZone>(
@@ -666,7 +666,7 @@ std::string WopiStorage::downloadDocument(const Poco::URI& uriObject, const std:
 std::size_t WopiStorage::uploadLocalFileToStorageAsync(
     const Authorization& auth, LockContext& lockCtx, const std::string& saveAsPath,
     const std::string& saveAsFilename, const bool isRename, const Attributes& attribs,
-    SocketPoll& socketPoll, const AsyncUploadCallback& asyncUploadCallback)
+    const std::shared_ptr<SocketPoll>& socketPoll, const AsyncUploadCallback& asyncUploadCallback)
 {
     auto profileZone =
         std::make_shared<ProfileZone>(std::string("WopiStorage::uploadLocalFileToStorage"),
