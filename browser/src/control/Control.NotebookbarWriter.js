@@ -17,6 +17,7 @@ var tableTabName = 'Table';
 var drawTabName = 'Draw';
 var viewTabName = 'View';
 var helpTabName = 'Help';
+var formulaTabName = 'Formula';
 
 L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 
@@ -96,6 +97,13 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'id': helpTabName + '-tab-label',
 				'name': helpTabName,
 				'accessibility': { focusBack: true, combination: 'Y', de: 'E' }
+			},
+			{
+				'text': _('Formula'),
+				'id': formulaTabName + '-tab-label',
+				'name': formulaTabName,
+				'context': 'Math',
+				'accessibility': { focusBack: true, combination: 'V', de: 'Y' }
 			}
 		];
 	},
@@ -113,7 +121,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			this.getTableTab(),
 			this.getDrawTab(),
 			this.getViewTab(),
-			this.getHelpTab()
+			this.getHelpTab(),
+			this.getFormulaTab()
 		]
 	},
 
@@ -2662,6 +2671,33 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 		];
 
 		return this.getTabPage(tableTabName, content);
+	},
+
+	getFormulaTab: function() {
+		var content = [
+			{
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:ChangeFont', 'text'),
+				'command': '.uno:ChangeFont'
+			},
+			{ type: 'separator', id: 'formula-changefont-break', orientation: 'vertical' },
+			{
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:ChangeFontSize', 'text'),
+				'command': '.uno:ChangeFontSize'
+			},
+			{
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:ChangeDistance', 'text'),
+				'command': '.uno:ChangeDistance'
+			},
+			{
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:ChangeAlignment', 'text'),
+				'command': '.uno:ChangeAlignment'
+			}
+        ];
+		return this.getTabPage(formulaTabName, content);
 	},
 
 	getDrawTab: function() {
