@@ -721,7 +721,7 @@ inline std::string getLaunchURI(const std::string &document, bool readonly = fal
     oss << LOOLWSD_TEST_LOOL_UI;
     oss << "?file_path=";
     oss << DEBUG_ABSSRCDIR "/";
-    oss << document;
+    oss << Uri::encode(document);
     if (readonly)
         oss << "&permission=readonly";
 
