@@ -830,6 +830,10 @@ $(control.label).unbind('click');
 				childObject = parent;
 			}
 
+			// allow to detect single toolbuttons stacked on each other
+			if (childType === 'toolbox')
+				childData.hasVerticalParent = hasVerticalParent;
+
 			var handler = this._controlHandlers[childType];
 			var twoPanelsAsChildren =
 			    childData.children && childData.children.length == 2
@@ -841,13 +845,8 @@ $(control.label).unbind('click');
 				processChildren = handler(childObject, childData.children, this);
 			} else {
 				if (handler) {
-					if (childType === 'toolbox' && hasVerticalParent === true && childData.children.length === 1)
-						this.options.useInLineLabelsForUnoButtons = true;
-
 					processChildren = handler(childObject, childData, this);
 					this.postProcess(childObject, childData);
-
-					this.options.useInLineLabelsForUnoButtons = false;
 				} else
 					window.app.console.warn('NotebookbarBuilder: Unsupported control type: "' + childType + '"');
 
