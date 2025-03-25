@@ -218,7 +218,7 @@ namespace lool {
 			eventType: string,
 			object: any,
 			data: any,
-			builder: any,
+			builder: JSBuilder,
 		) {
 			if (eventType === 'response' || object.id === 'ok') {
 				const providers = <HTMLSelectElement>(
