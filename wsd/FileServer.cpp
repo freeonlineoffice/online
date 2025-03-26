@@ -1485,6 +1485,7 @@ static const std::string CHECK_FILE_INFO_OVERRIDE = "%CHECK_FILE_INFO_OVERRIDE%"
 static const std::string DEBUG_WOPI_CONFIG_ID = "%DEBUG_WOPI_CONFIG_ID%";
 static const std::string WOPI_SETTING_BASE_URL = "%WOPI_SETTING_BASE_URL%";
 static const std::string IFRAME_TYPE = "%IFRAME_TYPE%";
+static const std::string UI_THEME = "%UI_THEME%";
 
 /// Per user request variables.
 /// Holds access_token, css_variables, postmessage_origin, etc.
@@ -1580,6 +1581,7 @@ public:
         extractVariable(form, "wopi_setting_base_url", WOPI_SETTING_BASE_URL);
 
         extractVariable(form, "iframe_type", IFRAME_TYPE);
+
     }
 
     const std::string& operator[](const std::string& key) const
@@ -2337,6 +2339,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
     Poco::replaceInPlace(adminFile, ACCESS_HEADER, urv[ACCESS_HEADER]);
     Poco::replaceInPlace(adminFile, IFRAME_TYPE, urv[IFRAME_TYPE]);
     Poco::replaceInPlace(adminFile, CSS_VARS, cssVarsToStyle(urv[CSS_VARS]));
+    Poco::replaceInPlace(adminFile, UI_THEME, urv[UI_THEME]);
 #if ENABLE_DEBUG
     const bool enableDebug = true;
 #else
