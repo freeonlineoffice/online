@@ -327,6 +327,13 @@ class WordBook {
 		addButton.textContent = 'Add';
 		addButton.className = 'button button--vue-secondary';
 		addButton.style.marginLeft = '8px';
+
+		addButton.disabled = true;
+		newWordInput.addEventListener('input', () => {
+			const newWord = newWordInput.value.trim();
+			addButton.disabled = newWord === '';
+		});
+
 		addButton.addEventListener('click', () => {
 			const newWord = newWordInput.value.trim();
 			if (newWord) {
@@ -338,6 +345,7 @@ class WordBook {
 					this.virtualWordList.scrollToBottom();
 				}
 				newWordInput.value = '';
+				addButton.disabled = true;
 			}
 		});
 		inputContainer.appendChild(addButton);
