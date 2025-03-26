@@ -1679,7 +1679,6 @@ class TileManager {
 	) {
 		let needsNewTiles = false;
 		const calc = app.map._docLayer.isCalc();
-		const scale = app.getScale();
 
 		for (const key in this.tiles) {
 			const coords: TileCoordData = this.tiles[key].coords;
