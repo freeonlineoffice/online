@@ -15,4 +15,5 @@ interface LOOLTouch {
 
 interface Window {
 	touch: LOOLTouch;
+	setLogging(value: boolean): void;
 }
