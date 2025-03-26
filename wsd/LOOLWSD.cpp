@@ -3597,8 +3597,8 @@ int LOOLWSD::innerMain()
 
 #if !MOBILEAPP
     // Fetch remote settings from server if configured
-    RemoteConfigPoll remoteConfigThread(config());
-    remoteConfigThread.start();
+    std::shared_ptr<RemoteConfigPoll> remoteConfigThread(std::make_shared<RemoteConfigPoll>(config()));
+    remoteConfigThread->start();
 #endif
 
 #ifndef IOS
