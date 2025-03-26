@@ -439,6 +439,9 @@ void cleanupDocBrokers()
     {
         std::shared_ptr<DocumentBroker> docBroker = it->second;
 
+        // Time out DocBrokers that never loaded
+        docBroker->timeoutNotLoaded(now);
+
         // Remove only when not alive.
         if (!docBroker->isAlive())
         {
