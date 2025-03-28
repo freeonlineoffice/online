@@ -472,6 +472,13 @@ body {
 	color: var(--color-main-text);
 }
 
+@media screen and (max-width: 500px) {
+	#search-input {
+		width: 100px;
+	}
+}
+
+
 .lool-character {
 	table-layout: fixed;
 	font:
