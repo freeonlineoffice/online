@@ -2108,7 +2108,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				}
 			}
 
-			div.setAttribute('data-looltip', builder._cleanText(data.text));
+			const tooltip = builder._cleanText(data.tooltip) || builder._cleanText(data.text);
+			div.setAttribute('data-looltip', tooltip);
+>>>>>>> 786ce5a37f (widget-treeview: enhance tooltip handling in JSDialogBuilder)
 
 			if (builder.options.useInLineLabelsForUnoButtons === true) {
 				$(div).addClass('inline');
