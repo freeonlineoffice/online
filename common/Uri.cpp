@@ -45,13 +45,13 @@ bool Uri::needsEncoding(const std::string& uri, const std::string& reserved)
 
 std::string Uri::getFilenameFromURL(const std::string& url)
 {
-    const auto [base, filename, ext, params] = Util::splitUrl(url);
+    auto [base, filename, ext, params] = Util::splitUrl(url);
     return filename;
 }
 
 std::string Uri::getFilenameWithExtFromURL(const std::string& url)
 {
-    const auto [base, filename, ext, params] = Util::splitUrl(url);
+    auto [base, filename, ext, params] = Util::splitUrl(url);
     if (ext.empty())
         return filename;
     return filename + ext;
