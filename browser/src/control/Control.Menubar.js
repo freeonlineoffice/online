@@ -137,7 +137,7 @@ L.Control.Menubar = L.Control.extend({
 					{name: _('Hide Menu Bar'), id: 'togglemenubar', type: 'action'},
 					{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
 					{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
-					{uno: '.uno:SidebarDeck.PropertyDeck', name: _UNO('.uno:Sidebar')},
+					{uno: '.uno:SidebarDeck.PropertyDeck', id: 'view-sidebar-property-deck', name: _UNO('.uno:Sidebar')},
 					{uno: '.uno:SidebarDeck.StyleListDeck', name: _('Style list')},
 					{uno: '.uno:Navigator', id: 'navigator'},
 					{type: 'separator'},
@@ -2468,6 +2468,9 @@ L.Control.Menubar = L.Control.extend({
 			if ($.inArray(targetId, this._hiddenItems) == -1)
 				this._hiddenItems.push(targetId);
 			$(item).css('display', 'none');
+			return true;
+		} else {
+			return false;
 		}
 	},
 
@@ -2477,6 +2480,9 @@ L.Control.Menubar = L.Control.extend({
 			if ($.inArray(targetId, this._hiddenItems) !== -1)
 				this._hiddenItems.splice(this._hiddenItems.indexOf(targetId), 1);
 			$(item).css('display', '');
+			return true;
+		} else {
+			return false;
 		}
 	},
 
@@ -2509,7 +2515,9 @@ L.Control.Menubar = L.Control.extend({
 				}
 			});
 			$(items).css('display', 'none');
+			return true;
 		}
+		return false;
 	},
 
 	showUnoItem: function(targetId) {
@@ -2522,7 +2530,9 @@ L.Control.Menubar = L.Control.extend({
 				}
 			});
 			$(items).css('display', '');
+			return true;
 		}
+		return false;
 	},
 
 	_initializeMenu: function(menu) {
