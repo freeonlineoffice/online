@@ -79,8 +79,8 @@ UnitBase::TestResult UnitSession::testBadRequest()
     setTestname(__func__);
 
     // Keep alive socket, avoid forced socket disconnect via dtor
-    TerminatingPoll socketPoller(testname);
-    socketPoller.runOnClientThread();
+    std::shared_ptr<TerminatingPoll> socketPoller = std::make_shared<TerminatingPoll>(testname);
+    socketPoller->runOnClientThread();
 
     TST_LOG("Starting Test: " << testname);
     try
@@ -95,7 +95,7 @@ UnitBase::TestResult UnitSession::testBadRequest()
         request.set("Sec-WebSocket-Key", "");
         // request.header().setChunkedTransferEncoding(false);
         const std::shared_ptr<const http::Response> response =
-            session->syncRequest(request, socketPoller);
+            session->syncRequest(request, *socketPoller);
         // TST_LOG("Response: " << response->header().toString());
         LOK_ASSERT_EQUAL(http::StatusCode::BadRequest, response->statusCode());
         LOK_ASSERT_EQUAL(false, session->isConnected());
@@ -175,8 +175,8 @@ UnitBase::TestResult UnitSession::testFilesOpenConnection()
     std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
 
     // Keep alive socket, avoid forced socket disconnect via dtor
-    TerminatingPoll socketPoller(testname);
-    socketPoller.runOnClientThread();
+    std::shared_ptr<TerminatingPoll> socketPoller = std::make_shared<TerminatingPoll>(testname);
+    socketPoller->runOnClientThread();
 
     int docIdx = 0;
     try
@@ -190,7 +190,7 @@ UnitBase::TestResult UnitSession::testFilesOpenConnection()
             TST_LOG("Test: " << testname << "[" << docIdx << "]: `" << documentURL << "`");
             http::Request request(documentURL, http::Request::VERB_GET);
             const std::shared_ptr<const http::Response> response =
-                session->syncRequest(request, socketPoller);
+                session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
             TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
@@ -224,8 +224,8 @@ UnitBase::TestResult UnitSession::testFilesCloseConnection()
         // "/lool/clipboard",
         // "/lool/file:\/\/.../ws",
     };
-    TerminatingPoll socketPoller(testname);
-    socketPoller.runOnClientThread();
+    std::shared_ptr<TerminatingPoll> socketPoller = std::make_shared<TerminatingPoll>(testname);
+    socketPoller->runOnClientThread();
 
     int docIdx = 0;
     try
@@ -237,7 +237,7 @@ UnitBase::TestResult UnitSession::testFilesCloseConnection()
             request.header().setConnectionToken(http::Header::ConnectionToken::Close);
             std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
             const std::shared_ptr<const http::Response> response =
-                session->syncRequest(request, socketPoller);
+                session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
             TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
@@ -269,8 +269,8 @@ UnitBase::TestResult UnitSession::testFileServer()
     std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
 
     // Keep alive socket, avoid forced socket disconnect via dtor
-    TerminatingPoll socketPoller(testname);
-    socketPoller.runOnClientThread();
+    std::shared_ptr<TerminatingPoll> socketPoller = std::make_shared<TerminatingPoll>(testname);
+    socketPoller->runOnClientThread();
 
     int docIdx = 0;
     try
@@ -284,7 +284,7 @@ UnitBase::TestResult UnitSession::testFileServer()
             TST_LOG("Test: " << testname << "[" << docIdx << "]: `" << documentURL << "`");
             http::Request request(documentURL, http::Request::VERB_GET);
             const std::shared_ptr<const http::Response> response =
-                session->syncRequest(request, socketPoller);
+                session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
             TST_LOG("Response size: " << testname << "[" << docIdx << "]: " << documentURL << ": " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
@@ -339,14 +339,14 @@ UnitBase::TestResult UnitSession::testSlideShow()
             "/lool/" + encodedDoc + "/download/" + downloadId + '/' + ignoredSuffix;
 
         // Keep alive socket, avoid forced socket disconnect via dtor
-        TerminatingPoll dlSocketPoller(testname + "-dl");
-        dlSocketPoller.runOnClientThread();
+        std::shared_ptr<TerminatingPoll> dlSocketPoller = std::make_shared<TerminatingPoll>(testname + "-dl");
+        dlSocketPoller->runOnClientThread();
         std::shared_ptr<http::Session> dlSession =
             http::Session::create(helpers::getTestServerURI());
         http::Request requestSVG(path, http::Request::VERB_GET);
         TST_LOG("Requesting SVG from " << path);
         const std::shared_ptr<const http::Response> responseSVG =
-            dlSession->syncRequest(requestSVG, dlSocketPoller);
+            dlSession->syncRequest(requestSVG, *dlSocketPoller);
         // TST_LOG("Response (SVG): " << responseSVG->header().toString());
         LOK_ASSERT_EQUAL(http::StatusCode::OK, responseSVG->statusCode());
         LOK_ASSERT_EQUAL(true, dlSession->isConnected());
@@ -410,8 +410,8 @@ UnitBase::TestResult UnitSession::testSlideShowMultiDL()
             socketPoll(), Poco::URI(helpers::getTestServerURI()), documentURL, testname);
 
         // Keep alive socket, avoid forced socket disconnect via dtor
-        TerminatingPoll dlSocketPoller(testname + "-dl");
-        dlSocketPoller.runOnClientThread();
+        std::shared_ptr<TerminatingPoll> dlSocketPoller = std::make_shared<TerminatingPoll>(testname + "-dl");
+        dlSocketPoller->runOnClientThread();
 
         // Reused http download-session for document and favicon download from server
         std::shared_ptr<http::Session> dlSession =
@@ -432,7 +432,7 @@ UnitBase::TestResult UnitSession::testSlideShowMultiDL()
                 const std::string path = "/favicon.ico";
                 http::Request requestICO(path, http::Request::VERB_GET);
                 TST_LOG("Favicon requesting from " << path);
-                std::shared_ptr<const http::Response> responseICO = dlSession->syncDownload(requestICO, "/tmp/favicon.ico", dlSocketPoller);
+                std::shared_ptr<const http::Response> responseICO = dlSession->syncDownload(requestICO, "/tmp/favicon.ico", *dlSocketPoller);
                 // TST_LOG("Response (ICO): " << responseICO->header().toString());
                 LOK_ASSERT_EQUAL(http::StatusCode::OK, responseICO->statusCode());
                 LOK_ASSERT_EQUAL(true, dlSession->isConnected());
@@ -475,7 +475,7 @@ UnitBase::TestResult UnitSession::testSlideShowMultiDL()
                     "/lool/" + encodedDoc + "/download/" + downloadId + '/' + ignoredSuffix;
                 http::Request requestSVG(path, http::Request::VERB_GET);
                 TST_LOG("Requesting SVG from " << path);
-                const std::shared_ptr<const http::Response> responseSVG = dlSession->syncRequest(requestSVG, dlSocketPoller);
+                const std::shared_ptr<const http::Response> responseSVG = dlSession->syncRequest(requestSVG, *dlSocketPoller);
                 // TST_LOG("Response (SVG): " << responseSVG->header().toString());
                 LOK_ASSERT_EQUAL(http::StatusCode::OK, responseSVG->statusCode());
                 LOK_ASSERT_EQUAL(true, dlSession->isConnected());
