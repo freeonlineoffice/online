@@ -452,7 +452,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             {
                 if (JsonUtil::parseJSON(wopiString, wopi))
                 {
-                    fileInfo = wopi;
+                    fileInfo = std::move(wopi);
                 }
             }
 
