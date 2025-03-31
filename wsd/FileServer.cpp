@@ -871,6 +871,12 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
 
 #endif
 
+static std::string getRequestPath(const HTTPRequest& request)
+{
+    const Poco::URI requestUri(request.getURI());
+    return requestUri.getPath();
+}
+
 bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
                                              const RequestDetails& requestDetails,
                                              Poco::MemoryInputStream& message,
@@ -1147,25 +1153,25 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
     catch (const Poco::Net::NotAuthenticatedException& exc)
     {
         LOG_ERR("FileServerRequestHandler::NotAuthenticated: " << exc.displayText());
-        sendError(http::StatusCode::Unauthorized, request, socket, "", "",
+        sendError(http::StatusCode::Unauthorized, getRequestPath(request), socket, "", "",
                   "WWW-authenticate: Basic realm=\"online\"\r\n");
     }
     catch (const Poco::FileAccessDeniedException& exc)
     {
         LOG_ERR("FileServerRequestHandler: " << exc.displayText());
-        sendError(http::StatusCode::Forbidden, request, socket, "403 - Access denied!",
+        sendError(http::StatusCode::Forbidden, getRequestPath(request), socket, "403 - Access denied!",
                   "You are unable to access");
     }
     catch (const Poco::FileNotFoundException& exc)
     {
         LOG_ERR("FileServerRequestHandler: " << exc.displayText());
-        sendError(http::StatusCode::NotFound, request, socket, "404 - file not found!",
+        sendError(http::StatusCode::NotFound, getRequestPath(request), socket, "404 - file not found!",
                   "There seems to be a problem locating");
     }
     catch (Poco::SyntaxException& exc)
     {
         LOG_ERR("Incorrect config value: " << exc.displayText());
-        sendError(http::StatusCode::InternalServerError, request, socket,
+        sendError(http::StatusCode::InternalServerError, getRequestPath(request), socket,
                   "500 - Internal Server Error!",
                   "Cannot process the request - " + exc.displayText());
     }
@@ -1173,7 +1179,7 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 }
 
 void FileServerRequestHandler::sendError(http::StatusCode errorCode,
-                                         const Poco::Net::HTTPRequest& request,
+                                         const std::string& requestPath,
                                          const std::shared_ptr<StreamSocket>& socket,
                                          const std::string& shortMessage,
                                          const std::string& longMessage,
@@ -1183,8 +1189,7 @@ void FileServerRequestHandler::sendError(http::StatusCode errorCode,
     std::string headers = extraHeader;
     if (!shortMessage.empty())
     {
-        const Poco::URI requestUri(request.getURI());
-        const std::string pathSanitized = Uri::encode(requestUri.getPath(), std::string());
+        const std::string pathSanitized = Uri::encode(requestPath, std::string());
         // Let's keep message as plain text to avoid complications.
         headers += "Content-Type: text/plain charset=UTF-8\r\n";
         body = "Error: " + shortMessage + '\n' +
@@ -2063,7 +2068,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     const std::string& shortMessage = "Failed to fetch wopi setting config";
     if (sharedConfigUrl.empty() || accessToken.empty() || type.empty())
     {
-        sendError(http::StatusCode::BadRequest, request, socket, shortMessage,
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, shortMessage,
                   "Missing sharedConfigUrl or accessToken or type in the payload");
         return;
     }
@@ -2081,7 +2086,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     httpRequest.header().set("Content-Type", "application/json");
 
     http::Session::FinishedCallback finishedCallback =
-        [uriAnonym, socket, request,
+        [uriAnonym, socket, requestPath = getRequestPath(request),
          shortMessage](const std::shared_ptr<http::Session>& wopiSession)
     {
         wopiSession->asyncShutdown();
@@ -2095,7 +2100,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
                     << uriAnonym << "] with status[" << statusLine.reasonPhrase() << ']');
 
             const std::string& body = httpResponse->getBody();
-            sendError(statusCode, request, socket, shortMessage,
+            sendError(statusCode, requestPath, socket, shortMessage,
                       statusLine.reasonPhrase() + ". Response: " + body);
             return;
         }
@@ -2126,7 +2131,7 @@ void FileServerRequestHandler::fetchWordbook(const Poco::Net::HTTPRequest& reque
 
     if (fileUrl.empty() || accessToken.empty())
     {
-        sendError(http::StatusCode::BadRequest, request, socket, "Failed to fetch dictionaries",
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, "Failed to fetch dictionaries",
                   "Missing fileUrl or accessToken in the payload");
         return;
     }
@@ -2173,7 +2178,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     const std::string& shortMessage = "Failed to delete presetfile";
     if (sharedConfigUrl.empty() || accessToken.empty() || fileId.empty())
     {
-        sendError(http::StatusCode::BadRequest, request, socket, shortMessage,
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, shortMessage,
                   "Missing sharedConfigUrl or accessToken or fileId in the payload");
         return;
     }
@@ -2195,7 +2200,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     auto httpSession = StorageConnectionManager::getHttpSession(sharedUri);
 
     http::Session::FinishedCallback finishedCallback =
-        [uriAnonym, socket, request, fileId,
+        [uriAnonym, socket, requestPath = getRequestPath(request), fileId,
          shortMessage](const std::shared_ptr<http::Session>& wopiSession)
     {
         wopiSession->asyncShutdown();
@@ -2209,7 +2214,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
                     << uriAnonym << "] with status[" << statusLine.reasonPhrase() << ']');
 
             const std::string& body = httpResponse->getBody();
-            sendError(statusCode, request, socket, shortMessage,
+            sendError(statusCode, requestPath, socket, shortMessage,
                       statusLine.reasonPhrase() + ". Response: " + body);
             return;
         }
@@ -2241,14 +2246,14 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     const std::string& fileContent = partHandler.getFileContent();
     if (fileName.empty() || fileContent.empty())
     {
-        sendError(http::StatusCode::BadRequest, request, socket, shortMessage,
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, shortMessage,
                   "No valid file uploaded.");
         return;
     }
     const std::string& authorizationHeader = request.get("Authorization", "");
     if (authorizationHeader.rfind("Bearer ", 0) != 0)
     {
-        sendError(http::StatusCode::BadRequest, request, socket, shortMessage,
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, shortMessage,
                   "Missing or invalid Authorization header.");
         return;
     }
@@ -2258,7 +2263,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     const std::string& wopiSettingBaseUrl = form.get("wopiSettingBaseUrl", std::string());
     if (filePath.empty() || wopiSettingBaseUrl.empty())
     {
-        sendError(http::StatusCode::BadRequest, request, socket, shortMessage,
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, shortMessage,
                   "Missing required field filePath or wopiSettingBaseUrl");
         return;
     }
@@ -2279,7 +2284,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     auto httpSession = StorageConnectionManager::getHttpSession(wopiUri);
 
     http::Session::FinishedCallback finishedCallback =
-        [fileName, uriAnonym, socket, request,
+        [fileName, uriAnonym, socket, requestPath = getRequestPath(request),
          shortMessage](const std::shared_ptr<http::Session>& wopiSession)
     {
         wopiSession->asyncShutdown();
@@ -2291,7 +2296,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
             LOG_ERR("Failed to upload preset file to wopiHost["
                     << uriAnonym << "] with status[" << statusLine.reasonPhrase() << ']');
 
-            sendError(statusLine.statusCode(), request, socket, shortMessage,
+            sendError(statusLine.statusCode(), requestPath, socket, shortMessage,
                       statusLine.reasonPhrase());
             return;
         }
