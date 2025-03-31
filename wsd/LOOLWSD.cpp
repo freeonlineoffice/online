@@ -8,6 +8,10 @@
  */
 
 #include <config.h>
+#include <config_version.h>
+#ifdef __linux__
+#include <malloc.h>
+#endif
 
 
 #include "LOOLWSD.hpp"
@@ -3785,6 +3789,11 @@ int LOOLWSD::innerMain()
         mainWait->insertNewSocket(inotifySocket);
     }
 #endif
+#endif
+
+#if defined(M_TRIM_THRESHOLD)
+    LOG_DBG("trimming memory post startup");
+    malloc_trim(0);
 #endif
 
     SigUtil::addActivity("loolwsd running");
