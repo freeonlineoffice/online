@@ -589,8 +589,10 @@ class SettingIframe {
 	}
 }
 
-(window as any).settingIframe = new SettingIframe();
-
 document.addEventListener('DOMContentLoaded', () => {
-	(window as any).settingIframe.init();
+	const adminContainer = document.getElementById('allConfigSection');
+	if (adminContainer) {
+		(window as any).settingIframe = new SettingIframe();
+		(window as any).settingIframe.init();
+	}
 });
