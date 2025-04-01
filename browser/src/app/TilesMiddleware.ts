@@ -1519,19 +1519,9 @@ class TileManager {
 				tile.coords.y + this.tileSize,
 			),
 		);
-		if (tileBounds.intersectsAny(visibleRanges)) {
-			tile.distanceFromView = 0;
-			return;
-		}
-
-		const tileCenter = tileBounds.getCenter();
-		tile.distanceFromView = tileCenter.distanceTo(
-			visibleRanges[0].getCenter(),
-		);
+		tile.distanceFromView = tileBounds.distanceTo(visibleRanges[0]);
 		for (let i = 1; i < visibleRanges.length; ++i) {
-			const distance = tileCenter.distanceTo(
-				visibleRanges[i].getCenter(),
-			);
+			const distance = tileBounds.distanceTo(visibleRanges[i]);
 			if (distance < tile.distanceFromView)
 				tile.distanceFromView = distance;
 		}
