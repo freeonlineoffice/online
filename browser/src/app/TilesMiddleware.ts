@@ -314,6 +314,7 @@ class TileManager {
 	private static tiles: any = {}; // stores all tiles, keyed by coordinates, and cached, compressed deltas
 	private static canvasCache: CanvasCache = new CanvasCache(256);
 	public static tileSize: number = 256;
+	public static visibleTileExpansion: number = 2;
 
 	//private static _debugTime: any = {}; Reserved for future.
 
@@ -1483,16 +1484,16 @@ class TileManager {
 		return !tile || tile.needsFetch();
 	}
 
-	private static pxBoundsToTileRanges(bounds: any) {
+	private static pxBoundsToTileRanges(bounds: any, grow: number = 0) {
 		if (!this.checkPointers()) return null;
 
 		if (!app.map._docLayer._splitPanesContext) {
-			return [this.pxBoundsToTileRange(bounds)];
+			return [this.pxBoundsToTileRange(bounds, grow)];
 		}
 
 		var boundList =
 			app.map._docLayer._splitPanesContext.getPxBoundList(bounds);
-		return boundList.map(this.pxBoundsToTileRange, this);
+		return boundList.map((x: any) => this.pxBoundsToTileRange(x, grow));
 	}
 
 	private static updateTileDistance(
@@ -1532,7 +1533,10 @@ class TileManager {
 		zoom: number,
 		isCurrent: boolean = false,
 	) {
-		var tileRanges = this.pxBoundsToTileRanges(pixelBounds);
+		var tileRanges = this.pxBoundsToTileRanges(
+			pixelBounds,
+			isCurrent ? this.visibleTileExpansion : 0,
+		);
 		var queue = [];
 
 		// If we're looking for tiles for the current (visible) area, update tile distance.
@@ -1617,38 +1621,37 @@ class TileManager {
 	// tilecombined request for any tiles we need to fetch.
 	private static addTiles(
 		coordsQueue: Array<TileCoordData>,
-		currentBounds: any | null = null,
+		isCurrent: boolean = false,
 	) {
 		// Remove irrelevant tiles from the queue earlier.
 		this.removeIrrelevantsFromCoordsQueue(coordsQueue);
 
 		let visibleRanges = null;
+		if (!isCurrent) {
+			// If these aren't current tiles, calculate the visible ranges to update tile distance.
+			const zoom = Math.round(app.map.getZoom());
+			const currentBounds = app.map.getPixelBoundsCore(
+				app.map.getCenter(),
+				zoom,
+			);
+			visibleRanges = app.map._docLayer._splitPanesContext
+				? app.map._docLayer._splitPanesContext.getPxBoundList(
+						currentBounds,
+					)
+				: [currentBounds];
+		}
+
+		// Ensure tiles exist for requested coordinates
 		for (let i = 0; i < coordsQueue.length; i++) {
 			const key = coordsQueue[i].key();
 			let tile: Tile = this.tiles[key];
 
-			// We always want to ensure the tile exists.
 			if (!tile) {
 				tile = this.createTile(coordsQueue[i], key);
 
-				// Update the tile distance when creating new tiles. Tile distance is otherwise
-				// updated in getMissingTiles when updates are processed.
-				if (!currentBounds) {
-					const zoom = Math.round(app.map.getZoom());
-					currentBounds = app.map.getPixelBoundsCore(
-						app.map.getCenter(),
-						zoom,
-					);
-				}
-
-				if (!visibleRanges)
-					visibleRanges = app.map._docLayer._splitPanesContext
-						? app.map._docLayer._splitPanesContext.getPxBoundList(
-								currentBounds,
-							)
-						: [currentBounds];
-
-				this.updateTileDistance(tile, visibleRanges);
+				// Newly created tiles have a distance of zero, which means they're current.
+				if (!isCurrent)
+					this.updateTileDistance(tile, visibleRanges);
 			}
 		}
 
@@ -2271,7 +2274,7 @@ class TileManager {
 		app.map._docLayer._sendClientVisibleArea();
 		app.map._docLayer._sendClientZoom();
 
-		if (queue.length !== 0) this.addTiles(queue, pixelBounds);
+		if (queue.length !== 0) this.addTiles(queue, true);
 
 		if (app.map._docLayer.isCalc() || app.map._docLayer.isWriter())
 			this.initPreFetchAdjacentTiles();
@@ -2375,10 +2378,11 @@ class TileManager {
 			this.initPreFetchPartTiles();
 	}
 
-	public static pxBoundsToTileRange(bounds: any) {
+	public static pxBoundsToTileRange(bounds: any, grow: number = 0) {
+		const growSize = new L.Point(grow, grow);
 		return new L.Bounds(
-			bounds.min.divideBy(this.tileSize).floor(),
-			bounds.max.divideBy(this.tileSize).floor(),
+			bounds.min.divideBy(this.tileSize).floor()._subtract(growSize),
+			bounds.max.divideBy(this.tileSize).floor()._add(growSize),
 		);
 	}
 
@@ -2393,7 +2397,7 @@ class TileManager {
 			true,
 		);
 
-		if (queue.length > 0) this.addTiles(queue, bounds);
+		if (queue.length > 0) this.addTiles(queue, true);
 	}
 
 	public static getVisibleCoordList(
