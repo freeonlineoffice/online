@@ -283,7 +283,7 @@ void LOOLWSD::appendAllowedAliasGroups(LayeredConfiguration& conf, std::vector<s
         if (!host.empty())
         {
             LOG_INF_S("Adding trusted LOK_ALLOW host: [" << host << ']');
-            allowed.push_back(host);
+            allowed.push_back(std::move(host));
         }
 
         for (size_t j = 0;; j++)
