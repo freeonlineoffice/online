@@ -63,7 +63,12 @@ class DebugOverlaySection extends app.definitions.canvasSectionObject {
 				const xpad = lineHeight;
 				const y = ybase + i * lineHeight;
 				const metrics = ctx.measureText(txt);
-				ctx.fillRect(0, y - lineHeight, metrics.width + xpad, lineHeight * 1.5);
+				ctx.fillRect(
+					0,
+					y - lineHeight,
+					metrics.width + xpad,
+					lineHeight * 1.5,
+				);
 			});
 			ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 			textLines.forEach((txt: string, i: number) => {
