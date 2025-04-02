@@ -1262,7 +1262,7 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
     httpProbeSession->setTimeout(std::chrono::seconds(2));
 
     httpProbeSession->setConnectFailHandler(
-        [=, this] (const std::shared_ptr<http::Session>& probeSession){
+        [sendResult, this] (const std::shared_ptr<http::Session>& probeSession){
 
             CheckStatus status = CheckStatus::UnspecifiedError;
 
@@ -1290,6 +1290,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
                     LOG_DBG("Result ssl: " << probeSession->getSslVerifyMessage());
                 }
             }
+#else
+            (void) this; // to make the compiler happy wrt. the lambda capture
 #endif
 
             sendResult(status);
