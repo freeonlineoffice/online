@@ -13,6 +13,7 @@
 #include <common/Protocol.hpp>
 #include <common/Unit.hpp>
 #include <common/Util.hpp>
+#include <net/HttpHelper.hpp>
 #include <net/HttpRequest.hpp>
 #include <net/NetUtil.hpp>
 #include <net/Socket.hpp>
@@ -90,7 +91,8 @@ public:
     /// socket: the TCP socket which received the upgrade request
     /// request: the HTTP upgrade request to WebSocket
     template <typename T>
-    WebSocketHandler(const std::shared_ptr<StreamSocket>& socket, const T& request)
+    WebSocketHandler(const std::shared_ptr<StreamSocket>& socket, const T& request,
+                     const std::string& expectedOrigin = "")
         : WebSocketHandler(/*isClient=*/false, /*isMasking=*/false)
     {
         if (!socket)
@@ -101,7 +103,7 @@ public:
 
         // As a server, respond with 101 protocol-upgrade.
         assert(!_isClient);
-        upgradeToWebSocket(socket, request);
+        upgradeToWebSocket(socket, request, expectedOrigin);
     }
 
     /// Status codes sent to peer on shutdown.
@@ -984,7 +986,8 @@ protected:
     /// Upgrade the http(s) connection to a websocket.
     template <typename T>
     void upgradeToWebSocket(const std::shared_ptr<StreamSocket>& socket,
-                            [[maybe_unused]] const T& req)
+                            [[maybe_unused]] const T& req,
+                            [[maybe_unused]] const std::string& expectedOrigin)
     {
         assert(socket && "Must have a valid socket");
         LOGA_TRC(WebSocket, "Upgrading to WebSocket");
