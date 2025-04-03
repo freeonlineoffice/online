@@ -64,7 +64,6 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	beforeAdd: function (map) {
-		app.file.textCursor.visible = false;
 		map._addZoomLimit(this);
 		map.on('zoomend', this._onZoomRowColumns, this);
 		map.on('updateparts', this._onUpdateParts, this);
@@ -910,7 +909,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			*/
 			this.insertMode = e.state.trim() === '' ? false: true;
 			if (!this.insertMode) {
-				app.file.textCursor.visible = false;
+				app.setCursorVisibility(false);
 				if (this._map._docLayer._cursorMarker)
 					this._map._docLayer._cursorMarker.remove();
 			}
