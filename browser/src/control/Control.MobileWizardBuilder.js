@@ -1,7 +1,15 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.MobileWizardBuilder used for building the native HTML components
- * from the JSON description provided by the server.
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * L.Control.MobileWizardBuilder used for building the native HTML component
+ * variants for mobile/touch devices from the JSON description provided by the server.
  */
 
 /* global $ _UNO _ JSDialog app */
@@ -140,7 +148,7 @@ L.Control.MobileWizardBuilder = L.Control.JSDialogBuilder.extend({
 
 	_preventNonNumericalInput: function(e) {
 		e = e || window.event;
-		var charCode = (typeof e.which === 'undefined') ? e.keyCode : e.which;
+		var charCode = e.which === undefined ? e.keyCode : e.which;
 		var charStr = String.fromCharCode(charCode);
 
 		if (!charStr.match(/^[0-9.,]+$/) && charCode !== 13)
