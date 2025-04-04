@@ -616,9 +616,9 @@ SPACE := $(EMPTY) $(EMPTY)
 LOOL_VERSION = $(shell cd $(srcdir) && git log -1 --pretty=format:"%h")
 INTERMEDIATE_DIR ?= $(if $(IS_SEPARATE),$(abs_builddir)/debug,$(abs_builddir)/release)
 
-EXTRA_DIST = $(shell find . -type f -not -path './.git/*' -not -path './node_modules/*' -not -path './l10n/*' | sed 's/.\///')
+EXTRA_DIST = $(shell find . -type f -not -path './.git/*' -not -path './node_modules/*' -not -path './l10n/*' -not -path './images/*' | sed 's/.\///')
 
-SUBDIRS = . l10n
+SUBDIRS = . l10n images
 
 LOOL_JS_BUNDLE = $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER))
 
