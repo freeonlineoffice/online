@@ -381,7 +381,8 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	position: absolute;
 	z-index: 100;
 	display: none;
-	margin-inline-start: 15px;
+	margin-inline-start: 28px;
+	margin-top: 28px;
 }
 
 #navigator-floating-icon > button {
@@ -402,7 +403,6 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	border-radius: var(--border-radius);
 	padding: 4px;
 	box-shadow: 0px 1px 3px var(--color-box-shadow);
-	margin-top: 10px; /* Same value as we have for leaflet-control-scroll-up */
 }
 
 .navigator-btn-wrapper:hover {
@@ -427,7 +427,7 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 
 /* Navigation Panel Container */
 #navigation-options-wrapper {
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 }
 
 /* Navigation Header */
@@ -436,11 +436,15 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	justify-content: space-between;
 	align-items: center;
 	font-size: var(--header-font-size);
-	font-family: var(--cool-font);
+	font-family: var(--lool-font);
 	color: var(--color-main-text);
 	height: 30px;
 	padding: 5px;
 	box-sizing: border-box;
+}
+
+.navigation-title {
+	font-weight: bold;
 }
 
 .close-navigation-wrapper {
@@ -461,10 +465,8 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	background-position: center;
 	background-color: transparent;
 	cursor: pointer;
-	filter: saturate(0);
-	transition:
-		filter 0.2s ease-in-out,
-		transform 0.2s;
+	filter: brightness(0.3);
+	transition: filter 0.2s ease-in-out, transform 0.2s;
 }
 
 /* Navigation Tabs */
@@ -493,7 +495,7 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 
 /* Active/Selected Tab */
 #navigation-options .tab.selected {
-	font-weight: bold;
+	color: rgba(var(--doc-type), 1);
 	border-bottom: 2px solid rgba(var(--doc-type), 1);
 }
 #navigation-sidebar {
