@@ -873,6 +873,17 @@ body {
 	bottom: -2.8em;
 	left: auto;
 }
+
+.lool-ruler.vruler {
+	border-top: solid 1px var(--color-toolbar-border);
+}
+
+#vertical-ruler .lool-ruler-left[data-title]:after,
+#vertical-ruler .lool-ruler-right[data-title]:after {
+	bottom: 3em;
+	left: auto;
+	transform: rotate(-90deg);
+}
 [data-title] {
 	position: relative;
 }
