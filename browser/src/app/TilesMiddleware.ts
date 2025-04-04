@@ -2396,7 +2396,11 @@ class TileManager {
 				.floor()
 				._subtract(growSize)
 				.add(translate),
-			bounds.max.divideBy(this.tileSize).floor()._add(growSize).add(translate),
+			bounds.max
+				.divideBy(this.tileSize)
+				.floor()
+				._add(growSize)
+				.add(translate),
 		);
 	}
 

@@ -2098,7 +2098,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 	border-color: transparent;
 }
 
-#toolbar-down  .jsdialog .ui-edit-container{
+#toolbar-down .jsdialog .ui-edit-container {
 	place-content: center;
 }
 
