@@ -1365,16 +1365,16 @@ bool ClientSession::_handleInput(const char *buffer, int length)
         {
             std::string json;
             getTokenString(tokens[2], "json", json);
-            updateBrowserSettingsJSON(json);
-            LOOLWSD::syncUsersBrowserSettings(getUserId(), docBroker->getPid(), json);
             try
             {
+                updateBrowserSettingsJSON(json);
+                LOOLWSD::syncUsersBrowserSettings(getUserId(), docBroker->getPid(), json);
                 uploadBrowserSettingsToWopiHost();
             }
             catch (const std::exception& exc)
             {
                 LOG_WRN("Failed to upload browsersetting json for session ["
-                        << getId() << ']');
+                        << getId() << "] with error[" << exc.what() << ']');
             }
         }
     }
