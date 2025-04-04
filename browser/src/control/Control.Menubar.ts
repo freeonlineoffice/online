@@ -122,6 +122,7 @@ class Menubar extends L.Control {
         presentation: MenuItem[];
         drawing: MenuItem[];
         spreadsheet: MenuItem[];
+        math: string[];
         mobiletext: MenuItem[];
         mobilepresentation: MenuItem[];
         mobiledrawing: MenuItem[];
@@ -366,6 +367,11 @@ class Menubar extends L.Control {
 				{uno: '.uno:FormatArea'},
 				{uno: '.uno:NameGroup'},
 				{uno: '.uno:ObjectTitleDescription'},
+				{type: 'separator'},
+				{uno: '.uno:ChangeFont'},
+				{uno: '.uno:ChangeFontSize'},
+				{uno: '.uno:ChangeDistance'},
+				{uno: '.uno:ChangeAlignment'}
 			]},
 			{name: _('References'), id: 'references', type: 'menu', menu: [
 				{name: _UNO('.uno:IndexesMenu', 'text'), uno: '.uno:InsertMultiIndex'},
@@ -1445,6 +1451,8 @@ class Menubar extends L.Control {
 		// Only these menu options will be visible in readonly mode
 		allowedReadonlyMenus: ['file', 'downloadas', 'view', 'insert', 'slide', 'help', 'print'],
 
+		math: ['.uno:ChangeFont', '.uno:ChangeFontSize', '.uno:ChangeDistance', '.uno:ChangeAlignment'],
+
 		// Only these UNO commands will be enabled in readonly mode
 		allowedViewModeCommands: [
 			'.uno:Signature',
@@ -1933,6 +1941,9 @@ class Menubar extends L.Control {
 						$(aItem).addClass(constChecked);
 					} else {
 						$(aItem).removeClass(constChecked);
+					}
+					if (this.options.math.includes(unoCommand) && app.map.context.context !== 'Math') {
+						$(aItem).addClass('disabled');
 					}
 				} else if (type === 'action') { // enable all except fullscreen on windows
 					if (id === 'fullscreen') { // Full screen works weirdly on IE 11 and on Edge
