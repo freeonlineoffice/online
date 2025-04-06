@@ -1039,7 +1039,7 @@ private:
         {
             if (Log::traceEnabled())
             {
-                std::ostringstream oss;
+                std::ostringstream oss(Util::makeDumpStateStream());
                 dumpState(oss, ", ");
                 LOG_TRC("Created SaveManager: " << oss.str());
             }
@@ -1199,15 +1199,15 @@ private:
         {
             const auto now = std::chrono::steady_clock::now();
             os << indent << "version: " << version();
-            os << indent << "isSaving now: " << std::boolalpha << isSaving();
-            os << indent << "idle-save enabled: " << std::boolalpha << isIdleSaveEnabled();
+            os << indent << "isSaving now: " << isSaving();
+            os << indent << "idle-save enabled: " << isIdleSaveEnabled();
             os << indent << "idle-save interval: " << idleSaveInterval();
-            os << indent << "auto-save enabled: " << std::boolalpha << isAutoSaveEnabled();
+            os << indent << "auto-save enabled: " << isAutoSaveEnabled();
             os << indent << "auto-save interval: " << autoSaveInterval();
             os << indent << "check interval: " << _checkInterval;
             os << indent
                << "last auto-save check time: " << Util::getTimeForLog(now, _lastAutosaveCheckTime);
-            os << indent << "auto-save check needed: " << std::boolalpha << needAutoSaveCheck();
+            os << indent << "auto-save check needed: " << needAutoSaveCheck();
 
             os << indent
                << "last save request: " << Util::getTimeForLog(now, lastSaveRequestTime());
@@ -1219,7 +1219,7 @@ private:
             os << indent
                << "file last modified time: " << Util::getTimeForLog(now, _lastModifiedTime);
             os << indent << "saving-timeout: " << getSavingTimeout();
-            os << indent << "last save timed-out: " << std::boolalpha << hasSavingTimedOut();
+            os << indent << "last save timed-out: " << hasSavingTimedOut();
             os << indent << "last save successful: " << lastSaveSuccessful();
             os << indent << "save failure count: " << saveFailureCount();
         }
@@ -1400,7 +1400,7 @@ private:
         void dumpState(std::ostream& os, const std::string& indent = "\n  ") const
         {
             const auto now = std::chrono::steady_clock::now();
-            os << indent << "isUploading now: " << std::boolalpha << isUploading();
+            os << indent << "isUploading now: " << isUploading();
             os << indent << "last upload request time: "
                << Util::getTimeForLog(now, _request.lastRequestTime());
             os << indent << "last upload response time: "
@@ -1410,8 +1410,7 @@ private:
             os << indent << "last modified time (on server): " << getLastModifiedTime();
             os << indent
                << "file last modified: " << Util::getTimeForLog(now, _lastUploadedFileModifiedTime);
-            os << indent << "last upload was successful: " << std::boolalpha
-               << lastUploadSuccessful();
+            os << indent << "last upload was successful: " << lastUploadSuccessful();
             os << indent << "upload failure count: " << uploadFailureCount();
             os << indent << "size on server: " << _sizeOnServer;
             os << indent << "last upload size: " << _sizeAsUploaded;

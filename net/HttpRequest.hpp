@@ -1401,7 +1401,7 @@ public:
         const auto now = std::chrono::steady_clock::now();
         os << indent << "http::Session: #" << _fd << " (" << (_socket.lock() ? "have" : "no")
            << " socket)";
-        os << indent << "\tconnected: " << std::boolalpha << _connected;
+        os << indent << "\tconnected: " << _connected;
         os << indent << "\ttimeout: " << _timeout;
         os << indent << "\thost: " << _host;
         os << indent << "\tport: " << _port;
@@ -2024,7 +2024,7 @@ public:
         const auto now = std::chrono::steady_clock::now();
         os << indent << "http::ServerSession: #" << _fd << " (" << (_socket ? "have" : "no")
            << " socket)";
-        os << indent << "\tconnected: " << std::boolalpha << _connected;
+        os << indent << "\tconnected: " << _connected;
         os << indent << "\tstartTime: " << Util::getTimeForLog(now, _startTime);
         os << indent << "\tmimeType: " << _mimeType;
         os << indent << "\tstatusCode: " << getReasonPhraseForCode(_statusCode);
