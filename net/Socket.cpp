@@ -343,7 +343,7 @@ void SocketPoll::checkAndReThread()
     _owner = us;
     _ownerThreadId = Util::getThreadId();
     for (const auto& it : _pollSockets)
-        it->setThreadOwner(us);
+        SocketThreadOwnerChange::setThreadOwner(*it, us);
     // _newSockets are adapted as they are inserted.
 }
 
@@ -575,7 +575,7 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS, bool justPoll)
 
                 // Update thread ownership.
                 for (auto& i : _newSockets)
-                    i->setThreadOwner(std::this_thread::get_id());
+                    SocketThreadOwnerChange::setThreadOwner(*i, std::this_thread::get_id());
 
                 // Copy the new sockets over and clear.
                 _pollSockets.insert(_pollSockets.end(), _newSockets.begin(), _newSockets.end());
@@ -765,7 +765,7 @@ void SocketPoll::takeSocket(const std::shared_ptr<SocketPoll> &fromPoll,
             LOG_WRN("Trying to move socket out of the wrong poll");
 
         // sockets in transit are un-owned
-        socket->resetThreadOwner();
+        SocketThreadOwnerChange::resetThreadOwner(*socket);
 
         toPoll->insertNewSocket(socket);
 
@@ -820,7 +820,7 @@ void SocketPoll::removeSockets()
 
         LOG_DBG("Removing socket #" << socket->getFD() << " from " << _name);
         ASSERT_CORRECT_SOCKET_THREAD(socket);
-        socket->resetThreadOwner();
+        SocketThreadOwnerChange::resetThreadOwner(*socket);
 
         _pollSockets.pop_back();
     }
@@ -993,7 +993,7 @@ void SocketDisposition::execute()
     if (_socketMove)
     {
         // Drop pretentions of ownership before _socketMove.
-        _socket->resetThreadOwner();
+        SocketThreadOwnerChange::resetThreadOwner(*_socket);
 
         if (!_toPoll) {
             assert (isMove());
