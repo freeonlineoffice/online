@@ -421,7 +421,7 @@ export class TilesSection extends CanvasSectionObject {
 		}
 	}
 
-	public onDraw (frameCount: number = null, elapsedTime: number = null, subsetBounds: lool.Bounds = null): void {
+	public onDraw (frameCount: number = null, elapsedTime: number = null): void {
 		if (this.containerObject.isInZoomAnimation())
 			return;
 
@@ -456,10 +456,6 @@ export class TilesSection extends CanvasSectionObject {
 		this.forEachTileInView(zoom, part, mode, ctx, function (tile: any, coords: TileCoordData): boolean {
 
 			if (doneTiles.has(coords.key()))
-				return true;
-
-			// We can skip this tile if we only want to draw a subset, and it falls outside that
-			if (subsetBounds && !subsetBounds.intersects(docLayer._coordsToPixBounds(coords)))
 				return true;
 
 			// Ensure tile is within document bounds.

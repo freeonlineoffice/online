@@ -1,7 +1,5 @@
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -34,7 +32,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		this.sectionProperties.mapPane = (<HTMLElement>(document.querySelectorAll('.leaflet-map-pane')[0]));
 	}
 
-	onDraw(frameCount?: number, elapsedTime?: number, subsetBounds?: lool.Bounds): void {
+	onDraw(frameCount?: number, elapsedTime?: number): void {
 		this.context.fillStyle = 'yellow';
 		this.context.strokeStyle = 'black';
 		this.context.beginPath();

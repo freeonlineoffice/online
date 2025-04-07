@@ -869,16 +869,6 @@ class TileManager {
 				statusType: 'alltilesloaded',
 			});
 		}
-
-		// Don't paint the tile, only dirty the sectionsContainer if it is in the visible area.
-		// _emitSlurpedTileEvents() will repaint (if it is dirty).
-		const tileVisible = app.isRectangleVisibleInTheDisplayedArea(
-			this.pixelCoordsToTwipTileBounds(coords),
-		);
-
-		// Also check the scale because incoming tile may not be in the same zoom level.
-		if (tileVisible && this.tileZoomIsCurrent(coords))
-			app.sectionContainer.setDirty(coords);
 	}
 
 	private static createTile(coords: TileCoordData, key: string) {
