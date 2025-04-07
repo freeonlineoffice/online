@@ -497,7 +497,6 @@ LOOL_JS_LST =\
 	src/slideshow/CanvasLoader.ts \
 	src/slideshow/Operation.ts \
 	src/slideshow/Primitive.ts \
-	src/slideshow/types.ts \
 	src/slideshow/engine/ActivityFactory.ts \
     src/slideshow/engine/ActivityQueue.ts \
     src/slideshow/engine/AnimationFactory.ts \
