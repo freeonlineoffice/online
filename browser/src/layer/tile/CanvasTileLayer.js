@@ -317,27 +317,6 @@ L.TileSectionManager = L.Class.extend({
 		);
 	},
 
-	startUpdates: function () {
-		if (this._updatesRunning === true) {
-			return false;
-		}
-
-		this._updatesRunning = true;
-		this._updateWithRAF();
-		return true;
-	},
-
-	stopUpdates: function () {
-		if (this._updatesRunning) {
-			app.util.cancelAnimFrame(this._canvasRAF);
-			this.update();
-			this._updatesRunning = false;
-			return true;
-		}
-
-		return false;
-	},
-
 	dispose: function () {
 		this.stopUpdates();
 	},
@@ -417,12 +396,6 @@ L.TileSectionManager = L.Class.extend({
 	_removePreloadMap: function () {
 		app.sectionContainer.removeSection(L.CSections.Debug.PreloadMap.name);
 		app.sectionContainer.reNewAllSections(true);
-	},
-
-	_updateWithRAF: function () {
-		// update-loop with requestAnimationFrame
-		this._canvasRAF = app.util.requestAnimFrame(this._updateWithRAF, this, false /* immediate */);
-		app.sectionContainer.requestReDraw();
 	},
 
 	update: function () {
@@ -887,25 +860,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		// Using L.TileSectionManager's own requestAnimationFrame loop to do the updates in that case does not perform well.
 		if (window.mode.isMobile() || window.mode.isTablet()) {
 			this._map.on('move', this._painter.update, this._painter);
-			this._map.on(
-				'moveend',
-				function () {
-					setTimeout(this.update.bind(this), 200);
-				},
-				this._painter,
-			);
-		} else if (this._docType !== 'spreadsheet') {
-			// See scroll section. panBy is used for spreadsheets while scrolling.
-			this._map.on(
-				'movestart',
-				this._painter.startUpdates,
-				this._painter,
-			);
-			this._map.on(
-				'moveend',
-				this._painter.stopUpdates,
-				this._painter,
-			);
+			this._map.on('moveend', function () {
+				setTimeout(this.update.bind(this), 200);
+			}, this._painter);
 		}
 		this._map.on('zoomend', this._painter.update, this._painter);
 		this._map.on('splitposchanged', this._painter.update, this._painter);
@@ -1099,6 +1056,7 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		TileManager.update();
 		TileManager.resetPreFetching(true);
+		app.sectionContainer.requestReDraw();
 	},
 
 	_isLatLngInView: function (position) {

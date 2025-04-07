@@ -200,6 +200,7 @@ class CanvasSectionContainer {
 	private documentAnchorSectionName: string = null; // This section's top left point declares the point where document starts.
 	private documentAnchor: Array<number> = null; // This is the point where document starts inside canvas element. Initial value shouldn't be [0, 0].
 	// Above 2 properties can be used with documentBounds.
+	private drawRequest: number = null;
 	private drawingPaused: number = 0;
 	private drawingEnabled: boolean = true;
 	private sectionsDirty: boolean = false;
@@ -347,6 +348,10 @@ class CanvasSectionContainer {
 	// from docload till we get tiles of the correct view area to render.
 	// After calling this, only enableDrawing() can undo this call.
 	disableDrawing () {
+		if (this.drawRequest) {
+			cancelAnimationFrame(this.drawRequest);
+			this.drawRequest = null;
+		}
 		this.drawingEnabled = false;
 	}
 
@@ -362,6 +367,10 @@ class CanvasSectionContainer {
 	}
 
 	pauseDrawing () {
+		if (this.drawRequest) {
+			cancelAnimationFrame(this.drawRequest);
+			this.drawRequest = null;
+		}
 		this.drawingPaused++;
 	}
 
@@ -618,12 +627,15 @@ class CanvasSectionContainer {
 		}
 	}
 
-	requestReDraw() {
-		// Someone requested a redraw, but we're paused => schedule a redraw.
-		if (!this.drawingAllowed()) return;
+	private redrawCallback(timestamp: number) {
+		this.drawRequest = null;
+		this.drawSections();
+	}
 
-		if (!this.getAnimatingSectionName())
-			this.drawSections(null, null);
+	public requestReDraw() {
+		if (!this.drawingAllowed()) return;
+		if (this.drawRequest === null)
+			this.drawRequest = requestAnimationFrame(this.redrawCallback.bind(this));
 	}
 
 	private propagateCursorPositionChanged() {
@@ -995,12 +1007,9 @@ class CanvasSectionContainer {
 					}
 				}
 			}
-			this.clearMousePositions(); // Drawing takes place after cleaning mouse positions. Sections should overcome this evil.
-			this.drawSections();
+			this.requestReDraw();
 		}
-		else {
-			this.clearMousePositions();
-		}
+		this.clearMousePositions();
 	}
 
 	private onDoubleClick (e: MouseEvent) {
@@ -1011,7 +1020,7 @@ class CanvasSectionContainer {
 			this.propagateOnDoubleClick(section, this.convertPositionToSectionLocale(section, this.positionOnDoubleClick), e);
 		}
 		this.clearMousePositions();
-		this.drawSections();
+		this.requestReDraw();
 	}
 
 	private isLongPressActive() {
@@ -1499,7 +1508,7 @@ class CanvasSectionContainer {
 		if (this.testing)
 			this.createUpdateDivElements();
 		if (redraw && this.drawingAllowed())
-			this.drawSections();
+			this.requestReDraw();
 	}
 
 	private roundPositionAndSize(section: CanvasSectionObject) {
@@ -1765,7 +1774,7 @@ class CanvasSectionContainer {
 					this.context.globalAlpha = 1;
 				}
 
-				this.sections[i].onDraw(frameCount, elapsedTime, null);
+				this.sections[i].onDraw(frameCount, elapsedTime);
 				if (this.sections[i].borderColor) { // If section's border is set, draw its borders after section's "onDraw" function is called.
 					var offset = this.sections[i].getLineOffset();
 					this.context.lineWidth = this.sections[i].getLineWidth();
@@ -1959,7 +1968,8 @@ class CanvasSectionContainer {
 		if (this.drawingAllowed()) {
 			this.updateBoundSectionLists();
 			this.reNewAllSections();
-		}
+		} else
+			this.sectionsDirty = true;
 	}
 
 	removeSection (name: string) {
@@ -2009,13 +2019,13 @@ class CanvasSectionContainer {
 			this.continueAnimating = false;
 		}
 
+		var section: CanvasSectionObject = this.getSectionWithName(this.getAnimatingSectionName());
 		if (this.continueAnimating) {
-			this.drawSections(this.frameCount, this.elapsedTime);
+			if (section) section.onAnimate(this.frameCount, this.elapsedTime);
 			this.frameCount++;
 			requestAnimationFrame(this.animate.bind(this));
 		}
 		else {
-			var section: CanvasSectionObject = this.getSectionWithName(this.getAnimatingSectionName());
 			if (section) {
 				section.isAnimating = false;
 				section.onAnimationEnded(this.frameCount, this.elapsedTime);
@@ -2023,8 +2033,6 @@ class CanvasSectionContainer {
 
 			this.setAnimatingSectionName(null);
 			this.frameCount = this.elapsedTime = null;
-
-			this.drawSections();
 		}
 	}
 
