@@ -36,10 +36,18 @@ img.sidebar.ui-drawing-area {
 	box-sizing: border-box;
 }
 
-[data-userinterfacemode='classic'] #document-container:not(.mobile) + #sidebar-dock-wrapper,
-[data-userinterfacemode='classic'] #document-container:not(.mobile) + #navigator-dock-wrapper,
-[data-docType='spreadsheet'] #document-container:not(.mobile) + #sidebar-dock-wrapper,
-[data-docType='spreadsheet'] #document-container:not(.mobile) + #navigator-dock-wrapper {
+[data-userinterfacemode='classic']
+	#document-container:not(.mobile)
+	+ #sidebar-dock-wrapper,
+[data-userinterfacemode='classic']
+	#document-container:not(.mobile)
+	+ #navigator-dock-wrapper,
+[data-docType='spreadsheet']
+	#document-container:not(.mobile)
+	+ #sidebar-dock-wrapper,
+[data-docType='spreadsheet']
+	#document-container:not(.mobile)
+	+ #navigator-dock-wrapper {
 	border-inline-start: 1px solid var(--color-border);
 }
 .sidebar .menu-entry-icon {
@@ -332,7 +340,10 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	margin-block-end: 8px;
 }
 
-#NavigatorPanel div.selected:not(.ui-treeview-expandable-with-icon):not(:empty):not([aria-level='1'])::before {
+#NavigatorPanel
+	div.selected:not(.ui-treeview-expandable-with-icon):not(:empty):not(
+		[aria-level='1']
+	)::before {
 	content: '–';
 	/* good to move this into css var*/
 	font-size: 17px;
@@ -452,7 +463,9 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	background-color: transparent;
 	cursor: pointer;
 	filter: saturate(0);
-	transition: filter 0.2s ease-in-out, transform 0.2s;
+	transition:
+		filter 0.2s ease-in-out,
+		transform 0.2s;
 }
 
 /* Navigation Tabs */
@@ -469,7 +482,9 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	font-size: 14px;
 	border-bottom: none;
 	color: var(--color-main-text);
-	transition: background-color 0.3s, border-color 0.3s;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s;
 }
 
 /* Hover Effect */
@@ -573,9 +588,17 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 }
 
 /* required to dynamically resize treeviews or lists inside sidebar */
-.sidebar-container, .navigator-container
-.sidebar-container > .root-container.jsdialog.sidebar,.navigator-container > .root-container.jsdialog.sidebar > .root-container.jsdialog.sidebar
-.sidebar-container > .root-container.jsdialog.sidebar > .vertical.jsdialog.sidebar , .navigator-container > .root-container.jsdialog.sidebar > .vertical.jsdialog.sidebar{
+.sidebar-container,
+.navigator-container .sidebar-container > .root-container.jsdialog.sidebar,
+.navigator-container
+	> .root-container.jsdialog.sidebar
+	> .root-container.jsdialog.sidebar
+	.sidebar-container
+	> .root-container.jsdialog.sidebar
+	> .vertical.jsdialog.sidebar,
+.navigator-container
+	> .root-container.jsdialog.sidebar
+	> .vertical.jsdialog.sidebar {
 	height: 100%;
 }
 
