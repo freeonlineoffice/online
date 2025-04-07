@@ -331,7 +331,8 @@ body {
 	height: 100%;
 }
 
-#sidebar-dock-wrapper, #navigator-dock-wrapper {
+#sidebar-dock-wrapper,
+#navigator-dock-wrapper {
 	display: none;
 	background: var(--color-background-lighter);
 	position: relative;
@@ -359,7 +360,8 @@ body {
 	}
 }
 
-#sidebar-panel, #navigator-panel {
+#sidebar-panel,
+#navigator-panel {
 	padding: 0px;
 	margin: 0px;
 	position: relative;
@@ -368,11 +370,13 @@ body {
 	z-index: 1200;
 }
 
-#sidebar-panel::-webkit-scrollbar, #navigator-panel::-webkit-scrollbar {
+#sidebar-panel::-webkit-scrollbar,
+#navigator-panel::-webkit-scrollbar {
 	width: 8px;
 }
 
-#sidebar-panel::-webkit-scrollbar-thumb, #navigator-panel::-webkit-scrollbar-thumb {
+#sidebar-panel::-webkit-scrollbar-thumb,
+#navigator-panel::-webkit-scrollbar-thumb {
 	background-color: var(--color-border);
 }
 
