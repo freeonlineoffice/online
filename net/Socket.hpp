@@ -440,6 +440,28 @@ protected:
     /// Explicitly marks this socket FD as shut down, but not necessarily closed.
     void setShutdown() { _isShutdown = true; }
 
+    /// Set the thread-id we're bound to
+    virtual void setThreadOwner(const std::thread::id &id)
+    {
+        if (id != _owner)
+        {
+            LOG_TRC("Thread affinity set to " << Log::to_string(id) << " (was "
+                                              << Log::to_string(_owner) << ')');
+            _owner = id;
+        }
+    }
+
+    /// Reset the thread-id while it's in transition.
+    virtual void resetThreadOwner()
+    {
+        if (std::thread::id() != _owner)
+        {
+            LOG_TRC("Resetting thread affinity while in transit (was " << Log::to_string(_owner)
+                                                                       << ')');
+            _owner = std::thread::id();
+        }
+    }
+
 private:
     friend class SocketThreadOwnerChange;
 
@@ -471,28 +493,6 @@ private:
                 LOG_TRC("Buffer size: " << getSendBufferSize() << " (was " << oldSize << ')');
             }
 #endif
-        }
-    }
-
-    /// Set the thread-id we're bound to
-    void setThreadOwner(const std::thread::id &id)
-    {
-        if (id != _owner)
-        {
-            LOG_TRC("Thread affinity set to " << Log::to_string(id) << " (was "
-                                              << Log::to_string(_owner) << ')');
-            _owner = id;
-        }
-    }
-
-    /// Reset the thread-id while it's in transition.
-    void resetThreadOwner()
-    {
-        if (std::thread::id() != _owner)
-        {
-            LOG_TRC("Resetting thread affinity while in transit (was " << Log::to_string(_owner)
-                                                                       << ')');
-            _owner = std::thread::id();
         }
     }
 
@@ -561,6 +561,7 @@ protected:
 public:
     ProtocolHandlerInterface()
         : _fdSocket(-1)
+        , _owner(std::this_thread::get_id())
     {
     }
 
@@ -568,6 +569,13 @@ public:
     // Interface for implementing low level socket goodness from streams.
     // ------------------------------------------------------------------
     virtual ~ProtocolHandlerInterface() = default;
+
+    /// Asserts in the debug builds, otherwise just logs.
+    void assertCorrectThread(const char* fileName = "", int lineNo = 0) const
+    {
+        if (!ThreadChecks::Inhibit)
+            Util::assertCorrectThread(_owner, fileName, lineNo);
+    }
 
     /// Called when the socket is newly created to
     /// set the socket associated with this ResponseClient.
@@ -607,11 +615,16 @@ public:
 
     void setMessageHandler(const std::shared_ptr<MessageHandlerInterface> &msgHandler)
     {
+        ASSERT_CORRECT_THREAD();
         _msgHandler = msgHandler;
     }
 
     /// Clear all external references
-    virtual void dispose() { _msgHandler.reset(); }
+    virtual void dispose()
+    {
+        ASSERT_CORRECT_THREAD();
+        _msgHandler.reset();
+    }
 
     /// Sends a text message.
     /// Returns the number of bytes written (including frame overhead) on success,
@@ -621,6 +634,7 @@ public:
     /// Convenience wrapper
     int sendTextMessage(const std::string &msg, bool flush = false) const
     {
+        ASSERT_CORRECT_THREAD();
         return sendTextMessage(msg.data(), msg.size(), flush);
     }
 
@@ -645,7 +659,50 @@ public:
     }
 
 private:
+    friend class ProtocolThreadOwnerChange;
+
+    void setThreadOwner(const std::thread::id &id)
+    {
+        if (id != _owner)
+        {
+            LOG_TRC("Thread affinity set to " << Log::to_string(id) << " (was "
+                                              << Log::to_string(_owner) << ')');
+            _owner = id;
+        }
+    }
+
+    void resetThreadOwner()
+    {
+        if (std::thread::id() != _owner)
+        {
+            LOG_TRC("Resetting thread affinity while in transit (was " << Log::to_string(_owner)
+                                                                       << ')');
+            _owner = std::thread::id();
+        }
+    }
+
     int _fdSocket; ///< The socket file-descriptor.
+    std::thread::id _owner;
+};
+
+class StreamSocket;
+
+// Allow Socket to call ProtocolHandlerInterface::setThreadOwner
+// without exposing the entirety of ProtocolHandlerInterface's internals to it
+class ProtocolThreadOwnerChange
+{
+    friend class StreamSocket;
+
+    static void setThreadOwner(ProtocolHandlerInterface& handler, const std::thread::id &id)
+    {
+        handler.setThreadOwner(id);
+    }
+
+    static void resetThreadOwner(ProtocolHandlerInterface& handler)
+    {
+        handler.resetThreadOwner();
+    }
+
 };
 
 // Forward declare WebSocketHandler, which is inherited from ProtocolHandlerInterface.
@@ -1388,6 +1445,7 @@ public:
     {
         LOG_TRC("setHandler");
         _socketHandler = std::move(handler);
+        ProtocolThreadOwnerChange::setThreadOwner(*_socketHandler, getThreadOwner());
         _socketHandler->onConnect(shared_from_this());
     }
 
@@ -1806,6 +1864,20 @@ protected:
     bool isShutdownSignalled() const
     {
         return _shutdownSignalled;
+    }
+
+    void setThreadOwner(const std::thread::id &id) override
+    {
+        Socket::setThreadOwner(id);
+        if (_socketHandler)
+            ProtocolThreadOwnerChange::setThreadOwner(*_socketHandler, id);
+    }
+
+    void resetThreadOwner() override
+    {
+        Socket::resetThreadOwner();
+        if (_socketHandler)
+            ProtocolThreadOwnerChange::resetThreadOwner(*_socketHandler);
     }
 
 #if ENABLE_DEBUG
