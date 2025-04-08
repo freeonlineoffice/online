@@ -466,7 +466,9 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	background-color: transparent;
 	cursor: pointer;
 	filter: brightness(0.3);
-	transition: filter 0.2s ease-in-out, transform 0.2s;
+	transition:
+		filter 0.2s ease-in-out,
+		transform 0.2s;
 }
 
 /* Navigation Tabs */
