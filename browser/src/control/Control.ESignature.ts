@@ -1,4 +1,3 @@
-// @ts-strict-ignore
 /*
  * Copyright the Collabora Online contributors.
  *
@@ -62,17 +61,13 @@ namespace lool {
 		clientId: string;
 
 		// Timestamp of the hash extraction
-		signatureTime: number;
+		signatureTime: number = 0;
 
 		// Identifier of the document on the eIDEasy side
-		docId: string;
+		docId: string = '';
 
 		// The popup window we opened.
-		popup: Window;
-
-		availableProviderIDs: Array<string>;
-
-		availableCountryCodes: Array<string>;
+		popup: Window | null = null;
 
 		showSignaturesOnNextUpdate = false;
 
@@ -117,7 +112,7 @@ namespace lool {
 		};
 
 		// Country code to name map
-		static countryNames: { [name: string]: string } = undefined;
+		static countryNames: { [name: string]: string } | null = null;
 
 		constructor(url: string, clientId: string) {
 			this.url = url;
@@ -283,13 +278,13 @@ namespace lool {
 			}
 
 			this.docId = response.doc_id;
-			this.availableProviderIDs = response.available_methods;
+			const availableProviderIDs = response.available_methods;
 			const availableProviderConfigs = response.method_configs;
 			const countries = this.createCountryList(
 				availableProviderConfigs,
 			);
 			const providers = this.createProviders(
-				this.availableProviderIDs,
+				availableProviderIDs,
 				availableProviderConfigs,
 			);
 			const dialog = JSDialog.eSignatureDialog(countries, providers);
@@ -371,7 +366,7 @@ namespace lool {
 				}
 			} catch (error) {
 				app.console.log(
-					'failed to close the signing popup: ' + error.message,
+					'failed to close the signing popup: ' + error,
 				);
 				return false;
 			}
@@ -475,10 +470,11 @@ namespace lool {
 				}
 			}
 			codes = [...new Set(codes)];
-			this.availableCountryCodes = codes;
 
 			return codes.map((code) => {
-				const countryName = ESignature.countryNames[code];
+				const countryName = ESignature.countryNames
+					? ESignature.countryNames[code]
+					: null;
 				if (countryName) {
 					return { code: code, name: countryName };
 				}
