@@ -50,3 +50,5 @@ std::chrono::steady_clock::time_point LogUiCmd::getKitStartTimeSec()
 {
     return _kitStartTimeSec;
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

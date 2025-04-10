@@ -163,3 +163,5 @@ public:
         THREAD_UNSAFE_DUMP_END
     }
 };
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
