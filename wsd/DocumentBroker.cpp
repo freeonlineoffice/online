@@ -3591,10 +3591,7 @@ bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
 
     if (dontSaveIfUnmodified)
     {
-        if (dontTerminateEdit)
-            oss << ',';
-
-        oss << "\"DontSaveIfUnmodified\" : { \"type\":\"boolean\", \"value\":true }";
+        oss << ",\"DontSaveIfUnmodified\" : { \"type\":\"boolean\", \"value\":true }";
     }
 
     // arguments end
