@@ -1453,7 +1453,11 @@ class TileManager {
 					)
 				: [pixelBounds];
 			for (const key in this.tiles)
-				this.updateTileDistance(this.tiles[key], zoom, currentBounds);
+				this.updateTileDistance(
+					this.tiles[key],
+					zoom,
+					currentBounds,
+				);
 		}
 
 		// create a queue of coordinates to load tiles from. Rehydrate tiles if we're dealing
@@ -1558,7 +1562,8 @@ class TileManager {
 				tile = this.createTile(coordsQueue[i], key);
 
 				// Newly created tiles have a distance of zero, which means they're current.
-				if (!isCurrent) this.updateTileDistance(tile, zoom, visibleRanges);
+				if (!isCurrent)
+					this.updateTileDistance(tile, zoom, visibleRanges);
 			}
 		}
 
@@ -1678,7 +1683,8 @@ class TileManager {
 				(invalidatedRectangle.intersectsRectangle(tileRectangle) ||
 					(calc && !this.tileZoomIsCurrent(coords))) // In calc, we invalidate all tiles with different zoom levels.
 			) {
-				if (this.tiles[key].distanceFromView === 0) needsNewTiles = true;
+				if (this.tiles[key].distanceFromView === 0)
+					needsNewTiles = true;
 
 				this.invalidateTile(key, wireId);
 			}
