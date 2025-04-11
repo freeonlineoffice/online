@@ -56,7 +56,7 @@ declare var JSDialog: any;
 
 namespace lool {
 
-export class CommentSection extends app.definitions.canvasSectionObject {
+export class CommentSection extends CanvasSectionObject {
 	name: string = L.CSections.CommentList.name;
 	backgroundColor: string = app.sectionContainer.clearColor;
 	expand: string[] = ['bottom'];
@@ -227,8 +227,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 	}
 
 	private isEditing(): boolean {
-		const sections = this.containerObject.sections;
-		const textBoxes = sections
+		const textBoxes = this.sectionProperties.commentList
 			.flatMap((section: any) => [section.sectionProperties.nodeModifyText, section.sectionProperties.nodeReplyText])
 			.filter((textBox: any) => textBox !== undefined);
 
@@ -2500,7 +2499,7 @@ export class CommentSection extends app.definitions.canvasSectionObject {
 	}
 
 	public hasAnyComments(): boolean {
-		return this.containerObject.sections.some((x: any) => x.constructor.name == "Comment")
+		return this.sectionProperties.commentList.length > 0;
 	}
 }
 
