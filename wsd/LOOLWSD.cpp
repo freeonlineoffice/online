@@ -8,7 +8,6 @@
  */
 
 #include <config.h>
-#include <config_version.h>
 #ifdef __linux__
 #include <malloc.h>
 #endif
