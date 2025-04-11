@@ -3213,8 +3213,6 @@ class LOOLWSDServer
 {
     LOOLWSDServer(LOOLWSDServer&& other) = delete;
     const LOOLWSDServer& operator=(LOOLWSDServer&& other) = delete;
-    // allocate port & hold temporarily.
-    std::shared_ptr<ServerSocket> _serverSocket;
 public:
     LOOLWSDServer()
         : _acceptPoll("accept_poll")
@@ -3229,9 +3227,9 @@ public:
         stop();
     }
 
-    void findClientPort()
+    std::shared_ptr<ServerSocket> findClientPort()
     {
-        _serverSocket = findServerPort();
+        return findServerPort();
     }
 
     void startPrisoners()
@@ -3245,16 +3243,15 @@ public:
         PrisonerPoll->joinThread();
     }
 
-    void start()
+    void start(std::shared_ptr<ServerSocket>&& serverSocket)
     {
         _acceptPoll.startThread();
-        _acceptPoll.insertNewSocket(_serverSocket);
+        _acceptPoll.insertNewSocket(std::move(serverSocket));
 
 #if MOBILEAPP
-        loolwsd_server_socket_fd = _serverSocket->getFD();
+        loolwsd_server_socket_fd = serverSocket->getFD();
 #endif
 
-        _serverSocket.reset();
         WebServerPoll->startThread();
 
 #if !MOBILEAPP
@@ -3639,7 +3636,8 @@ int LOOLWSD::innerMain()
 
     // Allocate our port - passed to prisoners.
     assert(Server && "The LOOLWSDServer instance does not exist.");
-    Server->findClientPort();
+    // allocate port & hold temporarily.
+    std::shared_ptr<ServerSocket> serverPort = Server->findClientPort();
 
     TmpFontDir = ChildRoot + JailUtil::CHILDROOT_TMP_INCOMING_PATH;
 
@@ -3719,7 +3717,7 @@ int LOOLWSD::innerMain()
     Anonymizer::mapAnonymized("contents", "contents");
 
     // Start the server.
-    Server->start();
+    Server->start(std::move(serverPort));
 
 #if WASMAPP
     // It is not at all obvious that this is the ideal place to do the HULLO thing and call onopen
