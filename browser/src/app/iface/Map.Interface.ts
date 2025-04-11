@@ -26,8 +26,8 @@ interface MapInterface extends Evented {
 
 	sendUnoCommand(unoCmd: string): void;
 
-	getDocSize(): cool.Point;
-	getSize(): cool.Point;
+	getDocSize(): lool.Point;
+	getSize(): lool.Point;
 	getCenter(): { lat: number; lng: number };
 
 	_docLoadedOnce: boolean;

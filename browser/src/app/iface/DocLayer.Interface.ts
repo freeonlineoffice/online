@@ -18,8 +18,8 @@ interface DocLayerInterface {
 	isImpress(): boolean;
 	isCalcRTL(): boolean;
 
-	_pixelsToTwips(cssPix: cool.PointLike): cool.PointLike;
-	_latLngToTwips(latlng: { lat: number; lng: number }): cool.Point;
+	_pixelsToTwips(cssPix: lool.PointLike): lool.PointLike;
+	_latLngToTwips(latlng: { lat: number; lng: number }): lool.Point;
 
 	_postMouseEvent(
 		typ: string,
