@@ -118,7 +118,7 @@ interface Document {
 	webkitFullscreenElement: Element | null;
 }
 
-// Extenhd StringConstructor
+// Extend StringConstructor
 interface StringConstructor {
 	locale: string; // from lool-src.js
 }
