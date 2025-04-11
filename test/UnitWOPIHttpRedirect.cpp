@@ -20,7 +20,7 @@
 
 class UnitWopiHttpRedirect : public WopiTestServer
 {
-    STATE_ENUM(Phase, Load, Redirected, GetFile, Redirected2, Done) _phase;
+    STATE_ENUM(Phase, Load, WaitLoad, Redirected, GetFile, Redirected2, Done) _phase;
 
     const std::string params = "access_token=anything";
 
@@ -52,7 +52,7 @@ public:
 
             assertCheckFileInfoRequest(request);
 
-            LOK_ASSERT_MESSAGE("Expected to be in Phase::Load", _phase == Phase::Load);
+            LOK_ASSERT_STATE(_phase, Phase::WaitLoad);
             TRANSITION_STATE(_phase, Phase::Redirected);
 
             http::Response httpResponse(http::StatusCode::Found);
@@ -133,12 +133,15 @@ public:
         {
             case Phase::Load:
             {
+                TRANSITION_STATE(_phase, Phase::WaitLoad);
+
                 initWebsocket("/wopi/files/1?" + params);
 
                 WSD_CMD("load url=" + getWopiSrc());
 
                 break;
             }
+            case Phase::WaitLoad:
             case Phase::Redirected:
             case Phase::Redirected2:
             case Phase::GetFile:
