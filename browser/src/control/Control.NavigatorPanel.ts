@@ -172,7 +172,7 @@ class NavigatorPanel extends SidebarBase {
 		this.floatingNavIcon.className =
 			'notebookbar unoNavigator unospan-view-navigator unotoolbutton visible';
 		this.floatingNavIcon.setAttribute('tabindex', '-1');
-		this.floatingNavIcon.setAttribute('data-cooltip', _('Navigator'));
+		this.floatingNavIcon.setAttribute('data-looltip', _('Navigator'));
 
 		// Create the button wrapper (square container)
 		const buttonWrapper = document.createElement('div');

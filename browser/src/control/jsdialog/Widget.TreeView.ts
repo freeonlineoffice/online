@@ -570,7 +570,7 @@ class TreeViewControl {
 		// regular columns
 		for (const index in entry.columns) {
 			td = L.DomUtil.create('div', '', tr);
-			td.setAttribute('data-cooltip', entry.text);
+			td.setAttribute('data-looltip', entry.text);
 			L.control.attachTooltipEventListener(td, builder.map);
 			rowElements.push(td);
 

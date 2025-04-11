@@ -50,7 +50,7 @@ describe(['tagdesktop', 'tagnextcloud', 'tagproxy'], 'Sheet switching tests', fu
 		cy.cGet('#map').compareSnapshot('b1_text_step2', 0.05);
 
 		// Step3: type and still see text
-		helper.typeIntoDocument('Calc is Cool{enter}');
+		helper.typeIntoDocument('Calc is Lool{enter}');
 		cy.wait(500);
 		cy.cGet('#map').compareSnapshot('b1_text_step3', 0.05);
 	});

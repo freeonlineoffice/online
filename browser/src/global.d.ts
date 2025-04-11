@@ -120,7 +120,7 @@ interface Document {
 
 // Extenhd StringConstructor
 interface StringConstructor {
-	locale: string; // from cool-src.js
+	locale: string; // from lool-src.js
 }
 
 // Extend the global Window interface

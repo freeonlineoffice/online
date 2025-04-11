@@ -102,7 +102,7 @@ void Quarantine::initialize(const std::string& path)
         catch (const std::exception& exc)
         {
             LOG_FTL("Quarantine directory [" << path
-                                             << "] is read-only. Please ensure that the coolwsd "
+                                             << "] is read-only. Please ensure that the loolwsd "
                                                 "process account has write permissions to it");
             throw;
         }
