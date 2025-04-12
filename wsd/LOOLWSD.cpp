@@ -1470,6 +1470,8 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
                 << LogLevel << "] until after WSD initialization.");
     }
 
+    Util::sleepFromEnvIfSet("Loolwsd", "SLEEPFORDEBUGGER");
+
     if (ConfigUtil::getConfigValue<bool>(conf, "browser_logging", false))
     {
         LogToken = Util::rng::getHexString(16);
@@ -1746,8 +1748,6 @@ void LOOLWSD::innerInitialize(Poco::Util::Application& self)
     std::ostringstream oss;
     KitXmlConfig->save(oss);
     setenv("LOOL_CONFIG", oss.str().c_str(), true);
-
-    Util::sleepFromEnvIfSet("Loolwsd", "SLEEPFORDEBUGGER");
 
     // For some reason I can't get at this setting in ChildSession::loKitCallback().
     std::string fontsMissingHandling = ConfigUtil::getString("fonts_missing.handling", "log");
