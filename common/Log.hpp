@@ -74,6 +74,7 @@ namespace Log
     /// Shutdown and release the logging system.
     void shutdown();
 
+    /// Flush buffered console logs, if used.
     void flush();
 
     /// Cleanup state after forking
