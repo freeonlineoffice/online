@@ -1194,6 +1194,8 @@ void LOOLWSD::setupChildRoot(const bool UseMountNamespaces)
     JailUtil::disableBindMounting(); // Default to assume failure
     JailUtil::disableMountNamespaces();
 
+    Log::preFork();
+
     pid_t pid = fork();
     if (!pid)
     {
