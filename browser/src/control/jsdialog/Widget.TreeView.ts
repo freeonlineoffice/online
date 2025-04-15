@@ -377,6 +377,7 @@ class TreeViewControl {
 		let dummyColumns = 0;
 		if (this._hasState) dummyColumns++;
 		tr.style.gridColumn = '1 / ' + (this._columns + dummyColumns + 1);
+		tr.setAttribute('tabindex', 0);
 
 		let selectionElement;
 		if (this._hasState) {
@@ -761,6 +762,9 @@ class TreeViewControl {
 			} else if (event.key === 'Enter' || event.key === ' ') {
 				clickFunction();
 				if (selectionElement) selectionElement.click();
+				if (expander) {
+					expander.click();
+				}
 				tr.focus();
 				event.preventDefault();
 				event.stopPropagation();
