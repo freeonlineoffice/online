@@ -1328,9 +1328,6 @@ class UIManager extends L.Control {
 				app.socket.sendMessage('uno .uno:SidebarHide');
 			}
 		}
-
-		// We've resized the document container.
-		this.map.invalidateSize();
 	}
 
 	/**
