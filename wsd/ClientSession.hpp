@@ -153,6 +153,7 @@ public:
     void setSaveAsSocket(const std::shared_ptr<StreamSocket>& socket)
     {
         _saveAsSocket = socket;
+        _isConvertTo = static_cast<bool>(socket);
     }
 
     std::shared_ptr<DocumentBroker> getDocumentBroker() const { return _docBroker.lock(); }
@@ -381,7 +382,7 @@ private:
     std::weak_ptr<DocumentBroker> _docBroker;
 
     /// The socket to which the converted (saveas) doc is sent.
-    std::shared_ptr<StreamSocket> _saveAsSocket;
+    std::weak_ptr<StreamSocket> _saveAsSocket;
 
     /// Time of last state transition
     std::chrono::steady_clock::time_point _lastStateTime;
@@ -461,6 +462,9 @@ private:
 
     /// If browser setting was already sent
     bool _sentBrowserSetting;
+
+    /// If Session is for convert-to
+    bool _isConvertTo;
 };
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
