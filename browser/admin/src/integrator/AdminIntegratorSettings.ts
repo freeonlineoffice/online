@@ -624,7 +624,10 @@ class SettingIframe {
 			);
 		} else {
 			// If user don't have any xcu file, We generate with default settings...
-			this.xcuEditor = new (window as any).Xcu('documentView.xcu', null);
+			this.xcuEditor = new (window as any).Xcu(
+				'documentView.xcu',
+				null,
+			);
 			this.xcuEditor.generateXcuAndUpload();
 			return await this.fetchAndPopulateSharedConfigs();
 		}
