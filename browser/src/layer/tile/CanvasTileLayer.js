@@ -5276,13 +5276,14 @@ L.CanvasTileLayer = L.Layer.extend({
 			' splity=' +
 			Math.round(splitPos.y);
 
-		if (this._ySplitter) {
-			this._ySplitter.onPositionChange();
-		}
-		if (this._xSplitter) {
-			this._xSplitter.onPositionChange();
-		}
 		if (this._clientVisibleArea !== newClientVisibleArea || forceUpdate) {
+			// Only update on some change
+			if (this._ySplitter) {
+				this._ySplitter.onPositionChange();
+			}
+			if (this._xSplitter) {
+				this._xSplitter.onPositionChange();
+			}
 			// Visible area is dirty, update it on the server
 			app.socket.sendMessage(newClientVisibleArea);
 			if (
