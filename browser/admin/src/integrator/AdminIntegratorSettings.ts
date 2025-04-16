@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* -*- js-indent-level: 8 -*- */
 /*
  * SPDX-License-Identifier: MPL-2.0
  *
@@ -7,6 +8,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+/* global _ */
+
+declare var _: any;
 interface Window {
 	accessToken?: string;
 	accessTokenTTL?: string;
@@ -115,48 +119,50 @@ class SettingIframe {
 
 		const configSections: SectionConfig[] = [
 			{
-				sectionTitle: 'Autotext',
-				sectionDesc:
+				sectionTitle: _('Autotext'),
+				sectionDesc: _(
 					'Upload reusable text snippets (.bau). To insert the text in your document, type the shortcut for an AutoText entry and press F3.',
+				),
 				listId: 'autotextList',
 				inputId: 'autotextFile',
 				buttonId: 'uploadAutotextButton',
 				fileAccept: '.bau',
-				buttonText: 'Upload Autotext',
+				buttonText: _('Upload Autotext'),
 				uploadPath: this.PATH.autoTextUpload(),
 			},
 			{
-				sectionTitle: 'Custom Dictionaries',
-				sectionDesc:
+				sectionTitle: _('Custom Dictionaries'),
+				sectionDesc: _(
 					'Add or edit words in a spell check dictionary. Words in your wordbook (.dic) will be available for spelling checks.',
+				),
 				listId: 'wordbookList',
 				inputId: 'wordbookFile',
 				buttonId: 'uploadWordbookButton',
 				fileAccept: '.dic',
-				buttonText: 'Upload Wordbook',
+				buttonText: _('Upload Wordbook'),
 				uploadPath: this.PATH.wordBookUpload(),
 			},
 			{
-				sectionTitle: 'Interface',
-				sectionDesc: 'Set default interface preferences.',
+				sectionTitle: _('Interface'),
+				sectionDesc: _('Set default interface preferences.'),
 				listId: 'BrowserSettingsList',
 				inputId: 'BrowserSettingsFile',
 				buttonId: 'uploadBrowserSettingsButton',
 				fileAccept: '.json',
 				// TODO: replace btn with rich interface (toggles)
-				buttonText: 'Upload Configuration',
+				buttonText: _('Upload Configuration'),
 				uploadPath: this.PATH.browserSettingsUpload(),
 				enabledFor: 'userconfig',
 			},
 			{
-				sectionTitle: 'Document View',
-				sectionDesc: 'Adjust how office documents look.',
+				sectionTitle: _('Document View'),
+				sectionDesc: _('Adjust how office documents look.'),
 				listId: 'XcuList',
 				inputId: 'XcuFile',
 				buttonId: 'uploadXcuButton',
 				fileAccept: '.xcu',
 				// TODO: replace btn with rich interface (toggles)
-				buttonText: 'Upload Xcu',
+				buttonText: _('Upload Xcu'),
 				uploadPath: this.PATH.XcuUpload(),
 				debugOnly: true,
 			},
@@ -211,14 +217,16 @@ class SettingIframe {
 	private async fetchAndPopulateSharedConfigs(): Promise<void> {
 		if (!window.wopiSettingBaseUrl) {
 			console.error(
-				'Shared Config URL is missing in initial variables.',
+				_('Shared Config URL is missing in initial variables.'),
 			);
 			return;
 		}
 		console.debug('iframeType page', window.iframeType);
 
 		if (!window.accessToken) {
-			console.error('Access token is missing in initial variables.');
+			console.error(
+				_('Access token is missing in initial variables.'),
+			);
 			return;
 		}
 
@@ -250,7 +258,7 @@ class SettingIframe {
 			console.debug('Shared config data: ', data);
 		} catch (error: unknown) {
 			SettingIframe.showErrorModal(
-				'Something went wrong, Please try to refresh the page.',
+				_('Something went wrong, Please try to refresh the page.'),
 			);
 			console.error('Error fetching shared config:', error);
 		}
@@ -322,7 +330,9 @@ class SettingIframe {
 			return await response.text();
 		} catch (error) {
 			SettingIframe.showErrorModal(
-				'Something went wrong while fetching setting file, Please try to refresh the page.',
+				_(
+					'Something went wrong while fetching setting file, Please try to refresh the page.',
+				),
 			);
 			return null;
 		}
@@ -347,7 +357,9 @@ class SettingIframe {
 				error instanceof Error ? error.message : 'Unknown error';
 			console.error(`Error uploading file: ${message}`);
 			SettingIframe.showErrorModal(
-				'Something went wrong while fetching wordbook, Please try to refresh the page.',
+				_(
+					'Something went wrong while fetching wordbook, Please try to refresh the page.',
+				),
 			);
 			this.wordbook.stopLoader();
 		}
@@ -382,7 +394,9 @@ class SettingIframe {
 				error instanceof Error ? error.message : 'Unknown error';
 			console.error(`Error uploading file: ${message}`);
 			SettingIframe.showErrorModal(
-				'Something went wrong while uploading the file. Please try again.',
+				_(
+					'Something went wrong while uploading the file. Please try again.',
+				),
 			);
 		}
 	}
@@ -517,7 +531,9 @@ class SettingIframe {
 					await this.fetchAndPopulateSharedConfigs();
 				} catch (error: unknown) {
 					SettingIframe.showErrorModal(
-						'Something went wrong while deleting the file. Please try refreshing the page.',
+						_(
+							'Something went wrong while deleting the file. Please try refreshing the page.',
+						),
 					);
 					console.error('Error deleting file:', error);
 				}
