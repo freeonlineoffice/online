@@ -1331,6 +1331,17 @@ bool ChildSession::outlineState(const StringVector& tokens)
     return true;
 }
 
+std::string ChildSession::getJailDocRoot() const
+{
+    std::string jailDoc = JAILED_DOCUMENT_ROOT;
+    if (NoCapsForKit)
+    {
+        jailDoc = Poco::URI(getJailedFilePath()).getPath();
+        jailDoc = jailDoc.substr(0, jailDoc.find(JAILED_DOCUMENT_ROOT)) + JAILED_DOCUMENT_ROOT;
+    }
+    return jailDoc;
+}
+
 bool ChildSession::downloadAs(const StringVector& tokens)
 {
     std::string name, id, format, filterOptions;
@@ -1376,12 +1387,7 @@ bool ChildSession::downloadAs(const StringVector& tokens)
     const Poco::Path filenameParam(name);
     const std::string nameAnonym = anonymizeUrl(name);
 
-    std::string jailDoc = JAILED_DOCUMENT_ROOT;
-    if (NoCapsForKit)
-    {
-        jailDoc = Poco::URI(getJailedFilePath()).getPath();
-        jailDoc = jailDoc.substr(0, jailDoc.find(JAILED_DOCUMENT_ROOT)) + JAILED_DOCUMENT_ROOT;
-    }
+    std::string jailDoc = getJailDocRoot();
 
     if constexpr (!Util::isMobileApp())
         consistencyCheckJail();
@@ -1745,13 +1751,7 @@ bool ChildSession::insertFile(const StringVector& tokens)
         {
             if (type == "graphic" || type == "selectbackground" || type == "multimedia")
             {
-                std::string jailDoc = JAILED_DOCUMENT_ROOT;
-                if (NoCapsForKit)
-                {
-                    jailDoc = Poco::URI(getJailedFilePath()).getPath();
-                    jailDoc = jailDoc.substr(0, jailDoc.find(JAILED_DOCUMENT_ROOT)) +
-                              JAILED_DOCUMENT_ROOT;
-                }
+                std::string jailDoc = getJailDocRoot();
                 url = "file://" + jailDoc + "insertfile/" + name;
             }
             else if (type == "graphicurl" || type == "multimediaurl")
@@ -2100,13 +2100,7 @@ bool ChildSession::contentControlEvent(const StringVector& tokens)
         std::string name;
         if (getTokenString(tokens[2], "name", name))
         {
-            std::string jailDoc = JAILED_DOCUMENT_ROOT;
-            if (NoCapsForKit)
-            {
-                jailDoc = Poco::URI(getJailedFilePath()).getPath();
-                jailDoc =
-                    jailDoc.substr(0, jailDoc.find(JAILED_DOCUMENT_ROOT)) + JAILED_DOCUMENT_ROOT;
-            }
+            std::string jailDoc = getJailDocRoot();
             std::string url = "file://" + jailDoc + "insertfile/" + name;
             arguments += "\"changed\":\"" + url + "\"}";
         }
@@ -2823,12 +2817,7 @@ bool ChildSession::saveAs(const StringVector& tokens)
             return false;
         }
 
-        std::string jailDoc = JAILED_DOCUMENT_ROOT;
-        if (NoCapsForKit)
-        {
-            jailDoc = Poco::URI(getJailedFilePath()).getPath();
-            jailDoc = jailDoc.substr(0, jailDoc.find(JAILED_DOCUMENT_ROOT)) + JAILED_DOCUMENT_ROOT;
-        }
+        std::string jailDoc = getJailDocRoot();
 
         const std::string tmpDir = FileUtil::createRandomDir(jailDoc);
         const Poco::Path filenameParam(pathSegments[pathSegments.size() - 1]);
