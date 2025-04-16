@@ -872,8 +872,8 @@ L.Map.include({
 		element.classList.add('hide');
 	},
 
-	_doOpenHelpFile: function (data, id, map) {
-		var productName;
+	_doOpenHelpFile: function(data, id, map) {
+		let productName;
 		if (window.ThisIsAMobileApp) {
 			productName = window.MobileAppName;
 		} else {
@@ -883,22 +883,15 @@ L.Map.include({
 					: 'Free Online Office';
 		}
 
-		map.uiManager.showYesNoButton(
-			id + '-box',
-			productName,
-			'',
-			_('OK'),
-			null,
-			null,
-			null,
-			true,
-		);
-		var box = document.getElementById(id + '-box');
-		var innerDiv = L.DomUtil.create('div', '', null);
-		box.insertBefore(innerDiv, box.firstChild);
-		innerDiv.innerHTML = data;
+		map.uiManager.showYesNoButton(id + '-box', productName, '', _('OK'), null, null, null, true);
+		app.layoutingService.appendLayoutingTask(() => {
+			const box = document.getElementById(id + '-box');
+			const innerDiv = L.DomUtil.create('div', '', null);
+			box.insertBefore(innerDiv, box.firstChild);
+			innerDiv.innerHTML = data;
 
-		this.onHelpOpen(id, map, productName);
+			this.onHelpOpen(id, map, productName);
+		});
 	},
 
 	showHelp: function (id) {
