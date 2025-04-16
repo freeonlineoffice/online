@@ -482,7 +482,6 @@ LOOL_JS_LST =\
 	src/control/Toolbar.js \
 	src/control/Signing.js \
 	src/control/Parts.js \
-	src/control/Scroll.js \
 	src/control/Styles.js \
 	src/control/Ruler.ts \
 	src/control/VRuler.ts \
@@ -600,7 +599,6 @@ LOOL_JS_LST =\
 	src/slideshow/operation/SScale.ts \
 	src/slideshow/operation/STranslate.ts \
 	src/dom/PosAnimation.js \
-	src/map/anim/Map.PanAnimation.js \
 	src/dom/PosAnimation.Timer.js \
 	src/control/Control.Scroll.Annotation.js \
 	src/main.js
