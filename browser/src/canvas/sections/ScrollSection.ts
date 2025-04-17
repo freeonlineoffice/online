@@ -137,8 +137,12 @@ export class ScrollSection extends CanvasSectionObject {
 		// Triggered by the document (e.g. search result out of the viewing area).
 		if (this.map.panBy) {
 			const offset = this.map.scrollOffset();
-			this.map.panBy(new L.Point(e.x - offset.x, e.y - offset.y));
+			this.moveMapBy(e.x - offset.x, e.y - offset.y);
 		}
+	}
+
+	public moveMapBy(cX: number, cY: number): void {
+		this.map.panBy(new L.Point(cX, cY));
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -167,7 +171,8 @@ export class ScrollSection extends CanvasSectionObject {
 			if (docTopLef[0] + diff < 0) {
 				e.x = Math.round(-1 * docTopLef[0] / app.dpiScale);
 			}
-			this.map.panBy(new L.Point(e.x, e.y));
+
+			this.moveMapBy(e.x, e.y);
 		}
 	}
 
@@ -766,7 +771,7 @@ export class ScrollSection extends CanvasSectionObject {
 				return false;
 		}
 
-		this.map.panBy(new L.Point(0, offset / app.dpiScale));
+		this.moveMapBy(0, offset / app.dpiScale);
 		this.onUpdateScrollOffset();
 
 		if (app.file.fileBasedView) this.map._docLayer._checkSelectedPart();
@@ -801,7 +806,7 @@ export class ScrollSection extends CanvasSectionObject {
 				return false;
 		}
 
-		this.map.panBy(new L.Point(offset / app.dpiScale, 0));
+		this.moveMapBy(offset / app.dpiScale, 0);
 		this.onUpdateScrollOffset();
 
 		if (!this.sectionProperties.drawHorizontalScrollBar) {
