@@ -1271,8 +1271,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
     std::weak_ptr<StreamSocket> socketWeak(socket);
 
     httpProbeSession->setConnectFailHandler(
-        [socketWeak, this] (const std::shared_ptr<http::Session>& probeSession){
-
+        [socketWeak, callbackUrlStr, this](const std::shared_ptr<http::Session>& probeSession)
+        {
             CheckStatus status = CheckStatus::UnspecifiedError;
 
             const auto result = probeSession->connectionResult();
@@ -1306,13 +1306,15 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
             std::shared_ptr<StreamSocket> destSocket = socketWeak.lock();
             if (!destSocket)
             {
-                LOG_ERR("Invalid socket while sending wopi access check result");
+                LOG_ERR("Invalid socket while sending wopi access check result for: "
+                        << callbackUrlStr);
                 return;
             }
             sendResult(destSocket, status);
     });
 
-    auto finishHandler = [socketWeak, this](const std::shared_ptr<http::Session>& probeSession)
+    auto finishHandler =
+        [socketWeak, callbackUrlStr, this](const std::shared_ptr<http::Session>& probeSession)
     {
         LOG_TRC("finishHandler ");
 
@@ -1362,7 +1364,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
         std::shared_ptr<StreamSocket> destSocket = socketWeak.lock();
         if (!destSocket)
         {
-            LOG_ERR("Invalid socket while sending wopi access check result");
+            LOG_ERR(
+                "Invalid socket while sending wopi access check result for: " << callbackUrlStr);
             return;
         }
         sendResult(destSocket, status);
