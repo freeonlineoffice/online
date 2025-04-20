@@ -4559,19 +4559,7 @@ void DocumentBroker::handleMediaRequest(const std::string_view range,
             // For now, we only support file:// schemes.
             // In the future, we may/should support http.
             std::string localPath = url.substr(sizeof("file:///") - 1);
-#if !MOBILEAPP
-            // We always extract media files in /tmp. Normally, we are in jail (chroot),
-            // and this would need to be accessed from WSD through the JailRoot path.
-            // But, when we have NoCapsForKit there is no jail, so the media file ends
-            // up in the host (AppImage) /tmp
-            std::string path = LOOLWSD::NoCapsForKit
-                                   ? "/" + localPath
-                                   : FileUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces,
-                                                                    LOOLWSD::ChildRoot + _jailId,
-                                                                    std::move(localPath));
-#else
-            const std::string path = getJailRoot() + "/" + localPath;
-#endif
+            std::string path = getAbsoluteMediaPath(std::move(localPath));
 
             auto session = std::make_shared<http::ServerSession>();
             session->asyncUpload(std::move(path), "video/mp4", range);
@@ -5416,7 +5404,11 @@ std::string DocumentBroker::getEmbeddedMediaPath(const std::string& id)
     }
 
     std::string localPath = url.substr(sizeof("file:///") - 1);
+    return getAbsoluteMediaPath(std::move(localPath));
+}
 
+std::string DocumentBroker::getAbsoluteMediaPath(std::string localPath)
+{
 #if !MOBILEAPP
     // We always extract media files in /tmp. Normally, we are in jail (chroot),
     // and this would need to be accessed from WSD through the JailRoot path.
