@@ -4194,10 +4194,11 @@ bool DocumentBroker::handleInput(const std::shared_ptr<Message>& message)
 {
     LOG_TRC("DocumentBroker handling child message: [" << message->abbr() << ']');
 
-#if !MOBILEAPP
-    if (LOOLWSD::TraceDumper)
-        LOOLWSD::dumpOutgoingTrace(getJailId(), "0", message->abbr());
-#endif
+    if constexpr (!Util::isMobileApp())
+    {
+        if (LOOLWSD::TraceDumper)
+            LOOLWSD::dumpOutgoingTrace(getJailId(), "0", message->abbr());
+    }
 
     if (_unitWsd && _unitWsd->filterLOKitMessage(message))
         return true;
@@ -4496,11 +4497,13 @@ bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> 
     if (!sendError)
         return false;
 
-#if !MOBILEAPP
-    // Bad request.
-    HttpHelper::sendError(http::StatusCode::BadRequest, socket, "Failed to find this clipboard",
-                          "Connection: close\r\n");
-#endif
+    if constexpr (!Util::isMobileApp())
+    {
+        // Bad request.
+        HttpHelper::sendError(http::StatusCode::BadRequest, socket, "Failed to find this clipboard",
+                              "Connection: close\r\n");
+    }
+
     socket->shutdown();
     socket->ignoreInput();
 
@@ -5316,23 +5319,24 @@ void DocumentBroker::dumpState(std::ostream& os)
     os << '\n';
     _poll->dumpState(os);
 
-#if !MOBILEAPP
-    // Bit nasty - need a cleaner way to dump state.
-    if (!_sessions.empty())
+    if constexpr (!Util::isMobileApp())
     {
-        os << "\n  Document broker sessions [" << _sessions.size()
-           << "], should duplicate the above:";
-        for (const auto& it : _sessions)
+        // Bit nasty - need a cleaner way to dump state.
+        if (!_sessions.empty())
         {
-            auto proto = it.second->getProtocol();
-            auto proxy = dynamic_cast<ProxyProtocolHandler*>(proto.get());
-            if (proxy)
-                proxy->dumpProxyState(os);
-            else
-                std::static_pointer_cast<MessageHandlerInterface>(it.second)->dumpState(os);
+            os << "\n  Document broker sessions [" << _sessions.size()
+               << "], should duplicate the above:";
+            for (const auto& it : _sessions)
+            {
+                auto proto = it.second->getProtocol();
+                auto proxy = dynamic_cast<ProxyProtocolHandler*>(proto.get());
+                if (proxy)
+                    proxy->dumpProxyState(os);
+                else
+                    std::static_pointer_cast<MessageHandlerInterface>(it.second)->dumpState(os);
+            }
         }
     }
-#endif
 
     os << "\n End DocumentBroker [" << _docId << "] Dump\n";
 }
@@ -5419,12 +5423,13 @@ std::string DocumentBroker::getEmbeddedMediaPath(const std::string& id)
     // But, when we have NoCapsForKit there is no jail, so the media file ends
     // up in the host (AppImage) /tmp
     if (LOOLWSD::NoCapsForKit)
-       return "/" + localPath;
-    return FileUtil::buildLocalPathToJail(
-        LOOLWSD::EnableMountNamespaces, LOOLWSD::ChildRoot + _jailId, std::move(localPath));
-#else
+        return "/" + localPath;
+
+    return FileUtil::buildLocalPathToJail(LOOLWSD::EnableMountNamespaces,
+                                          LOOLWSD::ChildRoot + _jailId, std::move(localPath));
+#else // MOBILEAPP
     return getJailRoot() + "/" + localPath;
-#endif
+#endif // MOBILEAPP
 }
 
 void DocumentBroker::onUrpMessage(const char* data, size_t len)
