@@ -3646,13 +3646,12 @@ std::string DocumentBroker::getJailRoot() const
 {
     if constexpr (!Util::isMobileApp())
     {
-        if (_jailId.empty())
+        if (!_jailId.empty())
         {
-            LOG_WRN("Trying to get the jail root of a not yet downloaded document.");
-            return std::string();
+            return Poco::Path(LOOLWSD::ChildRoot, _jailId).toString();
         }
 
-        return Poco::Path(LOOLWSD::ChildRoot, _jailId).toString();
+        LOG_WRN("Trying to get the jail root of a not yet downloaded document (no jailId)");
     }
 
     return std::string();
