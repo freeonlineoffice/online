@@ -74,6 +74,7 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
             HttpHelper::sendErrorAndShutdown(http::StatusCode::Unauthorized, socket);
             break;
 
+#if ENABLE_LOCAL_FILESYSTEM
         case StorageBase::StorageType::FileSystem:
         {
             LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
@@ -94,6 +95,8 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
             }
             break;
         }
+#endif // ENABLE_LOCAL_FILESYSTEM
+
 #if !MOBILEAPP
         case StorageBase::StorageType::Wopi:
             LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
