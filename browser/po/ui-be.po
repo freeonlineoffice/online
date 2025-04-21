@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 00:03+0200\n"
+"POT-Creation-Date: 2025-04-21 23:42+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/"
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Network Graph"
 msgstr ""
 
-#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:510
+#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:511
 #: src/canvas/sections/CommentSection.ts:155
 #: src/control/Control.Notebookbar.js:274
 #: src/control/Control.NotebookbarCalc.js:105
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:466
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:470
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr ""
@@ -227,7 +227,7 @@ msgstr ""
 msgid "Log Levels"
 msgstr ""
 
-#: admin/admin.strings.js:55 src/canvas/sections/CommentListSection.ts:161
+#: admin/admin.strings.js:55 src/canvas/sections/CommentListSection.ts:163
 #: src/control/Control.AlertDialog.js:23 src/control/Control.AlertDialog.js:29
 #: src/control/Control.AlertDialog.js:92 src/control/Control.AlertDialog.js:99
 #: src/control/Control.Zotero.js:183 src/core/Socket.js:426
@@ -288,7 +288,7 @@ msgstr ""
 #: admin/src/AdminClusterOverview.js:550 admin/src/AdminSocketBase.js:54
 #: admin/src/AdminSocketBase.js:65 admin/src/AdminSocketOverview.js:99
 #: admin/src/AdminSocketOverview.js:422 admin/src/AdminSocketSettings.js:36
-#: src/canvas/sections/CommentListSection.ts:1455
+#: src/canvas/sections/CommentListSection.ts:1458
 #: src/control/Control.AboutDialog.ts:161
 #: src/control/Control.AlertDialog.js:45
 #: src/control/Control.DocumentRepair.js:68
@@ -297,34 +297,34 @@ msgstr ""
 #: src/control/Control.ServerAuditDialog.ts:261
 #: src/control/Control.Tabs.js:376 src/control/Control.Tabs.js:385
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
-#: src/control/Parts.js:468 src/control/Permission.js:80
+#: src/control/Parts.js:471 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:890 src/control/Toolbar.js:1002
+#: src/control/Toolbar.js:886 src/control/Toolbar.js:995
 #: src/core/Socket.js:700 src/core/Socket.js:1165 src/core/Socket.js:1235
 #: src/core/Socket.js:1386 src/core/Socket.js:1390 src/docdispatcher.ts:548
-#: src/main.js:86 src/main.js:89 src/main.js:142 src/map/Clipboard.js:1257
-#: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:56
-#: src/map/handler/Map.SlideShow.js:169 src/map/handler/Map.SlideShow.js:297
-#: src/map/handler/Map.SlideShow.js:308 src/map/handler/Map.WOPI.js:681
-#: src/slideshow/SlideShowPresenter.ts:699
-#: src/slideshow/SlideShowPresenter.ts:714
-#: src/slideshow/SlideShowPresenter.ts:729
-#: src/slideshow/SlideShowPresenter.ts:752
+#: src/main.js:86 src/main.js:89 src/main.js:142 src/map/Clipboard.js:1262
+#: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:51
+#: src/map/handler/Map.SlideShow.js:164 src/map/handler/Map.SlideShow.js:292
+#: src/map/handler/Map.SlideShow.js:303 src/map/handler/Map.WOPI.js:681
+#: src/slideshow/SlideShowPresenter.ts:694
+#: src/slideshow/SlideShowPresenter.ts:709
+#: src/slideshow/SlideShowPresenter.ts:724
+#: src/slideshow/SlideShowPresenter.ts:747
 msgid "OK"
 msgstr ""
 
 #: admin/src/AdminClusterOverview.js:551 admin/src/AdminSocketOverview.js:100
 #: admin/src/AdminSocketOverview.js:423 admin/src/AdminSocketSettings.js:37
-#: src/canvas/sections/CommentListSection.ts:505
+#: src/canvas/sections/CommentListSection.ts:506
 #: src/canvas/sections/CommentSection.ts:154
 #: src/canvas/sections/CommentSection.ts:157
 #: src/control/Control.DocumentRepair.js:62
-#: src/control/Control.DownloadProgress.js:71
+#: src/control/Control.DownloadProgress.js:73
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.ts:1697 src/control/Control.UIManager.ts:1776
-#: src/control/Control.UIManager.ts:1928 src/control/Control.UIManager.ts:2106
-#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:997
+#: src/control/Control.UIManager.ts:1690 src/control/Control.UIManager.ts:1769
+#: src/control/Control.UIManager.ts:1921 src/control/Control.UIManager.ts:2099
+#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:990
 #: src/core/Socket.js:1411
 msgid "Cancel"
 msgstr ""
@@ -421,91 +421,91 @@ msgstr ""
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:160
+#: src/canvas/sections/CommentListSection.ts:162
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:161
+#: src/canvas/sections/CommentListSection.ts:163
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1162
+#: src/canvas/sections/CommentListSection.ts:1165
 msgid "Modify"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1168
+#: src/canvas/sections/CommentListSection.ts:1171
 #: src/canvas/sections/CommentSection.ts:158
 msgid "Reply"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1174
+#: src/canvas/sections/CommentListSection.ts:1177
 msgid "Remove"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1180
+#: src/canvas/sections/CommentListSection.ts:1183
 msgid "Remove Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1186
+#: src/canvas/sections/CommentListSection.ts:1189
 msgid "Resolve"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1186
+#: src/canvas/sections/CommentListSection.ts:1189
 msgid "Unresolve"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1192
+#: src/canvas/sections/CommentListSection.ts:1195
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1192
+#: src/canvas/sections/CommentListSection.ts:1195
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1198
+#: src/canvas/sections/CommentListSection.ts:1201
 msgid "Promote to top comment"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1204
+#: src/canvas/sections/CommentListSection.ts:1207
 msgid "Show on the side"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1204
+#: src/canvas/sections/CommentListSection.ts:1207
 msgid "Open in full view"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1232
-#: src/control/Control.JSDialogBuilder.js:1864
+#: src/canvas/sections/CommentListSection.ts:1235
+#: src/control/Control.JSDialogBuilder.js:1885
 #: src/layer/tile/CanvasTileLayer.js:4439
 #: src/layer/tile/CanvasTileLayer.js:4454
 msgid "Comment"
 msgstr "Заўвага"
 
-#: src/canvas/sections/CommentListSection.ts:1453
-#: src/canvas/sections/CommentListSection.ts:1466
+#: src/canvas/sections/CommentListSection.ts:1456
+#: src/canvas/sections/CommentListSection.ts:1469
 msgid "Comments Updated"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1454
+#: src/canvas/sections/CommentListSection.ts:1457
 msgid "Another user has removed this comment."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1467
+#: src/canvas/sections/CommentListSection.ts:1470
 msgid ""
 "Another user has updated the comment. Would you like to overwrite those "
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1468 src/core/Socket.js:1415
+#: src/canvas/sections/CommentListSection.ts:1471 src/core/Socket.js:1415
 msgid "Overwrite"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1469
+#: src/canvas/sections/CommentListSection.ts:1472
 msgid "Update"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1570
-#: src/canvas/sections/CommentListSection.ts:1642
+#: src/canvas/sections/CommentListSection.ts:1573
+#: src/canvas/sections/CommentListSection.ts:1647
 msgid "Autosaved"
 msgstr ""
 
@@ -513,22 +513,22 @@ msgstr ""
 msgid "Open menu"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:362
-#: src/canvas/sections/CommentSection.ts:363
+#: src/canvas/sections/CommentSection.ts:367
+#: src/canvas/sections/CommentSection.ts:368
 msgid "Accept change"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:369
-#: src/canvas/sections/CommentSection.ts:370
+#: src/canvas/sections/CommentSection.ts:374
+#: src/canvas/sections/CommentSection.ts:375
 msgid "Reject change"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:393
+#: src/canvas/sections/CommentSection.ts:398
 msgid "Resolved"
 msgstr ""
 
 #: src/canvas/sections/ShapeHandlesSection.ts:418
-msgid "Document contains unsupported video"
+msgid "Document contains unsupported media"
 msgstr ""
 
 #: src/canvas/sections/URLPopUpSection.ts:59
@@ -692,30 +692,30 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:70
+#: src/control/Control.DownloadProgress.js:72
 msgid "Downloading clipboard content"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:77
-#: src/control/Control.DownloadProgress.js:102
-#: src/control/Control.PartsPreview.js:279
+#: src/control/Control.DownloadProgress.js:79
+#: src/control/Control.DownloadProgress.js:104
+#: src/control/Control.PartsPreview.js:286
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:100
+#: src/control/Control.DownloadProgress.js:102
 msgid "Download completed and ready to be copied to clipboard."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:101
+#: src/control/Control.DownloadProgress.js:103
 msgid ""
 "From now on clipboard notifications will discreetly appear at the bottom."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:261
+#: src/control/Control.DownloadProgress.js:263
 msgid "Content copied to clipboard"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:291
+#: src/control/Control.DownloadProgress.js:293
 msgid "Download failed"
 msgstr ""
 
@@ -1060,95 +1060,95 @@ msgstr ""
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 
-#: src/control/Control.JSDialog.js:273
+#: src/control/Control.JSDialog.js:278
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:469
+#: src/control/Control.JSDialogBuilder.js:473
 msgid "Solid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:472
+#: src/control/Control.JSDialogBuilder.js:476
 msgid "Linear"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:475
+#: src/control/Control.JSDialogBuilder.js:479
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:478
+#: src/control/Control.JSDialogBuilder.js:482
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:481
+#: src/control/Control.JSDialogBuilder.js:485
 msgid "Ellipsoid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:485
+#: src/control/Control.JSDialogBuilder.js:489
 msgid "Quadratic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:488
+#: src/control/Control.JSDialogBuilder.js:492
 msgid "Square"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:491
+#: src/control/Control.JSDialogBuilder.js:495
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1403
+#: src/control/Control.JSDialogBuilder.js:1421
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1406
+#: src/control/Control.JSDialogBuilder.js:1424
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1409
+#: src/control/Control.JSDialogBuilder.js:1427
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1485
+#: src/control/Control.JSDialogBuilder.js:1503
 msgid "Select range"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1595
+#: src/control/Control.JSDialogBuilder.js:1616
 #: src/control/Control.NotebookbarBuilder.js:144
 msgid "Font Name"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1597 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1618 src/control/Toolbar.js:128
 msgid "Font Size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1599
+#: src/control/Control.JSDialogBuilder.js:1620
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1850
+#: src/control/Control.JSDialogBuilder.js:1871
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1853
+#: src/control/Control.JSDialogBuilder.js:1874
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1928
+#: src/control/Control.JSDialogBuilder.js:1949
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2494
+#: src/control/Control.JSDialogBuilder.js:2527
 #: src/control/Control.Menubar.ts:965
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2495
+#: src/control/Control.JSDialogBuilder.js:2528
 #: src/control/Control.Menubar.ts:968
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2515
+#: src/control/Control.JSDialogBuilder.js:2548
 msgid "Insert Table"
 msgstr ""
 
@@ -1824,7 +1824,7 @@ msgstr ""
 msgid "Gradient End"
 msgstr ""
 
-#: src/control/Control.Notebookbar.js:646
+#: src/control/Control.Notebookbar.js:661
 #: src/control/Control.NotebookbarCalc.js:154
 #: src/control/Control.NotebookbarDraw.js:184
 #: src/control/Control.NotebookbarImpress.js:68
@@ -1998,7 +1998,7 @@ msgstr ""
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:615 src/control/Toolbar.js:969
+#: src/control/Control.NotebookbarCalc.js:615 src/control/Toolbar.js:962
 msgid "Text"
 msgstr ""
 
@@ -2200,15 +2200,15 @@ msgstr ""
 msgid "Picture"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:180
+#: src/control/Control.PartsPreview.js:177
 msgid "preview of page "
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:245
+#: src/control/Control.PartsPreview.js:252
 msgid "Paste Slide"
 msgstr ""
 
-#: src/control/Control.PartsPreview.js:288
+#: src/control/Control.PartsPreview.js:296
 msgid "Paste"
 msgstr ""
 
@@ -2308,25 +2308,25 @@ msgstr ""
 msgid "Insert sheet"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:99
+#: src/control/Control.NavigatorPanel.ts:100
 msgid "Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:114
+#: src/control/Control.NavigatorPanel.ts:115
 msgid "Close Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:145
+#: src/control/Control.NavigatorPanel.ts:147
 #: src/slideshow/PresenterConsole.js:34
 msgid "Slides"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:150
+#: src/control/Control.NavigatorPanel.ts:152
 msgid "Outline"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:175
-#: src/control/Control.NavigatorPanel.ts:180
+#: src/control/Control.NavigatorPanel.ts:177
+#: src/control/Control.NavigatorPanel.ts:182
 msgid "Navigator"
 msgstr ""
 
@@ -2674,7 +2674,7 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:468
+#: src/control/Parts.js:471
 msgid "Show sheets"
 msgstr ""
 
@@ -2762,11 +2762,11 @@ msgstr ""
 msgid "Renaming..."
 msgstr ""
 
-#: src/control/Toolbar.js:953
+#: src/control/Toolbar.js:946
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:981
+#: src/control/Toolbar.js:974
 msgid "Link"
 msgstr ""
 
@@ -3408,33 +3408,33 @@ msgstr ""
 msgid "Failed to download clipboard, please re-copy"
 msgstr ""
 
-#: src/map/Clipboard.js:1275
+#: src/map/Clipboard.js:1280
 msgid "Please use the paste buttons on your on-screen keyboard."
 msgstr ""
 
-#: src/map/Clipboard.js:1331
+#: src/map/Clipboard.js:1336
 msgid ""
 "A download due to a large copy/paste operation has already started. Please, "
 "wait for the current download or cancel it before starting a new one"
 msgstr ""
 
-#: src/map/Clipboard.js:1353
+#: src/map/Clipboard.js:1358
 msgid "Paste from this document"
 msgstr ""
 
-#: src/map/Clipboard.js:1353
+#: src/map/Clipboard.js:1358
 msgid "Cancel paste special"
 msgstr ""
 
-#: src/map/Clipboard.js:1375
+#: src/map/Clipboard.js:1380
 msgid "Your browser has very limited access to the clipboard"
 msgstr ""
 
-#: src/map/Clipboard.js:1380
+#: src/map/Clipboard.js:1385
 msgid "Please use following combination to see more options:"
 msgstr ""
 
-#: src/map/Clipboard.js:1398
+#: src/map/Clipboard.js:1403
 msgid "Close popup to ignore paste special"
 msgstr ""
 
@@ -3442,11 +3442,11 @@ msgstr ""
 msgid "Initializing..."
 msgstr ""
 
-#: src/map/Map.js:462 src/map/Map.js:465 src/map/Map.js:468 src/map/Map.js:471
+#: src/map/Map.js:500 src/map/Map.js:503 src/map/Map.js:506 src/map/Map.js:509
 msgid "Last saved:"
 msgstr ""
 
-#: src/map/Map.js:1488
+#: src/map/Map.js:1486
 msgid "Please wait!"
 msgstr ""
 
@@ -3477,63 +3477,63 @@ msgstr ""
 msgid "Print dialog"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:55 src/slideshow/SlideShowPresenter.ts:696
+#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:691
 msgid "Empty Slide Show"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:167
-#: src/slideshow/SlideShowPresenter.ts:724
+#: src/map/handler/Map.SlideShow.js:162
+#: src/slideshow/SlideShowPresenter.ts:719
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:168
-#: src/slideshow/SlideShowPresenter.ts:726
+#: src/map/handler/Map.SlideShow.js:163
+#: src/slideshow/SlideShowPresenter.ts:721
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
 "sharing."
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:172
+#: src/map/handler/Map.SlideShow.js:167
 #: src/slideshow/SlideShowPresenter.ts:508
 msgid "Windowed Presentation: "
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:202
+#: src/map/handler/Map.SlideShow.js:197
 #: src/slideshow/SlideShowPresenter.ts:555
 msgid "Presenting in window"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:203
+#: src/map/handler/Map.SlideShow.js:198
 #: src/slideshow/SlideShowPresenter.ts:556
 msgid "Close Presentation"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:230
+#: src/map/handler/Map.SlideShow.js:225
 msgid "Presenting in fullscreen"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:231
+#: src/map/handler/Map.SlideShow.js:226
 msgid "End Presentation"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:295
-#: src/slideshow/SlideShowPresenter.ts:711
+#: src/map/handler/Map.SlideShow.js:290
+#: src/slideshow/SlideShowPresenter.ts:706
 msgid "Already presenting"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:296
-#: src/slideshow/SlideShowPresenter.ts:712
+#: src/map/handler/Map.SlideShow.js:291
+#: src/slideshow/SlideShowPresenter.ts:707
 msgid "You are already presenting this document"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:306
-#: src/slideshow/SlideShowPresenter.ts:749
+#: src/map/handler/Map.SlideShow.js:301
+#: src/slideshow/SlideShowPresenter.ts:744
 msgid "Presentation disabled"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:307
-#: src/slideshow/SlideShowPresenter.ts:750
+#: src/map/handler/Map.SlideShow.js:302
+#: src/slideshow/SlideShowPresenter.ts:745
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
