@@ -54,7 +54,7 @@ void ProxyRequestHandler::handleRequest(const std::string& relPath,
                 std::shared_ptr<StreamSocket> destSocket = socketWeak.lock();
                 if (!destSocket)
                 {
-                    const std::string uriAnonym = COOLWSD::anonymizeUrl(httpSession->getUrl());
+                    const std::string uriAnonym = LOOLWSD::anonymizeUrl(httpSession->getUrl());
                     LOG_ERR("Invalid socket ProxyRequestHandler while handling [" << uriAnonym << ']');
                     return;
                 }
@@ -101,7 +101,7 @@ void ProxyRequestHandler::handleRequest(const std::string& relPath,
             std::shared_ptr<StreamSocket> destSocket = socketWeak.lock();
             if (!destSocket)
             {
-                const std::string uriAnonym = COOLWSD::anonymizeUrl(session->getUrl());
+                const std::string uriAnonym = LOOLWSD::anonymizeUrl(session->getUrl());
                 LOG_ERR("Invalid socket ProxyRequestHandler while handling [" << uriAnonym << ']');
                 return;
             }
