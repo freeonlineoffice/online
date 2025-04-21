@@ -556,14 +556,10 @@ class Dispatcher {
 
 		this.actionsMap['previouspart'] = function () {
 			app.map._docLayer._preview._scrollViewByDirection('prev');
-			if (app.file.fileBasedView)
-				app.map._docLayer._checkSelectedPart();
 		};
 
 		this.actionsMap['nextpart'] = function () {
 			app.map._docLayer._preview._scrollViewByDirection('next');
-			if (app.file.fileBasedView)
-				app.map._docLayer._checkSelectedPart();
 		};
 
 		this.actionsMap['lastpart'] = function () {
@@ -572,7 +568,6 @@ class Dispatcher {
 				app.map._docLayer._preview._scrollViewToPartPosition(
 					partToSelect,
 				);
-				app.map._docLayer._checkSelectedPart();
 			}
 		};
 
@@ -582,7 +577,6 @@ class Dispatcher {
 				app.map._docLayer._preview._scrollViewToPartPosition(
 					partToSelect,
 				);
-				app.map._docLayer._checkSelectedPart();
 			}
 		};
 
