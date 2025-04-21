@@ -337,7 +337,10 @@ button#button2.ui-pushbutton.jsdialog.sidebar {
 	margin-block-end: 8px;
 }
 
-#NavigatorPanel div.selected:not(.ui-treeview-expandable-with-icon):not(:empty):not([aria-level='1'])::before {
+#NavigatorPanel
+	div.selected:not(.ui-treeview-expandable-with-icon):not(:empty):not(
+		[aria-level='1']
+	)::before {
 	/* good to move this into css var*/
 	font-size: 17px;
 	font-weight: 500;
@@ -459,7 +462,7 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 	background-color: transparent;
 	cursor: pointer;
 }
-[data-theme='dark']  .close-navigation-button {
+[data-theme='dark'] .close-navigation-button {
 	background-image: url('images/dark/closedoc.svg');
 }
 
@@ -502,7 +505,7 @@ span.jsdialog.sidebar.ui-treeview-notexpandable {
 #navigation-sidebar.visible {
 	display: flex;
 	flex-direction: column;
-	background-color: var(--color-background-lighter)
+	background-color: var(--color-background-lighter);
 }
 /* Wrapper for the Toggle Button */
 #toggle-sidebar-wrapper {

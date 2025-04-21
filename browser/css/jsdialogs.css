@@ -1908,7 +1908,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 		animation: fade reverse 0.15s;
 	}
 	.fsdialog-overlay {
-		animation: fade reverse .3s;
+		animation: fade reverse 0.3s;
 	}
 }
 

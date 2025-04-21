@@ -581,7 +581,7 @@ body {
 	-ms-user-select: text;
 	z-index: 10;
 	width: 250px;
-	transition: left .25s;
+	transition: left 0.25s;
 }
 
 .lool-annotation.annotation-pop-up {

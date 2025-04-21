@@ -50,7 +50,8 @@ class LayoutingService {
 	}
 
 	public cancelFrame() {
-		if (this._requestedFrame) window.cancelAnimationFrame(this._requestedFrame);
+		if (this._requestedFrame)
+			window.cancelAnimationFrame(this._requestedFrame);
 		this._requestedFrame = null;
 	}
 
