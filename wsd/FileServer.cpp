@@ -982,9 +982,9 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             return false;
         }
 
-        if (endPoint == "fetch-wordbook")
+        if (endPoint == "fetch-settings-file")
         {
-            fetchWordbook(request, message, socket);
+            fetchSettingFile(request, message, socket);
             return true;
         }
 
@@ -2109,7 +2109,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     httpSession->asyncRequest(httpRequest, LOOLWSD::getWebServerPoll());
 }
 
-void FileServerRequestHandler::fetchWordbook(const Poco::Net::HTTPRequest& request,
+void FileServerRequestHandler::fetchSettingFile(const Poco::Net::HTTPRequest& request,
                                                  Poco::MemoryInputStream& message,
                                                  const std::shared_ptr<StreamSocket>& socket)
 {
@@ -2120,7 +2120,7 @@ void FileServerRequestHandler::fetchWordbook(const Poco::Net::HTTPRequest& reque
 
     if (fileUrl.empty() || accessToken.empty())
     {
-        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, "Failed to fetch dictionaries",
+        sendError(http::StatusCode::BadRequest, getRequestPath(request), socket, "Failed to fetch setting file",
                   "Missing fileUrl or accessToken in the payload");
         return;
     }
@@ -2151,7 +2151,7 @@ void FileServerRequestHandler::fetchWordbook(const Poco::Net::HTTPRequest& reque
     clientResponse.set("Cache-Control", "no-cache");
     clientResponse.setBody(httpResponse->getBody());
     socket->send(clientResponse);
-    LOG_DBG("Successfully fetched dictionary file from [" << uriAnonym << "]");
+    LOG_DBG("Successfully fetched setting file from [" << uriAnonym << "]");
 }
 
 void FileServerRequestHandler::deleteWopiSettingConfigs(
