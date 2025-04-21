@@ -30,7 +30,7 @@ public class COWebViewClient extends WebViewClient {
     @Nullable
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-        if (!Objects.equals(request.getUrl().getScheme(), "cool")) {
+        if (!Objects.equals(request.getUrl().getScheme(), "lool")) {
             return super.shouldInterceptRequest(view, request);
         }
 
