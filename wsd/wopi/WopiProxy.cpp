@@ -36,7 +36,7 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
     std::shared_ptr<StreamSocket> socket = _socket.lock();
     if (!socket)
     {
-        LOG_ERR("Invalid socket while handling wopi proxy request for [" << COOLWSD::anonymizeUrl(url) << ']');
+        LOG_ERR("Invalid socket while handling wopi proxy request for [" << LOOLWSD::anonymizeUrl(url) << ']');
         return;
     }
 
