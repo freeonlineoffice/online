@@ -1154,20 +1154,16 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
 
     LOG_DBG("Wopi Access Check request: " << request.getURI());
 
-    Poco::MemoryInputStream startmessage(&socket->getInBuffer()[0], socket->getInBuffer().size());
-    StreamSocket::MessageMap map;
-
-    Poco::JSON::Object::Ptr jsonObject;
-
     std::string text(std::istreambuf_iterator<char>(message), {});
     LOG_TRC("Wopi Access Check request text: " << text);
 
     std::string callbackUrlStr;
 
+    Poco::JSON::Object::Ptr jsonObject;
     if (!JsonUtil::parseJSON(text, jsonObject))
     {
-        LOG_WRN_S("Wopi Access Check request error, json object expected got ["
-                  << text << "] on request to URL: " << request.getURI());
+        LOG_WRN("Wopi Access Check request error, json object expected got ["
+                << text << "] on request to URL: " << request.getURI());
 
         HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
         return false;
@@ -1175,8 +1171,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
 
     if (!JsonUtil::findJSONValue(jsonObject, "callbackUrl", callbackUrlStr))
     {
-        LOG_WRN_S("Wopi Access Check request error, missing key callbackUrl expected got ["
-                  << text << "] on request to URL: " << request.getURI());
+        LOG_WRN("Wopi Access Check request error, missing key callbackUrl expected got ["
+                << text << "] on request to URL: " << request.getURI());
 
         HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
         return false;
@@ -1186,12 +1182,13 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
 
     std::string scheme, host, portStr, pathAndQuery;
     if (!net::parseUri(callbackUrlStr, scheme, host, portStr, pathAndQuery)) {
-        LOG_WRN_S("Wopi Access Check request error, invalid url ["
-                  << callbackUrlStr << "] on request to URL: " << request.getURI() << scheme);
+        LOG_WRN("Wopi Access Check request error, invalid url ["
+                << callbackUrlStr << "] on request to URL: " << request.getURI() << scheme);
 
         HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
         return false;
     }
+
     http::Session::Protocol protocol = http::Session::Protocol::HttpSsl;
     ulong port = 443;
     if (scheme == "https://" || scheme.empty()) {
@@ -1200,8 +1197,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
         protocol = http::Session::Protocol::HttpUnencrypted;
         port = 80;
     } else {
-        LOG_WRN_S("Wopi Access Check request error, bad request protocol ["
-                  << text << "] on request to URL: " << request.getURI() << scheme);
+        LOG_WRN("Wopi Access Check request error, bad request protocol ["
+                << text << "] on request to URL: " << request.getURI() << scheme);
 
         HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
         return false;
@@ -1216,9 +1213,8 @@ bool ClientRequestDispatcher::handleWopiAccessCheckRequest(const Poco::Net::HTTP
             HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
             return false;
         } catch(std::exception &exception) {
-
-            LOG_WRN_S("Wopi Access Check request error, bad request invalid porl ["
-                  << text << "] on request to URL: " << request.getURI());
+            LOG_WRN("Wopi Access Check request error, bad request invalid porl ["
+                    << text << "] on request to URL: " << request.getURI());
 
             HttpHelper::sendErrorAndShutdown(http::StatusCode::BadRequest, socket);
             return false;
