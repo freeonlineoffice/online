@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 23:42+0200\n"
+"POT-Creation-Date: 2025-04-23 21:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,7 +141,7 @@ msgid "Network Graph"
 msgstr ""
 
 #: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:511
-#: src/canvas/sections/CommentSection.ts:155
+#: src/canvas/sections/CommentSection.ts:164
 #: src/control/Control.Notebookbar.js:274
 #: src/control/Control.NotebookbarCalc.js:105
 #: src/control/Control.NotebookbarDraw.js:19
@@ -288,7 +288,7 @@ msgstr ""
 #: admin/src/AdminClusterOverview.js:550 admin/src/AdminSocketBase.js:54
 #: admin/src/AdminSocketBase.js:65 admin/src/AdminSocketOverview.js:99
 #: admin/src/AdminSocketOverview.js:422 admin/src/AdminSocketSettings.js:36
-#: src/canvas/sections/CommentListSection.ts:1458
+#: src/canvas/sections/CommentListSection.ts:1457
 #: src/control/Control.AboutDialog.ts:161
 #: src/control/Control.AlertDialog.js:45
 #: src/control/Control.DocumentRepair.js:68
@@ -306,18 +306,18 @@ msgstr ""
 #: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:51
 #: src/map/handler/Map.SlideShow.js:164 src/map/handler/Map.SlideShow.js:292
 #: src/map/handler/Map.SlideShow.js:303 src/map/handler/Map.WOPI.js:681
-#: src/slideshow/SlideShowPresenter.ts:694
-#: src/slideshow/SlideShowPresenter.ts:709
-#: src/slideshow/SlideShowPresenter.ts:724
-#: src/slideshow/SlideShowPresenter.ts:747
+#: src/slideshow/SlideShowPresenter.ts:701
+#: src/slideshow/SlideShowPresenter.ts:716
+#: src/slideshow/SlideShowPresenter.ts:731
+#: src/slideshow/SlideShowPresenter.ts:754
 msgid "OK"
 msgstr ""
 
 #: admin/src/AdminClusterOverview.js:551 admin/src/AdminSocketOverview.js:100
 #: admin/src/AdminSocketOverview.js:423 admin/src/AdminSocketSettings.js:37
 #: src/canvas/sections/CommentListSection.ts:506
-#: src/canvas/sections/CommentSection.ts:154
-#: src/canvas/sections/CommentSection.ts:157
+#: src/canvas/sections/CommentSection.ts:163
+#: src/canvas/sections/CommentSection.ts:166
 #: src/control/Control.DocumentRepair.js:62
 #: src/control/Control.DownloadProgress.js:73
 #: src/control/Control.LanguageDialog.js:103
@@ -435,7 +435,7 @@ msgid "Modify"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1171
-#: src/canvas/sections/CommentSection.ts:158
+#: src/canvas/sections/CommentSection.ts:167
 msgid "Reply"
 msgstr ""
 
@@ -477,54 +477,54 @@ msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
 #: src/control/Control.JSDialogBuilder.js:1885
-#: src/layer/tile/CanvasTileLayer.js:4439
-#: src/layer/tile/CanvasTileLayer.js:4454
+#: src/layer/tile/CanvasTileLayer.js:4407
+#: src/layer/tile/CanvasTileLayer.js:4422
 msgid "Comment"
 msgstr "கருத்துரை"
 
-#: src/canvas/sections/CommentListSection.ts:1456
-#: src/canvas/sections/CommentListSection.ts:1469
+#: src/canvas/sections/CommentListSection.ts:1455
+#: src/canvas/sections/CommentListSection.ts:1468
 msgid "Comments Updated"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1457
+#: src/canvas/sections/CommentListSection.ts:1456
 msgid "Another user has removed this comment."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1470
+#: src/canvas/sections/CommentListSection.ts:1469
 msgid ""
 "Another user has updated the comment. Would you like to overwrite those "
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1471 src/core/Socket.js:1415
+#: src/canvas/sections/CommentListSection.ts:1470 src/core/Socket.js:1415
 msgid "Overwrite"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1472
+#: src/canvas/sections/CommentListSection.ts:1471
 msgid "Update"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1573
-#: src/canvas/sections/CommentListSection.ts:1647
+#: src/canvas/sections/CommentListSection.ts:1572
+#: src/canvas/sections/CommentListSection.ts:1646
 msgid "Autosaved"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:301
+#: src/canvas/sections/CommentSection.ts:310
 msgid "Open menu"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:367
-#: src/canvas/sections/CommentSection.ts:368
+#: src/canvas/sections/CommentSection.ts:376
+#: src/canvas/sections/CommentSection.ts:377
 msgid "Accept change"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:374
-#: src/canvas/sections/CommentSection.ts:375
+#: src/canvas/sections/CommentSection.ts:383
+#: src/canvas/sections/CommentSection.ts:384
 msgid "Reject change"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:398
+#: src/canvas/sections/CommentSection.ts:407
 msgid "Resolved"
 msgstr ""
 
@@ -1063,7 +1063,7 @@ msgstr ""
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 
-#: src/control/Control.JSDialog.js:278
+#: src/control/Control.JSDialog.js:293
 msgid "Close dialog"
 msgstr ""
 
@@ -3405,16 +3405,16 @@ msgstr ""
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1918
+#: src/layer/tile/CanvasTileLayer.js:1898
 #, fuzzy
 msgid "Functions"
 msgstr "செயலாற்றி"
 
-#: src/layer/tile/CanvasTileLayer.js:2239
+#: src/layer/tile/CanvasTileLayer.js:2219
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4473
+#: src/layer/tile/CanvasTileLayer.js:4441
 #, fuzzy
 msgid "No Comments"
 msgstr "கருத்துரை"
@@ -3474,11 +3474,11 @@ msgstr ""
 msgid "Initializing..."
 msgstr ""
 
-#: src/map/Map.js:500 src/map/Map.js:503 src/map/Map.js:506 src/map/Map.js:509
+#: src/map/Map.js:491 src/map/Map.js:494 src/map/Map.js:497 src/map/Map.js:500
 msgid "Last saved:"
 msgstr ""
 
-#: src/map/Map.js:1486
+#: src/map/Map.js:1476
 msgid "Please wait!"
 msgstr ""
 
@@ -3510,17 +3510,17 @@ msgstr ""
 msgid "Print dialog"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:691
+#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:698
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:162
-#: src/slideshow/SlideShowPresenter.ts:719
+#: src/slideshow/SlideShowPresenter.ts:726
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:163
-#: src/slideshow/SlideShowPresenter.ts:721
+#: src/slideshow/SlideShowPresenter.ts:728
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -3528,17 +3528,17 @@ msgid ""
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:167
-#: src/slideshow/SlideShowPresenter.ts:508
+#: src/slideshow/SlideShowPresenter.ts:515
 msgid "Windowed Presentation: "
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:197
-#: src/slideshow/SlideShowPresenter.ts:555
+#: src/slideshow/SlideShowPresenter.ts:562
 msgid "Presenting in window"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:198
-#: src/slideshow/SlideShowPresenter.ts:556
+#: src/slideshow/SlideShowPresenter.ts:563
 msgid "Close Presentation"
 msgstr ""
 
@@ -3551,22 +3551,22 @@ msgid "End Presentation"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:290
-#: src/slideshow/SlideShowPresenter.ts:706
+#: src/slideshow/SlideShowPresenter.ts:713
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:291
-#: src/slideshow/SlideShowPresenter.ts:707
+#: src/slideshow/SlideShowPresenter.ts:714
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:301
-#: src/slideshow/SlideShowPresenter.ts:744
+#: src/slideshow/SlideShowPresenter.ts:751
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:302
-#: src/slideshow/SlideShowPresenter.ts:745
+#: src/slideshow/SlideShowPresenter.ts:752
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
@@ -3645,7 +3645,7 @@ msgid "Repeat in {0} seconds"
 msgstr ""
 
 #: src/slideshow/PresenterConsole.js:1442
-#: src/slideshow/SlideShowPresenter.ts:401
+#: src/slideshow/SlideShowPresenter.ts:408
 msgid "Click to exit presentation..."
 msgstr ""
 
