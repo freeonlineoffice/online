@@ -317,10 +317,6 @@ L.TileSectionManager = L.Class.extend({
 		);
 	},
 
-	dispose: function () {
-		this.stopUpdates();
-	},
-
 	getSplitPos: function () {
 		var splitPanesContext = this._layer.getSplitPanesContext();
 		return splitPanesContext
