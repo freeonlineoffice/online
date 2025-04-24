@@ -7,8 +7,16 @@
 
 #pragma once
 
+#include <chrono>
+#include <memory>
 #include <string>
-#include "Socket.hpp"
+#include <unordered_map>
+
+class StreamSocket;
+namespace http
+{
+class Response;
+}
 
 class ProxyRequestHandler
 {
@@ -16,11 +24,14 @@ public:
     static void handleRequest(const std::string& relPath,
                               const std::shared_ptr<StreamSocket>& socket,
                               const std::string& serverUri);
-    static std::string getProxyRatingServer() { return ProxyRatingServer; }
+    static const std::string& getProxyRatingServer()
+    {
+        static const std::string ProxyRatingServer = "https://rating.collaboraonline.com";
+        return ProxyRatingServer;
+    }
 
 private:
     static std::chrono::system_clock::time_point MaxAge;
-    static constexpr auto ProxyRatingServer = "https://rating.collaboraonline.com";
     static std::unordered_map<std::string, std::shared_ptr<http::Response>> CacheFileHash;
 };
 
