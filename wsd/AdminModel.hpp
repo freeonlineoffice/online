@@ -24,7 +24,7 @@
 struct DocumentAggregateStats;
 
 /// A client view in Admin controller.
-class View
+class View final
 {
 public:
     View(std::string sessionId, std::string userName, std::string userId, bool readOnly)
@@ -125,7 +125,7 @@ private:
 };
 
 /// Containing basic information about document
-class DocBasicInfo
+class DocBasicInfo final
 {
     std::string _docKey;
     std::time_t _idleTime;
@@ -151,7 +151,7 @@ public:
 };
 
 /// A document in Admin controller.
-class Document
+class Document final
 {
     // cf. FILE* member.
     Document(const Document &) = delete;
@@ -308,7 +308,7 @@ private:
 };
 
 /// An Admin session subscriber.
-class Subscriber
+class Subscriber final
 {
 public:
     explicit Subscriber(std::weak_ptr<WebSocketHandler> ws)
@@ -344,7 +344,7 @@ private:
 };
 
 /// The Admin controller implementation.
-class AdminModel
+class AdminModel final
 {
     AdminModel(const AdminModel &) = delete;
     AdminModel& operator = (const AdminModel &) = delete;
@@ -497,11 +497,11 @@ private:
     /// We check the owner even in the release builds, needs to be always correct.
     std::thread::id _owner;
 
-    std::string _currentMigDoc = std::string();
+    std::string _currentMigDoc;
 
-    std::string _currentMigToken = std::string();
+    std::string _currentMigToken;
 
-    std::string _targetMigServerId = std::string();
+    std::string _targetMigServerId;
 
     unsigned _memStatsSize = 100;
     unsigned _cpuStatsSize = 100;
