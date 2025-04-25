@@ -242,6 +242,7 @@ class TileManager {
 	// The tile expansion ratio that the visible tile area will be expanded towards when
 	// updating during scrolling
 	private static directionalTileExpansion: number = 2;
+	private static pausedForDehydration: boolean = false;
 
 	//private static _debugTime: any = {}; Reserved for future.
 
@@ -495,6 +496,26 @@ class TileManager {
 					var callback = this.transactionCallbacks.pop();
 					if (callback) callback();
 				}
+			}
+		}
+
+		if (this.pausedForDehydration) {
+			// Check if all current tiles are accounted for and resume drawing if so.
+			let shouldUnpause = true;
+			for (const key in this.tiles) {
+				const tile = this.tiles[key];
+				if (
+					tile.distanceFromView === 0 &&
+					!tile.needsFetch() &&
+					tile.hasPendingUpdate()
+				) {
+					shouldUnpause = false;
+					break;
+				}
+			}
+			if (shouldUnpause) {
+				app.sectionContainer.resumeDrawing();
+				this.pausedForDehydration = false;
 			}
 		}
 
@@ -1576,12 +1597,11 @@ class TileManager {
 		}
 
 		// If we dehydrated a visible tile, wait for it to be ready before drawing
-		if (dehydratedVisible) {
+		if (dehydratedVisible && !this.pausedForDehydration) {
 			app.sectionContainer.pauseDrawing();
-			this.endTransaction(() => {
-				app.sectionContainer.resumeDrawing();
-			});
-		} else this.endTransaction(null);
+			this.pausedForDehydration = true;
+		}
+		this.endTransaction(null);
 
 		return queue;
 	}
