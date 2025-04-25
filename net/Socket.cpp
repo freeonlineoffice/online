@@ -622,6 +622,9 @@ int SocketPoll::poll(int64_t timeoutMaxMicroS, bool justPoll)
             }
         }
 
+        pendingTransfers.clear();
+        invoke.clear();
+
         try
         {
             wakeupHook();
