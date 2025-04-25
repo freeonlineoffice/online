@@ -69,12 +69,11 @@ void Document::setViewLoadDuration(const std::string& sessionId, std::chrono::mi
         it->second.setLoadDuration(viewLoadDuration);
 }
 
-std::pair<std::time_t, std::string> Document::getSnapshot() const
+std::string Document::getSnapshot(std::time_t now) const
 {
-    std::time_t ct = std::time(nullptr);
     std::ostringstream oss;
     oss << '{';
-    oss << "\"creationTime\"" << ':' << ct << ',';
+    oss << "\"creationTime\"" << ':' << now << ',';
     oss << "\"memoryDirty\"" << ':' << getMemoryDirty() << ',';
     oss << "\"activeViews\"" << ':' << getActiveViews() << ',';
 
@@ -94,7 +93,7 @@ std::pair<std::time_t, std::string> Document::getSnapshot() const
 
     oss << "\"lastActivity\"" << ':' << _lastActivity;
     oss << '}';
-    return std::make_pair(ct, oss.str());
+    return oss.str();
 }
 
 const std::string Document::getHistory() const
@@ -110,7 +109,7 @@ const std::string Document::getHistory() const
     std::string separator;
     for (const auto& s : _snapshots)
     {
-        oss << separator << s.second;
+        oss << separator << s;
         separator = ",";
     }
     oss << "]}";
@@ -119,9 +118,11 @@ const std::string Document::getHistory() const
 
 void Document::takeSnapshot()
 {
-    std::pair<std::time_t, std::string> p = getSnapshot();
-    auto insPoint = _snapshots.upper_bound(p.first);
-    _snapshots.insert(insPoint, p);
+    std::time_t now = std::time(nullptr);
+    if (now == _lastSnapshotTime)
+        return;
+    _snapshots.push_back(getSnapshot(now));
+    _lastSnapshotTime = now;
 }
 
 std::string Document::to_string() const
