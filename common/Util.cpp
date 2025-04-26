@@ -106,6 +106,7 @@ namespace Util
         // N.B. Always reseed after getting forked!
         void reseed()
         {
+            std::unique_lock<std::mutex> lock(_rngMutex);
             _rng.seed(rng::getSeed());
         }
 
