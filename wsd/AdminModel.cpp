@@ -304,7 +304,7 @@ std::string AdminModel::query(const std::string& command)
 }
 
 /// Returns memory consumed by all active loolkit processes
-unsigned AdminModel::getKitsMemoryUsage()
+unsigned AdminModel::getKitsMemoryUsage() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -332,7 +332,7 @@ unsigned AdminModel::getKitsMemoryUsage()
     return totalMem;
 }
 
-size_t AdminModel::getKitsJiffies()
+size_t AdminModel::getKitsJiffies() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -679,7 +679,7 @@ void AdminModel::removeDocument(const std::string& docKey)
     }
 }
 
-std::string AdminModel::getMemStats()
+std::string AdminModel::getMemStats() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -692,7 +692,7 @@ std::string AdminModel::getMemStats()
     return oss.str();
 }
 
-std::string AdminModel::getCpuStats()
+std::string AdminModel::getCpuStats() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -705,7 +705,7 @@ std::string AdminModel::getCpuStats()
     return oss.str();
 }
 
-std::string AdminModel::getSentActivity()
+std::string AdminModel::getSentActivity() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -718,7 +718,7 @@ std::string AdminModel::getSentActivity()
     return oss.str();
 }
 
-std::string AdminModel::getRecvActivity()
+std::string AdminModel::getRecvActivity() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -731,7 +731,7 @@ std::string AdminModel::getRecvActivity()
     return oss.str();
 }
 
-std::string AdminModel::getConnectionActivity()
+std::string AdminModel::getConnectionActivity() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -744,7 +744,7 @@ std::string AdminModel::getConnectionActivity()
     return oss.str();
 }
 
-unsigned AdminModel::getTotalActiveViews()
+unsigned AdminModel::getTotalActiveViews() const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -1142,7 +1142,7 @@ struct KitProcStats
     AggregateStats _cpuTime;
 };
 
-void AdminModel::CalcDocAggregateStats(DocumentAggregateStats& stats)
+void AdminModel::CalcDocAggregateStats(DocumentAggregateStats& stats) const
 {
     for (auto& d : _documents)
         stats.Update(*d.second, true);
@@ -1173,7 +1173,7 @@ void PrintKitAggregateMetrics(std::ostringstream &oss, const char* name, const c
     values.Print(oss, prefix, unit);
 }
 
-void AdminModel::getMetrics(std::ostringstream &oss)
+void AdminModel::getMetrics(std::ostringstream& oss) const
 {
     ASSERT_CORRECT_THREAD_OWNER(_owner);
 
@@ -1354,7 +1354,7 @@ void AdminModel::sendMigrateMsgAfterSave(bool lastSaveSuccessful, const std::str
     LOOLWSD::alertUserInternal(docKey, oss.str());
 }
 
-std::string AdminModel::getWopiSrcMap()
+std::string AdminModel::getWopiSrcMap() const
 {
     std::ostringstream oss;
     oss << "wopiSrcMap: {";
@@ -1391,9 +1391,9 @@ void AdminModel::resetMigratingInfo()
     _targetMigServerId = std::string();
 }
 
-std::string AdminModel::getFilename(int pid)
+std::string AdminModel::getFilename(int pid) const
 {
-    for (auto& it : _documents)
+    for (const auto& it : _documents)
     {
         if (it.second->getPid() == pid)
         {
