@@ -71,11 +71,9 @@ class HTTPServerTest : public CPPUNIT_NS::TestFixture
     void testRenderSearchResult();
 
 protected:
-    void assertHTTPFilesExist(const Poco::URI& uri,
-                              Poco::RegularExpression& expr,
-                              const std::string& html,
-                              const std::string& mimetype,
-                              const std::string& testname);
+    void assertHTTPFilesExist(const Poco::URI& uri, Poco::RegularExpression& expr,
+                              const std::string& html, const std::string& mimetype,
+                              const std::string_view testname);
 
 public:
     HTTPServerTest()
@@ -129,7 +127,7 @@ public:
 
 void HTTPServerTest::testLoolGet()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const auto pathAndQuery = "/browser/dist/lool.html?access_token=111111111";
     const std::shared_ptr<const http::Response> httpResponse
@@ -150,7 +148,7 @@ void HTTPServerTest::testLoolGet()
 
 void HTTPServerTest::testLoolPostPoco()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 
@@ -204,7 +202,7 @@ void HTTPServerTest::testLoolPostPoco()
 
 void HTTPServerTest::testLoolPost()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const auto pathAndQuery = "/browser/dist/"
                               "lool.html?WOPISrc=https%3A%2F%2Flocalhost%2Fnextcloud%2Findex.php%"
@@ -273,7 +271,7 @@ void HTTPServerTest::testLoolPost()
 
 void HTTPServerTest::assertHTTPFilesExist(const Poco::URI& uri, Poco::RegularExpression& expr,
                                           const std::string& html, const std::string& mimetype,
-                                          const std::string& testname)
+                                          const std::string_view testname)
 {
     Poco::RegularExpression::MatchVec matches;
     bool found = false;
@@ -311,7 +309,7 @@ void HTTPServerTest::assertHTTPFilesExist(const Poco::URI& uri, Poco::RegularExp
 
 void HTTPServerTest::testScriptsAndLinksGet()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 
@@ -334,7 +332,7 @@ void HTTPServerTest::testScriptsAndLinksGet()
 
 void HTTPServerTest::testScriptsAndLinksPost()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     std::unique_ptr<Poco::Net::HTTPClientSession> session(helpers::createSession(_uri));
 

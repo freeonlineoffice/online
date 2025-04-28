@@ -46,7 +46,7 @@ class HttpWhiteBoxTests : public CPPUNIT_NS::TestFixture
 
 void HttpWhiteBoxTests::testStatusLineParserValidComplete()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const unsigned expVersionMajor = 1;
     const unsigned expVersionMinor = 1;
@@ -73,7 +73,7 @@ void HttpWhiteBoxTests::testStatusLineParserValidComplete()
 
 void HttpWhiteBoxTests::testStatusLineParserValidComplete_NoReason()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const unsigned expVersionMajor = 1;
     const unsigned expVersionMinor = 1;
@@ -100,7 +100,7 @@ void HttpWhiteBoxTests::testStatusLineParserValidComplete_NoReason()
 
 void HttpWhiteBoxTests::testStatusLineParserValidIncomplete()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const unsigned expVersionMajor = 1;
     const unsigned expVersionMinor = 1;
@@ -136,7 +136,7 @@ void HttpWhiteBoxTests::testStatusLineParserValidIncomplete()
 
 void HttpWhiteBoxTests::testStatusLineSerialize()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     http::StatusLine statusLine(200);
     Buffer buf;
@@ -147,7 +147,7 @@ void HttpWhiteBoxTests::testStatusLineSerialize()
 
 void HttpWhiteBoxTests::testHeader()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     http::Header header;
 
@@ -157,7 +157,7 @@ void HttpWhiteBoxTests::testHeader()
 
 void HttpWhiteBoxTests::testRequestParserValidComplete()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const std::string expVerb = "GET";
     const std::string expUrl = "/path/to/data";
@@ -177,7 +177,7 @@ void HttpWhiteBoxTests::testRequestParserValidComplete()
 
 void HttpWhiteBoxTests::testRequestParserValidIncomplete()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     const std::string expVerb = "GET";
     const std::string expUrl = "/long/path/to/data";
@@ -224,7 +224,7 @@ void HttpWhiteBoxTests::testRequestParserValidIncomplete()
 
 void HttpWhiteBoxTests::testClipboardIsOwnFormat()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
     {
         std::string body = R"x(application/x-openoffice-embed-source-xml;windows_formatname="Star Embed Source (XML)"
 1def

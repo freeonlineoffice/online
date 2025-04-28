@@ -45,22 +45,17 @@ class DeltaTests : public CPPUNIT_NS::TestFixture
     void testRandomDeltas();
     void testDeltaCopyOutOfBounds();
 
-    std::vector<char> applyDelta(
-        const std::vector<char> &pixmap,
-        uint32_t width, uint32_t height,
-        const std::vector<char> &delta,
-        const std::string& testname);
+    std::vector<char> applyDelta(const std::vector<char>& pixmap, uint32_t width, uint32_t height,
+                                 const std::vector<char>& delta, const std::string_view testname);
 
-    void assertEqual(const std::vector<char> &a,
-                     const std::vector<char> &b,
-                     int width, int height,
-                     const std::string& testname);
+    void assertEqual(const std::vector<char>& a, const std::vector<char>& b, int width, int height,
+                     const std::string_view testname);
 };
 
 namespace {
 void checkzDelta(const std::vector<char> &zDelta, const char *legend)
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
 #if DEBUG_DELTA_TESTS
     std::cout << "zdelta: " << legend << "\n";
@@ -136,11 +131,9 @@ void checkzDelta(const std::vector<char> &zDelta, const char *legend)
 }
 
 // Quick hack for debugging
-std::vector<char> DeltaTests::applyDelta(
-    const std::vector<char> &pixmap,
-    uint32_t width, uint32_t height,
-    const std::vector<char> &zDelta,
-    const std::string& testname)
+std::vector<char> DeltaTests::applyDelta(const std::vector<char>& pixmap, uint32_t width,
+                                         uint32_t height, const std::vector<char>& zDelta,
+                                         const std::string_view testname)
 {
     LOK_ASSERT(zDelta.size() >= 4);
     LOK_ASSERT(zDelta[0] == 'D');
@@ -218,10 +211,8 @@ std::vector<char> DeltaTests::applyDelta(
     return output;
 }
 
-void DeltaTests::assertEqual(const std::vector<char> &a,
-                             const std::vector<char> &b,
-                             int width, int /* height */,
-                             const std::string& testname)
+void DeltaTests::assertEqual(const std::vector<char>& a, const std::vector<char>& b, int width,
+                             int /* height */, const std::string_view testname)
 {
     LOK_ASSERT_EQUAL(a.size(), b.size());
     for (size_t i = 0; i < a.size(); ++i)
@@ -248,7 +239,7 @@ void DeltaTests::assertEqual(const std::vector<char> &a,
 
 void DeltaTests::testRle()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator::DeltaBitmapRow rowa;
     DeltaGenerator::DeltaBitmapRow rowb;
@@ -281,7 +272,7 @@ void DeltaTests::testRle()
 
 void DeltaTests::testRleComplex()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator gen;
 
@@ -315,7 +306,7 @@ void DeltaTests::testRleComplex()
 
 void DeltaTests::testRleRandom()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator gen;
 
@@ -350,7 +341,7 @@ void DeltaTests::testRleRandom()
 
 void DeltaTests::testRleIdentical()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator gen;
 
@@ -402,7 +393,7 @@ void DeltaTests::testRleIdentical()
 
 void DeltaTests::testDeltaSequence()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator gen;
 
@@ -464,7 +455,7 @@ void DeltaTests::testRandomDeltas()
 
 void DeltaTests::testDeltaCopyOutOfBounds()
 {
-    constexpr auto testname = __func__;
+    constexpr std::string_view testname = __func__;
 
     DeltaGenerator gen;
 
