@@ -1,3 +1,4 @@
+/* -*- js-indent-level: 8 -*- */
 /* eslint-disable */
 /*
  * Copyright the Collabora Online contributors.
@@ -8,6 +9,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
+var _: any = (window as any)._;
 
 interface WordbookFile {
 	headerType: string; // eg. "OOoUserDict1"
@@ -111,14 +114,15 @@ class WordBook {
 	private options = [
 		{
 			value: 'positive',
-			heading: 'Standard dictionary',
-			description: 'Words are ignored by the spell checker',
+			heading: _('Standard dictionary'),
+			description: _('Words are ignored by the spell checker'),
 		},
 		{
 			value: 'negative',
-			heading: 'Dictionary of exceptions',
-			description:
+			heading: _('Dictionary of exceptions'),
+			description: _(
 				'Exception words are underlined while checking spelling',
+			),
 		},
 	];
 
@@ -127,7 +131,7 @@ class WordBook {
 		this.loadingModal.className = 'modal';
 		const loadingContent = document.createElement('div');
 		loadingContent.className = 'modal-content';
-		loadingContent.textContent = 'Loading Wordbook...';
+		loadingContent.textContent = _('Loading Wordbook...');
 		this.loadingModal.appendChild(loadingContent);
 		document.body.appendChild(this.loadingModal);
 	}
@@ -334,12 +338,12 @@ class WordBook {
 
 		const newWordInput = document.createElement('input');
 		newWordInput.type = 'text';
-		newWordInput.placeholder = 'Type to add a word';
+		newWordInput.placeholder = _('Type to add a word');
 		newWordInput.className = 'input-field__input';
 		inputContainer.appendChild(newWordInput);
 
 		const addButton = document.createElement('button');
-		addButton.textContent = 'Add';
+		addButton.textContent = _('Add');
 		addButton.classList.add(
 			'button',
 			'button--vue-secondary',
@@ -389,7 +393,7 @@ class WordBook {
 		buttonContainer.className = 'dic-button-container';
 
 		const cancelButton = document.createElement('button');
-		cancelButton.textContent = 'Cancel';
+		cancelButton.textContent = _('Cancel');
 		cancelButton.classList.add('button', 'button--vue-tertiary');
 		cancelButton.addEventListener('click', () => {
 			document.body.removeChild(modal);
@@ -397,7 +401,7 @@ class WordBook {
 		buttonContainer.appendChild(cancelButton);
 
 		const submitButton = document.createElement('button');
-		submitButton.textContent = 'Save';
+		submitButton.textContent = _('Save');
 		submitButton.classList.add('button', 'button-primary');
 
 		submitButton.addEventListener('click', async () => {
@@ -475,7 +479,7 @@ class WordBook {
 				dicWords = this.parseWords(content);
 			} catch (error) {
 				window.alert(
-					'Invalid dictionary format. Please check the file.',
+					_('Invalid dictionary format. Please check the file.'),
 				);
 				console.error('Error parsing dictionary file:', error);
 				return;
@@ -497,7 +501,7 @@ class WordBook {
 			);
 		} catch (error) {
 			window.alert(
-				'Something went wrong while uploading dictionary file',
+				_('Something went wrong while uploading dictionary file'),
 			);
 		}
 	}
