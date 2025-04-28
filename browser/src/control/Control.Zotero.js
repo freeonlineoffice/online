@@ -1655,6 +1655,10 @@ L.Control.Zotero = L.Control.extend({
 				'Fields': {
 					'type': '[][]com.sun.star.beans.PropertyValue',
 					'value': newValueArray
+				},
+				'NeverExpand': {
+					'type': 'boolean',
+					'value': true
 				}
 			};
 			this.map.sendUnoCommand('.uno:UpdateFields', updatedCitations, true);
@@ -1690,6 +1694,7 @@ L.Control.Zotero = L.Control.extend({
 			field['TypeName'] = {type: 'string', value: 'SetRef'};
 			field['Name'] = {type: 'string', value: 'ZOTERO_ITEM CSL_CITATION ' + cslJSON + ' RND' + app.util.randomString(10)};
 			field['Content'] = {type: 'string', value: citationString};
+			field['NeverExpand'] = {type: 'boolean', value: true};
 		} else if (this.getFieldType() == 'Bookmark') {
 			field['Bookmark'] = {type: 'string', value: 'ZOTERO_BREF_' + app.util.randomString(12)};
 			field['BookmarkText'] = {type: 'string', value: citationString};
