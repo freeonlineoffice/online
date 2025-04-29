@@ -243,6 +243,7 @@ class TileManager {
 	// updating during scrolling
 	private static directionalTileExpansion: number = 2;
 	private static pausedForDehydration: boolean = false;
+	private static shrinkCurrentId: any = null;
 
 	//private static _debugTime: any = {}; Reserved for future.
 
@@ -1564,9 +1565,10 @@ class TileManager {
 		for (var rangeIdx = 0; rangeIdx < tileRanges.length; ++rangeIdx) {
 			// Expand the 'current' area to add a small buffer around the visible area that
 			// helps us avoid visible tile updates.
-			const tileRange = isCurrent
-				? this.expandTileRange(tileRanges[rangeIdx])
-				: tileRanges[rangeIdx];
+			const tileRange =
+				isCurrent && !this.shrinkCurrentId
+					? this.expandTileRange(tileRanges[rangeIdx])
+					: tileRanges[rangeIdx];
 
 			for (var j = tileRange.min.y; j <= tileRange.max.y; ++j) {
 				for (var i = tileRange.min.x; i <= tileRange.max.x; ++i) {
@@ -2252,8 +2254,7 @@ class TileManager {
 		)
 			return;
 
-		// be sure canvas is initialized already, has correct size and that we aren't
-		// currently processing a transaction
+		// be sure canvas is initialized already and has the correct size.
 		const size: any = map.getSize();
 		if (size.x === 0 || size.y === 0) {
 			setTimeout(
@@ -2263,6 +2264,16 @@ class TileManager {
 				1,
 			);
 			return;
+		}
+
+		// If an update occurs while we're paused for dehydration, we haven't been able to
+		// keep up with scrolling. In this case, we should stop expanding the current area
+		// so that it takes less time to dehydrate it.
+		if (this.pausedForDehydration) {
+			if (this.shrinkCurrentId) clearTimeout(this.shrinkCurrentId);
+			this.shrinkCurrentId = setTimeout(() => {
+				this.shrinkCurrentId = null;
+			}, 100);
 		}
 
 		if (app.file.fileBasedView) {
