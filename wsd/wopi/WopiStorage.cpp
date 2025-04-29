@@ -102,7 +102,7 @@ void anonymizeAvatarURL(Poco::JSON::Object::Ptr& userExtraInfo)
         if (startPos != std::string::npos && endPos != std::string::npos)
         {
             std::string avatarUserName = avatarURL.substr(startPos, endPos - startPos);
-            avatarURL.replace(startPos, endPos - startPos, COOLWSD::anonymizeUsername(avatarUserName));
+            avatarURL.replace(startPos, endPos - startPos, LOOLWSD::anonymizeUsername(avatarUserName));
         }
         userExtraInfo->set("avatar", avatarURL);
     }
@@ -115,7 +115,7 @@ void anonymizeUserPrivateInfo(Poco::JSON::Object::Ptr& userPrivateInfo)
     {
         auto value = userPrivateInfo->getValue<std::string>(key);
         if(!value.empty())
-            userPrivateInfo->set(key, COOLWSD::anonymizeUsername(value));
+            userPrivateInfo->set(key, LOOLWSD::anonymizeUsername(value));
     }
 }
 
