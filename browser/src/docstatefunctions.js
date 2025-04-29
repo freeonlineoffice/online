@@ -63,7 +63,8 @@ app.isPointVisibleInTheDisplayedArea = function (twipsArray /* x, y */) {
 
 app.isXVisibleInTheDisplayedArea = function (twipsX) {
 	if (app.map._docLayer._splitPanesContext) {
-		let rectangles = app.map._docLayer._splitPanesContext.getViewRectangles();
+		let rectangles =
+			app.map._docLayer._splitPanesContext.getViewRectangles();
 		for (let i = 0; i < rectangles.length; i++) {
 			if (rectangles[i].containsX(twipsX)) return true;
 		}
@@ -75,7 +76,8 @@ app.isXVisibleInTheDisplayedArea = function (twipsX) {
 
 app.isYVisibleInTheDisplayedArea = function (twipsY) {
 	if (app.map._docLayer._splitPanesContext) {
-		let rectangles = app.map._docLayer._splitPanesContext.getViewRectangles();
+		let rectangles =
+			app.map._docLayer._splitPanesContext.getViewRectangles();
 		for (let i = 0; i < rectangles.length; i++) {
 			if (rectangles[i].containsY(twipsY)) return true;
 		}
