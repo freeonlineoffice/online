@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 21:16+0200\n"
+"POT-Creation-Date: 2025-04-29 23:40+0200\n"
 "PO-Revision-Date: 2022-03-25 01:41+0000\n"
 "Last-Translator: Rob Pearson <rob.dunedin@gmail.com>\n"
 "Language-Team: English (Australia) <https://hosted.weblate.org/projects/"
@@ -213,7 +213,7 @@ msgstr "Refresh Log"
 msgid "Channel Filter:"
 msgstr "Channel Filter:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:470
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:472
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr "None"
@@ -306,10 +306,10 @@ msgstr ""
 #: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:51
 #: src/map/handler/Map.SlideShow.js:164 src/map/handler/Map.SlideShow.js:292
 #: src/map/handler/Map.SlideShow.js:303 src/map/handler/Map.WOPI.js:681
-#: src/slideshow/SlideShowPresenter.ts:701
-#: src/slideshow/SlideShowPresenter.ts:716
-#: src/slideshow/SlideShowPresenter.ts:731
-#: src/slideshow/SlideShowPresenter.ts:754
+#: src/slideshow/SlideShowPresenter.ts:709
+#: src/slideshow/SlideShowPresenter.ts:724
+#: src/slideshow/SlideShowPresenter.ts:739
+#: src/slideshow/SlideShowPresenter.ts:762
 msgid "OK"
 msgstr "OK"
 
@@ -475,9 +475,9 @@ msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
-#: src/control/Control.JSDialogBuilder.js:1885
-#: src/layer/tile/CanvasTileLayer.js:4407
-#: src/layer/tile/CanvasTileLayer.js:4422
+#: src/control/Control.JSDialogBuilder.js:1930
+#: src/layer/tile/CanvasTileLayer.js:4434
+#: src/layer/tile/CanvasTileLayer.js:4449
 msgid "Comment"
 msgstr "Comment"
 
@@ -1067,91 +1067,91 @@ msgstr "Idle document - please tap to reload and resume editing"
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:473
+#: src/control/Control.JSDialogBuilder.js:475
 msgid "Solid"
 msgstr "Solid"
 
-#: src/control/Control.JSDialogBuilder.js:476
+#: src/control/Control.JSDialogBuilder.js:478
 msgid "Linear"
 msgstr "Linear"
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:481
 msgid "Axial"
 msgstr "Axial"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:484
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:485
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Ellipsoid"
 msgstr "Ellipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:489
+#: src/control/Control.JSDialogBuilder.js:491
 msgid "Quadratic"
 msgstr "Quadratic"
 
-#: src/control/Control.JSDialogBuilder.js:492
+#: src/control/Control.JSDialogBuilder.js:494
 msgid "Square"
 msgstr "Square"
 
-#: src/control/Control.JSDialogBuilder.js:495
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Fixed size"
 msgstr "Fixed size"
 
-#: src/control/Control.JSDialogBuilder.js:1421
+#: src/control/Control.JSDialogBuilder.js:1466
 msgid "From"
 msgstr "From"
 
-#: src/control/Control.JSDialogBuilder.js:1424
+#: src/control/Control.JSDialogBuilder.js:1469
 msgid "To"
 msgstr "To"
 
-#: src/control/Control.JSDialogBuilder.js:1427
+#: src/control/Control.JSDialogBuilder.js:1472
 msgid "Color"
 msgstr "Colour"
 
-#: src/control/Control.JSDialogBuilder.js:1503
+#: src/control/Control.JSDialogBuilder.js:1548
 msgid "Select range"
 msgstr "Select range"
 
-#: src/control/Control.JSDialogBuilder.js:1616
+#: src/control/Control.JSDialogBuilder.js:1661
 #: src/control/Control.NotebookbarBuilder.js:144
 msgid "Font Name"
 msgstr "Font Name"
 
-#: src/control/Control.JSDialogBuilder.js:1618 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1663 src/control/Toolbar.js:128
 msgid "Font Size"
 msgstr "Font Size"
 
-#: src/control/Control.JSDialogBuilder.js:1620
+#: src/control/Control.JSDialogBuilder.js:1665
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Style"
 
-#: src/control/Control.JSDialogBuilder.js:1871
+#: src/control/Control.JSDialogBuilder.js:1916
 msgid "reply"
 msgstr "Reply"
 
-#: src/control/Control.JSDialogBuilder.js:1874
+#: src/control/Control.JSDialogBuilder.js:1919
 msgid "replies"
 msgstr "replies"
 
-#: src/control/Control.JSDialogBuilder.js:1949
+#: src/control/Control.JSDialogBuilder.js:1994
 msgid "Insert Comment"
 msgstr "Insert Comment"
 
-#: src/control/Control.JSDialogBuilder.js:2527
+#: src/control/Control.JSDialogBuilder.js:2572
 #: src/control/Control.Menubar.ts:965
 msgid "Rows"
 msgstr "Rows"
 
-#: src/control/Control.JSDialogBuilder.js:2528
+#: src/control/Control.JSDialogBuilder.js:2573
 #: src/control/Control.Menubar.ts:968
 msgid "Columns"
 msgstr "Columns"
 
-#: src/control/Control.JSDialogBuilder.js:2548
+#: src/control/Control.JSDialogBuilder.js:2593
 msgid "Insert Table"
 msgstr "Insert Table"
 
@@ -2881,15 +2881,20 @@ msgstr ""
 msgid "Dismiss"
 msgstr "Dismiss"
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:179
+#: src/control/jsdialog/Widget.ColorPicker.ts:46
+#: src/control/jsdialog/Widget.ColorPicker.ts:137
+msgid "Unknown color"
+msgstr ""
+
+#: src/control/jsdialog/Widget.ColorPicker.ts:214
 msgid "No fill"
 msgstr ""
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:179
+#: src/control/jsdialog/Widget.ColorPicker.ts:214
 msgid "Automatic"
 msgstr ""
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:360
+#: src/control/jsdialog/Widget.ColorPicker.ts:400
 msgid "Recent"
 msgstr "Recent"
 
@@ -2953,7 +2958,7 @@ msgstr "No Comments"
 msgid "Cell borders"
 msgstr "Cell borders"
 
-#: src/control/jsdialog/Widget.SidebarContainers.ts:75
+#: src/control/jsdialog/Widget.SidebarContainers.ts:78
 msgid "More options for {name}"
 msgstr ""
 
@@ -3138,19 +3143,19 @@ msgstr "Are you sure you want to delete this slide?"
 msgid "Are you sure you want to delete this page?"
 msgstr "Are you sure you want to delete this page?"
 
-#: src/docstate.js:90
+#: src/docstate.js:91
 msgid "Standard"
 msgstr ""
 
-#: src/docstate.js:103
+#: src/docstate.js:104
 msgid "Theme colors"
 msgstr ""
 
-#: src/docstate.js:104
+#: src/docstate.js:105
 msgid "Document colors"
 msgstr ""
 
-#: src/docstatefunctions.js:207
+#: src/docstatefunctions.js:251
 msgid ", cluster configuration error: mis-matching serverid"
 msgstr ""
 
@@ -3449,7 +3454,7 @@ msgstr "Functions"
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4441
+#: src/layer/tile/CanvasTileLayer.js:4468
 msgid "No Comments"
 msgstr "No Comments"
 
@@ -3554,17 +3559,17 @@ msgstr "Uploading file to server failed with status: %0"
 msgid "Print dialog"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:698
+#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:706
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:162
-#: src/slideshow/SlideShowPresenter.ts:726
+#: src/slideshow/SlideShowPresenter.ts:734
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:163
-#: src/slideshow/SlideShowPresenter.ts:728
+#: src/slideshow/SlideShowPresenter.ts:736
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -3596,22 +3601,22 @@ msgid "End Presentation"
 msgstr "Presentation"
 
 #: src/map/handler/Map.SlideShow.js:290
-#: src/slideshow/SlideShowPresenter.ts:713
+#: src/slideshow/SlideShowPresenter.ts:721
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:291
-#: src/slideshow/SlideShowPresenter.ts:714
+#: src/slideshow/SlideShowPresenter.ts:722
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:301
-#: src/slideshow/SlideShowPresenter.ts:751
+#: src/slideshow/SlideShowPresenter.ts:759
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:302
-#: src/slideshow/SlideShowPresenter.ts:752
+#: src/slideshow/SlideShowPresenter.ts:760
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
