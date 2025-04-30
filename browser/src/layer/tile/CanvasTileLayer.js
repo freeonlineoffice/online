@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a layer with canvas based rendering.
  */
 
-/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager MultiPageViewLayout */
+/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CSplitterLine CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager MultiPageViewLayout SplitSection */
 
 function clamp(num, min, max)
 {
@@ -342,7 +342,7 @@ L.TileSectionManager = L.Class.extend({
 
 	// Debug tool. Splits are enabled for only Calc for now.
 	_addSplitsSection: function () {
-		const splitSection = new app.definitions.splitSection();
+		const splitSection = new SplitSection();
 		app.sectionContainer.addSection(splitSection);
 	},
 
