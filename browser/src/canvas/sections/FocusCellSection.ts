@@ -57,9 +57,9 @@ class FocusCellSection extends CanvasSectionObject {
 	}
 
 	public onDraw() {
-		const style = getComputedStyle(document.documentElement).getPropertyValue(
-			'--column-row-highlight',
-		);
+		const style = getComputedStyle(
+			document.documentElement,
+		).getPropertyValue('--column-row-highlight');
 
 		this.context.fillStyle = style;
 		this.context.strokeStyle = style;
