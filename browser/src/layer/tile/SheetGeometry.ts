@@ -290,7 +290,7 @@ export class SheetGeometry {
 		simplePoint.y = this._rows.getTileTwipsPosFromPrint(simplePoint.y);
 	}
 
-	public convertRectangleToTileTwips(simpleRectangle: cool.SimpleRectangle): void {
+	public convertRectangleToTileTwips(simpleRectangle: lool.SimpleRectangle): void {
 		simpleRectangle.x1 = this._columns.getTileTwipsPosFromPrint(simpleRectangle.x1);
 		simpleRectangle.y1 = this._rows.getTileTwipsPosFromPrint(simpleRectangle.y1);
 	}

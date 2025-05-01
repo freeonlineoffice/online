@@ -133,10 +133,10 @@ function createColor(
 		const found = themeColors.find(
 			(item: ThemeColor) => item.Value === colorItem,
 		);
-		if (found) color.setAttribute('data-cooltip', found.Name);
-		else color.setAttribute('data-cooltip', _('Unknown color'));
+		if (found) color.setAttribute('data-looltip', found.Name);
+		else color.setAttribute('data-looltip', _('Unknown color'));
 	} else if (window.app.colorNames) {
-		color.setAttribute('data-cooltip', findColorName(colorItem));
+		color.setAttribute('data-looltip', findColorName(colorItem));
 	}
 
 	// Assuming 'color' is your target HTMLElement

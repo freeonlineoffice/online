@@ -213,12 +213,18 @@ class Transition2d extends TransitionBase {
 				this.getUniformLocation('fromFillColor'),
 				fromFillColor,
 			);
-			this.gl.uniform4fv(this.getUniformLocation('toFillColor'), toFillColor);
+			this.gl.uniform4fv(
+				this.getUniformLocation('toFillColor'),
+				toFillColor,
+			);
 			this.gl.uniform4fv(
 				this.getUniformLocation('fromLineColor'),
 				fromLineColor,
 			);
-			this.gl.uniform4fv(this.getUniformLocation('toLineColor'), toLineColor);
+			this.gl.uniform4fv(
+				this.getUniformLocation('toLineColor'),
+				toLineColor,
+			);
 		}
 
 		gl.activeTexture(gl.TEXTURE1);
