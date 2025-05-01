@@ -66,6 +66,8 @@ class FormulaBar {
 							id: 'AutoSumMenu:AutoSumMenu',
 							type: 'menubutton',
 							class: 'AutoSumMenu',
+							noLabel: true,
+							text: _('Select Function'),
 							command: '.uno:AutoSumMenu'
 						},
 						{
@@ -100,7 +102,7 @@ class FormulaBar {
 						{
 							id: 'expand',
 							type: 'pushbutton',
-							text: '',
+							text: _('Expand Formula Bar'),
 							symbol: 'SPIN_DOWN',
 						}]
 				}];
@@ -123,7 +125,7 @@ class FormulaBar {
 						{
 							id: 'expand',
 							type: 'pushbutton',
-							text: '',
+							text: _('Expand Formula Bar'),
 							symbol: 'SPIN_DOWN',
 						}]
 				}];
@@ -145,7 +147,7 @@ class FormulaBar {
 					control: {
 						id: 'expand',
 						type: 'pushbutton',
-						text: '',
+						text: _('Expand Formula Bar'),
 						symbol: 'SPIN_DOWN'
 					}
 				}
@@ -161,7 +163,7 @@ class FormulaBar {
 					control: {
 						id: 'expand',
 						type: 'pushbutton',
-						text: '',
+						text: _('Collapse Formula Bar'),
 						symbol: 'SPIN_UP'
 					}
 				}
