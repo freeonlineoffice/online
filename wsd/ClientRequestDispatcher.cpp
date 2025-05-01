@@ -707,6 +707,22 @@ void launchAsyncCheckFileInfo(
     }
 }
 
+static void socketEraseConsumedBytes(const std::shared_ptr<StreamSocket>& socket,
+                                     const StreamSocket::MessageMap& map,
+                                     bool servedSync)
+{
+    if( socket->getInBuffer().size() > 0 ) // erase request from inBuffer if not cleared by ignoreInput
+    {
+        // Remove the request header from our input buffer
+        socket->eraseFirstInputBytes(map._headerSize);
+        if (servedSync)
+        {
+            // Remove the request body from our input buffer, as it has been served (synchronously)
+            // See lool#9621, commit 895c224efae9c21f0481e2fbf024a015656a5a97 and lool#10042
+            socket->eraseFirstInputBytes(map._messageSize - map._headerSize);
+        }
+    }
+}
 
 void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& disposition)
 {
@@ -1028,16 +1044,8 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
         return;
     }
 
-    if( socket->getInBuffer().size() > 0 ) // erase request from inBuffer if not cleared by ignoreInput
-    {
-        // Remove the request header from our input buffer
-        socket->eraseFirstInputBytes(map._headerSize);
-        if (servedSync)
-        {
-            // Remove the request body from our input buffer, as it has been served (synchronously)
-            socket->eraseFirstInputBytes(map._messageSize - map._headerSize);
-        }
-    }
+
+    socketEraseConsumedBytes(socket, map, servedSync);
 
     if (servedSync && closeConnection && !socket->isShutdown())
     {
