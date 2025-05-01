@@ -64,10 +64,10 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
         case StorageBase::StorageType::Unsupported:
             LOG_ERR("Unsupported URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString())
                                         << "] or no storage configured");
-            throw BadRequestException("No Storage configured or invalid URI " +
+            throw BadRequestException("No Storage configured or invalid URI [" +
                                       LOOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
-
             break;
+
         case StorageBase::StorageType::Unauthorized:
             LOG_ERR("No authorized hosts found matching the target host [" << uriPublic.getHost()
                                                                            << "] in config");
