@@ -29,6 +29,7 @@
 #endif
 
 #include <Poco/StreamCopier.h>
+#include <Poco/Path.h>
 #include <Poco/URI.h>
 
 #include <CommandControl.hpp>
@@ -155,7 +156,10 @@ StorageBase::StorageType StorageBase::validate(const Poco::URI& uri,
         {
             LOG_DBG("Validated URI [" << COOLWSD::anonymizeUrl(uri.toString())
                                       << "] as Conversion");
-            if (!uri.toString().starts_with(COOLWSD::ChildRoot))
+            // Normalize the path.
+            Poco::Path path = Poco::Path(uri.getPath());
+            if (!path.isAbsolute() || !path.isFile() ||
+                !path.makeAbsolute().toString().starts_with(COOLWSD::ChildRoot))
             {
                 LOG_ERR("Invalid path to document to convert [" << uri.toString() << ']');
                 return StorageBase::StorageType::Unsupported;
