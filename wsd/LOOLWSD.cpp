@@ -733,8 +733,8 @@ inline std::string getLaunchURI(const std::string &document, bool readonly = fal
     oss << LOOLWSD::ServiceRoot;
     oss << LOOLWSD_TEST_LOOL_UI;
     oss << "?file_path=";
-    oss << DEBUG_ABSSRCDIR "/";
-    oss << Uri::encode(document);
+    const std::string dir = DEBUG_ABSSRCDIR "/";
+    oss << Uri::encode(dir + document);
     if (readonly)
         oss << "&permission=readonly";
 
@@ -3767,9 +3767,9 @@ int LOOLWSD::innerMain()
 #endif
 
 #if !MOBILEAPP && ENABLE_DEBUG
+    const std::string postMessageFilePath = Uri::encode(DEBUG_ABSSRCDIR "/test/samples/writer-edit.fodt");
     const std::string postMessageURI =
-        getServiceURI("/browser/dist/framed.doc.html?file_path=" DEBUG_ABSSRCDIR
-                      "/test/samples/writer-edit.fodt");
+        getServiceURI("/browser/dist/framed.doc.html?file_path=" + postMessageFilePath);
     std::ostringstream oss;
     std::ostringstream ossRO;
     oss << "\nLaunch one of these in your browser:\n\n"
