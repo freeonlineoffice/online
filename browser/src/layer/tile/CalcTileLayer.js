@@ -11,7 +11,7 @@
  * Calc tile layer is used to display a spreadsheet document
  */
 
-/* global app TileManager lool FocusCellSection */
+/* global app TileManager lool FocusCellSection SplitterLinesSection */
 
 L.CalcTileLayer = L.CanvasTileLayer.extend({
 	options: {
@@ -84,6 +84,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}.bind(this));
 
 		app.sectionContainer.addSection(new app.definitions.AutoFillMarkerSection());
+		app.sectionContainer.addSection(new SplitterLinesSection());
 
 		this.insertMode = false;
 		this._resetInternalState();
