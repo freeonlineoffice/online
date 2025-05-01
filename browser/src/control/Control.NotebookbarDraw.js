@@ -277,7 +277,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'bigtoolitem',
 						'text': _('Properties'),
 						'command': '.uno:SetDocumentProperties',
-						'accessibility': { focusBack: true, combination: 'FP', de: null }
+						'accessibility': { focusBack: true, combination: 'FP', de: 'I' }
 					}
 				]
 			});
@@ -307,6 +307,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 							'class': 'unoRenameDocument',
 							'type': 'bigcustomtoolitem',
 							'text': _('Rename'),
+							'accessibility': { focusBack: true, combination: 'RN', de: null }
 						}
 					]
 				}
@@ -411,7 +412,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'class': 'unocollapsenotebookbar',
 				'type': 'bigcustomtoolitem',
 				'text': _('Collapse Tabs'),
-				'accessibility': { focusBack: true, combination: 'CU', de: null }
+				'accessibility': { focusBack: true, combination: 'CT', de: null }
 			},
 			{
 				'type': 'toolbox',
@@ -1454,6 +1455,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 								'type': 'toolitem',
 								'text': _UNO('.uno:Bezier_Unfilled', 'presentation'),
 								'command': '.uno:Bezier_Unfilled',
+								'accessibility': { focusBack: true, combination: 'CR', de: null }
 							}
 						]
 					}
@@ -1524,6 +1526,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'toolbox',
 						'children': [
 							{
+								'id': 'format-name-group',
 								'type': 'toolitem',
 								'text': _UNO('.uno:NameGroup', 'text'),
 								'command': '.uno:NameGroup',
@@ -1535,6 +1538,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 						'type': 'toolbox',
 						'children': [
 							{
+								'id': 'format-object-title-description',
 								'type': 'toolitem',
 								'text': _UNO('.uno:ObjectTitleDescription', 'text'),
 								'command': '.uno:ObjectTitleDescription',
