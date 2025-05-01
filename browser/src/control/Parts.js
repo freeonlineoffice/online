@@ -113,7 +113,7 @@ L.Map.include({
 		if (docLayer._invalidatePreviews) {
 			docLayer._invalidatePreviews();
 		}
-		docLayer._drawSearchResults();
+
 		this.focus();
 	},
 
