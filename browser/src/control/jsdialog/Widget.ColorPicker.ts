@@ -129,15 +129,16 @@ function createColor(
 	if (themeData) color.setAttribute('theme', themeData);
 
 	// Set color tooltips
-	if (themeData) {
-		const found = themeColors.find(
-			(item: ThemeColor) => item.Value === colorItem,
-		);
-		if (found) color.setAttribute('data-looltip', found.Name);
-		else color.setAttribute('data-looltip', _('Unknown color'));
-	} else if (window.app.colorNames) {
-		color.setAttribute('data-looltip', findColorName(colorItem));
-	}
+	var colorTooltip;
+	const found = themeColors.find(
+		(item: ThemeColor) =>
+			item.Value.toLowerCase() === colorItem.toLowerCase(),
+	);
+	if (found) colorTooltip = found.Name;
+	else if (window.app.colorNames) colorTooltip = findColorName(colorItem);
+	else colorTooltip = _('Unknown color');
+
+	color.setAttribute('data-looltip', colorTooltip);
 
 	// Assuming 'color' is your target HTMLElement
 	color.addEventListener('click', (event: MouseEvent) => {
