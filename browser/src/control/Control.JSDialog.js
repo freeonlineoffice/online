@@ -161,11 +161,18 @@ L.Control.JSDialog = L.Control.extend({
 	},
 
 	focusToLastElement: function(id) {
+		const dialog = this.dialogs[id];
 		app.layoutingService.appendLayoutingTask(() => {
+			if (!dialog.lastFocusedElement) {
+				this.map.focus();
+				return;
+			}
+
 			try {
-				this.dialogs[id].lastFocusedElement.focus();
+				dialog.lastFocusedElement.focus();
 			}
 			catch (error) {
+				console.debug('Cannot focus last element in dialog with id: ' + id);
 				this.map.focus();
 			}
 		});
@@ -233,7 +240,7 @@ L.Control.JSDialog = L.Control.extend({
 			if (instance.cancellable) {
 				// dropdowns are online-only components, don't exist in core
 				var hasToNotifyServer = !instance.isDropdown;
-				overlay.onclick = function () { this.close(instance.id, hasToNotifyServer); }.bind(this);
+				overlay.onclick = () => { this.close(instance.id, hasToNotifyServer); };
 			}
 		}
 		instance.overlay = overlay;
@@ -267,7 +274,7 @@ L.Control.JSDialog = L.Control.extend({
 			L.DomUtil.addClass(instance.container, 'collapsed');
 
 		// prevent from reloading
-		instance.form.addEventListener('submit', function (event) { event.preventDefault(); });
+		instance.form.addEventListener('submit', (event) => { event.preventDefault(); });
 
 		instance.defaultButtonId = this._getDefaultButtonId(instance.children);
 
@@ -346,7 +353,7 @@ L.Control.JSDialog = L.Control.extend({
 	},
 
 	addHandlers: function(instance) {
-		var onInput = function(ev) {
+		var onInput = (ev) => {
 			if (ev.isFirst)
 				instance.that.draggingObject = instance.that.dialogs[instance.id];
 
@@ -362,13 +369,13 @@ L.Control.JSDialog = L.Control.extend({
 		};
 
 		if (instance.haveTitlebar) {
-			instance.titleCloseButton.onclick = function() {
+			instance.titleCloseButton.onclick = () => {
 				instance.that.close(instance.id, true);
 			};
 		}
 
 		if (instance.nonModal && instance.haveTitlebar) {
-			instance.titleCloseButton.onclick = function() {
+			instance.titleCloseButton.onclick = () => {
 				var newestDialog = Math.max.apply(null,
 					Object.keys(instance.that.dialogs).map(function(i) { return parseInt(i);}));
 				if (newestDialog > parseInt(instance.id))
@@ -440,7 +447,7 @@ L.Control.JSDialog = L.Control.extend({
 			console.error('cannot get focus for widget: "' + instance.init_focus_id + '"');
 
 		if (instance.isDropdown && instance.isSubmenu) {
-			instance.container.addEventListener('mouseleave', function () {
+			instance.container.addEventListener('mouseleave', () => {
 				instance.builder.callback('combobox', 'hidedropdown', {id: instance.id}, null, instance.builder);
 			});
 		}
@@ -806,7 +813,7 @@ L.Control.JSDialog = L.Control.extend({
 			this.dialogs[instance.id] = instance;
 
 			if (instance.isSnackbar && instance.snackbarTimeout > 0) {
-				instance.timeoutId = setTimeout(function () { app.map.uiManager.closeSnackbar(); }, instance.snackbarTimeout);
+				instance.timeoutId = setTimeout(() => { app.map.uiManager.closeSnackbar(); }, instance.snackbarTimeout);
 			}
 		}
 	},
