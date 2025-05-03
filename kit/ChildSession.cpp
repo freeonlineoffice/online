@@ -193,7 +193,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
     const StringVector tokens = StringVector::tokenize(firstLine.data(), firstLine.size());
 
     // if _clientVisibleArea.getWidth() == 0, then it is probably not a real user.. probably is a convert-to or similar
-    LogUiCommands logUndoRelatedcommandAtfunctionEnd(this, &tokens);
+    LogUiCommands logUndoRelatedcommandAtfunctionEnd(*this, &tokens);
     if (_isDocLoaded && Log::isLogUIEnabled() && _clientVisibleArea.getWidth() != 0)
     {
         logUndoRelatedcommandAtfunctionEnd._lastUndoCount = atoi(getLOKitDocument()->getCommandValues(".uno:UndoCount"));
@@ -303,7 +303,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
         WatchdogGuard watchdogGuard;
         _isDocLoaded = loadDocument(tokens);
 
-        LogUiCommands uiLog(this);
+        LogUiCommands uiLog(*this);
         uiLog.logSaveLoad("load", Poco::URI(getJailedFilePath()).getPath(), timeStart);
 
         LOG_TRC("isDocLoaded state after loadDocument: " << _isDocLoaded);
@@ -722,7 +722,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
                 bool result = unoCommand(unoSave);
                 if (result)
                 {
-                    LogUiCommands uiLog(this);
+                    LogUiCommands uiLog(*this);
                     uiLog.logSaveLoad("save", Poco::URI(getJailedFilePath()).getPath(), timeStart);
                 }
 
@@ -753,7 +753,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
             bool result = saveAs(tokens);
             if (result)
             {
-                LogUiCommands uiLog(this);
+                LogUiCommands uiLog(*this);
                 uiLog.logSaveLoad("saveas", Poco::URI(getJailedFilePath()).getPath(), timeStart);
             }
             return result;
@@ -764,7 +764,7 @@ bool ChildSession::_handleInput(const char *buffer, int length)
             bool result = exportAs(tokens);
             if (result)
             {
-                LogUiCommands uiLog(this);
+                LogUiCommands uiLog(*this);
                 uiLog.logSaveLoad("exportas", Poco::URI(getJailedFilePath()).getPath(), timeStart);
             }
             return result;
@@ -3861,23 +3861,23 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
 
 void ChildSession::saveLogUiBackground()
 {
-    LogUiCommands uiLog(this);
+    LogUiCommands uiLog(*this);
     uiLog.logSaveLoad("savebg", Poco::URI(getJailedFilePath()).getPath(), _logUiSaveBackGroundTimeStart);
 }
 
 void LogUiCommands::logLine(LogUiCommandsLine &line, bool isUndoChange)
 {
     // log command
-    double timeDiffStart = std::chrono::duration<double>(line._timeStart - _session->_docManager->getLogUiCmd().getKitStartTimeSec()).count();
+    double timeDiffStart = std::chrono::duration<double>(line._timeStart - _session._docManager->getLogUiCmd().getKitStartTimeSec()).count();
 
     // Load / Save event made by application will reach here.
     // In that case save without real userID
-    int userID = _session->_viewId;
-    if (_session->_clientVisibleArea.getWidth() == 0)
+    int userID = _session._viewId;
+    if (_session._clientVisibleArea.getWidth() == 0)
         userID = -1;
 
     std::stringstream strToLog;
-    strToLog << "kit=" << _session->_docManager->getDocId();
+    strToLog << "kit=" << _session._docManager->getDocId();
     strToLog << " time=" << std::fixed << std::setprecision(3) << timeDiffStart;
     if (Log::isLogUITimeEnd())
     {
@@ -3908,7 +3908,7 @@ void LogUiCommands::logLine(LogUiCommandsLine &line, bool isUndoChange)
         }
     }
 
-    _session->_docManager->getLogUiCmd().logUiCmdLine(userID, strToLog.str());
+    _session._docManager->getLogUiCmd().logUiCmdLine(userID, strToLog.str());
 
     if (!isUndoChange && line._undoChange != 0)
     {
@@ -3947,13 +3947,13 @@ void LogUiCommands::logSaveLoad(std::string cmd, const std::string & path, std::
 
 LogUiCommands::~LogUiCommands()
 {
-    if (!_skipDestructor && _session->_isDocLoaded && Log::isLogUIEnabled() && _session->_clientVisibleArea.getWidth() != 0)
+    if (!_skipDestructor && _session._isDocLoaded && Log::isLogUIEnabled() && _session._clientVisibleArea.getWidth() != 0)
     {
         if (_tokens->size() > 0 && _cmdToLog.find((*_tokens)[0]) != _cmdToLog.end())
         {
-            int& lineCount = _session->_lastUiCmdLinesLoggedCount;
-            LogUiCommandsLine& line0 = _session->_lastUiCmdLinesLogged[0];
-            LogUiCommandsLine& line1 = _session->_lastUiCmdLinesLogged[1];
+            int& lineCount = _session._lastUiCmdLinesLoggedCount;
+            LogUiCommandsLine& line0 = _session._lastUiCmdLinesLogged[0];
+            LogUiCommandsLine& line1 = _session._lastUiCmdLinesLogged[1];
             std::string actCmd="";
             std::string actSubCmd="";
             bool commandHandled = false;
@@ -4011,8 +4011,8 @@ LogUiCommands::~LogUiCommands()
 
                     // If it is a buttonup and we have a saved buttondown, than exchange it to click
                     if (actSubCmd == "buttonup" && lineCount > 0
-                        && _session->_lastUiCmdLinesLogged[lineCount - 1]._cmd == "mouse"
-                        && _session->_lastUiCmdLinesLogged[lineCount - 1]._subCmd == "buttondown")
+                        && _session._lastUiCmdLinesLogged[lineCount - 1]._cmd == "mouse"
+                        && _session._lastUiCmdLinesLogged[lineCount - 1]._subCmd == "buttondown")
                     {
                         if (lineCount == 1)
                         {
@@ -4045,7 +4045,7 @@ LogUiCommands::~LogUiCommands()
             // We have to check if undo-count-change happened because of it
             int undoAct = 0;
             int undoChg = 0;
-            undoAct = atoi(_session->getLOKitDocument()->getCommandValues(".uno:UndoCount"));
+            undoAct = atoi(_session.getLOKitDocument()->getCommandValues(".uno:UndoCount"));
             // If undo count decrease without an undo .uno:Undo, then it is probably a fake (when cap reached)
             if (_lastUndoCount!=undoAct && (_lastUndoCount<undoAct || actSubCmd == ".uno:Undo"))
             {
@@ -4099,7 +4099,7 @@ LogUiCommands::~LogUiCommands()
                 }
             }
             // Store new command
-            LogUiCommandsLine& lineAct = _session->_lastUiCmdLinesLogged[lineCount];
+            LogUiCommandsLine& lineAct = _session._lastUiCmdLinesLogged[lineCount];
             lineAct._cmd = std::move(actCmd);
             lineAct._subCmd = std::move(actSubCmd);
             lineAct._repeat = 1;
