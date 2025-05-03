@@ -156,6 +156,7 @@ common_sources = \
 	../common/FileUtil-unix.cpp \
 	../common/Log.cpp \
 	../common/Protocol.cpp \
+	../common/RegexUtil.cpp \
 	../common/Session.cpp \
 	../common/SigUtil-server.cpp \
 	../common/Simd.cpp \

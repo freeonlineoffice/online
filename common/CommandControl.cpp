@@ -10,6 +10,7 @@
 #include "CommandControl.hpp"
 
 #include <common/ConfigUtil.hpp>
+#include <common/RegexUtil.hpp>
 #include <common/Util.hpp>
 
 #include <string>
@@ -17,6 +18,16 @@
 
 namespace CommandControl
 {
+bool LockManager::_isLockedUser = false;
+bool LockManager::_isHostReadOnly = false;
+std::unordered_set<std::string> LockManager::LockedCommandList;
+std::string LockManager::LockedCommandListString;
+RegexUtil::RegexListMatcher LockManager::readOnlyWopiHosts;
+RegexUtil::RegexListMatcher LockManager::disabledCommandWopiHosts;
+std::map<std::string, std::string> LockManager::unlockLinkMap;
+bool LockManager::lockHostEnabled = false;
+std::string LockManager::translationPath = std::string();
+std::string LockManager::unlockLink = std::string();
 
 } // namespace CommandControl
 
