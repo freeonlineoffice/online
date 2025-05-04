@@ -41,6 +41,7 @@
 #include <filesystem>
 #include <fstream>
 #include <mutex>
+#include <set>
 #include <string>
 
 #include <Poco/File.h>

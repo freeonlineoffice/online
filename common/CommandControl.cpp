@@ -7,11 +7,13 @@
 
 #include <config.h>
 
+#include "CommandControl.hpp"
+
+#include <common/ConfigUtil.hpp>
+#include <common/Util.hpp>
+
 #include <string>
 #include <unordered_set>
-#include "ConfigUtil.hpp"
-#include "Util.hpp"
-#include "CommandControl.hpp"
 
 namespace CommandControl
 {

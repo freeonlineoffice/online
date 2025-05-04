@@ -15,6 +15,9 @@
 #include <Poco/URI.h>
 #include <Poco/Util/Application.h>
 
+#include <set>
+#include <string>
+
 /// This class contains static methods to parse alias_groups and WOPI host and static containers to store the data from the loolwsd.xml
 class HostUtil
 {
