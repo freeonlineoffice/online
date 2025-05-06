@@ -69,7 +69,7 @@
 }
 
 #AcceptRejectChangesDialog .ui-treeview-headers,
-#AcceptRejectChangesDialog .jsdialog.ui-treeview-entry { 
+#AcceptRejectChangesDialog .jsdialog.ui-treeview-entry {
 	grid-template-columns: 60px 60px 120px 130px;
 }
 
