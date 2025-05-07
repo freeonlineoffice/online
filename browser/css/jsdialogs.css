@@ -75,7 +75,7 @@
 }
 
 #AcceptRejectChangesDialog .ui-treeview-headers,
-#AcceptRejectChangesDialog .jsdialog.ui-treeview-entry { 
+#AcceptRejectChangesDialog .jsdialog.ui-treeview-entry {
 	display: contents;
 }
 
