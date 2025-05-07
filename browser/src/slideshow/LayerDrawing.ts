@@ -71,6 +71,8 @@ interface LayerInfo {
 	type?: 'bitmap' | 'placeholder' | 'animated';
 	content: LayerContentType;
 	isField?: boolean;
+	width?: number;
+	height?: number;
 }
 
 interface LayerEntry {
@@ -488,19 +490,53 @@ class LayerDrawing {
 		}
 	}
 
+	decompressAndCreateImageData(
+		imgRawData: Uint8Array,
+		width: number,
+		height: number,
+	) {
+		const img = (window as any).fzstd.decompress(imgRawData);
+		const clampedArray = new Uint8ClampedArray(img);
+		return new ImageData(clampedArray, width, height);
+	}
+
 	handleTextFieldMsg(info: LayerInfo, img: any) {
 		const textFieldInfo = info.content as TextFieldInfo;
 		const imageInfo = textFieldInfo.content;
-		if (!this.checkAndAttachImageData(imageInfo, img)) return;
 
-		let textFields = this.slideTextFieldsMap.get(info.slideHash);
-		if (!textFields) {
-			textFields = new Map<string, string>();
-			this.slideTextFieldsMap.set(info.slideHash, textFields);
-		}
-		textFields.set(textFieldInfo.hash, imageInfo.checksum);
+		const imageData = this.decompressAndCreateImageData(
+			img.rawData,
+			info.width,
+			info.height,
+		);
+		createImageBitmap(imageData).then(
+			(img) => {
+				if (!this.checkAndAttachImageData(imageInfo, img)) return;
 
-		this.cachedTextFields.set(imageInfo.checksum, textFieldInfo);
+				let textFields = this.slideTextFieldsMap.get(
+					info.slideHash,
+				);
+				if (!textFields) {
+					textFields = new Map<string, string>();
+					this.slideTextFieldsMap.set(
+						info.slideHash,
+						textFields,
+					);
+				}
+				textFields.set(textFieldInfo.hash, imageInfo.checksum);
+
+				this.cachedTextFields.set(
+					imageInfo.checksum,
+					textFieldInfo,
+				);
+			},
+			(error) => {
+				window.app.console.error(
+					'Failed to create bitmap, Promise failed with error: ' +
+						error,
+				);
+			},
+		);
 	}
 
 	private handleBackgroundMsg(info: LayerInfo, img: any) {
@@ -510,16 +546,38 @@ class LayerDrawing {
 		}
 		if (info.type === 'bitmap') {
 			const imageInfo = info.content as ImageInfo;
-			if (!this.checkAndAttachImageData(imageInfo, img)) return;
+			const imageData = this.decompressAndCreateImageData(
+				img.rawData,
+				info.width,
+				info.height,
+			);
+			createImageBitmap(imageData).then(
+				(img) => {
+					if (!this.checkAndAttachImageData(imageInfo, img))
+						return;
 
-			const pageHash = slideInfo.background.isCustom
-				? info.slideHash
-				: slideInfo.masterPage;
-			this.backgroundChecksums.set(pageHash, imageInfo.checksum);
-			this.cachedBackgrounds.set(imageInfo.checksum, imageInfo);
+					const pageHash = slideInfo.background.isCustom
+						? info.slideHash
+						: slideInfo.masterPage;
+					this.backgroundChecksums.set(
+						pageHash,
+						imageInfo.checksum,
+					);
+					this.cachedBackgrounds.set(
+						imageInfo.checksum,
+						imageInfo,
+					);
 
-			this.clearCanvas();
-			this.drawBitmap(imageInfo);
+					this.clearCanvas();
+					this.drawBitmap(imageInfo);
+				},
+				(error) => {
+					window.app.console.error(
+						'Failed to create bitmap, Promise failed with error: ' +
+							error,
+					);
+				},
+			);
 		}
 	}
 
@@ -529,38 +587,61 @@ class LayerDrawing {
 			return;
 		}
 
-		if (
-			info.index === 0 ||
-			!this.cachedMasterPages.get(slideInfo.masterPage)
-		)
-			this.cachedMasterPages.set(
-				slideInfo.masterPage,
-				new Array<LayerEntry>(),
-			);
-
-		const layers = this.cachedMasterPages.get(slideInfo.masterPage);
-		if (layers.length !== info.index) {
-			window.app.console.log(
-				'LayerDrawing.handleMasterPageLayerMsg: missed any layers ?',
-			);
-		}
 		const layerEntry: LayerEntry = {
 			type: info.type,
 			content: info.content,
 			isField: info.isField,
 		};
-		if (info.type === 'bitmap') {
-			if (
-				!this.checkAndAttachImageData(
-					layerEntry.content as ImageInfo,
-					img,
-				)
-			)
-				return;
-		}
-		layers.push(layerEntry);
 
-		this.drawMasterPageLayer(layerEntry, info.slideHash);
+		var drawImage = () => {
+			if (
+				info.index === 0 ||
+				!this.cachedMasterPages.get(slideInfo.masterPage)
+			)
+				this.cachedMasterPages.set(
+					slideInfo.masterPage,
+					new Array<LayerEntry>(),
+				);
+
+			const layers = this.cachedMasterPages.get(slideInfo.masterPage);
+			if (layers.length !== info.index) {
+				window.app.console.log(
+					'LayerDrawing.handleMasterPageLayerMsg: missed any layers ?',
+				);
+			}
+
+			layers.push(layerEntry);
+
+			this.drawMasterPageLayer(layerEntry, info.slideHash);
+		};
+		if (img.rawData.length !== 0 && info.type === 'bitmap') {
+			const imageData = this.decompressAndCreateImageData(
+				img.rawData,
+				info.width,
+				info.height,
+			);
+			createImageBitmap(imageData).then(
+				(img) => {
+					if (
+						!this.checkAndAttachImageData(
+							layerEntry.content as ImageInfo,
+							img,
+						)
+					)
+						return;
+					drawImage();
+				},
+				(error) => {
+					window.app.console.error(
+						'Failed to create bitmap, Promise failed with error: ' +
+							error,
+					);
+				},
+			);
+		} else {
+			img = new Image();
+			img.onload = drawImage;
+		}
 	}
 
 	private handleDrawPageLayerMsg(info: LayerInfo, img: any) {
@@ -580,36 +661,53 @@ class LayerDrawing {
 			type: info.type,
 			content: info.content,
 		};
-		if (info.type === 'bitmap') {
-			if (
-				!this.checkAndAttachImageData(
-					layerEntry.content as ImageInfo,
-					img,
-				)
-			)
-				return;
-		} else if (info.type === 'animated') {
-			const content = layerEntry.content as AnimatedShapeInfo;
-			if (content.type === 'bitmap') {
-				if (
-					!this.checkAndAttachImageData(
-						content.content as ImageInfo,
-						img,
+		const imageData = this.decompressAndCreateImageData(
+			img.rawData,
+			info.width,
+			info.height,
+		);
+		createImageBitmap(imageData).then(
+			(img) => {
+				if (info.type === 'bitmap') {
+					if (
+						!this.checkAndAttachImageData(
+							layerEntry.content as ImageInfo,
+							img,
+						)
 					)
-				)
-					return;
-				const animatedElement = this.helper.getAnimatedElement(
-					info.slideHash,
-					content.hash,
-				);
-				if (animatedElement) {
-					animatedElement.updateAnimationInfo(content);
+						return;
+				} else if (info.type === 'animated') {
+					const content =
+						layerEntry.content as AnimatedShapeInfo;
+					if (content.type === 'bitmap') {
+						if (
+							!this.checkAndAttachImageData(
+								content.content as ImageInfo,
+								img,
+							)
+						)
+							return;
+						const animatedElement =
+							this.helper.getAnimatedElement(
+								info.slideHash,
+								content.hash,
+							);
+						if (animatedElement) {
+							animatedElement.updateAnimationInfo(content);
+						}
+					}
 				}
-			}
-		}
-		layers.push(layerEntry);
+				layers.push(layerEntry);
 
-		this.drawDrawPageLayer(info.slideHash, layerEntry);
+				this.drawDrawPageLayer(info.slideHash, layerEntry);
+			},
+			(error) => {
+				window.app.console.error(
+					'Failed to create bitmap, Promise failed with error: ' +
+						error,
+				);
+			},
+		);
 	}
 
 	private clearCanvas() {
@@ -782,7 +880,7 @@ class LayerDrawing {
 	}
 
 	private checkAndAttachImageData(imageInfo: ImageInfo, img: any): boolean {
-		if (!img || (imageInfo.type === 'png' && !img.src)) {
+		if (!img) {
 			window.app.console.log(
 				'LayerDrawing.checkAndAttachImageData: no bitmap available.',
 			);
