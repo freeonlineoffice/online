@@ -357,16 +357,6 @@ void UnitBase::rememberInstance(UnitType type, UnitBase* instance)
     }
 }
 
-void UnitBase::setCppunitTesting(bool cppunitTesting)
-{
-    CppunitTesting = cppunitTesting;
-}
-
-bool UnitBase::isCppunitTesting()
-{
-    return CppunitTesting;
-}
-
 int UnitBase::uninit()
 {
     // Only in debug builds do we support tests.
