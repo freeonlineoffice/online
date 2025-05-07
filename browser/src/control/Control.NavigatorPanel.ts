@@ -112,11 +112,9 @@ class NavigatorPanel extends SidebarBase {
 			'close-navigation-button',
 			closeNavWrapper,
 		);
-		this.closeNavButton.setAttribute('aria-label', _('Close Navigation'));
-		this.closeNavButton.setAttribute(
-			'data-looltip',
-			_('Close Navigation'),
-		);
+		const closeNavigationText = _('Close Navigation');
+		this.closeNavButton.setAttribute('aria-label', closeNavigationText);
+		this.closeNavButton.setAttribute('data-looltip', closeNavigationText);
 		L.control.attachTooltipEventListener(this.closeNavButton, this.map);
 		this.closeNavButton.setAttribute('tabindex', '0');
 

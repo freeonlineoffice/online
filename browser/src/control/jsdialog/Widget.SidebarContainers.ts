@@ -69,8 +69,8 @@ JSDialog.panel = function (
 			iconParent,
 		);
 		const moreOptionsText = expanderData.children[0].text
-			? _('More options for {name}').replace(
-					'{name}',
+			? _('More options for {1}').replace(
+					'{1}',
 					expanderData.children[0].text,
 				)
 			: '';
