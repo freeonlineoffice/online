@@ -90,7 +90,7 @@ protected:
             std::string line;
             std::getline(std::cin, line);
 
-            StringVector tokens(StringVector::tokenize(line, ' '));
+            StringVector tokens(StringVector::tokenize(std::move(line), ' '));
 
             if (tokens.empty())
                 continue;
