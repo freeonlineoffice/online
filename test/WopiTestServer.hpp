@@ -374,7 +374,7 @@ protected:
     }
 
     virtual bool handleHttpPostRequest(const Poco::Net::HTTPRequest& request,
-                                       Poco::MemoryInputStream& message,
+                                       std::istream& message,
                                        std::shared_ptr<StreamSocket>& socket)
     {
         LOG_ASSERT_MSG(request.getMethod() == "POST", "Expect an HTTP POST request");
@@ -457,7 +457,7 @@ protected:
 
     /// Handles the uploading of a document to wopi.
     virtual bool handleWopiUpload(const Poco::Net::HTTPRequest& request,
-                                  Poco::MemoryInputStream& message,
+                                  std::istream& message,
                                   std::shared_ptr<StreamSocket>& socket)
     {
         const std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
@@ -534,7 +534,7 @@ protected:
 
     /// Here we act as a WOPI server, so that we have a server that responds to
     /// the wopi requests without additional expensive setup.
-    bool handleHttpRequest(const Poco::Net::HTTPRequest& request, Poco::MemoryInputStream& message,
+    bool handleHttpRequest(const Poco::Net::HTTPRequest& request, std::istream& message,
                            std::shared_ptr<StreamSocket>& socket) override
     {
         Poco::URI uriReq(Uri::decode(request.getURI()));
