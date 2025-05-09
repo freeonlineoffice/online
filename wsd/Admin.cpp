@@ -592,7 +592,7 @@ Admin::Admin()
         LOG_WRN("Low memory condition detected: only " << _totalAvailMemKb / 1024
                                                        << " MB of RAM available");
 
-    LOG_INF("hardware threads: " << std::thread::hardware_concurrency());
+    LOG_INF("Hardware threads: " << std::thread::hardware_concurrency());
 }
 
 Admin::~Admin()
