@@ -1113,7 +1113,7 @@ function setupToolbar(e) {
 	map.on('updateparts pagenumberchanged', onUpdateParts);
 
 	if (map.options.wopi && L.Params.closeButtonEnabled && !window.mode.isMobile()) {
-		$('#closebuttonwrapper').css('display', 'block');
+		$('#closebuttonwrapper').css('display', 'flex');
 		var button = L.DomUtil.get('closebutton');
 		if (button) {
 			button.setAttribute('data-looltip', _('Close document'));
@@ -1123,7 +1123,7 @@ function setupToolbar(e) {
 		$('#closebuttonwrapper').hide();
 		$('#closebuttonwrapperseparator').hide();
 	} else if (L.Params.closeButtonEnabled && !window.mode.isMobile()) {
-		$('#closebuttonwrapper').css('display', 'block');
+		$('#closebuttonwrapper').css('display', 'flex');
 	}
 
 	$('#closebutton').click(function () {
