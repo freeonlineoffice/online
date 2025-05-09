@@ -730,7 +730,7 @@ std::size_t WopiStorage::uploadLocalFileToStorageAsync(
 
     const bool isSaveAs = !saveAsPath.empty() && !saveAsFilename.empty();
     const std::string filePath(isSaveAs ? saveAsPath : getRootFilePathUploading());
-    const std::string filePathAnonym = LOOLWSD::anonymizeUrl(filePath);
+    std::string filePathAnonym = LOOLWSD::anonymizeUrl(filePath);
 
     const FileUtil::Stat fileStat(filePath);
     if (!fileStat.good())
@@ -749,7 +749,7 @@ std::size_t WopiStorage::uploadLocalFileToStorageAsync(
                                            : uriObject.getPath() + "/contents");
     auth.authorizeURI(uriObject);
 
-    const std::string uriAnonym = LOOLWSD::anonymizeUrl(uriObject.toString());
+    std::string uriAnonym = LOOLWSD::anonymizeUrl(uriObject.toString());
 
     const std::string wopiLog(isSaveAs ? "WOPI::PutRelativeFile"
                                        : (isRename ? "WOPI::RenameFile" : "WOPI::PutFile"));
@@ -865,7 +865,7 @@ std::size_t WopiStorage::uploadLocalFileToStorageAsync(
                                           isRename };
 
             // Handle the response.
-            const StorageBase::UploadResult res =
+            StorageBase::UploadResult res =
                 handleUploadToStorageResponse(details, httpResponse->getBody());
 
             // Fire the callback to our client (DocBroker, typically).
