@@ -1227,7 +1227,8 @@ class TreeViewControl {
 		if (data.id === 'contenttree') {
 			var tr = L.DomUtil.create(
 				'div',
-				builder.options.cssClass + ' ui-treview-entry ui-treeview-placeholder',
+				builder.options.cssClass +
+					' ui-treview-entry ui-treeview-placeholder',
 				this._container,
 			);
 			tr.innerText = _(
