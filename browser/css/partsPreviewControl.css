@@ -3,9 +3,8 @@
 	overflow-x: hidden;
 	overflow-y: visible;
 	background: var(--color-background-lighter);
-	max-height: 100%;
-	scrollbar-color: var(--color-background-darker)
-		var(--color-background-lighter);
+	max-height: 95%;
+	scrollbar-color: var(--color-background-darker) var(--color-background-lighter);
 	scrollbar-width: thin;
 }
 
