@@ -76,10 +76,10 @@ void WopiProxy::handleRequest([[maybe_unused]] const std::shared_ptr<Terminating
 
         case StorageBase::StorageType::Conversion:
             // We don't expect conversion requests.
-            LOG_ERR("Unsupported URI [" << COOLWSD::anonymizeUrl(uriPublic.toString())
+            LOG_ERR("Unsupported URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString())
                                         << "] for conversion");
             throw BadRequestException("Invalid URI for conversion [" +
-                                      COOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
+                                      LOOLWSD::anonymizeUrl(uriPublic.toString()) + ']');
             break;
 
 #if ENABLE_LOCAL_FILESYSTEM

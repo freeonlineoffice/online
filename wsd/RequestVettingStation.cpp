@@ -100,7 +100,7 @@ void RequestVettingStation::handleRequest(const std::string& id)
             break;
 
         case StorageBase::StorageType::Conversion:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a document conversion");
             break;
 
@@ -279,7 +279,7 @@ void RequestVettingStation::handleRequest(const std::string& id,
             break;
 
         case StorageBase::StorageType::Conversion:
-            LOG_INF("URI [" << COOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
+            LOG_INF("URI [" << LOOLWSD::anonymizeUrl(uriPublic.toString()) << "] on docKey ["
                             << docKey << "] is for a document conversion");
 
             LOG_TRC("Dissociating client socket from "

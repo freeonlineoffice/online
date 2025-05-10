@@ -44,7 +44,7 @@
 #include <common/FileUtil.hpp>
 #include <common/JsonUtil.hpp>
 #include <common/TraceEvent.hpp>
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 
 #ifdef IOS
 #include <ios.h>
@@ -154,12 +154,12 @@ StorageBase::StorageType StorageBase::validate(const Poco::URI& uri,
 
         if (takeOwnership)
         {
-            LOG_DBG("Validated URI [" << COOLWSD::anonymizeUrl(uri.toString())
+            LOG_DBG("Validated URI [" << LOOLWSD::anonymizeUrl(uri.toString())
                                       << "] as Conversion");
             // Normalize the path.
             Poco::Path path = Poco::Path(uri.getPath());
             if (!path.isAbsolute() || !path.isFile() ||
-                !path.makeAbsolute().toString().starts_with(COOLWSD::ChildRoot))
+                !path.makeAbsolute().toString().starts_with(LOOLWSD::ChildRoot))
             {
                 LOG_ERR("Invalid path to document to convert [" << uri.toString() << ']');
                 return StorageBase::StorageType::Unsupported;
