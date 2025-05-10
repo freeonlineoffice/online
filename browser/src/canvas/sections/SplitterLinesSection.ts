@@ -132,7 +132,9 @@ class SplitterLinesSection extends CanvasSectionObject {
 
 	private GetColumnHeaderHeight(): number {
 		if (
-			this.containerObject.getSectionWithName(L.CSections.ColumnHeader.name)
+			this.containerObject.getSectionWithName(
+				L.CSections.ColumnHeader.name,
+			)
 		) {
 			return this.containerObject.getSectionWithName(
 				L.CSections.ColumnHeader.name,
@@ -141,9 +143,14 @@ class SplitterLinesSection extends CanvasSectionObject {
 	}
 
 	private GetRowHeaderWidth(): number {
-		if (this.containerObject.getSectionWithName(L.CSections.RowHeader.name)) {
-			return this.containerObject.getSectionWithName(L.CSections.RowHeader.name)
-				.size[0];
+		if (
+			this.containerObject.getSectionWithName(
+				L.CSections.RowHeader.name,
+			)
+		) {
+			return this.containerObject.getSectionWithName(
+				L.CSections.RowHeader.name,
+			).size[0];
 		} else return 0;
 	}
 
