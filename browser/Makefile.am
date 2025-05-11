@@ -145,7 +145,7 @@ LOOL_ADMIN_JS =\
 	admin/src/AdminClusterOverviewAbout.js
 
 NODE_MODULES_SRC =\
-	autolinker@3.16.0 \
+	autolinker@4.1.5 \
 	dompurify@3.2.4 \
 	json-js@1.1.2 \
 	select2@4.0.13 \
