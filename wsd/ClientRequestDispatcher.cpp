@@ -2245,7 +2245,17 @@ bool ClientRequestDispatcher::handleClientWsUpgrade(const Poco::Net::HTTPRequest
                                   << socket->getFD());
 
     // First Upgrade.
-    auto ws = std::make_shared<WebSocketHandler>(socket, request);
+    const ServerURL cnxDetails(requestDetails);
+    bool allowedOrigin = false;
+#if !MOBILEAPP
+    if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
+    {
+        const std::string actualOrigin = request.get("Origin");
+        allowedOrigin = HostUtil::allowedWSOrigin(actualOrigin);
+    }
+#endif
+
+    auto ws = std::make_shared<WebSocketHandler>(socket, request, cnxDetails.getWebServerUrl(), allowedOrigin);
 
     // Response to clients beyond this point is done via WebSocket.
     try

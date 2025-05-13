@@ -93,9 +93,11 @@ public:
     /// Parameters:
     /// socket: the TCP socket which received the upgrade request
     /// request: the HTTP upgrade request to WebSocket
+    /// expectedOrigin: derived from serverurl
+    /// allowedOrigin: if origin is allowed using setting "indirection_endpoint.geolocation_setup.allowed_websocket_origins"
     template <typename T>
     WebSocketHandler(const std::shared_ptr<StreamSocket>& socket, const T& request,
-                     const std::string& expectedOrigin = "")
+                     const std::string& expectedOrigin = "", bool allowedOrigin = false)
         : WebSocketHandler(/*isClient=*/false, /*isMasking=*/false)
     {
         if (!socket)
@@ -106,7 +108,7 @@ public:
 
         // As a server, respond with 101 protocol-upgrade.
         assert(!_isClient);
-        upgradeToWebSocket(socket, request, expectedOrigin);
+        upgradeToWebSocket(socket, request, expectedOrigin, allowedOrigin);
     }
 
     /// Status codes sent to peer on shutdown.
@@ -1003,7 +1005,7 @@ protected:
     template <typename T>
     void upgradeToWebSocket(const std::shared_ptr<StreamSocket>& socket,
                             [[maybe_unused]] const T& req,
-                            [[maybe_unused]] const std::string& expectedOrigin)
+                            [[maybe_unused]] const std::string& expectedOrigin, bool allowedOrigin)
     {
         assert(socket && "Must have a valid socket");
         LOGA_TRC(WebSocket, "Upgrading to WebSocket");
@@ -1019,6 +1021,18 @@ protected:
         LOG_INF("WebSocket version: " << wsVersion << ", key: [" << wsKey << "], protocol: ["
                                       << wsProtocol << ']');
 
+        /* SHOULD verify the Origin field is an origin they expect. If the origin indicated is
+         * unacceptable to the server, then it SHOULD respond ... with a reply containing HTTP
+         * 403 Forbidden status code.
+         */
+        const std::string origin = req.get("Origin", "");
+        if (!allowedOrigin && origin != expectedOrigin)
+        {
+            LOG_ERR("Rejecting WebSocket upgrade with: origin [" << origin << "] expected ["
+                                                                 << expectedOrigin << "] instead");
+            HttpHelper::sendErrorAndShutdown(http::StatusCode::Forbidden, socket);
+            return;
+        }
 #if ENABLE_DEBUG
         if (std::getenv("LOOL_ZERO_BUFFER_SIZE"))
             socket->setSocketBufferSize(0);
