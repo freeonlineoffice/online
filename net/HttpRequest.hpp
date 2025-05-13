@@ -1942,13 +1942,13 @@ public:
         }
 
         _size = sb.st_size;
-        _data = std::move(fromFile);
+        _filename = std::move(fromFile);
         _mimeType = std::move(mimeType);
 
         int firstBytePos = getStart();
 
         if (lseek(_fd, firstBytePos, SEEK_SET) < 0)
-            LOG_SYS("Failed to seek " << _data << " to " << firstBytePos << " because: " << strerror(errno));
+            LOG_SYS("Failed to seek " << _filename << " to " << firstBytePos << " because: " << strerror(errno));
         else
             _pos = firstBytePos;
 
@@ -2058,8 +2058,7 @@ public:
         os << indent << "\tstart: " << _start;
         os << indent << "\tend: " << _end;
         os << indent << "\tstartIsSuffix: " << _startIsSuffix;
-        os << indent;
-        HexUtil::dumpHex(os, _data, "\tdata:\n", Util::replace(indent + '\t', "\n", "").c_str());
+        os << indent << "\tfilename: " << _filename;
         os << '\n';
 
         // We are typically called from the StreamSocket, so don't
@@ -2163,7 +2162,7 @@ private:
                 const auto size = std::min({sizeof(buffer), capacity, (size_t)(getEnd() - _pos)});
                 int n;
                 while ((n = ::read(_fd, buffer, size)) < 0 && errno == EINTR)
-                    LOG_TRC("EINTR reading from " << _data);
+                    LOG_TRC("EINTR reading from " << _filename);
 
                 if (n <= 0 || _pos >= getEnd())
                 {
@@ -2213,7 +2212,7 @@ private:
 private:
     std::chrono::microseconds _timeout;
     std::chrono::steady_clock::time_point _startTime;
-    std::string _data; ///< Data to upload, if not from a file, OR, the filename (if _pos == -1).
+    std::string _filename; ///< The input filename.
     std::string _mimeType; ///< The data Content-Type.
     int _pos; ///< The current position in the data string.
     int _size; ///< The size of the data in bytes.
