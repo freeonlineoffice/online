@@ -122,11 +122,7 @@ class NavigatorPanel extends SidebarBase {
 			'click',
 			function () {
 				this.closeNavigation();
-				if (
-					app.map.uiManager.getBooleanDocTypePref(
-						'ShowNavigator',
-					)
-				) {
+				if (app.showNavigator) {
 					app.map.sendUnoCommand('.uno:Navigator');
 				}
 			}.bind(this),
@@ -238,7 +234,7 @@ class NavigatorPanel extends SidebarBase {
 			// in that case we first show the navigation panel and then switch to tab view
 			this.showNavigationPanel();
 			$('#navigator-dock-wrapper').show(200);
-			app.map.uiManager.setDocTypePref('ShowNavigator', true);
+			app.showNavigator = true;
 			// this will update the indentation marks for elements like ruler
 			app.map.fire('fixruleroffset');
 			if (app.map.isPresentationOrDrawing()) {
@@ -251,7 +247,7 @@ class NavigatorPanel extends SidebarBase {
 
 	closeSidebar() {
 		this.closeNavigation();
-		this.map.uiManager.setDocTypePref('ShowNavigator', false);
+		app.showNavigator = false;
 		super.closeSidebar();
 	}
 
@@ -272,8 +268,7 @@ class NavigatorPanel extends SidebarBase {
 			this.presentationControlsWrapper.style.display = 'block';
 			this.navigatorDockWrapper.style.display = 'none';
 		} else {
-			if (!this.map.uiManager.getBooleanDocTypePref('ShowNavigator'))
-				app.map.sendUnoCommand('.uno:Navigator');
+			if (!app.showNavigator) app.map.sendUnoCommand('.uno:Navigator');
 			this.presentationControlsWrapper.style.display = 'none';
 			this.navigatorDockWrapper.style.display = 'block';
 		}
