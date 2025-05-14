@@ -65,6 +65,9 @@ class SettingIframe {
 	private wordbook;
 	private xcuEditor;
 	private _viewSetting;
+	private _viewSettingLabels = {
+		accessibilityState: _('Accessibility'),
+	};
 
 	private API_ENDPOINTS = {
 		uploadSettings: window.enableDebug
@@ -636,6 +639,11 @@ class SettingIframe {
 
 		for (const key in data) {
 			if (typeof data[key] === 'boolean') {
+				const label = this._viewSettingLabels[key];
+				if (!label) {
+					continue;
+				}
+
 				const checkboxContainer = document.createElement('span');
 				checkboxContainer.className =
 					'checkbox-radio-switch checkbox-radio-switch-checkbox checkbox-wrapper';
@@ -678,7 +686,7 @@ class SettingIframe {
 				const checkboxText = document.createElement('span');
 				checkboxText.className =
 					'checkbox-content__text checkbox-radio-switch__text';
-				checkboxText.textContent = key;
+				checkboxText.textContent = label;
 				checkboxContent.appendChild(checkboxText);
 
 				checkboxContainer.addEventListener(
@@ -736,7 +744,7 @@ ${
 				return;
 			}
 			resetButton.disabled = true;
-			const defaultBrowserSetting = { accessibility: false };
+			const defaultBrowserSetting = { accessibilityState: false };
 			this.uploadBrowserSettingFile(
 				'browsersetting.json',
 				JSON.stringify(defaultBrowserSetting),
@@ -801,7 +809,7 @@ ${
 			const fetchContent = await this.fetchSettingFile(fileId);
 			this.generateBrowserSettingUI(JSON.parse(fetchContent));
 		} else {
-			const defaultBrowserSetting = { accessibility: false };
+			const defaultBrowserSetting = { accessibilityState: false };
 			this.uploadBrowserSettingFile(
 				'browsersetting.json',
 				JSON.stringify(defaultBrowserSetting),
