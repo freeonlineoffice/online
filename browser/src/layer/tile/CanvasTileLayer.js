@@ -5140,14 +5140,12 @@ L.CanvasTileLayer = L.Layer.extend({
 	highlightCurrentPart: function (part) {
 		var previews = document.getElementsByClassName('preview-frame');
 		for (var i = 0; i < previews.length; i++) {
-			if (
-				parseInt(
-					previews[i].id.replace('preview-frame-part-', ''),
-				) === part
-			) {
-				previews[i].style.border = '2px solid darkgrey';
-			} else {
-				previews[i].style.border = 'none';
+			const img = previews[i].querySelector('img');
+			if (parseInt(previews[i].id.replace('preview-frame-part-', '')) === part) {
+				L.DomUtil.addClass(img, 'preview-img-currentpart');
+			}
+			else {
+				L.DomUtil.removeClass(img, 'preview-img-currentpart');
 			}
 		}
 	},
