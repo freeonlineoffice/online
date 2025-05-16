@@ -215,7 +215,7 @@ define start_loolwsd_instance
 			--unattended \
 			$(if $(findstring php-proxy, $(CYPRESS_INTEGRATION)),--o:net.proxy_prefix=true) \
 			 > $(LOOLWSD_OUTPUT) 2>&1 &
-	$(V)$(WAIT_ON_BINARY) http://localhost:$(FREE_PORT) --timeout 60000 || (echo ==dump loolwsd.log== && cat $(LOOLWSD_OUTPUT) && exit 1)
+	$(V)$(WAIT_ON_BINARY) http://localhost:$(FREE_PORT) --timeout 60000 || (echo ==dump loolwsd console output== && cat $(LOOLWSD_OUTPUT) && exit 1)
 	$(V)echo
 endef
 
@@ -751,7 +751,9 @@ define run_test_parallel
 		--spec $(3) \
 		--type $(4) \
 		--log-file $(5) \
-		--config-file $(CYPRESS_CONFIG)
+		--config-file $(CYPRESS_CONFIG) \
+		|| (echo ==dump loolwsd console output== && cat $(LOOLWSD_OUTPUT) &&\
+		    false)
 endef
 
 # Run one test \ tests in headless mode.
@@ -769,7 +771,8 @@ define run_test_headless
 		--config $(1) \
 		--env $(2) \
 		$(if $(3),--spec=$(3)) \
-		|| ($(KILL_COMMAND) && false)
+		|| (echo ==dump loolwsd console output== && cat $(LOOLWSD_OUTPUT) && \
+		    $(KILL_COMMAND) && false)
 endef
 
 # Checks whether the given spec file exists.
