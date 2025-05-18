@@ -1568,7 +1568,7 @@ The same as .unoarrow to replace the old .png bitmap arrow*/
 	grid-column: 3;
 	position: relative;
 	border: none;
-	padding: 0px;
+	padding: 1px;
 }
 
 .arrowbackground:hover {
