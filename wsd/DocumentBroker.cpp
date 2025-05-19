@@ -5190,6 +5190,10 @@ void DocumentBroker::getIOStats(uint64_t &sent, uint64_t &recv)
 #if !MOBILEAPP
 void DocumentBroker::checkFileInfo(const std::shared_ptr<ClientSession>& session, int redirectLimit)
 {
+    assert(_docState.activity() == DocumentState::Activity::SyncFileTimestamp &&
+           "Unexpected activity for CheckFileInfo");
+    assert(_storage && "Unexpected to not have Storage instance duing SyncFileTimestamp");
+
     if (!session)
     {
         assert(session && "Expected a valid session to CheckFileInfo");
@@ -5210,6 +5214,9 @@ void DocumentBroker::checkFileInfo(const std::shared_ptr<ClientSession>& session
         assert(&checkFileInfo == _checkFileInfo.get() && "Unknown CheckFileInfo instance");
         assert(checkFileInfo.completed() &&
                "Expected CheckFileInfo to be completed when calling the continuation");
+
+        // End the SyncFileTimestamp activity, but don't reset _checkFileInfo yet (it's our caller).
+        endActivity();
 
         if (checkFileInfo.state() == CheckFileInfo::State::Pass && checkFileInfo.wopiInfo())
         {
@@ -5245,13 +5252,8 @@ void DocumentBroker::checkFileInfo(const std::shared_ptr<ClientSession>& session
 
                 handleDocumentConflict();
             }
-
-            // End the SyncFileTimestamp activity, but don't reset _checkFileInfo yet.
-            endActivity();
-            return;
         }
-
-        // Failed, but don't end the SyncFileTimestamp activity yet.
+        else
         {
             // We failed to get CheckFileInfo.
             _storage->setLastModifiedTimeUnSafe(); // We can't trust the LastModifiedTime.
