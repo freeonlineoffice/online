@@ -35,6 +35,7 @@ interface ConfigData {
 	autotext: ConfigItem[] | null;
 	wordbook: ConfigItem[] | null;
 	browsersetting: ConfigItem[] | null;
+	viewsetting: ConfigItem[] | null;
 	xcu: ConfigItem[] | null;
 }
 
@@ -83,6 +84,7 @@ class SettingIframe {
 		wordBookUpload: () => this.settingConfigBasePath() + '/wordbook/',
 		browserSettingsUpload: () =>
 			this.settingConfigBasePath() + '/browsersetting/',
+		viewSettingsUpload: () => this.settingConfigBasePath() + '/viewsetting/',
 		XcuUpload: () => this.settingConfigBasePath() + '/xcu/',
 	};
 
@@ -111,12 +113,12 @@ class SettingIframe {
 		await this.uploadFile(this.PATH.wordBookUpload(), file);
 	}
 
-	async uploadBrowserSettingFile(
+	async uploadViewSettingFile(
 		filename: string,
 		content: string,
 	): Promise<void> {
 		const file = new File([content], filename, { type: 'text/plain' });
-		await this.uploadFile(this.PATH.browserSettingsUpload(), file);
+		await this.uploadFile(this.PATH.viewSettingsUpload(), file);
 	}
 
 	private initWindowVariables(): void {
@@ -601,36 +603,36 @@ class SettingIframe {
 		});
 	}
 
-	private generateBrowserSettingUI(data: any) {
+	private generateViewSettingUI(data: any) {
 		this._viewSetting = data;
 		const settingsContainer = document.getElementById('allConfigSection');
 		if (!settingsContainer) {
 			return;
 		}
 
-		let browserContainer = document.getElementById('browser-section');
-		if (browserContainer) {
-			browserContainer.remove();
+		let viewContainer = document.getElementById('view-section');
+		if (viewContainer) {
+			viewContainer.remove();
 		}
 
-		browserContainer = document.createElement('div');
-		browserContainer.id = 'browser-section';
-		browserContainer.classList.add('section');
+		viewContainer = document.createElement('div');
+		viewContainer.id = 'view-section';
+		viewContainer.classList.add('section');
 
 		let elem = document.createElement('h3');
 		elem.textContent = _('View Settings');
-		browserContainer.appendChild(elem);
+		viewContainer.appendChild(elem);
 
 		elem = document.createElement('p');
-		elem.textContent = _('Adjust how Browser preference behave.');
-		browserContainer.appendChild(elem);
+		elem.textContent = _('Adjust view settings.');
+		viewContainer.appendChild(elem);
 
 		const divContainer = document.createElement('div');
-		divContainer.id = 'browser-editor';
-		browserContainer.appendChild(divContainer);
+		divContainer.id = 'view-editor';
+		viewContainer.appendChild(divContainer);
 
 		const fieldset = document.createElement('fieldset');
-		fieldset.classList.add('browser-settings-fieldset');
+		fieldset.classList.add('view-settings-fieldset');
 		divContainer.appendChild(fieldset);
 
 		elem = document.createElement('legend');
@@ -744,10 +746,10 @@ ${
 				return;
 			}
 			resetButton.disabled = true;
-			const defaultBrowserSetting = { accessibilityState: false };
-			this.uploadBrowserSettingFile(
-				'browsersetting.json',
-				JSON.stringify(defaultBrowserSetting),
+			const defaultViewSetting = { accessibilityState: false };
+			this.uploadViewSettingFile(
+				'viewsetting.json',
+				JSON.stringify(defaultViewSetting),
 			);
 			resetButton.disabled = false;
 		});
@@ -765,8 +767,8 @@ ${
 
 		saveButton.addEventListener('click', async () => {
 			saveButton.disabled = true;
-			this.uploadBrowserSettingFile(
-				'browsersetting.json',
+			this.uploadViewSettingFile(
+				'viewsetting.json',
 				JSON.stringify(this._viewSetting),
 			);
 			saveButton.disabled = false;
@@ -774,9 +776,9 @@ ${
 
 		actionsContainer.appendChild(resetButton);
 		actionsContainer.appendChild(saveButton);
-		browserContainer.appendChild(actionsContainer);
+		viewContainer.appendChild(actionsContainer);
 
-		settingsContainer.appendChild(browserContainer);
+		settingsContainer.appendChild(viewContainer);
 	}
 
 	private async populateSharedConfigUI(data: ConfigData): Promise<void> {
@@ -804,15 +806,15 @@ ${
 			}
 		}
 
-		if (data.browsersetting && data.browsersetting.length > 0) {
-			const fileId = data.browsersetting[0].uri;
+		if (data.viewsetting && data.viewsetting.length > 0) {
+			const fileId = data.viewsetting[0].uri;
 			const fetchContent = await this.fetchSettingFile(fileId);
-			this.generateBrowserSettingUI(JSON.parse(fetchContent));
+			this.generateViewSettingUI(JSON.parse(fetchContent));
 		} else {
-			const defaultBrowserSetting = { accessibilityState: false };
-			this.uploadBrowserSettingFile(
-				'browsersetting.json',
-				JSON.stringify(defaultBrowserSetting),
+			const defaultViewSetting = { accessibilityState: false };
+			this.uploadViewSettingFile(
+				'viewsetting.json',
+				JSON.stringify(defaultViewSetting),
 			);
 		}
 
