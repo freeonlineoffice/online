@@ -1479,6 +1479,7 @@ constexpr std::string_view SUPPORT_KEY_BRANDING_UNSUPPORTED = "branding-unsuppor
 
 static const std::string ACCESS_TOKEN = "%ACCESS_TOKEN%";
 static const std::string ACCESS_TOKEN_TTL = "%ACCESS_TOKEN_TTL%";
+static const std::string NO_AUTH_HEADER = "%NO_AUTH_HEADER%";
 static const std::string ACCESS_HEADER = "%ACCESS_HEADER%";
 static const std::string UI_DEFAULTS = "%UI_DEFAULTS%";
 static const std::string CSS_VARS = "<!--%CSS_VARIABLES%-->";
@@ -1533,6 +1534,7 @@ public:
         const std::string accessToken = extractVariable(form, "access_token", ACCESS_TOKEN);
         const std::string accessTokenTtl =
             extractVariable(form, "access_token_ttl", ACCESS_TOKEN_TTL);
+        const std::string noAuthHeader = extractVariable(form, "no_auth_header", NO_AUTH_HEADER);
 
         unsigned long tokenTtl = 0;
         if (!accessToken.empty())
@@ -1639,6 +1641,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
 
     Poco::replaceInPlace(preprocess, ACCESS_TOKEN, urv[ACCESS_TOKEN]);
     Poco::replaceInPlace(preprocess, ACCESS_TOKEN_TTL, urv[ACCESS_TOKEN_TTL]);
+    Poco::replaceInPlace(preprocess, NO_AUTH_HEADER, urv[NO_AUTH_HEADER]);
     Poco::replaceInPlace(preprocess, ACCESS_HEADER, urv[ACCESS_HEADER]);
     Poco::replaceInPlace(preprocess, std::string("%HOST%"), cnxDetails.getWebSocketUrl());
     Poco::replaceInPlace(preprocess, std::string("%VERSION%"), Util::getLoolVersionHash());
@@ -1982,7 +1985,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
     socket->send(httpResponse);
     LOG_TRC("Sent file: " << relPath << ": " << preprocess);
 
-    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN], urv[DEBUG_WOPI_CONFIG_ID]);
+    return ResourceAccessDetails(std::move(wopiSrc), urv[ACCESS_TOKEN], urv[NO_AUTH_HEADER], urv[DEBUG_WOPI_CONFIG_ID]);
 }
 
 void FileServerRequestHandler::preprocessWelcomeFile(const HTTPRequest& request,
@@ -2043,6 +2046,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     const std::string& sharedConfigUrl = form.get("sharedConfigUrl", std::string());
     const std::string& accessToken = form.get("accessToken", std::string());
     const std::string& type = form.get("type", std::string());
+    bool noAuthHeader = !form.get("noAuthHeader", std::string()).empty();
 
     const std::string& shortMessage = "Failed to fetch wopi setting config";
     if (sharedConfigUrl.empty() || accessToken.empty() || type.empty())
@@ -2056,10 +2060,14 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     sharedUri.addQueryParameter("access_token", accessToken);
     sharedUri.addQueryParameter("fileId", "-1");
     sharedUri.addQueryParameter("type", type);
+    if (noAuthHeader)
+    {
+        sharedUri.addQueryParameter("no_auth_header", "1");
+    }
 
     const std::string& uriAnonym = LOOLWSD::anonymizeUrl(sharedUri.toString());
 
-    Authorization auth(Authorization::Type::Token, accessToken);
+    Authorization auth(Authorization::Type::Token, accessToken, noAuthHeader);
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
     httpRequest.setVerb(http::Request::VERB_GET);
     httpRequest.header().set("Content-Type", "application/json");
@@ -2117,6 +2125,7 @@ void FileServerRequestHandler::fetchSettingFile(const Poco::Net::HTTPRequest& re
 
     const std::string& fileUrl = form.get("fileUrl", std::string());
     const std::string& accessToken = form.get("accessToken", std::string());
+    bool noAuthHeader = !form.get("noAuthHeader", std::string()).empty();
 
     if (fileUrl.empty() || accessToken.empty())
     {
@@ -2127,9 +2136,13 @@ void FileServerRequestHandler::fetchSettingFile(const Poco::Net::HTTPRequest& re
 
     Poco::URI dicUrl(fileUrl);
     dicUrl.addQueryParameter("access_token", accessToken);
+    if (noAuthHeader)
+    {
+        dicUrl.addQueryParameter("no_auth_header", "1");
+    }
 
     const std::string& uriAnonym = LOOLWSD::anonymizeUrl(dicUrl.toString());
-    Authorization auth(Authorization::Type::Token, accessToken);
+    Authorization auth(Authorization::Type::Token, accessToken, noAuthHeader);
     auto httpRequest = StorageConnectionManager::createHttpRequest(dicUrl, auth);
     httpRequest.setVerb(http::Request::VERB_GET);
     httpRequest.header().set("Content-Type", "text/plain");
@@ -2163,6 +2176,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     const std::string& sharedConfigUrl = form.get("sharedConfigUrl", std::string());
     const std::string& accessToken = form.get("accessToken", std::string());
     const std::string& fileId = form.get("fileId", std::string());
+    bool noAuthHeader = !form.get("noAuthHeader", std::string()).empty();
 
     const std::string& shortMessage = "Failed to delete presetfile";
     if (sharedConfigUrl.empty() || accessToken.empty() || fileId.empty())
@@ -2175,9 +2189,13 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     Poco::URI sharedUri(sharedConfigUrl);
     sharedUri.addQueryParameter("access_token", accessToken);
     sharedUri.addQueryParameter("fileId", fileId);
-    const std::string& uriAnonym =LOOLWSD::anonymizeUrl(sharedUri.toString());
+    if (noAuthHeader)
+    {
+        sharedUri.addQueryParameter("no_auth_header", "1");
+    }
+    const std::string& uriAnonym = LOOLWSD::anonymizeUrl(sharedUri.toString());
 
-    Authorization auth(Authorization::Type::Token, accessToken);
+    Authorization auth(Authorization::Type::Token, accessToken, noAuthHeader);
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
 
     httpRequest.setVerb("DELETE");
@@ -2273,7 +2291,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     wopiUri.addQueryParameter("access_token", token);
     const std::string& uriAnonym = LOOLWSD::anonymizeUrl(wopiUri.toString());
 
-    Authorization auth(Authorization::Type::Token, token);
+    Authorization auth(Authorization::Type::Token, token, false);
     auto httpRequest = StorageConnectionManager::createHttpRequest(wopiUri, auth);
     httpRequest.setVerb(http::Request::VERB_POST);
 
@@ -2343,6 +2361,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
 
     Poco::replaceInPlace(adminFile, ACCESS_TOKEN, urv[ACCESS_TOKEN]);
     Poco::replaceInPlace(adminFile, ACCESS_TOKEN_TTL, urv[ACCESS_TOKEN_TTL]);
+    Poco::replaceInPlace(adminFile, NO_AUTH_HEADER, urv[NO_AUTH_HEADER]);
     Poco::replaceInPlace(adminFile, WOPI_SETTING_BASE_URL, urv[WOPI_SETTING_BASE_URL]);
     Poco::replaceInPlace(adminFile, ACCESS_HEADER, urv[ACCESS_HEADER]);
     Poco::replaceInPlace(adminFile, IFRAME_TYPE, urv[IFRAME_TYPE]);

@@ -229,6 +229,7 @@ m4_ifelse(MOBILEAPP, [true],
         [
           data-access-token='%ACCESS_TOKEN%'
           data-access-token-ttl='%ACCESS_TOKEN_TTL%'
+          data-no-auth-header='%NO_AUTH_HEADER%'
           data-access-header='%ACCESS_HEADER%'
         ]
       )
@@ -243,6 +244,7 @@ m4_ifelse(MOBILEAPP, [true],
       data-version-path = "%VERSION%"
       data-access-token = "%ACCESS_TOKEN%"
       data-access-token-ttl = "%ACCESS_TOKEN_TTL%"
+      data-no-auth-header = "%NO_AUTH_HEADER%"
       data-access-header = "%ACCESS_HEADER%"
       data-post-message-origin-ext = "%POSTMESSAGE_ORIGIN%"
       data-lool-logging = "%BROWSER_LOGGING%"

@@ -8,7 +8,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-/* global errorMessages accessToken accessTokenTTL accessHeader createOnlineModule */
+/* global errorMessages accessToken accessTokenTTL noAuthHeader accessHeader createOnlineModule */
 /* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService LayoutingService */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
@@ -19,7 +19,7 @@ var wopiParams = {};
 var wopiSrc = global.loolParams.get('WOPISrc');
 
 if (wopiSrc !== '' && accessToken !== '') {
-	wopiParams = { 'access_token': accessToken, 'access_token_ttl': accessTokenTTL };
+	wopiParams = { 'access_token': accessToken, 'access_token_ttl': accessTokenTTL, 'no_auth_header': noAuthHeader };
 }
 else if (wopiSrc !== '' && accessHeader !== '') {
 	wopiParams = { 'access_header': accessHeader };
