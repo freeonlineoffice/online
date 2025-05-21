@@ -199,7 +199,8 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		desktopHelper.insertComment(undefined, false);
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		cy.cSetActiveFrame('#iframe2');
@@ -211,10 +212,12 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		desktopHelper.insertComment(undefined, false);
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('[id^=annotation-save-]').click();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.not.visible');
+		cy.cGet('.annotation-button-delete').should('be.not.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.not.visible');
 		cy.cGet('.annotation-marker').should('exist');
 		cy.cGet('.lool-annotation-content > div').should('have.text','some text0');
@@ -228,10 +231,12 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cSetActiveFrame('#iframe1');
 		desktopHelper.insertComment(undefined, false);
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('.modify-annotation [id^=annotation-cancel-]').click();
-		cy.cGet('.lool-annotation-autosavelabel').should('not.exist');
+		cy.cGet('.annotation-button-autosaved').should('not.exist');
+		cy.cGet('.annotation-button-delete').should('not.exist');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('not.exist');
 		cy.cGet('.annotation-marker').should('not.exist');
 		cy.cGet('.lool-annotation-content > div').should('not.exist');
@@ -251,7 +256,8 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('[id^=annotation-modify-textarea-]').type('{home}');
 		cy.cGet('[id^=annotation-modify-textarea-]').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 
 		cy.cSetActiveFrame('#iframe2');
@@ -269,7 +275,8 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('[id^=annotation-modify-textarea-]').type('{home}');
 		cy.cGet('[id^=annotation-modify-textarea-]').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('[id^=annotation-save-]').click();
 		cy.cGet('[id^=annotation-content-area-]').should('have.text','some other text, some text0');
@@ -290,7 +297,8 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('[id^=annotation-modify-textarea-]').type('{home}');
 		cy.cGet('[id^=annotation-modify-textarea-]').type('some other text, ');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('.lool-annotation-edit.modify-annotation').should('be.visible');
 		cy.cGet('.modify-annotation [id^=annotation-cancel-]').click();
 		cy.cGet('[id^=annotation-content-area-]').should('have.text','some text0');
@@ -310,7 +318,8 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Reply').click();
 		cy.cGet('[id^=annotation-reply-textarea-]').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some text0');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some reply text');
@@ -328,12 +337,14 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Reply').click();
 		cy.cGet('[id^=annotation-reply-textarea-]').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some text0');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some reply text');
 		cy.cGet('[id^=annotation-save-]').click();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.not.visible');
+		cy.cGet('.annotation-button-delete').should('be.not.visible');
 		cy.cGet('.lool-annotation-edit.reply-annotation').should('be.not.visible');
 		cy.cGet('.lool-annotation-content > div').should('include.text','some text0');
 		cy.cGet('.lool-annotation-content > div').should('include.text','some reply text');
@@ -352,12 +363,14 @@ describe(['tagmultiuser'], 'Multiuser Annotation Autosave Tests', function() {
 		cy.cGet('body').contains('.context-menu-item','Reply').click();
 		cy.cGet('[id^=annotation-reply-textarea-]').type('some reply text');
 		cy.cGet('#map').focus();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.visible');
+		cy.cGet('.annotation-button-delete').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('be.visible');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some text0');
 		cy.cGet('[id^=annotation-modify-textarea-]').should('include.text', 'some reply text');
 		cy.cGet('.modify-annotation [id^=annotation-cancel-]').click();
-		cy.cGet('.lool-annotation-autosavelabel').should('be.not.visible');
+		cy.cGet('.annotation-button-autosaved').should('be.not.visible');
+		cy.cGet('.annotation-button-delete').should('be.not.visible');
 		cy.cGet('.lool-annotation-edit.reply-annotation').should('be.not.visible');
 		cy.cGet('.lool-annotation-content > div').should('have.text','some text0');
 
