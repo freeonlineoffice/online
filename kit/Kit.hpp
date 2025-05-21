@@ -434,6 +434,9 @@ public:
     /// Permanently disable background save for this process
     void disableBgSave(const std::string &reason);
 
+    void bgSaveStarted() { _bgSavesOngoing++; }
+    void bgSaveEnded() { _bgSavesOngoing--; }
+
     /// Are we currently performing a load ?
     bool isLoadOngoing() const { return _duringLoad > 0; }
 
@@ -511,6 +514,7 @@ private:
 
     const unsigned _mobileAppDocId;
     int _duringLoad;
+    int _bgSavesOngoing;
 
     LogUiCmd logUiCmd;
 };
