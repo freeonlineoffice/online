@@ -751,7 +751,7 @@ public:
     {
         std::shared_ptr<StreamSocket> socket = _socket.lock();
         if (socket)
-            socket->flush();
+            socket->attemptWrites();
     }
 
 protected:

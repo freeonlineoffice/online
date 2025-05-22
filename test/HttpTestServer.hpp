@@ -182,7 +182,7 @@ private:
 
         Buffer& out = socket->getOutBuffer();
         LOG_TRC("performWrites: " << out.size() << " bytes.");
-        socket->flush();
+        socket->attemptWrites();
     }
 
 private:
