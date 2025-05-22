@@ -227,11 +227,6 @@ public:
         }
     }
 
-    virtual void shutdown()
-    {
-        syncShutdown();
-    }
-
     /// Prepare our poll record; adjust @timeoutMaxMs downwards
     /// for timeouts, based on current time @now.
     /// @returns POLLIN and POLLOUT if output is expected.
@@ -1291,12 +1286,6 @@ public:
     {
         _shutdownSignalled = true;
         LOG_TRC("Async shutdown requested.");
-    }
-
-    /// Just trigger the async shutdown.
-    void shutdown() override
-    {
-        asyncShutdown();
     }
 
     void ignoreInput() override
