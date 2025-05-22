@@ -288,7 +288,7 @@ private:
             LOGA_TRC(WebSocket, "Shutdown: Closing Connection " << (silent ? "(silent)" : "(coop)"));
             if (!silent)
                 sendCloseFrame(statusCode, statusMessage);
-            socket->shutdown();
+            socket->asyncShutdown();
             socket->ignoreInput();
             assert(socket->getInBuffer().empty() &&
                    "Socket buffer must be empty after ignoreInput");
@@ -1075,7 +1075,7 @@ protected:
                 else
                 {
                     LOG_ERR("Server returned invalid accept token during handshake. Disconnecting");
-                    socket->shutdown();
+                    socket->asyncShutdown();
                 }
             },
             socket->getFD());
@@ -1085,7 +1085,7 @@ protected:
         {
             // Error: Interrupt the transfer.
             LOG_ERR("Error in client websocket upgrade response. Disconnecting");
-            socket->shutdown();
+            socket->asyncShutdown();
             return;
         }
 

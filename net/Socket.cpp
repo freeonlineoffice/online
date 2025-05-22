@@ -1125,7 +1125,7 @@ bool StreamSocket::send(const http::Response& response)
         return true;
     }
 
-    shutdown();
+    asyncShutdown();
     return false;
 }
 
@@ -1137,7 +1137,7 @@ bool StreamSocket::send(http::Request& request)
         return true;
     }
 
-    shutdown();
+    asyncShutdown();
     return false;
 }
 
@@ -1146,7 +1146,7 @@ bool StreamSocket::sendAndShutdown(http::Response& response)
     response.header().setConnectionToken(http::Header::ConnectionToken::Close);
     if (send(response))
     {
-        shutdown();
+        asyncShutdown();
         return true;
     }
 
@@ -1585,7 +1585,7 @@ bool StreamSocket::checkRemoval(std::chrono::steady_clock::time_point now)
         ensureDisconnected();
         if (!isShutdown())
         {
-            shutdown(); // signal
+            asyncShutdown(); // signal
             shutdownConnection(); // real -> setShutdown()
         }
 
@@ -1724,7 +1724,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
                     LOG_ERR("parseHeader: Missing \\r\\n at end of chunk " << chunk << " of length " << chunkLen << ", delay " << delayMs.count() << "ms");
                     LOG_CHUNK("Chunk " << chunk << " is: \n"
                                        << HexUtil::dumpHex("", "", chunkStart, itBody + 1, false));
-                    shutdown();
+                    asyncShutdown();
                     return false; // TODO: throw something sensible in this case
                 }
 
@@ -1744,7 +1744,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
         LOG_DBG("parseHeader: Exception caught with "
                 << _inBuffer.size() << " bytes, shutdown: " << exc.displayText() << ", delay "
                 << delayMs.count() << "ms");
-        shutdown();
+        asyncShutdown();
         return false;
     }
     catch (const Poco::Net::UnsupportedRedirectException& exc)
@@ -1752,7 +1752,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
         LOG_DBG("parseHeader: Exception caught with "
                 << _inBuffer.size() << " bytes, shutdown: " << exc.displayText() << ", delay "
                 << delayMs.count() << "ms");
-        shutdown();
+        asyncShutdown();
         return false;
     }
     catch (const Poco::Net::HTTPException& exc)
@@ -1760,7 +1760,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
         LOG_DBG("parseHeader: Exception caught with "
                 << _inBuffer.size() << " bytes, shutdown: " << exc.displayText() << ", delay "
                 << delayMs.count() << "ms");
-        shutdown();
+        asyncShutdown();
         return false;
     }
     catch (const Poco::Exception& exc)
@@ -1770,7 +1770,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
             LOG_DBG("parseHeader: Exception caught with "
                     << _inBuffer.size() << " bytes, shutdown: " << exc.displayText() << ", delay "
                     << delayMs.count() << "ms");
-            shutdown();
+            asyncShutdown();
         }
         else
         {
@@ -1787,7 +1787,7 @@ bool StreamSocket::parseHeader(const std::string_view clientName, std::istream& 
             LOG_DBG("parseHeader: Exception caught with "
                     << _inBuffer.size() << " bytes, shutdown: " << exc.what() << ", delay "
                     << delayMs.count() << "ms");
-            shutdown();
+            asyncShutdown();
         }
         else
         {

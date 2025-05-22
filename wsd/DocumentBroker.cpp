@@ -4530,7 +4530,7 @@ bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> 
             socket->setSocketBufferSize(
                 std::min(saved->length() + 256, std::size_t(Socket::MaximumSendBufferSize)));
             socket->send(oss.str());
-            socket->shutdown();
+            socket->asyncShutdown();
             LOG_INF("Found and queued clipboard response for send of size " << saved->length());
             return true;
     }
@@ -4546,7 +4546,7 @@ bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> 
                               "Connection: close\r\n");
     }
 
-    socket->shutdown();
+    socket->asyncShutdown();
     socket->ignoreInput();
 
     return false;
