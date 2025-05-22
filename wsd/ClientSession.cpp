@@ -1673,6 +1673,12 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
             oss << " batch=" << getBatchMode();
         }
 
+        if (!getInFilterOption().empty())
+        {
+            oss << " infilterOptions=" << getInFilterOption();
+        }
+
+
 
         return forwardToChild(oss.str(), docBroker);;
     }
