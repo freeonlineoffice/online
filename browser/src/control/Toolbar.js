@@ -673,7 +673,8 @@ L.Map.include({
 				);
 		}
 		var searchInput = document.getElementById('online-help-search-input');
-		searchInput.setAttribute('placeholder', _('Search'));
+		searchInput.setAttribute('placeholder',_('Search'));
+		searchInput.setAttribute('aria-label',_('Search'));
 		searchInput.focus(); // auto focus on user input field
 		var helpContentParent =
 			document.getElementsByClassName('ui-dialog-content')[0];
