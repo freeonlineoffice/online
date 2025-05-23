@@ -406,6 +406,7 @@ L.Control.PartsPreview = L.Control.extend({
 		var partHeightPixels = Math.round((this._map._docLayer._partHeightTwips + this._map._docLayer._spaceBetweenParts) * app.twipsToPixels);
 		var scrollTop = partHeightPixels * partNumber;
 		var viewHeight = app.sectionContainer.getViewSize()[1];
+		var currentScrollX = (app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).containerObject.getDocumentTopLeft()[0] / app.dpiScale);
 
 		if (viewHeight > partHeightPixels && partNumber > 0)
 			scrollTop -= Math.round((viewHeight - partHeightPixels) * 0.5);
@@ -414,7 +415,7 @@ L.Control.PartsPreview = L.Control.extend({
 		if (fromBottom)
 			scrollTop += partHeightPixels - viewHeight;
 		scrollTop = Math.round(scrollTop / app.dpiScale);
-		app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).onScrollTo({x: 0, y: scrollTop});
+		app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).onScrollTo({x: currentScrollX, y: scrollTop});
 	},
 
 	_scrollViewByDirection: function(buttonType) {
@@ -427,6 +428,8 @@ L.Control.PartsPreview = L.Control.extend({
 		var viewHeightScaled = Math.round(Math.floor(viewHeight) / app.dpiScale);
 		var scrollBySize = Math.floor(viewHeightScaled * 0.75);
 		var topPx = (app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).containerObject.getDocumentTopLeft()[1] / app.dpiScale);
+		var currentScrollX = app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).containerObject.getDocumentTopLeft()[0] / app.dpiScale;
+
 		if (buttonType === 'prev') {
 			if (this._map.getCurrentPartNumber() == 0) {
 				if (topPx - scrollBySize <= 0) {
@@ -444,7 +447,7 @@ L.Control.PartsPreview = L.Control.extend({
 				}
 			}
 		}
-		app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).onScrollBy({x: 0, y: buttonType === 'prev' ? -scrollBySize : scrollBySize});
+		app.sectionContainer.getSectionWithName(L.CSections.Scroll.name).onScrollBy({x: currentScrollX, y: buttonType === 'prev' ? -scrollBySize : scrollBySize});
 	},
 
 	_setPart: function (e) {
