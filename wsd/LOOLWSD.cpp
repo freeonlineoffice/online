@@ -2689,9 +2689,11 @@ void LOOLWSD::setLogLevelsOfKits(const std::string& level)
 void PrisonPoll::wakeupHook()
 {
 #if !MOBILEAPP
+    THREAD_UNSAFE_DUMP_BEGIN
     LOG_TRC("PrisonerPoll - wakes up with " << NewChildren.size() <<
             " new children and " << DocBrokers.size() << " brokers and " <<
             TotalOutstandingForks << " kits forking");
+    THREAD_UNSAFE_DUMP_END
 
     if (!LOOLWSD::checkAndRestoreForKit())
     {
