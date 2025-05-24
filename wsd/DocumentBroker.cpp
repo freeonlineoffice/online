@@ -4934,7 +4934,7 @@ bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& sessio
         return true;
     }
 
-    const std::string viewId = session->getId();
+    std::string viewId = session->getId();
 
     LOG_TRC("Forwarding payload to child [" << viewId << "]: " << getAbbreviatedMessage(message));
 
@@ -4960,7 +4960,7 @@ bool DocumentBroker::forwardToChild(const std::shared_ptr<ClientSession>& sessio
 #if !MOBILEAPP
             if (_asyncInstallTask)
             {
-                auto sendLoad = [selfWeak = weak_from_this(), this, viewId,
+                auto sendLoad = [selfWeak = weak_from_this(), this, viewId = std::move(viewId),
                                  msg = std::move(msg), binary](bool success) {
                     if (!success)
                         return;
