@@ -1100,7 +1100,7 @@ div#enablecontour + label,
 	clear: both;
 }
 
-label.disabled {
+label[disabled] {
 	color: var(--color-text-lighter) !important;
 }
 
