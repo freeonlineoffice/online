@@ -378,7 +378,7 @@ class SlideShowHandler {
 				},
 			);
 		}
-
+		this.slideCompositor.notifyTransitionStart();
 		this.presenter._map.fire('transitionstart', {
 			slide: nNewSlideIndex,
 		});
