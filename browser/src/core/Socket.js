@@ -1578,7 +1578,7 @@ app.definitions.Socket = L.Class.extend({
 			this._map.uiManager.setCanvasColorAfterModeChange();
 
 			var uiMode = this._map.uiManager.getCurrentMode();
-			if (uiMode === 'notebookbar') {
+			if (uiMode === 'notebookbar' && this._map.uiManager.notebookbar) {
 				this._map.uiManager.notebookbar.resetInCore();
 				this._map.uiManager.notebookbar.initializeInCore();
 			}
