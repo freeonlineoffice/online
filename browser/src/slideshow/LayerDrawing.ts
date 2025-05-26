@@ -192,6 +192,15 @@ class LayerDrawing {
 		if (!videosInfo || videosInfo.length === 0) return;
 		this.videoRenderers.set(slideHash, []);
 
+		if (
+			!this.layerRenderer.getRenderContext().is2dGl() &&
+			!VideoRendererGl.videoProgramInitialized
+		) {
+			VideoRendererGl.createProgram(
+				this.layerRenderer.getRenderContext(),
+			);
+		}
+
 		for (let i = 0; i < videosInfo.length; ++i) {
 			const videoInfo = videosInfo[i];
 			this.handleVideo(i, slideHash, videoInfo);
@@ -223,15 +232,6 @@ class LayerDrawing {
 	}
 
 	private drawVideos(slideHash: string) {
-		if (
-			!this.layerRenderer.getRenderContext().is2dGl() &&
-			!VideoRendererGl.videoProgramInitialized
-		) {
-			VideoRendererGl.createProgram(
-				this.layerRenderer.getRenderContext(),
-			);
-		}
-
 		const videoRenderers = this.videoRenderers.get(slideHash);
 		if (!videoRenderers) return;
 
