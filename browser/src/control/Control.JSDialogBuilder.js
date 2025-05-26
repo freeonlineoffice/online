@@ -1621,7 +1621,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		var accKey = builder._getAccessKeyFromText(data.text);
 		builder._stressAccessKey(textContent, accKey);
 
-		setTimeout(function () {
+		app.layoutingService.appendLayoutingTask(function () {
 			var labelledControl = document.getElementById(data.labelFor);
 			if (labelledControl) {
 				var target = labelledControl;
@@ -1634,7 +1634,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 				builder._setAccessKey(target, accKey);
 			}
-		}, 0);
+		});
 
 		textContent.id = data.id;
 		if (data.style && data.style.length) {
@@ -1781,7 +1781,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		var accKey = builder._getAccessKeyFromText(data.text);
 		builder._stressAccessKey(fixedtext, accKey);
 
-		setTimeout(function () {
+		app.layoutingService.appendLayoutingTask(function () {
 			var labelledControl = document.getElementById(data.labelFor);
 			if (labelledControl) {
 				var target = labelledControl;
@@ -1794,7 +1794,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 				builder._setAccessKey(target, accKey);
 			}
-		}, 0);
+		});
 
 		fixedtext.id = data.id;
 		if (data.style && data.style.length) {
