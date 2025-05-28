@@ -834,7 +834,8 @@ class LayerDrawing {
 		const fields = this.slideTextFieldsMap.get(slideHash);
 		if (!fields) {
 			window.app.console.log(
-				'LayerDrawing: No layer cached text field for draw page: ' + slideHash,
+				'LayerDrawing: No layer cached text field for draw page: ' +
+					slideHash,
 			);
 			return false;
 		}
