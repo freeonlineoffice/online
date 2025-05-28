@@ -84,7 +84,8 @@ class SettingIframe {
 		wordBookUpload: () => this.settingConfigBasePath() + '/wordbook/',
 		browserSettingsUpload: () =>
 			this.settingConfigBasePath() + '/browsersetting/',
-		viewSettingsUpload: () => this.settingConfigBasePath() + '/viewsetting/',
+		viewSettingsUpload: () =>
+			this.settingConfigBasePath() + '/viewsetting/',
 		XcuUpload: () => this.settingConfigBasePath() + '/xcu/',
 	};
 
@@ -668,7 +669,8 @@ class SettingIframe {
 				checkboxContent.appendChild(checkboxIcon);
 
 				const materialIcon = document.createElement('span');
-				materialIcon.className = 'material-design-icon checkbox-marked-icon';
+				materialIcon.className =
+					'material-design-icon checkbox-marked-icon';
 				materialIcon.ariaHidden = 'true';
 
 				const iconSvg = `
@@ -701,7 +703,9 @@ class SettingIframe {
 								'checkbox-radio-switch--checked',
 							);
 						} else {
-							checkboxContainer.classList.add('checkbox-radio-switch--checked');
+							checkboxContainer.classList.add(
+								'checkbox-radio-switch--checked',
+							);
 						}
 						materialIcon.innerHTML = `
 <svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24">
