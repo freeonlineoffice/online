@@ -957,7 +957,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					MessageId: 'Iframe_Height',
 					SendTime: Date.now(),
 					Values: {
-						ContentHeight: document.documentElement.offsetHeight + 'px',
+						ContentHeight:
+							document.documentElement.offsetHeight + 'px',
 					},
 				},
 				'*',
