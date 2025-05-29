@@ -15,6 +15,7 @@
 
 @property (strong) CODocument *document;
 @property (strong) WKWebView *webView;
+@property void *schemeHandler;
 
 - (void)bye;
 

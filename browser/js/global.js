@@ -1450,7 +1450,7 @@ function getInitializerClass() {
 
 	class MobileSocket extends global.ProxySocket {
 		constructor(url) {
-			super("cool:/cool/mobilesocket" + url);
+			super("lool:/lool/mobilesocket" + url);
 
 			delete this.send;
 			delete this._setPollInterval;
@@ -1787,18 +1787,13 @@ function getInitializerClass() {
 		return new TextDecoder().decode(bytes);
 	};
 
-	if (global.ThisIsAMobileApp) {
-		global.socket = new global.FakeWebSocket();
-		global.TheFakeWebSocket = global.socket;
-	} else {
-		// The URL may already contain a query (e.g., 'http://server.tld/foo/wopi/files/bar?desktop=baz') - then just append more params
-		var docParamsPart = docParams ? (global.docURL.includes('?') ? '&' : '?') + docParams : '';
-		var websocketURI = global.makeWsUrlWopiSrc('/lool/', global.docURL + docParamsPart);
-		try {
-			global.socket = global.createWebSocket(websocketURI);
-		} catch (err) {
-			global.app.console.log(err);
-		}
+	// The URL may already contain a query (e.g., 'http://server.tld/foo/wopi/files/bar?desktop=baz') - then just append more params
+	var docParamsPart = docParams ? (global.docURL.includes('?') ? '&' : '?') + docParams : '';
+	var websocketURI = global.makeWsUrlWopiSrc('/lool/', global.docURL + docParamsPart);
+	try {
+		global.socket = global.createWebSocket(websocketURI);
+	} catch (err) {
+		global.app.console.log(err);
 	}
 
 	var isRandomUser = global.loolParams.get('randomUser');
