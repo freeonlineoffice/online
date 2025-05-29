@@ -786,7 +786,7 @@ $(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DS
 	@mkdir -p $(dir $@)
 	$(QUIET_UNOCOMMANDS) $(abs_top_srcdir)/scripts/unocommands.py --check $(abs_top_srcdir)
 	@printf "Checking for obsolete JS build intermediates in this makefile... "
-	@if ! test "z$(LOOL_ASSERT_INTERSECT)" == "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(LOOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
+	@if ! test "z$(LOOL_ASSERT_INTERSECT)" = "z"; then echo; echo "Error: please remove obsolete files:"; echo "$(LOOL_ASSERT_INTERSECT)"; exit 1; else echo "clean"; fi
 	$(call run_eslint_check,$(srcdir)/src $(srcdir)/js)
 	$(call run_prettier_check,--debug-check $(srcdir)/src $(srcdir)/js/global.js)
 	@echo "Bundling lool..."
