@@ -78,6 +78,7 @@ class IdleHandler {
 				  requirements to position them.
 				*/
 				if (this.map._docLayer) {
+					this.map._docLayer.allowDrawing();
 					this.refreshAnnotations();
 				}
 				else {
