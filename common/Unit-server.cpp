@@ -9,7 +9,7 @@
 
 #include "Unit.hpp"
 
-// A "server" COOL is always running on a Unixish OS, so we can
+// A "server" LOOL is always running on a Unixish OS, so we can
 // include this unconditionally.
 #include <dlfcn.h>
 

@@ -450,7 +450,7 @@ public:
         ++_uploadAttemptCount;
         LOG_TST("PutFile: " << _uploadAttemptCount << ", Phase: " << name(_phase));
 
-        const std::string wopiTimestamp = request.get("X-COOL-WOPI-Timestamp", std::string());
+        const std::string wopiTimestamp = request.get("X-LOOL-WOPI-Timestamp", std::string());
 
         if (_uploadAttemptCount == 1)
         {
