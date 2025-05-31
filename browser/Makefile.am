@@ -794,7 +794,7 @@ $(INTERMEDIATE_DIR)/lool-src.js: tscompile.done $(call prereq_lool) $(LOOL_JS_DS
 
 $(DIST_FOLDER)/bundle.css: $(call prereq_css)
 	@mkdir -p $(dir $@)
-	$(QUIET_STYLELINT) $(NODE) node_modules/stylelint/bin/stylelint.js --config $(srcdir)/.stylelintrc.json $(srcdir)/css/*.css --fix
+	$(QUIET_STYLELINT) $(NODE) node_modules/stylelint/bin/stylelint.mjs --config $(srcdir)/.stylelintrc.json $(srcdir)/css/*.css --fix
 	$(call bundle_css)
 
 $(DIST_FOLDER)/bundle.js: $(INTERMEDIATE_DIR)/lool-src.js $(call prereq_all)
