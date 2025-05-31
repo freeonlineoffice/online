@@ -176,7 +176,7 @@ L.Control.PartsPreview = L.Control.extend({
 		var img = L.DomUtil.create('img', imgClassName, frame);
 		img.setAttribute('alt', _('preview of page %1').replace('%1', String(i + 1)));
 		img.setAttribute('tabindex', '0');
-		img.setAttribute('data-cooltip', _('Slide %1').replace('%1', String(i + 1)));
+		img.setAttribute('data-looltip', _('Slide %1').replace('%1', String(i + 1)));
 		L.control.attachTooltipEventListener(img, this._map);
 		img.id = 'preview-img-part-' + this._idNum;
 		img.hash = hashCode;

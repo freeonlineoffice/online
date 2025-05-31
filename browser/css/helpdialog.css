@@ -147,7 +147,7 @@
 		color: #999;
 	}
 
-	[data-theme='dark'] span.cool-annotation-menu {
+	[data-theme='dark'] span.lool-annotation-menu {
 		filter: invert(1);
 	}
 }

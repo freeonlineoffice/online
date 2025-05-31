@@ -88,7 +88,7 @@ L.Control.Notebookbar = L.Control.extend({
 		var docLogo = L.DomUtil.create('div', iconClass, docLogoHeader);
 		$(docLogo).data('id', 'document-logo');
 		$(docLogo).data('type', 'action');
-		docLogo.setAttribute('data-cooltip', iconTooltip);
+		docLogo.setAttribute('data-looltip', iconTooltip);
 		L.control.attachTooltipEventListener(docLogo, this.map);
 		$('.main-nav').prepend(docLogoHeader);
 		var isDarkMode = window.prefs.getBoolean('darkTheme');
