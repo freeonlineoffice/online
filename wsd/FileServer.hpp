@@ -91,7 +91,7 @@ public:
 
         ResourceAccessDetails(std::string wopiSrc, std::string accessToken,
                               std::string noAuthHeader,
-                              std::string permission, std::string wopiConfigId)
+                              std::string wopiConfigId)
             : _wopiSrc(std::move(wopiSrc))
             , _accessToken(std::move(accessToken))
             , _noAuthHeader(std::move(noAuthHeader))
