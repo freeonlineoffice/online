@@ -114,7 +114,8 @@ if ('undefined' === typeof window) {
 					decompressed: [],
 					buffers: [],
 				});
-				if (transactionHandlerId !== null) clearTimeout(transactionHandlerId);
+				if (transactionHandlerId !== null)
+					clearTimeout(transactionHandlerId);
 				transactionCallback();
 				break;
 
