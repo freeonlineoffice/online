@@ -653,13 +653,13 @@ run-strace: setup-wsd
 			--o:logging.file[@enable]=false --o:logging.level=error
 
 run-tcmalloc: setup-wsd
-	@echo "Launching coolwsd under tcmalloc"
+	@echo "Launching loolwsd under tcmalloc"
 	if ! ldconfig -p|grep -q libtcmalloc.so.4; then \
 		echo Install your distro provided tcmalloc packages. Fedora: gperftools-libs, Debian: libgoogle-perftools4; \
 		exit 1; \
 	fi
 	@echo see https://gperftools.github.io/gperftools/heapprofile.html for Modifying Runtime Behavior via env variables
-	$(ENABLE_NAMESPACE) LD_PRELOAD=libtcmalloc.so.4 ./coolwsd $(COMMON_PARAMS) \
+	$(ENABLE_NAMESPACE) LD_PRELOAD=libtcmalloc.so.4 ./loolwsd $(COMMON_PARAMS) \
 			--o:logging.file[@enable]=${OUTPUT_TO_FILE} --o:logging.level=trace \
 			--o:logging_ui_cmd.file[@enable]=${OUTPUT_TO_FILE} \
 			--o:trace_event[@enable]=true
