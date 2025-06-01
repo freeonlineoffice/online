@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 21:59+0200\n"
+"POT-Creation-Date: 2025-06-01 17:37+0200\n"
 "PO-Revision-Date: 2022-05-19 21:16+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/"
@@ -217,7 +217,7 @@ msgstr "Napló frissítése"
 msgid "Channel Filter:"
 msgstr "Csatornaszűrő:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:472
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:476
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr "Nincs"
@@ -234,7 +234,7 @@ msgstr "Naplózási szintek"
 #: src/control/Control.AlertDialog.js:23 src/control/Control.AlertDialog.js:29
 #: src/control/Control.AlertDialog.js:92 src/control/Control.AlertDialog.js:99
 #: src/control/Control.Zotero.js:183 src/core/Socket.js:426
-#: src/core/Socket.js:1195 src/core/Socket.js:1200
+#: src/core/Socket.js:1199 src/core/Socket.js:1204
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Bezárás"
@@ -305,9 +305,9 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
 #: src/control/Parts.js:471 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:886 src/control/Toolbar.js:995
-#: src/core/Socket.js:700 src/core/Socket.js:1165 src/core/Socket.js:1235
-#: src/core/Socket.js:1386 src/core/Socket.js:1390 src/docdispatcher.ts:552
+#: src/control/Toolbar.js:887 src/control/Toolbar.js:996
+#: src/core/Socket.js:704 src/core/Socket.js:1169 src/core/Socket.js:1239
+#: src/core/Socket.js:1390 src/core/Socket.js:1394 src/docdispatcher.ts:555
 #: src/main.js:86 src/main.js:89 src/main.js:142 src/map/Clipboard.js:1283
 #: src/map/handler/Map.Feedback.js:87 src/map/handler/Map.SlideShow.js:51
 #: src/map/handler/Map.SlideShow.js:164 src/map/handler/Map.SlideShow.js:292
@@ -328,10 +328,10 @@ msgstr "OK"
 #: src/control/Control.DownloadProgress.js:73
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.ts:1690 src/control/Control.UIManager.ts:1769
-#: src/control/Control.UIManager.ts:1921 src/control/Control.UIManager.ts:2099
-#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:990
-#: src/core/Socket.js:1411
+#: src/control/Control.UIManager.ts:1698 src/control/Control.UIManager.ts:1777
+#: src/control/Control.UIManager.ts:1929 src/control/Control.UIManager.ts:2107
+#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:991
+#: src/core/Socket.js:1415
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -415,15 +415,15 @@ msgstr " perc"
 msgid " s"
 msgstr " s"
 
-#: js/global.js:1536
+#: js/global.js:1538
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1538
+#: js/global.js:1540
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1540
+#: js/global.js:1542
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
@@ -481,9 +481,9 @@ msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
-#: src/control/Control.JSDialogBuilder.js:1933
-#: src/layer/tile/CanvasTileLayer.js:4378
-#: src/layer/tile/CanvasTileLayer.js:4393
+#: src/control/Control.JSDialogBuilder.js:1928
+#: src/layer/tile/CanvasTileLayer.js:4373
+#: src/layer/tile/CanvasTileLayer.js:4388
 msgid "Comment"
 msgstr "Megjegyzés"
 
@@ -502,7 +502,7 @@ msgid ""
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1470 src/core/Socket.js:1415
+#: src/canvas/sections/CommentListSection.ts:1470 src/core/Socket.js:1419
 msgid "Overwrite"
 msgstr "Felülírás"
 
@@ -515,21 +515,29 @@ msgstr ""
 msgid "Autosaved"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:311
+#: src/canvas/sections/CommentSection.ts:230
+msgid "Edit comment"
+msgstr ""
+
+#: src/canvas/sections/CommentSection.ts:237
+msgid "Reply comment"
+msgstr ""
+
+#: src/canvas/sections/CommentSection.ts:315
 msgid "Open menu"
 msgstr "Menü megnyitása"
 
-#: src/canvas/sections/CommentSection.ts:377
-#: src/canvas/sections/CommentSection.ts:378
+#: src/canvas/sections/CommentSection.ts:381
+#: src/canvas/sections/CommentSection.ts:382
 msgid "Accept change"
 msgstr "Változás elfogadása"
 
-#: src/canvas/sections/CommentSection.ts:384
-#: src/canvas/sections/CommentSection.ts:385
+#: src/canvas/sections/CommentSection.ts:388
+#: src/canvas/sections/CommentSection.ts:389
 msgid "Reject change"
 msgstr "Változás elvetése"
 
-#: src/canvas/sections/CommentSection.ts:408
+#: src/canvas/sections/CommentSection.ts:412
 msgid "Resolved"
 msgstr "Megoldva"
 
@@ -541,11 +549,11 @@ msgstr ""
 msgid "Copy link location"
 msgstr ""
 
-#: src/canvas/sections/URLPopUpSection.ts:68
+#: src/canvas/sections/URLPopUpSection.ts:70
 msgid "Edit link"
 msgstr ""
 
-#: src/canvas/sections/URLPopUpSection.ts:80
+#: src/canvas/sections/URLPopUpSection.ts:85
 msgid "Remove link"
 msgstr ""
 
@@ -565,6 +573,10 @@ msgstr "%productName verzióinformációk:"
 #: src/control/Control.AboutDialog.ts:140
 msgid "\"Slow Proxy\""
 msgstr "„Lassú proxy üzemmód”"
+
+#: src/control/Control.AboutDialog.ts:153
+msgid "Time zone:"
+msgstr ""
 
 #: src/control/Control.AboutDialog.ts:194
 msgid "Copy all version information in English"
@@ -624,7 +636,7 @@ msgstr "A kiszolgáló %0 hibába ütközött a(z) %1 parancs feldolgozása köz
 msgid "Unlock"
 msgstr "Feloldás"
 
-#: src/control/Control.ContextMenu.js:240 src/docdispatcher.ts:549
+#: src/control/Control.ContextMenu.js:240 src/docdispatcher.ts:552
 msgid "Delete"
 msgstr "Törlés"
 
@@ -1085,91 +1097,91 @@ msgstr ""
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:475
+#: src/control/Control.JSDialogBuilder.js:479
 msgid "Solid"
 msgstr "Homogén"
 
-#: src/control/Control.JSDialogBuilder.js:478
+#: src/control/Control.JSDialogBuilder.js:482
 msgid "Linear"
 msgstr "Lineáris"
 
-#: src/control/Control.JSDialogBuilder.js:481
+#: src/control/Control.JSDialogBuilder.js:485
 msgid "Axial"
 msgstr "Axiális"
 
-#: src/control/Control.JSDialogBuilder.js:484
+#: src/control/Control.JSDialogBuilder.js:488
 msgid "Radial"
 msgstr "Radiális"
 
-#: src/control/Control.JSDialogBuilder.js:487
+#: src/control/Control.JSDialogBuilder.js:491
 msgid "Ellipsoid"
 msgstr "Ellipszoid"
 
-#: src/control/Control.JSDialogBuilder.js:491
+#: src/control/Control.JSDialogBuilder.js:495
 msgid "Quadratic"
 msgstr "Kvadratikus"
 
-#: src/control/Control.JSDialogBuilder.js:494
+#: src/control/Control.JSDialogBuilder.js:498
 msgid "Square"
 msgstr "Négyzet"
 
-#: src/control/Control.JSDialogBuilder.js:497
+#: src/control/Control.JSDialogBuilder.js:501
 msgid "Fixed size"
 msgstr "Fix méret"
 
-#: src/control/Control.JSDialogBuilder.js:1465
+#: src/control/Control.JSDialogBuilder.js:1458
 msgid "From"
 msgstr "Kezdet"
 
-#: src/control/Control.JSDialogBuilder.js:1468
+#: src/control/Control.JSDialogBuilder.js:1461
 msgid "To"
 msgstr "Vég"
 
-#: src/control/Control.JSDialogBuilder.js:1471
+#: src/control/Control.JSDialogBuilder.js:1464
 msgid "Color"
 msgstr "Szín"
 
-#: src/control/Control.JSDialogBuilder.js:1547
+#: src/control/Control.JSDialogBuilder.js:1540
 msgid "Select range"
 msgstr "Tartomány kijelölése"
 
-#: src/control/Control.JSDialogBuilder.js:1664
+#: src/control/Control.JSDialogBuilder.js:1657
 #: src/control/Control.NotebookbarBuilder.js:144
 msgid "Font Name"
 msgstr "Betűkészlet"
 
-#: src/control/Control.JSDialogBuilder.js:1666 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1659 src/control/Toolbar.js:128
 msgid "Font Size"
 msgstr "Betűméret"
 
-#: src/control/Control.JSDialogBuilder.js:1668
+#: src/control/Control.JSDialogBuilder.js:1661
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Stílus"
 
-#: src/control/Control.JSDialogBuilder.js:1919
+#: src/control/Control.JSDialogBuilder.js:1914
 msgid "reply"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:1922
+#: src/control/Control.JSDialogBuilder.js:1917
 msgid "replies"
 msgstr "válasz"
 
-#: src/control/Control.JSDialogBuilder.js:1997
+#: src/control/Control.JSDialogBuilder.js:1992
 msgid "Insert Comment"
 msgstr "Megjegyzés beszúrása"
 
-#: src/control/Control.JSDialogBuilder.js:2583
+#: src/control/Control.JSDialogBuilder.js:2576
 #: src/control/Control.Menubar.ts:971
 msgid "Rows"
 msgstr "Sorok"
 
-#: src/control/Control.JSDialogBuilder.js:2584
+#: src/control/Control.JSDialogBuilder.js:2577
 #: src/control/Control.Menubar.ts:974
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: src/control/Control.JSDialogBuilder.js:2604
+#: src/control/Control.JSDialogBuilder.js:2597
 msgid "Insert Table"
 msgstr "Táblázat beszúrása"
 
@@ -1253,7 +1265,7 @@ msgstr "PDF dokumentum (.pdf)"
 msgid "EPUB (.epub)"
 msgstr "EPUB (.epub)"
 
-#: src/control/Control.Menubar.ts:156 src/control/Control.UIManager.ts:303
+#: src/control/Control.Menubar.ts:156 src/control/Control.UIManager.ts:315
 #, fuzzy
 msgid "Rename Document"
 msgstr "Dokumentum helyreállítása"
@@ -1763,7 +1775,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1034
 #: src/control/Control.NotebookbarWriter.js:926
 #: src/control/Control.StatusBar.js:251 src/control/Control.Zotero.js:212
-#: src/control/Toolbar.js:676
+#: src/control/Toolbar.js:676 src/control/Toolbar.js:677
 msgid "Search"
 msgstr "Keresés"
 
@@ -1836,19 +1848,19 @@ msgstr "Keresősáv elrejtése"
 msgid "Clear the search field"
 msgstr "Keresőmező törlése"
 
-#: src/control/Control.MobileWizardBuilder.js:536
+#: src/control/Control.MobileWizardBuilder.js:544
 msgid "Background Color"
 msgstr "Háttérszín"
 
-#: src/control/Control.MobileWizardBuilder.js:538
+#: src/control/Control.MobileWizardBuilder.js:546
 msgid "Gradient Start"
 msgstr "Kezdőszín"
 
-#: src/control/Control.MobileWizardBuilder.js:540
+#: src/control/Control.MobileWizardBuilder.js:548
 msgid "Gradient End"
 msgstr "Végszín"
 
-#: src/control/Control.Notebookbar.js:668
+#: src/control/Control.Notebookbar.js:673
 #: src/control/Control.NotebookbarCalc.js:154
 #: src/control/Control.NotebookbarDraw.js:184
 #: src/control/Control.NotebookbarImpress.js:68
@@ -1991,7 +2003,7 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:309
 #: src/control/Control.NotebookbarImpress.js:343
 #: src/control/Control.NotebookbarWriter.js:335
-#: src/control/Control.UIManager.ts:303
+#: src/control/Control.UIManager.ts:315
 msgid "Rename"
 msgstr ""
 
@@ -2033,7 +2045,7 @@ msgstr "Tört"
 msgid "Boolean Value"
 msgstr "Logikai érték"
 
-#: src/control/Control.NotebookbarCalc.js:616 src/control/Toolbar.js:962
+#: src/control/Control.NotebookbarCalc.js:616 src/control/Toolbar.js:963
 msgid "Text"
 msgstr "Szöveg"
 
@@ -2362,17 +2374,17 @@ msgstr ""
 msgid "Close Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:150
+#: src/control/Control.NavigatorPanel.ts:146
 #: src/slideshow/PresenterConsole.js:34
 msgid "Slides"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:155
+#: src/control/Control.NavigatorPanel.ts:151
 msgid "Outline"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:180
-#: src/control/Control.NavigatorPanel.ts:186
+#: src/control/Control.NavigatorPanel.ts:176
+#: src/control/Control.NavigatorPanel.ts:182
 msgid "Navigator"
 msgstr ""
 
@@ -2507,15 +2519,15 @@ msgstr "Alakzatok beszúrása"
 msgid "Insert connectors"
 msgstr "Összekötők beszúrása"
 
-#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.ts:1059
+#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.ts:1067
 msgid "Hide Menu"
 msgstr ""
 
-#: src/control/Control.UIManager.ts:303
+#: src/control/Control.UIManager.ts:315
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.ts:1086
+#: src/control/Control.UIManager.ts:1094
 msgid "Show Menu"
 msgstr ""
 
@@ -2587,7 +2599,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:238 src/core/Socket.js:1335
+#: src/control/Control.Zotero.js:238 src/core/Socket.js:1339
 msgid "Loading..."
 msgstr "Betöltés…"
 
@@ -2818,11 +2830,11 @@ msgstr "Mentés…"
 msgid "Renaming..."
 msgstr "Átnevezés..."
 
-#: src/control/Toolbar.js:946
+#: src/control/Toolbar.js:947
 msgid "Insert hyperlink"
 msgstr "Hiperhivatkozás beszúrása"
 
-#: src/control/Toolbar.js:974
+#: src/control/Toolbar.js:975
 msgid "Link"
 msgstr "Hivatkozás"
 
@@ -2834,19 +2846,19 @@ msgstr ""
 msgid "Bottom Margin"
 msgstr ""
 
-#: src/control/HRuler.ts:630
+#: src/control/HRuler.ts:629
 msgid "Left Margin"
 msgstr "Bal margó"
 
-#: src/control/HRuler.ts:631
+#: src/control/HRuler.ts:630
 msgid "Right Margin"
 msgstr "Jobb margó"
 
-#: src/control/HRuler.ts:947
+#: src/control/HRuler.ts:946
 msgid "Insert tabstop"
 msgstr "Tabulátorpozíció beszúrása"
 
-#: src/control/HRuler.ts:954
+#: src/control/HRuler.ts:953
 msgid "Delete tabstop"
 msgstr "Tabulátorpozíció törlése"
 
@@ -2993,63 +3005,63 @@ msgstr ""
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr "Probléma történt a %productName-hoz kapcsolódás során: "
 
-#: src/core/Socket.js:681
+#: src/core/Socket.js:685
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "A kiszolgáló most már elérhető. Most frissítenünk kell az oldalt."
 
-#: src/core/Socket.js:683
+#: src/core/Socket.js:687
 msgid "Server is now reachable..."
 msgstr "A kiszolgáló már elérhető..."
 
-#: src/core/Socket.js:687
+#: src/core/Socket.js:691
 msgid "RELOAD"
 msgstr "ÚJRATÖLTÉS"
 
-#: src/core/Socket.js:700
+#: src/core/Socket.js:704
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:703
+#: src/core/Socket.js:707
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:712
+#: src/core/Socket.js:716
 msgid "LOOLWSD version:"
 msgstr "LOOLWSD verzió:"
 
-#: src/core/Socket.js:737
+#: src/core/Socket.js:741
 msgid "Served by:"
 msgstr "Kiszolgáló:"
 
-#: src/core/Socket.js:743
+#: src/core/Socket.js:747
 msgid "Unsupported server version."
 msgstr "Nem támogatott kiszolgálóverzió."
 
-#: src/core/Socket.js:747
+#: src/core/Socket.js:751
 msgid "LOKit version:"
 msgstr "LOKit verzió:"
 
-#: src/core/Socket.js:871
+#: src/core/Socket.js:875
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:898
+#: src/core/Socket.js:902
 msgid "Session terminated by document owner"
 msgstr "A dokumentum tulajdonosa bezárta a munkamenetet"
 
-#: src/core/Socket.js:909
+#: src/core/Socket.js:913
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "A kiszolgáló karbantartásra leáll (automatikus mentés)"
 
-#: src/core/Socket.js:915
+#: src/core/Socket.js:919
 msgid "Oops, there is a problem connecting the document"
 msgstr "Probléma történt a dokumentumhoz kapcsolódás során."
 
-#: src/core/Socket.js:919
+#: src/core/Socket.js:923
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "A kiszolgáló nem működik, és automatikusan újraindul. Kérem, várjon."
 
-#: src/core/Socket.js:946
+#: src/core/Socket.js:950
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -3057,7 +3069,7 @@ msgstr ""
 "A dokumentum megváltozott a tárhelyen. Az új dokumentum fog betöltődni. Az "
 "Ön verziója egy korábbi állapotként lesz elérhető."
 
-#: src/core/Socket.js:952
+#: src/core/Socket.js:956
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -3065,87 +3077,87 @@ msgstr ""
 "Régebbi változat visszaállítása. A nem mentett változtatások a "
 "verzióelőzményekben meglesznek."
 
-#: src/core/Socket.js:958
+#: src/core/Socket.js:962
 msgid "Reloading the document after rename"
 msgstr "A dokumentum újratöltése az átnevezés után"
 
-#: src/core/Socket.js:1117
+#: src/core/Socket.js:1121
 msgid "Document requires password to view."
 msgstr "A dokumentum megnyitásához jelszó szükséges."
 
-#: src/core/Socket.js:1120
+#: src/core/Socket.js:1124
 msgid "Document requires password to modify."
 msgstr "A dokumentum módosításához jelszó szükséges."
 
-#: src/core/Socket.js:1122
+#: src/core/Socket.js:1126
 msgid "Hit Cancel to open in view-only mode."
 msgstr ""
 "A Mégse gombra kattintva a dokumentum csak olvasható módban fog megnyílni."
 
-#: src/core/Socket.js:1126
+#: src/core/Socket.js:1130
 msgid "Wrong password provided. Please try again."
 msgstr "A megadott jelszó nem jó. Próbálja újra."
 
-#: src/core/Socket.js:1164
+#: src/core/Socket.js:1168
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1195 src/core/Socket.js:1200
+#: src/core/Socket.js:1199 src/core/Socket.js:1204
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1232
+#: src/core/Socket.js:1236
 msgid "Someone"
 msgstr "Valaki"
 
-#: src/core/Socket.js:1233
+#: src/core/Socket.js:1237
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1250
+#: src/core/Socket.js:1254
 msgid "The document is being renamed and will reload shortly"
 msgstr "A dokumentum átnevezése folyamatban van, és hamarosan újratöltődik"
 
-#: src/core/Socket.js:1253
+#: src/core/Socket.js:1257
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1335
+#: src/core/Socket.js:1339
 msgid "Connecting..."
 msgstr "Kapcsolódás..."
 
-#: src/core/Socket.js:1350
+#: src/core/Socket.js:1354
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1386
+#: src/core/Socket.js:1390
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1386
+#: src/core/Socket.js:1390
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1414
+#: src/core/Socket.js:1418
 msgid "Discard"
 msgstr "Elvetés"
 
-#: src/core/Socket.js:1426
+#: src/core/Socket.js:1430
 msgid "Save to new file"
 msgstr "Új fájlba mentés"
 
-#: src/core/Socket.js:1436
+#: src/core/Socket.js:1440
 msgid "Document has been changed"
 msgstr "A dokumentum megváltozott"
 
-#: src/core/Socket.js:1437
+#: src/core/Socket.js:1441
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr ""
 "A dokumentum megváltozott a tárhelyen. Mi legyen a nem mentett változásokkal?"
 
-#: src/core/Socket.js:1700
+#: src/core/Socket.js:1705
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
@@ -3153,19 +3165,19 @@ msgstr ""
 "Nagyon sajnáljuk, de nem lehet kapcsolódni a dokumentumhoz. Próbálja meg "
 "később."
 
-#: src/core/Socket.js:1717
+#: src/core/Socket.js:1722
 msgid "Reconnecting..."
 msgstr "Újrakapcsolódás..."
 
-#: src/core/Socket.js:1727
+#: src/core/Socket.js:1732
 msgid "The server has been disconnected."
 msgstr "Megszűnt a kapcsolat a kiszolgálóval."
 
-#: src/docdispatcher.ts:542
+#: src/docdispatcher.ts:545
 msgid "Are you sure you want to delete this slide?"
 msgstr "Biztosan törölni szeretné ezt a diát?"
 
-#: src/docdispatcher.ts:545
+#: src/docdispatcher.ts:548
 msgid "Are you sure you want to delete this page?"
 msgstr "Biztosan törli ezt az oldalt?"
 
@@ -3479,15 +3491,15 @@ msgstr ""
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1898
+#: src/layer/tile/CanvasTileLayer.js:1903
 msgid "Functions"
 msgstr "Függvények"
 
-#: src/layer/tile/CanvasTileLayer.js:2217
+#: src/layer/tile/CanvasTileLayer.js:2222
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4412
+#: src/layer/tile/CanvasTileLayer.js:4407
 msgid "No Comments"
 msgstr "Nincsenek megjegyzések"
 
@@ -3550,15 +3562,15 @@ msgstr ""
 msgid "Close popup to ignore paste special"
 msgstr ""
 
-#: src/map/Map.js:217
+#: src/map/Map.js:218
 msgid "Initializing..."
 msgstr "Előkészítés…"
 
-#: src/map/Map.js:491 src/map/Map.js:494 src/map/Map.js:497 src/map/Map.js:500
+#: src/map/Map.js:497 src/map/Map.js:500 src/map/Map.js:503 src/map/Map.js:506
 msgid "Last saved:"
 msgstr "Utoljára mentve:"
 
-#: src/map/Map.js:1476
+#: src/map/Map.js:1482
 msgid "Please wait!"
 msgstr ""
 
