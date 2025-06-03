@@ -641,9 +641,11 @@ bool ClientRequestDispatcher::allowConvertTo(const std::string& address,
 
 #endif // !MOBILEAPP
 
+std::atomic<uint64_t> ClientRequestDispatcher::NextConnectionId(1);
+
 void ClientRequestDispatcher::onConnect(const std::shared_ptr<StreamSocket>& socket)
 {
-    _id = LOOLWSD::GetConnectionId();
+    _id = Util::encodeId(NextConnectionId++, 3);
     _socket = socket;
     _lastSeenHTTPHeader = socket->getLastSeenTime();
     setLogContext(socket->getFD());

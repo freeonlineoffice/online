@@ -772,8 +772,6 @@ inline std::string getServiceURI(const std::string &sub, bool asAdmin = false)
 
 #endif // MOBILEAPP
 
-std::atomic<uint64_t> LOOLWSD::NextConnectionId(1);
-
 #if !MOBILEAPP
 std::atomic<int> LOOLWSD::ForKitProcId(-1);
 std::shared_ptr<ForKitProcess> LOOLWSD::ForKitProc;
