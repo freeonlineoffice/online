@@ -49,6 +49,9 @@ private:
     Admin* _admin;
     int _sessionId;
     bool _isAuthenticated;
+
+    /// The next unique session-ID.
+    static std::atomic<uint64_t> NextSessionId;
 };
 
 class MonitorSocketHandler : public AdminSocketHandler
