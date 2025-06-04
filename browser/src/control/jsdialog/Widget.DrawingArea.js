@@ -1,5 +1,13 @@
 /* -*- js-indent-level: 8 -*- */
 /*
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
  * JSDialog.DrawingArea - drawing area displaying picture sent from the server
  *
  * Example JSON:
@@ -11,10 +19,6 @@
  *     loading: true, - show additional spinner div
  *     placeholderText: false,  - 'show text next to image'
  * }
- *
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
  */
 
 /* global JSDialog $ UNOKey UNOModifier */
@@ -34,10 +38,15 @@ function _drawingAreaControl (parentContainer, data, builder) {
 	image.tabIndex = 0;
 	image.draggable = false;
 	image.ondragstart = function() { return false; };
-	image.setAttribute('data-looltip', data.text);
 
-	if (builder.map) {
-		L.control.attachTooltipEventListener(image, builder.map);
+	if (data.text) {
+		image.setAttribute('data-cooltip', data.text);
+
+		if (builder.map) {
+			L.control.attachTooltipEventListener(image, builder.map);
+		}
+	} else if (data.aria && data.aria.label) {
+		image.setAttribute('aria-label', data.aria.label);
 	}
 
 	// Line width dialog is affected from delay on image render.
