@@ -2501,7 +2501,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
             else
             {
                 FileUtil::removeFile(jailClipFile);
-                jailClipFile = postProcessedClipFile;
+                jailClipFile = std::move(postProcessedClipFile);
             }
         }
 
@@ -2515,7 +2515,7 @@ bool ClientSession::handleKitToClientMessage(const std::shared_ptr<Message>& pay
             std::string cacheFile = LOOLWSD::SavedClipboards->insertClipboard(_clipboardKeys, jailClipFile);
             if (cacheFile != jailClipFile)
             {
-                jailClipFile = cacheFile;
+                jailClipFile = std::move(cacheFile);
                 removeClipFile = false;
             }
         }
