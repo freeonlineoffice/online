@@ -447,6 +447,8 @@ public:
     /// return to the poll
     ThreadPool& getSyncPool() { return _deltaPool; }
 
+    int getViewsCount() const;
+
 private:
     void postForceModifiedCommand(bool modified);
 

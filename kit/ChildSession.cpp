@@ -150,7 +150,7 @@ void ChildSession::disconnect()
                 // Notify that we've unloaded this view.
                 std::ostringstream oss;
                 oss << "unloaded: viewid=" << _viewId
-                    << " views=" << getLOKitDocument()->getViewsCount();
+                    << " views=" << _docManager->getViewsCount();
                 sendTextFrame(oss.str());
             }
         }
@@ -1033,7 +1033,7 @@ bool ChildSession::loadDocument(const StringVector& tokens)
 
     // Notify that we've loaded this view.
     std::ostringstream oss;
-    oss << "loaded: viewid=" << _viewId << " views=" << getLOKitDocument()->getViewsCount()
+    oss << "loaded: viewid=" << _viewId << " views=" << _docManager->getViewsCount()
         << " isfirst=" << (isFirstView ? "true" : "false");
     sendTextFrame(oss.str());
 
