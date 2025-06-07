@@ -97,6 +97,7 @@
 #include <Poco/Util/XMLConfiguration.h>
 
 #include <common/Anonymizer.hpp>
+#include <common/Globals.hpp>
 #include <ClientRequestDispatcher.hpp>
 #include <Common.hpp>
 #include <Clipboard.hpp>

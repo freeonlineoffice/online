@@ -42,6 +42,8 @@
 
 #include <StringVector.hpp>
 
+#include <config.h>
+
 #define STRINGIFY(X) #X
 
 #if CODE_COVERAGE

@@ -1,4 +1,6 @@
-/* config.h.in.  Generated from configure.ac by autoheader.  */
+#pragma once
+
+/* Variables that usually don't change once configured */
 
 /* The user-visible name of the app you build. */
 #undef APP_NAME

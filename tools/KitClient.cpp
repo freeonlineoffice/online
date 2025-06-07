@@ -26,6 +26,7 @@
 #include <Poco/Util/Application.h>
 
 #include <KitHelper.hpp>
+#include <Globals.hpp>
 #include <Png.hpp>
 #include <Util.hpp>
 #include <Protocol.hpp>
