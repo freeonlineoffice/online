@@ -391,8 +391,6 @@ public:
         return false;
     }
 
-    // poll is idle, are we ?
-    void checkIdle();
     void drainQueue();
     void drainCallbacks();
 
