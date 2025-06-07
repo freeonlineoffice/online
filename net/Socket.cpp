@@ -1076,7 +1076,7 @@ void SocketDisposition::execute()
             pollCopy->insertNewSocket(socket);
             socketMoveFn(socket);
             // Clear lambda's socket capture while in the polling thread
-            socket = nullptr;
+            socket.reset();
         };
         _socketMove = nullptr;
         _socket = nullptr;
