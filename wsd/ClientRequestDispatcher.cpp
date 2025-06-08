@@ -1105,8 +1105,10 @@ bool ClientRequestDispatcher::handleRootRequest(const RequestDetails& requestDet
     httpResponse.writeData(socket->getOutBuffer());
     if (requestDetails.isGet())
         socket->send(responseString);
-    socket->attemptWrites();
-    LOG_INF("Sent / response successfully.");
+    if (socket->attemptWrites())
+        LOG_INF("Sent / response successfully");
+    else
+        LOG_INF("Sent / response partially");
     return true;
 }
 
@@ -1588,8 +1590,11 @@ bool handleStaticRequest(const Poco::Net::HTTPRequest& request,
     {
         socket->send(responseString);
     }
-    socket->attemptWrites();
-    LOG_INF_S("Sent the response successfully");
+
+    if (socket->attemptWrites())
+        LOG_INF("Sent static response successfully");
+    else
+        LOG_INF("Sent static response partially");
     return true;
 }
 }
