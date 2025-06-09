@@ -1193,6 +1193,8 @@ class CanvasSectionContainer {
 		var section: CanvasSectionObject = this.findSectionContainingPoint(point);
 		if (section)
 			this.propagateOnMouseWheel(section, this.convertPositionToSectionLocale(section, point), delta, e);
+
+		app.idleHandler.notifyActive();
 	}
 
 	onMouseLeave (e: MouseEvent) {
@@ -1276,6 +1278,8 @@ class CanvasSectionContainer {
 				this.propagateOnMultiTouchMove(section, this.convertPositionToSectionLocale(section, this.touchCenter), distance, e);
 			}
 		}
+
+		app.idleHandler.notifyActive();
 	}
 
 	onTouchEnd (e: TouchEvent) { // Should be ignored unless this.draggingSomething = true.
