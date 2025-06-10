@@ -1,5 +1,13 @@
 /* -*- js-indent-level: 8 -*- */
 /*
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
  * JSDialog.IconView - icon view widget
  *
  * Example JSON:
@@ -11,10 +19,6 @@
  *         { text: 'some text', tooltip: 'some tooltip', image: 'encoded png', selected: false }
  *     ]
  * }
- *
- * Copyright the Collabora Online contributors.
- *
- * SPDX-License-Identifier: MPL-2.0
  */
 
 declare var JSDialog: any;
@@ -118,7 +122,7 @@ function _iconViewEntry(
 	if (!disabled) {
 		const singleClick = parentData.singleclickactivate === true;
 		$(entryContainer).click(function () {
-			$('#' + parentData.id + ' .ui-treeview-entry').removeClass(
+			$('#' + parentData.id + ' .ui-iconview-entry').removeClass(
 				'selected',
 			);
 			builder.callback(
@@ -138,9 +142,32 @@ function _iconViewEntry(
 				);
 			}
 		});
+
+		entryContainer.addEventListener('contextmenu', function (e: Event) {
+			$('#' + parentData.id + ' .ui-iconview-entry').removeClass(
+				'selected',
+			);
+			builder.callback(
+				'iconview',
+				'select',
+				parentData,
+				entry.row,
+				builder,
+			);
+			$(entryContainer).addClass('selected');
+			builder.callback(
+				'iconview',
+				'contextmenu',
+				parentData,
+				entry.row,
+				builder,
+			);
+			e.preventDefault();
+		});
+
 		if (!singleClick) {
 			$(entryContainer).dblclick(function () {
-				$('#' + parentData.id + ' .ui-treeview-entry').removeClass(
+				$('#' + parentData.id + ' .ui-iconview-entry').removeClass(
 					'selected',
 				);
 				builder.callback(
