@@ -113,7 +113,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 			for (let i = 0; i < kindList.length; i++) {
 				if (this.sectionProperties.info.handles.kinds.rectangle[kindList[i]]) {
-					const point = new cool.SimplePoint(parseInt(this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.x), parseInt(this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.y));
+					const point = new lool.SimplePoint(parseInt(this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.x), parseInt(this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.y));
 					app.map._docLayer.sheetGeometry.convertToTileTwips(point);
 					this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.x = point.x;
 					this.sectionProperties.info.handles.kinds.rectangle[kindList[i]][0].point.y = point.y;
@@ -227,10 +227,10 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 	getShapeCenter(twips = true) {
 		let topLeft = this.sectionProperties.info.handles.kinds.rectangle['1'][0];
-		topLeft = new cool.SimplePoint(parseInt(topLeft.point.x), parseInt(topLeft.point.y));
+		topLeft = new lool.SimplePoint(parseInt(topLeft.point.x), parseInt(topLeft.point.y));
 
 		let bottomRight = this.sectionProperties.info.handles.kinds.rectangle['8'][0];
-		bottomRight = new cool.SimplePoint(parseInt(bottomRight.point.x), parseInt(bottomRight.point.y));
+		bottomRight = new lool.SimplePoint(parseInt(bottomRight.point.x), parseInt(bottomRight.point.y));
 
 		if (twips)
 			return [Math.round((topLeft.x + bottomRight.x) / 2), Math.round((topLeft.y + bottomRight.y) / 2)]; // number array in twips.
