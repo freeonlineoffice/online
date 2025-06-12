@@ -23,18 +23,22 @@ online_SOURCES = \
 	../common/ConfigUtil.cpp \
 	../common/Crypto-stub.cpp \
 	../common/FileUtil.cpp \
+	../common/FileUtil-unix.cpp \
 	../common/CommandControl.cpp \
 	../common/Log.cpp \
 	../common/TraceEvent.cpp \
 	../common/Protocol.cpp \
+	../common/RegexUtil.cpp \
 	../common/StringVector.cpp \
 	../common/Session.cpp \
 	../common/SigUtil-mobile.cpp \
 	../common/Simd.cpp \
 	../common/SpookyV2.cpp \
 	../common/Unit.cpp \
+	../common/Uri.cpp \
 	../common/Util.cpp \
 	../common/Util-mobile.cpp \
+	../common/Util-unix.cpp \
 	../kit/ChildSession.cpp \
 	../kit/Kit.cpp \
 	../kit/KitWebSocket.cpp \
@@ -46,6 +50,7 @@ online_SOURCES = \
 	../wsd/LOOLWSD.cpp \
 	../wsd/ClientRequestDispatcher.cpp \
 	../wsd/RequestDetails.cpp \
+	../wsd/RequestVettingStation.cpp \
 	../wsd/Storage.cpp \
 	../wsd/TileCache.cpp \
 	../wsd/loolwsd-fork.cpp
