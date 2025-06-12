@@ -918,7 +918,8 @@ class SlideShowHandler {
 		this.aTimerEventQueue.process();
 		this.aActivityQueue.process();
 
-		if (!this.bIsTransitionRunning) this.aFrameSynchronization.synchronize();
+		if (!this.bIsTransitionRunning)
+			this.aFrameSynchronization.synchronize();
 
 		this.aActivityQueue.processDequeued();
 
