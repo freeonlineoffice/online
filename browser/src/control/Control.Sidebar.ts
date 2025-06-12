@@ -152,7 +152,9 @@ class Sidebar extends SidebarBase {
 					$('#sidebar-dock-wrapper').addClass('visible');
 
 				if (this.enableFocus === true) {
-					const focusables = JSDialog.GetFocusableElements(this.container);
+					const focusables = JSDialog.GetFocusableElements(
+						this.container,
+					);
 					if (focusables && focusables.length) {
 						focusables[0].focus();
 					}
