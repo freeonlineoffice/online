@@ -1599,7 +1599,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 		const tooltipText = (data.aria && data.aria.label) || data.text;
 		if (!pushbuttonText && tooltipText) {
-			pushbutton.setAttribute('data-cooltip', builder._cleanText(tooltipText));
+			pushbutton.setAttribute('data-looltip', builder._cleanText(tooltipText));
 			L.control.attachTooltipEventListener(pushbutton, builder.map);
 		}
 
@@ -2319,7 +2319,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			$(div).on('mouseenter', mouseEnterFunction);
 			$(div).on('mouseleave', mouseLeaveFunction);
 		} else {
-			div.removeAttribute('data-cooltip'); // If there is a label, we don't need the tooltip
+			div.removeAttribute('data-looltip'); // If there is a label, we don't need the tooltip
 		}
 
 		div.addEventListener('keydown', function(e) {
