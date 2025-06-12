@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 17:37+0200\n"
+"POT-Creation-Date: 2025-06-12 20:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,7 +222,7 @@ msgstr "Ath-nuadhaich"
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:476
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:478
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr "Chan eil gin"
@@ -305,7 +305,7 @@ msgstr ""
 #: src/control/Control.ServerAuditDialog.ts:261
 #: src/control/Control.Tabs.js:376 src/control/Control.Tabs.js:385
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
-#: src/control/Parts.js:471 src/control/Permission.js:80
+#: src/control/Parts.js:474 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:887 src/control/Toolbar.js:996
 #: src/core/Socket.js:704 src/core/Socket.js:1169 src/core/Socket.js:1239
@@ -484,7 +484,7 @@ msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
-#: src/control/Control.JSDialogBuilder.js:1928
+#: src/control/Control.JSDialogBuilder.js:1932
 #: src/layer/tile/CanvasTileLayer.js:4373
 #: src/layer/tile/CanvasTileLayer.js:4388
 msgid "Comment"
@@ -544,7 +544,7 @@ msgstr "Diùlt an t-atharrachadh"
 msgid "Resolved"
 msgstr ""
 
-#: src/canvas/sections/ShapeHandlesSection.ts:418
+#: src/canvas/sections/ShapeHandlesSection.ts:448
 msgid "Document contains unsupported media"
 msgstr ""
 
@@ -1102,99 +1102,99 @@ msgstr ""
 "Sgrìobhainn neo-ghnìomhach - dèan briogadh airson ath-luchdadh is leantainn "
 "air an deasachadh"
 
-#: src/control/Control.JSDialog.js:308
+#: src/control/Control.JSDialog.js:312
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:481
 msgid "Solid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:484
 msgid "Linear"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:485
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:488
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:491
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Ellipsoid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:495
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Quadratic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:498
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Square"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:501
+#: src/control/Control.JSDialogBuilder.js:503
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1458
+#: src/control/Control.JSDialogBuilder.js:1460
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1461
+#: src/control/Control.JSDialogBuilder.js:1463
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1464
+#: src/control/Control.JSDialogBuilder.js:1466
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1540
+#: src/control/Control.JSDialogBuilder.js:1542
 #, fuzzy
 msgid "Select range"
 msgstr "Diùlt an t-atharrachadh"
 
-#: src/control/Control.JSDialogBuilder.js:1657
+#: src/control/Control.JSDialogBuilder.js:1661
 #: src/control/Control.NotebookbarBuilder.js:144
 #, fuzzy
 msgid "Font Name"
 msgstr "Cruth-clò"
 
-#: src/control/Control.JSDialogBuilder.js:1659 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1663 src/control/Toolbar.js:128
 #, fuzzy
 msgid "Font Size"
 msgstr "Gun soidhneadh"
 
-#: src/control/Control.JSDialogBuilder.js:1661
+#: src/control/Control.JSDialogBuilder.js:1665
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Stoidhle"
 
-#: src/control/Control.JSDialogBuilder.js:1914
+#: src/control/Control.JSDialogBuilder.js:1918
 #, fuzzy
 msgid "reply"
 msgstr "Freagair"
 
-#: src/control/Control.JSDialogBuilder.js:1917
+#: src/control/Control.JSDialogBuilder.js:1921
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1992
+#: src/control/Control.JSDialogBuilder.js:1996
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2576
+#: src/control/Control.JSDialogBuilder.js:2583
 #: src/control/Control.Menubar.ts:971
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2577
+#: src/control/Control.JSDialogBuilder.js:2584
 #: src/control/Control.Menubar.ts:974
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2597
+#: src/control/Control.JSDialogBuilder.js:2604
 #, fuzzy
 msgid "Insert Table"
 msgstr "Cuir a-steach clàr"
@@ -2395,7 +2395,6 @@ msgid "Outline"
 msgstr ""
 
 #: src/control/Control.NavigatorPanel.ts:176
-#: src/control/Control.NavigatorPanel.ts:182
 msgid "Navigator"
 msgstr ""
 
@@ -2750,7 +2749,7 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:471
+#: src/control/Parts.js:474
 msgid "Show sheets"
 msgstr ""
 
@@ -3217,7 +3216,7 @@ msgstr ""
 msgid ", cluster configuration error: mis-matching serverid"
 msgstr ""
 
-#: src/dom/NotebookbarAccessibility.js:240
+#: src/dom/NotebookbarAccessibility.js:234
 msgid "{0} tab selected"
 msgstr ""
 

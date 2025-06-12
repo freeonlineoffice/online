@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 17:37+0200\n"
+"POT-Creation-Date: 2025-06-12 20:25+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
@@ -221,7 +221,7 @@ msgstr "Segarkan Log"
 msgid "Channel Filter:"
 msgstr "Filter Saluran:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:476
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:478
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr "Nihil"
@@ -305,7 +305,7 @@ msgstr ""
 #: src/control/Control.ServerAuditDialog.ts:261
 #: src/control/Control.Tabs.js:376 src/control/Control.Tabs.js:385
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
-#: src/control/Parts.js:471 src/control/Permission.js:80
+#: src/control/Parts.js:474 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
 #: src/control/Toolbar.js:887 src/control/Toolbar.js:996
 #: src/core/Socket.js:704 src/core/Socket.js:1169 src/core/Socket.js:1239
@@ -483,7 +483,7 @@ msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
-#: src/control/Control.JSDialogBuilder.js:1928
+#: src/control/Control.JSDialogBuilder.js:1932
 #: src/layer/tile/CanvasTileLayer.js:4373
 #: src/layer/tile/CanvasTileLayer.js:4388
 msgid "Comment"
@@ -543,7 +543,7 @@ msgstr "Tolak Perubahan"
 msgid "Resolved"
 msgstr "Terselesaikan"
 
-#: src/canvas/sections/ShapeHandlesSection.ts:418
+#: src/canvas/sections/ShapeHandlesSection.ts:448
 msgid "Document contains unsupported media"
 msgstr ""
 
@@ -1096,95 +1096,95 @@ msgstr ""
 "Dokumen menganggur - harap ketuk untuk memuat ulang dan melanjutkan "
 "penyuntingan"
 
-#: src/control/Control.JSDialog.js:308
+#: src/control/Control.JSDialog.js:312
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:479
+#: src/control/Control.JSDialogBuilder.js:481
 msgid "Solid"
 msgstr "Padat"
 
-#: src/control/Control.JSDialogBuilder.js:482
+#: src/control/Control.JSDialogBuilder.js:484
 msgid "Linear"
 msgstr "Linier"
 
-#: src/control/Control.JSDialogBuilder.js:485
+#: src/control/Control.JSDialogBuilder.js:487
 msgid "Axial"
 msgstr "Aksial"
 
-#: src/control/Control.JSDialogBuilder.js:488
+#: src/control/Control.JSDialogBuilder.js:490
 msgid "Radial"
 msgstr "Radial"
 
-#: src/control/Control.JSDialogBuilder.js:491
+#: src/control/Control.JSDialogBuilder.js:493
 msgid "Ellipsoid"
 msgstr "Elipsoid"
 
-#: src/control/Control.JSDialogBuilder.js:495
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Quadratic"
 msgstr "Kuadrat"
 
-#: src/control/Control.JSDialogBuilder.js:498
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Square"
 msgstr "Kotak"
 
-#: src/control/Control.JSDialogBuilder.js:501
+#: src/control/Control.JSDialogBuilder.js:503
 msgid "Fixed size"
 msgstr "Ukuran tetap"
 
-#: src/control/Control.JSDialogBuilder.js:1458
+#: src/control/Control.JSDialogBuilder.js:1460
 msgid "From"
 msgstr "Dari"
 
-#: src/control/Control.JSDialogBuilder.js:1461
+#: src/control/Control.JSDialogBuilder.js:1463
 msgid "To"
 msgstr "Ke"
 
-#: src/control/Control.JSDialogBuilder.js:1464
+#: src/control/Control.JSDialogBuilder.js:1466
 msgid "Color"
 msgstr "Warna"
 
-#: src/control/Control.JSDialogBuilder.js:1540
+#: src/control/Control.JSDialogBuilder.js:1542
 msgid "Select range"
 msgstr "Pilih rentang"
 
-#: src/control/Control.JSDialogBuilder.js:1657
+#: src/control/Control.JSDialogBuilder.js:1661
 #: src/control/Control.NotebookbarBuilder.js:144
 msgid "Font Name"
 msgstr "Nama huruf"
 
-#: src/control/Control.JSDialogBuilder.js:1659 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1663 src/control/Toolbar.js:128
 msgid "Font Size"
 msgstr "Ukuran Fonta"
 
-#: src/control/Control.JSDialogBuilder.js:1661
+#: src/control/Control.JSDialogBuilder.js:1665
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "Gaya"
 
-#: src/control/Control.JSDialogBuilder.js:1914
+#: src/control/Control.JSDialogBuilder.js:1918
 msgid "reply"
 msgstr "balas"
 
-#: src/control/Control.JSDialogBuilder.js:1917
+#: src/control/Control.JSDialogBuilder.js:1921
 msgid "replies"
 msgstr "balasan"
 
-#: src/control/Control.JSDialogBuilder.js:1992
+#: src/control/Control.JSDialogBuilder.js:1996
 msgid "Insert Comment"
 msgstr "Tambah Komentar"
 
-#: src/control/Control.JSDialogBuilder.js:2576
+#: src/control/Control.JSDialogBuilder.js:2583
 #: src/control/Control.Menubar.ts:971
 msgid "Rows"
 msgstr "Baris"
 
-#: src/control/Control.JSDialogBuilder.js:2577
+#: src/control/Control.JSDialogBuilder.js:2584
 #: src/control/Control.Menubar.ts:974
 msgid "Columns"
 msgstr "Kolom"
 
-#: src/control/Control.JSDialogBuilder.js:2597
+#: src/control/Control.JSDialogBuilder.js:2604
 msgid "Insert Table"
 msgstr "Sisip Tabel"
 
@@ -2386,7 +2386,6 @@ msgid "Outline"
 msgstr ""
 
 #: src/control/Control.NavigatorPanel.ts:176
-#: src/control/Control.NavigatorPanel.ts:182
 msgid "Navigator"
 msgstr ""
 
@@ -2741,7 +2740,7 @@ msgid ""
 "and bibliography in this document."
 msgstr ""
 
-#: src/control/Parts.js:471
+#: src/control/Parts.js:474
 msgid "Show sheets"
 msgstr ""
 
@@ -3200,7 +3199,7 @@ msgstr ""
 msgid ", cluster configuration error: mis-matching serverid"
 msgstr ""
 
-#: src/dom/NotebookbarAccessibility.js:240
+#: src/dom/NotebookbarAccessibility.js:234
 msgid "{0} tab selected"
 msgstr ""
 
