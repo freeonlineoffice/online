@@ -35,7 +35,7 @@ class WopiProofTests;
 class Proof {
     friend class WopiProofTests;
     void initialize();
-    enum Type { CreateKey };
+    enum Type : std::uint8_t { CreateKey };
     Proof(Type);
 public:
     Proof();

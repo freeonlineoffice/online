@@ -353,7 +353,7 @@ bool FileServerRequestHandler::isAdminLoggedIn(const HTTPRequest& request, http:
             // Last modified time of the file
             std::chrono::system_clock::time_point fileLastModifiedTime;
 
-            enum class LOOLStatusCode
+            enum class LOOLStatusCode : std::uint16_t
             {
                 DocChanged = 1010  // Document changed externally in storage
             };
