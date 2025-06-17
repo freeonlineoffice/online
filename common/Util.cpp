@@ -42,6 +42,9 @@
 
 #if defined __GLIBC__
 #include <malloc.h>
+#if defined(M_TRIM_THRESHOLD)
+#include <dlfcn.h>
+#endif
 #endif
 
 #include <atomic>
