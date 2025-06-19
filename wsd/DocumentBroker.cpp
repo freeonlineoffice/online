@@ -1296,7 +1296,7 @@ bool DocumentBroker::doDownloadDocument(const Authorization& auth,
     if (!templateSource.empty())
     {
         // Invalid timestamp for templates, to force uploading once we save-after-loading.
-        _saveManager.setLastModifiedTime(std::chrono::system_clock::time_point());
+        _saveManager.setLastModifiedLocalTime(std::chrono::system_clock::time_point());
         _storageManager.setLastUploadedFileModifiedLocalTime(
             std::chrono::system_clock::time_point());
     }
@@ -1304,7 +1304,7 @@ bool DocumentBroker::doDownloadDocument(const Authorization& auth,
     {
         // Use the local temp file's timestamp.
         const auto timepoint = FileUtil::Stat(localFilePath).modifiedTimepoint();
-        _saveManager.setLastModifiedTime(timepoint);
+        _saveManager.setLastModifiedLocalTime(timepoint);
         _storageManager.setLastUploadedFileModifiedLocalTime(
             timepoint); // Used to detect modifications.
     }
@@ -1312,7 +1312,7 @@ bool DocumentBroker::doDownloadDocument(const Authorization& auth,
     const bool dontUseCache = Util::isMobileApp();
 
     _tileCache = std::make_unique<TileCache>(_storage->getUri().toString(),
-                                             _saveManager.getLastModifiedTime(), dontUseCache);
+                                             _saveManager.getLastModifiedLocalTime(), dontUseCache);
     _tileCache->setThreadOwner(std::this_thread::get_id());
 
     return true;
@@ -2361,13 +2361,13 @@ bool DocumentBroker::isStorageOutdated() const
 
 #if ENABLE_DEBUG
     if (_storageManager.getLastUploadedFileModifiedLocalTime() !=
-        _saveManager.getLastModifiedTime())
+        _saveManager.getLastModifiedLocalTime())
     {
         const std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
         LOG_ERR("StorageManager's lastModifiedTime ["
                 << Util::getTimeForLog(now, _storageManager.getLastUploadedFileModifiedLocalTime())
                 << "] doesn't match that of SaveManager's ["
-                << Util::getTimeForLog(now, _saveManager.getLastModifiedTime())
+                << Util::getTimeForLog(now, _saveManager.getLastModifiedLocalTime())
                 << "]. File lastModifiedTime: [" << Util::getTimeForLog(now, currentModifiedTime)
                 << ']');
     }
@@ -2688,8 +2688,8 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
     // If the file timestamp hasn't changed, skip uploading.
     const std::chrono::system_clock::time_point newFileModifiedTime
         = FileUtil::Stat(_storage->getRootFilePathUploading()).modifiedTimepoint();
-    if (!isSaveAs && newFileModifiedTime == _saveManager.getLastModifiedTime() && !isRename
-        && !force)
+    if (!isSaveAs && newFileModifiedTime == _saveManager.getLastModifiedLocalTime() && !isRename &&
+        !force)
     {
         // We can end up here when an earlier upload attempt had failed because
         // of a connection failure. In that case, _storageManger.lastUploadSuccessful()
@@ -2704,7 +2704,7 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
                    "lastModifiedTime ["
                 << Util::getTimeForLog(now, newFileModifiedTime)
                 << "] is identical to the SaveManager's ["
-                << Util::getTimeForLog(now, _saveManager.getLastModifiedTime())
+                << Util::getTimeForLog(now, _saveManager.getLastModifiedLocalTime())
                 << "]. StorageManager's lastModifiedTime ["
                 << Util::getTimeForLog(now, _storageManager.getLastUploadedFileModifiedLocalTime())
                 << ']');
@@ -2813,7 +2813,7 @@ void DocumentBroker::handleUploadToStorageSuccessful(const StorageBase::UploadRe
     if (!_uploadRequest->isSaveAs() && !_uploadRequest->isRename())
     {
         // Saved and stored; update flags.
-        _saveManager.setLastModifiedTime(_uploadRequest->newFileModifiedTime());
+        _saveManager.setLastModifiedLocalTime(_uploadRequest->newFileModifiedTime());
 
         // Save the storage timestamp.
         _storageManager.setLastModifiedTime(_storage->getLastModifiedTime());
@@ -3619,7 +3619,7 @@ bool DocumentBroker::sendUnoSave(const std::shared_ptr<ClientSession>& session,
     LOG_INF("Saving doc [" << _docKey << "] using session [" << sessionId << ']');
 
     // Invalidate the timestamp to force persisting.
-    _saveManager.setLastModifiedTime(std::chrono::system_clock::time_point());
+    _saveManager.setLastModifiedLocalTime(std::chrono::system_clock::time_point());
 
     static const bool forceBackgroundEnv = !!getenv("LOOL_FORCE_BGSAVE");
     constexpr std::size_t MaxFailureCountForBackgroundSaving = 2; // Give only 1 extra chance.
