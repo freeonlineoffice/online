@@ -2798,6 +2798,7 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
 
 void DocumentBroker::handleUploadToStorageSuccessful(const StorageBase::UploadResult& uploadResult)
 {
+    assert(_uploadRequest && "Expected to have a valid UploadRequest instance");
     LOG_DBG("Last upload result: OK");
 
 #if !MOBILEAPP
@@ -3011,6 +3012,7 @@ void DocumentBroker::handleUploadToStorageFailed(const StorageBase::UploadResult
 {
     assert(uploadResult.getResult() != StorageBase::UploadResult::Result::OK &&
            "Expected upload failure");
+    assert(_uploadRequest && "Expected to have a valid UploadRequest instance");
 
     if (_docState.activity() == DocumentState::Activity::Rename)
     {
