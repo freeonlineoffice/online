@@ -1272,6 +1272,7 @@ private:
             , _isSaveAs(isSaveAs)
             , _isExport(isExport)
             , _isRename(isRename)
+            , _completed(false)
         {
         }
 
@@ -1292,6 +1293,10 @@ private:
         bool isExport() const { return _isExport; }
         bool isRename() const { return _isRename; }
 
+        /// When the callback fires, we set this request as completed, so we destroy it.
+        bool isComplete() const { return _completed; }
+        void setComplete() { _completed = true; }
+
     private:
         const std::chrono::steady_clock::time_point _startTime; ///< The time we made the request.
         const std::string _uriAnonym;
@@ -1300,6 +1305,7 @@ private:
         const bool _isSaveAs;
         const bool _isExport;
         const bool _isRename;
+        bool _completed;
     };
 
     /// Responsible for managing document uploading into storage.
