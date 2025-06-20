@@ -14,6 +14,7 @@
 // /* global app */
 class Sidebar extends SidebarBase {
 	targetDeckCommand: string;
+	isUserRequest: boolean; /// automatic or user request to show the sidebar
 
 	constructor(
 		map: any,
@@ -22,6 +23,7 @@ class Sidebar extends SidebarBase {
 		} /* Default speed: to be used on load */,
 	) {
 		super(map, options, SidebarType.Sidebar);
+		this.isUserRequest = true;
 	}
 
 	onAdd(map: ReturnType<typeof L.map>) {
@@ -32,6 +34,10 @@ class Sidebar extends SidebarBase {
 	onRemove() {
 		super.onRemove();
 		this.map.off('sidebar');
+	}
+
+	setAsInitialized() {
+		this.isUserRequest = false;
 	}
 
 	updateSidebarPrefs(currentDeck: string) {
@@ -143,11 +149,25 @@ class Sidebar extends SidebarBase {
 				this.builder.build(this.container, [sidebarData]);
 				if (!this.isVisible()) {
 					$('#sidebar-dock-wrapper').addClass('visible');
-					const focusables = JSDialog.GetFocusableElements(
-						this.container,
-					);
-					if (focusables && focusables.length) {
-						focusables[0].focus();
+
+					// schedule focus after animation so it will not shift the browser page
+					if (this.isUserRequest) {
+						setTimeout(() => {
+							app.layoutingService.appendLayoutingTask(
+								() => {
+									const focusables =
+										JSDialog.GetFocusableElements(
+											this.container,
+										);
+									if (
+										focusables &&
+										focusables.length
+									) {
+										focusables[0].focus();
+									}
+								},
+							);
+						}, 250); // see animation time in #sidebar-dock-wrapper.visible
 					}
 				}
 
@@ -155,6 +175,8 @@ class Sidebar extends SidebarBase {
 			} else {
 				this.closeSidebar();
 			}
+
+			this.isUserRequest = true;
 		}
 	}
 }
