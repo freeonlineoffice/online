@@ -99,26 +99,6 @@ protected:
         return _wopiSrc;
     }
 
-    std::string addWebSocket(const std::string& wopiName)
-    {
-        const Poco::URI wopiURL(helpers::getTestServerURI() + wopiName +
-                                "&testname=" + getTestname());
-
-        std::string wopiSrc = Uri::encode(wopiURL.toString());
-
-        // This is just a client connection that is used from the tests.
-        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
-                                                    << " connection): /lool/" << wopiSrc << "/ws");
-
-        // Insert at the back.
-        const auto& _ws = _wsList.emplace(
-            _wsList.end(), std::make_unique<UnitWebSocket>(socketPoll(), "/lool/" + wopiSrc + "/ws",
-                                                           getTestname()));
-        assert((*_ws).get());
-
-        return wopiSrc;
-    }
-
     void addWebSocket()
     {
         // This is just a client connection that is used from the tests.
