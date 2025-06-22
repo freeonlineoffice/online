@@ -826,5 +826,7 @@ check-struct-packing:
 	fi
 	@echo loolwsd struct packing is acceptably optimal
 
-czech: check
-	@echo "This should do something much cooler"
+czech: all-local
+	@echo "Running unit-tests only"
+	$(MAKE) check -C test
+
