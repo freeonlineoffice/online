@@ -122,6 +122,9 @@ button.jsdialog img {
 	margin: 5px;
 	vertical-align: middle;
 	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .button-primary {
