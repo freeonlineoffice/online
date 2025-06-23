@@ -1649,6 +1649,16 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
 
         oss << " readonly=" << (isReadOnly() ? 1 : 0);
 
+        if (isAllowChangeComments())
+        {
+            oss << " isAllowChangeComments=true";
+        }
+
+        if (isAllowManageRedlines())
+        {
+            oss << " isAllowManageRedlines=true";
+        }
+
         if (loadPart >= 0)
         {
             oss << " part=" << loadPart;
@@ -1926,12 +1936,14 @@ void ClientSession::setReadOnly(bool bVal)
     sendTextFrame("perm: " + sPerm);
 }
 
-void ClientSession::sendFileMode(const bool readOnly, const bool editComments)
+void ClientSession::sendFileMode(const bool readOnly, const bool editComments, bool manageRedlines)
 {
     std::string result = "filemode:{\"readOnly\": ";
     result += readOnly ? "true": "false";
     result += ", \"editComment\": ";
     result += editComments ? "true": "false";
+    result += ", \"manageRedlines\": ";
+    result += manageRedlines ? "true" : "false";
     result += "}";
     sendTextFrame(result);
 }
