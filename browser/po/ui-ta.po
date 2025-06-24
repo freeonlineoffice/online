@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-12 20:25+0200\n"
+"POT-Creation-Date: 2025-06-24 20:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Channel Filter:"
 msgstr ""
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:478
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:480
 #: src/control/Control.StatusBar.js:217 src/control/Control.StatusBar.js:222
 msgid "None"
 msgstr "ஏதுமில்லை"
@@ -319,11 +319,11 @@ msgstr ""
 #: src/canvas/sections/CommentSection.ts:163
 #: src/canvas/sections/CommentSection.ts:166
 #: src/control/Control.DocumentRepair.js:62
-#: src/control/Control.DownloadProgress.js:73
+#: src/control/Control.DownloadProgress.js:74
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.ts:1698 src/control/Control.UIManager.ts:1777
-#: src/control/Control.UIManager.ts:1929 src/control/Control.UIManager.ts:2107
+#: src/control/Control.UIManager.ts:1703 src/control/Control.UIManager.ts:1784
+#: src/control/Control.UIManager.ts:1938 src/control/Control.UIManager.ts:2116
 #: src/control/Control.Zotero.js:352 src/control/Toolbar.js:991
 #: src/core/Socket.js:1415
 msgid "Cancel"
@@ -410,15 +410,15 @@ msgstr "நிமி"
 msgid " s"
 msgstr "வி"
 
-#: js/global.js:1538
+#: js/global.js:1560
 msgid "Cluster is scaling, retrying..."
 msgstr ""
 
-#: js/global.js:1540
+#: js/global.js:1562
 msgid "Document is migrating to new server, retrying..."
 msgstr ""
 
-#: js/global.js:1542
+#: js/global.js:1564
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
@@ -476,7 +476,7 @@ msgid "Open in full view"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
-#: src/control/Control.JSDialogBuilder.js:1932
+#: src/control/Control.JSDialogBuilder.js:1934
 #: src/layer/tile/CanvasTileLayer.js:4373
 #: src/layer/tile/CanvasTileLayer.js:4388
 msgid "Comment"
@@ -536,7 +536,7 @@ msgstr ""
 msgid "Resolved"
 msgstr ""
 
-#: src/canvas/sections/ShapeHandlesSection.ts:448
+#: src/canvas/sections/ShapeHandlesSection.ts:459
 msgid "Document contains unsupported media"
 msgstr ""
 
@@ -688,17 +688,17 @@ msgstr ""
 msgid "Undo"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:33
+#: src/control/Control.DownloadProgress.js:34
 msgid "Download Selection"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:38
+#: src/control/Control.DownloadProgress.js:39
 msgid ""
 "If you want to share large elements outside of {productname} it's necessary "
 "to first download them."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:51
+#: src/control/Control.DownloadProgress.js:52
 #: src/control/Control.NotebookbarCalc.js:205
 #: src/control/Control.NotebookbarDraw.js:222
 #: src/control/Control.NotebookbarImpress.js:286
@@ -706,30 +706,30 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:72
+#: src/control/Control.DownloadProgress.js:73
 msgid "Downloading clipboard content"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:79
-#: src/control/Control.DownloadProgress.js:104
+#: src/control/Control.DownloadProgress.js:80
+#: src/control/Control.DownloadProgress.js:105
 #: src/control/Control.PartsPreview.js:288
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:102
+#: src/control/Control.DownloadProgress.js:103
 msgid "Download completed and ready to be copied to clipboard."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:103
+#: src/control/Control.DownloadProgress.js:104
 msgid ""
 "From now on clipboard notifications will discreetly appear at the bottom."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:263
+#: src/control/Control.DownloadProgress.js:264
 msgid "Content copied to clipboard"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:293
+#: src/control/Control.DownloadProgress.js:294
 msgid "Download failed"
 msgstr ""
 
@@ -1090,94 +1090,94 @@ msgstr ""
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:481
+#: src/control/Control.JSDialogBuilder.js:483
 msgid "Solid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:484
+#: src/control/Control.JSDialogBuilder.js:486
 msgid "Linear"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:487
+#: src/control/Control.JSDialogBuilder.js:489
 msgid "Axial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:490
+#: src/control/Control.JSDialogBuilder.js:492
 msgid "Radial"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:493
+#: src/control/Control.JSDialogBuilder.js:495
 msgid "Ellipsoid"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:497
+#: src/control/Control.JSDialogBuilder.js:499
 msgid "Quadratic"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:500
+#: src/control/Control.JSDialogBuilder.js:502
 msgid "Square"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:503
+#: src/control/Control.JSDialogBuilder.js:505
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1460
+#: src/control/Control.JSDialogBuilder.js:1462
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1463
+#: src/control/Control.JSDialogBuilder.js:1465
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1466
+#: src/control/Control.JSDialogBuilder.js:1468
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1542
+#: src/control/Control.JSDialogBuilder.js:1544
 #, fuzzy
 msgid "Select range"
 msgstr "தேர்ந்த கலங்களின் வீச்சு"
 
-#: src/control/Control.JSDialogBuilder.js:1661
+#: src/control/Control.JSDialogBuilder.js:1663
 #: src/control/Control.NotebookbarBuilder.js:144
 #, fuzzy
 msgid "Font Name"
 msgstr "எழுத்துரு"
 
-#: src/control/Control.JSDialogBuilder.js:1663 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1665 src/control/Toolbar.js:128
 #, fuzzy
 msgid "Font Size"
 msgstr "எழுத்துரு"
 
-#: src/control/Control.JSDialogBuilder.js:1665
+#: src/control/Control.JSDialogBuilder.js:1667
 #: src/control/Control.TopToolbar.js:458
 msgid "Style"
 msgstr "பாணி"
 
-#: src/control/Control.JSDialogBuilder.js:1918
+#: src/control/Control.JSDialogBuilder.js:1920
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1921
+#: src/control/Control.JSDialogBuilder.js:1923
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1996
+#: src/control/Control.JSDialogBuilder.js:1998
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2583
+#: src/control/Control.JSDialogBuilder.js:2585
 #: src/control/Control.Menubar.ts:971
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2584
+#: src/control/Control.JSDialogBuilder.js:2586
 #: src/control/Control.Menubar.ts:974
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2604
+#: src/control/Control.JSDialogBuilder.js:2606
 #, fuzzy
 msgid "Insert Table"
 msgstr "அட்டைவணை நுழை"
@@ -2508,7 +2508,7 @@ msgstr "அட்டைவணை நுழை"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.ts:1067
+#: src/control/Control.TopToolbar.js:199 src/control/Control.UIManager.ts:1069
 msgid "Hide Menu"
 msgstr ""
 
@@ -2516,7 +2516,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.ts:1094
+#: src/control/Control.UIManager.ts:1096
 msgid "Show Menu"
 msgstr ""
 
@@ -2899,7 +2899,7 @@ msgstr ""
 msgid "From Current Slide"
 msgstr ""
 
-#: src/control/jsdialog/Util.SnackbarController.ts:119
+#: src/control/jsdialog/Util.SnackbarController.ts:122
 msgid "Dismiss"
 msgstr ""
 
