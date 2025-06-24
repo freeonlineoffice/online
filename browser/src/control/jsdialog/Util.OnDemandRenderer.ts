@@ -50,9 +50,13 @@ function onDemandRenderer(
 							{ id: controlId },
 							entryId +
 								';' +
-								Math.floor(100 * window.devicePixelRatio) +
+								Math.floor(
+									100 * window.devicePixelRatio,
+								) +
 								';' +
-								Math.floor(100 * window.devicePixelRatio),
+								Math.floor(
+									100 * window.devicePixelRatio,
+								),
 							builder,
 						);
 					}
