@@ -288,6 +288,8 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			});
 		}
 
+		content.push( { type: 'separator', id: 'file-downloadas-break', orientation: 'vertical' } );
+
 		if (!this.map['wopi'].HideRepairOption) {
 			content.push({
 				'type': 'container',
