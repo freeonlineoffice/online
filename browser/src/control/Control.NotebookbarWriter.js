@@ -280,6 +280,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			});
 		}
 
+		content.push( { 'id': 'file-downloadas-break', 'type': 'separator', 'orientation': 'vertical' } );
+
 		if (hasRepair) {
 			content.push({
 				'type': 'container',
@@ -343,6 +345,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			content.push({
 				'type': 'container',
 				'children': [
+					{ type: 'separator', id: 'file-renamedocument-break', orientation: 'vertical' },
 					{
 						'id': 'togglewasm',
 						'class': 'togglewasm',
@@ -394,6 +397,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							}
 						]
 					},
+					{ type: 'separator', id: 'help-onlinehelp-break', orientation: 'vertical' },
 					{
 						'type': 'toolbox',
 						'children': [
@@ -406,6 +410,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							}
 						]
 					},
+					{ type: 'separator', id: 'help-keyboardshortcuts-break', orientation: 'vertical' },
 					hasAccessibilitySupport ?
 						{
 							'id':'togglea11ystate',
@@ -422,14 +427,30 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							'command': '.uno:SidebarDeck.A11yCheckDeck',
 							'accessibility': { focusBack: false, combination: 'A', de: null }
 						} : {},
-					hasServerAudit ?
+					hasAccessibilitySupport || hasAccessibilityCheck ?
 						{
-							'id': 'server-audit',
-							'type': 'bigcustomtoolitem',
-							'text': _('Server audit'),
-							'command': 'serveraudit',
-							'accessibility': { focusBack: false, combination: 'SA', de: null }
+							'id': 'help-accessibility-break',
+							'type': 'separator',
+							'orientation': 'vertical'
 						} : {},
+					hasServerAudit ?
+					{
+						'type': 'toolbox',
+						'children': [
+							{
+								'id': 'server-audit',
+								'type': 'bigcustomtoolitem',
+								'text': _('Server audit'),
+								'command': 'serveraudit',
+								'accessibility': { focusBack: false, combination: 'SA', de: null }
+							},
+							{
+								'id': 'help-serveraudit-break',
+								'type': 'separator',
+								'orientation': 'vertical'
+							}
+						]
+					} : {},
 					{
 						'type': 'toolbox',
 						'children': [
@@ -469,6 +490,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								}
 							]
 						} : {},
+					{ type: 'separator', id: 'help-feedback-break', orientation: 'vertical' },
 					hasAbout ?
 						{
 							'type': 'toolbox',
