@@ -384,6 +384,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					'command': 'presenterconsole',
 					'accessibility': { focusBack: true, combination: 'PW', de: null }
 				}: {},
+			{ type: 'separator', id: 'view-presentationinconsole-break', orientation: 'vertical' },
 			{
 				'id': 'fullscreen',
 				'type': 'bigtoolitem',
@@ -428,6 +429,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'view-zoomin-break', orientation: 'vertical' },
 			{
 				'id': 'toggleuimode',
 				'class': 'unotoggleuimode',
@@ -472,6 +474,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'text': _('Collapse Tabs'),
 				'accessibility': { focusBack: true, combination: 'CT', de: null }
 			},
+			{ type: 'separator', id: 'view-collapsenotebookbar-break', orientation: 'vertical' },
 			{
 				'id': 'notesmode',
 				'class': 'notesmode',
@@ -486,6 +489,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:SlideMasterPage',
 				'accessibility': { focusBack: true, combination: 'MP', de: null }
 			},
+			{ type: 'separator', id: 'view-masterview-break', orientation: 'vertical' },
 			{
 				'type': 'toolbox',
 				'children': [
@@ -506,6 +510,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'view-griduse-break', orientation: 'vertical' },
 			{
 				'id':'toggledarktheme',
 				'class': 'unotoggledarktheme',
@@ -520,6 +525,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'text': _('Invert Background'),
 				'accessibility': { focusBack: true, combination: 'TT', de: null }
 			},
+			{ type: 'separator', id: 'view-invertbackground-break', orientation: 'vertical' },
 			{
 				'id': 'view-side-bar',
 				'type': 'bigtoolitem',
@@ -1072,6 +1078,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:ParagraphDialog',
 				'accessibility': { focusBack: true, combination: 'PD', de: null }
 			},
+			{ type: 'separator', id: 'format-paragraphdialog-break', orientation: 'vertical' },
 			{
 				'id': 'format-outline-bullet',
 				'type': 'bigtoolitem',
@@ -1079,6 +1086,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:OutlineBullet',
 				'accessibility': { focusBack: true, combination: 'OB', de: null }
 			},
+			{ type: 'separator', id: 'format-outlinebullet-break', orientation: 'vertical' },
 			{
 				'id': 'format-slide-setup',
 				'type': 'bigtoolitem',
@@ -1086,6 +1094,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:PageSetup',
 				'accessibility': { focusBack: true, combination: 'SS', de: null }
 			},
+			{ type: 'separator', id: 'format-slidesetup-break', orientation: 'vertical' },
 			{
 				'id': 'format-format-line',
 				'type': 'bigtoolitem',
@@ -1107,6 +1116,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:TransformDialog',
 				'accessibility': { focusBack: true, combination: 'TD', de: null }
 			},
+			{ type: 'separator', id: 'format-transformdialog-break', orientation: 'vertical' },
 			{
 				'id': 'format-name-description',
 				'type': 'container',
@@ -1138,6 +1148,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'format-objecttitledescription-break', orientation: 'vertical' },
 			{
 				'id': 'format-theme-dialog',
 				'type': 'bigtoolitem',
@@ -1189,6 +1200,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'insert-deleteslide-break', orientation: 'vertical' },
 			{
 				'id': 'insert-insert-graphic:InsertImageMenu',
 				'type': 'menubutton',
@@ -1234,6 +1246,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'insert-insertobjectchart-break', orientation: 'vertical' },
 			(this.map['wopi'].EnableRemoteLinkPicker) ? {
 				'type': 'container',
 				'children': [
@@ -1273,6 +1286,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': 'hyperlinkdialog',
 				'accessibility': { focusBack: true, combination: 'IL', de: null }
 			},
+			{ type: 'separator', id: 'insert-hyperlinkdialog-break', orientation: 'vertical' },
 			(this.map['wopi'].EnableRemoteAIContent) ? {
 				'id': 'insert-insert-remote-ai-content',
 				'class': 'unoremoteaicontent',
@@ -1288,6 +1302,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:InsertAnnotation',
 				'accessibility': { focusBack: false, combination: 'ZC', de: 'ZC' }
 			},
+			{ type: 'separator', id: 'insert-insertannotation-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1353,6 +1368,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'insert-insertslidetitlefield-break', orientation: 'vertical' },
 			{
 				'id': 'insert-text',
 				'type': 'bigtoolitem',
@@ -1423,6 +1439,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'insert-verticaltext-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1454,6 +1471,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'insert-charmapcontrol-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1494,6 +1512,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:HeaderAndFooter',
 				'accessibility': { focusBack: true, combination: 'HF', de: null }
 			},
+			{ type: 'separator', id: 'layout-headerandfooter-break', orientation: 'vertical' },
 			{
 				'id': 'layout-insert-slide',
 				'type': 'bigtoolitem',
@@ -1545,6 +1564,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'layout-selectbackground-break', orientation: 'vertical' },
 			{
 				'id': 'layout-modify-page',
 				'type': 'bigtoolitem',
@@ -1559,6 +1579,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:MasterSlidesPanel',
 				'accessibility': { focusBack: true, combination: 'MS', de: null }
 			},
+			{ type: 'separator', id: 'layout-masterslidespanel-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1596,6 +1617,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:AnimationEffects',
 				'accessibility': { focusBack: true, combination: 'IA', de: null }
 			},
+			{ type: 'separator', id: 'layout-interaction-break', orientation: 'vertical' },
 			{
 				'id': 'layout-navigator',
 				'type': 'bigtoolitem',
@@ -1603,6 +1625,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:Navigator',
 				'accessibility': { focusBack: true, combination: 'NV', de: null }
 			},
+			{ type: 'separator', id: 'layout-navigator-break', orientation: 'vertical' },
 			{
 				'id': 'layout-select-all',
 				'type': 'bigtoolitem',
@@ -1610,6 +1633,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'command': '.uno:SelectAll',
 				'accessibility': { focusBack: true, combination: 'SA', de: null }
 			},
+			{ type: 'separator', id: 'layout-selectall-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1668,6 +1692,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'layout-aligndown-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
@@ -1801,6 +1826,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
+			{ type: 'separator', id: 'review-hyphenation-break', orientation: 'vertical' },
 			{
 				'id': 'review-insert-annotation',
 				'type': 'bigtoolitem',
