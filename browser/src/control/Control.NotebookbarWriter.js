@@ -1602,7 +1602,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 			    'class': 'unoinvertbackground',
 			    'type': 'bigcustomtoolitem',
 			    'text': _('Invert Background'),
-			    'accessibility': { focusBack: true, combination: 'D', de: null }
+			    'accessibility': { focusBack: true, combination: 'BG', de: null }
 			},
 			{ type: 'separator', id: 'view-invertbackground-break', orientation: 'vertical' },
 			{
