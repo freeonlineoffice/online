@@ -116,7 +116,7 @@ if (window.ThisIsTheEmscriptenApp) {
 	};
 	createOnlineModule(Module).then(() => {
 		app.HandleLOOLMessage = Module['_handle_lool_message'];
-		app.AllocateUTF8 = Module['allocateUTF8']; });
+		app.AllocateUTF8 = Module['stringToNewUTF8']; });
 } else {
 	map.loadDocument(global.socket);
 }
