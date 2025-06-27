@@ -463,6 +463,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							}
 						]
 					},
+					{ type: 'separator', id: 'help-reportissue-break', orientation: 'vertical' },
 					hasLatestUpdates ?
 						{
 							'type': 'toolbox',
@@ -490,7 +491,6 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								}
 							]
 						} : {},
-					{ type: 'separator', id: 'help-feedback-break', orientation: 'vertical' },
 					hasAbout ?
 						{
 							'type': 'toolbox',
