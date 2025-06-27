@@ -1,8 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 /* eslint-disable */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
