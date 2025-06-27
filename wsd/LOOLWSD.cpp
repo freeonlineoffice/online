@@ -3538,7 +3538,9 @@ private:
         std::shared_ptr<ServerSocket> socket = ServerSocket::create(
             ClientListenAddr, ClientPortNumber, ClientPortProto, now, *WebServerPoll, factory);
 
+#if !MOBILEAPP
         const int firstPortNumber = ClientPortNumber;
+#endif
         while (!socket &&
 #ifdef BUILDING_TESTS
                true
@@ -4378,14 +4380,14 @@ void forwardSigUsr2()
 #endif
 }
 
-void forwardSignal(const int signum)
+void forwardSignal([[maybe_unused]] const int signum)
 {
-    const char* name = SigUtil::signalName(signum);
-
     Util::assertIsLocked(DocBrokersMutex);
     Util::assertIsLocked(NewChildrenMutex);
 
 #if !MOBILEAPP
+    const char* name = SigUtil::signalName(signum);
+
     if (LOOLWSD::ForKitProcId > 0)
     {
         LOG_INF("Sending " << name << " to forkit " << LOOLWSD::ForKitProcId);
