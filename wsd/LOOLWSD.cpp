@@ -77,6 +77,7 @@
 #include "CacheUtil.hpp"
 #include "FileServer.hpp"
 #include "UserMessages.hpp"
+#include <wsd/PlatformUnix.hpp>
 #include <wsd/RemoteConfig.hpp>
 #include <wsd/SpecialBrokers.hpp>
 
@@ -144,13 +145,6 @@
 #include "wasmapp.hpp"
 #endif
 #endif // MOBILEAPP
-
-#ifdef __linux__
-#if !MOBILEAPP
-#include <common/security.h>
-#include <sys/inotify.h>
-#endif
-#endif
 
 using Poco::Util::LayeredConfiguration;
 using Poco::Util::Option;
