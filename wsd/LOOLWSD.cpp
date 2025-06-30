@@ -64,10 +64,6 @@
 
 #if !MOBILEAPP
 
-#if ENABLE_SSL
-#include <Poco/Net/SSLManager.h>
-#endif
-
 #include <cerrno>
 #include <stdexcept>
 #include <unordered_map>
@@ -78,6 +74,7 @@
 #include "FileServer.hpp"
 #include "UserMessages.hpp"
 #include <wsd/PlatformUnix.hpp>
+#include <wsd/SslConfig.hpp>
 #include <wsd/RemoteConfig.hpp>
 #include <wsd/SpecialBrokers.hpp>
 
@@ -118,9 +115,6 @@
 #include <MobileApp.hpp>
 #include <Protocol.hpp>
 #include <Session.hpp>
-#if ENABLE_SSL
-#  include <SslSocket.hpp>
-#endif
 #include <wsd/wopi/StorageConnectionManager.hpp>
 #include <wsd/TraceFile.hpp>
 #include <common/ConfigUtil.hpp>
