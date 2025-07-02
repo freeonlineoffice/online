@@ -134,6 +134,12 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: false, combination: 'M', de: null }
 			},
 			{
+				'id': 'Slide-tab-label',
+				'text': _('Slide'),
+				'name': 'Slide',
+				'accessibility': { focusBack: false, combination: 'SE', de: null }
+			},
+			{
 				'id': 'View-tab-label',
 				'text': _('View'),
 				'name': 'View',
@@ -159,6 +165,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			this.getTableTab(),
 			this.getDrawTab(),
 			this.getMasterTab(),
+			this.getSlideTab(),
 			this.getViewTab(),
 			this.getHelpTab()
 		];
@@ -353,7 +360,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 		return this.getTabPage('File', content);
 	},
 
-	getViewTab: function() {
+	getSlideTab: function() {
 		var content = [
 			window.mode.isTablet() ?
 				{
@@ -363,7 +370,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					'command': 'closetablet'
 				} : {},
 			{
-				'id': 'view-presentation:Presentation',
+				'id': 'slide-presentation:Presentation',
 				'class': 'unoPresentation',
 				'type': 'menubutton',
 				'text': _('Presentation'),
@@ -372,7 +379,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			},
 			!window.ThisIsAMobileApp ?
 				{
-					'id': 'view-presentation-in-window',
+					'id': 'slide-presentation-in-window',
 					'type': 'bigcustomtoolitem',
 					'text': _('Present in Window'),
 					'command': 'presentinwindow',
@@ -380,13 +387,19 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				} : {},
 			!window.ThisIsAMobileApp && window.canvasSlideshowEnabled ?
 			        {
-					'id': 'view-presentation-in-console',
+					'id': 'slide-presentation-in-console',
 					'type': 'bigcustomtoolitem',
 					'text': _('Presenter Console'),
 					'command': 'presenterconsole',
 					'accessibility': { focusBack: true, combination: 'PW', de: null }
-				}: {},
-			{ type: 'separator', id: 'view-presentationinconsole-break', orientation: 'vertical' },
+				}: {}
+		];
+
+		return this.getTabPage('Slide', content);
+	},
+
+	getViewTab: function() {
+		var content = [
 			{
 				'id': 'fullscreen',
 				'type': 'bigtoolitem',
