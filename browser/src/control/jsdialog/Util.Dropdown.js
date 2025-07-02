@@ -15,6 +15,10 @@ function _createDropdownId(id) {
 	return id + '-dropdown';
 }
 
+JSDialog.CreateDropdownEntriesId = function(id) {
+	return id + '-entries';
+}
+
 JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popupAnchor, isSubmenu) {
 	var dropdownWindowId = _createDropdownId(id);
 	var json = {
@@ -28,7 +32,7 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 		cancellable: true,
 		children: [
 			{
-				id: id + '-entries',
+				id: JSDialog.CreateDropdownEntriesId(id),
 				type: 'grid',
 				allyRole: 'listbox',
 				cols: 1,
