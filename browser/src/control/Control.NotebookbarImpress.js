@@ -633,7 +633,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			{
 				'id': 'home-create-slide:NewSlideLayoutMenu',
 				'type': 'menubutton',
-				'text': 'New',
+				'text': _('New'),
 				'command': '.uno:InsertPage',
 				'accessibility': { focusBack: true, combination: 'CS', de: null }
 			},
@@ -644,7 +644,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'id': 'home-change-layout:ChangeSlideLayoutMenu',
 						'type': 'menubutton',
 						'noLabel': true,
-						'text': 'Change Layout',
+						'text': _('Change Layout'),
 						'icon': 'lc_changelayout.svg',
 						'command': '.uno:AssignLayout',
 						'accessibility': { focusBack: true, combination: 'CL', de: null }
@@ -652,7 +652,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					{
 						'id': 'home-assign-layout',
 						'noLabel': true,
-						'text': 'Reset Layout',
+						'text': _('Reset Layout'),
 						'type': 'toolitem',
 						'command': '.uno:AssignLayout',
 						'accessibility': { focusBack: true, combination: 'RS', de: null }
