@@ -693,6 +693,8 @@ public:
 
         _header.add("Content-Length", std::to_string(body.size()));
 
+        const size_t bodySize = body.size();
+
         auto iss = std::make_shared<std::istringstream>(std::move(body), std::ios::binary);
 
         setBodySource(
@@ -701,7 +703,7 @@ public:
                 iss->read(buf, len);
                 return iss->gcount();
             },
-            body.size());
+            bodySize);
     }
 
     Stage stage() const { return _stage; }
