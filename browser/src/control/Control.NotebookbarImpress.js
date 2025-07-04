@@ -101,6 +101,12 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: false, combination: 'P', de: null }
 			},
 			{
+				'id': 'Slideshow-tab-label',
+				'text': _('Slide Show'),
+				'name': 'Slideshow',
+				'accessibility': { focusBack: false, combination: 'SE', de: null }
+			},
+			{
 				'id': 'Review-tab-label',
 				'text': _('Review'),
 				'name': 'Review',
@@ -141,12 +147,6 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: false, combination: 'M', de: null }
 			},
 			{
-				'id': 'Slideshow-tab-label',
-				'text': _('Slide Show'),
-				'name': 'Slideshow',
-				'accessibility': { focusBack: false, combination: 'SE', de: null }
-			},
-			{
 				'id': 'View-tab-label',
 				'text': _('View'),
 				'name': 'View',
@@ -167,13 +167,13 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			this.getHomeTab(),
 			this.getInsertTab(),
 			this.getLayoutTab(),
+			this.getSlideshowTab(),
 			this.getReviewTab(),
 			this.getFormatTab(),
 			this.getTableTab(),
 			this.getShapeTab(),
 			this.getPictureTab(),
 			this.getMasterTab(),
-			this.getSlideshowTab(),
 			this.getViewTab(),
 			this.getHelpTab()
 		];
