@@ -47,7 +47,7 @@ public:
     std::unique_ptr<http::Response>
     assertGetFileRequest(const Poco::Net::HTTPRequest& /*request*/) override
     {
-        LOG_TST("Testing " << name(_scenario));
+        TST_LOG("Testing " << name(_scenario));
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         assertGetFileCount();
@@ -58,7 +58,7 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& /*request*/) override
     {
-        LOG_TST("Testing " << name(_scenario));
+        TST_LOG("Testing " << name(_scenario));
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         assertPutFileCount();
@@ -66,7 +66,7 @@ public:
         switch (_scenario)
         {
             case Scenario::Disconnect:
-                LOG_TST("Clobbered in the disconnect scenario");
+                TST_LOG("Clobbered in the disconnect scenario");
                 break;
             case Scenario::SaveDiscard:
             case Scenario::CloseDiscard:
@@ -112,7 +112,7 @@ public:
 
     void onDocumentUploaded(bool success) override
     {
-        LOG_TST("Uploaded: " << (success ? "success" : "failure"));
+        TST_LOG("Uploaded: " << (success ? "success" : "failure"));
 
         switch (_scenario)
         {
@@ -124,7 +124,7 @@ public:
             case Scenario::SaveOverwrite:
                 if (getCountPutFile() == 2)
                 {
-                    LOG_TST("Closing the document to verify its contents after reloading");
+                    TST_LOG("Closing the document to verify its contents after reloading");
                     WSD_CMD("closedocument");
                 }
                 break;
@@ -133,7 +133,7 @@ public:
 
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Testing " << name(_scenario) << " with dockey [" << docKey << "] closed.");
+        TST_LOG("Testing " << name(_scenario) << " with dockey [" << docKey << "] closed.");
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         std::string expectedContents;
@@ -205,10 +205,10 @@ public:
     /// The document is loaded.
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("Got: [" << message << ']');
+        TST_LOG("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
-        LOG_TST("Modifying the document");
+        TST_LOG("Modifying the document");
         TRANSITION_STATE(_phase, Phase::WaitModifiedStatus);
 
         // Modify the currently opened document; type 'a'.
@@ -220,13 +220,13 @@ public:
 
     bool onDocumentModified(const std::string& message) override
     {
-        LOG_TST("Got: [" << message << ']');
+        TST_LOG("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitModifiedStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitUploadAfterSave);
 
         // Save.
-        LOG_TST("Saving the document");
+        TST_LOG("Saving the document");
         WSD_CMD("save dontTerminateEdit=0 dontSaveIfUnmodified=0");
 
         return true;
@@ -243,7 +243,7 @@ public:
             {
                 // Just disconnect.
                 TRANSITION_STATE(_phase, Phase::WaitUploadOnExit);
-                LOG_TST("Disconnecting");
+                TST_LOG("Disconnecting");
                 deleteSocketAt(0);
             }
         }
@@ -259,7 +259,7 @@ public:
     /// Wait for ModifiedStatus=false before disconnecting.
     bool onDocumentUnmodified(const std::string& message) override
     {
-        LOG_TST("Got: [" << message << ']');
+        TST_LOG("Got: [" << message << ']');
 
         LOK_ASSERT_STATE(_phase, Phase::WaitUploadAfterSave);
 
@@ -268,7 +268,7 @@ public:
         {
             // Just disconnect.
             TRANSITION_STATE(_phase, Phase::WaitUploadOnExit);
-            LOG_TST("Disconnecting");
+            TST_LOG("Disconnecting");
             deleteSocketAt(0);
         }
 
@@ -283,7 +283,7 @@ public:
             {
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
-                LOG_TST("Load: initWebsocket.");
+                TST_LOG("Load: initWebsocket.");
                 initWebsocket("/wopi/files/0?access_token=anything");
 
                 WSD_CMD("load url=" + getWopiSrc());
@@ -332,8 +332,7 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& /*request*/) override
     {
-        LOG_TST("Checking X-LOOL-WOPI headers");
-
+        TST_LOG("Checking X-LOOL-WOPI headers");
 
         failTest("Unexpected PutFile on unmodified document");
         return nullptr;
@@ -343,12 +342,12 @@ public:
     /// This is sent right after loading.
     bool onDocumentUnmodified(const std::string& message) override
     {
-        LOG_TST("Got: [" << message << ']');
+        TST_LOG("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitDestroy);
 
-        LOG_TST("Closing document");
+        TST_LOG("Closing document");
         WSD_CMD("closedocument");
 
         return true;
@@ -363,7 +362,7 @@ public:
     // Wait for clean unloading.
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Destroyed dockey [" << docKey << "] closed");
+        TST_LOG("Destroyed dockey [" << docKey << "] closed");
         LOK_ASSERT_STATE(_phase, Phase::WaitDestroy);
 
         TRANSITION_STATE(_phase, Phase::Done);
@@ -380,7 +379,7 @@ public:
             {
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
-                LOG_TST("Load: initWebsocket.");
+                TST_LOG("Load: initWebsocket.");
                 initWebsocket("/wopi/files/0?access_token=anything");
 
                 WSD_CMD("load url=" + getWopiSrc());
@@ -413,13 +412,13 @@ public:
     /// This is sent right after loading.
     bool onDocumentUnmodified(const std::string& message) override
     {
-        LOG_TST("Got: [" << message << ']');
+        TST_LOG("Got: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitDestroy);
 
         // Disconnect to trigger the auto-save logic.
-        LOG_TST("Disconnecting");
+        TST_LOG("Disconnecting");
         deleteSocketAt(0);
 
         return true;

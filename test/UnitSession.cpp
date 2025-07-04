@@ -193,7 +193,8 @@ UnitBase::TestResult UnitSession::testFilesOpenConnection()
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL
+                                      << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(true, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::None ==
@@ -239,7 +240,8 @@ UnitBase::TestResult UnitSession::testFilesCloseConnection()
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL
+                                      << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(false, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::Close ==
@@ -286,7 +288,8 @@ UnitBase::TestResult UnitSession::testFileServer()
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: " << documentURL << ": " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: " << documentURL << ": "
+                                      << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(true, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::None ==

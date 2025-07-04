@@ -21,7 +21,7 @@
 #define WSD_CMD_BY_CONNECTION_INDEX(INDEX, MSG)                                                    \
     do                                                                                             \
     {                                                                                              \
-        LOG_TST("Sending from #" << INDEX << ": " << MSG);                                         \
+        TST_LOG("Sending from #" << INDEX << ": " << MSG);                                         \
         sendCommand(INDEX, MSG);                                                                   \
     } while (false)
 
@@ -86,7 +86,7 @@ protected:
         _wopiSrc = Uri::encode(wopiURL.toString());
 
         // This is just a client connection that is used from the tests.
-        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
+        TST_LOG("Connecting test client to LOOL (#" << (_wsList.size() + 1)
                                                     << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the front.
@@ -102,7 +102,7 @@ protected:
     void addWebSocket()
     {
         // This is just a client connection that is used from the tests.
-        LOG_TST("Connecting test client to LOOL (#" << (_wsList.size() + 1)
+        TST_LOG("Connecting test client to LOOL (#" << (_wsList.size() + 1)
                                                     << " connection): /lool/" << _wopiSrc << "/ws");
 
         // Insert at the back.
@@ -115,7 +115,7 @@ protected:
 
     void endTest(const std::string& reason) override
     {
-        LOG_TST("Ending test by disconnecting " << _wsList.size() << " connection(s): " << reason);
+        TST_LOG("Ending test by disconnecting " << _wsList.size() << " connection(s): " << reason);
         _wsList.clear();
         UnitWSD::endTest(reason);
     }
@@ -135,7 +135,7 @@ protected:
         std::string documentPath, documentURL;
         helpers::getDocumentPathAndURL(docFilename, documentPath, documentURL, getTestname());
 
-        LOG_TST("Connecting to local document [" << docFilename << "] with URL: " << documentURL);
+        TST_LOG("Connecting to local document [" << docFilename << "] with URL: " << documentURL);
         _wsList.emplace_back(
             std::make_unique<UnitWebSocket>(socketPoll(), documentURL, getTestname()));
 
@@ -147,7 +147,7 @@ protected:
     {
         const std::string documentURL = connectToLocalDocument(docFilename);
 
-        LOG_TST("Loading local document [" << docFilename << "] with URL: " << documentURL);
+        TST_LOG("Loading local document [" << docFilename << "] with URL: " << documentURL);
         WSD_CMD("load url=" + documentURL);
     }
 

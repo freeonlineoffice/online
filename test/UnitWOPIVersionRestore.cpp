@@ -42,7 +42,7 @@ public:
     {
         LOK_ASSERT_STATE(_phase, Phase::WaitPutFile);
 
-        LOG_TST("Document uploaded.");
+        TST_LOG("Document uploaded.");
         _isDocumentSaved = true;
 
         return nullptr;
@@ -50,7 +50,7 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("Got [" << message << ']');
+        TST_LOG("Got [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitPutFile);
@@ -91,7 +91,7 @@ public:
             {
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
-                LOG_TST("Load: initWebsocket.");
+                TST_LOG("Load: initWebsocket.");
                 initWebsocket("/wopi/files/0?access_token=anything");
 
                 WSD_CMD("load url=" + getWopiSrc());

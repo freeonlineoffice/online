@@ -50,7 +50,7 @@ public:
         }
 
         // This during closing the document.
-        LOG_TST("assertPutFileRequest: unexpected");
+        TST_LOG("assertPutFileRequest: unexpected");
         failTest("PutFile multiple times.");
 
         return nullptr;
@@ -59,7 +59,7 @@ public:
     /// The document is loaded.
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        TST_LOG("onDocumentLoaded: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         TRANSITION_STATE(_phase, Phase::WaitPutFile);
@@ -74,7 +74,7 @@ public:
     // Wait for clean unloading.
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Destroyed dockey [" << docKey << ']');
+        TST_LOG("Destroyed dockey [" << docKey << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitDestroy);
 
         passTest("Document unloaded as expected.");
@@ -88,7 +88,7 @@ public:
             {
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
-                LOG_TST("Load: initWebsocket.");
+                TST_LOG("Load: initWebsocket.");
                 initWebsocket("/wopi/files/0?access_token=anything");
 
                 WSD_CMD("load url=" + getWopiSrc());

@@ -73,7 +73,7 @@ public:
                                    const std::shared_ptr<StreamSocket>& socket) override
     {
         Poco::URI uriReq(request.getURI());
-        LOG_TST("FakeWOPIHost: Handling HTTP " << request.getMethod()
+        TST_LOG("FakeWOPIHost: Handling HTTP " << request.getMethod()
                                                << " request: " << uriReq.toString());
 
         constexpr auto DefaultUrlFilename = "empty.odt";
@@ -86,7 +86,7 @@ public:
             // CheckFileInfo
             if (regInfo.match(uriReq.getPath()))
             {
-                LOG_TST("FakeWOPIHost: Handling WOPI::CheckFileInfo: " << uriReq.getPath());
+                TST_LOG("FakeWOPIHost: Handling WOPI::CheckFileInfo: " << uriReq.getPath());
 
                 Poco::JSON::Object::Ptr fileInfo = getDefaultCheckFileInfoPayload(uriReq);
                 fileInfo->set("BaseFileName", DefaultUrlFilename);
@@ -106,7 +106,7 @@ public:
             if (uriReq.getPath() == FileUrlFilename)
             {
                 const std::string filename = std::string(TDOC) + FileUrlFilename;
-                LOG_TST("FakeWOPIHost: Request, WOPI::GetFile sending FileUrl: " << filename);
+                TST_LOG("FakeWOPIHost: Request, WOPI::GetFile sending FileUrl: " << filename);
 
                 http::Response response(http::StatusCode::OK);
                 HttpHelper::sendFileAndShutdown(socket, filename, response);
@@ -116,7 +116,7 @@ public:
             if (uriReq.getPath() == InvalidFilename)
             {
                 const std::string filename = std::string(TDOC) + InvalidFilename;
-                LOG_TST("FakeWOPIHost: Request, WOPI::GetFile returning 404 for: " << filename);
+                TST_LOG("FakeWOPIHost: Request, WOPI::GetFile returning 404 for: " << filename);
 
                 http::Response httpResponse(http::StatusCode::NotFound);
                 socket->sendAndShutdown(httpResponse);
@@ -135,7 +135,7 @@ public:
                 }
 
                 const std::string filename = std::string(TDOC) + '/' + DefaultUrlFilename;
-                LOG_TST("FakeWOPIHost: Request, WOPI::GetFile sending Default: " << filename);
+                TST_LOG("FakeWOPIHost: Request, WOPI::GetFile sending Default: " << filename);
 
                 http::Response response(http::StatusCode::OK);
                 HttpHelper::sendFileAndShutdown(socket, filename, response);
@@ -144,7 +144,7 @@ public:
         }
         else if (request.getMethod() == "POST")
         {
-            LOG_TST("FakeWOPIHost: Handling PutFile: " << uriReq.getPath());
+            TST_LOG("FakeWOPIHost: Handling PutFile: " << uriReq.getPath());
 
             LOK_ASSERT_MESSAGE("Expected to be in Phase::WaitPutFile",
                                _phase == Phase::WaitPutFile);
@@ -161,25 +161,25 @@ public:
                                  "application/json; charset=utf-8");
             socket->sendAndShutdown(httpResponse);
 
-            LOG_TST("Closing document after PutFile");
+            TST_LOG("Closing document after PutFile");
             WSD_CMD("closedocument");
             ++_docId; // Load the next file.
 
             if (_fileUrlState == FileUrlState::Valid)
             {
-                LOG_TST("Valid FileUrl test successful. Now testing Invalid FileUrl.");
+                TST_LOG("Valid FileUrl test successful. Now testing Invalid FileUrl.");
                 _fileUrlState = FileUrlState::Invalid;
                 TRANSITION_STATE(_phase, Phase::Load);
             }
             else if (_fileUrlState == FileUrlState::Invalid)
             {
-                LOG_TST("Invalid FileUrl test successful. Now testing without FileUrl.");
+                TST_LOG("Invalid FileUrl test successful. Now testing without FileUrl.");
                 _fileUrlState = FileUrlState::Absent;
                 TRANSITION_STATE(_phase, Phase::Load);
             }
             else if (_fileUrlState == FileUrlState::Absent)
             {
-                LOG_TST("Testing of FileUrl completed successfully.");
+                TST_LOG("Testing of FileUrl completed successfully.");
                 TRANSITION_STATE(_phase, Phase::Polling);
                 exitTest(TestResult::Ok);
             }
@@ -192,11 +192,10 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
-        LOK_ASSERT_MESSAGE("Expected to be in Phase::WaitLoadStatus",
-                           _phase == Phase::WaitLoadStatus);
+        TST_LOG("onDocumentLoaded: [" << message << ']');
+        LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
-        LOG_TST(
+        TST_LOG(
             "onDocumentLoaded: Modifying the document and switching to Phase::WaitModifiedStatus");
         TRANSITION_STATE(_phase, Phase::WaitModifiedStatus);
 
@@ -208,11 +207,10 @@ public:
 
     bool onDocumentModified(const std::string& message) override
     {
-        LOG_TST("onDocumentModified: [" << message << ']');
-        LOK_ASSERT_MESSAGE("Expected to be in Phase::WaitModified",
-                           _phase == Phase::WaitModifiedStatus);
+        TST_LOG("onDocumentModified: [" << message << ']');
+        LOK_ASSERT_STATE(_phase, Phase::WaitModifiedStatus);
 
-        LOG_TST("onDocumentModified: Saving document and switching to Phase::WaitPutFile");
+        TST_LOG("onDocumentModified: Saving document and switching to Phase::WaitPutFile");
         TRANSITION_STATE(_phase, Phase::WaitPutFile);
 
         WSD_CMD("save dontTerminateEdit=0 dontSaveIfUnmodified=0 "
@@ -227,7 +225,7 @@ public:
         {
             case Phase::Load:
             {
-                LOG_TST("Phase::Load");
+                TST_LOG("Phase::Load");
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
                 initWebsocket("/wopi/files/" + std::to_string(_docId) + "?access_token=anything");

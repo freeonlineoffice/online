@@ -62,28 +62,28 @@ protected:
     void setExpectedCheckFileInfo(std::size_t value)
     {
         _expectedCheckFileInfo = value;
-        LOG_TST("Expecting " << _expectedCheckFileInfo << " CheckFileInfo requests.");
+        TST_LOG("Expecting " << _expectedCheckFileInfo << " CheckFileInfo requests.");
     }
 
     std::size_t getExpectedGetFile() const { return _expectedGetFile; }
     void setExpectedGetFile(std::size_t value)
     {
         _expectedGetFile = value;
-        LOG_TST("Expecting " << _expectedGetFile << " GetFile requests.");
+        TST_LOG("Expecting " << _expectedGetFile << " GetFile requests.");
     }
 
     std::size_t getExpectedPutRelative() const { return _expectedPutRelative; }
     void setExpectedPutRelative(std::size_t value)
     {
         _expectedPutRelative = value;
-        LOG_TST("Expecting " << _expectedPutRelative << " PutRelative requests.");
+        TST_LOG("Expecting " << _expectedPutRelative << " PutRelative requests.");
     }
 
     std::size_t getExpectedPutFile() const { return _expectedPutFile; }
     void setExpectedPutFile(std::size_t value)
     {
         _expectedPutFile = value;
-        LOG_TST("Expecting " << _expectedPutFile << " PutFile requests.");
+        TST_LOG("Expecting " << _expectedPutFile << " PutFile requests.");
     }
 
 public:
@@ -102,9 +102,9 @@ public:
 
     virtual void startNewTest()
     {
-        LOG_TST("===== Starting " << name(_scenario) << " test scenario =====");
+        TST_LOG("===== Starting " << name(_scenario) << " test scenario =====");
 
-        LOG_TST("Resetting the document in storage");
+        TST_LOG("Resetting the document in storage");
         setFileContent(OriginalDocContent); // Reset to test overwriting.
 
         resetCountCheckFileInfo();
@@ -164,7 +164,7 @@ public:
 
     void assertPutFileCount()
     {
-        LOG_TST("Testing " << name(_scenario));
+        TST_LOG("Testing " << name(_scenario));
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         if (getExpectedPutRelative() < getCountPutRelative())
@@ -183,12 +183,12 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("Testing " << name(_scenario) << ": [" << message << ']');
+        TST_LOG("Testing " << name(_scenario) << ": [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoadStatus);
 
         if (_scenario != Scenario::VerifyOverwrite)
         {
-            LOG_TST("Modifying the document");
+            TST_LOG("Modifying the document");
             TRANSITION_STATE(_phase, Phase::WaitModifiedStatus);
 
             // modify the currently opened document; type 'a'
@@ -197,7 +197,7 @@ public:
         }
         else
         {
-            LOG_TST("Closing the document to finish testing");
+            TST_LOG("Closing the document to finish testing");
             TRANSITION_STATE_MSG(_phase, Phase::WaitDocClose, "Skipping modifications");
             WSD_CMD("closedocument");
         }
@@ -207,11 +207,11 @@ public:
 
     bool onDocumentModified(const std::string& message) override
     {
-        LOG_TST("Testing " << name(_scenario) << ": [" << message << ']');
+        TST_LOG("Testing " << name(_scenario) << ": [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitModifiedStatus);
 
         // Change the underlying document in storage.
-        LOG_TST("Changing document contents in storage");
+        TST_LOG("Changing document contents in storage");
         setFileContent(ConflictingDocContent);
 
         TRANSITION_STATE(_phase, Phase::WaitDocClose);
@@ -219,7 +219,7 @@ public:
         switch (_scenario)
         {
             case Scenario::Disconnect:
-                LOG_TST("Disconnecting");
+                TST_LOG("Disconnecting");
                 deleteSocketAt(0);
                 break;
             case Scenario::SaveDiscard:
@@ -227,14 +227,14 @@ public:
                 // Save the document; wsd should detect now that document has
                 // been changed underneath it and send us:
                 // "error: cmd=storage kind=documentconflict"
-                LOG_TST("Saving the document");
+                TST_LOG("Saving the document");
                 WSD_CMD("save dontTerminateEdit=0 dontSaveIfUnmodified=0");
                 break;
             case Scenario::CloseDiscard:
                 // Close the document; wsd should detect now that document has
                 // been changed underneath it and send us:
                 // "error: cmd=storage kind=documentconflict"
-                LOG_TST("Closing the document");
+                TST_LOG("Closing the document");
                 WSD_CMD("closedocument");
                 break;
             case Scenario::VerifyOverwrite:
@@ -247,7 +247,7 @@ public:
 
     bool onDocumentError(const std::string& message) override
     {
-        LOG_TST("Testing " << name(_scenario) << ": [" << message << ']');
+        TST_LOG("Testing " << name(_scenario) << ": [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         LOK_ASSERT_EQUAL_MESSAGE("Expect only documentconflict errors",
@@ -260,11 +260,11 @@ public:
                 break;
             case Scenario::SaveDiscard:
             case Scenario::CloseDiscard:
-                LOG_TST("Discarding own changes via closedocument");
+                TST_LOG("Discarding own changes via closedocument");
                 WSD_CMD("closedocument");
                 break;
             case Scenario::SaveOverwrite:
-                LOG_TST("Overwriting with own version via savetostorage");
+                TST_LOG("Overwriting with own version via savetostorage");
                 WSD_CMD("savetostorage force=1");
                 break;
             case Scenario::VerifyOverwrite:
@@ -298,7 +298,7 @@ public:
     // Wait for clean unloading.
     void onDocBrokerDestroy(const std::string& docKey) override
     {
-        LOG_TST("Testing " << name(_scenario) << " with dockey [" << docKey << "] closed.");
+        TST_LOG("Testing " << name(_scenario) << " with dockey [" << docKey << "] closed.");
         LOK_ASSERT_STATE(_phase, Phase::WaitDocClose);
 
         LOK_ASSERT(getExpectedCheckFileInfo() >= getCountCheckFileInfo());
@@ -306,7 +306,7 @@ public:
         LOK_ASSERT_EQUAL(getExpectedPutRelative(), getCountPutRelative());
         // LOK_ASSERT_EQUAL(getExpectedPutFile(), getCountPutFile()); //FIXME: unreliable for some tests.
 
-        LOG_TST("===== Finished " << name(_scenario) << " test scenario =====");
+        TST_LOG("===== Finished " << name(_scenario) << " test scenario =====");
 
         if (_scenario != Scenario::VerifyOverwrite)
         {
@@ -342,7 +342,7 @@ public:
             {
                 startNewTest();
 
-                LOG_TST("Loading the document for " << name(_scenario));
+                TST_LOG("Loading the document for " << name(_scenario));
 
                 TRANSITION_STATE(_phase, Phase::WaitLoadStatus);
 
