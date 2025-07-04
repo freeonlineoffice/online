@@ -141,9 +141,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: false, combination: 'M', de: null }
 			},
 			{
-				'id': 'Slide-tab-label',
-				'text': _('Slide'),
-				'name': 'Slide',
+				'id': 'Slideshow-tab-label',
+				'text': _('Slide Show'),
+				'name': 'Slideshow',
 				'accessibility': { focusBack: false, combination: 'SE', de: null }
 			},
 			{
@@ -173,7 +173,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			this.getShapeTab(),
 			this.getPictureTab(),
 			this.getMasterTab(),
-			this.getSlideTab(),
+			this.getSlideshowTab(),
 			this.getViewTab(),
 			this.getHelpTab()
 		];
@@ -368,7 +368,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 		return this.getTabPage('File', content);
 	},
 
-	getSlideTab: function() {
+	getSlideshowTab: function() {
 		var content = [
 			window.mode.isTablet() ?
 				{
@@ -403,7 +403,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				}: {}
 		];
 
-		return this.getTabPage('Slide', content);
+		return this.getTabPage('Slideshow', content);
 	},
 
 	getViewTab: function() {
