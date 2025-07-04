@@ -203,6 +203,10 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 					'type': 'container',
 					'children': [
 						{
+							'id': 'file-exportas-break',
+							'type': 'separator',
+							'orientation': 'vertical'
+						}, {
 							'id': 'ShareAs',
 							'class': 'unoShareAs',
 							'type': 'customtoolitem',
@@ -218,6 +222,10 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 							'command': 'rev-history',
 							'inlineLabel': true,
 							'accessibility': { focusBack: true, combination: 'RH' }
+						}, {
+							'id': 'file-revhistory-break',
+							'type': 'separator',
+							'orientation': 'vertical'
 						}
 					],
 					'vertical': true
@@ -227,12 +235,20 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'container',
 				'children': [
 					{
+						'id': 'file-exportas-break',
+						'type': 'separator',
+						'orientation': 'vertical'
+					}, {
 						'id': 'ShareAs',
 						'class': 'unoShareAs',
 						'type': 'bigcustomtoolitem',
 						'text': _('Share'),
 						'command': 'shareas',
 						'accessibility': { focusBack: true, combination: 'SH' }
+					}, {
+						'id': 'file-revhistory-break',
+						'type': 'separator',
+						'orientation': 'vertical'
 					}
 				]
 			});
@@ -241,12 +257,20 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'container',
 				'children': [
 					{
+						'id': 'file-exportas-break',
+						'type': 'separator',
+						'orientation': 'vertical'
+					}, {
 						'id': 'Rev-History',
 						'class': 'unoRev-History',
 						'type': 'bigcustomtoolitem',
 						'text': _('See history'),
 						'command': 'rev-history',
 						'accessibility': { focusBack: true, combination: 'RH' }
+					}, {
+						'id': 'file-revhistory-break',
+						'type': 'separator',
+						'orientation': 'vertical'
 					}
 				]
 			});
