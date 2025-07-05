@@ -228,7 +228,7 @@ JSDialog.iconView = function (
 	resizeObserver.observe(container);
 
 	const firstSelected = $(container).children('.selected').get(0);
-	const blockOption = JSDialog._scrollIntoViewBlockOption('nearest');
+	const blockOption = JSDialog.ScrollIntoViewBlockOption('nearest');
 	if (firstSelected)
 		firstSelected.scrollIntoView({
 			behavior: 'smooth',
@@ -247,7 +247,7 @@ JSDialog.iconView = function (
 		if (entry) {
 			L.DomUtil.addClass(entry, 'selected');
 			const blockOption =
-				JSDialog._scrollIntoViewBlockOption('nearest');
+				JSDialog.ScrollIntoViewBlockOption('nearest');
 			entry.scrollIntoView({
 				behavior: 'smooth',
 				block: blockOption,
