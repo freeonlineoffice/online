@@ -122,7 +122,7 @@ namespace Log
     /// Getting the logging level
     Level getLevel();
 
-    std::string getLogLevelName(const std::string &channel);
+    const std::string& getLogLevelName(const std::string& channel);
     void setLogLevelByName(const std::string &channel,
                            const std::string &level);
 
