@@ -31,7 +31,6 @@ public:
         : _sessionId(std::move(sessionId))
         , _userName(std::move(userName))
         , _userId(std::move(userId))
-        , _start(std::time(nullptr))
         , _loadDuration(0)
         , _readOnly(readOnly)
     {
@@ -50,7 +49,6 @@ private:
     const std::string _sessionId;
     const std::string _userName;
     const std::string _userId;
-    const std::time_t _start;
     std::time_t _end = 0;
     std::chrono::milliseconds _loadDuration;
     bool _readOnly = false;
@@ -299,7 +297,6 @@ class Subscriber final
 public:
     explicit Subscriber(std::weak_ptr<WebSocketHandler> ws)
         : _ws(std::move(ws))
-        , _start(std::time(nullptr))
     {
         LOG_INF("Subscriber ctor.");
     }
@@ -325,7 +322,6 @@ private:
 
     std::set<std::string> _subscriptions;
 
-    std::time_t _start;
     std::time_t _end = 0;
 };
 
