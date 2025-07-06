@@ -158,7 +158,11 @@ public:
 
         req.set("Host", hostAndPort); // Make sure the host is set.
 
-        req.header().setConnectionToken(http::Header::ConnectionToken::Upgrade);
+        // Set a consistent Origin
+        std::string protocol = isSecure ? "https" : "http";
+        req.set("Origin", protocol + "://" + hostAndPort);
+
+        req.setConnectionToken(http::Header::ConnectionToken::Upgrade);
         req.set("Upgrade", "websocket");
         req.set("Sec-WebSocket-Version", "13");
         req.set("Sec-WebSocket-Key", getWebSocketKey());
