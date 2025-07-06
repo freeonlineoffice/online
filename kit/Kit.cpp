@@ -2182,10 +2182,6 @@ std::shared_ptr<lok::Document> Document::load(const std::shared_ptr<ChildSession
         {
             _loKitDocument->setAllowChangeComments(viewId, true);
         }
-        if (session->isAllowManageRedlines())
-        {
-            _loKitDocument->setAllowManageRedlines(viewId, true);
-        }
     }
 
     // viewId's monotonically increase, and CallbackDescriptors are never freed.

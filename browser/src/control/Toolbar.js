@@ -462,11 +462,6 @@ L.Map.include({
 				);
 			}
 		}
-		if (app.isRedlineManagementAllowed()) {
-			allowedCommands.push('.uno:ShowTrackedChanges', '.uno:AcceptTrackedChanges', '.uno:AcceptTrackedChange', '.uno:RejectTrackedChange',
-				'.uno:AcceptAllTrackedChanges', '.uno:RejectAllTrackedChanges', '.uno:AcceptTrackedChangeToNext', '.uno:RejectTrackedChangeToNext',
-				'.uno:CommentChangeTracking', '.uno:PreviousTrackedChange', '.uno:NextTrackedChange');
-		}
 
 		for (var i in allowedCommands) {
 			if (allowedCommands[i] === command) {

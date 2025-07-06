@@ -38,7 +38,7 @@ public:
 
     void setReadOnly(bool bValue = true) override;
 
-    void sendFileMode(bool readOnly, bool editComments, bool manageRedlines);
+    void sendFileMode(bool readOnly, bool editComments);
 
     void setLockFailed(const std::string& reason);
 
