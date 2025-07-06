@@ -207,7 +207,8 @@ JSDialog.iconView = function (
 		// Step 1: Split the string by spaces:           ["96px", "96px", "96px"]
 		// Step 2: Remove any empty entries (if any):    ["96px", "96px", "96px"]
 		// Step 3: The length of this array is the number of columns in the grid.
-		const gridTemplateColumns = getComputedStyle(container).gridTemplateColumns;
+		const gridTemplateColumns =
+			getComputedStyle(container).gridTemplateColumns;
 		const columns = gridTemplateColumns.split(' ').filter(Boolean).length;
 
 		if (columns > 0) {

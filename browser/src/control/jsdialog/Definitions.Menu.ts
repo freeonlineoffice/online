@@ -487,7 +487,10 @@ function generateLayoutPopupGrid(unoCommand: string): GridWidgetJSON {
 				id: 'layout' + j,
 				type: 'toolitem',
 				command:
-					'.uno:' + unoCommand + '?WhatLayout:long=' + buttonIndexToLayout[j],
+					'.uno:' +
+					unoCommand +
+					'?WhatLayout:long=' +
+					buttonIndexToLayout[j],
 				text: _('Layout %N').replace('%N', String(j)),
 				noLabel: true,
 				left: j % 4,
