@@ -328,7 +328,7 @@ bool FileServerRequestHandler::authenticateAdmin(const Poco::Net::HTTPBasicCrede
     // bundlify appears to add an extra /dist -> dist/dist/admin
     cookie.setPath(LOOLWSD::ServiceRoot + "/browser/dist/");
     cookie.setSecure(ConfigUtil::isSslEnabled());
-    response.header().addCookie(cookie.toString());
+    response.addCookie(cookie.toString());
 
     return true;
 }
@@ -896,7 +896,7 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 #endif
         http::Response response(http::StatusCode::OK);
         if( requestDetails.closeConnection() )
-            response.header().setConnectionToken(http::Header::ConnectionToken::Close);
+            response.setConnectionToken(http::Header::ConnectionToken::Close);
         hstsHeaders(response);
 
         const auto& config = Application::instance().config();
@@ -1856,7 +1856,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
         {
             if (!HttpHelper::verifyWOPISrc(request.getURI(), param.second, socket))
             {
-                httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Close);
+                httpResponse.setConnectionToken(http::Header::ConnectionToken::Close);
                 return ResourceAccessDetails();
             }
 
