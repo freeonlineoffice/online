@@ -3,7 +3,7 @@
  * L.Socket contains methods for the communication with the server
  */
 
-/* global app JSDialog _ $ errorMessages Uint8Array brandProductName GraphicSelection TileManager */
+/* global app JSDialog _ $ errorMessages Uint8Array brandProductName GraphicSelection TileManager SlideBitmapManager*/
 
 app.definitions.Socket = L.Class.extend({
 	ProtocolVersionNumber: '0.1',
@@ -584,12 +584,18 @@ app.definitions.Socket = L.Class.extend({
 			return true;
 		};
 
+		// slide rendering is using zstd compressed images
+		var isSlideLayer = e.textMsg.startsWith('slidelayer:');
+		var isSlideRenderComplete = e.textMsg.startsWith('sliderenderingcomplete:');
+		if (isSlideLayer || isSlideRenderComplete)
+			return;
+
 		var isTile = e.textMsg.startsWith('tile:');
 		var isDelta = e.textMsg.startsWith('delta:');
 		if (!isTile && !isDelta &&
-		    !e.textMsg.startsWith('renderfont:') &&
+			!e.textMsg.startsWith('renderfont:') &&
 			!e.textMsg.startsWith('slidelayer:') &&
-		    !e.textMsg.startsWith('windowpaint:'))
+			!e.textMsg.startsWith('windowpaint:'))
 			return;
 
 		if (e.textMsg.indexOf(' nopng') !== -1)
@@ -1293,6 +1299,12 @@ app.definitions.Socket = L.Class.extend({
 		else if (textMsg.startsWith('reload')) {
 			// Switching modes.
 			window.location.reload(false);
+		} else if (textMsg.startsWith('slidelayer:')) {
+			SlideBitmapManager.handleRenderSlideEvent(e);
+			return;
+		} else if (textMsg.startsWith('sliderenderingcomplete:')) {
+			SlideBitmapManager.handleSlideRenderingComplete(e);
+			return;
 		}
 		else if (!textMsg.startsWith('tile:') && !textMsg.startsWith('delta:') &&
 			     !textMsg.startsWith('renderfont:') && !textMsg.startsWith('slidelayer:') &&
