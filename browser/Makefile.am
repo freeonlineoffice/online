@@ -412,6 +412,7 @@ LOOL_JS_LST =\
 	src/control/Control.Permission.js \
 	src/control/Control.Selection.js \
 	src/control/Control.ServerAuditDialog.ts \
+	src/control/Control.Shortcuts.js \
 	src/control/Control.LokDialog.js \
 	src/control/Control.AlertDialog.js \
 	src/control/Control.Tooltip.js \
