@@ -2276,7 +2276,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				});
 
 				div.closeDropdown = function() {
-					arrowbackground.setAttribute('aria-expanded', false);
 					builder.callback('toolbox', 'closemenu', parentContainer, data.command, builder);
 				};
 			}
@@ -2298,9 +2297,15 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			}
 		}
 
+		div._onDropDown = function(open) {
+			// Only set aria-expanded on the button if the arrow is not interactive
+			if (!isArrowInteractive)
+				button.setAttribute('aria-expanded', open);
+			arrowbackground.setAttribute('aria-expanded', open);
+		};
+
 		var openToolBoxMenu = function(event) {
 			if (!div.hasAttribute('disabled')) {
-				arrowbackground.setAttribute('aria-expanded', true);
 				builder.callback('toolbox', 'openmenu', parentContainer, data.command, builder);
 				event.stopPropagation();
 			}
@@ -2315,9 +2320,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					builder.callback('toolbutton', 'click', button, data.command, builder);
 				else {
 					builder.callback('toolbox', 'click', parentContainer, data.command, builder);
-					// Only set aria-expanded on the button if the arrow is not interactive
-					if (!isArrowInteractive)
-						button.setAttribute('aria-expanded', true);
 				}
 			}
 			e.preventDefault();
