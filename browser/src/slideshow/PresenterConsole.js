@@ -306,7 +306,7 @@ class PresenterConsole {
 			.getPropertyValue('--orange1-txt-primary-color');
 		this.PresenterConsoleBtnHoverColor = window
 			.getComputedStyle(document.documentElement)
-			.getPropertyValue('--color-main-text');
+			.getPropertyValue('--color-presenter-console-btn-hover');
 		this.PresenterConsoleBtnRadius = window
 			.getComputedStyle(document.documentElement)
 			.getPropertyValue('--border-radius');
