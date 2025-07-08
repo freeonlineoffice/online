@@ -2779,14 +2779,10 @@ L.CanvasTileLayer = L.Layer.extend({
 			TextSelections.deactivate();
 			this._textCSelections.clear();
 			this._cellCSelections.clear();
-			if (
-				this._map._clip &&
-				this._map._clip._selectionType === 'complex'
-			)
+			this._selectedTextContent = '';
+			if (this._map._clip && this._map._clip._selectionType === 'complex')
 				this._map._clip.clearSelection();
 		}
-
-		this._onUpdateTextSelection();
 	},
 
 	_onTextViewSelectionMsg: function (textMsg) {
@@ -3060,6 +3056,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			TextSelections.setEndRectangle(new app.definitions.simpleRectangle(topLeftTwips.x, topLeftTwips.y, (bottomRightTwips.x - topLeftTwips.x), (bottomRightTwips.y - topLeftTwips.y)));
 			this._updateScrollOnCellSelection(oldSelection, TextSelections.getEndRectangle());
 		}
+		else
+			TextSelections.setEndRectangle(null);
 	},
 
 	_onTextSelectionStartMsg: function (textMsg) {
@@ -3072,6 +3070,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			TextSelections.setStartRectangle(new app.definitions.simpleRectangle(topLeftTwips.x, topLeftTwips.y, (bottomRightTwips.x - topLeftTwips.x), (bottomRightTwips.y - topLeftTwips.y)));
 			this._updateScrollOnCellSelection(oldSelection, TextSelections.getStartRectangle());
 		}
+		else
+			TextSelections.setStartRectangle(null);
 	},
 
 	_refreshRowColumnHeaders: function () {
@@ -3254,8 +3254,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._cellCSelections.clear();
 		// hide the ole selection
 		this._oleCSelections.clear();
-		// hide the selection handles
-		this._onUpdateTextSelection();
 
 		this._onUpdateCellCursor();
 		if (this._map._clip) this._map._clip.clearSelection();
@@ -3896,12 +3894,6 @@ L.CanvasTileLayer = L.Layer.extend({
 	_removeCellDropDownArrow: function () {
 		if (!this._validatedCellAddress)
 			app.sectionContainer.removeSection('DropDownArrow');
-	},
-
-	// Update text selection handlers.
-	_onUpdateTextSelection: function () {
-		CellSelectionMarkers.update(); // This shouldn't be here. But cell cursorvisibility state is not sent from core side. TODO: Move this to cell cursor visibility message.
-		this._removeSelection();
 	},
 
 	_removeSelection: function() {
