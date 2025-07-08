@@ -1991,7 +1991,6 @@ L.CanvasTileLayer = L.Layer.extend({
 	_onCursorVisibleMsg: function (textMsg) {
 		var command = textMsg.match('cursorvisible: true');
 		app.setCursorVisibility(command ? true : false);
-		this._removeSelection();
 		this._onUpdateCursor();
 		app.events.fire('TextCursorVisibility', { visible: app.file.textCursor.visible });
 	},
@@ -2711,11 +2710,21 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._map.fire('locontextmenu', obj);
 	},
 
+	_convertToPointSet(rectangleArray) {
+		const result = CPolyUtil.rectanglesToPointSet(rectangleArray,
+			function (twipsPoint) {
+				var corePxPt = app.map._docLayer._twipsToCorePixels(twipsPoint);
+				corePxPt.round();
+				return corePxPt;
+			});
+
+		return result;
+	},
+
 	_onTextSelectionMsg: function (textMsg) {
 		var rectArray = this._getTextSelectionRectangles(textMsg);
-		var inTextSearch = $('input#search-input').is(':focus');
-		var isTextSelection = app.file.textCursor.visible || inTextSearch;
-		if (rectArray.length) {
+
+		if (rectArray.length && !this._cellSelectionArea) {
 			TextSelections.activate();
 
 			var rectangles = rectArray.map(function (rect) {
@@ -2742,18 +2751,9 @@ L.CanvasTileLayer = L.Layer.extend({
 				}, 100);
 			}
 
-			var docLayer = this;
-			var pointSet = CPolyUtil.rectanglesToPointSet(
-				rectangles,
-				function (twipsPoint) {
-					var corePxPt = docLayer._twipsToCorePixels(twipsPoint);
-					corePxPt.round();
-					return corePxPt;
-				},
-			);
+			var pointSet = this._convertToPointSet(rectangles);
 
-			if (isTextSelection) this._textCSelections.setPointSet(pointSet);
-			else this._cellCSelections.setPointSet(pointSet);
+			this._textCSelections.setPointSet(pointSet);
 
 			this._map.removeLayer(this._map._textInput._cursorHandler); // User selected a text, we remove the carret marker.
 			if (L.Browser.clipboardApiAvailable) {
@@ -2778,7 +2778,6 @@ L.CanvasTileLayer = L.Layer.extend({
 		else {
 			TextSelections.deactivate();
 			this._textCSelections.clear();
-			this._cellCSelections.clear();
 			this._selectedTextContent = '';
 			if (this._map._clip && this._map._clip._selectionType === 'complex')
 				this._map._clip.clearSelection();
@@ -3127,10 +3126,12 @@ L.CanvasTileLayer = L.Layer.extend({
 					this._cellSelectionArea.pY2,
 				]);
 
-			this._updateScrollOnCellSelection(
-				oldSelection,
-				this._cellSelectionArea,
-			);
+			this._updateScrollOnCellSelection(oldSelection, this._cellSelectionArea);
+
+			const rectArray = this._getTextSelectionRectangles(textMsg);
+			const rectangles = rectArray.map(function (rect) { return rect.getPointArray(); });
+			const pointSet =  this._convertToPointSet(rectangles);
+			this._cellCSelections.setPointSet(pointSet);
 		} else {
 			this._cellSelectionArea = null;
 			if (autofillMarkerSection)
@@ -3138,6 +3139,7 @@ L.CanvasTileLayer = L.Layer.extend({
 					null,
 				);
 			this._cellSelections = Array(0);
+			this._cellCSelections.clear();
 			this._map.wholeColumnSelected = false; // Message related to whole column/row selection should be on the way, we should update the variables now.
 			this._map.wholeRowSelected = false;
 			if (this._refreshRowColumnHeaders)
