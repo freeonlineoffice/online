@@ -587,6 +587,7 @@ void HttpRequestTests::test500GetStatuses()
 
         if (statusCode % 100 == 0)
             ++curStatusCodeClass;
+        assert(curStatusCodeClass >= 0 && "statusCode starts as 100");
         LOK_ASSERT(httpResponse->statusLine().statusCategory()
                    == statusCodeClasses[curStatusCodeClass]);
 
