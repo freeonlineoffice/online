@@ -3,7 +3,7 @@
  * L.CanvasTileLayer is a layer with canvas based rendering.
  */
 
-/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager MultiPageViewLayout SplitSection TextSelectionHandle */
+/* global app L JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager MultiPageViewLayout SplitSection TextSelections */
 
 function clamp(num, min, max)
 {
@@ -2712,11 +2712,11 @@ L.CanvasTileLayer = L.Layer.extend({
 	},
 
 	_onTextSelectionMsg: function (textMsg) {
-
 		var rectArray = this._getTextSelectionRectangles(textMsg);
 		var inTextSearch = $('input#search-input').is(':focus');
 		var isTextSelection = app.file.textCursor.visible || inTextSearch;
 		if (rectArray.length) {
+			TextSelections.activate();
 
 			var rectangles = rectArray.map(function (rect) {
 				return rect.getPointArray();
@@ -2774,11 +2774,9 @@ L.CanvasTileLayer = L.Layer.extend({
 					100,
 				);
 			}
-		} else {
-			this._selectionHandles.start.setShowSection(false);
-			this._selectionHandles.end.setShowSection(false);
-			this._selectionHandles.active = false;
-
+		}
+		else {
+			TextSelections.deactivate();
 			this._textCSelections.clear();
 			this._cellCSelections.clear();
 			if (
@@ -3058,26 +3056,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (rectangles.length) {
 			var topLeftTwips = rectangles[0].getTopLeft();
 			var bottomRightTwips = rectangles[0].getBottomRight();
-			var oldSelection = this._selectionHandles.end.rectangle
-				? this._selectionHandles.end.rectangle.clone()
-				: null;
-
-			this._selectionHandles.end.rectangle =
-				new app.definitions.simpleRectangle(
-					topLeftTwips.x,
-					topLeftTwips.y,
-					bottomRightTwips.x - topLeftTwips.x,
-					bottomRightTwips.y - topLeftTwips.y,
-				);
-
-			this._updateScrollOnCellSelection(
-				oldSelection,
-				this._selectionHandles.end.rectangle,
-			);
-			this._selectionHandles.end.setShowSection(true);
-			this._updateMarkers();
-		} else {
-			this._selectionHandles.end.rectangle = null;
+			var oldSelection = TextSelections.getEndRectangle();
+			TextSelections.setEndRectangle(new app.definitions.simpleRectangle(topLeftTwips.x, topLeftTwips.y, (bottomRightTwips.x - topLeftTwips.x), (bottomRightTwips.y - topLeftTwips.y)));
+			this._updateScrollOnCellSelection(oldSelection, TextSelections.getEndRectangle());
 		}
 	},
 
@@ -3087,29 +3068,9 @@ L.CanvasTileLayer = L.Layer.extend({
 		if (rectangles.length) {
 			var topLeftTwips = rectangles[0].getTopLeft();
 			var bottomRightTwips = rectangles[0].getBottomRight();
-			let oldSelection = this._selectionHandles.start.rectangle
-				? this._selectionHandles.start.rectangle.clone()
-				: null;
-			//FIXME: The selection is really not two points, as they can be
-			//FIXME: on top of each other, but on separate lines. We should
-			//FIXME: capture the whole area in _onTextSelectionMsg.
-			this._selectionHandles.start.rectangle =
-				new app.definitions.simpleRectangle(
-					topLeftTwips.x,
-					topLeftTwips.y,
-					bottomRightTwips.x - topLeftTwips.x,
-					bottomRightTwips.y - topLeftTwips.y,
-				);
-
-			this._updateScrollOnCellSelection(
-				oldSelection,
-				this._selectionHandles.start.rectangle,
-			);
-
-			this._selectionHandles.start.setShowSection(true);
-			this._selectionHandles.active = true;
-		} else {
-			this._selectionHandles.start.rectangle = null;
+			let oldSelection = TextSelections.getStartRectangle();
+			TextSelections.setStartRectangle(new app.definitions.simpleRectangle(topLeftTwips.x, topLeftTwips.y, (bottomRightTwips.x - topLeftTwips.x), (bottomRightTwips.y - topLeftTwips.y)));
+			this._updateScrollOnCellSelection(oldSelection, TextSelections.getStartRectangle());
 		}
 	},
 
@@ -3984,90 +3945,12 @@ L.CanvasTileLayer = L.Layer.extend({
 	// Update text selection handlers.
 	_onUpdateTextSelection: function () {
 		this._onUpdateCellResizeMarkers();
-
-		if (
-			this._map.editorHasFocus() &&
-			(!this._textCSelections.empty() || this._selectionHandles.active)
-		) {
-			this._updateMarkers();
-		} else {
-			this._updateMarkers();
-			this._removeSelection();
-		}
+		this._removeSelection();
 	},
 
-	_removeSelection: function () {
-		this._selectionHandles.start.rectangle = null;
-		this._selectionHandles.end.rectangle = null;
+	_removeSelection: function() {
 		this._selectedTextContent = '';
-
-		this._selectionHandles.start.setShowSection(false);
-		this._selectionHandles.end.setShowSection(false);
-		this._selectionHandles.active = false;
-
 		this._textCSelections.clear();
-	},
-
-	_updateMarkers: function () {
-		if (
-			!app.file.textCursor.visible ||
-			!this._selectionHandles.start.rectangle
-		)
-			return;
-
-		if (
-			!this._selectionHandles.start.isSectionShown() ||
-			!this._selectionHandles.end.isSectionShown()
-		)
-			return;
-
-		var startPos = {
-			x: this._selectionHandles.start.rectangle.pX1,
-			y: this._selectionHandles.start.rectangle.pY2,
-		};
-		var endPos = {
-			x: this._selectionHandles.end.rectangle.pX1,
-			y: this._selectionHandles.end.rectangle.pY2,
-		};
-
-		if (app.map._docLayer.isCalcRTL()) {
-			// Mirror position from right to left.
-			startPos.x = app.file.viewedRectangle.pX2 - (startPos.x - app.file.viewedRectangle.pX1);
-			endPos.x = app.file.viewedRectangle.pX2 - (endPos.x - app.file.viewedRectangle.pX1);
-		}
-
-		const oldStart = this._selectionHandles.start.getPosition();
-		const oldEnd = this._selectionHandles.end.getPosition();
-
-		startPos.x -= 30 * app.dpiScale;
-		this._selectionHandles.start.setPosition(startPos.x, startPos.y);
-		let newStart = this._selectionHandles.start.getPosition();
-
-
-		this._selectionHandles.end.setPosition(endPos.x, endPos.y);
-		const newEnd = this._selectionHandles.end.getPosition();
-
-		if (
-			app.map._docLayer.isCalcRTL() &&
-			(newStart.y < newEnd.y ||
-				(newStart.y <= newEnd.y && newStart.x < newEnd.x))
-		) {
-			// If the start handle is actually closer to the end of the selection, reverse positions (Right To Left case).
-			this._selectionHandles.start.setPosition(newEnd.pX, newEnd.pY);
-			this._selectionHandles.end.setPosition(newStart.pX, newStart.pY);
-		} else if (
-			!app.map._docLayer.isCalcRTL() &&
-			(oldEnd.distanceTo(newStart.toArray()) < 20 ||
-				oldStart.distanceTo(newEnd.toArray()) < 20)
-		) {
-			/*
-				If the start handle is actually closer to the end of the selection, reverse positions.
-				This seems to be a core side issue to me. I think the start and end positions are switched but the handlers aren't on the core side.
-			*/
-			const temp = this._selectionHandles.start;
-			this._selectionHandles.start = this._selectionHandles.end;
-			this._selectionHandles.end = temp;
-		}
 	},
 
 	_onDragOver: function (e) {
@@ -4691,16 +4574,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		this._initContainer();
 
 		// Initiate selection handles.
-		this._selectionHandles = {};
-		this._selectionHandles.start = new TextSelectionHandle('selection_start_handle', 30, 44, new app.definitions.simplePoint(0, 0), 'text-selection-handle-start', false);
-		this._selectionHandles.end = new TextSelectionHandle('selection_end_handle', 30, 44, new app.definitions.simplePoint(0, 0), 'text-selection-handle-end', false);
-		this._selectionHandles.active = false;
-		app.sectionContainer.addSection(
-			this._map._docLayer._selectionHandles.start,
-		);
-		app.sectionContainer.addSection(
-			this._map._docLayer._selectionHandles.end,
-		);
+		TextSelections.initiate();
 
 		// Cell selection handles (mobile & tablet).
 		this._cellSelectionHandleStart =
@@ -4862,8 +4736,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._cursorMarker.remove();
 		}
 
-		app.sectionContainer.removeSection(this._selectionHandles.start);
-		app.sectionContainer.removeSection(this._selectionHandles.end);
+		TextSelections.dispose();
 
 		this._removeSplitters();
 		L.DomUtil.remove(this._canvasContainer);
@@ -4914,10 +4787,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._cellCursorSection.setShowSection(false);
 		}
 
-		if (this._selectionHandles.start.isSectionShown())
-			this._selectionHandles.start.setOpacity(0);
-		if (this._selectionHandles.end.isSectionShown())
-			this._selectionHandles.end.setOpacity(0);
+		TextSelections.hideHandles();
 
 		app.definitions.otherViewCursorSection.updateVisibilities(true);
 	},
@@ -4934,10 +4804,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			this._cellCursorSection.setShowSection(true);
 		}
 
-		if (this._selectionHandles.start.isSectionShown())
-			this._selectionHandles.start.setOpacity(1);
-		if (this._selectionHandles.end.isSectionShown())
-			this._selectionHandles.end.setOpacity(1);
+		TextSelections.showHandles();
 
 		if (this._annotations) {
 			var annotations = this._annotations;

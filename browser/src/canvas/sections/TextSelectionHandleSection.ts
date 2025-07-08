@@ -11,8 +11,6 @@
 */
 
 class TextSelectionHandle extends HTMLObjectSection {
-	public rectangle: lool.SimpleRectangle = null; // This is the rectangle sent from the core side.
-
 	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint,  extraClass: string = "", showSection: boolean = false) {
 		super(sectionName, objectWidth, objectHeight, documentPosition, extraClass, showSection);
 	}
