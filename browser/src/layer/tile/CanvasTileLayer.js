@@ -3132,6 +3132,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			const rectangles = rectArray.map(function (rect) { return rect.getPointArray(); });
 			const pointSet =  this._convertToPointSet(rectangles);
 			this._cellCSelections.setPointSet(pointSet);
+			CellSelectionMarkers.update();
 		} else {
 			this._cellSelectionArea = null;
 			if (autofillMarkerSection)
