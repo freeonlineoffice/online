@@ -880,7 +880,6 @@ input[type='checkbox']:checked.autofilter,
 
 .ui-dialog-content .jsdialog.ui-text {
 	padding-inline-start: 0;
-	margin: auto 5px;
 }
 
 .jsdialog.ui-grid-cell
@@ -2579,4 +2578,10 @@ kbd,
 .sidebar-panel #layoutpanel_icons .ui-iconview-entry img,
 #FontworkGalleryDialog .ui-iconview-entry img {
 	padding: 5px 0;
+}
+
+/* Writer - Format - Page Style - Area - Image */
+#ImageTabPage #frame1 .ui-grid-cell {
+	display: grid;
+	grid-gap: 4px;
 }
