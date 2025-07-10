@@ -2176,7 +2176,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				}
 			}
 
-			const tooltip = builder._cleanText(data.tooltip) || builder._cleanText(data.text);
+			let tooltip = builder._cleanText(data.tooltip) || builder._cleanText(data.text);
+			if (data.command) // Add shortcut to tooltip based on command
+				tooltip = JSDialog.ShortcutsUtil.getShortcut(tooltip, data.command);
 			div.setAttribute('data-looltip', tooltip);
 
 			var isDisabled = data.enabled === false;
@@ -2329,6 +2331,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		};
 
 		const hasLabel = !!controls.label;
+		const hasShortcut = !hasLabel || (JSDialog.ShortcutsUtil.hasShortcut(data.command));
 		var mouseEnterFunction = window.touch.mouseOnly(function () {
 			if (builder.map.tooltip)
 				builder.map.tooltip.beginShow(div);
@@ -2345,11 +2348,11 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		if (data.isCustomTooltip) {
 			this._handleCutomTooltip(div, builder);
 		}
-		else if (!hasLabel) {
+		else if (hasShortcut) {
 			$(div).on('mouseenter', mouseEnterFunction);
 			$(div).on('mouseleave', mouseLeaveFunction);
 		} else {
-			div.removeAttribute('data-looltip'); // If there is a label, we don't need the tooltip
+			div.removeAttribute('data-looltip'); // We don't need a tooltip for this button
 		}
 
 		div.addEventListener('keydown', function(e) {
