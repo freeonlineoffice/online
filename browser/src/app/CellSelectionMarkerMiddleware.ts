@@ -28,7 +28,8 @@ class CellSelectionMarkers {
 		if (window.mode.isDesktop()) return; // Not shown on desktop.
 
 		var showMarkers =
-			app.map._docLayer._cellSelectionArea || app.calc.cellCursorVisible;
+			app.map._docLayer._cellSelectionArea ||
+			app.calc.cellCursorVisible;
 
 		if (showMarkers) {
 			this.start.setShowSection(true);
@@ -48,7 +49,10 @@ class CellSelectionMarkers {
 			);
 
 			const offset = this.start.sectionProperties.circleRadius;
-			this.start.setPosition(posStart.pX - offset, posStart.pY - offset);
+			this.start.setPosition(
+				posStart.pX - offset,
+				posStart.pY - offset,
+			);
 			this.end.setPosition(posEnd.pX - offset, posEnd.pY - offset);
 		} else {
 			this.start.setShowSection(false);
