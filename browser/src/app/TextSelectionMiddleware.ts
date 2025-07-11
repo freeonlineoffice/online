@@ -92,9 +92,13 @@ class TextSelections {
 	private static updateMarkers() {
 		if (!this.isActive()) return;
 
-		if (this.startRectangle === null || this.endRectangle === null) return;
+		if (this.startRectangle === null || this.endRectangle === null)
+			return;
 
-		var startPos = { x: this.startRectangle.pX1, y: this.startRectangle.pY2 };
+		var startPos = {
+			x: this.startRectangle.pX1,
+			y: this.startRectangle.pY2,
+		};
 		var endPos = { x: this.endRectangle.pX1, y: this.endRectangle.pY2 };
 
 		if (app.map._docLayer.isCalcRTL()) {
