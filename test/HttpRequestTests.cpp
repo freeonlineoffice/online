@@ -573,7 +573,7 @@ void HttpRequestTests::test500GetStatuses()
                     LOG_WRN("Retrying (#" << retry << ") of " << url << " due to status "
                                           << httpResponse->statusLine().statusCode() << "...");
                     std::this_thread::sleep_for(
-                        std::chrono::milliseconds(200 * retry)); // Cool off.
+                        std::chrono::milliseconds(200 * retry)); // Lool off.
                     continue;
                 }
             }
