@@ -72,7 +72,10 @@ class ShortcutsUtil {
 		this.shortcutMap.set('.uno:RightPara', this.RIGHT);
 		this.shortcutMap.set('.uno:AlignBlock', this.JUSTIFIED);
 		this.shortcutMap.set('.uno:JustifyPara', this.JUSTIFIED);
-		this.shortcutMap.set('.uno:KeyboardShortcuts', this.KEYBOARD_SHORTCUTS);
+		this.shortcutMap.set(
+			'.uno:KeyboardShortcuts',
+			this.KEYBOARD_SHORTCUTS,
+		);
 	}
 
 	public hasShortcut(command: string): boolean {
