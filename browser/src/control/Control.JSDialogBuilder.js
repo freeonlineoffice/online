@@ -1007,7 +1007,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					$(tab).addClass('selected');
 					tab.setAttribute('aria-selected', 'true');
 					tab.tabIndex = '0';
-					tab.setAttribute('data-cooltip', tabTooltip);
+					tab.setAttribute('data-looltip', tabTooltip);
 					singleTabId = tabIdx;
 				} else {
 					tab.setAttribute('aria-selected', 'false');
