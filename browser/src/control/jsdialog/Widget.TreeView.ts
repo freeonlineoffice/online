@@ -1244,7 +1244,8 @@ class TreeViewControl {
 
 	// when no entry is selected - allow first one to be focusable
 	makeTreeViewFocusable(enable: boolean) {
-		const firstElement = this._container.querySelector('.ui-treeview-entry');
+		const firstElement =
+			this._container.querySelector('.ui-treeview-entry');
 		if (firstElement) {
 			if (enable) (firstElement as HTMLElement).tabIndex = 0;
 			else firstElement.removeAttribute('tabindex');
