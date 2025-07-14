@@ -609,7 +609,8 @@ leaflet-control-search-cancel {
 #toolbar-up #fontsizecombobox .select2-container {
 	min-width: 55px !important;
 }
-#fontsizecombobox-input {
+#fontsizecombobox-input-notebookbar,
+#fontsizecombobox-input-sidebar {
 	width: 55px !important;
 }
 .evo-cp-wrap {
