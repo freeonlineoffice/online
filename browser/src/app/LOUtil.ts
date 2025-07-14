@@ -334,6 +334,7 @@ class LOUtil {
 			incrementlevel: 'outlineleft',
 			menurowheight: 'rowheight',
 			menuorientation: 'orientation',
+			menupagesizes: 'pagesize',
 			setoptimalrowheight: 'rowheight',
 			cellverttop: 'aligntop',
 			scalignmentpropertypanel: 'aligntop',
