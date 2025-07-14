@@ -28,7 +28,14 @@ L.Control.Notebookbar = L.Control.extend({
 		if (document.documentElement.dir === 'rtl')
 			this._RTL = true;
 
-		this.builder = new L.control.notebookbarBuilder({windowId: -2, mobileWizard: this, map: map, cssClass: 'notebookbar', useSetTabs: true});
+		this.builder = new L.control.notebookbarBuilder({
+			windowId: -2,
+			mobileWizard: this,
+			map: map,
+			cssClass: 'notebookbar',
+			useSetTabs: true,
+			suffix: 'notebookbar',
+		});
 		this.map.on('commandstatechanged', this.builder.onCommandStateChanged, this.builder);
 
 		// remove old toolbar
@@ -689,6 +696,7 @@ L.Control.Notebookbar = L.Control.extend({
 			mobileWizard: this,
 			map: this.map,
 			cssClass: 'notebookbar',
+			suffix: 'notebookbar',
 		};
 
 		var builder = new L.control.notebookbarBuilder(builderOptions);

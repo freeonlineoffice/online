@@ -31,7 +31,8 @@ class FormulaBar {
 				mobileWizard: this,
 				map: this.map,
 				cssClass: 'formulabar jsdialog',
-				callback: this.callback.bind(this)
+				callback: this.callback.bind(this),
+				suffix: 'formulabar',
 			});
 
 		this.createFormulabar('');

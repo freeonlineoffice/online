@@ -22,7 +22,8 @@ class PresentationBar {
 			{
 				mobileWizard: this,
 				map: this.map,
-				cssClass: 'jsdialog'
+				cssClass: 'jsdialog',
+				suffix: 'presentation-toolbar',
 			});
 
 		this.create();
