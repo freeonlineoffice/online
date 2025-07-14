@@ -884,6 +884,62 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
 #endif // MOBILEAPP
 }
 
+namespace
+{
+
+bool allowedOriginByHost(const std::string& host, const std::string& actualOrigin)
+{
+    // always allow https host to match origin
+    if (net::sameOrigin("https://" + host, actualOrigin))
+        return true;
+    // allow http too if not ssl enabled
+    if (!ConfigUtil::isSslEnabled() && net::sameOrigin("http://" + host, actualOrigin))
+        return true;
+    return false;
+}
+
+bool allowedOrigin(const Poco::Net::HTTPRequest& request, const RequestDetails& requestDetails)
+{
+    const std::string actualOrigin = request.get("Origin");
+
+    const ServerURL cnxDetails(requestDetails);
+
+    if (net::sameOrigin(cnxDetails.getWebServerUrl(), actualOrigin))
+    {
+        LOG_TRC("Allowed Origin: " << actualOrigin << " to match " << cnxDetails.getWebServerUrl());
+        return true;
+    }
+
+#if !MOBILEAPP
+    if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
+    {
+        if (HostUtil::allowedWSOrigin(actualOrigin))
+        {
+            LOG_TRC("Allowed Origin: " << actualOrigin << " to match AllowedWSOriginList");
+            return true;
+        }
+    }
+#endif
+
+    const std::string host = request.get("Host");
+    if (allowedOriginByHost(host, actualOrigin))
+    {
+        LOG_DBG("Allowed Origin: " << actualOrigin << " to match against host: " << host);
+        return true;
+    }
+    if (host != LOOLWSD::ServerName && !LOOLWSD::ServerName.empty() &&
+        allowedOriginByHost(LOOLWSD::ServerName, actualOrigin))
+    {
+        LOG_DBG("Allowed Origin: " << actualOrigin << " to match ServerName: " << LOOLWSD::ServerName);
+        return true;
+    }
+
+    LOG_ERR("Rejecting origin [" << actualOrigin << "] expected [" << cnxDetails.getWebServerUrl() << "] instead");
+
+    return false;
+}
+}
+
 #if !MOBILEAPP
 void ClientRequestDispatcher::handleFullMessage(Poco::Net::HTTPRequest& request,
                                                 std::istream& message,
@@ -1038,8 +1094,7 @@ ClientRequestDispatcher::MessageResult ClientRequestDispatcher::handleMessage(Po
         {
             // Admin connections
             LOG_INF("Admin request: " << request.getURI());
-            const ServerURL cnxDetails(requestDetails);
-            if (AdminSocketHandler::handleInitialRequest(_socket, request, cnxDetails.getWebServerUrl()))
+            if (AdminSocketHandler::handleInitialRequest(_socket, request, allowedOrigin(request, requestDetails)))
             {
                 // Hand the socket over to the Admin poll.
                 disposition.setTransfer(Admin::instance(),
@@ -2438,17 +2493,7 @@ bool ClientRequestDispatcher::handleClientWsUpgrade(const Poco::Net::HTTPRequest
                                   << socket->getFD());
 
     // First Upgrade.
-    const ServerURL cnxDetails(requestDetails);
-    bool allowedOrigin = false;
-#if !MOBILEAPP
-    if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
-    {
-        const std::string actualOrigin = request.get("Origin");
-        allowedOrigin = HostUtil::allowedWSOrigin(actualOrigin);
-    }
-#endif
-
-    auto ws = std::make_shared<WebSocketHandler>(socket, request, cnxDetails.getWebServerUrl(), allowedOrigin);
+    auto ws = std::make_shared<WebSocketHandler>(socket, request, allowedOrigin(request, requestDetails));
 
     // Response to clients beyond this point is done via WebSocket.
     try

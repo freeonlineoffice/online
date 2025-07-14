@@ -430,8 +430,8 @@ std::atomic<uint64_t> AdminSocketHandler::NextSessionId(1);
 AdminSocketHandler::AdminSocketHandler(Admin* adminManager,
                                        const std::weak_ptr<StreamSocket>& socket,
                                        const Poco::Net::HTTPRequest& request,
-                                       const std::string& expectedOrigin)
-    : WebSocketHandler(socket.lock(), request, expectedOrigin)
+                                       bool allowedOrigin)
+    : WebSocketHandler(socket.lock(), request, allowedOrigin)
     , _admin(adminManager)
     , _isAuthenticated(false)
 {
@@ -477,7 +477,7 @@ void AdminSocketHandler::subscribeAsync(const std::shared_ptr<AdminSocketHandler
 bool AdminSocketHandler::handleInitialRequest(
     const std::weak_ptr<StreamSocket> &socketWeak,
     const Poco::Net::HTTPRequest& request,
-    const std::string& expectedOrigin)
+    bool allowedOrigin)
 {
     if (!LOOLWSD::AdminEnabled)
     {
@@ -499,7 +499,7 @@ bool AdminSocketHandler::handleInitialRequest(
     {
         Admin &admin = Admin::instance();
         auto handler = std::make_shared<AdminSocketHandler>(&admin, socketWeak,
-                                                            request, expectedOrigin);
+                                                            request, allowedOrigin);
         socket->setHandler(handler);
 
         AdminSocketHandler::subscribeAsync(handler);
