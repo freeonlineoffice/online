@@ -12,8 +12,8 @@ class TextSelections {
 	// Below 4 are used for text selection handles, which are visible where mouse pointer doesn't exist (search "pointer: fine" in css).
 	private static start: TextSelectionHandle;
 	private static end: TextSelectionHandle;
-	private static startRectangle: cool.SimpleRectangle | null = null; // This is the rectangle sent from the core side.
-	private static endRectangle: cool.SimpleRectangle | null = null; // This is the rectangle sent from the core side.
+	private static startRectangle: lool.SimpleRectangle | null = null; // This is the rectangle sent from the core side.
+	private static endRectangle: lool.SimpleRectangle | null = null; // This is the rectangle sent from the core side.
 
 	private static active: boolean = false; // Is there a text selection or not.
 
@@ -22,7 +22,7 @@ class TextSelections {
 			'selection_start_handle',
 			30,
 			44,
-			new cool.SimplePoint(0, 0),
+			new lool.SimplePoint(0, 0),
 			'text-selection-handle-start',
 			false,
 		);
@@ -30,7 +30,7 @@ class TextSelections {
 			'selection_end_handle',
 			30,
 			44,
-			new cool.SimplePoint(0, 0),
+			new lool.SimplePoint(0, 0),
 			'text-selection-handle-end',
 			false,
 		);
@@ -75,20 +75,20 @@ class TextSelections {
 		if (this.end.isSectionShown()) this.end.setOpacity(0);
 	}
 
-	public static getStartRectangle(): cool.SimpleRectangle | null {
+	public static getStartRectangle(): lool.SimpleRectangle | null {
 		return this.startRectangle ? this.startRectangle.clone() : null;
 	}
 
-	public static getEndRectangle(): cool.SimpleRectangle | null {
+	public static getEndRectangle(): lool.SimpleRectangle | null {
 		return this.endRectangle ? this.endRectangle.clone() : null;
 	}
 
-	public static setStartRectangle(rectangle: cool.SimpleRectangle) {
+	public static setStartRectangle(rectangle: lool.SimpleRectangle) {
 		this.startRectangle = rectangle;
 		this.updateMarkers();
 	}
 
-	public static setEndRectangle(rectangle: cool.SimpleRectangle) {
+	public static setEndRectangle(rectangle: lool.SimpleRectangle) {
 		this.endRectangle = rectangle;
 		this.updateMarkers();
 	}

@@ -873,7 +873,9 @@ class TreeViewControl {
 					entry,
 				);
 
-			const cell: Element = this.getTextCellForElement(e.target as Element);
+			const cell: Element = this.getTextCellForElement(
+				e.target as Element,
+			);
 
 			let column: number | null | undefined;
 			let editable: boolean = false;
@@ -1016,7 +1018,9 @@ class TreeViewControl {
 
 		parentContainer.draggable = false;
 		(
-			parentContainer.parentElement as HTMLElement & { onFocus?: () => void }
+			parentContainer.parentElement as HTMLElement & {
+				onFocus?: () => void;
+			}
 		).onFocus = () => {
 			/* no-op */
 		};
@@ -1040,7 +1044,9 @@ class TreeViewControl {
 	) {
 		parentContainer.draggable = rowShouldBeDraggable;
 		(
-			parentContainer.parentElement as HTMLElement & { onFocus?: () => void }
+			parentContainer.parentElement as HTMLElement & {
+				onFocus?: () => void;
+			}
 		).onFocus = undefined;
 
 		for (const child of Array.from(cell.childNodes)) {

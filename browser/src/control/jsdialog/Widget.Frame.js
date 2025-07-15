@@ -141,7 +141,8 @@ function buildFrame(parentContainer, data, builder, isFormControlGroup) {
 	}
 	label.innerText = builder._cleanText(_extractLabelText(data.children[0]));
 	label.id = data.children[0].id;
-	if (data.children[0].visible === false) L.DomUtil.addClass(label, 'hidden');
+	if (data.children[0].visible === false)
+		L.DomUtil.addClass(label, 'hidden');
 	builder.postProcess(frame, data.children[0]);
 
 	const frameChildren = L.DomUtil.create(

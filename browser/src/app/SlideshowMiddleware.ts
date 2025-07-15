@@ -56,7 +56,9 @@ class SlideBitmapManager {
 		// make sure all bitmaps are created before firing the complete event
 		Promise.all(this.pendingLayers).then(() => {
 			this.pendingLayers = [];
-			const status = e.textMsg.substring('sliderenderingcomplete: '.length);
+			const status = e.textMsg.substring(
+				'sliderenderingcomplete: '.length,
+			);
 			app.map.fire('sliderenderingcomplete', {
 				success: status === 'success',
 			});
