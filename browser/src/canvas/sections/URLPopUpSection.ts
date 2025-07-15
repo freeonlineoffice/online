@@ -15,7 +15,7 @@ class URLPopUpSection extends HTMLObjectSection {
 	static horizontalPadding = 6;
 	static popupVerticalMargin = 20;
 
-	constructor(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint) {
+	constructor(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint, linkIsClientSide?: boolean) {
         super(URLPopUpSection.sectionName, null, null, documentPosition, URLPopUpSection.cssClass);
 
 		const objectDiv = this.getHTMLObject();
@@ -25,7 +25,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		this.sectionProperties.url = url;
 
 		this.createUIElements(url);
-		this.setUpCallbacks(linkPosition);
+		this.setUpCallbacks(linkPosition, linkIsClientSide);
 
 		document.getElementById('hyperlink-pop-up').title = url;
 
@@ -47,7 +47,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		return this.getHTMLObject().getBoundingClientRect();
 	}
 
-	createUIElements(url: string) {
+	createUIElements(url: string, linkIsClientSide?: boolean) {
 		const parent = this.getHTMLObject();
 		L.DomUtil.createWithId('div', this.containerId, parent);
 
@@ -101,7 +101,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		parent.appendChild(this.arrowDiv);
 	}
 
-	setUpCallbacks(linkPosition?: lool.SimplePoint) {
+	setUpCallbacks(linkPosition?: lool.SimplePoint, linkIsClientSide?: boolean) {
 		document.getElementById(this.linkId).onclick = () => {
 			if (!this.sectionProperties.url.startsWith('#'))
 				app.map.fire('warn', {url: this.sectionProperties.url, map: app.map, cmd: 'openlink'});
@@ -124,19 +124,25 @@ class URLPopUpSection extends HTMLObjectSection {
 		}
 
 		document.getElementById(this.copyButtonId).onclick = () => {
+			if (linkIsClientSide) {
+				app.map._clip.setTextSelectionText(this.sectionProperties.url);
+				app.map._clip._execCopyCutPaste('copy');
+			}
 			// If _navigatorClipboardWrite is available, use it.
-			if (L.Browser.clipboardApiAvailable || window.ThisIsTheiOSApp)
+			else if (L.Browser.clipboardApiAvailable || window.ThisIsTheiOSApp)
 				app.map._clip.filterExecCopyPaste('.uno:CopyHyperlinkLocation', params);
 			else // Or use previous method.
 				app.map.sendUnoCommand('.uno:CopyHyperlinkLocation', params);
 		};
 
 		document.getElementById(this.editButtonId).onclick = () => {
-			app.map.sendUnoCommand('.uno:EditHyperlink', params);
+			if (!linkIsClientSide) // For now link in client side works only on readonly mode
+				app.map.sendUnoCommand('.uno:EditHyperlink', params);
 		};
 
 		document.getElementById(this.removeButtonId).onclick = () => {
-			app.map.sendUnoCommand('.uno:RemoveHyperlink', params);
+			if (!linkIsClientSide) // For now link in client side works only on readonly mode
+				app.map.sendUnoCommand('.uno:RemoveHyperlink', params);
 			URLPopUpSection.closeURLPopUp();
 		};
 	}
@@ -182,11 +188,11 @@ class URLPopUpSection extends HTMLObjectSection {
 		section.containerObject.requestReDraw();
 	}
 
-	public static showURLPopUP(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint) {
+	public static showURLPopUP(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint, linkIsClientSide?: boolean) {
 		if (URLPopUpSection.isOpen())
 			URLPopUpSection.closeURLPopUp();
 
-		const section = new URLPopUpSection(url, documentPosition, linkPosition);
+		const section = new URLPopUpSection(url, documentPosition, linkPosition, linkIsClientSide);
 		app.sectionContainer.addSection(section);
 		this.resetPosition(section);
     }
