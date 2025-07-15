@@ -887,6 +887,7 @@ void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& dispositi
 namespace
 {
 
+#if !MOBILEAPP
 bool allowedOriginByHost(const std::string& host, const std::string& actualOrigin)
 {
     // always allow https host to match origin
@@ -910,7 +911,6 @@ bool allowedOrigin(const Poco::Net::HTTPRequest& request, const RequestDetails& 
         return true;
     }
 
-#if !MOBILEAPP
     if (LOOLWSD::IndirectionServerEnabled && LOOLWSD::GeolocationSetup)
     {
         if (HostUtil::allowedWSOrigin(actualOrigin))
@@ -919,7 +919,6 @@ bool allowedOrigin(const Poco::Net::HTTPRequest& request, const RequestDetails& 
             return true;
         }
     }
-#endif
 
     const std::string host = request.get("Host");
     if (allowedOriginByHost(host, actualOrigin))
@@ -938,6 +937,12 @@ bool allowedOrigin(const Poco::Net::HTTPRequest& request, const RequestDetails& 
 
     return false;
 }
+#else
+bool allowedOrigin(const Poco::Net::HTTPRequest& /*request*/, const RequestDetails& /*requestDetails*/)
+{
+    return true;
+}
+#endif
 }
 
 #if !MOBILEAPP
