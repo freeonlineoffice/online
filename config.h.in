@@ -1,6 +1,4 @@
-#pragma once
-
-/* Variables that usually don't change once configured */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* The user-visible name of the app you build. */
 #undef APP_NAME
@@ -11,8 +9,8 @@
 /* Define to 1 if this is a code-coverage build. */
 #undef CODE_COVERAGE
 
-/* Enable permanent anonymization in logs */
-#undef LOOLWSD_ANONYMIZE_USER_DATA
+/* Static config values are enabled in release builds for performance */
+#undef CONFIG_STATIC_TYPE
 
 /* Free Online Office core git hash if present */
 #undef CORE_VERSION_HASH
@@ -216,12 +214,6 @@
 
 /* Default value of feature_lock.unlock_title */
 #undef UNLOCK_TITLE
-
-/* Version number of package */
-#undef VERSION
-
-/* Define to 1 if this is the WASM app build. */
-#undef WASMAPP
 
 /* The welcome url of the build. */
 #undef WELCOME_URL
