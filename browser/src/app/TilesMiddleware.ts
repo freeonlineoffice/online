@@ -343,7 +343,7 @@ class TileManager {
 		);
 	}
 
-	private static sortTileKeysByDistance() {
+	private static sortTileKeysByDistance(): string[] {
 		return Array.from(this.tiles.keys()).sort((a: any, b: any) => {
 			return (
 				this.tiles.get(b).distanceFromView -
@@ -430,7 +430,7 @@ class TileManager {
 
 		// Trim the number of tiles down too ...
 		if (tileCount > highTileCount) {
-			var keys = sortedKeys;
+			let keys = sortedKeys;
 			if (!keys.length) keys = this.sortTileKeysByDistance();
 
 			for (var i = 0; i < keys.length - lowTileCount; ++i) {
@@ -576,10 +576,6 @@ class TileManager {
 					message: message,
 					deltas: this.pendingDeltas,
 					tileSize: this.tileSize,
-					current: Array.from(this.tiles.keys()).filter(
-						(key) =>
-							this.tiles.get(key).distanceFromView === 0,
-					),
 				},
 				this.pendingDeltas.map((x: any) => x.rawDelta.buffer),
 			);
@@ -981,7 +977,8 @@ class TileManager {
 			app.sectionContainer.requestReDraw();
 	}
 
-	private static createTile(coords: TileCoordData, key: string) {
+	private static createTile(coords: TileCoordData) {
+		const key = coords.key();
 		if (this.tiles.has(key)) {
 			if (this.debugDeltas)
 				window.app.console.debug('Already created tile ' + key);
@@ -1404,20 +1401,18 @@ class TileManager {
 			var tilePositionsY = [];
 			var tileWids = [];
 
-			var added: any = {}; // uniqify
-			var hasTiles = false;
+			const added: Set<string> = new Set(); // uniqify
 			for (var i = 0; i < partTileQueue.length; ++i) {
-				var coords = partTileQueue[i];
-				var key = coords.key();
+				const coords = partTileQueue[i];
+				const key = coords.key();
 				const tile = this.tiles.get(key);
 
 				// don't send lots of duplicate, fast tilecombines
 				if (tile && tile.requestingTooFast(now)) continue;
 
 				// request each tile just once in these tilecombines
-				if (added[key]) continue;
-				added[key] = true;
-				hasTiles = true;
+				if (added.has(key)) continue;
+				added.add(key);
 
 				// build parameters
 				tileWids.push(
@@ -1462,7 +1457,7 @@ class TileManager {
 				' ' +
 				'tileheight=' +
 				app.tile.size.y;
-			if (hasTiles) app.socket.sendMessage(msg, '');
+			if (added.size) app.socket.sendMessage(msg, '');
 			else
 				window.app.console.log(
 					'Skipped empty (too fast) tilecombine',
@@ -1558,7 +1553,7 @@ class TileManager {
 
 					if (!this.isValidTile(coords)) continue;
 
-					var key = coords.key();
+					const key = coords.key();
 					const tile = this.tiles.get(key);
 
 					if (!tile || tile.needsFetch()) queue.push(coords);
@@ -1633,7 +1628,7 @@ class TileManager {
 			let tile: Tile = this.tiles.get(key);
 
 			if (!tile) {
-				tile = this.createTile(coordsQueue[i], key);
+				tile = this.createTile(coordsQueue[i]);
 
 				// Newly created tiles have a distance of zero, which means they're current.
 				if (!isCurrent)
@@ -1722,8 +1717,8 @@ class TileManager {
 		this.debugDeltasDetail = state;
 	}
 
-	public static get(key: string): Tile {
-		return this.tiles.get(key);
+	public static get(coords: TileCoordData): Tile {
+		return this.tiles.get(coords.key());
 	}
 
 	private static pixelCoordsToTwipTileBounds(
@@ -2061,7 +2056,7 @@ class TileManager {
 	}
 
 	public static onTileMsg(textMsg: string, img: any) {
-		var tileMsgObj: any = app.socket.parseServerCmd(textMsg);
+		const tileMsgObj: any = app.socket.parseServerCmd(textMsg);
 		this.checkTileMsgObject(tileMsgObj);
 
 		if (app.map._debug.tileDataOn) {
@@ -2083,12 +2078,11 @@ class TileManager {
 			return;
 		}
 
-		var coords = this.tileMsgToCoords(tileMsgObj);
-		var key = coords.key();
-		let tile = this.tiles.get(key);
+		const coords = this.tileMsgToCoords(tileMsgObj);
+		let tile = this.get(coords);
 
 		if (!tile) {
-			tile = this.createTile(coords, key);
+			tile = this.createTile(coords);
 			this.updateTileDistance(tile, Math.round(app.map.getZoom()));
 		}
 
@@ -2108,7 +2102,8 @@ class TileManager {
 		// it to; if so, mark it bad to re-fetch.
 		if (img && !img.isKeyframe && !tile.hasKeyframe()) {
 			window.app.console.debug(
-				'Unusual: Delta sent - but we have no keyframe for ' + key,
+				'Unusual: Delta sent - but we have no keyframe for ' +
+					coords.key(),
 			);
 			// force keyframe
 			tile.forceKeyframe();
@@ -2381,7 +2376,6 @@ class TileManager {
 		if (!this.checkPointers() || app.map._docLayer._documentInfo === '') {
 			return;
 		}
-		var key, coords;
 		var center = app.map.getCenter();
 		var zoom = Math.round(app.map.getZoom());
 
@@ -2392,9 +2386,9 @@ class TileManager {
 
 		if (queue.length !== 0) {
 			for (let i = 0; i < queue.length; i++) {
-				coords = queue[i];
-				key = coords.key();
-				if (!this.tiles.has(key)) this.createTile(coords, key);
+				const coords = queue[i];
+				const key = coords.key();
+				if (!this.tiles.has(key)) this.createTile(coords);
 			}
 
 			this.sendTileCombineRequest(queue);
@@ -2483,7 +2477,7 @@ class TileManager {
 		checkOnly: boolean = false,
 		zoomFrameBounds: any = null,
 		forZoom: any = null,
-	) {
+	): TileCoordData[] {
 		if (app.map._docLayer._partHeightTwips === 0)
 			// This is true before status message is handled.
 			return [];
@@ -2616,9 +2610,8 @@ class TileManager {
 
 			var tileCombineQueue = [];
 			for (var i = 0; i < queue.length; i++) {
-				var key = queue[i].key();
-				let tile = this.tiles.get(key);
-				if (!tile) tile = this.createTile(queue[i], key);
+				let tile = this.get(queue[i]);
+				if (!tile) tile = this.createTile(queue[i]);
 				if (tile.needsFetch()) tileCombineQueue.push(queue[i]);
 			}
 			this.sendTileCombineRequest(tileCombineQueue);
@@ -2630,9 +2623,15 @@ class TileManager {
 	// know what monotonic time the invalidate came from
 	// so we match this to a new incoming tile to unset
 	// the invalid state later.
-	public static invalidateTile(key: any, wireId: number) {
+	public static invalidateTile(key: string, wireId: number) {
 		const tile: Tile = this.tiles.get(key);
-		if (!tile) return;
+		if (!tile) {
+			window.app.console.warn(
+				'invalidateTile called with invalid key',
+				key,
+			);
+			return;
+		}
 
 		tile.invalidateCount++;
 
