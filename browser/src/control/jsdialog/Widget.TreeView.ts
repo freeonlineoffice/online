@@ -509,7 +509,8 @@ class TreeViewControl {
 	) {
 		const cell = L.DomUtil.create(
 			'span',
-			builder.options.cssClass + ' ui-treeview-cell-text',
+			builder.options.cssClass +
+				` ui-treeview-cell-text ui-treeview-cell-text-content ui-treeview-${entry.row}-${index}`,
 			parent,
 		);
 		cell.innerText =
@@ -703,14 +704,14 @@ class TreeViewControl {
 		if (!this._singleClickActivate) {
 			if (window.ThisIsTheiOSApp) {
 				// TODO: remove this hack
-				tr.addEventListener('click', () => {
+				tr.addEventListener('click', (event) => {
 					if (L.DomUtil.hasClass(tr, 'disabled')) return;
 
 					if (
 						entry.row == lastClickHelperRow &&
 						treeViewData.id == lastClickHelperId
 					)
-						doubleClickFunction(undefined);
+						doubleClickFunction(event);
 					else {
 						lastClickHelperRow = entry.row;
 						lastClickHelperId = treeViewData.id;
@@ -763,7 +764,7 @@ class TreeViewControl {
 				event.preventDefault();
 				event.stopPropagation();
 			} else if (event.key === 'Enter' || event.key === ' ') {
-				clickFunction();
+				clickFunction(event);
 				if (selectionElement) selectionElement.click();
 				if (expander) {
 					expander.click();
@@ -825,8 +826,6 @@ class TreeViewControl {
 	}
 
 	selectEntry(span: HTMLElement, checkbox: HTMLInputElement) {
-		this.makeTreeViewFocusable(false);
-
 		L.DomUtil.addClass(span, 'selected');
 		span.setAttribute('aria-selected', 'true');
 		span.tabIndex = 0;
@@ -874,6 +873,17 @@ class TreeViewControl {
 					entry,
 				);
 
+			const cell: Element = this.getTextCellForElement(
+				e.target as Element,
+			);
+
+			let column: number | null | undefined;
+			let editable: boolean = false;
+			if (cell) {
+				column = this.getColumnForCell(entry, cell);
+				editable = this.canEdit(entry, column);
+			}
+
 			if (select)
 				builder.callback(
 					'treeview',
@@ -883,7 +893,7 @@ class TreeViewControl {
 					builder,
 				);
 
-			if (activate)
+			if (!editable && activate)
 				builder.callback(
 					'treeview',
 					'activate',
@@ -891,7 +901,174 @@ class TreeViewControl {
 					entry.row,
 					builder,
 				);
+
+			if (editable && activate)
+				this.startEditing(
+					builder,
+					cell,
+					column,
+					entry,
+					parentContainer,
+					treeViewData,
+				);
 		};
+	}
+
+	getTextCellForElement(element: Element): Element {
+		const textCells = Array.from(
+			element.getElementsByClassName('ui-treeview-cell-text-content'),
+		);
+
+		if (element.classList.contains('ui-treeview-cell-text-content')) {
+			textCells.push(element);
+		}
+
+		if (textCells.length !== 1) {
+			return null;
+		}
+
+		const cell = textCells[0];
+
+		return cell;
+	}
+
+	getColumnForCell(entry: TreeEntryJSON, cell: Element): number | null {
+		let column: number | undefined;
+		for (const className of Array.from(cell.classList)) {
+			const prefix = `ui-treeview-${entry.row}-`;
+			if (className.startsWith(prefix)) {
+				column = parseInt(className.slice(prefix.length));
+			}
+		}
+		if (column === undefined || Number.isNaN(column)) {
+			return null;
+		}
+		if (column >= entry.columns.length) {
+			return null;
+		}
+
+		return column;
+	}
+
+	canEdit(entry: TreeEntryJSON, column: number | null): boolean {
+		if (column === null || entry.columns[column].text === undefined) {
+			return false;
+		}
+
+		return !!entry.columns[column].editable;
+	}
+
+	startEditing(
+		builder: JSBuilder,
+		cell: Element,
+		column: number,
+		entry: TreeEntryJSON,
+		parentContainer: HTMLElement,
+		treeViewData: TreeWidgetJSON,
+	): void {
+		for (const child of Array.from(cell.childNodes)) {
+			child.remove();
+		}
+
+		const rowShouldBeDraggable = parentContainer.draggable; // TODO: does this work with tree views or only tables?
+
+		const input = document.createElement('input');
+
+		input.style.width = '100%';
+		input.style.boxSizing = 'border-box';
+
+		input.value = entry.columns[column].text;
+
+		input.enterKeyHint = 'done';
+
+		let cancelledUpdate = false;
+
+		input.addEventListener(
+			'keydown',
+			(e) => {
+				if (e.code === 'Enter') {
+					input.blur();
+				} else if (e.code === 'Escape') {
+					cancelledUpdate = true;
+					input.blur();
+				}
+				e.stopImmediatePropagation(); // We need events to type and with some keys that doesn't happen (e.g. space which selects a different cell)
+			},
+			{ capture: true },
+		);
+		const conflictingEventTypes = ['click', 'dblclick'];
+		for (const eventType of conflictingEventTypes) {
+			input.addEventListener(eventType, (e) => {
+				e.stopPropagation();
+			});
+		}
+		input.addEventListener('blur', () => {
+			this.endEditing(
+				builder,
+				cancelledUpdate,
+				cell,
+				column,
+				entry,
+				input,
+				parentContainer,
+				rowShouldBeDraggable,
+				treeViewData,
+			);
+		});
+
+		parentContainer.draggable = false;
+		(
+			parentContainer.parentElement as HTMLElement & {
+				onFocus?: () => void;
+			}
+		).onFocus = () => {
+			/* no-op */
+		};
+		// We need to cancel focus events - which are used when we select - or we will blur our input and stop editing
+		// The grab_focus is on the grid we're already in - i.e. we're not changing anything about what is being selected - so there is no need to re-do a selection/etc. once editing is done
+
+		cell.appendChild(input);
+		input.focus();
+	}
+
+	endEditing(
+		builder: JSBuilder,
+		cancelledUpdate: boolean,
+		cell: Element,
+		column: number,
+		entry: TreeEntryJSON,
+		input: HTMLInputElement,
+		parentContainer: HTMLElement,
+		rowShouldBeDraggable: boolean,
+		treeViewData: TreeWidgetJSON,
+	) {
+		parentContainer.draggable = rowShouldBeDraggable;
+		(
+			parentContainer.parentElement as HTMLElement & {
+				onFocus?: () => void;
+			}
+		).onFocus = undefined;
+
+		for (const child of Array.from(cell.childNodes)) {
+			child.remove();
+		}
+
+		if (cancelledUpdate) {
+			cell.append(entry.columns[column].text);
+			return;
+		}
+
+		cell.append(input.value);
+		// This is changed on core too - but we may as well optimistically set the new value here anyway
+		// If core fails the update, it'll send us back the old value
+
+		builder.callback(
+			'treeview',
+			'editend',
+			treeViewData,
+			{ row: entry.row, column, value: input.value },
+			builder,
+		);
 	}
 
 	filterEntries(filter: string) {
@@ -1244,9 +1421,14 @@ class TreeViewControl {
 		}
 	}
 
+	// when no entry is selected - allow first one to be focusable
 	makeTreeViewFocusable(enable: boolean) {
-		if (enable) this._container.tabIndex = 0;
-		else this._container.removeAttribute('tabindex');
+		const firstElement =
+			this._container.querySelector('.ui-treeview-entry');
+		if (firstElement) {
+			if (enable) (firstElement as HTMLElement).tabIndex = 0;
+			else firstElement.removeAttribute('tabindex');
+		}
 	}
 
 	fillEntries(

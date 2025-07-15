@@ -117,9 +117,10 @@ shared_sources = common/FileUtil.cpp \
                  common/Session.cpp \
                  common/Seccomp.cpp \
                  common/MobileApp.cpp \
-                 common/TraceEvent.cpp \
+                 common/RegexUtil.cpp \
                  common/SigUtil-server.cpp \
                  common/SpookyV2.cpp \
+                 common/TraceEvent.cpp \
                  common/Unit.cpp \
                  common/Unit-server.cpp \
                  common/Uri.cpp \
@@ -386,6 +387,7 @@ shared_headers = common/Anonymizer.hpp \
                  common/LangUtil.hpp \
                  common/Log.hpp \
                  common/Protocol.hpp \
+                 common/RegexUtil.hpp \
                  common/StateEnum.hpp \
                  common/StaticLogHelper.hpp \
                  common/StringVector.hpp \
@@ -728,14 +730,6 @@ $(abs_srcdir)/.clangd: config.d/clangd.am
 	@sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' $< > $@
 
 dot_clangd: $(abs_srcdir)/.clangd
-
-$(abs_srcdir)/Doxyfile.cpp.cfg: config.d/Doxyfile.cpp.in
-	@sed -e 's|@LOOL_DIR@|${abs_srcdir}|g' -e 's|@LOKIT_DIR@|${LOKIT_PATH}|g' -e 's|@LOOL_VERSION@|${LOOLWSD_VERSION}|g' $< > $@
-
-doxygen: $(abs_srcdir)/Doxyfile.cpp.cfg
-	rm -rf doc/cpp
-	mkdir -p doc/cpp
-	doxygen $(abs_srcdir)/Doxyfile.cpp.cfg
 
 $(abs_srcdir)/.vscode/settings.json: config.d/vscode/settings.json.am
 	mkdir -p $(abs_srcdir)/.vscode

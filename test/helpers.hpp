@@ -34,6 +34,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iterator>
+#include <stdexcept>
 #include <string>
 #include <thread>
 
@@ -187,7 +188,8 @@ inline void getDocumentPathAndURL(const std::string& docFilename, std::string& d
 inline
 void sendTextFrame(LOOLWebSocket& socket, const std::string& string, const std::string& testname)
 {
-    TST_LOG("Sending " << string.size() << " bytes: " << LOOLProtocol::getAbbreviatedMessage(string));
+    TST_LOG("Sending " << string.size()
+                       << " bytes: " << LOOLProtocol::getAbbreviatedMessage(string));
     socket.sendFrame(string.data(), string.size());
 }
 
@@ -265,7 +267,13 @@ pocoGetRetry(const Poco::URI& uri, int retry = 3,
         try
         {
             LOG_INF("pocoGet #" << attempt << ": " << uri.toString());
-            return pocoGet(uri);
+            auto res = pocoGet(uri);
+            if (!res.first)
+            {
+                throw std::runtime_error("Server unavilable");
+            }
+
+            return res;
         }
         catch (const std::exception& ex)
         {
@@ -398,8 +406,9 @@ getResponseMessage(LOOLWebSocket& ws, const std::string& prefix, const std::stri
                 {
                     if (LOOLProtocol::matchPrefix(prefix, message))
                     {
-                        TST_LOG('[' << prefix <<  "] Matched " <<
-                                LOOLWebSocket::getAbbreviatedFrameDump(response.data(), bytes, flags));
+                        TST_LOG('[' << prefix << "] Matched "
+                                    << LOOLWebSocket::getAbbreviatedFrameDump(response.data(),
+                                                                              bytes, flags));
                         return response;
                     }
                 }
@@ -422,8 +431,9 @@ getResponseMessage(LOOLWebSocket& ws, const std::string& prefix, const std::stri
                         throw std::runtime_error(message);
                     }
 
-                    TST_LOG('[' << prefix <<  "] Ignored " <<
-                            LOOLWebSocket::getAbbreviatedFrameDump(response.data(), bytes, flags));
+                    TST_LOG('[' << prefix << "] Ignored "
+                                << LOOLWebSocket::getAbbreviatedFrameDump(response.data(), bytes,
+                                                                          flags));
                 }
             }
         }
@@ -431,7 +441,7 @@ getResponseMessage(LOOLWebSocket& ws, const std::string& prefix, const std::stri
     }
     catch (const Poco::Net::WebSocketException& exc)
     {
-        TST_LOG('[' << prefix <<  "] ERROR in helpers::getResponseMessage: " << exc.message());
+        TST_LOG('[' << prefix << "] ERROR in helpers::getResponseMessage: " << exc.message());
     }
 
     return std::vector<char>();
@@ -877,17 +887,18 @@ inline bool svgMatch(const std::string& testname, const std::vector<char>& respo
     const std::vector<char> expectedSVG = helpers::readDataFromFile(templateFile);
     if (expectedSVG != response)
     {
-        TST_LOG_BEGIN("Svg mismatch: response is\n");
+        std::ostringstream oss;
+        oss << "Svg mismatch: response is\n";
         if(response.empty())
-            TST_LOG_APPEND("<empty>");
+            oss << "<empty>";
         else
-            TST_LOG_APPEND(std::string(response.data(), response.size()));
-        TST_LOG_APPEND("\nvs. expected (from '" << templateFile << "' :\n");
-        TST_LOG_APPEND(std::string(expectedSVG.data(), expectedSVG.size()));
+            oss << std::string(response.data(), response.size());
+        oss << "\nvs. expected (from '" << templateFile << "' :\n";
+        oss << std::string(expectedSVG.data(), expectedSVG.size());
         std::string newName = templateFile;
         newName += ".new";
-        TST_LOG_APPEND("Updated template writing to: " << newName << '\n');
-        TST_LOG_END;
+        oss << "Updated template writing to: " << newName << '\n';
+        TST_LOG(oss.str());
 
         FILE *of = fopen(Poco::Path(TDOC, newName).toString().c_str(), "w");
         LOK_ASSERT(of != nullptr);

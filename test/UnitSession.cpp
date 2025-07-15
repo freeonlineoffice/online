@@ -91,11 +91,11 @@ UnitBase::TestResult UnitSession::testBadRequest()
         const std::string documentURL = "/lol/file%3A%2F%2F%2Ffake.doc";
         std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
         http::Request request(documentURL, http::Request::VERB_GET);
-        request.header().setConnectionToken(http::Header::ConnectionToken::Upgrade);
+        request.setConnectionToken(http::Header::ConnectionToken::Upgrade);
         request.set("Upgrade", "websocket");
         request.set("Sec-WebSocket-Version", "13");
         request.set("Sec-WebSocket-Key", "");
-        // request.header().setChunkedTransferEncoding(false);
+        // request.setChunkedTransferEncoding(false);
         const std::shared_ptr<const http::Response> response =
             session->syncRequest(request, *socketPoller);
         // TST_LOG("Response: " << response->header().toString());
@@ -193,7 +193,8 @@ UnitBase::TestResult UnitSession::testFilesOpenConnection()
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL
+                                      << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(true, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::None ==
@@ -234,12 +235,13 @@ UnitBase::TestResult UnitSession::testFilesCloseConnection()
         {
             TST_LOG("Test: " << testname << "[" << docIdx << "]: `" << documentURL << "`");
             http::Request request(documentURL, http::Request::VERB_GET);
-            request.header().setConnectionToken(http::Header::ConnectionToken::Close);
+            request.setConnectionToken(http::Header::ConnectionToken::Close);
             std::shared_ptr<http::Session> session = http::Session::create(helpers::getTestServerURI());
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL << "`: " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: `" << documentURL
+                                      << "`: " << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(false, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::Close ==
@@ -286,7 +288,8 @@ UnitBase::TestResult UnitSession::testFileServer()
             const std::shared_ptr<const http::Response> response =
                 session->syncRequest(request, *socketPoller);
             TST_LOG("Response: " << response->header().toString());
-            TST_LOG("Response size: " << testname << "[" << docIdx << "]: " << documentURL << ": " << response->header().getContentLength());
+            TST_LOG("Response size: " << testname << "[" << docIdx << "]: " << documentURL << ": "
+                                      << response->header().getContentLength());
             LOK_ASSERT_EQUAL(http::StatusCode::OK, response->statusCode());
             LOK_ASSERT_EQUAL(true, session->isConnected());
             LOK_ASSERT(http::Header::ConnectionToken::None ==

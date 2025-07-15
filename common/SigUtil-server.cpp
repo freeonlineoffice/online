@@ -79,7 +79,7 @@ namespace SigUtil
 {
 void triggerDumpState(const std::string &testname)
 {
-    LOG_TST("Dumping state");
+    TST_LOG("Dumping state");
     ::kill(getpid(), SIGUSR1);
 }
 

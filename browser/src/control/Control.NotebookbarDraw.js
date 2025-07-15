@@ -87,11 +87,18 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'accessibility': { focusBack: true, combination: 'T', de: null }
 			},
 			{
-				'id': 'Draw-tab-label',
-				'text': _('Draw'),
-				'name': 'Draw',
-				'context': 'Draw|DrawLine|3DObject|MultiObject|Graphic|DrawFontwork',
+				'id': 'Shape-tab-label',
+				'text': _('Shape'),
+				'name': 'Shape',
+				'context': 'Draw|DrawLine|3DObject|MultiObject|DrawFontwork',
 				'accessibility': { focusBack: true, combination: 'D', de: null }
+			},
+			{
+				'id': 'Picture-tab-label',
+				'text': _('Picture'),
+				'name': 'Picture',
+				'context': 'Graphic',
+				'accessibility': { focusBack: true, combination: 'G', de: null }
 			},
 			{
 				'id': 'View-tab-label',
@@ -117,7 +124,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 			this.getReviewTab(),
 			this.getFormatTab(),
 			this.getTableTab(),
-			this.getDrawTab(),
+			this.getShapeTab(),
+			this.getPictureTab(),
 			this.getViewTab(),
 			this.getHelpTab()
 		];
@@ -129,8 +137,12 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 
 	getFileTab: function() {
 		var content = [];
+		var hasSave = !this.map['wopi'].HideSaveOption;
+		var hasSaveAs = !this.map['wopi'].UserCanNotWriteRelative;
+		var hasShare = this.map['wopi'].EnableShare;
+		var hasRevisionHistory = L.Params.revHistoryEnabled;
 
-		if (!this.map['wopi'].HideSaveOption) {
+		if (hasSave) {
 			content.push(
 				{
 					'type': 'toolbox',
@@ -146,7 +158,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				});
 			}
 
-		if (!this.map['wopi'].UserCanNotWriteRelative) {
+		if (hasSaveAs) {
 			content.push(
 				{
 					'id': 'file-saveas',
@@ -158,7 +170,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 			);
 		}
 
-		if (!this.map['wopi'].UserCanNotWriteRelative) {
+		if (hasSaveAs) {
 			content.push(
 				{
 					'id': 'exportas:ExportAsMenu',
@@ -171,12 +183,15 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 			);
 		}
 
-		content.push(
-			{
-				'id': 'file-shareas-rev-history',
-				'type': 'container',
-				'children': [
-					(this.map['wopi'].EnableShare) ?
+		if (hasShare && hasRevisionHistory) {
+			content.push(
+				{
+					'id': 'file-exportas-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}, {
+					'type': 'container',
+					'children': [
 						{
 							'id': 'ShareAs',
 							'class': 'unoShareAs',
@@ -184,22 +199,73 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 							'text': _('Share'),
 							'command': 'shareas',
 							'inlineLabel': true,
-							'accessibility': { focusBack: true, combination: 'SH', de: null }
-						} : {},
-					(L.Params.revHistoryEnabled) ?
-						{
+							'accessibility': { focusBack: true, combination: 'SH' }
+						}, {
 							'id': 'Rev-History',
 							'class': 'unoRev-History',
 							'type': 'customtoolitem',
 							'text': _('See history'),
 							'command': 'rev-history',
 							'inlineLabel': true,
-							'accessibility': { focusBack: true, combination: 'RH', de: null }
-						} : {},
-				],
-				'vertical': 'true'
-			}
-		);
+							'accessibility': { focusBack: true, combination: 'RH' }
+						}
+					],
+					'vertical': true
+				}, {
+					'id': 'file-revhistory-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}
+			);
+		} else if (hasShare) {
+			content.push(
+				{
+					'id': 'file-exportas-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}, {
+					'type': 'container',
+					'children': [
+						{
+							'id': 'ShareAs',
+							'class': 'unoShareAs',
+							'type': 'bigcustomtoolitem',
+							'text': _('Share'),
+							'command': 'shareas',
+							'accessibility': { focusBack: true, combination: 'SH' }
+						}
+					]
+				}, {
+					'id': 'file-shareas-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}
+			);
+		} else if (hasRevisionHistory) {
+			content.push(
+				{
+					'id': 'file-exportas-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}, {
+				'type': 'container',
+				'children': [
+					{
+						'id': 'Rev-History',
+						'class': 'unoRev-History',
+						'type': 'bigcustomtoolitem',
+						'text': _('See history'),
+						'command': 'rev-history',
+						'accessibility': { focusBack: true, combination: 'RH' }
+					}
+				]
+				}, {
+					'id': 'file-revhistory-break',
+					'type': 'separator',
+					'orientation': 'vertical'
+				}
+			);
+		}
 
 		if (!this.map['wopi'].HidePrintOption) {
 			content.push(

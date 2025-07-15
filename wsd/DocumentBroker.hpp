@@ -65,6 +65,8 @@ public:
     UrpHandler(ChildProcess* process) : _childProcess(process)
     {
     }
+
+private:
     void onConnect(const std::shared_ptr<StreamSocket>& socket) override
     {
         _socket = socket;
@@ -77,6 +79,18 @@ public:
         return POLLIN;
     }
     void performWrites(std::size_t /*capacity*/) override {}
+
+    void onDisconnect() override
+    {
+        LOG_TRC("UrpHandler disconnected");
+        std::shared_ptr<StreamSocket> socket = _socket.lock();
+        if (socket)
+        {
+            socket->asyncShutdown(); // Flag for shutdown for housekeeping in SocketPoll.
+            socket->shutdownConnection(); // Immediately disconnect.
+        }
+    }
+
 private:
     // The socket that owns us (we can't own it).
     std::weak_ptr<StreamSocket> _socket;
@@ -1276,11 +1290,7 @@ private:
         {
         }
 
-        const std::chrono::milliseconds timeSinceRequest() const
-        {
-            return std::chrono::duration_cast<std::chrono::milliseconds>(
-                std::chrono::steady_clock::now() - _startTime);
-        }
+        std::chrono::steady_clock::time_point startTime() const { return _startTime; }
 
         const std::string& uriAnonym() const { return _uriAnonym; }
         const std::chrono::system_clock::time_point& newFileModifiedLocalTime() const

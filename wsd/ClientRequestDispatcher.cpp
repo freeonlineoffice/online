@@ -557,7 +557,7 @@ public:
 bool ClientRequestDispatcher::allowPostFrom(const std::string& address)
 {
     static bool init = false;
-    static Util::RegexListMatcher hosts;
+    static RegexUtil::RegexListMatcher hosts;
     if (!init)
     {
         const auto& app = Poco::Util::Application::instance();
@@ -707,6 +707,7 @@ void launchAsyncCheckFileInfo(
     }
 }
 
+#if !MOBILEAPP
 static void socketEraseConsumedBytes(const std::shared_ptr<StreamSocket>& socket,
                                      ssize_t headerSize,
                                      ssize_t contentSize,
@@ -724,6 +725,7 @@ static void socketEraseConsumedBytes(const std::shared_ptr<StreamSocket>& socket
         }
     }
 }
+#endif // !MOBILEAPP
 
 void ClientRequestDispatcher::handleIncomingMessage(SocketDisposition& disposition)
 {
@@ -1233,7 +1235,7 @@ bool ClientRequestDispatcher::handleRootRequest(const RequestDetails& requestDet
     httpResponse.set("Content-Type", "text/plain");
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
     if( requestDetails.closeConnection() )
-        httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Close);
+        httpResponse.setConnectionToken(http::Header::ConnectionToken::Close);
     httpResponse.writeData(socket->getOutBuffer());
     if (requestDetails.isGet())
         socket->send(responseString);
@@ -1254,7 +1256,7 @@ bool ClientRequestDispatcher::handleFaviconRequest(const RequestDetails& request
     FileServerRequestHandler::hstsHeaders(response);
     response.setContentType("image/vnd.microsoft.icon");
     if( requestDetails.closeConnection() )
-        response.header().setConnectionToken(http::Header::ConnectionToken::Close);
+        response.setConnectionToken(http::Header::ConnectionToken::Close);
     std::string faviconPath =
         Poco::Path(Poco::Util::Application::instance().commandPath()).parent().toString() +
         "favicon.ico";
@@ -1291,7 +1293,7 @@ bool ClientRequestDispatcher::handleWopiDiscoveryRequest(
     httpResponse.set("Last-Modified", Util::getHttpTimeNow());
     httpResponse.set("X-Content-Type-Options", "nosniff");
     if( requestDetails.closeConnection() )
-        httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Close);
+        httpResponse.setConnectionToken(http::Header::ConnectionToken::Close);
     LOG_TRC("Sending back discovery.xml: " << xml);
     socket->send(httpResponse);
     LOG_INF("Sent discovery.xml successfully.");
@@ -1715,7 +1717,7 @@ bool handleStaticRequest(const Poco::Net::HTTPRequest& request,
     httpResponse.set("Content-Length", std::to_string(responseString.size()));
     httpResponse.set("Content-Type", contentType);
     if( !request.getKeepAlive() )
-        httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Close);
+        httpResponse.setConnectionToken(http::Header::ConnectionToken::Close);
     httpResponse.writeData(socket->getOutBuffer());
 
     if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET)

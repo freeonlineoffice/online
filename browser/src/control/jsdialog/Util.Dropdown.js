@@ -15,10 +15,13 @@ function _createDropdownId(id) {
 	return id + '-dropdown';
 }
 
+JSDialog.CreateDropdownEntriesId = function(id) {
+	return id + '-entries';
+}
+
 JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popupAnchor, isSubmenu) {
-	var dropdownWindowId = _createDropdownId(id);
 	var json = {
-		id: dropdownWindowId,
+		id: _createDropdownId(id),
 		type: 'dropdown',
 		isSubmenu: isSubmenu,
 		jsontype: 'dialog',
@@ -28,8 +31,9 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 		cancellable: true,
 		children: [
 			{
-				id: id + '-entries',
+				id: JSDialog.CreateDropdownEntriesId(id),
 				type: 'grid',
+				allyRole: 'listbox',
 				cols: 1,
 				rows: entries.length,
 				children: []
@@ -37,14 +41,9 @@ JSDialog.OpenDropdown = function (id, popupParent, entries, innerCallback, popup
 		]
 	};
 
-	const expanderElement = Array.from(popupParent.children).find(child => child.hasAttribute('aria-expanded')) || popupParent;
-
-	if (popupParent && !popupParent._onClose) {
-		popupParent._onClose = () => {
-			expanderElement.setAttribute('aria-expanded', false);
-		};
+	if (popupParent && typeof popupParent._onDropDown === 'function') {
+		popupParent._onDropDown(true);
 	}
-	expanderElement.setAttribute('aria-expanded', true);
 
 	var isChecked = function (unoCommand) {
 		var items = L.Map.THIS['stateChangeHandler'];

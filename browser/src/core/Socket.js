@@ -3,7 +3,7 @@
  * L.Socket contains methods for the communication with the server
  */
 
-/* global app JSDialog _ $ errorMessages Uint8Array brandProductName GraphicSelection TileManager */
+/* global app JSDialog _ $ errorMessages Uint8Array brandProductName GraphicSelection TileManager SlideBitmapManager*/
 
 app.definitions.Socket = L.Class.extend({
 	ProtocolVersionNumber: '0.1',
@@ -48,7 +48,7 @@ app.definitions.Socket = L.Class.extend({
 		}
 		if (socket && (socket.readyState === 1 || socket.readyState === 0)) {
 			this.socket = socket;
-		} else if (window.ThisIsTheGtkApp) {
+		} else if (window.ThisIsTheGtkApp || window.ThisIsTheEmscriptenApp) {
 			// We have already opened the FakeWebSocket over in global.js
 			// But do we then set this.socket at all? Is this case ever reached?
 		} else	{
@@ -552,7 +552,7 @@ app.definitions.Socket = L.Class.extend({
 			// text on iOS in jsdialogs when using languages like Greek and
 			// Japanese by only setting the image bytes for only the same set
 			// of message types.
-			if (window.ThisIsTheEmscriptenApp ||
+			if (
 					e.data.startsWith('tile:') ||
 					e.data.startsWith('tilecombine:') ||
 					e.data.startsWith('delta:') ||
@@ -584,12 +584,19 @@ app.definitions.Socket = L.Class.extend({
 			return true;
 		};
 
+		// slide rendering is using zstd compressed images (EXPERIMENTAL)
+		var isSlideLayer = e.textMsg.startsWith('slidelayer:');
+		var isSlideRenderComplete = e.textMsg.startsWith('sliderenderingcomplete:');
+		var isZstdSlideshowEnabled = app.isExperimentalMode();
+		if (isZstdSlideshowEnabled && (isSlideLayer || isSlideRenderComplete))
+			return;
+
 		var isTile = e.textMsg.startsWith('tile:');
 		var isDelta = e.textMsg.startsWith('delta:');
 		if (!isTile && !isDelta &&
-		    !e.textMsg.startsWith('renderfont:') &&
+			!e.textMsg.startsWith('renderfont:') &&
 			!e.textMsg.startsWith('slidelayer:') &&
-		    !e.textMsg.startsWith('windowpaint:'))
+			!e.textMsg.startsWith('windowpaint:'))
 			return;
 
 		if (e.textMsg.indexOf(' nopng') !== -1)
@@ -1292,6 +1299,27 @@ app.definitions.Socket = L.Class.extend({
 		else if (textMsg.startsWith('reload')) {
 			// Switching modes.
 			window.location.reload(false);
+		} else if (textMsg.startsWith('slidelayer:')) {
+			if (app.isExperimentalMode()) {
+				SlideBitmapManager.handleRenderSlideEvent(e);
+			} else {
+				const content = JSON.parse(textMsg.substring('slidelayer:'.length + 1));
+				this._map.fire('slidelayer', {
+					message: content,
+					image: e.image
+				});
+			}
+			return;
+		} else if (textMsg.startsWith('sliderenderingcomplete:')) {
+			if (app.isExperimentalMode()) {
+				SlideBitmapManager.handleSlideRenderingComplete(e);
+			} else {
+				const status = textMsg.substring('sliderenderingcomplete:'.length + 1);
+				this._map.fire('sliderenderingcomplete', {
+					success: status === 'success'
+				});
+			}
+			return;
 		}
 		else if (!textMsg.startsWith('tile:') && !textMsg.startsWith('delta:') &&
 			     !textMsg.startsWith('renderfont:') && !textMsg.startsWith('slidelayer:') &&

@@ -158,7 +158,11 @@ public:
 
         req.set("Host", hostAndPort); // Make sure the host is set.
 
-        req.header().setConnectionToken(http::Header::ConnectionToken::Upgrade);
+        // Set a consistent Origin
+        std::string protocol = isSecure ? "https" : "http";
+        req.set("Origin", protocol + "://" + hostAndPort);
+
+        req.setConnectionToken(http::Header::ConnectionToken::Upgrade);
         req.set("Upgrade", "websocket");
         req.set("Sec-WebSocket-Version", "13");
         req.set("Sec-WebSocket-Key", getWebSocketKey());
@@ -1007,7 +1011,7 @@ protected:
     template <typename T>
     void upgradeToWebSocket(const std::shared_ptr<StreamSocket>& socket,
                             [[maybe_unused]] const T& req,
-                            [[maybe_unused]] const std::string& expectedOrigin, bool allowedOrigin)
+                            [[maybe_unused]] const std::string& expectedOrigin, [[maybe_unused]] bool allowedOrigin)
     {
         assert(socket && "Must have a valid socket");
         LOGA_TRC(WebSocket, "Upgrading to WebSocket");
@@ -1042,7 +1046,7 @@ protected:
 
         http::Response httpResponse(http::StatusCode::SwitchingProtocols, socket->getFD());
         httpResponse.set("Upgrade", "websocket");
-        httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Upgrade);
+        httpResponse.setConnectionToken(http::Header::ConnectionToken::Upgrade);
         httpResponse.set("Sec-WebSocket-Accept", computeAccept(wsKey));
         LOGA_TRC(WebSocket, "Sending WS Upgrade response: " << httpResponse.header().toString());
         socket->send(httpResponse);

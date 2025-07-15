@@ -101,7 +101,7 @@ class TopToolbar extends JSDialog.Toolbar {
 		var items = [
 			{type: 'customtoolitem',  id: 'closemobile', desktop: false, mobile: false, tablet: true, visible: false},
 			{type: 'customtoolitem',  id: 'save', command: 'save', text: _UNO('.uno:Save'), lockUno: '.uno:Save'},
-			{type: 'customtoolitem',  id: 'print', command: 'print', text: _UNO('.uno:Print', 'text'), mobile: false, tablet: false, lockUno: '.uno:Print'},
+			{type: 'customtoolitem',  id: 'print', command: 'print', text: _UNO('.uno:Print'), mobile: false, tablet: false, lockUno: '.uno:Print'},
 			{type: 'menubutton',  id: 'printoptions',  command: 'printoptions', noLabel: true, text: _UNO('.uno:Print', 'text'), mobile: false, tablet: false, lockUno: '.uno:Print',
 				menu: [
 					{id: 'print-active-sheet', action: 'print-active-sheet', text: _('Active Sheet')},
@@ -133,7 +133,7 @@ class TopToolbar extends JSDialog.Toolbar {
 			{type: 'toolitem',  id: 'leftpara',  command: '.uno:LeftPara', text: _UNO('.uno:LeftPara', '', true), visible: false},
 			{type: 'toolitem',  id: 'centerpara',  command: '.uno:CenterPara', text: _UNO('.uno:CenterPara', '', true), visible: false},
 			{type: 'toolitem',  id: 'rightpara',  command: '.uno:RightPara', text: _UNO('.uno:RightPara', '', true), visible: false},
-			{type: 'toolitem',  id: 'justifypara', command: '.uno:JustifyPara', text: _UNO('.uno:JustifyPara', '', true), visible: false, unosheet: ''},
+			{type: 'toolitem',  id: 'justifypara',  command: '.uno:JustifyPara', text: _UNO('.uno:JustifyPara', '', true), visible: false},
 			{type: 'separator', orientation: 'vertical', id: 'breakpara', visible: false},
 			{type: 'menubutton',  id: 'setborderstyle:BorderStyleMenu', noLabel: true, command: '.uno:SetBorderStyle', text: _('Borders'), visible: false},
 			{type: 'toolitem',  id: 'togglemergecells', text: _UNO('.uno:ToggleMergeCells', 'spreadsheet', true), visible: false, command: '.uno:ToggleMergeCells'},

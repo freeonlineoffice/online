@@ -82,6 +82,7 @@ using Poco::Util::Application;
 // We have files that are at least 2.5 MB already.
 // WASM files are in the order of 30 MB, however,
 constexpr auto MaxFileSizeToCacheInBytes = 50 * 1024 * 1024;
+constexpr std::string_view MetaViewPort = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1\">";
 
 namespace
 {
@@ -327,7 +328,7 @@ bool FileServerRequestHandler::authenticateAdmin(const Poco::Net::HTTPBasicCrede
     // bundlify appears to add an extra /dist -> dist/dist/admin
     cookie.setPath(LOOLWSD::ServiceRoot + "/browser/dist/");
     cookie.setSecure(ConfigUtil::isSslEnabled());
-    response.header().addCookie(cookie.toString());
+    response.addCookie(cookie.toString());
 
     return true;
 }
@@ -895,7 +896,7 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
 #endif
         http::Response response(http::StatusCode::OK);
         if( requestDetails.closeConnection() )
-            response.header().setConnectionToken(http::Header::ConnectionToken::Close);
+            response.setConnectionToken(http::Header::ConnectionToken::Close);
         hstsHeaders(response);
 
         const auto& config = Application::instance().config();
@@ -1425,7 +1426,7 @@ std::string FileServerRequestHandler::getRequestPathname(const HTTPRequest& requ
         }
     }
 
-    if (isWasm)
+    if (isWasm && path.find("/browser/dist/wasm/") == std::string::npos)
     {
         Poco::replaceInPlace(path, std::string("/browser/dist/"),
                              std::string("/browser/dist/wasm/"));
@@ -1628,6 +1629,10 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
 
     const UserRequestVars urv(request, form);
 
+
+    const std::string userAgent = request.get("User-Agent", "");
+    Poco::replaceInPlace(preprocess, std::string("%BROWSER_VIEWPORT%"),
+                         !userAgent.empty() && userAgent.find("Mobile") != std::string::npos ? std::string(MetaViewPort) : "");
 
     std::string socketProxy = "false";
     if (requestDetails.isProxy())
@@ -1851,7 +1856,7 @@ FileServerRequestHandler::ResourceAccessDetails FileServerRequestHandler::prepro
         {
             if (!HttpHelper::verifyWOPISrc(request.getURI(), param.second, socket))
             {
-                httpResponse.header().setConnectionToken(http::Header::ConnectionToken::Close);
+                httpResponse.setConnectionToken(http::Header::ConnectionToken::Close);
                 return ResourceAccessDetails();
             }
 
@@ -2070,7 +2075,7 @@ void FileServerRequestHandler::fetchWopiSettingConfigs(const Poco::Net::HTTPRequ
     Authorization auth(Authorization::Type::Token, accessToken, noAuthHeader);
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
     httpRequest.setVerb(http::Request::VERB_GET);
-    httpRequest.header().set("Content-Type", "application/json");
+    httpRequest.set("Content-Type", "application/json");
 
     std::weak_ptr<StreamSocket> socketWeak(socket);
 
@@ -2145,7 +2150,7 @@ void FileServerRequestHandler::fetchSettingFile(const Poco::Net::HTTPRequest& re
     Authorization auth(Authorization::Type::Token, accessToken, noAuthHeader);
     auto httpRequest = StorageConnectionManager::createHttpRequest(dicUrl, auth);
     httpRequest.setVerb(http::Request::VERB_GET);
-    httpRequest.header().set("Content-Type", "text/plain");
+    httpRequest.set("Content-Type", "text/plain");
 
     auto httpSession = StorageConnectionManager::getHttpSession(dicUrl);
     auto httpResponse = httpSession->syncRequest(httpRequest);
@@ -2199,7 +2204,7 @@ void FileServerRequestHandler::deleteWopiSettingConfigs(
     auto httpRequest = StorageConnectionManager::createHttpRequest(sharedUri, auth);
 
     httpRequest.setVerb("DELETE");
-    httpRequest.header().set("Content-Type", "application/json");
+    httpRequest.set("Content-Type", "application/json");
 
     LOG_DBG("Sending DELETE request to WopiURI[" << uriAnonym << "] for presetfile with fileId["
                                                  << fileId << ']');
@@ -2295,7 +2300,7 @@ void FileServerRequestHandler::uploadFileToIntegrator(const Poco::Net::HTTPReque
     auto httpRequest = StorageConnectionManager::createHttpRequest(wopiUri, auth);
     httpRequest.setVerb(http::Request::VERB_POST);
 
-    httpRequest.header().set("Content-Type", "application/octet-stream");
+    httpRequest.set("Content-Type", "application/octet-stream");
     httpRequest.setBody(fileContent);
 
     auto httpSession = StorageConnectionManager::getHttpSession(wopiUri);

@@ -133,9 +133,9 @@ endef
 
 LOOL_ADMIN_TS = \
 	admin/src/ModalDialogCreator.ts \
+	admin/src/integrator/AdminIntegratorSettings.ts \
 	admin/src/integrator/WordBook.ts \
-	admin/src/integrator/Xcu.ts \
-	admin/src/integrator/AdminIntegratorSettings.ts
+	admin/src/integrator/Xcu.ts
 
 LOOL_ADMIN_TS_JS = $(patsubst %.ts,$(TYPESCRIPT_JS_DIR)/%.js,$(LOOL_ADMIN_TS))
 
@@ -254,8 +254,11 @@ LOOL_JS_LST =\
 	src/app/DocEvents.ts \
 	src/core/geometry.ts \
 	src/app/GraphicSelectionMiddleware.ts \
+	src/app/TextSelectionMiddleware.ts \
+	src/app/CellSelectionMarkerMiddleware.ts \
 	src/app/MultiPageViewLayout.ts \
 	src/app/TilesMiddleware.ts \
+	src/app/SlideshowMiddleware.ts \
 	src/app/SearchService.ts \
 	src/app/BaseClass.ts \
 	src/app/Events.ts \
@@ -415,6 +418,7 @@ LOOL_JS_LST =\
 	src/control/Control.ESignature.ts \
 	src/control/Control.ESignatureDialog.ts \
 	src/control/ColorPicker.ts \
+	src/control/jsdialog/Util.Shortcuts.ts \
 	src/control/jsdialog/Component.Toolbar.ts \
 	src/control/jsdialog/Definitions.Menu.ts \
 	src/control/jsdialog/Util.Dropdown.js \
@@ -426,6 +430,7 @@ LOOL_JS_LST =\
 	src/control/jsdialog/Util.ModalHelper.js \
 	src/control/jsdialog/Util.OnDemandRenderer.ts \
 	src/control/jsdialog/Util.ScrollableBar.ts \
+	src/control/jsdialog/Util.ScrollIntoView.ts \
 	src/control/jsdialog/Util.SnackbarController.ts \
 	src/control/jsdialog/Util.StateChange.ts \
 	src/control/jsdialog/Widget.ButtonBox.ts \
@@ -724,9 +729,9 @@ $(DIST_FOLDER)/soffice%: $(abs_top_builddir)/wasm/soffice%
 	@cp $< $@
 
 WASM_FILES= \
+	$(DIST_FOLDER)/online.data \
 	$(DIST_FOLDER)/online.js \
 	$(DIST_FOLDER)/online.wasm \
-	$(DIST_FOLDER)/online.worker.js \
 	$(DIST_FOLDER)/soffice.data \
 	$(DIST_FOLDER)/soffice.data.js.metadata
 

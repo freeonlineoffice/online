@@ -24,7 +24,7 @@ public:
 
     bool onDocumentError(const std::string& message) override
     {
-        LOG_TST("onDocumentError: [" << message << ']');
+        TST_LOG("onDocumentError: [" << message << ']');
         LOK_ASSERT_EQUAL_MESSAGE("Expect only passwordrequired errors",
                                  std::string("error: cmd=load kind=passwordrequired:to-view"),
                                  message);
@@ -62,7 +62,7 @@ public:
 
     bool onDocumentError(const std::string& message) override
     {
-        LOG_TST("onDocumentError: [" << message << ']');
+        TST_LOG("onDocumentError: [" << message << ']');
         LOK_ASSERT_EQUAL_MESSAGE("Expect only wrongpassword errors",
                                  std::string("error: cmd=load kind=wrongpassword"), message);
 
@@ -81,7 +81,7 @@ public:
                 const std::string docFilename = "password-protected.ods";
                 const std::string documentURL = connectToLocalDocument(docFilename);
 
-                LOG_TST("Loading local document [" << docFilename << "] with URL: " << documentURL);
+                TST_LOG("Loading local document [" << docFilename << "] with URL: " << documentURL);
                 WSD_CMD("load url=" + documentURL + " password=2");
                 break;
             }
@@ -104,7 +104,7 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        TST_LOG("onDocumentLoaded: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoad);
 
         passTest("Loaded successfully");
@@ -122,7 +122,7 @@ public:
                 const std::string docFilename = "password-protected.ods";
                 const std::string documentURL = connectToLocalDocument(docFilename);
 
-                LOG_TST("Loading local document [" << docFilename << "] with URL: " << documentURL);
+                TST_LOG("Loading local document [" << docFilename << "] with URL: " << documentURL);
                 WSD_CMD("load url=" + documentURL + " password=1");
                 break;
             }
@@ -145,7 +145,7 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        TST_LOG("onDocumentLoaded: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoad);
 
         passTest("Loaded successfully");
@@ -163,7 +163,7 @@ public:
                 const std::string docFilename = "password-protected.docx";
                 const std::string documentURL = connectToLocalDocument(docFilename);
 
-                LOG_TST("Loading local document [" << docFilename << "] with URL: " << documentURL);
+                TST_LOG("Loading local document [" << docFilename << "] with URL: " << documentURL);
                 WSD_CMD("load url=" + documentURL + " password=abc");
                 break;
             }
@@ -186,7 +186,7 @@ public:
 
     bool onDocumentLoaded(const std::string& message) override
     {
-        LOG_TST("onDocumentLoaded: [" << message << ']');
+        TST_LOG("onDocumentLoaded: [" << message << ']');
         LOK_ASSERT_STATE(_phase, Phase::WaitLoad);
 
         passTest("Loaded successfully");
@@ -204,7 +204,7 @@ public:
                 const std::string docFilename = "password-protected.doc";
                 const std::string documentURL = connectToLocalDocument(docFilename);
 
-                LOG_TST("Loading local document [" << docFilename << "] with URL: " << documentURL);
+                TST_LOG("Loading local document [" << docFilename << "] with URL: " << documentURL);
                 WSD_CMD("load url=" + documentURL + " password=abc");
                 break;
             }

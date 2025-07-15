@@ -31,7 +31,7 @@
     "jscpd": "^4.0.4",
     "l10n-for-node": "0.0.1",
     "mocha": "10.7.3",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",

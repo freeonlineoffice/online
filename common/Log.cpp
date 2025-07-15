@@ -30,7 +30,6 @@
 #include "Log.hpp"
 #include "StaticLogHelper.hpp"
 #include "Util.hpp"
-#include "Anonymizer.hpp"
 
 namespace
 {
@@ -811,9 +810,11 @@ namespace Log
         Log::logger().doLog(l, text);
     }
 
-    const std::string levelList[] = {"none", "fatal", "critical", "error", "warning", "notice", "information", "debug", "trace"};
+    static const std::string levelList[] = { "none",        "fatal",   "critical",
+                                             "error",       "warning", "notice",
+                                             "information", "debug",   "trace" };
 
-    std::string getLogLevelName(const std::string &channel)
+    const std::string& getLogLevelName(const std::string& channel)
     {
         unsigned int wsdLogLevel =
             Log::logger().get(channel).getLevel();
@@ -841,16 +842,7 @@ namespace Log
 
         Log::logger().get(channel).setLevel(lvl);
     }
+
 } // namespace Log
-
-// Order of construction is unspecified when static objects are defined in different translation units, so
-// put globals here to specify order of construction/destruction.
-
-namespace Log {
-    StaticHelper Static;
-    StaticUIHelper StaticUILog;
-}
-
-std::unique_ptr<Anonymizer> Anonymizer::_instance;
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

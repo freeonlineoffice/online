@@ -122,7 +122,7 @@ namespace Log
     /// Getting the logging level
     Level getLevel();
 
-    std::string getLogLevelName(const std::string &channel);
+    const std::string& getLogLevelName(const std::string& channel);
     void setLogLevelByName(const std::string &channel,
                            const std::string &level);
 
@@ -221,15 +221,22 @@ static constexpr std::size_t skipPathPrefix(const char (&s)[N], std::size_t n = 
     END(oss_);                                  \
     LOG_LOG(LVL, oss_.str())
 
-#define LOG_ANY(X)                              \
-    char b_[1024];                              \
-    std::ostringstream oss_(                    \
-        Log::prefix<sizeof(b_) - 1>(b_, "INF"), \
-        std::ostringstream::ate);               \
-    logPrefix(oss_);                            \
-    oss_ << std::boolalpha << X;                \
-    LOG_END(oss_);                              \
-    Log::log(Log::Level::INF, oss_.str());
+/// Unconditionally log. LVL can be anything converted to string.
+#define LOG_UNCONDITIONAL(LVL, X)                                                                  \
+    do                                                                                             \
+    {                                                                                              \
+        char b_[1024];                                                                             \
+        std::ostringstream oss_(Log::prefix<sizeof(b_) - 1>(b_, #LVL), std::ostringstream::ate);   \
+        logPrefix(oss_);                                                                           \
+        oss_ << std::boolalpha << X;                                                               \
+        LOG_END(oss_);                                                                             \
+        Log::log(Log::Level::FTL, oss_.str());                                                     \
+    } while (false)
+
+/// Unconditionally log at ANY level.
+#define LOG_ANY(X) LOG_UNCONDITIONAL(ANY, X)
+/// Unconditionally log at TST level. Used for tests only.
+#define LOG_TST(X) LOG_UNCONDITIONAL(TST, X)
 
 #if defined __GNUC__ || defined __clang__
 #  define LOG_CONDITIONAL(type, area)  \

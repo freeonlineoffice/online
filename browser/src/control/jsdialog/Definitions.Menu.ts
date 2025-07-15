@@ -120,6 +120,21 @@ menuDefinitions.set('MenuPrintRanges', [
 	},
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('MenuOrientation', [
+	{
+		id: 'portrait',
+		img: 'portrait',
+		text: _('Portrait'),
+		uno: '.uno:Orientation?isLandscape:bool=false',
+	},
+	{
+		id: 'landscape',
+		img: 'landscape',
+		text: _('Landscape'),
+		uno: '.uno:Orientation?isLandscape:bool=true',
+	},
+] as Array<MenuDefinition>);
+
 menuDefinitions.set('Print', [
 	{ text: _('Active sheet'), action: 'print-active-sheet' },
 	{ text: _('All Sheets'), action: 'print-all-sheets' },
@@ -296,12 +311,18 @@ menuDefinitions.set('PasteMenu', [
 	{
 		text: _UNO('.uno:Paste', 'text'),
 		action: '.uno:Paste',
-		hint: MenubarShortcuts.shortcuts.PASTE,
+		hint: JSDialog.ShortcutsUtil.getShortcut(
+			_UNO('.uno:Paste', 'text'),
+			'.uno:Paste',
+		),
 	},
 	{
 		text: _UNO('.uno:PasteSpecial', 'text'),
 		action: '.uno:PasteSpecial',
-		hint: MenubarShortcuts.shortcuts.PASTE_SPECIAL,
+		hint: JSDialog.ShortcutsUtil.getShortcut(
+			_UNO('.uno:PasteSpecial', 'text'),
+			'.uno:PasteSpecial',
+		),
 	},
 ] as Array<MenuDefinition>);
 
@@ -469,8 +490,23 @@ menuDefinitions.set('Presentation', [
 function generateLayoutPopupGrid(unoCommand: string): GridWidgetJSON {
 	// please see enum AutoLayout in autolayout.hxx. this is the actual WhatLayout sequence
 	// based on the visual position of the icons in the popup.
-	const buttonIndexToLayout = [
-		20, 0, 1, 3, 19, 32, 15, 12, 16, 14, 18, 34, 27, 28, 29, 30,
+	const layoutMap = [
+		{ layout: 20, text: _('Blank Slide') },
+		{ layout: 0, text: _('Title Slide') },
+		{ layout: 1, text: _('Title, Content') },
+		{ layout: 3, text: _('Title and 2 Content') },
+		{ layout: 19, text: _('Title Only') },
+		{ layout: 32, text: _('Centered Text') },
+		{ layout: 15, text: _('Title, 2 Content and Content') },
+		{ layout: 12, text: _('Title, Content and 2 Content') },
+		{ layout: 16, text: _('Title, 2 Content over Content') },
+		{ layout: 14, text: _('Title, Content over Content') },
+		{ layout: 18, text: _('Title, 4 Content') },
+		{ layout: 34, text: _('Title, 6 Content') },
+		{ layout: 27, text: _('Vertical Title, Text, Chart') },
+		{ layout: 28, text: _('Vertical Title, Vertical Text') },
+		{ layout: 29, text: _('Title, Vertical Text') },
+		{ layout: 30, text: _('Title, Vertical Text, Clipart') },
 	];
 
 	const grid = {
@@ -490,8 +526,8 @@ function generateLayoutPopupGrid(unoCommand: string): GridWidgetJSON {
 					'.uno:' +
 					unoCommand +
 					'?WhatLayout:long=' +
-					buttonIndexToLayout[j],
-				text: _('Layout %N').replace('%N', String(j)),
+					layoutMap[j].layout,
+				text: layoutMap[j].text,
 				noLabel: true,
 				left: j % 4,
 				top: (i / 4) % 4,

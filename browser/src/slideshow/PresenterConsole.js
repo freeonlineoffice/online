@@ -306,7 +306,7 @@ class PresenterConsole {
 			.getPropertyValue('--orange1-txt-primary-color');
 		this.PresenterConsoleBtnHoverColor = window
 			.getComputedStyle(document.documentElement)
-			.getPropertyValue('--color-main-text');
+			.getPropertyValue('--color-presenter-console-btn-hover');
 		this.PresenterConsoleBtnRadius = window
 			.getComputedStyle(document.documentElement)
 			.getPropertyValue('--border-radius');
@@ -1077,7 +1077,7 @@ class PresenterConsole {
 	toggleButtonState(elem, toggleOn) {
 		if (toggleOn) {
 			// Apply the 'selected' styles on show notes to display toggle effect on button
-			elem.style.filter = 'invert(1)';
+			elem.style.filter = 'brightness(1.4)';
 			elem.style.backgroundColor = 'black';
 			elem.disable = true;
 		} else {

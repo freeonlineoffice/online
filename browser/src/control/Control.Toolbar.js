@@ -1116,7 +1116,9 @@ function setupToolbar(e) {
 		$('#closebuttonwrapper').css('display', 'flex');
 		var button = L.DomUtil.get('closebutton');
 		if (button) {
-			button.setAttribute('data-looltip', _('Close document'));
+			const closeButtonText = _('Close document');
+			button.setAttribute('aria-label', closeButtonText);
+			button.setAttribute('data-looltip', closeButtonText);
 			L.control.attachTooltipEventListener(button, map);
 		}
 	} else if (!L.Params.closeButtonEnabled) {

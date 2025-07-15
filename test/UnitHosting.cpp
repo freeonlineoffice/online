@@ -41,7 +41,7 @@ public:
 
 UnitBase::TestResult UnitHosting::testDiscovery()
 {
-    LOG_TST("Getting /hosting/discovery the first time.");
+    TST_LOG("Getting /hosting/discovery the first time.");
     const std::shared_ptr<const http::Response> httpResponse
         = http::get(helpers::getTestServerURI(), "/hosting/discovery");
 
@@ -58,7 +58,7 @@ UnitBase::TestResult UnitHosting::testDiscovery()
     LOK_ASSERT_EQUAL(std::string("text/xml"), httpResponse->header().getContentType());
 
     // Repeat, with a trailing slash in the URL.
-    LOG_TST("Getting /hosting/discovery the second time.");
+    TST_LOG("Getting /hosting/discovery the second time.");
     const std::shared_ptr<const http::Response> httpResponse2
         = http::get(helpers::getTestServerURI(), "/hosting/discovery/");
 
@@ -74,7 +74,7 @@ UnitBase::TestResult UnitHosting::testDiscovery()
     LOK_ASSERT_EQUAL(std::string("OK"), httpResponse2->statusLine().reasonPhrase());
     LOK_ASSERT_EQUAL(std::string("text/xml"), httpResponse2->header().getContentType());
 
-    LOG_TST("Comparing /hosting/discovery from both requests.");
+    TST_LOG("Comparing /hosting/discovery from both requests.");
     LOK_ASSERT_EQUAL(httpResponse2->getBody(), httpResponse->getBody());
 
     return TestResult::Ok;

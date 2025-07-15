@@ -1152,8 +1152,11 @@ bool DocumentBroker::download(
             if (_uploadRequest)
             {
                 LOG_DBG("Document ["
-                        << _docKey
-                        << "] timestamp checked for a match during an up-load, results may race, "
+                        << _docKey << "] timestamp checked for a match during an up-load (started "
+                        << Util::getTimeForLog(std::chrono::steady_clock::now(),
+                                               _uploadRequest->startTime())
+                        << ", " << (_uploadRequest->isComplete() ? "" : "in")
+                        << "complete), results may race, "
                            "so ignoring inconsistent timestamp. Expected: "
                         << _storageManager.getLastModifiedServerTimeString()
                         << ", Actual: " << fileInfo.getLastModifiedServerTimeString());
@@ -2740,7 +2743,12 @@ void DocumentBroker::uploadToStorageInternal(const std::shared_ptr<ClientSession
     StorageBase::AsyncUploadCallback asyncUploadCallback =
         [this](const StorageBase::AsyncUpload& asyncUp)
     {
-        assert(_uploadRequest && "Expected to have a valid UploadRequest instance");
+        // asyncUploadCallback called twice, 2nd time with onHandshakeFail/callOnConnectFail
+        if (!_uploadRequest)
+        {
+            LOG_WRN("Expected to have a valid UploadRequest instance");
+            return;
+        }
 
         switch (asyncUp.state())
         {
@@ -4213,7 +4221,7 @@ void DocumentBroker::uploadPresetsToWopiHost()
                                                 << uriObject.toString() << ']');
 
         httpRequest.setBodyFile(fileJailPath);
-        httpRequest.header().set("Content-Type", "application/octet-stream");
+        httpRequest.set("Content-Type", "application/octet-stream");
 
         auto httpSession = StorageConnectionManager::getHttpSession(uriObject);
         auto httpResponse = httpSession->syncRequest(httpRequest);
@@ -4889,9 +4897,7 @@ void DocumentBroker::setInitialSetting(const std::string& name)
 
 bool DocumentBroker::forwardUrpToChild(const std::string& message)
 {
-    if (!_childProcess)
-        return false;
-    return _childProcess->sendUrpMessage(message);
+    return _childProcess && _childProcess->sendUrpMessage(message);
 }
 
 std::string DocumentBroker::applyViewAccessibility(const std::string& message,
@@ -4910,6 +4916,7 @@ std::string DocumentBroker::applyViewAccessibility(const std::string& message,
     // if it exists, append otherwise.
     bool accessibilityOverridden = false;
     std::string result;
+    result.reserve(message.size());
     const StringVector tokens = StringVector::tokenize(message);
     for (size_t i = 0; i < tokens.size(); ++i)
     {

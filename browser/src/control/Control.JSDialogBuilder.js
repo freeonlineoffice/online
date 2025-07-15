@@ -1007,7 +1007,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					$(tab).addClass('selected');
 					tab.setAttribute('aria-selected', 'true');
 					tab.tabIndex = '0';
-					tab.setAttribute('data-cooltip', tabTooltip);
+					tab.setAttribute('data-looltip', tabTooltip);
 					singleTabId = tabIdx;
 				} else {
 					tab.setAttribute('aria-selected', 'false');
@@ -2144,7 +2144,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 			controls['button'] = button;
 			var span;
-			if (data.noLabel)
+			// NOTE: menubutton handles the noLabel case differently from other types
+			// like toolitem, please see function `_menubuttonControl`
+			if (data.noLabel && data.type != 'menubutton')
 				$(div).addClass('no-label');
 			else if (builder.options.noLabelsForUnoButtons !== true && data.text) {
 				span = L.DomUtil.create('span', 'ui-content unolabel', button);
@@ -2174,7 +2176,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				}
 			}
 
-			const tooltip = builder._cleanText(data.tooltip) || builder._cleanText(data.text);
+			let tooltip = builder._cleanText(data.tooltip) || builder._cleanText(data.text);
+			if (data.command) // Add shortcut to tooltip based on command
+				tooltip = JSDialog.ShortcutsUtil.getShortcut(tooltip, data.command);
 			div.setAttribute('data-looltip', tooltip);
 
 			var isDisabled = data.enabled === false;
@@ -2276,7 +2280,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 				});
 
 				div.closeDropdown = function() {
-					arrowbackground.setAttribute('aria-expanded', false);
 					builder.callback('toolbox', 'closemenu', parentContainer, data.command, builder);
 				};
 			}
@@ -2298,9 +2301,15 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			}
 		}
 
+		div._onDropDown = function(open) {
+			// Only set aria-expanded on the button if the arrow is not interactive
+			if (!isArrowInteractive)
+				button.setAttribute('aria-expanded', open);
+			arrowbackground.setAttribute('aria-expanded', open);
+		};
+
 		var openToolBoxMenu = function(event) {
 			if (!div.hasAttribute('disabled')) {
-				arrowbackground.setAttribute('aria-expanded', true);
 				builder.callback('toolbox', 'openmenu', parentContainer, data.command, builder);
 				event.stopPropagation();
 			}
@@ -2315,9 +2324,6 @@ L.Control.JSDialogBuilder = L.Control.extend({
 					builder.callback('toolbutton', 'click', button, data.command, builder);
 				else {
 					builder.callback('toolbox', 'click', parentContainer, data.command, builder);
-					// Only set aria-expanded on the button if the arrow is not interactive
-					if (!isArrowInteractive)
-						button.setAttribute('aria-expanded', true);
 				}
 			}
 			e.preventDefault();
@@ -2325,6 +2331,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		};
 
 		const hasLabel = !!controls.label;
+		const hasShortcut = !hasLabel || (JSDialog.ShortcutsUtil.hasShortcut(data.command));
 		var mouseEnterFunction = window.touch.mouseOnly(function () {
 			if (builder.map.tooltip)
 				builder.map.tooltip.beginShow(div);
@@ -2341,11 +2348,11 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		if (data.isCustomTooltip) {
 			this._handleCutomTooltip(div, builder);
 		}
-		else if (!hasLabel) {
+		else if (hasShortcut) {
 			$(div).on('mouseenter', mouseEnterFunction);
 			$(div).on('mouseleave', mouseLeaveFunction);
 		} else {
-			div.removeAttribute('data-looltip'); // If there is a label, we don't need the tooltip
+			div.removeAttribute('data-looltip'); // We don't need a tooltip for this button
 		}
 
 		div.addEventListener('keydown', function(e) {
@@ -2666,7 +2673,10 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 		switch (data.action_type) {
 		case 'grab_focus':
-			control.focus();
+			if (typeof control.onFocus === 'function')
+				control.onFocus();
+			else
+				control.focus();
 			break;
 		case 'select':
 			if (typeof control.onSelect === 'function')
@@ -3065,18 +3075,6 @@ L.Control.JSDialogBuilder.getMenuStructureForMobileWizard = function(menu, mainM
 	}
 
 	return menuStructure;
-};
-
-JSDialog._scrollIntoViewBlockOption = function(option) {
-	if (option === 'nearest' || option === 'center') {
-		// compatibility with older firefox
-		var match = window.navigator.userAgent.match(/Firefox\/([0-9]+)\./);
-		var firefoxVer = match ? parseInt(match[1]) : 58;
-		var blockOption = firefoxVer >= 58 ? option : 'start';
-		return blockOption;
-	}
-
-	return option;
 };
 
 L.control.jsDialogBuilder = function (options) {

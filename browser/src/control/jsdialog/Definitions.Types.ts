@@ -25,6 +25,7 @@ interface WidgetJSON {
 	left?: string; // placement in the grid - column
 	width?: string; // inside grid - width in number of columns
 	labelledBy?: string;
+	allyRole?: string;
 }
 
 interface JSBuilderOptions {
@@ -33,6 +34,7 @@ interface JSBuilderOptions {
 	map: any; // reference to map
 	mobileWizard: any; // reference to the parent container	FIXME: rename
 	useSetTabs: boolean; // custom tabs placement handled by the parent container
+	useScrollAnimation: boolean; // do we use animation for scrollIntoView
 
 	// modifiers
 	noLabelsForUnoButtons: boolean; // create only icon without label
@@ -174,6 +176,7 @@ interface TreeColumnJSON {
 	expanded?: string | boolean;
 	collapsedimage?: string;
 	expandedimage?: string;
+	editable?: boolean;
 }
 
 interface TreeEntryJSON {
