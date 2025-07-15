@@ -10,7 +10,6 @@
  */
 
 #include <config.h>
-#include <config_version.h>
 
 #include "RegexUtil.hpp"
 
