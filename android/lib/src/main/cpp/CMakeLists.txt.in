@@ -32,6 +32,7 @@ add_library(androidapp SHARED
             ../../../../../kit/KitQueue.cpp
             ../../../../../kit/KitWebSocket.cpp
             ../../../../../net/FakeSocket.cpp
+            ../../../../../net/HttpRequest.cpp
             ../../../../../net/Socket.cpp
             ../../../../../wsd/ClientSession.cpp
             ../../../../../wsd/DocumentBroker.cpp
