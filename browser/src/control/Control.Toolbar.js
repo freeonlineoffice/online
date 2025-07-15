@@ -230,6 +230,8 @@ function getConditionalDataBarMenuElements(more, jsdialogDropdown) {
 global.getConditionalDataBarMenuElements = getConditionalDataBarMenuElements;
 
 var sendInsertTableFunction = function(event) {
+	if (event.target.tagName !== 'BUTTON')
+		return;
 	var col = $(event.target).index() + 1;
 	var row = $(event.target).parent().index() + 1;
 	$('.col').removeClass('bright');
@@ -246,6 +248,8 @@ var sendInsertTableFunction = function(event) {
 };
 
 var highlightTableFunction = function(event) {
+	if (event.target.tagName !== 'BUTTON')
+		return;
 	var col = $(event.target).index() + 1;
 	var row = $(event.target).parent().index() + 1;
 	$('.col').removeClass('bright');
