@@ -118,7 +118,7 @@ shared_sources = common/FileUtil.cpp \
                  common/Seccomp.cpp \
                  common/MobileApp.cpp \
                  common/RegexUtil.cpp \
-                 common/SigUtil.cpp \
+                 common/SigUtil-server.cpp \
                  common/SpookyV2.cpp \
                  common/TraceEvent.cpp \
                  common/Unit.cpp \
