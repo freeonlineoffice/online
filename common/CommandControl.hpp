@@ -21,6 +21,13 @@
 
 namespace CommandControl
 {
+class LockManager
+{
+    static std::unordered_set<std::string> LockedCommandList;
+    static bool _isLockedUser;
+    static bool _isHostReadOnly;
+    static std::string LockedCommandListString;
+    static std::string translationPath;
 
     static void generateLockedCommandList();
 
