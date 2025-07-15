@@ -1744,7 +1744,7 @@ class TileManager {
 		let needsNewTiles = false;
 		const calc = app.map._docLayer.isCalc();
 
-		this.tiles.forEach((tile, key) => {
+		for (const [key, tile] of Array.from(this.tiles.entries())) {
 			const coords: TileCoordData = tile.coords;
 			const tileRectangle = this.pixelCoordsToTwipTileBounds(coords);
 
@@ -1758,7 +1758,7 @@ class TileManager {
 
 				this.invalidateTile(key, wireId);
 			}
-		});
+		}
 
 		if (
 			app.map._docLayer._debug.tileInvalidationsOn &&
