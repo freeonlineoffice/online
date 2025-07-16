@@ -85,8 +85,17 @@ online_LDFLAGS = \
 online_LDFLAGS += $(if $(filter -g,$(CXXFLAGS)),-Wno-limited-postlink-optimizations)
 
 if ENABLE_DEBUG
+
 online_LDFLAGS += \
-	-gseparate-dwarf
+	-gseparate-dwarf -gsplit-dwarf -gpubnames
+
+%.wasm.dwp: %.wasm
+	emdwp -e $< -o $@
+
+online.wasm.debug.wasm: | online$(EXEEXT)
+
+all-local: online.wasm.debug.wasm.dwp
+
 endif
 
 if ENABLE_WASM_ADDITIONAL_FILES
@@ -100,3 +109,7 @@ exports: @LOBUILDDIR@/workdir/CustomTarget/desktop/soffice_bin-emscripten-export
 
 soffice.dat%: @LOBUILDDIR@/instdir/program/soffice.dat%
 	cp $< $@
+
+clean-local:
+	rm -f \
+		online.wasm.debug.wasm.dwp
