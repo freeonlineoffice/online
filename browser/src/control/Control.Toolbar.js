@@ -12,7 +12,7 @@
  * Free Online Office toolbar
  */
 
-/* global app $ _ _UNO JSDialog */
+/* global app $ _ _UNO JSDialog URLPopUpSection */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
 (function(global) {
@@ -1107,7 +1107,7 @@ function setupToolbar(e) {
 				if (strTwips.length > 7) {
 					linkPosition = new app.definitions.simplePoint(parseInt(strTwips[6]), parseInt(strTwips[7]));
 				}
-				app.definitions.urlPopUpSection.showURLPopUP(e.url, new app.definitions.simplePoint(parseInt(strTwips[6]), parseInt(strTwips[1])), linkPosition);
+				URLPopUpSection.showURLPopUP(e.url, new app.definitions.simplePoint(parseInt(strTwips[6]), parseInt(strTwips[1])), linkPosition);
 			} else {
 				map.fire('warn', {url: e.url, map: map, cmd: 'openlink'});
 			}

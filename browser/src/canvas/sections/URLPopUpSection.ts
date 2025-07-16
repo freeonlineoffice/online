@@ -15,7 +15,7 @@ class URLPopUpSection extends HTMLObjectSection {
 	static horizontalPadding = 6;
 	static popupVerticalMargin = 20;
 
-	constructor(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint, linkIsClientSide?: boolean) {
+	constructor(url: string, documentPosition: lool.SimplePoint, linkPosition?: lool.SimplePoint, linkIsClientSide = false) {
         super(URLPopUpSection.sectionName, null, null, documentPosition, URLPopUpSection.cssClass);
 
 		const objectDiv = this.getHTMLObject();
@@ -23,9 +23,10 @@ class URLPopUpSection extends HTMLObjectSection {
 		document.getElementById('document-container').appendChild(objectDiv);
 
 		this.sectionProperties.url = url;
+		this.sectionProperties.linkIsClientSide = linkIsClientSide;
 
 		this.createUIElements(url);
-		this.setUpCallbacks(linkPosition, linkIsClientSide);
+		this.setUpCallbacks(linkPosition);
 
 		document.getElementById('hyperlink-pop-up').title = url;
 
@@ -47,7 +48,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		return this.getHTMLObject().getBoundingClientRect();
 	}
 
-	createUIElements(url: string, linkIsClientSide?: boolean) {
+	createUIElements(url: string) {
 		const parent = this.getHTMLObject();
 		L.DomUtil.createWithId('div', this.containerId, parent);
 
@@ -101,7 +102,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		parent.appendChild(this.arrowDiv);
 	}
 
-	setUpCallbacks(linkPosition?: lool.SimplePoint, linkIsClientSide?: boolean) {
+	setUpCallbacks(linkPosition?: lool.SimplePoint) {
 		document.getElementById(this.linkId).onclick = () => {
 			if (!this.sectionProperties.url.startsWith('#'))
 				app.map.fire('warn', {url: this.sectionProperties.url, map: app.map, cmd: 'openlink'});
@@ -124,7 +125,7 @@ class URLPopUpSection extends HTMLObjectSection {
 		}
 
 		document.getElementById(this.copyButtonId).onclick = () => {
-			if (linkIsClientSide) {
+			if (this.sectionProperties.linkIsClientSide) {
 				app.map._clip.setTextSelectionText(this.sectionProperties.url);
 				app.map._clip._execCopyCutPaste('copy');
 			}
@@ -136,12 +137,12 @@ class URLPopUpSection extends HTMLObjectSection {
 		};
 
 		document.getElementById(this.editButtonId).onclick = () => {
-			if (!linkIsClientSide) // For now link in client side works only on readonly mode
+			if (!this.sectionProperties.linkIsClientSide) // For now link in client side works only on readonly mode
 				app.map.sendUnoCommand('.uno:EditHyperlink', params);
 		};
 
 		document.getElementById(this.removeButtonId).onclick = () => {
-			if (!linkIsClientSide) // For now link in client side works only on readonly mode
+			if (!this.sectionProperties.linkIsClientSide) // For now link in client side works only on readonly mode
 				app.map.sendUnoCommand('.uno:RemoveHyperlink', params);
 			URLPopUpSection.closeURLPopUp();
 		};
@@ -206,5 +207,3 @@ class URLPopUpSection extends HTMLObjectSection {
 		return app.sectionContainer.doesSectionExist(URLPopUpSection.sectionName);
     }
 }
-
-app.definitions.urlPopUpSection = URLPopUpSection;
