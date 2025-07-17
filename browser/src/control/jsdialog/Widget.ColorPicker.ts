@@ -138,7 +138,11 @@ function createColor(
 	else if (window.app.colorNames) colorTooltip = findColorName(colorItem);
 	else colorTooltip = _('Unknown color');
 
-	color.setAttribute('data-looltip', colorTooltip);
+	if (window.enableAccessibility) {
+		color.setAttribute('aria-label', colorTooltip);
+	} else {
+		color.setAttribute('data-looltip', colorTooltip);
+	}
 
 	// Assuming 'color' is your target HTMLElement
 	color.addEventListener('click', (event: MouseEvent) => {
