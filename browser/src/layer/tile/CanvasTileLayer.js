@@ -2763,11 +2763,16 @@ L.CanvasTileLayer = L.Layer.extend({
 					100,
 				);
 			}
+
+			if (this._map.contextToolbar)
+				this._map.contextToolbar.showContextToolbar();
 		}
 		else {
 			TextSelections.deactivate();
 			this._textCSelections.clear();
 			this._selectedTextContent = '';
+			if (this._map.contextToolbar)
+				this._map.contextToolbar.hideContextToolbar();
 			if (this._map._clip && this._map._clip._selectionType === 'complex')
 				this._map._clip.clearSelection();
 		}
@@ -3291,6 +3296,9 @@ L.CanvasTileLayer = L.Layer.extend({
 			y -= verticalOffset;
 		}
 
+		if (this._map.contextToolbar)
+			this._map.contextToolbar.setLastInputEventType({input: "mouse", type: type});
+
 		app.socket.sendMessage('mouse type=' + type +
 				' x=' + x + ' y=' + y + ' count=' + count +
 				' buttons=' + buttons + ' modifier=' + modifier);
@@ -3380,6 +3388,8 @@ L.CanvasTileLayer = L.Layer.extend({
 			{ type: type, charCode: charCode },
 		);
 
+		if (this._map.contextToolbar)
+			this._map.contextToolbar.setLastInputEventType({input: "key", type: type});
 		var winId = this._map.getWinId();
 		if (this.isCalc() && type === 'input' && winId === 0) {
 			if (unoKeyCode === UNOKey.SPACE + UNOModifier.CTRL) {
@@ -4981,11 +4991,9 @@ L.CanvasTileLayer = L.Layer.extend({
 			}
 			// Visible area is dirty, update it on the server
 			app.socket.sendMessage(newClientVisibleArea);
-			if (
-				!this._map._fatal &&
-				app.idleHandler._active &&
-				app.socket.connected()
-			)
+			if (this._map.contextToolbar)
+				this._map.contextToolbar.hideContextToolbar(); // hide context toolbar when scroll/window resize etc...
+			if (!this._map._fatal && app.idleHandler._active && app.socket.connected())
 				this._clientVisibleArea = newClientVisibleArea;
 		}
 	},

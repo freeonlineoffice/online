@@ -37,7 +37,7 @@
 }
 
 .margin-item:hover {
-	background-color: var(--color-background-dark); 
+	background-color: var(--color-background-dark);
 }
 
 .margin-icon {
@@ -623,7 +623,8 @@ leaflet-control-search-cancel {
 	min-width: 55px !important;
 }
 #fontsizecombobox-input-notebookbar,
-#fontsizecombobox-input-sidebar {
+#fontsizecombobox-input-sidebar,
+#fontsizecombobox-input-context-toolbar {
 	width: 55px !important;
 }
 .evo-cp-wrap {
