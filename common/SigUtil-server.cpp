@@ -120,6 +120,10 @@ void requestShutdown()
         SocketPoll::wakeupWorld();
 }
 
+void resetTerminationFlags()
+{
+}
+
     void checkDumpGlobalState(GlobalDumpStateFn dumpState)
     {
         assert(dumpState && "Invalid callback for checkDumpGlobalState");
