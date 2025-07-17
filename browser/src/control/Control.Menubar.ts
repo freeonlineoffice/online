@@ -143,7 +143,9 @@ class Menubar extends L.Control {
 					{uno: '.uno:ReinstateTrackedChange'},
 					{uno: '.uno:PreviousTrackedChange'},
 					{uno: '.uno:NextTrackedChange'}
-				]}
+				]},
+				{type: 'separator'},
+				{name: _UNO('.uno:GotoPage', 'text'), uno: '.uno:GotoPage'}
 			]},
 			{name: _UNO('.uno:ViewMenu', 'text'), id: 'view', type: 'menu',
 			 menu: (window.mode.isTablet() ? [
@@ -563,6 +565,8 @@ class Menubar extends L.Control {
 				{name: _UNO('.uno:DeleteSlide', 'presentation'), id: 'deletepage', type: 'action'},
 				{name: _UNO('.uno:ShowSlide', 'presentation'), id: 'showslide', type: 'action'},
 				{name: _UNO('.uno:HideSlide', 'presentation'), id: 'hideslide', type: 'action'},
+				{type: 'separator'},
+				{name: _UNO('.uno:GotoSlide', 'presentation'), uno: '.uno:GotoPage'},
 				{type: 'separator', id: 'fullscreen-presentation-separator'},
 				{name: _('Fullscreen presentation'), id: 'fullscreen-presentation', type: 'action'},
 				{name: _('Present current slide'), id: 'presentation-currentslide', type: 'action'},
@@ -707,7 +711,8 @@ class Menubar extends L.Control {
 			{name: _UNO('.uno:PageMenu', 'presentation'), type: 'menu', menu: [
 				{name: _UNO('.uno:InsertPage', 'presentation'), id: 'insertpage', type: 'action'},
 				{name: _UNO('.uno:DuplicatePage', 'presentation'), id: 'duplicatepage', type: 'action'},
-				{name: _UNO('.uno:DeletePage', 'presentation'), id: 'deletepage', type: 'action'}]
+				{name: _UNO('.uno:DeletePage', 'presentation'), id: 'deletepage', type: 'action'},
+				{name: _UNO('.uno:GotoPage', 'presentation'), uno: '.uno:GotoPage'}]
 			},
 			{name: _UNO('.uno:ToolsMenu', 'presentation'), id: 'tools', type: 'menu', menu: [
 				{uno: '.uno:SpellDialog'},
@@ -942,6 +947,8 @@ class Menubar extends L.Control {
 				{uno: '.uno:DeleteRows'},
 				{uno: '.uno:DeleteColumns'},
 				{uno: '.uno:SheetRightToLeft'},
+				{type: 'separator'},
+				{name:  _UNO('.uno:JumpToTable', 'spreadsheet'), uno: '.uno:JumpToTable'}
 			]},
 			{name: _UNO('.uno:DataMenu', 'spreadsheet'), id: 'data', type: 'menu', menu: [
 				{uno: '.uno:DataSort'},
