@@ -2334,7 +2334,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		};
 
 		const hasLabel = !!controls.label;
-		const hasShortcut = !hasLabel || (JSDialog.ShortcutsUtil.hasShortcut(data.command));
+		const hasShortcut = JSDialog.ShortcutsUtil.hasShortcut(data.command);
 		var mouseEnterFunction = window.touch.mouseOnly(function () {
 			if (builder.map.tooltip)
 				builder.map.tooltip.beginShow(div);
@@ -2351,7 +2351,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 		if (data.isCustomTooltip) {
 			this._handleCutomTooltip(div, builder);
 		}
-		else if (hasShortcut) {
+		else if (!hasLabel || hasShortcut) {
 			$(div).on('mouseenter', mouseEnterFunction);
 			$(div).on('mouseleave', mouseLeaveFunction);
 		} else {
