@@ -333,6 +333,7 @@ class LOUtil {
 			shadowpropertypanel: 'shadowed',
 			incrementlevel: 'outlineleft',
 			menurowheight: 'rowheight',
+			menumargins: 'pagemargin',
 			menuorientation: 'orientation',
 			menupagesizes: 'pagesize',
 			setoptimalrowheight: 'rowheight',
