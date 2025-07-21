@@ -1467,6 +1467,7 @@ function getInitializerClass() {
 
 			delete this.send;
 			delete this._setPollInterval;
+			delete this.close;
 			// HACK: We need this to complete the override because ProxySocket messed up the protoype chain... evenually I want to convert it to a Real Class which will fix it
 		}
 
@@ -1474,6 +1475,7 @@ function getInitializerClass() {
 			global.postMobileMessage(data);
 		}
 
+		close() {} // We don't support re-opening the mobile socket, so let's make sure we don't close it...
 		_setPollInterval() {} // This is a no-op on mobile since as we will be calling from the native part to notify when we get a message
 	}
 
