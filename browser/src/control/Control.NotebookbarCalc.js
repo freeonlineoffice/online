@@ -2631,6 +2631,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'id': 'picture-brightness:PictureBrightness',
 						'type': 'menubutton',
 						'command': '.uno:GrafLuminance',
+						'text': _UNO('.uno:GrafLuminance'),
 						'icon': 'lc_setbrightness.svg',
 						'accessibility': { focusBack: true, combination: 'BN', de: null }
 					},
@@ -2638,6 +2639,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'id': 'picture-contrast:PictureContrast',
 						'type': 'menubutton',
 						'command': '.uno:GrafContrast',
+						'text': _UNO('.uno:GrafContrast'),
 						'icon': 'lc_setcontrast.svg',
 						'accessibility': { focusBack: true, combination: 'CN', de: null }
 					},
@@ -2645,6 +2647,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'id': 'picture-colormode:PictureColorMode',
 						'type': 'menubutton',
 						'command': '.uno:GrafMode',
+						'text': _UNO('.uno:GrafMode'),
 						'icon': 'lc_setgraphtransparency.svg',
 						'accessibility': { focusBack: true, combination: 'CO', de: null }
 					},
@@ -2652,6 +2655,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'id': 'picture-transparency:PictureTransparency',
 						'type': 'menubutton',
 						'command': '.uno:GrafTransparence',
+						'text': _UNO('.uno:GrafTransparence'),
 						'icon': 'lc_setgraphtransparency.svg',
 						'accessibility': { focusBack: true, combination: 'TP', de: null }
 					},
