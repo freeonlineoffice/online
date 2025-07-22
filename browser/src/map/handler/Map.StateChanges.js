@@ -3,7 +3,7 @@
  * L.Map.StateChanges stores the state changes commands coming from core
  * LOK_CALLBACK_STATE_CHANGED callback
  */
-/* global $ app cool */
+/* global $ app lool */
 /*eslint no-extend-native:0*/
 L.Map.mergeOptions({
 	stateChangeHandler: true
@@ -77,7 +77,7 @@ L.Map.StateChangeHandler = L.Handler.extend({
 				const end2 = link.rectangle.indexOf('@');
 				const end3 = link.rectangle.indexOf(',');
 				const new_link = {
-					rectangle: new cool.SimpleRectangle(
+					rectangle: new lool.SimpleRectangle(
 						parseFloat(link.rectangle.substring(end2 + 2, end3)),
 						parseFloat(link.rectangle.substring(end3 + 1)),
 						parseFloat(link.rectangle.substring(0, end1)),

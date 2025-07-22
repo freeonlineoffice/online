@@ -354,8 +354,8 @@ AC_ARG_WITH([compiler-plugins],
                 [Experimental! Unlikely to work for anyone except Noel! Enable compiler plugins that will perform additional checks during
                  building.]))
 
-AC_ARG_ENABLE(coplugin,
-    AS_HELP_STRING([--enable-coplugin],
+AC_ARG_ENABLE(loplugin,
+    AS_HELP_STRING([--enable-loplugin],
         [Enables building of a clang plugin that performs LOOL-specific checks.])
 )
 
@@ -1532,9 +1532,9 @@ AS_IF([test -n "$with_compiler_plugins"],
 
 # Clang plugin.
 AC_MSG_CHECKING([whether to build a clang plugin])
-if test "$enable_coplugin" = "yes"; then
+if test "$enable_loplugin" = "yes"; then
     AC_MSG_RESULT([yes])
-    CPPFLAGS="$CPPFLAGS -Xclang -load -Xclang \${abs_top_srcdir}/clang/plugin.so -Xclang -add-plugin -Xclang coplugin"
+    CPPFLAGS="$CPPFLAGS -Xclang -load -Xclang \${abs_top_srcdir}/clang/plugin.so -Xclang -add-plugin -Xclang loplugin"
 else
     AC_MSG_RESULT([no])
 fi

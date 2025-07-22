@@ -26,7 +26,7 @@ clang::DiagnosticBuilder report(clang::ASTContext* context, const std::string& s
     clang::DiagnosticIDs::Level level = clang::DiagnosticIDs::Level::Warning;
     if (engine.getWarningsAsErrors())
         level = clang::DiagnosticIDs::Level::Error;
-    std::string formatString = string + " [coplugin:" + category + "]";
+    std::string formatString = string + " [loplugin:" + category + "]";
     return engine.Report(location, engine.getDiagnosticIDs()->getCustomDiagID(level, formatString));
 }
 
@@ -229,7 +229,7 @@ private:
 };
 
 /// Connects CheckRegistry to an already existing compiler instance.
-class COPluginAction : public PluginASTAction
+class LOPluginAction : public PluginASTAction
 {
 public:
     std::unique_ptr<ASTConsumer> CreateASTConsumer(CompilerInstance& ci, llvm::StringRef) override
@@ -248,6 +248,6 @@ public:
 
 } // namespace
 
-static FrontendPluginRegistry::Add<COPluginAction> X("coplugin", "COOL plugin");
+static FrontendPluginRegistry::Add<LOPluginAction> X("loplugin", "LOOL plugin");
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

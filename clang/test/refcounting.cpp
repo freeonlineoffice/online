@@ -14,7 +14,7 @@ class D : public SocketPoll
 
 int main() {
     {
-        // expected-error@+1 {{instance allocated on the stack, create it with std::shared_ptr [coplugin:refcounting]}}
+        // expected-error@+1 {{instance allocated on the stack, create it with std::shared_ptr [loplugin:refcounting]}}
         CheckFileInfo checkFileInfo;
     }
 
@@ -24,7 +24,7 @@ int main() {
     }
 
     {
-        // expected-error@+1 {{instance allocated on the stack, create it with std::shared_ptr [coplugin:refcounting]}}
+        // expected-error@+1 {{instance allocated on the stack, create it with std::shared_ptr [loplugin:refcounting]}}
         D d;
     }
 

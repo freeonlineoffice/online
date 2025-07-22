@@ -4,7 +4,7 @@ class C
 {
   public:
     std::function<void()> f;
-    // expected-error@+1 {{function parameter captured by reference, capture by value instead [coplugin:capture]}}
+    // expected-error@+1 {{function parameter captured by reference, capture by value instead [loplugin:capture]}}
     C(unsigned id) : f([&]() { (void)id; }) {}
 };
 
@@ -19,7 +19,7 @@ class D
 void f1()
 {
     auto l1 = [](unsigned id) {
-        // expected-error@+1 {{function parameter captured by reference, capture by value instead [coplugin:capture]}}
+        // expected-error@+1 {{function parameter captured by reference, capture by value instead [loplugin:capture]}}
         auto l2 = [&id]() {};
     };
 }

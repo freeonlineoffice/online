@@ -274,7 +274,7 @@ contenttree
 contentypes
 coord
 coords
-coplugin
+loplugin
 cordova
 cout
 coverity

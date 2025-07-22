@@ -2,7 +2,7 @@
 
 ## Building
 
-For configure: use the `--enable-coplugin` option.
+For configure: use the `--enable-loplugin` option.
 
 To build, first build the clang plugin using:
 
