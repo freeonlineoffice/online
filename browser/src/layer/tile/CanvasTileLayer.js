@@ -3650,11 +3650,11 @@ L.CanvasTileLayer = L.Layer.extend({
 	// enable or disable blinking cursor and the cursor overlay depending on
 	// the state of the document (if the flags are set)
 	_updateCursorAndOverlay: function (/*update*/) {
-		if (
-			app.file.textCursor.visible && // only when LOK has told us it is ok
-			this._map.editorHasFocus() && // not when document is not focused
-			!this._map.isSearching() && // not when searching within the doc
-			!this._isZooming // not when zooming
+		if (app.file.textCursor.visible   // only when LOK has told us it is ok
+			&& this._map.editorHasFocus()   // not when document is not focused
+			&& !this._map.isSearching()  	// not when searching within the doc
+			&& !this._isZooming             // not when zooming
+			&& this._map._permission !== 'readonly' // not when we don't have permission to edit
 		) {
 			this._updateCursorPos();
 
