@@ -58,6 +58,14 @@ AC_DEFINE_UNQUOTED([LOOLWSD_VERSION_HASH],[["$LOOLWSD_VERSION_HASH"]],[LibreOffi
 
 AC_CONFIG_SRCDIR([wsd/LOOLWSD.cpp])
 
+AC_DEFINE_UNQUOTED([COOLWSD_BUILDCONFIG],[["$ac_configure_args"]],[Options passed to configure script])
+
+# this is a dummy header, autoheader adds all entries to it
+# don't include config_unused.h anywhere!
+AC_CONFIG_HEADERS([config_unused.h])
+
+# maintain config.h.in and config_version.h.in manually
+# config.h.in is for configurable variables that are stable if configure parameters are unchanged
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -521,10 +529,14 @@ if test -z "$anonym_msg";  then
   anonym_msg="anonymization of user-data is disabled"
 fi
 
+# Disable (0) or Enable (2) exotic file formats
+ENABLE_EXOTIC_FILE_FORMATS="0"
+
 if test "$enable_experimental" = "yes" ; then
   ENABLE_EXPERIMENTAL=true
   experimental_msg="enabled by default"
   SSL_VERIFY="false"
+  ENABLE_EXOTIC_FILE_FORMATS="2"
 fi
 AC_SUBST(ENABLE_EXPERIMENTAL)
 
@@ -532,6 +544,14 @@ AC_MSG_CHECKING([if ssl verification is enabled by default])
 AC_MSG_RESULT([$SSL_VERIFY])
 AC_DEFINE_UNQUOTED([SSL_VERIFY],["$SSL_VERIFY"],[Default SSL Verification mode])
 AC_SUBST(SSL_VERIFY)
+
+AC_MSG_CHECKING([if exotic file formats are enabled by default])
+if test "$ENABLE_EXOTIC_FILE_FORMATS" = "0"; then
+  AC_MSG_RESULT([no])
+else
+  AC_MSG_RESULT([yes])
+fi
+AC_SUBST(ENABLE_EXOTIC_FILE_FORMATS)
 
 AC_SUBST(SERVER_SIGNATURE)
 
@@ -1218,6 +1238,7 @@ AC_MSG_CHECKING([whether to run tests against a LibreOffice])
 version_file="$with_lo_path/program/versionrc"
 if test -f $version_file; then
     JAILS_PATH="\${abs_top_builddir}/jails"
+    CACHE_PATH="\${abs_top_builddir}/cache"
     SYSTEMPLATE_PATH="\${abs_top_builddir}/systemplate"
     have_lo_path=true
     lo_msg="test against $LO_PATH"
@@ -1230,6 +1251,7 @@ fi
 AC_SUBST(LO_PATH)
 AC_DEFINE_UNQUOTED([LO_PATH],["$LO_PATH"],[Path to LibreOffice installation])
 AC_SUBST(JAILS_PATH)
+AC_SUBST(CACHE_PATH)
 AC_SUBST(SYSTEMPLATE_PATH)
 AM_CONDITIONAL(HAVE_LO_PATH,[test "$have_lo_path" = "true"])
 
