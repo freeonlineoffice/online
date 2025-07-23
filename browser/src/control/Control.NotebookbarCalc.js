@@ -2586,6 +2586,36 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 	getPictureTab: function() {
 		var content = [
 			{
+				'type': 'container',
+				'children': [
+					{
+						'type': 'toolbox',
+						'children': [
+							{
+								'id': 'picture-xline-color:ColorPickerMenu',
+								'type': 'menubutton',
+								'text': _UNO('.uno:XLineColor'),
+								'command': '.uno:XLineColor',
+								'accessibility': { focusBack: true,	combination: 'DX', de: null }
+							}
+						]
+					},
+					{
+						'type': 'toolbox',
+						'children': [
+							{
+								'id': 'picture-fill-color:ColorPickerMenu',
+								'type': 'menubutton',
+								'text': _UNO('.uno:FillColor'),
+								'command': '.uno:FillColor',
+								'accessibility': { focusBack: true,	combination: 'FC', de: null }
+							}
+						]
+					}
+				],
+			},
+			{ type: 'separator', id: 'picture-fillcolor-break', orientation: 'vertical' },
+			{
 				'id': 'picture-transform-dialog',
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:TransformDialog', 'text'),
@@ -2662,39 +2692,6 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				]
 			},
 			{ type: 'separator', id: 'picture-transparency-break', orientation: 'vertical' },
-			{
-				'type': 'container',
-				'children': [
-					{
-						'type': 'toolbox',
-						'children': [
-							{
-								'id': 'picture-xline-color:ColorPickerMenu',
-								'noLabel': true,
-								'type': 'toolitem',
-								'text': _UNO('.uno:XLineColor'),
-								'command': '.uno:XLineColor',
-								'accessibility': { focusBack: true,	combination: 'DX', de: null }
-							}
-						]
-					},
-					{
-						'type': 'toolbox',
-						'children': [
-							{
-								'id': 'picture-fill-color:ColorPickerMenu',
-								'noLabel': true,
-								'type': 'toolitem',
-								'text': _UNO('.uno:FillColor'),
-								'command': '.uno:FillColor',
-								'accessibility': { focusBack: true,	combination: 'FC', de: null }
-							}
-						]
-					}
-				],
-				'vertical': 'true'
-			},
-			{ type: 'separator', id: 'picture-fillcolor-break', orientation: 'vertical' },
 			{
 				'type': 'container',
 				'children': [
