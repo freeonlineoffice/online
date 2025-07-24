@@ -95,9 +95,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: false, combination: 'N', de: null }
 			},
 			{
-				'id': 'Layout-tab-label',
-				'text': _('Layout'),
-				'name': 'Layout',
+				'id': 'Design-tab-label',
+				'text': _('Design'),
+				'name': 'Design',
 				'accessibility': { focusBack: false, combination: 'P', de: null }
 			},
 			{
@@ -166,7 +166,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			this.getFileTab(),
 			this.getHomeTab(),
 			this.getInsertTab(),
-			this.getLayoutTab(),
+			this.getDesignTab(),
 			this.getSlideshowTab(),
 			this.getReviewTab(),
 			this.getFormatTab(),
@@ -452,13 +452,27 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 					'accessibility': { focusBack: true, combination: 'PW', de: null }
 				} : {},
 			!window.ThisIsAMobileApp && window.canvasSlideshowEnabled ?
-			        {
+			  {
 					'id': 'slide-presentation-in-console',
 					'type': 'bigcustomtoolitem',
 					'text': _('Presenter Console'),
 					'command': 'presenterconsole',
 					'accessibility': { focusBack: true, combination: 'PW', de: null }
-				}: {}
+				}: {},
+			{ type: 'separator', id: 'slide-zoomin-break', orientation: 'vertical' },
+			{
+				'id': 'showslide',
+				'type': 'bigcustomtoolitem',
+				'text': _UNO('.uno:ShowSlide', 'presentation'),
+				'accessibility': { focusBack: true, combination: 'SS', de: null }
+			},
+			{
+				'id': 'hideslide',
+				'class': 'unohideslide',
+				'type': 'bigcustomtoolitem',
+				'text': _UNO('.uno:HideSlide', 'presentation'),
+				'accessibility': { focusBack: true, combination: 'HS', de: null }
+			},
 		];
 
 		return this.getTabPage('Slideshow', content);
@@ -1253,14 +1267,6 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				],
 				'vertical': 'true'
 			},
-			{ type: 'separator', id: 'format-objecttitledescription-break', orientation: 'vertical' },
-			{
-				'id': 'format-theme-dialog',
-				'type': 'bigtoolitem',
-				'text': _UNO('.uno:ThemeDialog'),
-				'command': '.uno:ThemeDialog',
-				'accessibility': { focusBack: false, combination: 'J', de: null }
-			}
 		];
 
 		return this.getTabPage('Format', content);
@@ -1601,10 +1607,18 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 		return this.getTabPage('Insert', content);
 	},
 
-	getLayoutTab: function() {
+	getDesignTab: function() {
 		var content = [
 			{
-				'id': 'slide-size:SlideSizeMenu',
+				'id': 'design-theme-dialog',
+				'type': 'bigtoolitem',
+				'text': _UNO('.uno:ThemeDialog'),
+				'command': '.uno:ThemeDialog',
+				'accessibility': { focusBack: false, combination: 'J', de: null }
+			},
+			{ type: 'separator', id: 'design-themedialog-break', orientation: 'vertical' },
+			{
+				'id': 'design-slide-size:SlideSizeMenu',
 				'class': 'unoSlideSize',
 				'type': 'menubutton',
 				'text': _('Slide Size'),
@@ -1612,74 +1626,31 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'accessibility': { focusBack: true, combination: 'SS', de: null }
 			},
 			{
-				'id': 'layout-slide-setup',
+				'id': 'design-slide-setup',
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:SlideSetup', 'presentation'),
 				'command': '.uno:PageSetup',
 				'accessibility': { focusBack: true, combination: 'SP', de: null }
 			},
 			{
-				'id': 'layout-header-and-footer',
+				'id': 'design-header-and-footer',
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:HeaderAndFooter', 'presentation'),
 				'command': '.uno:HeaderAndFooter',
 				'accessibility': { focusBack: true, combination: 'HF', de: null }
 			},
-			{ type: 'separator', id: 'layout-headerandfooter-break', orientation: 'vertical' },
+			{ type: 'separator', id: 'design-headerandfooter-break', orientation: 'vertical' },
 			{
-				'id': 'layout-insert-slide',
+				'id': 'design-selectbackground',
+				'class': 'unoselectbackground',
 				'type': 'bigtoolitem',
-				'text': _UNO('.uno:InsertSlide', 'presentation'),
-				'command': '.uno:InsertPage',
-				'accessibility': { focusBack: true, combination: 'IP', de: null }
+				'text': _('Background Image'),
+				'command': '.uno:SelectBackground',
+				'accessibility': { focusBack: true, combination: 'SB', de: null }
 			},
+			{ type: 'separator', id: 'design-backgroundimage-break', orientation: 'vertical' },
 			{
-				'id': 'showslide',
-				'type': 'bigcustomtoolitem',
-				'text': _UNO('.uno:ShowSlide', 'presentation'),
-				'accessibility': { focusBack: true, combination: 'SS', de: null }
-			},
-			{
-				'id': 'hideslide',
-				'class': 'unohideslide',
-				'type': 'bigcustomtoolitem',
-				'text': _UNO('.uno:HideSlide', 'presentation'),
-				'accessibility': { focusBack: true, combination: 'HS', de: null }
-			},
-			{
-				'type': 'container',
-				'children': [
-					{
-						'type': 'toolbox',
-						'children': [
-							{
-								'id': 'layout-duplicate-slide',
-								'type': 'toolitem',
-								'text': _UNO('.uno:DuplicateSlide', 'presentation'),
-								'command': '.uno:DuplicatePage',
-								'accessibility': { focusBack: true, combination: 'DP', de: null }
-							}
-						]
-					},
-					{
-						'type': 'toolbox',
-						'children': [
-							{
-								'id': 'layout-selectbackground',
-								'class': 'unoselectbackground',
-								'type': 'toolitem',
-								'text': _UNO('.uno:SelectBackground', 'presentation'),
-								'command': '.uno:SelectBackground',
-								'accessibility': { focusBack: true, combination: 'SB', de: null }
-							}
-						]
-					}
-				],
-				'vertical': 'true'
-			},
-			{ type: 'separator', id: 'layout-selectbackground-break', orientation: 'vertical' },
-			{
-				'id': 'layout-master-slides-panel',
+				'id': 'design-master-slides-panel',
 				'type': 'bigtoolitem',
 				'text': _UNO('.uno:MasterSlidesPanel', 'presentation'),
 				'command': '.uno:MasterSlidesPanel',
@@ -1687,7 +1658,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 			}
 		];
 
-		return this.getTabPage('Layout', content);
+		return this.getTabPage('Design', content);
 	},
 
 	getMasterTab: function() {
