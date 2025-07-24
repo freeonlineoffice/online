@@ -27,6 +27,8 @@ interface IconNameMap {
 	[key: string]: string;
 }
 
+declare var DOMPurify: any;
+
 // LOUtil contains various LO related utility functions used
 // throughout the code.
 
@@ -716,6 +718,15 @@ class LOUtil {
 
 	public static Rectangle = lool.Rectangle;
 	public static createRectangle = lool.createRectangle;
+
+	public static sanitize(html: string): string {
+		if (DOMPurify.isSupported) {
+			return DOMPurify.sanitize(html, {
+				USE_PROFILES: { html: true },
+			});
+		}
+		return '';
+	}
 }
 
 app.LOUtil = LOUtil;
