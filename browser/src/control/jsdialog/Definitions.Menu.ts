@@ -561,7 +561,11 @@ function generatePictureBrightnessMenu(
 	for (let i = 0; i < brightnessValues.length; i++) {
 		menuItems.push({
 			id: 'brightness' + brightnessValues[i],
-			uno: '.uno:' + unoCommand + '?Brightness:short=' + brightnessValues[i],
+			uno:
+				'.uno:' +
+				unoCommand +
+				'?Brightness:short=' +
+				brightnessValues[i],
 			text: brightnessValues[i] + '%',
 			img: 'insertgraphic',
 		} as MenuDefinition);
@@ -580,7 +584,11 @@ function generatePictureContrastMenu(
 	for (let i = 0; i < contrastValues.length; i++) {
 		menuItems.push({
 			id: 'contrast' + contrastValues[i],
-			uno: '.uno:' + unoCommand + '?Contrast:short=' + contrastValues[i],
+			uno:
+				'.uno:' +
+				unoCommand +
+				'?Contrast:short=' +
+				contrastValues[i],
 			text: contrastValues[i] + '%',
 			img: 'insertgraphic',
 		} as MenuDefinition);
@@ -600,7 +608,10 @@ function generatePictureTransparencyMenu(
 		menuItems.push({
 			id: 'transparency' + transparencyValues[i],
 			uno:
-				'.uno:' + unoCommand + '?Transparency:short=' + transparencyValues[i],
+				'.uno:' +
+				unoCommand +
+				'?Transparency:short=' +
+				transparencyValues[i],
 			text: transparencyValues[i] + '%',
 			img: 'insertgraphic',
 		} as MenuDefinition);

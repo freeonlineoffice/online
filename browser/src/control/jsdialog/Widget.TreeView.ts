@@ -299,7 +299,8 @@ class TreeViewControl {
 	) {
 		const image = L.DomUtil.create(
 			'img',
-			builder.options.cssClass + ' ui-treeview-checkbox ui-treeview-image',
+			builder.options.cssClass +
+				' ui-treeview-checkbox ui-treeview-image',
 			parentContainer,
 		);
 		image.src = imageUrl;
@@ -509,7 +510,11 @@ class TreeViewControl {
 					` ui-treeview-cell-text ui-treeview-cell-text-content ui-treeview-${entry.row}-${index}`,
 				parent,
 			);
-			const img = L.DomUtil.create('img', 'ui-treeview-custom-render', cell);
+			const img = L.DomUtil.create(
+				'img',
+				'ui-treeview-custom-render',
+				cell,
+			);
 			img.src = image;
 			img.alt = text;
 		} else {
@@ -1640,7 +1645,9 @@ JSDialog.treeView = function (
 	treeView.build(data, builder, parentContainer);
 	parentContainer.appendChild(treeView._container);
 
-	const updateRenders: CustomEntryRenderCallback = (pos: number | string) => {
+	const updateRenders: CustomEntryRenderCallback = (
+		pos: number | string,
+	) => {
 		const row = treeView.findEntryWithRow(data.entries, pos);
 		if (!row) {
 			console.error(
