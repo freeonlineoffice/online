@@ -423,6 +423,7 @@ shared_headers = common/Anonymizer.hpp \
                  net/NetUtil.hpp \
                  net/ServerSocket.hpp \
                  net/Socket.hpp \
+                 net/Uri.hpp \
                  net/WebSocketHandler.hpp \
                  tools/Replay.hpp \
 		 wasm/base64.hpp
