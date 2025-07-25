@@ -545,10 +545,7 @@ class SlideShowPresenter {
 		);
 		this._slideShowCanvas.focus();
 
-		window.addEventListener(
-			'resize',
-			this.onSlideWindowResize.bind(this),
-		);
+		window.addEventListener('resize', this.onSlideWindowResize);
 		this._getProxyDocumentNode().addEventListener(
 			'keydown',
 			this._onKeyDownHandler,
@@ -581,22 +578,19 @@ class SlideShowPresenter {
 		);
 	}
 
-	slideshowWindowCleanUp() {
+	slideshowWindowCleanUp = () => {
 		clearInterval(this._windowCloseInterval);
 		this._slideShowNavigator.quit();
 		this._map.uiManager.closeSnackbar();
 		this._slideShowCanvas = null;
 		this._presenterContainer = null;
 		this._slideShowWindowProxy = null;
-		window.removeEventListener(
-			'resize',
-			this.onSlideWindowResize.bind(this),
-		);
+		window.removeEventListener('resize', this.onSlideWindowResize);
 		window.removeEventListener(
 			'beforeunload',
-			this.slideshowWindowCleanUp.bind(this),
+			this.slideshowWindowCleanUp,
 		);
-	}
+	};
 
 	_onImpressModeChangedImpl(e: any, inWindow: boolean) {
 		if (this._onImpressModeChanged && e.mode === 0) {
@@ -691,9 +685,9 @@ class SlideShowPresenter {
 		return true;
 	}
 
-	onSlideWindowResize() {
+	onSlideWindowResize = () => {
 		this.centerCanvas();
-	}
+	};
 
 	_checkAlreadyPresenting() {
 		if (this._slideShowCanvas) return true;

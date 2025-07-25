@@ -1,6 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -348,18 +346,12 @@ namespace lool {
 
 			// If our window would be closed before the popup, then close the popup as
 			// well.
-			window.addEventListener(
-				'beforeunload',
-				this.closePopup.bind(this),
-			);
+			window.addEventListener('beforeunload', this.closePopup);
 		}
 
-		closePopup(): boolean {
+		closePopup = (): boolean => {
 			try {
-				window.removeEventListener(
-					'beforeunload',
-					this.closePopup.bind(this),
-				);
+				window.removeEventListener('beforeunload', this.closePopup);
 
 				if (this.popup) {
 					this.popup.close();
@@ -372,7 +364,7 @@ namespace lool {
 			}
 
 			return true;
-		}
+		};
 
 		// Handles the 'sign hash' response
 		handleSigned(response: SignedResponse): void {
