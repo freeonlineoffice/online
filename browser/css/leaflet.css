@@ -935,10 +935,10 @@ input.clipboard {
 	background-repeat: no-repeat;
 }
 
-.lool-ruler-indentation-marker-center {
+.lool-ruler-indentation-marker-center,
+.lool-ruler-horizontal-indentation-marker-center {
 	position: fixed;
 	display: none;
-	height: 100vh;
 	top: 0;
 	bottom: 0;
 	left: 0;
