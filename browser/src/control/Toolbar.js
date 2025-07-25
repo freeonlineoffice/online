@@ -527,32 +527,24 @@ L.Map.include({
 		var i;
 		// Display keyboard shortcut or online help
 		if (id === 'keyboard-shortcuts-content') {
-			document.getElementById('online-help-content').style.display =
-				'none';
+			document.getElementById('online-help-content').classList.add('hide');
 			// Display help according to document opened
 			if (map.getDocType() === 'text') {
-				document.getElementById('text-shortcuts').style.display =
-					'block';
-			} else if (map.getDocType() === 'spreadsheet') {
-				document.getElementById(
-					'spreadsheet-shortcuts',
-				).style.display = 'block';
-			} else if (map.getDocType() === 'presentation') {
-				document.getElementById(
-					'presentation-shortcuts',
-				).style.display = 'block';
-			} else if (map.getDocType() === 'drawing') {
-				document.getElementById('drawing-shortcuts').style.display =
-					'block';
+				document.getElementById('text-shortcuts').classList.add('show');
 			}
-		} /* id === 'online-help' */ else {
-			document.getElementById(
-				'keyboard-shortcuts-content',
-			).style.display = 'none';
+			else if (map.getDocType() === 'spreadsheet') {
+				document.getElementById('spreadsheet-shortcuts').classList.add('show');
+			}
+			else if (map.getDocType() === 'presentation') {
+				document.getElementById('presentation-shortcuts').classList.add('show');
+			}
+			else if (map.getDocType() === 'drawing') {
+				document.getElementById('drawing-shortcuts').classList.add('show');
+			}
+		} else /* id === 'online-help' */ {
+			document.getElementById('keyboard-shortcuts-content').classList.add('hide');
 			if (window.socketProxy) {
-				var helpdiv = document.getElementById(
-					'online-help-content',
-				);
+				var helpdiv = document.getElementById('online-help-content');
 				var imgList = helpdiv.querySelectorAll('img');
 				for (var p = 0; p < imgList.length; p++) {
 					var imgSrc = imgList[p].src;
@@ -566,12 +558,12 @@ L.Map.include({
 			if (map.getDocType() === 'text') {
 				var x = document.getElementsByClassName('text');
 				for (i = 0; i < x.length; i++) {
-					x[i].style.display = 'block';
+					x[i].classList.add('show');
 				}
 			} else if (map.getDocType() === 'spreadsheet') {
 				x = document.getElementsByClassName('spreadsheet');
 				for (i = 0; i < x.length; i++) {
-					x[i].style.display = 'block';
+					x[i].classList.add('show');
 				}
 			} else if (
 				map.getDocType() === 'presentation' ||
@@ -579,7 +571,7 @@ L.Map.include({
 			) {
 				x = document.getElementsByClassName('presentation');
 				for (i = 0; i < x.length; i++) {
-					x[i].style.display = 'block';
+					x[i].classList.add('show');
 				}
 			}
 		}
