@@ -67,7 +67,8 @@ void RequestDetailsTests::testDownloadURI()
 
         http::Request request2(URI);
         request2.set("Host", Root);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -91,7 +92,8 @@ void RequestDetailsTests::testDownloadURI()
 
         http::Request request2(URI);
         request2.set("Host", Root);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 }
 
@@ -132,7 +134,8 @@ void RequestDetailsTests::testLoolURI()
 
     http::Request request2(URI);
     request2.set("Host", Root);
-    LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+    http::RequestParser reqParser(request2);
+    LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
 }
 
 void RequestDetailsTests::testLocal()
@@ -193,7 +196,8 @@ void RequestDetailsTests::testLocal()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -244,7 +248,8 @@ void RequestDetailsTests::testLocal()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -295,7 +300,8 @@ void RequestDetailsTests::testLocal()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 }
 
@@ -356,7 +362,8 @@ void RequestDetailsTests::testLocalHexified()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -400,7 +407,8 @@ void RequestDetailsTests::testLocalHexified()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -444,7 +452,8 @@ void RequestDetailsTests::testLocalHexified()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 }
 
@@ -567,7 +576,8 @@ void RequestDetailsTests::testRequestDetails()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -649,7 +659,8 @@ void RequestDetailsTests::testRequestDetails()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -700,7 +711,8 @@ void RequestDetailsTests::testRequestDetails()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -745,7 +757,8 @@ void RequestDetailsTests::testRequestDetails()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 
     {
@@ -832,7 +845,8 @@ void RequestDetailsTests::testRequestDetails()
         request2.set("Host", Root);
         request2.set("User-Agent", http::getAgentString());
         request2.set("ProxyPrefix", ProxyPrefix);
-        LOK_ASSERT_EQUAL(details, RequestDetails(request2, ""));
+        http::RequestParser reqParser(request2);
+        LOK_ASSERT_EQUAL(details, RequestDetails(reqParser, ""));
     }
 }
 
