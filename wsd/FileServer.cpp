@@ -1137,7 +1137,7 @@ bool FileServerRequestHandler::handleRequest(const HTTPRequest& request,
             else
                 content = getUncompressedFile(relPath);
 
-            response.add("Content-Length", std::to_string(content->size()));
+            response.setContentLength(content->size());
 
             if (!noCache)
             {
