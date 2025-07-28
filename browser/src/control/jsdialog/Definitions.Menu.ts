@@ -272,7 +272,9 @@ menuDefinitions.set('MenuPageSizes', [
 	{
 		id: 'LongBond',
 		text: _('Long Bond'),
-		uno: '.uno:CalcPageSize?PaperFormat:long=' + Paper.PAPER_FANFOLD_LEGAL_DE,
+		uno:
+			'.uno:CalcPageSize?PaperFormat:long=' +
+			Paper.PAPER_FANFOLD_LEGAL_DE,
 	},
 	{
 		id: 'Tabloid',
