@@ -8,10 +8,12 @@
 */
 
 class CalcValidityDropDown extends HTMLObjectSection {
+	public static dropDownArrowSize = 16; // Size of the validity drop-down arrow in CSS pixels.
+
 	zIndex: number = L.CSections.CalcValidityDropDown.zIndex;
 
 	constructor (documentPosition: lool.SimplePoint, visible: boolean = true) {
-		super(L.CSections.CalcValidityDropDown.name, 16, 16, documentPosition, 'spreadsheet-drop-down-marker', visible);
+		super(L.CSections.CalcValidityDropDown.name, CalcValidityDropDown.dropDownArrowSize, CalcValidityDropDown.dropDownArrowSize, documentPosition, 'spreadsheet-drop-down-marker', visible);
 
 		this.sectionProperties.mouseEntered = false;
 	}
