@@ -58,7 +58,7 @@ AC_DEFINE_UNQUOTED([LOOLWSD_VERSION_HASH],[["$LOOLWSD_VERSION_HASH"]],[LibreOffi
 
 AC_CONFIG_SRCDIR([wsd/LOOLWSD.cpp])
 
-AC_DEFINE_UNQUOTED([COOLWSD_BUILDCONFIG],[["$ac_configure_args"]],[Options passed to configure script])
+AC_DEFINE_UNQUOTED([LOOLWSD_BUILDCONFIG],[["$ac_configure_args"]],[Options passed to configure script])
 
 # this is a dummy header, autoheader adds all entries to it
 # don't include config_unused.h anywhere!
