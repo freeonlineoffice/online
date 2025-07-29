@@ -119,6 +119,7 @@ class SlideShowPresenter {
 	_windowCloseInterval: ReturnType<typeof setInterval> = null;
 	_slideRenderer: SlideRenderer = null;
 	_canvasLoader: CanvasLoader | null = null;
+	_progressBarContainer: HTMLDivElement | null = null;
 	private _pauseTimer: PauseTimerGl | PauseTimer2d;
 	private _slideShowHandler: SlideShowHandler;
 	private _slideShowNavigator: SlideShowNavigator;
@@ -151,6 +152,11 @@ class SlideShowPresenter {
 			this,
 		);
 		this._map.on('updateparts', this.onUpdateParts, this);
+		this._map.on(
+			'handleslideshowprogressbar',
+			this.handleSlideShowProgressBar,
+			this,
+		);
 	}
 
 	removeHooks() {
@@ -164,6 +170,11 @@ class SlideShowPresenter {
 			this,
 		);
 		this._map.off('updateparts', this.onUpdateParts, this);
+		this._map.off(
+			'handleslideshowprogressbar',
+			this.handleSlideShowProgressBar,
+			this,
+		);
 	}
 
 	private _init() {
@@ -364,6 +375,8 @@ class SlideShowPresenter {
 		canvas.style.margin = 0;
 		canvas.style.position = 'absolute';
 
+		this._progressBarContainer = this._createProgressBar(parent);
+
 		canvas.addEventListener(
 			'click',
 			this._slideShowNavigator.onClick.bind(this._slideShowNavigator),
@@ -408,6 +421,45 @@ class SlideShowPresenter {
 		).display(_('Click to exit presentation...'));
 		return true;
 	}
+	private _createProgressBar(parent: Element): HTMLDivElement {
+		const progressContainer = L.DomUtil.create(
+			'div',
+			'slideshow-progress-container',
+			parent,
+		);
+
+		this._configureProgressBarStyles(progressContainer);
+		this._initializeProgressBarWidget(progressContainer);
+		return progressContainer;
+	}
+
+	private _configureProgressBarStyles(container: HTMLDivElement): void {
+		container.style.position = 'absolute';
+		container.style.bottom = '0';
+		container.style.left = '0';
+		container.style.width = '100%';
+		container.style.zIndex = '1000000000000';
+		container.style.display = 'none';
+		container.style.height = '6px';
+	}
+
+	private _initializeProgressBarWidget(container: HTMLDivElement): void {
+		const progressData = {
+			id: 'slideshow-progress-bar',
+			type: 'progressbar',
+			value: 0,
+			maxValue: 100,
+			infinite: true,
+		};
+
+		const builderOptions = {
+			options: {
+				cssClass: 'slideshow-progress',
+			},
+		};
+
+		JSDialog.progressbar(container, progressData, builderOptions);
+	}
 
 	private startTimer(loopAndRepeatDuration: number) {
 		console.debug('SlideShowPresenter.startTimer');
@@ -442,6 +494,17 @@ class SlideShowPresenter {
 			return;
 		}
 		this.startTimer(settings.loopAndRepeatDuration);
+	}
+
+	public handleSlideShowProgressBar(event: { isVisible: boolean }): void {
+		try {
+			if (!this._progressBarContainer) return;
+			this._progressBarContainer.style.display = event?.isVisible
+				? 'block'
+				: 'none';
+		} catch (error) {
+			console.error('Not able to Slideshow progress bar', error);
+		}
 	}
 
 	private startLoader(): void {
@@ -479,6 +542,7 @@ class SlideShowPresenter {
 				<meta charset="UTF-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<title>${sanitizedTitle}</title>
+				<link rel="stylesheet" href="progressbar.css" />
 			</head>
 			<body>
 				<div id="root-in-window"></div>

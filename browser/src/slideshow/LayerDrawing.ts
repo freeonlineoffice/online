@@ -445,6 +445,9 @@ class LayerDrawing {
 			}
 		}
 
+		if (!prefetch)
+			this.map.fire('handleslideshowprogressbar', { isVisible: true });
+
 		app.socket.sendMessage(
 			`getslide hash=${slideInfo.hash} part=${slideInfo.index} width=${this.canvasWidth} height=${this.canvasHeight} ` +
 				`renderBackground=${backgroundRendered ? 0 : 1} renderMasterPage=${masterPageRendered ? 0 : 1} devicePixelRatio=${window.devicePixelRatio}`,
@@ -761,6 +764,7 @@ class LayerDrawing {
 
 	onSlideRenderingComplete(e: any) {
 		if (this.isDisposed()) return;
+		this.map.fire('handleslideshowprogressbar', { isVisible: false });
 
 		if (!e.success) {
 			const slideHash =
