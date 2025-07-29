@@ -55,18 +55,22 @@ class OverflowManager {
 	}
 
 	onResize() {
-		this.overflowMenuDebounced && clearTimeout(this.overflowMenuDebounced);
+		this.overflowMenuDebounced &&
+			clearTimeout(this.overflowMenuDebounced);
 
 		if (!this.parentContainer) return;
 
 		this.overflowMenuDebounced = setTimeout(() => {
 			app.layoutingService.appendLayoutingTask(() => {
 				const groups =
-					this.parentContainer.querySelectorAll('.ui-overflow-group');
+					this.parentContainer.querySelectorAll(
+						'.ui-overflow-group',
+					);
 
 				// first show all the groups
 				groups.forEach((element: OverflowGroupContainer) => {
-					if (typeof element.unfoldGroup === 'function') element.unfoldGroup();
+					if (typeof element.unfoldGroup === 'function')
+						element.unfoldGroup();
 				});
 
 				const maxWidth = this.calculateMaxWidth();
@@ -75,7 +79,8 @@ class OverflowManager {
 				for (let i = groups.length - 1; i >= 0; i--) {
 					const element: OverflowGroupContainer = groups[i];
 					if (maxWidth !== 0 && this.hasOverflow(maxWidth)) {
-						if (typeof element.foldGroup === 'function') element.foldGroup();
+						if (typeof element.foldGroup === 'function')
+							element.foldGroup();
 					}
 				}
 			});

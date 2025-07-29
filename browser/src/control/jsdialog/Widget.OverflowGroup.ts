@@ -76,7 +76,9 @@ function setupOverflowMenu(
 			// layouting task adds menu container to the DOM
 			app.layoutingService.appendLayoutingTask(() => {
 				app.layoutingService.appendLayoutingTask(() => {
-					const menu = JSDialog.GetDropdown('overflow-button-' + id);
+					const menu = JSDialog.GetDropdown(
+						'overflow-button-' + id,
+					);
 					menu?.replaceChildren();
 					menu?.classList.add('ui-toolbar');
 					menu?.classList.add('ui-overflow-group-popup');
@@ -159,7 +161,10 @@ JSDialog.OverflowGroup = function (
 
 	// first toolitem in the group
 	const firstItem = findFirstToolitem(data.children);
-	console.assert(firstItem, 'First toolitem inside overflow group not found');
+	console.assert(
+		firstItem,
+		'First toolitem inside overflow group not found',
+	);
 
 	// placeholder menu for a dropdown
 	const builtMenu = [
@@ -183,7 +188,11 @@ JSDialog.OverflowGroup = function (
 			{
 				type: 'menubutton',
 				id: id,
-				text: data.name ? data.name : firstItem ? (firstItem as any).text : '',
+				text: data.name
+					? data.name
+					: firstItem
+						? (firstItem as any).text
+						: '',
 				icon: getToolitemIcon(firstItem),
 				command: firstItem ? (firstItem as any).command : '',
 				noLabel: !data.name,
@@ -192,8 +201,14 @@ JSDialog.OverflowGroup = function (
 					firstItem && firstItem.type === 'toolitem'
 						? () => {
 								firstItem.type.includes('custom')
-									? app.dispatcher.dispatch((firstItem as any).command)
-									: app.map.sendUnoCommand((firstItem as any).command);
+									? app.dispatcher.dispatch(
+											(firstItem as any)
+												.command,
+										)
+									: app.map.sendUnoCommand(
+											(firstItem as any)
+												.command,
+										);
 							}
 						: undefined,
 			} as any as WidgetJSON,
