@@ -35,7 +35,7 @@
     "select2": "4.0.13",
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
-    "stylelint": "16.22.0",
+    "stylelint": "16.23.0",
     "tmp": "0.2.3",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
@@ -58,7 +58,7 @@
   "dependencies": {
     "jsdom": "^26.0.0",
     "npm": "^11.1.0",
-    "stylelint-config-standard": "^38.0.0"
+    "stylelint-config-standard": "^39.0.0"
   },
   "scripts": {
     "test": "mocha 'mocha_tests/workdir/**/*.js'",
