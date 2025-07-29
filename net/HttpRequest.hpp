@@ -10,6 +10,7 @@
 #include <common/Common.hpp>
 #include <common/Log.hpp>
 #include <common/StateEnum.hpp>
+#include <common/StringVector.hpp>
 #include <common/Util.hpp>
 #include <net/NetUtil.hpp>
 #include <net/Socket.hpp>
@@ -541,10 +542,17 @@ public:
     Container getCookies() const
     {
         Container cookies;
-        //FIXME: IMPLEMENT!!
-        // for (const auto& pair : _headers)
-        // {
-        // }
+        for (const auto& pair : _headers)
+        {
+            if (Util::iequal(pair.first, COOKIE))
+            {
+                const auto tokens = StringVector::tokenize(pair.second, ';');
+                for (const auto cookie : tokens)
+                {
+                    cookies.emplace_back(Util::split(tokens.getParam(cookie), '='));
+                }
+            }
+        }
 
         return cookies;
     }
