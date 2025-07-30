@@ -185,7 +185,7 @@ export class RowHeader extends lool.Header {
 		return {left: left, right: right, top: top, bottom: bottom};
 	}
 
-	onClick (point: number[], e: MouseEvent): void {
+	onClick (point: cool.SimplePoint, e: MouseEvent): void {
 		if (!this._mouseOverEntry)
 			return;
 
