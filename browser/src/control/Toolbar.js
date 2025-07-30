@@ -97,6 +97,7 @@ L.Map.include({
 			}
 
 			fontcombobox.val(state).trigger('change');
+			this['stateChangeHandler'].setItemValue('.uno:CharFontName', state);
 		};
 
 		var onFontListChanged = function (e) {
@@ -180,6 +181,7 @@ L.Map.include({
 			}
 
 			fontsizecombobox.val(state).trigger('change');
+			this['stateChangeHandler'].setItemValue('.uno:FontHeight', state);
 		};
 
 		this.off('commandstatechanged', onCommandStateChanged);
