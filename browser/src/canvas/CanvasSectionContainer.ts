@@ -198,7 +198,6 @@ class CanvasSectionContainer {
 	private drawingPaused: number = 0;
 	private drawingEnabled: boolean = true;
 	private sectionsDirty: boolean = false;
-	private paintedEver: boolean = false;
 	private framesRendered: number = 0; // Total frame count for debugging
 
 	// For window sections.
@@ -1809,7 +1808,6 @@ class CanvasSectionContainer {
 			}
 		}
 
-		this.paintedEver = true;
 		//this.drawSectionBorders();
 	}
 
