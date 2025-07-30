@@ -66,10 +66,6 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		delete this.setShowSection;
 	}
 
-	public onResize () {
-		return;
-	}
-
 	private setMarkerPosition () {
 		var center: number = 0;
 		if (!(<any>window).mode.isDesktop()) {
