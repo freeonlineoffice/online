@@ -757,7 +757,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onDoubleClick(cool.SimplePoint.fromCorePixels((position ? [position[0], position[1]]): null), e);
+					section.boundsList[i].onDoubleClick(position ? cool.SimplePoint.fromCorePixels([position[0], position[1]]) : null, e);
 
 				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
@@ -830,7 +830,7 @@ class CanvasSectionContainer {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
-		var windowPosition: Array<number> = position ? [position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]: null;
+		var windowPosition: cool.SimplePoint = position ? cool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
 			if (windowSection.interactable)
@@ -843,7 +843,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onMouseDown((position ? [position[0], position[1]]: null), e);
+					section.boundsList[i].onMouseDown((position ? cool.SimplePoint.fromCorePixels([position[0], position[1]]): null), e);
 
 				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
@@ -855,7 +855,7 @@ class CanvasSectionContainer {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
-		var windowPosition: Array<number> = position ? [position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]: null;
+		var windowPosition: cool.SimplePoint = position ? cool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
 			if (windowSection.interactable)
@@ -868,7 +868,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onMouseUp((position ? [position[0], position[1]]: null), e);
+					section.boundsList[i].onMouseUp((position ? cool.SimplePoint.fromCorePixels([position[0], position[1]]): null), e);
 
 				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
@@ -904,7 +904,7 @@ class CanvasSectionContainer {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
-		var windowPosition: Array<number> = position ? [position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]: null;
+		var windowPosition: cool.SimplePoint = position ? cool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
 			if (windowSection.interactable)
@@ -917,7 +917,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onMouseWheel((position ? [position[0], position[1]]: null), delta, e);
+					section.boundsList[i].onMouseWheel((position ? cool.SimplePoint.fromCorePixels([position[0], position[1]]): null), delta, e);
 
 				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
@@ -953,7 +953,7 @@ class CanvasSectionContainer {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
-		var windowPosition: Array<number> = position ? [position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]: null;
+		var windowPosition: cool.SimplePoint = position ? cool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
 			if (windowSection.interactable)
@@ -966,7 +966,7 @@ class CanvasSectionContainer {
 		if (propagate) {
 			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onMultiTouchMove((position ? [position[0], position[1]]: null), distance, e);
+					section.boundsList[i].onMultiTouchMove((position ? cool.SimplePoint.fromCorePixels([position[0], position[1]]): null), distance, e);
 
 				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
@@ -1358,7 +1358,7 @@ class CanvasSectionContainer {
 		this.reNewAllSections(true);
 	}
 
-	findSectionContainingPoint (point: Array<number>, interactable = true): any {
+	private findSectionContainingPoint (point: Array<number>, interactable = true): any {
 		for (var i: number = this.sections.length - 1; i > -1; i--) { // Search from top to bottom. Top section will be sent as target section.
 			if (
 				this.sections[i].isLocated && !this.sections[i].windowSection &&
@@ -1373,8 +1373,8 @@ class CanvasSectionContainer {
 		return null;
 	}
 
-	public doesSectionIncludePoint (section: any, point: cool.SimplePoint): boolean { // No ray casting here, it is a rectangle.
-		return ((point.pX >= section.myTopLeft[0] && point.pX <= section.myTopLeft[0] + section.size[0]) && (point.pY >= section.myTopLeft[1] && point.pY <= section.myTopLeft[1] + section.size[1]));
+	public doesSectionIncludePoint (section: any, point: number[]): boolean { // No ray casting here, it is a rectangle.
+		return ((point[0] >= section.myTopLeft[0] && point[0] <= section.myTopLeft[0] + section.size[0]) && (point[1] >= section.myTopLeft[1] && point[1] <= section.myTopLeft[1] + section.size[1]));
 	}
 
 	private doSectionsIntersectOnYAxis (section1: any, section2: any): boolean {
@@ -1541,7 +1541,7 @@ class CanvasSectionContainer {
 	private calculateSectionInitialPosition(section: CanvasSectionObject, index: number): number {
 		// @ts-expect-error because alternative got type 'never'.
 		if (typeof section.anchor[index] === 'string' || section.anchor[index].length === 1) {
-			var anchor: string = typeof section.anchor[index] === 'string' ? section.anchor[index]: section.anchor[index][0];
+			const anchor: string | string[] = typeof section.anchor[index] === 'string' ? section.anchor[index]: section.anchor[index][0];
 			if (index === 0)
 				return anchor === 'top' ? section.position[1]: (this.height - (section.position[1] + section.size[1]));
 			else
@@ -1600,7 +1600,7 @@ class CanvasSectionContainer {
 				}
 				else {
 					// No target section is found. Use fallback.
-					var anchor: string = section.anchor[index][count - 1];
+					const anchor: string | string[] = section.anchor[index][count - 1];
 					if (index === 0) {
 						return anchor === 'top' ? section.position[1]: (this.height - (section.position[1] + section.size[1]));
 					}

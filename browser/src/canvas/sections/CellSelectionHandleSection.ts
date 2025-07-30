@@ -25,15 +25,14 @@ class CellSelectionHandle extends CanvasSectionObject {
 		this.name = name;
 	}
 
-	private onDragEnd(point: number[]) {
+	private onDragEnd(point: lool.SimplePoint) {
 		app.map.focus();
 		app.map.fire('scrollvelocity', {vx: 0, vy: 0});
 
-		const newPoint = new lool.SimplePoint(0, 0);
-		newPoint.pX = this.position[0] + point[0];
-		newPoint.pY = this.position[1] + point[1];
+		point.pX += this.position[0];
+		point.pY += this.position[1];
 
-		this.sharedOnDragAndEnd(newPoint);
+		this.sharedOnDragAndEnd(point);
 		CellSelectionMarkers.update();
 		app.map.scrollingIsHandled = false;
 	}
@@ -70,12 +69,12 @@ class CellSelectionHandle extends CanvasSectionObject {
 		}
 	}
 
-	onMouseDown(point: number[], e: MouseEvent): void {
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		e.stopPropagation();
 		this.stopPropagating();
 	}
 
-	onMouseUp(point: number[], e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		e.stopPropagation();
 		if (this.containerObject.isDraggingSomething()) {
 			this.stopPropagating();
