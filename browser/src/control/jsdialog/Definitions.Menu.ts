@@ -683,7 +683,10 @@ menuDefinitions.set(
 );
 menuDefinitions.set(
 	'LookupAndRefFunctionsMenu',
-	getFunctionsMenuArray(lookupFunctions, functionCategories.SPREADSHEET).concat(
+	getFunctionsMenuArray(
+		lookupFunctions,
+		functionCategories.SPREADSHEET,
+	).concat(
 		getFunctionsMenuArray(refFunctions, functionCategories.INFORMATION),
 	),
 );
@@ -693,15 +696,27 @@ menuDefinitions.set(
 		mathAndTrigFunctions,
 		functionCategories.MATHEMATICAL,
 	).concat(
-		getFunctionsMenuArray(statisticalFunctions, functionCategories.STATISTICAL),
+		getFunctionsMenuArray(
+			statisticalFunctions,
+			functionCategories.STATISTICAL,
+		),
 	),
 );
 menuDefinitions.set(
 	'MoreFunctionsMenu',
-	getFunctionsMenuArray(databaseFunctions, functionCategories.DATABASE).concat(
-		getFunctionsMenuArray(informationFunctions, functionCategories.INFORMATION),
+	getFunctionsMenuArray(
+		databaseFunctions,
+		functionCategories.DATABASE,
+	).concat(
+		getFunctionsMenuArray(
+			informationFunctions,
+			functionCategories.INFORMATION,
+		),
 		getFunctionsMenuArray(arrayFunctions, functionCategories.ARRAY),
-		getFunctionsMenuArray(spreadsheetFunctions, functionCategories.SPREADSHEET),
+		getFunctionsMenuArray(
+			spreadsheetFunctions,
+			functionCategories.SPREADSHEET,
+		),
 	),
 );
 
