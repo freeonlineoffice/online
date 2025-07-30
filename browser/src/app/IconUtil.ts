@@ -115,7 +115,10 @@ class IconUtil {
 			.toLowerCase();
 	}
 
-	public static createMenuItemLink(name: string, iconCommand: string): string {
+	public static createMenuItemLink(
+		name: string,
+		iconCommand: string,
+	): string {
 		let iconHtml = '<span class="context-menu-icon-spacer"></span>';
 
 		if (IconUtil.commandsWithIcons.includes(iconCommand)) {
