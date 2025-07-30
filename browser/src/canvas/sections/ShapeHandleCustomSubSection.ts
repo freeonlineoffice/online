@@ -55,7 +55,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		this.containerObject.requestReDraw();
 	}
 
-	onMouseLeave(point: number[], e: MouseEvent) {
+	onMouseLeave(point: cool.SimplePoint, e: MouseEvent) {
 		app.map.dontHandleMouse = false;
 		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.previousCursorStyle;
 		this.stopPropagating();
