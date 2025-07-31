@@ -81,7 +81,9 @@ function sanitizePaletteRow(row: string) {
 			const json = JSON.parse(row);
 			return json.filter((color: string | null) => color !== null);
 		} catch (e) {
-			console.error('Cannot parse palette row from cache: "' + row + '" :' + e);
+			console.error(
+				'Cannot parse palette row from cache: "' + row + '" :' + e,
+			);
 		}
 	}
 	return null;
