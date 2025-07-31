@@ -182,7 +182,7 @@ export class ColumnHeader extends Header {
 		return {left: left, right: right, top: top, bottom: bottom};
 	}
 
-	onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		if (!this._mouseOverEntry)
 			return;
 

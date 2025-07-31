@@ -426,7 +426,7 @@ export class Header extends CanvasSectionObject {
 		this._map.sendUnoCommand('.uno:FreezePanes');
 	}
 
-	_entryAtPoint(point: cool.SimplePoint): PointEntryQueryResult {
+	_entryAtPoint(point: lool.SimplePoint): PointEntryQueryResult {
 		if (!this._headerInfo)
 			return undefined;
 
@@ -474,7 +474,7 @@ export class Header extends CanvasSectionObject {
 		this._bindContextMenu();
 	}
 
-	onMouseLeave (point: cool.SimplePoint): void {
+	onMouseLeave (point: lool.SimplePoint): void {
 		if (point === null) { // This means that the mouse pointer is outside the canvas.
 			if (this.containerObject.isDraggingSomething() && this._dragEntry) { // Were we resizing a row / column before mouse left.
 				this.onDragEnd(this.containerObject.getDragDistance());
@@ -534,7 +534,7 @@ export class Header extends CanvasSectionObject {
 		this.context.stroke();
 	}
 
-	onMouseMove (point: cool.SimplePoint, dragDistance?: number[]): void {
+	onMouseMove (point: lool.SimplePoint, dragDistance?: number[]): void {
 		const result = this._entryAtPoint(point); // Data related to current entry that the mouse is over now.
 		if (result) { // Is mouse over an entry.
 			this._prevMouseOverEntry = this._mouseOverEntry;
@@ -600,7 +600,7 @@ export class Header extends CanvasSectionObject {
 		this._isColumn ? this.setOptimalWidthAuto(): this.setOptimalHeightAuto();
 	}
 
-	onMouseDown (point: cool.SimplePoint): void {
+	onMouseDown (point: lool.SimplePoint): void {
 		this.onMouseMove(point);
 
 		if (this._hitResizeArea) {

@@ -158,7 +158,7 @@ export class ColumnGroup extends GroupBase {
 
 	// When user clicks somewhere on the section, onMouseClick event is called by CanvasSectionContainer.
 	// Clicked point is also given to handler function. This function finds the clicked header.
-	findClickedLevel (point: cool.SimplePoint): number {
+	findClickedLevel (point: lool.SimplePoint): number {
 		const mirrorX = this.isCalcRTL();
 		if ((!mirrorX && point.pX < this._cornerHeaderWidth)
 			|| (mirrorX && point.pX > this.size[0] - this._cornerHeaderWidth)) {
@@ -170,7 +170,7 @@ export class ColumnGroup extends GroupBase {
 		return -1;
 	}
 
-	findClickedGroup (point: cool.SimplePoint): GroupEntry {
+	findClickedGroup (point: lool.SimplePoint): GroupEntry {
 		const mirrorX = this.isCalcRTL();
 		for (let i = 0; i < this._groups.length; i++) {
 			if (this._groups[i]) {

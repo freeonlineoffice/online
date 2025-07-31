@@ -46,7 +46,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		this.setPosition(this.sectionProperties.position.pX, this.sectionProperties.position.pY);
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent) {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent) {
 		app.map.dontHandleMouse = true;
 		this.sectionProperties.previousCursorStyle = this.sectionProperties.mapPane.style.cursor;
 		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.mousePointerType;
@@ -55,7 +55,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		this.containerObject.requestReDraw();
 	}
 
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent) {
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent) {
 		app.map.dontHandleMouse = false;
 		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.previousCursorStyle;
 		this.stopPropagating();
@@ -63,11 +63,11 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		this.containerObject.requestReDraw();
 	}
 
-	onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		(window as any).IgnorePanning = true;
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.containerObject.isDraggingSomething()) {
 			const parameters = {
 				HandleNum: { type: 'long', value: this.sectionProperties.ownInfo.id },
@@ -84,7 +84,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		(window as any).IgnorePanning = false;
 	}
 
-	onMouseMove(point: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
 		if (this.containerObject.isDraggingSomething()) {
 			this.stopPropagating();
 			e.stopPropagation();

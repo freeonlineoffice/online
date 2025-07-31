@@ -292,7 +292,7 @@ export abstract class GroupBase extends CanvasSectionObject {
 	 * startX, startY, endX, endY. If mirrorX is true then point is horizontally
 	 * mirrored before checking.
 	 */
-	isPointInRect (point: cool.SimplePoint, startX: number, startY: number, endX: number, endY: number, mirrorX: boolean): boolean {
+	isPointInRect (point: lool.SimplePoint, startX: number, startY: number, endX: number, endY: number, mirrorX: boolean): boolean {
 		const x = mirrorX ? this.size[0] - point.pX : point.pX;
 		const y = point.pY;
 
@@ -304,15 +304,15 @@ export abstract class GroupBase extends CanvasSectionObject {
 		this.drawLevelHeaders();
 	}
 
-	findClickedGroup (point: cool.SimplePoint): GroupEntry {
+	findClickedGroup (point: lool.SimplePoint): GroupEntry {
 		return null;
 	}
 
-	findClickedLevel (point: cool.SimplePoint): number {
+	findClickedLevel (point: lool.SimplePoint): number {
 		return -1;
 	}
 
-	onMouseMove (point: cool.SimplePoint): void {
+	onMouseMove (point: lool.SimplePoint): void {
 		// If mouse is above a group header or a group control, we change the cursor.
 		if (this.findClickedGroup(point) !== null || this.findClickedLevel(point) !== -1)
 			this.context.canvas.style.cursor = 'pointer';
@@ -328,7 +328,7 @@ export abstract class GroupBase extends CanvasSectionObject {
 		return;
 	}
 
-	onClick (point: cool.SimplePoint): void {
+	onClick (point: lool.SimplePoint): void {
 		// User may have clicked on one of the level headers.
 		const level = this.findClickedLevel(point);
 		if (level !== -1) {
@@ -349,7 +349,7 @@ export abstract class GroupBase extends CanvasSectionObject {
 		return [0, 0, 0, 0];
 	}
 
-	findTailsGroup (point: cool.SimplePoint): GroupEntry {
+	findTailsGroup (point: lool.SimplePoint): GroupEntry {
 		const mirrorX = this.isCalcRTL();
 		for (let i = 0; i < this._groups.length; i++) {
 			if (this._groups[i]) {
@@ -372,7 +372,7 @@ export abstract class GroupBase extends CanvasSectionObject {
 	}
 
 	/* Double clicking on a group's tail closes it. */
-	onDoubleClick (point: cool.SimplePoint): void {
+	onDoubleClick (point: lool.SimplePoint): void {
 		const group = this.findTailsGroup(point);
 		if (group)
 			this._updateOutlineState(group);
