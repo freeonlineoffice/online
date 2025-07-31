@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -42,11 +40,11 @@ class CanvasSectionObject {
 	boundsList: Array<CanvasSectionObject> = []; // The sections those this section can propagate events to. Updated by container.
 
 	onInitialize(): void { return; }
-	onCursorPositionChanged(newPosition: cool.SimpleRectangle): void { return; }
+	onCursorPositionChanged(newPosition: lool.SimpleRectangle): void { return; }
 	onCellAddressChanged(): void { return; }
-	onMouseMove(point: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent): void { return; }
-	onMouseDown(point: cool.SimplePoint, e: MouseEvent): void { return; }
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void { return; }
+	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent): void { return; }
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void { return; }
 
 	setShowSection(show: boolean): void {
 		this.showSection = show;
@@ -71,14 +69,14 @@ class CanvasSectionObject {
 	}
 
 	onDocumentObjectVisibilityChange(): void { return; }
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void { return; }
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void { return; }
-	onClick(point: cool.SimplePoint, e: MouseEvent): void { return; }
-	onDoubleClick(point: cool.SimplePoint, e: MouseEvent): void { return; }
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onDoubleClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
 	onContextMenu(e?: MouseEvent): void { return; }
-	onMouseWheel(point: cool.SimplePoint, delta: Array<number>, e: WheelEvent): void { return; }
+	onMouseWheel(point: lool.SimplePoint, delta: Array<number>, e: WheelEvent): void { return; }
 	onMultiTouchStart(e: TouchEvent): void { return; }
-	onMultiTouchMove(point: cool.SimplePoint, dragDistance: number, e: TouchEvent): void { return; }
+	onMultiTouchMove(point: lool.SimplePoint, dragDistance: number, e: TouchEvent): void { return; }
 	onMultiTouchEnd(e: TouchEvent): void { return; }
 	onResize(): void { return; }
 	onDraw(frameCount?: number, elapsedTime?: number): void { return; }

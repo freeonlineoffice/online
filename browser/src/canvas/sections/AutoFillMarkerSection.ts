@@ -157,7 +157,7 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		this.drawWhiteOuterBorders();
 	}
 
-	public onMouseMove (point: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	public onMouseMove (point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
 		if ((<any>window).mode.isDesktop())
 			return;
 
@@ -184,7 +184,7 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		e.stopPropagation(); // Stop native event.
 	}
 
-	public onMouseUp (point: cool.SimplePoint, e: MouseEvent) {
+	public onMouseUp (point: lool.SimplePoint, e: MouseEvent) {
 		if (this.sectionProperties.draggingStarted) {
 			this.sectionProperties.draggingStarted = false;
 			point.pX += this.myTopLeft[0] + this.size[0] * 0.5;
@@ -198,7 +198,7 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		(<any>window).IgnorePanning = false;
 	}
 
-	public onMouseDown (point: cool.SimplePoint, e: MouseEvent) {
+	public onMouseDown (point: lool.SimplePoint, e: MouseEvent) {
 		if ((<any>window).mode.isDesktop()) {
 			if (this.sectionProperties.inMouseDown)
 				return;
@@ -243,7 +243,7 @@ class AutoFillMarkerSection extends CanvasSectionObject {
 		this.setMarkerPosition();
 	}
 
-	public onDoubleClick (point: cool.SimplePoint, e: MouseEvent) {
+	public onDoubleClick (point: lool.SimplePoint, e: MouseEvent) {
 		this.sectionProperties.dragStartPosition = this.sectionProperties.docLayer._cellAutoFillAreaPixels.getCenter();
 		var pos = new L.Point(this.sectionProperties.dragStartPosition[0], this.sectionProperties.dragStartPosition[1]);
 		pos = this.sectionProperties.docLayer._corePixelsToTwips(pos);

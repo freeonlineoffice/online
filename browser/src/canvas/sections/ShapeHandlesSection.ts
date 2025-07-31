@@ -718,7 +718,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		return x !== null ? x: y;
 	}
 
-	sendTransformCommand(point: cool.SimplePoint) {
+	sendTransformCommand(point: lool.SimplePoint) {
 		let x = this.sectionProperties.closestX;
 		if (!x) x = this.sectionProperties.lastDragDistance[0] + this.position[0];
 		else x = this.adjustSnapTransformCoordinate(x, null);
@@ -751,7 +751,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		docLayer.requestNewFiledBasedViewTiles();
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.sectionProperties.svg)
 			this.sectionProperties.svg.style.opacity = 1;
 
@@ -936,7 +936,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		this.containerObject.requestReDraw();
 	}
 
-	onMouseMove(position: cool.SimplePoint, dragDistance: number[]) {
+	onMouseMove(position: lool.SimplePoint, dragDistance: number[]) {
 		let canDrag = !app.file.textCursor.visible;
 
 		if (canDrag && app.map.getDocType() === 'presentation') {

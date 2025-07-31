@@ -1313,7 +1313,7 @@ export class Comment extends CanvasSectionObject {
 		}
 	}
 
-	public onClick (point: cool.SimplePoint, e: MouseEvent): void {
+	public onClick (point: lool.SimplePoint, e: MouseEvent): void {
 		if (app.map._docLayer._docType === 'presentation' || app.map._docLayer._docType === 'drawing') {
 			this.sectionProperties.commentListSection.selectById(this.sectionProperties.data.id);
 			e.stopPropagation();
@@ -1373,7 +1373,7 @@ export class Comment extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseUp (point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseUp (point: lool.SimplePoint, e: MouseEvent): void {
 		// Hammer.js doesn't fire onClick event after touchEnd event.
 		// CanvasSectionContainer fires the onClick event. But since Hammer.js is used for map, it disables the onClick for SectionContainer.
 		// We will use this event as click event on touch devices, until we remove Hammer.js (then this code will be removed from here).
@@ -1430,7 +1430,7 @@ export class Comment extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseLeave (point: cool.SimplePoint): void {
+	public onMouseLeave (point: lool.SimplePoint): void {
 		if (this.calcContinueWithMouseEvent()) {
 			if (parseInt(this.sectionProperties.data.tab) === app.map._docLayer._selectedPart) {
 				// Revert the changes we did on "onMouseEnter" event.

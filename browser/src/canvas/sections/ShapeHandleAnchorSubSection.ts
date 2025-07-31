@@ -42,7 +42,7 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 		this.containerObject.requestReDraw();
 	}
 
-	tableMouseUp(point: cool.SimplePoint, e: MouseEvent) {
+	tableMouseUp(point: lool.SimplePoint, e: MouseEvent) {
 		const parameters = {
 			'TransformPosX': {
 				'type': 'long',
@@ -57,7 +57,7 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 		app.map.sendUnoCommand('.uno:TransformDialog', parameters);
 	}
 
-	shapeMouseUp(point: cool.SimplePoint, e: MouseEvent) {
+	shapeMouseUp(point: lool.SimplePoint, e: MouseEvent) {
 		const parameters = {
 			'HandleNum': {
 				'type': 'long',
@@ -76,7 +76,7 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 		app.map.sendUnoCommand('.uno:MoveShapeHandle', parameters);
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.containerObject.isDraggingSomething()) {
 			// Tables don't have parent sections. This is used for separating table anchors from other anchors.
 			if (this.sectionProperties.parentHandlerSection) {
@@ -88,7 +88,7 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 		}
 	}
 
-	onMouseMove(point: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
 		if (this.containerObject.isDraggingSomething()) {
 			// Show preview in its final position.
 			let svg;

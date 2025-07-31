@@ -172,7 +172,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			this.sectionProperties.mousePointerType = 'nwse-resize';
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent) {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent) {
 		app.map.dontHandleMouse = true;
 		e.stopPropagation();
 		this.stopPropagating();
@@ -184,7 +184,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		this.containerObject.requestReDraw();
 	}
 
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent) {
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent) {
 		app.map.dontHandleMouse = false;
 		e.stopPropagation();
 		this.stopPropagating();
@@ -217,7 +217,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		return [handle.id, handle.x, handle.y];
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.containerObject.isDraggingSomething()) {
 			this.stopPropagating();
 			e.stopPropagation();
@@ -351,7 +351,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 	}
 
 	// While dragging a handle, we want to simulate handles to their final positions.
-	moveHandlesOnDrag(point: cool.SimplePoint, e: MouseEvent) {
+	moveHandlesOnDrag(point: lool.SimplePoint, e: MouseEvent) {
 		const shapeRecProps = this.calculateNewShapeRectangleProperties([
 			point.pX + this.myTopLeft[0] + this.documentTopLeft[0] - this.containerObject.getDocumentAnchor()[0],
 			point.pY + this.myTopLeft[1] + this.documentTopLeft[1] - this.containerObject.getDocumentAnchor()[1]
@@ -379,7 +379,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			this.adjustSVGProperties(shapeRecProps);
 	}
 
-	onMouseMove(point: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
 		if (this.containerObject.isDraggingSomething()) {
 			(window as any).IgnorePanning = true;
 			this.stopPropagating();

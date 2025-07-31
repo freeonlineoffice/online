@@ -67,7 +67,7 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 	}
 
 	onMouseMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: Array<number>,
 		e: MouseEvent,
 	): void {
@@ -104,7 +104,7 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 		this.sendAnnotationPositionChange(twips);
 	}
 
-	onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		e.stopPropagation();
 		this.stopPropagating();
 		this.sectionProperties.parentSection.sectionProperties.commentListSection.selectById(
@@ -112,12 +112,12 @@ class CommentMarkerSubSection extends HTMLObjectSection {
 		);
 	}
 
-	onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		e.stopPropagation();
 		this.stopPropagating();
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		e.stopPropagation();
 		if (this.containerObject.isDraggingSomething()) {
 			this.stopPropagating();

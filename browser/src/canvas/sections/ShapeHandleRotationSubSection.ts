@@ -64,13 +64,13 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 		this.setPosition(this.sectionProperties.position.pX, this.sectionProperties.position.pY);
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		app.map.dontHandleMouse = true;
 		this.sectionProperties.previousCursorStyle = this.sectionProperties.mapPane.style.cursor;
 		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.cursorStyle;
 	}
 
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		app.map.dontHandleMouse = false;
 		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.previousCursorStyle;
 	}
@@ -102,11 +102,11 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 		return initialAngle - newAngle;
 	}
 
-	onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		(window as any).IgnorePanning = true;
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.containerObject.isDraggingSomething()) {
 			if (this.sectionProperties.lastDraggingDistance) {
 				const center = GraphicSelection.rectangle.center;
@@ -134,7 +134,7 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 		(window as any).IgnorePanning = false;
 	}
 
-	onMouseMove(position: cool.SimplePoint, distance: number[]) {
+	onMouseMove(position: lool.SimplePoint, distance: number[]) {
 		if (this.containerObject.isDraggingSomething()) {
 			this.sectionProperties.lastDraggingDistance = distance;
 

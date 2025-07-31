@@ -757,7 +757,7 @@ export class ScrollSection extends CanvasSectionObject {
 		}
 	}
 
-	private isMouseOnScrollBar (point: cool.SimplePoint): void {
+	private isMouseOnScrollBar (point: lool.SimplePoint): void {
 		const mirrorX = this.isRTL();
 		if (this.documentTopLeft[1] >= 0) {
 			if ((!mirrorX && point.pX >= this.size[0] - this.sectionProperties.usableThickness)
@@ -869,13 +869,13 @@ export class ScrollSection extends CanvasSectionObject {
 		return true;
 	}
 
-	private isMouseInsideDocumentAnchor (point: cool.SimplePoint): boolean {
+	private isMouseInsideDocumentAnchor (point: lool.SimplePoint): boolean {
 		var docSection = this.containerObject.getDocumentAnchorSection();
 		return this.containerObject.doesSectionIncludePoint(docSection, point.pToArray());
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	private isMousePointerSyncedWithVerticalScrollBar (scrollProps: any, position: cool.SimplePoint): boolean {
+	private isMousePointerSyncedWithVerticalScrollBar (scrollProps: any, position: lool.SimplePoint): boolean {
 		// Keep this desktop-only for now.
 		if (!(<any>window).mode.isDesktop())
 			return true;
@@ -906,7 +906,7 @@ export class ScrollSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	private isMousePointerSyncedWithHorizontalScrollBar (scrollProps: any, position: cool.SimplePoint): boolean {
+	private isMousePointerSyncedWithHorizontalScrollBar (scrollProps: any, position: lool.SimplePoint): boolean {
 		// Keep this desktop-only for now.
 		if (!(<any>window).mode.isDesktop())
 			return true;
@@ -941,7 +941,7 @@ export class ScrollSection extends CanvasSectionObject {
 		return pointerIsSyncWithScrollBar;
 	}
 
-	public onMouseMove (position: cool.SimplePoint, dragDistance: Array<number>, e: MouseEvent): void {
+	public onMouseMove (position: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent): void {
 		this.clearQuickScrollTimeout();
 
 		if (this.sectionProperties.clickScrollVertical && this.containerObject.isDraggingSomething()) {
@@ -991,7 +991,7 @@ export class ScrollSection extends CanvasSectionObject {
 		When user presses the button while the mouse pointer is on the railway of the scroll bar but not on the scroll bar directly,
 		we quickly scroll the document to that position.
 	*/
-	private quickScrollVertical (point: cool.SimplePoint, originalSign?: number): void {
+	private quickScrollVertical (point: lool.SimplePoint, originalSign?: number): void {
 		// Desktop only for now.
 		if (!(<any>window).mode.isDesktop())
 			return;
@@ -1024,7 +1024,7 @@ export class ScrollSection extends CanvasSectionObject {
 		When user presses the button while the mouse pointer is on the railway of the scroll bar but not on the scroll bar directly,
 		we quickly scroll the document to that position.
 	*/
-	private quickScrollHorizontal (point: cool.SimplePoint, originalSign?: number): void {
+	private quickScrollHorizontal (point: lool.SimplePoint, originalSign?: number): void {
 		// Desktop only for now.
 		if (!(<any>window).mode.isDesktop())
 			return;
@@ -1056,12 +1056,12 @@ export class ScrollSection extends CanvasSectionObject {
 		this.scrollHorizontalWithOffset(offset);
 	}
 
-	private getLocalYOnVerticalScrollBar (point: cool.SimplePoint): number {
+	private getLocalYOnVerticalScrollBar (point: lool.SimplePoint): number {
 		var props = this.getVerticalScrollProperties();
 		return point.pY - props.startY;
 	}
 
-	private getLocalXOnHorizontalScrollBar (point: cool.SimplePoint): number {
+	private getLocalXOnHorizontalScrollBar (point: lool.SimplePoint): number {
 		var props = this.getHorizontalScrollProperties();
 		return point.pX - props.startX;
 	}
@@ -1077,7 +1077,7 @@ export class ScrollSection extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseDown (point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseDown (point: lool.SimplePoint, e: MouseEvent): void {
 		this.clearQuickScrollTimeout();
 		this.onMouseMove(point, null, e);
 		this.isMouseOnScrollBar(point);
@@ -1125,7 +1125,7 @@ export class ScrollSection extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseUp (point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseUp (point: lool.SimplePoint, e: MouseEvent): void {
 		L.DomUtil.removeClass(document.documentElement, 'prevent-select');
 		this.map.scrollingIsHandled = false;
 		this.clearQuickScrollTimeout();
@@ -1165,7 +1165,7 @@ export class ScrollSection extends CanvasSectionObject {
 		this.onMouseMove(point, null, e);
 	}
 
-	public onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.isAnimating && this.sectionProperties.animatingWheelScrollVertical)
 			this.containerObject.stopAnimating();
 	}
@@ -1196,7 +1196,7 @@ export class ScrollSection extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseWheel (point: cool.SimplePoint, delta: Array<number>, e: WheelEvent): void {
+	public onMouseWheel (point: lool.SimplePoint, delta: Array<number>, e: WheelEvent): void {
 		if (e.ctrlKey) return;
 
 		this.map.fire('closepopups'); // close all popups when scrolling
