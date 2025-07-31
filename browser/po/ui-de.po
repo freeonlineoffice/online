@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-30 17:05+0200\n"
-"PO-Revision-Date: 2025-07-30 18:05+0200\n"
+"POT-Creation-Date: 2025-07-31 20:00+0200\n"
+"PO-Revision-Date: 2025-07-31 20:13+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -293,12 +293,12 @@ msgstr "Warnung"
 #: src/control/Toolbar.js:988 src/core/Socket.js:713 src/core/Socket.js:1178
 #: src/core/Socket.js:1248 src/core/Socket.js:1420 src/core/Socket.js:1424
 #: src/docdispatcher.ts:555 src/main.js:86 src/main.js:89 src/main.js:142
-#: src/map/Clipboard.js:1283 src/map/handler/Map.Feedback.js:87
+#: src/map/Clipboard.js:1286 src/map/handler/Map.Feedback.js:87
 #: src/map/handler/Map.SlideShow.js:51 src/map/handler/Map.SlideShow.js:164
 #: src/map/handler/Map.SlideShow.js:292 src/map/handler/Map.SlideShow.js:303
-#: src/map/handler/Map.WOPI.js:682 src/slideshow/SlideShowPresenter.ts:709
-#: src/slideshow/SlideShowPresenter.ts:724 src/slideshow/SlideShowPresenter.ts:739
-#: src/slideshow/SlideShowPresenter.ts:762
+#: src/map/handler/Map.WOPI.js:682 src/slideshow/SlideShowPresenter.ts:703
+#: src/slideshow/SlideShowPresenter.ts:718 src/slideshow/SlideShowPresenter.ts:733
+#: src/slideshow/SlideShowPresenter.ts:756
 msgid "OK"
 msgstr "OK"
 
@@ -394,15 +394,15 @@ msgstr " Minuten"
 msgid " s"
 msgstr " Sekunden"
 
-#: js/global.js:1575
+#: js/global.js:1571
 msgid "Cluster is scaling, retrying..."
 msgstr "Cluster skaliert, versucht es erneut..."
 
-#: js/global.js:1577
+#: js/global.js:1573
 msgid "Document is migrating to new server, retrying..."
 msgstr "Dokument wird auf neuen Server migriert, erneuter Versuch..."
 
-#: js/global.js:1579
+#: js/global.js:1575
 msgid "Failed to get RouteToken from controller"
 msgstr "RouteToken konnte nicht vom Controller abgerufen werden"
 
@@ -709,307 +709,307 @@ msgstr "Inhalt in die Zwischenablage kopiert"
 msgid "Download failed"
 msgstr "Herunterladen fehlgeschlagen"
 
-#: src/control/Control.ESignature.ts:127
+#: src/control/Control.ESignature.ts:125
 msgid "Andorra"
 msgstr "Andorra"
 
-#: src/control/Control.ESignature.ts:128
+#: src/control/Control.ESignature.ts:126
 msgid "United Arab Emirates"
 msgstr "Vereinigte Arabische Emirate"
 
-#: src/control/Control.ESignature.ts:129
+#: src/control/Control.ESignature.ts:127
 msgid "Albania"
 msgstr "Albanien"
 
-#: src/control/Control.ESignature.ts:130
+#: src/control/Control.ESignature.ts:128
 msgid "Armenia"
 msgstr "Armenien"
 
-#: src/control/Control.ESignature.ts:131
+#: src/control/Control.ESignature.ts:129
 msgid "Argentina"
 msgstr "Argentinien"
 
-#: src/control/Control.ESignature.ts:132
+#: src/control/Control.ESignature.ts:130
 msgid "Austria"
 msgstr "Österreich"
 
-#: src/control/Control.ESignature.ts:133
+#: src/control/Control.ESignature.ts:131
 msgid "Australia"
 msgstr "Australien"
 
-#: src/control/Control.ESignature.ts:134
+#: src/control/Control.ESignature.ts:132
 msgid "Åland Islands"
 msgstr "Alandinseln"
 
-#: src/control/Control.ESignature.ts:135
+#: src/control/Control.ESignature.ts:133
 msgid "Azerbaijan"
 msgstr "Aserbaidschan"
 
-#: src/control/Control.ESignature.ts:136
+#: src/control/Control.ESignature.ts:134
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnien und Herzegovina"
 
-#: src/control/Control.ESignature.ts:137
+#: src/control/Control.ESignature.ts:135
 msgid "Belgium"
 msgstr "Belgien"
 
-#: src/control/Control.ESignature.ts:138
+#: src/control/Control.ESignature.ts:136
 msgid "Bulgaria"
 msgstr "Bulgarien"
 
-#: src/control/Control.ESignature.ts:139
+#: src/control/Control.ESignature.ts:137
 msgid "Brazil"
 msgstr "Brasilien"
 
-#: src/control/Control.ESignature.ts:140
+#: src/control/Control.ESignature.ts:138
 msgid "Belarus"
 msgstr "Belarus"
 
-#: src/control/Control.ESignature.ts:141
+#: src/control/Control.ESignature.ts:139
 msgid "Canada"
 msgstr "Kanada"
 
-#: src/control/Control.ESignature.ts:142
+#: src/control/Control.ESignature.ts:140
 msgid "Switzerland"
 msgstr "Schweiz"
 
-#: src/control/Control.ESignature.ts:143
+#: src/control/Control.ESignature.ts:141
 msgid "Chile"
 msgstr "Chile"
 
-#: src/control/Control.ESignature.ts:144
+#: src/control/Control.ESignature.ts:142
 msgid "China"
 msgstr "China"
 
-#: src/control/Control.ESignature.ts:145
+#: src/control/Control.ESignature.ts:143
 msgid "Cyprus"
 msgstr "Zypern"
 
-#: src/control/Control.ESignature.ts:146
+#: src/control/Control.ESignature.ts:144
 msgid "Czech Republic"
 msgstr "Tschechische Republik"
 
-#: src/control/Control.ESignature.ts:147
+#: src/control/Control.ESignature.ts:145
 msgid "Germany"
 msgstr "Deutschland"
 
-#: src/control/Control.ESignature.ts:148
+#: src/control/Control.ESignature.ts:146
 msgid "Denmark"
 msgstr "Dänemark"
 
-#: src/control/Control.ESignature.ts:149
+#: src/control/Control.ESignature.ts:147
 msgid "Estonia"
 msgstr "Estland"
 
-#: src/control/Control.ESignature.ts:150
+#: src/control/Control.ESignature.ts:148
 msgid "Spain"
 msgstr "Spanien"
 
-#: src/control/Control.ESignature.ts:151
+#: src/control/Control.ESignature.ts:149
 msgid "Finland"
 msgstr "Finnland"
 
-#: src/control/Control.ESignature.ts:152
+#: src/control/Control.ESignature.ts:150
 msgid "France"
 msgstr "Frankreich"
 
-#: src/control/Control.ESignature.ts:153
+#: src/control/Control.ESignature.ts:151
 msgid "United Kingdom"
 msgstr "Vereinigtes Königreich"
 
-#: src/control/Control.ESignature.ts:154
+#: src/control/Control.ESignature.ts:152
 msgid "Georgia"
 msgstr "Georgien"
 
-#: src/control/Control.ESignature.ts:155
+#: src/control/Control.ESignature.ts:153
 msgid "Guernsey"
 msgstr "Guernsey"
 
-#: src/control/Control.ESignature.ts:156
+#: src/control/Control.ESignature.ts:154
 msgid "Greece"
 msgstr "Griechenland"
 
-#: src/control/Control.ESignature.ts:157
+#: src/control/Control.ESignature.ts:155
 msgid "Croatia"
 msgstr "Kroatien"
 
-#: src/control/Control.ESignature.ts:158
+#: src/control/Control.ESignature.ts:156
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: src/control/Control.ESignature.ts:159
+#: src/control/Control.ESignature.ts:157
 msgid "Indonesia"
 msgstr "Indonesien"
 
-#: src/control/Control.ESignature.ts:160
+#: src/control/Control.ESignature.ts:158
 msgid "Ireland"
 msgstr "Irland"
 
-#: src/control/Control.ESignature.ts:161
+#: src/control/Control.ESignature.ts:159
 msgid "Israel"
 msgstr "Israel"
 
-#: src/control/Control.ESignature.ts:162
+#: src/control/Control.ESignature.ts:160
 msgid "India"
 msgstr "Indien"
 
-#: src/control/Control.ESignature.ts:163
+#: src/control/Control.ESignature.ts:161
 msgid "Iceland"
 msgstr "Island"
 
-#: src/control/Control.ESignature.ts:164
+#: src/control/Control.ESignature.ts:162
 msgid "Italy"
 msgstr "Italien"
 
-#: src/control/Control.ESignature.ts:165
+#: src/control/Control.ESignature.ts:163
 msgid "Japan"
 msgstr "Japan"
 
-#: src/control/Control.ESignature.ts:166
+#: src/control/Control.ESignature.ts:164
 msgid "Kenya"
 msgstr "Kenya"
 
-#: src/control/Control.ESignature.ts:167
+#: src/control/Control.ESignature.ts:165
 msgid "South Korea"
 msgstr "Süd Korea"
 
-#: src/control/Control.ESignature.ts:168
+#: src/control/Control.ESignature.ts:166
 msgid "Kazakhstan"
 msgstr "Kasachstan"
 
-#: src/control/Control.ESignature.ts:169
+#: src/control/Control.ESignature.ts:167
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#: src/control/Control.ESignature.ts:170
+#: src/control/Control.ESignature.ts:168
 msgid "Lithuania"
 msgstr "Litauen"
 
-#: src/control/Control.ESignature.ts:171
+#: src/control/Control.ESignature.ts:169
 msgid "Luxembourg"
 msgstr "Luxemburg"
 
-#: src/control/Control.ESignature.ts:172
+#: src/control/Control.ESignature.ts:170
 msgid "Latvia"
 msgstr "Litauen"
 
-#: src/control/Control.ESignature.ts:173
+#: src/control/Control.ESignature.ts:171
 msgid "Monaco"
 msgstr "Monaco"
 
-#: src/control/Control.ESignature.ts:174
+#: src/control/Control.ESignature.ts:172
 msgid "Moldova, Republic of"
 msgstr "Republik Moldau"
 
-#: src/control/Control.ESignature.ts:175
+#: src/control/Control.ESignature.ts:173
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: src/control/Control.ESignature.ts:176
+#: src/control/Control.ESignature.ts:174
 msgid "North Macedonia, Republic of"
 msgstr "Nord-Mazedonien, Republik von"
 
-#: src/control/Control.ESignature.ts:177
+#: src/control/Control.ESignature.ts:175
 msgid "Malta"
 msgstr "Malta"
 
-#: src/control/Control.ESignature.ts:178
+#: src/control/Control.ESignature.ts:176
 msgid "Mexico"
 msgstr "Mexiko"
 
-#: src/control/Control.ESignature.ts:179
+#: src/control/Control.ESignature.ts:177
 msgid "Netherlands"
 msgstr "Niederlande"
 
-#: src/control/Control.ESignature.ts:180
+#: src/control/Control.ESignature.ts:178
 msgid "Norway"
 msgstr "Norwegen"
 
-#: src/control/Control.ESignature.ts:181
+#: src/control/Control.ESignature.ts:179
 msgid "New Zealand"
 msgstr "Neuseeland"
 
-#: src/control/Control.ESignature.ts:182
+#: src/control/Control.ESignature.ts:180
 msgid "Philippines"
 msgstr "Philippinen"
 
-#: src/control/Control.ESignature.ts:183
+#: src/control/Control.ESignature.ts:181
 msgid "Poland"
 msgstr "Polen"
 
-#: src/control/Control.ESignature.ts:184
+#: src/control/Control.ESignature.ts:182
 msgid "Portugal"
 msgstr "Portugal"
 
-#: src/control/Control.ESignature.ts:185
+#: src/control/Control.ESignature.ts:183
 msgid "Qatar"
 msgstr "Katar"
 
-#: src/control/Control.ESignature.ts:186
+#: src/control/Control.ESignature.ts:184
 msgid "Romania"
 msgstr "Romänien"
 
-#: src/control/Control.ESignature.ts:187
+#: src/control/Control.ESignature.ts:185
 msgid "Serbia"
 msgstr "Serbien"
 
-#: src/control/Control.ESignature.ts:188
+#: src/control/Control.ESignature.ts:186
 msgid "Russian Federation"
 msgstr "Russische Föderation"
 
-#: src/control/Control.ESignature.ts:189
+#: src/control/Control.ESignature.ts:187
 msgid "Saudi Arabia"
 msgstr "Saudi Arabien"
 
-#: src/control/Control.ESignature.ts:190
+#: src/control/Control.ESignature.ts:188
 msgid "Sweden"
 msgstr "Schweden"
 
-#: src/control/Control.ESignature.ts:191
+#: src/control/Control.ESignature.ts:189
 msgid "Singapore"
 msgstr "Singapur"
 
-#: src/control/Control.ESignature.ts:192
+#: src/control/Control.ESignature.ts:190
 msgid "Slovenia"
 msgstr "Slowenien"
 
-#: src/control/Control.ESignature.ts:193
+#: src/control/Control.ESignature.ts:191
 msgid "Slovakia"
 msgstr "Slowakei"
 
-#: src/control/Control.ESignature.ts:194
+#: src/control/Control.ESignature.ts:192
 msgid "San Marino"
 msgstr "San Marino"
 
-#: src/control/Control.ESignature.ts:195
+#: src/control/Control.ESignature.ts:193
 msgid "Turkey"
 msgstr "Türkei"
 
-#: src/control/Control.ESignature.ts:196
+#: src/control/Control.ESignature.ts:194
 msgid "Taiwan, Province of China"
 msgstr "Taiwan, Provinz von China"
 
-#: src/control/Control.ESignature.ts:197
+#: src/control/Control.ESignature.ts:195
 msgid "Ukraine"
 msgstr "Ukraine"
 
-#: src/control/Control.ESignature.ts:198
+#: src/control/Control.ESignature.ts:196
 msgid "United States of America"
 msgstr "Vereinigte Staaten von Amerika"
 
-#: src/control/Control.ESignature.ts:199
+#: src/control/Control.ESignature.ts:197
 msgid "Holy See (Vatican City State)"
 msgstr "Vatikan"
 
-#: src/control/Control.ESignature.ts:200
+#: src/control/Control.ESignature.ts:198
 msgid "Kosovo"
 msgstr "Kosovo"
 
-#: src/control/Control.ESignature.ts:201
+#: src/control/Control.ESignature.ts:199
 msgid "South Africa"
 msgstr "Süd Afrika"
 
-#: src/control/Control.ESignature.ts:345
+#: src/control/Control.ESignature.ts:343
 msgid "The document is being signed and will be availably shortly"
 msgstr "Das Dokument wird derzeit signiert und steht in Kürze zur Verfügung"
 
@@ -1553,7 +1553,7 @@ msgid "Present in new window"
 msgstr "Präsentieren in neuem Fenster"
 
 #: src/control/Control.Menubar.ts:575 src/control/Control.NotebookbarImpress.js:458
-#: src/slideshow/PresenterConsole.js:242
+#: src/slideshow/PresenterConsole.js:243
 msgid "Presenter Console"
 msgstr "Presenter-Konsole"
 
@@ -2116,7 +2116,7 @@ msgstr "Hintergrundbild"
 
 #: src/control/Control.NotebookbarImpress.js:2491
 msgid "Effects"
-msgstr ""
+msgstr "Effekte"
 
 #: src/control/Control.NotebookbarWriter.js:71
 msgid "Form"
@@ -4957,19 +4957,19 @@ msgstr "Wasserzeichen"
 msgid "Dismiss"
 msgstr "Verwerfen"
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:46 src/control/jsdialog/Widget.ColorPicker.ts:140
+#: src/control/jsdialog/Widget.ColorPicker.ts:46 src/control/jsdialog/Widget.ColorPicker.ts:151
 msgid "Unknown color"
 msgstr "Unbekannte Farbe"
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:220
+#: src/control/jsdialog/Widget.ColorPicker.ts:231
 msgid "No fill"
 msgstr "Keine Füllung"
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:220
+#: src/control/jsdialog/Widget.ColorPicker.ts:231
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: src/control/jsdialog/Widget.ColorPicker.ts:406
+#: src/control/jsdialog/Widget.ColorPicker.ts:417
 msgid "Recent"
 msgstr "Kürzlich"
 
@@ -5548,25 +5548,29 @@ msgstr "Keine Kommentare"
 msgid "Warning! The browser you are using is not supported."
 msgstr "Achtung! Der von Ihnen benutzte Browser wird nicht unterstützt."
 
-#: src/map/Clipboard.js:167
+#: src/map/Clipboard.js:166
 msgid "To paste outside {productname}, please first click the 'download' button"
 msgstr ""
 "Um außerhalb von {productname} einzufügen, klicken Sie bitte zunächst auf die Schaltfläche "
 "„Herunterladen“"
 
-#: src/map/Clipboard.js:175
+#: src/map/Clipboard.js:174
 msgid "Copying from the document disabled"
 msgstr "Kopieren aus dem Dokument deaktiviert"
 
-#: src/map/Clipboard.js:276
+#: src/map/Clipboard.js:275
 msgid "warning: copy/paste request timed out"
 msgstr "Warnung: Zeitüberschreitung des Aufrufs von Kopieren/Einfügen"
 
-#: src/map/Clipboard.js:320
+#: src/map/Clipboard.js:319
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:1301
+#: src/map/Clipboard.js:1287
+msgid "Don’t show this again"
+msgstr "Nicht erneut anzeigen"
+
+#: src/map/Clipboard.js:1308
 msgid ""
 "Your browser has very limited access to the clipboard, so please use the paste buttons on "
 "your on-screen keyboard instead."
@@ -5574,7 +5578,7 @@ msgstr ""
 "Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage. Verwenden Sie daher "
 "stattdessen die Einfüge-Schaltflächen auf Ihrer Bildschirmtastatur."
 
-#: src/map/Clipboard.js:1357
+#: src/map/Clipboard.js:1364
 msgid ""
 "A download due to a large copy/paste operation has already started. Please, wait for the "
 "current download or cancel it before starting a new one"
@@ -5582,23 +5586,23 @@ msgstr ""
 "Ein Download wurde bereits aufgrund eines großen Kopier-/Einfügevorgangs gestartet. Bitte "
 "warten Sie auf den aktuellen Download oder brechen Sie ihn ab, bevor Sie einen neuen starten"
 
-#: src/map/Clipboard.js:1379
+#: src/map/Clipboard.js:1386
 msgid "Paste from this document"
 msgstr "Aus diesem Dokument einfügen"
 
-#: src/map/Clipboard.js:1379
+#: src/map/Clipboard.js:1386
 msgid "Cancel paste special"
 msgstr "Spezial-Einfügen beenden"
 
-#: src/map/Clipboard.js:1401
+#: src/map/Clipboard.js:1408
 msgid "Your browser has very limited access to the clipboard"
 msgstr "Ihr Browser hat nur sehr eingeschränkten Zugriff auf die Zwischenablage"
 
-#: src/map/Clipboard.js:1406
+#: src/map/Clipboard.js:1413
 msgid "Please use following combination to see more options:"
 msgstr "Bitte verwenden Sie die folgende Kombination, um weitere Optionen anzuzeigen:"
 
-#: src/map/Clipboard.js:1424
+#: src/map/Clipboard.js:1431
 msgid "Close popup to ignore paste special"
 msgstr "Popup schließen, um Inhalte einfügen zu ignorieren"
 
@@ -5641,15 +5645,15 @@ msgstr "Das Hochladen der Datei auf den Server mit dem Status {0} ist fehlgeschl
 msgid "Print dialog"
 msgstr "Druckdialog"
 
-#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:706
+#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:700
 msgid "Empty Slide Show"
 msgstr "Leere Diashow"
 
-#: src/map/handler/Map.SlideShow.js:162 src/slideshow/SlideShowPresenter.ts:734
+#: src/map/handler/Map.SlideShow.js:162 src/slideshow/SlideShowPresenter.ts:728
 msgid "Windowed Presentation Blocked"
 msgstr "Präsentation im Fenster blockiert"
 
-#: src/map/handler/Map.SlideShow.js:163 src/slideshow/SlideShowPresenter.ts:736
+#: src/map/handler/Map.SlideShow.js:163 src/slideshow/SlideShowPresenter.ts:730
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets slide shows to be "
 "displayed in separated windows, allowing for easy screen sharing."
@@ -5662,11 +5666,11 @@ msgstr ""
 msgid "Windowed Presentation: "
 msgstr "Präsentation im Fenster: "
 
-#: src/map/handler/Map.SlideShow.js:197 src/slideshow/SlideShowPresenter.ts:562
+#: src/map/handler/Map.SlideShow.js:197 src/slideshow/SlideShowPresenter.ts:559
 msgid "Presenting in window"
 msgstr "Präsentieren im Fenster"
 
-#: src/map/handler/Map.SlideShow.js:198 src/slideshow/SlideShowPresenter.ts:563
+#: src/map/handler/Map.SlideShow.js:198 src/slideshow/SlideShowPresenter.ts:560
 msgid "Close Presentation"
 msgstr "Präsentation schließen"
 
@@ -5678,19 +5682,19 @@ msgstr "Präsentieren im Vollbildmodus"
 msgid "End Presentation"
 msgstr "Präsentation beenden"
 
-#: src/map/handler/Map.SlideShow.js:290 src/slideshow/SlideShowPresenter.ts:721
+#: src/map/handler/Map.SlideShow.js:290 src/slideshow/SlideShowPresenter.ts:715
 msgid "Already presenting"
 msgstr "Bereits am präsentieren"
 
-#: src/map/handler/Map.SlideShow.js:291 src/slideshow/SlideShowPresenter.ts:722
+#: src/map/handler/Map.SlideShow.js:291 src/slideshow/SlideShowPresenter.ts:716
 msgid "You are already presenting this document"
 msgstr "Sie präsentieren dieses Dokument bereits"
 
-#: src/map/handler/Map.SlideShow.js:301 src/slideshow/SlideShowPresenter.ts:759
+#: src/map/handler/Map.SlideShow.js:301 src/slideshow/SlideShowPresenter.ts:753
 msgid "Presentation disabled"
 msgstr "Präsentation deaktiviert"
 
-#: src/map/handler/Map.SlideShow.js:302 src/slideshow/SlideShowPresenter.ts:760
+#: src/map/handler/Map.SlideShow.js:302 src/slideshow/SlideShowPresenter.ts:754
 msgid "Presentation mode has been disabled for this document"
 msgstr "Der Präsentations-Modus wurde für dieses Dokument deaktiviert"
 
@@ -5754,23 +5758,23 @@ msgstr "Verkleinern"
 msgid "Zoom Out"
 msgstr "Vergößern"
 
-#: src/slideshow/PresenterConsole.js:177
+#: src/slideshow/PresenterConsole.js:178
 msgid "Preview Slide {1}"
 msgstr "Voransicht Folie {1}"
 
-#: src/slideshow/PresenterConsole.js:1303
+#: src/slideshow/PresenterConsole.js:1300
 msgid "Slide {0} of {1}"
 msgstr "Folie {0} von {1}"
 
-#: src/slideshow/PresenterConsole.js:1330
+#: src/slideshow/PresenterConsole.js:1327
 msgid "No Notes"
 msgstr "Keine Notizen"
 
-#: src/slideshow/PresenterConsole.js:1437
+#: src/slideshow/PresenterConsole.js:1434
 msgid "Repeat in {0} seconds"
 msgstr "In {0} Sekunden wiederholen"
 
-#: src/slideshow/PresenterConsole.js:1443 src/slideshow/SlideShowPresenter.ts:408
+#: src/slideshow/PresenterConsole.js:1440 src/slideshow/SlideShowPresenter.ts:408
 msgid "Click to exit presentation..."
 msgstr "Klicken, um die Präsentation zu beenden..."
 
