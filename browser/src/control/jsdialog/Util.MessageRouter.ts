@@ -136,6 +136,8 @@ class JSDialogMessageRouter {
 					}
 				}
 			}
+		} else if (msgData.jsontype === 'quickfind') {
+			app.socket._map.fire('quickfind', { data: msgData });
 		} else {
 			console.warn(
 				'Unhandled jsdialog message: {jsontype: "' +
