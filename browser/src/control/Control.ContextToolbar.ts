@@ -49,7 +49,11 @@ class ContextToolbar {
 	showContextToolbarImpl(): void {
 		this.pendingShow = false;
 		if (!this.initialized) {
-			this.builder.build(this.container, this.getWriterTextContext(), false);
+			this.builder.build(
+				this.container,
+				this.getWriterTextContext(),
+				false,
+			);
 			this.initialized = true;
 		}
 
@@ -72,7 +76,10 @@ class ContextToolbar {
 			}
 
 			let statRect;
-			if (!TextSelections || !(statRect = TextSelections.getStartRectangle()))
+			if (
+				!TextSelections ||
+				!(statRect = TextSelections.getStartRectangle())
+			)
 				return;
 			const pos = { x: statRect.pX1, y: statRect.pY1 };
 			pos.x -=
@@ -102,17 +109,24 @@ class ContextToolbar {
 							{
 								id: 'fontnamecombobox',
 								type: 'combobox',
-								text: (document.getElementById('fontnamecombobox-input') as any)
-									.value,
+								text: (
+									document.getElementById(
+										'fontnamecombobox-input',
+									) as any
+								).value,
 								entries: Object.keys(
-									this.builder.map._docLayer._toolbarCommandValues[
+									this.builder.map._docLayer
+										._toolbarCommandValues[
 										'.uno:CharFontName'
 									],
 								),
 								selectedCount: '1',
 								selectedEntries: [
-									(document.getElementById('fontnamecombobox-input') as any)
-										.selectionStart,
+									(
+										document.getElementById(
+											'fontnamecombobox-input',
+										) as any
+									).selectionStart,
 								],
 								command: '.uno:CharFontName',
 								customEntryRenderer: true,
@@ -120,16 +134,24 @@ class ContextToolbar {
 							{
 								id: 'fontsizecombobox',
 								type: 'combobox',
-								text: (document.getElementById('fontsizecombobox-input') as any)
-									.value,
+								text: (
+									document.getElementById(
+										'fontsizecombobox-input',
+									) as any
+								).value,
 								entries: [
-									6, 7, 8, 9, 10, 10.5, 11, 12, 13, 14, 15, 16, 18, 20, 21, 22,
-									24, 26, 28, 32, 36, 40, 44, 48, 54, 60, 66, 72, 80, 88, 96,
+									6, 7, 8, 9, 10, 10.5, 11, 12, 13,
+									14, 15, 16, 18, 20, 21, 22, 24, 26,
+									28, 32, 36, 40, 44, 48, 54, 60, 66,
+									72, 80, 88, 96,
 								],
 								selectedCount: '1',
 								selectedEntries: [
-									(document.getElementById('fontsizecombobox-input') as any)
-										.selectionStart,
+									(
+										document.getElementById(
+											'fontsizecombobox-input',
+										) as any
+									).selectionStart,
 								],
 								command: '.uno:FontHeight',
 							},
@@ -187,7 +209,9 @@ class ContextToolbar {
 									{
 										id: 'home-superscript',
 										type: 'toolitem',
-										text: _UNO('.uno:SuperScript'),
+										text: _UNO(
+											'.uno:SuperScript',
+										),
 										command: '.uno:SuperScript',
 									},
 									{
@@ -202,7 +226,10 @@ class ContextToolbar {
 										class: 'unospan-CharBackColor',
 										type: 'toolitem',
 										noLabel: true,
-										text: _UNO('.uno:CharBackColor', 'text'),
+										text: _UNO(
+											'.uno:CharBackColor',
+											'text',
+										),
 										command: '.uno:CharBackColor',
 									},
 									{
@@ -249,7 +276,11 @@ class ContextToolbar {
 
 	setLastInputEventType(e: any) {
 		this.lastIinputEvent = e;
-		if (e.type === 'buttonup' && e.input === 'mouse' && this.pendingShow) {
+		if (
+			e.type === 'buttonup' &&
+			e.input === 'mouse' &&
+			this.pendingShow
+		) {
 			this.showContextToolbarImpl();
 			this.pendingShow = false;
 		}
