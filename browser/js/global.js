@@ -1,6 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 
-/* global app ArrayBuffer Uint8Array _ */
+/* global Module ArrayBuffer Uint8Array _ */
 
 /*
 	For extending window.app object, please see "docstate.js" file.
@@ -493,7 +493,7 @@ class EMSCRIPTENAppInitializer extends MobileAppInitializer {
 		super();
 
 		window.ThisIsTheEmscriptenApp = true;
-		window.postMobileMessage = function(msg) { app.HandleLOOLMessage(app.AllocateUTF8(msg)); };
+		window.postMobileMessage = function(msg) { Module._handle_lool_message(Module.stringToNewUTF8(msg)); };
 		window.postMobileError   = function(msg) { console.log('LOOL Error: ' + msg); };
 		window.postMobileDebug   = function(msg) { console.log('LOOL Debug: ' + msg); };
 
