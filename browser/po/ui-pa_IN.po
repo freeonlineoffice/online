@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-31 20:00+0200\n"
+"POT-Creation-Date: 2025-08-03 16:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,7 +298,7 @@ msgstr ""
 #: src/control/Control.Zotero.js:357 src/control/Control.Zotero.js:403
 #: src/control/Parts.js:474 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:879 src/control/Toolbar.js:988
+#: src/control/Toolbar.js:881 src/control/Toolbar.js:990
 #: src/core/Socket.js:713 src/core/Socket.js:1178 src/core/Socket.js:1248
 #: src/core/Socket.js:1420 src/core/Socket.js:1424 src/docdispatcher.ts:555
 #: src/main.js:86 src/main.js:89 src/main.js:142 src/map/Clipboard.js:1286
@@ -321,9 +321,9 @@ msgstr ""
 #: src/control/Control.DownloadProgress.js:74
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.ts:1706 src/control/Control.UIManager.ts:1787
-#: src/control/Control.UIManager.ts:1941 src/control/Control.UIManager.ts:2119
-#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:983
+#: src/control/Control.UIManager.ts:1707 src/control/Control.UIManager.ts:1788
+#: src/control/Control.UIManager.ts:1942 src/control/Control.UIManager.ts:2120
+#: src/control/Control.Zotero.js:352 src/control/Toolbar.js:985
 #: src/core/Socket.js:1445
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
@@ -475,8 +475,8 @@ msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1235
 #: src/control/Control.JSDialogBuilder.js:1940
-#: src/layer/tile/CanvasTileLayer.js:4186
-#: src/layer/tile/CanvasTileLayer.js:4201
+#: src/layer/tile/CanvasTileLayer.js:4196
+#: src/layer/tile/CanvasTileLayer.js:4211
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
 
@@ -1143,7 +1143,7 @@ msgstr "ਤਬਦੀਲੀ ਰੱਦ ਕਰੋ"
 msgid "Font Name"
 msgstr "ਫੋਂਟ"
 
-#: src/control/Control.JSDialogBuilder.js:1671 src/control/Toolbar.js:128
+#: src/control/Control.JSDialogBuilder.js:1671 src/control/Toolbar.js:129
 #, fuzzy
 msgid "Font Size"
 msgstr "ਦਸਤਖਤ ਨਹੀਂ ਕੀਤੇ"
@@ -1775,7 +1775,7 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1159
 #: src/control/Control.NotebookbarWriter.js:986
 #: src/control/Control.StatusBar.js:226 src/control/Control.Zotero.js:212
-#: src/control/Toolbar.js:668 src/control/Toolbar.js:669
+#: src/control/Toolbar.js:670 src/control/Toolbar.js:671
 msgid "Search"
 msgstr "ਖੋਜੋ"
 
@@ -2059,7 +2059,7 @@ msgid "Boolean Value"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:698
-#: src/control/Control.NotebookbarCalc.js:1832 src/control/Toolbar.js:955
+#: src/control/Control.NotebookbarCalc.js:1832 src/control/Toolbar.js:957
 msgid "Text"
 msgstr ""
 
@@ -2604,7 +2604,7 @@ msgstr "ਸ਼ਕਲਾਂ ਜੋੜੋ"
 msgid "Insert connectors"
 msgstr ""
 
-#: src/control/Control.TopToolbar.js:223 src/control/Control.UIManager.ts:1072
+#: src/control/Control.TopToolbar.js:223 src/control/Control.UIManager.ts:1073
 msgid "Hide Menu"
 msgstr ""
 
@@ -2612,7 +2612,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.ts:1099
+#: src/control/Control.UIManager.ts:1100
 msgid "Show Menu"
 msgstr ""
 
@@ -2899,23 +2899,23 @@ msgstr ""
 msgid "Font"
 msgstr "ਫੋਂਟ"
 
-#: src/control/Toolbar.js:257 src/control/Toolbar.js:279
+#: src/control/Toolbar.js:259 src/control/Toolbar.js:281
 msgid "Downloading..."
 msgstr "...ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/control/Toolbar.js:295 src/control/jsdialog/Widget.HTMLContent.ts:176
+#: src/control/Toolbar.js:297 src/control/jsdialog/Widget.HTMLContent.ts:176
 msgid "Saving..."
 msgstr "...ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/control/Toolbar.js:323
+#: src/control/Toolbar.js:325
 msgid "Renaming..."
 msgstr "...ਨਾਂ ਬਦਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: src/control/Toolbar.js:939
+#: src/control/Toolbar.js:941
 msgid "Insert hyperlink"
 msgstr ""
 
-#: src/control/Toolbar.js:967
+#: src/control/Toolbar.js:969
 msgid "Link"
 msgstr ""
 
@@ -5696,7 +5696,7 @@ msgstr "ਫੰਕਸ਼ਨ"
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4220
+#: src/layer/tile/CanvasTileLayer.js:4230
 #, fuzzy
 msgid "No Comments"
 msgstr "ਟਿੱਪਣੀ"
