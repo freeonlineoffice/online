@@ -11,7 +11,7 @@
 class TableInsertMarkerSection extends HTMLObjectSection {
 	static readonly namePrefix: string = 'TableInsertMarker_';
 
-	constructor(type: 'row' | 'column', documentPosition: cool.SimplePoint) {
+	constructor(type: 'row' | 'column', documentPosition: lool.SimplePoint) {
 		super(
 			TableInsertMarkerSection.namePrefix + type,
 			0,
@@ -38,13 +38,13 @@ class TableInsertMarkerSection extends HTMLObjectSection {
 		this.getHTMLObject()?.classList.remove('hovered');
 	}
 
-	public onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		e.preventDefault();
 		this.stopPropagating();
 		e.stopPropagation();
 	}
 
-	public onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		e.preventDefault();
 		this.stopPropagating();
 		e.stopPropagation();
