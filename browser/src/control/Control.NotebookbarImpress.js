@@ -727,7 +727,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'noLabel': true,
 						'text': _('Change Layout'),
 						'icon': 'lc_changelayout.svg',
-						'command': '.uno:AssignLayout',
+						'command': _UNO('.uno:AssignLayout'),
 						'accessibility': { focusBack: true, combination: 'CL', de: null }
 					},
 					{
@@ -735,7 +735,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 						'noLabel': true,
 						'text': _('Reset Layout'),
 						'type': 'toolitem',
-						'command': '.uno:AssignLayout',
+						'command': _UNO('.uno:AssignLayout'),
 						'accessibility': { focusBack: true, combination: 'RS', de: null }
 					}
 				],
