@@ -14,6 +14,7 @@
 /// <reference path="../src/app/TilesMiddleware.ts" />
 /// <reference path="../src/app/Rectangle.ts" />
 /// <reference path="../src/app/LOUtil.ts" />
+/// <reference path="../src/app/ViewLayout.ts" />
 /// <reference path="../src/app/ViewLayoutMultiPage.ts" />
 /// <reference path="./helper/canvasContainerSetup.ts" />
 /// <reference path="./helper/rectUtil.ts" />

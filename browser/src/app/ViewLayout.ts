@@ -10,6 +10,7 @@
  */
 
 class ViewLayoutBase {
+	public readonly type: string = 'ViewLayoutBase';
 	protected _viewedRectangle: lool.SimpleRectangle;
 	private lastViewedRectangle: lool.SimpleRectangle;
 	protected clientVisibleAreaCommand: string = '';
