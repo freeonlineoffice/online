@@ -41,7 +41,7 @@ class NavigatorPanel extends SidebarBase {
 			'#navigator-dock-wrapper',
 		);
 		this.quickFindWrapper = this.navigationPanel.querySelector(
-			'#quick-find-wrapper',
+			'#quickfind-dock-wrapper',
 		);
 		this.map.on(
 			'zoomend',
@@ -193,11 +193,6 @@ class NavigatorPanel extends SidebarBase {
 			});
 		}
 
-		if (this.map.isText()) {
-			// build quickfind panel container
-			// Fill container probably from CanvasTileLayer or
-		}
-
 		if (this.navigationPanel) {
 			// Insert navigation container as the first child & navHeader as next-child of navigator-panel
 			this.navigationPanel.prepend(navContainer);
@@ -269,7 +264,7 @@ class NavigatorPanel extends SidebarBase {
 
 			this.markNavigatorTreeView(navigatorData);
 
-			this.builder.build(this.container, [navigatorData]);
+			this.builder.build(this.container, [navigatorData], false);
 			// There is case where user can directly click navigator from notebookbar view option
 			// in that case we first show the navigation panel and then switch to tab view
 			this.showNavigationPanel();
