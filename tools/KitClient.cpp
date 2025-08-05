@@ -16,6 +16,7 @@
 #include <iostream>
 #include <memory>
 #include <sysexits.h>
+#include <unistd.h>
 
 #define LOK_USE_UNSTABLE_API
 #include <LibreOfficeKit/LibreOfficeKitInit.h>
