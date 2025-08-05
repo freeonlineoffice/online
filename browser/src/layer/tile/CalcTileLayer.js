@@ -247,7 +247,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		this._docPixelSize = newSizePx.clone();
 		app.file.size = new lool.SimplePoint(newDocWidth, newDocHeight);
-		app.view.size = app.file.size.clone();
+		app.activeDocument.activeView.viewSize = app.file.size.clone();
 
 		this._map.setMaxBounds(new L.LatLngBounds(topLeft, bottomRight));
 
@@ -443,7 +443,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			app.file.size.x = statusJSON.width;
 			app.file.size.y = statusJSON.height;
 
-			app.view.size = app.file.size.clone();
+			app.activeDocument.activeView.viewSize = app.file.size.clone();
 
 			if (app.map._docLoaded)
 				this._syncTileContainerSize();

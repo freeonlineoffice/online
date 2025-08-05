@@ -10,13 +10,15 @@
  */
 
 class ViewLayoutBase {
-	private _viewedRectangle: lool.SimpleRectangle;
+	protected _viewedRectangle: lool.SimpleRectangle;
 	private lastViewedRectangle: lool.SimpleRectangle;
-	private clientVisibleAreaCommand: string = '';
+	protected clientVisibleAreaCommand: string = '';
+	protected _viewSize: lool.SimplePoint;
 
 	constructor() {
 		this._viewedRectangle = new lool.SimpleRectangle(0, 0, 0, 0);
 		this.lastViewedRectangle = new lool.SimpleRectangle(0, 0, 0, 0);
+		this._viewSize = new lool.SimplePoint(0, 0);
 	}
 
 	public resetClientVisibleArea(): void {
@@ -94,5 +96,13 @@ class ViewLayoutBase {
 
 		app.sectionContainer.onNewDocumentTopLeft();
 		app.sectionContainer.requestReDraw();
+	}
+
+	public get viewSize() {
+		return this._viewSize;
+	}
+
+	public set viewSize(size: lool.SimplePoint) {
+		this._viewSize = size;
 	}
 }
