@@ -26,7 +26,6 @@ window.addEventListener('load', function () {
 	);
 	app.calc.cellAddress = new app.definitions.simplePoint(0, 0);
 	app.calc.splitCoordinate = new app.definitions.simplePoint(0, 0);
-	app.file.viewedRectangle = new app.definitions.simpleRectangle(0, 0, 0, 0);
 	app.file.textCursor.rectangle = new app.definitions.simpleRectangle(
 		0,
 		0,
@@ -44,7 +43,7 @@ window.addEventListener('load', function () {
 app.getViewRectangles = function () {
 	if (app.map._docLayer._splitPanesContext)
 		return app.map._docLayer._splitPanesContext.getViewRectangles();
-	else return [app.file.viewedRectangle.clone()];
+	else return [app.activeDocument.activeView.viewedRectangle.clone()];
 };
 
 // ToDo: _splitPanesContext should be an app variable.
@@ -57,7 +56,9 @@ app.isPointVisibleInTheDisplayedArea = function (twipsArray /* x, y */) {
 		}
 		return false;
 	} else {
-		return app.file.viewedRectangle.containsPoint(twipsArray);
+		return app.activeDocument.activeView.viewedRectangle.containsPoint(
+			twipsArray,
+		);
 	}
 };
 
@@ -70,7 +71,9 @@ app.isXVisibleInTheDisplayedArea = function (twipsX) {
 		}
 		return false;
 	} else {
-		return app.file.viewedRectangle.containsX(twipsX);
+		return app.activeDocument.activeView.viewedRectangle.containsX(
+			twipsX,
+		);
 	}
 };
 
@@ -83,7 +86,9 @@ app.isYVisibleInTheDisplayedArea = function (twipsY) {
 		}
 		return false;
 	} else {
-		return app.file.viewedRectangle.containsY(twipsY);
+		return app.activeDocument.activeView.viewedRectangle.containsY(
+			twipsY,
+		);
 	}
 };
 
@@ -98,7 +103,9 @@ app.isRectangleVisibleInTheDisplayedArea = function (
 		}
 		return false;
 	} else {
-		return app.file.viewedRectangle.intersectsRectangle(twipsArray);
+		return app.activeDocument.activeView.viewedRectangle.intersectsRectangle(
+			twipsArray,
+		);
 	}
 };
 

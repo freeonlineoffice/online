@@ -167,7 +167,10 @@ class SplitterLinesSection extends CanvasSectionObject {
 
 				if (splitPos.x) {
 					let width, style;
-					if (this.documentTopLeft[0] === 0) {
+					if (
+						app.activeDocument.activeView.viewedRectangle
+							.pX1 === 0
+					) {
 						width = this.sectionProperties.thickness;
 						style = this.sectionProperties.fillColor;
 					} else {
@@ -190,7 +193,10 @@ class SplitterLinesSection extends CanvasSectionObject {
 
 				if (splitPos.y) {
 					let width, style;
-					if (this.documentTopLeft[1] === 0) {
+					if (
+						app.activeDocument.activeView.viewedRectangle
+							.pY1 === 0
+					) {
 						width = this.sectionProperties.thickness;
 						style = this.sectionProperties.fillColor;
 					} else {

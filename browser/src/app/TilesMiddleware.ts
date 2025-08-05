@@ -1321,7 +1321,7 @@ class TileManager {
 				// those tiles first.
 
 				const direction =
-					app.sectionContainer.getLastPanDirection();
+					app.activeDocument.activeView.getLastPanDirection();
 
 				// Conservatively enlarge the area to round to more tiles:
 				const pixelTopLeft = this._pixelBounds.getTopLeft();
@@ -2204,8 +2204,6 @@ class TileManager {
 	}
 
 	public static update(center: any = null, zoom: number = null) {
-		if (app.file.writer.multiPageView) return;
-
 		const map: any = app.map;
 
 		if (
@@ -2261,7 +2259,7 @@ class TileManager {
 		var queue = this.getMissingTiles(pixelBounds, zoom, true);
 
 		app.map._docLayer._sendClientZoom();
-		app.map._docLayer._sendClientVisibleArea();
+		app.activeDocument.activeView.sendClientVisibleArea();
 
 		if (queue.length !== 0) this.addTiles(queue, true);
 
@@ -2402,7 +2400,7 @@ class TileManager {
 
 	public static expandTileRange(range: lool.Bounds): lool.Bounds {
 		const grow = this.visibleTileExpansion;
-		const direction = app.sectionContainer.getLastPanDirection();
+		const direction = app.activeDocument.activeView.getLastPanDirection();
 		const minOffset = new L.Point(
 			grow -
 				grow *
@@ -2451,7 +2449,8 @@ class TileManager {
 	}
 
 	public static getVisibleCoordList(
-		rectangle: lool.SimpleRectangle = app.file.viewedRectangle,
+		rectangle: lool.SimpleRectangle = app.activeDocument.activeView
+			.viewedRectangle,
 	) {
 		const coordList = Array<TileCoordData>();
 		const zoom = app.map.getZoom();
@@ -2519,7 +2518,7 @@ class TileManager {
 		var mode = 0; // mode is different only in Impress MasterPage mode so far
 
 		var intersectionAreaRectangle = app.LOUtil._getIntersectionRectangle(
-			app.file.viewedRectangle.pToArray(),
+			app.activeDocument.activeView.viewedRectangle.pToArray(),
 			[
 				0,
 				0,
@@ -2546,7 +2545,8 @@ class TileManager {
 				intersectionAreaRectangle[1] / partHeightPixels,
 			);
 			var startY =
-				app.file.viewedRectangle.pY1 - startPart * partHeightPixels;
+				app.activeDocument.activeView.viewedRectangle.pY1 -
+				startPart * partHeightPixels;
 			startY =
 				Math.floor(startY / app.tile.size.pY) * app.tile.size.pY;
 
@@ -2556,8 +2556,8 @@ class TileManager {
 					partHeightPixels,
 			);
 			var endY =
-				app.file.viewedRectangle.pY1 +
-				app.file.viewedRectangle.pY2 -
+				app.activeDocument.activeView.viewedRectangle.pY1 +
+				app.activeDocument.activeView.viewedRectangle.pY2 -
 				endPart * partHeightPixels;
 			endY = Math.floor(endY / app.tile.size.pY) * app.tile.size.pY;
 
@@ -2605,7 +2605,7 @@ class TileManager {
 		if (checkOnly) {
 			return queue;
 		} else {
-			app.map._docLayer._sendClientVisibleArea();
+			app.activeDocument.activeView.sendClientVisibleArea();
 			app.map._docLayer._sendClientZoom();
 
 			var tileCombineQueue = [];
