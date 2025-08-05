@@ -28,6 +28,9 @@
 #if !defined(ANDROID) && !defined(IOS) && !defined(__FreeBSD__)
 #  include <sys/prctl.h>
 #endif
+#if defined(__FreeBSD__)
+#  include <sys/procctl.h>
+#endif
 
 #include <atomic>
 #include <cassert>
@@ -568,6 +571,10 @@ void resetTerminationFlags()
     {
 #if !defined(ANDROID) && !defined(__FreeBSD__)
         prctl(PR_SET_PDEATHSIG, SIGKILL);
+#endif
+#if defined(__FreeBSD__)
+        // pid 0 is self
+        procctl(P_PID, 0, PROC_PDEATHSIG_CTL, SIGKILL)
 #endif
     }
 
