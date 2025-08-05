@@ -415,7 +415,7 @@ class HRuler extends Ruler {
 
 		var pxPerMm100 =
 			this._map._docLayer._docPixelSize.x /
-			((app.file.size.x * 2540) / 1440);
+			((app.activeDocument.fileSize.x * 2540) / 1440);
 
 		// Conversion to mm100.
 		if (this.options.unit === 'inch') {
@@ -550,7 +550,7 @@ class HRuler extends Ruler {
 
 		var pxPerMm100 =
 			this._map._docLayer._docPixelSize.x /
-			((app.file.size.x * 2540) / 1440);
+			((app.activeDocument.fileSize.x * 2540) / 1440);
 		this._rTSContainer.tabStops = [];
 		for (
 			var tabstopIndex = 0;
