@@ -927,6 +927,7 @@ img.context-menu-icon {
 }
 /* Radio button */
 
+.ui-radiobutton,
 .radiobutton.jsdialog {
 	display: flex;
 	align-items: center;
@@ -941,6 +942,7 @@ img.context-menu-icon {
 	display: block;
 }
 
+.ui-radiobutton > label,
 .jsdialog .radiobutton > label {
 	vertical-align: middle;
 	white-space: nowrap;
