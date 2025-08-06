@@ -225,8 +225,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.contentNode.id = 'annotation-content-area-' + this.sectionProperties.data.id;
 		this.sectionProperties.nodeModify = L.DomUtil.create('div', 'lool-annotation-edit' + ' modify-annotation', this.sectionProperties.wrapper);
 		this.sectionProperties.nodeModifyText = L.DomUtil.create('div', 'lool-annotation-textarea', this.sectionProperties.nodeModify);
-		this.sectionProperties.replyHint = L.DomUtil.create('div', '', this.sectionProperties.nodeModify);
-		this.sectionProperties.replyHint.innerText = 'Press Ctrl + Enter to post';
+		this.createReplyHint();
 		this.sectionProperties.nodeModifyText.setAttribute('contenteditable', 'true');
 		this.sectionProperties.nodeModifyText.setAttribute('role', 'textbox');
 		this.sectionProperties.nodeModifyText.setAttribute('aria-label', _('Edit comment'));
@@ -318,6 +317,14 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.menu.dataset.title = divMenuTooltipText;
 		this.sectionProperties.menu.setAttribute('aria-label', divMenuTooltipText);
 		this.sectionProperties.menu.annotation = this;
+	}
+
+	private createReplyHint() : void {
+		this.sectionProperties.replyHint = L.DomUtil.create('p', '', this.sectionProperties.nodeModify);
+		var small = document.createElement('small');
+		small.classList.add('lool-font');
+		small.innerText = 'Press Ctrl + Enter to post';
+		this.sectionProperties.replyHint.appendChild(small);
 	}
 
 	private createChildLinesNode (): void {
