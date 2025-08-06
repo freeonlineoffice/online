@@ -237,6 +237,7 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 			}
 			$(contentDivs[t]).removeClass('hidden');
 			$(window).resize();
+			JSDialog.RefreshScrollables();
 			builder.wizard.selectedTab(tabIds[t]);
 
 			// Keep focus if user is navigating via keyboard.
