@@ -36,9 +36,11 @@ class Sidebar extends SidebarBase {
 	}
 
 	updateSidebarPrefs(currentDeck: string) {
+		// No longer used:
+		// 'SdSlideTransitionDeck'
+
 		const decks = [
 			'PropertyDeck',
-			'SdSlideTransitionDeck',
 			'SdCustomAnimationDeck',
 			'SdMasterPagesDeck',
 			'NavigatorDeck',
@@ -54,9 +56,10 @@ class Sidebar extends SidebarBase {
 	}
 
 	commandForDeck(deckId: string): string {
+		// No longer used:
+		// if (deckId === 'SdSlideTransitionDeck') return '.uno:SlideChangeWindow';
+
 		if (deckId === 'PropertyDeck') return '.uno:SidebarDeck.PropertyDeck';
-		else if (deckId === 'SdSlideTransitionDeck')
-			return '.uno:SlideChangeWindow';
 		else if (deckId === 'SdCustomAnimationDeck')
 			return '.uno:CustomAnimation';
 		else if (deckId === 'SdMasterPagesDeck')
