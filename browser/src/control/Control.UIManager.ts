@@ -1176,6 +1176,10 @@ class UIManager extends L.Control {
 
 	// Notebookbar helpers
 
+	initializeNotebookbarInCore(): void {
+		this.map.sendUnoCommand('.uno:ToolbarMode?Mode:string=notebookbar_online.ui');
+	}
+
 	/**
 	 * Returns whether the notebookbar is currently shown.
 	 */
