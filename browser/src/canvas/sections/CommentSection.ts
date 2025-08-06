@@ -323,7 +323,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.replyHint = L.DomUtil.create('p', '', this.sectionProperties.nodeModify);
 		var small = document.createElement('small');
 		small.classList.add('lool-font');
-		small.innerText = 'Press Ctrl + Enter to post';
+		small.innerText = _('Press Ctrl + Enter to post');
 		this.sectionProperties.replyHint.appendChild(small);
 	}
 
