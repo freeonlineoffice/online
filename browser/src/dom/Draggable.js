@@ -33,7 +33,8 @@ L.Draggable = L.Evented.extend({
 		};
 	}),
 
-	initialize: function (element, dragStartTarget, preventOutline) {
+	initialize: function (element, dragStartTarget, preventOutline, no3d) {
+
 		L.Evented.prototype.initialize.call(this);
 
 		this._element = element;
@@ -41,6 +42,7 @@ L.Draggable = L.Evented.extend({
 		this._preventOutline = preventOutline;
 		this._freezeX = false;
 		this._freezeY = false;
+		this._no3d = no3d;
 	},
 
 	freezeX: function (boolChoice) {
@@ -225,7 +227,7 @@ L.Draggable = L.Evented.extend({
 	_updatePosition: function () {
 		var e = { originalEvent: this._lastEvent };
 		this.fire('predrag', e);
-		L.DomUtil.setPosition(this._element, this._newPos);
+		L.DomUtil.setPosition(this._element, this._newPos, this._no3d);
 		this.fire('drag', e);
 	},
 
