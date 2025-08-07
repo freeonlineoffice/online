@@ -125,6 +125,7 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 				},
 			},
 			JSDialog.ImpressTransitionTab.getEntry(),
+			// JSDialog.ImpressAnimationTab.getEntry(), requires core change
 			{
 				id: 'Slideshow-tab-label',
 				text: _('Slide Show'),
@@ -221,6 +222,7 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 			this.getInsertTab(),
 			this.getDesignTab(),
 			this.getTransitionTab(),
+			// this.getAnimationTab(), requires core change
 			this.getSlideshowTab(),
 			this.getReviewTab(),
 			this.getFormatTab(),
@@ -561,7 +563,12 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 		return this.getTabPage(tab.getName(), tab.getContent());
 	},
 
-	getSlideshowTab: function () {
+	getAnimationTab: function() {
+		const tab = JSDialog.ImpressAnimationTab;
+		return this.getTabPage(tab.getName(), tab.getContent());
+	},
+
+	getSlideshowTab: function() {
 		var content = [
 			window.mode.isTablet()
 				? {

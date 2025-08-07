@@ -125,8 +125,8 @@ const defaultBrowserSetting: Record<string, any> = {
 		NavigatorDeck: false,
 		PropertyDeck: true,
 		SdCustomAnimationDeck: false,
-		SdMasterPagesDeck: false,
-		SdSlideTransitionDeck: false,
+		// SdMasterPagesDeck: false,
+		// SdSlideTransitionDeck: false,
 	},
 	drawing: {
 		ShowRuler: false,
@@ -154,8 +154,8 @@ class SettingIframe {
 		NavigatorDeck: _('Navigator'),
 		PropertyDeck: _('Show Sidebar'),
 		SdCustomAnimationDeck: _('Custom Animation'),
-		SdMasterPagesDeck: _('Master Pages'),
-		SdSlideTransitionDeck: _('Slide Transition'),
+		// SdMasterPagesDeck: _('Master Pages'),
+		// SdSlideTransitionDeck: _('Slide Transition'),
 		StyleListDeck: _('Style List'),
 
 		//Document Settings labels
