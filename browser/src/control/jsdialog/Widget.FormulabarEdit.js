@@ -14,8 +14,6 @@
  * 'cursor' specifies if user can type into the field or it is readonly
  * 'enabled' editable field can be temporarily disabled
  *
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  */
 
@@ -197,27 +195,16 @@ function _setSelection(cursorLayer, text, startX, endX, startY, endY) {
 }
 
 function _formulabarEditControl(parentContainer, data, builder) {
-	var container = L.DomUtil.create(
-		'div',
-		'ui-custom-textarea ' + builder.options.cssClass,
-		parentContainer,
-	);
+	var container = L.DomUtil.create('div', 'ui-custom-textarea ' + builder.options.cssClass, parentContainer);
+	var wrapper = L.DomUtil.create('div', 'ui-custom-textarea-overflow-wrapper ' + builder.options.cssClass, container);
 	container.id = data.id;
 
-	var textLayer = L.DomUtil.create(
-		'div',
-		'ui-custom-textarea-text-layer ' + builder.options.cssClass,
-		container,
-	);
+	var textLayer = L.DomUtil.create('div', 'ui-custom-textarea-text-layer ' + builder.options.cssClass, wrapper);
 
 	if (data.enabled !== false)
 		textLayer.setAttribute('contenteditable', 'true');
 
-	var cursorLayer = L.DomUtil.create(
-		'div',
-		'ui-custom-textarea-cursor-layer ' + builder.options.cssClass,
-		container,
-	);
+	var cursorLayer = L.DomUtil.create('div', 'ui-custom-textarea-cursor-layer ' + builder.options.cssClass, wrapper);
 
 	container.setText = function (text, selection) {
 		var newTextLayer = document.createDocumentFragment();
