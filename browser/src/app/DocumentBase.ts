@@ -13,18 +13,18 @@
 class DocumentBase {
 	public readonly type: string = 'DocumentBase';
 	public activeView: ViewLayoutBase;
-	protected _fileSize: cool.SimplePoint;
+	protected _fileSize: lool.SimplePoint;
 
 	constructor() {
 		this.activeView = new ViewLayoutBase();
-		this._fileSize = new cool.SimplePoint(0, 0);
+		this._fileSize = new lool.SimplePoint(0, 0);
 	}
 
-	public get fileSize(): cool.SimplePoint {
+	public get fileSize(): lool.SimplePoint {
 		return this._fileSize;
 	}
 
-	public set fileSize(value: cool.SimplePoint) {
+	public set fileSize(value: lool.SimplePoint) {
 		this._fileSize = value;
 	}
 }

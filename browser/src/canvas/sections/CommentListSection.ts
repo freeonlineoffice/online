@@ -2057,11 +2057,11 @@ export class CommentSection extends CanvasSectionObject {
 
 		lastY += app.activeDocument.activeView.viewedRectangle.pY1;
 		if (lastY > app.activeDocument.fileSize.pY) {
-			app.activeDocument.activeView.viewSize = new cool.SimplePoint(app.activeDocument.activeView.viewSize.x, lastY * app.pixelsToTwips);
+			app.activeDocument.activeView.viewSize = new lool.SimplePoint(app.activeDocument.activeView.viewSize.x, lastY * app.pixelsToTwips);
 			this.containerObject.requestReDraw();
 		}
 		else
-			app.activeDocument.activeView.viewSize = new cool.SimplePoint(app.activeDocument.activeView.viewSize.x, app.activeDocument.fileSize.y);
+			app.activeDocument.activeView.viewSize = new lool.SimplePoint(app.activeDocument.activeView.viewSize.x, app.activeDocument.fileSize.y);
 
 		this.disableLayoutAnimation = false;
 	}
