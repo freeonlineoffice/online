@@ -3,7 +3,7 @@
  * Table Overlay
  */
 
-/* global app ShapeHandleAnchorSubSection cool TableInsertMarkerSection */
+/* global app ShapeHandleAnchorSubSection lool TableInsertMarkerSection */
 
 L.CanvasTileLayer.include({
 	_initializeTableOverlay: function () {
@@ -335,7 +335,7 @@ L.CanvasTileLayer.include({
 		if (type === 'column') {
 			const tableRightEdge = parseInt(this._currentTableData.columns.right);
 			const columnPosition = this._tablePositionColumnOffset + tableRightEdge + delta1;
-			documentPosition = new cool.SimplePoint(columnPosition, start);
+			documentPosition = new lool.SimplePoint(columnPosition, start);
 
 			// Total column height and width for insert column marker
 			const rowStart = this._tablePositionRowOffset + parseInt(this._currentTableData.rows.left);
@@ -347,7 +347,7 @@ L.CanvasTileLayer.include({
 		} else {
 			const tableBottomEdge = parseInt(this._currentTableData.rows.right);
 			const rowPosition = this._tablePositionRowOffset + tableBottomEdge + delta1;
-			documentPosition = new cool.SimplePoint(start, rowPosition);
+			documentPosition = new lool.SimplePoint(start, rowPosition);
 
 			// Total row width and height for insert row marker
 			const colStart = this._tablePositionColumnOffset + parseInt(this._currentTableData.columns.left);

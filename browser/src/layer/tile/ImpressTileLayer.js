@@ -215,7 +215,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		textMsg = textMsg.replace('status: ', '');
 		textMsg = textMsg.replace('statusupdate: ', '');
 		if (statusJSON.width && statusJSON.height && this._documentInfo !== textMsg) {
-			app.activeDocument.fileSize = new cool.SimplePoint(statusJSON.width, statusJSON.height);
+			app.activeDocument.fileSize = new lool.SimplePoint(statusJSON.width, statusJSON.height);
 
 			this._docType = statusJSON.type;
 			if (this._docType === 'drawing') {

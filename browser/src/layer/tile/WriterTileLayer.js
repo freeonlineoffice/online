@@ -108,7 +108,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		console.assert(this._viewId >= 0, 'Incorrect viewId received: ' + this._viewId);
 
 		if (sizeChanged) {
-			app.activeDocument.fileSize = new cool.SimplePoint(statusJSON.width, statusJSON.height);
+			app.activeDocument.fileSize = new lool.SimplePoint(statusJSON.width, statusJSON.height);
 			app.activeDocument.activeView.viewSize = app.activeDocument.fileSize.clone();
 			this._docType = statusJSON.type;
 			this._updateMaxBounds(true);
