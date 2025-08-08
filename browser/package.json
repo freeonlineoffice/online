@@ -36,7 +36,7 @@
     "shrinkpack": "0.20.0",
     "smartmenus": "1.2.1",
     "stylelint": "16.23.0",
-    "tmp": "0.2.3",
+    "tmp": "0.2.4",
     "terser": "4.8.1",
     "typescript": "^5.0.4",
     "typescript-strict-plugin": "^2.4.4",
