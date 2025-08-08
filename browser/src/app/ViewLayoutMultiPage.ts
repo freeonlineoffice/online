@@ -130,7 +130,7 @@ class MultiPageViewLayout {
 		app.view.size.pY = Math.max(lastY, canvasSize[1]);
 	}
 
-	private static getContainingPageRectangle(point: cool.SimplePoint) {
+	private static getContainingPageRectangle(point: lool.SimplePoint) {
 		for (let i = 0; i < this.layoutRectangles.length; i++) {
 			if (this.layoutRectangles[i].containsPoint(point.toArray()))
 				return this.layoutRectangles[i];
@@ -180,7 +180,7 @@ class MultiPageViewLayout {
 
 	// Returns view coordinate of given document coordinate.
 	public static twipsToViewPixels(x: number, y: number): number[] {
-		const point = new cool.SimplePoint(x, y);
+		const point = new lool.SimplePoint(x, y);
 		const containingRectangle = this.getContainingPageRectangle(point);
 
 		if (containingRectangle) {
