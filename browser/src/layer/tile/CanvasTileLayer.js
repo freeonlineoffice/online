@@ -2223,6 +2223,9 @@ L.CanvasTileLayer = L.Layer.extend({
 			return;
 		}
 
+		const grid = document.querySelector('.leaflet-layer');
+		grid.style.cursor = 'text';
+
 		// tells who trigerred cursor invalidation, but recCursors is still "ours"
 		var modifierViewId = parseInt(obj.viewId);
 		var weAreModifier = modifierViewId === this._viewId;
