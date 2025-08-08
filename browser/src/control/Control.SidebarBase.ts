@@ -159,7 +159,8 @@ abstract class SidebarBase {
 			this.documentContainer.getBoundingClientRect().height + 'px';
 		if (this.container) {
 			this.container.style.height =
-				this.documentContainer.getBoundingClientRect().height + 'px';
+				this.documentContainer.getBoundingClientRect().height +
+				'px';
 		}
 	}
 }
