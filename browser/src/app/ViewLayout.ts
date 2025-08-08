@@ -10,17 +10,17 @@
  */
 
 class ViewLayoutBase {
-	viewedRectangle: cool.SimpleRectangle;
-	lastViewedRectangle: cool.SimpleRectangle;
+	viewedRectangle: lool.SimpleRectangle;
+	lastViewedRectangle: lool.SimpleRectangle;
 	private clientVisibleAreaCommand: string = '';
 
 	constructor() {
-		this.viewedRectangle = new cool.SimpleRectangle(0, 0, 0, 0);
-		this.lastViewedRectangle = new cool.SimpleRectangle(0, 0, 0, 0);
+		this.viewedRectangle = new lool.SimpleRectangle(0, 0, 0, 0);
+		this.lastViewedRectangle = new lool.SimpleRectangle(0, 0, 0, 0);
 	}
 
 	public resetClientVisibleArea(): void {
-		this.lastViewedRectangle = new cool.SimpleRectangle(0, 0, 0, 0);
+		this.lastViewedRectangle = new lool.SimpleRectangle(0, 0, 0, 0);
 	}
 
 	public sendClientVisibleArea(forceUpdate: boolean = false): void {
@@ -62,19 +62,26 @@ class ViewLayoutBase {
 			}
 			// Visible area is dirty, update it on the server
 			app.socket.sendMessage(newClientVisibleAreaCommand);
-			if (app.map.contextToolbar) app.map.contextToolbar.hideContextToolbar(); // hide context toolbar when scroll/window resize etc...
-			if (!app.map._fatal && app.idleHandler._active && app.socket.connected())
+			if (app.map.contextToolbar)
+				app.map.contextToolbar.hideContextToolbar(); // hide context toolbar when scroll/window resize etc...
+			if (
+				!app.map._fatal &&
+				app.idleHandler._active &&
+				app.socket.connected()
+			)
 				this.clientVisibleAreaCommand = newClientVisibleAreaCommand;
 		}
 	}
 
 	public getLastPanDirection(): Array<number> {
-		var dx: number = this.viewedRectangle.pX1 - this.lastViewedRectangle.pX1;
-		var dy: number = this.viewedRectangle.pY1 - this.lastViewedRectangle.pY1;
+		var dx: number =
+			this.viewedRectangle.pX1 - this.lastViewedRectangle.pX1;
+		var dy: number =
+			this.viewedRectangle.pY1 - this.lastViewedRectangle.pY1;
 		return [Math.sign(dx), Math.sign(dy)];
 	}
 
-	public setViewedRectangle(rectangle: cool.SimpleRectangle): void {
+	public setViewedRectangle(rectangle: lool.SimpleRectangle): void {
 		this.viewedRectangle = rectangle;
 
 		// maintain a view of where we're panning to.
