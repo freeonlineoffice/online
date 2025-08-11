@@ -1311,7 +1311,6 @@ input[type='number']:hover::-webkit-outer-spin-button {
 
 .ui-overflow-manager {
 	display: flex !important;
-	overflow-x: hidden;
 }
 
 .ui-overflow-group {
