@@ -47,7 +47,12 @@ class ContextToolbar {
 	}
 
 	showContextToolbar(): void {
-		if (this.builder.map.isReadOnlyMode() || !window.mode.isDesktop())
+		const map = this.builder.map;
+		if (
+			map.isReadOnlyMode() ||
+			!window.mode.isDesktop() ||
+			map.getDocType() === 'spreadsheet'
+		)
 			return;
 		if (this.lastIinputEvent.input === 'mouse') this.pendingShow = true;
 		if (this.lastIinputEvent.type !== 'buttonup') return;
