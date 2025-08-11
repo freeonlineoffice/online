@@ -572,7 +572,7 @@ body {
 }
 
 .lool-annotation {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	user-select: text;
 	-moz-user-select: text;
