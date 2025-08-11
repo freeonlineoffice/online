@@ -2630,6 +2630,14 @@ bool LOOLWSD::checkAndRestoreForKit()
                             " with " << SigUtil::signalName(WTERMSIG(status)));
                 }
 
+                // subforkits exit when their parent forkit, so we can
+                // immediately consider these obsolete
+                for (auto it = SubForKitProcs.begin(); it != SubForKitProcs.end(); )
+                {
+                    LOG_DBG("dropping subforkit " << it->first);
+                    it = dropSubForKit(it);
+                }
+
                 // Spawn a new forkit and try to dust it off and resume.
                 if (!SigUtil::getShutdownRequestFlag() && !createForKit())
                 {
