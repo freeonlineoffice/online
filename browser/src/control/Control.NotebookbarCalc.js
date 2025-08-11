@@ -438,8 +438,8 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{ type: 'separator', id: 'home-resertattributes-break', orientation: 'vertical' },
 			{
 				'type': 'overflowgroup',
-				'id': 'home-character',
-				'name': 'Character',
+				'id': 'home-font',
+				'name': 'Font',
 				'children': [
 				{
 					'id': 'Home-Section-Format',
@@ -696,6 +696,13 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						}
 					],
 					'vertical': 'true'
+				},
+				{
+					'id': 'home-merge-cells',
+					'type': 'bigtoolitem',
+					'text': _('Merge & Center'),
+					'command': '.uno:ToggleMergeCells',
+					'accessibility': { focusBack: true, combination: 'M', de: null }
 				}
 			]
 		},
@@ -703,7 +710,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-number-format',
-				'name': 'Number Format',
+				'name': 'Number',
 				'children' : [
 				{
 					'id': 'Home-Section-Number',
@@ -798,17 +805,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 		},
 			{ type: 'separator', id: 'home-numberformatdecrementdecimals-break', orientation: 'vertical' },
 			{
-				'id': 'home-merge-cells',
-				'type': 'bigtoolitem',
-				'text': _UNO('.uno:MergeCells', 'spreadsheet'),
-				'command': '.uno:ToggleMergeCells',
-				'accessibility': { focusBack: true,	combination: 'M', de: null }
-			},
-			{ type: 'separator', id: 'home-mergecells-break', orientation: 'vertical' },
-			{
 				'type': 'overflowgroup',
 				'id': 'home-insert-table',
-				'name': 'Insert',
+				'name': 'Cells',
 				'children' : [
 				{
 					'id': 'Home-Section-Cell1',
@@ -886,18 +885,17 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 		},
 			{ type: 'separator', id: 'home-columnoperations-break', orientation: 'vertical' },
 			{
-				'id': 'home-conditional-format-menu:ConditionalFormatMenu',
-				'type': 'menubutton',
-				'text': _UNO('.uno:ConditionalFormatMenu', 'spreadsheet'),
-				'command': '.uno:ConditionalFormatMenu',
-				'accessibility': { focusBack: true,	combination: 'L', de: null }
-			},
-			{ type: 'separator', id: 'home-conditionalformatmenu-break', orientation: 'vertical' },
-			{
 				'type': 'overflowgroup',
 				'id': 'home-style',
 				'name': 'Style',
 				'children' : [
+				{
+					'id': 'home-conditional-format-menu:ConditionalFormatMenu',
+					'type': 'menubutton',
+					'text': _UNO('.uno:ConditionalFormatMenu', 'spreadsheet'),
+					'command': '.uno:ConditionalFormatMenu',
+					'accessibility': { focusBack: true, combination: 'L', de: null }
+				},
 				{
 					'id': 'Home-Section-Style2',
 					'type': 'container',
@@ -964,8 +962,8 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{ type: 'separator', id: 'home-styleapplybad-break', orientation: 'vertical' },
 			{
 				'type': 'overflowgroup',
-				'id': 'home-search',
-				'name': 'Search',
+				'id': 'home-find-n-filter',
+				'name': 'Editing',
 				'children' : [
 				{
 					'type': 'container',
@@ -997,14 +995,6 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						],
 					'vertical': 'true'
 				},
-			]
-		},
-			{ type: 'separator', id: 'home-replace-break', orientation: 'vertical' },
-			{
-				'type': 'overflowgroup',
-				'id': 'home-filter',
-				'name': 'Filter',
-				'children' : [
 				{
 					'id': 'Home-Section-Find',
 					'type': 'container',
@@ -1052,7 +1042,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'layout-page',
 				'name':_('Format'),
 				'children' : [
-					{	
+					{
 						'id': 'Layout-MarginMenu:MenuMargins',
 						'type': 'menubutton',
 						'text': _('Margin'),
