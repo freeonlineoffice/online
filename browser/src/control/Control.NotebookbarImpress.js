@@ -326,6 +326,9 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 				'type': 'exportmenubutton',
 				'text': _UNO('.uno:Print', 'presentation'),
 				'command': '.uno:Print',
+				'applyCallback':function () {
+					app.map.print();
+				},
 				'accessibility': { focusBack: true, combination: 'PF', de: null }
 			});
 		}
