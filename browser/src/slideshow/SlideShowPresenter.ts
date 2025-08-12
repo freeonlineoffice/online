@@ -453,7 +453,10 @@ class SlideShowPresenter {
 				this._slideShowNavigator,
 			),
 		);
-		canvas.addEventListener('mousemove', this._showSlideControls.bind(this));
+		canvas.addEventListener(
+			'mousemove',
+			this._showSlideControls.bind(this),
+		);
 
 		if (this._hammer) {
 			this._hammer.off('swipe');
@@ -551,7 +554,10 @@ class SlideShowPresenter {
 	}
 
 	private _onPrevSlide = (e: Event) => {
-		this._slideShowNavigator.switchSlide(-1, this._navigateSkipTransition);
+		this._slideShowNavigator.switchSlide(
+			-1,
+			this._navigateSkipTransition,
+		);
 	};
 
 	private _onNextSlide = (e: Event) => {
@@ -587,7 +593,11 @@ class SlideShowPresenter {
 		closeImg.addEventListener('click', this._onQuit);
 
 		const leftImg = L.DomUtil.create('img', 'left-img', container);
-		app.LOUtil.setImage(leftImg, 'slideshow-slidePrevious.svg', this._map);
+		app.LOUtil.setImage(
+			leftImg,
+			'slideshow-slidePrevious.svg',
+			this._map,
+		);
 		leftImg.addEventListener('click', this._onPrevSlide);
 
 		const rightImg = L.DomUtil.create('img', 'right-img', container);
@@ -599,13 +609,19 @@ class SlideShowPresenter {
 			'animations-img skipTransition-false',
 			container,
 		);
-		app.LOUtil.setImage(animationsImage, 'slideshow-transition.svg', this._map);
+		app.LOUtil.setImage(
+			animationsImage,
+			'slideshow-transition.svg',
+			this._map,
+		);
 		animationsImage.addEventListener(
 			'click',
 			function (this: SlideShowPresenter) {
-				this._navigateSkipTransition = !this._navigateSkipTransition;
+				this._navigateSkipTransition =
+					!this._navigateSkipTransition;
 				animationsImage.className =
-					'animations-img skipTransition-' + this._navigateSkipTransition;
+					'animations-img skipTransition-' +
+					this._navigateSkipTransition;
 			}.bind(this),
 		);
 	}
