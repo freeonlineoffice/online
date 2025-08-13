@@ -277,7 +277,7 @@ template <typename T,
                                   void>::type* = nullptr>
 static T getConfigValue(const std::string& name, T def)
 {
-    if (Util::isFuzzing())
+    if constexpr (Util::isFuzzing())
     {
         return def;
     }
@@ -292,7 +292,7 @@ template <typename T>
 T getConfigValue(const Poco::Util::AbstractConfiguration& config, const std::string& name,
                  const typename T::rep def, const typename T::rep min = 0)
 {
-    if (Util::isFuzzing())
+    if constexpr (Util::isFuzzing())
     {
         return T(def);
     }
@@ -321,7 +321,7 @@ template <typename T>
 inline T getConfigValue(const std::string& name, const typename T::rep def,
                         const typename T::rep min = 0)
 {
-    if (Util::isFuzzing())
+    if constexpr (Util::isFuzzing())
     {
         return T(def);
     }
@@ -345,7 +345,7 @@ template <typename T> static T getConfigValueNonZero(const std::string& name, T 
 {
     static_assert(std::is_integral<T>::value, "Meaningless on non-integral types");
 
-    if (Util::isFuzzing())
+    if constexpr (Util::isFuzzing())
     {
         return def;
     }
