@@ -2224,7 +2224,7 @@ L.CanvasTileLayer = L.Layer.extend({
 		}
 
 		var grid = document.querySelector('.leaflet-layer');
-		if (this.isCalc() && grid.style.cursor != 'text') {
+		if (this.isCalc() && grid.style.cursor != 'text' && this._cellCursorSection.sectionProperties.mouseInside) {
 			grid.classList.remove('spreadsheet-cursor');
 			grid.style.cursor = 'text';
 		}
@@ -3134,6 +3134,7 @@ L.CanvasTileLayer = L.Layer.extend({
 			var topLeftPixels = this._twipsToCorePixels(topLeftTwips);
 			var offsetPixels = this._twipsToCorePixels(offset);
 			this._cellAutoFillAreaPixels = app.LOUtil.createRectangle(topLeftPixels.x, topLeftPixels.y, offsetPixels.x, offsetPixels.y);
+			this._cellCursorSection.sectionProperties.mouseInside = true;
 		}
 		else {
 			this._cellAutoFillAreaPixels = null;
