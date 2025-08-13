@@ -1243,8 +1243,7 @@ class SettingIframe {
 					'edit', // Use icon key
 					_('Edit'),
 					['button--vue-secondary', 'edit-icon'],
-					async (button) =>
-						await this.fetchWordbookFile(item.uri),
+					async () => await this.fetchWordbookFile(item.uri),
 					true,
 				),
 			);
