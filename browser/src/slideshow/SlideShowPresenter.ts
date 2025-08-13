@@ -196,7 +196,11 @@ class SlideShowPresenter {
 
 		const slideInfo =
 			this._metaPresentation.getSlideInfoByIndex(currentSlideIndex);
-		if (!slideInfo || !slideInfo.videos || slideInfo.videos.length === 0) {
+		if (
+			!slideInfo ||
+			!slideInfo.videos ||
+			slideInfo.videos.length === 0
+		) {
 			return;
 		}
 
@@ -221,7 +225,11 @@ class SlideShowPresenter {
 		}
 	}
 
-	private isPointInVideoArea(bounds: VideoInfo, x: number, y: number): boolean {
+	private isPointInVideoArea(
+		bounds: VideoInfo,
+		x: number,
+		y: number,
+	): boolean {
 		return (
 			x >= bounds.x &&
 			x <= bounds.x + bounds.width &&
