@@ -1954,8 +1954,6 @@ DocumentBroker::asyncInstallPresets(const std::shared_ptr<SocketPoll>& poll, con
         [uriAnonym = std::move(uriAnonym), presetsPath, presetTasks,
          session](const std::shared_ptr<http::Session>& configSession)
     {
-        configSession->asyncShutdown();
-
         if (SigUtil::getShutdownRequestFlag())
         {
             LOG_DBG("Shutdown flagged, giving up on in-flight requests");
@@ -1994,7 +1992,7 @@ DocumentBroker::asyncInstallPresets(const std::shared_ptr<SocketPoll>& poll, con
     httpSession->setFinishedHandler(std::move(finishedCallback));
 
     // Run the request on the WebServer Poll.
-    httpSession->asyncRequest(request, poll);
+    httpSession->asyncRequest(request, poll, true);
 
     return presetTasks;
 }
@@ -2016,8 +2014,6 @@ void DocumentBroker::asyncInstallPreset(
         [configId, presetUri, presetStamp, uriAnonym=std::move(uriAnonym),
          presetFile, id, finishedCB](const std::shared_ptr<http::Session>& presetSession)
     {
-        presetSession->asyncShutdown();
-
         if (SigUtil::getShutdownRequestFlag())
         {
             LOG_DBG("Shutdown flagged, giving up on in-flight requests");
@@ -2053,7 +2049,7 @@ void DocumentBroker::asyncInstallPreset(
     httpSession->setFinishedHandler(std::move(finishedCallback));
 
     // Run the request on the WebServer Poll.
-    httpSession->asyncRequest(request, poll);
+    httpSession->asyncRequest(request, poll, true);
 
     const std::shared_ptr<http::Response> presetHttpResponse = httpSession->response();
 
