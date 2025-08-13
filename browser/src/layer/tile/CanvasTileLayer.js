@@ -1310,29 +1310,14 @@ L.CanvasTileLayer = L.Layer.extend({
 				// Single format: as-is.
 				textMsgHtml = textMsgContent;
 			}
-			const hyperlinkTextBox =
-				document.getElementById('hyperlink-text-box');
-			if (hyperlinkTextBox) {
-				// Hyperlink dialog is open, the text selection is for the link text
-				// widget.
-				const extracted = this._map.extractContent(textMsgHtml);
-				hyperlinkTextBox.value = extracted.trim();
 
-				const hyperlinkLinkBoxInput = document.getElementById(
-					'hyperlink-link-box-input',
-				);
-				if (extracted !== '' && hyperlinkLinkBoxInput) {
-					hyperlinkLinkBoxInput.focus();
-				}
-			} else if (this._map._clip) {
-				this._map._clip.setTextSelectionHTML(
-					textMsgHtml,
-					textMsgPlainText,
-				);
-			}
-			// hack for ios and android to get selected text into hyperlink insertion dialog
-			else this._selectedTextContent = textMsgHtml;
-		} else if (textMsg.startsWith('clipboardchanged')) {
+			if (this._map._clip) {
+				this._map._clip.setTextSelectionHTML(textMsgHtml, textMsgPlainText);
+			} else
+				// hack for ios and android to get selected text into hyperlink insertion dialog
+				this._selectedTextContent = textMsgHtml;
+		}
+		else if (textMsg.startsWith('clipboardchanged')) {
 			var jMessage = textMsg.substr(17);
 			jMessage = JSON.parse(jMessage);
 
