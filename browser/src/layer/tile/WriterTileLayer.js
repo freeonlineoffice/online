@@ -14,7 +14,8 @@
 L.WriterTileLayer = L.CanvasTileLayer.extend({
 
 	newAnnotation: function (commentData) {
-		const comment = new lool.Comment(commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
+		const name = lool.Comment.makeName(commentData);
+		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
 
 		if (app.file.textCursor.visible) {
 			comment.sectionProperties.data.anchorPos = [app.file.textCursor.rectangle.x2, app.file.textCursor.rectangle.y1];

@@ -45,7 +45,6 @@ export class Comment extends CanvasSectionObject {
 	static readonly replyCommentLabel = _('Reply comment');
 	static readonly openMenuLabel = _('Open menu');
 
-	name: string = L.CSections.Comment.name;
 	processingOrder: number = L.CSections.Comment.processingOrder;
 	drawingOrder: number = L.CSections.Comment.drawingOrder;
 	zIndex: number = L.CSections.Comment.zIndex;
@@ -59,8 +58,13 @@ export class Comment extends CanvasSectionObject {
 	hidden: boolean | null = null;
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	constructor (data: any, options: any, commentListSectionPointer: lool.CommentSection) {
-		super();
+	public static makeName(data: any): string {
+		return data.id === 'new' ? 'new comment' : 'comment ' + data.id;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	constructor (name: string, data: any, options: any, commentListSectionPointer: lool.CommentSection) {
+		super(name);
 
 		this.myTopLeft = [0, 0];
 		this.documentObject = true;
@@ -135,8 +139,6 @@ export class Comment extends CanvasSectionObject {
 		}
 
 		this.sectionProperties.isHighlighted = false;
-
-		this.name = data.id === 'new' ? 'new comment': 'comment ' + data.id;
 
 		this.sectionProperties.commentContainerRemoved = false;
 		this.sectionProperties.children = []; // This is used for Writer comments. There is parent / child relationship between comments in Writer files.

@@ -17,7 +17,6 @@
 namespace lool {
 
 export class ColumnGroup extends GroupBase {
-	name: string = L.CSections.ColumnGroup.name;
 	anchor: any = ['top', [L.CSections.CornerGroup.name, 'right', 'left']];
 	expand: string[] = ['left', 'right']; // Expand horizontally.
 	processingOrder: number = L.CSections.ColumnGroup.processingOrder;
@@ -28,7 +27,7 @@ export class ColumnGroup extends GroupBase {
 	_cornerHeaderWidth: number;
 	_splitPos: lool.Point;
 
-	constructor() { super(); }
+	constructor() { super(L.CSections.ColumnGroup.name); }
 
 	update(): void {
 		if (this.isRemoved) // Prevent calling while deleting the section. It causes errors.

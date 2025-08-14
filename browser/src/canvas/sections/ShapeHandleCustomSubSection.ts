@@ -18,10 +18,9 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
     documentObject: boolean = true;
 
 	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
-        super();
+        super(sectionName);
 
         this.size = size;
-		this.name = sectionName;
 
 		this.sectionProperties.position = documentPosition.clone();
 		this.sectionProperties.parentHandlerSection = parentHandlerSection;

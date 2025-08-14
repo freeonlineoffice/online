@@ -13,7 +13,6 @@ declare var L: any;
 namespace lool {
 
 export class ContentControlSection extends CanvasSectionObject {
-	name: string = L.CSections.ContentControl.name;
 	processingOrder: number = L.CSections.ContentControl.processingOrder;
 	drawingOrder: number = L.CSections.ContentControl.drawingOrder;
 	zIndex: number = L.CSections.ContentControl.zIndex;
@@ -23,7 +22,7 @@ export class ContentControlSection extends CanvasSectionObject {
 	map: any;
 
 	constructor() {
-		super();
+		super(L.CSections.ContentControl.name);
 
 		this.map = L.Map.THIS;
 		this.sectionProperties.json = null;

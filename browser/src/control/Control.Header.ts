@@ -42,8 +42,8 @@ export class Header extends CanvasSectionObject {
 
 	getFont: () => string;
 
-	constructor () {
-		super();
+	constructor (name: string) {
+		super(name);
 	}
 
 	_initHeaderEntryStyles (className: string): void {

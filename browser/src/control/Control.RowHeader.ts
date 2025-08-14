@@ -19,7 +19,6 @@ declare var UNOModifier: any;
 namespace lool {
 
 export class RowHeader extends lool.Header {
-	name: string = L.CSections.RowHeader.name;
 	anchor: Array<Array<string>> = [[L.CSections.CornerHeader.name, 'bottom', 'top'], [L.CSections.RowGroup.name, 'right', 'left']];
 	position: number[] = [0, 0]; // This section's myTopLeft is placed according to corner header and row group sections.
 	size: number[] = [48 * app.dpiScale, 0]; // No initial height is necessary.
@@ -34,7 +33,7 @@ export class RowHeader extends lool.Header {
 	_selection: SelectionRange;
 
 	constructor(cursor?: string) {
-		super();
+		super(L.CSections.RowHeader.name);
 
 		if (cursor)
 			this.cursor = cursor;

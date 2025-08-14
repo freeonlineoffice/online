@@ -15,7 +15,6 @@ declare var L: any;
 namespace lool {
 
 export class TilesSection extends CanvasSectionObject {
-	name: string = L.CSections.Tiles.name;
 
 	// Below anchor list may be expanded. For example, Writer may have ruler section. Then ruler section should also be added here.
 	anchor: any = [[L.CSections.ColumnHeader.name, 'bottom', 'top'], [L.CSections.RowHeader.name, 'right', 'left']];
@@ -29,7 +28,7 @@ export class TilesSection extends CanvasSectionObject {
 	checkpattern: any;
 
 	constructor () {
-		super();
+		super(L.CSections.Tiles.name);
 
 		this.map = L.Map.THIS;
 
