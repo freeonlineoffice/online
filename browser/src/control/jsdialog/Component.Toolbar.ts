@@ -128,7 +128,8 @@ class Toolbar {
 		const item = this.parentContainer.querySelector('[id="' + id + '"]');
 		if (!item) return true;
 		return (
-			item.hasAttribute('disabled') && item.getAttribute('disabled') !== 'false'
+			item.hasAttribute('disabled') &&
+			item.getAttribute('disabled') !== 'false'
 		);
 	}
 
