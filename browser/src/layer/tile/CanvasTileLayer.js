@@ -1520,48 +1520,29 @@ L.CanvasTileLayer = L.Layer.extend({
 				throw 'A11y events come from the core while it is disabled in the client session.';
 
 			if (textMsg.startsWith('a11yfocuschanged:')) {
-				obj = JSON.parse(
-					textMsg.substring('a11yfocuschanged:'.length + 1),
-				);
-				var listPrefixLength =
-					obj.listPrefixLength !== undefined
-						? parseInt(obj.listPrefixLength)
-						: 0;
-				this._map._textInput.onAccessibilityFocusChanged(
-					obj.content,
-					parseInt(obj.position),
-					parseInt(obj.start),
-					parseInt(obj.end),
-					listPrefixLength,
-					parseInt(obj.force) > 0,
-				);
-			} else if (textMsg.startsWith('a11ycaretchanged:')) {
-				obj = JSON.parse(
-					textMsg.substring('a11yfocuschanged:'.length + 1),
-				);
-				this._map._textInput.onAccessibilityCaretChanged(
-					parseInt(obj.position),
-				);
-			} else if (textMsg.startsWith('a11ytextselectionchanged:')) {
-				obj = JSON.parse(
-					textMsg.substring(
-						'a11ytextselectionchanged:'.length + 1,
-					),
-				);
-				this._map._textInput.onAccessibilityTextSelectionChanged(
-					parseInt(obj.start),
-					parseInt(obj.end),
-				);
-			} else if (textMsg.startsWith('a11yfocusedcellchanged:')) {
-				obj = JSON.parse(
-					textMsg.substring(
-						'a11yfocusedcellchanged:'.length + 1,
-					),
-				);
-				var outCount =
-					obj.outCount !== undefined
-						? parseInt(obj.outCount)
-						: 0;
+				obj = JSON.parse(textMsg.substring('a11yfocuschanged:'.length + 1));
+				var listPrefixLength = obj.listPrefixLength !== undefined ? parseInt(obj.listPrefixLength) : 0;
+				if (typeof this._map._textInput.onAccessibilityFocusChanged === 'function') {
+					this._map._textInput.onAccessibilityFocusChanged(
+						obj.content,
+						parseInt(obj.position),
+						parseInt(obj.start),
+						parseInt(obj.end),
+						listPrefixLength,
+						parseInt(obj.force) > 0);
+				}
+			}
+			else if (textMsg.startsWith('a11ycaretchanged:')) {
+				obj = JSON.parse(textMsg.substring('a11yfocuschanged:'.length + 1));
+				this._map._textInput.onAccessibilityCaretChanged(parseInt(obj.position));
+			}
+			else if (textMsg.startsWith('a11ytextselectionchanged:')) {
+				obj = JSON.parse(textMsg.substring('a11ytextselectionchanged:'.length + 1));
+				this._map._textInput.onAccessibilityTextSelectionChanged(parseInt(obj.start), parseInt(obj.end));
+			}
+			else if (textMsg.startsWith('a11yfocusedcellchanged:')) {
+				obj = JSON.parse(textMsg.substring('a11yfocusedcellchanged:'.length + 1));
+				var outCount = obj.outCount !== undefined ? parseInt(obj.outCount) : 0;
 				var inList = obj.inList !== undefined ? obj.inList : [];
 				var row = parseInt(obj.row);
 				var col = parseInt(obj.col);
