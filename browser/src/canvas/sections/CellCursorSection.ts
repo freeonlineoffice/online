@@ -88,7 +88,7 @@ class CellCursorSection extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.mouseInside = true;
 		if (!app.file.textCursor.visible) return;
 		const grid: any = document.querySelector('.leaflet-layer');
@@ -96,14 +96,14 @@ class CellCursorSection extends CanvasSectionObject {
 		grid.style.cursor = 'text';
 	}
 
-	public onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.mouseInside = false;
 		const grid: any = document.querySelector('.leaflet-layer');
 		grid.classList.add('spreadsheet-cursor');
 		grid.style.cursor = '';
 	}
 
-	public onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.mouseInside = true;
 	}
 }
