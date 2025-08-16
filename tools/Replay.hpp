@@ -390,10 +390,11 @@ public:
     StressSocketHandler(SocketPoll& poll, /* bad style */
                         const std::shared_ptr<Stats>& stats, const std::string& uri,
                         const std::string& trace,
-                        const std::chrono::milliseconds delay = std::chrono::milliseconds::zero())
+                        const std::chrono::milliseconds delay = std::chrono::milliseconds::zero(),
+                        const float latencyFactor = 1)
         : WebSocketHandler(true, true)
         , _poll(poll)
-        , _reader(trace)
+        , _reader(trace, latencyFactor)
         , _connecting(true)
         , _uri(uri)
         , _trace(trace)
@@ -528,7 +529,6 @@ public:
             out = "load url=" + _uri; // already encoded
             for (size_t i = 2; i < tokens.size(); ++i)
                 out += ' ' + tokens[i];
-            LOG_TST(_logPre << "msg " << out);
         }
 
         size_t currentMemoryUsage = _stats->getMemoryUsage();
@@ -541,6 +541,9 @@ public:
             }
         }
         // FIXME: translate mouse events relative to view-port etc.
+
+        if (msg != out)
+            LOG_TST(_logPre << "Rewrote outgoing message [" << msg << "] to [" << out << ']');
         return out;
     }
 
@@ -611,9 +614,9 @@ public:
         return WebSocketHandler::sendTextMessage(msg, len, flush);
     }
 
-    static void addPollFor(SocketPoll &poll, const std::string &server,
-                           const std::string &filePath, const std::string &tracePath,
-                           const std::shared_ptr<Stats> &optStats)
+    static void addPollFor(SocketPoll& poll, const std::string& server, const std::string& filePath,
+                           const std::string& tracePath, const std::shared_ptr<Stats>& optStats,
+                           float latencyFactor = 1)
     {
         assert(optStats && "optStats must be provided");
 
@@ -623,7 +626,8 @@ public:
         Poco::URI::encode(file, ":/?", wrap); // double encode.
         std::string uri = server + "/lool/" + wrap + "/ws";
 
-        auto handler = std::make_shared<StressSocketHandler>(poll, optStats, file, tracePath);
+        auto handler = std::make_shared<StressSocketHandler>(
+            poll, optStats, file, tracePath, /*delay=*/std::chrono::seconds::zero(), latencyFactor);
         poll.insertNewWebSocketSync(Poco::URI(uri), handler);
 
         optStats->addConnection();
