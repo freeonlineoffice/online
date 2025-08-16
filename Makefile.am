@@ -27,11 +27,11 @@ endif
 export ENABLE_DEBUG
 
 bin_PROGRAMS = \
-	loolforkit \
-	loolforkitns \
+	loolforkit-caps \
+	loolforkit-ns \
 	loolmount \
-        loolstress \
-	loolconvert loolconfig
+	loolstress \
+	loolconvert coolconfig
 
 if ENABLE_LIBFUZZER
 else
