@@ -853,7 +853,6 @@ function processStateChangedCommand(commandName, state) {
 		$('.styles-select').val(state).trigger('change');
 	}
 	else if (commandName === '.uno:FontColor' || commandName === '.uno:Color') {
-		if (!toolbar) return;
 		// confusingly, the .uno: command is named differently in Writer, Calc and Impress
 		color = parseInt(state);
 		if (color === -1) {
@@ -870,7 +869,6 @@ function processStateChangedCommand(commandName, state) {
 		}
 	}
 	else if (commandName === '.uno:BackgroundColor' || commandName === '.uno:CharBackColor') {
-		if (!toolbar) return;
 		// confusingly, the .uno: command is named differently in Writer, Calc and Impress
 		color = parseInt(state);
 		if (color === -1) {
