@@ -589,10 +589,18 @@ class SlideShowPresenter {
 
 	private _initializeSlideNavWidget(container: HTMLDivElement): void {
 		const closeImg = L.DomUtil.create('img', 'left-img', container);
+		const slideshowCloseText = _('End Show');
 		app.LOUtil.setImage(closeImg, 'slideshow-exit.svg', this._map);
+		closeImg.setAttribute('aria-label', slideshowCloseText);
+		closeImg.setAttribute('data-looltip', slideshowCloseText);
+		L.control.attachTooltipEventListener(closeImg, this._map);
 		closeImg.addEventListener('click', this._onQuit);
 
 		const leftImg = L.DomUtil.create('img', 'left-img', container);
+		const slideshowPrevText = _('Previous');
+		leftImg.setAttribute('aria-label', slideshowPrevText);
+		leftImg.setAttribute('data-looltip', slideshowPrevText);
+		L.control.attachTooltipEventListener(leftImg, this._map);
 		app.LOUtil.setImage(
 			leftImg,
 			'slideshow-slidePrevious.svg',
@@ -601,6 +609,10 @@ class SlideShowPresenter {
 		leftImg.addEventListener('click', this._onPrevSlide);
 
 		const rightImg = L.DomUtil.create('img', 'right-img', container);
+		const slideshowNextText = _('Next');
+		L.control.attachTooltipEventListener(rightImg, this._map);
+		rightImg.setAttribute('aria-label', slideshowNextText);
+		rightImg.setAttribute('data-looltip', slideshowNextText);
 		app.LOUtil.setImage(rightImg, 'slideshow-slideNext.svg', this._map);
 		rightImg.addEventListener('click', this._onNextSlide);
 
@@ -609,6 +621,10 @@ class SlideShowPresenter {
 			'animations-img skipTransition-false',
 			container,
 		);
+		const slideshowAnimIniText = _('Disable Animations');
+		animationsImage.setAttribute('aria-label', slideshowAnimIniText);
+		animationsImage.setAttribute('data-looltip', slideshowAnimIniText);
+		L.control.attachTooltipEventListener(animationsImage, this._map);
 		app.LOUtil.setImage(
 			animationsImage,
 			'slideshow-transition.svg',
@@ -619,6 +635,18 @@ class SlideShowPresenter {
 			function (this: SlideShowPresenter) {
 				this._navigateSkipTransition =
 					!this._navigateSkipTransition;
+				const slideshowAnimToggleText = this._navigateSkipTransition
+					? _('Enable Animations')
+					: _('Disable Animations');
+				animationsImage.setAttribute(
+					'aria-label',
+					slideshowAnimToggleText,
+				);
+				animationsImage.setAttribute(
+					'data-looltip',
+					slideshowAnimToggleText,
+				);
+
 				animationsImage.className =
 					'animations-img skipTransition-' +
 					this._navigateSkipTransition;
