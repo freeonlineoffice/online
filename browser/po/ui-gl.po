@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 21:59+0200\n"
+"POT-Creation-Date: 2025-08-18 19:36+0200\n"
 "PO-Revision-Date: 2022-05-04 14:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/"
@@ -528,21 +528,21 @@ msgstr ""
 msgid "Open menu"
 msgstr "Abrir o menú"
 
-#: src/canvas/sections/CommentSection.ts:338
+#: src/canvas/sections/CommentSection.ts:339
 msgid "Press Ctrl + Enter to post"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:402
 #: src/canvas/sections/CommentSection.ts:403
+#: src/canvas/sections/CommentSection.ts:404
 msgid "Accept change"
 msgstr "Aceptar o cambio"
 
-#: src/canvas/sections/CommentSection.ts:409
 #: src/canvas/sections/CommentSection.ts:410
+#: src/canvas/sections/CommentSection.ts:411
 msgid "Reject change"
 msgstr "Rexeitar o cambio"
 
-#: src/canvas/sections/CommentSection.ts:433
+#: src/canvas/sections/CommentSection.ts:434
 msgid "Resolved"
 msgstr "Resolvido"
 
@@ -628,8 +628,8 @@ msgid ""
 "administrator."
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:77
-msgid "Don't show this again"
+#: src/control/Control.AlertDialog.js:77 src/map/Clipboard.js:1287
+msgid "Don’t show this again"
 msgstr ""
 
 #: src/control/Control.AlertDialog.js:96
@@ -1321,7 +1321,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.ts:117 src/control/Control.Menubar.ts:455
 #: src/control/Control.Menubar.ts:617 src/control/Control.Menubar.ts:764
-#: src/control/Control.Toolbar.js:1167
+#: src/control/Control.Toolbar.js:1165
 msgid "Close document"
 msgstr "Pechar o documento"
 
@@ -2819,7 +2819,7 @@ msgstr ""
 msgid "Enter new sheet name"
 msgstr "Introduza o nome da nova folla"
 
-#: src/control/Control.Toolbar.js:1027
+#: src/control/Control.Toolbar.js:1025
 msgid ""
 "Conflict Undo/Redo with multiple users. Please use document repair to "
 "resolve"
@@ -5679,15 +5679,15 @@ msgstr "Confirma que desexa eliminar esta diapositiva?"
 msgid "Are you sure you want to delete this page?"
 msgstr "Confirma que desexa eliminar esta páxina?"
 
-#: src/docstate.js:89
+#: src/docstate.js:90
 msgid "Standard"
 msgstr ""
 
-#: src/docstate.js:102
+#: src/docstate.js:103
 msgid "Theme colors"
 msgstr ""
 
-#: src/docstate.js:103
+#: src/docstate.js:104
 msgid "Document colors"
 msgstr ""
 
@@ -6019,10 +6019,6 @@ msgstr ""
 #: src/map/Clipboard.js:319
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Produciuse un fallo ao descargar o portapapeis; copie de novo"
-
-#: src/map/Clipboard.js:1287
-msgid "Don’t show this again"
-msgstr ""
 
 #: src/map/Clipboard.js:1308
 msgid ""

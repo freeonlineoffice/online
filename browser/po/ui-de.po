@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 21:59+0200\n"
-"PO-Revision-Date: 2025-08-15 23:10+0200\n"
+"POT-Creation-Date: 2025-08-18 19:36+0200\n"
+"PO-Revision-Date: 2025-08-18 20:50+0200\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -506,19 +506,19 @@ msgstr "Antwortkommentar"
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: src/canvas/sections/CommentSection.ts:338
+#: src/canvas/sections/CommentSection.ts:339
 msgid "Press Ctrl + Enter to post"
-msgstr ""
+msgstr "Drücken Sie Strg + Eingabe um zu senden"
 
-#: src/canvas/sections/CommentSection.ts:402 src/canvas/sections/CommentSection.ts:403
+#: src/canvas/sections/CommentSection.ts:403 src/canvas/sections/CommentSection.ts:404
 msgid "Accept change"
 msgstr "Änderung annehmen"
 
-#: src/canvas/sections/CommentSection.ts:409 src/canvas/sections/CommentSection.ts:410
+#: src/canvas/sections/CommentSection.ts:410 src/canvas/sections/CommentSection.ts:411
 msgid "Reject change"
 msgstr "Änderung verwerfen"
 
-#: src/canvas/sections/CommentSection.ts:433
+#: src/canvas/sections/CommentSection.ts:434
 msgid "Resolved"
 msgstr "Erledigt"
 
@@ -605,9 +605,9 @@ msgstr ""
 "Die ausgewählte externe Datenquelle ist verboten. Bitte wenden Sie sich an den "
 "Systemadministrator."
 
-#: src/control/Control.AlertDialog.js:77
-msgid "Don't show this again"
-msgstr "Zeige dies nicht noch einmal"
+#: src/control/Control.AlertDialog.js:77 src/map/Clipboard.js:1287
+msgid "Don’t show this again"
+msgstr "Nicht erneut anzeigen"
 
 #: src/control/Control.AlertDialog.js:96
 msgid "The server encountered a {0} error while parsing the {1} command."
@@ -1270,7 +1270,7 @@ msgstr "HTML-Datei (.html)"
 
 #: src/control/Control.Menubar.ts:117 src/control/Control.Menubar.ts:455
 #: src/control/Control.Menubar.ts:617 src/control/Control.Menubar.ts:764
-#: src/control/Control.Toolbar.js:1167
+#: src/control/Control.Toolbar.js:1165
 msgid "Close document"
 msgstr "Dokument schließen"
 
@@ -1878,7 +1878,7 @@ msgstr "Umbenennen"
 
 #: src/control/Control.NotebookbarCalc.js:709
 msgid "Merge & Center"
-msgstr ""
+msgstr "Verbinden & Zentrieren"
 
 #: src/control/Control.NotebookbarCalc.js:729
 msgid "General"
@@ -2245,7 +2245,7 @@ msgstr "Layout zurücksetzen"
 
 #: src/control/Control.NotebookbarImpress.js:794
 msgid "Character"
-msgstr ""
+msgstr "Zeichen"
 
 #: src/control/Control.NotebookbarImpress.js:1045
 msgid "Spacing & Color"
@@ -2350,7 +2350,7 @@ msgstr ""
 
 #: src/control/Control.NotebookbarWriter.js:2968
 msgid "Number Format"
-msgstr ""
+msgstr "Zahlenformat"
 
 #: src/control/Control.PartsPreview.js:177
 msgid "preview of page %1"
@@ -2588,7 +2588,7 @@ msgstr "Blatt umbenennen"
 msgid "Enter new sheet name"
 msgstr "Neuen Tabellennamen eingeben"
 
-#: src/control/Control.Toolbar.js:1027
+#: src/control/Control.Toolbar.js:1025
 msgid "Conflict Undo/Redo with multiple users. Please use document repair to resolve"
 msgstr ""
 "Konflikt beim Rückgängigmachen/Wiederherstellen mit mehreren Benutzern. Bitte verwenden Sie "
@@ -5061,35 +5061,35 @@ msgstr "Dünn (0.75 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1444
 msgid "Medium (1.50 pt)"
-msgstr ""
+msgstr "Mittel (1.50 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1453
 msgid "Thick (2.25 pt)"
-msgstr ""
+msgstr "Dick (2.25 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1462
 msgid "Extra thick (4.50 pt)"
-msgstr ""
+msgstr "Extra dick (4.50 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1471
 msgid "Double Hairline (1.10 pt)"
-msgstr ""
+msgstr "Doppelte Haarlinie (1.10.pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1480
 msgid "Double Hairline (2.35 pt)"
-msgstr ""
+msgstr "Doppelte Haarlinie (2.35 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1489
 msgid "Thin/Medium (3.00 pt)"
-msgstr ""
+msgstr "Dünn/Mittel (3.00 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1498
 msgid "Medium/Hairline (3.05 pt)"
-msgstr ""
+msgstr "Mittel/Haarlinie (3.05 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1507
 msgid "Medium/Medium (4.50 pt)"
-msgstr ""
+msgstr "Mittel/Mittel (4.50 pt)"
 
 #: src/control/jsdialog/Definitions.Menu.ts:1567
 msgid "Standard (4:3)"
@@ -5437,15 +5437,15 @@ msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 msgid "Are you sure you want to delete this page?"
 msgstr "Sind Sie sicher, dass Sie diese Folie löschen möchten?"
 
-#: src/docstate.js:89
+#: src/docstate.js:90
 msgid "Standard"
 msgstr "Standard"
 
-#: src/docstate.js:102
+#: src/docstate.js:103
 msgid "Theme colors"
 msgstr "Themenfarben"
 
-#: src/docstate.js:103
+#: src/docstate.js:104
 msgid "Document colors"
 msgstr "Dokumentfarben"
 
@@ -5788,10 +5788,6 @@ msgstr "Warnung: Zeitüberschreitung des Aufrufs von Kopieren/Einfügen"
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Fehler beim Herunterladen der Zwischenablage, bitte kopieren Sie erneut"
 
-#: src/map/Clipboard.js:1287
-msgid "Don’t show this again"
-msgstr "Nicht erneut anzeigen"
-
 #: src/map/Clipboard.js:1308
 msgid ""
 "Your browser has very limited access to the clipboard, so please use the paste buttons on "
@@ -6064,6 +6060,9 @@ msgstr ""
 "target=\"_blank\" href=\"https://libreoffice.org/\">Schritt-für-Schritt-Anleitung</a> und "
 "erzeugen Sie einen Free-Online-Office-Build. Sie können auch mit Übersetzungen oder durch "
 "Meldung eines Fehlers mit allen wichtigen Schritten zur Reproduktion des Fehlers helfen."
+
+#~ msgid "Don't show this again"
+#~ msgstr "Zeige dies nicht noch einmal"
 
 #~ msgid "Presentation"
 #~ msgstr "Präsentation"
