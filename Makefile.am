@@ -27,8 +27,8 @@ endif
 export ENABLE_DEBUG
 
 bin_PROGRAMS = \
-	loolforkit-caps \
-	loolforkit-ns \
+	loolforkit \
+	loolforkitns \
 	loolmount \
 	loolstress \
 	loolconvert loolconfig
