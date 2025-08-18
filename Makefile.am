@@ -31,7 +31,7 @@ bin_PROGRAMS = \
 	loolforkit-ns \
 	loolmount \
 	loolstress \
-	loolconvert coolconfig
+	loolconvert loolconfig
 
 if ENABLE_LIBFUZZER
 else
