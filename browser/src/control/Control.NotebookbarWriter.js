@@ -577,6 +577,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'home-clipboard',
 				'name': 'Clipboard',
+				'accessibility': { focusBack: false,	combination: 'V',	de: null },
 				'children' : [
 				{
 					'id': 'home-paste:PasteMenu',
@@ -635,6 +636,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'home-font',
 				'name': 'Font',
+				'accessibility': { focusBack: false,	combination: 'FF',	de: null },
 				'children': [
 			{
 				'type': 'container',
@@ -775,6 +777,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'home-paragraph',
 				'name': 'Paragraph',
+				'accessibility': { focusBack: false, 	combination: 'U',	de: 'AA' },
 				'children': [
 					{
 						'type': 'container',
@@ -934,6 +937,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'home-insert-element',
 				'name': _('Insert Control'),
+				'accessibility': { focusBack: false,	combination: 'IT',	de:	null },
 				'children': [
 					{
 						'type': 'toolbox',
@@ -984,36 +988,39 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'home-search',
 				'name': 'Search',
-				'children': [{
-				'type': 'container',
+				'accessibility': { focusBack: false,	combination: 'SS',	de: 'SS' },
 				'children': [
 					{
-						'type': 'toolbox',
+						'type': 'container',
 						'children': [
-								{
-									'id': 'home-search',
-									'class': 'unoSearch',
-									'type': 'customtoolitem',
-									'text': _('Search'),
-									'accessibility': { focusBack: false,	combination: 'SS',	de: 'SS' }
-								}
-							]
-						},
-						{
-							'type': 'toolbox',
-							'children': [
-								{
-									'id': 'home-search-dialog',
-									'type': 'toolitem',
-									'text': _('Replace'),
-									'command': '.uno:SearchDialog',
-									'accessibility': { focusBack: false, 	combination: 'FD',	de: 'US' }
-								}
-							]
-						}
-					],
-				'vertical': 'true'
-			},]
+							{
+								'type': 'toolbox',
+								'children': [
+									{
+										'id': 'home-search',
+										'class': 'unoSearch',
+										'type': 'customtoolitem',
+										'text': _('Search'),
+										'accessibility': { focusBack: false,	combination: 'SS',	de: 'SS' }
+									}
+								]
+							},
+							{
+								'type': 'toolbox',
+								'children': [
+									{
+										'id': 'home-search-dialog',
+										'type': 'toolitem',
+										'text': _('Replace'),
+										'command': '.uno:SearchDialog',
+										'accessibility': { focusBack: false, 	combination: 'FD',	de: 'US' }
+									}
+								]
+							}
+						],
+						'vertical': 'true'
+					},
+				]
 			},
 		];
 
@@ -1026,6 +1033,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'format-style',
 				'name':_('Style'),
+				'accessibility': { focusBack: false, combination: 'A', de: null },
 				'children' : [
 					{
 						'id': 'format-font-dialog',
@@ -1062,6 +1070,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'format-bullets',
 				'name':_('Lists/Bullets'),
+				'accessibility': { focusBack: false, combination: 'FB', de: null },
 				'children' : [
 					{
 						'id': 'format-FormatBulletsMenu:FormatBulletsMenu',
@@ -1186,6 +1195,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-page-control',
 				'name':_('Page'),
+				'accessibility': { focusBack: false,	combination: 'B',	de:	'SU' },
 				'children' : [
 					{
 						'id': 'insert-insert-page-break',
@@ -1217,6 +1227,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'id': 'insert-illustrations',
 				'name': _('Illustrations'),
 				'icon': 'lc_insertgraphic.svg',
+				'accessibility': { focusBack: false,	combination: 'P',	de:	'BI' },
 				'children' : [
 					{
 						'type': 'container',
@@ -1348,6 +1359,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-header-footer',
 				'name':_('Header & Footer'),
+				'accessibility': { focusBack: false,	combination: 'H',	de:	'H' },
 				'children' : [
 					{
 						'type': 'container',
@@ -1416,6 +1428,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-section',
 				'name':_('Section'),
+				'accessibility': { focusBack: false,	combination: 'IS',	de:	null },
 				'children' : [
 				{
 					'type': 'container',
@@ -1454,6 +1467,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-text',
 				'name':_('Text'),
+				'accessibility': { focusBack: false,	combination: 'X',	de:	null },
 				'children' : [
 					{
 						'id': 'insert-draw-text',
@@ -1510,6 +1524,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-symbols',
 				'name':_('Symbols'),
+				'accessibility': { focusBack: false,	combination: 'ZS',	de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -1643,6 +1658,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'view-zoom',
 				'name':_('Zoom'),
+				'accessibility': { focusBack: false, combination: 'F', de: 'E' },
 				'children' : [
 					{
 						'id': 'fullscreen',
@@ -1893,6 +1909,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-wrap',
 				'name':_('Wrap'),
+				'accessibility': { focusBack: false,	combination: 'TW', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -1990,6 +2007,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: false,	combination: 'OL', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2056,6 +2074,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: false,	combination: 'OF', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2114,6 +2133,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'Reference-TOC',
 				'name':_('Table of content'),
+				'accessibility': { focusBack: false, combination: 'T', de: 'LA' },
 				'children' : [
 					{
 						'id': 'references-insert-multi-index',
@@ -2159,6 +2179,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'reference-footnote',
 				'name':_('Footnote/Endnote'),
+				'accessibility': { focusBack: false, combination: 'F', de: 'U' },
 				'children' : [
 					{
 						'id': 'references-insert-foot-note',
@@ -2323,6 +2344,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'reference-field',
 				'name':_('Field'),
+				'accessibility': { focusBack: false, combination: 'IF', de: null },
 				'children' : [
 					{
 						'id': 'references-insert-field-control',
@@ -2455,6 +2477,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'review-comments',
 				'name':_('Comments'),
+				'accessibility': { focusBack: false, combination: 'C', de: 'N' },
 				'children' : [
 					{
 						'id': 'review-insert-annotation:AnnotationMenu',
@@ -2529,6 +2552,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'review-tracking',
 				'name':_('Tracking'),
+				'accessibility': { focusBack: false, combination: 'TC', de: null },
 				'children' : [
 					{
 						'id': 'review-track-changes:RecordTrackedChangesMenu',
@@ -2725,6 +2749,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'table-insert',
 				'name':_('Insert'),
+				'accessibility': { focusBack: false, combination: 'TI', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2785,6 +2810,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'table-split',
 				'name':_('Split'),
+				'accessibility': { focusBack: false, combination: 'TS', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2846,6 +2872,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'table-select',
 				'name':_('Select'),
+				'accessibility': { focusBack: false, combination: 'TC', de: null },
 				'children' : [
 					{
 						'type': 'bigtoolitem',
@@ -2895,6 +2922,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'table-paragraph-table',// id-should be unique for overflowgroup options
 				'name':_('Paragraph'),
+				'accessibility': { focusBack: false, combination: 'TB', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2966,6 +2994,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'table-number-format',
 				'name':_('Number Format'),
+				'accessibility': { focusBack: false, combination: 'TN', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3127,6 +3156,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-wrap',
 				'name':_('Wrap'),
+				'accessibility': { focusBack: false, combination: 'SW', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3181,6 +3211,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: false, combination: 'SA', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3235,6 +3266,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: false, combination: 'AR', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3279,6 +3311,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-group',
 				'name':_('Group'),
+				'accessibility': { focusBack: false, combination: 'FG', de: null },
 				'children' : [
 					{
 						'type': 'bigtoolitem',
@@ -3324,6 +3357,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-adjustments',
 				'name':_('Image Controls'),
+				'accessibility': { focusBack: false, combination: 'BN', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3433,6 +3467,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-wrap',
 				'name':_('Wrap'),
+				'accessibility': { focusBack: false, combination: 'WR', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3487,6 +3522,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: false, combination: 'BP', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3541,6 +3577,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: false, combination: 'AB', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3585,6 +3622,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-group',
 				'name':_('Group'),
+				'accessibility': { focusBack: false, combination: 'EG', de: null },
 				'children' : [
 					{
 						'type': 'bigtoolitem',
