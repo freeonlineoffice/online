@@ -36,8 +36,8 @@
     "shrinkpack": "0.20.0",
     "smartmenus": "^1.2.1",
     "stylelint": "^16.23.0",
-    "tmp": "^0.2.4",
     "terser": "^4.8.1",
+    "tmp": "^0.2.4",
     "typescript": "^5.0.4",
     "typescript-strict-plugin": "^2.4.4",
     "uglify-js": "3.19.3",
@@ -58,7 +58,8 @@
   "dependencies": {
     "jsdom": "^26.0.0",
     "npm": "^11.1.0",
-    "stylelint-config-standard": "^39.0.0"
+    "stylelint-config-standard": "^39.0.0",
+    "undici-types": "^7.13.0"
   },
   "scripts": {
     "test": "mocha 'mocha_tests/workdir/**/*.js'",
