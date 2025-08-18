@@ -332,7 +332,7 @@ export class Comment extends CanvasSectionObject {
 		this.sectionProperties.menu.annotation = this;
 	}
 
-	private createReplyHint (commentType: any): void {
+	private createReplyHint (commentType: HTMLElement): void {
 		this.sectionProperties.replyHint = L.DomUtil.create('p', '', commentType);
 		var small = document.createElement('small');
 		small.classList.add('lool-font');
