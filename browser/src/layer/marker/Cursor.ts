@@ -311,7 +311,6 @@ class Cursor {
 		// Restart blinking animation
 		if (this.blink) {
 			L.DomUtil.removeClass(this.cursor, 'blinking-cursor');
-			void this.cursor.offsetWidth;
 			L.DomUtil.addClass(this.cursor, 'blinking-cursor');
 		}
 	}
