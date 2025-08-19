@@ -2,8 +2,6 @@
 /* -*- js-indent-level: 8 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -241,18 +239,12 @@ class AboutDialog {
 			const newLogLevel = app.socket.threadLocalLoggingLevelToggle
 				? 'verbose'
 				: 'default';
-
 			app.socket.sendMessage('loggingleveloverride ' + newLogLevel);
 
-			let logLevelInformation;
-			if (newLogLevel === 'default')
-				logLevelInformation = 'default (from loolwsd.xml)';
-			else if (newLogLevel === 'verbose')
-				logLevelInformation = 'most verbose (from loolwsd.xml)';
-			else if (newLogLevel === 'terse')
-				logLevelInformation = 'least verbose (from loolwsd.xml)';
-			else logLevelInformation = newLogLevel;
-
+			const logLevelInformation = app.socket
+				.threadLocalLoggingLevelToggle
+				? 'most verbose (from loolwsd.xml)'
+				: 'default (from loolwsd.xml)';
 			console.debug('Log level: ' + logLevelInformation);
 		}
 	}
