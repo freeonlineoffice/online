@@ -906,7 +906,11 @@ class PresenterConsole {
 				break;
 			case 'help':
 				// TODO. add help.collaboraonline.com
-				window.open('https://collaboraonline.com', '_blank');
+				window.open(
+					'https://collaboraonline.com',
+					'_blank',
+					'noopener',
+				);
 				break;
 			case 'notes':
 				if (this._proxyPresenter.document.contains(this._notes)) {
