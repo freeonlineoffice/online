@@ -1491,6 +1491,108 @@ namespace lool {
 					comment.sectionProperties.data.id,
 				);
 			}
+		};
+		this.map.sendUnoCommand('.uno:AcceptTrackedChange', command);
+		this.unselect();
+		this.map.focus();
+	}
+
+	public onRedlineReject (e: any): void {
+		var command = {
+			RejectTrackedChange: {
+				type: 'unsigned short',
+				value: e.id.substring('change-'.length)
+			}
+		};
+		this.map.sendUnoCommand('.uno:RejectTrackedChange', command);
+		this.unselect();
+		this.map.focus();
+	}
+
+	public remove (id: any): void {
+		var comment = {
+			Id: {
+				type: 'string',
+				value: id
+			}
+		};
+
+		var removedComment = this.getComment(id);
+		if (removedComment) {
+			removedComment.sectionProperties.selfRemoved = true;
+		}
+		if (app.file.fileBasedView) // We have to set the part from which the comment will be removed as selected part before the process.
+			this.map.setPart(app.map._docLayer._selectedPart, false);
+
+		if (app.map._docLayer._docType === 'text')
+			this.map.sendUnoCommand('.uno:DeleteComment', comment);
+		else if (app.map._docLayer._docType === 'presentation' || app.map._docLayer._docType === 'drawing')
+			this.map.sendUnoCommand('.uno:DeleteAnnotation', comment);
+		else if (app.map._docLayer._docType === 'spreadsheet')
+			this.map.sendUnoCommand('.uno:DeleteNote', comment);
+
+		if (app.file.fileBasedView)
+			this.map.setPart(0, false);
+
+		this.unselect();
+		this.map.focus();
+	}
+
+	public removeThread (id: any): void {
+		var comment = {
+			Id: {
+				type: 'string',
+				value: id
+			}
+		};
+		this.map.sendUnoCommand('.uno:DeleteCommentThread', comment);
+		this.unselect();
+		this.map.focus();
+	}
+
+	public resolve (annotation: any): void {
+		var comment = {
+			Id: {
+				type: 'string',
+				value: annotation.sectionProperties.data.id
+			}
+		};
+		this.map.sendUnoCommand('.uno:ResolveComment', comment);
+	}
+
+	public resolveThread (annotation: any): void {
+		var comment = {
+			Id: {
+				type: 'string',
+				value: annotation.sectionProperties.data.id
+			}
+		};
+		this.map.sendUnoCommand('.uno:ResolveCommentThread', comment);
+	}
+
+	public promote(annotation: any): void {
+		var comment = {
+			Id: {
+				type: 'string',
+				value: annotation.sectionProperties.data.id
+			}
+		};
+		this.map.sendUnoCommand('.uno:PromoteComment', comment);
+	}
+
+	public getIndexOf (id: any): number {
+		const index = this.idIndexMap.get(id);
+		return (index === undefined) ? -1 : index;
+	}
+
+	public isThreadResolved (annotation: any): boolean {
+		// If comment has children.
+		if (annotation.sectionProperties.children.length > 0) {
+			for (var i = 0; i < annotation.sectionProperties.children.length; i++) {
+				if (annotation.sectionProperties.children[i].sectionProperties.data.resolved !== 'true')
+					return false;
+			}
+			return true;
 		}
 
 		public saveReply(annotation: any): void {
