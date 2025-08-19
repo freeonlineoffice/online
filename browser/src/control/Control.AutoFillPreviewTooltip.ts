@@ -88,12 +88,12 @@ class AutoFillPreviewTooltip extends L.Control.AutoCompletePopup {
 				this.closeAutoFillPreviewPopup();
 			data = Object.assign({}, this.newPopupData);
 			data.children[0].children[0] = control;
-		}
 
-		// add position
-		data.posx = ev.data.celladdress.cX;
-		data.posy = ev.data.celladdress.cY;
-		this.sendJSON(data);
+			// add position
+			data.posx = ev.data.celladdress.cX;
+			data.posy = ev.data.celladdress.cY;
+			this.sendJSON(data);
+		}
 	}
 
 	closeAutoFillPreviewPopup(): void {
