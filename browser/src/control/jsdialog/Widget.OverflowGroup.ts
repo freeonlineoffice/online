@@ -212,7 +212,13 @@ JSDialog.OverflowGroup = function (
 			content: {
 				id: 'overflow-group-placeholder-' + data.id,
 				type: 'toolbox',
-				children: [],
+				children: [
+					{
+						id: 'dummy-overflow-button-required-for-focus',
+						type: 'pushbutton',
+						text: 'X',
+					},
+				],
 			} as WidgetJSON,
 		},
 		{ type: 'separator' },

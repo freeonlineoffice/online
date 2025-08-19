@@ -434,6 +434,16 @@ L.Control.JSDialog = L.Control.extend({
 		}
 		instance.clickToClose = clickToCloseElement;
 
+		app.layoutingService.appendLayoutingTask(() => { this.setupInitialFocus(instance); });
+
+		if (instance.isDropdown && instance.isSubmenu) {
+			instance.container.addEventListener('mouseleave', () => {
+				instance.builder.callback('combobox', 'hidedropdown', {id: instance.id}, null, instance.builder);
+			});
+		}
+	},
+
+	setupInitialFocus: function(instance) {
 		// setup initial focus and helper elements for closing popup
 		var initialFocusElement = JSDialog.GetFocusableElements(instance.container);
 
@@ -464,12 +474,6 @@ L.Control.JSDialog = L.Control.extend({
 		}
 		else if (instance.canHaveFocus !== false)
 			app.console.error('cannot get focus for widget: "' + instance.init_focus_id + '"');
-
-		if (instance.isDropdown && instance.isSubmenu) {
-			instance.container.addEventListener('mouseleave', () => {
-				instance.builder.callback('combobox', 'hidedropdown', {id: instance.id}, null, instance.builder);
-			});
-		}
 	},
 
 	 findTabControl: function(obj) {
