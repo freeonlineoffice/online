@@ -445,6 +445,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'home-font',
 				'name': 'Font',
 				'accessibility': { focusBack: true,	combination: 'FF', de: null },
+				'more': {
+					'command':'.uno:CellTextDlg'
+				},
 				'children': [
 				{
 					'id': 'Home-Section-Format',
@@ -588,6 +591,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'home-alignment',
 				'name': 'Alignment',
 				'accessibility': { focusBack: true,	combination: 'AT', de: null },
+				'more': {
+					'command':'.uno:Hyphenate'
+				},
 				'children' : [
 				{
 					'id': 'Home-Section-Align',
@@ -721,6 +727,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'home-number-format',
 				'name': 'Number',
 				'accessibility': { focusBack: true,	combination: 'N', de: null },
+				'more': {
+					'command':'.uno:FormatCellDialog'
+				},
 				'children' : [
 				{
 					'id': 'Home-Section-Number',
@@ -3134,7 +3143,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				]
 			},
 			{ type: 'separator', id: 'picture-wrapright-break', orientation: 'vertical' },
-						{
+				{
 				'type': 'overflowgroup',
 				'id': 'picture-align',
 				'name':_('Align'),
@@ -3201,7 +3210,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				]
 			},
 			{ type: 'separator', id: 'picture-aligndown-break', orientation: 'vertical' },
-						{
+				{
 				'type': 'overflowgroup',
 				'id': 'picture-arrange',
 				'name':_('Arrange'),

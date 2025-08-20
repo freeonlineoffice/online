@@ -643,6 +643,9 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'id': 'home-font',
 				'name':_('Font'),
 				'accessibility': { focusBack: true, combination: 'FN', de: null },
+				'more': {
+					'command':'.uno:FontDialog'
+				},
 				'children' : [					
 					{
 						'type': 'container',
@@ -867,6 +870,9 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'id': 'home-paragraph',
 				'name':_('Paragraph'),
 				'accessibility': { focusBack: true, combination: 'BD', de: null },
+				'more': {
+					'command':'.uno:ParagraphDialog'
+				},
 				'children' : [
 					{
 						'type': 'container',
