@@ -138,7 +138,8 @@ class SettingIframe {
 
 	private getAPIEndpoints() {
 		return {
-			uploadSettings: window.serviceRoot + '/browser/dist/upload-settings',
+			uploadSettings:
+				window.serviceRoot + '/browser/dist/upload-settings',
 
 			fetchSharedConfig:
 				window.serviceRoot + '/browser/dist/fetch-settings-config',
