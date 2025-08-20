@@ -383,6 +383,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-clipboard',
 				'name': 'Clipboard',
+				'accessibility': { focusBack: true,	combination: 'V', de: null },
 				'children' :
 				[
 					{
@@ -443,6 +444,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-font',
 				'name': 'Font',
+				'accessibility': { focusBack: true,	combination: 'FF', de: null },
 				'children': [
 				{
 					'id': 'Home-Section-Format',
@@ -585,6 +587,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-alignment',
 				'name': 'Alignment',
+				'accessibility': { focusBack: true,	combination: 'AT', de: null },
 				'children' : [
 				{
 					'id': 'Home-Section-Align',
@@ -717,6 +720,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-number-format',
 				'name': 'Number',
+				'accessibility': { focusBack: true,	combination: 'N', de: null },
 				'children' : [
 				{
 					'id': 'Home-Section-Number',
@@ -814,6 +818,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-insert-table',
 				'name': 'Cells',
+				'accessibility': { focusBack: true,	combination: 'RB', de: null },
 				'children' : [
 				{
 					'id': 'Home-Section-Cell1',
@@ -894,6 +899,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-style',
 				'name': 'Style',
+				'accessibility': { focusBack: true,	combination: 'L', de: null },
 				'children' : [
 				{
 					'id': 'home-conditional-format-menu:ConditionalFormatMenu',
@@ -970,6 +976,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'home-find-n-filter',
 				'name': 'Editing',
+				'accessibility': { focusBack: true,	combination: 'SS', de: null },
 				'children' : [
 				{
 					'type': 'container',
@@ -1047,6 +1054,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-page',
 				'name':_('Format'),
+				'accessibility': { focusBack: true,	combination: 'PS', de: null },
 				'children' : [
 					{
 						'id': 'Layout-MarginMenu:MenuMargins',
@@ -1097,6 +1105,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-grid',
 				'name':_('Grid'),
+				'accessibility': { focusBack: true,	combination: 'SG', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -1141,6 +1150,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-insert-table',
 				'name':_('Insert'),
+				'accessibility': { focusBack: true,	combination: 'RB', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -1215,6 +1225,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: true,	combination: 'AL', de: null },
 				'children' : [
 					{
 						'id': 'Layout-Section-Align',
@@ -1284,6 +1295,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: true,	combination: 'FO', de: null },
 				'children' : [
 					{
 						'id': 'Layout-Section-ForwardBackward',
@@ -1345,6 +1357,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'view-freeze',
 				'name':_('Freeze'),
+				'accessibility': { focusBack: true,	combination: 'FP', de: null },
 				'children' : [
 					{
 						'id': 'layout-freeze-panes',
@@ -1398,6 +1411,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'view-zoom',
 				'name':_('Zoom'),
+				'accessibility': { focusBack: true,	combination: 'FS', de: null },
 				'children' : [
 					(window.mode.isTablet()) ?
 						{
@@ -1568,6 +1582,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-pivot-table',
 				'name':_('Pivot Table'),
+				'accessibility': { focusBack: true,	combination: 'V', de: null },
 				'children' : [
 					{
 						'id': 'insert-data-pilot-run',
@@ -1616,6 +1631,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-illustrations',
 				'name':_('Illustrations'),
+				'accessibility': { focusBack: true,	combination: 'IC', de: null },
 				'children' : [
 					{
 						'id': 'insert-insert-object-chart',
@@ -1801,6 +1817,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'insert-text',
 				'name':_('Text'),
+				'accessibility': { focusBack: true,	combination: 'DT', de: null },
 				'children' : [
 					{
 						'id': 'insert-draw-text',
@@ -1908,6 +1925,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'formula-function-library',
 				'name':_('Function Library'),
+				'accessibility': { focusBack: true,	combination: 'ZA', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2069,6 +2087,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'formula-range',
 				'name':_('Range'),
+				'accessibility': { focusBack: true,	combination: 'DR', de: null },
 				'children' : [
 					{
 						'id': 'formula-define-range',
@@ -2151,6 +2170,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'data-sort',
 				'name':_('Sort'),
+				'accessibility': { focusBack: true,	combination: 'SS', de: null },
 				'children' : [
 					{
 						'id': 'data-data-sort',
@@ -2196,6 +2216,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'data-filter',
 				'name':_('Filter'),
+				'accessibility': { focusBack: true,	combination: 'T', de: null },
 				'children' : [
 					{
 						'id': 'data-data-filter-auto-filter',
@@ -2271,6 +2292,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'data-group',
 				'name':_('Group'),
+				'accessibility': { focusBack: true,	combination: 'GA', de: null },
 				'children' : [
 					{
 						'id': 'data-group',
@@ -2441,6 +2463,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'review-comments',
 				'name':_('Comments'),
+				'accessibility': { focusBack: true,	combination: 'IA', de: null },
 				'children' : [
 					{
 						'id': 'review-insert-annotation',
@@ -2508,6 +2531,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'format-style',
 				'name':_('Style'),
+				'accessibility': { focusBack: true,	combination: 'FD', de: null },
 				'children' : [
 					{
 						'id': 'format-font-dialog',
@@ -2544,6 +2568,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'format-cells',
 				'name':_('Format Cells'),
+				'accessibility': { focusBack: true,	combination: 'PD', de: null },
 				'children' : [
 					{
 						'id': 'format-page-format-dialog',
@@ -2689,6 +2714,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-wrap',
 				'name':_('Wrap'),
+				'accessibility': { focusBack: true,	combination: 'WO', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2755,6 +2781,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: true,	combination: 'AL', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2821,6 +2848,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: true,	combination: 'BF', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -2873,6 +2901,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'shape-group',
 				'name':_('Group'),
+				'accessibility': { focusBack: true,	combination: 'FG', de: null },
 				'children' : [
 					{
 						'id': 'shape-format-group',
@@ -2924,6 +2953,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-adjustments',
 				'name':_('Image Controls'),
+				'accessibility': { focusBack: true,	combination: 'BN', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3041,6 +3071,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-wrap',
 				'name':_('Wrap'),
+				'accessibility': { focusBack: true,	combination: 'WO', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3107,6 +3138,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-align',
 				'name':_('Align'),
+				'accessibility': { focusBack: true,	combination: 'AL', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3173,6 +3205,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-arrange',
 				'name':_('Arrange'),
+				'accessibility': { focusBack: true,	combination: 'BF', de: null },
 				'children' : [
 					{
 						'type': 'container',
@@ -3225,6 +3258,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'type': 'overflowgroup',
 				'id': 'picture-group',
 				'name':_('Group'),
+				'accessibility': { focusBack: true,	combination: 'FG', de: null },
 				'children' : [
 					{
 						'id': 'picture-format-group',
