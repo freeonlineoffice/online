@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 19:36+0200\n"
+"POT-Creation-Date: 2025-08-20 17:36+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/"
@@ -301,10 +301,10 @@ msgstr ""
 #: src/map/Clipboard.js:1286 src/map/handler/Map.Feedback.js:87
 #: src/map/handler/Map.SlideShow.js:51 src/map/handler/Map.SlideShow.js:164
 #: src/map/handler/Map.SlideShow.js:292 src/map/handler/Map.SlideShow.js:303
-#: src/map/handler/Map.WOPI.js:688 src/slideshow/SlideShowPresenter.ts:934
-#: src/slideshow/SlideShowPresenter.ts:949
-#: src/slideshow/SlideShowPresenter.ts:964
-#: src/slideshow/SlideShowPresenter.ts:987
+#: src/map/handler/Map.WOPI.js:688 src/slideshow/SlideShowPresenter.ts:962
+#: src/slideshow/SlideShowPresenter.ts:977
+#: src/slideshow/SlideShowPresenter.ts:992
+#: src/slideshow/SlideShowPresenter.ts:1015
 msgid "OK"
 msgstr ""
 
@@ -317,8 +317,8 @@ msgstr ""
 #: src/control/Control.DownloadProgress.js:74
 #: src/control/Control.LanguageDialog.js:103
 #: src/control/Control.MobileTopBar.ts:41
-#: src/control/Control.UIManager.ts:1717 src/control/Control.UIManager.ts:1798
-#: src/control/Control.UIManager.ts:1952 src/control/Control.UIManager.ts:2130
+#: src/control/Control.UIManager.ts:1727 src/control/Control.UIManager.ts:1808
+#: src/control/Control.UIManager.ts:1962 src/control/Control.UIManager.ts:2140
 #: src/control/Control.Zotero.js:352 src/core/Socket.js:1445
 msgid "Cancel"
 msgstr "Loobu"
@@ -404,11 +404,13 @@ msgid " s"
 msgstr ""
 
 #: js/global.js:1571
-msgid "Cluster is scaling, retrying..."
+msgid ""
+"The system is currently adjusting resources. Please wait a moment while we "
+"retry your request..."
 msgstr ""
 
 #: js/global.js:1573
-msgid "Document is migrating to new server, retrying..."
+msgid "The document is being migrated to a new server. Retrying shortly..."
 msgstr ""
 
 #: js/global.js:1575
@@ -474,7 +476,7 @@ msgid "Show in navigator"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1246
-#: src/control/Control.JSDialogBuilder.js:1899
+#: src/control/Control.JSDialogBuilder.js:1901
 #: src/layer/tile/CanvasTileLayer.js:4155
 #: src/layer/tile/CanvasTileLayer.js:4170
 msgid "Comment"
@@ -1066,7 +1068,7 @@ msgstr ""
 
 #: src/control/Control.FormulaBarJSDialog.js:79
 #: src/control/Control.NotebookbarWriter.js:110
-#: src/control/Control.NotebookbarWriter.js:1536
+#: src/control/Control.NotebookbarWriter.js:1551
 msgid "Formula"
 msgstr ""
 
@@ -1087,7 +1089,7 @@ msgstr ""
 msgid "Idle document - please tap to reload and resume editing"
 msgstr ""
 
-#: src/control/Control.JSDialog.js:313
+#: src/control/Control.JSDialog.js:316
 msgid "Close dialog"
 msgstr ""
 
@@ -1123,69 +1125,69 @@ msgstr ""
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1419
+#: src/control/Control.JSDialogBuilder.js:1421
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1422
+#: src/control/Control.JSDialogBuilder.js:1424
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1425
+#: src/control/Control.JSDialogBuilder.js:1427
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1501
+#: src/control/Control.JSDialogBuilder.js:1503
 msgid "Select range"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1628
+#: src/control/Control.JSDialogBuilder.js:1630
 #: src/control/Control.NotebookbarBuilder.js:138
 #, fuzzy
 msgid "Font Name"
 msgstr "Font"
 
-#: src/control/Control.JSDialogBuilder.js:1630 src/control/Toolbar.js:129
+#: src/control/Control.JSDialogBuilder.js:1632 src/control/Toolbar.js:129
 #, fuzzy
 msgid "Font Size"
 msgstr "Font"
 
-#: src/control/Control.JSDialogBuilder.js:1632
-#: src/control/Control.NotebookbarCalc.js:2510
-#: src/control/Control.NotebookbarDraw.js:1701
-#: src/control/Control.NotebookbarImpress.js:1246
-#: src/control/Control.NotebookbarWriter.js:1028
+#: src/control/Control.JSDialogBuilder.js:1634
+#: src/control/Control.NotebookbarCalc.js:2533
+#: src/control/Control.NotebookbarDraw.js:1717
+#: src/control/Control.NotebookbarImpress.js:1256
+#: src/control/Control.NotebookbarWriter.js:1035
 #: src/control/Control.TopToolbar.js:484
 msgid "Style"
 msgstr "Stiil"
 
-#: src/control/Control.JSDialogBuilder.js:1885
+#: src/control/Control.JSDialogBuilder.js:1887
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1888
+#: src/control/Control.JSDialogBuilder.js:1890
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1963
+#: src/control/Control.JSDialogBuilder.js:1965
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2263
+#: src/control/Control.JSDialogBuilder.js:2259
 msgid "Open {name}"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2588
+#: src/control/Control.JSDialogBuilder.js:2584
 #: src/control/Control.Menubar.ts:922
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2589
+#: src/control/Control.JSDialogBuilder.js:2585
 #: src/control/Control.Menubar.ts:925
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2609
+#: src/control/Control.JSDialogBuilder.js:2605
 #, fuzzy
 msgid "Insert Table"
 msgstr "Lisa lehekülg"
@@ -1193,7 +1195,7 @@ msgstr "Lisa lehekülg"
 #: src/control/Control.LanguageDialog.js:54 src/control/Control.Menubar.ts:387
 #: src/control/Control.Menubar.ts:389 src/control/Control.Menubar.ts:391
 #: src/control/Control.Menubar.ts:581 src/control/Control.Menubar.ts:722
-#: src/control/Control.Menubar.ts:1010 src/control/Control.StatusBar.js:521
+#: src/control/Control.Menubar.ts:1010 src/control/Control.StatusBar.js:522
 msgid "None (Do not check spelling)"
 msgstr ""
 
@@ -1331,10 +1333,10 @@ msgstr ""
 #: src/control/Control.Menubar.ts:472 src/control/Control.Menubar.ts:478
 #: src/control/Control.Menubar.ts:634 src/control/Control.Menubar.ts:640
 #: src/control/Control.Menubar.ts:781 src/control/Control.Menubar.ts:787
-#: src/control/Control.NotebookbarCalc.js:1420
-#: src/control/Control.NotebookbarDraw.js:413
-#: src/control/Control.NotebookbarImpress.js:510
-#: src/control/Control.NotebookbarWriter.js:1658
+#: src/control/Control.NotebookbarCalc.js:1434
+#: src/control/Control.NotebookbarDraw.js:414
+#: src/control/Control.NotebookbarImpress.js:511
+#: src/control/Control.NotebookbarWriter.js:1674
 #: src/control/Control.StatusBar.js:253
 msgid "Reset zoom"
 msgstr ""
@@ -1362,10 +1364,10 @@ msgstr ""
 #: src/control/Control.Menubar.ts:647 src/control/Control.Menubar.ts:793
 #: src/control/Control.Menubar.ts:1075 src/control/Control.Menubar.ts:1128
 #: src/control/Control.Menubar.ts:1189 src/control/Control.Menubar.ts:1249
-#: src/control/Control.NotebookbarCalc.js:1498
-#: src/control/Control.NotebookbarDraw.js:525
-#: src/control/Control.NotebookbarImpress.js:645
-#: src/control/Control.NotebookbarWriter.js:1743
+#: src/control/Control.NotebookbarCalc.js:1512
+#: src/control/Control.NotebookbarDraw.js:527
+#: src/control/Control.NotebookbarImpress.js:648
+#: src/control/Control.NotebookbarWriter.js:1759
 msgid "Dark Mode"
 msgstr ""
 
@@ -1373,17 +1375,17 @@ msgstr ""
 #: src/control/Control.Menubar.ts:648 src/control/Control.Menubar.ts:794
 #: src/control/Control.Menubar.ts:1076 src/control/Control.Menubar.ts:1129
 #: src/control/Control.Menubar.ts:1190 src/control/Control.Menubar.ts:1250
-#: src/control/Control.NotebookbarCalc.js:1505
-#: src/control/Control.NotebookbarDraw.js:532
-#: src/control/Control.NotebookbarImpress.js:652
-#: src/control/Control.NotebookbarWriter.js:1750
+#: src/control/Control.NotebookbarCalc.js:1519
+#: src/control/Control.NotebookbarDraw.js:534
+#: src/control/Control.NotebookbarImpress.js:655
+#: src/control/Control.NotebookbarWriter.js:1766
 msgid "Invert Background"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:168 src/control/Control.Menubar.ts:797
-#: src/control/Control.NotebookbarCalc.js:2536
-#: src/control/Control.NotebookbarWriter.js:925
-#: src/control/Control.NotebookbarWriter.js:1054
+#: src/control/Control.NotebookbarCalc.js:2560
+#: src/control/Control.NotebookbarWriter.js:928
+#: src/control/Control.NotebookbarWriter.js:1062
 msgid "Style list"
 msgstr ""
 
@@ -1401,10 +1403,10 @@ msgstr ""
 
 #: src/control/Control.Menubar.ts:212 src/control/Control.Menubar.ts:512
 #: src/control/Control.Menubar.ts:662 src/control/Control.Menubar.ts:820
-#: src/control/Control.NotebookbarCalc.js:1724
-#: src/control/Control.NotebookbarDraw.js:1533
-#: src/control/Control.NotebookbarImpress.js:1530
-#: src/control/Control.NotebookbarWriter.js:1309
+#: src/control/Control.NotebookbarCalc.js:1740
+#: src/control/Control.NotebookbarDraw.js:1548
+#: src/control/Control.NotebookbarImpress.js:1543
+#: src/control/Control.NotebookbarWriter.js:1320
 msgid "Smart Picker"
 msgstr ""
 
@@ -1423,38 +1425,38 @@ msgid "References"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:327
-#: src/control/Control.NotebookbarWriter.js:2146
+#: src/control/Control.NotebookbarWriter.js:2166
 msgid "Update Index"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:336
-#: src/control/Control.NotebookbarWriter.js:2255
+#: src/control/Control.NotebookbarWriter.js:2276
 msgid "Add Citation"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:337
-#: src/control/Control.NotebookbarWriter.js:2268
+#: src/control/Control.NotebookbarWriter.js:2289
 msgid "Add Citation Note"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:338
-#: src/control/Control.NotebookbarWriter.js:2241
+#: src/control/Control.NotebookbarWriter.js:2262
 msgid "Add Bibliography"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:340
-#: src/control/Control.NotebookbarWriter.js:2287
+#: src/control/Control.NotebookbarWriter.js:2308
 msgid "Refresh Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:341
-#: src/control/Control.NotebookbarWriter.js:2300
+#: src/control/Control.NotebookbarWriter.js:2321
 #: src/control/Control.Zotero.js:1523
 msgid "Unlink Citations"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:342
-#: src/control/Control.NotebookbarWriter.js:2313
+#: src/control/Control.NotebookbarWriter.js:2334
 msgid "Citation Preferences"
 msgstr ""
 
@@ -1484,7 +1486,7 @@ msgstr "Lisa lehekülg"
 #: src/control/Control.NotebookbarDraw.js:346
 #: src/control/Control.NotebookbarImpress.js:388
 #: src/control/Control.NotebookbarWriter.js:346
-#: src/control/Control.NotebookbarWriter.js:1615
+#: src/control/Control.NotebookbarWriter.js:1630
 msgid "Properties"
 msgstr ""
 
@@ -1615,12 +1617,12 @@ msgid "Notes Pages"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:487
-#: src/control/Control.NotebookbarImpress.js:600
+#: src/control/Control.NotebookbarImpress.js:602
 msgid "Notes View"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:491
-#: src/control/Control.NotebookbarImpress.js:606
+#: src/control/Control.NotebookbarImpress.js:608
 msgid "Master View"
 msgstr ""
 
@@ -1643,7 +1645,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.ts:575
 #: src/control/Control.NotebookbarImpress.js:469
-#: src/slideshow/PresenterConsole.js:260
+#: src/slideshow/PresenterConsole.js:261
 msgid "Presenter Console"
 msgstr ""
 
@@ -1690,7 +1692,7 @@ msgid "All Sheets"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:800
-#: src/control/Control.NotebookbarCalc.js:1392
+#: src/control/Control.NotebookbarCalc.js:1405
 msgid "Focus Cell"
 msgstr ""
 
@@ -1773,12 +1775,12 @@ msgstr ""
 #: src/control/Control.Menubar.ts:1029 src/control/Control.Menubar.ts:1095
 #: src/control/Control.Menubar.ts:1160 src/control/Control.Menubar.ts:1215
 #: src/control/Control.MobileSearchBar.ts:31
-#: src/control/Control.NotebookbarCalc.js:984
-#: src/control/Control.NotebookbarDraw.js:1128
-#: src/control/Control.NotebookbarDraw.js:1140
-#: src/control/Control.NotebookbarImpress.js:1202
-#: src/control/Control.NotebookbarImpress.js:1214
-#: src/control/Control.NotebookbarWriter.js:997
+#: src/control/Control.NotebookbarCalc.js:991
+#: src/control/Control.NotebookbarDraw.js:1136
+#: src/control/Control.NotebookbarDraw.js:1149
+#: src/control/Control.NotebookbarImpress.js:1211
+#: src/control/Control.NotebookbarImpress.js:1224
+#: src/control/Control.NotebookbarWriter.js:1003
 #: src/control/Control.StatusBar.js:226 src/control/Control.Zotero.js:212
 #: src/control/Toolbar.js:667 src/control/Toolbar.js:668
 msgid "Search"
@@ -1796,7 +1798,7 @@ msgstr ""
 msgid "Remove print area"
 msgstr ""
 
-#: src/control/Control.Menubar.ts:1562 src/control/Control.StatusBar.js:520
+#: src/control/Control.Menubar.ts:1562 src/control/Control.StatusBar.js:521
 msgid "Reset to Default Language"
 msgstr ""
 
@@ -1915,19 +1917,19 @@ msgid "Home"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:26
-#: src/control/Control.NotebookbarCalc.js:1143
+#: src/control/Control.NotebookbarCalc.js:1152
 #: src/control/Control.NotebookbarDraw.js:60
-#: src/control/Control.NotebookbarDraw.js:1090
+#: src/control/Control.NotebookbarDraw.js:1097
 #: src/control/Control.NotebookbarImpress.js:87
-#: src/control/Control.NotebookbarImpress.js:1897
+#: src/control/Control.NotebookbarImpress.js:1913
 #: src/control/Control.NotebookbarWriter.js:41
-#: src/control/Control.NotebookbarWriter.js:2727
+#: src/control/Control.NotebookbarWriter.js:2751
 #, fuzzy
 msgid "Insert"
 msgstr "Lisa lehekülg"
 
 #: src/control/Control.NotebookbarCalc.js:32
-#: src/control/Control.NotebookbarDraw.js:1237
+#: src/control/Control.NotebookbarDraw.js:1247
 msgid "Page Layout"
 msgstr ""
 
@@ -1947,7 +1949,7 @@ msgid "Review"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:56
-#: src/control/Control.NotebookbarCalc.js:1049
+#: src/control/Control.NotebookbarCalc.js:1056
 #: src/control/Control.NotebookbarDraw.js:78
 #: src/control/Control.NotebookbarImpress.js:112
 #: src/control/Control.NotebookbarWriter.js:65
@@ -1963,7 +1965,7 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:69
 #: src/control/Control.NotebookbarDraw.js:98
 #: src/control/Control.NotebookbarWriter.js:91
-#: src/control/Control.NotebookbarWriter.js:1599
+#: src/control/Control.NotebookbarWriter.js:1614
 msgid "Picture"
 msgstr ""
 
@@ -1975,8 +1977,8 @@ msgid "View"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:82
-#: src/control/Control.NotebookbarCalc.js:1630
-#: src/control/Control.NotebookbarCalc.js:2596
+#: src/control/Control.NotebookbarCalc.js:1646
+#: src/control/Control.NotebookbarCalc.js:2621
 msgid "Sparkline"
 msgstr ""
 
@@ -2028,316 +2030,316 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:709
+#: src/control/Control.NotebookbarCalc.js:712
 msgid "Merge & Center"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:729
+#: src/control/Control.NotebookbarCalc.js:733
 msgid "General"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:730
+#: src/control/Control.NotebookbarCalc.js:734
 msgid "Number"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:731
+#: src/control/Control.NotebookbarCalc.js:735
 msgid "Percent"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:732
+#: src/control/Control.NotebookbarCalc.js:736
 msgid "Currency"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:733
-#: src/control/Control.NotebookbarWriter.js:1607
+#: src/control/Control.NotebookbarCalc.js:737
+#: src/control/Control.NotebookbarWriter.js:1622
 #: src/control/Control.Zotero.js:1144 src/control/Control.Zotero.js:1596
 msgid "Date"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:734
+#: src/control/Control.NotebookbarCalc.js:738
 msgid "Time"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:735
+#: src/control/Control.NotebookbarCalc.js:739
 msgid "Scientific"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:736
+#: src/control/Control.NotebookbarCalc.js:740
 msgid "Fraction"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:737
+#: src/control/Control.NotebookbarCalc.js:741
 msgid "Boolean Value"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:738
-#: src/control/Control.NotebookbarCalc.js:1803
-#: src/control/Control.NotebookbarCalc.js:1966
-#: src/control/Control.NotebookbarDraw.js:1616
-#: src/control/Control.NotebookbarImpress.js:1639
-#: src/control/Control.NotebookbarWriter.js:1456
+#: src/control/Control.NotebookbarCalc.js:742
+#: src/control/Control.NotebookbarCalc.js:1819
+#: src/control/Control.NotebookbarCalc.js:1984
+#: src/control/Control.NotebookbarDraw.js:1631
+#: src/control/Control.NotebookbarImpress.js:1653
+#: src/control/Control.NotebookbarWriter.js:1469
 msgid "Text"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:916
+#: src/control/Control.NotebookbarCalc.js:922
 #: src/control/jsdialog/Definitions.Menu.ts:1731
 msgid "Default"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:923
+#: src/control/Control.NotebookbarCalc.js:929
 msgid "Heading 1"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:930
+#: src/control/Control.NotebookbarCalc.js:936
 msgid "Heading 2"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:943
+#: src/control/Control.NotebookbarCalc.js:949
 msgid "Good"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:950
+#: src/control/Control.NotebookbarCalc.js:956
 msgid "Neutral"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:957
+#: src/control/Control.NotebookbarCalc.js:963
 msgid "Bad"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:995
-#: src/control/Control.NotebookbarDraw.js:1151
-#: src/control/Control.NotebookbarImpress.js:1225
-#: src/control/Control.NotebookbarWriter.js:1008
+#: src/control/Control.NotebookbarCalc.js:1002
+#: src/control/Control.NotebookbarDraw.js:1160
+#: src/control/Control.NotebookbarImpress.js:1235
+#: src/control/Control.NotebookbarWriter.js:1014
 msgid "Replace"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1054
+#: src/control/Control.NotebookbarCalc.js:1062
 msgid "Margin"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1060
+#: src/control/Control.NotebookbarCalc.js:1068
 msgid "Size"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1099
-#: src/control/Control.NotebookbarDraw.js:497
-#: src/control/Control.NotebookbarImpress.js:616
+#: src/control/Control.NotebookbarCalc.js:1107
+#: src/control/Control.NotebookbarDraw.js:498
+#: src/control/Control.NotebookbarImpress.js:618
 msgid "Grid"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1127
+#: src/control/Control.NotebookbarCalc.js:1136
 msgid "Row Height"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1135
+#: src/control/Control.NotebookbarCalc.js:1144
 msgid "Column Width"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1154
+#: src/control/Control.NotebookbarCalc.js:1164
 #, fuzzy
 msgid "Insert Rows Above"
 msgstr "Lisa lehekülg"
 
-#: src/control/Control.NotebookbarCalc.js:1161
+#: src/control/Control.NotebookbarCalc.js:1171
 msgid "Insert Columns Before"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1168
+#: src/control/Control.NotebookbarCalc.js:1178
 #, fuzzy
 msgid "Delete Rows"
 msgstr "Lisa lehekülg"
 
-#: src/control/Control.NotebookbarCalc.js:1180
+#: src/control/Control.NotebookbarCalc.js:1190
 msgid "Insert Rows Below"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1187
+#: src/control/Control.NotebookbarCalc.js:1197
 msgid "Insert Columns After"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1194
+#: src/control/Control.NotebookbarCalc.js:1204
 msgid "Delete Columns"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1217
-#: src/control/Control.NotebookbarCalc.js:2757
-#: src/control/Control.NotebookbarCalc.js:3109
-#: src/control/Control.NotebookbarDraw.js:1253
-#: src/control/Control.NotebookbarImpress.js:2188
-#: src/control/Control.NotebookbarImpress.js:2393
-#: src/control/Control.NotebookbarImpress.js:2693
-#: src/control/Control.NotebookbarWriter.js:1992
-#: src/control/Control.NotebookbarWriter.js:3183
-#: src/control/Control.NotebookbarWriter.js:3489
+#: src/control/Control.NotebookbarCalc.js:1227
+#: src/control/Control.NotebookbarCalc.js:2783
+#: src/control/Control.NotebookbarCalc.js:3140
+#: src/control/Control.NotebookbarDraw.js:1263
+#: src/control/Control.NotebookbarImpress.js:2208
+#: src/control/Control.NotebookbarImpress.js:2415
+#: src/control/Control.NotebookbarImpress.js:2719
+#: src/control/Control.NotebookbarWriter.js:2009
+#: src/control/Control.NotebookbarWriter.js:3213
+#: src/control/Control.NotebookbarWriter.js:3524
 msgid "Align"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1286
-#: src/control/Control.NotebookbarCalc.js:2823
-#: src/control/Control.NotebookbarCalc.js:3175
-#: src/control/Control.NotebookbarDraw.js:1319
-#: src/control/Control.NotebookbarImpress.js:2254
-#: src/control/Control.NotebookbarImpress.js:2459
-#: src/control/Control.NotebookbarImpress.js:2759
-#: src/control/Control.NotebookbarWriter.js:2058
-#: src/control/Control.NotebookbarWriter.js:3237
-#: src/control/Control.NotebookbarWriter.js:3543
+#: src/control/Control.NotebookbarCalc.js:1297
+#: src/control/Control.NotebookbarCalc.js:2850
+#: src/control/Control.NotebookbarCalc.js:3207
+#: src/control/Control.NotebookbarDraw.js:1330
+#: src/control/Control.NotebookbarImpress.js:2275
+#: src/control/Control.NotebookbarImpress.js:2482
+#: src/control/Control.NotebookbarImpress.js:2786
+#: src/control/Control.NotebookbarWriter.js:2076
+#: src/control/Control.NotebookbarWriter.js:3268
+#: src/control/Control.NotebookbarWriter.js:3579
 msgid "Arrange"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1347
+#: src/control/Control.NotebookbarCalc.js:1359
 msgid "Freeze"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1400
+#: src/control/Control.NotebookbarCalc.js:1413
 #: src/control/Control.NotebookbarDraw.js:393
 #: src/control/Control.NotebookbarImpress.js:497
-#: src/control/Control.NotebookbarWriter.js:1645
+#: src/control/Control.NotebookbarWriter.js:1660
 msgid "Zoom"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1406
-#: src/control/Control.NotebookbarDraw.js:399
+#: src/control/Control.NotebookbarCalc.js:1420
+#: src/control/Control.NotebookbarDraw.js:400
 #: src/control/Control.NotebookbarImpress.js:439
-#: src/control/Control.NotebookbarWriter.js:1631
+#: src/control/Control.NotebookbarWriter.js:1646
 msgid "Read mode"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1460
-#: src/control/Control.NotebookbarDraw.js:453
-#: src/control/Control.NotebookbarImpress.js:550
-#: src/control/Control.NotebookbarWriter.js:1698
+#: src/control/Control.NotebookbarCalc.js:1474
+#: src/control/Control.NotebookbarDraw.js:454
+#: src/control/Control.NotebookbarImpress.js:551
+#: src/control/Control.NotebookbarWriter.js:1714
 msgid "Compact view"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1473
-#: src/control/Control.NotebookbarDraw.js:490
-#: src/control/Control.NotebookbarImpress.js:587
-#: src/control/Control.NotebookbarWriter.js:1735
+#: src/control/Control.NotebookbarCalc.js:1487
+#: src/control/Control.NotebookbarDraw.js:491
+#: src/control/Control.NotebookbarImpress.js:588
+#: src/control/Control.NotebookbarWriter.js:1751
 msgid "Collapse Tabs"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1485
-#: src/control/Control.NotebookbarDraw.js:478
-#: src/control/Control.NotebookbarImpress.js:575
-#: src/control/Control.NotebookbarWriter.js:1723
+#: src/control/Control.NotebookbarCalc.js:1499
+#: src/control/Control.NotebookbarDraw.js:479
+#: src/control/Control.NotebookbarImpress.js:576
+#: src/control/Control.NotebookbarWriter.js:1739
 msgid "Status Bar"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1541
-#: src/control/Control.NotebookbarCalc.js:2273
-#: src/control/Control.NotebookbarCalc.js:2875
-#: src/control/Control.NotebookbarCalc.js:3227
-#: src/control/Control.NotebookbarImpress.js:2511
-#: src/control/Control.NotebookbarImpress.js:2811
-#: src/control/Control.NotebookbarWriter.js:3281
-#: src/control/Control.NotebookbarWriter.js:3587
+#: src/control/Control.NotebookbarCalc.js:1555
+#: src/control/Control.NotebookbarCalc.js:2294
+#: src/control/Control.NotebookbarCalc.js:2903
+#: src/control/Control.NotebookbarCalc.js:3260
+#: src/control/Control.NotebookbarImpress.js:2535
+#: src/control/Control.NotebookbarImpress.js:2839
+#: src/control/Control.NotebookbarWriter.js:3313
+#: src/control/Control.NotebookbarWriter.js:3624
 msgid "Group"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1548
+#: src/control/Control.NotebookbarCalc.js:1562
 msgid "Ungroup"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1570
+#: src/control/Control.NotebookbarCalc.js:1584
 msgid "Pivot Table"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1618
-#: src/control/Control.NotebookbarDraw.js:972
-#: src/control/Control.NotebookbarDraw.js:1422
-#: src/control/Control.NotebookbarImpress.js:1114
-#: src/control/Control.NotebookbarImpress.js:1389
-#: src/control/Control.NotebookbarWriter.js:1218
+#: src/control/Control.NotebookbarCalc.js:1633
+#: src/control/Control.NotebookbarDraw.js:978
+#: src/control/Control.NotebookbarDraw.js:1435
+#: src/control/Control.NotebookbarImpress.js:1122
+#: src/control/Control.NotebookbarImpress.js:1401
+#: src/control/Control.NotebookbarWriter.js:1228
 msgid "Illustrations"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1687
-#: src/control/Control.NotebookbarDraw.js:985
-#: src/control/Control.NotebookbarDraw.js:1472
-#: src/control/Control.NotebookbarImpress.js:1127
-#: src/control/Control.NotebookbarImpress.js:1464
-#: src/control/Control.NotebookbarWriter.js:1262
+#: src/control/Control.NotebookbarCalc.js:1703
+#: src/control/Control.NotebookbarDraw.js:992
+#: src/control/Control.NotebookbarDraw.js:1486
+#: src/control/Control.NotebookbarImpress.js:1136
+#: src/control/Control.NotebookbarImpress.js:1477
+#: src/control/Control.NotebookbarWriter.js:1273
 msgid "Shapes"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1732
-#: src/control/Control.NotebookbarDraw.js:1541
-#: src/control/Control.NotebookbarImpress.js:1551
-#: src/control/Control.NotebookbarWriter.js:1330
+#: src/control/Control.NotebookbarCalc.js:1748
+#: src/control/Control.NotebookbarDraw.js:1556
+#: src/control/Control.NotebookbarImpress.js:1564
+#: src/control/Control.NotebookbarWriter.js:1341
 msgid "Assistant"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1902
+#: src/control/Control.NotebookbarCalc.js:1919
 msgid "Insert Function"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1910
+#: src/control/Control.NotebookbarCalc.js:1927
 #, fuzzy
 msgid "Function Library"
 msgstr "Funktsioon"
 
-#: src/control/Control.NotebookbarCalc.js:1923
+#: src/control/Control.NotebookbarCalc.js:1941
 msgid "AutoSum"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1936
+#: src/control/Control.NotebookbarCalc.js:1954
 msgid "Financial"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1954
+#: src/control/Control.NotebookbarCalc.js:1972
 msgid "Logical"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1984
+#: src/control/Control.NotebookbarCalc.js:2002
 msgid "Date & Time"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:1996
+#: src/control/Control.NotebookbarCalc.js:2014
 msgid "Lookup & Reference"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2014
+#: src/control/Control.NotebookbarCalc.js:2032
 msgid "Math & Trig"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2026
+#: src/control/Control.NotebookbarCalc.js:2044
 msgid "More Functions"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2071
+#: src/control/Control.NotebookbarCalc.js:2089
 msgid "Range"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2153
+#: src/control/Control.NotebookbarCalc.js:2172
 msgid "Sort"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2198
+#: src/control/Control.NotebookbarCalc.js:2218
 msgid "Filter"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2443
-#: src/control/Control.NotebookbarImpress.js:1861
-#: src/control/Control.NotebookbarWriter.js:2457
+#: src/control/Control.NotebookbarCalc.js:2465
+#: src/control/Control.NotebookbarImpress.js:1876
+#: src/control/Control.NotebookbarWriter.js:2479
 msgid "Comments"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2546
+#: src/control/Control.NotebookbarCalc.js:2570
 msgid "Format Cells"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2691
-#: src/control/Control.NotebookbarCalc.js:3043
-#: src/control/Control.NotebookbarWriter.js:1895
-#: src/control/Control.NotebookbarWriter.js:3129
-#: src/control/Control.NotebookbarWriter.js:3435
+#: src/control/Control.NotebookbarCalc.js:2716
+#: src/control/Control.NotebookbarCalc.js:3073
+#: src/control/Control.NotebookbarWriter.js:1911
+#: src/control/Control.NotebookbarWriter.js:3158
+#: src/control/Control.NotebookbarWriter.js:3469
 msgid "Wrap"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2926
-#: src/control/Control.NotebookbarImpress.js:2570
-#: src/control/Control.NotebookbarWriter.js:3326
+#: src/control/Control.NotebookbarCalc.js:2955
+#: src/control/Control.NotebookbarImpress.js:2595
+#: src/control/Control.NotebookbarWriter.js:3359
 msgid "Image Controls"
 msgstr ""
 
@@ -2347,11 +2349,11 @@ msgid "Layout"
 msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:84
-#: src/control/Control.NotebookbarDraw.js:1441
+#: src/control/Control.NotebookbarDraw.js:1455
 #: src/control/Control.NotebookbarImpress.js:118
-#: src/control/Control.NotebookbarImpress.js:1433
+#: src/control/Control.NotebookbarImpress.js:1446
 #: src/control/Control.NotebookbarWriter.js:77
-#: src/control/Control.NotebookbarWriter.js:1210
+#: src/control/Control.NotebookbarWriter.js:1220
 msgid "Table"
 msgstr ""
 
@@ -2359,41 +2361,41 @@ msgstr ""
 msgid "PDF Document (.pdf) - Expert"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:466
-#: src/control/Control.NotebookbarImpress.js:563
-#: src/control/Control.NotebookbarWriter.js:1711
+#: src/control/Control.NotebookbarDraw.js:467
+#: src/control/Control.NotebookbarImpress.js:564
+#: src/control/Control.NotebookbarWriter.js:1727
 msgid "Ruler"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:582
-#: src/control/Control.NotebookbarImpress.js:695
+#: src/control/Control.NotebookbarDraw.js:584
+#: src/control/Control.NotebookbarImpress.js:698
 msgid "Clipboard"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:641 src/control/Toolbar.js:51
+#: src/control/Control.NotebookbarDraw.js:644 src/control/Toolbar.js:51
 msgid "Font"
 msgstr "Font"
 
-#: src/control/Control.NotebookbarDraw.js:777
+#: src/control/Control.NotebookbarDraw.js:781
 msgid "Alignment"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:863
-#: src/control/Control.NotebookbarImpress.js:930
-#: src/control/Control.NotebookbarImpress.js:2069
-#: src/control/Control.NotebookbarWriter.js:2897
+#: src/control/Control.NotebookbarDraw.js:868
+#: src/control/Control.NotebookbarImpress.js:936
+#: src/control/Control.NotebookbarImpress.js:2088
+#: src/control/Control.NotebookbarWriter.js:2924
 msgid "Paragraph"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:1180
-#: src/control/Control.NotebookbarDraw.js:1377
-#: src/control/Control.NotebookbarWriter.js:1188
+#: src/control/Control.NotebookbarDraw.js:1189
+#: src/control/Control.NotebookbarDraw.js:1389
+#: src/control/Control.NotebookbarWriter.js:1197
 msgid "Page"
 msgstr ""
 
-#: src/control/Control.NotebookbarDraw.js:1527
-#: src/control/Control.NotebookbarImpress.js:1566
-#: src/control/Control.NotebookbarWriter.js:2325
+#: src/control/Control.NotebookbarDraw.js:1541
+#: src/control/Control.NotebookbarImpress.js:1579
+#: src/control/Control.NotebookbarWriter.js:2346
 msgid "Field"
 msgstr ""
 
@@ -2421,66 +2423,66 @@ msgstr ""
 msgid "Present in Window"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:594
+#: src/control/Control.NotebookbarImpress.js:595
 msgid "Slide Views"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:624
+#: src/control/Control.NotebookbarImpress.js:627
 msgid "Show Grid"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:631
+#: src/control/Control.NotebookbarImpress.js:634
 msgid "Snap to Grid"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:755
+#: src/control/Control.NotebookbarImpress.js:759
 msgid "Slide Layout"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:761
+#: src/control/Control.NotebookbarImpress.js:766
 msgid "New"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:772
+#: src/control/Control.NotebookbarImpress.js:777
 msgid "Change Layout"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:780
+#: src/control/Control.NotebookbarImpress.js:785
 msgid "Reset Layout"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:794
+#: src/control/Control.NotebookbarImpress.js:799
 msgid "Character"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:1045
+#: src/control/Control.NotebookbarImpress.js:1052
 msgid "Spacing & Color"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:1344
-#: src/control/Control.NavigatorPanel.ts:171
+#: src/control/Control.NotebookbarImpress.js:1355
+#: src/control/Control.NavigatorPanel.ts:173
 #: src/slideshow/PresenterConsole.js:34
 msgid "Slides"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:1733
+#: src/control/Control.NotebookbarImpress.js:1748
 msgid "Slide Size"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:1756
+#: src/control/Control.NotebookbarImpress.js:1771
 msgid "Background Image"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:1963
+#: src/control/Control.NotebookbarImpress.js:1980
 msgid "Merge & Split"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:2001
-#: src/control/Control.NotebookbarWriter.js:2848
+#: src/control/Control.NotebookbarImpress.js:2019
+#: src/control/Control.NotebookbarWriter.js:2874
 msgid "Select"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:2602
+#: src/control/Control.NotebookbarImpress.js:2628
 msgid "Effects"
 msgstr ""
 
@@ -2500,63 +2502,63 @@ msgstr ""
 msgid "Screen Reading"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:911
+#: src/control/Control.NotebookbarWriter.js:914
 msgid "Scroll up"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:918
+#: src/control/Control.NotebookbarWriter.js:921
 msgid "Scroll down"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:936
+#: src/control/Control.NotebookbarWriter.js:939
 msgid "Insert Control"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1064
+#: src/control/Control.NotebookbarWriter.js:1072
 msgid "Lists/Bullets"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1350
+#: src/control/Control.NotebookbarWriter.js:1361
 msgid "Header & Footer"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1418
+#: src/control/Control.NotebookbarWriter.js:1430
 msgid "Section"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1512
+#: src/control/Control.NotebookbarWriter.js:1526
 msgid "Symbols"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1575
+#: src/control/Control.NotebookbarWriter.js:1590
 msgid "Rich Text"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1583
+#: src/control/Control.NotebookbarWriter.js:1598
 msgid "Checkbox"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1591
+#: src/control/Control.NotebookbarWriter.js:1606
 msgid "Dropdown"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2116
+#: src/control/Control.NotebookbarWriter.js:2135
 msgid "Table of content"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2161
+#: src/control/Control.NotebookbarWriter.js:2181
 msgid "Footnote/Endnote"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2531
+#: src/control/Control.NotebookbarWriter.js:2554
 msgid "Tracking"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2787
+#: src/control/Control.NotebookbarWriter.js:2812
 msgid "Split"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2968
+#: src/control/Control.NotebookbarWriter.js:2996
 msgid "Number Format"
 msgstr ""
 
@@ -2674,27 +2676,27 @@ msgstr ""
 msgid "Insert sheet"
 msgstr "Lisa lehekülg"
 
-#: src/control/Control.NavigatorPanel.ts:112
+#: src/control/Control.NavigatorPanel.ts:114
 msgid "Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:133
+#: src/control/Control.NavigatorPanel.ts:135
 msgid "Close Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:178
+#: src/control/Control.NavigatorPanel.ts:180
 msgid "Outline"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:189
+#: src/control/Control.NavigatorPanel.ts:191
 msgid "Results"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:220
+#: src/control/Control.NavigatorPanel.ts:222
 msgid "Navigator"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:378
+#: src/control/Control.NavigatorPanel.ts:399
 msgid "Search..."
 msgstr ""
 
@@ -2742,29 +2744,29 @@ msgstr ""
 msgid "Cancel the search"
 msgstr "Tühista otsing"
 
-#: src/control/Control.StatusBar.js:392
+#: src/control/Control.StatusBar.js:393
 msgid ""
 "To prevent accidental changes, the author has set this file to open as view-"
 "only"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:442
+#: src/control/Control.StatusBar.js:443
 msgid "Select multiple cells"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:459
+#: src/control/Control.StatusBar.js:460
 msgid "Selection mode: inactive"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:537
+#: src/control/Control.StatusBar.js:538
 msgid "Set Language for All text"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:540
+#: src/control/Control.StatusBar.js:541
 msgid "Set Language for Paragraph"
 msgstr ""
 
-#: src/control/Control.StatusBar.js:541
+#: src/control/Control.StatusBar.js:542
 msgid "Set Language for Selection"
 msgstr ""
 
@@ -2912,11 +2914,13 @@ msgstr ""
 
 #: src/control/Control.Zotero.js:249 src/control/Control.Zotero.js:446
 #: src/slideshow/PresenterConsole.js:31
+#: src/slideshow/SlideShowPresenter.ts:600
 msgid "Previous"
 msgstr ""
 
 #: src/control/Control.Zotero.js:262 src/control/Control.Zotero.js:461
 #: src/slideshow/PresenterConsole.js:32
+#: src/slideshow/SlideShowPresenter.ts:612
 msgid "Next"
 msgstr ""
 
@@ -6026,17 +6030,17 @@ msgstr ""
 msgid "Print dialog"
 msgstr ""
 
-#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:931
+#: src/map/handler/Map.SlideShow.js:50 src/slideshow/SlideShowPresenter.ts:959
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:162
-#: src/slideshow/SlideShowPresenter.ts:959
+#: src/slideshow/SlideShowPresenter.ts:987
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:163
-#: src/slideshow/SlideShowPresenter.ts:961
+#: src/slideshow/SlideShowPresenter.ts:989
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -6044,17 +6048,17 @@ msgid ""
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:167
-#: src/slideshow/SlideShowPresenter.ts:746
+#: src/slideshow/SlideShowPresenter.ts:774
 msgid "Windowed Presentation: "
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:197
-#: src/slideshow/SlideShowPresenter.ts:790
+#: src/slideshow/SlideShowPresenter.ts:818
 msgid "Presenting in window"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:198
-#: src/slideshow/SlideShowPresenter.ts:791
+#: src/slideshow/SlideShowPresenter.ts:819
 msgid "Close Presentation"
 msgstr ""
 
@@ -6067,22 +6071,22 @@ msgid "End Presentation"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:290
-#: src/slideshow/SlideShowPresenter.ts:946
+#: src/slideshow/SlideShowPresenter.ts:974
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:291
-#: src/slideshow/SlideShowPresenter.ts:947
+#: src/slideshow/SlideShowPresenter.ts:975
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:301
-#: src/slideshow/SlideShowPresenter.ts:984
+#: src/slideshow/SlideShowPresenter.ts:1012
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:302
-#: src/slideshow/SlideShowPresenter.ts:985
+#: src/slideshow/SlideShowPresenter.ts:1013
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
@@ -6160,21 +6164,34 @@ msgstr ""
 msgid "Preview Slide {1}"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1317
+#: src/slideshow/PresenterConsole.js:1333
 msgid "Slide {0} of {1}"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1344
+#: src/slideshow/PresenterConsole.js:1360
 msgid "No Notes"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1451
+#: src/slideshow/PresenterConsole.js:1467
 msgid "Repeat in {0} seconds"
 msgstr ""
 
-#: src/slideshow/PresenterConsole.js:1457
+#: src/slideshow/PresenterConsole.js:1473
 #: src/slideshow/SlideShowPresenter.ts:491
 msgid "Click to exit presentation..."
+msgstr ""
+
+#: src/slideshow/SlideShowPresenter.ts:592
+msgid "End Show"
+msgstr ""
+
+#: src/slideshow/SlideShowPresenter.ts:624
+#: src/slideshow/SlideShowPresenter.ts:640
+msgid "Disable Animations"
+msgstr ""
+
+#: src/slideshow/SlideShowPresenter.ts:639
+msgid "Enable Animations"
 msgstr ""
 
 #: welcome/welcome.html%2Bhtml.head.title:9-3
