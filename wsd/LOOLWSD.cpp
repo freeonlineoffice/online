@@ -3820,6 +3820,12 @@ int LOOLWSD::innerMain()
     {
         LOG_DBG("No remote_font_config");
     }
+
+#elif defined __EMSCRIPTEN__
+
+    // Hard-code a somewhat random log level:
+    Log::setLevel("information");
+
 #endif
 
     // URI with /contents are public and we don't need to anonymize them.
