@@ -1341,6 +1341,7 @@ function getInitializerClass() {
 	};
 
 	const registerTapOrClick = (e) => {
+		registerGuessEmulatedFromTouch(e);
 		global.touch.lastEventWasTouch = global.touch.isTouchEvent(e);
 		global.touch.lastEventTime = Date.now();
 	};
