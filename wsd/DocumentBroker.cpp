@@ -1681,7 +1681,7 @@ static bool extractAccessibilityState(const std::string& viewSettings, const std
         Poco::JSON::Parser parser;
         auto result = parser.parse(ifs);
 
-        auto viewsetting = result.extract<Poco::JSON::Object::Ptr>();
+        const Poco::JSON::Object::Ptr& viewsetting = result.extract<Poco::JSON::Object::Ptr>();
 
         std::string accessibilityState;
         JsonUtil::findJSONValue(viewsetting, "accessibilityState", accessibilityState);
@@ -1690,8 +1690,8 @@ static bool extractAccessibilityState(const std::string& viewSettings, const std
     }
     catch (const std::exception& exc)
     {
-        LOG_ERR("Failed to parse viewsetting json with error[" << exc.what() << "], for session["
-                                                               << sessionId << ']');
+        LOG_ERR("Failed to parse viewsetting json with[" << ifs.rdbuf() << "] error[" << exc.what()
+                                                         << "], for session[" << sessionId << ']');
         return false;
     }
     return isViewSettingsAccessibilityEnabled;
@@ -1730,7 +1730,9 @@ void DocumentBroker::asyncInstallPresets(const std::shared_ptr<ClientSession>& s
             }
 
             std::string viewSettings = presetsPath + "viewsetting/viewsetting.json";
-            _isViewSettingsAccessibilityEnabled = extractAccessibilityState(viewSettings, session->getId());
+            if (FileUtil::Stat(viewSettings).exists())
+                _isViewSettingsAccessibilityEnabled =
+                    extractAccessibilityState(viewSettings, session->getId());
 
             forwardToChild(session, "addconfig");
         }
