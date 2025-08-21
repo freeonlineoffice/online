@@ -501,6 +501,9 @@ class TreeViewControl {
 		index: any,
 		builder: JSBuilder,
 	) {
+		const PAGE_ENTRY_PREFIX = '-$#~';
+		const PAGE_ENTRY_SUFFIX = '~#$-';
+
 		const text =
 			builder._cleanText(entry.columns[index].text) ||
 			builder._cleanText(entry.text);
@@ -529,7 +532,19 @@ class TreeViewControl {
 			img.alt = text;
 		} else {
 			let cell;
-			if (treeViewData.highlightTerm !== undefined) {
+			if (this.isPageDivider(entry, PAGE_ENTRY_PREFIX, PAGE_ENTRY_SUFFIX)) {
+				cell = L.DomUtil.create(
+					'span',
+					builder.options.cssClass +
+						` ui-treeview-cell-text-content page-divider`,
+					parent,
+				);
+				cell.innerText = this.getPageEntryText(
+					entry.text,
+					PAGE_ENTRY_PREFIX,
+					PAGE_ENTRY_SUFFIX,
+				);
+			} else if (treeViewData.highlightTerm !== undefined) {
 				cell = this.createHighlightedCell(
 					parent,
 					entry,
@@ -611,6 +626,30 @@ class TreeViewControl {
 		}
 
 		return mainSpan;
+	}
+
+	isPageDivider(
+		entry: TreeEntryJSON,
+		pageEntryPrefix: string,
+		pageEntrySuffix: string,
+	): boolean {
+		// Matches page divider prefix and suffix: -$#~ PAGE ~#$- as set in core: QuickFindPanel::FillSearchFindsList() (QuickFindPanel.cxx)
+		return (
+			entry.text &&
+			entry.text.startsWith(pageEntryPrefix) &&
+			entry.text.endsWith(pageEntrySuffix)
+		);
+	}
+
+	getPageEntryText(
+		text: string,
+		pageEntryPrefix: string,
+		pageEntrySuffix: string,
+	): string {
+		return text.substring(
+			pageEntryPrefix.length,
+			text.length - pageEntrySuffix.length,
+		);
 	}
 
 	caseInsensitiveSplit(text: string, delimeter: string) {
