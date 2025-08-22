@@ -644,7 +644,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'name':_('Font'),
 				'accessibility': { focusBack: true, combination: 'FN', de: null },
 				'more': {
-					'command':'.uno:FontDialog'
+					'command':'.uno:FontDialog',
+					'accessibility': { focusBack: true, combination: 'MF', de: null }
 				},
 				'children' : [					
 					{
@@ -871,7 +872,8 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				'name':_('Paragraph'),
 				'accessibility': { focusBack: true, combination: 'BD', de: null },
 				'more': {
-					'command':'.uno:ParagraphDialog'
+					'command':'.uno:ParagraphDialog',
+					'accessibility': { focusBack: true, combination: 'MP', de: null }
 				},
 				'children' : [
 					{
