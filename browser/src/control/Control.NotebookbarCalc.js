@@ -1064,6 +1064,9 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 				'id': 'layout-page',
 				'name':_('Page Setup'),
 				'accessibility': { focusBack: true,	combination: 'PS', de: null },
+				'more': {
+					'command':'.uno:PageFormatDialog'
+				},
 				'children' : [
 					{
 						'id': 'Layout-MarginMenu:MenuMargins',
@@ -1091,13 +1094,6 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 						'text': _UNO('.uno:PrintRangesMenu', 'spreadsheet'),
 						'enabled': 'true',
 						'accessibility': { focusBack: true,	combination: 'PR', de: null }
-					},
-					{
-						'id': 'layout-page-format-dialog',
-						'type': 'bigtoolitem',
-						'text': _UNO('.uno:PageFormatDialog', 'spreadsheet', true),
-						'command': '.uno:PageFormatDialog',
-						'accessibility': { focusBack: true,	combination: 'FD', de: null }
 					},
 				]
 			},
