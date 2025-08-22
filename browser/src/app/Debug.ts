@@ -733,9 +733,7 @@ class DebugManager {
 		];
 		if (this._docLayer.isImpress()) {
 			sidebars = sidebars.concat([
-				'.uno:SlideChangeWindow',
 				'.uno:CustomAnimation',
-				'.uno:MasterSlidesPanel',
 				'.uno:ModifyPage',
 			]);
 		}
