@@ -128,7 +128,9 @@ function setupOverflowMenu(
 		if (expanderIconRightDiv) {
 			expanderIconRightDiv.style.display = 'none';
 		}
-		parentContainer.classList.remove('ui-overflow-group-container-with-label');
+		parentContainer.classList.remove(
+			'ui-overflow-group-container-with-label',
+		);
 		overflowMenuButton.style.display = '';
 		isCollapsed = true;
 	};
@@ -144,7 +146,9 @@ function setupOverflowMenu(
 			expanderIconRightDiv.style.display = '';
 		}
 		overflowMenuButton.style.display = 'none';
-		parentContainer.classList.add('ui-overflow-group-container-with-label');
+		parentContainer.classList.add(
+			'ui-overflow-group-container-with-label',
+		);
 		overflowMenuHandler(false);
 		isCollapsed = false;
 	};
