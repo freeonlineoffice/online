@@ -11,8 +11,8 @@ Known poco issues are:
 
 + In Poco 1.13.0 there is a known bug that Poco crashes on start up with:
 
-  Failed to initialize COOLWSD: Null pointer: strategy in file "./Foundation/src/FileChannel.cpp", line 283
+  Failed to initialize LOOLWSD: Null pointer: strategy in file "./Foundation/src/FileChannel.cpp", line 283
 
-  due to the use of rotation, never in coolwsd.xml for log rotation strategy.
-  This can be worked around by changing "never" in "monthly" in coolwsd.xml.
+  due to the use of rotation, never in loolwsd.xml for log rotation strategy.
+  This can be worked around by changing "never" in "monthly" in loolwsd.xml.
   See: https://github.com/pocoproject/poco/issues/4411

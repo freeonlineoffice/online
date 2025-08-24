@@ -49,7 +49,7 @@ function createMoreButton(
 	unoToolButtonDiv.id = `${id}-more`;
 	unoToolButtonDiv.className = 'unotoolbutton ui-overflow-group-more';
 	unoToolButtonDiv.tabIndex = -1;
-	unoToolButtonDiv.setAttribute('data-cooltip', `More options for ${id}`);
+	unoToolButtonDiv.setAttribute('data-looltip', `More options for ${id}`);
 	unoToolButtonDiv.appendChild(moreOptionsButton);
 
 	const expanderIconRightDiv = document.createElement('div');
