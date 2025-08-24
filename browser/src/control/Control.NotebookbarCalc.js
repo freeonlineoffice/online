@@ -382,7 +382,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-clipboard',
-				'name': 'Clipboard',
+				'name': _('Clipboard'),
 				'accessibility': { focusBack: true,	combination: 'V', de: null },
 				'children' :
 				[
@@ -443,7 +443,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-font',
-				'name': 'Font',
+				'name': _('Font'),
 				'accessibility': { focusBack: true,	combination: 'FF', de: null },
 				'more': {
 					'command':'.uno:CellTextDlg'
@@ -589,7 +589,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-alignment',
-				'name': 'Alignment',
+				'name': _('Alignment'),
 				'accessibility': { focusBack: true,	combination: 'AT', de: null },
 				'more': {
 					'command':'.uno:Hyphenate'
@@ -725,7 +725,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-number-format',
-				'name': 'Number',
+				'name': _('Number'),
 				'accessibility': { focusBack: true,	combination: 'N', de: null },
 				'more': {
 					'command':'.uno:FormatCellDialog'
@@ -826,7 +826,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-insert-table',
-				'name': 'Cells',
+				'name': _('Cells'),
 				'accessibility': { focusBack: true,	combination: 'RB', de: null },
 				'children' : [
 				{
@@ -907,7 +907,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-style',
-				'name': 'Style',
+				'name': _('Style'),
 				'accessibility': { focusBack: true,	combination: 'L', de: null },
 				'children' : [
 				{
@@ -984,7 +984,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 			{
 				'type': 'overflowgroup',
 				'id': 'home-find-n-filter',
-				'name': 'Editing',
+				'name': _('Editing'),
 				'accessibility': { focusBack: true,	combination: 'SS', de: null },
 				'children' : [
 				{
