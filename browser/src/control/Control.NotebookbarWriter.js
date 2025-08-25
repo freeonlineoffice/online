@@ -1794,9 +1794,10 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 				'type': 'overflowgroup',
 				'id': 'layout-page',
 				'name': 'Page Setup',
+				'accessibility': { focusBack: true,	combination: 'SP', de: 'T' },
 				'more': {
 					'command':'.uno:PageDialog',
-					'accessibility': { focusBack: false, combination: 'MP', de: '8' }
+					'accessibility': { focusBack: false, combination: 'SP', de: 'T' }
 				},
 				'children' : [
 					{
@@ -1873,7 +1874,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 								'type': 'toolitem',
 								'text':  _UNO('.uno:Hyphenate', 'text'),
 								'command': '.uno:Hyphenate',
-								'accessibility': { focusBack: true,	combination: 'H', de: null }
+								'accessibility': { focusBack: true,	combination: 'H', de: 'I' }
 							}
 						]
 					},
