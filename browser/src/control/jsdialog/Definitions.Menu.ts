@@ -1690,6 +1690,17 @@ menuDefinitions.set('PictureColorMode', [
 	},
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('AnnotationMenu', [
+	{
+		text: _('Insert comment'),
+		action: 'insertcomment',
+	},
+	{
+		text: _('Comments list'),
+		action: 'showcommentsnavigator',
+	},
+] as Array<MenuDefinition>);
+
 menuDefinitions.set('PictureEffectsMenu', [
 	{
 		text: _UNO('.uno:GraphicFilterInvert'),
