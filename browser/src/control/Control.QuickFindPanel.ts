@@ -40,17 +40,21 @@ class QuickFindPanel extends SidebarBase {
 
 		// handle placeholder text visibility
 		app.layoutingService.appendLayoutingTask(() => {
-			const placeholder = document.getElementById('quickfind-placeholder');
+			const placeholder = document.getElementById(
+				'quickfind-placeholder',
+			);
 
 			if (data.control.id === 'numberofsearchfinds') {
 				const resultsText = data.control.text.trim().length > 0;
-				if (placeholder) placeholder.classList.toggle('hidden', resultsText);
+				if (placeholder)
+					placeholder.classList.toggle('hidden', resultsText);
 			} else if (
 				data.control.id === 'searchfinds' &&
 				data.control.type === 'treelistbox'
 			) {
 				const isEmpty = data.control.entries.length === 0;
-				if (placeholder) placeholder.classList.toggle('hidden', !isEmpty);
+				if (placeholder)
+					placeholder.classList.toggle('hidden', !isEmpty);
 			}
 		});
 	}
@@ -71,7 +75,9 @@ class QuickFindPanel extends SidebarBase {
 			modifiedData.children.unshift({
 				id: 'quickfind-placeholder',
 				type: 'fixedtext',
-				text: _('Type in the search box to find anything in your document'),
+				text: _(
+					'Type in the search box to find anything in your document',
+				),
 				visible: true,
 			});
 
