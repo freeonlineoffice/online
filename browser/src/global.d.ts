@@ -156,6 +156,7 @@ interface Window {
 		set(key: string, value: any): void;
 		setMultiple(prefs: Record<string, string>): void;
 		sendPendingBrowserSettingsUpdate(): void;
+		canPersist: boolean;
 	};
 
 	allowUpdateNotification: boolean;
@@ -172,10 +173,16 @@ interface Window {
 	ThisIsAMobileApp: boolean;
 	ThisIsTheEmscriptenApp: boolean;
 	zoteroEnabled: boolean;
+	accessToken: string;
+	accessTokenTTL: string;
+	wopiSettingBaseUrl: string;
+	socketProxy: boolean;
+	langParam: string;
 
 	createShapesPanel(shapeType: string): HTMLDivElement;
 	initializedUI?: () => void; // initializedUI is an optional function, potentially defined in branding
 	setupToolbar(map: any): void; // TODO should be L.Map
+	makeWsUrl: (url: string) => string;
 }
 
 // For localization

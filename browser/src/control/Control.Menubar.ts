@@ -5403,6 +5403,8 @@ class Menubar extends L.Control {
 			id === 'serveraudit'
 		) {
 			app.dispatcher.dispatch(id);
+		} else if (id === ('settings-dialog')) {
+			this._map.settings.showSettingsDialog();
 		} else if (id === 'insertcomment') {
 			this._map.insertComment();
 		} else if (id === 'insert-signatureline') {
