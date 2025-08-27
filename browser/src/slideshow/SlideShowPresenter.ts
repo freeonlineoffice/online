@@ -506,7 +506,7 @@ class SlideShowPresenter {
 				.bind(this._slideShowNavigator),
 		);
 
-		this._slideShowHandler.getContext().aCanvas = canvas;
+		this._slideShowHandler.getContext()._canvas = canvas;
 
 		try {
 			this._slideRenderer = new SlideRendererGl(canvas);
