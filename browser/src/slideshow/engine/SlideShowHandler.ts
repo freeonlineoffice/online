@@ -66,7 +66,7 @@ class SlideShowHandler {
 	private aNextEffectEventArray: NextEffectEventArray;
 	private aInteractiveAnimationSequenceMap: InteractiveAnimationSequenceMap;
 	private aEventMultiplexer: EventMultiplexer;
-	private aContext: SlideShowContext;
+	private _context: SlideShowContext;
 	private bIsIdle: boolean;
 	private bIsEnabled: boolean;
 	private bNoSlideTransition: boolean;
@@ -112,7 +112,7 @@ class SlideShowHandler {
 		this.aInteractiveAnimationSequenceMap = null;
 		this.aEventMultiplexer = null;
 
-		this.aContext = new SlideShowContext(
+		this._context = new SlideShowContext(
 			this,
 			this.aTimerEventQueue,
 			this.aEventMultiplexer,
@@ -177,13 +177,12 @@ class SlideShowHandler {
 				'SlideShow.setSlideEvents: aEventMultiplexer is not valid',
 			);
 
-		this.aContext.aNextEffectEventArray = aNextEffectEventArray;
+		this._context.aNextEffectEventArray = aNextEffectEventArray;
 		this.aNextEffectEventArray = aNextEffectEventArray;
-		this.aContext.aInteractiveAnimationSequenceMap =
+		this._context.aInteractiveAnimationSequenceMap =
 			aInteractiveAnimationSequenceMap;
-		this.aInteractiveAnimationSequenceMap =
-			aInteractiveAnimationSequenceMap;
-		this.aContext.aEventMultiplexer = aEventMultiplexer;
+		this.aInteractiveAnimationSequenceMap = aInteractiveAnimationSequenceMap;
+		this._context.aEventMultiplexer = aEventMultiplexer;
 		this.aEventMultiplexer = aEventMultiplexer;
 		this.nCurrentEffect = 0;
 	}
@@ -372,11 +371,9 @@ class SlideShowHandler {
 			const aAnimatedElementMap =
 				metaNewSlide.animationsHandler.getAnimatedElementMap();
 
-			aAnimatedElementMap.forEach(
-				(aAnimatedElement: AnimatedElement) => {
-					aAnimatedElement.notifySlideStart(this.aContext);
-				},
-			);
+			aAnimatedElementMap.forEach((aAnimatedElement: AnimatedElement) => {
+				aAnimatedElement.notifySlideStart(this._context);
+			});
 		}
 		this.slideCompositor.notifyTransitionStart();
 		this.presenter._map.fire('transitionstart', {
@@ -960,7 +957,7 @@ class SlideShowHandler {
 	}
 
 	getContext() {
-		return this.aContext;
+		return this._context;
 	}
 
 	private get slideRenderer(): SlideRenderer {

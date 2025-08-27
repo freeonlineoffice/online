@@ -273,7 +273,7 @@ abstract class BaseNode {
 	protected readonly aNodeInfo: AnimationNodeInfo;
 	protected readonly aParentNode: BaseContainerNode;
 	protected readonly aNodeContext: NodeContext;
-	protected aContext: SlideShowContext;
+	protected _context: SlideShowContext;
 	private nStartDelay: number;
 	protected eCurrentState: NodeState;
 	public nCurrentStateTransition: number;
@@ -317,7 +317,7 @@ abstract class BaseNode {
 					') constructor: aNodeContext is not valid',
 			);
 
-		if (!aNodeContext.aContext)
+		if (!aNodeContext._context)
 			window.app.console.log(
 				'BaseNode(id:' +
 					this.nId +
@@ -330,7 +330,7 @@ abstract class BaseNode {
 		this.aNodeInfo = aNodeInfo;
 		this.aParentNode = aParentNode;
 		this.aNodeContext = aNodeContext;
-		this.aContext = aNodeContext.aContext;
+		this._context = aNodeContext._context;
 		this.nStartDelay = aNodeContext.nStartDelay;
 		this.eCurrentState = NodeState.Unresolved;
 		this.nCurrentStateTransition = 0;
@@ -501,7 +501,7 @@ abstract class BaseNode {
 			}
 			registerEvent(
 				this.getId(),
-				this.aNodeContext.aContext.aSlideShowHandler,
+				this.aNodeContext._context.aSlideShowHandler,
 				this.getBegin(),
 				this.aActivationEvent,
 				this.aNodeContext,
@@ -530,12 +530,12 @@ abstract class BaseNode {
 			aStateTrans.commit();
 
 			if (this.bIsFirstAutoEffect)
-				this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectStarted();
-			if (!this.aContext.aEventMultiplexer)
+				this.aNodeContext._context.aSlideShowHandler.notifyFirstAutoEffectStarted();
+			if (!this._context.aEventMultiplexer)
 				window.app.console.log(
 					'BaseNode.activate: this.aContext.aEventMultiplexer is not valid',
 				);
-			this.aContext.aEventMultiplexer.notifyEvent(
+			this._context.aEventMultiplexer.notifyEvent(
 				EventTrigger.BeginEvent,
 				this.getId(),
 			);
@@ -561,7 +561,7 @@ abstract class BaseNode {
 
 				this.notifyEndListeners();
 				if (this.bIsFirstAutoEffect)
-					this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectEnded();
+					this.aNodeContext._context.aSlideShowHandler.notifyFirstAutoEffectEnded();
 
 				if (this.aActivationEvent) this.aActivationEvent.dispose();
 				if (this.aDeactivationEvent)
@@ -599,7 +599,7 @@ abstract class BaseNode {
 			// will/already notified deactivating listeners
 			if (!bIsFrozenOrInTransitionToFrozen) this.notifyEndListeners();
 			if (this.bIsFirstAutoEffect)
-				this.aNodeContext.aContext.aSlideShowHandler.notifyFirstAutoEffectEnded();
+				this.aNodeContext._context.aSlideShowHandler.notifyFirstAutoEffectEnded();
 
 			if (this.aActivationEvent) this.aActivationEvent.dispose();
 			if (this.aDeactivationEvent) this.aDeactivationEvent.dispose();
@@ -678,7 +678,7 @@ abstract class BaseNode {
 				);
 		}
 		if (aEvent) {
-			this.aContext.aTimerEventQueue.addEvent(aEvent);
+			this._context.aTimerEventQueue.addEvent(aEvent);
 		}
 	}
 
@@ -710,22 +710,19 @@ abstract class BaseNode {
 			this.aDeactivatingListenerArray[i].notifyDeactivating(this);
 		}
 
-		this.aContext.aEventMultiplexer.notifyEvent(
+		this._context.aEventMultiplexer.notifyEvent(
 			EventTrigger.EndEvent,
 			this.getId(),
 		);
-		if (
-			this.getParentNode() &&
-			this.getParentNode().isMainSequenceRootNode()
-		)
-			this.aContext.aEventMultiplexer.notifyNextEffectEndEvent();
+		if (this.getParentNode() && this.getParentNode().isMainSequenceRootNode())
+			this._context.aEventMultiplexer.notifyNextEffectEndEvent();
 
 		if (this.isMainSequenceRootNode())
-			this.aContext.aEventMultiplexer.notifyAnimationsEndEvent();
+			this._context.aEventMultiplexer.notifyAnimationsEndEvent();
 	}
 
 	public getContext() {
-		return this.aContext;
+		return this._context;
 	}
 
 	public isTransition(eFromState: NodeState, eToState: NodeState) {
