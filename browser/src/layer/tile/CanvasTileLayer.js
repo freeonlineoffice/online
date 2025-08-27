@@ -1552,20 +1552,10 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 				var colSpan =
 					obj.colSpan !== undefined ? parseInt(obj.colSpan) : 1;
 				this._map._textInput.onAccessibilityFocusedCellChanged(
-					outCount,
-					inList,
-					row,
-					col,
-					rowSpan,
-					colSpan,
-					obj.paragraph,
-				);
-			} else if (textMsg.startsWith('a11yeditinginselectionstate:')) {
-				obj = JSON.parse(
-					textMsg.substring(
-						'a11yeditinginselectionstate:'.length + 1,
-					),
-				);
+						outCount, inList, row, col, rowSpan, colSpan, obj.paragraph);
+			}
+			else if (textMsg.startsWith('a11yeditinginselectionstate:')) {
+				obj = JSON.parse(textMsg.substring('a11yeditinginselectionstate:'.length + 1));
 				this._map._textInput.onAccessibilityEditingInSelectionState(
 					parseInt(obj.cell) > 0,
 					parseInt(obj.enabled) > 0,
