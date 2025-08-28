@@ -19,6 +19,8 @@
 #include <unordered_map>
 #include <vector>
 
+#include <Util.hpp>
+
 class ThreadPool
 {
     friend class WhiteBoxTests;
@@ -147,6 +149,7 @@ public:
 
     void work()
     {
+        Util::setThreadName("ThreadPool::work");
         std::unique_lock<std::mutex> lock(_mutex);
         while (!_shutdown)
         {
