@@ -532,7 +532,13 @@ class TreeViewControl {
 			img.alt = text;
 		} else {
 			let cell;
-			if (this.isPageDivider(entry, PAGE_ENTRY_PREFIX, PAGE_ENTRY_SUFFIX)) {
+			if (
+				this.isPageDivider(
+					entry,
+					PAGE_ENTRY_PREFIX,
+					PAGE_ENTRY_SUFFIX,
+				)
+			) {
 				cell = L.DomUtil.create(
 					'span',
 					builder.options.cssClass +
@@ -555,7 +561,8 @@ class TreeViewControl {
 			} else {
 				cell = L.DomUtil.create(
 					'span',
-					builder.options.cssClass + ` ui-treeview-cell-text-content`,
+					builder.options.cssClass +
+						` ui-treeview-cell-text-content`,
 					parent,
 				);
 				cell.innerText = text;
@@ -601,7 +608,10 @@ class TreeViewControl {
 			parent,
 		);
 
-		const fragments = this.caseInsensitiveSplit(sourceText, searchPattern);
+		const fragments = this.caseInsensitiveSplit(
+			sourceText,
+			searchPattern,
+		);
 		if (fragments.length === 1) {
 			/// not found
 			mainSpan.appendChild(document.createTextNode(sourceText));
@@ -654,7 +664,10 @@ class TreeViewControl {
 
 	caseInsensitiveSplit(text: string, delimeter: string) {
 		// escape regex special chars
-		const escapedPattern = delimeter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		const escapedPattern = delimeter.replace(
+			/[.*+?^${}()|[\]\\]/g,
+			'\\$&',
+		);
 		// '()' indicate keeping the delimeter, g:global, i:insensitive
 		const regex = new RegExp(`(${escapedPattern})`, 'gi');
 
