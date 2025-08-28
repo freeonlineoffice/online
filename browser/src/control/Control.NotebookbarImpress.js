@@ -247,9 +247,10 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 
 		if (hasSave) {
-			content.push({
-				type: 'toolbox',
-				children: [
+			content.push(
+			{
+				'type': 'container',
+				'children': [
 					{
 						id: 'file-save',
 						type: 'bigtoolitem',

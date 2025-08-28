@@ -200,22 +200,31 @@ window.L.Control.NotebookbarDraw = window.L.Control.NotebookbarImpress.extend({
 		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 
 		if (hasSave) {
-			content.push({
-				type: 'toolbox',
-				children: [
-					{
-						id: 'file-save',
-						type: 'bigtoolitem',
-						text: _('Save'),
-						command: '.uno:Save',
-						accessibility: {
-							focusBack: true,
-							combination: 'SF',
-							de: null,
-						},
-					},
-				],
-			});
+			content.push(
+				{
+					'type': 'container',
+					'children': [
+						{
+							'id': 'file-save',
+							'type': 'bigtoolitem',
+							'text': _('Save'),
+							'command': '.uno:Save',
+							'accessibility': { focusBack: true, combination: 'SF', de: null }
+						}
+					]
+				});
+			}
+
+		if (hasSaveAs) {
+			content.push(
+				{
+					'id': 'file-saveas',
+					'type': 'bigtoolitem',
+					'text': _UNO('.uno:SaveAs', 'presentation'),
+					'command': '.uno:SaveAs',
+					'accessibility': { focusBack: true, combination: 'SA', de: null }
+				}
+			);
 		}
 
 		if (hasSaveAs) {
