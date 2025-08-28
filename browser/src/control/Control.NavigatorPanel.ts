@@ -460,7 +460,7 @@ class NavigatorPanel extends SidebarBase {
 			var treeContainer = document.getElementById(
 				'contenttree',
 			) as any;
-			treeContainer.highlightEntries(searchTerm);
+			if (treeContainer) treeContainer.highlightEntries(searchTerm);
 			this.highlightTerm = searchTerm;
 			return;
 		}
