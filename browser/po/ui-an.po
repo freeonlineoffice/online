@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-29 21:11+0200\n"
+"POT-Creation-Date: 2025-08-30 19:32+0200\n"
 "PO-Revision-Date: 2020-08-04 07:34+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fito@libreoffice.org>\n"
 "Language-Team: Aragonese <https://weblate.documentfoundation.org/projects/"
@@ -1784,6 +1784,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.ts:1080
 #: src/control/Control.NotebookbarCalc.js:1068
+#: src/control/Control.NotebookbarWriter.js:1796
 msgid "Page Setup"
 msgstr ""
 

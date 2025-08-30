@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-29 21:11+0200\n"
+"POT-Creation-Date: 2025-08-30 19:32+0200\n"
 "PO-Revision-Date: 2021-05-08 22:33+0000\n"
 "Last-Translator: Oymate <dhruboadittya96@gmail.com>\n"
 "Language-Team: Bengali <https://hosted.weblate.org/projects/collabora-online/"
@@ -1783,6 +1783,7 @@ msgstr ""
 
 #: src/control/Control.Menubar.ts:1080
 #: src/control/Control.NotebookbarCalc.js:1068
+#: src/control/Control.NotebookbarWriter.js:1796
 msgid "Page Setup"
 msgstr ""
 
