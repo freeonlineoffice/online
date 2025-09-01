@@ -365,6 +365,7 @@ class TreeViewControl {
 		);
 		this._rows.set(String(entry.row), tr);
 		tr.setAttribute('level', String(level));
+		tr.setAttribute('role', 'row');
 
 		let dummyColumns = 0;
 		if (this._hasState) dummyColumns++;
