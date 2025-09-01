@@ -611,13 +611,8 @@ class UIManager extends L.Control {
 			L.DomUtil.remove(L.DomUtil.get('spreadsheet-toolbar'));
 			$('#presentation-controls-wrapper').show();
 			this.initializeRuler();
-			this.map.slideShowPresenter = new SlideShow.SlideShowPresenter(
-				this.map,
-			);
-			this.map.presenterConsole = new SlideShow.PresenterConsole(
-				this.map,
-				this.map.slideShowPresenter,
-			);
+			this.map.slideShowPresenter = new SlideShow.SlideShowPresenter(this.map, window.enableAccessibility);
+			this.map.presenterConsole = new SlideShow.PresenterConsole(this.map, this.map.slideShowPresenter);
 		}
 
 		if (docType === 'text') {
