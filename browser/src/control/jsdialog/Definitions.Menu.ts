@@ -188,7 +188,12 @@ const financialFunctions: Array<FunctionNameAlias> = [
 		fr: 'INTERET.ACC.MAT',
 		es: 'INT.ACUM.V',
 	},
-	{ en: 'AMORDEGRC', de: 'AMORDEGRK', fr: 'AMORDEGRC', es: 'AMORTIZ.PROGRE' },
+	{
+		en: 'AMORDEGRC',
+		de: 'AMORDEGRK',
+		fr: 'AMORDEGRC',
+		es: 'AMORTIZ.PROGRE',
+	},
 	{ en: 'AMORLINC', de: 'AMORLINEARK', fr: 'AMORLINC', es: 'AMORTIZ.LIN' },
 	{
 		en: 'COUPDAYBS',
@@ -292,7 +297,12 @@ const financialFunctions: Array<FunctionNameAlias> = [
 		es: 'OPT_PROB_INMONEY',
 	},
 	{ en: 'OPT_TOUCH', de: 'OPT_TOUCH', fr: 'OPT_TOUCH', es: 'OPT_TOUCH' },
-	{ en: 'PDURATION', de: 'PLAUFZEIT', fr: 'DUREE.PERIODE', es: 'P.DURACION' },
+	{
+		en: 'PDURATION',
+		de: 'PLAUFZEIT',
+		fr: 'DUREE.PERIODE',
+		es: 'P.DURACION',
+	},
 	{ en: 'PMT', de: 'Zahlungen', fr: 'VPM', es: 'PAGO' },
 	{ en: 'PPMT', de: 'KAPZ', fr: 'PRINCPER', es: 'PAGOPRIN' },
 	{ en: 'PRICE', de: 'KURS', fr: 'PRIX.TITRE', es: 'PRECIO' },
@@ -413,7 +423,12 @@ const textFunctions: Array<FunctionNameAlias> = [
 	{ en: 'SUBSTITUTE', de: 'WECHSELN', fr: 'SUBSTITUE', es: 'SUSTITUIR' },
 	{ en: 'T', de: 'T', fr: 'T', es: 'T' },
 	{ en: 'TEXT', de: 'TEXT', fr: 'TEXTE', es: 'TEXTO' },
-	{ en: 'TEXTJOIN', de: 'VERBINDEN', fr: 'JOINDRE.TEXTE', es: 'UNIRCADENAS' },
+	{
+		en: 'TEXTJOIN',
+		de: 'VERBINDEN',
+		fr: 'JOINDRE.TEXTE',
+		es: 'UNIRCADENAS',
+	},
 	{ en: 'TRIM', de: 'GLÄTTEN', fr: 'SUPPRESPACE', es: 'ESPACIOS' },
 	{ en: 'UNICHAR', de: 'UNIZEICHEN', fr: 'UNICAR', es: 'UNICAR' },
 	{ en: 'UNICODE', de: 'UNICODE', fr: 'UNICODE', es: 'UNICODE' },
@@ -435,7 +450,12 @@ const dateAndTimeFunctions: Array<FunctionNameAlias> = [
 		fr: 'JOURSDANSMOIS',
 		es: 'DIASENMES',
 	},
-	{ en: 'DAYSINYEAR', de: 'TAGEIMJAHR', fr: 'JOURSDANSANNEE', es: 'DIASENAÑO' },
+	{
+		en: 'DAYSINYEAR',
+		de: 'TAGEIMJAHR',
+		fr: 'JOURSDANSANNEE',
+		es: 'DIASENAÑO',
+	},
 	{
 		en: 'EASTERSUNDAY',
 		de: 'OSTERSONNTAG',
@@ -478,7 +498,12 @@ const dateAndTimeFunctions: Array<FunctionNameAlias> = [
 	{ en: 'TIMEVALUE', de: 'ZEITWERT', fr: 'TEMPSVAL', es: 'HORANUMERO' },
 	{ en: 'TODAY', de: 'HEUTE', fr: 'AUJOURDHUI', es: 'HOY' },
 	{ en: 'WEEKDAY', de: 'WOCHENTAG', fr: 'JOURSEM', es: 'DIASEM' },
-	{ en: 'WEEKNUM', de: 'KALENDERWOCHE', fr: 'NO.SEMAINE', es: 'NUM.DE.SEMANA' },
+	{
+		en: 'WEEKNUM',
+		de: 'KALENDERWOCHE',
+		fr: 'NO.SEMAINE',
+		es: 'NUM.DE.SEMANA',
+	},
 	{ en: 'WEEKNUM_EXCEL2003', de: 'KALENDERWOCHE_EXCEL2003' },
 	{
 		en: 'WEEKNUM_OOO',
@@ -501,7 +526,12 @@ const dateAndTimeFunctions: Array<FunctionNameAlias> = [
 		es: 'DIA.LAB.INTL',
 	},
 	{ en: 'YEAR', de: 'JAHR', fr: 'ANNEE', es: 'AÑO' },
-	{ en: 'YEARFRAC', de: 'BRTEILJAHRE', fr: 'FRACTION.ANNEE', es: 'FRAC.AÑO' },
+	{
+		en: 'YEARFRAC',
+		de: 'BRTEILJAHRE',
+		fr: 'FRACTION.ANNEE',
+		es: 'FRAC.AÑO',
+	},
 	{ en: 'YEARS', de: 'JAHRE', fr: 'ANNEES', es: 'AÑOS' },
 ];
 
@@ -543,7 +573,12 @@ const mathAndTrigFunctions: Array<FunctionNameAlias> = [
 		es: 'BIT.DESPLDCHA',
 	},
 	{ en: 'BITXOR', de: 'BITXODER', fr: 'BITXOR', es: 'BIT.XO' },
-	{ en: 'CEILING', de: 'OBERGRENZE', fr: 'PLAFOND', es: 'MULTIPLO.SUPERIOR' },
+	{
+		en: 'CEILING',
+		de: 'OBERGRENZE',
+		fr: 'PLAFOND',
+		es: 'MULTIPLO.SUPERIOR',
+	},
 	{
 		en: 'CEILING.MATH',
 		de: 'OBERGRENZE.MATHEMATIK',
@@ -587,7 +622,12 @@ const mathAndTrigFunctions: Array<FunctionNameAlias> = [
 	{ en: 'EVEN', de: 'GERADE', fr: 'PAIR', es: 'REDONDEA.PAR' },
 	{ en: 'EXP', de: 'EXP', fr: 'EXP', es: 'EXP' },
 	{ en: 'FACT', de: 'FAKULTÄT', fr: 'FACT', es: 'FACT' },
-	{ en: 'FLOOR', de: 'UNTERGRENZE', fr: 'PLANCHER', es: 'MULTIPLO.INFERIOR' },
+	{
+		en: 'FLOOR',
+		de: 'UNTERGRENZE',
+		fr: 'PLANCHER',
+		es: 'MULTIPLO.INFERIOR',
+	},
 	{
 		en: 'FLOOR.MATH',
 		de: 'UNTERGRENZE.MATHEMATIK',
@@ -621,7 +661,12 @@ const mathAndTrigFunctions: Array<FunctionNameAlias> = [
 	{ en: 'LOG', de: 'LOG', fr: 'LOG', es: 'LOG' },
 	{ en: 'LOG10', de: 'LOG10', fr: 'LOG10', es: 'LOG10' },
 	{ en: 'MOD', de: 'REST', fr: 'MOD', es: 'RESIDUO' },
-	{ en: 'MROUND', de: 'VRUNDEN', fr: 'ARRONDI.AU.MULTIPLE', es: 'REDOND.MULT' },
+	{
+		en: 'MROUND',
+		de: 'VRUNDEN',
+		fr: 'ARRONDI.AU.MULTIPLE',
+		es: 'REDOND.MULT',
+	},
 	{
 		en: 'MULTINOMIAL',
 		de: 'POLYNOMIAL',
@@ -655,7 +700,12 @@ const mathAndTrigFunctions: Array<FunctionNameAlias> = [
 		es: 'ALEATORIO.ENTRE.NV',
 	},
 	{ en: 'ROUND', de: 'RUNDEN', fr: 'ARRONDI', es: 'REDONDEAR' },
-	{ en: 'ROUNDDOWN', de: 'ABRUNDEN', fr: 'ARRONDI.INF', es: 'REDONDEAR.MENOS' },
+	{
+		en: 'ROUNDDOWN',
+		de: 'ABRUNDEN',
+		fr: 'ARRONDI.INF',
+		es: 'REDONDEAR.MENOS',
+	},
 	{
 		en: 'ROUNDSIG',
 		de: 'RUNDENSIG',
@@ -665,7 +715,12 @@ const mathAndTrigFunctions: Array<FunctionNameAlias> = [
 	{ en: 'ROUNDUP', de: 'AUFRUNDEN', fr: 'ARRONDI.SUP', es: 'REDONDEAR.MAS' },
 	{ en: 'SEC', de: 'SEC', fr: 'SEC', es: 'SEC' },
 	{ en: 'SECH', de: 'SECHYP', fr: 'SECH', es: 'SECH' },
-	{ en: 'SERIESSUM', de: 'POTENZREIHE', fr: 'SOMME.SERIES', es: 'SUMA.SERIES' },
+	{
+		en: 'SERIESSUM',
+		de: 'POTENZREIHE',
+		fr: 'SOMME.SERIES',
+		es: 'SUMA.SERIES',
+	},
 	{ en: 'SIGN', de: 'VORZEICHEN', fr: 'SIGNE', es: 'SIGNO' },
 	{ en: 'SIN', de: 'SIN', fr: 'SIN', es: 'SEN' },
 	{ en: 'SINH', de: 'SINHYP', fr: 'SINH', es: 'SENH' },
@@ -724,9 +779,19 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'LOI.BINOMIALE.INVERSE.N',
 		es: 'INV.BINOM',
 	},
-	{ en: 'BINOMDIST', de: 'BINOMVERT', fr: 'LOIBINOMIALE', es: 'DISTR.BINOM' },
+	{
+		en: 'BINOMDIST',
+		de: 'BINOMVERT',
+		fr: 'LOIBINOMIALE',
+		es: 'DISTR.BINOM',
+	},
 	{ en: 'CHIDIST', de: 'CHIVERT', fr: 'LOIKHIDEUX', es: 'DISTR.CHI' },
-	{ en: 'CHIINV', de: 'CHIINV', fr: 'KHIDEUX.INVERSE', es: 'PRUEBA.CHI.INV' },
+	{
+		en: 'CHIINV',
+		de: 'CHIINV',
+		fr: 'KHIDEUX.INVERSE',
+		es: 'PRUEBA.CHI.INV',
+	},
 	{
 		en: 'CHISQ.DIST',
 		de: 'CHIQU.VERT',
@@ -758,7 +823,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		es: 'PRUEBA.CHICUAD',
 	},
 	{ en: 'CHISQDIST', de: 'CHIQUVERT', fr: 'LOI.KHIDEUX', es: 'CHISQDIST' },
-	{ en: 'CHISQINV', de: 'CHIQUINV', fr: 'LOIKHIDEUXINVERSE', es: 'CHISQINV' },
+	{
+		en: 'CHISQINV',
+		de: 'CHIQUINV',
+		fr: 'LOIKHIDEUXINVERSE',
+		es: 'CHISQINV',
+	},
 	{ en: 'CHITEST', de: 'CHITEST', fr: 'TEST.KHIDEUX', es: 'PRUEBA.CHI' },
 	{
 		en: 'CONFIDENCE',
@@ -818,7 +888,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'CRITERE.LOI.BINOMIALE',
 		es: 'BINOM.CRIT',
 	},
-	{ en: 'DEVSQ', de: 'SUMQUADABW', fr: 'SOMME.CARRES.ECARTS', es: 'DESVIA2' },
+	{
+		en: 'DEVSQ',
+		de: 'SUMQUADABW',
+		fr: 'SOMME.CARRES.ECARTS',
+		es: 'DESVIA2',
+	},
 	{
 		en: 'ERF.PRECISE',
 		de: 'GAUSSF.GENAU',
@@ -837,7 +912,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'LOI.EXPONENTIELLE',
 		es: 'DISTR.EXP.N',
 	},
-	{ en: 'EXPONDIST', de: 'EXPONVERT', fr: 'LOIEXPONENTIELLE', es: 'DISTR.EXP' },
+	{
+		en: 'EXPONDIST',
+		de: 'EXPONVERT',
+		fr: 'LOIEXPONENTIELLE',
+		es: 'DISTR.EXP',
+	},
 	{ en: 'F.DIST', de: 'F.VERT', fr: 'LOI.F', es: 'DIST.F' },
 	{ en: 'F.DIST.RT', de: 'F.VERT.RE', fr: 'LOI.F.DROITE', es: 'DISTR.F.CD' },
 	{ en: 'F.INV', de: 'F.INV', fr: 'INVERSE.LOI.F', es: 'F.INV' },
@@ -908,7 +988,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 	},
 	{ en: 'FTEST', de: 'FTEST', fr: 'TESTF', es: 'PRUEBA.F' },
 	{ en: 'GAMMA', de: 'GAMMA', fr: 'GAMMA', es: 'GAMMA' },
-	{ en: 'GAMMA.DIST', de: 'GAMMA.VERT', fr: 'LOI.GAMMA', es: 'DISTR.GAMMA.N' },
+	{
+		en: 'GAMMA.DIST',
+		de: 'GAMMA.VERT',
+		fr: 'LOI.GAMMA',
+		es: 'DISTR.GAMMA.N',
+	},
 	{
 		en: 'GAMMA.INV',
 		de: 'GAMMA.INV',
@@ -962,7 +1047,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 	},
 	{ en: 'KURT', de: 'KURT', fr: 'KURTOSIS', es: 'CURTOSIS' },
 	{ en: 'LARGE', de: 'KGRÖSSTE', fr: 'GRANDE.VALEUR', es: 'K.ESIMO.MAYOR' },
-	{ en: 'LOGINV', de: 'LOGINV', fr: 'LOI.LOGNORMALE.INVERSE', es: 'INV.LOG' },
+	{
+		en: 'LOGINV',
+		de: 'LOGINV',
+		fr: 'LOI.LOGNORMALE.INVERSE',
+		es: 'INV.LOG',
+	},
 	{
 		en: 'LOGNORM.DIST',
 		de: 'LOGNORM.VERT',
@@ -1008,7 +1098,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'LOINORMALESTANDARD',
 		es: 'DISTR.NORM.ESTAND',
 	},
-	{ en: 'NORM.DIST', de: 'NORM.VERT', fr: 'LOI.NORMALE', es: 'DISTR.NORM.N' },
+	{
+		en: 'NORM.DIST',
+		de: 'NORM.VERT',
+		fr: 'LOI.NORMALE',
+		es: 'DISTR.NORM.N',
+	},
 	{
 		en: 'NORMSDIST',
 		de: 'STANDNORMVERT',
@@ -1021,7 +1116,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'LOINORMALESTANDARDINVERSE',
 		es: 'DISTR.NORM.ESTAND.INV',
 	},
-	{ en: 'NORM.INV', de: 'NORM.INV', fr: 'LOI.NORMALE.INVERSE', es: 'INV.NORM' },
+	{
+		en: 'NORM.INV',
+		de: 'NORM.INV',
+		fr: 'LOI.NORMALE.INVERSE',
+		es: 'INV.NORM',
+	},
 	{
 		en: 'NORMSINV',
 		de: 'STANDNORMINV',
@@ -1091,7 +1191,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		fr: 'RANG.POURCENTAGE.INCLURE',
 		es: 'RANGO.PERCENTIL.INC',
 	},
-	{ en: 'PERMUT', de: 'VARIATIONEN', fr: 'PERMUTATION', es: 'PERMUTACIONES' },
+	{
+		en: 'PERMUT',
+		de: 'VARIATIONEN',
+		fr: 'PERMUTATION',
+		es: 'PERMUTACIONES',
+	},
 	{
 		en: 'PERMUTATIONA',
 		de: 'VARIATIONEN2',
@@ -1099,7 +1204,12 @@ const statisticalFunctions: Array<FunctionNameAlias> = [
 		es: 'PERMUTACIONESA',
 	},
 	{ en: 'PHI', de: 'PHI', fr: 'PHI', es: 'FI' },
-	{ en: 'PROB', de: 'WAHRSCHBEREICH', fr: 'PROBABILITE', es: 'PROBABILIDAD' },
+	{
+		en: 'PROB',
+		de: 'WAHRSCHBEREICH',
+		fr: 'PROBABILITE',
+		es: 'PROBABILIDAD',
+	},
 	{ en: 'QUARTILE', de: 'QUARTILE', fr: 'QUARTILE', es: 'CUARTIL' },
 	{
 		en: 'QUARTILE.EXC',
@@ -1265,7 +1375,12 @@ const arrayFunctions: Array<FunctionNameAlias> = [
 		fr: 'SOMMEPROD',
 		es: 'SUMA.PRODUCTO',
 	},
-	{ en: 'SUMX2MY2', de: 'SUMMEX2MY2', fr: 'SOMME.X2MY2', es: 'SUMAX2MENOSY2' },
+	{
+		en: 'SUMX2MY2',
+		de: 'SUMMEX2MY2',
+		fr: 'SOMME.X2MY2',
+		es: 'SUMAX2MENOSY2',
+	},
 	{ en: 'SUMX2PY2', de: 'SUMMEX2PY2', fr: 'SOMME.X2PY2', es: 'SUMAX2MASY2' },
 	{ en: 'SUMXMY2', de: 'SUMMEXMY2', fr: 'SOMME.XMY2', es: 'SUMAXMENOSY2' },
 	{ en: 'TRANSPOSE', de: 'MTRANS', fr: 'TRANSPOSE', es: 'TRANSPONER' },
