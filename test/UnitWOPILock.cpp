@@ -409,8 +409,7 @@ public:
             ++_lockRefreshCount;
             LOK_ASSERT_EQUAL_MESSAGE("Lock refresh with expired token", 1UL, _lockRefreshCount);
 
-            // Internal Server Error.
-            return std::make_unique<http::Response>(http::StatusCode::Unauthorized);
+            return std::make_unique<http::Response>(http::StatusCode::ServiceUnavailable);
         }
         else
         {
