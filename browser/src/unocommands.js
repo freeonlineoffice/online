@@ -418,6 +418,8 @@ var unoCommandsArray = {
 	'Line':{global:{context:_('Insert Line (double click for multi-selection)'),menu:_('Line'),},},
 	'LineNumberingDialog':{text:{menu:_('~Line Numbering...'),},},
 	'LineSpacing':{global:{context:_('Set Line Spacing'),menu:_('Line Spacing'),},},
+	'ManageThemes':{global:{menu:_('Manage Themes...'),},},
+	'MasterSlidesPanel':{presentation:{menu:_('Master Slides'),},},
 	'MergeCells':{global:{menu:_('Merge Cells'),},},
 	'ModifyPage':{presentation:{menu:_('Slide ~Layout'),},},
 	'Move':{spreadsheet:{menu:_('~Move or Copy Sheet...'),},},
