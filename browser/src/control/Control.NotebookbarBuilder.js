@@ -839,7 +839,7 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 			try {
 				if (twoPanelsAsChildren) {
 					handler = this._controlHandlers['paneltabs'];
-					processChildren = handler(childObject, childData.children, this);
+					handler(childObject, childData.children, this);
 				} else {
 					if (handler) {
 						processChildren = handler(childObject, childData, this);
