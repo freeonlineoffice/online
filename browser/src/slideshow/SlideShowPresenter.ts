@@ -852,7 +852,6 @@ class SlideShowPresenter {
 			window.screen.width,
 			window.screen.height,
 		);
-		this._slideShowCanvas.focus();
 
 		window.addEventListener('resize', this.onSlideWindowResize);
 		this._getProxyDocumentNode().addEventListener(
@@ -885,6 +884,7 @@ class SlideShowPresenter {
 			'beforeunload',
 			this.slideshowWindowCleanUp.bind(this),
 		);
+		this._slideShowCanvas.focus();
 	}
 
 	slideshowWindowCleanUp = () => {
