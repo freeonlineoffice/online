@@ -39,14 +39,22 @@ class WriterReferencesTab implements NotebookbarTab {
 				type: 'overflowgroup',
 				id: 'Reference-TOC',
 				name: _('Table of content'),
-				accessibility: { focusBack: false, combination: 'T', de: 'LA' },
+				accessibility: {
+					focusBack: false,
+					combination: 'T',
+					de: 'LA',
+				},
 				children: [
 					{
 						id: 'references-insert-multi-index',
 						type: 'bigtoolitem',
 						text: _UNO('.uno:IndexesMenu', 'text'),
 						command: '.uno:InsertMultiIndex',
-						accessibility: { focusBack: false, combination: 'T', de: 'LA' },
+						accessibility: {
+							focusBack: false,
+							combination: 'T',
+							de: 'LA',
+						},
 					} as ToolItemWidgetJSON,
 					{
 						type: 'container',
@@ -57,9 +65,15 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-insert-indexes-entry',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertIndexesEntry', 'text'),
+										text: _UNO(
+											'.uno:InsertIndexesEntry',
+											'text',
+										),
 										command: '.uno:InsertIndexesEntry',
-										accessibility: { focusBack: false, combination: 'IE' },
+										accessibility: {
+											focusBack: false,
+											combination: 'IE',
+										},
 									} as ToolItemWidgetJSON,
 								],
 							},
@@ -93,14 +107,22 @@ class WriterReferencesTab implements NotebookbarTab {
 				type: 'overflowgroup',
 				id: 'reference-footnote',
 				name: _('Footnote/Endnote'),
-				accessibility: { focusBack: false, combination: 'F', de: 'U' },
+				accessibility: {
+					focusBack: false,
+					combination: 'F',
+					de: 'U',
+				},
 				children: [
 					{
 						id: 'references-insert-foot-note',
 						type: 'bigtoolitem',
 						text: _UNO('.uno:InsertFootnote', 'text'),
 						command: '.uno:InsertFootnote',
-						accessibility: { focusBack: true, combination: 'F', de: 'U' },
+						accessibility: {
+							focusBack: true,
+							combination: 'F',
+							de: 'U',
+						},
 					} as ToolItemWidgetJSON,
 					{
 						type: 'container',
@@ -111,7 +133,10 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-insert-end-note',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertEndnote', 'text'),
+										text: _UNO(
+											'.uno:InsertEndnote',
+											'text',
+										),
 										command: '.uno:InsertEndnote',
 										accessibility: {
 											focusBack: true,
@@ -127,7 +152,10 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-foot-note-dialog',
 										type: 'toolitem',
-										text: _UNO('.uno:FootnoteDialog', 'text'),
+										text: _UNO(
+											'.uno:FootnoteDialog',
+											'text',
+										),
 										command: '.uno:FootnoteDialog',
 										accessibility: {
 											focusBack: false,
@@ -156,7 +184,10 @@ class WriterReferencesTab implements NotebookbarTab {
 							{
 								id: 'references-insert-bookmark',
 								type: 'toolitem',
-								text: _UNO('.uno:InsertBookmark', 'text'),
+								text: _UNO(
+									'.uno:InsertBookmark',
+									'text',
+								),
 								command: '.uno:InsertBookmark',
 								accessibility: {
 									focusBack: false,
@@ -172,7 +203,10 @@ class WriterReferencesTab implements NotebookbarTab {
 							{
 								id: 'references-insert-reference-field',
 								type: 'toolitem',
-								text: _UNO('.uno:InsertReferenceField', 'text'),
+								text: _UNO(
+									'.uno:InsertReferenceField',
+									'text',
+								),
 								command: '.uno:InsertReferenceField',
 								accessibility: {
 									focusBack: false,
@@ -200,7 +234,11 @@ class WriterReferencesTab implements NotebookbarTab {
 					type: 'bigcustomtoolitem',
 					text: _('Add Bibliography'),
 					command: 'zoteroaddeditbibliography',
-					accessibility: { focusBack: true, combination: 'AB', de: null },
+					accessibility: {
+						focusBack: true,
+						combination: 'AB',
+						de: null,
+					},
 				} as ToolItemWidgetJSON,
 				{
 					type: 'container',
@@ -288,9 +326,16 @@ class WriterReferencesTab implements NotebookbarTab {
 					type: 'bigcustomtoolitem',
 					text: _('Citation Preferences'),
 					command: 'zoterosetdocprefs',
-					accessibility: { focusBack: true, combination: 'CP', de: null },
+					accessibility: {
+						focusBack: true,
+						combination: 'CP',
+						de: null,
+					},
 				} as ToolItemWidgetJSON,
-				{ type: 'separator', id: 'references-zoterosetdocprefs-break' },
+				{
+					type: 'separator',
+					id: 'references-zoterosetdocprefs-break',
+				},
 			] as WidgetJSON[]);
 		}
 
@@ -299,14 +344,22 @@ class WriterReferencesTab implements NotebookbarTab {
 				type: 'overflowgroup',
 				id: 'reference-field',
 				name: _('Field'),
-				accessibility: { focusBack: false, combination: 'IF', de: null },
+				accessibility: {
+					focusBack: false,
+					combination: 'IF',
+					de: null,
+				},
 				children: [
 					{
 						id: 'references-insert-field-control',
 						type: 'bigtoolitem',
 						text: _UNO('.uno:InsertFieldCtrl', 'text'),
 						command: '.uno:InsertFieldCtrl',
-						accessibility: { focusBack: false, combination: 'IF', de: null },
+						accessibility: {
+							focusBack: false,
+							combination: 'IF',
+							de: null,
+						},
 					} as ToolItemWidgetJSON,
 					{
 						type: 'container',
@@ -317,7 +370,9 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-inset-page-number-field',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertPageNumberField'),
+										text: _UNO(
+											'.uno:InsertPageNumberField',
+										),
 										command: '.uno:InsertPageNumberField',
 										accessibility: {
 											focusBack: true,
@@ -328,7 +383,10 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-insert-page-count-field',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertPageCountField', 'text'),
+										text: _UNO(
+											'.uno:InsertPageCountField',
+											'text',
+										),
 										command: '.uno:InsertPageCountField',
 										accessibility: {
 											focusBack: true,
@@ -344,7 +402,10 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-insert-date-field',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertDateField', 'text'),
+										text: _UNO(
+											'.uno:InsertDateField',
+											'text',
+										),
 										command: '.uno:InsertDateField',
 										accessibility: {
 											focusBack: true,
@@ -355,7 +416,10 @@ class WriterReferencesTab implements NotebookbarTab {
 									{
 										id: 'references-insert-title-field',
 										type: 'toolitem',
-										text: _UNO('.uno:InsertTitleField', 'text'),
+										text: _UNO(
+											'.uno:InsertTitleField',
+											'text',
+										),
 										command: '.uno:InsertTitleField',
 										accessibility: {
 											focusBack: true,
