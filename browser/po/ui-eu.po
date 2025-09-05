@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-04 15:54+0200\n"
+"POT-Creation-Date: 2025-09-05 15:09+0200\n"
 "PO-Revision-Date: 2022-05-02 03:16+0000\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@openmailbox.org>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/collabora-online/"
@@ -214,7 +214,7 @@ msgstr "Freskatu egunkaria"
 msgid "Channel Filter:"
 msgstr "Kanalaren iragazkia:"
 
-#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:490
+#: admin/admin.strings.js:52 src/control/Control.JSDialogBuilder.js:491
 #: src/control/Control.StatusBar.js:192 src/control/Control.StatusBar.js:197
 msgid "None"
 msgstr "Bat ere ez"
@@ -480,7 +480,7 @@ msgid "Show in navigator"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1249
-#: src/control/Control.JSDialogBuilder.js:1903
+#: src/control/Control.JSDialogBuilder.js:1904
 #: src/layer/tile/CanvasTileLayer.js:4137
 #: src/layer/tile/CanvasTileLayer.js:4152
 msgid "Comment"
@@ -1099,64 +1099,64 @@ msgstr ""
 msgid "Close dialog"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:493
+#: src/control/Control.JSDialogBuilder.js:494
 msgid "Solid"
 msgstr "Solidoa"
 
-#: src/control/Control.JSDialogBuilder.js:496
+#: src/control/Control.JSDialogBuilder.js:497
 msgid "Linear"
 msgstr "Lineala"
 
-#: src/control/Control.JSDialogBuilder.js:499
+#: src/control/Control.JSDialogBuilder.js:500
 msgid "Axial"
 msgstr "Axiala"
 
-#: src/control/Control.JSDialogBuilder.js:502
+#: src/control/Control.JSDialogBuilder.js:503
 msgid "Radial"
 msgstr "Erradiala"
 
-#: src/control/Control.JSDialogBuilder.js:505
+#: src/control/Control.JSDialogBuilder.js:506
 msgid "Ellipsoid"
 msgstr "Elipsoidea"
 
-#: src/control/Control.JSDialogBuilder.js:509
+#: src/control/Control.JSDialogBuilder.js:510
 msgid "Quadratic"
 msgstr "Kuadratikoa"
 
-#: src/control/Control.JSDialogBuilder.js:512
+#: src/control/Control.JSDialogBuilder.js:513
 msgid "Square"
 msgstr "Karratua"
 
-#: src/control/Control.JSDialogBuilder.js:515
+#: src/control/Control.JSDialogBuilder.js:516
 msgid "Fixed size"
 msgstr "Tamaina finkoa"
 
-#: src/control/Control.JSDialogBuilder.js:1423
+#: src/control/Control.JSDialogBuilder.js:1424
 msgid "From"
 msgstr "Hemendik:"
 
-#: src/control/Control.JSDialogBuilder.js:1426
+#: src/control/Control.JSDialogBuilder.js:1427
 msgid "To"
 msgstr "Hona:"
 
-#: src/control/Control.JSDialogBuilder.js:1429
+#: src/control/Control.JSDialogBuilder.js:1430
 msgid "Color"
 msgstr "Kolorea"
 
-#: src/control/Control.JSDialogBuilder.js:1505
+#: src/control/Control.JSDialogBuilder.js:1506
 msgid "Select range"
 msgstr "Hautatu barrutia"
 
-#: src/control/Control.JSDialogBuilder.js:1632
+#: src/control/Control.JSDialogBuilder.js:1633
 #: src/control/Control.NotebookbarBuilder.js:138
 msgid "Font Name"
 msgstr "Letra-izena"
 
-#: src/control/Control.JSDialogBuilder.js:1634 src/control/Toolbar.js:129
+#: src/control/Control.JSDialogBuilder.js:1635 src/control/Toolbar.js:129
 msgid "Font Size"
 msgstr "Letra-tamaina"
 
-#: src/control/Control.JSDialogBuilder.js:1636
+#: src/control/Control.JSDialogBuilder.js:1637
 #: src/control/Control.NotebookbarCalc.js:913
 #: src/control/Control.NotebookbarCalc.js:2543
 #: src/control/Control.NotebookbarDraw.js:1725
@@ -1166,33 +1166,33 @@ msgstr "Letra-tamaina"
 msgid "Style"
 msgstr "Estiloa"
 
-#: src/control/Control.JSDialogBuilder.js:1889
+#: src/control/Control.JSDialogBuilder.js:1890
 msgid "reply"
 msgstr "erantzuna"
 
-#: src/control/Control.JSDialogBuilder.js:1892
+#: src/control/Control.JSDialogBuilder.js:1893
 msgid "replies"
 msgstr "erantzunak"
 
-#: src/control/Control.JSDialogBuilder.js:1967
+#: src/control/Control.JSDialogBuilder.js:1968
 msgid "Insert Comment"
 msgstr "Txertatu iruzkina"
 
-#: src/control/Control.JSDialogBuilder.js:2261
+#: src/control/Control.JSDialogBuilder.js:2262
 msgid "Open {name}"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2586
+#: src/control/Control.JSDialogBuilder.js:2587
 #: src/control/Control.Menubar.ts:920
 msgid "Rows"
 msgstr "Errenkadak"
 
-#: src/control/Control.JSDialogBuilder.js:2587
+#: src/control/Control.JSDialogBuilder.js:2588
 #: src/control/Control.Menubar.ts:923
 msgid "Columns"
 msgstr "Zutabeak"
 
-#: src/control/Control.JSDialogBuilder.js:2607
+#: src/control/Control.JSDialogBuilder.js:2608
 msgid "Insert Table"
 msgstr "Txertatu taula"
 
@@ -1679,12 +1679,12 @@ msgid "CSV file (.csv)"
 msgstr "CSV fitxategia (.csv)"
 
 #: src/control/Control.Menubar.ts:759
-#: src/control/jsdialog/Definitions.Menu.ts:1707
+#: src/control/jsdialog/Definitions.Menu.ts:1714
 msgid "Active sheet"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:760 src/control/Control.TopToolbar.js:108
-#: src/control/jsdialog/Definitions.Menu.ts:1708
+#: src/control/jsdialog/Definitions.Menu.ts:1715
 msgid "All Sheets"
 msgstr ""
 
@@ -1694,78 +1694,78 @@ msgid "Focus Cell"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:892
-#: src/control/jsdialog/Definitions.Menu.ts:1919
+#: src/control/jsdialog/Definitions.Menu.ts:1926
 msgid "Highlight cells with..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:893
-#: src/control/jsdialog/Definitions.Menu.ts:1922
+#: src/control/jsdialog/Definitions.Menu.ts:1929
 msgid "Values greater than..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:894
-#: src/control/jsdialog/Definitions.Menu.ts:1926
+#: src/control/jsdialog/Definitions.Menu.ts:1933
 msgid "Values less than..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:895
-#: src/control/jsdialog/Definitions.Menu.ts:1930
+#: src/control/jsdialog/Definitions.Menu.ts:1937
 msgid "Values equal to..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:896
-#: src/control/jsdialog/Definitions.Menu.ts:1934
+#: src/control/jsdialog/Definitions.Menu.ts:1941
 msgid "Values between..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:897
-#: src/control/jsdialog/Definitions.Menu.ts:1938
+#: src/control/jsdialog/Definitions.Menu.ts:1945
 msgid "Values duplicate..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:898
-#: src/control/jsdialog/Definitions.Menu.ts:1942
+#: src/control/jsdialog/Definitions.Menu.ts:1949
 msgid "Containing text..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:900 src/control/Control.Menubar.ts:910
-#: src/control/jsdialog/Definitions.Menu.ts:1947
-#: src/control/jsdialog/Definitions.Menu.ts:1981
+#: src/control/jsdialog/Definitions.Menu.ts:1954
+#: src/control/jsdialog/Definitions.Menu.ts:1988
 msgid "More highlights..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:902
-#: src/control/jsdialog/Definitions.Menu.ts:1953
+#: src/control/jsdialog/Definitions.Menu.ts:1960
 msgid "Top/Bottom Rules..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:903
-#: src/control/jsdialog/Definitions.Menu.ts:1956
+#: src/control/jsdialog/Definitions.Menu.ts:1963
 msgid "Top N elements..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:904
-#: src/control/jsdialog/Definitions.Menu.ts:1960
+#: src/control/jsdialog/Definitions.Menu.ts:1967
 msgid "Top N percent..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:905
-#: src/control/jsdialog/Definitions.Menu.ts:1964
+#: src/control/jsdialog/Definitions.Menu.ts:1971
 msgid "Bottom N elements..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:906
-#: src/control/jsdialog/Definitions.Menu.ts:1968
+#: src/control/jsdialog/Definitions.Menu.ts:1975
 msgid "Bottom N percent..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:907
-#: src/control/jsdialog/Definitions.Menu.ts:1972
+#: src/control/jsdialog/Definitions.Menu.ts:1979
 msgid "Above Average..."
 msgstr ""
 
 #: src/control/Control.Menubar.ts:908
-#: src/control/jsdialog/Definitions.Menu.ts:1976
+#: src/control/jsdialog/Definitions.Menu.ts:1983
 msgid "Below Average..."
 msgstr ""
 
@@ -1804,7 +1804,7 @@ msgstr "Leheneratu hizkuntza lehenetsira"
 
 #: src/control/Control.Menubar.ts:1591 src/control/Control.Menubar.ts:1592
 #: src/control/Control.Menubar.ts:1593 src/control/Control.Toolbar.js:245
-#: src/control/jsdialog/Definitions.Menu.ts:2205
+#: src/control/jsdialog/Definitions.Menu.ts:2212
 msgid "More..."
 msgstr "Gehiago..."
 
@@ -2110,7 +2110,7 @@ msgid "Cells"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:934
-#: src/control/jsdialog/Definitions.Menu.ts:2415
+#: src/control/jsdialog/Definitions.Menu.ts:2422
 msgid "Default"
 msgstr "Lehenetsia"
 
@@ -2725,7 +2725,7 @@ msgid "On"
 msgstr ""
 
 #: src/control/Control.StatusBar.js:152
-#: src/control/jsdialog/Definitions.Menu.ts:1902
+#: src/control/jsdialog/Definitions.Menu.ts:1909
 msgid "Off"
 msgstr ""
 
@@ -3185,7 +3185,7 @@ msgid "Delete tabstop"
 msgstr "Ezabatu tabulazioa"
 
 #: src/control/jsdialog/Definitions.Menu.ts:112
-#: src/control/jsdialog/Definitions.Menu.ts:1875
+#: src/control/jsdialog/Definitions.Menu.ts:1882
 msgid "Normal"
 msgstr "Normala"
 
@@ -3341,229 +3341,229 @@ msgstr ""
 msgid "Japanese Postcard"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:1861
+#: src/control/jsdialog/Definitions.Menu.ts:1868
 msgid "Insert Local Image"
 msgstr "Txertatu irudi lokala"
 
-#: src/control/jsdialog/Definitions.Menu.ts:1867
+#: src/control/jsdialog/Definitions.Menu.ts:1874
 msgid "Insert Local Multimedia"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:1873
+#: src/control/jsdialog/Definitions.Menu.ts:1880
 msgid "Very Tight"
 msgstr "Oso estua"
 
-#: src/control/jsdialog/Definitions.Menu.ts:1874
+#: src/control/jsdialog/Definitions.Menu.ts:1881
 msgid "Tight"
 msgstr "Estua"
 
-#: src/control/jsdialog/Definitions.Menu.ts:1876
+#: src/control/jsdialog/Definitions.Menu.ts:1883
 msgid "Loose"
 msgstr "Zabala"
 
-#: src/control/jsdialog/Definitions.Menu.ts:1877
+#: src/control/jsdialog/Definitions.Menu.ts:1884
 msgid "Very Loose"
 msgstr "Oso zabala"
 
-#: src/control/jsdialog/Definitions.Menu.ts:1907
+#: src/control/jsdialog/Definitions.Menu.ts:1914
 msgid "All users"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:1912
+#: src/control/jsdialog/Definitions.Menu.ts:1919
 msgid "This user"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2016
+#: src/control/jsdialog/Definitions.Menu.ts:2023
 msgid "No Borders"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2022
+#: src/control/jsdialog/Definitions.Menu.ts:2029
 msgid "Left Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2028
+#: src/control/jsdialog/Definitions.Menu.ts:2035
 msgid "Right Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2034
+#: src/control/jsdialog/Definitions.Menu.ts:2041
 msgid "Left And Right Borders"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2040
+#: src/control/jsdialog/Definitions.Menu.ts:2047
 msgid "Top Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2046
+#: src/control/jsdialog/Definitions.Menu.ts:2053
 msgid "Bottom Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2052
+#: src/control/jsdialog/Definitions.Menu.ts:2059
 msgid "Top And Bottom Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2058
+#: src/control/jsdialog/Definitions.Menu.ts:2065
 msgid "Outer Border"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2064
+#: src/control/jsdialog/Definitions.Menu.ts:2071
 msgid "All Horizontal Lines"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2070
+#: src/control/jsdialog/Definitions.Menu.ts:2077
 msgid "Outer Border And Horizontal Lines"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2076
+#: src/control/jsdialog/Definitions.Menu.ts:2083
 msgid "Outer Border and Vertical Lines"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2082
+#: src/control/jsdialog/Definitions.Menu.ts:2089
 msgid "Outer Borders And All Inner lines"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2087
+#: src/control/jsdialog/Definitions.Menu.ts:2094
 msgid "Line color"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2098
+#: src/control/jsdialog/Definitions.Menu.ts:2105
 #, fuzzy
 msgid "Line style"
 msgstr "Marra-estiloa:"
 
-#: src/control/jsdialog/Definitions.Menu.ts:2101
+#: src/control/jsdialog/Definitions.Menu.ts:2108
 msgid "Hairline (0.05 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2110
+#: src/control/jsdialog/Definitions.Menu.ts:2117
 msgid "Very thin (0.50 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2119
+#: src/control/jsdialog/Definitions.Menu.ts:2126
 msgid "Thin (0.75 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2128
+#: src/control/jsdialog/Definitions.Menu.ts:2135
 msgid "Medium (1.50 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2137
+#: src/control/jsdialog/Definitions.Menu.ts:2144
 msgid "Thick (2.25 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2146
+#: src/control/jsdialog/Definitions.Menu.ts:2153
 msgid "Extra thick (4.50 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2155
+#: src/control/jsdialog/Definitions.Menu.ts:2162
 msgid "Double Hairline (1.10 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2164
+#: src/control/jsdialog/Definitions.Menu.ts:2171
 msgid "Double Hairline (2.35 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2173
+#: src/control/jsdialog/Definitions.Menu.ts:2180
 msgid "Thin/Medium (3.00 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2182
+#: src/control/jsdialog/Definitions.Menu.ts:2189
 msgid "Medium/Hairline (3.05 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2191
+#: src/control/jsdialog/Definitions.Menu.ts:2198
 msgid "Medium/Medium (4.50 pt)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2251
+#: src/control/jsdialog/Definitions.Menu.ts:2258
 msgid "Standard (4:3)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2256
+#: src/control/jsdialog/Definitions.Menu.ts:2263
 msgid "Widescreen (16:9)"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2266
+#: src/control/jsdialog/Definitions.Menu.ts:2273
 msgid "Blank Slide"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2267
+#: src/control/jsdialog/Definitions.Menu.ts:2274
 msgid "Title Slide"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2268
+#: src/control/jsdialog/Definitions.Menu.ts:2275
 msgid "Title, Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2269
+#: src/control/jsdialog/Definitions.Menu.ts:2276
 msgid "Title and 2 Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2270
+#: src/control/jsdialog/Definitions.Menu.ts:2277
 msgid "Title Only"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2271
+#: src/control/jsdialog/Definitions.Menu.ts:2278
 msgid "Centered Text"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2272
+#: src/control/jsdialog/Definitions.Menu.ts:2279
 msgid "Title, 2 Content and Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2273
+#: src/control/jsdialog/Definitions.Menu.ts:2280
 msgid "Title, Content and 2 Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2274
+#: src/control/jsdialog/Definitions.Menu.ts:2281
 msgid "Title, 2 Content over Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2275
+#: src/control/jsdialog/Definitions.Menu.ts:2282
 msgid "Title, Content over Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2276
+#: src/control/jsdialog/Definitions.Menu.ts:2283
 msgid "Title, 4 Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2277
+#: src/control/jsdialog/Definitions.Menu.ts:2284
 msgid "Title, 6 Content"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2278
+#: src/control/jsdialog/Definitions.Menu.ts:2285
 msgid "Vertical Title, Text, Chart"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2279
+#: src/control/jsdialog/Definitions.Menu.ts:2286
 msgid "Vertical Title, Vertical Text"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2280
+#: src/control/jsdialog/Definitions.Menu.ts:2287
 msgid "Title, Vertical Text"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2281
+#: src/control/jsdialog/Definitions.Menu.ts:2288
 msgid "Title, Vertical Text, Clipart"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2420
+#: src/control/jsdialog/Definitions.Menu.ts:2427
 msgid "Grayscale"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2425
+#: src/control/jsdialog/Definitions.Menu.ts:2432
 msgid "Black/White"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2430
+#: src/control/jsdialog/Definitions.Menu.ts:2437
 msgid "Watermark"
 msgstr ""
 
-#: src/control/jsdialog/Definitions.Menu.ts:2438
+#: src/control/jsdialog/Definitions.Menu.ts:2445
 #, fuzzy
 msgid "Insert comment"
 msgstr "Txertatu iruzkina"
 
-#: src/control/jsdialog/Definitions.Menu.ts:2442
+#: src/control/jsdialog/Definitions.Menu.ts:2449
 msgid "Comments list"
 msgstr ""
 
