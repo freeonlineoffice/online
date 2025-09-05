@@ -566,7 +566,8 @@ class TileManager {
 				const delta = this.pendingDeltas.shift();
 				const bucket =
 					Math.round(
-						delta.key.x / this.tileSize + delta.key.y / this.tileSize,
+						delta.key.x / this.tileSize +
+							delta.key.y / this.tileSize,
 					) % this.workers.length;
 
 				// Replace TileCoordData with string representation
@@ -579,7 +580,10 @@ class TileManager {
 				const worker = this.workers[i];
 				if (this.debugDeltas)
 					window.app.console.debug(
-						'XXX delta bucket (' + i + ') length: ' + deltas.length,
+						'XXX delta bucket (' +
+							i +
+							') length: ' +
+							deltas.length,
 					);
 				if (deltas.length) {
 					++this.nPendingWorkerTasks;
@@ -599,7 +603,8 @@ class TileManager {
 			++this.nPendingWorkerTasks;
 
 			// Replace TileCoords with string representation
-			for (const delta of this.pendingDeltas) delta.key = delta.key.key();
+			for (const delta of this.pendingDeltas)
+				delta.key = delta.key.key();
 
 			this.onWorkerMessage({
 				data: {
@@ -2111,7 +2116,8 @@ class TileManager {
 	}
 
 	public static onWorkerMessage(e: any) {
-		const bitmaps: Promise<ImageBitmap>[] = [];
+		const bitmaps: ImageBitmap[] = [];
+		const bitmapPromises: Promise<ImageBitmap>[] = [];
 		const pendingDeltas: any[] = [];
 		switch (e.data.message) {
 			case 'endTransaction':
@@ -2221,27 +2227,33 @@ class TileManager {
 							tile,
 							x,
 							pendingDeltas,
-							bitmaps,
+							bitmapPromises,
 						);
 					} else {
 						this.tileImageCache.set(x.key, null);
-						bitmaps.push(
-							new Promise((resolve, _reject) => {
-								resolve(x.bitmap);
-							}),
-						);
+						bitmaps.push(x.bitmap);
 						pendingDeltas.push(x);
 					}
 
 					tile.decompressedId = x.ids[1];
 				}
 
-				Promise.all(bitmaps).then((bitmaps) => {
+				if (bitmapPromises.length && bitmaps.length)
+					window.app.console.warn(
+						'Unusual: Sync and async tile decompression happening simultaneously',
+					);
+				if (bitmaps.length)
 					this.endTransactionHandleBitmaps(
 						pendingDeltas,
 						bitmaps,
 					);
-				});
+				if (bitmapPromises.length)
+					Promise.all(bitmapPromises).then((bitmaps) => {
+						this.endTransactionHandleBitmaps(
+							pendingDeltas,
+							bitmaps,
+						);
+					});
 				break;
 
 			default:
