@@ -3358,7 +3358,6 @@ public:
            << "\n  OutstandingForks: " << TotalOutstandingForks
            << "\n  NumPreSpawnedChildren: " << LOOLWSD::NumPreSpawnedChildren
            << "\n  ChildSpawnTimeoutMs: " << ChildSpawnTimeoutMs.load()
-           << "\n  Document Brokers: " << DocBrokers.size()
 #if !MOBILEAPP
            << "\n  of which ConvertTo: " << ConvertToBroker::getInstanceCount()
 #endif
@@ -3431,9 +3430,12 @@ public:
         LOOLWSD::FileRequestHandler->dumpState(os);
 #endif
 
-        os << "\nDocument Broker polls " << "[ " << DocBrokers.size() << " ]:\n";
-        for (auto &i : DocBrokers)
-            i.second->dumpState(os);
+        {
+            std::lock_guard<std::mutex> docBrokerLock(DocBrokersMutex);
+            os << "\nDocument Broker polls " << "[ " << DocBrokers.size() << " ]:\n";
+            for (auto& i : DocBrokers)
+                i.second->dumpState(os);
+        }
 
 #if !MOBILEAPP
         os << "\nConverter count: " << ConvertToBroker::getInstanceCount() << '\n';
