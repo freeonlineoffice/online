@@ -47,10 +47,12 @@ class SplitterLinesSection extends CanvasSectionObject {
 				getComputedStyle(splittersDataDiv).getPropertyValue(
 					'color',
 				);
+
 			this.sectionProperties.fillOpacity =
 				getComputedStyle(splittersDataDiv).getPropertyValue(
 					'opacity',
 				);
+
 			this.sectionProperties.thickness =
 				parseFloat(
 					getComputedStyle(splittersDataDiv)
@@ -72,12 +74,15 @@ class SplitterLinesSection extends CanvasSectionObject {
 		// Create a linear gradient based on the extracted color stops
 		// get raw data from sheet geometry. use index = 1
 		const deafultRowSize = rowData.data.sizecore;
-		// gradient width should be half a default row hight.
+
+		// Gradient width should be half of the default row height.
 		const gradientWidth: number = Math.ceil(deafultRowSize / 2);
-		//adjust horizontal position for RTL mode
+
+		// Adjust horizontal position for RTL mode.
 		splitPos.x = this.isCalcRTL()
 			? this.size[0] - splitPos.x
 			: splitPos.x;
+
 		// Create a linear gradient based on the extracted color stops
 		selectionBackgroundGradient = this.createSplitLineGradient(
 			splitPos,
@@ -93,6 +98,9 @@ class SplitterLinesSection extends CanvasSectionObject {
 		gradientWidth: number,
 		isVertSplitter: boolean,
 	) {
+		const sPx = splitPos.x * app.dpiScale;
+		const sPy = splitPos.y * app.dpiScale;
+
 		let linearGradient = null;
 		const colorStops = [
 			{ colorCode: this.sectionProperties.fillColor, offset: 0 },
@@ -102,16 +110,16 @@ class SplitterLinesSection extends CanvasSectionObject {
 		if (isVertSplitter) {
 			linearGradient = this.context.createLinearGradient(
 				0,
-				splitPos.y,
+				sPy,
 				0,
-				splitPos.y + gradientWidth,
+				sPy + gradientWidth,
 			);
 		} else {
-			let x0 = splitPos.x;
-			let x1 = splitPos.x + gradientWidth;
+			let x0 = sPx;
+			let x1 = sPx + gradientWidth;
 			if (this.isCalcRTL()) {
-				x0 = splitPos.x - gradientWidth;
-				x1 = splitPos.x;
+				x0 = sPx - gradientWidth;
+				x1 = sPx;
 			}
 			linearGradient = this.context.createLinearGradient(x0, 0, x1, 0);
 		}
