@@ -336,14 +336,14 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& request) override
     {
-        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-COOL-WOPI-IsModifiedByUser"));
+        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
         LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsModifiedByUser"));
 
-        LOK_ASSERT_EQUAL(true, request.has("X-COOL-WOPI-IsAutosave"));
+        LOK_ASSERT_EQUAL(true, request.has("X-LOOL-WOPI-IsAutosave"));
         LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsAutosave"));
 
         // Triggered while closing.
-        LOK_ASSERT_EQUAL(true, request.has("X-COOL-WOPI-IsExitSave"));
+        LOK_ASSERT_EQUAL(true, request.has("X-LOOL-WOPI-IsExitSave"));
         LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsExitSave"));
 
         // Fail with error.

@@ -300,7 +300,7 @@ namespace Util
         [[NSThread currentThread] setName:[NSString stringWithUTF8String:ThreadName]];
         LOG_INF("Thread " << getThreadId() << ") is now called [" << s << ']');
 #elif defined __EMSCRIPTEN__
-        emscripten_console_logf("COOL thread name: \"%s\"", s.c_str());
+        emscripten_console_logf("LOOL thread name: \"%s\"", s.c_str());
 #endif
 
         // Emit a metadata Trace Event identifying this thread. This will invoke a different function

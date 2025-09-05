@@ -648,7 +648,7 @@ void HttpWhiteBoxTests::testInsertFile()
 
     const std::string header =
         "POST "
-        "/cool/"
+        "/lool/"
         "http%3A%2F%2Flocalhost%2Fnextcloud%2Findex.php%2Fapps%2Frichdocuments%2Fwopi%2Ffiles%"
         "2F6734_ocqiesh0cngs/"
         "insertfile?WOPISrc=http%3A%2F%2Flocalhost%2Fnextcloud%2Findex.php%2Fapps%2Frichdocuments%"

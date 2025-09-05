@@ -221,7 +221,7 @@ int main(int argc, char* argv_main[])
     std::thread(
         [&]
         {
-            Util::setThreadName("COOLWSD::run");
+            Util::setThreadName("LOOLWSD::run");
 
             if ((false)) { //TODO: clarify which configuration wants to use this
                 const std::string docURL = std::string(argv_main[1]);
