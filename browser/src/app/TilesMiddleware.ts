@@ -227,9 +227,10 @@ class TileManager {
 	private static _partTilePreFetcher: any;
 	private static _adjacentTilePreFetcher: any;
 	private static inTransaction: number = 0;
-	private static pendingTransactions: any = [[]];
 	private static pendingDeltas: any = [];
-	private static worker: any;
+	private static workers: Worker[] = [];
+	private static transactionCallbacks: any[] = [];
+	private static nPendingWorkerTasks: number = 0;
 	private static nullDeltaUpdate = 0;
 	private static queuedProcessed: any = [];
 	private static fetchKeyframeQueue: any = []; // Queue of tiles which were GC'd earlier than loolwsd expected
@@ -259,16 +260,22 @@ class TileManager {
 
 	public static initialize() {
 		if (window.Worker && !(window as any).ThisIsAMobileApp) {
-			window.app.console.info('Creating CanvasTileWorker');
-			this.worker = new Worker(
-				app.LOUtil.getURL('/src/layer/tile/TileWorker.js'),
-			);
-			this.worker.addEventListener('message', (e: any) =>
-				this.onWorkerMessage(e),
-			);
-			this.worker.addEventListener('error', (e: any) =>
-				this.disableWorker(e),
-			);
+			window.app.console.info('Creating CanvasTileWorkers');
+			for (let i = 0; i < 1; ++i) {
+				this.workers.push(
+					new Worker(
+						app.LOUtil.getURL(
+							'/src/layer/tile/TileWorker.js',
+						),
+					),
+				);
+				this.workers[i].addEventListener('message', (e: any) =>
+					this.onWorkerMessage(e),
+				);
+				this.workers[i].addEventListener('error', (e: any) =>
+					this.disableWorker(e),
+				);
+			}
 		}
 	}
 
@@ -494,15 +501,6 @@ class TileManager {
 			if (tile.isReady()) this.tileReady(tile.coords, visibleRanges);
 		}
 
-		if (this.pendingTransactions.length === 0)
-			window.app.console.warn(
-				'Unexpectedly received decompressed deltas',
-			);
-		else {
-			const callbacks = this.pendingTransactions.shift();
-			while (callbacks.length) callbacks.pop()();
-		}
-
 		if (this.pausedForDehydration) {
 			// Check if all current tiles are accounted for and resume drawing if so.
 			let shouldUnpause = true;
@@ -517,6 +515,10 @@ class TileManager {
 				this.pausedForDehydration = false;
 			}
 		}
+
+		if (this.nPendingWorkerTasks === 0)
+			while (this.transactionCallbacks.length)
+				this.transactionCallbacks.pop()();
 
 		this.garbageCollect();
 	}
@@ -553,8 +555,9 @@ class TileManager {
 	}
 
 	private static decompressPendingDeltas(message: string) {
-		if (this.worker) {
-			this.worker.postMessage(
+		if (this.workers.length) {
+			++this.nPendingWorkerTasks;
+			this.workers[0].postMessage(
 				{
 					message: message,
 					deltas: this.pendingDeltas,
@@ -565,6 +568,7 @@ class TileManager {
 			);
 		} else {
 			// Synchronous path
+			++this.nPendingWorkerTasks;
 			this.onWorkerMessage({
 				data: {
 					message: 'endTransaction',
@@ -796,10 +800,6 @@ class TileManager {
 		else return false;
 	}
 
-	private static hasPendingTransactions() {
-		return this.inTransaction > 0 || this.pendingTransactions.length;
-	}
-
 	private static beginTransaction() {
 		++this.inTransaction;
 	}
@@ -931,25 +931,20 @@ class TileManager {
 		}
 
 		--this.inTransaction;
-		if (callback)
-			this.pendingTransactions[
-				this.pendingTransactions.length - 1
-			].push(callback);
+		if (callback) this.transactionCallbacks.push(callback);
 
 		if (this.inTransaction !== 0) return;
 
 		// Short-circuit if there's nothing to decompress
 		if (!this.pendingDeltas.length) {
-			const callbacks =
-				this.pendingTransactions[
-					this.pendingTransactions.length - 1
-				];
-			while (callbacks.length) callbacks.pop()();
+			if (callback) {
+				this.transactionCallbacks.pop();
+				callback();
+			}
 			return;
 		}
 
 		try {
-			this.pendingTransactions.push([]);
 			this.decompressPendingDeltas('endTransaction');
 		} catch (e) {
 			window.app.console.error('Failed to decompress pending deltas');
@@ -963,22 +958,25 @@ class TileManager {
 	private static disableWorker(e: any = null) {
 		if (e)
 			window.app.console.error('Worker-related error encountered', e);
-		if (!this.worker) return;
+		if (!this.workers.length) return;
 
-		window.app.console.warn('Disabling worker thread');
-		try {
-			this.worker.terminate();
-		} catch (e) {
-			window.app.console.error('Error terminating worker thread', e);
+		window.app.console.warn('Disabling worker threads');
+		while (this.workers.length) {
+			const worker = this.workers.shift();
+			try {
+				worker.terminate();
+			} catch (e) {
+				window.app.console.error(
+					'Error terminating worker thread',
+					e,
+				);
+			}
 		}
 
 		this.pendingDeltas.length = 0;
-		this.worker = null;
-		while (this.pendingTransactions.length) {
-			const callbacks = this.pendingTransactions.shift();
-			while (callbacks.length) callbacks.pop()();
-		}
-		this.pendingTransactions.push([]);
+		this.nPendingWorkerTasks = 0;
+		while (this.transactionCallbacks.length)
+			this.transactionCallbacks.pop()();
 		this.redraw();
 	}
 
@@ -2085,6 +2083,9 @@ class TileManager {
 		const pendingDeltas: any[] = [];
 		switch (e.data.message) {
 			case 'endTransaction':
+				if (this.nPendingWorkerTasks) --this.nPendingWorkerTasks;
+				else window.app.console.warn('Unexpected worker message');
+
 				for (const x of e.data.deltas) {
 					const tile = this.tiles.get(x.key);
 
