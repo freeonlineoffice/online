@@ -114,6 +114,52 @@ class ServerAuditDialog {
 					'https://sdk.collaboraonline.com/docs/installation/Configuration.html#performance',
 				],
 			},
+			seccomp: {
+				none: [
+					_(
+						'BPF filtering of potentially risky system calls (seccomp) is not enabled; a security hazard.',
+					),
+					'SDK: seccomp',
+					'',
+				],
+				ok: [
+					_('system call security filtering enabled'),
+					'SDK: seccomp',
+					'',
+				],
+			},
+			bindmounted: {
+				slow: [
+					_(
+						'Slow Kit jail setup with copying, cannot bind-mount.',
+					),
+					'SDK: bindmount',
+					'',
+				],
+				ok: [
+					_('Fast kit jail bind mounting enabled'),
+					'SDK: bindmount',
+					'',
+				],
+			},
+			contained: {
+				uncontained: [
+					_(
+						'Documents are not effectively contained: missing capabilities or namespaces.',
+					),
+					'SDK: nocaps',
+					'',
+				],
+				ok: [
+					_('Each document is securely contained'),
+					'SDK: nocaps',
+					'',
+				],
+			},
+			info_namespaces: {
+				true: [_('Using namespaces.'), 'SDK: nocaps', ''],
+				false: [_('Not using namespaces'), 'SDK: nocaps', ''],
+			},
 		};
 	}
 
@@ -122,9 +168,11 @@ class ServerAuditDialog {
 		const clientEntries = this.getEntries(
 			ClientAuditor.performClientAudit(),
 		);
+		const allEntries = serverEntries.concat(clientEntries);
+		// FIXME: sort allEntries to have errors at the top ...
 
 		const dialogBuildEvent = {
-			data: this.getJSON(serverEntries.concat(clientEntries)),
+			data: this.getJSON(allEntries),
 			callback: this.callback.bind(this) as JSDialogCallback,
 		};
 
@@ -150,7 +198,10 @@ class ServerAuditDialog {
 					entries.push({
 						row: 0,
 						columns: [
-							entry.status === 'ok' ? okIcon : errorIcon,
+							entry.status === 'ok' ||
+							this.isInfoEntry(entry)
+								? okIcon
+								: errorIcon,
 							{ text: status[0] },
 							status[1] && status[2]
 								? {
@@ -161,6 +212,22 @@ class ServerAuditDialog {
 						],
 					} as TreeEntryJSON);
 				}
+			} else if (this.isInfoEntry(entry)) {
+				if (entry.code === 'info_setup_ms') {
+					const ms = Number.parseInt(entry.status);
+					const good = ms < 3000;
+					entries.push({
+						row: 0,
+						columns: [
+							good ? okIcon : errorIcon,
+							{ text: _('Document container started in') },
+							{ text: entry.status + ' ms' },
+						],
+					} as TreeEntryJSON);
+				} else
+					console.warn(
+						'Unknown server audit info: ' + entry.code,
+					);
 			} else {
 				console.warn('Unknown server audit entry: ' + entry.code);
 			}
@@ -173,17 +240,13 @@ class ServerAuditDialog {
 		let hasErrors = false;
 		if (app.serverAudit) {
 			app.serverAudit.forEach((entry: any) => {
-				if (entry.status !== 'ok') {
-					hasErrors = true;
-				}
+				if (this.isErrorEntry(entry)) hasErrors = true;
 			});
 		}
 
 		if (app.clientAudit) {
 			app.clientAudit.forEach((entry: any) => {
-				if (entry.status !== 'ok') {
-					hasErrors = true;
-				}
+				if (entry.status !== 'ok') hasErrors = true;
 			});
 		}
 
@@ -192,8 +255,8 @@ class ServerAuditDialog {
 
 	private countErrors(): number {
 		return (
-			(app.serverAudit?.filter(
-				(entry: AuditEntry) => entry.status !== 'ok',
+			(app.serverAudit?.filter((entry: AuditEntry) =>
+				this.isErrorEntry(entry),
 			).length ?? 0) +
 			(app.clientAudit?.filter(
 				(entry: AuditEntry) => entry.status !== 'ok',
@@ -282,13 +345,19 @@ class ServerAuditDialog {
 		);
 	}
 
+	private isInfoEntry(entry: AuditEntry): boolean {
+		return entry.code.startsWith('info_');
+	}
+
+	private isErrorEntry(entry: AuditEntry): boolean {
+		return !this.isInfoEntry(entry) && entry.status !== 'ok';
+	}
+
 	private onServerAudit() {
 		if (app.serverAudit.length) {
 			let hasErrors = false;
 			app.serverAudit.forEach((entry: any) => {
-				if (entry.status !== 'ok') {
-					hasErrors = true;
-				}
+				if (this.isErrorEntry(entry)) hasErrors = true;
 			});
 
 			// only show the snackbar if there are specific warnings
