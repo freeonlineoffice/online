@@ -25,14 +25,18 @@ class ServerConnectionService {
 		app.console.debug('ServerConnectionService: onViewSetting');
 
 		if (!app.map) {
-			app.console.error('ServerConnectionService: missing map reference');
+			app.console.error(
+				'ServerConnectionService: missing map reference',
+			);
 			return;
 		}
 
 		let zoteroPlugin = app.map.zotero;
 		const zoteroAPIKey = viewSetting.zoteroAPIKey;
 		if (window.zoteroEnabled && zoteroAPIKey && !zoteroPlugin) {
-			app.console.debug('ServerConnectionService: initialize Zotero plugin');
+			app.console.debug(
+				'ServerConnectionService: initialize Zotero plugin',
+			);
 
 			zoteroPlugin = L.control.zotero(app.map);
 			zoteroPlugin.apiKey = zoteroAPIKey;
@@ -44,7 +48,9 @@ class ServerConnectionService {
 		}
 
 		if (viewSetting.accessibilityState) {
-			app.console.debug('ServerConnectionService: initialize accessibility');
+			app.console.debug(
+				'ServerConnectionService: initialize accessibility',
+			);
 			app.map.lockAccessibilityOn();
 		}
 	}
