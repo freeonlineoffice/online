@@ -54,4 +54,8 @@ class ServerConnectionService {
 			app.map.lockAccessibilityOn();
 		}
 	}
+
+	public onNotebookbarInCoreInit() {
+		app.console.debug('ServerConnectionService: onNotebookbarInCoreInit');
+	}
 }
