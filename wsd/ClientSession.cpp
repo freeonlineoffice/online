@@ -384,6 +384,8 @@ void ClientSession::handleClipboardRequest(DocumentBroker::ClipboardRequest     
                     LOG_WRN("parseJSON: failed to parse '" << jailClipFile << "': '" << exception.what() << "'");
                 }
 
+                ifs.close();
+
                 if (json)
                 {
                     std::string url;
@@ -392,7 +394,7 @@ void ClientSession::handleClipboardRequest(DocumentBroker::ClipboardRequest     
                     JsonUtil::findJSONValue(json, "commandName", commandName);
                     http::Session::FinishedCallback finishedCallback =
                         [this, commandName=std::move(commandName),
-                         docBroker](const std::shared_ptr<http::Session>& session)
+                         docBroker, jailClipFile, clipFile](const std::shared_ptr<http::Session>& session)
                     {
                         session->asyncShutdown();
                         const std::shared_ptr<const http::Response> httpResponse =
@@ -411,12 +413,12 @@ void ClientSession::handleClipboardRequest(DocumentBroker::ClipboardRequest     
                             return;
                         }
 
-                        const std::string& body = httpResponse->getBody();
-                        std::istringstream stream(body);
-                        if (ClipboardData::isOwnFormat(stream))
+                        std::ifstream stream(jailClipFile, std::ifstream::in);
+                        const bool ownFormat = ClipboardData::isOwnFormat(stream);
+                        stream.close();
+                        if (ownFormat)
                         {
-                            docBroker->forwardToChild(client_from_this(), "setclipboard\n" + body,
-                                    true);
+                            docBroker->forwardToChild(client_from_this(), "setclipboard name=" + clipFile, true);
                             docBroker->forwardToChild(client_from_this(), "uno " + commandName);
                         }
                         else
@@ -441,9 +443,10 @@ void ClientSession::handleClipboardRequest(DocumentBroker::ClipboardRequest     
                                     << url << ']');
                             };
                             httpSession->setConnectFailHandler(std::move(connectFailCallback));
-
                             http::Request httpRequest(Poco::URI(url).getPathAndQuery());
                             httpSession->asyncRequest(httpRequest, docBroker->getPoll());
+                            const std::shared_ptr<http::Response> httpResponse = httpSession->response();
+                            httpResponse->saveBodyToFile(jailClipFile);
                         }
                         else
                         {
