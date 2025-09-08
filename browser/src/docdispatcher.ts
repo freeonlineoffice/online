@@ -51,6 +51,7 @@ class Dispatcher {
 					this.dispatch('acceptformula'); // save data from the edited cell on exit
 				}
 
+				window.prefs.sendPendingBrowserSettingsUpdate();
 				app.map.fire('postMessage', {
 					msgId: 'close',
 					args: {
