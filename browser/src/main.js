@@ -11,7 +11,7 @@
 /* global globalThis */
 /* global errorMessages accessToken accessTokenTTL noAuthHeader accessHeader createOnlineModule */
 /* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService LayoutingService */
-/* global createEmscriptenModule */
+/* global ServerConnectionService createEmscriptenModule */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
 (function (global) {
@@ -38,6 +38,7 @@ else
 
 app.localeService = new LocaleService();
 app.setPermission(global.loolParams.get('permission') || 'edit');
+app.serverConnectionService = new ServerConnectionService();
 app.layoutingService = new LayoutingService();
 
 app.setPermission(global.loolParams.get('permission') || 'edit');
