@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-05 15:09+0200\n"
+"POT-Creation-Date: 2025-09-08 18:48+0200\n"
 "PO-Revision-Date: 2022-04-14 19:15+0000\n"
 "Last-Translator: Pedro Silva <pedro.silva@collabora.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/collabora-online/"
@@ -232,8 +232,8 @@ msgstr "Úrovně podrobností protokolu"
 #: admin/admin.strings.js:55 src/canvas/sections/CommentListSection.ts:165
 #: src/control/Control.AlertDialog.js:23 src/control/Control.AlertDialog.js:29
 #: src/control/Control.AlertDialog.js:92 src/control/Control.AlertDialog.js:99
-#: src/control/Control.Zotero.js:187 src/core/Socket.js:428
-#: src/core/Socket.js:1208 src/core/Socket.js:1213
+#: src/control/Control.Zotero.js:187 src/core/Socket.js:427
+#: src/core/Socket.js:1207 src/core/Socket.js:1212
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:51-7
 msgid "Close"
 msgstr "Zavřít"
@@ -255,7 +255,7 @@ msgstr ""
 #: src/control/Control.Menubar.ts:1021 src/control/Control.Menubar.ts:1089
 #: src/control/Control.Menubar.ts:1154 src/control/Control.Menubar.ts:1209
 #: src/control/Control.Menubar.ts:1284
-#: src/control/Control.NotebookbarWriter.js:529
+#: src/control/Control.NotebookbarWriter.js:525
 msgid "About"
 msgstr "O aplikaci"
 
@@ -303,9 +303,9 @@ msgstr ""
 #: src/control/Control.Zotero.js:361 src/control/Control.Zotero.js:407
 #: src/control/Parts.js:474 src/control/Permission.js:80
 #: src/control/Permission.js:90 src/control/Permission.js:140
-#: src/control/Toolbar.js:877 src/core/Socket.js:713 src/core/Socket.js:1178
-#: src/core/Socket.js:1248 src/core/Socket.js:1423 src/core/Socket.js:1427
-#: src/docdispatcher.ts:566 src/main.js:91 src/main.js:94 src/main.js:134
+#: src/control/Toolbar.js:877 src/core/Socket.js:712 src/core/Socket.js:1177
+#: src/core/Socket.js:1247 src/core/Socket.js:1423 src/core/Socket.js:1427
+#: src/docdispatcher.ts:567 src/main.js:92 src/main.js:95 src/main.js:135
 #: src/map/Clipboard.js:1286 src/map/handler/Map.Feedback.js:87
 #: src/map/handler/Map.SlideShow.js:51 src/map/handler/Map.SlideShow.js:164
 #: src/map/handler/Map.SlideShow.js:292 src/map/handler/Map.SlideShow.js:303
@@ -483,7 +483,7 @@ msgid "Show in navigator"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1249
-#: src/control/Control.JSDialogBuilder.js:1904
+#: src/control/Control.JSDialogBuilder.js:1910
 #: src/layer/tile/CanvasTileLayer.js:4137
 #: src/layer/tile/CanvasTileLayer.js:4152
 msgid "Comment"
@@ -642,7 +642,7 @@ msgstr "Server zaznamenal během zpracovávání příkazu %1 chybu %0."
 msgid "Unlock"
 msgstr "Odemknout"
 
-#: src/control/Control.ContextMenu.js:241 src/docdispatcher.ts:563
+#: src/control/Control.ContextMenu.js:241 src/docdispatcher.ts:564
 msgid "Delete"
 msgstr "Smazat"
 
@@ -1076,7 +1076,7 @@ msgstr ""
 
 #: src/control/Control.FormulaBarJSDialog.js:79
 #: src/control/Control.NotebookbarWriter.js:104
-#: src/control/Control.NotebookbarWriter.js:1547
+#: src/control/Control.NotebookbarWriter.js:1543
 msgid "Formula"
 msgstr ""
 
@@ -1153,52 +1153,52 @@ msgstr "Barva"
 msgid "Select range"
 msgstr "Vybrat rozsah"
 
-#: src/control/Control.JSDialogBuilder.js:1633
+#: src/control/Control.JSDialogBuilder.js:1634
 #: src/control/Control.NotebookbarBuilder.js:138
 msgid "Font Name"
 msgstr "Název písma"
 
-#: src/control/Control.JSDialogBuilder.js:1635 src/control/Toolbar.js:129
+#: src/control/Control.JSDialogBuilder.js:1636 src/control/Toolbar.js:129
 msgid "Font Size"
 msgstr "Velikost písma"
 
-#: src/control/Control.JSDialogBuilder.js:1637
+#: src/control/Control.JSDialogBuilder.js:1638
 #: src/control/Control.NotebookbarCalc.js:913
 #: src/control/Control.NotebookbarCalc.js:2543
 #: src/control/Control.NotebookbarDraw.js:1725
 #: src/control/Control.NotebookbarImpress.js:1261
-#: src/control/Control.NotebookbarWriter.js:1031
+#: src/control/Control.NotebookbarWriter.js:1027
 #: src/control/Control.TopToolbar.js:482
 msgid "Style"
 msgstr "Styl"
 
-#: src/control/Control.JSDialogBuilder.js:1890
+#: src/control/Control.JSDialogBuilder.js:1896
 msgid "reply"
 msgstr "odpověď"
 
-#: src/control/Control.JSDialogBuilder.js:1893
+#: src/control/Control.JSDialogBuilder.js:1899
 msgid "replies"
 msgstr "odpovědí"
 
-#: src/control/Control.JSDialogBuilder.js:1968
+#: src/control/Control.JSDialogBuilder.js:1974
 msgid "Insert Comment"
 msgstr "Vložit komentář"
 
-#: src/control/Control.JSDialogBuilder.js:2262
+#: src/control/Control.JSDialogBuilder.js:2268
 msgid "Open {name}"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2587
+#: src/control/Control.JSDialogBuilder.js:2593
 #: src/control/Control.Menubar.ts:920
 msgid "Rows"
 msgstr "Řádky"
 
-#: src/control/Control.JSDialogBuilder.js:2588
+#: src/control/Control.JSDialogBuilder.js:2594
 #: src/control/Control.Menubar.ts:923
 msgid "Columns"
 msgstr "Sloupce"
 
-#: src/control/Control.JSDialogBuilder.js:2608
+#: src/control/Control.JSDialogBuilder.js:2614
 msgid "Insert Table"
 msgstr "Vložit tabulku"
 
@@ -1347,7 +1347,7 @@ msgstr "Opravit"
 #: src/control/Control.NotebookbarCalc.js:1444
 #: src/control/Control.NotebookbarDraw.js:414
 #: src/control/Control.NotebookbarImpress.js:504
-#: src/control/Control.NotebookbarWriter.js:1670
+#: src/control/Control.NotebookbarWriter.js:1666
 #: src/control/Control.StatusBar.js:248
 msgid "Reset zoom"
 msgstr "Obnovit přiblížení"
@@ -1378,7 +1378,7 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1522
 #: src/control/Control.NotebookbarDraw.js:527
 #: src/control/Control.NotebookbarImpress.js:641
-#: src/control/Control.NotebookbarWriter.js:1755
+#: src/control/Control.NotebookbarWriter.js:1751
 msgid "Dark Mode"
 msgstr ""
 
@@ -1389,14 +1389,14 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1529
 #: src/control/Control.NotebookbarDraw.js:534
 #: src/control/Control.NotebookbarImpress.js:648
-#: src/control/Control.NotebookbarWriter.js:1762
+#: src/control/Control.NotebookbarWriter.js:1758
 msgid "Invert Background"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:168 src/control/Control.Menubar.ts:795
 #: src/control/Control.NotebookbarCalc.js:2570
-#: src/control/Control.NotebookbarWriter.js:924
-#: src/control/Control.NotebookbarWriter.js:1058
+#: src/control/Control.NotebookbarWriter.js:920
+#: src/control/Control.NotebookbarWriter.js:1054
 msgid "Style list"
 msgstr ""
 
@@ -1417,7 +1417,7 @@ msgstr "Vše"
 #: src/control/Control.NotebookbarCalc.js:1750
 #: src/control/Control.NotebookbarDraw.js:1556
 #: src/control/Control.NotebookbarImpress.js:1550
-#: src/control/Control.NotebookbarWriter.js:1316
+#: src/control/Control.NotebookbarWriter.js:1312
 msgid "Smart Picker"
 msgstr ""
 
@@ -1489,7 +1489,7 @@ msgstr "Vložit tabulku"
 #: src/control/Control.NotebookbarDraw.js:346
 #: src/control/Control.NotebookbarImpress.js:381
 #: src/control/Control.NotebookbarWriter.js:340
-#: src/control/Control.NotebookbarWriter.js:1626
+#: src/control/Control.NotebookbarWriter.js:1622
 msgid "Properties"
 msgstr ""
 
@@ -1516,7 +1516,7 @@ msgstr "Klávesové zkratky"
 
 #: src/control/Control.Menubar.ts:411 src/control/Control.Menubar.ts:587
 #: src/control/Control.Menubar.ts:725 src/control/Control.Menubar.ts:1017
-#: src/control/Control.NotebookbarWriter.js:488
+#: src/control/Control.NotebookbarWriter.js:484
 msgid "Report an issue"
 msgstr "Nahlásit chybu"
 
@@ -1524,7 +1524,7 @@ msgstr "Nahlásit chybu"
 #: src/control/Control.Menubar.ts:726 src/control/Control.Menubar.ts:1018
 #: src/control/Control.Menubar.ts:1087 src/control/Control.Menubar.ts:1152
 #: src/control/Control.Menubar.ts:1207 src/control/Control.Menubar.ts:1282
-#: src/control/Control.NotebookbarWriter.js:502
+#: src/control/Control.NotebookbarWriter.js:498
 msgid "Latest Updates"
 msgstr "Nejnovější aktualizace"
 
@@ -1532,13 +1532,13 @@ msgstr "Nejnovější aktualizace"
 #: src/control/Control.Menubar.ts:727 src/control/Control.Menubar.ts:1019
 #: src/control/Control.Menubar.ts:1088 src/control/Control.Menubar.ts:1153
 #: src/control/Control.Menubar.ts:1208 src/control/Control.Menubar.ts:1283
-#: src/control/Control.NotebookbarWriter.js:516
+#: src/control/Control.NotebookbarWriter.js:512
 msgid "Send Feedback"
 msgstr "Odeslat zpětnou vazbu"
 
 #: src/control/Control.Menubar.ts:414 src/control/Control.Menubar.ts:590
 #: src/control/Control.Menubar.ts:728 src/control/Control.Menubar.ts:1020
-#: src/control/Control.NotebookbarWriter.js:471
+#: src/control/Control.NotebookbarWriter.js:468
 #: src/control/Control.ServerAuditDialog.ts:212
 #: src/control/Control.ServerAuditDialog.ts:213
 msgid "Server audit"
@@ -1783,8 +1783,8 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:1157
 #: src/control/Control.NotebookbarImpress.js:1216
 #: src/control/Control.NotebookbarImpress.js:1229
-#: src/control/Control.NotebookbarWriter.js:986
-#: src/control/Control.NotebookbarWriter.js:999
+#: src/control/Control.NotebookbarWriter.js:982
+#: src/control/Control.NotebookbarWriter.js:995
 #: src/control/Control.Zotero.js:216 src/control/Toolbar.js:666
 #: src/control/Toolbar.js:667
 msgid "Search"
@@ -1792,7 +1792,7 @@ msgstr "Hledat"
 
 #: src/control/Control.Menubar.ts:1080
 #: src/control/Control.NotebookbarCalc.js:1068
-#: src/control/Control.NotebookbarWriter.js:1790
+#: src/control/Control.NotebookbarWriter.js:1786
 msgid "Page Setup"
 msgstr "Nastavení stránky"
 
@@ -1927,7 +1927,7 @@ msgstr "~Domů"
 #: src/control/Control.NotebookbarImpress.js:80
 #: src/control/Control.NotebookbarImpress.js:1924
 #: src/control/Control.NotebookbarWriter.js:40
-#: src/control/Control.NotebookbarWriter.js:2501
+#: src/control/Control.NotebookbarWriter.js:2497
 #, fuzzy
 msgid "Insert"
 msgstr "V~ložit"
@@ -1973,7 +1973,7 @@ msgstr "Sdílet"
 #: src/control/Control.NotebookbarCalc.js:69
 #: src/control/Control.NotebookbarDraw.js:98
 #: src/control/Control.NotebookbarWriter.js:85
-#: src/control/Control.NotebookbarWriter.js:1610
+#: src/control/Control.NotebookbarWriter.js:1606
 msgid "Picture"
 msgstr ""
 
@@ -2044,13 +2044,13 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:385
 #: src/control/Control.NotebookbarDraw.js:584
 #: src/control/Control.NotebookbarImpress.js:691
-#: src/control/Control.NotebookbarWriter.js:567
+#: src/control/Control.NotebookbarWriter.js:563
 msgid "Clipboard"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:446
 #: src/control/Control.NotebookbarDraw.js:644
-#: src/control/Control.NotebookbarWriter.js:626 src/control/Toolbar.js:51
+#: src/control/Control.NotebookbarWriter.js:622 src/control/Toolbar.js:51
 msgid "Font"
 msgstr "Písmo"
 
@@ -2081,7 +2081,7 @@ msgid "Currency"
 msgstr "Měna"
 
 #: src/control/Control.NotebookbarCalc.js:749
-#: src/control/Control.NotebookbarWriter.js:1618
+#: src/control/Control.NotebookbarWriter.js:1614
 #: src/control/Control.Zotero.js:1148 src/control/Control.Zotero.js:1600
 msgid "Date"
 msgstr "Datum"
@@ -2107,7 +2107,7 @@ msgstr "Booleovská hodnota"
 #: src/control/Control.NotebookbarCalc.js:1994
 #: src/control/Control.NotebookbarDraw.js:1639
 #: src/control/Control.NotebookbarImpress.js:1660
-#: src/control/Control.NotebookbarWriter.js:1465
+#: src/control/Control.NotebookbarWriter.js:1461
 msgid "Text"
 msgstr "Text"
 
@@ -2147,17 +2147,17 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1014
 #: src/control/Control.NotebookbarDraw.js:1168
 #: src/control/Control.NotebookbarImpress.js:1240
-#: src/control/Control.NotebookbarWriter.js:1010
+#: src/control/Control.NotebookbarWriter.js:1006
 msgid "Replace"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1078
-#: src/control/Control.NotebookbarWriter.js:1800
+#: src/control/Control.NotebookbarWriter.js:1796
 msgid "Margin"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1085
-#: src/control/Control.NotebookbarWriter.js:1807
+#: src/control/Control.NotebookbarWriter.js:1803
 msgid "Size"
 msgstr ""
 
@@ -2206,9 +2206,9 @@ msgstr "Smazat sloupce"
 #: src/control/Control.NotebookbarImpress.js:2219
 #: src/control/Control.NotebookbarImpress.js:2426
 #: src/control/Control.NotebookbarImpress.js:2730
-#: src/control/Control.NotebookbarWriter.js:2031
-#: src/control/Control.NotebookbarWriter.js:2963
-#: src/control/Control.NotebookbarWriter.js:3286
+#: src/control/Control.NotebookbarWriter.js:2027
+#: src/control/Control.NotebookbarWriter.js:2959
+#: src/control/Control.NotebookbarWriter.js:3282
 msgid "Align"
 msgstr ""
 
@@ -2219,9 +2219,9 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:2286
 #: src/control/Control.NotebookbarImpress.js:2493
 #: src/control/Control.NotebookbarImpress.js:2797
-#: src/control/Control.NotebookbarWriter.js:2102
-#: src/control/Control.NotebookbarWriter.js:3022
-#: src/control/Control.NotebookbarWriter.js:3345
+#: src/control/Control.NotebookbarWriter.js:2098
+#: src/control/Control.NotebookbarWriter.js:3018
+#: src/control/Control.NotebookbarWriter.js:3341
 msgid "Arrange"
 msgstr ""
 
@@ -2232,35 +2232,35 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:1423
 #: src/control/Control.NotebookbarDraw.js:393
 #: src/control/Control.NotebookbarImpress.js:490
-#: src/control/Control.NotebookbarWriter.js:1656
+#: src/control/Control.NotebookbarWriter.js:1652
 msgid "Zoom"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1430
 #: src/control/Control.NotebookbarDraw.js:400
 #: src/control/Control.NotebookbarImpress.js:432
-#: src/control/Control.NotebookbarWriter.js:1642
+#: src/control/Control.NotebookbarWriter.js:1638
 msgid "Read mode"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1484
 #: src/control/Control.NotebookbarDraw.js:454
 #: src/control/Control.NotebookbarImpress.js:544
-#: src/control/Control.NotebookbarWriter.js:1710
+#: src/control/Control.NotebookbarWriter.js:1706
 msgid "Compact view"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1497
 #: src/control/Control.NotebookbarDraw.js:491
 #: src/control/Control.NotebookbarImpress.js:581
-#: src/control/Control.NotebookbarWriter.js:1747
+#: src/control/Control.NotebookbarWriter.js:1743
 msgid "Collapse Tabs"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1509
 #: src/control/Control.NotebookbarDraw.js:479
 #: src/control/Control.NotebookbarImpress.js:569
-#: src/control/Control.NotebookbarWriter.js:1735
+#: src/control/Control.NotebookbarWriter.js:1731
 msgid "Status Bar"
 msgstr ""
 
@@ -2270,8 +2270,8 @@ msgstr ""
 #: src/control/Control.NotebookbarCalc.js:3270
 #: src/control/Control.NotebookbarImpress.js:2546
 #: src/control/Control.NotebookbarImpress.js:2850
-#: src/control/Control.NotebookbarWriter.js:3071
-#: src/control/Control.NotebookbarWriter.js:3394
+#: src/control/Control.NotebookbarWriter.js:3067
+#: src/control/Control.NotebookbarWriter.js:3390
 msgid "Group"
 msgstr ""
 
@@ -2288,8 +2288,8 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:1443
 #: src/control/Control.NotebookbarImpress.js:1127
 #: src/control/Control.NotebookbarImpress.js:1406
-#: src/control/Control.NotebookbarWriter.js:935
-#: src/control/Control.NotebookbarWriter.js:1224
+#: src/control/Control.NotebookbarWriter.js:931
+#: src/control/Control.NotebookbarWriter.js:1220
 msgid "Illustrations"
 msgstr ""
 
@@ -2298,7 +2298,7 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:1494
 #: src/control/Control.NotebookbarImpress.js:1141
 #: src/control/Control.NotebookbarImpress.js:1484
-#: src/control/Control.NotebookbarWriter.js:1269
+#: src/control/Control.NotebookbarWriter.js:1265
 #, fuzzy
 msgid "Shapes"
 msgstr "Sdílet"
@@ -2306,7 +2306,7 @@ msgstr "Sdílet"
 #: src/control/Control.NotebookbarCalc.js:1758
 #: src/control/Control.NotebookbarDraw.js:1564
 #: src/control/Control.NotebookbarImpress.js:1571
-#: src/control/Control.NotebookbarWriter.js:1337
+#: src/control/Control.NotebookbarWriter.js:1333
 msgid "Assistant"
 msgstr ""
 
@@ -2361,7 +2361,7 @@ msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:2475
 #: src/control/Control.NotebookbarImpress.js:1887
-#: src/control/Control.NotebookbarWriter.js:2229
+#: src/control/Control.NotebookbarWriter.js:2225
 #, fuzzy
 msgid "Comments"
 msgstr "Komentář"
@@ -2372,15 +2372,15 @@ msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:2726
 #: src/control/Control.NotebookbarCalc.js:3083
-#: src/control/Control.NotebookbarWriter.js:1933
-#: src/control/Control.NotebookbarWriter.js:2908
-#: src/control/Control.NotebookbarWriter.js:3231
+#: src/control/Control.NotebookbarWriter.js:1929
+#: src/control/Control.NotebookbarWriter.js:2904
+#: src/control/Control.NotebookbarWriter.js:3227
 msgid "Wrap"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:2965
 #: src/control/Control.NotebookbarImpress.js:2606
-#: src/control/Control.NotebookbarWriter.js:3117
+#: src/control/Control.NotebookbarWriter.js:3113
 msgid "Image Controls"
 msgstr ""
 
@@ -2395,7 +2395,7 @@ msgstr "Roz~vržení"
 #: src/control/Control.NotebookbarImpress.js:111
 #: src/control/Control.NotebookbarImpress.js:1453
 #: src/control/Control.NotebookbarWriter.js:71
-#: src/control/Control.NotebookbarWriter.js:1216
+#: src/control/Control.NotebookbarWriter.js:1212
 #, fuzzy
 msgid "Table"
 msgstr "~Tabulka"
@@ -2406,21 +2406,21 @@ msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:467
 #: src/control/Control.NotebookbarImpress.js:557
-#: src/control/Control.NotebookbarWriter.js:1723
+#: src/control/Control.NotebookbarWriter.js:1719
 msgid "Ruler"
 msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:872
 #: src/control/Control.NotebookbarImpress.js:941
 #: src/control/Control.NotebookbarImpress.js:2099
-#: src/control/Control.NotebookbarWriter.js:771
-#: src/control/Control.NotebookbarWriter.js:2674
+#: src/control/Control.NotebookbarWriter.js:767
+#: src/control/Control.NotebookbarWriter.js:2670
 msgid "Paragraph"
 msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:1197
 #: src/control/Control.NotebookbarDraw.js:1397
-#: src/control/Control.NotebookbarWriter.js:1193
+#: src/control/Control.NotebookbarWriter.js:1189
 msgid "Page"
 msgstr ""
 
@@ -2513,7 +2513,7 @@ msgid "Merge & Split"
 msgstr ""
 
 #: src/control/Control.NotebookbarImpress.js:2030
-#: src/control/Control.NotebookbarWriter.js:2624
+#: src/control/Control.NotebookbarWriter.js:2620
 msgid "Select"
 msgstr ""
 
@@ -2538,51 +2538,51 @@ msgstr ""
 msgid "Screen Reading"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:910
+#: src/control/Control.NotebookbarWriter.js:906
 msgid "Scroll up"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:917
+#: src/control/Control.NotebookbarWriter.js:913
 msgid "Scroll down"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1068
+#: src/control/Control.NotebookbarWriter.js:1064
 msgid "Lists/Bullets"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1357
+#: src/control/Control.NotebookbarWriter.js:1353
 msgid "Header & Footer"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1426
+#: src/control/Control.NotebookbarWriter.js:1422
 msgid "Section"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1522
+#: src/control/Control.NotebookbarWriter.js:1518
 msgid "Symbols"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1586
+#: src/control/Control.NotebookbarWriter.js:1582
 msgid "Rich Text"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1594
+#: src/control/Control.NotebookbarWriter.js:1590
 msgid "Checkbox"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:1602
+#: src/control/Control.NotebookbarWriter.js:1598
 msgid "Dropdown"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2304
+#: src/control/Control.NotebookbarWriter.js:2300
 msgid "Tracking"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2562
+#: src/control/Control.NotebookbarWriter.js:2558
 msgid "Split"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2746
+#: src/control/Control.NotebookbarWriter.js:2742
 msgid "Number Format"
 msgstr ""
 
@@ -2932,7 +2932,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:242 src/core/Socket.js:1369
+#: src/control/Control.Zotero.js:242 src/core/Socket.js:1368
 msgid "Loading..."
 msgstr "Načítání…"
 
@@ -3661,63 +3661,63 @@ msgstr ""
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr "Došlo k problému při připojování k %productName: "
 
-#: src/core/Socket.js:694
+#: src/core/Socket.js:693
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr "Server je nyní dostupný. Stránku je nutné znovu načíst."
 
-#: src/core/Socket.js:696
+#: src/core/Socket.js:695
 msgid "Server is now reachable..."
 msgstr "Server je nyní dostupný…"
 
-#: src/core/Socket.js:700
+#: src/core/Socket.js:699
 msgid "RELOAD"
 msgstr "Znovu načíst"
 
-#: src/core/Socket.js:713
+#: src/core/Socket.js:712
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:716
+#: src/core/Socket.js:715
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:725
+#: src/core/Socket.js:724
 msgid "LOOLWSD version:"
 msgstr "Verze LOOLWSD:"
 
-#: src/core/Socket.js:750
+#: src/core/Socket.js:749
 msgid "Served by:"
 msgstr "Ze serveru:"
 
-#: src/core/Socket.js:756
+#: src/core/Socket.js:755
 msgid "Unsupported server version."
 msgstr "Nepodporovaná verze serveru."
 
-#: src/core/Socket.js:760
+#: src/core/Socket.js:759
 msgid "LOKit version:"
 msgstr "Verze LOKit:"
 
-#: src/core/Socket.js:884
+#: src/core/Socket.js:883
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:911
+#: src/core/Socket.js:910
 msgid "Session terminated by document owner"
 msgstr "Relace byla ukončena vlastníkem dokumentu"
 
-#: src/core/Socket.js:922
+#: src/core/Socket.js:921
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Server bude vypnut z důvodu údržby (automatické ukládání)"
 
-#: src/core/Socket.js:928
+#: src/core/Socket.js:927
 msgid "Oops, there is a problem connecting the document"
 msgstr "Došlo k problému při připojování k dokumentu"
 
-#: src/core/Socket.js:932
+#: src/core/Socket.js:931
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Server není dostupný, ale automaticky se restartuje. Počkejte prosím."
 
-#: src/core/Socket.js:959
+#: src/core/Socket.js:958
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -3725,7 +3725,7 @@ msgstr ""
 "Dokument byl v úložišti změněn. Načítá se nová verze, vaše verze bude "
 "dostupná jako revize."
 
-#: src/core/Socket.js:965
+#: src/core/Socket.js:964
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -3733,55 +3733,55 @@ msgstr ""
 "Obnovuje se starší revize. Veškeré neuložené změny budou dostupné v historii "
 "verzí"
 
-#: src/core/Socket.js:971
+#: src/core/Socket.js:970
 msgid "Reloading the document after rename"
 msgstr "Dokument je znovu načítán po přejmenování"
 
-#: src/core/Socket.js:1130
+#: src/core/Socket.js:1129
 msgid "Document requires password to view."
 msgstr "Pro prohlížení dokumentu je vyžadováno heslo."
 
-#: src/core/Socket.js:1133
+#: src/core/Socket.js:1132
 msgid "Document requires password to modify."
 msgstr "Pro úpravy dokumentu je vyžadováno heslo."
 
-#: src/core/Socket.js:1135
+#: src/core/Socket.js:1134
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Stisknutím Zrušit dokument otevřete v režimu jen pro čtení."
 
-#: src/core/Socket.js:1139
+#: src/core/Socket.js:1138
 msgid "Wrong password provided. Please try again."
 msgstr "Chybné heslo. Zkuste ho zadat znovu."
 
-#: src/core/Socket.js:1177
+#: src/core/Socket.js:1176
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1208 src/core/Socket.js:1213
+#: src/core/Socket.js:1207 src/core/Socket.js:1212
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1245
+#: src/core/Socket.js:1244
 msgid "Someone"
 msgstr "Někdo"
 
-#: src/core/Socket.js:1246
+#: src/core/Socket.js:1245
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1263
+#: src/core/Socket.js:1262
 msgid "The document is being renamed and will reload shortly"
 msgstr "Dokument se právě přejmenovává a brzy se znovu načte"
 
-#: src/core/Socket.js:1266
+#: src/core/Socket.js:1265
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1369
+#: src/core/Socket.js:1368
 msgid "Connecting..."
 msgstr "Připojování…"
 
-#: src/core/Socket.js:1384
+#: src/core/Socket.js:1383
 msgid "Server is shutting down"
 msgstr ""
 
@@ -3828,23 +3828,23 @@ msgstr "Opětovné připojování…"
 msgid "The server has been disconnected."
 msgstr "Server byl odpojen."
 
-#: src/docdispatcher.ts:556
+#: src/docdispatcher.ts:557
 msgid "Are you sure you want to delete this slide?"
 msgstr "Opravdu si přejete smazat tento snímek?"
 
-#: src/docdispatcher.ts:559
+#: src/docdispatcher.ts:560
 msgid "Are you sure you want to delete this page?"
 msgstr "Opravdu si přejete smazat tuto stránku?"
 
-#: src/docstate.js:90
+#: src/docstate.js:91
 msgid "Standard"
 msgstr ""
 
-#: src/docstate.js:103
+#: src/docstate.js:104
 msgid "Theme colors"
 msgstr ""
 
-#: src/docstate.js:104
+#: src/docstate.js:105
 msgid "Document colors"
 msgstr ""
 
@@ -4151,7 +4151,7 @@ msgstr ""
 msgid "No Comments"
 msgstr "Bez komentářů"
 
-#: src/main.js:133
+#: src/main.js:134
 msgid "Warning! The browser you are using is not supported."
 msgstr "Pozor! Používáte nepodporovaný prohlížeč."
 
