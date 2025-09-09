@@ -22,7 +22,9 @@ interface ViewSetting {
 
 class ServerConnectionService {
 	public constructor() {
-		TileManager.appendAfterFirstTileTask(this.onFirstTileReceived.bind(this));
+		TileManager.appendAfterFirstTileTask(
+			this.onFirstTileReceived.bind(this),
+		);
 	}
 
 	// below methods should be sorted in expected order of execution to help understand the init
@@ -67,7 +69,9 @@ class ServerConnectionService {
 		// first reload notebookbar with zotero if needed
 		const isWriter = app.map?._docLayer?.isWriter();
 		if (isWriter && window.zoteroEnabled) {
-			app.console.debug('ServerConnectionService: reload UI for zotero');
+			app.console.debug(
+				'ServerConnectionService: reload UI for zotero',
+			);
 			app.map.uiManager.refreshUI();
 		}
 
