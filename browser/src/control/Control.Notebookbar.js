@@ -101,6 +101,11 @@ L.Control.Notebookbar = L.Control.extend({
 			$('#invertbackground').hide();
 	},
 
+	resetInCore: function() {
+		this.map.sendUnoCommand('.uno:ToolbarMode?Mode:string=Default');
+		this.setInitialized(false);
+	},
+
 	onRemove: function() {
 		clearTimeout(this.retry);
 		this.map.off('commandstatechanged', this.builder.onCommandStateChanged, this.builder);
@@ -115,6 +120,7 @@ L.Control.Notebookbar = L.Control.extend({
 			this.floatingNavIcon.classList.remove('hasnotebookbar');
 		$('.main-nav #document-header').remove();
 		this.clearNotebookbar();
+		this.resetInCore();
 	},
 
 	onJSUpdate: function (e) {

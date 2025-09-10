@@ -566,7 +566,8 @@ class UIManager extends L.Control {
 	 */
 	initializeLateComponents(): void {
 		app.console.debug('UIManager: late components init');
-		this.initializeNotebookbarInCore();
+		if (this.getCurrentMode() === 'notebookbar')
+			this.initializeNotebookbarInCore();
 		this.initializeSidebar();
 		this.initializeQuickFindInCore();
 	}
@@ -820,7 +821,7 @@ class UIManager extends L.Control {
 		}
 
 		window.prefs.set('compactMode', uiMode.mode === 'classic');
-		this.initializeSidebar();
+		this.initializeLateComponents();
 		this.insertCustomButtons();
 
 		// this code ensures that elements in the notebookbar have their "selected" status
