@@ -141,7 +141,9 @@ function createPageMarginEntryWidget(data: any, builder: any): HTMLElement {
 	custom.id = 'customMarginsLink';
 	custom.textContent = _('Custom Margins…');
 	custom.addEventListener('click', (evt: MouseEvent) => {
-		map.sendUnoCommand(isCalc ? '.uno:PageFormatDialog' : '.uno:PageDialog');
+		map.sendUnoCommand(
+			isCalc ? '.uno:PageFormatDialog' : '.uno:PageDialog',
+		);
 		builder.callback('dialog', 'close', { id: data.id }, null);
 	});
 	container.appendChild(custom);
