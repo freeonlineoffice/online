@@ -33,7 +33,9 @@ if ('undefined' === typeof window) {
 
 					// Decompress the keyframe buffer
 					if (tile.isKeyframe) {
-						tile.keyframeBuffer = new Uint8Array(tileByteSize);
+						tile.keyframeBuffer = new Uint8Array(
+							tileByteSize,
+						);
 						tile.keyframeDeltaSize = L.CanvasTileUtils.unrle(
 							tile.deltas,
 							e.data.tileSize,
