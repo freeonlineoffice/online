@@ -1,4 +1,3 @@
-
 .notebookbar-scroll-wrapper {
 	height: 82px;
 	display: flex;
@@ -85,7 +84,11 @@ button.ui-tab.notebookbar {
 	color: var(--color-main-text);
 }
 
-#shareas { & .unolabel { color: var(--color-main-text) } }
+#shareas {
+	& .unolabel {
+		color: var(--color-main-text);
+	}
+}
 
 .ui-tab.notebookbar[style*='block'] {
 	display: inline-flex !important;

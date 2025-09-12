@@ -110,7 +110,7 @@ div#autoFillPreviewTooltip .lokdialog.ui-dialog-content.ui-widget-content {
 }
 [data-docType='spreadsheet'] .jsdialog-container .ui-dialog-content,
 [data-docType='text'] .jsdialog-container .ui-dialog-content {
-	max-height: calc( 90vh - 98px);
+	max-height: calc(90vh - 98px);
 }
 #SortKeyWindow {
 	/* As used in .jsdialog-container .ui-dialog-content 90 % of the viewport
@@ -371,7 +371,10 @@ algned to the bottom */
 	align-content: initial; /* fixes scrolling range, for example in #stylesview */
 }
 
-.ui-overflow-manager > .notebookbar:not(.ui-separator):not(.ui-overflow-group):not(:has(.ui-overflow-group-container-with-label)) {
+.ui-overflow-manager
+	> .notebookbar:not(.ui-separator):not(.ui-overflow-group):not(
+		:has(.ui-overflow-group-container-with-label)
+	) {
 	height: 49px;
 	/* 14px extra margin for containers without label */
 	margin-bottom: 14px;
@@ -897,10 +900,14 @@ img.context-menu-icon {
  * 5. The submenu contains a radio and also contains <img>
  */
 .context-menu-list:not(:has(img)) .context-menu-item,
-.context-menu-submenu:has(.context-menu-icon-lo-checkmark):not(:has(img)) .context-menu-item,
-.context-menu-submenu:has(.context-menu-icon-radio):not(:has(img)) .context-menu-item,
-.context-menu-submenu:has(.context-menu-icon-lo-checkmark):has(img) .context-menu-item,
-.context-menu-submenu:has(.context-menu-icon-radio):has(img) .context-menu-item {
+.context-menu-submenu:has(.context-menu-icon-lo-checkmark):not(:has(img))
+	.context-menu-item,
+.context-menu-submenu:has(.context-menu-icon-radio):not(:has(img))
+	.context-menu-item,
+.context-menu-submenu:has(.context-menu-icon-lo-checkmark):has(img)
+	.context-menu-item,
+.context-menu-submenu:has(.context-menu-icon-radio):has(img)
+	.context-menu-item {
 	padding-left: 2em;
 }
 
@@ -1202,7 +1209,7 @@ input[type='number']:hover::-webkit-outer-spin-button {
 	border-inline-start: 1px solid var(--color-border);
 	background-color: transparent;
 	padding-left: 20px;
-	border : none;
+	border: none;
 }
 
 .ui-combobox-button:hover {
@@ -1762,7 +1769,6 @@ input[type='number']:hover::-webkit-outer-spin-button {
 	justify-content: center;
 }
 
-
 button.menubutton.sidebar > span {
 	box-shadow: none !important;
 	font-size: var(--default-font-size) !important;
@@ -2009,7 +2015,7 @@ button.menubutton.sidebar > span {
 }
 
 .snackbar .ui-progressbar progress::-webkit-progress-bar {
-	background-color: #FFFF;
+	background-color: #ffff;
 }
 
 #mobile-wizard.popup.snackbar,
@@ -2178,7 +2184,7 @@ button.menubutton.sidebar > span {
 /* Writer - Table of Contents, Index or Bibliography dialog, Columns tab */
 [data-theme='dark'] #ColumnPage #pageexample-img,
 [data-theme='dark'] #ColumnPage #column-iconview img {
-	filter: invert(.9)
+	filter: invert(0.9);
 }
 
 /* scrollable content */
@@ -2670,7 +2676,6 @@ kbd,
 	justify-content: start;
 }
 
-
 /* text-area overflow on function wizard window */
 
 #FormulaDialog #ed_formula.ui-textarea {
@@ -2733,21 +2738,34 @@ kbd,
 	max-height: 19vh;
 }
 
-#ColorPage.jsdialog :is(#iconview_colors, #iconview_recent_colors).ui-iconview .ui-iconview-entry img,
-:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors) .ui-iconview-entry img {
+#ColorPage.jsdialog
+	:is(#iconview_colors, #iconview_recent_colors).ui-iconview
+	.ui-iconview-entry
+	img,
+:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors)
+	.ui-iconview-entry
+	img {
 	padding: 1px;
 }
 
-#ColorPage.jsdialog :is(#iconview_colors, #iconview_recent_colors).ui-iconview .ui-iconview-entry:is(:hover, .selected),
-:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors) .ui-iconview-entry:is(:hover, .selected) {
+#ColorPage.jsdialog
+	:is(#iconview_colors, #iconview_recent_colors).ui-iconview
+	.ui-iconview-entry:is(:hover, .selected),
+:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors)
+	.ui-iconview-entry:is(:hover, .selected) {
 	outline: 2px solid var(--color-primary);
 	border: 1px solid transparent;
 	background-color: transparent;
 	border-radius: 0;
 }
 
-#ColorPage.jsdialog :is(#iconview_colors, #iconview_recent_colors).ui-iconview .ui-iconview-entry span,
-:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors) .ui-iconview-entry span {
+#ColorPage.jsdialog
+	:is(#iconview_colors, #iconview_recent_colors).ui-iconview
+	.ui-iconview-entry
+	span,
+:is(#colorwindow_iv_colors, #colorwindow_iv_recentcolors)
+	.ui-iconview-entry
+	span {
 	font-size: 0; /* Hide placeholder text to prevent layout shifts in color palette iconview widgets due to lazy loading */
 }
 
@@ -2770,7 +2788,9 @@ kbd,
 	margin: 0;
 }
 
-#CharacterPropertiesDialog :is(#font, #fonteffects, #position, #asianlayout) img.jsdialog.ui-drawing-area {
+#CharacterPropertiesDialog
+	:is(#font, #fonteffects, #position, #asianlayout)
+	img.jsdialog.ui-drawing-area {
 	width: 650px;
 }
 
@@ -2814,14 +2834,18 @@ kbd,
 /* Format - Bullets and Numbering */
 
 #BulletsAndNumberingDialog
-:is(#pick_bullet_iconview,
-#pick_numbering_iconview,
-#pick_outline_iconview,
-#pick_graphic_iconview).jsdialog.ui-iconview {
+	:is(
+		#pick_bullet_iconview,
+		#pick_numbering_iconview,
+		#pick_outline_iconview,
+		#pick_graphic_iconview
+	).jsdialog.ui-iconview {
 	grid-template-columns: repeat(4, 1fr);
 }
 
-#BulletsAndNumberingDialog #PickBulletPage #changeBulletBtn.jsdialog.ui-grid-cell {
+#BulletsAndNumberingDialog
+	#PickBulletPage
+	#changeBulletBtn.jsdialog.ui-grid-cell {
 	justify-content: flex-end;
 }
 
@@ -2829,11 +2853,18 @@ kbd,
 	min-width: 650px;
 }
 
-#BulletsAndNumberingDialog #PickGraphicPage.jsdialog #pick_graphic_iconview.ui-iconview .ui-iconview-entry span {
+#BulletsAndNumberingDialog
+	#PickGraphicPage.jsdialog
+	#pick_graphic_iconview.ui-iconview
+	.ui-iconview-entry
+	span {
 	font-size: 0; /* Hide placeholder text to prevent layout shifts in image page of bullets and numbering dialog due to lazy loading */
 }
 
-#BulletsAndNumberingDialog #NumberingPositionPage #previewwin.jsdialog img.jsdialog.ui-drawing-area {
+#BulletsAndNumberingDialog
+	#NumberingPositionPage
+	#previewwin.jsdialog
+	img.jsdialog.ui-drawing-area {
 	width: 370px;
 }
 

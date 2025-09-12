@@ -5,7 +5,12 @@
 	background: var(--color-background-lighter);
 }
 
-.jsdialog *[disabled]:not(label):not(.ui-frame-container):not(.checkbutton):not(.spinfieldcontainer):not(.ui-grid):not(.ui-content):not(.ui-listbox-container):not(.ui-pushbutton-wrapper) {
+.jsdialog
+	*[disabled]:not(label):not(.ui-frame-container):not(.checkbutton):not(
+		.spinfieldcontainer
+	):not(.ui-grid):not(.ui-content):not(.ui-listbox-container):not(
+		.ui-pushbutton-wrapper
+	) {
 	border: 1px solid var(--color-border-lighter);
 }
 
@@ -65,7 +70,9 @@
 	.ui-content.unotoolbutton.selected.has-label,
 [data-theme='dark'] #toggledarktheme,
 [data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected.inline,
-[data-theme='dark'] .hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline),
+[data-theme='dark']
+	.hasnotebookbar
+	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline),
 [data-theme='dark'] .sidebar.unotoolbutton.selected,
 [data-theme='dark'] #context-toolbar .unotoolbutton.selected {
 	background-color: var(--color-background-darker);
@@ -76,7 +83,8 @@
 /* toolbuttons have .unobuttons as children */
 .hasnotebookbar .ui-content.unotoolbutton.has-label:hover,
 .hasnotebookbar .ui-content.unotoolbutton.selected:hover,
-.hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
+.hasnotebookbar
+	.ui-content.unotoolbutton.selected:not(.has-label):not(.inline):hover,
 .sidebar.unotoolbutton.selected:hover,
 .ui-overflow-group-more.unotoolbutton:hover,
 .notebookbar.unotoolbutton.selected:hover,
@@ -99,7 +107,13 @@ button.jsdialog img {
 
 :not(.main-nav) .button-secondary,
 :not(.main-nav) .button-secondary:not(.arrowbackground),
-:not(.main-nav) > div:not(.toolbox) > button:not(.ui-tab):not(.ui-expander):not(.ui-corner-all):not(.button-primary):not(.unobutton):not(.form-field-button):not(.col):not(.arrowbackground):not(.ui-combobox-button) {
+:not(.main-nav)
+	> div:not(.toolbox)
+	> button:not(.ui-tab):not(.ui-expander):not(.ui-corner-all):not(
+		.button-primary
+	):not(.unobutton):not(.form-field-button):not(.col):not(
+		.arrowbackground
+	):not(.ui-combobox-button) {
 	box-sizing: border-box;
 	height: 32px;
 	line-height: normal;

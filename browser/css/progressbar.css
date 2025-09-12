@@ -1,4 +1,3 @@
-
 /* Regular ProgressBar */
 .ui-progressbar {
 	height: 5px !important;
@@ -15,7 +14,7 @@
 }
 
 [data-theme='dark'] .ui-progressbar progress {
-	background-color: #FFFF;
+	background-color: #ffff;
 }
 
 .ui-progressbar progress::-webkit-progress-bar {
@@ -79,7 +78,10 @@
 }
 .slideshow-nav-container img:hover {
 	cursor: pointer;
-	background-image: radial-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+	background-image: radial-gradient(
+		rgba(255, 255, 255, 0.2),
+		rgba(255, 255, 255, 0.1)
+	);
 }
 .skipTransition-true {
 	filter: brightness(0.5);
