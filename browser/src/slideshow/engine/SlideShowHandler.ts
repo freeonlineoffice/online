@@ -505,6 +505,13 @@ class SlideShowHandler {
 		if (this.nCurrentEffect >= this.aNextEffectEventArray.size())
 			return false;
 
+		if (this.presenter.isLeader()) {
+			app.socket.sendMessage(
+				'slideshowfollow effect ' +
+					JSON.stringify({ currentEffect: this.nCurrentEffect }),
+			);
+		}
+
 		this.notifyNextEffectStart();
 
 		this.aNextEffectEventArray.at(this.nCurrentEffect).fire();
@@ -758,6 +765,12 @@ class SlideShowHandler {
 		}
 
 		this.bIsRewinding = false;
+		if (this.presenter.isLeader()) {
+			app.socket.sendMessage(
+				'slideshowfollow effect ' +
+					JSON.stringify({ currentEffect: this.nCurrentEffect - 1 }),
+			);
+		}
 	}
 
 	/** rewindToPreviousSlide

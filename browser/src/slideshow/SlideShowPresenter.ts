@@ -177,7 +177,7 @@ class SlideShowPresenter {
 
 		// Follow me slide hooks
 		this._map.on(
-			'newfollowmepresentation dispatcheffect rewindeffect followvideo endpresentation displayslide',
+			'newfollowmepresentation dispatcheffect rewindeffect followvideo endpresentation displayslide effect',
 			this.handleFollowMeEvents,
 			this,
 		);
@@ -207,7 +207,7 @@ class SlideShowPresenter {
 
 		// Follow me slide hooks
 		this._map.off(
-			'newfollowmepresentation dispatcheffect rewindeffect followvideo endpresentation displayslide',
+			'newfollowmepresentation dispatcheffect rewindeffect followvideo endpresentation displayslide effect',
 			this.handleFollowMeEvents,
 			this,
 		);
@@ -231,6 +231,9 @@ class SlideShowPresenter {
 				break;
 			case 'displayslide':
 				this._slideShowNavigator.setLeaderSlide(info);
+				break;
+			case 'effect':
+				this._slideShowNavigator.setLeaderEffect(info);
 				break;
 			case 'endpresentation':
 				if (!this.isFollowing()) return;
