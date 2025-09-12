@@ -321,14 +321,14 @@ app.definitions.AutoFillMarkerSection = class AutoFillMarkerSection extends (
 		this.sectionProperties.inMouseDown = false;
 	}
 
-	public onMouseEnter() {
-		const grid: any = document.querySelector('.leaflet-layer');
+	public onMouseEnter () {
+		const grid: any = document.querySelector('.leaflet-map-pane');
 		grid.classList.remove('spreadsheet-cursor');
 		grid.style.cursor = 'crosshair';
 	}
 
-	public onMouseLeave() {
-		const grid: any = document.querySelector('.leaflet-layer');
+	public onMouseLeave () {
+		const grid: any = document.querySelector('.leaflet-map-pane');
 		grid.classList.add('spreadsheet-cursor');
 	}
 
