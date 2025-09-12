@@ -4,15 +4,15 @@
 */
 /* global DlgYesNo $ AdminSocketBase Admin _ */
 var AdminSocketSettings = AdminSocketBase.extend({
-	constructor: function(host) {
+	constructor: function (host) {
 		this.base(host);
 		this._init();
 	},
 
-	_init: function() {
+	_init: function () {
 		var socketSettings = this.socket;
-		$(document).ready(function() {
-			$('#admin_settings').on('submit', function(e) {
+		$(document).ready(function () {
+			$('#admin_settings').on('submit', function (e) {
 				e.preventDefault();
 				var memStatsSize = $('#mem_stats_size').val();
 				var memStatsInterval = $('#mem_stats_interval').val();
@@ -23,20 +23,29 @@ var AdminSocketSettings = AdminSocketBase.extend({
 				command += ' mem_stats_interval=' + memStatsInterval;
 				command += ' cpu_stats_size=' + cpuStatsSize;
 				command += ' cpu_stats_interval=' + cpuStatsInterval;
-				command += ' limit_virt_mem_mb=' + $('#limit_virt_mem_mb').val();
-				command += ' limit_stack_mem_kb=' + $('#limit_stack_mem_kb').val();
-				command += ' limit_file_size_mb=' + $('#limit_file_size_mb').val();
+				command +=
+					' limit_virt_mem_mb=' + $('#limit_virt_mem_mb').val();
+				command +=
+					' limit_stack_mem_kb=' +
+					$('#limit_stack_mem_kb').val();
+				command +=
+					' limit_file_size_mb=' +
+					$('#limit_file_size_mb').val();
 				socketSettings.send(command);
 			});
 
-			document.getElementById('btnShutdown').onclick = function() {
-				var dialog = (new DlgYesNo())
+			document.getElementById('btnShutdown').onclick = function () {
+				var dialog = new DlgYesNo()
 					.title(_('Confirmation'))
-					.text(_('Are you sure you want to shut down the server?'))
+					.text(
+						_(
+							'Are you sure you want to shut down the server?',
+						),
+					)
 					.yesButtonText(_('OK'))
 					.noButtonText(_('Cancel'))
 					.type('warning')
-					.yesFunction(function() {
+					.yesFunction(function () {
 						socketSettings.send('shutdown maintenance');
 					});
 				dialog.open();
@@ -44,7 +53,7 @@ var AdminSocketSettings = AdminSocketBase.extend({
 		});
 	},
 
-	onSocketOpen: function() {
+	onSocketOpen: function () {
 		// Base class' onSocketOpen handles authentication
 		this.base.call(this);
 		this.socket.send('subscribe settings');
@@ -52,12 +61,11 @@ var AdminSocketSettings = AdminSocketBase.extend({
 		this.socket.send('version');
 	},
 
-	onSocketMessage: function(e) {
+	onSocketMessage: function (e) {
 		var textMsg;
 		if (typeof e.data === 'string') {
 			textMsg = e.data;
-		}
-		else {
+		} else {
 			textMsg = '';
 		}
 
@@ -73,42 +81,70 @@ var AdminSocketSettings = AdminSocketBase.extend({
 					elem.value = settingVal;
 				}
 			}
-		}
-		else if (textMsg.startsWith('loolserver ')) {
+		} else if (textMsg.startsWith('loolserver ')) {
 			// This must be the first message, unless we reconnect.
-			var loolwsdVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+			var loolwsdVersionObj = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			var h = loolwsdVersionObj.Hash;
-			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
-				h = '<a target="_blank" href="https://hub.libreoffice.org/git-online/' + h + '">' + h + '</a>';
-				$('#loolwsd-version').html(loolwsdVersionObj.Version + ' (git hash: ' + h + ')');
-			}
-			else {
+			if (
+				parseInt(h, 16).toString(16) ===
+				h.toLowerCase().replace(/^0+/, '')
+			) {
+				h =
+					'<a target="_blank" href="https://hub.libreoffice.org/git-online/' +
+					h +
+					'">' +
+					h +
+					'</a>';
+				$('#loolwsd-version').html(
+					loolwsdVersionObj.Version + ' (git hash: ' + h + ')',
+				);
+			} else {
 				$('#loolwsd-version').text(loolwsdVersionObj.Version);
 			}
 			let buildConfig = loolwsdVersionObj.BuildConfig;
 			if (loolwsdVersionObj.PocoVersion !== undefined) {
-				buildConfig += ' (poco version: ' + loolwsdVersionObj.PocoVersion + ')';
+				buildConfig +=
+					' (poco version: ' +
+					loolwsdVersionObj.PocoVersion +
+					')';
 			}
 			$('#loolwsd-buildconfig').html(buildConfig);
-		}
-		else if (textMsg.startsWith('lokitversion ')) {
-			var lokitVersionObj = JSON.parse(textMsg.substring(textMsg.indexOf('{')));
+		} else if (textMsg.startsWith('lokitversion ')) {
+			var lokitVersionObj = JSON.parse(
+				textMsg.substring(textMsg.indexOf('{')),
+			);
 			h = lokitVersionObj.BuildId.substring(0, 10);
-			if (parseInt(h,16).toString(16) === h.toLowerCase().replace(/^0+/, '')) {
-				h = '<a target="_blank" href="https://git.libreoffice.org/core/+log/' + lokitVersionObj.BuildId + '/">' + h + '</a>';
+			if (
+				parseInt(h, 16).toString(16) ===
+				h.toLowerCase().replace(/^0+/, '')
+			) {
+				h =
+					'<a target="_blank" href="https://git.libreoffice.org/core/+log/' +
+					lokitVersionObj.BuildId +
+					'/">' +
+					h +
+					'</a>';
 			}
-			$('#lokit-version').html(lokitVersionObj.ProductName + ' ' +
-			                         lokitVersionObj.ProductVersion + lokitVersionObj.ProductExtension +
-			                         ' (git hash: ' + h + ')');
+			$('#lokit-version').html(
+				lokitVersionObj.ProductName +
+					' ' +
+					lokitVersionObj.ProductVersion +
+					lokitVersionObj.ProductExtension +
+					' (git hash: ' +
+					h +
+					')',
+			);
 		}
 	},
 
-	onSocketClose: function() {
+	onSocketClose: function () {
 		clearInterval(this._basicStatsIntervalId);
 		this.base.call(this);
-	}
+	},
 });
 
-Admin.Settings = function(host) {
+Admin.Settings = function (host) {
 	return new AdminSocketSettings(host);
 };

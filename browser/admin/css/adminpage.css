@@ -1,137 +1,138 @@
 @font-face {
-   font-family: "Montserrat";
-   src: url("%SERVICE_ROOT%/browser/%VERSION%/admin/font/Montserrat-Regular.ttf") format("truetype");
+	font-family: 'Montserrat';
+	src: url('%SERVICE_ROOT%/browser/%VERSION%/admin/font/Montserrat-Regular.ttf')
+		format('truetype');
 }
 
-html, body {
-   font-family: 'Montserrat', sans-serif;
+html,
+body {
+	font-family: 'Montserrat', sans-serif;
 }
 
 /* These classes are for tab views without javascipt. */
 
 div:target.mtabs {
-   display: block;
+	display: block;
 }
 
 div.mtabs {
-   display: none
+	display: none;
 }
 
 /* These classes are for collapsable elements without javascript. */
 
-input[type=checkbox].mcollapsable + ul {
-   display: block;
-   visibility: hidden;
-   height: 0;
-   opacity: 0;
-   transition-property: opacity, visibility;
-   transition-duration: 500ms, 500ms;
+input[type='checkbox'].mcollapsable + ul {
+	display: block;
+	visibility: hidden;
+	height: 0;
+	opacity: 0;
+	transition-property: opacity, visibility;
+	transition-duration: 500ms, 500ms;
 }
 
-input[type=checkbox].mcollapsable:checked + ul {
-   visibility: visible;
-   height: auto;
-   opacity: 1;
-   transition-property: opacity, visibility;
-   transition-duration: 500ms, 500ms;
+input[type='checkbox'].mcollapsable:checked + ul {
+	visibility: visible;
+	height: auto;
+	opacity: 1;
+	transition-property: opacity, visibility;
+	transition-duration: 500ms, 500ms;
 }
 
 #admintop {
-     height:62px;
-     background-color:#17191E;
-     line-height:50px;
+	height: 62px;
+	background-color: #17191e;
+	line-height: 50px;
 }
 
 .admintopleft {
-    margin-left:12px;
-    color:#9D998D;
+	margin-left: 12px;
+	color: #9d998d;
 }
 
 .admintopright {
-    margin-right:12px;
-    color:#9D998D;
+	margin-right: 12px;
+	color: #9d998d;
 }
 
 div.adminoptions {
-    margin-right:12px;
+	margin-right: 12px;
 }
 
 button.adminoptions {
-    width:40px;
-    background-color:#17191E;
-    border:none;
+	width: 40px;
+	background-color: #17191e;
+	border: none;
 }
 
 div.menu1-list {
-    height:100%;
+	height: 100%;
 }
 
 div.admin-columns {
-    height:calc(100vh - 70px);
-    background-color: #F5F5F5;
+	height: calc(100vh - 70px);
+	background-color: #f5f5f5;
 }
 
 #column-admin-panel {
-    width:225px;
+	width: 225px;
 }
 
 div.list-admin-panel {
-    height:100%;
+	height: 100%;
 }
 
 #column-admin-panel-expand {
-   width:70px;
-   display:none;
+	width: 70px;
+	display: none;
 }
 
 #tab-content-documents-opened {
-   display:grid;
+	display: grid;
 }
 
 tr.adminoverview {
-   height:40px;
+	height: 40px;
 }
 
 #tab-content-users-online {
-   display:none;
+	display: none;
 }
 
 #refreshHistory {
-   min-width:120px;
+	min-width: 120px;
 }
 
 textarea.ex-current-docs {
-   width: 100%;
-   resize: vertical;
+	width: 100%;
+	resize: vertical;
 }
 
 #refresh-log,
 #button-open-log-list-modal,
 #button-save-admin-settings,
-#button-update-loglevel
-{
-   min-width:120px;
+#button-update-loglevel {
+	min-width: 120px;
 }
 
 label.label-channel-filter {
-   vertical-align: middle;
-   line-height:30px;
+	vertical-align: middle;
+	line-height: 30px;
 }
 
 #log-lines {
-   width:100%;
-   height:100%;
-   min-height: calc(100vh - 250px);
-   resize:vertical;
+	width: 100%;
+	height: 100%;
+	min-height: calc(100vh - 250px);
+	resize: vertical;
 }
 
 #update-log-levels {
-   min-width:140px;
+	min-width: 140px;
 }
 
 #btnShutdown {
-   min-width:140px;
-   margin-inline-end:14px;
+	min-width: 140px;
+	margin-inline-end: 14px;
 }
 
 #mem_stats_size,
@@ -141,7 +142,6 @@ label.label-channel-filter {
 #limit_virt_mem_mb,
 #limit_stack_mem_kb,
 #limit_file_size_mb,
-#mem_stats_size
-{
-   max-width:200px;
+#mem_stats_size {
+	max-width: 200px;
 }

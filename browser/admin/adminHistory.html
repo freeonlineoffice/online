@@ -1,20 +1,33 @@
 <main>
-  <div class="container">
-    <script>Admin.History(host);</script>
+	<div class="container">
+		<script>
+			Admin.History(host);
+		</script>
 
-    <h3 class="title is-3"><script>document.write(l10nstrings.strHistory)</script></h3>
+		<h3 class="title is-3">
+			<script>
+				document.write(l10nstrings.strHistory);
+			</script>
+		</h3>
 
-    <div class="buttons is-fullwidth is-right">
-      <button class="button is-info" id="refreshHistory"><script>document.write(l10nstrings.strRefresh)</script></button>
-    </div>
+		<div class="buttons is-fullwidth is-right">
+			<button class="button is-info" id="refreshHistory">
+				<script>
+					document.write(l10nstrings.strRefresh);
+				</script>
+			</button>
+		</div>
 
-    <pre id="json-doc"><script>document.write(l10nstrings.strDocuments)</script><br/><textarea class="ex-current-docs" rows="10"></textarea></pre>
-    <pre id="json-ex-doc"><script>document.write(l10nstrings.strExpired)</script><br/><textarea class="ex-current-docs" rows="10"></textarea></pre>
-
-  </div>
+		<pre
+			id="json-doc"
+		><script>document.write(l10nstrings.strDocuments)</script><br/><textarea class="ex-current-docs" rows="10"></textarea></pre>
+		<pre
+			id="json-ex-doc"
+		><script>document.write(l10nstrings.strExpired)</script><br/><textarea class="ex-current-docs" rows="10"></textarea></pre>
+	</div>
 </main>
 
 <script>
-  document.getElementById('a-history-mobile').classList.add('is-active');
-  document.getElementById('a-history-tablet').classList.add('is-active');
+	document.getElementById('a-history-mobile').classList.add('is-active');
+	document.getElementById('a-history-tablet').classList.add('is-active');
 </script>

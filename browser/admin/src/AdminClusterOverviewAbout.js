@@ -2,34 +2,37 @@
 /* global AdminSocketBase Admin $ */
 
 var AdminClusterOverviewAbout = AdminSocketBase.extend({
-    constructor: function(host, routeToken) {
-        this.base(host);
-        this.routeToken = routeToken;
-    },
+	constructor: function (host, routeToken) {
+		this.base(host);
+		this.routeToken = routeToken;
+	},
 
-    onSocketMessage: function(e) {
-        var textMsg;
-        if (typeof e.data === 'string') {
-            textMsg = e.data;
-        }
-        else {
-            textMsg = '';
-        }
-        if (textMsg.startsWith('license')) {
-            $('#license-content').html(textMsg.substring('license: '.length));
-        }
-    },
+	onSocketMessage: function (e) {
+		var textMsg;
+		if (typeof e.data === 'string') {
+			textMsg = e.data;
+		} else {
+			textMsg = '';
+		}
+		if (textMsg.startsWith('license')) {
+			$('#license-content').html(
+				textMsg.substring('license: '.length),
+			);
+		}
+	},
 
-    onSocketOpen: function() {
-        this.socket.send('auth jwt=' + window.jwtToken + ' routeToken=' + this.routeToken);
-        this.socket.send('license');
-    },
+	onSocketOpen: function () {
+		this.socket.send(
+			'auth jwt=' + window.jwtToken + ' routeToken=' + this.routeToken,
+		);
+		this.socket.send('license');
+	},
 
-    onSocketClose: function() {
-        this.base.call(this);
-    }
+	onSocketClose: function () {
+		this.base.call(this);
+	},
 });
 
-Admin.ClusterOverviewAbout = function(host, routeToken) {
-    return new AdminClusterOverviewAbout(host, routeToken);
+Admin.ClusterOverviewAbout = function (host, routeToken) {
+	return new AdminClusterOverviewAbout(host, routeToken);
 };

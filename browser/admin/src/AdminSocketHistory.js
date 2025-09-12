@@ -4,15 +4,15 @@
 */
 /* global Admin $ AdminSocketBase */
 var AdminSocketHistory = AdminSocketBase.extend({
-	constructor: function(host) {
+	constructor: function (host) {
 		this.base(host);
 	},
 
-	refreshHistory: function() {
+	refreshHistory: function () {
 		this.socket.send('history');
 	},
 
-	onSocketOpen: function() {
+	onSocketOpen: function () {
 		// Base class' onSocketOpen handles authentication
 		this.base.call(this);
 
@@ -23,7 +23,7 @@ var AdminSocketHistory = AdminSocketBase.extend({
 		this.refreshHistory();
 	},
 
-	onSocketMessage: function(e) {
+	onSocketMessage: function (e) {
 		//if (e.data == 'InvalidAuthToken' || e.data == 'NotAuthenticated') {
 		//	this.base.call(this);
 		//	this.refreshHistory();
@@ -40,11 +40,11 @@ var AdminSocketHistory = AdminSocketBase.extend({
 		}
 	},
 
-	onSocketClose: function() {
+	onSocketClose: function () {
 		this.base.call(this);
-	}
+	},
 });
 
-Admin.History = function(host) {
+Admin.History = function (host) {
 	return new AdminSocketHistory(host);
 };

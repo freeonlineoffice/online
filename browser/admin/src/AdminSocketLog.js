@@ -6,26 +6,30 @@
 var AdminSocketLog = AdminSocketBase.extend({
 	_logLines: '',
 
-	constructor: function(host) {
+	constructor: function (host) {
 		this.base(host);
 		// There is a "$" is never used error. Let's get rid of this. This is vanilla script and has not more lines than the one with JQuery.
 		$('#form-channel-list').id;
 	},
 
-	refreshLog: function() {
+	refreshLog: function () {
 		this.socket.send('log_lines');
 	},
 
-	pullChannelList: function() {
+	pullChannelList: function () {
 		this.socket.send('channel_list');
 	},
 
-	sendChannelListLogLevels: function(e) {
+	sendChannelListLogLevels: function (e) {
 		e.stopPropagation();
 
 		// We change the colour of the button when we send the data and change it back when the task is done (in function applyChannelList). But it is happening too fast.
-		document.getElementById('update-log-levels').classList.add('is-warning');
-		document.getElementById('update-log-levels').classList.remove('is-info');
+		document
+			.getElementById('update-log-levels')
+			.classList.add('is-warning');
+		document
+			.getElementById('update-log-levels')
+			.classList.remove('is-info');
 
 		// Get the form.
 		var form = document.getElementById('form-channel-list');
@@ -36,36 +40,60 @@ var AdminSocketLog = AdminSocketBase.extend({
 		// Prepare the statement.
 		var textToSend = 'update-log-levels';
 		for (var i = 0; i < selectList.length; i++) {
-			textToSend += ' ' + selectList[i].getAttribute('name').replace('channel-', '') + '=' + selectList[i].value;
+			textToSend +=
+				' ' +
+				selectList[i].getAttribute('name').replace('channel-', '') +
+				'=' +
+				selectList[i].value;
 		}
 
 		this.socket.send(textToSend);
-		document.getElementById('channel-list-modal').classList.remove('is-active');
+		document
+			.getElementById('channel-list-modal')
+			.classList.remove('is-active');
 	},
 
-	onSocketOpen: function() {
+	onSocketOpen: function () {
 		// Base class' onSocketOpen handles authentication
 		this.base.call(this);
 
-		document.getElementById('refresh-log').onclick = this.refreshLog.bind(this);
-		document.getElementById('update-log-levels').onclick = this.sendChannelListLogLevels.bind(this);
-		document.getElementById('log-channel-filter').onchange = this.applyChannelFilter.bind(this);
+		document.getElementById('refresh-log').onclick =
+			this.refreshLog.bind(this);
+		document.getElementById('update-log-levels').onclick =
+			this.sendChannelListLogLevels.bind(this);
+		document.getElementById('log-channel-filter').onchange =
+			this.applyChannelFilter.bind(this);
 
 		this.pullChannelList();
 		this.refreshLog();
 	},
 
-	applyChannelList: function(channelListStr) {
+	applyChannelList: function (channelListStr) {
 		var channelListArr = channelListStr.split(' '); // Every item holds: channel name + = + log level.
 
 		// Here we have the log channel list and their respective log levels.
 		// We will create items for them. User will be able to set the log level for each channel.
 		var channelForm = document.getElementById('form-channel-list');
 		channelForm.replaceChildren(); // Clear and refill it.
-		var optionList = Array('none', 'fatal', 'critical', 'error', 'warning', 'notice', 'information', 'debug', 'trace');
+		var optionList = Array(
+			'none',
+			'fatal',
+			'critical',
+			'error',
+			'warning',
+			'notice',
+			'information',
+			'debug',
+			'trace',
+		);
 		var innerHTML = ''; // Of select elements.
 		for (var i = 0; i < optionList.length; i++) {
-			innerHTML += '<option value="' + optionList[i] + '">' + optionList[i] + '</option>';
+			innerHTML +=
+				'<option value="' +
+				optionList[i] +
+				'">' +
+				optionList[i] +
+				'</option>';
 		}
 
 		for (i = 0; i < channelListArr.length; i++) {
@@ -99,43 +127,63 @@ var AdminSocketLog = AdminSocketBase.extend({
 			}
 		}
 
-		document.getElementById('update-log-levels').classList.remove('is-warning');
+		document
+			.getElementById('update-log-levels')
+			.classList.remove('is-warning');
 		document.getElementById('update-log-levels').classList.add('is-info');
 	},
 
-	applyChannelFilter: function() {
-		if (document.getElementById('log-channel-filter').selectedIndex !== 0) {
-			var filteredChannel = document.getElementById('log-channel-filter').value;
+	applyChannelFilter: function () {
+		if (
+			document.getElementById('log-channel-filter').selectedIndex !== 0
+		) {
+			var filteredChannel =
+				document.getElementById('log-channel-filter').value;
 			var filteredLines = '';
 			var lineList = this._logLines.split('\n');
 			for (var i = 0; i < lineList.length; i++) {
 				if (lineList[i].split('[').length > 1) {
-					if (lineList[i].split('[')[1].split(']')[0].trim() === filteredChannel)
+					if (
+						lineList[i].split('[')[1].split(']')[0].trim() ===
+						filteredChannel
+					)
 						filteredLines += lineList[i] + '\n';
 				}
 			}
 			document.getElementById('log-lines').value = filteredLines;
-		}
-		else {
+		} else {
 			document.getElementById('log-lines').value = this._logLines;
 		}
 	},
 
-	refreshChannelFilter: function() {
+	refreshChannelFilter: function () {
 		var lineList = this._logLines.split('\n');
 		var channelList = new Array(0);
 		for (var i = 0; i < lineList.length; i++) {
-			if (lineList[i].trim() !== '' && lineList[i].split('[').length > 1) {
-				var channelName = lineList[i].split('[')[1].split(']')[0].trim();
+			if (
+				lineList[i].trim() !== '' &&
+				lineList[i].split('[').length > 1
+			) {
+				var channelName = lineList[i]
+					.split('[')[1]
+					.split(']')[0]
+					.trim();
 				if (!channelList.includes(channelName))
 					channelList.push(channelName);
 			}
 		}
 
-		var currentFilteredChannel = document.getElementById('log-channel-filter').value;
+		var currentFilteredChannel =
+			document.getElementById('log-channel-filter').value;
 
 		// Remove previous channels.
-		for (i = document.getElementById('log-channel-filter').options.length - 1; i > 0; i--)
+		for (
+			i =
+				document.getElementById('log-channel-filter').options
+					.length - 1;
+			i > 0;
+			i--
+		)
 			document.getElementById('log-channel-filter').remove(i);
 
 		// Now add new ones.
@@ -149,30 +197,32 @@ var AdminSocketLog = AdminSocketBase.extend({
 		if (!channelList.includes(currentFilteredChannel))
 			document.getElementById('log-channel-filter').selectedIndex = 0;
 		else
-			document.getElementById('log-channel-filter').selectedIndex = channelList.findIndex(function(item) {return item === currentFilteredChannel;}) + 1;
+			document.getElementById('log-channel-filter').selectedIndex =
+				channelList.findIndex(function (item) {
+					return item === currentFilteredChannel;
+				}) + 1;
 
 		// Now, we will apply filter.
 		this.applyChannelFilter();
 	},
 
-	onSocketMessage: function(e) {
+	onSocketMessage: function (e) {
 		if (e.data.startsWith('log_lines')) {
 			var result = e.data;
 			result = result.substring(10, result.length);
 			this._logLines = result;
 			this.refreshChannelFilter();
-		}
-		else if (e.data.startsWith('channel_list')) {
+		} else if (e.data.startsWith('channel_list')) {
 			var channelListStr = e.data.substring(13, e.data.length);
 			this.applyChannelList(channelListStr);
 		}
 	},
 
-	onSocketClose: function() {
+	onSocketClose: function () {
 		this.base.call(this);
-	}
+	},
 });
 
-Admin.Log = function(host) {
+Admin.Log = function (host) {
 	return new AdminSocketLog(host);
 };

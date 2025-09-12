@@ -16,7 +16,10 @@ var AdminSocketBase = Base.extend({
 
 		// We do not allow such child class to instantiate websocket that do not implement
 		// onSocketMessage and onSocketOpen.
-		if (typeof this.onSocketMessage === 'function' && typeof this.onSocketOpen === 'function') {
+		if (
+			typeof this.onSocketMessage === 'function' &&
+			typeof this.onSocketOpen === 'function'
+		) {
 			this.socket = new WebSocket(host);
 			this.socket.onopen = this.onSocketOpen.bind(this);
 			this.socket.onclose = this.onSocketClose.bind(this);
@@ -26,7 +29,7 @@ var AdminSocketBase = Base.extend({
 		}
 
 		this.pageWillBeRefreshed = false;
-		var onBeforeFunction = function() {
+		var onBeforeFunction = function () {
 			this.pageWillBeRefreshed = true;
 		};
 		window.onbeforeunload = onBeforeFunction.bind(this);
@@ -42,29 +45,37 @@ var AdminSocketBase = Base.extend({
 	},
 
 	onSocketClose: function () {
-		this.socket.onerror = function () { };
-		this.socket.onclose = function () { };
-		this.socket.onmessage = function () { };
+		this.socket.onerror = function () {};
+		this.socket.onclose = function () {};
+		this.socket.onmessage = function () {};
 		this.socket.close();
 
 		if (this.pageWillBeRefreshed === false) {
-			var dialog = (new DlgYesNo())
+			var dialog = new DlgYesNo()
 				.title(_('Refresh'))
-				.text(_('Server has been shut down; please reload the page.'))
+				.text(
+					_(
+						'Server has been shut down; please reload the page.',
+					),
+				)
 				.yesButtonText(_('OK'))
 				.type('warning')
-				.yesFunction(function() { window.location.reload(); });
+				.yesFunction(function () {
+					window.location.reload();
+				});
 			dialog.open();
 		}
 	},
 
 	onSocketError: function () {
-		var dialog = (new DlgYesNo())
+		var dialog = new DlgYesNo()
 			.title(_('Connection error'))
 			.text(_('Connection error'))
 			.yesButtonText(_('OK'))
 			.type('warning')
-			.yesFunction(function() { window.location.reload(); });
+			.yesFunction(function () {
+				window.location.reload();
+			});
 		dialog.open();
-	}
+	},
 });
