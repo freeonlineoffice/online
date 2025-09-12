@@ -1,5 +1,5 @@
-const https = require("https");
-const http = require("http");
+const https = require('https');
+const http = require('http');
 
 const { spawn, fork } = require('child_process');
 if (process.argv.length < 4 || process.argv[2] == '--help') {
@@ -29,10 +29,11 @@ let args = [
 	'--o:storage.filesystem[@allow]=true',
 	'--o:admin_console.username=admin',
 	'--o:admin_console.password=admin',
-	'--o:logging.file[@enable]=true --o:logging.level=' + (debug ? 'trace' : 'warning'),
+	'--o:logging.file[@enable]=true --o:logging.level=' +
+		(debug ? 'trace' : 'warning'),
 	'--o:trace_event[@enable]=true',
 	`--port=${port}`,
-	'--signal'
+	'--signal',
 ];
 
 let ssl_args = [
@@ -41,18 +42,15 @@ let ssl_args = [
 	`--o:ssl.ca_file_path=${top_builddir}/etc/ca-chain.cert.pem`,
 ];
 
-if (ssl_flag === 'true')
-	args = [...args, ...ssl_args];
-else
-	args = [...args, '--o:ssl.enable=false'];
+if (ssl_flag === 'true') args = [...args, ...ssl_args];
+else args = [...args, '--o:ssl.enable=false'];
 
 process.on('SIGUSR2', serverReady);
 
-var loolwsd_options = debug ? {} : { stdio: 'ignore'};
+var loolwsd_options = debug ? {} : { stdio: 'ignore' };
 const loolwsd = spawn(`${top_builddir}/loolwsd`, args, loolwsd_options);
 
-if (debug)
-{
+if (debug) {
 	loolwsd.stdout.on('data', (data) => {
 		console.log(`stdout: ${data}`);
 	});
@@ -65,84 +63,111 @@ loolwsd.on('exit', (code) => {
 	console.log(`loolwsd process exited with code ${code}`);
 });
 
-process.env.NODE_PATH = `${top_builddir}/browser/node_modules`
+process.env.NODE_PATH = `${top_builddir}/browser/node_modules`;
 let childNodes = [];
 
 function serverReady() {
-    console.log('\nTest running - connect to:\n\n\t' +
-		(ssl_flag === 'true'?'https':'http') +
-		'://localhost:9999/browser/1234/lool.html?file_path=file://' +
-		top_builddir + '/test/data/perf-test-edit.odt\n\n');
+	console.log(
+		'\nTest running - connect to:\n\n\t' +
+			(ssl_flag === 'true' ? 'https' : 'http') +
+			'://localhost:9999/browser/1234/lool.html?file_path=file://' +
+			top_builddir +
+			'/test/data/perf-test-edit.odt\n\n',
+	);
 
-    let execArgs = [];
+	let execArgs = [];
 
-    if (inspect === 'true')
-	execArgs.push('--inspect-brk');
-    childNodes.push(
-	fork(`${srcdir}/test/load.js`, [ssl_flag, top_builddir, `${top_builddir}/test/data/perf-test-edit.odt`, `testEdit_1`, `${port}`, `${typing_speed}`, `${typing_duration}`, `${recordStats}`, `${single_view}`], {execArgv: execArgs})
-);
-    if(single_view !== "true") {
-	for (let i = 2; i <= 6; i++) {
-	    childNodes.push(
-		fork(`${srcdir}/test/load.js`, [ssl_flag, top_builddir, `${top_builddir}/test/data/perf-test-edit.odt`, `testEdit_${i}`, `${port}`, `${typing_speed}`, `${typing_duration}`, 'false', 'false'])
-		);
+	if (inspect === 'true') execArgs.push('--inspect-brk');
+	childNodes.push(
+		fork(
+			`${srcdir}/test/load.js`,
+			[
+				ssl_flag,
+				top_builddir,
+				`${top_builddir}/test/data/perf-test-edit.odt`,
+				`testEdit_1`,
+				`${port}`,
+				`${typing_speed}`,
+				`${typing_duration}`,
+				`${recordStats}`,
+				`${single_view}`,
+			],
+			{ execArgv: execArgs },
+		),
+	);
+	if (single_view !== 'true') {
+		for (let i = 2; i <= 6; i++) {
+			childNodes.push(
+				fork(`${srcdir}/test/load.js`, [
+					ssl_flag,
+					top_builddir,
+					`${top_builddir}/test/data/perf-test-edit.odt`,
+					`testEdit_${i}`,
+					`${port}`,
+					`${typing_speed}`,
+					`${typing_duration}`,
+					'false',
+					'false',
+				]),
+			);
+		}
 	}
-    }
-    setInterval(dumpMemoryUse, 3000);
+	setInterval(dumpMemoryUse, 3000);
 }
 
 function vacuumCleaner(kill, message, code) {
-		console.log(message);
-		childNodes.forEach(n => n.kill(kill));
-		loolwsd.kill(kill);
-		console.log(`Process exited with code ${code}`);
+	console.log(message);
+	childNodes.forEach((n) => n.kill(kill));
+	loolwsd.kill(kill);
+	console.log(`Process exited with code ${code}`);
 }
 
 function exitHandler(options, exitCode) {
 	if (options.cleanup) {
-		vacuumCleaner('SIGKILL', 'cleaning up...', exitCode)
+		vacuumCleaner('SIGKILL', 'cleaning up...', exitCode);
 	}
 	if (options.exit) {
-		vacuumCleaner('SIGINT', 'exiting...', exitCode)
+		vacuumCleaner('SIGINT', 'exiting...', exitCode);
 	}
 	process.exit();
 }
 
 //do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup: true}));
+process.on('exit', exitHandler.bind(null, { cleanup: true }));
 
 //catches ctrl+c event
-process.on('SIGINT', exitHandler.bind(null, {exit: true}));
+process.on('SIGINT', exitHandler.bind(null, { exit: true }));
 
 //catches uncaught exceptions
-process.on('uncaughtException', ex => {
+process.on('uncaughtException', (ex) => {
 	console.error(ex, 'uncaught exception');
-	exitHandler({exit:true});
+	exitHandler({ exit: true });
 });
 
 function parseStats(content) {
 	var stats = {};
 	var lines = content.split('\n');
-	if (content.length < 128 || lines.length < 16)
-		return undefined; // too small
+	if (content.length < 128 || lines.length < 16) return undefined; // too small
 
 	for (let l of lines) {
 		var keyval = l.split(' ');
-		if (keyval.length >= 2)
-			stats[keyval[0]] = Number(keyval[1]);
+		if (keyval.length >= 2) stats[keyval[0]] = Number(keyval[1]);
 	}
-	if (stats.size < 8)
-		return undefined; // not our stats
+	if (stats.size < 8) return undefined; // not our stats
 
 	return stats;
 }
 
 function getHttpProtocol() {
-    return ssl_flag === 'true' ? https : http;
+	return ssl_flag === 'true' ? https : http;
 }
 
 function dumpMemoryUse() {
-	var url = (ssl_flag === 'true' ? 'https' : 'http') + '://admin:admin@localhost:' + port + '/lool/getMetrics/';
+	var url =
+		(ssl_flag === 'true' ? 'https' : 'http') +
+		'://admin:admin@localhost:' +
+		port +
+		'/lool/getMetrics/';
 	console.log('Fetching stats from ' + url);
 	var req = getHttpProtocol().request(
 		url,
@@ -151,7 +176,7 @@ function dumpMemoryUse() {
 			requestCert: false,
 			timeout: 3000, // 3s
 		},
-		response => {
+		(response) => {
 			let data = [];
 			response.on('data', (frag) => {
 				data.push(frag);
@@ -160,15 +185,32 @@ function dumpMemoryUse() {
 				let body = Buffer.concat(data);
 				var stats = parseStats(body.toString());
 				if (stats)
-					console.log('Stats: ' +
-						    'views: ' + stats['document_all_views_all_count_total'] + ' ' +
-						    'mem: ' + (stats['global_memory_used_bytes']/1000000) + 'Mb ' +
-						    'sent: ' + (stats['document_all_sent_to_clients_total_bytes']/1000000) + 'Mb ' +
-						    'recv: ' + (stats['document_all_received_from_clients_total_bytes']/1000) + 'Kb');
+					console.log(
+						'Stats: ' +
+							'views: ' +
+							stats['document_all_views_all_count_total'] +
+							' ' +
+							'mem: ' +
+							stats['global_memory_used_bytes'] / 1000000 +
+							'Mb ' +
+							'sent: ' +
+							stats[
+								'document_all_sent_to_clients_total_bytes'
+							] /
+								1000000 +
+							'Mb ' +
+							'recv: ' +
+							stats[
+								'document_all_received_from_clients_total_bytes'
+							] /
+								1000 +
+							'Kb',
+					);
 			});
 			response.on('error', (err) => {
 				console.log('failed to get admin stats');
 			});
-		});
+		},
+	);
 	req.end();
 }

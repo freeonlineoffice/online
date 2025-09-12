@@ -1,35 +1,35 @@
 {
-  "compileOnSave": false,
-    "compilerOptions": {
-      "target": "es5",
-      "module": "none",
-      "lib": ["dom", "es2016"],
-      "sourceMap": false,
-      "incremental": true,
-      "moduleResolution": "node",
-      "noImplicitAny": true,
-      "removeComments": false,
-      "preserveConstEnums": false,
-      "downlevelIteration": true,
-      "plugins": [
-        {
-          "name": "typescript-strict-plugin"
-        }
-      ]
-    },
-    "exclude": [
-      "node_modules",
-      "./node_modules",
-      "./node_modules/*",
-      "js",
-      "admin",
-      "mocha_tests",
-      "docs",
-      "test",
-      "typescript_js",
-      "dist",
-      "release",
-      "debug",
-      "welcome"
-    ]
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"target": "es5",
+		"module": "none",
+		"lib": ["dom", "es2016"],
+		"sourceMap": false,
+		"incremental": true,
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"removeComments": false,
+		"preserveConstEnums": false,
+		"downlevelIteration": true,
+		"plugins": [
+			{
+				"name": "typescript-strict-plugin"
+			}
+		]
+	},
+	"exclude": [
+		"node_modules",
+		"./node_modules",
+		"./node_modules/*",
+		"js",
+		"admin",
+		"mocha_tests",
+		"docs",
+		"test",
+		"typescript_js",
+		"dist",
+		"release",
+		"debug",
+		"welcome"
+	]
+}

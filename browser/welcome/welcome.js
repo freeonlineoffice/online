@@ -5,7 +5,7 @@ function onLoaded() {
 
 	document.getElementById('welcome-close').onclick = function () {
 		onClose();
-	}
+	};
 
 	document.getElementById('slide-1-button').onclick = function () {
 		onSlideClick('slide-2-indicator', true);
@@ -34,7 +34,7 @@ function onLoaded() {
 	if (window.parent !== window.self) {
 		var message = {
 			MessageId: 'welcome-translate',
-			strings: {}
+			strings: {},
 		};
 		getTranslatable(document.body, message.strings);
 		window.parent.postMessage(JSON.stringify(message), '*');
@@ -49,18 +49,22 @@ function onClose() {
 
 function onSlideClick(e, isButton = false) {
 	for (var i = 1; i < 4; i++)
-		document.getElementById('slide-' + i + '-indicator').classList.remove("active");
+		document
+			.getElementById('slide-' + i + '-indicator')
+			.classList.remove('active');
 
-	document.getElementById(e).classList.add("active");
-	if (isButton)
-		document.location = '#' + e.replace('-indicator', '');
+	document.getElementById(e).classList.add('active');
+	if (isButton) document.location = '#' + e.replace('-indicator', '');
 }
 
 function onMessage(e) {
 	try {
 		var msg = JSON.parse(e.data);
-		if (e.origin === window.origin && window.parent !== window.self
-			&& msg.MessageId === 'welcome-translate') {
+		if (
+			e.origin === window.origin &&
+			window.parent !== window.self &&
+			msg.MessageId === 'welcome-translate'
+		) {
 			setTranslatable(document.body, msg.strings);
 			window.parent.postMessage('{"MessageId":"welcome-show"}', '*');
 		}
@@ -83,7 +87,8 @@ function setTranslatable(root, strings) {
 	var children = root.children;
 	for (var i = 0; i < children.length; ++i) {
 		if (children[i].dataset.translate === 'true') {
-			children[i].innerHTML = strings[children[i].innerHTML.trim().replace('\n', '')];
+			children[i].innerHTML =
+				strings[children[i].innerHTML.trim().replace('\n', '')];
 		}
 		setTranslatable(children[i], strings);
 	}

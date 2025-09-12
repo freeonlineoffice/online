@@ -83,7 +83,11 @@
 	display: inline-flex;
 	width: 14px;
 	height: 14px;
-	background: linear-gradient(to top, rgba(var(--welcome-gradient), 0.7), rgba(var(--welcome-gradient), 1));
+	background: linear-gradient(
+		to top,
+		rgba(var(--welcome-gradient), 0.7),
+		rgba(var(--welcome-gradient), 1)
+	);
 	text-decoration: none;
 	align-items: center;
 	justify-content: center;
@@ -320,9 +324,7 @@ button:hover .arrow.left.close {
 	background-color: #bbb;
 }
 
-@media  only screen
-	and (max-width: 500px)
-	and (orientation: portrait) {
+@media only screen and (max-width: 500px) and (orientation: portrait) {
 	.slider,
 	.slides > div {
 		width: 100%;
@@ -364,9 +366,7 @@ button:hover .arrow.left.close {
 	}
 }
 
-@media  only screen
-	and (max-height: 500px)
-	and (orientation: landscape) {
+@media only screen and (max-height: 500px) and (orientation: landscape) {
 	.slider,
 	.slides > div {
 		width: 100%;
