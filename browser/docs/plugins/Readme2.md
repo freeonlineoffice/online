@@ -12,9 +12,11 @@ need to include it once again.
 Leaflet 1.0+
 
 ### API
+
 ```shell
 npm install leaflet-path-transform --save
 ```
+
 or include `dist/L.Path.Transform.js` file
 
 ```js
@@ -41,13 +43,13 @@ layer.transform.reset();
 
 ### `options`
 
-* **`options.handlerOptions`** - **<[Path_options](http://leafletjs.com/reference.html#path-options)>** - edge markers options
-* **`options.boundsOptions`** - **<[Polyline_options](http://leafletjs.com/reference.html#polyline-options)>** - bounding rectangle options
-* **`options.rotateHandleOptions`** - **<[Polyline_options](http://leafletjs.com/reference.html#polyline-options)>** - rotation handle line styles
-* **`options.handleLength`** - **Number** - Length of the rotation handle in pixels. Defaults to 20.
-* **`options.rotation`** - **Boolean** - Enable/disable rotation. Default `true`
-* **`options.scaling`** - **Boolean** - Enable/disable scaling. Default `true`
-* **`options.uniformScaling`** - **Boolean** - Use uniform scaling (maintain aspect ratio). Default `true`
+- **`options.handlerOptions`** - **<[Path_options](http://leafletjs.com/reference.html#path-options)>** - edge markers options
+- **`options.boundsOptions`** - **<[Polyline_options](http://leafletjs.com/reference.html#polyline-options)>** - bounding rectangle options
+- **`options.rotateHandleOptions`** - **<[Polyline_options](http://leafletjs.com/reference.html#polyline-options)>** - rotation handle line styles
+- **`options.handleLength`** - **Number** - Length of the rotation handle in pixels. Defaults to 20.
+- **`options.rotation`** - **Boolean** - Enable/disable rotation. Default `true`
+- **`options.scaling`** - **Boolean** - Enable/disable scaling. Default `true`
+- **`options.uniformScaling`** - **Boolean** - Use uniform scaling (maintain aspect ratio). Default `true`
 
 **Handles**
 
@@ -58,15 +60,13 @@ For the corner and rotation handles plugin provides 2 classes:
 
 Handler assigns `resize` cursors to handles. You can override that by setting `options.handlerOptions.setCursor` and `options.rotateHandleOptions.setCursor` to `false`
 
-
 ### Events
 
 Following events are fired on the transformed layer
 
-* **`rotatestart`, `rotate`, `rotateend`** - `{ rotation: <Radians> }`
-* **`scalestart`, `scale`, `scaleend`** - `{ scale: <L.Point> }`
-* **`transformstart`, `transform`, `transformed`** - `{ rotation: ..., scale: ..., matrix: <L.Matrix> }`
-
+- **`rotatestart`, `rotate`, `rotateend`** - `{ rotation: <Radians> }`
+- **`scalestart`, `scale`, `scaleend`** - `{ scale: <L.Point> }`
+- **`transformstart`, `transform`, `transformed`** - `{ rotation: ..., scale: ..., matrix: <L.Matrix> }`
 
 ### Dragging
 
@@ -78,20 +78,18 @@ polygon.dragging.disable();
 polygon.dragging.enable();
 ```
 
-
-
 ### TODO
 
- - [ ] Tests
- - [ ] Precision fix for rotation
- - [x] Leaflet 1.x support
- - [x] [Leaflet.Editable](https://github.com/Leaflet/Leaflet.Editable) adapter
- - [ ] [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw) adapter
- - [x] Canvas renderer support
+- [ ] Tests
+- [ ] Precision fix for rotation
+- [x] Leaflet 1.x support
+- [x] [Leaflet.Editable](https://github.com/Leaflet/Leaflet.Editable) adapter
+- [ ] [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw) adapter
+- [x] Canvas renderer support
 
 ### License
 
- Copyright (c) <year> <copyright holders>
+Copyright (c) <year> <copyright holders>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
