@@ -221,13 +221,16 @@ class SlideShowPresenter {
 				this._onStartInWindow(0);
 				break;
 			case 'dispatcheffect':
-				if (this.isFollowing()) this._slideShowNavigator.dispatchEffect();
+				if (this.isFollowing())
+					this._slideShowNavigator.dispatchEffect();
 				break;
 			case 'rewindeffect':
-				if (this.isFollowing()) this._slideShowNavigator.rewindEffect();
+				if (this.isFollowing())
+					this._slideShowNavigator.rewindEffect();
 				break;
 			case 'followvideo':
-				if (this.isFollowing()) this._slideShowNavigator.followVideo(info);
+				if (this.isFollowing())
+					this._slideShowNavigator.followVideo(info);
 				break;
 			case 'displayslide':
 				this._slideShowNavigator.setLeaderSlide(info);
@@ -711,12 +714,20 @@ class SlideShowPresenter {
 		);
 
 		if (this.isFollower()) {
-			const FollowImg = L.DomUtil.create('img', 'right-img', container);
+			const FollowImg = L.DomUtil.create(
+				'img',
+				'right-img',
+				container,
+			);
 			const followText = _('Follow Presentation');
 			L.control.attachTooltipEventListener(FollowImg, this._map);
 			FollowImg.setAttribute('aria-label', followText);
-			FollowImg.setAttribute('data-cooltip', followText);
-			app.LOUtil.setImage(FollowImg, 'slideshow-slideNext.svg', this._map);
+			FollowImg.setAttribute('data-looltip', followText);
+			app.LOUtil.setImage(
+				FollowImg,
+				'slideshow-slideNext.svg',
+				this._map,
+			);
 			FollowImg.addEventListener('click', (e: Event) => {
 				e.stopPropagation();
 				this._slideShowNavigator.followLeaderSlide();
@@ -755,8 +766,7 @@ class SlideShowPresenter {
 	}
 
 	endPresentation(force: boolean) {
-		if (this.isLeader())
-			app.socket.sendMessage('slideshowfollow endpresentation');
+		this.sendSlideShowFollowMessage('endpresentation');
 		this.checkDarkMode(false);
 
 		console.debug('SlideShowPresenter.endPresentation');
@@ -1132,10 +1142,7 @@ class SlideShowPresenter {
 
 	/// called when user triggers the in-window presentation using UI
 	_onStartInWindow(that: any) {
-		if (this._isLeader)
-			app.socket.sendMessage(
-				'slideshowfollow newfollowmepresentation',
-			);
+		this.sendSlideShowFollowMessage('newfollowmepresentation');
 		this._startSlide = that?.startSlideNumber ?? 0;
 		if (!this._onPrepareScreen(true))
 			// opens full screen, has to be on user interaction
@@ -1275,6 +1282,10 @@ class SlideShowPresenter {
 
 	isFollowing(): boolean {
 		return this._isFollowing;
+	}
+
+	sendSlideShowFollowMessage(msg: string): void {
+		if (this.isLeader()) app.socket.sendMessage('slideshowfollow ' + msg);
 	}
 }
 
