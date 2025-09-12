@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include <sstream>
 #include <string>
 #include <unordered_map>
 
@@ -17,6 +16,7 @@
 #include <Util.hpp>
 
 #define LOK_USE_UNSTABLE_API
+#include <LibreOfficeKit/LibreOfficeKit.h>
 #include <LibreOfficeKit/LibreOfficeKitEnums.h>
 
 namespace LOKitHelper
