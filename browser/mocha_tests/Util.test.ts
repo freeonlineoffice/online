@@ -14,21 +14,20 @@
 var assert = require('assert');
 
 describe('Util static members tests', function () {
-
 	describe('stamp()', function () {
 		const obj1 = { _leaflet_id: -1 };
 		const obj2 = { _leaflet_id: -1 };
 		let obj1Id = Util.stamp(obj1);
 		let obj2Id = Util.stamp(obj2);
-		it('first: id must be > 0', function() {
+		it('first: id must be > 0', function () {
 			assert.ok(obj1Id > 0);
 		});
 
-		it('second: id must be > 0', function() {
+		it('second: id must be > 0', function () {
 			assert.ok(obj2Id > 0);
 		});
 
-		it('first objects id must be less than id of second object', function() {
+		it('first objects id must be less than id of second object', function () {
 			assert.ok(obj1Id < obj2Id);
 		});
 
@@ -39,10 +38,9 @@ describe('Util static members tests', function () {
 		it('second: id must not change', function () {
 			assert.equal(obj2Id, Util.stamp(obj2));
 		});
-
 	});
 
-	describe('formatNum()', function() {
+	describe('formatNum()', function () {
 		it('integer with no decimal places', function () {
 			assertFloat(Util.formatNum(5, 0), 5, 1e-5, '');
 		});
@@ -82,7 +80,10 @@ describe('Util static members tests', function () {
 		});
 
 		it('Multi prefix', function () {
-			assert.strictEqual(Util.trimStart('ABCDABCDXYZ', 'ABCD'), 'ABCDXYZ');
+			assert.strictEqual(
+				Util.trimStart('ABCDABCDXYZ', 'ABCD'),
+				'ABCDXYZ',
+			);
 		});
 	});
 
@@ -100,13 +101,19 @@ describe('Util static members tests', function () {
 		});
 
 		it('Multi suffix', function () {
-			assert.strictEqual(Util.trimEnd('XYZABCDABCD', 'ABCD'), 'XYZABCD');
+			assert.strictEqual(
+				Util.trimEnd('XYZABCDABCD', 'ABCD'),
+				'XYZABCD',
+			);
 		});
 	});
 
 	describe('trim()', function () {
 		it('trim() with no prefix or suffix argument', function () {
-			assert.strictEqual(Util.trim('\t  \tCONTENT \t\t \t'), 'CONTENT');
+			assert.strictEqual(
+				Util.trim('\t  \tCONTENT \t\t \t'),
+				'CONTENT',
+			);
 		});
 
 		it('whole string is prefix', function () {
@@ -134,7 +141,10 @@ describe('Util static members tests', function () {
 		});
 
 		it('Multi prefix and suffix', function () {
-			assert.strictEqual(Util.trim('ABCDABCDXYZABCDABCD', 'ABCD', 'ABCD'), 'ABCDXYZABCD');
+			assert.strictEqual(
+				Util.trim('ABCDABCDXYZABCDABCD', 'ABCD', 'ABCD'),
+				'ABCDXYZABCD',
+			);
 		});
 
 		it('Overlapping prefix and suffix', function () {
@@ -156,15 +166,23 @@ describe('Util static members tests', function () {
 		});
 
 		it('split string with single word surrounded by multi white-spaces', function () {
-			assert.deepEqual(Util.splitWords(' \t \t   \t\t  ABC\t \t\t   \t'), ['ABC']);
+			assert.deepEqual(
+				Util.splitWords(' \t \t   \t\t  ABC\t \t\t   \t'),
+				['ABC'],
+			);
 		});
 
 		it('split string with two words', function () {
-			assert.deepEqual(Util.splitWords(' \t \t   \t\t  ABC\t \t\t   \tXYZ    \t\t   \t'), ['ABC', 'XYZ']);
+			assert.deepEqual(
+				Util.splitWords(
+					' \t \t   \t\t  ABC\t \t\t   \tXYZ    \t\t   \t',
+				),
+				['ABC', 'XYZ'],
+			);
 		});
 	});
 
-	describe('round()', function() {
+	describe('round()', function () {
 		it('integer with no decimal places', function () {
 			assertFloat(Util.round(5), 5, 1e-5, '');
 		});
@@ -196,29 +214,57 @@ describe('Util static members tests', function () {
 		});
 
 		it('no substitutions', function () {
-			assert.strictEqual(Util.template('lool apps', {'lool': 32}), 'lool apps');
+			assert.strictEqual(
+				Util.template('lool apps', { lool: 32 }),
+				'lool apps',
+			);
 		});
 
 		it('one key one substitution', function () {
-			assert.strictEqual(Util.template('lool {  app  } abcd', {'lool': 32, 'app': 'calc'}), 'lool calc abcd');
+			assert.strictEqual(
+				Util.template('lool {  app  } abcd', {
+					lool: 32,
+					app: 'calc',
+				}),
+				'lool calc abcd',
+			);
 		});
 
 		it('one key two substitutions', function () {
-			assert.strictEqual(Util.template('A {app   } lool {   app} abcd', {'lool': 32, 'app': 'calc'}), 'A calc lool calc abcd');
+			assert.strictEqual(
+				Util.template('A {app   } lool {   app} abcd', {
+					lool: 32,
+					app: 'calc',
+				}),
+				'A calc lool calc abcd',
+			);
 		});
 
 		it('two keys multiple substitutions', function () {
-			assert.strictEqual(Util.template('A) {  app1}, B) {app2 }, C) { app2}, D) { app1 } ', {'lool': 32, 'app': 'calc', 'app1': 'draw', 'app2': 'impress'}), 'A) draw, B) impress, C) impress, D) draw ');
+			assert.strictEqual(
+				Util.template(
+					'A) {  app1}, B) {app2 }, C) { app2}, D) { app1 } ',
+					{
+						lool: 32,
+						app: 'calc',
+						app1: 'draw',
+						app2: 'impress',
+					},
+				),
+				'A) draw, B) impress, C) impress, D) draw ',
+			);
 		});
 
 		it('key function', function () {
-			assert.strictEqual(Util.template('{fkey }, { key }', {
-				'key': '1234',
-				'fkey': function(data: any) {
-					return data['key'] + '_999';
-				},
-			}), '1234_999, 1234');
+			assert.strictEqual(
+				Util.template('{fkey }, { key }', {
+					key: '1234',
+					fkey: function (data: any) {
+						return data['key'] + '_999';
+					},
+				}),
+				'1234_999, 1234',
+			);
 		});
 	});
-
 });

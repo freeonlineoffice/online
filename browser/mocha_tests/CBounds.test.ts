@@ -15,7 +15,6 @@
 var assert = require('assert').strict;
 
 describe('Bounds parse() tests', function () {
-
 	describe('Bounds.parse() call with an empty string argument', function () {
 		it('should return undefined', function () {
 			assert.equal(lool.Bounds.parse(''), undefined);
@@ -36,20 +35,29 @@ describe('Bounds parse() tests', function () {
 		});
 
 		it('and the Bounds should be correct in position and size', function () {
-			assert.ok(bounds.equals(new lool.Bounds(new lool.Point(10, 20), new lool.Point(40, 60))));
+			assert.ok(
+				bounds.equals(
+					new lool.Bounds(
+						new lool.Point(10, 20),
+						new lool.Point(40, 60),
+					),
+				),
+			);
 		});
 	});
 
 	describe('Bounds constructor call', function () {
 		it('correctness check with PointConstructable[] argument', function () {
-			var bounds = new lool.Bounds(
-				[
-					[10, 20],
-					{ x: 5, y: 50 },
-					[1, 2],
-					{ x: -1, y: 7 },
-				]);
-			var expected = new lool.Bounds(new lool.Point(-1, 2), new lool.Point(10, 50));
+			var bounds = new lool.Bounds([
+				[10, 20],
+				{ x: 5, y: 50 },
+				[1, 2],
+				{ x: -1, y: 7 },
+			]);
+			var expected = new lool.Bounds(
+				new lool.Point(-1, 2),
+				new lool.Point(10, 50),
+			);
 			assert.deepEqual(expected, bounds);
 		});
 	});
