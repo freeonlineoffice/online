@@ -5,15 +5,22 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 class CalcValidityDropDown extends HTMLObjectSection {
 	public static dropDownArrowSize = 16; // Size of the validity drop-down arrow in CSS pixels.
 
 	zIndex: number = L.CSections.CalcValidityDropDown.zIndex;
 
-	constructor (documentPosition: lool.SimplePoint, visible: boolean = true) {
-		super(L.CSections.CalcValidityDropDown.name, CalcValidityDropDown.dropDownArrowSize, CalcValidityDropDown.dropDownArrowSize, documentPosition, 'spreadsheet-drop-down-marker', visible);
+	constructor(documentPosition: lool.SimplePoint, visible: boolean = true) {
+		super(
+			L.CSections.CalcValidityDropDown.name,
+			CalcValidityDropDown.dropDownArrowSize,
+			CalcValidityDropDown.dropDownArrowSize,
+			documentPosition,
+			'spreadsheet-drop-down-marker',
+			visible,
+		);
 
 		this.sectionProperties.mouseEntered = false;
 	}
@@ -35,7 +42,21 @@ class CalcValidityDropDown extends HTMLObjectSection {
 		point.pX = this.position[0] + this.size[0] / 2;
 		point.pY = this.position[1] + this.size[1] / 2;
 
-		app.map._docLayer._postMouseEvent('buttondown', point.x, point.y, 1, 1, 0);
-		app.map._docLayer._postMouseEvent('buttonup', point.x, point.y, 1, 1, 0);
+		app.map._docLayer._postMouseEvent(
+			'buttondown',
+			point.x,
+			point.y,
+			1,
+			1,
+			0,
+		);
+		app.map._docLayer._postMouseEvent(
+			'buttonup',
+			point.x,
+			point.y,
+			1,
+			1,
+			0,
+		);
 	}
 }

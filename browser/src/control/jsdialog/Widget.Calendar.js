@@ -19,19 +19,31 @@
 /* global JSDialog $ */
 
 function _calendarControl(parentContainer, data, builder) {
-	const container = L.DomUtil.create('div', 'ui-calendar ' + builder.options.cssClass, parentContainer);
+	const container = L.DomUtil.create(
+		'div',
+		'ui-calendar ' + builder.options.cssClass,
+		parentContainer,
+	);
 	container.id = data.id;
 
-	$.datepicker.setDefaults($.datepicker.regional[window.langParamLocale.language]);
+	$.datepicker.setDefaults(
+		$.datepicker.regional[window.langParamLocale.language],
+	);
 	$(container).datepicker({
 		defaultDate: new Date(data.year, data.month - 1, data.day),
 		dateFormat: 'mm/dd/yy',
 		onSelect: function (date) {
 			if (date != '') {
-				builder.callback('calendar', 'selectdate', container, date, builder);
+				builder.callback(
+					'calendar',
+					'selectdate',
+					container,
+					date,
+					builder,
+				);
 				$(container).datepicker('destroy');
 			}
-		}
+		},
 	});
 
 	return false;

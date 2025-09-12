@@ -714,7 +714,10 @@ abstract class BaseNode {
 			EventTrigger.EndEvent,
 			this.getId(),
 		);
-		if (this.getParentNode() && this.getParentNode().isMainSequenceRootNode())
+		if (
+			this.getParentNode() &&
+			this.getParentNode().isMainSequenceRootNode()
+		)
 			this._context.aEventMultiplexer.notifyNextEffectEndEvent();
 
 		if (this.isMainSequenceRootNode())

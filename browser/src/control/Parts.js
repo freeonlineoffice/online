@@ -25,10 +25,17 @@ L.Map.include({
 		// check hashes, when we add/delete/move parts they can have the same part number as before
 		if (docType === 'spreadsheet') {
 			isTheSamePart =
-				app.calc.partHashes[docLayer._prevSelectedPart] === app.calc.partHashes[part];
-		} else if ((docType === 'presentation' || docType === 'drawing')) {
-			if (docLayer._prevSelectedPart !== undefined && part < app.impress.partList.length && app.impress.partList[docLayer._prevSelectedPart])
-				isTheSamePart = app.impress.partList[docLayer._prevSelectedPart].hash === app.impress.partList[part].hash;
+				app.calc.partHashes[docLayer._prevSelectedPart] ===
+				app.calc.partHashes[part];
+		} else if (docType === 'presentation' || docType === 'drawing') {
+			if (
+				docLayer._prevSelectedPart !== undefined &&
+				part < app.impress.partList.length &&
+				app.impress.partList[docLayer._prevSelectedPart]
+			)
+				isTheSamePart =
+					app.impress.partList[docLayer._prevSelectedPart]
+						.hash === app.impress.partList[part].hash;
 		} else if (docType === 'text') {
 			isTheSamePart = true;
 		} else {
@@ -39,8 +46,7 @@ L.Map.include({
 			return;
 		}
 
-		if (docLayer.isCalc())
-			docLayer._sheetSwitch.save(part /* toPart */);
+		if (docLayer.isCalc()) docLayer._sheetSwitch.save(part /* toPart */);
 
 		docLayer._clearMsgReplayStore(true /* notOtherMsg*/);
 		docLayer._prevSelectedPart = docLayer._selectedPart;
@@ -50,19 +56,20 @@ L.Map.include({
 				docLayer._selectedPart -= 1;
 				this._partsDirection = -1;
 			}
-		}
-		else if (part === 'next') {
+		} else if (part === 'next') {
 			if (docLayer._selectedPart < docLayer._parts - 1) {
 				docLayer._selectedPart += 1;
 				this._partsDirection = 1;
 			}
-		}
-		else if (typeof (part) === 'number' && part >= 0 && part < docLayer._parts) {
-			this._partsDirection = (part >= docLayer._selectedPart) ? 1 : -1;
+		} else if (
+			typeof part === 'number' &&
+			part >= 0 &&
+			part < docLayer._parts
+		) {
+			this._partsDirection = part >= docLayer._selectedPart ? 1 : -1;
 			docLayer._selectedPart = part;
 			docLayer._updateReferenceMarks();
-		}
-		else {
+		} else {
 			return;
 		}
 
@@ -73,15 +80,16 @@ L.Map.include({
 				app.socket.sendMessage('setclientpart part=' + part);
 		};
 
-		if (app.file.fileBasedView)
-		{
+		if (app.file.fileBasedView) {
 			docLayer._selectedPart = docLayer._prevSelectedPart;
-			if (typeof(part) !== 'number') {
+			if (typeof part !== 'number') {
 				docLayer._preview._scrollViewByDirection(part);
 				this._docLayer._checkSelectedPart();
 				return;
 			}
-			docLayer._preview._scrollViewToPartPosition(docLayer._selectedPart);
+			docLayer._preview._scrollViewToPartPosition(
+				docLayer._selectedPart,
+			);
 			this._docLayer._checkSelectedPart();
 			notifyServer(part);
 			return;
@@ -99,13 +107,17 @@ L.Map.include({
 		this.fire('updateparts', {
 			selectedPart: docLayer._selectedPart,
 			parts: docLayer._parts,
-			docType: docLayer._docType
+			docType: docLayer._docType,
 		});
 
 		OtherViewCellCursorSection.updateVisibilities();
 		app.definitions.otherViewCursorSection.updateVisibilities();
 		app.definitions.otherViewGraphicSelectionSection.updateVisibilities();
-		docLayer.eachView(docLayer._viewSelections, docLayer._onUpdateTextViewSelection, docLayer);
+		docLayer.eachView(
+			docLayer._viewSelections,
+			docLayer._onUpdateTextViewSelection,
+			docLayer,
+		);
 		docLayer._clearSelections(calledFromSetPartHandler);
 		TileManager.updateOnChangePart();
 		TileManager.pruneTiles();
@@ -113,7 +125,10 @@ L.Map.include({
 		if (docLayer._invalidatePreviews) {
 			docLayer._invalidatePreviews();
 		}
-		if (this._docLayer._docType === 'presentation' || this._docLayer._docType === 'drawing') {
+		if (
+			this._docLayer._docType === 'presentation' ||
+			this._docLayer._docType === 'drawing'
+		) {
 			this._docLayer._preview.focusCurrentSlide();
 		} else {
 			this.focus();
@@ -137,27 +152,26 @@ L.Map.include({
 			// If this wasn't triggered from the server,
 			// then notify the server of the change.
 			if (!external) {
-				app.socket.sendMessage('selectclientpart part=' + part + ' how=' + how);
+				app.socket.sendMessage(
+					'selectclientpart part=' + part + ' how=' + how,
+				);
 			}
 		}
 	},
 
-	deselectAll: function() {
+	deselectAll: function () {
 		for (let i = 0; i < app.impress.partList.length; i++) {
 			this.selectPart(i, 0, false, false);
 		}
 		this.fire('updateparts', {});
 	},
 
-	_processPreviewQueue: function() {
-		if (!this._docLayer)
-			return;
+	_processPreviewQueue: function () {
+		if (!this._docLayer) return;
 
-		if (!this._docLayer._canonicalIdInitialized)
-			return;
+		if (!this._docLayer._canonicalIdInitialized) return;
 
-		if (!this._docLayer._preview)
-			return;
+		if (!this._docLayer._preview) return;
 
 		if (this._previewRequestsOnFly > 1) {
 			// we don't always get a response for each tile requests
@@ -180,9 +194,10 @@ L.Map.include({
 		// take 3 requests from the queue:
 		while (this._previewRequestsOnFly < 3) {
 			var tile = this._previewQueue.shift();
-			if (!tile)
-				break;
-			var isVisible = this._docLayer._preview._isPreviewVisible(tile[0]);
+			if (!tile) break;
+			var isVisible = this._docLayer._preview._isPreviewVisible(
+				tile[0],
+			);
 			if (isVisible != true && tile[1].indexOf('slideshow') < 0)
 				// skip this! we can't see it
 				continue;
@@ -193,10 +208,12 @@ L.Map.include({
 		}
 
 		if (previewParts.length > 0)
-			window.app.console.debug('PREVIEW: request preview parts : ' + previewParts.join());
+			window.app.console.debug(
+				'PREVIEW: request preview parts : ' + previewParts.join(),
+			);
 	},
 
-	_addPreviewToQueue: function(part, tileMsg) {
+	_addPreviewToQueue: function (part, tileMsg) {
 		for (var tile in this._previewQueue)
 			if (this._previewQueue[tile][0] === part)
 				// we already have this tile in the queue
@@ -206,72 +223,147 @@ L.Map.include({
 	},
 
 	getPreview: function (id, part, maxWidth, maxHeight, options) {
-
 		if (!this._docPreviews) this._docPreviews = {};
 
 		const autoUpdate = options ? !!options.autoUpdate : false;
-		const fetchThumbnail = options && options.fetchThumbnail !== undefined ? options.fetchThumbnail : true;
-		const isSlideshow = options && options.slideshow !== undefined ? options.slideshow : false;
+		const fetchThumbnail =
+			options && options.fetchThumbnail !== undefined
+				? options.fetchThumbnail
+				: true;
+		const isSlideshow =
+			options && options.slideshow !== undefined
+				? options.slideshow
+				: false;
 
-		this._docPreviews[id] = {id: id, index: part, maxWidth: maxWidth, maxHeight: maxHeight, autoUpdate: autoUpdate, invalid: false};
+		this._docPreviews[id] = {
+			id: id,
+			index: part,
+			maxWidth: maxWidth,
+			maxHeight: maxHeight,
+			autoUpdate: autoUpdate,
+			invalid: false,
+		};
 
 		let docLayer = this._docLayer;
 
 		if (docLayer._docType === 'text') return;
 
-		const tileWidth = docLayer._partWidthTwips ? docLayer._partWidthTwips: app.activeDocument.fileSize.x;
-		const tileHeight = docLayer._partHeightTwips ? docLayer._partHeightTwips: app.activeDocument.fileSize.y;
+		const tileWidth = docLayer._partWidthTwips
+			? docLayer._partWidthTwips
+			: app.activeDocument.fileSize.x;
+		const tileHeight = docLayer._partHeightTwips
+			? docLayer._partHeightTwips
+			: app.activeDocument.fileSize.y;
 
 		const docRatio = tileWidth / tileHeight;
 		const imgRatio = maxWidth / maxHeight;
 
 		// fit into the given rectangle while maintaining the ratio
-		if (imgRatio > docRatio) maxWidth = Math.round(tileWidth * maxHeight / tileHeight);
-		else maxHeight = Math.round(tileHeight * maxWidth / tileWidth);
+		if (imgRatio > docRatio)
+			maxWidth = Math.round((tileWidth * maxHeight) / tileHeight);
+		else maxHeight = Math.round((tileHeight * maxWidth) / tileWidth);
 
 		if (fetchThumbnail) {
 			var mode = docLayer._selectedMode;
-			this._addPreviewToQueue(part, 'tile ' +
-							'nviewid=0' + ' ' +
-							'part=' + String(part) + ' ' +
-							'mode=' + String(mode) + ' ' +
-							'width=' + String(maxWidth * app.roundedDpiScale) + ' ' +
-							'height=' + String(maxHeight * app.roundedDpiScale) + ' ' +
-							'tileposx=' + '0 ' +
-							'tileposy=' + '0 ' +
-							'tilewidth=' + String(tileWidth) + ' ' +
-							'tileheight=' + String(tileHeight) + ' ' +
-							'id=' + String(id) +
-							(isSlideshow ? ' slideshow=1' : ''));
+			this._addPreviewToQueue(
+				part,
+				'tile ' +
+					'nviewid=0' +
+					' ' +
+					'part=' +
+					String(part) +
+					' ' +
+					'mode=' +
+					String(mode) +
+					' ' +
+					'width=' +
+					String(maxWidth * app.roundedDpiScale) +
+					' ' +
+					'height=' +
+					String(maxHeight * app.roundedDpiScale) +
+					' ' +
+					'tileposx=' +
+					'0 ' +
+					'tileposy=' +
+					'0 ' +
+					'tilewidth=' +
+					String(tileWidth) +
+					' ' +
+					'tileheight=' +
+					String(tileHeight) +
+					' ' +
+					'id=' +
+					String(id) +
+					(isSlideshow ? ' slideshow=1' : ''),
+			);
 			this._processPreviewQueue();
 		}
 
-		return {width: maxWidth, height: maxHeight};
+		return { width: maxWidth, height: maxHeight };
 	},
 
 	// getCustomPreview
 	// Triggers the creation of a preview with the given id, of width X height size, of the [(tilePosX,tilePosY),
 	// (tilePosX + tileWidth, tilePosY + tileHeight)] section of the document.
-	getCustomPreview: function (id, part, width, height, tilePosX, tilePosY, tileWidth, tileHeight, options) {
+	getCustomPreview: function (
+		id,
+		part,
+		width,
+		height,
+		tilePosX,
+		tilePosY,
+		tileWidth,
+		tileHeight,
+		options,
+	) {
 		if (!this._docPreviews) {
 			this._docPreviews = {};
 		}
 		var autoUpdate = options ? options.autoUpdate : false;
-		this._docPreviews[id] = {id: id, part: part, width: width, height: height, tilePosX: tilePosX,
-			tilePosY: tilePosY, tileWidth: tileWidth, tileHeight: tileHeight, autoUpdate: autoUpdate, invalid: false};
+		this._docPreviews[id] = {
+			id: id,
+			part: part,
+			width: width,
+			height: height,
+			tilePosX: tilePosX,
+			tilePosY: tilePosY,
+			tileWidth: tileWidth,
+			tileHeight: tileHeight,
+			autoUpdate: autoUpdate,
+			invalid: false,
+		};
 
 		var mode = this._docLayer._selectedMode;
-		this._addPreviewToQueue(part, 'tile ' +
-							'nviewid=0' + ' ' +
-							'part=' + part + ' ' +
-							((mode !== 0) ? ('mode=' + mode + ' ') : '') +
-							'width=' + width * app.roundedDpiScale + ' ' +
-							'height=' + height * app.roundedDpiScale + ' ' +
-							'tileposx=' + tilePosX + ' ' +
-							'tileposy=' + tilePosY + ' ' +
-							'tilewidth=' + tileWidth + ' ' +
-							'tileheight=' + tileHeight + ' ' +
-							'id=' + id);
+		this._addPreviewToQueue(
+			part,
+			'tile ' +
+				'nviewid=0' +
+				' ' +
+				'part=' +
+				part +
+				' ' +
+				(mode !== 0 ? 'mode=' + mode + ' ' : '') +
+				'width=' +
+				width * app.roundedDpiScale +
+				' ' +
+				'height=' +
+				height * app.roundedDpiScale +
+				' ' +
+				'tileposx=' +
+				tilePosX +
+				' ' +
+				'tileposy=' +
+				tilePosY +
+				' ' +
+				'tilewidth=' +
+				tileWidth +
+				' ' +
+				'tileheight=' +
+				tileHeight +
+				' ' +
+				'id=' +
+				id,
+		);
 		this._processPreviewQueue();
 	},
 
@@ -281,38 +373,51 @@ L.Map.include({
 			if (docLayer._currentPage > 0) {
 				docLayer._currentPage -= 1;
 			}
-		}
-		else if (page === 'next') {
+		} else if (page === 'next') {
 			if (docLayer._currentPage < docLayer._pages - 1) {
 				docLayer._currentPage += 1;
 			}
-		}
-		else if (typeof (page) === 'number' && page >= 0 && page < docLayer._pages) {
+		} else if (
+			typeof page === 'number' &&
+			page >= 0 &&
+			page < docLayer._pages
+		) {
 			docLayer._currentPage = page;
 		}
-		if (!this.isEditMode() && app.file.writer.pageRectangleList.length > docLayer._currentPage) {
-			const posY = Math.round(app.file.writer.pageRectangleList[docLayer._currentPage][1] / app.dpiScale);
+		if (
+			!this.isEditMode() &&
+			app.file.writer.pageRectangleList.length > docLayer._currentPage
+		) {
+			const posY = Math.round(
+				app.file.writer.pageRectangleList[
+					docLayer._currentPage
+				][1] / app.dpiScale,
+			);
 
-			const section = app.sectionContainer.getSectionWithName(L.CSections.Scroll.name);
-			if (section)
-				section.onScrollTo({x: 0, y: posY});
+			const section = app.sectionContainer.getSectionWithName(
+				L.CSections.Scroll.name,
+			);
+			if (section) section.onScrollTo({ x: 0, y: posY });
 
-			var state = 'Page ' + (docLayer._currentPage + 1) + ' of ' + app.file.writer.pageRectangleList.length;
-			this.fire('updatestatepagenumber',{
-				state: state
+			var state =
+				'Page ' +
+				(docLayer._currentPage + 1) +
+				' of ' +
+				app.file.writer.pageRectangleList.length;
+			this.fire('updatestatepagenumber', {
+				state: state,
 			});
-		}
-		else {
+		} else {
 			app.socket.sendMessage('setpage page=' + docLayer._currentPage);
 		}
 		this.fire('pagenumberchanged', {
 			currentPage: docLayer._currentPage,
 			pages: docLayer._pages,
-			docType: docLayer._docType
+			docType: docLayer._docType,
 		});
 	},
 
-	insertPage: function(nPos) {
+	insertPage: function (nPos) {
 		if (lool.Comment.isAnyEdit()) {
 			lool.CommentSection.showCommentEditingWarning();
 			return;
@@ -321,28 +426,31 @@ L.Map.include({
 		if (this.isPresentationOrDrawing()) {
 			if (nPos === undefined) {
 				app.socket.sendMessage('uno .uno:InsertPage');
+			} else {
+				var argument = {
+					InsertPos: { type: 'int16', value: nPos },
+				};
+				app.socket.sendMessage(
+					'uno .uno:InsertPage ' + JSON.stringify(argument),
+				);
 			}
-			else {
-				var argument = {InsertPos: {type: 'int16', value: nPos}};
-				app.socket.sendMessage('uno .uno:InsertPage ' + JSON.stringify(argument));
-			}
-		}
-		else if (this.getDocType() === 'spreadsheet') {
+		} else if (this.getDocType() === 'spreadsheet') {
 			this._docLayer._sheetSwitch.updateOnSheetInsertion(nPos);
 			var command = {
-				'Name': {
-					'type': 'string',
-					'value': ''
+				Name: {
+					type: 'string',
+					value: '',
 				},
-				'Index': {
-					'type': 'long',
-					'value': nPos + 1
-				}
+				Index: {
+					type: 'long',
+					value: nPos + 1,
+				},
 			};
 
-			app.socket.sendMessage('uno .uno:Insert ' + JSON.stringify(command));
-		}
-		else {
+			app.socket.sendMessage(
+				'uno .uno:Insert ' + JSON.stringify(command),
+			);
+		} else {
 			return;
 		}
 
@@ -352,26 +460,24 @@ L.Map.include({
 		if (!this.isPresentationOrDrawing()) {
 			this.fire('insertpage', {
 				selectedPart: docLayer._selectedPart,
-				parts:        docLayer._parts
+				parts: docLayer._parts,
 			});
 		}
 
 		docLayer._parts++;
 
 		// user interaction - follow own cursor so it's visible after switch
-		if (this.userList)
-			this.userList.followUser(docLayer._getViewId());
+		if (this.userList) this.userList.followUser(docLayer._getViewId());
 
 		// Since we know which part we want to set, use the index (instead of 'next', 'prev')
 		if (typeof nPos === 'number') {
 			this.setPart(nPos);
-		}
-		else {
+		} else {
 			this.setPart('next');
 		}
 	},
 
-	duplicatePage: function(pos) {
+	duplicatePage: function (pos) {
 		if (!this.isPresentationOrDrawing()) {
 			return;
 		}
@@ -379,8 +485,10 @@ L.Map.include({
 		if (pos === undefined) {
 			app.socket.sendMessage('uno .uno:DuplicatePage');
 		} else {
-			var argument = {InsertPos: {type: 'int16', value: pos}};
-			app.socket.sendMessage('uno .uno:DuplicatePage ' + JSON.stringify(argument));
+			var argument = { InsertPos: { type: 'int16', value: pos } };
+			app.socket.sendMessage(
+				'uno .uno:DuplicatePage ' + JSON.stringify(argument),
+			);
 		}
 		var docLayer = this._docLayer;
 
@@ -391,19 +499,19 @@ L.Map.include({
 	deletePage: function (nPos) {
 		if (this.isPresentationOrDrawing()) {
 			app.socket.sendMessage('uno .uno:DeletePage');
-		}
-		else if (this.getDocType() === 'spreadsheet') {
+		} else if (this.getDocType() === 'spreadsheet') {
 			this._docLayer._sheetSwitch.updateOnSheetDeleted(nPos);
 			var command = {
-				'Index': {
-					'type': 'long',
-					'value': nPos + 1
-				}
+				Index: {
+					type: 'long',
+					value: nPos + 1,
+				},
 			};
 
-			app.socket.sendMessage('uno .uno:Remove ' + JSON.stringify(command));
-		}
-		else {
+			app.socket.sendMessage(
+				'uno .uno:Remove ' + JSON.stringify(command),
+			);
+		} else {
 			return;
 		}
 
@@ -413,7 +521,10 @@ L.Map.include({
 			return;
 		}
 
-		if (this.getDocType() === 'spreadsheet' && docLayer._parts <= app.calc.getHiddenPartCount() + 1) {
+		if (
+			this.getDocType() === 'spreadsheet' &&
+			docLayer._parts <= app.calc.getHiddenPartCount() + 1
+		) {
 			return;
 		}
 
@@ -421,7 +532,7 @@ L.Map.include({
 		if (!this.isPresentationOrDrawing()) {
 			this.fire('deletepage', {
 				selectedPart: docLayer._selectedPart,
-				parts:        docLayer._parts
+				parts: docLayer._parts,
 			});
 		}
 
@@ -432,8 +543,7 @@ L.Map.include({
 
 		if (typeof nPos === 'number') {
 			this.setPart(nPos);
-		}
-		else {
+		} else {
 			this.setPart(docLayer._selectedPart);
 		}
 	},
@@ -441,46 +551,74 @@ L.Map.include({
 	renamePage: function (name, nPos) {
 		if (this.getDocType() === 'spreadsheet') {
 			var command = {
-				'Name': {
-					'type': 'string',
-					'value': name
+				Name: {
+					type: 'string',
+					value: name,
 				},
-				'Index': {
-					'type': 'long',
-					'value': nPos + 1
-				}
+				Index: {
+					type: 'long',
+					value: nPos + 1,
+				},
 			};
 
-			app.socket.sendMessage('uno .uno:Name ' + JSON.stringify(command));
+			app.socket.sendMessage(
+				'uno .uno:Name ' + JSON.stringify(command),
+			);
 			this.setPart(this._docLayer);
 		}
 	},
 
 	showPage: function () {
-		if (this.getDocType() === 'spreadsheet' && app.calc.isAnyPartHidden()) {
+		if (
+			this.getDocType() === 'spreadsheet' &&
+			app.calc.isAnyPartHidden()
+		) {
 			const dialogId = 'show-sheets-modal';
 
-			const buttonCallback = function() {
-				var checkboxList = document.querySelectorAll('input[id^="hidden-part-checkbox"]');
+			const buttonCallback = function () {
+				var checkboxList = document.querySelectorAll(
+					'input[id^="hidden-part-checkbox"]',
+				);
 				for (var i = 0; i < checkboxList.length; i++) {
 					if (checkboxList[i].checked === true) {
-						var partName_ = checkboxList[i].id.replace('hidden-part-checkbox-', '');
-						var argument = {aTableName: {type: 'string', value: partName_}};
-						app.socket.sendMessage('uno .uno:Show ' + JSON.stringify(argument));
+						var partName_ = checkboxList[i].id.replace(
+							'hidden-part-checkbox-',
+							'',
+						);
+						var argument = {
+							aTableName: {
+								type: 'string',
+								value: partName_,
+							},
+						};
+						app.socket.sendMessage(
+							'uno .uno:Show ' + JSON.stringify(argument),
+						);
 					}
 				}
 			};
 
-			this.uiManager.showInfoModal(dialogId, _('Show sheets'), ' ', ' ', _('OK'), buttonCallback, true, dialogId + '-response');
+			this.uiManager.showInfoModal(
+				dialogId,
+				_('Show sheets'),
+				' ',
+				' ',
+				_('OK'),
+				buttonCallback,
+				true,
+				dialogId + '-response',
+			);
 			this.showPageModalImpl(dialogId);
 		}
 	},
 
-	showPageModalImpl: function(dialogId) {
+	showPageModalImpl: function (dialogId) {
 		const modal = document.getElementById(dialogId);
 
 		if (!modal) {
-			setTimeout(() => { this.showPageModalImpl(dialogId) }, 10);
+			setTimeout(() => {
+				this.showPageModalImpl(dialogId);
+			}, 10);
 			return;
 		}
 
@@ -508,32 +646,48 @@ L.Map.include({
 
 		JSDialog.enableButtonInModal(dialogId, dialogId + '-response', false);
 
-		var checkboxes = document.querySelectorAll('#show-sheets-modal input[type="checkbox"]');
-		checkboxes.forEach(function(checkbox) {
-			checkbox.addEventListener('change', function() {
+		var checkboxes = document.querySelectorAll(
+			'#show-sheets-modal input[type="checkbox"]',
+		);
+		checkboxes.forEach(function (checkbox) {
+			checkbox.addEventListener('change', function () {
 				var anyChecked = false;
-				checkboxes.forEach(function(checkbox) {
+				checkboxes.forEach(function (checkbox) {
 					if (checkbox.checked) {
 						anyChecked = true;
 					}
 				});
-				JSDialog.enableButtonInModal(dialogId, dialogId + '-response', anyChecked);
+				JSDialog.enableButtonInModal(
+					dialogId,
+					dialogId + '-response',
+					anyChecked,
+				);
 			});
 		});
 	},
 
 	hidePage: function (tabNumber) {
-		if (this.getDocType() === 'spreadsheet' && app.calc.getVisiblePartCount() > 1) {
-			var argument = {nTabNumber: {type: 'int16', value: tabNumber}};
-			app.socket.sendMessage('uno .uno:Hide ' + JSON.stringify(argument));
+		if (
+			this.getDocType() === 'spreadsheet' &&
+			app.calc.getVisiblePartCount() > 1
+		) {
+			var argument = {
+				nTabNumber: { type: 'int16', value: tabNumber },
+			};
+			app.socket.sendMessage(
+				'uno .uno:Hide ' + JSON.stringify(argument),
+			);
 		}
 	},
 
-	hideSlide: function() {
+	hideSlide: function () {
 		for (let i = 0; i < app.impress.partList.length; i++) {
 			if (app.impress.partList[i].selected) {
 				app.impress.partList[i].visible = 0;
-				L.DomUtil.addClass(this._docLayer._preview._previewTiles[i], 'hidden-slide');
+				L.DomUtil.addClass(
+					this._docLayer._preview._previewTiles[i],
+					'hidden-slide',
+				);
 			}
 		}
 
@@ -541,11 +695,14 @@ L.Map.include({
 		this.fire('toggleslidehide');
 	},
 
-	showSlide: function() {
+	showSlide: function () {
 		for (let i = 0; i < app.impress.partList.length; i++) {
 			if (app.impress.partList[i].selected) {
 				app.impress.partList[i].visible = 1;
-				L.DomUtil.removeClass(this._docLayer._preview._previewTiles[i], 'hidden-slide');
+				L.DomUtil.removeClass(
+					this._docLayer._preview._previewTiles[i],
+					'hidden-slide',
+				);
 			}
 		}
 
@@ -566,14 +723,16 @@ L.Map.include({
 	},
 
 	getDocType: function () {
-		if (!this._docLayer)
-			return null;
+		if (!this._docLayer) return null;
 
 		return this._docLayer._docType;
 	},
 
 	isPresentationOrDrawing: function () {
-		return this.getDocType() === 'presentation' || this.getDocType() === 'drawing';
+		return (
+			this.getDocType() === 'presentation' ||
+			this.getDocType() === 'drawing'
+		);
 	},
 
 	isText: function () {

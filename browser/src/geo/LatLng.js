@@ -19,21 +19,28 @@ L.LatLng = function (lat, lng, alt) {
 
 L.LatLng.prototype = {
 	equals: function (obj, maxMargin) {
-		if (!obj) { return false; }
+		if (!obj) {
+			return false;
+		}
 
 		obj = L.latLng(obj);
 
 		var margin = Math.max(
-		        Math.abs(this.lat - obj.lat),
-		        Math.abs(this.lng - obj.lng));
+			Math.abs(this.lat - obj.lat),
+			Math.abs(this.lng - obj.lng),
+		);
 
-		return margin <= (maxMargin === undefined ? 1.0E-9 : maxMargin);
+		return margin <= (maxMargin === undefined ? 1.0e-9 : maxMargin);
 	},
 
 	toString: function (precision) {
-		return 'LatLng(' +
-		        app.util.formatNum(this.lat, precision) + ', ' +
-		        app.util.formatNum(this.lng, precision) + ')';
+		return (
+			'LatLng(' +
+			app.util.formatNum(this.lat, precision) +
+			', ' +
+			app.util.formatNum(this.lng, precision) +
+			')'
+		);
 	},
 
 	distanceTo: function () {
@@ -44,7 +51,6 @@ L.LatLng.prototype = {
 		return null;
 	},
 };
-
 
 // constructs LatLng with different signatures
 // (LatLng) or ([Number, Number]) or (Number, Number) or (Object)

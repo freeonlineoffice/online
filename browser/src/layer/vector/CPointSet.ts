@@ -29,7 +29,8 @@ class CPointSet {
 			bounds.getTopLeft(),
 			bounds.getTopRight(),
 			bounds.getBottomRight(),
-			bounds.getBottomLeft()];
+			bounds.getBottomLeft(),
+		];
 		return ps;
 	}
 
@@ -40,7 +41,8 @@ class CPointSet {
 	empty(): boolean {
 		return (
 			(this.points === undefined && this.pointSets === undefined) ||
-			(this.pointSets === undefined && this.points.length == 0));
+			(this.pointSets === undefined && this.points.length == 0)
+		);
 	}
 
 	getPointArray(): Array<lool.Point> {
@@ -63,7 +65,11 @@ class CPointSet {
 
 	// This is used in CCellSelection to draw multiple polygons based on a "inner" point-set
 	// where we need to apply an additive offset to each point in the pointSet w.r.t each polygon's centroid.
-	applyOffset(offset: lool.Point, centroidSymmetry: boolean = false, preRound: boolean = true) {
+	applyOffset(
+		offset: lool.Point,
+		centroidSymmetry: boolean = false,
+		preRound: boolean = true,
+	) {
 		CPointSet.applyOffsetImpl(this, offset, centroidSymmetry, preRound);
 	}
 
@@ -76,7 +82,7 @@ class CPointSet {
 
 		if (source.points) {
 			newPointSet.points = [];
-			source.points.forEach(function(point) {
+			source.points.forEach(function (point) {
 				newPointSet.points.push(point.clone());
 			});
 		} else if (source.pointSets) {
@@ -90,9 +96,13 @@ class CPointSet {
 		return newPointSet;
 	}
 
-	private static applyOffsetImpl(pointSet: CPointSet, offset: lool.Point, centroidSymmetry: boolean, preRound: boolean) {
-		if (pointSet.empty())
-			return;
+	private static applyOffsetImpl(
+		pointSet: CPointSet,
+		offset: lool.Point,
+		centroidSymmetry: boolean,
+		preRound: boolean,
+	) {
+		if (pointSet.empty()) return;
 
 		if (pointSet.isFlat()) {
 			const refPoint = new lool.Point(Infinity, Infinity);
@@ -106,26 +116,28 @@ class CPointSet {
 				refPoint._divideBy(pointSet.points.length);
 			}
 			pointSet.points.forEach(function (point, index) {
-				if (preRound)
-					pointSet.points[index]._round();
+				if (preRound) pointSet.points[index]._round();
 
 				if (point.x < refPoint.x)
 					pointSet.points[index].x -= offset.x;
-				else
-					pointSet.points[index].x += offset.x;
+				else pointSet.points[index].x += offset.x;
 
 				if (point.y < refPoint.y)
 					pointSet.points[index].y -= offset.y;
-				else
-					pointSet.points[index].y += offset.y;
+				else pointSet.points[index].y += offset.y;
 			});
 
 			return;
 		}
 
 		// not flat so recurse.
-		pointSet.pointSets.forEach(function(childPointSet) {
-			CPointSet.applyOffsetImpl(childPointSet, offset, centroidSymmetry, preRound);
+		pointSet.pointSets.forEach(function (childPointSet) {
+			CPointSet.applyOffsetImpl(
+				childPointSet,
+				offset,
+				centroidSymmetry,
+				preRound,
+			);
 		});
 	}
 }

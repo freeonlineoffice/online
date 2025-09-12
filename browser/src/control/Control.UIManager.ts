@@ -70,8 +70,8 @@ class UIManager extends L.Control {
 			window.addEventListener('popstate', this.onGoBack.bind(this));
 
 			// provide entries in the history we can catch to close the app
-			history.pushState({context: 'app-started'}, 'app-started');
-			history.pushState({context: 'app-started'}, 'app-started');
+			history.pushState({ context: 'app-started' }, 'app-started');
+			history.pushState({ context: 'app-started' }, 'app-started');
 		}
 
 		map.on('blockUI', this.blockUI, this);
@@ -79,35 +79,53 @@ class UIManager extends L.Control {
 
 		$('#toolbar-wrapper').on('click', (event) => {
 			const target = event.target as HTMLElement;
-			if (target.parentElement?.id === 'toolbar-up') // checks if clicked on empty part of the toolbar on tabbed view
+			if (target.parentElement?.id === 'toolbar-up')
+				// checks if clicked on empty part of the toolbar on tabbed view
 				this.map.fire('editorgotfocus');
 		});
 
 		$('.main-nav').on('click', (event) => {
 			const target = event.target as HTMLElement;
-			if (target.parentElement?.nodeName === 'NAV' || // checks if clicked on an container of an element
+			if (
+				target.parentElement?.nodeName === 'NAV' || // checks if clicked on an container of an element
 				target.nodeName === 'NAV' || // checks if clicked on navigation bar itself
-				target.parentElement?.id === 'document-titlebar') { // checks if clicked on the document titlebar container
-				this.map.fire('editorgotfocus');}
+				target.parentElement?.id === 'document-titlebar'
+			) {
+				// checks if clicked on the document titlebar container
+				this.map.fire('editorgotfocus');
+			}
 		});
 		const mainNav = document.querySelector('.main-nav') as HTMLElement;
-		mainNav.addEventListener('wheel', function(e: WheelEvent) {
-			const el = this as HTMLElement;
+		mainNav.addEventListener(
+			'wheel',
+			function (e: WheelEvent) {
+				const el = this as HTMLElement;
 
-			// Allow default scroll for Shift + scroll or if not horizontally scrollable
-			if (e.shiftKey || el.scrollWidth <= el.clientWidth) return;
+				// Allow default scroll for Shift + scroll or if not horizontally scrollable
+				if (e.shiftKey || el.scrollWidth <= el.clientWidth) return;
 
-			// Scroll horizontally
-			this.scrollLeft += e.deltaY;
+				// Scroll horizontally
+				this.scrollLeft += e.deltaY;
 
-			// Prevent vertical scroll only within this element
-			e.preventDefault();
-		  }, { passive: false });
+				// Prevent vertical scroll only within this element
+				e.preventDefault();
+			},
+			{ passive: false },
+		);
 		this.map.on('updateviewslist', this.onUpdateViews, this);
 
-		this.map['stateChangeHandler'].setItemValue('toggledarktheme', 'false');
-		this.map['stateChangeHandler'].setItemValue('invertbackground', 'false');
-		this.map['stateChangeHandler'].setItemValue('showannotations', 'true');
+		this.map['stateChangeHandler'].setItemValue(
+			'toggledarktheme',
+			'false',
+		);
+		this.map['stateChangeHandler'].setItemValue(
+			'invertbackground',
+			'false',
+		);
+		this.map['stateChangeHandler'].setItemValue(
+			'showannotations',
+			'true',
+		);
 	}
 
 	// UI initialization
@@ -117,8 +135,7 @@ class UIManager extends L.Control {
 	 */
 	getCurrentMode(): UIMode {
 		// no notebookbar on mobile
-		if (window.mode.isMobile())
-			return 'classic';
+		if (window.mode.isMobile()) return 'classic';
 
 		return this.shouldUseNotebookbarMode() ? 'notebookbar' : 'classic';
 	}
@@ -135,9 +152,15 @@ class UIManager extends L.Control {
 	 */
 	setHighlightMode(newState: boolean): void {
 		window.prefs.set('ColumnRowHighlightEnabled', newState);
-		const highlightState = newState? 'true' : 'false';
-		this.map['stateChangeHandler'].setItemValue('columnrowhighlight', highlightState);
-		this._map.fire('commandstatechanged', {commandName : 'columnrowhighlight', state : highlightState});
+		const highlightState = newState ? 'true' : 'false';
+		this.map['stateChangeHandler'].setItemValue(
+			'columnrowhighlight',
+			highlightState,
+		);
+		this._map.fire('commandstatechanged', {
+			commandName: 'columnrowhighlight',
+			state: highlightState,
+		});
 	}
 
 	/**
@@ -146,7 +169,10 @@ class UIManager extends L.Control {
 	shouldUseNotebookbarMode(): boolean {
 		const forceCompact = window.prefs.get('compactMode', null); // getBoolean() does not accept null as the default value
 		// all other cases should default to notebookbar
-		const shouldUseClassic = (window.userInterfaceMode === 'classic' && forceCompact == null) || forceCompact === 'true';
+		const shouldUseClassic =
+			(window.userInterfaceMode === 'classic' &&
+				forceCompact == null) ||
+			forceCompact === 'true';
 		return !shouldUseClassic;
 	}
 
@@ -156,8 +182,11 @@ class UIManager extends L.Control {
 	 * Switches the UI to light mode.
 	 */
 	loadLightMode(): void {
-		document.documentElement.setAttribute('data-theme','light');
-		this._map.fire('commandstatechanged', {commandName : 'toggledarktheme', state : 'false'});
+		document.documentElement.setAttribute('data-theme', 'light');
+		this._map.fire('commandstatechanged', {
+			commandName: 'toggledarktheme',
+			state: 'false',
+		});
 		this.map.fire('darkmodechanged');
 	}
 
@@ -165,8 +194,11 @@ class UIManager extends L.Control {
 	 * Switches the UI to dark mode.
 	 */
 	loadDarkMode(): void {
-		document.documentElement.setAttribute('data-theme','dark');
-		this._map.fire('commandstatechanged', {commandName : 'toggledarktheme', state : 'true'});
+		document.documentElement.setAttribute('data-theme', 'dark');
+		this._map.fire('commandstatechanged', {
+			commandName: 'toggledarktheme',
+			state: 'true',
+		});
 		this.map.fire('darkmodechanged');
 	}
 
@@ -178,9 +210,17 @@ class UIManager extends L.Control {
 			app.sectionContainer.setBackgroundColorMode(false);
 
 			if (this.map.getDocType() == 'spreadsheet') {
-				app.sectionContainer.setClearColor(window.getComputedStyle(document.documentElement).getPropertyValue('--color-background-document'));
+				app.sectionContainer.setClearColor(
+					window
+						.getComputedStyle(document.documentElement)
+						.getPropertyValue('--color-background-document'),
+				);
 			} else {
-				app.sectionContainer.setClearColor(window.getComputedStyle(document.documentElement).getPropertyValue('--color-canvas'));
+				app.sectionContainer.setClearColor(
+					window
+						.getComputedStyle(document.documentElement)
+						.getPropertyValue('--color-canvas'),
+				);
 			}
 
 			//change back to it's default value after setting canvas color
@@ -192,9 +232,13 @@ class UIManager extends L.Control {
 	 * Sets the document background based on the activation flag.
 	 */
 	setDarkBackground(activate: boolean): void {
-		var cmd = { 'NewTheme': { 'type': 'string', 'value': '' } };
-		activate ? cmd.NewTheme.value = 'Dark' : cmd.NewTheme.value = 'Light';
-		app.socket.sendMessage('uno .uno:InvertBackground ' + JSON.stringify(cmd));
+		var cmd = { NewTheme: { type: 'string', value: '' } };
+		activate
+			? (cmd.NewTheme.value = 'Dark')
+			: (cmd.NewTheme.value = 'Light');
+		app.socket.sendMessage(
+			'uno .uno:InvertBackground ' + JSON.stringify(cmd),
+		);
 		this.initDarkBackgroundUI(activate);
 	}
 
@@ -202,12 +246,20 @@ class UIManager extends L.Control {
 	 * Initializes UI changes related to the dark background.
 	 */
 	initDarkBackgroundUI(activate: boolean): void {
-		document.documentElement.setAttribute('data-bg-theme', activate ? 'dark' : 'light');
+		document.documentElement.setAttribute(
+			'data-bg-theme',
+			activate ? 'dark' : 'light',
+		);
 		if (activate) {
-			this._map.fire('commandstatechanged', {commandName : 'invertbackground', state : 'false'});
-		}
-		else {
-			this._map.fire('commandstatechanged', {commandName : 'invertbackground', state : 'true'});
+			this._map.fire('commandstatechanged', {
+				commandName: 'invertbackground',
+				state: 'false',
+			});
+		} else {
+			this._map.fire('commandstatechanged', {
+				commandName: 'invertbackground',
+				state: 'true',
+			});
 		}
 		this.setCanvasColorAfterModeChange();
 	}
@@ -232,8 +284,12 @@ class UIManager extends L.Control {
 	isBackgroundDark(): boolean {
 		// get the initial mode If document background is inverted or not
 		var inDarkTheme = window.prefs.getBoolean('darkTheme');
-		var darkBackgroundPrefName = 'darkBackgroundForTheme.' + (inDarkTheme ? 'dark' : 'light');
-		var backgroundDark = window.prefs.getBoolean(darkBackgroundPrefName, inDarkTheme);
+		var darkBackgroundPrefName =
+			'darkBackgroundForTheme.' + (inDarkTheme ? 'dark' : 'light');
+		var backgroundDark = window.prefs.getBoolean(
+			darkBackgroundPrefName,
+			inDarkTheme,
+		);
 		return backgroundDark;
 	}
 
@@ -243,15 +299,18 @@ class UIManager extends L.Control {
 	toggleInvert(): void {
 		// get the initial mode
 		var inDarkTheme = window.prefs.getBoolean('darkTheme');
-		var darkBackgroundPrefName = 'darkBackgroundForTheme.' + (inDarkTheme ? 'dark' : 'light');
-		var backgroundDark = window.prefs.getBoolean(darkBackgroundPrefName, inDarkTheme);
+		var darkBackgroundPrefName =
+			'darkBackgroundForTheme.' + (inDarkTheme ? 'dark' : 'light');
+		var backgroundDark = window.prefs.getBoolean(
+			darkBackgroundPrefName,
+			inDarkTheme,
+		);
 
 		// swap them by invoking the appropriate load function and saving the state
 		if (backgroundDark) {
 			window.prefs.set(darkBackgroundPrefName, false);
 			this.setDarkBackground(false);
-		}
-		else {
+		} else {
 			window.prefs.set(darkBackgroundPrefName, true);
 			this.setDarkBackground(true);
 		}
@@ -268,21 +327,20 @@ class UIManager extends L.Control {
 			window.prefs.set('darkTheme', false);
 			this.loadLightMode();
 			this.activateDarkModeInCore(false);
-		}
-		else {
+		} else {
 			window.prefs.set('darkTheme', true);
 			this.loadDarkMode();
 			this.activateDarkModeInCore(true);
 		}
 		this.applyInvert();
 		this.setCanvasColorAfterModeChange();
-		if (!window.mode.isMobile())
-			this.refreshAfterThemeChange();
+		if (!window.mode.isMobile()) this.refreshAfterThemeChange();
 
 		if (app.map._docLayer._docType === 'spreadsheet') {
-			const calcGridSection = app.sectionContainer.getSectionWithName(L.CSections.CalcGrid.name);
-			if (calcGridSection)
-				calcGridSection.resetStrokeStyle();
+			const calcGridSection = app.sectionContainer.getSectionWithName(
+				L.CSections.CalcGrid.name,
+			);
+			if (calcGridSection) calcGridSection.resetStrokeStyle();
 		}
 
 		this.map.fire('themechanged');
@@ -307,8 +365,10 @@ class UIManager extends L.Control {
 	 * Informs the core system about the dark mode change.
 	 */
 	activateDarkModeInCore(activate: boolean): void {
-		var cmd = { 'NewTheme': { 'type': 'string', 'value': '' } };
-		activate ? cmd.NewTheme.value = 'Dark' : cmd.NewTheme.value = 'Light';
+		var cmd = { NewTheme: { type: 'string', value: '' } };
+		activate
+			? (cmd.NewTheme.value = 'Dark')
+			: (cmd.NewTheme.value = 'Light');
 		app.socket.sendMessage('uno .uno:ChangeTheme ' + JSON.stringify(cmd));
 	}
 
@@ -318,11 +378,19 @@ class UIManager extends L.Control {
 	renameDocument(): void {
 		// todo: does this need _('rename document)
 		var docNameInput = this.documentNameInput;
-		var fileName = this.map['wopi'].BaseFileName ? this.map['wopi'].BaseFileName : '';
-		this.showInputModal('rename-modal', _('Rename Document'), _('Enter new name'), fileName, _('Rename'),
+		var fileName = this.map['wopi'].BaseFileName
+			? this.map['wopi'].BaseFileName
+			: '';
+		this.showInputModal(
+			'rename-modal',
+			_('Rename Document'),
+			_('Enter new name'),
+			fileName,
+			_('Rename'),
 			(newName: string) => {
 				docNameInput.documentNameConfirm(newName);
-		});
+			},
+		);
 	}
 
 	/**
@@ -374,9 +442,12 @@ class UIManager extends L.Control {
 
 			this.map.navigator = JSDialog.NavigatorPanel(this.map);
 
-			this.map.formulaautocomplete = L.control.formulaautocomplete(this.map);
+			this.map.formulaautocomplete = L.control.formulaautocomplete(
+				this.map,
+			);
 			this.map.formulausage = L.control.formulausage(this.map);
-			this.map.autofillpreviewtooltip = L.control.autofillpreviewtooltip(this.map);
+			this.map.autofillpreviewtooltip =
+				L.control.autofillpreviewtooltip(this.map);
 		}
 
 		this.map.jsdialog = L.control.jsDialog();
@@ -414,15 +485,27 @@ class UIManager extends L.Control {
 							type: 'container',
 							vertical: 'true',
 							children: [
-								{id: 'busyspinner', type: 'spinnerimg'},
-								{id: 'busylabel', type: 'fixedtext', text: label}
-							]
-						}
-					]
+								{
+									id: 'busyspinner',
+									type: 'spinnerimg',
+								},
+								{
+									id: 'busylabel',
+									type: 'fixedtext',
+									text: label,
+								},
+							],
+						},
+					],
 				};
 				if (app.socket) {
-					var builderCallback = function() { /* Do nothing. */ };
-					app.socket._onMessage({textMsg: 'jsdialog: ' + JSON.stringify(json), callback: builderCallback});
+					var builderCallback = function () {
+						/* Do nothing. */
+					};
+					app.socket._onMessage({
+						textMsg: 'jsdialog: ' + JSON.stringify(json),
+						callback: builderCallback,
+					});
 				}
 			}, 700);
 		};
@@ -434,10 +517,12 @@ class UIManager extends L.Control {
 				id: 'busypopup',
 				jsontype: 'dialog',
 				type: 'modalpopup',
-				action: 'fadeout'
+				action: 'fadeout',
 			};
 			if (app.socket)
-				app.socket._onMessage({textMsg: 'jsdialog: ' + JSON.stringify(json)});
+				app.socket._onMessage({
+					textMsg: 'jsdialog: ' + JSON.stringify(json),
+				});
 		};
 
 		this.map.on('showbusy', (e: any) => {
@@ -457,7 +542,8 @@ class UIManager extends L.Control {
 	initializeSpecializedUI(docType: string): void {
 		var isDesktop = window.mode.isDesktop();
 		var currentMode = this.getCurrentMode();
-		var enableNotebookbar = currentMode === 'notebookbar' && !app.isReadOnly();
+		var enableNotebookbar =
+			currentMode === 'notebookbar' && !app.isReadOnly();
 		var hasShare = this.map.wopi.EnableShare;
 
 		document.body.setAttribute('data-userInterfaceMode', currentMode);
@@ -483,25 +569,41 @@ class UIManager extends L.Control {
 		this.initDarkModeFromSettings();
 
 		if (docType === 'spreadsheet') {
-			this.sheetsBar = JSDialog.SheetsBar(this.map, isDesktop || window.mode.isTablet());
+			this.sheetsBar = JSDialog.SheetsBar(
+				this.map,
+				isDesktop || window.mode.isTablet(),
+			);
 
 			const formulabarRow = document.getElementById('formulabar-row');
-			const spreadsheetToolbar = document.getElementById('spreadsheet-toolbar');
+			const spreadsheetToolbar = document.getElementById(
+				'spreadsheet-toolbar',
+			);
 			spreadsheetToolbar?.classList?.remove('hidden');
 			formulabarRow?.classList?.remove('hidden');
 			this.map.formulabar = JSDialog.FormulaBar(this.map);
-			this.map.addressInputField = JSDialog.AddressInputField(this.map);
+			this.map.addressInputField = JSDialog.AddressInputField(
+				this.map,
+			);
 			$('#toolbar-wrapper').addClass('spreadsheet');
 
 			// remove unused elements
 			L.DomUtil.remove(L.DomUtil.get('presentation-controls-wrapper'));
-			const selectBackground = document.getElementById('selectbackground');
+			const selectBackground =
+				document.getElementById('selectbackground');
 			if (selectBackground != null)
 				selectBackground.parentNode?.removeChild(selectBackground);
 
-			const highlightState = this.getHighlightMode()? 'true' : 'false';
-			this.map['stateChangeHandler'].setItemValue('columnrowhighlight', highlightState);
-			this._map.fire('commandstatechanged', {commandName : 'columnrowhighlight', state : highlightState});
+			const highlightState = this.getHighlightMode()
+				? 'true'
+				: 'false';
+			this.map['stateChangeHandler'].setItemValue(
+				'columnrowhighlight',
+				highlightState,
+			);
+			this._map.fire('commandstatechanged', {
+				commandName: 'columnrowhighlight',
+				state: highlightState,
+			});
 		}
 
 		if (this.map.isPresentationOrDrawing()) {
@@ -509,26 +611,41 @@ class UIManager extends L.Control {
 			L.DomUtil.remove(L.DomUtil.get('spreadsheet-toolbar'));
 			$('#presentation-controls-wrapper').show();
 			this.initializeRuler();
-			this.map.slideShowPresenter = new SlideShow.SlideShowPresenter(this.map);
-			this.map.presenterConsole = new SlideShow.PresenterConsole(this.map, this.map.slideShowPresenter);
+			this.map.slideShowPresenter = new SlideShow.SlideShowPresenter(
+				this.map,
+			);
+			this.map.presenterConsole = new SlideShow.PresenterConsole(
+				this.map,
+				this.map.slideShowPresenter,
+			);
 		}
 
 		if (docType === 'text') {
 			// remove unused elements
 			L.DomUtil.remove(L.DomUtil.get('spreadsheet-toolbar'));
 			L.DomUtil.remove(L.DomUtil.get('presentation-controls-wrapper'));
-			const selectBackground = document.getElementById('selectbackground');
+			const selectBackground =
+				document.getElementById('selectbackground');
 			if (selectBackground != null)
 				selectBackground.parentNode?.removeChild(selectBackground);
 
 			this.initializeRuler();
 
-			var showResolved = this.getBooleanDocTypePref('ShowResolved', true);
+			var showResolved = this.getBooleanDocTypePref(
+				'ShowResolved',
+				true,
+			);
 			if (showResolved === false)
 				this.map.sendUnoCommand('.uno:ShowResolvedAnnotations');
 			// Notify the initial status of comments
-			var initialCommentState = this.map['stateChangeHandler'].getItemValue('showannotations');
-			this._map.fire('commandstatechanged', {commandName : 'showannotations', state : initialCommentState});
+			var initialCommentState =
+				this.map['stateChangeHandler'].getItemValue(
+					'showannotations',
+				);
+			this._map.fire('commandstatechanged', {
+				commandName: 'showannotations',
+				state: initialCommentState,
+			});
 			this.map.mention = L.control.mention(this.map);
 
 			if (!window.mode.isMobile()) {
@@ -538,10 +655,16 @@ class UIManager extends L.Control {
 			}
 		}
 
-		if (this.map.isPresentationOrDrawing() && (isDesktop || window.mode.isTablet())) {
+		if (
+			this.map.isPresentationOrDrawing() &&
+			(isDesktop || window.mode.isTablet())
+		) {
 			JSDialog.PresentationBar(this.map);
 		}
-		if ((window.mode.isTablet() || window.mode.isDesktop()) && !app.isReadOnly()) {
+		if (
+			(window.mode.isTablet() || window.mode.isDesktop()) &&
+			!app.isReadOnly()
+		) {
 			this.map.navigator.initializeNavigator(docType);
 		}
 
@@ -549,10 +672,15 @@ class UIManager extends L.Control {
 
 		this.refreshTheme();
 
-		var startPresentationGet = this.map.isPresentationOrDrawing() && window.loolParams.get('startPresentation');
+		var startPresentationGet =
+			this.map.isPresentationOrDrawing() &&
+			window.loolParams.get('startPresentation');
 		// check for "presentation" dispatch event only after document gets fully loaded
-		this.map.on('docloaded', function() {
-			if (startPresentationGet === 'true' || startPresentationGet === '1') {
+		this.map.on('docloaded', function () {
+			if (
+				startPresentationGet === 'true' ||
+				startPresentationGet === '1'
+			) {
 				app.dispatcher.dispatch('presentation');
 			}
 		});
@@ -578,35 +706,59 @@ class UIManager extends L.Control {
 	initializeSidebar(): void {
 		// Hide the sidebar on start if saved state or UIDefault is set.
 		if (window.mode.isDesktop() && !window.ThisIsAMobileApp) {
-			var showSidebar = this.getBooleanDocTypePref('ShowSidebar', true);
+			var showSidebar = this.getBooleanDocTypePref(
+				'ShowSidebar',
+				true,
+			);
 
-			if (showSidebar && this.getBooleanDocTypePref('PropertyDeck', true)) {
+			if (
+				showSidebar &&
+				this.getBooleanDocTypePref('PropertyDeck', true)
+			) {
 				app.socket.sendMessage('uno .uno:SidebarShow');
 				this.map.sidebar.setAsInitialized();
 			}
 
 			if (showSidebar && this.map.getDocType() === 'presentation') {
-				if (this.getBooleanDocTypePref('SdSlideTransitionDeck', false)) {
+				if (
+					this.getBooleanDocTypePref(
+						'SdSlideTransitionDeck',
+						false,
+					)
+				) {
 					app.socket.sendMessage('uno .uno:SidebarShow');
 					app.socket.sendMessage('uno .uno:SlideChangeWindow');
-					this.map.sidebar.setupTargetDeck('.uno:SlideChangeWindow');
-				} else if (this.getBooleanDocTypePref('SdCustomAnimationDeck', false)) {
+					this.map.sidebar.setupTargetDeck(
+						'.uno:SlideChangeWindow',
+					);
+				} else if (
+					this.getBooleanDocTypePref(
+						'SdCustomAnimationDeck',
+						false,
+					)
+				) {
 					app.socket.sendMessage('uno .uno:SidebarShow');
 					app.socket.sendMessage('uno .uno:CustomAnimation');
-					this.map.sidebar.setupTargetDeck('.uno:CustomAnimation');
+					this.map.sidebar.setupTargetDeck(
+						'.uno:CustomAnimation',
+					);
 				}
-			} else if (showSidebar && this.getBooleanDocTypePref('StyleListDeck', false)) {
+			} else if (
+				showSidebar &&
+				this.getBooleanDocTypePref('StyleListDeck', false)
+			) {
 				app.socket.sendMessage('uno .uno:SidebarShow');
-				app.socket.sendMessage('uno .uno:SidebarDeck.StyleListDeck');
-				this.map.sidebar.setupTargetDeck('.uno:SidebarDeck.StyleListDeck');
+				app.socket.sendMessage(
+					'uno .uno:SidebarDeck.StyleListDeck',
+				);
+				this.map.sidebar.setupTargetDeck(
+					'.uno:SidebarDeck.StyleListDeck',
+				);
 			}
 
-			if (showSidebar)
-				this.map.sidebar.setAsInitialized();
-			else
-				app.socket.sendMessage('uno .uno:SidebarHide');
-		}
-		else if (window.mode.isChromebook()) {
+			if (showSidebar) this.map.sidebar.setAsInitialized();
+			else app.socket.sendMessage('uno .uno:SidebarHide');
+		} else if (window.mode.isChromebook()) {
 			// HACK - currently the sidebar shows when loaded,
 			// with the exception of mobile phones & tablets - but
 			// there, it does not show only because they start
@@ -622,13 +774,16 @@ class UIManager extends L.Control {
 	 * Initializes the ruler component.
 	 */
 	initializeRuler(): void {
-		if ((window.mode.isTablet() || window.mode.isDesktop()) && !app.isReadOnly()) {
+		if (
+			(window.mode.isTablet() || window.mode.isDesktop()) &&
+			!app.isReadOnly()
+		) {
 			var showRuler = this.getBooleanDocTypePref('ShowRuler');
 			var interactiveRuler = this.map.isEditMode();
 			// Call the static method from the Ruler class
 			app.definitions.ruler.initializeRuler(this.map, {
 				interactive: interactiveRuler,
-				showruler: showRuler
+				showruler: showRuler,
 			});
 		}
 	}
@@ -637,13 +792,11 @@ class UIManager extends L.Control {
 	 * Removes classic UI components.
 	 */
 	removeClassicUI(): void {
-		if (this.map.menubar)
-		{
+		if (this.map.menubar) {
 			this.map.removeControl(this.map.menubar);
 			this.map.menubar = null;
 		}
-		if (this.map.topToolbar)
-		{
+		if (this.map.topToolbar) {
 			this.map.topToolbar.onRemove();
 			this.map.topToolbar = null;
 		}
@@ -668,8 +821,7 @@ class UIManager extends L.Control {
 
 		this.map.topToolbar.updateControlsState();
 
-		if (this._menubarShouldBeHidden)
-			this.hideMenubar();
+		if (this._menubarShouldBeHidden) this.hideMenubar();
 	}
 
 	/**
@@ -697,7 +849,10 @@ class UIManager extends L.Control {
 	 * Refreshes UI components after a theme change.
 	 */
 	refreshAfterThemeChange(): void {
-		if (this.getCurrentMode() === 'classic' || this.map.isReadOnlyMode()) {
+		if (
+			this.getCurrentMode() === 'classic' ||
+			this.map.isReadOnlyMode()
+		) {
 			this.refreshMenubar();
 			this.refreshToolbar();
 		}
@@ -709,29 +864,30 @@ class UIManager extends L.Control {
 	 * Refreshes the notebookbar.
 	 */
 	refreshNotebookbar(): void {
-			var selectedTab = $('.ui-tab.notebookbar[aria-selected="true"]').attr('id') || 'Home-tab-label';
-			this.removeNotebookbarUI();
-			this.createNotebookbarControl(this.map.getDocType());
-			if (this._map._permission === 'edit') {
-				$('.main-nav').removeClass('readonly');
-			}
-			$('#' + selectedTab).click();
-			this.makeSpaceForNotebookbar();
-			this.notebookbar._showNotebookbar = true;
-			this.notebookbar.showTabs();
-			$('#map').addClass('notebookbar-opened');
-			this.insertCustomButtons();
-			this.map.sendInitNotebookbarCommands();
-			if (this.map.getDocType() === 'presentation')
-				this.map.fire('toggleslidehide');
+		var selectedTab =
+			$('.ui-tab.notebookbar[aria-selected="true"]').attr('id') ||
+			'Home-tab-label';
+		this.removeNotebookbarUI();
+		this.createNotebookbarControl(this.map.getDocType());
+		if (this._map._permission === 'edit') {
+			$('.main-nav').removeClass('readonly');
+		}
+		$('#' + selectedTab).click();
+		this.makeSpaceForNotebookbar();
+		this.notebookbar._showNotebookbar = true;
+		this.notebookbar.showTabs();
+		$('#map').addClass('notebookbar-opened');
+		this.insertCustomButtons();
+		this.map.sendInitNotebookbarCommands();
+		if (this.map.getDocType() === 'presentation')
+			this.map.fire('toggleslidehide');
 	}
 
 	/**
 	 * Refreshes the menubar.
 	 */
 	refreshMenubar(): void {
-		if (this.map.menubar)
-			this.map.menubar._onRefresh();
+		if (this.map.menubar) this.map.menubar._onRefresh();
 	}
 
 	/**
@@ -741,7 +897,8 @@ class UIManager extends L.Control {
 	refreshSidebar(ms?: number): void {
 		ms = ms !== undefined ? ms : 400;
 		setTimeout(function () {
-			var message = 'dialogevent ' +
+			var message =
+				'dialogevent ' +
 				(window.sidebarId !== undefined ? window.sidebarId : -1) +
 				' {"id":"-1"}';
 			app.socket.sendMessage(message);
@@ -783,41 +940,42 @@ class UIManager extends L.Control {
 	 * @param uiMode - Object containing the new UI mode and additional flags.
 	 */
 	onChangeUIMode(uiMode: UIModeCommand): void {
-		if (window.mode.isMobile())
-			return;
+		if (window.mode.isMobile()) return;
 
 		var currentMode = this.getCurrentMode();
 
-		if (uiMode.mode === currentMode && !uiMode.force)
-			return;
+		if (uiMode.mode === currentMode && !uiMode.force) return;
 
 		if (uiMode.mode !== 'classic' && uiMode.mode !== 'notebookbar')
 			return;
 
 		document.body.setAttribute('data-userInterfaceMode', uiMode.mode);
 
-		this.map.fire('postMessage', {msgId: 'Action_ChangeUIMode_Resp', args: {Mode: uiMode.mode}});
+		this.map.fire('postMessage', {
+			msgId: 'Action_ChangeUIMode_Resp',
+			args: { Mode: uiMode.mode },
+		});
 
 		switch (currentMode) {
-		case 'classic':
-			this.removeClassicUI();
-			break;
+			case 'classic':
+				this.removeClassicUI();
+				break;
 
-		case 'notebookbar':
-			this.removeNotebookbarUI();
-			break;
+			case 'notebookbar':
+				this.removeNotebookbarUI();
+				break;
 		}
 
 		window.userInterfaceMode = uiMode.mode;
 
 		switch (uiMode.mode) {
-		case 'classic':
-			this.addClassicUI();
-			break;
+			case 'classic':
+				this.addClassicUI();
+				break;
 
-		case 'notebookbar':
-			this.addNotebookbarUI();
-			break;
+			case 'notebookbar':
+				this.addNotebookbarUI();
+				break;
 		}
 
 		window.prefs.set('compactMode', uiMode.mode === 'classic');
@@ -857,10 +1015,15 @@ class UIManager extends L.Control {
 					uno: button.unoCommand,
 					id: button.id,
 					img: button.id,
-					hint: _(button.hint.replaceAll('"', '&quot;')), /* "Try" to localize ! */
+					hint: _(
+						button.hint.replaceAll('"', '&quot;'),
+					) /* "Try" to localize ! */,
 					/* Notify the host back when button is clicked (only when unoCommand is not set) */
-					postmessage: !Object.prototype.hasOwnProperty.call(button, 'unoCommand')
-				}
+					postmessage: !Object.prototype.hasOwnProperty.call(
+						button,
+						'unoCommand',
+					),
+				},
 			];
 
 			// TODO: other
@@ -880,17 +1043,21 @@ class UIManager extends L.Control {
 
 		if (this.map.isReadOnlyMode()) {
 			// Just add a menu entry for it
-			this.map.fire('addmenu', {id: button.id, label: button.hint});
+			this.map.fire('addmenu', { id: button.id, label: button.hint });
 		}
 	}
 
 	setCssRulesForCustomButtons(): void {
 		for (var button of this.customButtons) {
-			const item = document.querySelector(".w2ui-icon." + encodeURIComponent(button.id)) as HTMLElement | null;
+			const item = document.querySelector(
+				'.w2ui-icon.' + encodeURIComponent(button.id),
+			) as HTMLElement | null;
 			var imgUrl = button.imgurl;
 			if (item) {
-				if(button.imgurl === undefined || button.imgurl === "") {
-					var iconName = app.LOUtil.getIconNameOfCommand(button.unoCommand);
+				if (button.imgurl === undefined || button.imgurl === '') {
+					var iconName = app.LOUtil.getIconNameOfCommand(
+						button.unoCommand,
+					);
 					imgUrl = app.LOUtil.getImageURL(iconName);
 				}
 				item.style.background = 'url("' + encodeURI(imgUrl) + '")';
@@ -909,8 +1076,7 @@ class UIManager extends L.Control {
 	insertButton(button: any): void {
 		for (var i in this.customButtons) {
 			var item = this.customButtons[i];
-			if (item.id === button.id)
-				return;
+			if (item.id === button.id) return;
 		}
 
 		this.customButtons.push(button);
@@ -925,10 +1091,8 @@ class UIManager extends L.Control {
 		if (button.tablet === false && window.mode.isTablet()) {
 			return;
 		}
-		if (!this.notebookbar)
-			this.insertButtonToClassicToolbar(button);
-		else
-			this.notebookbar.insertButtonToShortcuts(button);
+		if (!this.notebookbar) this.insertButtonToClassicToolbar(button);
+		else this.notebookbar.insertButtonToShortcuts(button);
 	}
 
 	/**
@@ -958,8 +1122,7 @@ class UIManager extends L.Control {
 
 		const topToolbarHas = window.app.map.topToolbar.hasItem(buttonId);
 		found = found || topToolbarHas;
-		if (topToolbarHas)
-			window.app.map.topToolbar.showItem(buttonId, show);
+		if (topToolbarHas) window.app.map.topToolbar.showItem(buttonId, show);
 
 		return found;
 	}
@@ -984,7 +1147,9 @@ class UIManager extends L.Control {
 		}
 
 		if (!found) {
-			window.app.console.error('Button with id "' + buttonId + '" not found.');
+			window.app.console.error(
+				'Button with id "' + buttonId + '" not found.',
+			);
 			return;
 		}
 	}
@@ -1024,8 +1189,7 @@ class UIManager extends L.Control {
 		var found = false;
 
 		toolbars.forEach((toolbar) => {
-			if (!toolbar)
-				return;
+			if (!toolbar) return;
 			toolbar.items.forEach((item: any) => {
 				var commands = this.map._extractCommand(item);
 				if (commands.indexOf(command) != -1) {
@@ -1063,7 +1227,9 @@ class UIManager extends L.Control {
 		}
 
 		if (!found) {
-			window.app.console.error('Item with command "' + command + '" not found.');
+			window.app.console.error(
+				'Item with command "' + command + '" not found.',
+			);
 		}
 	}
 
@@ -1082,21 +1248,18 @@ class UIManager extends L.Control {
 	 */
 	showMenubar(): void {
 		this._menubarShouldBeHidden = false;
-		if (!this.isMenubarHidden())
-			return;
+		if (!this.isMenubarHidden()) return;
 		$('.main-nav').show();
 		if (L.Params.closeButtonEnabled && !window.mode.isTablet()) {
 			$('#closebuttonwrapper').show();
 			$('#closebuttonwrapperseparator').show();
 		}
 		const obj = document.getElementById('fold-button');
-		if (obj != null)
-			obj.style.transform = 'rotate(0deg)';
+		if (obj != null) obj.style.transform = 'rotate(0deg)';
 
 		$('#fold').prop('title', _('Hide Menu'));
 
-		if (this._notebookbarShouldBeCollapsed)
-			this.collapseNotebookbar();
+		if (this._notebookbarShouldBeCollapsed) this.collapseNotebookbar();
 	}
 
 	/**
@@ -1104,11 +1267,10 @@ class UIManager extends L.Control {
 	 */
 	hideMenubar(): void {
 		this._menubarShouldBeHidden = true;
-		if (this.isMenubarHidden() || this.shouldUseNotebookbarMode())
-			return;
+		if (this.isMenubarHidden() || this.shouldUseNotebookbarMode()) return;
 
 		var notebookbarWasCollapsed = this.isNotebookbarCollapsed();
-		this.extendNotebookbar();  // The notebookbar has the button to show the menu bar, so having it hidden at the same time softlocks you
+		this.extendNotebookbar(); // The notebookbar has the button to show the menu bar, so having it hidden at the same time softlocks you
 		this._notebookbarShouldBeCollapsed = notebookbarWasCollapsed;
 
 		$('.main-nav').hide();
@@ -1117,8 +1279,7 @@ class UIManager extends L.Control {
 			$('#closebuttonwrapperseparator').hide();
 		}
 		const obj = document.getElementById('fold-button');
-		if (obj != null)
-			obj.style.transform = 'rotate(180deg)';
+		if (obj != null) obj.style.transform = 'rotate(180deg)';
 
 		$('#fold').prop('title', _('Show Menu'));
 	}
@@ -1134,10 +1295,8 @@ class UIManager extends L.Control {
 	 * Toggles the menubar’s visibility.
 	 */
 	toggleMenubar(): void {
-		if (this.isMenubarHidden())
-			this.showMenubar();
-		else
-			this.hideMenubar();
+		if (this.isMenubarHidden()) this.showMenubar();
+		else this.hideMenubar();
 	}
 
 	// Ruler
@@ -1167,10 +1326,8 @@ class UIManager extends L.Control {
 	 * Toggles the ruler’s visibility.
 	 */
 	toggleRuler(): void {
-		if (this.isRulerVisible())
-			this.hideRuler();
-		else
-			this.showRuler();
+		if (this.isRulerVisible()) this.hideRuler();
+		else this.showRuler();
 	}
 
 	/**
@@ -1184,13 +1341,14 @@ class UIManager extends L.Control {
 	 * Returns whether the document is in fullscreen mode.
 	 */
 	isFullscreen(): boolean {
-		if (!document.fullscreenElement &&
+		if (
+			!document.fullscreenElement &&
 			!document.mozFullscreenElement &&
 			!document.msFullscreenElement &&
-			!document.webkitFullscreenElement)
+			!document.webkitFullscreenElement
+		)
 			return false;
-		else
-			return true;
+		else return true;
 	}
 
 	// Notebookbar helpers
@@ -1199,7 +1357,9 @@ class UIManager extends L.Control {
 		// do it always apart of mobile as we need it for contextual toolbar
 		if (window.mode.isMobile()) return;
 
-		this.map.sendUnoCommand('.uno:ToolbarMode?Mode:string=notebookbar_online.ui');
+		this.map.sendUnoCommand(
+			'.uno:ToolbarMode?Mode:string=notebookbar_online.ui',
+		);
 	}
 
 	// QuickFindPanel
@@ -1222,8 +1382,7 @@ class UIManager extends L.Control {
 	 * Adjusts layout to make space for the notebookbar.
 	 */
 	makeSpaceForNotebookbar(): void {
-		if (this.hasNotebookbarShown())
-			return;
+		if (this.hasNotebookbarShown()) return;
 
 		$('#map').addClass('notebookbar-opened');
 	}
@@ -1234,8 +1393,7 @@ class UIManager extends L.Control {
 	collapseNotebookbar(): void {
 		this._notebookbarShouldBeCollapsed = true;
 
-		if (this.isNotebookbarCollapsed() || this.isMenubarHidden())
-			return;
+		if (this.isNotebookbarCollapsed() || this.isMenubarHidden()) return;
 
 		this.moveObjectVertically($('#formulabar'), -1);
 		$('#toolbar-wrapper').css('display', 'none');
@@ -1249,8 +1407,7 @@ class UIManager extends L.Control {
 	extendNotebookbar(): void {
 		this._notebookbarShouldBeCollapsed = false;
 
-		if (!this.isNotebookbarCollapsed())
-			return;
+		if (!this.isNotebookbarCollapsed()) return;
 
 		this.moveObjectVertically($('#formulabar'), 1);
 		$('#toolbar-wrapper').css('display', '');
@@ -1304,14 +1461,12 @@ class UIManager extends L.Control {
 	 * @param firstStart - Optional flag indicating if this is the initial call.
 	 */
 	hideStatusBar(firstStart?: boolean): void {
-		if (!firstStart && !this.isStatusBarVisible())
-			return;
+		if (!firstStart && !this.isStatusBarVisible()) return;
 
 		this.documentBottom = $('#document-container').css('bottom');
 		$('#document-container').css('bottom', '0px');
 		this.map.statusBar.hide();
-		if (!firstStart)
-			this.setDocTypePref('ShowStatusbar', false);
+		if (!firstStart) this.setDocTypePref('ShowStatusbar', false);
 		this.map.fire('statusbarchanged');
 	}
 
@@ -1319,10 +1474,8 @@ class UIManager extends L.Control {
 	 * Toggles the status bar’s visibility.
 	 */
 	toggleStatusBar(): void {
-		if (this.isStatusBarVisible())
-			this.hideStatusBar();
-		else
-			this.showStatusBar();
+		if (this.isStatusBarVisible()) this.hideStatusBar();
+		else this.showStatusBar();
 	}
 
 	/**
@@ -1332,8 +1485,7 @@ class UIManager extends L.Control {
 		if (this.map.isText() && !app.showNavigator) {
 			this.map.navigator.preFocusQuickFind();
 			this.showNavigator();
-		}
-		else {
+		} else {
 			app.socket.sendMessage('uno .uno:SearchDialog');
 		}
 		this.map.fire('focussearch');
@@ -1343,7 +1495,10 @@ class UIManager extends L.Control {
 	 * Returns whether the status bar is visible.
 	 */
 	isStatusBarVisible(): boolean {
-		return document.getElementById('toolbar-down')?.style?.display !== 'none';
+		return (
+			document.getElementById('toolbar-down')?.style?.display !==
+			'none'
+		);
 	}
 
 	// Event handlers
@@ -1355,11 +1510,13 @@ class UIManager extends L.Control {
 	onUpdatePermission(e: any): void {
 		if (window.mode.isMobile()) {
 			if (e.detail.perm === 'edit') {
-				history.pushState({context: 'app-started'}, 'edit-mode');
+				history.pushState({ context: 'app-started' }, 'edit-mode');
 				$('#toolbar-down').show();
-			}
-			else {
-				history.pushState({context: 'app-started'}, 'readonly-mode');
+			} else {
+				history.pushState(
+					{ context: 'app-started' },
+					'readonly-mode',
+				);
 				$('#toolbar-down').hide();
 			}
 		}
@@ -1379,7 +1536,10 @@ class UIManager extends L.Control {
 					this.map.addControl(menubar);
 				}
 
-				if (this.notebookbar && $('#mobile-edit-button').is(':hidden')) {
+				if (
+					this.notebookbar &&
+					$('#mobile-edit-button').is(':hidden')
+				) {
 					this.map.removeControl(this.notebookbar);
 					this.notebookbar = null;
 				}
@@ -1395,8 +1555,7 @@ class UIManager extends L.Control {
 	refreshUI(): void {
 		if (this.notebookbar && !this.map._shouldStartReadOnly())
 			this.refreshNotebookbar();
-		else
-			this.refreshMenubar();
+		else this.refreshMenubar();
 
 		this.refreshTheme();
 	}
@@ -1411,20 +1570,27 @@ class UIManager extends L.Control {
 	 * Updates the view information.
 	 */
 	onUpdateViews(): void {
-		if (!this.map._docLayer || typeof this.map._docLayer._viewId === 'undefined')
+		if (
+			!this.map._docLayer ||
+			typeof this.map._docLayer._viewId === 'undefined'
+		)
 			return;
 
 		var myViewId = this.map._docLayer._viewId;
 		var myViewData = this.map._viewInfo[myViewId];
 		if (!myViewData) {
-			console.error('Not found view data for viewId: "' + myViewId + '"');
+			console.error(
+				'Not found view data for viewId: "' + myViewId + '"',
+			);
 			return;
 		}
 
 		var userPrivateInfo = myViewData.userprivateinfo;
 		if (window.documentSigningEnabled) {
 			if (userPrivateInfo && this.notebookbar) {
-				const show = userPrivateInfo.SignatureCert && userPrivateInfo.SignatureKey;
+				const show =
+					userPrivateInfo.SignatureCert &&
+					userPrivateInfo.SignatureKey;
 				// Show or hide the signature button on the notebookbar depending on if we
 				// have a signing cert/key specified.
 				this.showButton('signature', show);
@@ -1434,7 +1600,10 @@ class UIManager extends L.Control {
 				const baseUrl = serverPrivateInfo.ESignatureBaseUrl;
 				const clientId = serverPrivateInfo.ESignatureClientId;
 				if (baseUrl !== undefined && !this.map.eSignature) {
-					this.map.eSignature = L.control.eSignature(baseUrl, clientId);
+					this.map.eSignature = L.control.eSignature(
+						baseUrl,
+						clientId,
+					);
 				}
 			}
 		}
@@ -1464,7 +1633,10 @@ class UIManager extends L.Control {
 	 */
 	onGoBack(popStateEvent: any): void {
 		if (popStateEvent.state && popStateEvent.state.context) {
-			if (popStateEvent.state.context === 'mobile-wizard' && this.mobileWizard) {
+			if (
+				popStateEvent.state.context === 'mobile-wizard' &&
+				this.mobileWizard
+			) {
 				if (this.mobileWizard.isOpen()) {
 					this.mobileWizard.goLevelUp(true);
 				} else {
@@ -1491,7 +1663,7 @@ class UIManager extends L.Control {
 	 */
 	blockUI(event: any): void {
 		this.blockedUI = true;
-		this.map.fire('showbusy', {label: event ? event.message : null});
+		this.map.fire('showbusy', { label: event ? event.message : null });
 	}
 
 	/**
@@ -1521,7 +1693,9 @@ class UIManager extends L.Control {
 	 */
 	showDocumentTooltip(tooltipInfo: any): void {
 		var split = tooltipInfo.rectangle.split(',');
-		var latlng = this.map._docLayer._twipsToLatLng(new L.Point(+split[0], +split[1]));
+		var latlng = this.map._docLayer._twipsToLatLng(
+			new L.Point(+split[0], +split[1]),
+		);
 		var pt = this.map.latLngToContainerPoint(latlng);
 		var elem = $('.leaflet-layer');
 
@@ -1529,12 +1703,20 @@ class UIManager extends L.Control {
 		elem.tooltip('enable');
 		this._setTooltipText(elem, tooltipInfo.text);
 		elem.tooltip('option', 'items', elem[0]);
-		elem.tooltip('option', 'position', { my: 'left bottom',  at: 'left+' + pt.x + ' top+' + pt.y, collision: 'fit fit' });
+		elem.tooltip('option', 'position', {
+			my: 'left bottom',
+			at: 'left+' + pt.x + ' top+' + pt.y,
+			collision: 'fit fit',
+		});
 		elem.tooltip('open');
-		document.addEventListener('mousemove', function() {
-			elem.tooltip('close');
-			elem.tooltip('disable');
-		}, {once: true});
+		document.addEventListener(
+			'mousemove',
+			function () {
+				elem.tooltip('close');
+				elem.tooltip('disable');
+			},
+			{ once: true },
+		);
 	}
 
 	// Snack bar
@@ -1564,7 +1746,14 @@ class UIManager extends L.Control {
 		hasProgress: boolean,
 		withDismiss: boolean,
 	): void {
-		JSDialog.SnackbarController.showSnackbar(label, action, callback, timeout, hasProgress, withDismiss);
+		JSDialog.SnackbarController.showSnackbar(
+			label,
+			action,
+			callback,
+			timeout,
+			hasProgress,
+			withDismiss,
+		);
 	}
 
 	/**
@@ -1578,7 +1767,15 @@ class UIManager extends L.Control {
 		withDismiss?: boolean,
 		infinite?: boolean,
 	): void {
-		JSDialog.SnackbarController.showSnackbar(message, buttonText, callback, timeout ? timeout : -1, true, withDismiss, infinite);
+		JSDialog.SnackbarController.showSnackbar(
+			message,
+			buttonText,
+			callback,
+			timeout ? timeout : -1,
+			true,
+			withDismiss,
+			infinite,
+		);
 	}
 
 	/**
@@ -1599,22 +1796,53 @@ class UIManager extends L.Control {
 	 * @param cancelButtonId - Optional ID for the cancel button.
 	 */
 	showModal(json: any, callbacks: any[], cancelButtonId?: string): void {
-		var builderCallback = (objectType: any, eventType: any, object: any, data: any) => {
-			window.app.console.debug("modal action: '" + objectType + "' id:'" + object.id + "' event: '" + eventType + "' state: '" + data + "'");
+		var builderCallback = (
+			objectType: any,
+			eventType: any,
+			object: any,
+			data: any,
+		) => {
+			window.app.console.debug(
+				"modal action: '" +
+					objectType +
+					"' id:'" +
+					object.id +
+					"' event: '" +
+					eventType +
+					"' state: '" +
+					data +
+					"'",
+			);
 
 			// default close methods
-			callbacks.push({id: (cancelButtonId ? cancelButtonId: 'response-cancel'), func: () => { this.closeModal(json.id); }});
-			callbacks.push({id: '__POPOVER__', func: () => { this.closeModal(json.id); }});
+			callbacks.push({
+				id: cancelButtonId ? cancelButtonId : 'response-cancel',
+				func: () => {
+					this.closeModal(json.id);
+				},
+			});
+			callbacks.push({
+				id: '__POPOVER__',
+				func: () => {
+					this.closeModal(json.id);
+				},
+			});
 
 			for (var i in callbacks) {
 				var callback = callbacks[i];
-				if (object.id === callback.id && (!callback.type || eventType === callback.type)) {
+				if (
+					object.id === callback.id &&
+					(!callback.type || eventType === callback.type)
+				) {
 					callback.func(objectType, eventType, object, data);
 				}
 			}
 		};
 
-		app.socket._onMessage({textMsg: 'jsdialog: ' + JSON.stringify(json), callback: builderCallback});
+		app.socket._onMessage({
+			textMsg: 'jsdialog: ' + JSON.stringify(json),
+			callback: builderCallback,
+		});
 	}
 
 	/**
@@ -1622,28 +1850,31 @@ class UIManager extends L.Control {
 	 * @param dialogId - The ID of the dialog to close.
 	 */
 	closeModal(dialogId: string): void {
-		var closeMessage = { id: dialogId, jsontype: 'dialog', type: 'modalpopup', action: 'close' };
-		app.socket._onMessage({ textMsg: 'jsdialog: ' + JSON.stringify(closeMessage) });
+		var closeMessage = {
+			id: dialogId,
+			jsontype: 'dialog',
+			type: 'modalpopup',
+			action: 'close',
+		};
+		app.socket._onMessage({
+			textMsg: 'jsdialog: ' + JSON.stringify(closeMessage),
+		});
 	}
 
 	/**
 	 * Closes all open dialogs.
 	 */
 	closeAll(): void {
-		if (this.map.jsdialog)
-			this.map.jsdialog.closeAll();
-		else
-			this.mobileWizard._closeWizard();
+		if (this.map.jsdialog) this.map.jsdialog.closeAll();
+		else this.mobileWizard._closeWizard();
 	}
 
 	/**
 	 * Returns whether any dialog is currently open.
 	 */
 	isAnyDialogOpen(): boolean {
-		if (this.map.jsdialog)
-			return this.map.jsdialog.hasDialogOpened();
-		else
-			return this.mobileWizard.isOpen();
+		if (this.map.jsdialog) return this.map.jsdialog.hasDialogOpened();
+		else return this.mobileWizard.isOpen();
 	}
 
 	// TODO: remove and use JSDialog.generateModalId directly
@@ -1679,7 +1910,7 @@ class UIManager extends L.Control {
 			hasOverlay: true,
 			cancellable: cancellable,
 			jsontype: 'dialog',
-			'init_focus_id': focusId,
+			init_focus_id: focusId,
 			clickToDismiss: clickToDismiss,
 			children: [
 				{
@@ -1688,7 +1919,7 @@ class UIManager extends L.Control {
 					vertical: true,
 					children: widgets,
 				},
-			]
+			],
 		};
 	}
 
@@ -1718,56 +1949,71 @@ class UIManager extends L.Control {
 		// If called with only id, then we want clickToDismiss.
 		var clickToDismiss = arguments.length < 2;
 
-		var json = this._modalDialogJSON(id, title, true, [
-			{
-				id: 'info-modal-tile-m',
-				type: 'fixedtext',
-				text: title,
-				hidden: !window.mode.isMobile()
-			},
-			{
-				id: 'info-modal-label1',
-				type: 'fixedtext',
-				text: message1
-			},
-			{
-				id: 'info-modal-label2',
-				type: 'fixedtext',
-				text: message2
-			},
-			{
-				id: '',
-				type: 'buttonbox',
-				text: '',
-				enabled: true,
-				children: [
-					withCancel ? {
-						id: cancelButtonId,
-						type: 'pushbutton',
-						text: _('Cancel')
-					} : { type: 'container' },
-					{
-						id: responseButtonId,
-						type: 'pushbutton',
-						text: buttonText,
-						'has_default': true,
-						hidden: buttonText ? false: true // Hide if no text is given. So we can use one modal type for various purposes.
-					}
-				],
-				vertical: false,
-				layoutstyle: 'end'
-			},
-		], focusId, clickToDismiss);
+		var json = this._modalDialogJSON(
+			id,
+			title,
+			true,
+			[
+				{
+					id: 'info-modal-tile-m',
+					type: 'fixedtext',
+					text: title,
+					hidden: !window.mode.isMobile(),
+				},
+				{
+					id: 'info-modal-label1',
+					type: 'fixedtext',
+					text: message1,
+				},
+				{
+					id: 'info-modal-label2',
+					type: 'fixedtext',
+					text: message2,
+				},
+				{
+					id: '',
+					type: 'buttonbox',
+					text: '',
+					enabled: true,
+					children: [
+						withCancel
+							? {
+									id: cancelButtonId,
+									type: 'pushbutton',
+									text: _('Cancel'),
+								}
+							: { type: 'container' },
+						{
+							id: responseButtonId,
+							type: 'pushbutton',
+							text: buttonText,
+							has_default: true,
+							hidden: buttonText ? false : true, // Hide if no text is given. So we can use one modal type for various purposes.
+						},
+					],
+					vertical: false,
+					layoutstyle: 'end',
+				},
+			],
+			focusId,
+			clickToDismiss,
+		);
 
-		this.showModal(json, [
-			{id: responseButtonId, func: () => {
-				var dontClose = false;
-				if (typeof callback === 'function')
-					dontClose = callback();
-				if (!dontClose)
-					this.closeModal(dialogId);
-			}}
-		], cancelButtonId);
+		this.showModal(
+			json,
+			[
+				{
+					id: responseButtonId,
+					func: () => {
+						var dontClose = false;
+						if (typeof callback === 'function')
+							dontClose = callback();
+						if (!dontClose) this.closeModal(dialogId);
+					},
+				},
+			],
+			cancelButtonId,
+		);
 		if (!buttonText && !withCancel) {
 			// if no buttons better to set tabIndex to negative so the element is not reachable via sequential keyboard navigation but can be focused programatically
 			const dialogElement = document.getElementById(dialogId);
@@ -1797,62 +2043,78 @@ class UIManager extends L.Control {
 		var responseButtonId = id + '-response';
 		var cancelButtonId = id + '-cancel';
 
-		var json = this._modalDialogJSON(id, title, true, [
-			{
-				id: 'info-modal-tile-m',
-				type: 'fixedtext',
-				text: title,
-				hidden: !window.mode.isMobile()
-			},
-			{
-				id: 'info-modal-label1',
-				type: 'fixedtext',
-				text: message
-			},
-			{
-				id: dialogId + '-progressbar',
-				type: 'progressbar',
-				value: (value !== undefined && value !== null ? value: 0),
-				maxValue: 100,
-				infinite: infinite
-			},
-			{
-				id: '',
-				type: 'buttonbox',
-				text: '',
-				enabled: true,
-				children: [
-					{
-						id: cancelButtonId,
-						type: 'pushbutton',
-						text: _('Cancel')
-					},
-					{
-						id: responseButtonId,
-						type: 'pushbutton',
-						text: buttonText,
-						'has_default': true,
-						hidden: buttonText ? false: true // Hide if no text is given. So we can use one modal type for various purposes.
-					}
-				],
-				vertical: false,
-				layoutstyle: 'end'
-			},
-		], buttonText ? responseButtonId : cancelButtonId);
+		var json = this._modalDialogJSON(
+			id,
+			title,
+			true,
+			[
+				{
+					id: 'info-modal-tile-m',
+					type: 'fixedtext',
+					text: title,
+					hidden: !window.mode.isMobile(),
+				},
+				{
+					id: 'info-modal-label1',
+					type: 'fixedtext',
+					text: message,
+				},
+				{
+					id: dialogId + '-progressbar',
+					type: 'progressbar',
+					value:
+						value !== undefined && value !== null ? value : 0,
+					maxValue: 100,
+					infinite: infinite,
+				},
+				{
+					id: '',
+					type: 'buttonbox',
+					text: '',
+					enabled: true,
+					children: [
+						{
+							id: cancelButtonId,
+							type: 'pushbutton',
+							text: _('Cancel'),
+						},
+						{
+							id: responseButtonId,
+							type: 'pushbutton',
+							text: buttonText,
+							has_default: true,
+							hidden: buttonText ? false : true, // Hide if no text is given. So we can use one modal type for various purposes.
+						},
+					],
+					vertical: false,
+					layoutstyle: 'end',
+				},
+			],
+			buttonText ? responseButtonId : cancelButtonId,
+		);
 
-		this.showModal(json, [
-			{id: responseButtonId, func: () => {
-				var dontClose = false;
-				if (typeof callback === 'function')
-					dontClose = callback();
-				if (!dontClose)
-					this.closeModal(dialogId);
-			}},
-			{id: cancelButtonId, func: () => {
-				if (typeof cancelCallback === 'function')
-					cancelCallback();
-			}}
-		], cancelButtonId);
+		this.showModal(
+			json,
+			[
+				{
+					id: responseButtonId,
+					func: () => {
+						var dontClose = false;
+						if (typeof callback === 'function')
+							dontClose = callback();
+						if (!dontClose) this.closeModal(dialogId);
+					},
+				},
+				{
+					id: cancelButtonId,
+					func: () => {
+						if (typeof cancelCallback === 'function')
+							cancelCallback();
+					},
+				},
+			],
+			cancelButtonId,
+		);
 	}
 
 	/**
@@ -1861,8 +2123,7 @@ class UIManager extends L.Control {
 	 * @param infinite - If true, shows an indeterminate progress bar.
 	 */
 	setDialogProgress(id: string, value: number, infinite: boolean): void {
-		if (!app.socket)
-			return;
+		if (!app.socket) return;
 
 		var dialogId = this.generateModalId(id);
 
@@ -1876,11 +2137,13 @@ class UIManager extends L.Control {
 				type: 'progressbar',
 				value: value,
 				maxValue: 100,
-				infinite: infinite
-			}
+				infinite: infinite,
+			},
 		};
 
-		app.socket._onMessage({textMsg: 'jsdialog: ' + JSON.stringify(json)});
+		app.socket._onMessage({
+			textMsg: 'jsdialog: ' + JSON.stringify(json),
+		});
 	}
 
 	/// buttonObjectList: [{id: button's id, text: button's text, ..other properties if needed}, ...]
@@ -1903,12 +2166,12 @@ class UIManager extends L.Control {
 				id: 'info-modal-tile-m',
 				type: 'fixedtext',
 				text: title,
-				hidden: !window.mode.isMobile()
+				hidden: !window.mode.isMobile(),
 			},
 			{
 				id: 'info-modal-label1',
 				type: 'fixedtext',
-				text: message
+				text: message,
 			},
 			{
 				id: '',
@@ -1917,7 +2180,7 @@ class UIManager extends L.Control {
 				enabled: true,
 				children: buttonObjectList,
 				vertical: false,
-				layoutstyle: 'end'
+				layoutstyle: 'end',
 			},
 		]);
 
@@ -1929,9 +2192,10 @@ class UIManager extends L.Control {
 							callback.func_();
 							this.closeModal(dialogId);
 						};
-					}
-					else
-						callback.func = () => { this.closeModal(dialogId); };
+					} else
+						callback.func = () => {
+							this.closeModal(dialogId);
+						};
 				}
 			});
 		});
@@ -1956,51 +2220,62 @@ class UIManager extends L.Control {
 		passwordInput?: boolean,
 	): void {
 		var dialogId = this.generateModalId(id);
-		var json = this._modalDialogJSON(id, title, !window.mode.isDesktop(), [
-			{
-				id: 'info-modal-label1',
-				type: 'fixedtext',
-				text: message,
-				labelFor: 'input-modal',
-			},
-			{
-				id: 'input-modal',
-				type: 'edit',
-				password: !!passwordInput,
-				text: defaultValue,
-				labelledBy: 'info-modal-label1'
-			},
-			{
-				id: '',
-				type: 'buttonbox',
-				text: '',
-				enabled: true,
-				children: [
-					{
-						id: 'response-cancel',
-						type: 'pushbutton',
-						text: _('Cancel'),
-					},
-					{
-						id: 'response-ok',
-						type: 'pushbutton',
-						text: buttonText,
-						'has_default': true,
-					}
-				],
-				vertical: false,
-				layoutstyle: 'end'
-			},
-		], 'input-modal-input');
+		var json = this._modalDialogJSON(
+			id,
+			title,
+			!window.mode.isDesktop(),
+			[
+				{
+					id: 'info-modal-label1',
+					type: 'fixedtext',
+					text: message,
+					labelFor: 'input-modal',
+				},
+				{
+					id: 'input-modal',
+					type: 'edit',
+					password: !!passwordInput,
+					text: defaultValue,
+					labelledBy: 'info-modal-label1',
+				},
+				{
+					id: '',
+					type: 'buttonbox',
+					text: '',
+					enabled: true,
+					children: [
+						{
+							id: 'response-cancel',
+							type: 'pushbutton',
+							text: _('Cancel'),
+						},
+						{
+							id: 'response-ok',
+							type: 'pushbutton',
+							text: buttonText,
+							has_default: true,
+						},
+					],
+					vertical: false,
+					layoutstyle: 'end',
+				},
+			],
+			'input-modal-input',
+		);
 
 		this.showModal(json, [
-			{id: 'response-ok', func: () => {
-				if (typeof callback === 'function') {
-					var input = document.getElementById('input-modal-input') as HTMLInputElement;
-					callback(input.value);
-				}
-				this.closeModal(dialogId);
-			}}
+			{
+				id: 'response-ok',
+				func: () => {
+					if (typeof callback === 'function') {
+						var input = document.getElementById(
+							'input-modal-input',
+						) as HTMLInputElement;
+						callback(input.value);
+					}
+					this.closeModal(dialogId);
+				},
+			},
 		]);
 	}
 
@@ -2017,7 +2292,7 @@ class UIManager extends L.Control {
 			{
 				id: dialogId + '-text',
 				type: 'fixedtext',
-				text: message
+				text: message,
 			},
 			{
 				id: '',
@@ -2029,24 +2304,27 @@ class UIManager extends L.Control {
 						id: dialogId + '-response',
 						type: 'pushbutton',
 						text: _(linkText),
-						'has_default': true,
-					}
+						has_default: true,
+					},
 				],
 				vertical: false,
-				layoutstyle: 'end'
+				layoutstyle: 'end',
 			},
 		]);
 
-		this.showModal(json,
-		[{
-			id : dialogId + '-response',
-			func : () => {
-				if (!link || !linkText)
-					return;
-				var win = window.open(window.sanitizeUrl(link), '_blank');
-				win?.focus();
-			}
-		}]);
+		this.showModal(json, [
+			{
+				id: dialogId + '-response',
+				func: () => {
+					if (!link || !linkText) return;
+					var win = window.open(
+						window.sanitizeUrl(link),
+						'_blank',
+					);
+					win?.focus();
+				},
+			},
+		]);
 
 		if (!window.mode.isMobile()) {
 			const dialogElement = document.getElementById(dialogId);
@@ -2074,15 +2352,15 @@ class UIManager extends L.Control {
 
 		var json = this._modalDialogJSON(id, title, cancellable, [
 			{
-				id:  dialogId + '-title',
+				id: dialogId + '-title',
 				type: 'fixedtext',
 				text: title,
-				hidden: !window.mode.isMobile()
+				hidden: !window.mode.isMobile(),
 			},
 			{
 				id: dialogId + '-label',
 				type: 'fixedtext',
-				text: message
+				text: message,
 			},
 			{
 				id: '',
@@ -2090,40 +2368,39 @@ class UIManager extends L.Control {
 				text: '',
 				enabled: true,
 				children: [
-					noButtonText ? {
-						id: dialogId + '-nobutton',
-						type: 'pushbutton',
-						text: noButtonText
-					} : { type: 'container' },
+					noButtonText
+						? {
+								id: dialogId + '-nobutton',
+								type: 'pushbutton',
+								text: noButtonText,
+							}
+						: { type: 'container' },
 					{
 						id: dialogId + '-yesbutton',
 						type: 'pushbutton',
 						text: yesButtonText,
-					}
+					},
 				],
 				vertical: false,
-				layoutstyle: 'end'
+				layoutstyle: 'end',
 			},
 		]);
 
-		this.showModal(json,
-		[
+		this.showModal(json, [
 			{
 				id: dialogId + '-nobutton',
 				func: () => {
-					if (typeof noFunction === 'function')
-						noFunction();
+					if (typeof noFunction === 'function') noFunction();
 					this.closeModal(dialogId);
-				}
+				},
 			},
 			{
 				id: dialogId + '-yesbutton',
 				func: () => {
-					if (typeof yesFunction === 'function')
-						yesFunction();
+					if (typeof yesFunction === 'function') yesFunction();
 					this.closeModal(dialogId);
-				}
-			}
+				},
+			},
 		]);
 	}
 
@@ -2142,43 +2419,54 @@ class UIManager extends L.Control {
 		hideCancelButton?: boolean,
 	): void {
 		var dialogId = this.generateModalId(id);
-		var json = this._modalDialogJSON(id, title, !window.mode.isDesktop(), [
-			{
-				id: 'info-modal-label1',
-				type: 'fixedtext',
-				text: message
-			},
-			{
-				id: '',
-				type: 'buttonbox',
-				text: '',
-				enabled: true,
-				children: [
-					{
-						id: 'response-cancel',
-						type: 'pushbutton',
-						text: _('Cancel'),
-						hidden: hideCancelButton === true ? true: false
-					},
-					{
-						id: 'response-ok',
-						type: 'pushbutton',
-						text: buttonText,
-						'has_default': true,
-					}
-				],
-				vertical: false,
-				layoutstyle: 'end'
-			},
-		]);
+		var json = this._modalDialogJSON(
+			id,
+			title,
+			!window.mode.isDesktop(),
+			[
+				{
+					id: 'info-modal-label1',
+					type: 'fixedtext',
+					text: message,
+				},
+				{
+					id: '',
+					type: 'buttonbox',
+					text: '',
+					enabled: true,
+					children: [
+						{
+							id: 'response-cancel',
+							type: 'pushbutton',
+							text: _('Cancel'),
+							hidden:
+								hideCancelButton === true
+									? true
+									: false,
+						},
+						{
+							id: 'response-ok',
+							type: 'pushbutton',
+							text: buttonText,
+							has_default: true,
+						},
+					],
+					vertical: false,
+					layoutstyle: 'end',
+				},
+			],
+		);
 
 		this.showModal(json, [
-			{id: 'response-ok', func: () => {
-				if (typeof callback === 'function') {
-					callback();
-				}
-				this.closeModal(dialogId);
-			}}
+			{
+				id: 'response-ok',
+				func: () => {
+					if (typeof callback === 'function') {
+						callback();
+					}
+					this.closeModal(dialogId);
+				},
+			},
 		]);
 	}
 
@@ -2194,13 +2482,12 @@ class UIManager extends L.Control {
 			var prevTop = obj.css('top');
 			if (prevTop) {
 				prevTop = parseInt(prevTop.slice(0, -2)) + diff + 'px';
-			}
-			else {
+			} else {
 				prevTop = diff + 'px';
 			}
 			obj.css({ top: prevTop });
-			}
 		}
+	}
 
 	/**
 	 * Sets a document type–specific preference.
@@ -2220,7 +2507,7 @@ class UIManager extends L.Control {
 
 		const deckPrefs: Record<string, string> = {};
 		for (const [key, value] of Object.entries(prefs)) {
-			deckPrefs[`${docType}.${key}`] = value
+			deckPrefs[`${docType}.${key}`] = value;
 		}
 		window.prefs.setMultiple(deckPrefs);
 	}
@@ -2230,7 +2517,10 @@ class UIManager extends L.Control {
 	 * @param name - Preference name.
 	 * @param defaultValue - Default value if not set.
 	 */
-	getBooleanDocTypePref(name: string, defaultValue: boolean = false): boolean {
+	getBooleanDocTypePref(
+		name: string,
+		defaultValue: boolean = false,
+	): boolean {
 		const docType = this.map.getDocType();
 		return window.prefs.getBoolean(`${docType}.${name}`, defaultValue);
 	}

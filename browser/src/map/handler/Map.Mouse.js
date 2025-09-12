@@ -6,43 +6,49 @@
 /* global UNOModifier app TileManager */
 
 L.Map.mergeOptions({
-	mouse: true
+	mouse: true,
 });
 
 L.Map.Mouse = L.Handler.extend({
-
 	initialize: function (map) {
 		this._map = map;
 		this._mouseEventsQueue = [];
 	},
 
 	addHooks: function () {
-		this._map.on('mousedown mouseup mouseover mouseout mousemove dblclick trplclick qdrplclick',
-			this._onMouseEvent, this);
+		this._map.on(
+			'mousedown mouseup mouseover mouseout mousemove dblclick trplclick qdrplclick',
+			this._onMouseEvent,
+			this,
+		);
 	},
 
 	removeHooks: function () {
-		this._map.off('mousedown mouseup mouseover mouseout mousemove dblclick trplclick qdrplclick',
-			this._onMouseEvent, this);
+		this._map.off(
+			'mousedown mouseup mouseover mouseout mousemove dblclick trplclick qdrplclick',
+			this._onMouseEvent,
+			this,
+		);
 	},
 
 	LOButtons: {
 		left: 1,
 		middle: 2,
-		right: 4
+		right: 4,
 	},
 
 	JSButtons: {
 		left: 0,
 		middle: 1,
-		right: 2
+		right: 2,
 	},
 
-	_isMouseOnValidityDropdown: function() {
+	_isMouseOnValidityDropdown: function () {
 		if (app.sectionContainer) {
-			const section = app.sectionContainer.getSectionWithName(L.CSections.CalcValidityDropDown.name);
-			if (section)
-				return section.sectionProperties.mouseEntered;
+			const section = app.sectionContainer.getSectionWithName(
+				L.CSections.CalcValidityDropDown.name,
+			);
+			if (section) return section.sectionProperties.mouseEntered;
 		}
 
 		return null;
@@ -52,13 +58,17 @@ L.Map.Mouse = L.Handler.extend({
 		if (this._map.uiManager.isUIBlocked() || app.map.dontHandleMouse)
 			return;
 
-		if (this._isMouseOnValidityDropdown())
-			return;
+		if (this._isMouseOnValidityDropdown()) return;
 
 		app.idleHandler.notifyActive();
 		var docLayer = this._map._docLayer;
-		if (!docLayer || this._map.rulerActive || (this._map.slideShow && this._map.slideShow.fullscreen) ||
-			(this._map.slideShowPresenter && this._map.slideShowPresenter.isFullscreen())) {
+		if (
+			!docLayer ||
+			this._map.rulerActive ||
+			(this._map.slideShow && this._map.slideShow.fullscreen) ||
+			(this._map.slideShowPresenter &&
+				this._map.slideShowPresenter.isFullscreen())
+		) {
 			return;
 		}
 
@@ -70,13 +80,25 @@ L.Map.Mouse = L.Handler.extend({
 		modifier = shift | ctrl | alt | cmd;
 
 		var buttons = 0;
-		buttons |= e.originalEvent.button === this.JSButtons.left ? this.LOButtons.left : 0;
-		buttons |= e.originalEvent.button === this.JSButtons.middle ? this.LOButtons.middle : 0;
-		buttons |= e.originalEvent.button === this.JSButtons.right ? this.LOButtons.right : 0;
+		buttons |=
+			e.originalEvent.button === this.JSButtons.left
+				? this.LOButtons.left
+				: 0;
+		buttons |=
+			e.originalEvent.button === this.JSButtons.middle
+				? this.LOButtons.middle
+				: 0;
+		buttons |=
+			e.originalEvent.button === this.JSButtons.right
+				? this.LOButtons.right
+				: 0;
 
 		// Turn ctrl-left-click into right-click for browsers on macOS
 		if (L.Browser.mac) {
-			if (modifier == UNOModifier.CTRL && buttons == this.LOButtons.left) {
+			if (
+				modifier == UNOModifier.CTRL &&
+				buttons == this.LOButtons.left
+			) {
 				modifier = 0;
 				buttons = this.LOButtons.right;
 			}
@@ -84,11 +106,24 @@ L.Map.Mouse = L.Handler.extend({
 
 		var mouseEnteringLeavingMap = this._map._mouseEnteringLeaving;
 
-		if (mouseEnteringLeavingMap && e.type === 'mouseover' && this._mouseDown) {
-			L.DomEvent.off(document, 'mousemove', this._onMouseMoveOutside, this);
-			L.DomEvent.off(document, 'mouseup', this._onMouseUpOutside, this);
-		}
-		else if (e.type === 'mousedown') {
+		if (
+			mouseEnteringLeavingMap &&
+			e.type === 'mouseover' &&
+			this._mouseDown
+		) {
+			L.DomEvent.off(
+				document,
+				'mousemove',
+				this._onMouseMoveOutside,
+				this,
+			);
+			L.DomEvent.off(
+				document,
+				'mouseup',
+				this._onMouseUpOutside,
+				this,
+			);
+		} else if (e.type === 'mousedown') {
 			TileManager.resetPreFetching();
 			this._mouseDown = true;
 			this._buttonDown = buttons;
@@ -96,12 +131,23 @@ L.Map.Mouse = L.Handler.extend({
 				clearTimeout(this._holdMouseEvent);
 			}
 			var mousePos = docLayer._latLngToTwips(e.latlng);
-			this._mouseEventsQueue.push(L.bind(function () {
-				this._postMouseEvent('buttondown', mousePos.x, mousePos.y, 1, buttons, modifier);
-			}, docLayer));
-			this._holdMouseEvent = setTimeout(L.bind(this._executeMouseEvents, this), 500);
-		}
-		else if (e.type === 'mouseup') {
+			this._mouseEventsQueue.push(
+				L.bind(function () {
+					this._postMouseEvent(
+						'buttondown',
+						mousePos.x,
+						mousePos.y,
+						1,
+						buttons,
+						modifier,
+					);
+				}, docLayer),
+			);
+			this._holdMouseEvent = setTimeout(
+				L.bind(this._executeMouseEvents, this),
+				500,
+			);
+		} else if (e.type === 'mouseup') {
 			this._mouseDown = false;
 			if (this._map.dragging.enabled()) {
 				if (this._mouseEventsQueue.length === 0) {
@@ -110,8 +156,14 @@ L.Map.Mouse = L.Handler.extend({
 				}
 			}
 
-			var scrollSection = app.sectionContainer.getSectionWithName(L.CSections.Scroll.name);
-			if (scrollSection.sectionProperties.mouseIsOnVerticalScrollBar || scrollSection.sectionProperties.mouseIsOnHorizontalScrollBar)
+			var scrollSection = app.sectionContainer.getSectionWithName(
+				L.CSections.Scroll.name,
+			);
+			if (
+				scrollSection.sectionProperties
+					.mouseIsOnVerticalScrollBar ||
+				scrollSection.sectionProperties.mouseIsOnHorizontalScrollBar
+			)
 				return;
 
 			// Core side is handling the mouseup by itself when the right button is down.
@@ -138,26 +190,35 @@ L.Map.Mouse = L.Handler.extend({
 					this._clickTime = Date.now();
 				}
 				return;
-			}
-			else {
+			} else {
 				this._clickTime = Date.now();
 				this._clickCount = 1;
 				mousePos = docLayer._latLngToTwips(e.latlng);
 				var timeOut = 0;
-				this._mouseEventsQueue.push(L.bind(function () {
-					var docLayer = this._map._docLayer;
-					this._mouseEventsQueue = [];
-					docLayer._postMouseEvent('buttonup', mousePos.x, mousePos.y, 1, buttons, modifier);
-					this._map.focus();
-				}, this));
-				this._holdMouseEvent = setTimeout(L.bind(this._executeMouseEvents, this), timeOut);
+				this._mouseEventsQueue.push(
+					L.bind(function () {
+						var docLayer = this._map._docLayer;
+						this._mouseEventsQueue = [];
+						docLayer._postMouseEvent(
+							'buttonup',
+							mousePos.x,
+							mousePos.y,
+							1,
+							buttons,
+							modifier,
+						);
+						this._map.focus();
+					}, this),
+				);
+				this._holdMouseEvent = setTimeout(
+					L.bind(this._executeMouseEvents, this),
+					timeOut,
+				);
 			}
 
 			this._map.fire('scrollvelocity', { vx: 0, vy: 0 });
-		}
-		else if (e.type === 'mousemove' && this._mouseDown) {
-			if (this._mouseOverTimeout)
-				clearTimeout(this._mouseOverTimeout);
+		} else if (e.type === 'mousemove' && this._mouseDown) {
+			if (this._mouseOverTimeout) clearTimeout(this._mouseOverTimeout);
 
 			if (this._holdMouseEvent) {
 				clearTimeout(this._holdMouseEvent);
@@ -176,33 +237,76 @@ L.Map.Mouse = L.Handler.extend({
 			}
 			if (!this._map.dragging.enabled()) {
 				mousePos = docLayer._latLngToTwips(e.latlng);
-				docLayer._postMouseEvent('move', mousePos.x, mousePos.y, 1, buttons, modifier);
+				docLayer._postMouseEvent(
+					'move',
+					mousePos.x,
+					mousePos.y,
+					1,
+					buttons,
+					modifier,
+				);
 
-				this._map.fire('handleautoscroll', { pos: e.containerPoint, map: this._map });
+				this._map.fire('handleautoscroll', {
+					pos: e.containerPoint,
+					map: this._map,
+				});
 			}
-		}
-		else if (e.type === 'mousemove' && !this._mouseDown) {
+		} else if (e.type === 'mousemove' && !this._mouseDown) {
 			clearTimeout(this._mouseOverTimeout);
 			mousePos = docLayer._latLngToTwips(e.latlng);
-			this._mouseOverTimeout = setTimeout(L.bind(function () {
-				docLayer._postMouseEvent('move', mousePos.x, mousePos.y, 1, 0, modifier);
-			}, this),
-				100);
-		}
-		else if (e.type === 'dblclick' || e.type === 'trplclick' || e.type === 'qdrplclick') {
+			this._mouseOverTimeout = setTimeout(
+				L.bind(function () {
+					docLayer._postMouseEvent(
+						'move',
+						mousePos.x,
+						mousePos.y,
+						1,
+						0,
+						modifier,
+					);
+				}, this),
+				100,
+			);
+		} else if (
+			e.type === 'dblclick' ||
+			e.type === 'trplclick' ||
+			e.type === 'qdrplclick'
+		) {
 			mousePos = docLayer._latLngToTwips(e.latlng);
 			var clicks = {
 				dblclick: 2,
 				trplclick: 3,
-				qdrplclick: 4
+				qdrplclick: 4,
 			};
 			var count = clicks[e.type];
 
-			docLayer._postMouseEvent('buttondown', mousePos.x, mousePos.y, count, buttons, modifier);
-			docLayer._postMouseEvent('buttonup', mousePos.x, mousePos.y, count, buttons, modifier);
-		}
-		else if (mouseEnteringLeavingMap && e.type === 'mouseout' && this._mouseDown) {
-			L.DomEvent.on(document, 'mousemove', this._onMouseMoveOutside, this);
+			docLayer._postMouseEvent(
+				'buttondown',
+				mousePos.x,
+				mousePos.y,
+				count,
+				buttons,
+				modifier,
+			);
+			docLayer._postMouseEvent(
+				'buttonup',
+				mousePos.x,
+				mousePos.y,
+				count,
+				buttons,
+				modifier,
+			);
+		} else if (
+			mouseEnteringLeavingMap &&
+			e.type === 'mouseout' &&
+			this._mouseDown
+		) {
+			L.DomEvent.on(
+				document,
+				'mousemove',
+				this._onMouseMoveOutside,
+				this,
+			);
 			L.DomEvent.on(document, 'mouseup', this._onMouseUpOutside, this);
 		}
 	}),
@@ -230,14 +334,24 @@ L.Map.Mouse = L.Handler.extend({
 		this._map._handleDOMEvent(e);
 		if (this._map.dragging.enabled()) {
 			this._map.dragging._draggable._onUp(e);
-		}
-		else if (this._map._docLayer) {
+		} else if (this._map._docLayer) {
 			// If it is not handled by the dragged object, it should be safe to send mouseUp event to the core side.
-			const mousePos = this._map._docLayer._latLngToTwips(this._map.mouseEventToLatLng(e));
-			this._map._docLayer._postMouseEvent('buttonup', mousePos.x, mousePos.y, 1, 1, 0);
+			const mousePos = this._map._docLayer._latLngToTwips(
+				this._map.mouseEventToLatLng(e),
+			);
+			this._map._docLayer._postMouseEvent(
+				'buttonup',
+				mousePos.x,
+				mousePos.y,
+				1,
+				1,
+				0,
+			);
 
-			const section = app.sectionContainer.getSectionWithName(L.CSections.Scroll.name);
+			const section = app.sectionContainer.getSectionWithName(
+				L.CSections.Scroll.name,
+			);
 			if (section) section.onScrollVelocity({ vx: 0, vy: 0 });
 		}
-	})
+	}),
 });

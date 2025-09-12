@@ -18,13 +18,15 @@ L.Util = {
 	},
 
 	// create an object from a given prototype
-	create: Object.create || (function () {
-		function F() {}
-		return function (proto) {
-			F.prototype = proto;
-			return new F();
-		};
-	})(),
+	create:
+		Object.create ||
+		(function () {
+			function F() {}
+			return function (proto) {
+				F.prototype = proto;
+				return new F();
+			};
+		})(),
 
 	// bind a function to be called with a given context
 	bind: function (fn, obj) {
@@ -37,7 +39,12 @@ L.Util = {
 		var args = slice.call(arguments, 2);
 
 		return function () {
-			return fn.apply(obj, args.length ? args.concat(slice.call(arguments)) : arguments);
+			return fn.apply(
+				obj,
+				args.length
+					? args.concat(slice.call(arguments))
+					: arguments,
+			);
 		};
 	},
 
@@ -55,21 +62,19 @@ L.Util = {
 	sanitizeElementId: function (id) {
 		// remove spaces first
 		// escape forbidden characters (i.e: (, ), #, ., :, $)
-		return CSS.escape(id.replaceAll(' ' , ''));
-	}
-
-
+		return CSS.escape(id.replaceAll(' ', ''));
+	},
 };
 
 if (!String.prototype.startsWith) {
-	String.prototype.startsWith = function(searchString, position) {
+	String.prototype.startsWith = function (searchString, position) {
 		position = position || 0;
 		return this.substr(position, searchString.length) === searchString;
 	};
 }
 
 if (!Element.prototype.remove) {
-	Element.prototype.remove = function() {
+	Element.prototype.remove = function () {
 		if (this.parentNode) {
 			this.parentNode.removeChild(this);
 		}

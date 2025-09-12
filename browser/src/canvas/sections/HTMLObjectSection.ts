@@ -8,7 +8,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 class HTMLObjectSection extends CanvasSectionObject {
 	processingOrder: number = L.CSections.HTMLObject.processingOrder;
@@ -16,8 +16,15 @@ class HTMLObjectSection extends CanvasSectionObject {
 	zIndex: number = L.CSections.HTMLObject.zIndex;
 	documentObject: boolean = true;
 
-	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint, extraClass: string = "", showSection: boolean = true) {
-        super(sectionName);
+	constructor(
+		sectionName: string,
+		objectWidth: number,
+		objectHeight: number,
+		documentPosition: lool.SimplePoint,
+		extraClass: string = '',
+		showSection: boolean = true,
+	) {
+		super(sectionName);
 
 		this.size = [objectWidth * app.dpiScale, objectHeight * app.dpiScale];
 		this.position = [documentPosition.pX, documentPosition.pY];
@@ -26,17 +33,25 @@ class HTMLObjectSection extends CanvasSectionObject {
 		this.sectionProperties.objectDiv = document.createElement('div');
 		this.sectionProperties.objectDiv.className = 'html-object-section';
 
-		if (objectWidth === null) this.sectionProperties.objectDiv.style.width = 'auto';
-		else this.sectionProperties.objectDiv.style.width = objectWidth + 'px';
+		if (objectWidth === null)
+			this.sectionProperties.objectDiv.style.width = 'auto';
+		else
+			this.sectionProperties.objectDiv.style.width =
+				objectWidth + 'px';
 
-		if (objectHeight === null) this.sectionProperties.objectDiv.style.height = 'auto';
-		else this.sectionProperties.objectDiv.style.height = objectHeight + 'px';
+		if (objectHeight === null)
+			this.sectionProperties.objectDiv.style.height = 'auto';
+		else
+			this.sectionProperties.objectDiv.style.height =
+				objectHeight + 'px';
 
 		if (extraClass)
 			this.sectionProperties.objectDiv.classList.add(extraClass);
 
 		// canvas-container and canvas overlap entirely. We can append the html object to canvas-container.
-		document.getElementById('canvas-container').appendChild(this.sectionProperties.objectDiv);
+		document
+			.getElementById('canvas-container')
+			.appendChild(this.sectionProperties.objectDiv);
 
 		if (!showSection) {
 			this.sectionProperties.objectDiv.style.display = 'none';
@@ -52,8 +67,7 @@ class HTMLObjectSection extends CanvasSectionObject {
 	public onSectionShowStatusChange(): void {
 		if (this.showSection)
 			this.sectionProperties.objectDiv.style.display = '';
-		else
-			this.sectionProperties.objectDiv.style.display = 'none';
+		else this.sectionProperties.objectDiv.style.display = 'none';
 	}
 
 	adjustHTMLObjectPosition() {
@@ -61,15 +75,23 @@ class HTMLObjectSection extends CanvasSectionObject {
 		let topAddition = 0;
 
 		if (this.sectionProperties.objectDiv.parentNode.id === 'map') {
-			const clientRectMap = document.getElementById('map').getBoundingClientRect();
-			const clientRectCanvas = document.getElementById('canvas-container').getBoundingClientRect();
+			const clientRectMap = document
+				.getElementById('map')
+				.getBoundingClientRect();
+			const clientRectCanvas = document
+				.getElementById('canvas-container')
+				.getBoundingClientRect();
 
 			leftAddition = clientRectMap.width - clientRectCanvas.width;
 			topAddition = clientRectMap.height - clientRectCanvas.height;
 		}
 
-		const left = Math.round((this.myTopLeft[0] + leftAddition) / app.dpiScale) + 'px';
-		const top = Math.round((this.myTopLeft[1] + topAddition) / app.dpiScale) + 'px';
+		const left =
+			Math.round((this.myTopLeft[0] + leftAddition) / app.dpiScale) +
+			'px';
+		const top =
+			Math.round((this.myTopLeft[1] + topAddition) / app.dpiScale) +
+			'px';
 
 		if (this.sectionProperties.objectDiv.style.left !== left)
 			this.sectionProperties.objectDiv.style.left = left;
@@ -92,13 +114,14 @@ class HTMLObjectSection extends CanvasSectionObject {
 		if (this.isVisible && this.isSectionShown()) {
 			if (this.sectionProperties.objectDiv.style.display !== '')
 				this.sectionProperties.objectDiv.style.display = '';
-		}
-		else
-			this.sectionProperties.objectDiv.style.display = 'none';
+		} else this.sectionProperties.objectDiv.style.display = 'none';
 	}
 
 	public getPosition(): lool.SimplePoint {
-		const twips = [Math.round(this.position[0] * app.pixelsToTwips), Math.round(this.position[1] * app.pixelsToTwips)];
+		const twips = [
+			Math.round(this.position[0] * app.pixelsToTwips),
+			Math.round(this.position[1] * app.pixelsToTwips),
+		];
 		return new lool.SimplePoint(twips[0], twips[1]);
 	}
 

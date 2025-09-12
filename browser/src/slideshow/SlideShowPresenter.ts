@@ -1094,7 +1094,9 @@ class SlideShowPresenter {
 	/// called when user triggers the in-window presentation using UI
 	_onStartInWindow(that: any) {
 		if (this._isLeader)
-			app.socket.sendMessage('slideshowfollow newfollowmepresentation');
+			app.socket.sendMessage(
+				'slideshowfollow newfollowmepresentation',
+			);
 		this._startSlide = that?.startSlideNumber ?? 0;
 		if (!this._onPrepareScreen(true))
 			// opens full screen, has to be on user interaction

@@ -24,8 +24,7 @@
 var scrollToCursorTimeout = null;
 
 function _sendSelection(edit, builder, id) {
-	if (document.activeElement != edit)
-		return;
+	if (document.activeElement != edit) return;
 
 	var selection = document.getSelection();
 	var startPos = 0;
@@ -41,8 +40,7 @@ function _sendSelection(edit, builder, id) {
 	if (selection.anchorNode == edit) {
 		startPos = endPos = 0;
 		for (var i in edit.childNodes) {
-			if (i == selection.anchorOffset)
-				break;
+			if (i == selection.anchorOffset) break;
 			if (edit.childNodes[i].tagName == 'BR') {
 				startPara++;
 				endPara++;
@@ -50,7 +48,10 @@ function _sendSelection(edit, builder, id) {
 		}
 	} else {
 		for (var i in edit.childNodes) {
-			if (edit.childNodes[i] != startElement && edit.childNodes[i].firstChild != startElement) {
+			if (
+				edit.childNodes[i] != startElement &&
+				edit.childNodes[i].firstChild != startElement
+			) {
 				if (edit.childNodes[i].tagName == 'BR') {
 					startPara++;
 					startPos = 0;
@@ -63,7 +64,10 @@ function _sendSelection(edit, builder, id) {
 		}
 
 		for (var i in edit.childNodes) {
-			if (edit.childNodes[i] != endElement && edit.childNodes[i].firstChild != endElement) {
+			if (
+				edit.childNodes[i] != endElement &&
+				edit.childNodes[i].firstChild != endElement
+			) {
 				if (edit.childNodes[i].tagName == 'BR') {
 					endPara++;
 					endPos = 0;
@@ -76,8 +80,16 @@ function _sendSelection(edit, builder, id) {
 		}
 	}
 
-	var selection = (startPos + anchorOffset) + ';' + (endPos + focusOffset) + ';' + startPara + ';' + endPara;
-	builder.callback('edit', 'textselection', {id: id}, selection, builder);
+	var selection =
+		startPos +
+		anchorOffset +
+		';' +
+		(endPos + focusOffset) +
+		';' +
+		startPara +
+		';' +
+		endPara;
+	builder.callback('edit', 'textselection', { id: id }, selection, builder);
 }
 
 function _appendText(cursorLayer, text, style) {
@@ -132,9 +144,14 @@ function _setSelection(cursorLayer, text, startX, endX, startY, endY) {
 			if (reversedSelection)
 				var cursor = _appendCursor(newCursorLayer);
 
-			_appendText(newCursorLayer,
-				line.substr(startX, startY == endY ? endX - startX : undefined),
-				((startX != endX || startY != endY) ? 'selection' : ''));
+			_appendText(
+				newCursorLayer,
+				line.substr(
+					startX,
+					startY == endY ? endX - startX : undefined,
+				),
+				startX != endX || startY != endY ? 'selection' : '',
+			);
 
 			if (startY == endY) {
 				if (!reversedSelection)
@@ -142,15 +159,13 @@ function _setSelection(cursorLayer, text, startX, endX, startY, endY) {
 
 				_appendText(newCursorLayer, line.substr(endX), '');
 				_appendNewLine(newCursorLayer);
-			} else
-				_appendNewLine(newCursorLayer);
+			} else _appendNewLine(newCursorLayer);
 		} else if (i > startY && i < endY) {
 			_appendText(newCursorLayer, line, 'selection');
 			_appendNewLine(newCursorLayer);
 		} else if (i == endY && endY != startY) {
 			_appendText(newCursorLayer, line.substr(0, endX), 'selection');
-			if (!reversedSelection)
-				cursor = _appendCursor(newCursorLayer);
+			if (!reversedSelection) cursor = _appendCursor(newCursorLayer);
 			_appendText(newCursorLayer, line.substr(endX), '');
 			_appendNewLine(newCursorLayer);
 		} else if (i > endY) {
@@ -164,38 +179,51 @@ function _setSelection(cursorLayer, text, startX, endX, startY, endY) {
 
 	// possible after cursor is added to the DOM
 	if (cursor) {
-		if (scrollToCursorTimeout)
-			clearTimeout(scrollToCursorTimeout);
+		if (scrollToCursorTimeout) clearTimeout(scrollToCursorTimeout);
 
 		// put scrol at the end of the task queue so we will not scroll multiple times
 		// during one session of processing events where multiple setSelection actions
 		// can be found, profiling shows it is heavy operation
 		scrollToCursorTimeout = setTimeout(function () {
 			var blockOption = JSDialog.ScrollIntoViewBlockOption('nearest');
-			cursor.scrollIntoView({behavior: 'smooth', block: blockOption, inline: 'nearest'});
+			cursor.scrollIntoView({
+				behavior: 'smooth',
+				block: blockOption,
+				inline: 'nearest',
+			});
 			scrollToCursorTimeout = null;
 		}, 0);
 	}
 }
 
 function _formulabarEditControl(parentContainer, data, builder) {
-	var container = L.DomUtil.create('div', 'ui-custom-textarea ' + builder.options.cssClass, parentContainer);
+	var container = L.DomUtil.create(
+		'div',
+		'ui-custom-textarea ' + builder.options.cssClass,
+		parentContainer,
+	);
 	container.id = data.id;
 
-	var textLayer = L.DomUtil.create('div', 'ui-custom-textarea-text-layer ' + builder.options.cssClass, container);
+	var textLayer = L.DomUtil.create(
+		'div',
+		'ui-custom-textarea-text-layer ' + builder.options.cssClass,
+		container,
+	);
 
 	if (data.enabled !== false)
 		textLayer.setAttribute('contenteditable', 'true');
 
-	var cursorLayer = L.DomUtil.create('div', 'ui-custom-textarea-cursor-layer ' + builder.options.cssClass, container);
+	var cursorLayer = L.DomUtil.create(
+		'div',
+		'ui-custom-textarea-cursor-layer ' + builder.options.cssClass,
+		container,
+	);
 
-	container.setText = function(text, selection) {
+	container.setText = function (text, selection) {
 		var newTextLayer = document.createDocumentFragment();
 		for (var c = 0; c < text.length; c++) {
-			if (text[c] == '\n')
-				_appendNewLine(newTextLayer);
-			else
-				_appendText(newTextLayer, text[c], '');
+			if (text[c] == '\n') _appendNewLine(newTextLayer);
+			else _appendText(newTextLayer, text[c], '');
 		}
 
 		textLayer.textContent = '';
@@ -211,16 +239,16 @@ function _formulabarEditControl(parentContainer, data, builder) {
 		_setSelection(cursorLayer, text, startX, endX, startY, endY);
 	};
 
-	container.enable = function() {
+	container.enable = function () {
 		L.DomUtil.removeClass(container, 'disabled');
 		textLayer.setAttribute('contenteditable', 'true');
 	};
-	container.disable = function() {
+	container.disable = function () {
 		L.DomUtil.addClass(container, 'disabled');
 		textLayer.setAttribute('contenteditable', 'false');
 	};
 
-	var textSelectionHandler = function(event) {
+	var textSelectionHandler = function (event) {
 		if (L.DomUtil.hasClass(container, 'disabled')) {
 			event.preventDefault();
 			return;
@@ -241,32 +269,37 @@ function _formulabarEditControl(parentContainer, data, builder) {
 	});
 
 	// hide old selection when user starts to select something else
-	textLayer.addEventListener('mousedown', function() {
-		textLayer.addEventListener('mouseleave', textSelectionHandler, {once: true});
+	textLayer.addEventListener('mousedown', function () {
+		textLayer.addEventListener('mouseleave', textSelectionHandler, {
+			once: true,
+		});
 		builder.callback('edit', 'grab_focus', container, null, builder);
 
-		cursorLayer.querySelectorAll('.selection').forEach(function (element) {
-			L.DomUtil.addClass(element, 'hidden');
-		});
+		cursorLayer
+			.querySelectorAll('.selection')
+			.forEach(function (element) {
+				L.DomUtil.addClass(element, 'hidden');
+			});
 
 		var cursor = cursorLayer.querySelector('.cursor');
-		if (cursor)
-			L.DomUtil.addClass(cursor, 'hidden');
+		if (cursor) L.DomUtil.addClass(cursor, 'hidden');
 	});
 
 	var text = builder._cleanText(data.text);
 	container.setText(text, [0, 0, 0, 0]);
 
-	if (data.enabled === false)
-		L.DomUtil.addClass(container, 'disabled');
+	if (data.enabled === false) L.DomUtil.addClass(container, 'disabled');
 
-	if (data.hidden)
-		L.DomUtil.addClass(container, 'hidden');
+	if (data.hidden) L.DomUtil.addClass(container, 'hidden');
 
 	return false;
 }
 
 JSDialog.formulabarEdit = function (parentContainer, data, builder) {
-	var buildInnerData = _formulabarEditControl(parentContainer, data, builder);
+	var buildInnerData = _formulabarEditControl(
+		parentContainer,
+		data,
+		builder,
+	);
 	return buildInnerData;
 };

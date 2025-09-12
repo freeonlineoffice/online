@@ -6,8 +6,10 @@
  */
 
 namespace CPolyUtil {
-
-	export function rectanglesToPointSet(rectangles: Array<Array<lool.Point>>, unitConverter: (point: lool.Point) => lool.Point): CPointSet {
+	export function rectanglesToPointSet(
+		rectangles: Array<Array<lool.Point>>,
+		unitConverter: (point: lool.Point) => lool.Point,
+	): CPointSet {
 		/* An Implementation based on O'ROURKE, Joseph. "Uniqueness of orthogonal connect-the-dots."
 		   Machine Intelligence and Pattern Recognition. Vol. 6. North-Holland, 1988. 97-104.
 		   http://www.science.smith.edu/~jorourke/Papers/OrthoConnect.pdf
@@ -18,10 +20,18 @@ namespace CPolyUtil {
 			for (var j = i + 1; j < rectangles.length; j++) {
 				for (var k = 0; k < rectangles[i].length; k++) {
 					for (var l = 0; l < rectangles[j].length; l++) {
-						if (Math.abs(rectangles[i][k].x - rectangles[j][l].x) < eps) {
+						if (
+							Math.abs(
+								rectangles[i][k].x - rectangles[j][l].x,
+							) < eps
+						) {
 							rectangles[j][l].x = rectangles[i][k].x;
 						}
-						if (Math.abs(rectangles[i][k].y - rectangles[j][l].y) < eps) {
+						if (
+							Math.abs(
+								rectangles[i][k].y - rectangles[j][l].y,
+							) < eps
+						) {
 							rectangles[j][l].y = rectangles[i][k].y;
 						}
 					}
@@ -34,14 +44,15 @@ namespace CPolyUtil {
 			for (j = 0; j < rectangles[i].length; j++) {
 				if (points.has(rectangles[i][j])) {
 					points.delete(rectangles[i][j]);
-				}
-				else {
+				} else {
 					points.set(rectangles[i][j], rectangles[i][j]);
 				}
 			}
 		}
 
-		function getKeys(points: Map<lool.Point, lool.Point>): Array<lool.Point> {
+		function getKeys(
+			points: Map<lool.Point, lool.Point>,
+		): Array<lool.Point> {
 			var keys: Array<lool.Point> = [];
 			points.forEach((_: lool.Point, key: lool.Point) => {
 				keys.push(key);
@@ -54,11 +65,9 @@ namespace CPolyUtil {
 		function xThenY(ap: lool.Point, bp: lool.Point): number {
 			if (ap.x < bp.x || (ap.x === bp.x && ap.y < bp.y)) {
 				return -1;
-			}
-			else if (ap.x === bp.x && ap.y === bp.y) {
+			} else if (ap.x === bp.x && ap.y === bp.y) {
 				return 0;
-			}
-			else {
+			} else {
 				return 1;
 			}
 		}
@@ -66,14 +75,11 @@ namespace CPolyUtil {
 		// lool.Point comparison function for sorting a list of CPoints w.r.t y-coordinate.
 		// When the points have same y-coordinate break tie based on x-coordinates.
 		function yThenX(ap: lool.Point, bp: lool.Point): number {
-
 			if (ap.y < bp.y || (ap.y === bp.y && ap.x < bp.x)) {
 				return -1;
-			}
-			else if (ap.x === bp.x && ap.y === bp.y) {
+			} else if (ap.x === bp.x && ap.y === bp.y) {
 				return 0;
-			}
-			else {
+			} else {
 				return 1;
 			}
 		}
@@ -117,13 +123,15 @@ namespace CPolyUtil {
 					var nextVertex = edgesV.get(curr);
 					edgesV.delete(curr);
 					p.push([nextVertex, 1]);
-				}
-				else {
+				} else {
 					var nextVertex = edgesH.get(curr);
 					edgesH.delete(curr);
 					p.push([nextVertex, 0]);
 				}
-				if (p[p.length - 1][0].equals(p[0][0]) && p[p.length - 1][1] === p[0][1]) {
+				if (
+					p[p.length - 1][0].equals(p[0][0]) &&
+					p[p.length - 1][1] === p[0][1]
+				) {
 					p.pop();
 					break;
 				}

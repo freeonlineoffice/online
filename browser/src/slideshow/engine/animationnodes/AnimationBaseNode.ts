@@ -173,8 +173,10 @@ abstract class AnimationBaseNode extends BaseNode {
 		aActivityParamSet.nRepeatCount = this.getRepeatCount();
 		aActivityParamSet.nAccelerationFraction = this.getAccelerateValue();
 		aActivityParamSet.nDecelerationFraction = this.getDecelerateValue();
-		aActivityParamSet.nSlideWidth = this.aNodeContext._context.nSlideWidth;
-		aActivityParamSet.nSlideHeight = this.aNodeContext._context.nSlideHeight;
+		aActivityParamSet.nSlideWidth =
+			this.aNodeContext._context.nSlideWidth;
+		aActivityParamSet.nSlideHeight =
+			this.aNodeContext._context.nSlideHeight;
 
 		return aActivityParamSet;
 	}

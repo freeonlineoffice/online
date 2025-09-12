@@ -8,24 +8,45 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 class TextSelectionHandle extends HTMLObjectSection {
 	_showSection: boolean = true; // Store the internal show/hide section through forced non-touchscreen hides...
 
-	constructor (sectionName: string, objectWidth: number, objectHeight: number, documentPosition: lool.SimplePoint,  extraClass: string = "", showSection: boolean = false) {
-		super(sectionName, objectWidth, objectHeight, documentPosition, extraClass, showSection);
+	constructor(
+		sectionName: string,
+		objectWidth: number,
+		objectHeight: number,
+		documentPosition: lool.SimplePoint,
+		extraClass: string = '',
+		showSection: boolean = false,
+	) {
+		super(
+			sectionName,
+			objectWidth,
+			objectHeight,
+			documentPosition,
+			extraClass,
+			showSection,
+		);
 	}
 
 	onDrag(point: lool.SimplePoint) {
 		(<any>window).IgnorePanning = true;
-		const candidateX = Math.round((this.myTopLeft[0] + point.pX) / app.dpiScale);
-		const candidateY = Math.round((this.myTopLeft[1] + point.pY) / app.dpiScale);
+		const candidateX = Math.round(
+			(this.myTopLeft[0] + point.pX) / app.dpiScale,
+		);
+		const candidateY = Math.round(
+			(this.myTopLeft[1] + point.pY) / app.dpiScale,
+		);
 
 		this.sectionProperties.objectDiv.style.left = candidateX + 'px';
 		this.sectionProperties.objectDiv.style.top = candidateY + 'px';
 
-		app.map.fire('handleautoscroll', {pos: { x: candidateX, y: candidateY }, map: app.map});
+		app.map.fire('handleautoscroll', {
+			pos: { x: candidateX, y: candidateY },
+			map: app.map,
+		});
 	}
 
 	setShowSection(show: boolean) {
@@ -49,22 +70,35 @@ class TextSelectionHandle extends HTMLObjectSection {
 		const y = this.position[1] + point.pY;
 		this.setPosition(x, y);
 
-		app.map.fire('scrollvelocity', {vx: 0, vy: 0});
+		app.map.fire('scrollvelocity', { vx: 0, vy: 0 });
 		const type = this.name === 'selection_start_handle' ? 'start' : 'end';
 
-		if (type === 'start')
-			x += 30 / app.dpiScale;
+		if (type === 'start') x += 30 / app.dpiScale;
 
 		if (!app.map._docLayer.isCalcRTL()) {
-			app.map._docLayer._postSelectTextEvent(type, Math.round(x * app.pixelsToTwips), Math.round(y * app.pixelsToTwips));
-		}
-		else {
-			const referenceX = app.activeDocument.activeView.viewedRectangle.pX1 + (app.activeDocument.activeView.viewedRectangle.pX2 - this.position[0]);
-			app.map._docLayer._postSelectTextEvent(type, Math.round(referenceX * app.pixelsToTwips), Math.round(y * app.pixelsToTwips));
+			app.map._docLayer._postSelectTextEvent(
+				type,
+				Math.round(x * app.pixelsToTwips),
+				Math.round(y * app.pixelsToTwips),
+			);
+		} else {
+			const referenceX =
+				app.activeDocument.activeView.viewedRectangle.pX1 +
+				(app.activeDocument.activeView.viewedRectangle.pX2 -
+					this.position[0]);
+			app.map._docLayer._postSelectTextEvent(
+				type,
+				Math.round(referenceX * app.pixelsToTwips),
+				Math.round(y * app.pixelsToTwips),
+			);
 		}
 	}
 
-	onMouseMove(point: lool.SimplePoint, dragDistance: number[], e: MouseEvent): void {
+	onMouseMove(
+		point: lool.SimplePoint,
+		dragDistance: number[],
+		e: MouseEvent,
+	): void {
 		e.stopPropagation();
 		if (this.containerObject.isDraggingSomething()) {
 			this.stopPropagating();
@@ -75,8 +109,7 @@ class TextSelectionHandle extends HTMLObjectSection {
 	onDocumentObjectVisibilityChange(): void {
 		if (this.showSection && this.isVisible)
 			this.sectionProperties.objectDiv.style.display = '';
-		else
-			this.sectionProperties.objectDiv.style.display = 'none';
+		else this.sectionProperties.objectDiv.style.display = 'none';
 	}
 
 	onClick(point: lool.SimplePoint, e: MouseEvent): void {

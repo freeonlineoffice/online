@@ -179,7 +179,10 @@ abstract class BaseContainerNode extends BaseNode {
 			}
 			if (this.nLeftIterations >= 1.0) {
 				bFinished = false;
-				const aRepetitionEvent = makeDelay(this.repeat.bind(this), 0.0);
+				const aRepetitionEvent = makeDelay(
+					this.repeat.bind(this),
+					0.0,
+				);
 				this._context.aTimerEventQueue.addEvent(aRepetitionEvent);
 			} else {
 				this.deactivate();
@@ -594,7 +597,9 @@ class SequentialTimeContainer extends BaseContainerNode {
 
 			const sId = aChildNode.getBegin().getEventBaseElementId();
 			if (sId) {
-				this._context.aEventMultiplexer.notifyRewindedEffectEvent(sId);
+				this._context.aEventMultiplexer.notifyRewindedEffectEvent(
+					sId,
+				);
 			}
 		}
 	}

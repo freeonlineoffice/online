@@ -22,20 +22,24 @@ function onStateChange(element: Element, callback: StateChangeCallback) {
 		for (var i in mutations) {
 			if (mutations[i].attributeName === 'disabled') {
 				const htmlElement = mutations[i].target as HTMLElement;
-				var enable = htmlElement.getAttribute('disabled') !== 'true';
+				var enable =
+					htmlElement.getAttribute('disabled') !== 'true';
 				callback(enable);
 			}
 		}
 	};
 
 	var enableObserver = new MutationObserver(enabledCallback);
-	enableObserver.observe(element, { attributeFilter: ['disabled'], attributeOldValue: true });
+	enableObserver.observe(element, {
+		attributeFilter: ['disabled'],
+		attributeOldValue: true,
+	});
 }
 
 function synchronizeDisabledState(source: Element, targets: Array<Element>) {
 	var enabledCallback = function (enable: boolean) {
 		app.layoutingService.appendLayoutingTask(() => {
-		for (const i in targets) {
+			for (const i in targets) {
 				if (enable) {
 					targets[i].removeAttribute('disabled');
 				} else {

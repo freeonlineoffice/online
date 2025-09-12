@@ -4,7 +4,6 @@
  */
 
 L.Marker = L.Layer.extend({
-
 	options: {
 		pane: 'markerPane',
 
@@ -17,11 +16,10 @@ L.Marker = L.Layer.extend({
 		zIndexOffset: 0,
 		opacity: 1,
 		// riseOnHover: false,
-		riseOffset: 250
+		riseOffset: 250,
 	},
 
 	initialize: function (latlng, options) {
-
 		L.Layer.prototype.initialize.call(this);
 
 		L.setOptions(this, options);
@@ -57,7 +55,7 @@ L.Marker = L.Layer.extend({
 	},
 
 	getEvents: function () {
-		var events = {viewreset: this.update};
+		var events = { viewreset: this.update };
 
 		var splitPanesPossible = this._map._docLayer.hasSplitPanesSupport();
 		if (splitPanesPossible) {
@@ -77,11 +75,13 @@ L.Marker = L.Layer.extend({
 		var oldLatLng = this._latlng;
 		this._latlng = L.latLng(latlng);
 		this.update();
-		return this.fire('move', {oldLatLng: oldLatLng, latlng: this._latlng});
+		return this.fire('move', {
+			oldLatLng: oldLatLng,
+			latlng: this._latlng,
+		});
 	},
 
 	setIcon: function (icon) {
-
 		this.options.icon = icon;
 
 		if (this._map) {
@@ -93,13 +93,15 @@ L.Marker = L.Layer.extend({
 	},
 
 	_updateIconPosition: function () {
-
 		if (!this._icon) {
 			return;
 		}
 
-		var posVis = L.Layer.getLayerPositionVisibility(this._latlng,
-			this._icon.getBoundingClientRect(), this._map);
+		var posVis = L.Layer.getLayerPositionVisibility(
+			this._latlng,
+			this._icon.getBoundingClientRect(),
+			this._map,
+		);
 
 		if (this._icon.style.visibility != posVis.visibility) {
 			this._icon.style.visibility = posVis.visibility;
@@ -115,10 +117,10 @@ L.Marker = L.Layer.extend({
 
 	_initIcon: function () {
 		var options = this.options,
-		    classToAdd = 'leaflet-zoom-hide';
+			classToAdd = 'leaflet-zoom-hide';
 
 		var icon = options.icon.createIcon(this._icon),
-		    addIcon = false;
+			addIcon = false;
 
 		// if we're not reusing the icon, remove the old one and init new one
 		if (icon !== this._icon) {
@@ -147,12 +149,12 @@ L.Marker = L.Layer.extend({
 		if (options.riseOnHover) {
 			this.on({
 				mouseover: this._bringToFront,
-				mouseout: this._resetZIndex
+				mouseout: this._resetZIndex,
 			});
 		}
 
 		var newShadow = options.icon.createShadow(this._shadow),
-		    addShadow = false;
+			addShadow = false;
 
 		if (newShadow !== this._shadow) {
 			this._removeShadow();
@@ -164,11 +166,9 @@ L.Marker = L.Layer.extend({
 		}
 		this._shadow = newShadow;
 
-
 		if (options.opacity < 1) {
 			this._updateOpacity();
 		}
-
 
 		if (addIcon) {
 			this.getPane().appendChild(this._icon);
@@ -182,7 +182,7 @@ L.Marker = L.Layer.extend({
 		if (this.options.riseOnHover) {
 			this.off({
 				mouseover: this._bringToFront,
-				mouseout: this._resetZIndex
+				mouseout: this._resetZIndex,
 			});
 		}
 
@@ -216,8 +216,9 @@ L.Marker = L.Layer.extend({
 	},
 
 	_initInteraction: function () {
-
-		if (!this.options.interactive) { return; }
+		if (!this.options.interactive) {
+			return;
+		}
 
 		L.DomUtil.addClass(this._icon, 'leaflet-interactive');
 
@@ -263,7 +264,7 @@ L.Marker = L.Layer.extend({
 
 	_resetZIndex: function () {
 		this._updateZIndex(0);
-	}
+	},
 });
 
 L.marker = function (latlng, options) {

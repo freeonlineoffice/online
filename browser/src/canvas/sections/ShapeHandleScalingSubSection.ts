@@ -7,7 +7,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 /*
 	This class is for the sub sections (handles) of ShapeHandlesSection.
@@ -15,12 +15,21 @@
 */
 
 class ShapeHandleScalingSubSection extends CanvasSectionObject {
-	processingOrder: number = L.CSections.DefaultForDocumentObjects.processingOrder;
-	drawingOrder: number = L.CSections.DefaultForDocumentObjects.drawingOrder + 1; // Handle events before the parent section.
+	processingOrder: number =
+		L.CSections.DefaultForDocumentObjects.processingOrder;
+	drawingOrder: number =
+		L.CSections.DefaultForDocumentObjects.drawingOrder + 1; // Handle events before the parent section.
 	zIndex: number = L.CSections.DefaultForDocumentObjects.zIndex;
 	documentObject: boolean = true;
 
-	constructor(parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any, cropModeEnabled: boolean) {
+	constructor(
+		parentHandlerSection: ShapeHandlesSection,
+		sectionName: string,
+		size: number[],
+		documentPosition: lool.SimplePoint,
+		ownInfo: any,
+		cropModeEnabled: boolean,
+	) {
 		super(sectionName);
 
 		this.size = size;
@@ -33,25 +42,35 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 
 		this.sectionProperties.initialAngle = null; // Initial angle of the point (handle) to the center in radians.
 		this.sectionProperties.distanceToCenter = null; // Distance to center.
-		this.sectionProperties.mapPane = (<HTMLElement>(document.querySelectorAll('.leaflet-map-pane')[0]));
+		this.sectionProperties.mapPane = <HTMLElement>(
+			document.querySelectorAll('.leaflet-map-pane')[0]
+		);
 		this.sectionProperties.cropModeEnabled = cropModeEnabled;
-		this.sectionProperties.cropCursor = 'url(' + app.LOUtil.getURL("images/cursors/crop.png") + ') 8 8, auto';
+		this.sectionProperties.cropCursor =
+			'url(' +
+			app.LOUtil.getURL('images/cursors/crop.png') +
+			') 8 8, auto';
 
 		this.setMousePointerType();
 
-		app.events.on('TextCursorVisibility', this.onTextCursorVisibility.bind(this));
+		app.events.on(
+			'TextCursorVisibility',
+			this.onTextCursorVisibility.bind(this),
+		);
 	}
 
 	onInitialize(): void {
-		this.setPosition(this.sectionProperties.position.pX, this.sectionProperties.position.pY);
+		this.setPosition(
+			this.sectionProperties.position.pX,
+			this.sectionProperties.position.pY,
+		);
 	}
 
 	onTextCursorVisibility(event: any): void {
 		if (event.detail.visible) {
 			this.setShowSection(false);
 			this.interactable = false;
-		}
-		else {
+		} else {
 			this.setShowSection(true);
 			this.interactable = true;
 		}
@@ -61,10 +80,15 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		this.context.fillStyle = 'wheat';
 		this.context.strokeStyle = 'black';
 		this.context.beginPath();
-		if (this.sectionProperties.cropModeEnabled)
-			this.drawCropHandles();
+		if (this.sectionProperties.cropModeEnabled) this.drawCropHandles();
 		else
-			this.context.arc(this.size[0] * 0.5, this.size[1] * 0.5, this.size[0] * 0.5, 0, Math.PI * 2);
+			this.context.arc(
+				this.size[0] * 0.5,
+				this.size[1] * 0.5,
+				this.size[0] * 0.5,
+				0,
+				Math.PI * 2,
+			);
 		this.context.closePath();
 		this.context.fill();
 		this.context.stroke();
@@ -73,8 +97,11 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 	drawCropCornerHandle() {
 		const markerWidth = this.size[0];
 		const halfMarkerWidth = markerWidth * 0.5;
-		const shapeAngle = this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.angleRadian;
-		let x = halfMarkerWidth, y = halfMarkerWidth;
+		const shapeAngle =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.shapeRectangleProperties.angleRadian;
+		let x = halfMarkerWidth,
+			y = halfMarkerWidth;
 		this.context.translate(x, y);
 		this.context.rotate(shapeAngle * -1);
 		this.context.translate(-x, -y);
@@ -94,8 +121,11 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 	drawCropSideHandle() {
 		const markerWidth = this.size[0];
 		const halfMarkerWidth = markerWidth * 0.5;
-		const shapeAngle = this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.angleRadian;
-		let x = halfMarkerWidth, y = halfMarkerWidth;
+		const shapeAngle =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.shapeRectangleProperties.angleRadian;
+		let x = halfMarkerWidth,
+			y = halfMarkerWidth;
 		this.context.translate(x, y);
 		this.context.rotate(shapeAngle * -1);
 		this.context.translate(-x, -y);
@@ -175,11 +205,14 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		app.map.dontHandleMouse = true;
 		e.stopPropagation();
 		this.stopPropagating();
-		this.sectionProperties.previousCursorStyle = this.sectionProperties.mapPane.style.cursor;
+		this.sectionProperties.previousCursorStyle =
+			this.sectionProperties.mapPane.style.cursor;
 		if (this.sectionProperties.cropModeEnabled)
-			this.sectionProperties.mapPane.style.cursor = this.sectionProperties.cropCursor;
+			this.sectionProperties.mapPane.style.cursor =
+				this.sectionProperties.cropCursor;
 		else
-			this.sectionProperties.mapPane.style.cursor = this.sectionProperties.mousePointerType;
+			this.sectionProperties.mapPane.style.cursor =
+				this.sectionProperties.mousePointerType;
 		this.containerObject.requestReDraw();
 	}
 
@@ -187,7 +220,8 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		app.map.dontHandleMouse = false;
 		e.stopPropagation();
 		this.stopPropagating();
-		this.sectionProperties.mapPane.style.cursor = this.sectionProperties.previousCursorStyle;
+		this.sectionProperties.mapPane.style.cursor =
+			this.sectionProperties.previousCursorStyle;
 		this.containerObject.requestReDraw();
 	}
 
@@ -197,7 +231,9 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			x: this.position[0],
 			y: this.position[1],
 		};
-		const subSections = this.sectionProperties.parentHandlerSection.sectionProperties.subSections;
+		const subSections =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.subSections;
 
 		if (kind === '5') {
 			handle.id = '7';
@@ -220,8 +256,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		let keep = e.ctrlKey && e.shiftKey;
 
 		// For images, the keepRatio shortcut works the opposite way.
-		if (app.map.context.context === 'Graphic')
-			keep = !keep;
+		if (app.map.context.context === 'Graphic') keep = !keep;
 
 		return keep;
 	}
@@ -234,19 +269,32 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			const keepRatio = this.doWeKeepRatio(e);
 
 			let handleId = this.sectionProperties.ownInfo.id;
-			const parentHandlerSection = this.sectionProperties.parentHandlerSection;
+			const parentHandlerSection =
+				this.sectionProperties.parentHandlerSection;
 
-			let x = parentHandlerSection.sectionProperties.closestX ?? point.pX + this.position[0];
-			let y = parentHandlerSection.sectionProperties.closestY ?? point.pY + this.position[1];
+			let x =
+				parentHandlerSection.sectionProperties.closestX ??
+				point.pX + this.position[0];
+			let y =
+				parentHandlerSection.sectionProperties.closestY ??
+				point.pY + this.position[1];
 
 			if (keepRatio) {
-				[handleId, x, y] = this.overrideHandle(this.sectionProperties.ownInfo.kind);
+				[handleId, x, y] = this.overrideHandle(
+					this.sectionProperties.ownInfo.kind,
+				);
 			}
 
 			const parameters = {
 				HandleNum: { type: 'long', value: handleId },
-				NewPosX: { type: 'long', value: Math.round(x * app.pixelsToTwips) },
-				NewPosY: { type: 'long', value: Math.round(y * app.pixelsToTwips) }
+				NewPosX: {
+					type: 'long',
+					value: Math.round(x * app.pixelsToTwips),
+				},
+				NewPosY: {
+					type: 'long',
+					value: Math.round(y * app.pixelsToTwips),
+				},
 			};
 
 			app.map.sendUnoCommand('.uno:MoveShapeHandle', parameters);
@@ -257,67 +305,120 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 	}
 
 	adjustSVGProperties(shapeRecProps: any) {
-		if (this.sectionProperties.parentHandlerSection.sectionProperties.svg) {
-			const svg = this.sectionProperties.parentHandlerSection.sectionProperties.svg;
+		if (
+			this.sectionProperties.parentHandlerSection.sectionProperties.svg
+		) {
+			const svg =
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.svg;
 
-			const scaleX = shapeRecProps.width / this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.width;
-			const scaleY = shapeRecProps.height / this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.height;
+			const scaleX =
+				shapeRecProps.width /
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.shapeRectangleProperties.width;
+			const scaleY =
+				shapeRecProps.height /
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.shapeRectangleProperties.height;
 
-			let diffX = shapeRecProps.center[0] - this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.center[0];
-			let diffY = shapeRecProps.center[1] - this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties.center[1];
+			let diffX =
+				shapeRecProps.center[0] -
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.shapeRectangleProperties.center[0];
+			let diffY =
+				shapeRecProps.center[1] -
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.shapeRectangleProperties.center[1];
 
 			diffX = diffX / app.dpiScale;
 			diffY = diffY / app.dpiScale;
 
-			svg.children[0].style.transform = 'translate(' + Math.round(diffX) + 'px, ' + Math.round(diffY) + 'px)' + 'rotate(' + -shapeRecProps.angleRadian + 'rad) scale(' + scaleX + ', ' + scaleY + ') rotate(' + shapeRecProps.angleRadian + 'rad)';
+			svg.children[0].style.transform =
+				'translate(' +
+				Math.round(diffX) +
+				'px, ' +
+				Math.round(diffY) +
+				'px)' +
+				'rotate(' +
+				-shapeRecProps.angleRadian +
+				'rad) scale(' +
+				scaleX +
+				', ' +
+				scaleY +
+				') rotate(' +
+				shapeRecProps.angleRadian +
+				'rad)';
 
 			this.sectionProperties.parentHandlerSection.showSVG();
 		}
 	}
 
 	private calculateRatioPoint(point: number[], shapeRecProps: any) {
-		const isVerticalHandler = ['2', '7'].includes(this.sectionProperties.ownInfo.kind);
+		const isVerticalHandler = ['2', '7'].includes(
+			this.sectionProperties.ownInfo.kind,
+		);
 
 		const primaryDelta = isVerticalHandler
-		    ? point[1] - shapeRecProps.center[1]
-		    : point[0] - shapeRecProps.center[0];
+			? point[1] - shapeRecProps.center[1]
+			: point[0] - shapeRecProps.center[0];
 
 		const aspectRatio = isVerticalHandler
-		    ? shapeRecProps.width / shapeRecProps.height
-		    : shapeRecProps.height / shapeRecProps.width;
+			? shapeRecProps.width / shapeRecProps.height
+			: shapeRecProps.height / shapeRecProps.width;
 
 		const secondaryDelta = primaryDelta * aspectRatio;
 
-		const direction = ['3', '4', '6', '2'].includes(this.sectionProperties.ownInfo.kind) ? -1 : 1;
+		const direction = ['3', '4', '6', '2'].includes(
+			this.sectionProperties.ownInfo.kind,
+		)
+			? -1
+			: 1;
 
 		if (isVerticalHandler) {
-		    point[0] = shapeRecProps.center[0] + secondaryDelta * direction;
+			point[0] = shapeRecProps.center[0] + secondaryDelta * direction;
 		} else {
-		    point[1] = shapeRecProps.center[1] + secondaryDelta * direction;
+			point[1] = shapeRecProps.center[1] + secondaryDelta * direction;
 		}
 
 		return point;
 	}
 
 	calculateNewShapeRectangleProperties(point: number[], e: MouseEvent) {
-		const shapeRecProps: any = JSON.parse(JSON.stringify(this.sectionProperties.parentHandlerSection.sectionProperties.shapeRectangleProperties));
+		const shapeRecProps: any = JSON.parse(
+			JSON.stringify(
+				this.sectionProperties.parentHandlerSection
+					.sectionProperties.shapeRectangleProperties,
+			),
+		);
 		const keepRatio = this.doWeKeepRatio(e);
 
 		if (keepRatio) {
 			point = this.calculateRatioPoint(point, shapeRecProps);
 		}
 
-		const diff = [point[0] - shapeRecProps.center[0], -(point[1] - shapeRecProps.center[1])];
-		const length = Math.pow(Math.pow(diff[0], 2) + Math.pow(diff[1], 2), 0.5);
+		const diff = [
+			point[0] - shapeRecProps.center[0],
+			-(point[1] - shapeRecProps.center[1]),
+		];
+		const length = Math.pow(
+			Math.pow(diff[0], 2) + Math.pow(diff[1], 2),
+			0.5,
+		);
 		const pointAngle = Math.atan2(diff[1], diff[0]);
-		point[0] = shapeRecProps.center[0] + length * Math.cos(pointAngle - shapeRecProps.angleRadian);
-		point[1] = shapeRecProps.center[1] - length * Math.sin(pointAngle - shapeRecProps.angleRadian);
+		point[0] =
+			shapeRecProps.center[0] +
+			length * Math.cos(pointAngle - shapeRecProps.angleRadian);
+		point[1] =
+			shapeRecProps.center[1] -
+			length * Math.sin(pointAngle - shapeRecProps.angleRadian);
 
 		const rectangle = new lool.SimpleRectangle(
-			(shapeRecProps.center[0] - shapeRecProps.width * 0.5) * app.pixelsToTwips,
-			(shapeRecProps.center[1] - shapeRecProps.height * 0.5) * app.pixelsToTwips,
+			(shapeRecProps.center[0] - shapeRecProps.width * 0.5) *
+				app.pixelsToTwips,
+			(shapeRecProps.center[1] - shapeRecProps.height * 0.5) *
+				app.pixelsToTwips,
 			shapeRecProps.width * app.pixelsToTwips,
-			shapeRecProps.height * app.pixelsToTwips
+			shapeRecProps.height * app.pixelsToTwips,
 		);
 
 		const oldpCenter = rectangle.pCenter;
@@ -326,31 +427,44 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			const pX2 = rectangle.pX2;
 			rectangle.pX1 = point[0];
 			rectangle.pX2 = pX2;
-		}
-		else if (['3', '5', '8'].includes(this.sectionProperties.ownInfo.kind))
+		} else if (
+			['3', '5', '8'].includes(this.sectionProperties.ownInfo.kind)
+		)
 			rectangle.pX2 = point[0];
 
 		if (['1', '2', '3'].includes(this.sectionProperties.ownInfo.kind)) {
 			const pY2 = rectangle.pY2;
 			rectangle.pY1 = point[1];
 			rectangle.pY2 = pY2;
-		}
-		else if (['6', '7', '8'].includes(this.sectionProperties.ownInfo.kind))
+		} else if (
+			['6', '7', '8'].includes(this.sectionProperties.ownInfo.kind)
+		)
 			rectangle.pY2 = point[1];
 
 		if (keepRatio) {
 			if (['4', '5'].includes(this.sectionProperties.ownInfo.kind)) {
 				rectangle.pY2 = point[1];
-			} else if (['2', '7'].includes(this.sectionProperties.ownInfo.kind)) {
+			} else if (
+				['2', '7'].includes(this.sectionProperties.ownInfo.kind)
+			) {
 				rectangle.pX2 = point[0];
 			}
 		}
 
-		const centerAngle = Math.atan2(oldpCenter[1] - rectangle.pCenter[1], rectangle.pCenter[0] - oldpCenter[0]);
-		const centerLength = Math.pow(Math.pow(rectangle.pCenter[1] - oldpCenter[1], 2) + Math.pow(rectangle.pCenter[0] - oldpCenter[0], 2), 0.5);
+		const centerAngle = Math.atan2(
+			oldpCenter[1] - rectangle.pCenter[1],
+			rectangle.pCenter[0] - oldpCenter[0],
+		);
+		const centerLength = Math.pow(
+			Math.pow(rectangle.pCenter[1] - oldpCenter[1], 2) +
+				Math.pow(rectangle.pCenter[0] - oldpCenter[0], 2),
+			0.5,
+		);
 
-		const x = centerLength * Math.cos(shapeRecProps.angleRadian + centerAngle);
-		const y = centerLength * Math.sin(shapeRecProps.angleRadian + centerAngle);
+		const x =
+			centerLength * Math.cos(shapeRecProps.angleRadian + centerAngle);
+		const y =
+			centerLength * Math.sin(shapeRecProps.angleRadian + centerAngle);
 
 		shapeRecProps.center[0] += x;
 		shapeRecProps.center[1] -= y;
@@ -362,26 +476,52 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 
 	// While dragging a handle, we want to simulate handles to their final positions.
 	moveHandlesOnDrag(point: lool.SimplePoint, e: MouseEvent) {
-		const shapeRecProps = this.calculateNewShapeRectangleProperties([
-			point.pX + this.myTopLeft[0] + app.activeDocument.activeView.viewedRectangle.pX1 - this.containerObject.getDocumentAnchor()[0],
-			point.pY + this.myTopLeft[1] + app.activeDocument.activeView.viewedRectangle.pY1 - this.containerObject.getDocumentAnchor()[1]
-		], e);
+		const shapeRecProps = this.calculateNewShapeRectangleProperties(
+			[
+				point.pX +
+					this.myTopLeft[0] +
+					app.activeDocument.activeView.viewedRectangle.pX1 -
+					this.containerObject.getDocumentAnchor()[0],
+				point.pY +
+					this.myTopLeft[1] +
+					app.activeDocument.activeView.viewedRectangle.pY1 -
+					this.containerObject.getDocumentAnchor()[1],
+			],
+			e,
+		);
 
-		this.sectionProperties.parentHandlerSection.calculateInitialAnglesOfShapeHandlers(shapeRecProps);
+		this.sectionProperties.parentHandlerSection.calculateInitialAnglesOfShapeHandlers(
+			shapeRecProps,
+		);
 
-		const halfWidth = this.sectionProperties.parentHandlerSection.sectionProperties.handleWidth * 0.5;
-		const halfHeight = this.sectionProperties.parentHandlerSection.sectionProperties.handleHeight * 0.5;
-		const subSections = this.sectionProperties.parentHandlerSection.sectionProperties.subSections;
+		const halfWidth =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.handleWidth * 0.5;
+		const halfHeight =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.handleHeight * 0.5;
+		const subSections =
+			this.sectionProperties.parentHandlerSection.sectionProperties
+				.subSections;
 
-		let x = 0, y = 0;
+		let x = 0,
+			y = 0;
 		let pointAngle = 0;
 
 		for (let i = 0; i < subSections.length; i++) {
 			const subSection = subSections[i];
 
-			pointAngle = subSection.sectionProperties.initialAngle + shapeRecProps.angleRadian;
-			x = shapeRecProps.center[0] + subSection.sectionProperties.distanceToCenter * Math.cos(pointAngle);
-			y = shapeRecProps.center[1] - subSection.sectionProperties.distanceToCenter * Math.sin(pointAngle);
+			pointAngle =
+				subSection.sectionProperties.initialAngle +
+				shapeRecProps.angleRadian;
+			x =
+				shapeRecProps.center[0] +
+				subSection.sectionProperties.distanceToCenter *
+					Math.cos(pointAngle);
+			y =
+				shapeRecProps.center[1] -
+				subSection.sectionProperties.distanceToCenter *
+					Math.sin(pointAngle);
 			subSection.setPosition(x - halfWidth, y - halfHeight);
 		}
 
@@ -389,7 +529,11 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			this.adjustSVGProperties(shapeRecProps);
 	}
 
-	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	onMouseMove(
+		point: lool.SimplePoint,
+		dragDistance: Array<number>,
+		e: MouseEvent,
+	) {
 		if (this.containerObject.isDraggingSomething()) {
 			(window as any).IgnorePanning = true;
 			this.stopPropagating();
@@ -398,13 +542,15 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			this.moveHandlesOnDrag(point, e);
 
 			// Here we are checking a point, so the size 0. dragDistance is also 0 because we already set the new position (moveHandlesOnDrag).
-			this.sectionProperties.parentHandlerSection.checkHelperLinesAndSnapPoints([0, 0], this.position, [0, 0]);
+			this.sectionProperties.parentHandlerSection.checkHelperLinesAndSnapPoints(
+				[0, 0],
+				this.position,
+				[0, 0],
+			);
 
 			this.containerObject.requestReDraw();
 			this.sectionProperties.parentHandlerSection.showSVG();
-		}
-		else
-			(window as any).IgnorePanning = false;
+		} else (window as any).IgnorePanning = false;
 	}
 }
 

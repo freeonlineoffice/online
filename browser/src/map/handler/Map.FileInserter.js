@@ -6,11 +6,10 @@
 /* global app _ Uint8Array errorMessages */
 
 L.Map.mergeOptions({
-	fileInserter: true
+	fileInserter: true,
 });
 
 L.Map.FileInserter = L.Handler.extend({
-
 	initialize: function (map) {
 		this._map = map;
 		this._childId = null;
@@ -23,7 +22,11 @@ L.Map.FileInserter = L.Handler.extend({
 	},
 
 	getWopiUrl: function (map) {
-		return window.makeHttpUrlWopiSrc('/' + map.options.urlPrefix + '/', map.options.doc, '/insertfile');
+		return window.makeHttpUrlWopiSrc(
+			'/' + map.options.urlPrefix + '/',
+			map.options.doc,
+			'/insertfile',
+		);
 	},
 
 	addHooks: function () {
@@ -46,8 +49,7 @@ L.Map.FileInserter = L.Handler.extend({
 		if (!this._childId) {
 			app.socket.sendMessage('getchildid');
 			this._toInsertGraphic[Date.now()] = e.file;
-		}
-		else {
+		} else {
 			this._sendFile(Date.now(), e.file, 'graphic');
 		}
 	},
@@ -56,8 +58,7 @@ L.Map.FileInserter = L.Handler.extend({
 		if (!this._childId) {
 			app.socket.sendMessage('getchildid');
 			this._toInsertMultimedia[Date.now()] = e.file;
-		}
-		else {
+		} else {
 			this._sendFile(Date.now(), e.file, 'multimedia');
 		}
 	},
@@ -66,8 +67,7 @@ L.Map.FileInserter = L.Handler.extend({
 		if (!this._childId) {
 			app.socket.sendMessage('getchildid');
 			this._toInsertURL[Date.now()] = e;
-		}
-		else {
+		} else {
 			this._sendURL(Date.now(), e);
 		}
 	},
@@ -76,8 +76,7 @@ L.Map.FileInserter = L.Handler.extend({
 		if (!this._childId) {
 			app.socket.sendMessage('getchildid');
 			this._toInsertBackground[Date.now()] = e.file;
-		}
-		else {
+		} else {
 			this._sendFile(Date.now(), e.file, 'selectbackground');
 		}
 	},
@@ -94,7 +93,11 @@ L.Map.FileInserter = L.Handler.extend({
 		this._toInsertGraphic = {};
 
 		for (var name in this._toInsertMultimedia) {
-			this._sendFile(name, this._toInsertMultimedia[name], 'multimedia');
+			this._sendFile(
+				name,
+				this._toInsertMultimedia[name],
+				'multimedia',
+			);
 		}
 		this._toInsertMultimedia = {};
 
@@ -104,7 +107,11 @@ L.Map.FileInserter = L.Handler.extend({
 		this._toInsertURL = {};
 
 		for (name in this._toInsertBackground) {
-			this._sendFile(name, this._toInsertBackground[name], 'selectbackground');
+			this._sendFile(
+				name,
+				this._toInsertBackground[name],
+				'selectbackground',
+			);
 		}
 		this._toInsertBackground = {};
 	},
@@ -123,8 +130,8 @@ L.Map.FileInserter = L.Handler.extend({
 			videoElement.src = objectURL;
 
 			const videoLoadPromise = new Promise((resolve, reject) => {
-				videoElement.addEventListener("loadedmetadata", resolve);
-				videoElement.addEventListener("error", reject);
+				videoElement.addEventListener('loadedmetadata', resolve);
+				videoElement.addEventListener('error', reject);
 			});
 
 			videoElement.load();
@@ -148,14 +155,18 @@ L.Map.FileInserter = L.Handler.extend({
 				};
 
 				const maxSize = {
-					width: app.activeDocument.fileSize.cX * map.getZoomScale(10),
-					height: app.activeDocument.fileSize.cY * map.getZoomScale(10),
+					width:
+						app.activeDocument.fileSize.cX *
+						map.getZoomScale(10),
+					height:
+						app.activeDocument.fileSize.cY *
+						map.getZoomScale(10),
 				};
 
 				const shrinkToFitFactor = Math.min(
 					1,
 					maxSize.width / size.width,
-					maxSize.height / size.height
+					maxSize.height / size.height,
 				);
 
 				size.width *= shrinkToFitFactor;
@@ -170,12 +181,19 @@ L.Map.FileInserter = L.Handler.extend({
 			url = window.processLoolUrl({ url: url, type: 'insertfile' });
 		}
 
-		if (!(file.filename && file.url) && (file.name === '' || file.size === 0)) {
-			var errMsg =  _('The file of type: {0} cannot be uploaded to server since the file has no name');
+		if (
+			!(file.filename && file.url) &&
+			(file.name === '' || file.size === 0)
+		) {
+			var errMsg = _(
+				'The file of type: {0} cannot be uploaded to server since the file has no name',
+			);
 			if (file.size === 0)
-				errMsg = _('The file of type: {0} cannot be uploaded to server since the file is empty');
+				errMsg = _(
+					'The file of type: {0} cannot be uploaded to server since the file is empty',
+				);
 			errMsg = errMsg.replace('{0}', file.type);
-			map.fire('error', {msg: errMsg, critical: false});
+			map.fire('error', { msg: errMsg, critical: false });
 			return;
 		}
 
@@ -184,8 +202,8 @@ L.Map.FileInserter = L.Handler.extend({
 		if (window.ThisIsAMobileApp) {
 			// Pass the file contents as a base64-encoded parameter in an insertfile message
 			var reader = new FileReader();
-			reader.onload = (function(aFile) {
-				return function(e) {
+			reader.onload = (function (aFile) {
+				return function (e) {
 					var byteBuffer = new Uint8Array(e.target.result);
 					var strBytes = '';
 					for (var i = 0; i < byteBuffer.length; i++) {
@@ -193,20 +211,39 @@ L.Map.FileInserter = L.Handler.extend({
 					}
 
 					if (type === 'multimedia') {
-						window.postMobileMessage('insertfile name=' + aFile.name + ' type=' + type +
-											       ' data=' + window.btoa(strBytes) +
-											       ' width=' + size.width + ' height=' + size.height);
+						window.postMobileMessage(
+							'insertfile name=' +
+								aFile.name +
+								' type=' +
+								type +
+								' data=' +
+								window.btoa(strBytes) +
+								' width=' +
+								size.width +
+								' height=' +
+								size.height,
+						);
 					} else {
-						window.postMobileMessage('insertfile name=' + aFile.name + ' type=' + type +
-											       ' data=' + window.btoa(strBytes));
+						window.postMobileMessage(
+							'insertfile name=' +
+								aFile.name +
+								' type=' +
+								type +
+								' data=' +
+								window.btoa(strBytes),
+						);
 					}
 				};
 			})(file);
-			reader.onerror = function(e) {
+			reader.onerror = function (e) {
 				window.postMobileError('Error when reading file: ' + e);
 			};
-			reader.onprogress = function(e) {
-				window.postMobileDebug('FileReader progress: ' + Math.round(e.loaded*100 / e.total) + '%');
+			reader.onprogress = function (e) {
+				window.postMobileDebug(
+					'FileReader progress: ' +
+						Math.round((e.loaded * 100) / e.total) +
+						'%',
+				);
 			};
 			reader.readAsArrayBuffer(file);
 		} else {
@@ -218,27 +255,59 @@ L.Map.FileInserter = L.Handler.extend({
 					if (xmlHttp.status === 200) {
 						var sectionName = L.CSections.ContentControl.name;
 						var section;
-						if (sectionContainer.doesSectionExist(sectionName)) {
-							section = sectionContainer.getSectionWithName(sectionName);
+						if (
+							sectionContainer.doesSectionExist(
+								sectionName,
+							)
+						) {
+							section =
+								sectionContainer.getSectionWithName(
+									sectionName,
+								);
 						}
-						if (section && section.sectionProperties.picturePicker && type === 'graphic') {
-							socket.sendMessage('contentcontrolevent type=picture' + ' name=' + name);
+						if (
+							section &&
+							section.sectionProperties.picturePicker &&
+							type === 'graphic'
+						) {
+							socket.sendMessage(
+								'contentcontrolevent type=picture' +
+									' name=' +
+									name,
+							);
 						} else if (type === 'multimedia') {
-							socket.sendMessage('insertfile name=' + name + ' type=' + type + ' width=' + size.width + ' height=' + size.height);
+							socket.sendMessage(
+								'insertfile name=' +
+									name +
+									' type=' +
+									type +
+									' width=' +
+									size.width +
+									' height=' +
+									size.height,
+							);
 						} else {
-							socket.sendMessage('insertfile name=' + name + ' type=' + type);
+							socket.sendMessage(
+								'insertfile name=' +
+									name +
+									' type=' +
+									type,
+							);
 						}
-					}
-					else if (xmlHttp.status === 404) {
-						map.fire('error', {msg: errorMessages.uploadfile.notfound});
-					}
-					else if (xmlHttp.status === 413) {
-						map.fire('error', {msg: errorMessages.uploadfile.toolarge});
-					}
-					else {
-						var msg = _('Uploading file to server failed with status: {0}');
+					} else if (xmlHttp.status === 404) {
+						map.fire('error', {
+							msg: errorMessages.uploadfile.notfound,
+						});
+					} else if (xmlHttp.status === 413) {
+						map.fire('error', {
+							msg: errorMessages.uploadfile.toolarge,
+						});
+					} else {
+						var msg = _(
+							'Uploading file to server failed with status: {0}',
+						);
 						msg = msg.replace('{0}', xmlHttp.status);
-						map.fire('error', {msg: msg});
+						map.fire('error', { msg: msg });
 					}
 				}
 			};
@@ -269,13 +338,25 @@ L.Map.FileInserter = L.Handler.extend({
 			section = app.sectionContainer.getSectionWithName(sectionName);
 		}
 
-		if (e.urltype == "graphicurl" && section && section.sectionProperties.picturePicker) {
+		if (
+			e.urltype == 'graphicurl' &&
+			section &&
+			section.sectionProperties.picturePicker
+		) {
 			// The order argument is important
-			app.socket.sendMessage('contentcontrolevent type=pictureurl name=' + encodeURIComponent(e.url));
+			app.socket.sendMessage(
+				'contentcontrolevent type=pictureurl name=' +
+					encodeURIComponent(e.url),
+			);
 		} else {
-			app.socket.sendMessage('insertfile name=' + encodeURIComponent(e.url) + ' type=' + e.urltype);
+			app.socket.sendMessage(
+				'insertfile name=' +
+					encodeURIComponent(e.url) +
+					' type=' +
+					e.urltype,
+			);
 		}
-	}
+	},
 });
 
 L.Map.addInitHook('addHandler', 'fileInserter', L.Map.FileInserter);

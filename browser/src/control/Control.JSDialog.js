@@ -18,44 +18,56 @@ L.Control.JSDialog = L.Control.extend({
 		this.map.on('jsdialogaction', this.onJSAction, this);
 		this.map.on('zoomend', this.onZoomEnd, this);
 		this.map.on('closealldialogs', this.onCloseAll, this);
-		this.map.on('closeAutoFilterDialog', this.closePopupsOnTabChange, this);
+		this.map.on(
+			'closeAutoFilterDialog',
+			this.closePopupsOnTabChange,
+			this,
+		);
 		L.DomEvent.on(window.document, 'keyup', this.onKeyUp, this);
-
 	},
 
-	onRemove: function() {
+	onRemove: function () {
 		this.map.off('jsdialog', this.onJSDialog, this);
 		this.map.off('jsdialogupdate', this.onJSUpdate, this);
 		this.map.off('jsdialogaction', this.onJSAction, this);
 		this.map.off('zoomend', this.onZoomEnd, this);
 		this.map.off('closealldialogs', this.onCloseAll, this);
-		this.map.off('closeAutoFilterDialog', this.closePopupsOnTabChange, this);
+		this.map.off(
+			'closeAutoFilterDialog',
+			this.closePopupsOnTabChange,
+			this,
+		);
 		L.DomEvent.off(window.document, 'keyup', this.onKeyUp, this);
-
 	},
 
-	hasDialogOpened: function() {
+	hasDialogOpened: function () {
 		var dialogs = this.dialogs;
-		return Object.keys(dialogs)
-			.filter(function (key) {
-				return key != 'snackbar' && dialogs[key].isDropdown !== true;
-			})
-			.length > 0;
+		return (
+			Object.keys(dialogs).filter(function (key) {
+				return (
+					key != 'snackbar' && dialogs[key].isDropdown !== true
+				);
+			}).length > 0
+		);
 	},
 
-	hasDropdownOpened: function() {
-		return Object.values(this.dialogs)
-			.filter(function (dialog) { return dialog.isDropdown === true; })
-			.length > 0;
+	hasDropdownOpened: function () {
+		return (
+			Object.values(this.dialogs).filter(function (dialog) {
+				return dialog.isDropdown === true;
+			}).length > 0
+		);
 	},
 
-	hasSnackbarOpened: function() {
-		return Object.keys(this.dialogs)
-			.filter(function (key) { return key == 'snackbar'; })
-			.length > 0;
+	hasSnackbarOpened: function () {
+		return (
+			Object.keys(this.dialogs).filter(function (key) {
+				return key == 'snackbar';
+			}).length > 0
+		);
 	},
 
-	clearDialog: function(id) {
+	clearDialog: function (id) {
 		const dialogInfo = this.dialogs[id];
 		const builder = dialogInfo.builder;
 
@@ -71,25 +83,23 @@ L.Control.JSDialog = L.Control.extend({
 		return builder;
 	},
 
-	close: function(id, sendCloseEvent) {
+	close: function (id, sendCloseEvent) {
 		if (id !== undefined && this.dialogs[id]) {
 			const dialog = this.dialogs[id];
 			if (!sendCloseEvent && dialog.overlay && !dialog.isSubmenu) {
-				app.layoutingService.appendLayoutingTask(
-					() => { L.DomUtil.remove(dialog.overlay); });
+				app.layoutingService.appendLayoutingTask(() => {
+					L.DomUtil.remove(dialog.overlay);
+				});
 			}
 
-			if (dialog.timeoutId)
-				clearTimeout(dialog.timeoutId);
+			if (dialog.timeoutId) clearTimeout(dialog.timeoutId);
 
-			if (dialog.isPopup)
-				this.closePopover(id, sendCloseEvent);
-			else
-				this.closeDialog(id, sendCloseEvent);
+			if (dialog.isPopup) this.closePopover(id, sendCloseEvent);
+			else this.closeDialog(id, sendCloseEvent);
 		}
 	},
 
-	closeAll: function(leaveSnackbar) {
+	closeAll: function (leaveSnackbar) {
 		var dialogs = Object.keys(this.dialogs);
 		for (var i = 0; i < dialogs.length; i++) {
 			if (leaveSnackbar && dialogs[i] && dialogs[i] === 'snackbar')
@@ -99,17 +109,16 @@ L.Control.JSDialog = L.Control.extend({
 		}
 	},
 
-	closeAllDropdowns: function() {
+	closeAllDropdowns: function () {
 		var dialogs = Object.values(this.dialogs);
 		for (var i = 0; i < dialogs.length; i++) {
-			if (dialogs[i] && !dialogs[i].isDropdown)
-				continue;
+			if (dialogs[i] && !dialogs[i].isDropdown) continue;
 
 			this.close(dialogs[i].id, false);
 		}
 	},
 
-	closeDialog: function(id, sendCloseEvent) {
+	closeDialog: function (id, sendCloseEvent) {
 		if (id === undefined || !this.dialogs[id]) {
 			app.console.warn('missing dialog data');
 			return;
@@ -119,12 +128,18 @@ L.Control.JSDialog = L.Control.extend({
 
 		var builder = this.clearDialog(id);
 		if (sendCloseEvent !== false && builder)
-			builder.callback('dialog', 'close', {id: '__DIALOG__'}, null, builder);
+			builder.callback(
+				'dialog',
+				'close',
+				{ id: '__DIALOG__' },
+				null,
+				builder,
+			);
 	},
 
 	// sendCloseEvent means that we only send a command to the server
 	// we want to kill HTML popup when we receive feedback from the server
-	closePopover: function(id, sendCloseEvent) {
+	closePopover: function (id, sendCloseEvent) {
 		if (id === undefined || !this.dialogs[id]) {
 			app.console.warn('missing popover data');
 			return;
@@ -135,16 +150,26 @@ L.Control.JSDialog = L.Control.extend({
 
 		if (sendCloseEvent) {
 			// first try to close the dropdown if exists
-			if (clickToClose && typeof clickToClose.closeDropdown === 'function')
+			if (
+				clickToClose &&
+				typeof clickToClose.closeDropdown === 'function'
+			)
 				clickToClose.closeDropdown();
-			if (clickToClose && L.DomUtil.hasClass(clickToClose, 'menubutton'))
+			if (
+				clickToClose &&
+				L.DomUtil.hasClass(clickToClose, 'menubutton')
+			)
 				clickToClose.click();
 			else if (builder)
-				builder.callback('popover', 'close', {id: '__POPOVER__'}, null, builder);
-			else
-				app.console.warn('closePopover: no builder');
-		}
-		else {
+				builder.callback(
+					'popover',
+					'close',
+					{ id: '__POPOVER__' },
+					null,
+					builder,
+				);
+			else app.console.warn('closePopover: no builder');
+		} else {
 			// Close handler for Dropdown which requires to setup aria properties
 			const popupParent = this.dialogs[id].popupParent;
 			if (popupParent && typeof popupParent._onDropDown === 'function')
@@ -159,15 +184,14 @@ L.Control.JSDialog = L.Control.extend({
 		this.focusToLastElement(id);
 	},
 
-	onCloseAll: function() {
+	onCloseAll: function () {
 		this.closeAll(/*leaveSnackbar*/ true);
 		// should also close all dropdowns on close all dialogs
 		this.closeAllDropdowns();
 	},
 
-	focusToLastElement: function(id) {
-		if (id === undefined)
-			return;
+	focusToLastElement: function (id) {
+		if (id === undefined) return;
 
 		const dialog = this.dialogs[id];
 		app.layoutingService.appendLayoutingTask(() => {
@@ -178,46 +202,46 @@ L.Control.JSDialog = L.Control.extend({
 
 			try {
 				dialog.lastFocusedElement.focus();
-			}
-			catch (error) {
-				app.console.debug('Cannot focus last element in dialog with id: ' + id);
+			} catch (error) {
+				app.console.debug(
+					'Cannot focus last element in dialog with id: ' + id,
+				);
 				this.map.focus();
 			}
 		});
 	},
 
-	setTabs: function() {
+	setTabs: function () {
 		app.console.error('setTabs: not implemented in dialogs.');
 	},
 
-	selectedTab: function() {
+	selectedTab: function () {
 		// nothing to do here
 	},
 
-	_getDefaultButtonId: function(widgets) {
+	_getDefaultButtonId: function (widgets) {
 		for (var i in widgets) {
-			if (widgets[i].type === 'pushbutton' || widgets[i].type === 'okbutton') {
-				if (widgets[i].has_default === true)
-					return widgets[i].id;
+			if (
+				widgets[i].type === 'pushbutton' ||
+				widgets[i].type === 'okbutton'
+			) {
+				if (widgets[i].has_default === true) return widgets[i].id;
 			}
 
 			if (widgets[i].children) {
 				var found = this._getDefaultButtonId(widgets[i].children);
-				if (found)
-					return found;
+				if (found) return found;
 			}
 		}
 
 		return null;
 	},
 
-	fadeOutDialog: function(instance) {
-		if (!instance.id)
-			return;
+	fadeOutDialog: function (instance) {
+		if (!instance.id) return;
 
 		const dialogInfo = this.dialogs[instance.id];
-		if (!dialogInfo)
-			return;
+		if (!dialogInfo) return;
 
 		const container = dialogInfo.container;
 
@@ -236,21 +260,27 @@ L.Control.JSDialog = L.Control.extend({
 		});
 	},
 
-	getOrCreateOverlay: function(instance) {
+	getOrCreateOverlay: function (instance) {
 		// Submenu is created inside the same overlay as parent dropdown
 		if (instance.isDropdown && instance.isSubmenu) {
-			instance.overlay = document.body.querySelector('.jsdialog-overlay');
+			instance.overlay =
+				document.body.querySelector('.jsdialog-overlay');
 			return;
 		}
 
 		// Dialogue overlay which will allow automatic positioning and cancellation of the dialogue if cancellable.
 		var overlay = L.DomUtil.get(instance.id + '-overlay');
 		if (!overlay) {
+			if (instance.noOverlay) return;
 
-			if (instance.noOverlay)
-				return;
-
-			overlay = L.DomUtil.create('div', 'jsdialog-overlay ' + (instance.cancellable && !instance.hasOverlay ? 'cancellable' : ''), instance.containerParent);
+			overlay = L.DomUtil.create(
+				'div',
+				'jsdialog-overlay ' +
+					(instance.cancellable && !instance.hasOverlay
+						? 'cancellable'
+						: ''),
+				instance.containerParent,
+			);
 			overlay.id = instance.id + '-overlay';
 			if (instance.cancellable) {
 				overlay.onclick = () => {
@@ -258,28 +288,48 @@ L.Control.JSDialog = L.Control.extend({
 					var hasToNotifyServer = !instance.isDropdown;
 					if (instance.isDropdown) {
 						// multi-level leftovers
-						instance.builder.callback('dropdown', 'hidedropdown', {id: instance.id}, null, instance.builder);
+						instance.builder.callback(
+							'dropdown',
+							'hidedropdown',
+							{ id: instance.id },
+							null,
+							instance.builder,
+						);
 					}
-					this.close(instance.id, hasToNotifyServer); };
+					this.close(instance.id, hasToNotifyServer);
+				};
 			}
 		}
 		instance.overlay = overlay;
 	},
 
-	isOnlyChild: function(instance) {
-		const isMenu = instance.children && instance.children.length
-			&& instance.children[0].id === '__MENU__';
-		const isOnlyChild = instance.children && instance.children.length &&
-			instance.children[0].children && instance.children[0].children.length === 1;
+	isOnlyChild: function (instance) {
+		const isMenu =
+			instance.children &&
+			instance.children.length &&
+			instance.children[0].id === '__MENU__';
+		const isOnlyChild =
+			instance.children &&
+			instance.children.length &&
+			instance.children[0].children &&
+			instance.children[0].children.length === 1;
 		return isMenu || isOnlyChild;
 	},
 
-	createContainer: function(instance, documentFragment) {
+	createContainer: function (instance, documentFragment) {
 		// it has to be form to handle default button
-		instance.container = L.DomUtil.create('div', 'jsdialog-window', documentFragment);
+		instance.container = L.DomUtil.create(
+			'div',
+			'jsdialog-window',
+			documentFragment,
+		);
 		instance.container.id = instance.id;
 
-		instance.form = L.DomUtil.create('form', 'jsdialog-container ui-dialog ui-widget-content lokdialog_container', instance.container);
+		instance.form = L.DomUtil.create(
+			'form',
+			'jsdialog-container ui-dialog ui-widget-content lokdialog_container',
+			instance.container,
+		);
 		instance.form.setAttribute('role', 'dialog');
 		instance.form.setAttribute('aria-labelledby', instance.title);
 		instance.form.setAttribute('autocomplete', 'off');
@@ -287,48 +337,88 @@ L.Control.JSDialog = L.Control.extend({
 		// Like in the case of the inactivity message.
 		// https://github.com/CollaboraOnline/online/issues/7403
 		if (!instance.clickToDismiss) {
-			instance.container.onclick = function(e) { e.stopPropagation(); };
+			instance.container.onclick = function (e) {
+				e.stopPropagation();
+			};
 		}
 
-		if (instance.collapsed && (instance.collapsed === 'true' || instance.collapsed === true))
+		if (
+			instance.collapsed &&
+			(instance.collapsed === 'true' || instance.collapsed === true)
+		)
 			L.DomUtil.addClass(instance.container, 'collapsed');
 
 		// prevent from reloading
-		instance.form.addEventListener('submit', (event) => { event.preventDefault(); });
+		instance.form.addEventListener('submit', (event) => {
+			event.preventDefault();
+		});
 
-		instance.defaultButtonId = this._getDefaultButtonId(instance.children);
+		instance.defaultButtonId = this._getDefaultButtonId(
+			instance.children,
+		);
 
-		if (this.isOnlyChild(instance))
-			instance.isOnlyChild = true;
+		if (this.isOnlyChild(instance)) instance.isOnlyChild = true;
 
 		// it has to be first button in the form
-		var defaultButton = L.DomUtil.createWithId('button', 'default-button', instance.form);
+		var defaultButton = L.DomUtil.createWithId(
+			'button',
+			'default-button',
+			instance.form,
+		);
 		defaultButton.style.display = 'none';
-		defaultButton.onclick = function() {
+		defaultButton.onclick = function () {
 			if (instance.defaultButtonId) {
-				var button = instance.form.querySelector('#' + instance.defaultButtonId);
-				if (button)
-					button.click();
+				var button = instance.form.querySelector(
+					'#' + instance.defaultButtonId,
+				);
+				if (button) button.click();
 			}
 		};
 
 		if (instance.haveTitlebar) {
-			instance.titlebar = L.DomUtil.create('div', 'ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix', instance.form);
-			let title = L.DomUtil.create('h2', 'ui-dialog-title', instance.titlebar);
+			instance.titlebar = L.DomUtil.create(
+				'div',
+				'ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix',
+				instance.form,
+			);
+			let title = L.DomUtil.create(
+				'h2',
+				'ui-dialog-title',
+				instance.titlebar,
+			);
 			title.setAttribute('id', instance.title);
 			title.innerText = instance.title;
-			instance.titleCloseButton = L.DomUtil.create('button', 'ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close', instance.titlebar);
+			instance.titleCloseButton = L.DomUtil.create(
+				'button',
+				'ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close',
+				instance.titlebar,
+			);
 			const titleCloseButtonText = _('Close dialog');
-			instance.titleCloseButton.setAttribute('aria-label', titleCloseButtonText);
-			instance.titleCloseButton.setAttribute('title', titleCloseButtonText);
+			instance.titleCloseButton.setAttribute(
+				'aria-label',
+				titleCloseButtonText,
+			);
+			instance.titleCloseButton.setAttribute(
+				'title',
+				titleCloseButtonText,
+			);
 			instance.titleCloseButton.tabIndex = '0';
-			L.DomUtil.create('span', 'ui-button-icon ui-icon ui-icon-closethick', instance.titleCloseButton);
+			L.DomUtil.create(
+				'span',
+				'ui-button-icon ui-icon ui-icon-closethick',
+				instance.titleCloseButton,
+			);
 		}
 
-		if (instance.isModalPopUp || instance.isDocumentAreaPopup || instance.isSnackbar)
+		if (
+			instance.isModalPopUp ||
+			instance.isDocumentAreaPopup ||
+			instance.isSnackbar
+		)
 			L.DomUtil.addClass(instance.container, 'modalpopup');
 
-		if (instance.isModalPopUp && !instance.popupParent) // Special case for menu popups (they are also modal dialogues).
+		if (instance.isModalPopUp && !instance.popupParent)
+			// Special case for menu popups (they are also modal dialogues).
 			instance.overlay.classList.add('dimmed');
 
 		if (instance.isSnackbar) {
@@ -336,44 +426,57 @@ L.Control.JSDialog = L.Control.extend({
 			L.DomUtil.addClass(instance.form, 'snackbar');
 		}
 
-		instance.content = L.DomUtil.create('div', 'jsdialog lokdialog ui-dialog-content ui-widget-content' + (instance.isOnlyChild ? ' one-child-popup' : ''), instance.form);
+		instance.content = L.DomUtil.create(
+			'div',
+			'jsdialog lokdialog ui-dialog-content ui-widget-content' +
+				(instance.isOnlyChild ? ' one-child-popup' : ''),
+			instance.form,
+		);
 
 		this.dialogs[instance.id] = {};
 	},
 
-	createDialog: function(instance) {
-		instance.builder = new L.control.jsDialogBuilder(
-			{
-				windowId: instance.id,
-				mobileWizard: this,
-				map: this.map,
-				cssClass: 'jsdialog' + (instance.isAutoPopup ? ' autofilter' : '') + (instance.isOnlyChild ? ' one-child-popup' : ''),
-				callback: instance.callback,
-				suffix: 'dialog',
-			});
+	createDialog: function (instance) {
+		instance.builder = new L.control.jsDialogBuilder({
+			windowId: instance.id,
+			mobileWizard: this,
+			map: this.map,
+			cssClass:
+				'jsdialog' +
+				(instance.isAutoPopup ? ' autofilter' : '') +
+				(instance.isOnlyChild ? ' one-child-popup' : ''),
+			callback: instance.callback,
+			suffix: 'dialog',
+		});
 
 		instance.builder.build(instance.content, [instance]);
 		instance.builder.setContainer(instance.content);
-		var primaryBtn = instance.content.querySelector('#' + instance.defaultButtonId + ' button');
-		if (primaryBtn)
-			L.DomUtil.addClass(primaryBtn, 'button-primary');
+		var primaryBtn = instance.content.querySelector(
+			'#' + instance.defaultButtonId + ' button',
+		);
+		if (primaryBtn) L.DomUtil.addClass(primaryBtn, 'button-primary');
 	},
 
-	addFocusHandler: function(instance) {
-		if (!instance.canHaveFocus)
-			return;
+	addFocusHandler: function (instance) {
+		if (!instance.canHaveFocus) return;
 
-		const elementToFocus = document.getElementById(instance.init_focus_id);
+		const elementToFocus = document.getElementById(
+			instance.init_focus_id,
+		);
 
-		if (instance.init_focus_id === 'input-modal-input' && elementToFocus) {
+		if (
+			instance.init_focus_id === 'input-modal-input' &&
+			elementToFocus
+		) {
 			elementToFocus.select();
 		}
 
 		const failedToFindFocus = () => {
-			if (elementToFocus)
-				elementToFocus.focus();
+			if (elementToFocus) elementToFocus.focus();
 			else {
-				app.console.error('There is no focusable element in the modal. Either focusId should be given or modal should have a response button.');
+				app.console.error(
+					'There is no focusable element in the modal. Either focusId should be given or modal should have a response button.',
+				);
 				instance.that.close(instance.id, true);
 				instance.that.map.focus();
 			}
@@ -382,16 +485,22 @@ L.Control.JSDialog = L.Control.extend({
 		JSDialog.MakeFocusCycle(instance.container, failedToFindFocus);
 	},
 
-	addHandlers: function(instance) {
+	addHandlers: function (instance) {
 		var onInput = (ev) => {
 			if (ev.isFirst)
-				instance.that.draggingObject = instance.that.dialogs[instance.id];
+				instance.that.draggingObject =
+					instance.that.dialogs[instance.id];
 
-			if (ev.isFinal && instance.that.draggingObject
-				&& instance.that.draggingObject.translateX
-				&& instance.that.draggingObject.translateY) {
-				instance.that.draggingObject.startX = instance.that.draggingObject.translateX;
-				instance.that.draggingObject.startY = instance.that.draggingObject.translateY;
+			if (
+				ev.isFinal &&
+				instance.that.draggingObject &&
+				instance.that.draggingObject.translateX &&
+				instance.that.draggingObject.translateY
+			) {
+				instance.that.draggingObject.startX =
+					instance.that.draggingObject.translateX;
+				instance.that.draggingObject.startY =
+					instance.that.draggingObject.translateY;
 				instance.that.draggingObject.translateX = 0;
 				instance.that.draggingObject.translateY = 0;
 				instance.that.draggingObject = null;
@@ -406,36 +515,49 @@ L.Control.JSDialog = L.Control.extend({
 
 		if (instance.nonModal && instance.haveTitlebar) {
 			instance.titleCloseButton.onclick = () => {
-				var newestDialog = Math.max.apply(null,
-					Object.keys(instance.that.dialogs).map(function(i) { return parseInt(i);}));
-				if (newestDialog > parseInt(instance.id))
-					return;
+				var newestDialog = Math.max.apply(
+					null,
+					Object.keys(instance.that.dialogs).map(function (i) {
+						return parseInt(i);
+					}),
+				);
+				if (newestDialog > parseInt(instance.id)) return;
 
 				instance.that.closeDialog(instance.id, true);
 			};
 
 			var hammerTitlebar = new Hammer(instance.titlebar);
-			hammerTitlebar.add(new Hammer.Pan({ threshold: 20, pointers: 0 }));
+			hammerTitlebar.add(
+				new Hammer.Pan({ threshold: 20, pointers: 0 }),
+			);
 
 			hammerTitlebar.on('panstart', this.onPan.bind(this));
 			hammerTitlebar.on('panmove', this.onPan.bind(this));
 			hammerTitlebar.on('hammer.input', onInput);
 		}
 
-		var popupParent = instance.popupParent ? L.DomUtil.get(instance.popupParent) : null;
+		var popupParent = instance.popupParent
+			? L.DomUtil.get(instance.popupParent)
+			: null;
 
 		this.addFocusHandler(instance); // Loop focus for all dialogues.
 
-		var clickToCloseId = instance.clickToClose ? L.Util.sanitizeElementId(instance.clickToClose) : null;
+		var clickToCloseId = instance.clickToClose
+			? L.Util.sanitizeElementId(instance.clickToClose)
+			: null;
 		if (clickToCloseId && clickToCloseId.indexOf('.uno:') === 0)
 			clickToCloseId = clickToCloseId.substr('.uno:'.length);
 
 		var clickToCloseElement = null;
 		if (clickToCloseId && popupParent) {
-			clickToCloseElement = popupParent.querySelector('[id=\'' + clickToCloseId + '\']');
+			clickToCloseElement = popupParent.querySelector(
+				"[id='" + clickToCloseId + "']",
+			);
 			// we avoid duplicated ids in unotoolbuttons - try with class
 			if (!clickToCloseElement)
-				clickToCloseElement = popupParent.querySelector('.uno' + clickToCloseId);
+				clickToCloseElement = popupParent.querySelector(
+					'.uno' + clickToCloseId,
+				);
 			// might be treeview entry
 			if (!clickToCloseElement)
 				instance.clickToCloseText = instance.clickToClose;
@@ -445,58 +567,99 @@ L.Control.JSDialog = L.Control.extend({
 		}
 		instance.clickToClose = clickToCloseElement;
 
-		app.layoutingService.appendLayoutingTask(() => { this.setupInitialFocus(instance); });
+		app.layoutingService.appendLayoutingTask(() => {
+			this.setupInitialFocus(instance);
+		});
 
 		if (instance.isDropdown && instance.isSubmenu) {
 			instance.container.addEventListener('mouseleave', () => {
-				instance.builder.callback('combobox', 'hidedropdown', {id: instance.id}, null, instance.builder);
+				instance.builder.callback(
+					'combobox',
+					'hidedropdown',
+					{ id: instance.id },
+					null,
+					instance.builder,
+				);
 			});
 		}
 	},
 
-	setupInitialFocus: function(instance) {
+	setupInitialFocus: function (instance) {
 		// setup initial focus and helper elements for closing popup
-		var initialFocusElement = JSDialog.GetFocusableElements(instance.container);
+		var initialFocusElement = JSDialog.GetFocusableElements(
+			instance.container,
+		);
 
-		if (instance.canHaveFocus && initialFocusElement && initialFocusElement.length)
+		if (
+			instance.canHaveFocus &&
+			initialFocusElement &&
+			initialFocusElement.length
+		)
 			initialFocusElement[0].focus();
 
 		// pass the current instance and get the tabcontrol object if it exist
 		// this will only search in current instance and not in whole document
 		const tabControlWidget = this.findTabControl(instance);
 
-		let focusWidget, firstFocusableElement ;
+		let focusWidget, firstFocusableElement;
 
 		if (tabControlWidget && !instance.init_focus_id) {
 			// get DOM element of tabControl from current instance
-			focusWidget = instance.content.querySelector('[id="' + tabControlWidget.id + '"]');
-			firstFocusableElement = JSDialog.GetFocusableElements(focusWidget);
-
+			focusWidget = instance.content.querySelector(
+				'[id="' + tabControlWidget.id + '"]',
+			);
+			firstFocusableElement =
+				JSDialog.GetFocusableElements(focusWidget);
 		} else {
 			// will directly set element of focusable element based on init focus id
 			// If init_id is not defined, select the first focusable element from the container
-			firstFocusableElement = instance.init_focus_id ? instance.container.querySelector('[id=\'' + instance.init_focus_id + '\']') : null;
+			firstFocusableElement = instance.init_focus_id
+				? instance.container.querySelector(
+						"[id='" + instance.init_focus_id + "']",
+					)
+				: null;
 
 			if (!firstFocusableElement) {
-				const focusables = JSDialog.GetFocusableElements(instance.container);
-				if (focusables && focusables.length) firstFocusableElement = focusables[0];
+				const focusables = JSDialog.GetFocusableElements(
+					instance.container,
+				);
+				if (focusables && focusables.length)
+					firstFocusableElement = focusables[0];
 			}
 
-			if (firstFocusableElement && !JSDialog.IsFocusable(firstFocusableElement)){
-				firstFocusableElement = JSDialog.FindFocusableWithin(firstFocusableElement, 'next');
+			if (
+				firstFocusableElement &&
+				!JSDialog.IsFocusable(firstFocusableElement)
+			) {
+				firstFocusableElement = JSDialog.FindFocusableWithin(
+					firstFocusableElement,
+					'next',
+				);
 			}
 		}
 
-		if (firstFocusableElement && document.activeElement !== firstFocusableElement && instance.canHaveFocus) {
+		if (
+			firstFocusableElement &&
+			document.activeElement !== firstFocusableElement &&
+			instance.canHaveFocus
+		) {
 			// for tab control case we have more then 1 element that can be focusable so select the first tab for the list
-			firstFocusableElement = firstFocusableElement.length > 0 ? firstFocusableElement[0] : firstFocusableElement;
+			firstFocusableElement =
+				firstFocusableElement.length > 0
+					? firstFocusableElement[0]
+					: firstFocusableElement;
 			firstFocusableElement.focus();
-		}
-		else if (instance.canHaveFocus !== false && instance.init_focus_id)
-			app.console.error('JSDialog: Cannot get focus for dialog: "' + instance.id + '" with initial id: "' + instance.init_focus_id + '"');
+		} else if (instance.canHaveFocus !== false && instance.init_focus_id)
+			app.console.error(
+				'JSDialog: Cannot get focus for dialog: "' +
+					instance.id +
+					'" with initial id: "' +
+					instance.init_focus_id +
+					'"',
+			);
 	},
 
-	 findTabControl: function(obj) {
+	findTabControl: function (obj) {
 		if (obj.type === 'tabcontrol') {
 			// this return the main tabcontrol object
 			return obj;
@@ -511,14 +674,16 @@ L.Control.JSDialog = L.Control.extend({
 	},
 
 	/// if you use updatePos - instance param is bound automatically
-	setPosition: function(instance, updatedPos) {
+	setPosition: function (instance, updatedPos) {
 		var calculated = false;
 		var isRTL = document.documentElement.dir === 'rtl';
 
 		if (instance.isSnackbar) {
 			calculated = true;
-			instance.posx = window.innerWidth/2 - instance.form.offsetWidth/2;
-			instance.posy = window.innerHeight - instance.form.offsetHeight - 40;
+			instance.posx =
+				window.innerWidth / 2 - instance.form.offsetWidth / 2;
+			instance.posy =
+				window.innerHeight - instance.form.offsetHeight - 40;
 		} else if (instance.nonModal || instance.popupParent) {
 			// in case of toolbox we want to create popup positioned by toolitem not toolbox
 			if (updatedPos) {
@@ -529,17 +694,35 @@ L.Control.JSDialog = L.Control.extend({
 			var parent = L.DomUtil.get(instance.popupParent);
 
 			if (instance.clickToCloseId && parent) {
-				var childButton = parent.querySelector('[id=\'' + instance.clickToCloseId + '\']');
-				if (childButton)
-					parent = childButton;
+				var childButton = parent.querySelector(
+					"[id='" + instance.clickToCloseId + "']",
+				);
+				if (childButton) parent = childButton;
 			} else if (instance.clickToCloseText && parent) {
 				var matchingElements;
-				if ((matchingElements = parent.querySelectorAll('span.ui-treeview-cell-text')).length) {// treeview entry for context menu
+				if (
+					(matchingElements = parent.querySelectorAll(
+						'span.ui-treeview-cell-text',
+					)).length
+				) {
+					// treeview entry for context menu
 					parent = Array.from(matchingElements).find(
-						(value) => (value.innerText === instance.clickToCloseText) // text entry
-											|| (value.firstChild && value.firstChild.alt === instance.clickToCloseText)); // custom render
-				} else if ((matchingElements = parent.querySelectorAll('div.ui-iconview-entry > img')).length) {// iconview entry for context menu
-					parent = Array.from(matchingElements).find((img) => img.title === instance.clickToCloseText);
+						(value) =>
+							value.innerText ===
+								instance.clickToCloseText || // text entry
+							(value.firstChild &&
+								value.firstChild.alt ===
+									instance.clickToCloseText),
+					); // custom render
+				} else if (
+					(matchingElements = parent.querySelectorAll(
+						'div.ui-iconview-entry > img',
+					)).length
+				) {
+					// iconview entry for context menu
+					parent = Array.from(matchingElements).find(
+						(img) => img.title === instance.clickToCloseText,
+					);
 				}
 			}
 
@@ -548,9 +731,10 @@ L.Control.JSDialog = L.Control.extend({
 				if (instance.isAutoPopup) {
 					// we are already done
 					return;
-				}
-				else {
-					app.console.warn('other popup than autofilter in the document area');
+				} else {
+					app.console.warn(
+						'other popup than autofilter in the document area',
+					);
 				}
 			}
 
@@ -559,68 +743,101 @@ L.Control.JSDialog = L.Control.extend({
 				instance.posx = parent.getBoundingClientRect().left;
 				instance.posy = parent.getBoundingClientRect().bottom;
 
-				if (instance.popupAnchor && instance.popupAnchor.indexOf('top') >= 0)
+				if (
+					instance.popupAnchor &&
+					instance.popupAnchor.indexOf('top') >= 0
+				)
 					instance.posy = parent.getBoundingClientRect().top;
 
-				instance.container.style.minWidth = parent.getBoundingClientRect().width + 'px';
+				instance.container.style.minWidth =
+					parent.getBoundingClientRect().width + 'px';
 
 				if (isRTL)
 					instance.posx = window.innerWidth - instance.posx;
 
-				if (instance.popupAnchor && instance.popupAnchor.indexOf('end') >= 0)
-					instance.posx += (isRTL ? 0 : 1) * (parent.clientWidth) - 15;
+				if (
+					instance.popupAnchor &&
+					instance.popupAnchor.indexOf('end') >= 0
+				)
+					instance.posx +=
+						(isRTL ? 0 : 1) * parent.clientWidth - 15;
 
 				if (instance.content.clientWidth > window.innerWidth)
-					instance.container.style.maxWidth = (window.innerWidth - instance.posx - 20) + 'px';
-				else if (instance.posx + instance.content.clientWidth > window.innerWidth)
-					instance.posx -= instance.posx + instance.content.clientWidth + 10 - window.innerWidth;
+					instance.container.style.maxWidth =
+						window.innerWidth - instance.posx - 20 + 'px';
+				else if (
+					instance.posx + instance.content.clientWidth >
+					window.innerWidth
+				)
+					instance.posx -=
+						instance.posx +
+						instance.content.clientWidth +
+						10 -
+						window.innerWidth;
 
 				if (instance.content.clientHeight > window.innerHeight)
-					instance.container.style.maxHeight = (window.innerHeight - instance.posy - 20) + 'px';
-				else if (instance.posy + instance.content.clientHeight > window.innerHeight)
-					instance.posy -= instance.posy + instance.content.clientHeight + 10 - window.innerHeight;
-			}
-			else {
+					instance.container.style.maxHeight =
+						window.innerHeight - instance.posy - 20 + 'px';
+				else if (
+					instance.posy + instance.content.clientHeight >
+					window.innerHeight
+				)
+					instance.posy -=
+						instance.posy +
+						instance.content.clientHeight +
+						10 -
+						window.innerHeight;
+			} else {
 				var height = instance.form.getBoundingClientRect().height;
-				if (instance.posy + height > instance.containerParent.getBoundingClientRect().height) {
+				if (
+					instance.posy + height >
+					instance.containerParent.getBoundingClientRect().height
+				) {
 					calculated = true;
 					var newTopPosition = instance.posy - height;
-					if (newTopPosition < 0)
-						newTopPosition = 0;
+					if (newTopPosition < 0) newTopPosition = 0;
 					instance.posy = newTopPosition;
 				}
 
 				var width = instance.form.getBoundingClientRect().width;
-				if (isRTL)
-					width = width * -1;
+				if (isRTL) width = width * -1;
 
-				if (instance.posx + width > instance.containerParent.getBoundingClientRect().width) {
+				if (
+					instance.posx + width >
+					instance.containerParent.getBoundingClientRect().width
+				) {
 					calculated = true;
 					var newLeftPosition = instance.posx - width;
-					if (newLeftPosition < 0)
-						newLeftPosition = 0;
+					if (newLeftPosition < 0) newLeftPosition = 0;
 					instance.posx = newLeftPosition;
 				}
 			}
 		}
 
-		var positionNotSet = !instance.container.style || !instance.container.style.marginInlineStart;
+		var positionNotSet =
+			!instance.container.style ||
+			!instance.container.style.marginInlineStart;
 		if (calculated || positionNotSet)
-			this.setNewPosition(instance.container, instance.posx, instance.posy);
+			this.setNewPosition(
+				instance.container,
+				instance.posx,
+				instance.posy,
+			);
 	},
 
 	centerDialogPosition: function (instance) {
 		var isRTL = document.documentElement.dir === 'rtl';
 		var height = instance.form.getBoundingClientRect().height;
 		var width = instance.form.getBoundingClientRect().width;
-		instance.startX = instance.posx = (window.innerWidth - (isRTL ? (-1 * width) : width)) / 2;
+		instance.startX = instance.posx =
+			(window.innerWidth - (isRTL ? -1 * width : width)) / 2;
 		instance.startY = instance.posy = (window.innerHeight - height) / 2;
-		instance.updatePos({x: instance.posx, y: instance.posy});
+		instance.updatePos({ x: instance.posx, y: instance.posy });
 	},
 
-	parentAutofilter : null,
+	parentAutofilter: null,
 
-	calculateAutoFilterPosition: function(instance) {
+	calculateAutoFilterPosition: function (instance) {
 		// this is autofilter popup
 
 		// RTL mode: only difference is when file is RTL not UI
@@ -628,12 +845,14 @@ L.Control.JSDialog = L.Control.extend({
 		// var isSpreadsheetRTL = this.map._docLayer.isCalcRTL();
 
 		if (this.isChildAutoFilter(instance)) {
-			this.calculateSubmenuAutoFilterPosition(instance, this.parentAutofilter);
+			this.calculateSubmenuAutoFilterPosition(
+				instance,
+				this.parentAutofilter,
+			);
 			return;
 		}
 
-		if (!app.map._docLayer.sheetGeometry)
-			return;
+		if (!app.map._docLayer.sheetGeometry) return;
 
 		/*
 			AutoFilter and Cell Dropdown dialogs both use this function.
@@ -645,21 +864,21 @@ L.Control.JSDialog = L.Control.extend({
 
 		if (app.calc.autoFilterCell) {
 			// This is an AutoFilterDialog. We have the row and column indexes. Get cell rectangle with this info.
-			cellRectangle = app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
-				app.calc.autoFilterCell.column,
-				app.calc.autoFilterCell.row,
-				app.getScale()
-			);
-		}
-		else if (app.calc.pivotTableFilterCell) {
+			cellRectangle =
+				app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
+					app.calc.autoFilterCell.column,
+					app.calc.autoFilterCell.row,
+					app.getScale(),
+				);
+		} else if (app.calc.pivotTableFilterCell) {
 			// This is a pivot table filter dialog. We have the row and column indexes. Get cell rectangle with this info.
-			cellRectangle = app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
-				app.calc.pivotTableFilterCell.column,
-				app.calc.pivotTableFilterCell.row,
-				app.getScale()
-			);
-		}
-		else {
+			cellRectangle =
+				app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
+					app.calc.pivotTableFilterCell.column,
+					app.calc.pivotTableFilterCell.row,
+					app.getScale(),
+				);
+		} else {
 			// This is a Cell DropDown. We will use current cell's rectangle.
 			cellRectangle = app.calc.cellCursorRectangle.clone();
 		}
@@ -667,36 +886,48 @@ L.Control.JSDialog = L.Control.extend({
 		const documentAnchor = app.sectionContainer.getDocumentAnchor();
 
 		if (!app.isXOrdinateInFrozenPane(cellRectangle.pX1))
-			cellRectangle.pX1 += documentAnchor[0] - app.activeDocument.activeView.viewedRectangle.pX1;
-		else
-			cellRectangle.pX1 += documentAnchor[0];
+			cellRectangle.pX1 +=
+				documentAnchor[0] -
+				app.activeDocument.activeView.viewedRectangle.pX1;
+		else cellRectangle.pX1 += documentAnchor[0];
 
 		if (!app.isYOrdinateInFrozenPane(cellRectangle.pY1))
-			cellRectangle.pY1 += documentAnchor[1] - app.activeDocument.activeView.viewedRectangle.pY1;
-		else
-			cellRectangle.pY1 += documentAnchor[1];
+			cellRectangle.pY1 +=
+				documentAnchor[1] -
+				app.activeDocument.activeView.viewedRectangle.pY1;
+		else cellRectangle.pY1 += documentAnchor[1];
 
 		app.calc.autoFilterCell = null; // Set to null after using to ensure it doesn't confuse consequent calls.
 		app.calc.pivotTableFilterCell = null;
 
 		const canvasEl = this.map._docLayer._canvas.getBoundingClientRect();
 		instance.posy = cellRectangle.cY2 + canvasEl.top;
-		instance.posx =  cellRectangle.cX2 + canvasEl.left - instance.container.offsetWidth;
+		instance.posx =
+			cellRectangle.cX2 +
+			canvasEl.left -
+			instance.container.offsetWidth;
 
-		this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
+		this.updateAutoPopPosition(
+			instance.container,
+			instance.posx,
+			instance.posy,
+		);
 	},
 
-	isChildAutoFilter: function(instance) {
+	isChildAutoFilter: function (instance) {
 		// JSON structure suggests that if children array's first element has id='menu' and widgetType = 'treelistbox' then it will definitely be a child autofilter popup
 		var rootChild = instance.children[0];
 		if (rootChild) {
 			var firstWidget = rootChild.children[0];
-			return firstWidget ? (firstWidget.id === 'menu' && firstWidget.type === 'treelistbox') : false;
+			return firstWidget
+				? firstWidget.id === 'menu' &&
+						firstWidget.type === 'treelistbox'
+				: false;
 		}
 		return false;
 	},
 
-	calculateSubmenuAutoFilterPosition: function(instance, parentAutofilter) {
+	calculateSubmenuAutoFilterPosition: function (instance, parentAutofilter) {
 		var parentAutofilter = parentAutofilter.getBoundingClientRect();
 		instance.posx = parentAutofilter.right;
 		instance.posy = parentAutofilter.top;
@@ -704,7 +935,9 @@ L.Control.JSDialog = L.Control.extend({
 		// set margin start for child popup in rtl mode
 		var isSpreadsheetRTL = this.map._docLayer.isCalcRTL();
 		if (isSpreadsheetRTL) {
-			var rtlPosx = parentAutofilter.left - instance.form.getBoundingClientRect().width;
+			var rtlPosx =
+				parentAutofilter.left -
+				instance.form.getBoundingClientRect().width;
 			instance.posx = rtlPosx < 0 ? 0 : rtlPosx;
 		}
 		// set posx of instance (submenufilter) based on window width
@@ -717,10 +950,14 @@ L.Control.JSDialog = L.Control.extend({
 		if (instance.posy + height > window.innerHeight)
 			instance.posy = window.innerHeight - height;
 
-		this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
+		this.updateAutoPopPosition(
+			instance.container,
+			instance.posx,
+			instance.posy,
+		);
 	},
 
-	closePopupsOnTabChange: function() {
+	closePopupsOnTabChange: function () {
 		//this.dialogs is an object
 		var dialogKeys = Object.keys(this.dialogs);
 
@@ -738,12 +975,16 @@ L.Control.JSDialog = L.Control.extend({
 
 	getAutoPopupParentContainer(instance) {
 		// Parent container will
-		if (instance.isAutofilter || instance.isAutoCompletePopup || !instance.isDocumentAreaPopup)
-			return document.body
+		if (
+			instance.isAutofilter ||
+			instance.isAutoCompletePopup ||
+			!instance.isDocumentAreaPopup
+		)
+			return document.body;
 		return document.getElementById('document-container');
 	},
 
-	onJSDialog: function(e) {
+	onJSDialog: function (e) {
 		/*
 			Dialog types:
 				* Modal (isModalPopUp = true): non-movable + overlay + dimmed background.
@@ -756,47 +997,78 @@ L.Control.JSDialog = L.Control.extend({
 		var instance = e.data;
 
 		// Save last focused element, we will set the focus back to this element after this popup is closed.
-		if (!this.dialogs[instance.id] || !this.dialogs[instance.id].lastFocusedElement) // Avoid to reset while updates.
+		if (
+			!this.dialogs[instance.id] ||
+			!this.dialogs[instance.id].lastFocusedElement
+		)
+			// Avoid to reset while updates.
 			instance.lastFocusedElement = document.activeElement;
 
 		instance.callback = e.callback;
 		instance.isSnackbar = e.data.type === 'snackbar';
 		instance.isDropdown = e.data.type === 'dropdown';
-		instance.isModalPopUp = e.data.type === 'modalpopup' || instance.isDropdown;
+		instance.isModalPopUp =
+			e.data.type === 'modalpopup' || instance.isDropdown;
 		instance.snackbarTimeout = e.data.timeout;
 		instance.isOnlyChild = false;
 		instance.that = this;
 		instance.startX = e.data.posx;
 		instance.startY = e.data.posy;
 		instance.updatePos = null;
-		instance.canHaveFocus = !instance.isSnackbar && instance.id !== 'busypopup' && !instance.isAutoCompletePopup;
-		instance.isDocumentAreaPopup = instance.popupParent === '_POPOVER_' && instance.posx !== undefined && instance.posy !== undefined;
-		instance.isPopup = instance.isModalPopUp || instance.isDocumentAreaPopup || instance.isSnackbar;
-		instance.isAutoPopup = instance.isDocumentAreaPopup && this.map._docLayer.isCalc();
-		instance.isAutofilter = instance.isAutoPopup && !instance.isAutoFillPreviewTooltip && !instance.isAutoCompletePopup;// separate the autofilter case
+		instance.canHaveFocus =
+			!instance.isSnackbar &&
+			instance.id !== 'busypopup' &&
+			!instance.isAutoCompletePopup;
+		instance.isDocumentAreaPopup =
+			instance.popupParent === '_POPOVER_' &&
+			instance.posx !== undefined &&
+			instance.posy !== undefined;
+		instance.isPopup =
+			instance.isModalPopUp ||
+			instance.isDocumentAreaPopup ||
+			instance.isSnackbar;
+		instance.isAutoPopup =
+			instance.isDocumentAreaPopup && this.map._docLayer.isCalc();
+		instance.isAutofilter =
+			instance.isAutoPopup &&
+			!instance.isAutoFillPreviewTooltip &&
+			!instance.isAutoCompletePopup; // separate the autofilter case
 		instance.containerParent = this.getAutoPopupParentContainer(instance);
 		instance.hasClose = !!instance.hasClose; // default is true
-		instance.haveTitlebar = instance.hasClose
-			|| (!instance.isModalPopUp && !instance.isSnackbar && instance.hasClose)
-			|| (instance.title && instance.title !== '');
-		instance.nonModal = !instance.isModalPopUp && !instance.isDocumentAreaPopup && !instance.isSnackbar;
+		instance.haveTitlebar =
+			instance.hasClose ||
+			(!instance.isModalPopUp &&
+				!instance.isSnackbar &&
+				instance.hasClose) ||
+			(instance.title && instance.title !== '');
+		instance.nonModal =
+			!instance.isModalPopUp &&
+			!instance.isDocumentAreaPopup &&
+			!instance.isSnackbar;
 
 		// Make a better seperation between popups and modals.
-		if (instance.isDocumentAreaPopup)
-			instance.isModalPopUp = false;
+		if (instance.isDocumentAreaPopup) instance.isModalPopUp = false;
 
 		// Check.
-		if (instance.popupParent === '_POPOVER_' && (instance.posx === undefined || instance.posy === undefined))
-			app.console.error('There is a POPOVER dialogue without position information.');
+		if (
+			instance.popupParent === '_POPOVER_' &&
+			(instance.posx === undefined || instance.posy === undefined)
+		)
+			app.console.error(
+				'There is a POPOVER dialogue without position information.',
+			);
 
-		if (instance.action === 'fadeout')
-		{
-			app.console.debug('JSDialog: fadeout "' + (instance ? instance.id : '-') + '"');
+		if (instance.action === 'fadeout') {
+			app.console.debug(
+				'JSDialog: fadeout "' +
+					(instance ? instance.id : '-') +
+					'"',
+			);
 			this.fadeOutDialog(instance);
-		}
-		else if (instance.action === 'close')
-		{
-			app.console.debug('JSDialog: close "' + (instance ? instance.id : '-') + '"');
+		} else if (instance.action === 'close') {
+			app.console.debug(
+				'JSDialog: close "' + (instance ? instance.id : '-') + '"',
+			);
 			const dialogs = Object.keys(this.dialogs);
 			const hadOpenedDialog = dialogs.length > 0;
 
@@ -808,18 +1080,21 @@ L.Control.JSDialog = L.Control.extend({
 				const lastDialog = this.dialogs[lastKey];
 				const lastContainer = lastDialog.container;
 				if (lastDialog.canHaveFocus && lastContainer) {
-					var initialFocusElement = JSDialog.GetFocusableElements(lastContainer);
+					var initialFocusElement =
+						JSDialog.GetFocusableElements(lastContainer);
 					if (initialFocusElement && initialFocusElement.length)
 						initialFocusElement[0].focus();
-					else
-						lastContainer.focus();
+					else lastContainer.focus();
 				}
-			} else if (hadOpenedDialog){
+			} else if (hadOpenedDialog) {
 				this.map.focus();
 			}
-		}
-		else {
-			app.console.debug('JSDialog: full dialog "' + (instance ? instance.id : '-') + '"');
+		} else {
+			app.console.debug(
+				'JSDialog: full dialog "' +
+					(instance ? instance.id : '-') +
+					'"',
+			);
 
 			// There is no action, so we create a new dialogue.
 			if (instance.isModalPopUp || instance.isDocumentAreaPopup)
@@ -837,10 +1112,11 @@ L.Control.JSDialog = L.Control.extend({
 			// They are displayed before the document is loaded
 			// Spinning should be happening until the 1st interaction with the user
 			// which is the dialog opening in this case
-			if (this.map)
-				this.map._progressBar.end();
+			if (this.map) this.map._progressBar.end();
 
-			const dialogDomParent = instance.overlay ? instance.overlay: instance.containerParent;
+			const dialogDomParent = instance.overlay
+				? instance.overlay
+				: instance.containerParent;
 			const documentFragment = new DocumentFragment(); // do not modify dom yet
 
 			this.createContainer(instance, documentFragment);
@@ -850,7 +1126,11 @@ L.Control.JSDialog = L.Control.extend({
 			instance.updatePos = this.setPosition.bind(this, instance);
 
 			app.layoutingService.appendLayoutingTask(() => {
-				app.console.debug('JSDialog: put items inside container for "' + instance.id + '"');
+				app.console.debug(
+					'JSDialog: put items inside container for "' +
+						instance.id +
+						'"',
+				);
 
 				// dialog built - add to DOM now
 				if (existingNode) {
@@ -864,24 +1144,39 @@ L.Control.JSDialog = L.Control.extend({
 				this.addHandlers(instance);
 
 				// Special case for nonModal dialogues. Core side doesn't send their initial coordinates. We need to center them.
-				if (instance.nonModal && !(instance.startX && instance.startY)) {
+				if (
+					instance.nonModal &&
+					!(instance.startX && instance.startY)
+				) {
 					this.centerDialogPosition(instance);
 				} else {
 					instance.updatePos();
 				}
 
 				// AutoPopup  will calculate popup position for Autofilter Popup
-				if (instance.isAutofilter && !instance.isAutoFillPreviewTooltip)
+				if (
+					instance.isAutofilter &&
+					!instance.isAutoFillPreviewTooltip
+				)
 					this.calculateAutoFilterPosition(instance);
-				else if (instance.isAutoFillPreviewTooltip || instance.isAutoCompletePopup){
-					this.updateAutoPopPosition(instance.container, instance.posx, instance.posy);
+				else if (
+					instance.isAutoFillPreviewTooltip ||
+					instance.isAutoCompletePopup
+				) {
+					this.updateAutoPopPosition(
+						instance.container,
+						instance.posx,
+						instance.posy,
+					);
 				}
 			});
 
 			this.dialogs[instance.id] = instance;
 
 			if (instance.isSnackbar && instance.snackbarTimeout > 0) {
-				instance.timeoutId = setTimeout(() => { app.map.uiManager.closeSnackbar(); }, instance.snackbarTimeout);
+				instance.timeoutId = setTimeout(() => {
+					app.map.uiManager.closeSnackbar();
+				}, instance.snackbarTimeout);
 			}
 		}
 	},
@@ -889,14 +1184,15 @@ L.Control.JSDialog = L.Control.extend({
 	onJSUpdate: function (e) {
 		var data = e.data;
 
-		if (data.jsontype !== 'dialog' && data.jsontype !== 'popup')
-			return;
+		if (data.jsontype !== 'dialog' && data.jsontype !== 'popup') return;
 
-		var dialog = this.dialogs[data.id] ? this.dialogs[data.id].container : null;
-		if (!dialog)
-			return;
+		var dialog = this.dialogs[data.id]
+			? this.dialogs[data.id].container
+			: null;
+		if (!dialog) return;
 
-		var builder = new L.control.jsDialogBuilder({windowId: data.id,
+		var builder = new L.control.jsDialogBuilder({
+			windowId: data.id,
 			mobileWizard: this,
 			map: this.map,
 			cssClass: 'jsdialog',
@@ -912,8 +1208,16 @@ L.Control.JSDialog = L.Control.extend({
 		app.layoutingService.appendLayoutingTask(() => {
 			var dialogInfo = dialogInfos[data.id];
 			if (!dialogInfo) {
-				app.console.debug('JSDialog: dialog info with id: "' + data.id + '" not found.');
-				if (dialog) app.console.debug('JSDialog: old data was: ' + JSON.stringify(dialog));
+				app.console.debug(
+					'JSDialog: dialog info with id: "' +
+						data.id +
+						'" not found.',
+				);
+				if (dialog)
+					app.console.debug(
+						'JSDialog: old data was: ' +
+							JSON.stringify(dialog),
+					);
 				return;
 			}
 			if (dialogInfo.isDocumentAreaPopup) {
@@ -929,31 +1233,38 @@ L.Control.JSDialog = L.Control.extend({
 		var data = e.data;
 		var innerData = data.data;
 
-		if (data.jsontype === 'formulabar' && innerData && innerData.separator)
+		if (
+			data.jsontype === 'formulabar' &&
+			innerData &&
+			innerData.separator
+		)
 			app.calc.decimalSeparator = innerData.separator;
 
-		if (data.jsontype !== 'dialog' && data.jsontype !== 'popup')
-			return;
+		if (data.jsontype !== 'dialog' && data.jsontype !== 'popup') return;
 
 		var dialog = this.dialogs[data.id];
-		if (!dialog)
-			return;
+		if (!dialog) return;
 
 		var builder = dialog.builder;
-		if (!builder)
-			return;
+		if (!builder) return;
 
 		var dialogContainer = dialog.container;
-		if (!dialogContainer)
-			return;
+		if (!dialogContainer) return;
 
 		// focus on element outside view will move viewarea leaving blank space on the bottom
 		if (innerData.action_type === 'grab_focus') {
 			app.layoutingService.appendLayoutingTask(() => {
-				var control = dialogContainer.querySelector('[id=\'' + innerData.control_id + '\']');
-				var controlPosition = control ? control.getBoundingClientRect() : null;
-				if (controlPosition && (controlPosition.bottom > window.innerHeight ||
-					controlPosition.right > window.innerWidth)) {
+				var control = dialogContainer.querySelector(
+					"[id='" + innerData.control_id + "']",
+				);
+				var controlPosition = control
+					? control.getBoundingClientRect()
+					: null;
+				if (
+					controlPosition &&
+					(controlPosition.bottom > window.innerHeight ||
+						controlPosition.right > window.innerWidth)
+				) {
 					this.centerDialogPosition(dialog); // will center it
 				}
 			});
@@ -962,7 +1273,7 @@ L.Control.JSDialog = L.Control.extend({
 		builder.executeAction(dialogContainer, innerData);
 	},
 
-	_clamp: function(value, min, max) {
+	_clamp: function (value, min, max) {
 		return Math.min(Math.max(value, min), max);
 	},
 
@@ -1006,8 +1317,7 @@ L.Control.JSDialog = L.Control.extend({
 		var windowBottom = window.innerHeight;
 		if (newX + width > window.innerWidth)
 			newX = window.innerWidth - width;
-		else if (newX < 10)
-			newX = 10
+		else if (newX < 10) newX = 10;
 
 		// at this point we have un updated potion of autofilter instance.
 		// so to handle overlapping case of autofilter and toolbar we need some complex calculation
@@ -1026,26 +1336,36 @@ L.Control.JSDialog = L.Control.extend({
 		var keyCode = event.keyCode;
 
 		switch (keyCode) {
-		case 27:
-			// ESC
-			var dialogKeys = Object.keys(this.dialogs);
-			if (dialogKeys.length) {
-				var lastKey = dialogKeys[dialogKeys.length - 1];
-				var sendCloseToServer = this.dialogs[lastKey].isDropdown !== true;
-				this.close(lastKey, sendCloseToServer);
-				return true;
-			}
-			break;
-		case 18:
-			if (app.map && app.map.jsdialog && app.map.jsdialog.hasDialogOpened()) {
-				document.body.classList.add('activate-underlines');
-			}
+			case 27:
+				// ESC
+				var dialogKeys = Object.keys(this.dialogs);
+				if (dialogKeys.length) {
+					var lastKey = dialogKeys[dialogKeys.length - 1];
+					var sendCloseToServer =
+						this.dialogs[lastKey].isDropdown !== true;
+					this.close(lastKey, sendCloseToServer);
+					return true;
+				}
+				break;
+			case 18:
+				if (
+					app.map &&
+					app.map.jsdialog &&
+					app.map.jsdialog.hasDialogOpened()
+				) {
+					document.body.classList.add('activate-underlines');
+				}
 		}
 
 		return false;
 	},
-	onKeyUp: function(ev) {
-		if ((ev.keyCode === 18) && app.map && app.map.jsdialog && app.map.jsdialog.hasDialogOpened()) {
+	onKeyUp: function (ev) {
+		if (
+			ev.keyCode === 18 &&
+			app.map &&
+			app.map.jsdialog &&
+			app.map.jsdialog.hasDialogOpened()
+		) {
 			document.body.classList.remove('activate-underlines');
 		}
 	},
@@ -1060,8 +1380,7 @@ L.Control.JSDialog = L.Control.extend({
 				this.map.focus();
 			}
 		}
-
-	}
+	},
 });
 
 L.control.jsDialog = function (options) {

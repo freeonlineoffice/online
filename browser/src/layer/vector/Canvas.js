@@ -5,7 +5,6 @@
  */
 
 L.Canvas = L.Renderer.extend({
-
 	onAdd: function () {
 		L.Renderer.prototype.onAdd.call(this);
 
@@ -16,11 +15,14 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_initContainer: function () {
-		var container = this._container = document.createElement('canvas');
+		var container = (this._container = document.createElement('canvas'));
 
-		L.DomEvent
-			.on(container, 'mousemove', this._onMouseMove, this)
-			.on(container, 'click dblclick mousedown mouseup contextmenu', this._onClick, this);
+		L.DomEvent.on(container, 'mousemove', this._onMouseMove, this).on(
+			container,
+			'click dblclick mousedown mouseup contextmenu',
+			this._onClick,
+			this,
+		);
 
 		this._ctx = container.getContext('2d');
 	},
@@ -29,9 +31,9 @@ L.Canvas = L.Renderer.extend({
 		L.Renderer.prototype._update.call(this);
 
 		var b = this._bounds,
-		    container = this._container,
-		    size = b.getSize(),
-		    m = window.app.dpiScale;
+			container = this._container,
+			size = b.getSize(),
+			m = window.app.dpiScale;
 
 		L.DomUtil.setPosition(container, b.min);
 
@@ -72,12 +74,18 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_requestRedraw: function (layer) {
-		if (!this._map) { return; }
+		if (!this._map) {
+			return;
+		}
 
 		this._redrawBounds = this._redrawBounds || new L.Bounds();
-		this._redrawBounds.extend(layer._pxBounds.min).extend(layer._pxBounds.max);
+		this._redrawBounds
+			.extend(layer._pxBounds.min)
+			.extend(layer._pxBounds.max);
 
-		this._redrawRequest = this._redrawRequest || app.util.requestAnimFrame(this._redraw, this);
+		this._redrawRequest =
+			this._redrawRequest ||
+			app.util.requestAnimFrame(this._redraw, this);
 	},
 
 	_redraw: function () {
@@ -95,7 +103,10 @@ L.Canvas = L.Renderer.extend({
 
 		for (var id in this._layers) {
 			layer = this._layers[id];
-			if (!this._redrawBounds || layer._pxBounds.intersects(this._redrawBounds)) {
+			if (
+				!this._redrawBounds ||
+				layer._pxBounds.intersects(this._redrawBounds)
+			) {
 				layer._updatePath();
 			}
 			if (clear && layer._removed) {
@@ -106,13 +117,17 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_updatePoly: function (layer, closed) {
+		var i,
+			j,
+			len2,
+			p,
+			parts = layer._parts,
+			len = parts.length,
+			ctx = this._ctx;
 
-		var i, j, len2, p,
-		    parts = layer._parts,
-		    len = parts.length,
-		    ctx = this._ctx;
-
-		if (!len) { return; }
+		if (!len) {
+			return;
+		}
 
 		ctx.beginPath();
 
@@ -132,13 +147,14 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_updateCircle: function (layer) {
-
-		if (layer._empty()) { return; }
+		if (layer._empty()) {
+			return;
+		}
 
 		var p = layer._point,
-		    ctx = this._ctx,
-		    r = layer._radius,
-		    s = (layer._radiusY || r) / r;
+			ctx = this._ctx,
+			r = layer._radius,
+			s = (layer._radiusY || r) / r;
 
 		if (s !== 1) {
 			ctx.save();
@@ -157,9 +173,11 @@ L.Canvas = L.Renderer.extend({
 
 	_fillStroke: function (ctx, layer) {
 		var clear = this._clear,
-		    options = layer.options;
+			options = layer.options;
 
-		ctx.globalCompositeOperation = clear ? 'destination-out' : 'source-over';
+		ctx.globalCompositeOperation = clear
+			? 'destination-out'
+			: 'source-over';
 
 		if (options.fill) {
 			ctx.globalAlpha = clear ? 1 : options.fillOpacity;
@@ -171,7 +189,9 @@ L.Canvas = L.Renderer.extend({
 			ctx.globalAlpha = clear ? 1 : options.opacity;
 
 			// if clearing shape, do it with the previously drawn line width
-			layer._prevWeight = ctx.lineWidth = clear ? layer._prevWeight + 1 : options.weight;
+			layer._prevWeight = ctx.lineWidth = clear
+				? layer._prevWeight + 1
+				: options.weight;
 
 			ctx.strokeStyle = options.color;
 			ctx.lineCap = options.lineCap;
@@ -195,7 +215,9 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_onMouseMove: function (e) {
-		if (!this._map) { return; }
+		if (!this._map) {
+			return;
+		}
 
 		var point = this._map.mouseEventToLayerPoint(e);
 
@@ -206,7 +228,9 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_handleHover: function (layer, e, point) {
-		if (!layer.options.interactive) { return; }
+		if (!layer.options.interactive) {
+			return;
+		}
 
 		if (layer._containsPoint(point)) {
 			// if we just got inside the layer, fire mouseover
@@ -217,7 +241,6 @@ L.Canvas = L.Renderer.extend({
 			}
 			// fire mousemove
 			this._fireEvent(layer, e);
-
 		} else if (layer._mouseInside) {
 			// if we're leaving the layer, fire mouseout
 			L.DomUtil.removeClass(this._container, 'leaflet-interactive');
@@ -233,31 +256,42 @@ L.Canvas = L.Renderer.extend({
 	// TODO _bringToFront & _bringToBack, pretty tricky
 
 	_bringToFront: app.util.falseFn,
-	_bringToBack: app.util.falseFn
+	_bringToBack: app.util.falseFn,
 });
 
 L.Browser.canvas = (function () {
 	return !!document.createElement('canvas').getContext;
-}());
+})();
 
 L.canvas = function (options) {
 	return L.Browser.canvas ? new L.Canvas(options) : null;
 };
 
 L.Polyline.prototype._containsPoint = function (p, closed) {
-	var i, j, k, len, len2, part,
-	    w = this._clickTolerance();
+	var i,
+		j,
+		k,
+		len,
+		len2,
+		part,
+		w = this._clickTolerance();
 
-	if (!this._pxBounds.contains(p)) { return false; }
+	if (!this._pxBounds.contains(p)) {
+		return false;
+	}
 
 	// hit detection for polylines
 	for (i = 0, len = this._parts.length; i < len; i++) {
 		part = this._parts[i];
 
 		for (j = 0, len2 = part.length, k = len2 - 1; j < len2; k = j++) {
-			if (!closed && (j === 0)) { continue; }
+			if (!closed && j === 0) {
+				continue;
+			}
 
-			if (L.LineUtil.pointToSegmentDistance(p, part[k], part[j]) <= w) {
+			if (
+				L.LineUtil.pointToSegmentDistance(p, part[k], part[j]) <= w
+			) {
 				return true;
 			}
 		}
@@ -267,9 +301,18 @@ L.Polyline.prototype._containsPoint = function (p, closed) {
 
 L.Polygon.prototype._containsPoint = function (p) {
 	var inside = false,
-	    part, p1, p2, i, j, k, len, len2;
+		part,
+		p1,
+		p2,
+		i,
+		j,
+		k,
+		len,
+		len2;
 
-	if (!this._pxBounds.contains(p)) { return false; }
+	if (!this._pxBounds.contains(p)) {
+		return false;
+	}
 
 	// ray casting algorithm for detecting if point is in polygon
 	for (i = 0, len = this._parts.length; i < len; i++) {
@@ -279,7 +322,10 @@ L.Polygon.prototype._containsPoint = function (p) {
 			p1 = part[j];
 			p2 = part[k];
 
-			if (((p1.y > p.y) !== (p2.y > p.y)) && (p.x < (p2.x - p1.x) * (p.y - p1.y) / (p2.y - p1.y) + p1.x)) {
+			if (
+				p1.y > p.y !== p2.y > p.y &&
+				p.x < ((p2.x - p1.x) * (p.y - p1.y)) / (p2.y - p1.y) + p1.x
+			) {
 				inside = !inside;
 			}
 		}

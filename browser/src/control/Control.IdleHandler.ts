@@ -2,8 +2,8 @@
 /* -*- js-indent-level: 8 -*- */
 
 /*
-	* Class for idle handling of the view.
-*/
+ * Class for idle handling of the view.
+ */
 
 /* global app L TileManager */
 
@@ -18,27 +18,33 @@ declare var outOfFocusTimeoutSecs: number;
 app.idleHandlerId = 'inactive_user_message';
 
 class IdleHandler {
-    _serverRecycling: boolean = false;
-    _documentIdle: boolean = false;
+	_serverRecycling: boolean = false;
+	_documentIdle: boolean = false;
 	_lastActivity: number = Date.now();
 	_inactivityTimer: ReturnType<typeof setTimeout> = null;
 	_outOfFocusTimer: ReturnType<typeof setTimeout> = null;
-    _active: boolean = true;
-    map: any;
+	_active: boolean = true;
+	map: any;
 	dimId: string = app.idleHandlerId;
 
 	getIdleMessage(): string {
 		if (this.map['wopi'] && this.map['wopi'].DisableInactiveMessages) {
 			return '';
 		} else if (window.mode.isDesktop()) {
-			return _('Idle document - please click to reload and resume editing');
+			return _(
+				'Idle document - please click to reload and resume editing',
+			);
 		} else {
-			return _('Idle document - please tap to reload and resume editing');
+			return _(
+				'Idle document - please tap to reload and resume editing',
+			);
 		}
 	}
 
 	isDimActive(): boolean {
-		return !!document.getElementById(this.map.uiManager.generateModalId(this.dimId));
+		return !!document.getElementById(
+			this.map.uiManager.generateModalId(this.dimId),
+		);
 	}
 
 	// time from the last activity in [s]
@@ -80,9 +86,12 @@ class IdleHandler {
 				if (this.map._docLayer) {
 					this.map._docLayer.allowDrawing();
 					this.refreshAnnotations();
-				}
-				else {
-					this.map.once('doclayerinit', this.refreshAnnotations, this);
+				} else {
+					this.map.once(
+						'doclayerinit',
+						this.refreshAnnotations,
+						this,
+					);
 				}
 
 				if (this.isDimActive()) {
@@ -96,11 +105,14 @@ class IdleHandler {
 
 		// Ideally instead of separate isAnyEdit check here, we could check isAnyEdit inside isAnyDialogOpen,
 		// but unfortunatly that causes problem in _deactivate and unnecessary 'userinactive' message is sent
-		if (window.mode.isDesktop()
-		&& !this.map.uiManager.isAnyDialogOpen()
-		&& !lool.Comment.isAnyEdit()
-		&& (this.map.formulabar && !this.map.formulabar.hasFocus())
-		&& $('input:focus').length === 0) {
+		if (
+			window.mode.isDesktop() &&
+			!this.map.uiManager.isAnyDialogOpen() &&
+			!lool.Comment.isAnyEdit() &&
+			this.map.formulabar &&
+			!this.map.formulabar.hasFocus() &&
+			$('input:focus').length === 0
+		) {
 			this.map.focus();
 		}
 
@@ -108,19 +120,30 @@ class IdleHandler {
 	}
 
 	_startInactiveTimer() {
-		if (this._serverRecycling || this._documentIdle || !this.map._docLoaded) {
+		if (
+			this._serverRecycling ||
+			this._documentIdle ||
+			!this.map._docLoaded
+		) {
 			return;
 		}
 
 		clearTimeout(this._inactivityTimer);
 
-		this._inactivityTimer = setTimeout(() => {
-			this._dimIfInactive();
-		}, (L.Browser.cypressTest ? 1000 : 1 * 60 * 1000)); // Check once a minute
+		this._inactivityTimer = setTimeout(
+			() => {
+				this._dimIfInactive();
+			},
+			L.Browser.cypressTest ? 1000 : 1 * 60 * 1000,
+		); // Check once a minute
 	}
 
 	_startOutOfFocusTimer() {
-		if (this._serverRecycling || this._documentIdle || !this.map._docLoaded) {
+		if (
+			this._serverRecycling ||
+			this._documentIdle ||
+			!this.map._docLoaded
+		) {
 			return;
 		}
 
@@ -136,7 +159,10 @@ class IdleHandler {
 	}
 
 	_dimIfInactive() {
-		if (this.map._docLoaded && (this.getElapsedFromActivity() >= window.idleTimeoutSecs)) {
+		if (
+			this.map._docLoaded &&
+			this.getElapsedFromActivity() >= window.idleTimeoutSecs
+		) {
 			this._dim();
 		} else {
 			this._startInactiveTimer();
@@ -144,7 +170,10 @@ class IdleHandler {
 	}
 
 	_dim() {
-		if (this.map.slideShowPresenter && this.map.slideShowPresenter._checkAlreadyPresenting())
+		if (
+			this.map.slideShowPresenter &&
+			this.map.slideShowPresenter._checkAlreadyPresenting()
+		)
 			return; // do not stop presentation
 
 		this.map.fire('closealldialogs');
@@ -152,17 +181,15 @@ class IdleHandler {
 
 		window.app.console.debug('IdleHandler: _dim()');
 
-		if (document.getElementById(this.dimId))
-			return;
+		if (document.getElementById(this.dimId)) return;
 
 		this._active = false;
 		var map = this.map;
 
 		var restartConnectionFn = () => {
-			if (app.idleHandler._documentIdle)
-			{
+			if (app.idleHandler._documentIdle) {
 				window.app.console.debug('idleness: reactivating');
-				map.fire('postMessage', {msgId: 'User_Active'});
+				map.fire('postMessage', { msgId: 'User_Active' });
 				app.idleHandler._documentIdle = false;
 				app.setCursorVisibility(true);
 			}
@@ -177,12 +204,13 @@ class IdleHandler {
 
 		app.layoutingService.appendLayoutingTask(() => {
 			const dimNode = document.getElementById(this.dimId);
-			if (!dimNode)
-				return;
+			if (!dimNode) return;
 
 			dimNode.textContent = message;
 
-			const restartConnection = () => { restartConnectionFn(); };
+			const restartConnection = () => {
+				restartConnectionFn();
+			};
 
 			if (message === '') {
 				const dialogNode = document.getElementById(dialogId);
@@ -191,7 +219,11 @@ class IdleHandler {
 			} else {
 				const overlayId = dialogId + '-overlay';
 				const overlay = document.getElementById(overlayId);
-				if (overlay) overlay.onmouseover = () => { restartConnection(); uiManager.closeModal(dialogId); };
+				if (overlay)
+					overlay.onmouseover = () => {
+						restartConnection();
+						uiManager.closeModal(dialogId);
+					};
 				app.LOUtil.onRemoveHTMLElement(overlay, restartConnection);
 			}
 		});
@@ -210,8 +242,9 @@ class IdleHandler {
 	}
 
 	_sendInactiveMessage() {
-		this.map._doclayer && this.map._docLayer._onMessage('textselection:', null);
-		this.map.fire('postMessage', {msgId: 'User_Idle'});
+		this.map._doclayer &&
+			this.map._docLayer._onMessage('textselection:', null);
+		this.map.fire('postMessage', { msgId: 'User_Idle' });
 		if (app.socket.connected()) {
 			app.socket.sendMessage('userinactive');
 		}
@@ -220,11 +253,18 @@ class IdleHandler {
 	_deactivate() {
 		window.app.console.debug('IdleHandler: _deactivate()');
 
-		if (this._serverRecycling || this._documentIdle || !this.map._docLoaded) {
+		if (
+			this._serverRecycling ||
+			this._documentIdle ||
+			!this.map._docLoaded
+		) {
 			return;
 		}
 
-		if (window.mode.isDesktop() && (!this._active || this.isDimActive())) {
+		if (
+			window.mode.isDesktop() &&
+			(!this._active || this.isDimActive())
+		) {
 			// A dialog is already dimming the screen and probably
 			// shows an error message. Leave it alone.
 			this._active = false;
@@ -233,8 +273,12 @@ class IdleHandler {
 			return;
 		}
 
-		if (app.map && app.map.formulabar &&
-			(app.map.formulabar.hasFocus() || app.map.formulabar.isInEditMode()))
+		if (
+			app.map &&
+			app.map.formulabar &&
+			(app.map.formulabar.hasFocus() ||
+				app.map.formulabar.isInEditMode())
+		)
 			app.dispatcher.dispatch('acceptformula'); // save data from the edited cell on exit
 
 		this._startOutOfFocusTimer();

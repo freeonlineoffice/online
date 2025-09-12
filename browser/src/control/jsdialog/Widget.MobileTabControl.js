@@ -16,20 +16,33 @@
 
 /* global JSDialog $ */
 
-
-function _panelTabsHandler(parentContainer, data, builder, tabTooltip, isTabControl) {
+function _panelTabsHandler(
+	parentContainer,
+	data,
+	builder,
+	tabTooltip,
+	isTabControl,
+) {
 	if (!builder.options.useSetTabs)
-		console.warn('mobile panelTabsHandler: setTabs will be used ignoring useSetTabs property');
+		console.warn(
+			'mobile panelTabsHandler: setTabs will be used ignoring useSetTabs property',
+		);
 
-	var tabsContainer = L.DomUtil.create('div', 'ui-tabs ' + builder.options.cssClass + ' ui-widget');
-	var contentsContainer = L.DomUtil.create('div', 'ui-tabs-content ' + builder.options.cssClass + ' ui-widget', parentContainer);
+	var tabsContainer = L.DomUtil.create(
+		'div',
+		'ui-tabs ' + builder.options.cssClass + ' ui-widget',
+	);
+	var contentsContainer = L.DomUtil.create(
+		'div',
+		'ui-tabs-content ' + builder.options.cssClass + ' ui-widget',
+		parentContainer,
+	);
 
-	var tabIdx,item;
+	var tabIdx, item;
 	if (!isTabControl) {
 		for (var tabIdx = data.length - 1; tabIdx >= 0; tabIdx--) {
 			var item = data[tabIdx];
-			if (item.hidden === true)
-				data.splice(tabIdx, 1);
+			if (item.hidden === true) data.splice(tabIdx, 1);
 		}
 	}
 
@@ -41,26 +54,39 @@ function _panelTabsHandler(parentContainer, data, builder, tabTooltip, isTabCont
 
 		var title = builder._cleanText(item.text);
 
-		var tab = L.DomUtil.create('div', 'ui-tab ' + builder.options.cssClass, tabsContainer);
+		var tab = L.DomUtil.create(
+			'div',
+			'ui-tab ' + builder.options.cssClass,
+			tabsContainer,
+		);
 		tab.id = title;
 		tabs[tabIdx] = tab;
 
-		var label = L.DomUtil.create('span', 'ui-tab-content ' + builder.options.cssClass + ' unolabel', tab);
+		var label = L.DomUtil.create(
+			'span',
+			'ui-tab-content ' + builder.options.cssClass + ' unolabel',
+			tab,
+		);
 		label.textContent = title;
 		labels[tabIdx] = title;
 
-		var contentDiv = L.DomUtil.create('div', 'ui-content level-' + builder._currentDepth + ' ' + builder.options.cssClass, contentsContainer);
+		var contentDiv = L.DomUtil.create(
+			'div',
+			'ui-content level-' +
+				builder._currentDepth +
+				' ' +
+				builder.options.cssClass,
+			contentsContainer,
+		);
 		contentDiv.title = title;
 
 		builder._currentDepth++;
-		if (item.children)
-		{
+		if (item.children) {
 			for (var i = 0; i < item.children.length; i++) {
 				builder.build(contentDiv, [item.children[i]]);
 			}
-		}
-		else // build ourself inside there
-		{
+		} // build ourself inside there
+		else {
 			builder.build(contentDiv, [item]);
 		}
 		builder._currentDepth--;
@@ -75,11 +101,18 @@ function _panelTabsHandler(parentContainer, data, builder, tabTooltip, isTabCont
 		for (var t = 0; t < tabs.length; t++) {
 			// to get capture of 't' right has to be a sub fn.
 			var fn = builder._createTabClick(
-				builder, t, tabs, contentDivs, labels);
+				builder,
+				t,
+				tabs,
+				contentDivs,
+				labels,
+			);
 			$(tabs[t]).click(fn);
 		}
 	} else {
-		window.app.console.debug('Builder used outside of mobile wizard: please implement the click handler');
+		window.app.console.debug(
+			'Builder used outside of mobile wizard: please implement the click handler',
+		);
 	}
 	$(tabs[0]).click();
 	builder.wizard.goLevelDown(contentsContainer);
@@ -91,7 +124,11 @@ function _panelTabsHandler(parentContainer, data, builder, tabTooltip, isTabCont
 function _tabsToPanelConverter(parentContainer, data, builder, tabTooltip) {
 	var tabs = 0;
 	var tabObjects = [];
-	for (var tabIdx = 0; data.children && tabIdx < data.children.length; tabIdx++) {
+	for (
+		var tabIdx = 0;
+		data.children && tabIdx < data.children.length;
+		tabIdx++
+	) {
 		if (data.children[tabIdx].type === 'tabpage' || data.vertical) {
 			tabs++;
 			tabObjects.push(data.children[tabIdx]);
@@ -113,8 +150,7 @@ function _tabsToPanelConverter(parentContainer, data, builder, tabTooltip) {
 		for (tabIdx = 0; tabIdx < data.children.length; tabIdx++) {
 			var tab = data.children[tabIdx];
 
-			if (tab.type !== 'tabpage' && !data.vertical)
-				continue;
+			if (tab.type !== 'tabpage' && !data.vertical) continue;
 
 			tabObjects[tabId].text = data.tabs[tabId].text;
 			tabId++;
@@ -123,8 +159,7 @@ function _tabsToPanelConverter(parentContainer, data, builder, tabTooltip) {
 		for (tabIdx = 0; tabIdx < data.children.length; tabIdx++) {
 			tab = data.children[tabIdx];
 
-			if (tab.type !== 'tabpage' && !data.vertical)
-				continue;
+			if (tab.type !== 'tabpage' && !data.vertical) continue;
 
 			tabObjects[singleTabId].text = data.tabs[singleTabId].text;
 			break;
@@ -138,30 +173,29 @@ function _tabsToPanelConverter(parentContainer, data, builder, tabTooltip) {
 
 // if the tabs list is too long, it ends up being pretty messy. We should switch to submenus in that case
 function _tabsToSubmenuConverter(parentContainer, data, builder) {
-    const submenuChildren = [];
+	const submenuChildren = [];
 
-    for (const [index, tab] of Object.entries(data.children)) {
-        if (tab.type !== 'tabpage') {
-            continue
-        }
+	for (const [index, tab] of Object.entries(data.children)) {
+		if (tab.type !== 'tabpage') {
+			continue;
+		}
 
-        submenuChildren.push({
-            children: tab.children,
-            command: tab.command,
-            enabled: true,
-            executionType: 'menu',
-            id: tab.id,
-            parent: parentContainer,
-            text: data.tabs[index].text,
-            type: 'submenu',
-        });
-    }
+		submenuChildren.push({
+			children: tab.children,
+			command: tab.command,
+			enabled: true,
+			executionType: 'menu',
+			id: tab.id,
+			parent: parentContainer,
+			text: data.tabs[index].text,
+			type: 'submenu',
+		});
+	}
 
-    data.children = submenuChildren;
+	data.children = submenuChildren;
 
-    return JSDialog.container(parentContainer, data, builder);
+	return JSDialog.container(parentContainer, data, builder);
 }
-
 
 JSDialog.mobileTabControl = function (parentContainer, data, builder) {
 	var buildInnerData = _tabsToPanelConverter(parentContainer, data, builder);
@@ -174,6 +208,10 @@ JSDialog.mobilePanelControl = function (parentContainer, data, builder) {
 };
 
 JSDialog.mobileSubmenuTabControl = function (parentContainer, data, builder) {
-	var buildInnerData = _tabsToSubmenuConverter(parentContainer, data, builder);
+	var buildInnerData = _tabsToSubmenuConverter(
+		parentContainer,
+		data,
+		builder,
+	);
 	return buildInnerData;
 };

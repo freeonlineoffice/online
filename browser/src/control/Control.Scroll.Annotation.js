@@ -9,21 +9,31 @@ L.Control.ScrollAnnotation = L.Control.extend({
 		arrowUp: '0x25b2',
 		arrowUpTitle: _('Scroll up annotations'),
 		arrowDown: '0x25bc',
-		arrowDownTitle: _('Scroll down annotations')
+		arrowDownTitle: _('Scroll down annotations'),
 	},
 
 	onAdd: function (map) {
 		var scrollName = 'leaflet-control-scroll',
-		    container = L.DomUtil.create('div', 'lool-bar');
+			container = L.DomUtil.create('div', 'lool-bar');
 
 		this._map = map;
 
-		this._buttonUp  = this._createButton(
-		        this.options.arrowUp, this.options.arrowUpTitle,
-		        scrollName + '-up',  container, this._onScrollUp,  this);
+		this._buttonUp = this._createButton(
+			this.options.arrowUp,
+			this.options.arrowUpTitle,
+			scrollName + '-up',
+			container,
+			this._onScrollUp,
+			this,
+		);
 		this._buttonDown = this._createButton(
-		        this.options.arrowDown, this.options.arrowDownTitle,
-		        scrollName + '-down', container, this._onScrollDown, this);
+			this.options.arrowDown,
+			this.options.arrowDownTitle,
+			scrollName + '-down',
+			container,
+			this._onScrollDown,
+			this,
+		);
 
 		return container;
 	},
@@ -44,15 +54,14 @@ L.Control.ScrollAnnotation = L.Control.extend({
 
 		var stop = L.DomEvent.stopPropagation;
 
-		L.DomEvent
-		    .on(link, 'click', stop)
-		    .on(link, 'mousedown', stop)
-		    .on(link, 'dblclick', stop)
-		    .on(link, 'click', L.DomEvent.preventDefault)
-		    .on(link, 'click', fn, context);
+		L.DomEvent.on(link, 'click', stop)
+			.on(link, 'mousedown', stop)
+			.on(link, 'dblclick', stop)
+			.on(link, 'click', L.DomEvent.preventDefault)
+			.on(link, 'click', fn, context);
 
 		return link;
-	}
+	},
 });
 
 L.control.scrollannotation = function (options) {

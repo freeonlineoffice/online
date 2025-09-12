@@ -14,7 +14,6 @@
 /* global app $ window brandProductName DocUtil GraphicSelection _ */
 
 L.Map.include({
-
 	// a mapping of uno commands to more readable toolbar items
 	unoToolbarCommands: ['.uno:StyleApply', '.uno:CharFontName'],
 
@@ -97,7 +96,10 @@ L.Map.include({
 			}
 
 			fontcombobox.val(state).trigger('change');
-			this['stateChangeHandler'].setItemValue('.uno:CharFontName', state);
+			this['stateChangeHandler'].setItemValue(
+				'.uno:CharFontName',
+				state,
+			);
 		};
 
 		var onFontListChanged = function (e) {
@@ -181,7 +183,10 @@ L.Map.include({
 			}
 
 			fontsizecombobox.val(state).trigger('change');
-			this['stateChangeHandler'].setItemValue('.uno:FontHeight', state);
+			this['stateChangeHandler'].setItemValue(
+				'.uno:FontHeight',
+				state,
+			);
 		};
 
 		this.off('commandstatechanged', onCommandStateChanged);
@@ -393,13 +398,24 @@ L.Map.include({
 	},
 
 	sendUnoCommand: function (command, json, force) {
-		if (command.indexOf('.uno:') < 0 && command.indexOf('vnd.sun.star.script') < 0)
-			console.error('Trying to send uno command without prefix: "' + command + '"');
+		if (
+			command.indexOf('.uno:') < 0 &&
+			command.indexOf('vnd.sun.star.script') < 0
+		)
+			console.error(
+				'Trying to send uno command without prefix: "' +
+					command +
+					'"',
+			);
 
-		if ((command.startsWith('.uno:Sidebar') && !command.startsWith('.uno:SidebarShow')) ||
-			command.startsWith('.uno:CustomAnimation') || command.startsWith('.uno:ModifyPage') ||
-			command.startsWith('.uno:SidebarDeck') || command.startsWith('.uno:EditStyle')) {
-
+		if (
+			(command.startsWith('.uno:Sidebar') &&
+				!command.startsWith('.uno:SidebarShow')) ||
+			command.startsWith('.uno:CustomAnimation') ||
+			command.startsWith('.uno:ModifyPage') ||
+			command.startsWith('.uno:SidebarDeck') ||
+			command.startsWith('.uno:EditStyle')
+		) {
 			// sidebar control is present only in desktop/tablet case
 			if (this.sidebar) {
 				if (this.sidebar.isVisible()) {
@@ -482,17 +498,30 @@ L.Map.include({
 			}
 		}
 
-		if (this.uiManager.isUIBlocked())
-			return;
-		if ((this.dialog.hasOpenedDialog() || (this.jsdialog && this.jsdialog.hasDialogOpened()))
-			&& !command.startsWith('.uno:ToolbarMode') && !force) {
-			console.debug('Cannot execute: ' + command + ' when dialog is opened.');
+		if (this.uiManager.isUIBlocked()) return;
+		if (
+			(this.dialog.hasOpenedDialog() ||
+				(this.jsdialog && this.jsdialog.hasDialogOpened())) &&
+			!command.startsWith('.uno:ToolbarMode') &&
+			!force
+		) {
+			console.debug(
+				'Cannot execute: ' + command + ' when dialog is opened.',
+			);
 			this.dialog.blinkOpenDialog();
-		} else if ((this.isEditMode() || isAllowedInReadOnly) && !this.messageNeedsToBeRedirected(command)) {
-			app.socket.sendMessage('uno ' + command + (json ? ' ' + JSON.stringify(json) : ''));
+		} else if (
+			(this.isEditMode() || isAllowedInReadOnly) &&
+			!this.messageNeedsToBeRedirected(command)
+		) {
+			app.socket.sendMessage(
+				'uno ' + command + (json ? ' ' + JSON.stringify(json) : ''),
+			);
 			// user interaction turns off the following of other users
 			if (map.userList && map._docLayer && map._docLayer._viewId)
-				map.userList.followUser(map._docLayer._viewId, /* do instant scroll */ false);
+				map.userList.followUser(
+					map._docLayer._viewId,
+					/* do instant scroll */ false,
+				);
 		}
 	},
 
@@ -525,24 +554,35 @@ L.Map.include({
 		var i;
 		// Display keyboard shortcut or online help
 		if (id === 'keyboard-shortcuts-content') {
-			document.getElementById('online-help-content').classList.add('hide');
+			document
+				.getElementById('online-help-content')
+				.classList.add('hide');
 			// Display help according to document opened
 			if (map.getDocType() === 'text') {
-				document.getElementById('text-shortcuts').classList.add('show');
+				document
+					.getElementById('text-shortcuts')
+					.classList.add('show');
+			} else if (map.getDocType() === 'spreadsheet') {
+				document
+					.getElementById('spreadsheet-shortcuts')
+					.classList.add('show');
+			} else if (map.getDocType() === 'presentation') {
+				document
+					.getElementById('presentation-shortcuts')
+					.classList.add('show');
+			} else if (map.getDocType() === 'drawing') {
+				document
+					.getElementById('drawing-shortcuts')
+					.classList.add('show');
 			}
-			else if (map.getDocType() === 'spreadsheet') {
-				document.getElementById('spreadsheet-shortcuts').classList.add('show');
-			}
-			else if (map.getDocType() === 'presentation') {
-				document.getElementById('presentation-shortcuts').classList.add('show');
-			}
-			else if (map.getDocType() === 'drawing') {
-				document.getElementById('drawing-shortcuts').classList.add('show');
-			}
-		} else /* id === 'online-help' */ {
-			document.getElementById('keyboard-shortcuts-content').classList.add('hide');
+		} /* id === 'online-help' */ else {
+			document
+				.getElementById('keyboard-shortcuts-content')
+				.classList.add('hide');
 			if (window.socketProxy) {
-				var helpdiv = document.getElementById('online-help-content');
+				var helpdiv = document.getElementById(
+					'online-help-content',
+				);
 				var imgList = helpdiv.querySelectorAll('img');
 				for (var p = 0; p < imgList.length; p++) {
 					var imgSrc = imgList[p].src;
@@ -663,8 +703,8 @@ L.Map.include({
 				);
 		}
 		var searchInput = document.getElementById('online-help-search-input');
-		searchInput.setAttribute('placeholder',_('Search'));
-		searchInput.setAttribute('aria-label',_('Search'));
+		searchInput.setAttribute('placeholder', _('Search'));
+		searchInput.setAttribute('aria-label', _('Search'));
 		searchInput.focus(); // auto focus on user input field
 		var helpContentParent =
 			document.getElementsByClassName('ui-dialog-content')[0];
@@ -863,7 +903,7 @@ L.Map.include({
 		element.classList.add('hide');
 	},
 
-	_doOpenHelpFile: function(data, id, map) {
+	_doOpenHelpFile: function (data, id, map) {
 		let productName;
 		if (window.ThisIsAMobileApp) {
 			productName = window.MobileAppName;
@@ -874,7 +914,16 @@ L.Map.include({
 					: 'Free Online Office';
 		}
 
-		map.uiManager.showYesNoButton(id + '-box', productName, '', _('OK'), null, null, null, true);
+		map.uiManager.showYesNoButton(
+			id + '-box',
+			productName,
+			'',
+			_('OK'),
+			null,
+			null,
+			null,
+			true,
+		);
 		app.layoutingService.appendLayoutingTask(() => {
 			const box = document.getElementById(id + '-box');
 			const innerDiv = L.DomUtil.create('div', '', null);
@@ -931,7 +980,7 @@ L.Map.include({
 		return str;
 	},
 
-	getTextForLink: function() {
+	getTextForLink: function () {
 		var map = this;
 		var text = '';
 		if (this.hyperlinkUnderCursor && this.hyperlinkUnderCursor.text) {
@@ -958,8 +1007,10 @@ L.Map.include({
 		return text;
 	},
 
-	cancelSearch: function() {
-		var toolbar = window.mode.isMobile() ? app.map.mobileSearchBar: app.map.statusBar;
+	cancelSearch: function () {
+		var toolbar = window.mode.isMobile()
+			? app.map.mobileSearchBar
+			: app.map.statusBar;
 		var searchInput = L.DomUtil.get('search-input');
 		app.searchService.resetSelection();
 		if (toolbar) {

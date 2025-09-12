@@ -8,7 +8,6 @@
  */
 
 class CPolyline extends CPath {
-
 	// how much to simplify the polyline on each zoom level
 	// more = better performance and smoother look, less = more accurate
 	private smoothFactor: number = 1.0;
@@ -20,7 +19,10 @@ class CPolyline extends CPath {
 
 	constructor(pointSet: CPointSet, options: any) {
 		super(options);
-		this.smoothFactor = options.smoothFactor !== undefined ? options.smoothFactor : this.smoothFactor;
+		this.smoothFactor =
+			options.smoothFactor !== undefined
+				? options.smoothFactor
+				: this.smoothFactor;
 		this.setPointSet(pointSet);
 	}
 
@@ -30,36 +32,41 @@ class CPolyline extends CPath {
 
 	setPointSet(pointSet: CPointSet) {
 		var oldBounds: lool.Bounds;
-		if (this.bounds)
-			oldBounds = this.bounds.clone();
-		else
-			oldBounds = new lool.Bounds(undefined);
+		if (this.bounds) oldBounds = this.bounds.clone();
+		else oldBounds = new lool.Bounds(undefined);
 
 		this.pointSet = pointSet;
 		this.updateRingsBounds();
 
-		if (this.renderer)
-			this.renderer.setPenOnOverlay();
+		if (this.renderer) this.renderer.setPenOnOverlay();
 
 		return this.redraw(oldBounds);
 	}
 
 	updateRingsBounds() {
 		this.rings = new Array<Array<lool.Point>>();
-		var bounds = this.bounds = new lool.Bounds(undefined);
+		var bounds = (this.bounds = new lool.Bounds(undefined));
 
 		if (this.pointSet.empty()) {
 			return;
 		}
 
-		CPolyline.calcRingsBounds(this.pointSet, this.rings, (pt: lool.Point) => {
-			bounds.extend(pt);
-		});
+		CPolyline.calcRingsBounds(
+			this.pointSet,
+			this.rings,
+			(pt: lool.Point) => {
+				bounds.extend(pt);
+			},
+		);
 	}
 
 	// Converts the point-set datastructure into an array of point-arrays each of which is called a 'ring'.
 	// While doing that it also computes the bounds too.
-	private static calcRingsBounds(pset: CPointSet, rings: Array<Array<lool.Point>>, updateBounds: (pt: lool.Point) => void) {
+	private static calcRingsBounds(
+		pset: CPointSet,
+		rings: Array<Array<lool.Point>>,
+		updateBounds: (pt: lool.Point) => void,
+	) {
 		if (pset.isFlat()) {
 			var srcArray = pset.getPointArray();
 			if (srcArray === undefined) {
@@ -125,7 +132,7 @@ class CPolyline extends CPath {
 				ratio = (dist - halfDist) / segDist;
 				return new lool.Point(
 					p2.x - ratio * (p2.x - p1.x),
-					p2.y - ratio * (p2.y - p1.y)
+					p2.y - ratio * (p2.y - p1.y),
 				);
 			}
 		}
@@ -136,20 +143,32 @@ class CPolyline extends CPath {
 	}
 
 	getHitBounds(): lool.Bounds {
-		if (!this.bounds.isValid())
-			return this.bounds;
+		if (!this.bounds.isValid()) return this.bounds;
 
 		// add clicktolerance for hit detection/etc.
 		var w = this.clickTolerance();
 		var p = new lool.Point(w, w);
-		return new lool.Bounds(this.bounds.getTopLeft().subtract(p), this.bounds.getBottomRight().add(p));
+		return new lool.Bounds(
+			this.bounds.getTopLeft().subtract(p),
+			this.bounds.getBottomRight().add(p),
+		);
 	}
 
-	updatePath(paintArea?: lool.Bounds, paneBounds?: lool.Bounds, freezePane?: { freezeX: boolean, freezeY: boolean }) {
+	updatePath(
+		paintArea?: lool.Bounds,
+		paneBounds?: lool.Bounds,
+		freezePane?: { freezeX: boolean; freezeY: boolean },
+	) {
 		this.clipPoints(paintArea);
 		this.simplifyPoints();
 
-		this.renderer.updatePoly(this, false /* closed? */, paintArea, paneBounds, freezePane);
+		this.renderer.updatePoly(
+			this,
+			false /* closed? */,
+			paintArea,
+			paneBounds,
+			freezePane,
+		);
 	}
 
 	// clip polyline by renderer bounds so that we have less to render for performance
@@ -175,15 +194,23 @@ class CPolyline extends CPath {
 			points = this.rings[i];
 
 			for (j = 0, len2 = points.length; j < len2 - 1; j++) {
-				segment = CLineUtil.clipSegment(points[j], points[j + 1], bounds, j != 0, true);
+				segment = CLineUtil.clipSegment(
+					points[j],
+					points[j + 1],
+					bounds,
+					j != 0,
+					true,
+				);
 
-				if (!segment.length) { continue; }
+				if (!segment.length) {
+					continue;
+				}
 
 				parts[k] = parts[k] || [];
 				parts[k].push(segment[0]);
 
 				// if segment goes out of screen, or it's the last one, it's the end of the line part
-				if ((segment[1] !== points[j + 1]) || (j === len2 - 2)) {
+				if (segment[1] !== points[j + 1] || j === len2 - 2) {
 					parts[k].push(segment[1]);
 					k++;
 				}

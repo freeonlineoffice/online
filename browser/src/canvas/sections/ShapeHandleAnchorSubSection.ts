@@ -8,7 +8,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ */
 
 /*
 	This class is for the sub sections (handles) of ShapeHandlesSection.
@@ -18,16 +18,30 @@
 class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 	static tableAnchorIconSize = [20, 20]; // CSS pixels.
 
-	constructor (parentHandlerSection: ShapeHandlesSection, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
-        super(sectionName, size[0], size[1], documentPosition, 'anchor-marker');
+	constructor(
+		parentHandlerSection: ShapeHandlesSection,
+		sectionName: string,
+		size: number[],
+		documentPosition: lool.SimplePoint,
+		ownInfo: any,
+	) {
+		super(
+			sectionName,
+			size[0],
+			size[1],
+			documentPosition,
+			'anchor-marker',
+		);
 
 		this.getHTMLObject().style.opacity = 1;
 		this.getHTMLObject().remove();
 		document.getElementById('map').appendChild(this.getHTMLObject());
 
-		app.definitions.shapeHandlesSection.mirrorEventsFromSourceToCanvasSectionContainer(this.getHTMLObject());
+		app.definitions.shapeHandlesSection.mirrorEventsFromSourceToCanvasSectionContainer(
+			this.getHTMLObject(),
+		);
 
-        this.sectionProperties.parentHandlerSection = parentHandlerSection;
+		this.sectionProperties.parentHandlerSection = parentHandlerSection;
 		this.sectionProperties.ownInfo = ownInfo;
 		this.sectionProperties.mouseIsInside = false;
 	}
@@ -44,14 +58,18 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 
 	tableMouseUp(point: lool.SimplePoint, e: MouseEvent) {
 		const parameters = {
-			'TransformPosX': {
-				'type': 'long',
-				'value': Math.round((point.pX + this.position[0]) * app.pixelsToTwips)
+			TransformPosX: {
+				type: 'long',
+				value: Math.round(
+					(point.pX + this.position[0]) * app.pixelsToTwips,
+				),
 			},
-			'TransformPosY': {
-				'type': 'long',
-				'value': Math.round((point.pY + this.position[1]) * app.pixelsToTwips)
-			}
+			TransformPosY: {
+				type: 'long',
+				value: Math.round(
+					(point.pY + this.position[1]) * app.pixelsToTwips,
+				),
+			},
 		};
 
 		app.map.sendUnoCommand('.uno:TransformDialog', parameters);
@@ -59,18 +77,22 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 
 	shapeMouseUp(point: lool.SimplePoint, e: MouseEvent) {
 		const parameters = {
-			'HandleNum': {
-				'type': 'long',
-				'value': this.sectionProperties.ownInfo.id
+			HandleNum: {
+				type: 'long',
+				value: this.sectionProperties.ownInfo.id,
 			},
-			'NewPosX': {
-				'type': 'long',
-				'value': Math.round((point.pX + this.position[0]) * app.pixelsToTwips)
+			NewPosX: {
+				type: 'long',
+				value: Math.round(
+					(point.pX + this.position[0]) * app.pixelsToTwips,
+				),
 			},
-			'NewPosY': {
-				'type': 'long',
-				'value': Math.round((point.pY + this.position[1]) * app.pixelsToTwips)
-			}
+			NewPosY: {
+				type: 'long',
+				value: Math.round(
+					(point.pY + this.position[1]) * app.pixelsToTwips,
+				),
+			},
 		};
 
 		app.map.sendUnoCommand('.uno:MoveShapeHandle', parameters);
@@ -81,34 +103,51 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 			// Tables don't have parent sections. This is used for separating table anchors from other anchors.
 			if (this.sectionProperties.parentHandlerSection) {
 				this.shapeMouseUp(point, e);
-			}
-			else {
+			} else {
 				this.tableMouseUp(point, e);
 			}
 		}
 	}
 
-	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent) {
+	onMouseMove(
+		point: lool.SimplePoint,
+		dragDistance: Array<number>,
+		e: MouseEvent,
+	) {
 		if (this.containerObject.isDraggingSomething()) {
 			// Show preview in its final position.
 			let svg;
 			let initialPosition;
 			if (this.sectionProperties.parentHandlerSection) {
 				this.sectionProperties.parentHandlerSection.showSVG();
-				svg = this.sectionProperties.parentHandlerSection.sectionProperties.svg;
-				initialPosition = this.sectionProperties.parentHandlerSection.sectionProperties.svgPosition;
-			}
-			else {
+				svg =
+					this.sectionProperties.parentHandlerSection
+						.sectionProperties.svg;
+				initialPosition =
+					this.sectionProperties.parentHandlerSection
+						.sectionProperties.svgPosition;
+			} else {
 				// Table..
-				svg = document.getElementById('canvas-container').querySelector('svg');
+				svg = document
+					.getElementById('canvas-container')
+					.querySelector('svg');
 				svg.style.display = '';
 				if (!this.sectionProperties.initialPosition) {
-					this.sectionProperties.initialPosition = [parseFloat(svg.style.left.replace('px', '')) * app.dpiScale, parseFloat(svg.style.top.replace('px', '')) * app.dpiScale];
+					this.sectionProperties.initialPosition = [
+						parseFloat(svg.style.left.replace('px', '')) *
+							app.dpiScale,
+						parseFloat(svg.style.top.replace('px', '')) *
+							app.dpiScale,
+					];
 				}
 				initialPosition = this.sectionProperties.initialPosition;
 			}
-			svg.style.left = (dragDistance[0] + initialPosition[0]) / app.dpiScale + 'px';
-			svg.style.top = (dragDistance[1] + initialPosition[1]) / app.dpiScale + 'px';
+			svg.style.left =
+				(dragDistance[0] + initialPosition[0]) / app.dpiScale +
+				'px';
+			svg.style.top =
+				(dragDistance[1] + initialPosition[1]) / app.dpiScale +
+				'px';
 
 			this.stopPropagating();
 			e.stopPropagation();

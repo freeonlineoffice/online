@@ -2,7 +2,7 @@
 /* -*- js-indent-level: 8 -*- */
 /*
  * L.Control.ColumnGroup
-*/
+ */
 
 /* global app */
 
@@ -15,198 +15,355 @@
 */
 
 namespace lool {
+	export class ColumnGroup extends GroupBase {
+		anchor: any = [
+			'top',
+			[L.CSections.CornerGroup.name, 'right', 'left'],
+		];
+		expand: string[] = ['left', 'right']; // Expand horizontally.
+		processingOrder: number = L.CSections.ColumnGroup.processingOrder;
+		drawingOrder: number = L.CSections.ColumnGroup.drawingOrder;
+		zIndex: number = L.CSections.ColumnGroup.zIndex;
 
-export class ColumnGroup extends GroupBase {
-	anchor: any = ['top', [L.CSections.CornerGroup.name, 'right', 'left']];
-	expand: string[] = ['left', 'right']; // Expand horizontally.
-	processingOrder: number = L.CSections.ColumnGroup.processingOrder;
-	drawingOrder: number = L.CSections.ColumnGroup.drawingOrder;
-	zIndex: number = L.CSections.ColumnGroup.zIndex;
+		_sheetGeometry: lool.SheetGeometry;
+		_cornerHeaderWidth: number;
+		_splitPos: lool.Point;
 
-	_sheetGeometry: lool.SheetGeometry;
-	_cornerHeaderWidth: number;
-	_splitPos: lool.Point;
-
-	constructor() { super(L.CSections.ColumnGroup.name); }
-
-	update(): void {
-		if (this.isRemoved) // Prevent calling while deleting the section. It causes errors.
-			return;
-
-		this._sheetGeometry = this._map._docLayer.sheetGeometry;
-		this._groups = Array(this._sheetGeometry.getColumnGroupLevels());
-
-		// Calculate width on the fly.
-		this.size[1] = this._computeSectionHeight();
-
-		this._cornerHeaderWidth = this.containerObject.getSectionWithName(L.CSections.CornerHeader.name).size[0];
-
-		this._splitPos = (this._map._docLayer._splitPanesContext as lool.SplitPanesContext).getSplitPos();
-
-		this._collectGroupsData(this._sheetGeometry.getColumnGroupsDataInView());
-	}
-
-	// This returns the required height for the section.
-	_computeSectionHeight(): number {
-		return this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * (this._groups.length + 1);
-	}
-
-	isGroupHeaderVisible (startX: number, startPos: number): boolean {
-		if (startPos > this._splitPos.x) {
-			return startX > this._splitPos.x + this._cornerHeaderWidth;
+		constructor() {
+			super(L.CSections.ColumnGroup.name);
 		}
-		else {
-			return startX >= this._cornerHeaderWidth && (startX > app.activeDocument.activeView.viewedRectangle.pX1 || startX < this._splitPos.x);
+
+		update(): void {
+			if (this.isRemoved)
+				// Prevent calling while deleting the section. It causes errors.
+				return;
+
+			this._sheetGeometry = this._map._docLayer.sheetGeometry;
+			this._groups = Array(this._sheetGeometry.getColumnGroupLevels());
+
+			// Calculate width on the fly.
+			this.size[1] = this._computeSectionHeight();
+
+			this._cornerHeaderWidth =
+				this.containerObject.getSectionWithName(
+					L.CSections.CornerHeader.name,
+				).size[0];
+
+			this._splitPos = (
+				this._map._docLayer
+					._splitPanesContext as lool.SplitPanesContext
+			).getSplitPos();
+
+			this._collectGroupsData(
+				this._sheetGeometry.getColumnGroupsDataInView(),
+			);
 		}
-	}
 
-	getEndPosition (endPos: number): number {
-		if (endPos <= this._splitPos.x)
-			return endPos;
-		else {
-			return Math.max(endPos + this._cornerHeaderWidth - app.activeDocument.activeView.viewedRectangle.pX1, this._splitPos.x + this._cornerHeaderWidth);
+		// This returns the required height for the section.
+		_computeSectionHeight(): number {
+			return (
+				this._levelSpacing +
+				(this._groupHeadSize + this._levelSpacing) *
+					(this._groups.length + 1)
+			);
 		}
-	}
 
-	getRelativeX (docPos: number): number {
-		if (docPos < this._splitPos.x)
-			return docPos + this._cornerHeaderWidth;
-		else
-			return Math.max(docPos - app.activeDocument.activeView.viewedRectangle.pX1, this._splitPos.x) + this._cornerHeaderWidth;
-	}
-
-	drawGroupControl (group: GroupEntry): void {
-		let startX = this.getRelativeX(group.startPos);
-		let startY = this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * group.level;
-		const strokeColor = this.getColors().strokeColor;
-		const endX = this.getEndPosition(group.endPos);
-
-		if (this.isGroupHeaderVisible(startX, group.startPos)) {
-			// draw head
-			this.context.beginPath();
-			this.context.fillStyle = this.backgroundColor;
-			this.context.fillRect(this.transformRectX(startX, this._groupHeadSize), startY, this._groupHeadSize, this._groupHeadSize);
-			this.context.strokeStyle = strokeColor;
-			this.context.lineWidth = 1.0;
-			this.context.strokeRect(this.transformRectX(startX + 0.5, this._groupHeadSize), startY + 0.5, this._groupHeadSize, this._groupHeadSize);
-
-			if (!group.hidden) {
-				// draw '-'
-				this.context.beginPath();
-				this.context.moveTo(this.transformX(startX + this._groupHeadSize * 0.25), startY + this._groupHeadSize * 0.5 + 0.5);
-				this.context.lineTo(this.transformX(startX + this._groupHeadSize * 0.75 + app.roundedDpiScale), startY + this._groupHeadSize * 0.5 + 0.5);
-				this.context.stroke();
+		isGroupHeaderVisible(startX: number, startPos: number): boolean {
+			if (startPos > this._splitPos.x) {
+				return startX > this._splitPos.x + this._cornerHeaderWidth;
+			} else {
+				return (
+					startX >= this._cornerHeaderWidth &&
+					(startX >
+						app.activeDocument.activeView.viewedRectangle
+							.pX1 ||
+						startX < this._splitPos.x)
+				);
 			}
+		}
+
+		getEndPosition(endPos: number): number {
+			if (endPos <= this._splitPos.x) return endPos;
 			else {
-				// draw '+'
+				return Math.max(
+					endPos +
+						this._cornerHeaderWidth -
+						app.activeDocument.activeView.viewedRectangle.pX1,
+					this._splitPos.x + this._cornerHeaderWidth,
+				);
+			}
+		}
+
+		getRelativeX(docPos: number): number {
+			if (docPos < this._splitPos.x)
+				return docPos + this._cornerHeaderWidth;
+			else
+				return (
+					Math.max(
+						docPos -
+							app.activeDocument.activeView.viewedRectangle
+								.pX1,
+						this._splitPos.x,
+					) + this._cornerHeaderWidth
+				);
+		}
+
+		drawGroupControl(group: GroupEntry): void {
+			let startX = this.getRelativeX(group.startPos);
+			let startY =
+				this._levelSpacing +
+				(this._groupHeadSize + this._levelSpacing) * group.level;
+			const strokeColor = this.getColors().strokeColor;
+			const endX = this.getEndPosition(group.endPos);
+
+			if (this.isGroupHeaderVisible(startX, group.startPos)) {
+				// draw head
 				this.context.beginPath();
-				this.context.moveTo(this.transformX(startX + this._groupHeadSize * 0.25), startY + this._groupHeadSize * 0.5 + 0.5);
-				this.context.lineTo(this.transformX(startX + this._groupHeadSize * 0.75 + app.roundedDpiScale), startY + this._groupHeadSize * 0.5 + 0.5);
+				this.context.fillStyle = this.backgroundColor;
+				this.context.fillRect(
+					this.transformRectX(startX, this._groupHeadSize),
+					startY,
+					this._groupHeadSize,
+					this._groupHeadSize,
+				);
+				this.context.strokeStyle = strokeColor;
+				this.context.lineWidth = 1.0;
+				this.context.strokeRect(
+					this.transformRectX(startX + 0.5, this._groupHeadSize),
+					startY + 0.5,
+					this._groupHeadSize,
+					this._groupHeadSize,
+				);
 
-				this.context.stroke();
+				if (!group.hidden) {
+					// draw '-'
+					this.context.beginPath();
+					this.context.moveTo(
+						this.transformX(
+							startX + this._groupHeadSize * 0.25,
+						),
+						startY + this._groupHeadSize * 0.5 + 0.5,
+					);
+					this.context.lineTo(
+						this.transformX(
+							startX +
+								this._groupHeadSize * 0.75 +
+								app.roundedDpiScale,
+						),
+						startY + this._groupHeadSize * 0.5 + 0.5,
+					);
+					this.context.stroke();
+				} else {
+					// draw '+'
+					this.context.beginPath();
+					this.context.moveTo(
+						this.transformX(
+							startX + this._groupHeadSize * 0.25,
+						),
+						startY + this._groupHeadSize * 0.5 + 0.5,
+					);
+					this.context.lineTo(
+						this.transformX(
+							startX +
+								this._groupHeadSize * 0.75 +
+								app.roundedDpiScale,
+						),
+						startY + this._groupHeadSize * 0.5 + 0.5,
+					);
 
-				this.context.moveTo(this.transformX(startX + this._groupHeadSize * 0.50 + 0.5), startY + this._groupHeadSize * 0.25);
-				this.context.lineTo(this.transformX(startX + this._groupHeadSize * 0.50 + 0.5), startY + this._groupHeadSize * 0.75 + app.roundedDpiScale);
+					this.context.stroke();
 
+					this.context.moveTo(
+						this.transformX(
+							startX + this._groupHeadSize * 0.5 + 0.5,
+						),
+						startY + this._groupHeadSize * 0.25,
+					);
+					this.context.lineTo(
+						this.transformX(
+							startX + this._groupHeadSize * 0.5 + 0.5,
+						),
+						startY +
+							this._groupHeadSize * 0.75 +
+							app.roundedDpiScale,
+					);
+
+					this.context.stroke();
+				}
+			}
+
+			if (
+				!group.hidden &&
+				endX > this._cornerHeaderWidth + this._groupHeadSize &&
+				endX > startX
+			) {
+				//draw tail
+				this.context.beginPath();
+				startX += this._groupHeadSize;
+				startX =
+					startX >= this._cornerHeaderWidth + this._groupHeadSize
+						? startX
+						: this._cornerHeaderWidth + this._groupHeadSize;
+				startY += this._groupHeadSize * 0.5;
+				startX = Math.round(startX) + 1;
+				startY = Math.round(startY);
+				this.context.strokeStyle = strokeColor;
+				this.context.lineWidth = 2.0;
+				this.context.moveTo(this.transformX(startX), startY);
+				this.context.lineTo(
+					this.transformX(endX - app.roundedDpiScale),
+					startY,
+				);
 				this.context.stroke();
 			}
 		}
 
-		if (!group.hidden && endX > this._cornerHeaderWidth + this._groupHeadSize && endX > startX) {
-			//draw tail
+		drawLevelHeader(level: number): void {
 			this.context.beginPath();
-			startX += this._groupHeadSize;
-			startX = startX >= this._cornerHeaderWidth + this._groupHeadSize ? startX: this._cornerHeaderWidth + this._groupHeadSize;
-			startY += this._groupHeadSize * 0.5;
-			startX = Math.round(startX) + 1;
-			startY = Math.round(startY);
-			this.context.strokeStyle = strokeColor;
-			this.context.lineWidth = 2.0;
-			this.context.moveTo(this.transformX(startX), startY);
-			this.context.lineTo(this.transformX(endX - app.roundedDpiScale), startY);
-			this.context.stroke();
+			const ctx = this.context;
+			const ctrlHeadSize = this._groupHeadSize;
+			const levelSpacing = this._levelSpacing;
+
+			const startX = Math.round(
+				(this._cornerHeaderWidth - ctrlHeadSize) * 0.5,
+			);
+			const startY =
+				levelSpacing + (ctrlHeadSize + levelSpacing) * level;
+
+			ctx.strokeStyle = this.getColors().strokeColor;
+			ctx.lineWidth = 1.0;
+			ctx.strokeRect(
+				this.transformRectX(startX + 0.5, ctrlHeadSize),
+				startY + 0.5,
+				ctrlHeadSize,
+				ctrlHeadSize,
+			);
+			// draw level number
+			ctx.fillStyle = this._textColor;
+			ctx.font = this._getFont();
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			ctx.fillText(
+				(level + 1).toString(),
+				this.transformX(startX + ctrlHeadSize / 2),
+				startY + ctrlHeadSize / 2 + 2 * app.dpiScale,
+			);
 		}
-	}
 
-	drawLevelHeader (level: number): void {
-		this.context.beginPath();
-		const ctx = this.context;
-		const ctrlHeadSize = this._groupHeadSize;
-		const levelSpacing = this._levelSpacing;
-
-		const startX = Math.round((this._cornerHeaderWidth - ctrlHeadSize) * 0.5);
-		const startY = levelSpacing + (ctrlHeadSize + levelSpacing) * level;
-
-		ctx.strokeStyle = this.getColors().strokeColor;
-		ctx.lineWidth = 1.0;
-		ctx.strokeRect(this.transformRectX(startX + 0.5, ctrlHeadSize), startY + 0.5, ctrlHeadSize, ctrlHeadSize);
-		// draw level number
-		ctx.fillStyle = this._textColor;
-		ctx.font = this._getFont();
-		ctx.textAlign = 'center';
-		ctx.textBaseline = 'middle';
-		ctx.fillText((level + 1).toString(), this.transformX(startX + (ctrlHeadSize / 2)), startY + (ctrlHeadSize / 2) + 2 * app.dpiScale);
-	}
-
-	// Handle user interaction.
-	_updateOutlineState (group: Partial<GroupEntry>): void {
-		const state = group.hidden ? 'visible' : 'hidden'; // we have to send the new state
-		const payload = 'outlinestate type=column' + ' level=' + group.level + ' index=' + group.index + ' state=' + state;
-		app.socket.sendMessage(payload);
-	}
-
-	// When user clicks somewhere on the section, onMouseClick event is called by CanvasSectionContainer.
-	// Clicked point is also given to handler function. This function finds the clicked header.
-	findClickedLevel (point: lool.SimplePoint): number {
-		const mirrorX = this.isCalcRTL();
-		if ((!mirrorX && point.pX < this._cornerHeaderWidth)
-			|| (mirrorX && point.pX > this.size[0] - this._cornerHeaderWidth)) {
-			let index = (point.pY / this.size[1]) * 100; // Percentage.
-			const levelPercentage = (1 / (this._groups.length + 1)) * 100; // There is one more button than the number of levels.
-			index = Math.floor(index / levelPercentage);
-			return index;
+		// Handle user interaction.
+		_updateOutlineState(group: Partial<GroupEntry>): void {
+			const state = group.hidden ? 'visible' : 'hidden'; // we have to send the new state
+			const payload =
+				'outlinestate type=column' +
+				' level=' +
+				group.level +
+				' index=' +
+				group.index +
+				' state=' +
+				state;
+			app.socket.sendMessage(payload);
 		}
-		return -1;
-	}
 
-	findClickedGroup (point: lool.SimplePoint): GroupEntry {
-		const mirrorX = this.isCalcRTL();
-		for (let i = 0; i < this._groups.length; i++) {
-			if (this._groups[i]) {
-				for (const group in this._groups[i]) {
-					if (Object.prototype.hasOwnProperty.call(this._groups[i], group)) {
-						const group_ = this._groups[i][group];
-						const startX = this.getRelativeX(group_.startPos);
-						const startY = this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * group_.level;
-						const endX = startX + this._groupHeadSize;
-						const endY = startY + this._groupHeadSize;
-						if (group_.level == 0 && this.isPointInRect(point, startX, startY, endX, endY, mirrorX))
-							return group_;
-						else if (this._isPreviousGroupVisible(group_.level, group_.startPos, group_.endPos, group_.hidden) && this.isPointInRect(point, startX, startY, endX, endY, mirrorX)) {
-							return group_;
+		// When user clicks somewhere on the section, onMouseClick event is called by CanvasSectionContainer.
+		// Clicked point is also given to handler function. This function finds the clicked header.
+		findClickedLevel(point: lool.SimplePoint): number {
+			const mirrorX = this.isCalcRTL();
+			if (
+				(!mirrorX && point.pX < this._cornerHeaderWidth) ||
+				(mirrorX &&
+					point.pX > this.size[0] - this._cornerHeaderWidth)
+			) {
+				let index = (point.pY / this.size[1]) * 100; // Percentage.
+				const levelPercentage =
+					(1 / (this._groups.length + 1)) * 100; // There is one more button than the number of levels.
+				index = Math.floor(index / levelPercentage);
+				return index;
+			}
+			return -1;
+		}
+
+		findClickedGroup(point: lool.SimplePoint): GroupEntry {
+			const mirrorX = this.isCalcRTL();
+			for (let i = 0; i < this._groups.length; i++) {
+				if (this._groups[i]) {
+					for (const group in this._groups[i]) {
+						if (
+							Object.prototype.hasOwnProperty.call(
+								this._groups[i],
+								group,
+							)
+						) {
+							const group_ = this._groups[i][group];
+							const startX = this.getRelativeX(
+								group_.startPos,
+							);
+							const startY =
+								this._levelSpacing +
+								(this._groupHeadSize +
+									this._levelSpacing) *
+									group_.level;
+							const endX = startX + this._groupHeadSize;
+							const endY = startY + this._groupHeadSize;
+							if (
+								group_.level == 0 &&
+								this.isPointInRect(
+									point,
+									startX,
+									startY,
+									endX,
+									endY,
+									mirrorX,
+								)
+							)
+								return group_;
+							else if (
+								this._isPreviousGroupVisible(
+									group_.level,
+									group_.startPos,
+									group_.endPos,
+									group_.hidden,
+								) &&
+								this.isPointInRect(
+									point,
+									startX,
+									startY,
+									endX,
+									endY,
+									mirrorX,
+								)
+							) {
+								return group_;
+							}
 						}
 					}
 				}
 			}
+			return null;
 		}
-		return null;
-	}
 
-	getTailsGroupRect (group: GroupEntry): number[] {
-		const startX = this.getRelativeX(group.startPos);
-		const startY = this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * group.level;
-		const endX = group.endPos + this._cornerHeaderWidth - app.activeDocument.activeView.viewedRectangle.pX1;
-		const endY = startY + this._groupHeadSize;
-		return [startX, endX, startY, endY];
-	}
+		getTailsGroupRect(group: GroupEntry): number[] {
+			const startX = this.getRelativeX(group.startPos);
+			const startY =
+				this._levelSpacing +
+				(this._groupHeadSize + this._levelSpacing) * group.level;
+			const endX =
+				group.endPos +
+				this._cornerHeaderWidth -
+				app.activeDocument.activeView.viewedRectangle.pX1;
+			const endY = startY + this._groupHeadSize;
+			return [startX, endX, startY, endY];
+		}
 
-	onRemove(): void {
-		this.isRemoved = true;
-		this.containerObject.getSectionWithName(L.CSections.ColumnHeader.name).position[1] = 0;
-		this.containerObject.getSectionWithName(L.CSections.CornerHeader.name).position[1] = 0;
+		onRemove(): void {
+			this.isRemoved = true;
+			this.containerObject.getSectionWithName(
+				L.CSections.ColumnHeader.name,
+			).position[1] = 0;
+			this.containerObject.getSectionWithName(
+				L.CSections.CornerHeader.name,
+			).position[1] = 0;
+		}
 	}
-}
-
 }
 
 L.Control.ColumnGroup = lool.ColumnGroup;

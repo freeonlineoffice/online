@@ -11,7 +11,7 @@
 /* global app _ */
 
 L.A11yTextInput = L.TextInput.extend({
-	initialize: function() {
+	initialize: function () {
 		L.TextInput.prototype.initialize.call(this);
 
 		this._className = 'A11yTextInput';
@@ -23,7 +23,6 @@ L.A11yTextInput = L.TextInput.extend({
 		this._isEditingInSelection = false;
 		this._hasAnySelection = false;
 
-
 		// In core text selection exists even if it's empty and <backspace> deletes the empty selection
 		// instead of the previous character.
 		this._hasSelection = false;
@@ -34,68 +33,87 @@ L.A11yTextInput = L.TextInput.extend({
 		this._isLeftRightArrow = 0;
 	},
 
-	hasAccessibilitySupport: function() {
+	hasAccessibilitySupport: function () {
 		return true;
 	},
 
-	setHTML: function(content) {
+	setHTML: function (content) {
 		this._textArea.innerHTML = this._wrapContent(content);
 	},
 
-	_prependSpace: function() {
-		this._textArea.innerHTML = this._preSpaceChar + this._textArea.innerHTML;
+	_prependSpace: function () {
+		this._textArea.innerHTML =
+			this._preSpaceChar + this._textArea.innerHTML;
 	},
 
-	_appendSpace: function() {
-		this._textArea.innerHTML = this._textArea.innerHTML + this._postSpaceChar;
+	_appendSpace: function () {
+		this._textArea.innerHTML =
+			this._textArea.innerHTML + this._postSpaceChar;
 	},
 
-	_getLastCursorPosition: function() {
+	_getLastCursorPosition: function () {
 		return this._lastCursorPosition;
 	},
 
-	_setLastCursorPosition: function(nPos) {
+	_setLastCursorPosition: function (nPos) {
 		this._lastCursorPosition = nPos;
 		this._lastSelectionStart = this._lastSelectionEnd = nPos;
 	},
 
-	_setLastSelection: function(nStart, nEnd) {
+	_setLastSelection: function (nStart, nEnd) {
 		this._lastSelectionStart = nStart;
 		this._lastSelectionEnd = this._lastCursorPosition = nEnd;
 	},
 
-	_isLastSelectionEmpty: function() {
+	_isLastSelectionEmpty: function () {
 		return this._lastSelectionStart === this._lastSelectionEnd;
 	},
 
-	_isLastSelection: function(start, end) {
-		return this._hasSelection &&  this._lastSelectionStart === start && this._lastSelectionEnd === end;
+	_isLastSelection: function (start, end) {
+		return (
+			this._hasSelection &&
+			this._lastSelectionStart === start &&
+			this._lastSelectionEnd === end
+		);
 	},
 
-	_updateCursorPosition: function(pos) {
-		if (typeof pos !== 'number')
-			return;
+	_updateCursorPosition: function (pos) {
+		if (typeof pos !== 'number') return;
 		// Normalize input parameters
 		var l = this.getPlainTextContent().length;
-		if (pos < 0)
-			pos = 0;
-		if (pos > l)
-			pos = l;
+		if (pos < 0) pos = 0;
+		if (pos > l) pos = l;
 
 		this._setLastCursorPosition(pos);
 		this._setCursorPosition(pos);
-	} ,
+	},
 
-	_updateSelection: function(pos, start, end, forced) {
-		window.app.console.log('_updateSelection: pos: ' + pos + ', start: ' + start + ', end: ' + end);
-		if (typeof pos !== 'number' || typeof start !== 'number' || typeof end !== 'number')
+	_updateSelection: function (pos, start, end, forced) {
+		window.app.console.log(
+			'_updateSelection: pos: ' +
+				pos +
+				', start: ' +
+				start +
+				', end: ' +
+				end,
+		);
+		if (
+			typeof pos !== 'number' ||
+			typeof start !== 'number' ||
+			typeof end !== 'number'
+		)
 			return;
 
-		var hasSelection= !(start === -1 && end === -1);
+		var hasSelection = !(start === -1 && end === -1);
 		if (!hasSelection) {
 			this._updateCursorPosition(pos);
 		} else if (forced || !this._isLastSelection(start, end)) {
-			if (forced || start !== end || !this._hasSelection || !this._isLastSelectionEmpty()) {
+			if (
+				forced ||
+				start !== end ||
+				!this._hasSelection ||
+				!this._isLastSelectionEmpty()
+			) {
 				// When the new selection is empty (start == end). the cursor position is updated
 				// only if there was no previous selection, or previous selection was not empty.
 				// In fact when both old and new selection are empty, it means that the old selection
@@ -108,17 +126,24 @@ L.A11yTextInput = L.TextInput.extend({
 		this._setSelectionFlag(hasSelection);
 	},
 
-	_setSelectionFlag: function(flag) {
+	_setSelectionFlag: function (flag) {
 		this._hasSelection = flag;
-		if (L.Browser.cypressTest)
-			this._textArea.isSelectionNull = !flag;
+		if (L.Browser.cypressTest) this._textArea.isSelectionNull = !flag;
 	},
 
-	_setFocusedParagraph: function(content, pos, start, end) {
-		window.app.console.log('_setFocusedParagraph:'
-			+ '\n    content "' + content + '"'
-			+ '\n    pos: ' + pos
-			+ '\n    start: ' + start + ', end: ' + end);
+	_setFocusedParagraph: function (content, pos, start, end) {
+		window.app.console.log(
+			'_setFocusedParagraph:' +
+				'\n    content "' +
+				content +
+				'"' +
+				'\n    pos: ' +
+				pos +
+				'\n    start: ' +
+				start +
+				', end: ' +
+				end,
+		);
 
 		this._isComposing = false;
 		this._isLeftRightArrow = 0;
@@ -129,13 +154,21 @@ L.A11yTextInput = L.TextInput.extend({
 		}
 	},
 
-	_updateFocusedParagraph: function() {
+	_updateFocusedParagraph: function () {
 		this._log('_updateFocusedParagraph');
 		if (this._remoteContent !== undefined) {
-			this._setFocusedParagraph(this._remoteContent, this._remotePosition,
-				this._remoteSelectionStart, this._remoteSelectionEnd);
+			this._setFocusedParagraph(
+				this._remoteContent,
+				this._remotePosition,
+				this._remoteSelectionStart,
+				this._remoteSelectionEnd,
+			);
 		} else if (this._remoteSelectionEnd !== undefined) {
-			this._updateSelection(this._remotePosition, this._remoteSelectionStart, this._remoteSelectionEnd);
+			this._updateSelection(
+				this._remotePosition,
+				this._remoteSelectionStart,
+				this._remoteSelectionEnd,
+			);
 		} else if (this._remotePosition !== undefined) {
 			this._updateCursorPosition(this._remotePosition);
 		}
@@ -145,13 +178,25 @@ L.A11yTextInput = L.TextInput.extend({
 		this._remoteSelectionEnd = undefined;
 	},
 
-	onAccessibilityFocusChanged: function(content, pos, start, end, listPrefixLength, force) {
+	onAccessibilityFocusChanged: function (
+		content,
+		pos,
+		start,
+		end,
+		listPrefixLength,
+		force,
+	) {
 		this._listPrefixLength = listPrefixLength;
 		if (!this.hasFocus() || (this._isComposing && !force)) {
-			this._log('onAccessibilityFocusChanged: skipped updating: '
-				+ '\n  hasFocus: ' + this.hasFocus()
-				+ '\n  _isComposing: ' + this._isComposing
-				+ '\n  force: ' + force);
+			this._log(
+				'onAccessibilityFocusChanged: skipped updating: ' +
+					'\n  hasFocus: ' +
+					this.hasFocus() +
+					'\n  _isComposing: ' +
+					this._isComposing +
+					'\n  force: ' +
+					force,
+			);
 			this._remoteContent = content;
 			this._remotePosition = pos;
 			this._remoteSelectionStart = start;
@@ -161,30 +206,34 @@ L.A11yTextInput = L.TextInput.extend({
 		}
 	},
 
-	setA11yFocusedParagraph: function(content, pos, start, end) {
+	setA11yFocusedParagraph: function (content, pos, start, end) {
 		this._setFocusedParagraph(content, pos, start, end);
 	},
 
-	onAccessibilityCaretChanged: function(nPos) {
-		this._log('onAccessibilityCaretChanged: \n' +
-			'    position: ' + nPos + '\n' +
-			'    _isComposing: ' + this._isComposing);
+	onAccessibilityCaretChanged: function (nPos) {
+		this._log(
+			'onAccessibilityCaretChanged: \n' +
+				'    position: ' +
+				nPos +
+				'\n' +
+				'    _isComposing: ' +
+				this._isComposing,
+		);
 		if (this._isLeftRightArrow || !this.hasFocus() || this._isComposing) {
 			this._log('onAccessibilityCaretChanged: skip updating');
 			this._remotePosition = nPos;
-		}
-		else if (!this._hasFormulaBarFocus()) {
+		} else if (!this._hasFormulaBarFocus()) {
 			this._updateCursorPosition(nPos);
 		}
 	},
 
-	setA11yCaretPosition: function(nPos) {
+	setA11yCaretPosition: function (nPos) {
 		if (this._isLastSelectionEmpty()) {
 			this.onAccessibilityCaretChanged(nPos);
 		}
 	},
 
-	onAccessibilityTextSelectionChanged: function(start, end) {
+	onAccessibilityTextSelectionChanged: function (start, end) {
 		if (this._isLeftRightArrow || !this.hasFocus() || this._isComposing) {
 			this._remoteSelectionStart = start;
 			this._remoteSelectionEnd = end;
@@ -193,23 +242,34 @@ L.A11yTextInput = L.TextInput.extend({
 			if (hasSelection) {
 				this._remotePosition = end;
 			}
-			this._statusLog('onAccessibilityTextSelectionChanged: skip updating');
+			this._statusLog(
+				'onAccessibilityTextSelectionChanged: skip updating',
+			);
 		} else {
 			this._updateSelection(this._lastCursorPosition, start, end);
 		}
 	},
 
-	_setDescription: function(text) {
+	_setDescription: function (text) {
 		this._log('setDescription: ' + text);
 		this._textArea.setAttribute('aria-description', text);
 	},
 
-	_updateTable: function(outCount, inList, row, col, rowSpan, colSpan) {
-		this._log('_updateTable: '
-			+ '\n outCount: ' + outCount
-			+ '\n inList: ' + inList.toString()
-			+ '\n row: ' + row + ', rowSpan: ' + rowSpan
-			+ '\n col: ' + col + ', colSpan: ' + colSpan
+	_updateTable: function (outCount, inList, row, col, rowSpan, colSpan) {
+		this._log(
+			'_updateTable: ' +
+				'\n outCount: ' +
+				outCount +
+				'\n inList: ' +
+				inList.toString() +
+				'\n row: ' +
+				row +
+				', rowSpan: ' +
+				rowSpan +
+				'\n col: ' +
+				col +
+				', colSpan: ' +
+				colSpan,
 		);
 
 		if (this._timeoutForA11yDescription)
@@ -226,14 +286,18 @@ L.A11yTextInput = L.TextInput.extend({
 			eventDescription += _('Out of table') + '. ';
 		}
 		for (i = 0; i < inList.length; i++) {
-			eventDescription += _('Table with {0} rows and {1} columns').replace('{0}', inList[i].rowCount).replace('{1}', inList[i].colCount) + '. ';
+			eventDescription +=
+				_('Table with {0} rows and {1} columns')
+					.replace('{0}', inList[i].rowCount)
+					.replace('{1}', inList[i].colCount) + '. ';
 		}
 		if (this._lastRowIndex !== row || this._lastRowSpan !== rowSpan) {
 			this._lastRowIndex = row;
 			if (this._lastRowSpan !== rowSpan && rowSpan > 1) {
-				eventDescription += _('Row {0} through {1}').replace('{0}', row).replace('{1}', row + rowSpan - 1);
-			}
-			else {
+				eventDescription += _('Row {0} through {1}')
+					.replace('{0}', row)
+					.replace('{1}', row + rowSpan - 1);
+			} else {
 				eventDescription += _('Row {0}').replace('{0}', row);
 			}
 			eventDescription += '. ';
@@ -242,9 +306,10 @@ L.A11yTextInput = L.TextInput.extend({
 		if (this._lastColIndex !== col || this._lastColSpan !== colSpan) {
 			this._lastColIndex = col;
 			if (this._lastColSpan !== colSpan && colSpan > 1) {
-				eventDescription += _('Column {0} through {1}').replace('{0}', col).replace('{1}', col + colSpan - 1);
-			}
-			else {
+				eventDescription += _('Column {0} through {1}')
+					.replace('{0}', col)
+					.replace('{1}', col + colSpan - 1);
+			} else {
 				eventDescription += _('Column {0}').replace('{0}', col);
 			}
 			eventDescription += '. ';
@@ -253,100 +318,158 @@ L.A11yTextInput = L.TextInput.extend({
 		this._setDescription(eventDescription);
 
 		var that = this;
-		this._timeoutForA11yDescription = setTimeout(function() {
+		this._timeoutForA11yDescription = setTimeout(function () {
 			that._setDescription('');
 		}, 1000);
 	},
 
-	onAccessibilityFocusedCellChanged: function(outCount, inList, row, col, rowSpan, colSpan, paragraph) {
-		this._setFocusedParagraph(paragraph.content, parseInt(paragraph.position), parseInt(paragraph.start), parseInt(paragraph.end));
-		this._updateTable(outCount, inList, row + 1, col + 1, rowSpan, colSpan);
+	onAccessibilityFocusedCellChanged: function (
+		outCount,
+		inList,
+		row,
+		col,
+		rowSpan,
+		colSpan,
+		paragraph,
+	) {
+		this._setFocusedParagraph(
+			paragraph.content,
+			parseInt(paragraph.position),
+			parseInt(paragraph.start),
+			parseInt(paragraph.end),
+		);
+		this._updateTable(
+			outCount,
+			inList,
+			row + 1,
+			col + 1,
+			rowSpan,
+			colSpan,
+		);
 	},
 
-	onAccessibilityEditingInSelectionState: function(cell, enabled, selectionDescr, paragraph) {
-		this._log('onAccessibilityEditingInSelectionState: cell: ' + cell + ', enabled: ' + enabled);
+	onAccessibilityEditingInSelectionState: function (
+		cell,
+		enabled,
+		selectionDescr,
+		paragraph,
+	) {
+		this._log(
+			'onAccessibilityEditingInSelectionState: cell: ' +
+				cell +
+				', enabled: ' +
+				enabled,
+		);
 		if (!cell) {
 			this._isEditingInSelection = enabled;
 		}
 		if (enabled) {
 			clearTimeout(this._timeoutForA11yDescription);
 			var eventDescription = '';
-			if (typeof selectionDescr === 'string' && selectionDescr.length > 0)
+			if (
+				typeof selectionDescr === 'string' &&
+				selectionDescr.length > 0
+			)
 				eventDescription += selectionDescr + '. ';
 			eventDescription += _('Editing activated. ');
 			if (typeof paragraph === 'string' && paragraph.length > 0)
 				eventDescription += paragraph;
 			this._setDescription(eventDescription);
-			this._timeoutForA11yDescription = setTimeout(function () {
-				this._setDescription('');
-			}.bind(this), 1000);
+			this._timeoutForA11yDescription = setTimeout(
+				function () {
+					this._setDescription('');
+				}.bind(this),
+				1000,
+			);
 		}
 	},
 
-	onAccessibilitySelectionChanged: function(cell, action, name, textContent) {
-		this._log('onAccessibilitySelectionChanged: cell: ' + cell + ', action: ' + action + ', name: ' + name);
+	onAccessibilitySelectionChanged: function (
+		cell,
+		action,
+		name,
+		textContent,
+	) {
+		this._log(
+			'onAccessibilitySelectionChanged: cell: ' +
+				cell +
+				', action: ' +
+				action +
+				', name: ' +
+				name,
+		);
 		if (this._timeoutForA11yDescription)
 			clearTimeout(this._timeoutForA11yDescription);
-		if (!this._isFormula())
-			this._emptyArea();
+		if (!this._isFormula()) this._emptyArea();
 		var eventDescription = '';
 		if (action === 'create' || action === 'add') {
 			this._hasAnySelection = true;
-			eventDescription =  _('{0} selected').replace('{0}', name) + '. ';
+			eventDescription = _('{0} selected').replace('{0}', name) + '. ';
 			if (typeof textContent === 'string' && textContent.length > 0) {
-				eventDescription += (cell ? '' : _('Has text: ')) + textContent;
+				eventDescription +=
+					(cell ? '' : _('Has text: ')) + textContent;
 			}
-		}
-		else if (action === 'remove') {
+		} else if (action === 'remove') {
 			this._hasAnySelection = false;
 			eventDescription = _('{0} unselected').replace('{0}', name);
-		}
-		else if (action === 'delete') {
+		} else if (action === 'delete') {
 			this._hasAnySelection = false;
 			eventDescription = _('{0} deleted').replace('{0}', name);
 		}
 		this._setDescription(eventDescription);
 		if (action !== 'create' && action !== 'add') {
-			this._timeoutForA11yDescription = setTimeout(function () {
-				this._setDescription('');
-			}.bind(this), 1000);
+			this._timeoutForA11yDescription = setTimeout(
+				function () {
+					this._setDescription('');
+				}.bind(this),
+				1000,
+			);
 		}
 	},
 
 	// Check if a UTF-16 pair represents a Unicode code point
-	_isSurrogatePair: function(hi, lo) {
-		return 	hi >= 0xd800 && hi <= 0xdbff && lo >= 0xdc00 && lo <= 0xdfff;
+	_isSurrogatePair: function (hi, lo) {
+		return hi >= 0xd800 && hi <= 0xdbff && lo >= 0xdc00 && lo <= 0xdfff;
 	},
 
 	// Backspaces and deletes at the beginning / end are filtered out, so
 	// we get a beforeinput, but no input for them. Sometimes we can end up
 	// in a state where we lost our leading / terminal chars and can't recover
-	_onBeforeInput: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onBeforeInput: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 		this._statusLog('_onBeforeInput [');
 		this._ignoreNextBackspace = false;
 		if (!this._isSelectionValid()) {
 			this._setCursorPosition(this._getLastCursorPosition());
-		}
-		else if (this._isCursorAtBeginning()) {
+		} else if (this._isCursorAtBeginning()) {
 			this._handleMisplacedCursorAtBeginning(ev);
-		}
-		else if (!this._isLastSelectionEmpty() && !this._hasFormulaBarFocus() && this._isFormula()) {
+		} else if (
+			!this._isLastSelectionEmpty() &&
+			!this._hasFormulaBarFocus() &&
+			this._isFormula()
+		) {
 			// A cell address is selected in formula input mode,
 			// before inserting a new input we need to clear selection
 			this._updateCursorPosition(this._lastSelectionEnd);
 		}
 
-		if (!this._isComposing && !this._isLeftRightArrow && this._remotePosition !== undefined) {
+		if (
+			!this._isComposing &&
+			!this._isLeftRightArrow &&
+			this._remotePosition !== undefined
+		) {
 			this._updateFocusedParagraph();
 		}
 
 		// Firefox is not able to delete the <img> post space. Since no 'input' event is generated,
 		// we need to handle a <delete> at the end of the paragraph, here.
-		if (L.Browser.gecko && (!this._hasSelection || this._isLastSelectionEmpty()) &&
-			this._getLastCursorPosition() === this.getPlainTextContent().length &&
-			this._deleteHint === 'delete') {
+		if (
+			L.Browser.gecko &&
+			(!this._hasSelection || this._isLastSelectionEmpty()) &&
+			this._getLastCursorPosition() ===
+				this.getPlainTextContent().length &&
+			this._deleteHint === 'delete'
+		) {
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending delete');
 			}
@@ -356,31 +479,40 @@ L.A11yTextInput = L.TextInput.extend({
 		this._statusLog('_onBeforeInput ]');
 	},
 
-	updateLastContent: function() {
+	updateLastContent: function () {
 		var value = this.getValue();
 		this._lastContent = this.getValueAsCodePoints(value);
 	},
 
-	_isFormula: function() {
+	_isFormula: function () {
 		var content = this.getValue();
-		return this._map._docLoaded && this._map.getDocType() === 'spreadsheet'
-			&& content.length > 0 && content[0] === '=';
+		return (
+			this._map._docLoaded &&
+			this._map.getDocType() === 'spreadsheet' &&
+			content.length > 0 &&
+			content[0] === '='
+		);
 	},
 
-	_requestFocusedParagraph: function() {
+	_requestFocusedParagraph: function () {
 		app.socket.sendMessage('geta11yfocusedparagraph');
 	},
 
-	_restoreSpanWrapper: function() {
+	_restoreSpanWrapper: function () {
 		var children = this._textArea.childNodes;
 		if (children.length >= 3 && children[1].nodeName === '#text') {
 			if (children.length === 3) {
 				// When typing in an empty paragraph, we get <img>H<img>
 				var htmlContent = this.getHTML();
-				htmlContent = htmlContent.slice(this._preSpaceChar.length, -this._postSpaceChar.length);
+				htmlContent = htmlContent.slice(
+					this._preSpaceChar.length,
+					-this._postSpaceChar.length,
+				);
 				this.setHTML(htmlContent);
-			}
-			else if (children.length === 4 && children[2].id === 'readable-content') {
+			} else if (
+				children.length === 4 &&
+				children[2].id === 'readable-content'
+			) {
 				// When typing, let's say 'k', at beginning of a not empty paragraph,
 				// we get: <img>k<span>Hello World</span><img>
 				var newText = children[1].textContent;
@@ -391,14 +523,15 @@ L.A11yTextInput = L.TextInput.extend({
 	},
 
 	// Fired when text has been inputted, *during* and after composing/spellchecking
-	_onInput: function(ev) {
-		if (this._map.uiManager.isUIBlocked())
-			return;
+	_onInput: function (ev) {
+		if (this._map.uiManager.isUIBlocked()) return;
 		this._statusLog('_onInput [');
 		app.idleHandler.notifyActive();
 
 		if (this._ignoreInputCount > 0) {
-			window.app.console.log('ignoring synthetic input ' + this._ignoreInputCount);
+			window.app.console.log(
+				'ignoring synthetic input ' + this._ignoreInputCount,
+			);
 			return;
 		}
 
@@ -419,7 +552,8 @@ L.A11yTextInput = L.TextInput.extend({
 
 		// We use a different leading and terminal space character
 		// to differentiate backspace from delete, then replace the character.
-		if (!this._hasPreSpace()) { // missing initial space
+		if (!this._hasPreSpace()) {
+			// missing initial space
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending backspace');
 			}
@@ -434,11 +568,15 @@ L.A11yTextInput = L.TextInput.extend({
 			this._updateCursorPosition(0);
 			return;
 		}
-		if (!this._hasPostSpace()) { // missing trailing space.
+		if (!this._hasPostSpace()) {
+			// missing trailing space.
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending delete');
 			}
-			this._removeTextContent(0, this._hasSelection && this._isLastSelectionEmpty() ? 2 : 1);
+			this._removeTextContent(
+				0,
+				this._hasSelection && this._isLastSelectionEmpty() ? 2 : 1,
+			);
 			this._appendSpace();
 			var pos = this._getLastCursorPosition();
 			this._updateCursorPosition(pos);
@@ -457,25 +595,37 @@ L.A11yTextInput = L.TextInput.extend({
 		// And that is caused because after entering the first character
 		// cursor position is never updated by keyboard (I know it is strange)
 		// so here we manually correct the position
-		if (lastCursorPosition === 0 && cursorPosition < 1 && value.length - this._lastContent.length === 1) {
+		if (
+			lastCursorPosition === 0 &&
+			cursorPosition < 1 &&
+			value.length - this._lastContent.length === 1
+		) {
 			cursorPosition = 1;
-			if (!this._isComposing)
-				this._setCursorPosition(1);
+			if (!this._isComposing) this._setCursorPosition(1);
 		}
 
 		// We need to take into account the case that lastCursorPosition is beyond the new cursor position.
 		// For instance that can happen when after entering a word, several spaces are typed:
 		// a '.' is appended automatically.
 		var contentTailLength = value.length - cursorPosition;
-		var lastContentTailLength = this._lastContent.length - lastCursorPosition;
-		var guessedBackMatchTo = Math.min(lastContentTailLength, contentTailLength);
+		var lastContentTailLength =
+			this._lastContent.length - lastCursorPosition;
+		var guessedBackMatchTo = Math.min(
+			lastContentTailLength,
+			contentTailLength,
+		);
 		var contentEnd = value.length - guessedBackMatchTo;
 		var content = this.getValueAsCodePoints(value.slice(0, contentEnd));
 		// Note that content is an array of Unicode code points
 		var lastContentEnd = this._lastContent.length - guessedBackMatchTo;
 		var lastContent = this._lastContent.slice(0, lastContentEnd);
 
-		window.app.console.log('_onInput: cursorPosition: ' + cursorPosition + ', lastContentEnd: ' + lastContentEnd);
+		window.app.console.log(
+			'_onInput: cursorPosition: ' +
+				cursorPosition +
+				', lastContentEnd: ' +
+				lastContentEnd,
+		);
 
 		var matchTo = 0;
 		var compareUpTo = Math.min(content.length, lastContent.length);
@@ -485,13 +635,29 @@ L.A11yTextInput = L.TextInput.extend({
 			// an empty new content and the input would never be forwarded to core.
 			compareUpTo = Math.min(compareUpTo, this._lastSelectionStart);
 		}
-		while (matchTo < compareUpTo && content[matchTo] === lastContent[matchTo])
+		while (
+			matchTo < compareUpTo &&
+			content[matchTo] === lastContent[matchTo]
+		)
 			matchTo++;
 
 		if (this._map._debug.logKeyboardEvents) {
-			window.app.console.log('Comparison matchAt ' + matchTo + '\n' +
-				'\tnew "' + this.codePointsToString(content) + '" (' + content.length + ')' + '\n' +
-				'\told "' + this.codePointsToString(lastContent) + '" (' + lastContent.length + ')');
+			window.app.console.log(
+				'Comparison matchAt ' +
+					matchTo +
+					'\n' +
+					'\tnew "' +
+					this.codePointsToString(content) +
+					'" (' +
+					content.length +
+					')' +
+					'\n' +
+					'\told "' +
+					this.codePointsToString(lastContent) +
+					'" (' +
+					lastContent.length +
+					')',
+			);
 		}
 
 		// no new content
@@ -505,14 +671,12 @@ L.A11yTextInput = L.TextInput.extend({
 		var removeBefore = 0;
 		if (!this._hasSelection) {
 			removeAfter = lastContent.length - lastCursorPosition;
-			removeBefore = (lastContent.length - matchTo) - removeAfter;
-		}
-		else if (this._deleteHint === 'backspace') {
+			removeBefore = lastContent.length - matchTo - removeAfter;
+		} else if (this._deleteHint === 'backspace') {
 			this._removeEmptySelectionIfAny();
 			this._setSelectionFlag(false);
 			removeBefore = 1;
-		}
-		else if (this._deleteHint === 'delete') {
+		} else if (this._deleteHint === 'delete') {
 			// when in core there is an empty selection the first <delete> deletes
 			// the selection instead of the next char
 			this._setSelectionFlag(false);
@@ -522,10 +686,15 @@ L.A11yTextInput = L.TextInput.extend({
 		// A browser selection range counts a surrogate UTF-16 pair as 2 chars.
 		// The same occurs in core for the text cursor position reported by the caret changed accessibility event.
 		// However, in core a single <backspace> or <delete> is needed for deleting a surrogate pair.
-        if (removeBefore > 1) {
+		if (removeBefore > 1) {
 			var start = lastCursorPosition - removeBefore;
 			for (var i = start; i < lastCursorPosition; i++) {
-				if (this._isSurrogatePair(lastContent[i], lastContent[i+1])) {
+				if (
+					this._isSurrogatePair(
+						lastContent[i],
+						lastContent[i + 1],
+					)
+				) {
 					removeBefore--;
 					i++;
 				}
@@ -534,7 +703,12 @@ L.A11yTextInput = L.TextInput.extend({
 		if (removeAfter > 1) {
 			var end = lastCursorPosition + removeAfter;
 			for (var j = lastCursorPosition; j < end; j++) {
-				if (this._isSurrogatePair(lastContent[j], lastContent[j+1])) {
+				if (
+					this._isSurrogatePair(
+						lastContent[j],
+						lastContent[j + 1],
+					)
+				) {
 					removeAfter--;
 					j++;
 				}
@@ -545,16 +719,23 @@ L.A11yTextInput = L.TextInput.extend({
 			this._removeTextContent(removeBefore, removeAfter);
 
 		var newText = content;
-		if (matchTo > 0)
-			newText = newText.slice(matchTo);
+		if (matchTo > 0) newText = newText.slice(matchTo);
 
 		var head = this._lastContent.slice(0, matchTo);
 		var tail = this._lastContent.slice(lastContentEnd);
 		this._lastContent = head.concat(newText, tail);
-		window.app.console.log('_onInput: \n'
-			+ 'head: "' + this.codePointsToString(head) + '"\n'
-			+ 'newText: "' + this.codePointsToString(newText) + '"\n'
-			+ 'tail: "' + this.codePointsToString(tail) + '"');
+		window.app.console.log(
+			'_onInput: \n' +
+				'head: "' +
+				this.codePointsToString(head) +
+				'"\n' +
+				'newText: "' +
+				this.codePointsToString(newText) +
+				'"\n' +
+				'tail: "' +
+				this.codePointsToString(tail) +
+				'"',
+		);
 
 		this._setLastCursorPosition(cursorPosition);
 
@@ -576,7 +757,7 @@ L.A11yTextInput = L.TextInput.extend({
 		this._statusLog('_onInput ]');
 	},
 
-	_removeEmptySelectionIfAny: function() {
+	_removeEmptySelectionIfAny: function () {
 		if (this._hasSelection && this._isLastSelectionEmpty()) {
 			// when in core there is an empty selection a <backspace> or a <delete> removes
 			// the selection instead of the previous or next char, so we send a fake <delete>
@@ -585,36 +766,34 @@ L.A11yTextInput = L.TextInput.extend({
 		}
 	},
 
-	_sendDelete: function() {
+	_sendDelete: function () {
 		this._sendKeyEvent(46, 1286, 'input');
 	},
 
-	_hasPreSpace: function() {
+	_hasPreSpace: function () {
 		var child = this._textArea.firstChild;
 		while (child && child.tagName !== 'img') {
-			if (child.id === 'pre-space')
-				return true;
+			if (child.id === 'pre-space') return true;
 			child = child.firstChild;
 		}
 		return false;
 	},
 
-	_hasPostSpace: function() {
+	_hasPostSpace: function () {
 		var child = this._textArea.lastChild;
 		while (child) {
-			if (child.id === 'post-space')
-				return true;
+			if (child.id === 'post-space') return true;
 			child = child.lastChild;
 		}
 		return false;
 	},
 
-	_isWrappedBySpan: function() {
+	_isWrappedBySpan: function () {
 		var children = this._textArea.childNodes;
 		return children.length === 3 && children[1].nodeName === 'SPAN';
-	}
+	},
 });
 
-L.a11yTextInput = function() {
+L.a11yTextInput = function () {
 	return new L.A11yTextInput();
 };

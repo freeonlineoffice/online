@@ -22,19 +22,19 @@ JSDialog.progressbar = function (parentContainer, data, builder) {
 	L.DomUtil.addClass(div, 'ui-progressbar');
 	L.DomUtil.addClass(div, builder.options.cssClass);
 
-	const progressbar = L.DomUtil.create('progress', builder.options.cssClass, div);
+	const progressbar = L.DomUtil.create(
+		'progress',
+		builder.options.cssClass,
+		div,
+	);
 	progressbar.id = data.id + '-progress';
 	progressbar.tabIndex = '0';
 
-	if (data.value !== undefined)
-		progressbar.value = data.value;
-	else
-		progressbar.value = 0;
+	if (data.value !== undefined) progressbar.value = data.value;
+	else progressbar.value = 0;
 
-	if (data.maxValue !== undefined)
-		progressbar.max = data.maxValue;
-	else
-		progressbar.max = 100;
+	if (data.maxValue !== undefined) progressbar.max = data.maxValue;
+	else progressbar.max = 100;
 
 	const isComplete = progressbar.value === progressbar.max;
 
@@ -50,8 +50,7 @@ JSDialog.progressbar = function (parentContainer, data, builder) {
 		$(progressbar).prop('disabled', true);
 	}
 
-	if (data.hidden)
-		$(progressbar).hide();
+	if (data.hidden) $(progressbar).hide();
 
 	return false;
 };

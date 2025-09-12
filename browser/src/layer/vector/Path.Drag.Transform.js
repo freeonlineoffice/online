@@ -11,12 +11,11 @@
  * Renderer-independent
  */
 L.Path.include({
-
 	/**
 	 * Applies matrix transformation to SVG
 	 * @param {Array.<Number>?} matrix
 	 */
-	_transform: function(matrix) {
+	_transform: function (matrix) {
 		if (this._renderer) {
 			if (matrix) {
 				this._renderer.transformPath(this, matrix);
@@ -35,13 +34,14 @@ L.Path.include({
 	 *
 	 * @param  {MouseEvent} e
 	 */
-	_onMouseClick: function(e) {
-		if ((this.dragging && this.dragging.moved()) ||
-			(this._map.dragging && this._map.dragging.moved())) {
+	_onMouseClick: function (e) {
+		if (
+			(this.dragging && this.dragging.moved()) ||
+			(this._map.dragging && this._map.dragging.moved())
+		) {
 			return;
 		}
 
 		this._fireMouseEvent(e);
-	}
-
+	},
 });

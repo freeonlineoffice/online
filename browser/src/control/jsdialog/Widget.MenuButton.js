@@ -19,7 +19,7 @@
 
 /* global JSDialog $ app */
 
-function _menubuttonControl (parentContainer, data, builder) {
+function _menubuttonControl(parentContainer, data, builder) {
 	var ids;
 	var menuId = null;
 
@@ -27,8 +27,7 @@ function _menubuttonControl (parentContainer, data, builder) {
 		ids = data.id.split(':');
 		menuId = ids[1];
 		data.id = ids[0];
-	}
-	else if (data.id.includes('-')) {
+	} else if (data.id.includes('-')) {
 		ids = data.id.split('-');
 		if (ids.length === 2) {
 			menuId = ids[1];
@@ -36,20 +35,16 @@ function _menubuttonControl (parentContainer, data, builder) {
 		} else {
 			console.error('Menubutton without correct menu id: ' + data.id);
 		}
-	}
-	else
-		menuId = data.id;
+	} else menuId = data.id;
 
 	// import menu
 	if (data.menu) {
 		// command is needed to generate image
-		if (!data.command)
-			data.command = data.id;
+		if (!data.command) data.command = data.id;
 
 		menuId = data.id + '-menu';
 		var builtMenu = [];
-		for (var i in data.menu)
-			builtMenu.push(data.menu[i]);
+		for (var i in data.menu) builtMenu.push(data.menu[i]);
 		builder._menus.set(menuId, builtMenu);
 	}
 
@@ -57,35 +52,54 @@ function _menubuttonControl (parentContainer, data, builder) {
 
 	if (menuEntries) {
 		var noLabels = builder.options.noLabelsForUnoButtons;
-		builder.options.noLabelsForUnoButtons = data.noLabel ? data.noLabel : false;
+		builder.options.noLabelsForUnoButtons = data.noLabel
+			? data.noLabel
+			: false;
 
 		// command is needed to generate image
-		if (!data.command)
-			data.command = menuId;
+		if (!data.command) data.command = menuId;
 
-		var options = {hasDropdownArrow: menuEntries.length > 1};
-		var control = builder._unoToolButton(parentContainer, data, builder, options);
+		var options = { hasDropdownArrow: menuEntries.length > 1 };
+		var control = builder._unoToolButton(
+			parentContainer,
+			data,
+			builder,
+			options,
+		);
 		var isSplitButton = data.applyCallback;
 
 		if (menuEntries.length == 0) {
 			control.container.setAttribute('disabled', true);
 		}
 
-		$(control.container).addClass('menubutton' + (isSplitButton ? ' splitbutton' : ''));
+		$(control.container).addClass(
+			'menubutton' + (isSplitButton ? ' splitbutton' : ''),
+		);
 
 		$(control.button).unbind('click');
 		$(control.label).unbind('click');
 
 		var dropdownId = data.id;
 		var clickFunction = function () {
-			if (control.container.hasAttribute('disabled'))
-				return;
+			if (control.container.hasAttribute('disabled')) return;
 
-			var callback = function(objectType, eventType, object, data, entry) {
-				if ((eventType === 'selected' && entry.items) || eventType === 'showsubmenu') {
+			var callback = function (
+				objectType,
+				eventType,
+				object,
+				data,
+				entry,
+			) {
+				if (
+					(eventType === 'selected' && entry.items) ||
+					eventType === 'showsubmenu'
+				) {
 					return true;
 				} else if (eventType === 'selected' && entry.uno) {
-					var uno = (entry.uno.indexOf('.uno:') === 0) ? entry.uno : '.uno:' + entry.uno;
+					var uno =
+						entry.uno.indexOf('.uno:') === 0
+							? entry.uno
+							: '.uno:' + entry.uno;
 					builder.map.sendUnoCommand(uno);
 					JSDialog.CloseDropdown(dropdownId);
 					return true;
@@ -94,12 +108,24 @@ function _menubuttonControl (parentContainer, data, builder) {
 					JSDialog.CloseDropdown(dropdownId);
 					return true;
 				} else if (eventType === 'selected') {
-					builder.callback('menubutton', 'select', control.container, entry.id, builder);
+					builder.callback(
+						'menubutton',
+						'select',
+						control.container,
+						entry.id,
+						builder,
+					);
 					JSDialog.CloseDropdown(dropdownId);
 					return true;
-				} else if (!entry){
+				} else if (!entry) {
 					// custom popup - execute generic action
-					builder.callback(objectType, eventType, object, data, builder);
+					builder.callback(
+						objectType,
+						eventType,
+						object,
+						data,
+						builder,
+					);
 					JSDialog.CloseDropdown(dropdownId);
 					return true;
 				}
@@ -118,7 +144,12 @@ function _menubuttonControl (parentContainer, data, builder) {
 			if (freshMenu.length === 1) {
 				callback(null, 'selected', null, null, freshMenu[0]);
 			} else {
-				JSDialog.OpenDropdown(dropdownId, control.container, freshMenu, callback);
+				JSDialog.OpenDropdown(
+					dropdownId,
+					control.container,
+					freshMenu,
+					callback,
+				);
 			}
 		};
 
@@ -127,16 +158,14 @@ function _menubuttonControl (parentContainer, data, builder) {
 			JSDialog.AddOnClick(control.button, data.applyCallback);
 			if (control.label)
 				JSDialog.AddOnClick(control.label, data.applyCallback);
-			if (control.arrow)
-				control.arrow.tabIndex = 0;
+			if (control.arrow) control.arrow.tabIndex = 0;
 		} else {
 			JSDialog.AddOnClick(control.button, clickFunction);
 			if (control.label)
 				JSDialog.AddOnClick(control.label, clickFunction);
 		}
 
-		if (control.arrow)
-			JSDialog.AddOnClick(control.arrow, clickFunction);
+		if (control.arrow) JSDialog.AddOnClick(control.arrow, clickFunction);
 
 		builder._preventDocumentLosingFocusOnClick(control.container);
 
@@ -144,7 +173,11 @@ function _menubuttonControl (parentContainer, data, builder) {
 
 		return control;
 	} else if (data.text !== undefined || data.image) {
-		var button = L.DomUtil.create('button', 'menubutton ' + builder.options.cssClass, parentContainer);
+		var button = L.DomUtil.create(
+			'button',
+			'menubutton ' + builder.options.cssClass,
+			parentContainer,
+		);
 		button.id = data.id;
 		button.title = data.text;
 		button.setAttribute('aria-haspopup', true);
@@ -159,15 +192,20 @@ function _menubuttonControl (parentContainer, data, builder) {
 
 		$(button).click(function () {
 			if (!button.hasAttribute('disabled')) {
-				builder.callback('menubutton', 'toggle', button, undefined, builder);
+				builder.callback(
+					'menubutton',
+					'toggle',
+					button,
+					undefined,
+					builder,
+				);
 			}
 		});
 
 		var enabled = Boolean(data.enabled);
 		button.setAttribute('aria-disabled', !enabled);
 
-		if (data.enabled === false)
-			button.disabled = true;
+		if (data.enabled === false) button.disabled = true;
 	} else {
 		window.app.console.warn('Not found menu "' + menuId + '"');
 	}

@@ -12,20 +12,36 @@
 
 /* global app GraphicSelection lool TileManager */
 L.WriterTileLayer = L.CanvasTileLayer.extend({
-
 	newAnnotation: function (commentData) {
 		const name = lool.Comment.makeName(commentData);
-		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
+		const comment = new lool.Comment(
+			name,
+			commentData,
+			{},
+			app.sectionContainer.getSectionWithName(
+				L.CSections.CommentList.name,
+			),
+		);
 
 		if (app.file.textCursor.visible) {
-			comment.sectionProperties.data.anchorPos = [app.file.textCursor.rectangle.x2, app.file.textCursor.rectangle.y1];
+			comment.sectionProperties.data.anchorPos = [
+				app.file.textCursor.rectangle.x2,
+				app.file.textCursor.rectangle.y1,
+			];
 		} else if (GraphicSelection.hasActiveSelection()) {
 			// An image is selected, then guess the anchor based on the graphic selection.
-			comment.sectionProperties.data.anchorPos = [GraphicSelection.rectangle.x1, GraphicSelection.rectangle.y2];
+			comment.sectionProperties.data.anchorPos = [
+				GraphicSelection.rectangle.x1,
+				GraphicSelection.rectangle.y2,
+			];
 		}
 
-		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).add(comment);
-		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).modify(comment);
+		app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.add(comment);
+		app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.modify(comment);
 	},
 
 	beforeAdd: function (map) {
@@ -44,19 +60,22 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (values.comments) {
-			values.comments.forEach(function(comment) {
+			values.comments.forEach(function (comment) {
 				comment.id = comment.id.toString();
 				comment.parent = comment.parentId.toString();
 			});
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).importComments(values.comments);
-		}
-		else if (values.redlines && values.redlines.length > 0) {
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).importChanges(values.redlines);
-		}
-		else if (this._map.zotero && values.userDefinedProperties) {
-			this._map.zotero.handleCustomProperty(values.userDefinedProperties);
-		}
-		else if (this._map.zotero && values.fields) {
+			app.sectionContainer
+				.getSectionWithName(L.CSections.CommentList.name)
+				.importComments(values.comments);
+		} else if (values.redlines && values.redlines.length > 0) {
+			app.sectionContainer
+				.getSectionWithName(L.CSections.CommentList.name)
+				.importChanges(values.redlines);
+		} else if (this._map.zotero && values.userDefinedProperties) {
+			this._map.zotero.handleCustomProperty(
+				values.userDefinedProperties,
+			);
+		} else if (this._map.zotero && values.fields) {
 			this._map.zotero.onFieldValue(values.fields);
 		} else if (this._map.zotero && values.field) {
 			this._map.zotero.handleFieldUnderCursor(values.field);
@@ -71,7 +90,10 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		} else if (this._map.zotero && values.sections) {
 			this._map.zotero.onFieldValue(values.sections);
 		} else {
-			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(this, textMsg);
+			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
+				this,
+				textMsg,
+			);
 		}
 	},
 
@@ -82,13 +104,15 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			this._map.fire('pagenumberchanged', {
 				currentPage: part,
 				pages: this._pages,
-				docType: this._docType
+				docType: this._docType,
 			});
 		}
 	},
 
 	_onStatusMsg: function (textMsg) {
-		const statusJSON = JSON.parse(textMsg.replace('status:', '').replace('statusupdate:', ''));
+		const statusJSON = JSON.parse(
+			textMsg.replace('status:', '').replace('statusupdate:', ''),
+		);
 
 		if (app.socket._reconnecting) {
 			// persist cursor position on reconnection
@@ -96,28 +120,56 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			// of the first paragraph of the document so we want to ignore that
 			// to eliminate document jumping while reconnecting
 			this.persistCursorPositionInWriter = true;
-			this._postMouseEvent('buttondown', this.lastCursorPos.center[0], this.lastCursorPos.center[1], 1, 1, 0);
-			this._postMouseEvent('buttonup', this.lastCursorPos.center[0], this.lastCursorPos.center[1], 1, 1, 0);
+			this._postMouseEvent(
+				'buttondown',
+				this.lastCursorPos.center[0],
+				this.lastCursorPos.center[1],
+				1,
+				1,
+				0,
+			);
+			this._postMouseEvent(
+				'buttonup',
+				this.lastCursorPos.center[0],
+				this.lastCursorPos.center[1],
+				1,
+				1,
+				0,
+			);
 		}
-		if (!statusJSON.width || !statusJSON.height || this._documentInfo === textMsg)
+		if (
+			!statusJSON.width ||
+			!statusJSON.height ||
+			this._documentInfo === textMsg
+		)
 			return;
 
-		var sizeChanged = statusJSON.width !== app.activeDocument.fileSize.x || statusJSON.height !== app.activeDocument.fileSize.y;
+		var sizeChanged =
+			statusJSON.width !== app.activeDocument.fileSize.x ||
+			statusJSON.height !== app.activeDocument.fileSize.y;
 
 		if (statusJSON.viewid !== undefined) this._viewId = statusJSON.viewid;
 
-		console.assert(this._viewId >= 0, 'Incorrect viewId received: ' + this._viewId);
+		console.assert(
+			this._viewId >= 0,
+			'Incorrect viewId received: ' + this._viewId,
+		);
 
 		if (sizeChanged) {
-			app.activeDocument.fileSize = new lool.SimplePoint(statusJSON.width, statusJSON.height);
-			app.activeDocument.activeView.viewSize = app.activeDocument.fileSize.clone();
+			app.activeDocument.fileSize = new lool.SimplePoint(
+				statusJSON.width,
+				statusJSON.height,
+			);
+			app.activeDocument.activeView.viewSize =
+				app.activeDocument.fileSize.clone();
 			this._docType = statusJSON.type;
 			this._updateMaxBounds(true);
 		}
 
 		this._documentInfo = textMsg;
 		this._selectedPart = 0;
-		this._selectedMode = (statusJSON.mode !== undefined) ? statusJSON.mode : 0;
+		this._selectedMode =
+			statusJSON.mode !== undefined ? statusJSON.mode : 0;
 		this._parts = 1;
 		this._currentPage = statusJSON.selectedpart;
 		this._pages = statusJSON.partscount;
@@ -125,7 +177,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		this._map.fire('pagenumberchanged', {
 			currentPage: this._currentPage,
 			pages: this._pages,
-			docType: this._docType
+			docType: this._docType,
 		});
 		TileManager.resetPreFetching(true);
 	},

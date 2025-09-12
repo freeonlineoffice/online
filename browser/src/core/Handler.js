@@ -10,14 +10,18 @@ L.Handler = L.Class.extend({
 	},
 
 	enable: function () {
-		if (this._enabled) { return; }
+		if (this._enabled) {
+			return;
+		}
 
 		this._enabled = true;
 		this.addHooks();
 	},
 
 	disable: function () {
-		if (!this._enabled) { return; }
+		if (!this._enabled) {
+			return;
+		}
 
 		this._enabled = false;
 		this.removeHooks();
@@ -25,5 +29,5 @@ L.Handler = L.Class.extend({
 
 	enabled: function () {
 		return !!this._enabled;
-	}
+	},
 });

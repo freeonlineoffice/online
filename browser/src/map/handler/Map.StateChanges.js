@@ -6,11 +6,10 @@
 /* global $ app lool */
 /*eslint no-extend-native:0*/
 L.Map.mergeOptions({
-	stateChangeHandler: true
+	stateChangeHandler: true,
 });
 
 L.Map.StateChangeHandler = L.Handler.extend({
-
 	initialize: function (map) {
 		this._map = map;
 		// Contains the items for which state will be tracked
@@ -26,24 +25,34 @@ L.Map.StateChangeHandler = L.Handler.extend({
 		this._map.off('commandstatechanged', this._onStateChanged, this);
 	},
 
-	_onStateChanged: function(e) {
-		var slideMasterPageItem = this._map['stateChangeHandler'].getItemValue('.uno:SlideMasterPage');
+	_onStateChanged: function (e) {
+		var slideMasterPageItem = this._map[
+			'stateChangeHandler'
+		].getItemValue('.uno:SlideMasterPage');
 		var state;
 
-		if (typeof (e.state) == 'object') {
+		if (typeof e.state == 'object') {
 			state = e.state;
-		} else if (typeof (e.state) == 'string') {
+		} else if (typeof e.state == 'string') {
 			state = e.state; // fallback if we don't find JSON
 
 			var firstIndex = state.indexOf('{');
 			var lastIndex = state.lastIndexOf('}');
 
 			if (firstIndex !== -1 && lastIndex !== -1) {
-				const substring = state.substring(firstIndex, lastIndex + 1);
+				const substring = state.substring(
+					firstIndex,
+					lastIndex + 1,
+				);
 				try {
 					state = JSON.parse(substring);
 				} catch (e) {
-					console.error('Failed to parse state JSON: "' + substring + '" : ' + e);
+					console.error(
+						'Failed to parse state JSON: "' +
+							substring +
+							'" : ' +
+							e,
+					);
 				}
 			}
 		}
@@ -52,25 +61,43 @@ L.Map.StateChangeHandler = L.Handler.extend({
 		this._items[commandName] = state;
 		if (e.commandName === '.uno:CurrentTrackedChangeId') {
 			var redlineId = 'change-' + state;
-			const annotations = app.sectionContainer.getSectionWithName(L.CSections.CommentList.name);
+			const annotations = app.sectionContainer.getSectionWithName(
+				L.CSections.CommentList.name,
+			);
 			if (annotations) annotations.selectById(redlineId);
-			else console.error('_onStateChanged: section "CommentList" missing');
+			else
+				console.error(
+					'_onStateChanged: section "CommentList" missing',
+				);
 		}
 
 		if (e.commandName === '.uno:SlideMasterPage') {
-			this._map._docLayer._selectedMode = (state === true || state === 'true') ? 1 : 0;
+			this._map._docLayer._selectedMode =
+				state === true || state === 'true' ? 1 : 0;
 		}
 
 		if (e.commandName === '.uno:FormatPaintbrush') {
 			if (state === 'true')
-				$('.leaflet-pane.leaflet-map-pane').addClass('bucket-cursor');
+				$('.leaflet-pane.leaflet-map-pane').addClass(
+					'bucket-cursor',
+				);
 			else
-				$('.leaflet-pane.leaflet-map-pane').removeClass('bucket-cursor');
+				$('.leaflet-pane.leaflet-map-pane').removeClass(
+					'bucket-cursor',
+				);
 		}
 
-		if (e.commandName === '.uno:StartWithPresentation' && (state === true || state === 'true')) {
-			let startPresentationParam = window.loolParams.get('startPresentation');
-			if (startPresentationParam === '' || startPresentationParam === 'true' || startPresentationParam === '1') {
+		if (
+			e.commandName === '.uno:StartWithPresentation' &&
+			(state === true || state === 'true')
+		) {
+			let startPresentationParam =
+				window.loolParams.get('startPresentation');
+			if (
+				startPresentationParam === '' ||
+				startPresentationParam === 'true' ||
+				startPresentationParam === '1'
+			) {
 				app.dispatcher.dispatch('presentation');
 			}
 		}
@@ -83,12 +110,16 @@ L.Map.StateChangeHandler = L.Handler.extend({
 				const end3 = link.rectangle.indexOf(',');
 				const new_link = {
 					rectangle: new lool.SimpleRectangle(
-						parseFloat(link.rectangle.substring(end2 + 2, end3)),
+						parseFloat(
+							link.rectangle.substring(end2 + 2, end3),
+						),
 						parseFloat(link.rectangle.substring(end3 + 1)),
 						parseFloat(link.rectangle.substring(0, end1)),
-						parseFloat(link.rectangle.substring(end1 + 1, end2))
+						parseFloat(
+							link.rectangle.substring(end1 + 1, end2),
+						),
 					),
-					uri: link.uri
+					uri: link.uri,
 				};
 				links.push(new_link);
 			}
@@ -101,23 +132,27 @@ L.Map.StateChangeHandler = L.Handler.extend({
 			$('#document-container').removeClass('slide-normal-mode');
 			$('#document-container').addClass('slide-master-mode');
 		}
-		if (!slideMasterPageItem || slideMasterPageItem == 'false' || slideMasterPageItem == 'undefined') {
+		if (
+			!slideMasterPageItem ||
+			slideMasterPageItem == 'false' ||
+			slideMasterPageItem == 'undefined'
+		) {
 			$('#document-container').removeClass('slide-master-mode');
 			$('#document-container').addClass('slide-normal-mode');
 		}
 	},
 
-	getItems: function() {
+	getItems: function () {
 		return this._items;
 	},
 
-	getItemValue: function(unoCmd) {
+	getItemValue: function (unoCmd) {
 		unoCmd = this.ensureUnoCommandPrefix(unoCmd);
 
 		return this._items[unoCmd];
 	},
 
-	setItemValue: function(unoCmd, value) {
+	setItemValue: function (unoCmd, value) {
 		unoCmd = this.ensureUnoCommandPrefix(unoCmd);
 
 		this._items[unoCmd] = value;
@@ -128,7 +163,7 @@ L.Map.StateChangeHandler = L.Handler.extend({
 			return '.uno:' + unoCmd;
 		}
 		return unoCmd;
-	}
+	},
 });
 
 L.Map.addInitHook('addHandler', 'stateChangeHandler', L.Map.StateChangeHandler);

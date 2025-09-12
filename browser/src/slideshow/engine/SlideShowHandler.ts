@@ -181,7 +181,8 @@ class SlideShowHandler {
 		this.aNextEffectEventArray = aNextEffectEventArray;
 		this._context.aInteractiveAnimationSequenceMap =
 			aInteractiveAnimationSequenceMap;
-		this.aInteractiveAnimationSequenceMap = aInteractiveAnimationSequenceMap;
+		this.aInteractiveAnimationSequenceMap =
+			aInteractiveAnimationSequenceMap;
 		this._context.aEventMultiplexer = aEventMultiplexer;
 		this.aEventMultiplexer = aEventMultiplexer;
 		this.nCurrentEffect = 0;
@@ -371,9 +372,11 @@ class SlideShowHandler {
 			const aAnimatedElementMap =
 				metaNewSlide.animationsHandler.getAnimatedElementMap();
 
-			aAnimatedElementMap.forEach((aAnimatedElement: AnimatedElement) => {
-				aAnimatedElement.notifySlideStart(this._context);
-			});
+			aAnimatedElementMap.forEach(
+				(aAnimatedElement: AnimatedElement) => {
+					aAnimatedElement.notifySlideStart(this._context);
+				},
+			);
 		}
 		this.slideCompositor.notifyTransitionStart();
 		this.presenter._map.fire('transitionstart', {

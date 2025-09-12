@@ -5,7 +5,6 @@
  */
 
 L.Evented = L.Class.extend({
-
 	initialize: function () {
 		// pass in the L.Evented instance as the 'outerObject'.
 		this._evented = new app.Evented(this);
@@ -51,7 +50,6 @@ L.Evented = L.Class.extend({
 		this._evented.removeEventParent(inner);
 		return this;
 	},
-
 });
 
 var proto = L.Evented.prototype;
@@ -63,4 +61,4 @@ proto.addOneTimeEventListener = proto.once;
 proto.fireEvent = proto.fire;
 proto.hasEventListeners = proto.listens;
 
-L.Mixin = {Events: proto};
+L.Mixin = { Events: proto };

@@ -4,12 +4,11 @@
  */
 
 L.Icon.Default = L.Icon.extend({
-
 	options: {
-		iconSize:    [25, 41],
-		iconAnchor:  [12, 41],
+		iconSize: [25, 41],
+		iconAnchor: [12, 41],
 		popupAnchor: [1, -34],
-		shadowSize:  [41, 41]
+		shadowSize: [41, 41],
 	},
 
 	_getIconUrl: function (name) {
@@ -22,16 +21,24 @@ L.Icon.Default = L.Icon.extend({
 		var path = L.Icon.Default.imagePath;
 
 		if (!path) {
-			throw new Error('Couldn\'t autodetect L.Icon.Default.imagePath, set it manually.');
+			throw new Error(
+				"Couldn't autodetect L.Icon.Default.imagePath, set it manually.",
+			);
 		}
 
-		return path + '/marker-' + name + (L.Browser.retina && name === 'icon' ? '-2x' : '') + '.png';
-	}
+		return (
+			path +
+			'/marker-' +
+			name +
+			(L.Browser.retina && name === 'icon' ? '-2x' : '') +
+			'.png'
+		);
+	},
 });
 
 L.Icon.Default.imagePath = (function () {
 	var scripts = document.getElementsByTagName('script'),
-	    leafletRe = /[\/^]lool/;
+		leafletRe = /[\/^]lool/;
 
 	var i, len, src, path;
 	for (i = 0, len = scripts.length; i < len; i++) {
@@ -41,4 +48,4 @@ L.Icon.Default.imagePath = (function () {
 			return (path ? path + '/' : '') + 'images';
 		}
 	}
-}());
+})();

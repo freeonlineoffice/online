@@ -17,10 +17,9 @@ function generateModalId(givenId) {
 }
 
 function sendJSON(json) {
-	if (!app.socket)
-		return;
+	if (!app.socket) return;
 
-	app.socket._onMessage({textMsg: 'jsdialog: ' + JSON.stringify(json)});
+	app.socket._onMessage({ textMsg: 'jsdialog: ' + JSON.stringify(json) });
 }
 
 function setMessageInModal(id, msg1) {
@@ -34,8 +33,8 @@ function setMessageInModal(id, msg1) {
 		control: {
 			id: 'info-modal-label1',
 			type: 'fixedtext',
-			text: msg1
-		}
+			text: msg1,
+		},
 	};
 
 	sendJSON(json);
@@ -50,9 +49,9 @@ function enableButtonInModal(id, buttonId, enable) {
 		type: 'modalpopup',
 		action: 'action',
 		data: {
-			'control_id': buttonId,
-			'action_type': (enable ? 'enable' : 'disable')
-		}
+			control_id: buttonId,
+			action_type: enable ? 'enable' : 'disable',
+		},
 	};
 
 	sendJSON(json);
@@ -60,42 +59,56 @@ function enableButtonInModal(id, buttonId, enable) {
 
 // check if user already set 'do not show again' option for a modal
 function shouldShowAgain(id) {
-    return window.prefs.getBoolean(`UIShowAgain_${id}`, true);
+	return window.prefs.getBoolean(`UIShowAgain_${id}`, true);
 }
 
 function setShowAgain(id, state) {
-    window.prefs.set(`UIShowAgain_${id}`, state);
+	window.prefs.set(`UIShowAgain_${id}`, state);
 }
 
 // helper to avoid using long list of optional parameters
 function showInfoModalWithOptions(id, options) {
 	if (app.map) {
 		var title = options.title;
-		var message1 = options.messages.length ? options.messages[0] : undefined;
-		var message2 = options.messages.length > 1 ? options.messages[1] : undefined;
+		var message1 = options.messages.length
+			? options.messages[0]
+			: undefined;
+		var message2 =
+			options.messages.length > 1 ? options.messages[1] : undefined;
 		//TODO: handle dynamic number of options.messages
-		var buttonText = options.buttons && options.buttons.length ? options.buttons[0].text : undefined;
-		var callback = options.buttons && options.buttons.length ? options.buttons[0].callback : undefined;
+		var buttonText =
+			options.buttons && options.buttons.length
+				? options.buttons[0].text
+				: undefined;
+		var callback =
+			options.buttons && options.buttons.length
+				? options.buttons[0].callback
+				: undefined;
 		//TODO: handle dynamic number of buttons with callback
 		var withCancel = options.withCancel;
 		var focusId = options.focusId;
 
 		// TODO: move showInfoModal internals here
-		app.map.uiManager.showInfoModal(id, title, message1, message2, buttonText,
-			callback, withCancel, focusId);
+		app.map.uiManager.showInfoModal(
+			id,
+			title,
+			message1,
+			message2,
+			buttonText,
+			callback,
+			withCancel,
+			focusId,
+		);
 	}
 }
 
 // check the widget is a modalpopup or in a modalpopup parent.
 function isWidgetInModalPopup(widgetData) {
-
-	if (widgetData.type == 'modalpopup')
-		return true;
+	if (widgetData.type == 'modalpopup') return true;
 
 	while (widgetData.parent) {
 		widgetData = widgetData.parent;
-		if (widgetData.type == 'modalpopup')
-			return true;
+		if (widgetData.type == 'modalpopup') return true;
 	}
 
 	return false;

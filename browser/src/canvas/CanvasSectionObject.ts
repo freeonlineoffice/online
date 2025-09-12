@@ -39,24 +39,41 @@ class CanvasSectionObject {
 	boundsList: Array<CanvasSectionObject> = []; // The sections those this section can propagate events to. Updated by container.
 
 	constructor(name: string) {
-		this.name= name;
+		this.name = name;
 	}
 
-	onInitialize(): void { return; }
-	onCursorPositionChanged(newPosition: lool.SimpleRectangle): void { return; }
-	onCellAddressChanged(): void { return; }
-	onMouseMove(point: lool.SimplePoint, dragDistance: Array<number>, e: MouseEvent): void { return; }
-	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void { return; }
-	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onInitialize(): void {
+		return;
+	}
+	onCursorPositionChanged(newPosition: lool.SimpleRectangle): void {
+		return;
+	}
+	onCellAddressChanged(): void {
+		return;
+	}
+	onMouseMove(
+		point: lool.SimplePoint,
+		dragDistance: Array<number>,
+		e: MouseEvent,
+	): void {
+		return;
+	}
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
 
 	setShowSection(show: boolean): void {
 		this.showSection = show;
 
-		if (this.onSectionShowStatusChange)
-			this.onSectionShowStatusChange();
+		if (this.onSectionShowStatusChange) this.onSectionShowStatusChange();
 
-		if (this.containerObject) { // Is section added to container.
-			this.isVisible = this.containerObject.isDocumentObjectVisible(this);
+		if (this.containerObject) {
+			// Is section added to container.
+			this.isVisible =
+				this.containerObject.isDocumentObjectVisible(this);
 			this.onDocumentObjectVisibilityChange();
 		}
 
@@ -65,29 +82,77 @@ class CanvasSectionObject {
 		}
 	}
 
-	onSectionShowStatusChange(): void { return; } /// Called when setShowSection is called.
+	onSectionShowStatusChange(): void {
+		return;
+	} /// Called when setShowSection is called.
 
 	isSectionShown(): boolean {
 		return this.showSection;
 	}
 
-	onDocumentObjectVisibilityChange(): void { return; }
-	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void { return; }
-	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void { return; }
-	onClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
-	onDoubleClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
-	onContextMenu(e?: MouseEvent): void { return; }
-	onMouseWheel(point: lool.SimplePoint, delta: Array<number>, e: WheelEvent): void { return; }
-	onMultiTouchStart(e: TouchEvent): void { return; }
-	onMultiTouchMove(point: lool.SimplePoint, dragDistance: number, e: TouchEvent): void { return; }
-	onMultiTouchEnd(e: TouchEvent): void { return; }
-	onResize(): void { return; }
-	onDraw(frameCount?: number, elapsedTime?: number): void { return; }
-	onDrawArea(area?: lool.Bounds, paneTopLeft?: lool.Point, canvasContext?: CanvasRenderingContext2D): void { return; } // area is the area to be painted using canvasContext.
-	onAnimate(frameCount: number, elapsedTime: number): void { return; }
-	onAnimationEnded(frameCount: number, elapsedTime: number): void { return; } // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
-	onNewDocumentTopLeft(): void { return; }
-	onRemove(): void { return; } // This Function is called right before section is removed.
+	onDocumentObjectVisibilityChange(): void {
+		return;
+	}
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
+	onClick(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
+	onDoubleClick(point: lool.SimplePoint, e: MouseEvent): void {
+		return;
+	}
+	onContextMenu(e?: MouseEvent): void {
+		return;
+	}
+	onMouseWheel(
+		point: lool.SimplePoint,
+		delta: Array<number>,
+		e: WheelEvent,
+	): void {
+		return;
+	}
+	onMultiTouchStart(e: TouchEvent): void {
+		return;
+	}
+	onMultiTouchMove(
+		point: lool.SimplePoint,
+		dragDistance: number,
+		e: TouchEvent,
+	): void {
+		return;
+	}
+	onMultiTouchEnd(e: TouchEvent): void {
+		return;
+	}
+	onResize(): void {
+		return;
+	}
+	onDraw(frameCount?: number, elapsedTime?: number): void {
+		return;
+	}
+	onDrawArea(
+		area?: lool.Bounds,
+		paneTopLeft?: lool.Point,
+		canvasContext?: CanvasRenderingContext2D,
+	): void {
+		return;
+	} // area is the area to be painted using canvasContext.
+	onAnimate(frameCount: number, elapsedTime: number): void {
+		return;
+	}
+	onAnimationEnded(frameCount: number, elapsedTime: number): void {
+		return;
+	} // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
+	onNewDocumentTopLeft(): void {
+		return;
+	}
+	onRemove(): void {
+		return;
+	} // This Function is called right before section is removed.
 
 	setDrawingOrder(drawingOrder: number): void {
 		this.drawingOrder = drawingOrder;
@@ -120,22 +185,23 @@ class CanvasSectionObject {
 	}
 
 	getTestDiv(): HTMLDivElement {
-		var element: HTMLDivElement = <HTMLDivElement>document.getElementById('test-div-' + this.name);
-		if (element)
-			return element;
+		var element: HTMLDivElement = <HTMLDivElement>(
+			document.getElementById('test-div-' + this.name)
+		);
+		if (element) return element;
 
 		return null;
 	}
 
 	// Document objects only.
 	setPosition(x: number, y: number): void {
-		if (this.documentObject !== true || !this.containerObject)
-			return;
+		if (this.documentObject !== true || !this.containerObject) return;
 
 		x = Math.round(x);
 		y = Math.round(y);
 		let sectionXcoord = x;
-		const positionAddition = app.activeDocument.activeView.viewedRectangle.clone();
+		const positionAddition =
+			app.activeDocument.activeView.viewedRectangle.clone();
 
 		if (this.isCalcRTL()) {
 			// the document coordinates are not always in sync(fixing that is non-trivial!), so use the latest from map.
@@ -147,11 +213,16 @@ class CanvasSectionObject {
 		if (app.isXOrdinateInFrozenPane(sectionXcoord))
 			positionAddition.pX1 = 0;
 
-		if (app.isYOrdinateInFrozenPane(y))
-			positionAddition.pY1 = 0;
+		if (app.isYOrdinateInFrozenPane(y)) positionAddition.pY1 = 0;
 
-		this.myTopLeft[0] = this.containerObject.getDocumentAnchor()[0] + sectionXcoord - positionAddition.pX1;
-		this.myTopLeft[1] = this.containerObject.getDocumentAnchor()[1] + y - positionAddition.pY1;
+		this.myTopLeft[0] =
+			this.containerObject.getDocumentAnchor()[0] +
+			sectionXcoord -
+			positionAddition.pX1;
+		this.myTopLeft[1] =
+			this.containerObject.getDocumentAnchor()[1] +
+			y -
+			positionAddition.pY1;
 
 		this.position[0] = sectionXcoord;
 		this.position[1] = y;
@@ -166,26 +237,66 @@ class CanvasSectionObject {
 	}
 
 	// All below functions should be included in their respective section definitions (or other classes), not here.
-	isCalcRTL(): boolean { return; }
-	setViewResolved(on: boolean): void { return; }
-	setView(on: boolean): void { return; }
-	scrollVerticalWithOffset(offset: number): void { return; }
-	remove(id: string): void { return; }
-	deleteThis(): void { return; }
-	getActiveEdit(): any { return; }
-	isMobileCommentActive(): boolean { return false; }
-	getMobileCommentModalId(): string { return ''; }
-	rejectAllTrackedCommentChanges(): void { return; }
-	removeHighlighters(): void { return; }
-	showUsernamePopUp(): void { return; }
-	_selectColumn (colNumber: number, modifier: number): void { return; }
-	_selectRow (row: number, modifier: number): void { return; }
-	insertColumnBefore (index: number): void { return; }
-	insertRowAbove (index: number): void { return; }
-	deleteColumn (index: number): void { return; }
-	deleteRow (index: number): void { return; }
-	resetStrokeStyle(): void { return; }
-	hasAnyComments(): boolean { return false; }
+	isCalcRTL(): boolean {
+		return;
+	}
+	setViewResolved(on: boolean): void {
+		return;
+	}
+	setView(on: boolean): void {
+		return;
+	}
+	scrollVerticalWithOffset(offset: number): void {
+		return;
+	}
+	remove(id: string): void {
+		return;
+	}
+	deleteThis(): void {
+		return;
+	}
+	getActiveEdit(): any {
+		return;
+	}
+	isMobileCommentActive(): boolean {
+		return false;
+	}
+	getMobileCommentModalId(): string {
+		return '';
+	}
+	rejectAllTrackedCommentChanges(): void {
+		return;
+	}
+	removeHighlighters(): void {
+		return;
+	}
+	showUsernamePopUp(): void {
+		return;
+	}
+	_selectColumn(colNumber: number, modifier: number): void {
+		return;
+	}
+	_selectRow(row: number, modifier: number): void {
+		return;
+	}
+	insertColumnBefore(index: number): void {
+		return;
+	}
+	insertRowAbove(index: number): void {
+		return;
+	}
+	deleteColumn(index: number): void {
+		return;
+	}
+	deleteRow(index: number): void {
+		return;
+	}
+	resetStrokeStyle(): void {
+		return;
+	}
+	hasAnyComments(): boolean {
+		return false;
+	}
 
 	public getLineWidth(): number {
 		if (app.dpiScale > 1.0) {

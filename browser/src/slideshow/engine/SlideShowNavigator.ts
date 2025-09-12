@@ -400,7 +400,8 @@ class SlideShowNavigator {
 						videoInfoId: videoInfo.id,
 					};
 					app.socket.sendMessage(
-						'slideshowfollow followvideo ' + JSON.stringify(parameters),
+						'slideshowfollow followvideo ' +
+							JSON.stringify(parameters),
 					);
 				}
 				const video = this.presenter.getVideoRenderer(
@@ -417,11 +418,16 @@ class SlideShowNavigator {
 	}
 
 	followVideo(info: any) {
-		const slideInfo = this.theMetaPres.getSlideInfoByIndex(info.currentSlide);
+		const slideInfo = this.theMetaPres.getSlideInfoByIndex(
+			info.currentSlide,
+		);
 		const videoInfo = slideInfo.videos.find(
 			(videoInfo) => info.videoInfoId === videoInfo.id,
 		);
-		const video = this.presenter.getVideoRenderer(slideInfo.hash, videoInfo);
+		const video = this.presenter.getVideoRenderer(
+			slideInfo.hash,
+			videoInfo,
+		);
 		video.handleClick();
 	}
 

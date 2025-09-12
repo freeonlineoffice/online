@@ -7,10 +7,8 @@
 L.Class = function () {};
 
 L.Class.extend = function (props) {
-
 	// extended class with the new prototype
 	var NewClass = function () {
-
 		// call the constructor
 		if (this.initialize) {
 			this.initialize.apply(this, arguments);
@@ -20,7 +18,7 @@ L.Class.extend = function (props) {
 		this.callInitHooks();
 	};
 
-	var parentProto = NewClass.__super__ = this.prototype;
+	var parentProto = (NewClass.__super__ = this.prototype);
 
 	var proto = L.Util.create(parentProto);
 	proto.constructor = NewClass;
@@ -29,7 +27,10 @@ L.Class.extend = function (props) {
 
 	// inherit parent's statics
 	for (var i in this) {
-		if (Object.prototype.hasOwnProperty.call(this, i) && i !== 'prototype') {
+		if (
+			Object.prototype.hasOwnProperty.call(this, i) &&
+			i !== 'prototype'
+		) {
 			NewClass[i] = this[i];
 		}
 	}
@@ -48,7 +49,10 @@ L.Class.extend = function (props) {
 
 	// merge options
 	if (proto.options) {
-		props.options = L.Util.extend(L.Util.create(proto.options), props.options);
+		props.options = L.Util.extend(
+			L.Util.create(proto.options),
+			props.options,
+		);
 	}
 
 	// mix given properties into the prototype
@@ -58,8 +62,9 @@ L.Class.extend = function (props) {
 
 	// add method for calling all hooks
 	proto.callInitHooks = function () {
-
-		if (this._initHooksCalled) { return; }
+		if (this._initHooksCalled) {
+			return;
+		}
 
 		if (parentProto.callInitHooks) {
 			parentProto.callInitHooks.call(this);
@@ -75,7 +80,6 @@ L.Class.extend = function (props) {
 	return NewClass;
 };
 
-
 // method for adding properties to prototype
 L.Class.include = function (props) {
 	L.extend(this.prototype, props);
@@ -87,12 +91,16 @@ L.Class.mergeOptions = function (options) {
 };
 
 // add a constructor hook
-L.Class.addInitHook = function (fn) { // (Function) || (String, args...)
+L.Class.addInitHook = function (fn) {
+	// (Function) || (String, args...)
 	var args = Array.prototype.slice.call(arguments, 1);
 
-	var init = typeof fn === 'function' ? fn : function () {
-		this[fn].apply(this, args);
-	};
+	var init =
+		typeof fn === 'function'
+			? fn
+			: function () {
+					this[fn].apply(this, args);
+				};
 
 	this.prototype._initHooks = this.prototype._initHooks || [];
 	this.prototype._initHooks.push(init);

@@ -37,13 +37,14 @@ class OverlayTransform {
 		// 'scale first then translation' model.
 		return new lool.Point(
 			point.x * this.scaleAmount.x - this.translationAmount.x,
-			point.y * this.scaleAmount.y - this.translationAmount.y);
+			point.y * this.scaleAmount.y - this.translationAmount.y,
+		);
 	}
 
 	applyToBounds(bounds: lool.Bounds): lool.Bounds {
 		return new lool.Bounds(
 			this.applyToPoint(bounds.min),
-			this.applyToPoint(bounds.max)
+			this.applyToPoint(bounds.max),
 		);
 	}
 }
@@ -137,20 +138,20 @@ class CanvasOverlay extends CanvasSectionObject {
 		var splitPos = this.tsManager.getSplitPos();
 		if (this.isCalcRTL()) {
 			// Mirror the mouse position in overlay section coordinates.
-			mousePos.x = overlaySectionBounds.max.x - overlaySectionBounds.min.x - mousePos.x;
+			mousePos.x =
+				overlaySectionBounds.max.x -
+				overlaySectionBounds.min.x -
+				mousePos.x;
 		}
 
 		// overlay section coordinates -> document coordinates
-		if (mousePos.x > splitPos.x)
-			mousePos.x += overlaySectionBounds.min.x;
-		if (mousePos.y > splitPos.y)
-			mousePos.y += overlaySectionBounds.min.y;
+		if (mousePos.x > splitPos.x) mousePos.x += overlaySectionBounds.min.x;
+		if (mousePos.y > splitPos.y) mousePos.y += overlaySectionBounds.min.y;
 
-		this.paths.forEach(function (path:CPath) {
+		this.paths.forEach(function (path: CPath) {
 			var pathBounds = path.getBounds();
 
-			if (!pathBounds.isValid())
-				return;
+			if (!pathBounds.isValid()) return;
 
 			var mouseOverPath = pathBounds.contains(mousePos);
 			if (mouseOverPath && !path.isUnderMouse()) {
@@ -176,9 +177,11 @@ class CanvasOverlay extends CanvasSectionObject {
 	}
 
 	initPathGroup(pathGroup: CPathGroup) {
-		pathGroup.forEach(function (path: CPath) {
-			this.initPath(path);
-		}.bind(this));
+		pathGroup.forEach(
+			function (path: CPath) {
+				this.initPath(path);
+			}.bind(this),
+		);
 	}
 
 	removePath(path: CPath) {
@@ -189,9 +192,11 @@ class CanvasOverlay extends CanvasSectionObject {
 	}
 
 	removePathGroup(pathGroup: CPathGroup) {
-		pathGroup.forEach(function (path: CPath) {
-			this.removePath(path);
-		}.bind(this));
+		pathGroup.forEach(
+			function (path: CPath) {
+				this.removePath(path);
+			}.bind(this),
+		);
 	}
 
 	updatePath(path: CPath, oldBounds: lool.Bounds) {
@@ -212,15 +217,16 @@ class CanvasOverlay extends CanvasSectionObject {
 
 	private isPathVisible(path: CPath): boolean {
 		var pathBounds = path.getBounds();
-		if (!pathBounds.isValid())
-			return false;
+		if (!pathBounds.isValid()) return false;
 		return this.intersectsVisible(pathBounds);
 	}
 
 	private intersectsVisible(queryBounds: lool.Bounds): boolean {
 		this.updateCanvasBounds();
 		var spc = this.getSplitPanesContext();
-		return spc ? spc.intersectsVisible(queryBounds) : this.bounds.intersects(queryBounds);
+		return spc
+			? spc.intersectsVisible(queryBounds)
+			: this.bounds.intersects(queryBounds);
 	}
 
 	private static renderOrderComparator(a: CPath, b: CPath): number {
@@ -228,19 +234,15 @@ class CanvasOverlay extends CanvasSectionObject {
 			// Both are 'own' / 'self' paths.
 
 			// Both paths are part of the same group, use their zindex to break the tie.
-			if (a.groupType === b.groupType)
-				return a.zIndex - b.zIndex;
+			if (a.groupType === b.groupType) return a.zIndex - b.zIndex;
 
 			return a.groupType - b.groupType;
-
 		} else if (a.viewId === -1) {
 			// a is an 'own' path and b is not => draw a on top of b.
 			return 1;
-
 		} else if (b.viewId === -1) {
 			// b is an 'own' path and a is not => draw b on top of a.
 			return -1;
-
 		}
 
 		// Both a and b belong to other views.
@@ -249,11 +251,9 @@ class CanvasOverlay extends CanvasSectionObject {
 			// Both belong to the same view.
 
 			// Both paths are part of the same group, use their zindex to break the tie.
-			if (a.groupType === b.groupType)
-				return a.zIndex - b.zIndex;
+			if (a.groupType === b.groupType) return a.zIndex - b.zIndex;
 
 			return a.groupType - b.groupType;
-
 		}
 
 		// a and b belong to different views.
@@ -275,8 +275,7 @@ class CanvasOverlay extends CanvasSectionObject {
 		orderedPaths.sort(CanvasOverlay.renderOrderComparator);
 
 		orderedPaths.forEach((path: CPath) => {
-			if (this.isPathVisible(path))
-				path.updatePathAllPanes(paintArea);
+			if (this.isPathVisible(path)) path.updatePathAllPanes(paintArea);
 		}, this);
 	}
 
@@ -286,7 +285,10 @@ class CanvasOverlay extends CanvasSectionObject {
 			return;
 		}
 
-		if (!this.isPathVisible(path) && (!oldBounds.isValid() || !this.intersectsVisible(oldBounds)))
+		if (
+			!this.isPathVisible(path) &&
+			(!oldBounds.isValid() || !this.intersectsVisible(oldBounds))
+		)
 			return;
 		// This does not get called via onDraw(ie, tiles aren't painted), so ask tileSection to "erase" by painting over.
 		// Repainting the whole canvas is not necessary but finding the minimum area to paint over
@@ -298,7 +300,10 @@ class CanvasOverlay extends CanvasSectionObject {
 
 	private updateCanvasBounds() {
 		var viewBounds: any = this.map.getPixelBoundsCore();
-		this.bounds = new lool.Bounds(new lool.Point(viewBounds.min.x, viewBounds.min.y), new lool.Point(viewBounds.max.x, viewBounds.max.y));
+		this.bounds = new lool.Bounds(
+			new lool.Point(viewBounds.min.x, viewBounds.min.y),
+			new lool.Point(viewBounds.max.x, viewBounds.max.y),
+		);
 	}
 
 	getBounds(): lool.Bounds {
@@ -307,17 +312,24 @@ class CanvasOverlay extends CanvasSectionObject {
 	}
 
 	// Applies canvas translation so that polygons/circles can be drawn using core-pixel coordinates.
-	private ctStart(clipArea?: lool.Bounds, paneBounds?: lool.Bounds, fixed?: boolean, freezePane?: { freezeX: boolean, freezeY: boolean }) {
+	private ctStart(
+		clipArea?: lool.Bounds,
+		paneBounds?: lool.Bounds,
+		fixed?: boolean,
+		freezePane?: { freezeX: boolean; freezeY: boolean },
+	) {
 		this.updateCanvasBounds();
 		this.transformList.reset();
 		this.ctx.save();
 
-		if (!paneBounds)
-			paneBounds = this.bounds.clone();
+		if (!paneBounds) paneBounds = this.bounds.clone();
 
 		const transform = new OverlayTransform();
 
-		const { freezeX, freezeY } = freezePane ?? { freezeX: false, freezeY: false };
+		const { freezeX, freezeY } = freezePane ?? {
+			freezeX: false,
+			freezeY: false,
+		};
 
 		if (this.tsManager._inZoomAnim && !fixed) {
 			// zoom-animation is in progress : so draw overlay on main canvas
@@ -333,10 +345,13 @@ class CanvasOverlay extends CanvasSectionObject {
 				{ freezeX, freezeY },
 				splitPos,
 				scale,
-				false /* findFreePaneCenter? */
+				false /* findFreePaneCenter? */,
 			);
 
-			const clipTopLeft = new lool.Point(docPos.topLeft.x, docPos.topLeft.y);
+			const clipTopLeft = new lool.Point(
+				docPos.topLeft.x,
+				docPos.topLeft.y,
+			);
 
 			// Original pane size.
 			var paneSize = paneBounds.getSize();
@@ -344,54 +359,66 @@ class CanvasOverlay extends CanvasSectionObject {
 			if (!freezeX) {
 				// Pane's "free" size will shrink(expand) as we zoom in(out)
 				// respectively because fixed pane size expand(shrink).
-				clipSize.x = (paneSize.x - splitPos.x * (scale - 1)) / scale;
+				clipSize.x =
+					(paneSize.x - splitPos.x * (scale - 1)) / scale;
 
 				docPos.topLeft.x -= splitPos.x;
 			}
 			if (!freezeY) {
 				// See comment regarding pane width above.
-				clipSize.y = (paneSize.y - splitPos.y * (scale - 1)) / scale;
+				clipSize.y =
+					(paneSize.y - splitPos.y * (scale - 1)) / scale;
 
 				docPos.topLeft.y -= splitPos.y;
 			}
 			// Force clip area to the zoom frame area of the pane specified.
 			clipArea = new lool.Bounds(
 				clipTopLeft,
-				clipTopLeft.add(clipSize));
+				clipTopLeft.add(clipSize),
+			);
 
 			transform.scale(scale, scale);
-			transform.translate(scale * docPos.topLeft.x, scale * docPos.topLeft.y);
-
+			transform.translate(
+				scale * docPos.topLeft.x,
+				scale * docPos.topLeft.y,
+			);
 		} else if (this.tsManager._inZoomAnim && fixed) {
-
 			var scale = this.tsManager._zoomFrameScale;
 			transform.scale(scale, scale);
 
 			if (clipArea) {
 				clipArea = new lool.Bounds(
 					clipArea.min.divideBy(scale),
-					clipArea.max.divideBy(scale)
+					clipArea.max.divideBy(scale),
 				);
 			}
-
 		} else {
 			transform.translate(
 				paneBounds.min.x ? this.bounds.min.x : 0,
-				paneBounds.min.y ? this.bounds.min.y : 0);
+				paneBounds.min.y ? this.bounds.min.y : 0,
+			);
 		}
 
 		this.transformList.add(transform);
 		if (this.isCalcRTL()) {
 			const sectionWidth = this.size[0];
 			// Apply horizontal flip transformation.
-			this.transformList.addNew(new lool.Point(-sectionWidth, 0), new lool.Point(-1, 1));
+			this.transformList.addNew(
+				new lool.Point(-sectionWidth, 0),
+				new lool.Point(-1, 1),
+			);
 		}
 
 		if (clipArea) {
 			this.ctx.beginPath();
 			clipArea = this.transformList.applyToBounds(clipArea);
 			var clipSize = clipArea.getSize();
-			this.ctx.rect(clipArea.min.x, clipArea.min.y, clipSize.x, clipSize.y);
+			this.ctx.rect(
+				clipArea.min.x,
+				clipArea.min.y,
+				clipSize.x,
+				clipSize.y,
+			);
 			this.ctx.clip();
 		}
 	}
@@ -401,7 +428,13 @@ class CanvasOverlay extends CanvasSectionObject {
 		this.ctx.restore();
 	}
 
-	updatePoly(path: CPath, closed: boolean = false, clipArea?: lool.Bounds, paneBounds?: lool.Bounds, freezePane?: { freezeX: boolean, freezeY: boolean }) {
+	updatePoly(
+		path: CPath,
+		closed: boolean = false,
+		clipArea?: lool.Bounds,
+		paneBounds?: lool.Bounds,
+		freezePane?: { freezeX: boolean; freezeY: boolean },
+	) {
 		var i: number;
 		var j: number;
 		var len2: number;
@@ -409,8 +442,7 @@ class CanvasOverlay extends CanvasSectionObject {
 		var parts = path.getParts();
 		var len: number = parts.length;
 
-		if (!len)
-			return;
+		if (!len) return;
 
 		this.ctStart(clipArea, paneBounds, path.fixed, freezePane);
 		this.ctx.beginPath();
@@ -430,9 +462,13 @@ class CanvasOverlay extends CanvasSectionObject {
 		this.ctEnd();
 	}
 
-	updateCircle(path: CPath, clipArea?: lool.Bounds, paneBounds?: lool.Bounds, freezePane?: { freezeX: boolean, freezeY: boolean }) {
-		if (path.empty())
-			return;
+	updateCircle(
+		path: CPath,
+		clipArea?: lool.Bounds,
+		paneBounds?: lool.Bounds,
+		freezePane?: { freezeX: boolean; freezeY: boolean },
+	) {
+		if (path.empty()) return;
 
 		this.ctStart(clipArea, paneBounds, path.fixed, freezePane);
 
@@ -474,7 +510,6 @@ class CanvasOverlay extends CanvasSectionObject {
 			this.ctx.lineJoin = path.lineJoin;
 			this.ctx.stroke();
 		}
-
 	}
 
 	bringToFront(path: CPath) {

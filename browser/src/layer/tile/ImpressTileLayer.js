@@ -5,7 +5,6 @@
 /* global app $ L lool TileManager */
 
 L.ImpressTileLayer = L.CanvasTileLayer.extend({
-
 	initialize: function (options) {
 		L.CanvasTileLayer.prototype.initialize.call(this, options);
 		// If this is mobile view, we we'll change the layout position of 'presentation-controls-wrapper'.
@@ -17,21 +16,21 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
 		if (window.mode.isMobile()) {
 			this._addButton = L.control.mobileSlide();
-			L.DomUtil.addClass(L.DomUtil.get('mobile-edit-button'), 'impress');
+			L.DomUtil.addClass(
+				L.DomUtil.get('mobile-edit-button'),
+				'impress',
+			);
 		}
 		this._spaceBetweenParts = 300; // In twips. This is used when all parts of an Impress or Draw document is shown in one view (like a Writer file). This mode is used when document is read only.
 
 		// app.file variable should exist, this is a precaution.
-		if (!app.file)
-			app.file = {};
+		if (!app.file) app.file = {};
 
 		// Before this instance is created, app.file.readOnly and app.file.editComments variables are set.
 		// If document is on read only mode, we will draw all parts at once.
 		// Let's call default view the "part based view" and new view the "file based view".
-		if (app.file.readOnly)
-			app.file.fileBasedView = true;
-		else
-			app.file.partBasedView = true; // For Writer and Calc, this one should always be "true".
+		if (app.file.readOnly) app.file.fileBasedView = true;
+		else app.file.partBasedView = true; // For Writer and Calc, this one should always be "true".
 
 		this._partHeightTwips = 0; // Single part's height.
 		this._partWidthTwips = 0; // Single part's width. These values are equal to app.activeDocument.fileSize.x & app.activeDocument.fileSize.y when app.file.partBasedView is true.
@@ -49,19 +48,23 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
 		const newContext = e.detail.context;
 		const oldContext = e.detail.oldContext;
-		const isDrawOrNotesPage = ['DrawPage', 'NotesPage'].includes(newContext);
+		const isDrawOrNotesPage = ['DrawPage', 'NotesPage'].includes(
+			newContext,
+		);
 
 		if (isDrawOrNotesPage)
 			app.impress.notesMode = newContext === 'NotesPage';
 
-		if (app.map.uiManager.getCurrentMode() === 'notebookbar' && isDrawOrNotesPage) {
+		if (
+			app.map.uiManager.getCurrentMode() === 'notebookbar' &&
+			isDrawOrNotesPage
+		) {
 			const targetElement = document.getElementById('notesmode');
 			if (!targetElement) return;
 
 			if (newContext === 'NotesPage')
 				targetElement.classList.add('selected');
-			else
-				targetElement.classList.remove('selected');
+			else targetElement.classList.remove('selected');
 		}
 
 		if (isDrawOrNotesPage) {
@@ -77,15 +80,19 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	_isPCWInsideFlex: function () {
-		var PCW = document.getElementById('main-document-content').querySelector('#presentation-controls-wrapper');
-		return PCW ? true: false;
+		var PCW = document
+			.getElementById('main-document-content')
+			.querySelector('#presentation-controls-wrapper');
+		return PCW ? true : false;
 	},
 
 	_putPCWOutsideFlex: function () {
 		if (this._isPCWInsideFlex()) {
-			var pcw = document.getElementById('presentation-controls-wrapper');
+			var pcw = document.getElementById(
+				'presentation-controls-wrapper',
+			);
 			if (pcw && pcw.parentNode) {
-				pcw.parentNode.removeChild(pcw);  // Remove from its actual parent
+				pcw.parentNode.removeChild(pcw); // Remove from its actual parent
 				var frc = document.getElementById('main-document-content');
 				frc.parentNode.insertBefore(pcw, frc.nextSibling);
 			}
@@ -94,27 +101,50 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
 	_putPCWInsideFlex: function () {
 		if (!this._isPCWInsideFlex()) {
-			var pcw = document.getElementById('presentation-controls-wrapper');
+			var pcw = document.getElementById(
+				'presentation-controls-wrapper',
+			);
 			if (pcw) {
 				var frc = document.getElementById('main-document-content');
 				document.body.removeChild(pcw);
 
-				document.getElementById('document-container').parentNode.insertBefore(pcw, frc.children[0]);
+				document
+					.getElementById('document-container')
+					.parentNode.insertBefore(pcw, frc.children[0]);
 			}
 		}
 	},
 
 	newAnnotation: function (commentData) {
-		commentData.anchorPos = [app.activeDocument.activeView.viewedRectangle.x1, app.activeDocument.activeView.viewedRectangle.y1];
-		commentData.rectangle = [app.activeDocument.activeView.viewedRectangle.x1, app.activeDocument.activeView.viewedRectangle.y1, 566, 566];
+		commentData.anchorPos = [
+			app.activeDocument.activeView.viewedRectangle.x1,
+			app.activeDocument.activeView.viewedRectangle.y1,
+		];
+		commentData.rectangle = [
+			app.activeDocument.activeView.viewedRectangle.x1,
+			app.activeDocument.activeView.viewedRectangle.y1,
+			566,
+			566,
+		];
 
 		commentData.parthash = app.impress.partList[this._selectedPart].hash;
 
 		const name = lool.Comment.makeName(commentData);
-		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(L.CSections.CommentList.name));
+		const comment = new lool.Comment(
+			name,
+			commentData,
+			{},
+			app.sectionContainer.getSectionWithName(
+				L.CSections.CommentList.name,
+			),
+		);
 
-		var annotation = app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).add(comment);
-		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).modify(annotation);
+		var annotation = app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.add(comment);
+		app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.modify(annotation);
 	},
 
 	beforeAdd: function (map) {
@@ -123,14 +153,17 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		map.on('updateparts', this.onUpdateParts, this);
 		app.events.on('updatepermission', this.onUpdatePermission.bind(this));
 
-		if (!map._docPreviews)
-			map._docPreviews = {};
+		if (!map._docPreviews) map._docPreviews = {};
 
 		map.uiManager.initializeSpecializedUI(this._docType);
 	},
 
 	onResizeImpress: function () {
-		L.DomUtil.updateElementsOrientation(['presentation-controls-wrapper', 'document-container', 'slide-sorter']);
+		L.DomUtil.updateElementsOrientation([
+			'presentation-controls-wrapper',
+			'document-container',
+			'slide-sorter',
+		]);
 
 		var mobileEditButton = document.getElementById('mobile-edit-button');
 
@@ -139,19 +172,21 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 				this._putPCWOutsideFlex();
 				if (mobileEditButton)
 					mobileEditButton.classList.add('portrait');
-			}
-			else {
+			} else {
 				this._putPCWInsideFlex();
 				if (mobileEditButton)
 					mobileEditButton.classList.remove('portrait');
 			}
-		}
-		else {
-			var container = L.DomUtil.get('main-document-content');// consider height of document area to calculate estimated height for slide-sorter
+		} else {
+			var container = L.DomUtil.get('main-document-content'); // consider height of document area to calculate estimated height for slide-sorter
 			var slideSorter = L.DomUtil.get('slide-sorter');
-			var navigationOptions = L.DomUtil.get('navigation-options-wrapper');
+			var navigationOptions = L.DomUtil.get(
+				'navigation-options-wrapper',
+			);
 			if (container && slideSorter && toolbar) {
-				$(slideSorter).height($(container).height() - $(navigationOptions).height());
+				$(slideSorter).height(
+					$(container).height() - $(navigationOptions).height(),
+				);
 			}
 		}
 	},
@@ -160,15 +195,18 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		clearTimeout(this._previewInvalidator);
 	},
 
-	_openMobileWizard: function(data) {
+	_openMobileWizard: function (data) {
 		L.CanvasTileLayer.prototype._openMobileWizard.call(this, data);
 	},
 
 	onUpdateParts: function () {
-		if (this._map.uiManager.isAnyDialogOpen()) // Need this check else dialog loses focus
+		if (this._map.uiManager.isAnyDialogOpen())
+			// Need this check else dialog loses focus
 			return;
 
-		app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).onPartChange();
+		app.sectionContainer
+			.getSectionWithName(L.CSections.CommentList.name)
+			.onPartChange();
 	},
 
 	onUpdatePermission: function (e) {
@@ -194,9 +232,14 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (values.comments) {
-			app.sectionContainer.getSectionWithName(L.CSections.CommentList.name).importComments(values.comments);
+			app.sectionContainer
+				.getSectionWithName(L.CSections.CommentList.name)
+				.importComments(values.comments);
 		} else {
-			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(this, textMsg);
+			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
+				this,
+				textMsg,
+			);
 		}
 	},
 
@@ -205,59 +248,104 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		if (part !== this._selectedPart) {
 			this._map.deselectAll(); // Deselect all first. This is a single selection.
 			this._map.setPart(part, true);
-			this._map.fire('setpart', {selectedPart: this._selectedPart});
+			this._map.fire('setpart', { selectedPart: this._selectedPart });
 		}
 	},
 
 	_onStatusMsg: function (textMsg) {
-		const statusJSON = JSON.parse(textMsg.replace('status:', '').replace('statusupdate:', ''));
+		const statusJSON = JSON.parse(
+			textMsg.replace('status:', '').replace('statusupdate:', ''),
+		);
 
 		// Since we have two status commands, remove them so we store and compare payloads only.
 		textMsg = textMsg.replace('status: ', '');
 		textMsg = textMsg.replace('statusupdate: ', '');
-		if (statusJSON.width && statusJSON.height && this._documentInfo !== textMsg) {
-			app.activeDocument.fileSize = new lool.SimplePoint(statusJSON.width, statusJSON.height);
+		if (
+			statusJSON.width &&
+			statusJSON.height &&
+			this._documentInfo !== textMsg
+		) {
+			app.activeDocument.fileSize = new lool.SimplePoint(
+				statusJSON.width,
+				statusJSON.height,
+			);
 
 			this._docType = statusJSON.type;
 			if (this._docType === 'drawing') {
-				L.DomUtil.addClass(L.DomUtil.get('presentation-controls-wrapper'), 'drawing');
+				L.DomUtil.addClass(
+					L.DomUtil.get('presentation-controls-wrapper'),
+					'drawing',
+				);
 			}
 			this._parts = statusJSON.partscount;
 			this._partHeightTwips = app.activeDocument.fileSize.y;
 			this._partWidthTwips = app.activeDocument.fileSize.x;
 
 			if (app.file.fileBasedView) {
-				var totalHeight = this._parts * app.activeDocument.fileSize.y; // Total height in twips.
-				totalHeight += (this._parts) * this._spaceBetweenParts; // Space between parts.
+				var totalHeight =
+					this._parts * app.activeDocument.fileSize.y; // Total height in twips.
+				totalHeight += this._parts * this._spaceBetweenParts; // Space between parts.
 				app.activeDocument.fileSize.y = totalHeight;
 			}
 
-			app.activeDocument.activeView.viewSize = app.activeDocument.fileSize.clone();
+			app.activeDocument.activeView.viewSize =
+				app.activeDocument.fileSize.clone();
 
 			app.impress.partList = Object.assign([], statusJSON.parts);
 
 			this._updateMaxBounds(true);
 
 			this._viewId = statusJSON.viewid;
-			console.assert(this._viewId >= 0, 'Incorrect viewId received: ' + this._viewId);
+			console.assert(
+				this._viewId >= 0,
+				'Incorrect viewId received: ' + this._viewId,
+			);
 			if (app.socket._reconnecting) {
-				app.socket.sendMessage('setclientpart part=' + this._selectedPart);
+				app.socket.sendMessage(
+					'setclientpart part=' + this._selectedPart,
+				);
 			} else {
 				this._selectedPart = statusJSON.selectedpart;
 			}
 
-			this._selectedMode = (statusJSON.mode !== undefined) ? statusJSON.mode : (statusJSON.parts.length > 0 && statusJSON.parts[0].mode !== undefined ? statusJSON.parts[0].mode : 0);
-			this._map.fire('impressmodechanged', {mode: this._selectedMode});
+			this._selectedMode =
+				statusJSON.mode !== undefined
+					? statusJSON.mode
+					: statusJSON.parts.length > 0 &&
+						  statusJSON.parts[0].mode !== undefined
+						? statusJSON.parts[0].mode
+						: 0;
+			this._map.fire('impressmodechanged', {
+				mode: this._selectedMode,
+			});
 
 			if (statusJSON.gridSnapEnabled === true)
-				app.map.stateChangeHandler.setItemValue('.uno:GridUse', 'true');
-			else if (statusJSON.parts.length > 0 && statusJSON.parts[0].gridSnapEnabled === true)
-				app.map.stateChangeHandler.setItemValue('.uno:GridUse', 'true');
+				app.map.stateChangeHandler.setItemValue(
+					'.uno:GridUse',
+					'true',
+				);
+			else if (
+				statusJSON.parts.length > 0 &&
+				statusJSON.parts[0].gridSnapEnabled === true
+			)
+				app.map.stateChangeHandler.setItemValue(
+					'.uno:GridUse',
+					'true',
+				);
 
 			if (statusJSON.gridVisible === true)
-				app.map.stateChangeHandler.setItemValue('.uno:GridVisible', 'true');
-			else if (statusJSON.parts.length > 0 && statusJSON.parts[0].gridVisible === true)
-				app.map.stateChangeHandler.setItemValue('.uno:GridVisible', 'true');
+				app.map.stateChangeHandler.setItemValue(
+					'.uno:GridVisible',
+					'true',
+				);
+			else if (
+				statusJSON.parts.length > 0 &&
+				statusJSON.parts[0].gridVisible === true
+			)
+				app.map.stateChangeHandler.setItemValue(
+					'.uno:GridVisible',
+					'true',
+				);
 
 			TileManager.resetPreFetching(true);
 
@@ -268,11 +356,12 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 			this._map.fire('updateparts', {});
 
 			if (refreshAnnotation)
-				app.socket.sendMessage('commandvalues command=.uno:ViewAnnotations');
+				app.socket.sendMessage(
+					'commandvalues command=.uno:ViewAnnotations',
+				);
 		}
 
-		if (app.file.fileBasedView)
-			TileManager.updateFileBasedView();
+		if (app.file.fileBasedView) TileManager.updateFileBasedView();
 
 		if (this.invalidatePreviewsUponContextChange === true) {
 			this._invalidateAllPreviews();
@@ -283,5 +372,5 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 	_invalidateAllPreviews: function () {
 		L.CanvasTileLayer.prototype._invalidateAllPreviews.call(this);
 		this._map.fire('invalidateparts');
-	}
+	},
 });
