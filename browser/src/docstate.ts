@@ -45,7 +45,7 @@ window.app = {
 	accessibilityState: false, // If accessibility was enabled by user
 	UI: {
 		language: {
-			fromURL: window.langParam, // This is set in global.js.
+			fromURL: (window as any).langParam, // This is set in global.js.
 			fromBrowser: L.Browser.lang, // Again in global.js.
 			notebookbarAccessibility: null,
 		},
@@ -81,7 +81,7 @@ window.app = {
 	tile: {
 		size: null, // SimplePoint.
 	},
-	socket: window.app.socket,
+	socket: (window as any).app.socket,
 	console: window.app.console,
 
 	// Below 2 are related to document. I guess we can move these into "file" property.
@@ -280,7 +280,7 @@ if (activateValidation) {
 	This first version only contains the logging of the changes.
 */
 	var validator = {
-		set: function (obj, prop, value) {
+		set: function (obj: any, prop: string, value: any) {
 			// The default behavior to store the value
 			obj[prop] = value;
 			console.log('window.app property changed: ' + prop, value);
