@@ -2092,13 +2092,8 @@ class CanvasSectionContainer {
 			// Count should always be an odd number. Because last variable will be used as a fallback to canvas's edges (top, bottom, right or left).
 			// See anchor explanation on top of this file.
 			// Correct example: ["header", "bottom", "top"] => Look for section "header", if found, use its bottom, if not found, use canvas's top.
-			if (section.anchor[index].length % 2 === 0) {
-				// eslint-disable-line no-lonely-if
-				console.error(
-					'Section: ' +
-						section.name +
-						'. Wrong anchor definition.',
-				);
+			if (section.anchor[index].length % 2 === 0) { // eslint-disable-line no-lonely-if
+				console.error('Section: ' + section.name + '. Wrong anchor definition.');
 				return 0;
 			} else {
 				var count: number = section.anchor[index].length;
@@ -2124,37 +2119,23 @@ class CanvasSectionContainer {
 								" It means that target section's (if zIndex is the same) processing order should be less or its zIndex should be less than this section.",
 						);
 						return 0;
-					} else {
-						if (targetEdge === 'top') {
-							// eslint-disable-line no-lonely-if
-							return (
-								targetSection.myTopLeft[1] -
-								app.roundedDpiScale
-							);
-						} else if (targetEdge === 'bottom') {
-							return (
-								targetSection.myTopLeft[1] +
-								targetSection.size[1] +
-								app.roundedDpiScale
-							);
-						} else if (targetEdge === 'left') {
-							return (
-								targetSection.myTopLeft[0] -
-								app.roundedDpiScale
-							);
-						} else if (targetEdge === 'right') {
-							return (
-								targetSection.myTopLeft[0] +
-								targetSection.size[0] +
-								app.roundedDpiScale
-							);
-						} else if (targetEdge === '-left') {
-							if (
-								section.expand[0] === 'left' &&
-								section.origSizeHint
-							) {
-								section.size[0] =
-									section.origSizeHint[0];
+					}
+					else {
+						if (targetEdge === 'top') { // eslint-disable-line no-lonely-if
+							return targetSection.myTopLeft[1] - app.roundedDpiScale;
+						}
+						else if (targetEdge === 'bottom') {
+							return targetSection.myTopLeft[1] + targetSection.size[1] + app.roundedDpiScale;
+						}
+						else if (targetEdge === 'left') {
+							return targetSection.myTopLeft[0] - app.roundedDpiScale;
+						}
+						else if (targetEdge === 'right') {
+							return targetSection.myTopLeft[0] + targetSection.size[0] + app.roundedDpiScale;
+						}
+						else if (targetEdge === '-left') {
+							if (section.expand[0] === 'left' && section.origSizeHint) {
+								section.size[0] = section.origSizeHint[0];
 							}
 							return (
 								targetSection.myTopLeft[0] -
