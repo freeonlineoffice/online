@@ -767,7 +767,7 @@ void HttpWhiteBoxTests::testGetFavicon()
     const std::string data = "GET /favicon.ico HTTP/1.1\r\n"
                              "Host: 127.0.0.1:9984\r\n"
                              "Date: Sat, 06 Sep 2025 12:37:58\r\n"
-                             "User-Agent: COOLWSD HTTP Agent 25.04.5.1\r\n"
+                             "User-Agent: LOOLWSD HTTP Agent 25.04.5.1\r\n"
                              "\r\n";
 
     http::RequestParser req;
@@ -775,7 +775,7 @@ void HttpWhiteBoxTests::testGetFavicon()
     LOK_ASSERT_EQUAL_STR(std::string(), req.getBody());
     LOK_ASSERT_EQUAL_STR("127.0.0.1:9984", req.getHost());
     LOK_ASSERT_EQUAL_STR("Sat, 06 Sep 2025 12:37:58", req.get("Date"));
-    LOK_ASSERT_EQUAL_STR("COOLWSD HTTP Agent 25.04.5.1", req.get("User-Agent"));
+    LOK_ASSERT_EQUAL_STR("LOOLWSD HTTP Agent 25.04.5.1", req.get("User-Agent"));
     LOK_ASSERT_EQUAL_STR("/favicon.ico", req.getUrl());
     LOK_ASSERT_EQUAL(http::RequestParser::Stage::Finished, req.stage());
     LOK_ASSERT_EQUAL(true, req.isKeepAlive()); // Because HTTP/1.1 is keep-alive by default.
@@ -791,15 +791,15 @@ void HttpWhiteBoxTests::testPostWopi()
                                "/wopi/files/UnitWOPIExpiredToken/"
                                "contents?access_token=anything&testname=UnitWOPIExpiredToken "
                                "HTTP/1.1\r\n"
-                               "User-Agent: COOLWSD HTTP Agent 25.04.5.1\r\n"
+                               "User-Agent: LOOLWSD HTTP Agent 25.04.5.1\r\n"
                                "Authorization: Bearer anything\r\n"
-                               "X-COOL-WOPI-ServerId: c5f25dc8\r\n"
+                               "X-LOOL-WOPI-ServerId: c5f25dc8\r\n"
                                "X-WOPI-Override: PUT\r\n"
-                               "X-COOL-WOPI-IsModifiedByUser: true\r\n"
-                               "X-COOL-WOPI-IsAutosave: false\r\n"
-                               "X-COOL-WOPI-IsExitSave: true\r\n"
+                               "X-LOOL-WOPI-IsModifiedByUser: true\r\n"
+                               "X-LOOL-WOPI-IsAutosave: false\r\n"
+                               "X-LOOL-WOPI-IsExitSave: true\r\n"
                                "Connection: close\r\n"
-                               "X-COOL-WOPI-Timestamp: 2025-09-06T22:17:49.868004Z\r\n"
+                               "X-LOOL-WOPI-Timestamp: 2025-09-06T22:17:49.868004Z\r\n"
                                "Content-Type: application/octet-stream\r\n"
                                "Content-Length: 17\r\n"
                                "Host: 127.0.0.1:9981\r\n"
@@ -816,19 +816,19 @@ void HttpWhiteBoxTests::testPostWopi()
                          http::RequestParser::name(req.stage()));
     LOK_ASSERT_EQUAL_STR("127.0.0.1:9981", req.getHost());
     LOK_ASSERT_EQUAL_STR("Sat, 06 Sep 2025 22:19:03", req.get("Date"));
-    LOK_ASSERT_EQUAL_STR("COOLWSD HTTP Agent 25.04.5.1", req.get("User-Agent"));
+    LOK_ASSERT_EQUAL_STR("LOOLWSD HTTP Agent 25.04.5.1", req.get("User-Agent"));
     LOK_ASSERT_EQUAL_STR("/wopi/files/UnitWOPIExpiredToken/"
                          "contents?access_token=anything&testname=UnitWOPIExpiredToken",
                          req.getUrl());
 
     LOK_ASSERT_EQUAL_STR("Bearer anything", req.get("Authorization"));
-    LOK_ASSERT_EQUAL_STR("c5f25dc8", req.get("X-COOL-WOPI-ServerId"));
+    LOK_ASSERT_EQUAL_STR("c5f25dc8", req.get("X-LOOL-WOPI-ServerId"));
     LOK_ASSERT_EQUAL_STR("PUT", req.get("X-WOPI-Override"));
-    LOK_ASSERT_EQUAL_STR("true", req.get("X-COOL-WOPI-IsModifiedByUser"));
-    LOK_ASSERT_EQUAL_STR("false", req.get("X-COOL-WOPI-IsAutosave"));
-    LOK_ASSERT_EQUAL_STR("true", req.get("X-COOL-WOPI-IsExitSave"));
+    LOK_ASSERT_EQUAL_STR("true", req.get("X-LOOL-WOPI-IsModifiedByUser"));
+    LOK_ASSERT_EQUAL_STR("false", req.get("X-LOOL-WOPI-IsAutosave"));
+    LOK_ASSERT_EQUAL_STR("true", req.get("X-LOOL-WOPI-IsExitSave"));
     LOK_ASSERT_EQUAL_STR("close", req.get("Connection"));
-    LOK_ASSERT_EQUAL_STR("2025-09-06T22:17:49.868004Z", req.get("X-COOL-WOPI-Timestamp"));
+    LOK_ASSERT_EQUAL_STR("2025-09-06T22:17:49.868004Z", req.get("X-LOOL-WOPI-Timestamp"));
     LOK_ASSERT_EQUAL_STR("application/octet-stream", req.get("Content-Type"));
     LOK_ASSERT_EQUAL_STR("17", req.get("Content-Length"));
     LOK_ASSERT_EQUAL(false, req.isKeepAlive());
