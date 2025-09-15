@@ -1466,6 +1466,4 @@ namespace lool {
 	}
 }
 
-L.getNewTilesSection = function () {
-	return new lool.TilesSection();
-};
+}

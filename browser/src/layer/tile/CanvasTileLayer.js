@@ -828,9 +828,8 @@ L.CanvasTileLayer = L.Layer.extend({
 
 		this._painter = new L.TileSectionManager(this);
 
-		app.sectionContainer.addSection(L.getNewTilesSection());
-		this._painter._tilesSection =
-			app.sectionContainer.getSectionWithName('tiles');
+		app.sectionContainer.addSection(new lool.TilesSection());
+		this._painter._tilesSection = app.sectionContainer.getSectionWithName('tiles');
 		app.sectionContainer.setDocumentAnchorSection(L.CSections.Tiles.name);
 
 		app.sectionContainer.getSectionWithName('tiles').onResize();
