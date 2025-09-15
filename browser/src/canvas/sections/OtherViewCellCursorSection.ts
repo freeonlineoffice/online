@@ -181,20 +181,10 @@ class OtherViewCellCursorSection extends CanvasSectionObject {
 			this.hideUsernamePopUp();
 	}
 
-	public static addOrUpdateOtherViewCellCursor(
-		viewId: number,
-		username: string,
-		rectangleData: Array<string>,
-		part: number,
-	) {
-		let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
-		if (rectangleData)
-			rectangle = new app.definitions.simpleRectangle(
-				parseInt(rectangleData[0]),
-				parseInt(rectangleData[1]),
-				parseInt(rectangleData[2]),
-				parseInt(rectangleData[3]),
-			);
+    public static addOrUpdateOtherViewCellCursor(viewId: number, username: string, rectangleData: Array<string>, part: number) {
+        let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
+        if (rectangleData)
+            rectangle = new lool.SimpleRectangle(parseInt(rectangleData[0]), parseInt(rectangleData[1]), parseInt(rectangleData[2]), parseInt(rectangleData[3]));
 
 		const sectionName =
 			OtherViewCellCursorSection.sectionNamePrefix + viewId;

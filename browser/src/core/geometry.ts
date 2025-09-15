@@ -691,5 +691,4 @@ namespace lool {
 	}
 }
 
-app.definitions.simpleRectangle = lool.SimpleRectangle;
-app.definitions.simplePoint = lool.SimplePoint;
+}

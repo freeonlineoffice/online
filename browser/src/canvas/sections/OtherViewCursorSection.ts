@@ -87,14 +87,9 @@ class OtherViewCursorSection extends HTMLObjectSection {
 		let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
 		const color = app.LOUtil.rgbToHex(app.LOUtil.getViewIdColor(viewId));
 
-		if (rectangleData) {
-			rectangle = new app.definitions.simpleRectangle(
-				rectangleData[0],
-				rectangleData[1],
-				rectangleData[2],
-				rectangleData[3],
-			);
-		}
+        if (rectangleData) {
+            rectangle = new lool.SimpleRectangle(parseInt(rectangleData[0]), parseInt(rectangleData[1]), parseInt(rectangleData[2]), parseInt(rectangleData[3]));
+        }
 
 		rectangle.pWidth = 2 * app.dpiScale; // Width of the cursor.
 

@@ -489,76 +489,21 @@ class ShapeHandlesSection extends CanvasSectionObject {
 			const bottomRight =
 				this.sectionProperties.info.handles.kinds.rectangle['8'][0];
 
-			this.sectionProperties.handles.push({
-				info: topLeft,
-				point: new app.definitions.simplePoint(
-					topLeft.point.x - halfWidth,
-					topLeft.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: topMiddle,
-				point: new app.definitions.simplePoint(
-					topMiddle.point.x - halfWidth,
-					topMiddle.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: topRight,
-				point: new app.definitions.simplePoint(
-					topRight.point.x - halfWidth,
-					topRight.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: middleLeft,
-				point: new app.definitions.simplePoint(
-					middleLeft.point.x - halfWidth,
-					middleLeft.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: middleRight,
-				point: new app.definitions.simplePoint(
-					middleRight.point.x - halfWidth,
-					middleRight.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: bottomLeft,
-				point: new app.definitions.simplePoint(
-					bottomLeft.point.x - halfWidth,
-					bottomLeft.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: bottomMiddle,
-				point: new app.definitions.simplePoint(
-					bottomMiddle.point.x - halfWidth,
-					bottomMiddle.point.y - halfHeight,
-				),
-			});
-			this.sectionProperties.handles.push({
-				info: bottomRight,
-				point: new app.definitions.simplePoint(
-					bottomRight.point.x - halfWidth,
-					bottomRight.point.y - halfHeight,
-				),
-			});
+			this.sectionProperties.handles.push({ info: topLeft, point: new lool.SimplePoint(topLeft.point.x - halfWidth, topLeft.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: topMiddle, point: new lool.SimplePoint(topMiddle.point.x - halfWidth, topMiddle.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: topRight, point: new lool.SimplePoint(topRight.point.x - halfWidth, topRight.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: middleLeft, point: new lool.SimplePoint(middleLeft.point.x - halfWidth, middleLeft.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: middleRight, point: new lool.SimplePoint(middleRight.point.x - halfWidth, middleRight.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: bottomLeft, point: new lool.SimplePoint(bottomLeft.point.x - halfWidth, bottomLeft.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: bottomMiddle, point: new lool.SimplePoint(bottomMiddle.point.x - halfWidth, bottomMiddle.point.y - halfHeight) });
+			this.sectionProperties.handles.push({ info: bottomRight, point: new lool.SimplePoint(bottomRight.point.x - halfWidth, bottomRight.point.y - halfHeight) });
 		}
 	}
 
 	private getAnchorHandle(halfWidth: number, halfHeight: number) {
 		if (this.sectionProperties.info?.handles?.kinds?.anchor) {
-			const anchor =
-				this.sectionProperties.info.handles.kinds.anchor['16'][0];
-			this.sectionProperties.handles.push({
-				info: anchor,
-				point: new app.definitions.simplePoint(
-					anchor.point.x - halfWidth,
-					anchor.point.y - halfHeight,
-				),
-			});
+			const anchor = this.sectionProperties.info.handles.kinds.anchor['16'][0];
+			this.sectionProperties.handles.push({ info: anchor, point: new lool.SimplePoint(anchor.point.x - halfWidth, anchor.point.y - halfHeight) });
 		}
 	}
 
@@ -616,10 +561,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		x -= this.sectionProperties.rotationHandleWidth * 0.5;
 		y -= this.sectionProperties.rotationHandleHeight * 0.5;
 
-		return new app.definitions.simplePoint(
-			(this.position[0] + x) * app.pixelsToTwips,
-			(this.position[1] + y) * app.pixelsToTwips,
-		);
+		return new lool.SimplePoint((this.position[0] + x) * app.pixelsToTwips, (this.position[1] + y) * app.pixelsToTwips);
 	}
 
 	private getRotationHandle() {
@@ -648,13 +590,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 			if (customHandleList && customHandleList.length > 0) {
 				for (let i = 0; i < customHandleList.length; i++) {
 					const customHandler = customHandleList[i];
-					this.sectionProperties.handles.push({
-						info: customHandler,
-						point: new app.definitions.simplePoint(
-							customHandler.point.x - halfWidth,
-							customHandler.point.y - halfHeight,
-						),
-					});
+					this.sectionProperties.handles.push({ info: customHandler, point: new lool.SimplePoint(customHandler.point.x - halfWidth, customHandler.point.y - halfHeight) });
 				}
 			}
 		}
@@ -672,13 +608,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 				for (let i = 0; i < polyArray.length; i++) {
 					const poly = polyArray[i];
-					this.sectionProperties.handles.push({
-						info: poly,
-						point: new app.definitions.simplePoint(
-							poly.point.x - halfWidth,
-							poly.point.y - halfHeight,
-						),
-					});
+					this.sectionProperties.handles.push({ info: poly, point: new lool.SimplePoint(poly.point.x - halfWidth, poly.point.y - halfHeight) });
 				}
 			}
 		}
@@ -700,13 +630,7 @@ class ShapeHandlesSection extends CanvasSectionObject {
 					for (let j = 0; j < glueArray.length; j++) {
 						const info = Object.assign({}, shape);
 						info.id = String(i) + String(j);
-						this.sectionProperties.handles.push({
-							info: info,
-							point: new app.definitions.simplePoint(
-								glueArray[j].point.x,
-								glueArray[j].point.y,
-							),
-						});
+						this.sectionProperties.handles.push({ info: info, point: new lool.SimplePoint(glueArray[j].point.x, glueArray[j].point.y) });
 					}
 				}
 			}

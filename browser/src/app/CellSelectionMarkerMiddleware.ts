@@ -44,11 +44,11 @@ class CellSelectionMarkers {
 				? app.map._docLayer._cellSelectionArea.clone()
 				: app.calc.cellCursorRectangle.clone();
 
-			const posStart = new app.definitions.simplePoint(
+			const posStart = new cool.SimplePoint(
 				cellRectangle.x1,
 				cellRectangle.y1,
 			);
-			const posEnd = new app.definitions.simplePoint(
+			const posEnd = new cool.SimplePoint(
 				cellRectangle.x2,
 				cellRectangle.y2,
 			);

@@ -8,7 +8,7 @@ L.Map.mergeOptions({
 	touchGesture: true,
 });
 
-/* global Hammer app $ GraphicSelection TileManager TextSelections */
+/* global Hammer app $ GraphicSelection TileManager TextSelections lool */
 L.Map.TouchGesture = L.Handler.extend({
 	statics: {
 		MAP: 1,
@@ -313,10 +313,7 @@ L.Map.TouchGesture = L.Handler.extend({
 				funcWizardRangeBounds = getFuncWizRangeBounds(this);
 
 			let twipsPoint = this._map._docLayer._latLngToTwips(latlng);
-			twipsPoint = new app.definitions.simplePoint(
-				twipsPoint.x,
-				twipsPoint.y,
-			);
+			twipsPoint = new lool.SimplePoint(twipsPoint.x, twipsPoint.y);
 
 			if (
 				app.calc.cellCursorVisible &&
@@ -366,10 +363,7 @@ L.Map.TouchGesture = L.Handler.extend({
 			latlng = this._map.layerPointToLatLng(layerPoint),
 			mousePos = this._map._docLayer._latLngToTwips(latlng);
 
-		let posInTwips = new app.definitions.simplePoint(
-			mousePos.x,
-			mousePos.y,
-		);
+		let posInTwips = new lool.SimplePoint(mousePos.x, mousePos.y);
 
 		if (this._moving) {
 			return;
@@ -474,15 +468,8 @@ L.Map.TouchGesture = L.Handler.extend({
 			TextSelections.getEndRectangle()
 		) {
 			// Oversimplication. See "inBand" function.
-			textSelection = new app.definitions.simpleRectangle(
-				0,
-				TextSelections.getEndRectangle().y1,
-				app.activeDocument.fileSize.x,
-				0,
-			);
-			textSelection.height =
-				TextSelections.getEndRectangle().rectangle.y2 -
-				TextSelections.getStartRectangle().y1;
+			textSelection = new lool.SimpleRectangle(0, TextSelections.getEndRectangle().y1, app.activeDocument.fileSize.x, 0);
+			textSelection.height = TextSelections.getEndRectangle().rectangle.y2 - TextSelections.getStartRectangle().y1;
 		}
 
 		if (
@@ -534,10 +521,7 @@ L.Map.TouchGesture = L.Handler.extend({
 			latlng = this._map.layerPointToLatLng(layerPoint),
 			mousePos = this._map._docLayer._latLngToTwips(latlng);
 
-		let posInTwips = new app.definitions.simplePoint(
-			mousePos.x,
-			mousePos.y,
-		);
+		let posInTwips = new lool.SimplePoint(mousePos.x, mousePos.y);
 
 		this._map.fire('closemobilewizard');
 
@@ -742,10 +726,7 @@ L.Map.TouchGesture = L.Handler.extend({
 			latlng = this._map.layerPointToLatLng(layerPoint),
 			mousePos = this._map._docLayer._latLngToTwips(latlng);
 
-		let posInTwips = new app.definitions.simplePoint(
-			mousePos.x,
-			mousePos.y,
-		);
+		let posInTwips = new lool.SimplePoint(mousePos.x, mousePos.y);
 
 		let increaseRatio = 0.4;
 		let increasedCellCursor = null;

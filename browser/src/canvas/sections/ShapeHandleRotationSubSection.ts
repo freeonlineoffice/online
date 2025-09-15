@@ -111,24 +111,13 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 
 	// This is called after dragging the rotation handler. It re-calculates initial angle with the handler's new position.
 	getAngleDifference(): number {
-		const dragDistanceInTwips = [
-			this.sectionProperties.lastDraggingDistance[0] *
-				app.pixelsToTwips,
-			this.sectionProperties.lastDraggingDistance[1] *
-				app.pixelsToTwips,
-		];
-		const draggedToPoint = new app.definitions.simplePoint(
-			dragDistanceInTwips[0],
-			dragDistanceInTwips[1],
-		);
+		const dragDistanceInTwips = [this.sectionProperties.lastDraggingDistance[0] * app.pixelsToTwips, this.sectionProperties.lastDraggingDistance[1] * app.pixelsToTwips];
+		const draggedToPoint = new lool.SimplePoint(dragDistanceInTwips[0], dragDistanceInTwips[1]);
 
 		draggedToPoint.pX += this.position[0];
 		draggedToPoint.pY += this.position[1];
 
-		const selectionCenter = new app.definitions.simplePoint(
-			GraphicSelection.rectangle.center[0],
-			GraphicSelection.rectangle.center[1],
-		);
+		const selectionCenter = new lool.SimplePoint(GraphicSelection.rectangle.center[0], GraphicSelection.rectangle.center[1]);
 
 		const initialPoint = this.sectionProperties.ownInfo.initialPosition;
 		const initialAngle = this.calculateAngle(

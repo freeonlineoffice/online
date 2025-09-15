@@ -65,20 +65,10 @@ class OtherViewGraphicSelectionSection extends CanvasSectionObject {
 		return result;
 	}
 
-	public static addOrUpdateGraphicSelectionIndicator(
-		viewId: number,
-		rectangleData: Array<string>,
-		part: number,
-		mode: number,
-	) {
-		let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
-		if (rectangleData)
-			rectangle = new app.definitions.simpleRectangle(
-				parseInt(rectangleData[0]),
-				parseInt(rectangleData[1]),
-				parseInt(rectangleData[2]),
-				parseInt(rectangleData[3]),
-			);
+    public static addOrUpdateGraphicSelectionIndicator(viewId: number, rectangleData: Array<string>, part: number, mode: number) {
+        let rectangle = new lool.SimpleRectangle(0, 0, 0, 0);
+        if (rectangleData)
+            rectangle = new lool.SimpleRectangle(parseInt(rectangleData[0]), parseInt(rectangleData[1]), parseInt(rectangleData[2]), parseInt(rectangleData[3]));
 
 		const sectionName =
 			OtherViewGraphicSelectionSection.sectionNamePrefix + viewId;
