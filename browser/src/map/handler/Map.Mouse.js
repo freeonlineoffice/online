@@ -45,10 +45,9 @@ L.Map.Mouse = L.Handler.extend({
 
 	_isMouseOnValidityDropdown: function () {
 		if (app.sectionContainer) {
-			const section = app.sectionContainer.getSectionWithName(
-				L.CSections.CalcValidityDropDown.name,
-			);
-			if (section) return section.sectionProperties.mouseEntered;
+			const section = app.sectionContainer.getSectionWithName(app.CSections.CalcValidityDropDown.name);
+			if (section)
+				return section.sectionProperties.mouseEntered;
 		}
 
 		return null;
@@ -156,14 +155,8 @@ L.Map.Mouse = L.Handler.extend({
 				}
 			}
 
-			var scrollSection = app.sectionContainer.getSectionWithName(
-				L.CSections.Scroll.name,
-			);
-			if (
-				scrollSection.sectionProperties
-					.mouseIsOnVerticalScrollBar ||
-				scrollSection.sectionProperties.mouseIsOnHorizontalScrollBar
-			)
+			var scrollSection = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
+			if (scrollSection.sectionProperties.mouseIsOnVerticalScrollBar || scrollSection.sectionProperties.mouseIsOnHorizontalScrollBar)
 				return;
 
 			// Core side is handling the mouseup by itself when the right button is down.
@@ -348,9 +341,7 @@ L.Map.Mouse = L.Handler.extend({
 				0,
 			);
 
-			const section = app.sectionContainer.getSectionWithName(
-				L.CSections.Scroll.name,
-			);
+			const section = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
 			if (section) section.onScrollVelocity({ vx: 0, vy: 0 });
 		}
 	}),

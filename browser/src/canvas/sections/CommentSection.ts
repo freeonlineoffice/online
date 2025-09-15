@@ -10,7 +10,6 @@
  */
 /* See CanvasSectionContainer.ts for explanations. */
 
-declare var L: any;
 declare var Autolinker: any;
 declare var DOMPurify: any;
 
@@ -32,13 +31,36 @@ namespace lool {
 	0: INVISIBLE, 1: VISIBLE, 2: INSERTED, 3: DELETED, 4: NONE, 5: HIDDEN
 	Ex: "DELETED" means that the comment is deleted while the "track changes" is on.
 */
-	export enum CommentLayoutStatus {
-		INVISIBLE,
-		VISIBLE,
-		INSERTED,
-		DELETED,
-		NONE,
-		HIDDEN,
+export enum CommentLayoutStatus {
+	INVISIBLE,
+	VISIBLE,
+	INSERTED,
+	DELETED,
+	NONE,
+	HIDDEN
+}
+
+export class Comment extends CanvasSectionObject {
+	// Cache the expensive to localize frequently created strings
+	static readonly editCommentLabel = _('Edit comment');
+	static readonly replyCommentLabel = _('Reply comment');
+	static readonly openMenuLabel = _('Open menu');
+
+	processingOrder: number = app.CSections.Comment.processingOrder;
+	drawingOrder: number = app.CSections.Comment.drawingOrder;
+	zIndex: number = app.CSections.Comment.zIndex;
+
+	valid: boolean = true;
+	map: any;
+	pendingInit: boolean = true;
+
+	cachedCommentHeight: number | null = null;
+	cachedIsEdit: boolean = false;
+	hidden: boolean | null = null;
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public static makeName(data: any): string {
+		return data.id === 'new' ? 'new comment' : 'comment ' + data.id;
 	}
 
 	export class Comment extends CanvasSectionObject {
@@ -47,9 +69,10 @@ namespace lool {
 		static readonly replyCommentLabel = _('Reply comment');
 		static readonly openMenuLabel = _('Open menu');
 
-		processingOrder: number = L.CSections.Comment.processingOrder;
-		drawingOrder: number = L.CSections.Comment.drawingOrder;
-		zIndex: number = L.CSections.Comment.zIndex;
+
+		this.myTopLeft = [0, 0];
+		this.documentObject = true;
+		this.map = window.L.Map.THIS;
 
 		valid: boolean = true;
 		map: any;
@@ -172,12 +195,22 @@ namespace lool {
 			this.sectionProperties.childCommentOffset = 8;
 			this.sectionProperties.commentMarkerSubSection = null; // For Impress and Draw documents.
 
-			this.convertRectanglesToCoreCoordinates(); // Convert rectangle coordiantes into core pixels on initialization.
+			var x: number = Math.round(this.position[0] / app.dpiScale);
+			var y: number = Math.round(this.position[1] / app.dpiScale);
+			(this.containerObject.getSectionWithName(app.CSections.Scroll.name) as any as lool.ScrollSection).onScrollTo({x: x, y: y});
+		}
+		else if (app.map._docLayer._docType === 'spreadsheet') {
+			this.backgroundColor = '#777777'; //background: rgba(119, 119, 119, 0.25);
+			this.backgroundOpacity = 0.25;
 
-			app.map.on(
-				'sheetgeometrychanged',
-				this.setPositionAndSize.bind(this),
-			);
+			var x: number = Math.round(this.position[0] / app.dpiScale);
+			var y: number = Math.round(this.position[1] / app.dpiScale);
+			(this.containerObject.getSectionWithName(app.CSections.Scroll.name) as any as lool.ScrollSection).onScrollTo({x: x, y: y});
+		}
+		else if (app.map._docLayer._docType === 'presentation' || app.map._docLayer._docType === 'drawing') {
+			var x: number = Math.round(this.position[0] / app.dpiScale);
+			var y: number = Math.round(this.position[1] / app.dpiScale);
+			(this.containerObject.getSectionWithName(app.CSections.Scroll.name) as any as lool.ScrollSection).onScrollTo({x: x, y: y});
 		}
 
 		// Comments import can be costly if the document has a lot of them. If they are all imported/initialized
@@ -1270,9 +1303,10 @@ namespace lool {
 					this.sectionProperties.data,
 				);
 
-			app.sectionContainer.addSection(
-				this.sectionProperties.commentMarkerSubSection,
-			);
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public handleCancelCommentButton (e: any): void {
+		if (lool.CommentSection.commentWasAutoAdded) {
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).remove(this.sectionProperties.data.id);
 		}
 
 		public isContainerVisible(): boolean {
@@ -1286,10 +1320,93 @@ namespace lool {
 			);
 		}
 
-		public update(): void {
-			this.updateContent();
-			this.updateLayout();
-			this.updatePosition();
+		// These lines are repeated in onCancelClick,
+		// it makes things simple by not adding so many condition for different apps and different situation
+		// It is mandatory to change these values before handleSaveCommentButton is called
+		// calling handleSaveCommentButton in onCancelClick causes problem because that is also called from many other events/function (i.e: onPartChange)
+		if (this.sectionProperties.contentText.origHTML) {
+			this.sectionProperties.nodeModifyText.innerHTML = app.LOUtil.sanitize(this.sectionProperties.contentText.origHTML);
+		}
+		else {
+			this.sectionProperties.nodeModifyText.innerText = this.sectionProperties.contentText.origText;
+		}
+		this.sectionProperties.nodeReplyText.innerText = '';
+
+		if (lool.CommentSection.autoSavedComment)
+			this.handleSaveCommentButton(e);
+
+		this.onCancelClick(e);
+		if (app.map._docLayer._docType === 'spreadsheet')
+			this.hideCalc();
+		lool.CommentSection.commentWasAutoAdded = false;
+		lool.CommentSection.autoSavedComment = null;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public onCancelClick (e: any): void {
+		if (e)
+			L.DomEvent.stopPropagation(e);
+		if (this.sectionProperties.contentText.origHTML) {
+			this.sectionProperties.nodeModifyText.innerHTML = app.LOUtil.sanitize(this.sectionProperties.contentText.origHTML);
+		}
+		else {
+			this.sectionProperties.nodeModifyText.innerText = this.sectionProperties.contentText.origText;
+		}
+		this.sectionProperties.nodeReplyText.innerText = '';
+		if (app.map._docLayer._docType !== 'spreadsheet')
+			this.show();
+		this.sectionProperties.commentListSection.cancel(this);
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public handleSaveCommentButton (e: any): void {
+		lool.CommentSection.autoSavedComment = null;
+		lool.CommentSection.commentWasAutoAdded = false;
+		this.sectionProperties.contentText.uneditedText = null;
+		this.sectionProperties.contentText.uneditedHTML = null;
+		this.textAreaInput(null);
+		this.onSaveComment(e);
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public onSaveComment (e: any): void {
+		this.sectionProperties.commentContainerRemoved = true;
+		L.DomEvent.stopPropagation(e);
+		this.removeLastBRTag(this.sectionProperties.nodeModifyText);
+		this.sectionProperties.data.text = this.sectionProperties.nodeModifyText.innerText;
+		this.sectionProperties.data.html = this.sectionProperties.nodeModifyText.innerHTML;
+		this.updateContent();
+		if (!lool.CommentSection.autoSavedComment)
+			this.show();
+		this.sectionProperties.commentListSection.save(this);
+	}
+
+	// for some reason firefox adds <br> at of the end of text in contenteditable div
+	// there have been similar reports: https://bugzilla.mozilla.org/show_bug.cgi?id=1615852
+	private removeLastBRTag(element: HTMLElement) {
+		if (!window.L.Browser.gecko)
+			return;
+		const brElements = element.querySelectorAll('br');
+		if (brElements.length > 0)
+			brElements[brElements.length-1].remove();
+	}
+
+	private isNodeEmpty(): boolean {
+		this.removeLastBRTag(this.sectionProperties.nodeModifyText);
+		if (this.sectionProperties.nodeModifyText.innerText == "" &&
+			this.sectionProperties.nodeModifyText.innerHTML == "")
+			return true;
+		return false;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public onLostFocus (e: any): void {
+
+		if (!this.isEdit() || this.sectionProperties.container.contains(e.relatedTarget))
+			return;
+		if (this.sectionProperties.nodeReply.contains(e.target)) {
+			this.onLostFocusReply(e);
+			return;
 		}
 
 		private showMarker(): void {
@@ -1876,42 +1993,10 @@ namespace lool {
 			return this;
 		}
 
-		public isEdit(): boolean {
-			return this.cachedIsEdit;
-		}
-
-		public isModifying(): boolean {
-			return (
-				!this.pendingInit &&
-				this.sectionProperties.nodeModify &&
-				this.sectionProperties.nodeModify.style.display !== 'none'
-			);
-		}
-
-		public static isAnyEdit(): Comment {
-			var section =
-				app.sectionContainer &&
-				app.sectionContainer instanceof CanvasSectionContainer
-					? app.sectionContainer.getSectionWithName(
-							L.CSections.CommentList.name,
-						)
-					: null;
-			if (!section) {
-				return null;
-			}
-
-			var commentList = section.sectionProperties.commentList;
-			for (var i in commentList) {
-				var modifyNode =
-					commentList[i].sectionProperties.nodeModify;
-				var replyNode = commentList[i].sectionProperties.nodeReply;
-				if (
-					!commentList[i].pendingInit &&
-					((modifyNode && modifyNode.style.display !== 'none') ||
-						(replyNode && replyNode.style.display !== 'none'))
-				)
-					return commentList[i];
-			}
+	public static isAnyEdit (): Comment {
+		var section = app.sectionContainer && app.sectionContainer instanceof CanvasSectionContainer ?
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name) : null;
+		if (!section) {
 			return null;
 		}
 

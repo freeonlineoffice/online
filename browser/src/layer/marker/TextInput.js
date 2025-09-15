@@ -1253,19 +1253,9 @@ L.TextInput = L.Layer.extend({
 
 		// We want to open drowdown menu when cursor is above a dropdown content control.
 		if (ev.code === 'Space' || ev.code === 'Enter') {
-			if (
-				this._map['stateChangeHandler'].getItemValue(
-					'.uno:ContentControlProperties',
-				) === 'enabled'
-			) {
-				if (
-					app.sectionContainer.doesSectionExist(
-						L.CSections.ContentControl.name,
-					)
-				) {
-					var section = app.sectionContainer.getSectionWithName(
-						L.CSections.ContentControl.name,
-					);
+			if (this._map['stateChangeHandler'].getItemValue('.uno:ContentControlProperties') === 'enabled') {
+				if (app.sectionContainer.doesSectionExist(app.CSections.ContentControl.name)) {
+					var section = app.sectionContainer.getSectionWithName(app.CSections.ContentControl.name);
 					if (section.sectionProperties.dropdownSection)
 						section.sectionProperties.dropdownSection.onClick(
 							null,
@@ -1280,9 +1270,7 @@ L.TextInput = L.Layer.extend({
 			// This is the key combination (Alt+C or Alt+Shift+C) for focusing on the comment menu.
 
 			// On Calc, first press opens the comment, second press focuses on it.
-			section = app.sectionContainer.getSectionWithName(
-				L.CSections.CommentList.name,
-			);
+			section = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name);
 			if (section) {
 				if (section.sectionProperties.selectedComment) {
 					var id =

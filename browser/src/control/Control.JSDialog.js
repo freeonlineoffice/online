@@ -4,7 +4,7 @@
  * L.Control.JSDialog - class which creates and updates dialogs, popups, snackbar
  */
 
-/* global JSDialog Hammer app _ */
+/* global JSDialog Hammer app _ lool */
 L.Control.JSDialog = L.Control.extend({
 	options: {},
 	dialogs: {},
@@ -436,18 +436,16 @@ L.Control.JSDialog = L.Control.extend({
 		this.dialogs[instance.id] = {};
 	},
 
-	createDialog: function (instance) {
-		instance.builder = new L.control.jsDialogBuilder({
-			windowId: instance.id,
-			mobileWizard: this,
-			map: this.map,
-			cssClass:
-				'jsdialog' +
-				(instance.isAutoPopup ? ' autofilter' : '') +
-				(instance.isOnlyChild ? ' one-child-popup' : ''),
-			callback: instance.callback,
-			suffix: 'dialog',
-		});
+	createDialog: function(instance) {
+		instance.builder = new window.L.control.jsDialogBuilder(
+			{
+				windowId: instance.id,
+				mobileWizard: this,
+				map: this.map,
+				cssClass: 'jsdialog' + (instance.isAutoPopup ? ' autofilter' : '') + (instance.isOnlyChild ? ' one-child-popup' : ''),
+				callback: instance.callback,
+				suffix: 'dialog',
+			});
 
 		instance.builder.build(instance.content, [instance]);
 		instance.builder.setContainer(instance.content);
@@ -1191,8 +1189,7 @@ L.Control.JSDialog = L.Control.extend({
 			: null;
 		if (!dialog) return;
 
-		var builder = new L.control.jsDialogBuilder({
-			windowId: data.id,
+		var builder = new window.L.control.jsDialogBuilder({windowId: data.id,
 			mobileWizard: this,
 			map: this.map,
 			cssClass: 'jsdialog',
@@ -1222,7 +1219,7 @@ L.Control.JSDialog = L.Control.extend({
 			}
 			if (dialogInfo.isDocumentAreaPopup) {
 				// In case of AutocompletePopup's update data would have posx, posy
-				dialogInfo.updatePos(new L.Point(data.posx, data.posy));
+				dialogInfo.updatePos(new lool.Point(data.posx, data.posy));
 			} else {
 				dialogInfo.updatePos();
 			}

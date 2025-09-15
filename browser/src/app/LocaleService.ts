@@ -33,7 +33,10 @@ class LocaleService {
 					formatter = new Intl.NumberFormat(
 						app.UI.language.fromURL,
 					);
-				else formatter = new Intl.NumberFormat(L.Browser.lang);
+				else
+					formatter = new Intl.NumberFormat(
+						window.L.Browser.lang,
+					);
 
 				formatter.formatToParts(-11.1).map((item) => {
 					switch (item.type) {

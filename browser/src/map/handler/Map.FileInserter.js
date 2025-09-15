@@ -253,7 +253,7 @@ L.Map.FileInserter = L.Handler.extend({
 				if (xmlHttp.readyState === 4) {
 					map.hideBusy();
 					if (xmlHttp.status === 200) {
-						var sectionName = L.CSections.ContentControl.name;
+						var sectionName = app.CSections.ContentControl.name;
 						var section;
 						if (
 							sectionContainer.doesSectionExist(
@@ -332,7 +332,7 @@ L.Map.FileInserter = L.Handler.extend({
 	},
 
 	_sendURL: function (name, e) {
-		var sectionName = L.CSections.ContentControl.name;
+		var sectionName = app.CSections.ContentControl.name;
 		var section;
 		if (app.sectionContainer.doesSectionExist(sectionName)) {
 			section = app.sectionContainer.getSectionWithName(sectionName);

@@ -1,5 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app */
+/* global app lool */
 /*
  * L.DomEvent contains functions for working with DOM events.
  * Inspired by John Resig, Dean Edwards and YUI addEvent implementations.
@@ -201,12 +201,9 @@ L.DomEvent = {
 	getMousePosition: function (e, container) {
 		if (!container) {
 			if (e.clientX === undefined && e.touches !== undefined)
-				return new L.Point(
-					e.touches[0].clientX,
-					e.touches[0].clientY,
-				);
+				return new lool.Point(e.touches[0].clientX, e.touches[0].clientY);
 
-			return new L.Point(e.clientX, e.clientY);
+			return new lool.Point(e.clientX, e.clientY);
 		}
 
 		var rect = container.getBoundingClientRect(), // constant object
@@ -231,26 +228,17 @@ L.DomEvent = {
 		// even call this function for a touchend event, as by definition no finger is
 		// touching the screen any longer then and thus there is no "mouse position". But
 		// let's just least guard against an unhandled exception for now.
-		if (
-			e.clientX === undefined &&
-			e.touches !== undefined &&
-			e.touches.length > 0
-		)
-			return new L.Point(
+		if (e.clientX === undefined && e.touches !== undefined && e.touches.length > 0)
+			return new lool.Point(
 				e.touches[0].clientX - left - container.clientLeft,
-				e.touches[0].clientY - top - container.clientTop,
-			);
-		else if (
-			e.clientX === undefined &&
-			e.changedTouches !== undefined &&
-			e.changedTouches.length > 0
-		)
-			return new L.Point(
+				e.touches[0].clientY - top - container.clientTop);
+		else if (e.clientX === undefined && e.changedTouches !== undefined && e.changedTouches.length > 0)
+			return new lool.Point(
 				e.changedTouches[0].clientX - left - container.clientLeft,
 				e.changedTouches[0].clientY - top - container.clientTop,
 			);
 
-		return new L.Point(
+		return new lool.Point(
 			e.clientX - left - container.clientLeft,
 			e.clientY - top - container.clientTop,
 		);

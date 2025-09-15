@@ -545,9 +545,7 @@ L.Map.TouchGesture = L.Handler.extend({
 			if (e.target == dropDownMarkers[0])
 				return; // don't send the mouse-event to core
 			else {
-				let section = app.sectionContainer.getSectionWithName(
-					L.CSections.ContentControl.name,
-				);
+				let section = app.sectionContainer.getSectionWithName(app.CSections.ContentControl.name);
 
 				if (section) {
 					section = section.sectionProperties.dropdownSection;
@@ -568,14 +566,8 @@ L.Map.TouchGesture = L.Handler.extend({
 		var docLayer = this._map._docLayer;
 
 		// unselect if anything is selected already
-		if (
-			app.sectionContainer.doesSectionExist(
-				L.CSections.CommentList.name,
-			)
-		) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.unselect();
+		if (app.sectionContainer.doesSectionExist(app.CSections.CommentList.name)) {
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).unselect();
 		}
 
 		this._map._contextMenu._onMouseDown({ originalEvent: e.srcEvent });
@@ -762,7 +754,7 @@ L.Map.TouchGesture = L.Handler.extend({
 					y = y - heightBuffer;
 				}
 
-				mousePos = new L.Point(x, y);
+				mousePos = new lool.Point(x, y);
 			}
 		}
 
@@ -959,10 +951,8 @@ L.Map.TouchGesture = L.Handler.extend({
 
 		if (window.IgnorePanning) return;
 
-		let velocityX = this._map._docLayer.isCalcRTL()
-			? -e.velocityX
-			: e.velocityX;
-		let pointVelocity = new L.Point(velocityX, e.velocityY);
+		let velocityX = this._map._docLayer.isCalcRTL() ? -e.velocityX : e.velocityX;
+		let pointVelocity = new lool.Point(velocityX, e.velocityY);
 		if (this._inSwipeAction) {
 			this._velocity = this._velocity.add(pointVelocity);
 		} else {
@@ -970,15 +960,12 @@ L.Map.TouchGesture = L.Handler.extend({
 		}
 		this._amplitude = this._velocity.multiplyBy(32);
 		this._newPos = L.DomUtil.getPosition(this._map._mapPane);
-		var evt = this._constructFakeEvent(
-			{
-				clientX: e.center.x,
-				clientY: e.center.y,
-				target: this._map._mapPane,
-			},
-			'mousedown',
-		);
-		this._startSwipePoint = new L.Point(evt.clientX, evt.clientY);
+		var evt = this._constructFakeEvent({
+			clientX: e.center.x,
+			clientY: e.center.y,
+			target: this._map._mapPane
+		},'mousedown');
+		this._startSwipePoint = new lool.Point(evt.clientX, evt.clientY);
 		this._map.dragging._draggable._onDown(evt);
 		this._timeStamp = Date.now();
 		this._inSwipeAction = true;

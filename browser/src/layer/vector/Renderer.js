@@ -1,5 +1,7 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app */
+
+/* global app lool */
+
 /*
  * L.Renderer is a base class for renderer implementations (SVG, Canvas);
  * handles renderer container, bounds and zoom animation.
@@ -70,10 +72,7 @@ L.Renderer = L.Layer.extend({
 				.containerPointToLayerPointIgnoreSplits(size.multiplyBy(-p))
 				.round();
 
-		this._bounds = new L.Bounds(
-			min,
-			min.add(size.multiplyBy(1 + p * 2)).round(),
-		);
+		this._bounds = new lool.Bounds(min, min.add(size.multiplyBy(1 + p * 2)).round());
 		this._position = this._bounds.min;
 	},
 

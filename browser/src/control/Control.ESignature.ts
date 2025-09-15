@@ -480,9 +480,3 @@ namespace lool {
 		}
 	}
 }
-
-L.Control.ESignature = lool.ESignature;
-
-L.control.eSignature = function (url: string, clientId: string) {
-	return new L.Control.ESignature(url, clientId);
-};

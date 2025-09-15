@@ -10,7 +10,7 @@
  */
 /* See CanvasSectionContainer.ts for explanations. */
 
-declare var L: any;
+/* global L */
 
 namespace lool {
 	export class TilesSection extends CanvasSectionObject {
@@ -28,22 +28,19 @@ namespace lool {
 		isJSDOM: boolean = false; // testing
 		checkpattern: any;
 
-		constructor() {
-			super(L.CSections.Tiles.name);
+	// Below anchor list may be expanded. For example, Writer may have ruler section. Then ruler section should also be added here.
+	anchor: any = [[app.CSections.ColumnHeader.name, 'bottom', 'top'], [app.CSections.RowHeader.name, 'right', 'left']];
+	expand: any = ['top', 'left', 'bottom', 'right'];
+	processingOrder: number = app.CSections.Tiles.processingOrder;
+	drawingOrder: number = app.CSections.Tiles.drawingOrder;
+	zIndex: number = app.CSections.Tiles.zIndex;
 
 			this.map = L.Map.THIS;
 
-			this.sectionProperties.docLayer = this.map._docLayer;
-			this.sectionProperties.tsManager =
-				this.sectionProperties.docLayer._painter;
-			this.sectionProperties.pageBackgroundInnerMargin = 0; // In core pixels. We don't want backgrounds to have exact same borders with tiles for not making them visible when tiles are rendered.
-			this.sectionProperties.pageBackgroundBorderColor = 'lightgrey';
-			this.sectionProperties.pageBackgroundTextColor = 'grey';
-			this.sectionProperties.pageBackgroundFont =
-				String(40 * app.roundedDpiScale) + 'px Arial';
+	constructor () {
+		super(app.CSections.Tiles.name);
 
-			this.isJSDOM =
-				typeof window === 'object' && window.name === 'nodejs';
+		this.map = window.L.Map.THIS;
 
 			this.checkpattern = this.makeCheckPattern();
 		}
@@ -66,18 +63,10 @@ namespace lool {
 			return canvas;
 		}
 
-		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-		paintWithPanes(tile: any, ctx: any, async: boolean): void {
-			var tileTopLeft = tile.coords.getPos();
-			var tileBounds = new L.Bounds(
-				tileTopLeft,
-				tileTopLeft.add(
-					new L.Point(
-						TileManager.tileSize,
-						TileManager.tileSize,
-					),
-				),
-			);
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	paintWithPanes (tile: any, ctx: any, async: boolean): void {
+		var tileTopLeft = tile.coords.getPos();
+		var tileBounds = new lool.Bounds(tileTopLeft, tileTopLeft.add(new lool.Point(TileManager.tileSize, TileManager.tileSize)));
 
 			for (var i = 0; i < ctx.paneBoundsList.length; ++i) {
 				// co-ordinates of this pane in core document pixels
@@ -101,24 +90,90 @@ namespace lool {
 						viewBounds.min.y,
 					);
 
-					this.drawTileInPane(
-						tile,
-						tileBounds,
-						paneBounds,
-						paneOffset,
-						this.context,
-						async,
-					);
-				}
+				this.drawTileInPane(tile, tileBounds, paneBounds, paneOffset, this.context, async);
+			}
+		}
+	}
+
+	private beforeDraw(canvasCtx: CanvasRenderingContext2D): void {
+		const mirrorTile: boolean = this.isCalcRTL();
+		if (mirrorTile) {
+			canvasCtx.save();
+			canvasCtx.translate(this.size[0], 0);
+			canvasCtx.scale(-1, 1);
+		}
+	}
+
+	private afterDraw(canvasCtx: CanvasRenderingContext2D): void {
+		const mirrorTile: boolean = this.isCalcRTL();
+		if (mirrorTile) {
+			canvasCtx.restore();
+		}
+	}
+
+	// the bounding box of this set of tiles
+	public getSubsetBounds(canvasCtx: CanvasRenderingContext2D, tileSubset: Set<any>): lool.Bounds {
+
+		// don't do anything for this atypical variant
+		if (app.file.fileBasedView)
+			return null;
+
+		var ctx = this.sectionProperties.tsManager._paintContext();
+
+		var bounds: lool.Bounds;
+		for (const coords of Array.from(tileSubset)) {
+			var topLeft = new lool.Point(coords.getPos().x, coords.getPos().y);
+			var rightBottom = new lool.Point(topLeft.x + TileManager.tileSize, topLeft.y + TileManager.tileSize);
+
+			if (bounds === undefined)
+				bounds = new lool.Bounds(topLeft, rightBottom);
+			else {
+				bounds.extend(topLeft).extend(rightBottom);
 			}
 		}
 
-		private beforeDraw(canvasCtx: CanvasRenderingContext2D): void {
-			const mirrorTile: boolean = this.isCalcRTL();
-			if (mirrorTile) {
-				canvasCtx.save();
-				canvasCtx.translate(this.size[0], 0);
-				canvasCtx.scale(-1, 1);
+		return bounds;
+	}
+
+	public clipSubsetBounds(canvasCtx: CanvasRenderingContext2D, subsetBounds: lool.Bounds): void {
+
+		var ctx = this.sectionProperties.tsManager._paintContext();
+		ctx.viewBounds.round();
+
+		canvasCtx.beginPath();
+		var rect = subsetBounds.toRectangle();
+
+		this.beforeDraw(canvasCtx);
+		canvasCtx.rect(rect[0] - ctx.viewBounds.min.x, rect[1] - ctx.viewBounds.min.y, rect[2], rect[3]);
+		this.afterDraw(canvasCtx);
+
+		canvasCtx.clip();
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	drawTileInPane (tile: any, tileBounds: any, paneBounds: any, paneOffset: any, canvasCtx: CanvasRenderingContext2D, clearBackground: boolean): void {
+		// intersect - to avoid state thrash through clipping
+		var crop = new lool.Bounds(tileBounds.min, tileBounds.max);
+		crop.min.x = Math.max(paneBounds.min.x, tileBounds.min.x);
+		crop.min.y = Math.max(paneBounds.min.y, tileBounds.min.y);
+		crop.max.x = Math.min(paneBounds.max.x, tileBounds.max.x);
+		crop.max.y = Math.min(paneBounds.max.y, tileBounds.max.y);
+
+		var cropWidth = crop.max.x - crop.min.x;
+		var cropHeight = crop.max.y - crop.min.y;
+
+		if (cropWidth && cropHeight) {
+			if (clearBackground || this.containerObject.isZoomChanged() || canvasCtx !== this.context) {
+				// Whole canvas is not cleared after zoom has changed, so clear it per tile as they arrive.
+				canvasCtx.fillStyle = this.containerObject.getClearColor();
+				this.beforeDraw(canvasCtx);
+				canvasCtx.fillRect(
+					crop.min.x - paneOffset.x,
+					crop.min.y - paneOffset.y,
+					cropWidth, cropHeight);
+				this.afterDraw(canvasCtx);
+				var gridSection = this.containerObject.getSectionWithName(app.CSections.CalcGrid.name);
+				gridSection.onDrawArea(crop, paneOffset, canvasCtx);
 			}
 		}
 
@@ -179,7 +234,27 @@ namespace lool {
 			);
 			this.afterDraw(canvasCtx);
 
-			canvasCtx.clip();
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	pdfViewDrawTileBorders (tile: any, offset: any, tileSize: number): void {
+		this.context.strokeStyle = 'red';
+		this.context.strokeRect(offset.x, offset.y, tileSize, tileSize);
+		this.context.font = '20px Verdana';
+		this.context.fillStyle = 'black';
+		this.context.fillText(tile.coords.x + ' ' + tile.coords.y + ' ' + tile.coords.part, Math.round(offset.x + tileSize * 0.5), Math.round(offset.y + tileSize * 0.5));
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	paintSimple (tile: any, ctx: any, async: boolean): void {
+		ctx.viewBounds.round();
+		var offset = new lool.Point(tile.coords.getPos().x - ctx.viewBounds.min.x, tile.coords.getPos().y - ctx.viewBounds.min.y);
+
+		if ((async || this.containerObject.isZoomChanged()) && !app.file.fileBasedView) {
+			// Non Calc tiles(handled by paintSimple) can have transparent pixels,
+			// so clear before paint if the call is an async one.
+			// For the full view area repaint, whole canvas is cleared by section container.
+			// Whole canvas is not cleared after zoom has changed, so clear it per tile as they arrive even if not async.
+			this.context.fillStyle = this.containerObject.getClearColor();
+			this.context.fillRect(offset.x, offset.y, TileManager.tileSize, TileManager.tileSize);
 		}
 
 		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -381,6 +456,53 @@ namespace lool {
 					}
 				}
 			}
+			doneTiles.add(coords.key());
+			return true; // continue with remaining tiles.
+		}.bind(this));
+	}
+
+	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
+		// Slides pane is not focusable, we are using a variable to follow its focused state.
+		// Until the pane is focusable, we will need to keep below check here.
+		if (this.map._docLayer._docType === 'presentation' || this.map._docLayer._docType === 'drawing')
+			this.map._docLayer._preview.partsFocused = false; // Parts (slide preview pane) is no longer focused, we need to set this here to avoid unwanted behavior.
+	}
+
+	// Return the fraction of intersection area with area1.
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	static getTileIntersectionAreaFraction(tileBounds: any, viewBounds: any): number {
+
+		var size = tileBounds.getSize();
+		if (size.x <= 0 || size.y <= 0)
+			return 0;
+
+		var intersection = new lool.Bounds(
+			new lool.Point(
+				Math.max(tileBounds.min.x, viewBounds.min.x),
+				Math.max(tileBounds.min.y, viewBounds.min.y)),
+			new lool.Point(
+				Math.min(tileBounds.max.x, viewBounds.max.x),
+				Math.min(tileBounds.max.y, viewBounds.max.y))
+		);
+
+		var interSize = intersection.getSize();
+		return Math.max(0, interSize.x) * Math.max(0, interSize.y) / (size.x * size.y);
+	}
+
+	private forEachTileInArea(area: any, zoom: number, part: number, mode: number, ctx: any,
+		callback: (tile: any, coords: TileCoordData, section: TilesSection) => boolean) {
+
+		if (app.file.fileBasedView) {
+			const coordList = TileManager.updateFileBasedView(true, area, zoom);
+
+			for (var k: number = 0; k < coordList.length; k++) {
+				const coords = coordList[k];
+				const tile: Tile = TileManager.get(coords);
+				if (tile)
+					callback(tile, coords, this);
+			}
+
+			return;
 		}
 
 		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -410,8 +532,8 @@ namespace lool {
 				},
 			);
 
-			return allTilesFetched;
-		}
+					var tileBounds = new lool.Bounds(tilePos, tilePos.add(new lool.Point(TileManager.tileSize, TileManager.tileSize)));
+					var interFrac = TilesSection.getTileIntersectionAreaFraction(tileBounds, areaAtZoom);
 
 		private drawPageBackgroundWriter(ctx: any) {
 			let viewRectangleTwips = [
@@ -1106,51 +1228,170 @@ namespace lool {
 				else canvas.fillStyle = 'rgba(0, 255, 0, 0.5)'; // green
 				canvas.fillRect(ox + dx + 1.5, oy + dy + 1.5, 12, 12);
 
-				// deltas graph
-				if (tile.deltaCount) {
-					// blue/grey deltas
-					canvas.fillStyle = 'rgba(0, 0, 256, 0.3)';
-					this.drawDebugHistogram(
-						canvas,
-						ox + dx + 1.5 + 14,
-						oy + dy + 1.5,
-						tile.deltaCount,
-						0,
-					);
-					// yellow/grey deltas
-					canvas.fillStyle = 'rgba(256, 256, 0, 0.3)';
-					this.drawDebugHistogram(
-						canvas,
-						ox + dx + 1.5 + 14,
-						oy + dy + 1.5,
-						tile.updateCount,
-						tile.deltaCount,
-					);
-				}
+			// deltas graph
+			if (tile.deltaCount)
+			{
+				// blue/grey deltas
+				canvas.fillStyle = 'rgba(0, 0, 256, 0.3)';
+				this.drawDebugHistogram(canvas, ox + dx + 1.5 + 14, oy + dy + 1.5, tile.deltaCount, 0);
+				// yellow/grey deltas
+				canvas.fillStyle = 'rgba(256, 256, 0, 0.3)';
+				this.drawDebugHistogram(canvas, ox + dx + 1.5 + 14, oy + dy + 1.5, tile.updateCount, tile.deltaCount);
+			}
 
-				// Metrics on-top of the tile:
-				var lines = [
-					'wireId: ' + tile.wireId,
-					'invalidFrom: ' + tile.invalidFrom,
-					'nviewid: ' + tile.viewId,
-					'invalidates: ' + tile.invalidateCount,
-					'tile: ' +
-						tile.loadCount +
-						' \u0394: ' +
-						tile.deltaCount +
-						' upd: ' +
-						tile.updateCount,
-					'misses: ' +
-						tile.missingContent +
-						' gce: ' +
-						tile.gcErrors,
-					'dlta size/kB: ' +
-						(
-							(tile.rawDeltas
-								? tile.rawDeltas.length
-								: 0) / 1024
-						).toFixed(2),
-				];
+			// Metrics on-top of the tile:
+			var lines = [
+				'wireId: ' + tile.wireId,
+				'invalidFrom: ' + tile.invalidFrom,
+				'nviewid: ' + tile.viewId,
+				'invalidates: ' + tile.invalidateCount,
+				'tile: ' + tile.loadCount + ' \u0394: ' + tile.deltaCount + ' upd: ' + tile.updateCount,
+				'misses: ' + tile.missingContent + ' gce: ' + tile.gcErrors,
+				'dlta size/kB: ' + ((tile.rawDeltas ? tile.rawDeltas.length : 0)/1024).toFixed(2)
+			];
+
+			// FIXME: generate metrics of how long a tile has been visible & invalid for.
+			//			if (tile._debugTime && tile._debugTime.date !== 0)
+			//					lines.push(this.map._debug.updateTimeArray(tile._debugTime, +new Date() - tile._debugTime.date));
+
+			const startY = tSize - 12 * lines.length;
+
+			// background
+			canvas.fillStyle = 'rgba(220, 220, 220, 0.5)'; // greyish
+			canvas.fillRect(ox + dx + 1.5, oy + dy + startY - 12.0, 100, 12 * lines.length + 8.0);
+
+			canvas.font = '12px sans';
+			canvas.fillStyle = 'rgba(0, 0, 0, 1.0)';   // black
+			canvas.textAlign = 'left';
+			for (var i = 0 ; i < lines.length; ++i)
+					canvas.fillText(lines[i], ox + dx + 5.5, oy + dy + startY + i*12);
+
+			canvas.restore();
+			this.afterDraw(canvas);
+		}
+	}
+
+	// Called by tsManager to draw a zoom animation frame.
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public drawZoomFrame(ctx?: any): void {
+		var tsManager = this.sectionProperties.tsManager;
+		if (!tsManager._inZoomAnim)
+			return;
+
+		var scale = tsManager._zoomFrameScale;
+		if (!scale || !tsManager._newCenter)
+			return;
+
+		ctx = ctx || this.sectionProperties.tsManager._paintContext();
+		var docLayer = this.sectionProperties.docLayer;
+		var zoom = Math.round(this.map.getZoom());
+		var part = docLayer._selectedPart;
+		var mode = docLayer._selectedMode;
+		var splitPos = ctx.splitPos;
+
+		this.containerObject.setPenPosition(this);
+		var viewSize = ctx.viewBounds.getSize();
+		// clear the document area first.
+		this.context.fillStyle = this.containerObject.getClearColor();
+		this.context.fillRect(0, 0, viewSize.x, viewSize.y);
+
+		var paneBoundsList = ctx.paneBoundsList;
+
+		let maxXBound = 0;
+		let maxYBound = 0;
+
+		for (const paneBounds of paneBoundsList) {
+			maxXBound = Math.max(maxXBound, paneBounds.min.x);
+			maxYBound = Math.max(maxYBound, paneBounds.min.y);
+		}
+
+		for (var k = 0; k < paneBoundsList.length ; ++k) {
+			var paneBounds = paneBoundsList[k];
+			var paneSize = paneBounds.getSize();
+
+			var destPos = new lool.Point(0, 0);
+			var docAreaSize = paneSize.divideBy(scale);
+
+			let freezeX: boolean;
+			let freezeY: boolean;
+
+			if (paneBounds.min.x === 0 && maxXBound !== 0) {
+				// There is another pane in the X direction and we are at 0, so we are fixed in X
+				docAreaSize.x = paneSize.x;
+				freezeX = true;
+			} else {
+				// Pane is free to move in X direction.
+				destPos.x = splitPos.x;
+				docAreaSize.x += splitPos.x / scale;
+				freezeX = false;
+			}
+
+			if (paneBounds.min.y === 0 && maxYBound !== 0) {
+				// There is another pane in the Y direction and we are at 0, so we are fixed in Y
+				docAreaSize.y = paneSize.y;
+				freezeY = true;
+			} else {
+				// Pane is free to move in Y direction.
+				destPos.y = splitPos.y;
+				docAreaSize.y += splitPos.y / scale;
+				freezeY = false;
+			}
+
+			// Calculate top-left in doc core-pixels for the frame.
+			var docPos = tsManager._getZoomDocPos(
+				tsManager._newCenter,
+				tsManager._layer._pinchStartCenter,
+				paneBounds,
+				{ freezeX, freezeY },
+				splitPos,
+				scale,
+				false /* findFreePaneCenter? */
+			);
+
+			if (!freezeX) {
+				tsManager._zoomAtDocEdgeX = docPos.topLeft.x == splitPos.x;
+			}
+
+			if (!freezeY) {
+				tsManager._zoomAtDocEdgeY = docPos.topLeft.y == splitPos.y;
+			}
+
+			var docRange = new lool.Bounds(docPos.topLeft, docPos.topLeft.add(docAreaSize));
+			if (tsManager._calcGridSection) {
+				tsManager._calcGridSection.onDrawArea(docRange, docRange.min.subtract(destPos), this.context);
+			}
+			var canvasContext = this.context;
+
+			var bestZoomSrc = zoom;
+			var sheetGeometry = docLayer.sheetGeometry;
+			var useSheetGeometry = false;
+			if (scale < 1.0) {
+				useSheetGeometry = !!sheetGeometry;
+				bestZoomSrc = this.zoomLevelWithMaxContentInArea(docRange, zoom, part, mode, ctx);
+			}
+
+			var docRangeScaled = (bestZoomSrc == zoom) ? docRange : this.scaleBoundsForZoom(docRange, bestZoomSrc, zoom);
+			var destPosScaled = (bestZoomSrc == zoom) ? destPos : this.scalePosForZoom(destPos, bestZoomSrc, zoom);
+			var relScale = (bestZoomSrc == zoom) ? 1 : this.map.getZoomScale(bestZoomSrc, zoom);
+
+			this.beforeDraw(canvasContext);
+			this.forEachTileInArea(docRangeScaled, bestZoomSrc, part, mode, ctx, function (tile, coords, section): boolean {
+				if (!tile || !tile.isReadyToDraw() || !TileManager.isValidTile(coords))
+					return false;
+
+				var tileCoords = tile.coords.getPos();
+				if (app.file.fileBasedView) {
+					var ratio = TileManager.tileSize * relScale / app.tile.size.y;
+					var partHeightPixels = Math.round((docLayer._partHeightTwips + docLayer._spaceBetweenParts) * ratio);
+					tileCoords.y = tile.coords.part * partHeightPixels + tileCoords.y;
+				}
+				var tileBounds = new lool.Bounds(tileCoords, tileCoords.add(new lool.Point(TileManager.tileSize, TileManager.tileSize)));
+
+				var crop = new lool.Bounds(tileBounds.min, tileBounds.max);
+				crop.min.x = Math.max(docRangeScaled.min.x, tileBounds.min.x);
+				crop.min.y = Math.max(docRangeScaled.min.y, tileBounds.min.y);
+				crop.max.x = Math.min(docRangeScaled.max.x, tileBounds.max.x);
+				crop.max.y = Math.min(docRangeScaled.max.y, tileBounds.max.y);
 
 				// FIXME: generate metrics of how long a tile has been visible & invalid for.
 				//			if (tile._debugTime && tile._debugTime.date !== 0)
@@ -1458,11 +1699,18 @@ namespace lool {
 				return new L.Bounds(topLeft, topLeft.add(size));
 			}
 
-			return new L.Bounds(
-				corePxBounds.min.multiplyBy(convScale),
-				corePxBounds.max.multiplyBy(convScale),
+			var topLeft = this.scalePosForZoom(corePxBounds.min, toZoom, fromZoom);
+			var size = corePxBounds.getSize().multiplyBy(convScale);
+			return new lool.Bounds(
+				topLeft,
+				topLeft.add(size)
 			);
 		}
+
+		return new lool.Bounds(
+			corePxBounds.min.multiplyBy(convScale),
+			corePxBounds.max.multiplyBy(convScale)
+		);
 	}
 }
 

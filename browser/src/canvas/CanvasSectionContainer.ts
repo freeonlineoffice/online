@@ -9,8 +9,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-declare var L: any;
-
 // Below class and CanvasSectionObject class are for managing the canvas layout.
 /*
 	Potential values are separated with '|'
@@ -389,10 +387,9 @@ class CanvasSectionContainer {
 			this.sectionsDirty = false;
 		}
 
-		var scrollSection = <any>(
-			this.getSectionWithName(L.CSections.Scroll.name)
-		);
-		if (scrollSection) scrollSection.completePendingScroll(); // No painting, only dirtying.
+		var scrollSection = <any> this.getSectionWithName(app.CSections.Scroll.name);
+		if (scrollSection)
+			scrollSection.completePendingScroll(); // No painting, only dirtying.
 
 		this.requestReDraw();
 	}

@@ -1,25 +1,20 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 
-declare var L: any;
+/* global L */
 
 namespace lool {
 	function PointConstruct(x: number, y: number, round?: boolean): Point {
 		return new L.Point(x, y, round);
 	}
 
-	function toPoint(
-		x: PointConvertable | number,
-		y?: number,
-		round?: boolean,
-	): Point {
-		return L.point(x, y, round);
-	}
+function PointConstruct(x: number, y: number, round?: boolean): Point {
+	return new lool.Point(x, y, round);
+}
 
-	/// Bounds represents a rectangular area on the screen.
-	export class Bounds {
-		public min: Point;
-		public max: Point;
+function toPoint(x: PointConvertable | number, y?: number, round?: boolean): Point {
+	return lool.Point.toPoint(x, y, round);
+}
 
 		constructor(
 			a: PointConvertable[] | PointConvertable,
@@ -73,10 +68,158 @@ namespace lool {
 			return new Bounds(refPoint1, refPoint2);
 		}
 
-		public static parseArray(rectListString: string): Bounds[] {
-			if (typeof rectListString !== 'string') {
-				console.error('invalid input type, expected string');
-				return undefined;
+		return rectangles;
+	}
+
+	// extend the bounds to contain the given point
+	public extend(pointSrc: Point | Array<number> | PointLike): Bounds {
+		var point = toPoint(pointSrc);
+
+		if (!this.min && !this.max) {
+			this.min = point.clone();
+			this.max = point.clone();
+		} else {
+			this.min.x = Math.min(point.x, this.min.x);
+			this.max.x = Math.max(point.x, this.max.x);
+			this.min.y = Math.min(point.y, this.min.y);
+			this.max.y = Math.max(point.y, this.max.y);
+		}
+		return this;
+	}
+
+	public clone(): Bounds {
+		return new Bounds(this.min, this.max);
+	}
+
+	public getCenter(round?: boolean): Point {
+		return PointConstruct(
+			(this.min.x + this.max.x) / 2,
+			(this.min.y + this.max.y) / 2, round);
+	}
+
+	public round(): void {
+		this.min.x = Math.round(this.min.x);
+		this.min.y = Math.round(this.min.y);
+		this.max.x = Math.round(this.max.x);
+		this.max.y = Math.round(this.max.y);
+	}
+
+	public translate(x: number, y: number): void {
+		this.min.x += x;
+		this.min.y += y;
+		this.max.x += x;
+		this.max.y += y;
+	}
+
+	public getBottomLeft(): Point {
+		return PointConstruct(this.min.x, this.max.y);
+	}
+
+	public getTopRight(): Point {
+		return PointConstruct(this.max.x, this.min.y);
+	}
+
+	public getTopLeft(): Point {
+		return PointConstruct(this.min.x, this.min.y);
+	}
+
+	public getBottomRight(): Point {
+		return PointConstruct(this.max.x, this.max.y);
+	}
+
+	public getSize(): Point {
+		return this.max.subtract(this.min);
+	}
+
+	public contains(obj: Bounds | PointConvertable): boolean {
+		var min, max;
+
+		if (Array.isArray(obj) || obj instanceof lool.Point || obj instanceof SimplePoint) {
+			var point: Point = toPoint(<PointConvertable>obj);
+			min = max = point;
+		} else {
+			var bounds: Bounds = Bounds.toBounds(obj);
+			min = bounds.min;
+			max = bounds.max;
+		}
+
+		return (min.x >= this.min.x) &&
+			(max.x <= this.max.x) &&
+			(min.y >= this.min.y) &&
+			(max.y <= this.max.y);
+	}
+
+	public intersects(boundsSrc: Bounds | PointConvertable[]): boolean {
+		var bounds = Bounds.toBounds(boundsSrc);
+
+		var min = this.min;
+		var max = this.max;
+		var min2 = bounds.min;
+		var max2 = bounds.max;
+		var xIntersects = (max2.x >= min.x) && (min2.x <= max.x);
+		var yIntersects = (max2.y >= min.y) && (min2.y <= max.y);
+
+		return xIntersects && yIntersects;
+	}
+
+	public distanceTo(bounds: Bounds): number {
+		var min = this.min;
+		var max = this.max;
+		var min2 = bounds.min;
+		var max2 = bounds.max;
+		var xIntersects = (max2.x >= min.x) && (min2.x <= max.x);
+		var yIntersects = (max2.y >= min.y) && (min2.y <= max.y);
+
+		if (xIntersects) {
+			if (yIntersects) return 0;
+			if (max2.y < min.y) return min.y - max2.y;
+			return min2.y - max.y;
+		}
+
+		if (yIntersects) {
+			if (max2.x < min.x) return min.x - max2.x;
+			return min2.x - max.x;
+		}
+
+		var xdist = (min.x > max2.x) ? (min.x - max2.x) : (min2.x - max.x);
+		var ydist = (min.y > max2.y) ? (min.y - max2.y) : (min2.y - max.y);
+
+		return Math.sqrt(xdist * xdist + ydist * ydist);
+	}
+
+	// non-destructive, returns a new Bounds
+	public add(point: Point): Bounds {
+		return this.clone()._add(point);
+	}
+
+	// destructive, used directly for performance in situations where it's safe to modify existing Bounds
+	public _add(point: Point): Bounds {
+		this.min._add(point);
+		this.max._add(point);
+		return this;
+	}
+
+	public getPointArray(): Point[] {
+		return [
+			this.getBottomLeft(), this.getBottomRight(),
+			this.getTopLeft(), this.getTopRight()
+		];
+	}
+
+	public toString(): string {
+		return '[' +
+			this.min.toString() + ', ' +
+			this.max.toString() + ']';
+	}
+
+	public isValid(): boolean {
+		return !!(this.min && this.max);
+	}
+
+	public intersectsAny(boundsArray: Bounds[]): boolean {
+		for (var i = 0; i < boundsArray.length; ++i) {
+			if (boundsArray[i].intersects(this)) {
+				return true;
 			}
 
 			var parts = rectListString.match(/\d+/g);
@@ -120,8 +263,8 @@ namespace lool {
 		public clone(): Bounds {
 			return new Bounds(this.min, this.max);
 		}
-
-		public getCenter(round?: boolean): Point {
+	public clamp(obj: Point | Bounds): Point | Bounds {
+		if (obj instanceof lool.Point) {
 			return PointConstruct(
 				(this.min.x + this.max.x) / 2,
 				(this.min.y + this.max.y) / 2,
@@ -339,5 +482,4 @@ namespace lool {
 	}
 }
 
-L.Bounds = lool.Bounds;
-L.bounds = lool.Bounds.toBounds;
+}

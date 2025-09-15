@@ -12,12 +12,9 @@
 
 /* See CanvasSectionContainer.ts for explanations. */
 
-L.Map.include({
-	insertComment: function () {
-		if (
-			this.stateChangeHandler.getItemValue('InsertAnnotation') ===
-			'disabled'
-		)
+window.L.Map.include({
+	insertComment: function() {
+		if (this.stateChangeHandler.getItemValue('InsertAnnotation') === 'disabled')
 			return;
 		if (lool.Comment.isAnyEdit()) {
 			lool.CommentSection.showCommentEditingWarning();
@@ -41,16 +38,12 @@ L.Map.include({
 	showResolvedComments: function (on: any) {
 		var unoCommand = '.uno:ShowResolvedAnnotations';
 		this.sendUnoCommand(unoCommand);
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.setViewResolved(on);
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).setViewResolved(on);
 		this.uiManager.setDocTypePref('ShowResolved', on ? true : false);
 	},
 
-	showComments: function (on: any) {
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.setView(on);
+	showComments: function(on: any) {
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).setView(on);
 		this.uiManager.setDocTypePref('showannotations', on ? true : false);
 		this.fire('commandstatechanged', {
 			commandName: 'showannotations',
@@ -60,7 +53,7 @@ L.Map.include({
 	},
 });
 
-declare var L: any;
+
 declare var JSDialog: any;
 
 namespace lool {
@@ -92,12 +85,33 @@ namespace lool {
 		mobileCommentId: string = 'new-annotation-dialog';
 		mobileCommentModalId: string;
 
-		map: any;
-		static autoSavedComment: lool.Comment;
-		static needFocus: lool.Comment;
-		static commentWasAutoAdded: boolean = false;
-		static pendingImport: boolean = false;
-		static importingComments: boolean = false; // active during comments insertion, disable scroll
+export class CommentSection extends CanvasSectionObject {
+	backgroundColor: string = app.sectionContainer.getClearColor();
+	expand: string[] = ['bottom'];
+	processingOrder: number = app.CSections.CommentList.processingOrder;
+	drawingOrder: number = app.CSections.CommentList.drawingOrder;
+	zIndex: number = app.CSections.CommentList.zIndex;
+	interactable: boolean = false;
+	sectionProperties: {
+		commentList: Array<Comment>;
+		selectedComment: Comment | null;
+		calcCurrentComment: Comment | null;
+		marginY: number;
+		offset: number;
+		width: number;
+		commentWidth: number;
+		collapsedMarginToTheEdge: number;
+		deflectionOfSelectedComment: number;
+		collapsedCommentWidth: number;
+		showSelectedBigger: boolean;
+		commentsAreListed: boolean;
+		[key: string]: any;
+		canvasContainerTop: number; // The top pixel of the document container. Added to positions of comments.
+		canvasContainerLeft: number;
+	};
+	disableLayoutAnimation: boolean = false;
+	mobileCommentId: string = 'new-annotation-dialog';
+	mobileCommentModalId: string;
 
 		// To associate comment id with its index in commentList array.
 		private idIndexMap: Map<any, number>;
@@ -108,48 +122,28 @@ namespace lool {
 		constructor() {
 			super(L.CSections.CommentList.name);
 
-			this.map = L.Map.THIS;
-			this.anchor = ['top', 'right'];
-			this.sectionProperties.docLayer = this.map._docLayer;
-			this.sectionProperties.commentList = new Array(0);
-			this.sectionProperties.selectedComment = null;
-			this.sectionProperties.arrow = null;
-			this.sectionProperties.show = null;
-			this.sectionProperties.showResolved = null;
-			this.sectionProperties.marginY = 10 * app.dpiScale;
-			this.sectionProperties.offset = 5 * app.dpiScale;
-			this.sectionProperties.width = Math.round(1 * app.dpiScale); // Configurable variable.
-			this.sectionProperties.scrollAnnotation = null; // For impress, when 1 or more comments exist.
-			this.sectionProperties.commentWidth = 200 * 1.3 * app.dpiScale;
-			this.sectionProperties.collapsedCommentWidth =
-				32 * 1.5 * app.dpiScale;
-			this.sectionProperties.collapsedMarginToTheEdge = 120; // CSS pixels.
-			this.sectionProperties.deflectionOfSelectedComment = 160; // CSS pixels.
-			this.sectionProperties.showSelectedBigger = false;
-			this.sectionProperties.calcCurrentComment = null; // We don't automatically show a Calc comment when cursor is on its cell. But we remember it to show if user presses Alt+C keys.
-			this.sectionProperties.reLayout = true;
+	constructor () {
+		super(app.CSections.CommentList.name);
 
-			// This (commentsAreListed) variable means that comments are shown as a list on the right side of the document.
-			this.sectionProperties.commentsAreListed =
-				(app.map._docLayer._docType === 'text' ||
-					app.map._docLayer._docType === 'presentation' ||
-					app.map._docLayer._docType === 'drawing') &&
-				!(<any>window).mode.isMobile();
-			this.idIndexMap = new Map<any, number>();
-			this.mobileCommentModalId = this.map.uiManager.generateModalId(
-				this.mobileCommentId,
-			);
-			this.annotationMinSize = Number(
-				getComputedStyle(document.documentElement).getPropertyValue(
-					'--annotation-min-size',
-				),
-			);
-			this.annotationMaxSize = Number(
-				getComputedStyle(document.documentElement).getPropertyValue(
-					'--annotation-max-size',
-				),
-			);
-		}
+		this.map = window.L.Map.THIS;
+		this.anchor = ['top', 'right'];
+		this.sectionProperties.docLayer = this.map._docLayer;
+		this.sectionProperties.commentList = new Array(0);
+		this.sectionProperties.selectedComment = null;
+		this.sectionProperties.arrow = null;
+		this.sectionProperties.show = null;
+		this.sectionProperties.showResolved = null;
+		this.sectionProperties.marginY = 10 * app.dpiScale;
+		this.sectionProperties.offset = 5 * app.dpiScale;
+		this.sectionProperties.width = Math.round(1 * app.dpiScale); // Configurable variable.
+		this.sectionProperties.scrollAnnotation = null; // For impress, when 1 or more comments exist.
+		this.sectionProperties.commentWidth = 200 * 1.3 * app.dpiScale;
+		this.sectionProperties.collapsedCommentWidth = 32 * 1.5 * app.dpiScale;
+		this.sectionProperties.collapsedMarginToTheEdge = 120; // CSS pixels.
+		this.sectionProperties.deflectionOfSelectedComment = 160; // CSS pixels.
+		this.sectionProperties.showSelectedBigger = false;
+		this.sectionProperties.calcCurrentComment = null; // We don't automatically show a Calc comment when cursor is on its cell. But we remember it to show if user presses Alt+C keys.
+		this.sectionProperties.reLayout = true;
 
 		public onInitialize(): void {
 			this.checkCollapseState();
@@ -189,14 +183,10 @@ namespace lool {
 				this,
 			);
 
-			this.map.on(
-				'zoomend',
-				function () {
-					this.checkCollapseState();
-					this.layout(true);
-				},
-				this,
-			);
+	public static showCommentEditingWarning (): void {
+		window.L.Map.THIS.uiManager.showInfoModal('annotation-editing', _('A comment is being edited'),
+		_('Please save or discard the comment currently being edited.'), null, _('Close'));
+	}
 
 			this.backgroundColor = this.containerObject.getClearColor();
 			this.initializeContextMenus();
@@ -396,14 +386,9 @@ namespace lool {
 			}
 		}
 
-		private calculateAvailableSpace() {
-			var availableSpace =
-				(this.containerObject.getDocumentAnchorSection().size[0] -
-					app.activeDocument.fileSize.pX) *
-				0.5;
-			availableSpace = Math.round(availableSpace / app.dpiScale);
-			return availableSpace;
-		}
+			if (!this.isInViewPort([annotationTop, annotationBottom])) {
+				const scrollSection = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
+				const screenTopBottom = this.getScreenTopBottom();
 
 		public shouldCollapse(): boolean {
 			if (

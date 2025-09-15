@@ -1,7 +1,11 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.GroupBase
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
 namespace lool {
@@ -40,11 +44,11 @@ namespace lool {
 			super(name);
 		}
 
-		// This function is called by CanvasSectionContainer when the section is added to the sections list.
-		onInitialize(): void {
-			this._map = L.Map.THIS;
-			this.sectionProperties.docLayer = this._map._docLayer;
-			this._groups = null;
+	// This function is called by CanvasSectionContainer when the section is added to the sections list.
+	onInitialize(): void {
+		this._map = window.L.Map.THIS;
+		this.sectionProperties.docLayer = this._map._docLayer;
+		this._groups = null;
 
 			// group control styles
 			this._groupHeadSize = Math.round(12 * app.dpiScale);
@@ -513,6 +517,49 @@ namespace lool {
 			).position[0] = 0;
 		}
 	}
-}
 
-L.Control.GroupBase = lool.GroupBase;
+	// returns [startX, endX, startY, endY]
+	getTailsGroupRect (group: GroupEntry): number[] {
+		return [0, 0, 0, 0];
+	}
+
+	findTailsGroup (point: lool.SimplePoint): GroupEntry {
+		const mirrorX = this.isCalcRTL();
+		for (let i = 0; i < this._groups.length; i++) {
+			if (this._groups[i]) {
+				for (const group in this._groups[i]) {
+					if (Object.prototype.hasOwnProperty.call(this._groups[i], group)) {
+						const group_ = this._groups[i][group];
+						const rect = this.getTailsGroupRect(group_);
+						const startX = rect[0];
+						const startY = rect[2];
+						const endX = rect[1];
+						const endY = rect[3];
+
+						if (this.isPointInRect(point, startX, startY, endX, endY, mirrorX)) {
+							return group_;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/* Double clicking on a group's tail closes it. */
+	onDoubleClick (point: lool.SimplePoint): void {
+		const group = this.findTailsGroup(point);
+		if (group)
+			this._updateOutlineState(group);
+	}
+
+	onMouseEnter(): void {
+		$.contextMenu('destroy', '#document-canvas');
+	}
+
+	onRemove(): void {
+		this.isRemoved = true;
+		this.containerObject.getSectionWithName(app.CSections.RowHeader.name).position[0] = 0;
+		this.containerObject.getSectionWithName(app.CSections.CornerHeader.name).position[0] = 0;
+	}
+}
+}

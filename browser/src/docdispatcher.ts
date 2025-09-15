@@ -704,7 +704,7 @@ class Dispatcher {
 		this.actionsMap['.uno:RejectAllTrackedChanges'] = function () {
 			app.map.sendUnoCommand('.uno:RejectAllTrackedChanges');
 			const commentSection = app.sectionContainer.getSectionWithName(
-				L.CSections.CommentList.name,
+				app.CSections.CommentList.name,
 			);
 			commentSection.rejectAllTrackedCommentChanges();
 		};
@@ -716,7 +716,7 @@ class Dispatcher {
 			if (configuration.commentWizard) {
 				configuration.commentWizard = false;
 				app.sectionContainer
-					.getSectionWithName(L.CSections.CommentList.name)
+					.getSectionWithName(app.CSections.CommentList.name)
 					.removeHighlighters();
 				app.map.fire('closemobilewizard');
 				app.map.mobileTopBar.selectItem('comment_wizard', false);

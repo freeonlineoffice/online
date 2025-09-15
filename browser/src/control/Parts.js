@@ -394,10 +394,9 @@ L.Map.include({
 				][1] / app.dpiScale,
 			);
 
-			const section = app.sectionContainer.getSectionWithName(
-				L.CSections.Scroll.name,
-			);
-			if (section) section.onScrollTo({ x: 0, y: posY });
+			const section = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
+			if (section)
+				section.onScrollTo({x: 0, y: posY});
 
 			var state =
 				'Page ' +

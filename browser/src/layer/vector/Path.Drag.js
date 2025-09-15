@@ -1,5 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app */
+/* global app lool */
 
 var END = {
 	mousedown: 'mouseup',
@@ -89,39 +89,14 @@ L.Handler.PathDrag = L.Handler.extend(
 		},
 
 		/**
-		 * Disable dragging
-		 */
-		removeHooks: function () {
-			this._path.off('mousedown', this._onDragStart, this);
-
-			this._path.options.className =
-				this._path.options.className.replace(
-					new RegExp('\\s+' + L.Handler.PathDrag.DRAGGING_CLS),
-					'',
-				);
-
-			this._path.removeClass(L.Handler.PathDrag.DRAGGING_CLS);
-
-			L.DomEvent.off(
-				document,
-				'mousemove touchmove',
-				this.noManualDrag(window.memo.bind(this._onDrag, this)),
-				this,
-			);
-			L.DomEvent.off(
-				document,
-				'mouseup touchend',
-				this.noManualDrag(window.memo.bind(this._onDragEnd, this)),
-				this,
-			);
-		},
+		* @type {lool.Point}
+		*/
+		this._startPoint = null;
 
 		/**
-		 * @return {Boolean}
-		 */
-		moved: function () {
-			return this._path._dragMoved;
-		},
+		* @type {lool.Point}
+		*/
+		this._dragStartPoint = null;
 
 		/**
 		 * Start drag
@@ -188,16 +163,85 @@ L.Handler.PathDrag = L.Handler.extend(
 			var containerPoint =
 				this._path._map.mouseEventToContainerPoint(first);
 
-			// skip taps
-			if (evt.type === 'touchmove' && !this._path._dragMoved) {
-				var totalMouseDragDistance =
-					this._dragStartPoint.distanceTo(containerPoint);
-				if (
-					totalMouseDragDistance <=
-					this._path._map.options.tapTolerance
-				) {
-					return;
-				}
+		// apply matrix
+		if (moved) {
+			this._transformPoints(this._matrix);
+			this._path._updatePath();
+			this._path._project();
+			this._path._transform(null);
+		}
+
+		L.DomEvent.off(document, 'mousemove touchmove', this.noManualDrag(window.memo.bind(this._onDrag, this)),    this);
+		L.DomEvent.off(document, 'mouseup touchend',    this.noManualDrag(window.memo.bind(this._onDragEnd, this)), this);
+
+		this._restoreCoordGetters();
+
+		// consistency
+		if (moved) {
+			this._path.fire('dragend', {
+				distance: distance(this._dragStartPoint, containerPoint)
+			});
+
+			// hack for skipping the click in canvas-rendered layers
+			var contains = this._path._containsPoint;
+			this._path._containsPoint = app.util.falseFn;
+			app.util.requestAnimFrame(function() {
+				L.DomEvent._skipped({ type: 'click' });
+				this._path._containsPoint = contains;
+			}, this);
+		}
+
+		this._matrix          = null;
+		this._startPoint      = null;
+		this._dragStartPoint  = null;
+		this._path._dragMoved = false;
+
+		if (this._mapDraggingWasEnabled) {
+			if (moved) L.DomEvent._fakeStop({ type: 'click' });
+			this._path._map.dragging.enable();
+		}
+
+		if (!moved && this._mouseDown && !this._path.options.manualDrag(this._mouseDown)) {
+			this._path._map._handleDOMEvent(this._mouseDown);
+			this._path._map._handleDOMEvent(evt);
+		}
+	},
+
+
+	/**
+	* Applies transformation, does it in one sweep for performance,
+	* so don't be surprised about the code repetition.
+	*
+	* [ x ]   [ a  b  tx ] [ x ]   [ a * x + b * y + tx ]
+	* [ y ] = [ c  d  ty ] [ y ] = [ c * x + d * y + ty ]
+	*
+	* @param {Array.<Number>} matrix
+	*/
+	_transformPoints: function(matrix, dest) {
+		var path = this._path;
+		var i, len, latlng;
+
+		var px = lool.Point.toPoint(matrix[4], matrix[5]);
+
+		var crs = path._map.options.crs;
+		var transformation = crs.transformation;
+		var scale = crs.scale(path._map.getZoom());
+		var projection = crs.projection;
+
+		var diff = transformation.untransform(px, scale)
+			.subtract(transformation.untransform(lool.Point.toPoint(0, 0), scale));
+		var applyTransform = !dest;
+
+		path._bounds = new L.LatLngBounds();
+
+		// window.app.console.time('transform');
+		// all shifts are in-place
+		if (path._point) { // L.Circle
+			dest = projection.unproject(
+				projection.project(path._latlng)._add(diff));
+			if (applyTransform) {
+				path._latlng = dest;
+				path._point._add(px);
 			}
 
 			if (this._startPoint === null) return;

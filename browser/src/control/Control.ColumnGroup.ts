@@ -1,7 +1,12 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.ColumnGroup
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
 /* global app */
@@ -25,12 +30,44 @@ namespace lool {
 		drawingOrder: number = L.CSections.ColumnGroup.drawingOrder;
 		zIndex: number = L.CSections.ColumnGroup.zIndex;
 
-		_sheetGeometry: lool.SheetGeometry;
-		_cornerHeaderWidth: number;
-		_splitPos: lool.Point;
+export class ColumnGroup extends GroupBase {
+	anchor: any = ['top', [app.CSections.CornerGroup.name, 'right', 'left']];
+	expand: string[] = ['left', 'right']; // Expand horizontally.
+	processingOrder: number = app.CSections.ColumnGroup.processingOrder;
+	drawingOrder: number = app.CSections.ColumnGroup.drawingOrder;
+	zIndex: number = app.CSections.ColumnGroup.zIndex;
 
-		constructor() {
-			super(L.CSections.ColumnGroup.name);
+	_sheetGeometry: lool.SheetGeometry;
+	_cornerHeaderWidth: number;
+	_splitPos: lool.Point;
+
+	constructor() { super(app.CSections.ColumnGroup.name); }
+
+	update(): void {
+		if (this.isRemoved) // Prevent calling while deleting the section. It causes errors.
+			return;
+
+		this._sheetGeometry = this._map._docLayer.sheetGeometry;
+		this._groups = Array(this._sheetGeometry.getColumnGroupLevels());
+
+		// Calculate width on the fly.
+		this.size[1] = this._computeSectionHeight();
+
+		this._cornerHeaderWidth = this.containerObject.getSectionWithName(app.CSections.CornerHeader.name).size[0];
+
+		this._splitPos = (this._map._docLayer._splitPanesContext as lool.SplitPanesContext).getSplitPos();
+
+		this._collectGroupsData(this._sheetGeometry.getColumnGroupsDataInView());
+	}
+
+	// This returns the required height for the section.
+	_computeSectionHeight(): number {
+		return this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * (this._groups.length + 1);
+	}
+
+	isGroupHeaderVisible (startX: number, startPos: number): boolean {
+		if (startPos > this._splitPos.x) {
+			return startX > this._splitPos.x + this._cornerHeaderWidth;
 		}
 
 		update(): void {
@@ -354,20 +391,11 @@ namespace lool {
 			return [startX, endX, startY, endY];
 		}
 
-		onRemove(): void {
-			this.isRemoved = true;
-			this.containerObject.getSectionWithName(
-				L.CSections.ColumnHeader.name,
-			).position[1] = 0;
-			this.containerObject.getSectionWithName(
-				L.CSections.CornerHeader.name,
-			).position[1] = 0;
-		}
+	onRemove(): void {
+		this.isRemoved = true;
+		this.containerObject.getSectionWithName(app.CSections.ColumnHeader.name).position[1] = 0;
+		this.containerObject.getSectionWithName(app.CSections.CornerHeader.name).position[1] = 0;
 	}
 }
 
-L.Control.ColumnGroup = lool.ColumnGroup;
-
-L.control.columnGroup = function () {
-	return new L.Control.ColumnGroup();
-};
+}

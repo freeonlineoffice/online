@@ -130,21 +130,10 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		commentData.parthash = app.impress.partList[this._selectedPart].hash;
 
 		const name = lool.Comment.makeName(commentData);
-		const comment = new lool.Comment(
-			name,
-			commentData,
-			{},
-			app.sectionContainer.getSectionWithName(
-				L.CSections.CommentList.name,
-			),
-		);
+		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(app.CSections.CommentList.name));
 
-		var annotation = app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.add(comment);
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.modify(annotation);
+		var annotation = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).add(comment);
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).modify(annotation);
 	},
 
 	beforeAdd: function (map) {
@@ -204,9 +193,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 			// Need this check else dialog loses focus
 			return;
 
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.onPartChange();
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).onPartChange();
 	},
 
 	onUpdatePermission: function (e) {
@@ -232,9 +219,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (values.comments) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.importComments(values.comments);
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).importComments(values.comments);
 		} else {
 			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
 				this,

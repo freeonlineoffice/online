@@ -240,19 +240,159 @@ namespace lool {
 					this._map._textInput._sendText(text);
 				}
 
+	drawHeaderEntry (entry: HeaderEntryData): void {
+		return;
+	}
+
+	onDraw(): void {
+		this._headerInfo.forEachElement(function(elemData: HeaderEntryData): boolean {
+			this.drawHeaderEntry(elemData);
+			return false; // continue till last.
+		}.bind(this));
+
+		this.drawResizeLineIfNeeded();
+	}
+
+	onDragEnd (dragDistance: number[]): void {
+		return;
+	}
+
+	onMouseEnter(): void {
+		this.containerObject.getCanvasStyle().cursor = this._cursor;
+		this._bindContextMenu();
+	}
+
+	onMouseLeave (point: lool.SimplePoint): void {
+		if (point === null) { // This means that the mouse pointer is outside the canvas.
+			if (this.containerObject.isDraggingSomething() && this._dragEntry) { // Were we resizing a row / column before mouse left.
+				this.onDragEnd(this.containerObject.getDragDistance());
+			}
+		}
+
+		if (this._mouseOverEntry) {
+			this.containerObject.setPenPosition(this);
+			this._mouseOverEntry.isOver = false;
+			this.drawHeaderEntry(this._mouseOverEntry);
+			this._mouseOverEntry = null;
+		}
+		this._hitResizeArea = false;
+		this.containerObject.getCanvasStyle().cursor = 'default';
+	}
+
+	_bindContextMenu(): void {
+		if ((window as any).mode.isMobile() || this._map.isReadOnlyMode()) {
+			// On mobile, we use the mobile wizard rather than the context menu
+			return;
+		}
+
+		this._unBindContextMenu();
+		$.contextMenu({
+			selector: '#canvas-container',
+			className: 'lool-font',
+			zIndex: 1500,
+			items: this._menuItem,
+			callback: function() { return; }
+		});
+		$('#canvas-container').contextMenu('update');
+		this._map._contextMenu.stopRightMouseUpEvent();
+	}
+
+	_unBindContextMenu(): void {
+		$.contextMenu('destroy', '#canvas-container');
+	}
+
+	inResize(): boolean {
+		return this.containerObject.isDraggingSomething() && this._dragEntry && (this._dragDistance !== null);
+	}
+
+	drawResizeLineIfNeeded(): void {
+		if (!this.inResize())
+			return;
+
+		this.containerObject.setPenPosition(this);
+		const isRTL = this.isCalcRTL();
+		const x = this._isColumn ? ((isRTL ? this.size[0] - this._dragEntry.pos: this._dragEntry.pos) + this._dragDistance[0]): (isRTL ? 0 : this.size[0]);
+		const y = this._isColumn ? this.size[1]: (this._dragEntry.pos + this._dragDistance[1]);
+
+		this.context.lineWidth = app.dpiScale;
+		this.context.strokeStyle = 'darkblue';
+		this.context.beginPath();
+		this.context.moveTo(x, y);
+		this.context.lineTo(this._isColumn ? x: (isRTL ? -this.myTopLeft[0]: this.containerObject.getWidth()), this._isColumn ? this.containerObject.getHeight(): y);
+		this.context.stroke();
+	}
+
+	onMouseMove (point: lool.SimplePoint, dragDistance?: number[]): void {
+		const result = this._entryAtPoint(point); // Data related to current entry that the mouse is over now.
+		if (result) { // Is mouse over an entry.
+			this._prevMouseOverEntry = this._mouseOverEntry;
+			this._mouseOverEntry = result.entry;
+		}
+		else return;
+
+		if (!this.containerObject.isDraggingSomething()) { // If we are not dragging anything.
+			this._dragDistance = null;
+
+			// If mouse was over another entry previously, we draw that again (without mouse-over effect).
+			if (this._prevMouseOverEntry && (result && result.entry.index !== this._prevMouseOverEntry.index)) {
+				this.containerObject.setPenPosition(this);
+				this._prevMouseOverEntry.isOver = false;
+				this.drawHeaderEntry(this._prevMouseOverEntry);
+			}
+
+			let isMouseOverResizeArea = false;
+
+			this._mouseOverEntry.isOver = true;
+			this._lastMouseOverIndex = this._mouseOverEntry.index; // used by context menu
+			this.containerObject.setPenPosition(this);
+			this.drawHeaderEntry(result.entry);
+			isMouseOverResizeArea = result.hit;
+
+			// cypress mobile emulation sometimes triggers resizing unintentionally.
+			if (window.L.Browser.cypressTest)
 				return;
 			}
 
-			// Normal behavior.
-			const command = {
-				Row: {
-					type: 'long',
-					value: row,
-				},
-				Modifier: {
-					type: 'unsigned short',
-					value: modifier,
-				},
+			if (this._prevMouseOverEntry && this._lastSelectedIndex == this._prevMouseOverEntry.index)
+				return;
+			if (this._dragEntry)
+				return;
+			const modifier = typeof this._lastSelectedIndex === 'number' && this._lastSelectedIndex >= 0 ? UNOModifier.SHIFT : 0;
+			this._lastSelectedIndex = this._mouseOverEntry.index;
+			this.selectIndex(this._mouseOverEntry.index, modifier);
+		}
+	}
+
+	selectIndex(index: number, modifier: number): void {
+		return;
+	}
+
+	setOptimalWidthAuto(): void {
+		return;
+	}
+
+	setOptimalHeightAuto(): void {
+		return;
+	}
+
+	onDoubleClick(): void {
+		this._isColumn ? this.setOptimalWidthAuto(): this.setOptimalHeightAuto();
+	}
+
+	onMouseDown (point: lool.SimplePoint): void {
+		this.onMouseMove(point);
+
+		if (this._hitResizeArea) {
+			window.L.DomUtil.disableImageDrag();
+			window.L.DomUtil.disableTextSelection();
+
+			// When code is here, this._mouseOverEntry should never be null.
+
+			this._dragEntry = { // In case dragging takes place, we will remember this entry.
+				index: this._mouseOverEntry.index,
+				origsize: this._mouseOverEntry.origsize,
+				pos: this._mouseOverEntry.pos,
+				size: this._mouseOverEntry.size
 			};
 
 			this._map.wholeRowSelected = true; // This variable is set early, state change will set this again.
@@ -261,11 +401,99 @@ namespace lool {
 			this._map.focus();
 		}
 
-		_insertRowAbove(): void {
-			const index = this._lastMouseOverIndex;
-			if (index !== undefined) {
-				this.insertRowAbove.call(this, index);
-			}
+		this._startSelectionEntry = this._mouseOverEntry;
+		this._lastSelectedIndex = null;
+	}
+
+	onMouseUp(): void {
+		window.L.DomUtil.enableImageDrag();
+		window.L.DomUtil.enableTextSelection();
+
+		this._map.fire('closepopups'); // close all popups if a row/column header is selected
+
+		if (this.containerObject.isDraggingSomething() && this._dragEntry) {
+			this.onDragEnd(this.containerObject.getDragDistance());
+			this._dragEntry = null;
+		}
+	}
+}
+
+export interface HeaderEntryData {
+	index: number,
+	pos: number, // end position on the header canvas
+	size: number,
+	origsize: number,
+	isHighlighted?: boolean,
+	isCurrent?: boolean,
+	isOver?: boolean,
+}
+
+export interface PointEntryQueryResult {
+	entry: HeaderEntryData,
+	hit: boolean,
+}
+
+export class HeaderInfo {
+	_map: any;
+	_isColumn: boolean;
+	_dimGeom: lool.SheetDimension;
+	_docVisStart: number;
+	_elements: HeaderEntryData[];
+	_startIndex: number;
+	_endIndex: number;
+	_hasSplits: boolean;
+	_splitIndex: number;
+	_splitPos: number;
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	constructor(map: any, _isColumn: boolean) {
+		window.app.console.assert(map && _isColumn !== undefined, 'map and isCol required');
+		this._map = map;
+		this._isColumn = _isColumn;
+		window.app.console.assert(this._map._docLayer.sheetGeometry, 'no sheet geometry data-structure found!');
+		const sheetGeom = this._map._docLayer.sheetGeometry as lool.SheetGeometry;
+		this._dimGeom = this._isColumn ? sheetGeom.getColumnsGeometry() : sheetGeom.getRowsGeometry();
+	}
+
+	findXInCellSelections (cellSelections: lool.Rectangle[], ordinate: number): boolean {
+		for (let i = 0; i < cellSelections.length; i++) {
+			if (cellSelections[i].containsPixelOrdinateX(ordinate))
+				return true;
+		}
+		return false;
+	}
+
+	findYInCellSelections (cellSelections: lool.Rectangle[], ordinate: number): boolean {
+		for (let i = 0; i < cellSelections.length; i++) {
+			if (cellSelections[i].containsPixelOrdinateY(ordinate))
+				return true;
+		}
+		return false;
+	}
+
+	isHeaderEntryHighLighted (cellSelections: lool.Rectangle[], ordinate: number): boolean {
+		if (this._isColumn && this._map.wholeRowSelected)
+			return true;
+		else if (!this._isColumn && this._map.wholeColumnSelected)
+			return true;
+		else if (this._isColumn && cellSelections.length > 0) {
+			return this.findXInCellSelections(cellSelections, ordinate);
+		}
+		else if (!this._isColumn && cellSelections.length > 0) {
+			return this.findYInCellSelections(cellSelections, ordinate);
+		}
+		else
+			return false;
+	}
+
+	update(section: CanvasSectionObject): void {
+		const cellSelections: lool.Rectangle[] = this._map._docLayer._cellSelections;
+
+		let currentIndex: number;
+		if (app.calc.cellCursorVisible) {
+			currentIndex = this._isColumn ? app.calc.cellAddress.x: app.calc.cellAddress.y;
+		} else {
+			currentIndex = -1;
 		}
 
 		_insertRowBelow(): void {
@@ -282,9 +510,11 @@ namespace lool {
 			}
 		}
 
-		_rowHeight(): void {
-			this._map.sendUnoCommand('.uno:RowHeight');
-		}
+		let startPx: number;
+		let scale: number;
+		if (tsManager._inZoomAnim) {
+			const viewBounds = ctx.viewBounds;
+			const freePaneBounds = new lool.Bounds(viewBounds.min.add(ctx.splitPos), viewBounds.max);
 
 		_optimalHeight(): void {
 			const index = this._lastMouseOverIndex;
@@ -1098,5 +1328,4 @@ namespace lool {
 	}
 }
 
-L.Control.Header = lool.Header;
-L.Control.Header.HeaderInfo = lool.HeaderInfo;
+}

@@ -14,14 +14,7 @@
 L.WriterTileLayer = L.CanvasTileLayer.extend({
 	newAnnotation: function (commentData) {
 		const name = lool.Comment.makeName(commentData);
-		const comment = new lool.Comment(
-			name,
-			commentData,
-			{},
-			app.sectionContainer.getSectionWithName(
-				L.CSections.CommentList.name,
-			),
-		);
+		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(app.CSections.CommentList.name));
 
 		if (app.file.textCursor.visible) {
 			comment.sectionProperties.data.anchorPos = [
@@ -36,12 +29,8 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 			];
 		}
 
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.add(comment);
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.modify(comment);
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).add(comment);
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).modify(comment);
 	},
 
 	beforeAdd: function (map) {
@@ -64,18 +53,15 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 				comment.id = comment.id.toString();
 				comment.parent = comment.parentId.toString();
 			});
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.importComments(values.comments);
-		} else if (values.redlines && values.redlines.length > 0) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.importChanges(values.redlines);
-		} else if (this._map.zotero && values.userDefinedProperties) {
-			this._map.zotero.handleCustomProperty(
-				values.userDefinedProperties,
-			);
-		} else if (this._map.zotero && values.fields) {
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).importComments(values.comments);
+		}
+		else if (values.redlines && values.redlines.length > 0) {
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).importChanges(values.redlines);
+		}
+		else if (this._map.zotero && values.userDefinedProperties) {
+			this._map.zotero.handleCustomProperty(values.userDefinedProperties);
+		}
+		else if (this._map.zotero && values.fields) {
 			this._map.zotero.onFieldValue(values.fields);
 		} else if (this._map.zotero && values.field) {
 			this._map.zotero.handleFieldUnderCursor(values.field);

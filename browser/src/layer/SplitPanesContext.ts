@@ -7,7 +7,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-declare var L: any;
 
 namespace lool {
 	export type SplitPanesOptions = {
@@ -60,38 +59,13 @@ namespace lool {
 			return this._docLayer.getSnapDocPosX(rawMax);
 		}
 
-		public getMaxSplitPosY(): number {
-			const rawMax = Math.floor(
-				(app.sectionContainer.getHeight() *
-					this.options.maxVerticalSplitPercent) /
-					100,
-			);
-			return this._docLayer.getSnapDocPosY(rawMax);
-		}
-
-		public setSplitPos(
-			splitX: number,
-			splitY: number,
-			forceUpdate: boolean = false,
-		): void {
-			var xchanged = this.setHorizSplitPos(
-				splitX,
-				forceUpdate,
-				true /* noFire */,
-			);
-			var ychanged = this.setVertSplitPos(
-				splitY,
-				forceUpdate,
-				true /* noFire */,
-			);
-			if (xchanged || ychanged) {
-				this._map.fire('splitposchanged');
-				const section = app.sectionContainer.getSectionWithName(
-					L.CSections.Splitter.name,
-				);
-				if (section) {
-					section.setPosition(0, 0); // To refresh myTopLeft property.
-				}
+		var xchanged = this.setHorizSplitPos(splitX, forceUpdate, true /* noFire */);
+		var ychanged = this.setVertSplitPos(splitY, forceUpdate, true /* noFire */);
+		if (xchanged || ychanged) {
+			this._map.fire('splitposchanged');
+			const section = app.sectionContainer.getSectionWithName(app.CSections.Splitter.name);
+			if (section) {
+				section.setPosition(0, 0); // To refresh myTopLeft property.
 			}
 		}
 
@@ -365,4 +339,4 @@ namespace lool {
 	}
 }
 
-L.SplitPanesContext = lool.SplitPanesContext;
+}

@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,16 +8,19 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-declare var L: any;
 
-function isCtrlKey(e: KeyboardEvent) {
-	if ((window as any).ThisIsTheiOSApp || L.Browser.mac) return e.metaKey;
-	else return e.ctrlKey;
+function isCtrlKey (e: KeyboardEvent) {
+    if ((window as any).ThisIsTheiOSApp || window.L.Browser.mac)
+        return e.metaKey;
+    else
+        return e.ctrlKey;
 }
 
-function isMacCtrlKey(e: KeyboardEvent) {
-	if ((window as any).ThisIsTheiOSApp || L.Browser.mac) return e.ctrlKey;
-	else return false;
+function isMacCtrlKey (e: KeyboardEvent) {
+    if ((window as any).ThisIsTheiOSApp || window.L.Browser.mac)
+        return e.ctrlKey;
+    else
+        return false;
 }
 
 enum Mod {
@@ -211,31 +212,25 @@ class KeyboardShortcuts {
 		return undefined;
 	}
 
-	/// returns true if handled action
-	private processEventImpl(language: string, event: KeyboardEvent): boolean {
-		const eventType = event.type;
-		const ctrl = isCtrlKey(event);
-		const shift = event.shiftKey;
-		const alt = event.altKey;
-		const keyCode = event.which;
-		const key = event.key;
-		const macctrl = isMacCtrlKey(event);
-		const modifier =
-			(ctrl ? Mod.CTRL : Mod.NONE) |
-			(shift ? Mod.SHIFT : Mod.NONE) |
-			(alt ? Mod.ALT : Mod.NONE) |
-			(macctrl ? Mod.MACCTRL : Mod.NONE);
-		const platform = window.mode.isChromebook()
-			? Platform.CHROMEOSAPP
-			: window.ThisIsTheAndroidApp
-				? Platform.ANDROIDAPP // Cannot come before window.mode.isChromebook() as all Chromebook app users are necessarily also Android app users
-				: window.ThisIsTheiOSApp
-					? Platform.IOSAPP
-					: L.Browser.mac
-						? Platform.MAC
-						: L.Browser.win
-							? Platform.WINDOWS
-							: Platform.LINUX;
+    /// returns true if handled action
+    private processEventImpl(language: string, event: KeyboardEvent) : boolean {
+        const eventType = event.type;
+        const ctrl = isCtrlKey(event);
+        const shift = event.shiftKey;
+        const alt = event.altKey;
+        const keyCode = event.which;
+        const key = event.key;
+        const macctrl = isMacCtrlKey(event);
+        const modifier = (ctrl ? Mod.CTRL : Mod.NONE) |
+            (shift ? Mod.SHIFT : Mod.NONE) |
+            (alt ? Mod.ALT : Mod.NONE) |
+            (macctrl ? Mod.MACCTRL : Mod.NONE);
+        const platform = window.mode.isChromebook() ? Platform.CHROMEOSAPP :
+                         window.ThisIsTheAndroidApp ? Platform.ANDROIDAPP : // Cannot come before window.mode.isChromebook() as all Chromebook app users are necessarily also Android app users
+                         window.ThisIsTheiOSApp ? Platform.IOSAPP :
+                         window.L.Browser.mac ? Platform.MAC :
+                         window.L.Browser.win ? Platform.WINDOWS :
+                         Platform.LINUX;
 
 		const shortcut = this.findShortcut(
 			language,
@@ -271,13 +266,11 @@ class KeyboardShortcuts {
 	public initialize(map: any) {
 		this.map = map;
 
-		// in cypress it can fail on load to not allow for duplicated shortcuts
-		if (L.Browser.cypressTest) {
-			this.map.on('docloaded', () => {
-				keyboardShortcuts.verifyShortcuts();
-			});
-		}
-	}
+        // in cypress it can fail on load to not allow for duplicated shortcuts
+        if (window.L.Browser.cypressTest) {
+            this.map.on('docloaded', () => { keyboardShortcuts.verifyShortcuts(); });
+        }
+    }
 
 	public processEvent(language: string, event: KeyboardEvent): boolean {
 		if (!this.map) {

@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-declare var L: any;
+/* global L */
 
 namespace lool {
 	export type GeometryUnit = 'corepixels' | 'tiletwips' | 'printtwips';
@@ -205,20 +205,9 @@ namespace lool {
 					);
 			}
 
-			if (updateOK) {
-				console.assert(
-					typeof part === 'number',
-					'part must be a number',
-				);
-				if (part !== this._part) {
-					this._part = part;
-				}
-			}
-
-			this._columns.setMaxIndex(+sheetGeomJSON.maxtiledcolumn);
-			this._rows.setMaxIndex(+sheetGeomJSON.maxtiledrow);
-
-			return updateOK;
+		if (!(topLeftTwipsPoint instanceof lool.Point) || !(sizeTwips instanceof lool.Point)) {
+			console.error('invalid argument types');
+			return false;
 		}
 
 		public setTileGeometryData(
@@ -238,48 +227,142 @@ namespace lool {
 				updatePositions,
 			);
 
-			if (app.map) app.map.fire('sheetgeometrychanged');
+		this._columns.setViewLimits(left, right);
+		this._rows.setViewLimits(top, bottom);
+
+		return true;
+	}
+
+	public getPart(): number {
+		return this._part;
+	}
+
+	public getColumnsGeometry(): SheetDimension {
+		return this._columns;
+	}
+
+	public getRowsGeometry(): SheetDimension {
+		return this._rows;
+	}
+
+	// returns an object with keys 'start' and 'end' indicating the
+	// column range in the current view area.
+	public getViewColumnRange(): DimensionRange {
+		return this._columns.getViewElementRange();
+	}
+
+	// returns an object with keys 'start' and 'end' indicating the
+	// row range in the current view area.
+	public getViewRowRange(): DimensionRange {
+		return this._rows.getViewElementRange();
+	}
+
+	public getViewCellRange(): CellRange {
+		return {
+			columnrange: this.getViewColumnRange(),
+			rowrange: this.getViewRowRange()
+		};
+	}
+
+	// Returns an object with the following fields:
+	// rowIndex should be zero based.
+	// 'startpos' (start position of the row in core pixels), 'size' (row size in core pixels).
+	// Note: All these fields are computed by assuming zero sizes for hidden/filtered rows.
+	public getRowData(rowIndex: number): DimensionPosSize {
+		return this._rows.getElementData(rowIndex);
+	}
+
+	public getColumnGroupLevels(): number {
+		return this._columns.getGroupLevels();
+	}
+
+	public getRowGroupLevels(): number {
+		return this._rows.getGroupLevels();
+	}
+
+	public getColumnGroupsDataInView(): GroupData[] {
+		return this._columns.getGroupsDataInView();
+	}
+
+	public getRowGroupsDataInView(): GroupData[] {
+		return this._rows.getGroupsDataInView();
+	}
+
+	// accepts a point in display twips coordinates at current zoom
+	// and returns the equivalent point in display-twips at the given zoom.
+	public getTileTwipsAtZoom(point: Point, zoomScale: number): Point {
+		if (!(point instanceof lool.Point)) {
+			console.error('Bad argument type, expected lool.Point');
+			return point;
 		}
 
-		public setViewArea(
-			topLeftTwipsPoint: Point,
-			sizeTwips: Point,
-		): boolean {
-			if (
-				!(topLeftTwipsPoint instanceof L.Point) ||
-				!(sizeTwips instanceof L.Point)
-			) {
-				console.error('invalid argument types');
-				return false;
-			}
+		return new lool.Point(this._columns.getTileTwipsAtZoom(point.x, zoomScale),
+			this._rows.getTileTwipsAtZoom(point.y, zoomScale));
+	}
 
-			var left = topLeftTwipsPoint.x;
-			var top = topLeftTwipsPoint.y;
-			var right = left + sizeTwips.x;
-			var bottom = top + sizeTwips.y;
-
-			this._columns.setViewLimits(left, right);
-			this._rows.setViewLimits(top, bottom);
-
-			return true;
+	// accepts a point in core-pixel coordinates at current zoom
+	// and returns the equivalent point in core-pixels at the given zoomScale.
+	public getCorePixelsAtZoom(point: Point, zoomScale: number): Point {
+		if (!(point instanceof lool.Point)) {
+			console.error('Bad argument type, expected lool.Point');
+			return point;
 		}
 
-		public getPart(): number {
-			return this._part;
+		return new lool.Point(this._columns.getCorePixelsAtZoom(point.x, zoomScale),
+			this._rows.getCorePixelsAtZoom(point.y, zoomScale));
+	}
+
+	// accepts a point in core-pixel coordinates at *given* zoomScale
+	// and returns the equivalent point in core-pixels at the current zoom.
+	public getCorePixelsFromZoom(point: Point, zoomScale: number): Point {
+		if (!(point instanceof lool.Point)) {
+			console.error('Bad argument type, expected lool.Point');
+			return point;
 		}
 
-		public getColumnsGeometry(): SheetDimension {
-			return this._columns;
+		return new lool.Point(this._columns.getCorePixelsFromZoom(point.x, zoomScale),
+			this._rows.getCorePixelsFromZoom(point.y, zoomScale));
+	}
+
+	// accepts a point in print twips coordinates and returns the equivalent point
+	// in tile-twips.
+	public getTileTwipsPointFromPrint(point: Point): Point {
+		if (!(point instanceof lool.Point)) {
+			console.error('Bad argument type, expected lool.Point');
+			return point;
 		}
 
-		public getRowsGeometry(): SheetDimension {
-			return this._rows;
+		return new lool.Point(this._columns.getTileTwipsPosFromPrint(point.x),
+			this._rows.getTileTwipsPosFromPrint(point.y));
+	}
+
+	public convertToTileTwips(simplePoint: lool.SimplePoint): void {
+		simplePoint.x = this._columns.getTileTwipsPosFromPrint(simplePoint.x);
+		simplePoint.y = this._rows.getTileTwipsPosFromPrint(simplePoint.y);
+	}
+
+	public convertRectangleToTileTwips(simpleRectangle: lool.SimpleRectangle): void {
+		simpleRectangle.x1 = this._columns.getTileTwipsPosFromPrint(simpleRectangle.x1);
+		simpleRectangle.y1 = this._rows.getTileTwipsPosFromPrint(simpleRectangle.y1);
+	}
+
+	// accepts a point in tile-twips coordinates and returns the equivalent point
+	// in print-twips.
+	public getPrintTwipsPointFromTile(point: Point): Point {
+		if (!(point instanceof lool.Point)) {
+			console.warn('Bad argument type, expected lool.Point');
 		}
 
-		// returns an object with keys 'start' and 'end' indicating the
-		// column range in the current view area.
-		public getViewColumnRange(): DimensionRange {
-			return this._columns.getViewElementRange();
+		return new lool.Point(this._columns.getPrintTwipsPosFromTile(point.x),
+			this._rows.getPrintTwipsPosFromTile(point.y));
+	}
+
+	// accepts a rectangle in print twips coordinates and returns the equivalent rectangle
+	// in tile-twips aligned to the cells.
+	public getTileTwipsSheetAreaFromPrint(rectangle: Bounds): Bounds {
+		if (!(rectangle instanceof lool.Bounds)) {
+			console.error('Bad argument type, expected lool.Bounds');
+			return rectangle;
 		}
 
 		// returns an object with keys 'start' and 'end' indicating the
@@ -295,21 +378,18 @@ namespace lool {
 			};
 		}
 
-		// Returns an object with the following fields:
-		// rowIndex should be zero based.
-		// 'startpos' (start position of the row in core pixels), 'size' (row size in core pixels).
-		// Note: All these fields are computed by assuming zero sizes for hidden/filtered rows.
-		public getRowData(rowIndex: number): DimensionPosSize {
-			return this._rows.getElementData(rowIndex);
-		}
+		topLeft = new lool.Point(horizBounds.startpos, vertBounds.startpos);
+		bottomRight = new lool.Point(horizBounds.endpos, vertBounds.endpos);
 
-		public getColumnGroupLevels(): number {
-			return this._columns.getGroupLevels();
-		}
+		return new lool.Bounds(topLeft, bottomRight);
+	}
 
-		public getRowGroupLevels(): number {
-			return this._rows.getGroupLevels();
-		}
+	// Returns full sheet size as lool.Point in the given unit.
+	// unit must be one of 'corepixels', 'tiletwips', 'printtwips'
+	public getSize(unit: GeometryUnit): Point {
+		return new lool.Point(this._columns.getSize(unit),
+			this._rows.getSize(unit));
+	}
 
 		public getColumnGroupsDataInView(): GroupData[] {
 			return this._columns.getGroupsDataInView();
@@ -460,12 +540,50 @@ namespace lool {
 			app.twipsToPixels is used internally in SimpleRectangle. That variable includes the scale. So we divide here to neutralize.
 			And dpiScale is used internally for CSS pixels. So we don't use dpiScale here but 15 const.
 		*/
-			return new lool.SimpleRectangle(
-				(horizPosSize.startpos * 15) / zoomScale,
-				(vertPosSize.startpos * 15) / zoomScale,
-				(horizPosSize.size * 15) / zoomScale,
-				(vertPosSize.size * 15) / zoomScale,
-			);
+		return new lool.SimpleRectangle(
+			horizPosSize.startpos * 15 / zoomScale,
+			vertPosSize.startpos * 15 / zoomScale,
+			horizPosSize.size * 15 / zoomScale,
+			vertPosSize.size * 15 / zoomScale
+		);
+	}
+
+	// Returns the core pixel position/size of the requested cell at a specified zoom.
+	public getCellRect(columnIndex: number, rowIndex: number, zoomScale: number): Bounds {
+		var horizPosSize = this._columns.getElementData(columnIndex, zoomScale);
+		var vertPosSize = this._rows.getElementData(rowIndex, zoomScale);
+
+		var topLeft = new lool.Point(horizPosSize.startpos, vertPosSize.startpos);
+		var size = new lool.Point(horizPosSize.size, vertPosSize.size);
+
+		return new lool.Bounds(topLeft, topLeft.add(size));
+	}
+
+	public getCellFromPos(pos: Point, unit: GeometryUnit): Point {
+		console.assert(pos instanceof lool.Point);
+		return new lool.Point(
+			this._columns.getIndexFromPos(pos.x, unit),
+			this._rows.getIndexFromPos(pos.y, unit)
+		);
+	}
+
+	// Returns the start position of the column containing posX in the specified unit.
+	// unit must be one of 'corepixels', 'tiletwips', 'printtwips'
+	public getSnapDocPosX(posX: number, unit: GeometryUnit): number {
+		return this._columns.getSnapPos(posX, unit);
+	}
+
+	// Returns the start position of the row containing posY in the specified unit.
+	// unit must be one of 'corepixels', 'tiletwips', 'printtwips'
+	public getSnapDocPosY(posY: number, unit: GeometryUnit): number {
+		return this._rows.getSnapPos(posY, unit);
+	}
+
+	private _testValidity(sheetGeomJSON: SheetGeometryCoreData, checkCompleteness: boolean): boolean {
+
+		if (!sheetGeomJSON.commandName) {
+			console.error(this._unoCommand + ' response has no property named "commandName".');
+			return false;
 		}
 
 		// Returns the core pixel position/size of the requested cell at a specified zoom.
@@ -2175,4 +2293,4 @@ namespace lool {
 	}
 }
 
-L.SheetGeometry = lool.SheetGeometry;
+}

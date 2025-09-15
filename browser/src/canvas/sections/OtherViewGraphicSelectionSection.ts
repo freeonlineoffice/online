@@ -13,12 +13,11 @@
 // This is used for other views' graphic selections.
 
 class OtherViewGraphicSelectionSection extends CanvasSectionObject {
-	documentObject: boolean = true;
-	interactable: boolean = false; // We don't bother with events.
-	zIndex: number = L.CSections.DefaultForDocumentObjects.processingOrder;
-	drawingOrder: number = L.CSections.DefaultForDocumentObjects.drawingOrder;
-	processingOrder: number =
-		L.CSections.DefaultForDocumentObjects.processingOrder;
+    documentObject: boolean = true;
+    interactable: boolean = false; // We don't bother with events.
+    zIndex: number = app.CSections.DefaultForDocumentObjects.processingOrder;
+    drawingOrder: number = app.CSections.DefaultForDocumentObjects.drawingOrder;
+    processingOrder: number = app.CSections.DefaultForDocumentObjects.processingOrder;
 
 	static sectionNamePrefix = 'OtherViewGraphicSelection ';
 	static sectionPointers: Array<OtherViewGraphicSelectionSection> = [];

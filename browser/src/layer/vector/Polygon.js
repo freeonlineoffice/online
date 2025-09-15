@@ -3,6 +3,8 @@
  * L.Polygon implements polygon vector layer (closed polyline with a fill inside).
  */
 
+/* global lool */
+
 L.Polygon = L.Polyline.extend({
 	options: {
 		fill: true,
@@ -63,11 +65,11 @@ L.Polygon = L.Polyline.extend({
 		// polygons need a different clipping algorithm so we redefine that
 
 		var bounds = this._renderer._bounds,
-			w = this.options.weight,
-			p = new L.Point(w, w);
+		    w = this.options.weight,
+		    p = new lool.Point(w, w);
 
 		// increase clip padding by stroke width to avoid stroke on clip edges
-		bounds = new L.Bounds(bounds.min.subtract(p), bounds.max.add(p));
+		bounds = new lool.Bounds(bounds.min.subtract(p), bounds.max.add(p));
 
 		this._parts = [];
 

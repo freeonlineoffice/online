@@ -1,6 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.CornerGroup
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
 /*
@@ -18,19 +22,45 @@ namespace lool {
 		zIndex: number = L.CSections.CornerGroup.zIndex;
 		sectionProperties: any = { cursor: 'pointer' };
 
-		_map: any;
+export class CornerGroup extends GroupBase {
+	anchor: string[] = ['top', 'left'];
+	processingOrder: number = app.CSections.CornerGroup.processingOrder;
+	drawingOrder: number = app.CSections.CornerGroup.drawingOrder;
+	zIndex: number = app.CSections.CornerGroup.zIndex;
+	sectionProperties: any = { cursor: 'pointer' };
 
-		constructor() {
-			super(L.CSections.CornerGroup.name);
+	_map: any;
+
+	constructor() { super(app.CSections.CornerGroup.name); }
+
+	public onInitialize(): void {
+		this._map = window.L.Map.THIS;
+		this._map.on('sheetgeometrychanged', this.update, this);
+		this._map.on('viewrowcolumnheaders', this.update, this);
+		this._map.on('darkmodechanged', this._cornerGroupColors, this);
+
+		this._cornerGroupColors();
+	}
+
+	private _cornerGroupColors(): void {
+		const colors = this.getColors();
+		this.backgroundColor = colors.backgroundColor;
+		this.borderColor = colors.borderColor;
+	}
+
+	update(): void {
+		// Below 2 sections exist (since this section is added), unless they are being removed.
+
+		const rowGroupSection = this.containerObject.getSectionWithName(app.CSections.RowGroup.name) as RowGroup;
+		if (rowGroupSection) {
+			rowGroupSection.update(); // This will update its size.
+			this.size[0] = rowGroupSection.size[0];
 		}
 
-		public onInitialize(): void {
-			this._map = L.Map.THIS;
-			this._map.on('sheetgeometrychanged', this.update, this);
-			this._map.on('viewrowcolumnheaders', this.update, this);
-			this._map.on('darkmodechanged', this._cornerGroupColors, this);
-
-			this._cornerGroupColors();
+		const columnGroupSection = this.containerObject.getSectionWithName(app.CSections.ColumnGroup.name) as ColumnGroup;
+		if (columnGroupSection) {
+			columnGroupSection.update(); // This will update its size.
+			this.size[1] = columnGroupSection.size[1];
 		}
 
 		private _cornerGroupColors(): void {
@@ -92,9 +122,3 @@ namespace lool {
 		/* Only background and border drawings are needed for this section. And they are handled by CanvasSectionContainer. */
 	}
 }
-
-L.Control.CornerGroup = lool.CornerGroup;
-
-L.control.cornerGroup = function () {
-	return new L.Control.CornerGroup();
-};

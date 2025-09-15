@@ -30,14 +30,113 @@ namespace lool {
 		zIndex: number = L.CSections.RowHeader.zIndex;
 		cursor: string = 'row-resize';
 
-		_current: number;
-		_resizeHandleSize: number;
-		_selection: SelectionRange;
+export class RowHeader extends lool.Header {
+	anchor: Array<Array<string>> = [[app.CSections.CornerHeader.name, 'bottom', 'top'], [app.CSections.RowGroup.name, 'right', 'left']];
+	position: number[] = [0, 0]; // This section's myTopLeft is placed according to corner header and row group sections.
+	size: number[] = [48 * app.dpiScale, 0]; // No initial height is necessary.
+	expand: string[] = ['top', 'bottom']; // Expand vertically.
+	processingOrder: number = app.CSections.RowHeader.processingOrder;
+	drawingOrder: number = app.CSections.RowHeader.drawingOrder;
+	zIndex: number = app.CSections.RowHeader.zIndex;
+	cursor: string = 'row-resize';
 
 		constructor(cursor?: string) {
 			super(L.CSections.RowHeader.name);
 
-			if (cursor) this.cursor = cursor;
+	constructor(cursor?: string) {
+		super(app.CSections.RowHeader.name);
+
+		if (cursor)
+			this.cursor = cursor;
+	}
+
+	onInitialize(): void {
+		this._map = window.L.Map.THIS;
+		this._isColumn = false;
+		this._current = -1;
+		this._resizeHandleSize = 15 * app.dpiScale;
+		this._selection = {start: -1, end: -1};
+		this._mouseOverEntry = null;
+		this._lastMouseOverIndex = undefined;
+		this._hitResizeArea = false;
+		this.sectionProperties.docLayer = this._map._docLayer;
+
+		this._selectionBackgroundGradient = [ '#3465A4', '#729FCF', '#004586' ];
+
+		this._map.on('move zoomchanged sheetgeometrychanged splitposchanged', this._updateCanvas, this);
+		this._map.on('darkmodechanged', this._reInitRowColumnHeaderStylesAfterModeChange, this);
+
+		this._initHeaderEntryStyles('spreadsheet-header-row');
+		this._initHeaderEntryHoverStyles('spreadsheet-header-row-hover');
+		this._initHeaderEntrySelectedStyles('spreadsheet-header-row-selected');
+		this._initHeaderEntryResizeStyles('spreadsheet-header-row-resize');
+
+		this._menuItem = {
+			'.uno:InsertRowsBefore': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:InsertRowsBefore', 'spreadsheet', true), 'InsertRowsBefore'),
+				isHtmlName: true,
+				callback: (this._insertRowAbove).bind(this)
+			},
+			'.uno:InsertRowsAfter': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:InsertRowsAfter', 'spreadsheet', true), 'InsertRowsAfter'),
+				isHtmlName: true,
+				callback: (this._insertRowBelow).bind(this)
+			},
+			'.uno:DeleteRows': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:DeleteRows', 'spreadsheet', true), 'DeleteRows'),
+				isHtmlName: true,
+				callback: (this._deleteSelectedRow).bind(this)
+			},
+			'.uno:RowHeight': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:RowHeight', 'spreadsheet', true), 'RowHeight'),
+				isHtmlName: true,
+				callback: (this._rowHeight).bind(this)
+			},
+			'.uno:SetOptimalRowHeight': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:SetOptimalRowHeight', 'spreadsheet', true), 'SetOptimalRowHeight'),
+				isHtmlName: true,
+				callback: (this._optimalHeight).bind(this)
+			},
+			'.uno:HideRow': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:HideRow', 'spreadsheet', true), 'HideRow'),
+				isHtmlName: true,
+				callback: (this._hideRow).bind(this)
+			},
+			'.uno:ShowRow': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:ShowRow', 'spreadsheet', true), 'ShowRow'),
+				isHtmlName: true,
+				callback: (this._showRow).bind(this)
+			},
+			'.uno:FreezePanes': {
+				name: app.IconUtil.createMenuItemLink(_UNO('.uno:FreezePanes', 'spreadsheet', true), 'FreezePanes'),
+				isHtmlName: true,
+				callback: (this._freezePanes).bind(this)
+			}
+		};
+
+		this._menuData = window.L.Control.JSDialogBuilder.getMenuStructureForMobileWizard(this._menuItem, true, '');
+		this._headerInfo = new lool.HeaderInfo(this._map, false /* isCol */);
+	}
+
+	drawHeaderEntry (entry: HeaderEntryData): void {
+		if (!entry)
+			return;
+
+		const content = entry.index + 1;
+		const startY = entry.pos - entry.size;
+
+		if (entry.size <= 0)
+			return;
+
+		const highlight = entry.isCurrent || entry.isHighlighted;
+
+		// background gradient
+		let selectionBackgroundGradient = null;
+		if (highlight) {
+			selectionBackgroundGradient = this.context.createLinearGradient(0, startY, 0, startY + entry.size);
+			selectionBackgroundGradient.addColorStop(0, this._selectionBackgroundGradient[0]);
+			selectionBackgroundGradient.addColorStop(0.5, this._selectionBackgroundGradient[1]);
+			selectionBackgroundGradient.addColorStop(1, this._selectionBackgroundGradient[2]);
 		}
 
 		onInitialize(): void {

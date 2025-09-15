@@ -52,7 +52,7 @@ class TileCoordData {
 	}
 
 	getPos() {
-		return new L.Point(this.x, this.y);
+		return new lool.Point(this.x, this.y);
 	}
 
 	key(): string {
@@ -733,7 +733,7 @@ class TileManager {
 		const splitPanesContext = this._docLayer.getSplitPanesContext();
 		const splitPos = splitPanesContext
 			? splitPanesContext.getSplitPos()
-			: new L.Point(0, 0);
+			: new lool.Point(0, 0);
 		if (!this._splitPos || !splitPos.equals(this._splitPos)) {
 			this._splitPos = splitPos;
 			updated = true;
@@ -766,9 +766,9 @@ class TileManager {
 			}
 
 			const tileRange = tileRanges[paneIdx];
-			const paneBorder = new L.Bounds(
-				tileRange.min.add(new L.Point(-1, -1)),
-				tileRange.max.add(new L.Point(1, 1)),
+			const paneBorder = new lool.Bounds(
+				tileRange.min.add(new lool.Point(-1, -1)),
+				tileRange.max.add(new lool.Point(1, 1)),
 			);
 
 			this._borders.push(
@@ -893,7 +893,7 @@ class TileManager {
 		}
 
 		// Request a redraw if the tile is visible
-		const tileBounds = new L.Bounds(
+		const tileBounds = new lool.Bounds(
 			[tile.coords.x, tile.coords.y],
 			[tile.coords.x + this.tileSize, tile.coords.y + this.tileSize],
 		);
@@ -1061,7 +1061,7 @@ class TileManager {
 			return;
 		}
 
-		L.CanvasTileUtils.updateImageFromDeltas(
+		lool.CanvasTileUtils.updateImageFromDeltas(
 			imgData,
 			deltas,
 			keyframeDeltaSize,
@@ -1184,7 +1184,7 @@ class TileManager {
 					this.tileSize;
 				pixelBottomRight.y += 1;
 
-				this._pixelBounds = new L.Bounds(
+				this._pixelBounds = new lool.Bounds(
 					pixelTopLeft,
 					pixelBottomRight,
 				);
@@ -1267,7 +1267,7 @@ class TileManager {
 					tile && tile.wireId !== undefined ? tile.wireId : 0,
 				);
 
-				const twips = new L.Point(
+				const twips = new lool.Point(
 					Math.floor(coords.x / this.tileSize) * app.tile.size.x,
 					Math.floor(coords.y / this.tileSize) * app.tile.size.y,
 				);
@@ -1344,7 +1344,7 @@ class TileManager {
 			return;
 		}
 		if (!visibleRanges) visibleRanges = this.getVisibleRanges();
-		const tileBounds = new L.Bounds(
+		const tileBounds = new lool.Bounds(
 			[tile.coords.x, tile.coords.y],
 			[tile.coords.x + this.tileSize, tile.coords.y + this.tileSize],
 		);
@@ -1496,7 +1496,7 @@ class TileManager {
 			const coords: TileCoordData = coordsQueue[0];
 
 			const rectQueue: Array<TileCoordData> = [coords];
-			const bound = coords.getPos(); // L.Point
+			const bound = coords.getPos(); // lool.Point
 
 			// remove it
 			coordsQueue.splice(0, 1);
@@ -1636,9 +1636,9 @@ class TileManager {
 		this._preFetchPart = this._docLayer._selectedPart;
 		this._preFetchMode = this._docLayer._selectedMode;
 		this._preFetchIdle = setTimeout(
-			L.bind(function () {
+			window.L.bind(function () {
 				this._tilesPreFetcher = setInterval(
-					L.bind(this.preFetchTiles, this),
+					window.L.bind(this.preFetchTiles, this),
 					interval,
 				);
 				this._preFetchIdle = undefined;
@@ -1693,9 +1693,9 @@ class TileManager {
 		var finalQueue = [];
 		const visitedTiles: any = {};
 
-		var validTileRange = new L.Bounds(
-			new L.Point(0, 0),
-			new L.Point(
+		var validTileRange = new lool.Bounds(
+			new lool.Point(0, 0),
+			new lool.Point(
 				Math.floor(
 					(app.activeDocument.fileSize.x - 1) / app.tile.size.x,
 				),
@@ -1719,7 +1719,9 @@ class TileManager {
 				tilesToFetch > 0 &&
 				paneBorder.getBorderIndex() < maxBorderWidth
 			) {
-				const clampedBorder = validTileRange.clamp(borderBounds);
+				const clampedBorder = validTileRange.clamp(
+					borderBounds,
+				) as lool.Bounds;
 				const fetchTopBorder =
 					!paneYFixed &&
 					borderBounds.min.y === clampedBorder.min.y;
@@ -2214,7 +2216,7 @@ class TileManager {
 								e.data.tileSize * e.data.tileSize * 4,
 							);
 							x.keyframeDeltaSize =
-								L.CanvasTileUtils.unrle(
+								lool.CanvasTileUtils.unrle(
 									x.deltas,
 									e.data.tileSize,
 									e.data.tileSize,
@@ -2300,7 +2302,7 @@ class TileManager {
 	public static expandTileRange(range: lool.Bounds): lool.Bounds {
 		const grow = this.visibleTileExpansion;
 		const direction = app.activeDocument.activeView.getLastPanDirection();
-		const minOffset = new L.Point(
+		const minOffset = new lool.Point(
 			grow -
 				grow *
 					this.directionalTileExpansion *
@@ -2310,7 +2312,7 @@ class TileManager {
 					this.directionalTileExpansion *
 					Math.min(0, direction[1]),
 		);
-		const maxOffset = new L.Point(
+		const maxOffset = new lool.Point(
 			grow +
 				grow *
 					this.directionalTileExpansion *
@@ -2320,14 +2322,14 @@ class TileManager {
 					this.directionalTileExpansion *
 					Math.max(0, direction[1]),
 		);
-		return new L.Bounds(
+		return new lool.Bounds(
 			range.min.subtract(minOffset),
 			range.max.add(maxOffset),
 		);
 	}
 
 	public static pxBoundsToTileRange(bounds: any) {
-		return new L.Bounds(
+		return new lool.Bounds(
 			bounds.min.divideBy(this.tileSize)._floor(),
 			bounds.max.divideBy(this.tileSize)._floor(),
 		);

@@ -1,7 +1,11 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.RowGroup
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
 /* global app */
@@ -24,12 +28,44 @@ namespace lool {
 		drawingOrder: number = L.CSections.RowGroup.drawingOrder;
 		zIndex: number = L.CSections.RowGroup.zIndex;
 
-		_sheetGeometry: lool.SheetGeometry;
-		_cornerHeaderHeight: number;
-		_splitPos: lool.Point;
+export class RowGroup extends GroupBase {
+	anchor: any = [[app.CSections.CornerGroup.name, 'bottom', 'top'], 'left'];
+	expand: string[] = ['top', 'bottom']; // Expand vertically.
+	processingOrder: number = app.CSections.RowGroup.processingOrder;
+	drawingOrder: number = app.CSections.RowGroup.drawingOrder;
+	zIndex: number = app.CSections.RowGroup.zIndex;
 
-		constructor() {
-			super(L.CSections.RowGroup.name);
+	_sheetGeometry: lool.SheetGeometry;
+	_cornerHeaderHeight: number;
+	_splitPos: lool.Point;
+
+	constructor() { super(app.CSections.RowGroup.name); }
+
+	update(): void {
+		if (this.isRemoved) // Prevent calling while deleting the section. It causes errors.
+			return;
+
+		this._sheetGeometry = this._map._docLayer.sheetGeometry;
+		this._groups = Array(this._sheetGeometry.getRowGroupLevels());
+
+		// Calculate width on the fly.
+		this.size[0] = this._computeSectionWidth();
+
+		this._cornerHeaderHeight = this.containerObject.getSectionWithName(app.CSections.CornerHeader.name).size[1];
+
+		this._splitPos = (this._map._docLayer._splitPanesContext as lool.SplitPanesContext).getSplitPos();
+
+		this._collectGroupsData(this._sheetGeometry.getRowGroupsDataInView());
+	}
+
+	// This returns the required width for the section.
+	_computeSectionWidth(): number {
+		return this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * (this._groups.length + 1);
+	}
+
+	isGroupHeaderVisible (startY: number, startPos: number): boolean {
+		if (startPos > this._splitPos.y) {
+			return startY > this._splitPos.y + this._cornerHeaderHeight;
 		}
 
 		update(): void {
@@ -351,20 +387,11 @@ namespace lool {
 			return [startX, endX, startY, endY];
 		}
 
-		onRemove(): void {
-			this.isRemoved = true;
-			this.containerObject.getSectionWithName(
-				L.CSections.RowHeader.name,
-			).position[0] = 0;
-			this.containerObject.getSectionWithName(
-				L.CSections.CornerHeader.name,
-			).position[0] = 0;
-		}
+	onRemove(): void {
+		this.isRemoved = true;
+		this.containerObject.getSectionWithName(app.CSections.RowHeader.name).position[0] = 0;
+		this.containerObject.getSectionWithName(app.CSections.CornerHeader.name).position[0] = 0;
 	}
 }
 
-L.Control.RowGroup = lool.RowGroup;
-
-L.control.rowGroup = function () {
-	return new L.Control.RowGroup();
-};
+}

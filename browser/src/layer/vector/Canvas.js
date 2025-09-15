@@ -1,5 +1,7 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app */
+
+/* global app lool */
+
 /*
  * L.Canvas handles Canvas vector layers rendering and mouse events handling. All Canvas-specific code goes here.
  */
@@ -78,10 +80,8 @@ L.Canvas = L.Renderer.extend({
 			return;
 		}
 
-		this._redrawBounds = this._redrawBounds || new L.Bounds();
-		this._redrawBounds
-			.extend(layer._pxBounds.min)
-			.extend(layer._pxBounds.max);
+		this._redrawBounds = this._redrawBounds || new lool.Bounds();
+		this._redrawBounds.extend(layer._pxBounds.min).extend(layer._pxBounds.max);
 
 		this._redrawRequest =
 			this._redrawRequest ||

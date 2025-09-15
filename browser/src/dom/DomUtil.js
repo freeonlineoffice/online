@@ -1,5 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app */
+/* global app cool */
 /*
  * L.DomUtil contains various utility functions for working with DOM.
  */
@@ -190,7 +190,7 @@ L.DomUtil = {
 	},
 
 	setTransform: function (el, offset, scale) {
-		var pos = offset || new L.Point(0, 0);
+		var pos = offset || new cool.Point(0, 0);
 
 		el.style[L.DomUtil.TRANSFORM] =
 			'translate3d(' +

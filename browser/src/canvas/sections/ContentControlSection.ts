@@ -8,7 +8,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-declare var L: any;
 
 namespace lool {
 	export class ContentControlSection extends CanvasSectionObject {
@@ -18,15 +17,70 @@ namespace lool {
 		interactable: boolean = false;
 		documentObject: boolean = true;
 
-		map: any;
+export class ContentControlSection extends CanvasSectionObject {
+	processingOrder: number = app.CSections.ContentControl.processingOrder;
+	drawingOrder: number = app.CSections.ContentControl.drawingOrder;
+	zIndex: number = app.CSections.ContentControl.zIndex;
+	interactable: boolean = false;
+	documentObject: boolean = true;
 
 		constructor() {
 			super(L.CSections.ContentControl.name);
 
-			this.map = L.Map.THIS;
-			this.sectionProperties.json = null;
-			this.sectionProperties.datePicker = false;
-			this.sectionProperties.picturePicker = null;
+	constructor() {
+		super(app.CSections.ContentControl.name);
+
+		this.map = window.L.Map.THIS;
+		this.sectionProperties.json = null;
+		this.sectionProperties.datePicker = false;
+		this.sectionProperties.picturePicker = null;
+		this.sectionProperties.polygon = null;
+		this.sectionProperties.dropdownSection = null;
+		this.sectionProperties.dropdownMarkerWidth = 22;
+		this.sectionProperties.dropdownMarkerHeight = 22;
+	}
+
+	public onInitialize(): void {
+		this.map.on('darkmodechanged', this.changeBorderStyle, this);
+
+		var container = L.DomUtil.createWithId('div', 'datepicker');
+		container.style.zIndex = '12';
+		container.style.position = 'absolute';
+		document.getElementById('document-container').appendChild(container);
+		this.sectionProperties.picturePicker = false;
+	}
+
+	private setDatePickerVisibility(visible: boolean): void {
+		this.sectionProperties.datePicker = visible;
+
+		if (this.sectionProperties.dropdownSection)
+			this.sectionProperties.dropdownSection.sectionProperties.datePicker = visible;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+	public drawContentControl(json: any) {
+		this.removeDropdownSection();
+
+		this.sectionProperties.json = json;
+		this.setDatePickerVisibility(false);
+		this.sectionProperties.picturePicker = false;
+
+		if (json.date) {
+			$.datepicker.setDefaults($.datepicker.regional[(<any>window).langParamLocale.language]);
+			$('#datepicker').datepicker({
+				onSelect: function (date: any, datepicker: any) {
+					if (date != '') {
+						app.socket.sendMessage('contentcontrolevent type=date selected=' + date);
+					}
+				}
+			});
+			$('#datepicker').hide();
+		} else
+			$('#datepicker').datepicker('destroy');
+
+		if (json.action === 'show')
+			this.preparePolygon();
+		else if (json.action === 'hide')
 			this.sectionProperties.polygon = null;
 			this.sectionProperties.dropdownSection = null;
 			this.sectionProperties.dropdownMarkerWidth = 22;

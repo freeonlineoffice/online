@@ -3,7 +3,8 @@
  * L.Control.NotebookbarBuilder
  */
 
-/* global $ _ JSDialog app GraphicSelection */
+/* global $ _ JSDialog app GraphicSelection Menubar */
+
 L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 	_customizeOptions: function () {
 		this.options.noLabelsForUnoButtons = true;
@@ -750,12 +751,7 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 		$(control.button).unbind('click');
 		$(control.label).unbind('click');
 		$(control.container).click(function () {
-			L.control
-				.menubar()
-				._executeAction.bind({ _map: builder.options.map })(
-				undefined,
-				{ id: originalDataId },
-			);
+			(new Menubar())._executeAction.bind({_map: builder.options.map})(undefined, {id: originalDataId});
 		});
 		builder._preventDocumentLosingFocusOnClick(control.container);
 	},

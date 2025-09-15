@@ -26,13 +26,14 @@ class FormulaBar {
 		this.map.on('jsdialogaction', this.onJSAction, this);
 		this.map.on('doclayerinit', this.onDocLayerInit, this);
 
-		this.builder = new L.control.jsDialogBuilder({
-			mobileWizard: this,
-			map: this.map,
-			cssClass: 'formulabar jsdialog',
-			callback: this.callback.bind(this),
-			suffix: 'formulabar',
-		});
+		this.builder = new window.L.control.jsDialogBuilder(
+			{
+				mobileWizard: this,
+				map: this.map,
+				cssClass: 'formulabar jsdialog',
+				callback: this.callback.bind(this),
+				suffix: 'formulabar',
+			});
 
 		this.createFormulabar('');
 	}

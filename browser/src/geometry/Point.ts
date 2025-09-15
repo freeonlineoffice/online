@@ -1,7 +1,7 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 
-declare var L: any;
+/* global L */
 
 namespace lool {
 	export interface PointLike {
@@ -70,10 +70,11 @@ namespace lool {
 			return this.clone()._divideBy(num);
 		}
 
-		public _divideBy(num: number): Point {
-			this.x /= num;
-			this.y /= num;
-			return this;
+		// Detect lool.Point like objects such as CPoint.
+		if (Object.prototype.hasOwnProperty.call(x, 'x')
+			&& Object.prototype.hasOwnProperty.call(x, 'y')) {
+			x = <PointLike>x;
+			return new Point(x.x, x.y);
 		}
 
 		public multiplyBy(num: number): Point {
@@ -220,5 +221,4 @@ namespace lool {
 	}
 }
 
-L.Point = lool.Point;
-L.point = lool.Point.toPoint;
+}

@@ -10,14 +10,12 @@
  */
 /* See CanvasSectionContainer.ts for explanations. */
 
-declare var L: any;
 
-app.definitions.AutoFillMarkerSection = class AutoFillMarkerSection extends (
-	CanvasSectionObject
-) {
-	processingOrder: number = L.CSections.AutoFillMarker.processingOrder;
-	drawingOrder: number = L.CSections.AutoFillMarker.drawingOrder;
-	zIndex: number = L.CSections.AutoFillMarker.zIndex;
+app.definitions.AutoFillMarkerSection =
+class AutoFillMarkerSection extends CanvasSectionObject {
+	processingOrder: number = app.CSections.AutoFillMarker.processingOrder;
+	drawingOrder: number = app.CSections.AutoFillMarker.drawingOrder;
+	zIndex: number = app.CSections.AutoFillMarker.zIndex;
 
 	map: any;
 	cursorBorderWidth: number = 2;
@@ -25,10 +23,10 @@ app.definitions.AutoFillMarkerSection = class AutoFillMarkerSection extends (
 
 	_showSection: boolean = true; // Store the internal show/hide section through forced readonly hides...
 
-	constructor() {
-		super(L.CSections.AutoFillMarker.name);
+	constructor () {
+		super(app.CSections.AutoFillMarker.name);
 		this.documentObject = true;
-		this.map = L.Map.THIS;
+		this.map = window.L.Map.THIS;
 		this.sectionProperties.docLayer = this.map._docLayer;
 		this.sectionProperties.selectedAreaPoint = null;
 		this.sectionProperties.cellCursorPoint = null;
@@ -224,12 +222,8 @@ app.definitions.AutoFillMarkerSection = class AutoFillMarkerSection extends (
 		if (!this.sectionProperties.draggingStarted) {
 			// Is it first move?
 			this.sectionProperties.draggingStarted = true;
-			this.sectionProperties.dragStartPosition =
-				this.sectionProperties.docLayer._cellAutoFillAreaPixels.getCenter();
-			pos = new L.Point(
-				this.sectionProperties.dragStartPosition[0],
-				this.sectionProperties.dragStartPosition[1],
-			);
+			this.sectionProperties.dragStartPosition = this.sectionProperties.docLayer._cellAutoFillAreaPixels.getCenter();
+			pos = new lool.Point(this.sectionProperties.dragStartPosition[0], this.sectionProperties.dragStartPosition[1]);
 			pos = this.sectionProperties.docLayer._corePixelsToTwips(pos);
 			this.sectionProperties.docLayer._postMouseEvent(
 				'buttondown',
@@ -336,13 +330,9 @@ app.definitions.AutoFillMarkerSection = class AutoFillMarkerSection extends (
 		this.setMarkerPosition();
 	}
 
-	public onDoubleClick(point: lool.SimplePoint, e: MouseEvent) {
-		this.sectionProperties.dragStartPosition =
-			this.sectionProperties.docLayer._cellAutoFillAreaPixels.getCenter();
-		var pos = new L.Point(
-			this.sectionProperties.dragStartPosition[0],
-			this.sectionProperties.dragStartPosition[1],
-		);
+	public onDoubleClick (point: lool.SimplePoint, e: MouseEvent) {
+		this.sectionProperties.dragStartPosition = this.sectionProperties.docLayer._cellAutoFillAreaPixels.getCenter();
+		var pos = new lool.Point(this.sectionProperties.dragStartPosition[0], this.sectionProperties.dragStartPosition[1]);
 		pos = this.sectionProperties.docLayer._corePixelsToTwips(pos);
 		this.sectionProperties.docLayer._postMouseEvent(
 			'buttondown',

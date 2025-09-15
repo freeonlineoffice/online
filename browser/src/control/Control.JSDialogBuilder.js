@@ -4,7 +4,7 @@
  * from the JSON description provided by the server.
  */
 
-/* global app $ _ L JSDialog */
+/* global app $ _ L JSDialog ColorPicker */
 
 L.Control.JSDialogBuilder = L.Control.extend({
 	options: {
@@ -222,7 +222,7 @@ L.Control.JSDialogBuilder = L.Control.extend({
 
 	_clearColorPickers: function () {
 		this._colorPickers = [];
-		L.ColorPicker.ID = 0;
+		ColorPicker.ID = 0;
 	},
 
 	_preventDocumentLosingFocusOnClick: function (div) {
@@ -2684,13 +2684,9 @@ L.Control.JSDialogBuilder = L.Control.extend({
 			}
 		}
 
-		$(container)
-			.find('.lool-annotation')[0]
-			.addEventListener('click', function () {
-				app.sectionContainer
-					.getSectionWithName(L.CSections.CommentList.name)
-					.highlightComment(data.annotation);
-			});
+		$(container).find('.lool-annotation')[0].addEventListener('click', function() {
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).highlightComment(data.annotation);
+		});
 		return false;
 	},
 

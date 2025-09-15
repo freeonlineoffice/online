@@ -59,7 +59,7 @@ interface JQuery {
  * This control initializes and manages the application’s menubar,
  * including building menus, binding events, and updating UI states.
  */
-class Menubar extends L.Control {
+class Menubar extends window.L.Control {
 	// TODO: Some mechanism to stop the need to copy duplicate menus (eg. Help, eg: mobiledrawing)
 	options: {
 		initial: MenuItem[];
@@ -4400,44 +4400,14 @@ class Menubar extends L.Control {
 		allowedViewModeCommands: ['.uno:Signature'],
 
 		allowedViewModeActions: [
-			() =>
-				app.sectionContainer
-					.getSectionWithName(L.CSections.CommentList.name)
-					.hasAnyComments()
-					? 'savecomments'
-					: undefined,
+			() => app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).hasAnyComments() ? 'savecomments' : undefined,
 			'shareas', //file menu
-			'print',
-			'print-active-sheet',
-			'print-all-sheets',
-			'print-notespages', // file menu
-			'downloadas-odt',
-			'downloadas-doc',
-			'downloadas-docx',
-			'downloadas-rtf', // file menu
-			'downloadas-odp',
-			'downloadas-ppt',
-			'downloadas-pptx',
-			'downloadas-odg',
-			'exportpdf', // file menu
-			!window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf',
-			!window.ThisIsAMobileApp ? 'exportepub' : 'downloadas-epub', // file menu
-			'downloadas-ods',
-			'downloadas-xls',
-			'downloadas-xlsx',
-			'downloadas-csv',
-			'closedocument', // file menu
-			() =>
-				!(L.Browser.ie || L.Browser.edge)
-					? 'fullscreen'
-					: undefined,
-			'zoomin',
-			'zoomout',
-			'zoomreset',
-			'showstatusbar',
-			'showresolved',
-			'showannotations',
-			'toggledarktheme', // view menu
+			'print','print-active-sheet', 'print-all-sheets', 'print-notespages', // file menu
+			'downloadas-odt', 'downloadas-doc', 'downloadas-docx', 'downloadas-rtf', // file menu
+			'downloadas-odp', 'downloadas-ppt', 'downloadas-pptx', 'downloadas-odg', 'exportpdf' , // file menu
+			!window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf', !window.ThisIsAMobileApp ? 'exportepub' : 'downloadas-epub', // file menu
+			'downloadas-ods', 'downloadas-xls', 'downloadas-xlsx', 'downloadas-csv', 'closedocument', // file menu
+			() => !(window.L.Browser.ie || window.L.Browser.edge) ? 'fullscreen' : undefined, 'zoomin', 'zoomout', 'zoomreset', 'showstatusbar', 'showresolved', 'showannotations', 'toggledarktheme', // view menu
 			'insert-signatureline', // insert menu
 			'about',
 			'keyboard-shortcuts',
@@ -5096,11 +5066,9 @@ class Menubar extends L.Control {
 					) {
 						$(aItem).addClass('disabled');
 					}
-				} else if (type === 'action') {
-					// enable all except fullscreen on windows
-					if (id === 'fullscreen') {
-						// Full screen works weirdly on IE 11 and on Edge
-						if (L.Browser.ie || L.Browser.edge) {
+				} else if (type === 'action') { // enable all except fullscreen on windows
+					if (id === 'fullscreen') { // Full screen works weirdly on IE 11 and on Edge
+						if (window.L.Browser.ie || window.L.Browser.edge) {
 							$(aItem).addClass('disabled');
 						} else if (this._map.uiManager.isFullscreen()) {
 							$(aItem).addClass(constChecked);
@@ -5193,10 +5161,7 @@ class Menubar extends L.Control {
 							$(aItem).removeClass('disabled');
 						}
 					} else if (id === 'showannotations') {
-						var section =
-							app.sectionContainer.getSectionWithName(
-								L.CSections.CommentList.name,
-							);
+						var section = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name);
 						if (section) {
 							itemState =
 								this._map[
@@ -5207,10 +5172,7 @@ class Menubar extends L.Control {
 							else $(aItem).removeClass(constChecked);
 						}
 					} else if (id === 'showresolved') {
-						var section =
-							app.sectionContainer.getSectionWithName(
-								L.CSections.CommentList.name,
-							);
+						var section = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name);
 						if (section) {
 							if (
 								section.sectionProperties.commentList
@@ -5535,12 +5497,7 @@ class Menubar extends L.Control {
 			app.dispatcher.dispatch('hyperlinkdialog');
 		} else if (id === 'keyboard-shortcuts' || id === 'online-help') {
 			this._map.showHelp(id + '-content');
-		} else if (
-			L.Params.revHistoryEnabled &&
-			(id === 'rev-history' ||
-				id === 'Rev-History' ||
-				id === 'last-mod')
-		) {
+		} else if (window.L.Params.revHistoryEnabled && (id === 'rev-history' || id === 'Rev-History' || id === 'last-mod')) {
 			app.dispatcher.dispatch('rev-history');
 		} else if (id === 'closedocument') {
 			app.dispatcher.dispatch('closeapp');
@@ -5743,15 +5700,9 @@ class Menubar extends L.Control {
 			return false;
 
 		if (menuItem.type === 'action') {
-			if (
-				((menuItem.id === 'rev-history' ||
-					menuItem.id === 'Rev-History') &&
-					!L.Params.revHistoryEnabled) ||
-				(menuItem.id === 'closedocument' &&
-					!L.Params.closeButtonEnabled) ||
-				(menuItem.id === 'latestupdates' &&
-					!window.enableWelcomeMessage)
-			) {
+			if (((menuItem.id === 'rev-history' || menuItem.id === 'Rev-History') && !window.L.Params.revHistoryEnabled) ||
+				(menuItem.id === 'closedocument' && !window.L.Params.closeButtonEnabled) ||
+				(menuItem.id === 'latestupdates' && !window.enableWelcomeMessage)) {
 				return false;
 			}
 		}
@@ -6357,8 +6308,8 @@ class Menubar extends L.Control {
 			lastModButton.firstChild.replaceChildren();
 			lastModButton.firstChild.appendChild(mainSpan);
 
-			if (L.Params.revHistoryEnabled) {
-				L.DomUtil.setStyle(lastModButton, 'cursor', 'pointer');
+			if (window.L.Params.revHistoryEnabled) {
+				window.L.DomUtil.setStyle(lastModButton, 'cursor', 'pointer');
 			}
 
 			this._map.fire('modificationindicatorinitialized');
@@ -6378,7 +6329,3 @@ class Menubar extends L.Control {
 		}
 	}
 }
-
-L.control.menubar = () => {
-	return new Menubar();
-};

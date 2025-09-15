@@ -1,6 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 
-declare var L: any;
 
 namespace lool {
 	/**
@@ -41,4 +40,4 @@ namespace lool {
 	}
 }
 
-L.Transformation = lool.Transformation;
+}

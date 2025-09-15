@@ -26,9 +26,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	newAnnotation: function (comment) {
-		var commentList = app.sectionContainer.getSectionWithName(
-			L.CSections.CommentList.name,
-		).sectionProperties.commentList;
+		var commentList = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).sectionProperties.commentList;
 		var comment = null;
 
 		for (var i = 0; i < commentList.length; i++) {
@@ -50,25 +48,13 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (!comment) {
-			var pixelStart = new L.Point(
-				app.calc.cellCursorRectangle.pX1,
-				app.calc.cellCursorRectangle.pY1,
-			);
-			var rangeStart = this.sheetGeometry.getCellFromPos(
-				pixelStart,
-				'corepixels',
-			);
-			var pixelEnd = new L.Point(
-				app.calc.cellCursorRectangle.pX2 - 1,
-				app.calc.cellCursorRectangle.pY2 - 1,
-			);
-			var rangeEnd = this.sheetGeometry.getCellFromPos(
-				pixelEnd,
-				'corepixels',
-			);
+			var pixelStart = new lool.Point(app.calc.cellCursorRectangle.pX1, app.calc.cellCursorRectangle.pY1);
+			var rangeStart = this.sheetGeometry.getCellFromPos(pixelStart, 'corepixels');
+			var pixelEnd = new lool.Point(app.calc.cellCursorRectangle.pX2 - 1, app.calc.cellCursorRectangle.pY2 - 1);
+			var rangeEnd = this.sheetGeometry.getCellFromPos(pixelEnd, 'corepixels');
 
 			var newComment = {
-				cellRange: new L.Bounds(rangeStart, rangeEnd),
+				cellRange: new lool.Bounds(rangeStart, rangeEnd),
 				anchorPos: app.calc.cellCursorRectangle.toArray(),
 				id: 'new',
 				tab: this._selectedPart,
@@ -80,14 +66,10 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				// If adding a new comment has failed, we need to remove the leftover.
 				app.sectionContainer.removeSection('new comment');
 
-			comment = app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.add(newComment);
+			comment = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).add(newComment);
 			comment.positionCalcComment();
 		}
-		app.sectionContainer
-			.getSectionWithName(L.CSections.CommentList.name)
-			.modify(comment);
+		app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).modify(comment);
 		comment.focus();
 	},
 
@@ -123,7 +105,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		this.insertMode = false;
 		this._resetInternalState();
-		this._sheetSwitch = new L.SheetSwitchViewRestore(map);
+		this._sheetSwitch = new lool.SheetSwitchViewRestore(map);
 		this._sheetGrid = true;
 
 		if (window.prefs.getBoolean('ColumnRowHighlightEnabled', false))
@@ -235,9 +217,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			this._replayPrintTwipsMsgAllViews('cellviewcursor');
 			this._replayPrintTwipsMsgAllViews('textviewselection');
 			// Hide previous tab's shown comment (if any).
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.hideAllComments();
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).hideAllComments();
 			this._sheetSwitch.gotSetPart(part);
 			this._syncTileContainerSize();
 		}
@@ -335,11 +315,9 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		// When there will be a latlng conversion, we should use CSS pixels.
-		var newSizePx = this._twipsToPixels(
-			new L.Point(newDocWidth, newDocHeight),
-		);
+		var newSizePx = this._twipsToPixels(new lool.Point(newDocWidth, newDocHeight));
 
-		var topLeft = this._map.unproject(new L.Point(0, 0));
+		var topLeft = this._map.unproject(new lool.Point(0, 0));
 		var bottomRight = this._map.unproject(newSizePx);
 
 		this._docPixelSize = newSizePx.clone();
@@ -362,9 +340,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	_getCursorPosSize: function () {
-		var x = -1,
-			y = -1;
-		var size = new L.Point(0, 0);
+		var x = -1, y = -1;
+		var size = new lool.Point(0, 0);
 
 		if (app.calc.cellCursorVisible) {
 			x = app.calc.cellAddress.x + 1;
@@ -427,26 +404,13 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}
 	},
 
-	_getMarginPropertiesForTheMap: function () {
-		const rowHeaderSection = app.sectionContainer.getSectionWithName(
-			L.CSections.RowHeader.name,
-		);
-		const columnHeaderSection = app.sectionContainer.getSectionWithName(
-			L.CSections.ColumnHeader.name,
-		);
-		const rowGroupSection = app.sectionContainer.getSectionWithName(
-			L.CSections.RowGroup.name,
-		);
-		const columnGroupSection = app.sectionContainer.getSectionWithName(
-			L.CSections.ColumnGroup.name,
-		);
-		const scrollSection = app.sectionContainer.getSectionWithName(
-			L.CSections.Scroll.name,
-		);
-		const scrollBarThickness = scrollSection
-			? scrollSection.sectionProperties.scrollBarThickness
-			: 0;
-
+	_getMarginPropertiesForTheMap: function() {
+		const rowHeaderSection = app.sectionContainer.getSectionWithName(app.CSections.RowHeader.name);
+		const columnHeaderSection = app.sectionContainer.getSectionWithName(app.CSections.ColumnHeader.name);
+		const rowGroupSection = app.sectionContainer.getSectionWithName(app.CSections.RowGroup.name);
+		const columnGroupSection = app.sectionContainer.getSectionWithName(app.CSections.ColumnGroup.name);
+		const scrollSection = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
+		const scrollBarThickness = scrollSection ? scrollSection.sectionProperties.scrollBarThickness : 0;
 		const marginLeft =
 			(rowHeaderSection ? rowHeaderSection.size[0] : 0) +
 			(rowGroupSection ? rowGroupSection.size[0] : 0);
@@ -511,16 +475,10 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		this._container.style.height = newMapSize[1] + 'px';
 	},
 
-	_updateHeaderSections: function () {
-		if (
-			app.sectionContainer.doesSectionExist(L.CSections.RowHeader.name)
-		) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.RowHeader.name)
-				._updateCanvas();
-			app.sectionContainer
-				.getSectionWithName(L.CSections.ColumnHeader.name)
-				._updateCanvas();
+	_updateHeaderSections: function() {
+		if (app.sectionContainer.doesSectionExist(app.CSections.RowHeader.name)) {
+			app.sectionContainer.getSectionWithName(app.CSections.RowHeader.name)._updateCanvas();
+			app.sectionContainer.getSectionWithName(app.CSections.ColumnHeader.name)._updateCanvas();
 		}
 	},
 
@@ -571,14 +529,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				newMapSize,
 			);
 
-			this._map.invalidateSize(
-				false,
-				new L.Point(oldMapSize[0], oldMapSize[1]),
-			);
-			app.sectionContainer.onResize(
-				newCanvasSize[0],
-				newCanvasSize[1],
-			); // Canvas's size = documentContainer's size.
+			this._map.invalidateSize(false, new lool.Point(oldMapSize[0], oldMapSize[1]));
+			app.sectionContainer.onResize(newCanvasSize[0], newCanvasSize[1]); // Canvas's size = documentContainer's size.
 			this._updateHeaderSections();
 
 			this._mobileChecksAfterResizeEvent(heightIncreased);
@@ -668,28 +620,20 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			);
 
 			var mapSize = this._map.getSize();
-			var sizePx = this._twipsToPixels(
-				new L.Point(
-					app.activeDocument.fileSize.x,
-					app.activeDocument.fileSize.y,
-				),
-			);
+			var sizePx = this._twipsToPixels(new lool.Point(app.activeDocument.fileSize.x, app.activeDocument.fileSize.y));
 			var width = sizePx.x;
 			var height = sizePx.y;
 
 			if (width < mapSize.x || height < mapSize.y) {
 				width = Math.max(width, mapSize.x);
 				height = Math.max(height, mapSize.y);
-				var topLeft = this._map.unproject(new L.Point(0, 0));
-				var bottomRight = this._map.unproject(
-					new L.Point(width, height),
-				);
-				this._map.setMaxBounds(
-					new L.LatLngBounds(topLeft, bottomRight),
-				);
-				this._docPixelSize = { x: width, y: height };
-				this._map.fire('scrolllimits', { x: width, y: height });
-			} else {
+				var topLeft = this._map.unproject(new lool.Point(0, 0));
+				var bottomRight = this._map.unproject(new lool.Point(width, height));
+				this._map.setMaxBounds(new L.LatLngBounds(topLeft, bottomRight));
+				this._docPixelSize = {x: width, y: height};
+				this._map.fire('scrolllimits', {x: width, y: height});
+			}
+			else {
 				this._updateMaxBounds(true);
 			}
 
@@ -734,9 +678,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			this._adjustCanvasSectionsForLayoutChange();
 		}
 
-		var scrollSection = app.sectionContainer.getSectionWithName(
-			L.CSections.Scroll.name,
-		);
+		var scrollSection = app.sectionContainer.getSectionWithName(app.CSections.Scroll.name);
 		scrollSection.stepByStepScrolling = true;
 	},
 
@@ -762,7 +704,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		var offset = coordinatesData.offset || {};
 
-		var topLeftPoint = new L.Point(coordinatesData.x, coordinatesData.y);
+		var topLeftPoint = new lool.Point(coordinatesData.x, coordinatesData.y);
 		var sizePx = this._map.getSize();
 
 		if (topLeftPoint.x === undefined) {
@@ -897,48 +839,32 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 	_addRemoveGroupSections: function () {
 		// If there are row and column groups at the same time, add CornerGroup section.
-		if (
-			this.sheetGeometry._rows._outlines._outlines.length > 0 &&
-			this.sheetGeometry._columns._outlines._outlines.length > 0
-		) {
-			if (
-				!app.sectionContainer.doesSectionExist(
-					L.CSections.CornerGroup.name,
-				)
-			)
-				app.sectionContainer.addSection(L.control.cornerGroup());
-		} else {
-			// If not, remove CornerGroup section.
-			app.sectionContainer.removeSection(L.CSections.CornerGroup.name);
+		if (this.sheetGeometry._rows._outlines._outlines.length > 0 && this.sheetGeometry._columns._outlines._outlines.length > 0) {
+			if (!app.sectionContainer.doesSectionExist(app.CSections.CornerGroup.name))
+				app.sectionContainer.addSection(new lool.CornerGroup());
+		}
+		else { // If not, remove CornerGroup section.
+			app.sectionContainer.removeSection(app.CSections.CornerGroup.name);
 		}
 
 		// If there are row groups, add RowGroup section.
 		if (this.sheetGeometry._rows._outlines._outlines.length > 0) {
-			if (
-				!app.sectionContainer.doesSectionExist(
-					L.CSections.RowGroup.name,
-				)
-			)
-				app.sectionContainer.addSection(L.control.rowGroup());
-		} else {
-			// If not, remove RowGroup section.
-			app.sectionContainer.removeSection(L.CSections.RowGroup.name);
+			if (!app.sectionContainer.doesSectionExist(app.CSections.RowGroup.name))
+				app.sectionContainer.addSection(new lool.RowGroup());
+		}
+		else { // If not, remove RowGroup section.
+			app.sectionContainer.removeSection(app.CSections.RowGroup.name);
 		}
 
 		// If there are column groups, add ColumnGroup section.
 		if (this.sheetGeometry._columns._outlines._outlines.length > 0) {
-			if (
-				!app.sectionContainer.doesSectionExist(
-					L.CSections.ColumnGroup.name,
-				)
-			) {
-				app.sectionContainer.addSection(L.control.columnGroup());
-				app.sectionContainer.canvas.style.border =
-					'1px solid darkgrey';
+			if (!app.sectionContainer.doesSectionExist(app.CSections.ColumnGroup.name)) {
+				app.sectionContainer.addSection(new lool.ColumnGroup());
+				app.sectionContainer.canvas.style.border = '1px solid darkgrey';
 			}
-		} else {
-			// If not, remove ColumnGroup section.
-			app.sectionContainer.removeSection(L.CSections.ColumnGroup.name);
+		}
+		else { // If not, remove ColumnGroup section.
+			app.sectionContainer.removeSection(app.CSections.ColumnGroup.name);
 			app.sectionContainer.canvas.style.border = '0px solid darkgrey';
 		}
 	},
@@ -958,27 +884,13 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			console.log('debug: in LTR -> RTL canvas section adjustments');
 			var sectionContainer = app.sectionContainer;
 
-			var tilesSection = sectionContainer.getSectionWithName(
-				L.CSections.Tiles.name,
-			);
-			var rowHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.RowHeader.name,
-			);
-			var columnHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.ColumnHeader.name,
-			);
-			var cornerHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.CornerHeader.name,
-			);
-			var columnGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.ColumnGroup.name,
-			);
-			var rowGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.RowGroup.name,
-			);
-			var cornerGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.CornerGroup.name,
-			);
+			var tilesSection = sectionContainer.getSectionWithName(app.CSections.Tiles.name);
+			var rowHeaderSection = sectionContainer.getSectionWithName(app.CSections.RowHeader.name);
+			var columnHeaderSection = sectionContainer.getSectionWithName(app.CSections.ColumnHeader.name);
+			var cornerHeaderSection = sectionContainer.getSectionWithName(app.CSections.CornerHeader.name);
+			var columnGroupSection = sectionContainer.getSectionWithName(app.CSections.ColumnGroup.name);
+			var rowGroupSection = sectionContainer.getSectionWithName(app.CSections.RowGroup.name);
+			var cornerGroupSection = sectionContainer.getSectionWithName(app.CSections.CornerGroup.name);
 			// Scroll section covers the entire document area, and needs RTL adjustments internally.
 
 			this._setAnchor('cornerGroupSection', cornerGroupSection, [
@@ -986,36 +898,24 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 				'right',
 			]);
 
-			this._setAnchor('rowGroupSection', rowGroupSection, [
-				[L.CSections.CornerGroup.name, 'bottom', 'top'],
-				'right',
-			]);
+			this._setAnchor('rowGroupSection', rowGroupSection,
+				[[app.CSections.CornerGroup.name, 'bottom', 'top'], 'right']);
 
-			this._setAnchor('columnGroupSection', columnGroupSection, [
-				'top',
-				[L.CSections.CornerGroup.name, '-left', 'right'],
-			]);
+			this._setAnchor('columnGroupSection', columnGroupSection,
+				['top', [app.CSections.CornerGroup.name, '-left', 'right']]);
 
-			this._setAnchor('cornerHeaderSection', cornerHeaderSection, [
-				[L.CSections.ColumnGroup.name, 'bottom', 'top'],
-				[L.CSections.RowGroup.name, '-left', 'right'],
-			]);
+			this._setAnchor('cornerHeaderSection', cornerHeaderSection,
+				[[app.CSections.ColumnGroup.name, 'bottom', 'top'], [app.CSections.RowGroup.name, '-left', 'right']]);
 
-			this._setAnchor('rowHeaderSection', rowHeaderSection, [
-				[L.CSections.CornerHeader.name, 'bottom', 'top'],
-				[L.CSections.RowGroup.name, '-left', 'right'],
-			]);
+			this._setAnchor('rowHeaderSection', rowHeaderSection,
+				[[app.CSections.CornerHeader.name, 'bottom', 'top'], [app.CSections.RowGroup.name, '-left', 'right']]);
 
-			this._setAnchor('columnHeaderSection', columnHeaderSection, [
-				[L.CSections.ColumnGroup.name, 'bottom', 'top'],
-				[L.CSections.CornerHeader.name, '-left', 'right'],
-			]);
+			this._setAnchor('columnHeaderSection', columnHeaderSection,
+				[[app.CSections.ColumnGroup.name, 'bottom', 'top'], [app.CSections.CornerHeader.name, '-left', 'right']]);
 			if (columnHeaderSection) columnHeaderSection.expand = ['left'];
 
-			this._setAnchor('tilesSection', tilesSection, [
-				[L.CSections.ColumnHeader.name, 'bottom', 'top'],
-				[L.CSections.RowHeader.name, '-left', 'right'],
-			]);
+			this._setAnchor('tilesSection', tilesSection,
+				[[app.CSections.ColumnHeader.name, 'bottom', 'top'], [app.CSections.RowHeader.name, '-left', 'right']]);
 
 			// Do not set layoutIsRtl to true prematurely. If set before all sections are defined
 			// (e.g., during load with onStatusMsg), some sections may not update to their correct positions.
@@ -1028,68 +928,36 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			console.log('debug: in RTL -> LTR canvas section adjustments');
 			var sectionContainer = app.sectionContainer;
 
-			var tilesSection = sectionContainer.getSectionWithName(
-				L.CSections.Tiles.name,
-			);
-			var rowHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.RowHeader.name,
-			);
-			var columnHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.ColumnHeader.name,
-			);
-			var cornerHeaderSection = sectionContainer.getSectionWithName(
-				L.CSections.CornerHeader.name,
-			);
-			var columnGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.ColumnGroup.name,
-			);
-			var rowGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.RowGroup.name,
-			);
-			var cornerGroupSection = sectionContainer.getSectionWithName(
-				L.CSections.CornerGroup.name,
-			);
+			var tilesSection = sectionContainer.getSectionWithName(app.CSections.Tiles.name);
+			var rowHeaderSection = sectionContainer.getSectionWithName(app.CSections.RowHeader.name);
+			var columnHeaderSection = sectionContainer.getSectionWithName(app.CSections.ColumnHeader.name);
+			var cornerHeaderSection = sectionContainer.getSectionWithName(app.CSections.CornerHeader.name);
+			var columnGroupSection = sectionContainer.getSectionWithName(app.CSections.ColumnGroup.name);
+			var rowGroupSection = sectionContainer.getSectionWithName(app.CSections.RowGroup.name);
+			var cornerGroupSection = sectionContainer.getSectionWithName(app.CSections.CornerGroup.name);
 
 			if (cornerGroupSection) {
 				cornerGroupSection.anchor = ['top', 'left'];
 			}
 
 			if (rowGroupSection) {
-				rowGroupSection.anchor = [
-					[L.CSections.CornerGroup.name, 'bottom', 'top'],
-					'left',
-				];
+				rowGroupSection.anchor = [[app.CSections.CornerGroup.name, 'bottom', 'top'], 'left'];
 			}
 
 			if (columnGroupSection) {
-				columnGroupSection.anchor = [
-					'top',
-					[L.CSections.CornerGroup.name, 'right', 'left'],
-				];
+				columnGroupSection.anchor = ['top', [app.CSections.CornerGroup.name, 'right', 'left']];
 			}
 
-			cornerHeaderSection.anchor = [
-				[L.CSections.ColumnGroup.name, 'bottom', 'top'],
-				[L.CSections.RowGroup.name, 'right', 'left'],
-			];
+			cornerHeaderSection.anchor = [[app.CSections.ColumnGroup.name, 'bottom', 'top'], [app.CSections.RowGroup.name, 'right', 'left']];
 
-			rowHeaderSection.anchor = [
-				[L.CSections.CornerHeader.name, 'bottom', 'top'],
-				[L.CSections.RowGroup.name, 'right', 'left'],
-			];
+			rowHeaderSection.anchor = [[app.CSections.CornerHeader.name, 'bottom', 'top'], [app.CSections.RowGroup.name, 'right', 'left']];
 
-			columnHeaderSection.anchor = [
-				[L.CSections.ColumnGroup.name, 'bottom', 'top'],
-				[L.CSections.CornerHeader.name, 'right', 'left'],
-			];
+			columnHeaderSection.anchor = [[app.CSections.ColumnGroup.name, 'bottom', 'top'], [app.CSections.CornerHeader.name, 'right', 'left']];
 			columnHeaderSection.expand = ['right'];
 
 			if (rowHeaderSection) this._layoutIsRTL = false;
 
-			tilesSection.anchor = [
-				[L.CSections.ColumnHeader.name, 'bottom', 'top'],
-				[L.CSections.RowHeader.name, 'right', 'left'],
-			];
+			tilesSection.anchor = [[app.CSections.ColumnHeader.name, 'bottom', 'top'], [app.CSections.RowHeader.name, 'right', 'left']];
 
 			sectionContainer.reNewAllSections(true);
 			this._syncTileContainerSize();
@@ -1099,15 +967,11 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 	_handleSheetGeometryDataMsg: function (jsonMsgObj, differentSheet) {
 		if (!this.sheetGeometry) {
 			this._sheetGeomFirstWait = false;
-			this.sheetGeometry = new L.SheetGeometry(
-				jsonMsgObj,
-				app.tile.size.x,
-				app.tile.size.y,
-				TileManager.tileSize,
-				this._selectedPart,
-			);
+			this.sheetGeometry = new lool.SheetGeometry(jsonMsgObj,
+				app.tile.size.x, app.tile.size.y,
+				TileManager.tileSize, this._selectedPart);
 
-			app.sectionContainer.addSection(L.control.cornerHeader());
+			app.sectionContainer.addSection(new lool.CornerHeader());
 			app.sectionContainer.addSection(new app.definitions.rowHeader());
 			app.sectionContainer.addSection(
 				new app.definitions.columnHeader(),
@@ -1188,7 +1052,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		var spContext = this._splitPaneCache[this._selectedPart];
 		if (!spContext) {
-			spContext = new L.CalcSplitPanesContext(this);
+			spContext = new lool.CalcSplitPanesContext(this);
 			this._splitPaneCache[this._selectedPart] = spContext;
 		}
 
@@ -1287,7 +1151,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		}
 
 		if (!this._splitCellState) {
-			this._splitCellState = new L.Point(-1, -1);
+			this._splitCellState = new lool.Point(-1, -1);
 		}
 
 		if (!e.state || e.state.length === 0) {
@@ -1374,13 +1238,9 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			this._handleSheetGeometryDataMsg(values, differentSheet);
 			this._syncTileContainerSize();
 		} else if (values.comments) {
-			app.sectionContainer
-				.getSectionWithName(L.CSections.CommentList.name)
-				.importComments(values.comments);
+			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).importComments(values.comments);
 		} else if (values.commentsPos) {
-			var section = app.sectionContainer.getSectionWithName(
-				L.CSections.CommentList.name,
-			);
+			var section = app.sectionContainer.getSectionWithName(app.CSections.CommentList.name);
 			// invalidate all comments
 			section.sectionProperties.commentList.forEach(
 				function (comment) {
@@ -1429,25 +1289,12 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			if (textMsg.trim() !== 'EMPTY' && textMsg.trim() !== '') {
 				this._cellSelections = textMsg.split(';');
 				var that = this;
-				this._cellSelections = this._cellSelections.map(
-					function (element) {
-						element = element.split(',');
-						var topLeftTwips = new L.Point(
-							parseInt(element[0]),
-							parseInt(element[1]),
-						);
-						var offset = new L.Point(
-							parseInt(element[2]),
-							parseInt(element[3]),
-						);
-						var bottomRightTwips = topLeftTwips.add(offset);
-						var boundsTwips =
-							that._convertToTileTwipsSheetArea(
-								new L.Bounds(
-									topLeftTwips,
-									bottomRightTwips,
-								),
-							);
+				this._cellSelections = this._cellSelections.map(function(element) {
+					element = element.split(',');
+					var topLeftTwips = new lool.Point(parseInt(element[0]), parseInt(element[1]));
+					var offset = new lool.Point(parseInt(element[2]), parseInt(element[3]));
+					var bottomRightTwips = topLeftTwips.add(offset);
+					var boundsTwips = that._convertToTileTwipsSheetArea(new lool.Bounds(topLeftTwips, bottomRightTwips));
 
 						element = app.LOUtil.createRectangle(
 							boundsTwips.min.x * app.twipsToPixels,
@@ -1500,8 +1347,8 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			return undefined;
 		}
 
-		var relrect = L.Bounds.parse(msgObj.relrect);
-		var refpoint = L.Point.parse(msgObj.refpoint);
+		var relrect = lool.Bounds.parse(msgObj.relrect);
+		var refpoint = lool.Point.parse(msgObj.refpoint);
 		refpoint = this.sheetGeometry.getTileTwipsPointFromPrint(refpoint);
 		return relrect.add(refpoint);
 	},
@@ -1523,19 +1370,17 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 		var delimIndex = textMsg.indexOf(refpointDelim);
 		if (delimIndex === -1) {
 			// No refpoint information available, treat it as cell-range selection rectangle.
-			var rangeRectArray = L.Bounds.parseArray(textMsg);
+			var rangeRectArray = lool.Bounds.parseArray(textMsg);
 			rangeRectArray = rangeRectArray.map(function (rect) {
 				return this._convertToTileTwipsSheetArea(rect);
 			}, this);
 			return rangeRectArray;
 		}
 
-		var refpoint = L.Point.parse(
-			textMsg.substring(delimIndex + refpointDelim.length),
-		);
+		var refpoint = lool.Point.parse(textMsg.substring(delimIndex + refpointDelim.length));
 		refpoint = this.sheetGeometry.getTileTwipsPointFromPrint(refpoint);
 
-		var rectArray = L.Bounds.parseArray(textMsg.substring(0, delimIndex));
+		var rectArray = lool.Bounds.parseArray(textMsg.substring(0, delimIndex));
 		rectArray.forEach(function (rect) {
 			rect._add(refpoint); // compute absolute coordinates and update in-place.
 		});
@@ -1576,12 +1421,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 			return this.sheetGeometry.getSize('corepixels');
 		}
 
-		return this._twipsToPixels(
-			new L.Point(
-				app.activeDocument.fileSize.x,
-				app.activeDocument.fileSize.y,
-			),
-		);
+		return this._twipsToPixels(new lool.Point(app.activeDocument.fileSize.x, app.activeDocument.fileSize.y));
 	},
 
 	_calculateScrollForNewCellCursor: function () {
@@ -1604,9 +1444,7 @@ L.CalcTileLayer = L.CanvasTileLayer.extend({
 
 		if (contained) return scroll; // No scroll needed.
 
-		var noSplit =
-			!this._splitPanesContext ||
-			this._splitPanesContext.getSplitPos().equals(new L.Point(0, 0));
+		var noSplit = !this._splitPanesContext || this._splitPanesContext.getSplitPos().equals(new lool.Point(0, 0));
 
 		// No split panes. Check if target cell is bigger than screen but partially visible.
 		if (

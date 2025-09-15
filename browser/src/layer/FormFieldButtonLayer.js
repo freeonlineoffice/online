@@ -2,7 +2,7 @@
 /*
  * L.FormFieldButton is used to interact with text based form fields.
  */
-/* global _ app $ */
+/* global _ app $ lool */
 L.FormFieldButton = L.Layer.extend({
 	options: {
 		pane: 'formfieldPane',
@@ -54,14 +54,8 @@ L.FormFieldButton = L.Layer.extend({
 	_calculateButtonArea: function (map) {
 		// First get the data from the message in twips.
 		var strTwips = this._buttonData.textArea.match(/\d+/g);
-		var topLeftTwips = new L.Point(
-			parseInt(strTwips[0]),
-			parseInt(strTwips[1]),
-		);
-		var offset = new L.Point(
-			parseInt(strTwips[2]),
-			parseInt(strTwips[3]),
-		);
+		var topLeftTwips = new lool.Point(parseInt(strTwips[0]), parseInt(strTwips[1]));
+		var offset = new lool.Point(parseInt(strTwips[2]), parseInt(strTwips[3]));
 		var bottomRightTwips = topLeftTwips.add(offset);
 		var buttonAreaTwips = [topLeftTwips, bottomRightTwips];
 
@@ -77,7 +71,7 @@ L.FormFieldButton = L.Layer.extend({
 			),
 		);
 
-		var buttonAreaLayer = new L.Bounds(
+		var buttonAreaLayer = new lool.Bounds(
 			map.latLngToLayerPoint(buttonAreaLatLng.getNorthWest()),
 			map.latLngToLayerPoint(buttonAreaLatLng.getSouthEast()),
 		);
@@ -100,22 +94,15 @@ L.FormFieldButton = L.Layer.extend({
 		var frameHeight = size.y + 1.5 * extraPadding;
 		buttonFrame.style.width = frameWidth + 'px';
 
-		var framePos = new L.Point(
-			buttonArea.min.x - extraPadding,
-			buttonArea.min.y - extraPadding,
-		);
+		var framePos = new lool.Point(buttonArea.min.x - extraPadding, buttonArea.min.y - extraPadding);
 		L.DomUtil.setPosition(buttonFrame, framePos);
 
 		return [framePos, frameWidth, frameHeight];
 	},
 
-	_buildDropDownButton: function (container, framePos, frameWidth) {
-		var button = L.DomUtil.create(
-			'button',
-			'form-field-button',
-			container,
-		);
-		var buttonPos = new L.Point(framePos.x + frameWidth, framePos.y);
+	_buildDropDownButton: function(container, framePos, frameWidth) {
+		var button = L.DomUtil.create('button', 'form-field-button', container);
+		var buttonPos = new lool.Point(framePos.x + frameWidth, framePos.y);
 		L.DomUtil.setPosition(button, buttonPos);
 		button.style.width = container.style.height;
 

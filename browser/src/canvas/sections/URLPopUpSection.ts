@@ -182,19 +182,10 @@ class URLPopUpSection extends HTMLObjectSection {
 				app.map._clip._execCopyCutPaste('copy');
 			}
 			// If _navigatorClipboardWrite is available, use it.
-			else if (
-				L.Browser.clipboardApiAvailable ||
-				window.ThisIsTheiOSApp
-			)
-				app.map._clip.filterExecCopyPaste(
-					'.uno:CopyHyperlinkLocation',
-					params,
-				); // Or use previous method.
-			else
-				app.map.sendUnoCommand(
-					'.uno:CopyHyperlinkLocation',
-					params,
-				);
+			else if (window.L.Browser.clipboardApiAvailable || window.ThisIsTheiOSApp)
+				app.map._clip.filterExecCopyPaste('.uno:CopyHyperlinkLocation', params);
+			else // Or use previous method.
+				app.map.sendUnoCommand('.uno:CopyHyperlinkLocation', params);
 		};
 
 		document.getElementById(this.editButtonId).onclick = () => {

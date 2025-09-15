@@ -113,7 +113,7 @@ class LOUtil {
 			parseInt(numbers[1]),
 		);
 		const bottomRight = topLeft.add(
-			L.point(parseInt(numbers[2]), parseInt(numbers[3])),
+			cool.Point.toPoint(parseInt(numbers[2]), parseInt(numbers[3])),
 		);
 		return lool.Bounds.toBounds(topLeft, bottomRight);
 	}
@@ -131,8 +131,10 @@ class LOUtil {
 					parseInt(matches[itMatch + 2]),
 					parseInt(matches[itMatch + 3]),
 				);
-				const topRight = topLeft.add(L.point(size.x, 0));
-				const bottomLeft = topLeft.add(L.point(0, size.y));
+				const topRight = topLeft.add(cool.Point.toPoint(size.x, 0));
+				const bottomLeft = topLeft.add(
+					cool.Point.toPoint(0, size.y),
+				);
 				const bottomRight = topLeft.add(size);
 				rectangles.push([
 					bottomLeft,
