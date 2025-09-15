@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,12 +8,16 @@
  */
 
 var L: any = {
-	CSections: { Scroll: { name: 'scroll' } },
-	LOUtil: {},
+    LOUtil: {},
 };
 
 var app: any = {
-	roundedDpiScale: 1,
-	canvasSize: null,
-	definitions: {},
+    CSections: { Scroll: { name : 'scroll' } },
+    roundedDpiScale : 1,
+    canvasSize: null,
+    definitions: {},
+    dpiScale: 1,
+    twipsToPixels: 15,
+    pixelsToTwips: 1 / 15,
+    sectionContainer: {}
 };
