@@ -247,7 +247,7 @@ class TileManager {
 	// The tile expansion ratio that the visible tile area will be expanded towards when
 	// updating during scrolling
 	private static directionalTileExpansion: number = 2;
-	private static pausedForDehydration: boolean = false;
+	private static pausedForCoherency: boolean = false;
 	private static shrinkCurrentId: any = null;
 
 	//private static _debugTime: any = {}; Reserved for future.
@@ -484,6 +484,14 @@ class TileManager {
 		);
 	}
 
+	private static visibleTilesReady(): boolean {
+		for (const tile of this.tiles.values()) {
+			if (tile.distanceFromView === 0 && tile.lastPendingId && !tile.isReady())
+				return false;
+		}
+		return true;
+	}
+
 	private static endTransactionHandleBitmaps(
 		deltas: any[],
 		bitmaps: ImageBitmap[],
@@ -501,23 +509,10 @@ class TileManager {
 			if (tile.isReady()) this.tileReady(tile.coords, visibleRanges);
 		}
 
-		if (this.pausedForDehydration) {
-			// Check if all current tiles are accounted for and resume drawing if so.
-			let shouldUnpause = true;
-			for (const tile of this.tiles.values()) {
-				if (
-					tile.distanceFromView === 0 &&
-					tile.lastPendingId &&
-					!tile.isReady()
-				) {
-					shouldUnpause = false;
-					break;
-				}
-			}
-			if (shouldUnpause) {
-				app.sectionContainer.resumeDrawing();
-				this.pausedForDehydration = false;
-			}
+		// Check if all current visible tiles are accounted for and resume drawing if so.
+		if (this.pausedForCoherency && this.visibleTilesReady()) {
+			app.sectionContainer.resumeDrawing();
+			this.pausedForCoherency = false;
 		}
 
 		if (this.nPendingWorkerTasks === 0)
@@ -927,6 +922,14 @@ class TileManager {
 
 	private static rehydrateTile(tile: Tile, wireMessage: boolean) {
 		if (tile.needsRehydration()) {
+			// If we dehydrate a visible tile, wait for it to be ready before drawing.
+			// We may want to consider this being a threshold rather than definitely-visible as
+			// dehydration is asynchronous and our scroll position may move.
+			if (tile.distanceFromView === 0 && !this.pausedForCoherency) {
+				app.sectionContainer.pauseDrawing();
+				this.pausedForCoherency = true;
+			}
+
 			// Re-hydrate tile from cached raw deltas.
 			if (this.debugDeltas)
 				window.app.console.log(
@@ -1380,7 +1383,6 @@ class TileManager {
 		// create a queue of coordinates to load tiles from. Rehydrate tiles if we're dealing
 		// with the currently visible area.
 		this.beginTransaction();
-		let dehydratedVisible = false;
 		for (var rangeIdx = 0; rangeIdx < tileRanges.length; ++rangeIdx) {
 			// Expand the 'current' area to add a small buffer around the visible area that
 			// helps us avoid visible tile updates.
@@ -1405,22 +1407,9 @@ class TileManager {
 					const tile = this.tiles.get(key);
 
 					if (!tile || tile.needsFetch()) queue.push(coords);
-					else if (isCurrent && this.makeTileCurrent(tile)) {
-						const tileIsVisible =
-							j >= tileRanges[rangeIdx].min.y &&
-							j <= tileRanges[rangeIdx].max.y &&
-							i >= tileRanges[rangeIdx].min.x &&
-							i <= tileRanges[rangeIdx].max.x;
-						if (tileIsVisible) dehydratedVisible = true;
-					}
+					else if (isCurrent) this.makeTileCurrent(tile);
 				}
 			}
-		}
-
-		// If we dehydrated a visible tile, wait for it to be ready before drawing
-		if (dehydratedVisible && !this.pausedForDehydration) {
-			app.sectionContainer.pauseDrawing();
-			this.pausedForDehydration = true;
 		}
 		this.endTransaction(null);
 
@@ -2087,10 +2076,10 @@ class TileManager {
 			return;
 		}
 
-		// If an update occurs while we're paused for dehydration, we haven't been able to
+		// If an update occurs while we're paused for visible tiles, we haven't been able to
 		// keep up with scrolling. In this case, we should stop expanding the current area
 		// so that it takes less time to dehydrate it.
-		if (this.pausedForDehydration) {
+		if (this.pausedForCoherency) {
 			if (this.shrinkCurrentId) clearTimeout(this.shrinkCurrentId);
 			this.shrinkCurrentId = setTimeout(() => {
 				this.shrinkCurrentId = null;
