@@ -2309,6 +2309,8 @@ function generateLayoutPopupGrid(unoCommand: string): GridWidgetJSON {
 				noLabel: true,
 				left: j % 4,
 				top: (i / 4) % 4,
+				tabIndex: 0,
+				index: Math.floor(i / 4) + ':' + (j % 4),
 			} as any as WidgetJSON);
 		}
 	}
