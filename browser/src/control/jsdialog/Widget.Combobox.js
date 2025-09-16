@@ -34,6 +34,7 @@ JSDialog.comboboxEntry = function (parentContainer, data, builder) {
 
 	if (data.icon) {
 		var icon = window.L.DomUtil.create('img', 'ui-combobox-icon', entry);
+		icon.alt = '';
 		builder._isStringCloseToURL(data.icon) ? icon.src = data.icon : app.LOUtil.setImage(icon,  app.LOUtil.getIconNameOfCommand(data.icon), builder.map);
 	}
 
