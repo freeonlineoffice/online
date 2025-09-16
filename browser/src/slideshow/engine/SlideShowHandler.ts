@@ -406,6 +406,7 @@ class SlideShowHandler {
 				this.bIsRewinding,
 		);
 		this.bIsTransitionRunning = false;
+		if (!this.presenter._checkAlreadyPresenting()) return;
 		if (this.bIsRewinding) {
 			this.theMetaPres.getMetaSlideByIndex(nNewSlide).hide();
 			this.slideShowNavigator.rewindToPreviousSlide();
