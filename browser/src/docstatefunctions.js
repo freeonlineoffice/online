@@ -1,8 +1,6 @@
 /* -*- js-indent-level: 8 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -182,19 +180,19 @@ app.getFollowedViewId = function () {
 };
 
 app.setFollowingOff = function () {
-	console.debug('user following: OFF');
+	app.console.debug('user following: OFF');
 	app.following.mode = 'none';
 	app.following.viewId = -1;
 };
 
 app.setFollowingUser = function (viewId) {
-	console.debug('user following: USER - ' + viewId);
+	app.console.debug('user following: USER - ' + viewId);
 	app.following.mode = 'user';
 	app.following.viewId = viewId;
 };
 
 app.setFollowingEditor = function (viewId = -1) {
-	console.debug('user following: EDITOR - ' + viewId);
+	app.console.debug('user following: EDITOR - ' + viewId);
 	app.following.mode = 'editor';
 	app.following.viewId = viewId;
 };
@@ -212,7 +210,7 @@ app.isFollowingEditor = function () {
 };
 
 app.updateFollowingUsers = function () {
-	console.debug('user following: update');
+	app.console.debug('user following: update');
 	var isCellCursorVisible = app.calc.cellCursorVisible;
 	var isTextCursorVisible = app.file.textCursor.visible;
 
@@ -352,7 +350,7 @@ app.impress.isSlideHidden = function (index) {
 		if (app.impress.partList.length > index)
 			return !app.impress.partList[index].visible;
 		else {
-			console.warn(
+			app.console.warn(
 				'Index is bigger than the part count (isSlideHidden): ' +
 					index,
 			);
@@ -388,7 +386,9 @@ app.impress.getIndexFromSlideHash = function (hash) {
 			if (app.impress.partList[i].hash === hash) return i;
 		}
 
-		console.warn('No part with hash (getIndexFromSlideHash): ' + hash);
+		app.console.warn(
+			'No part with hash (getIndexFromSlideHash): ' + hash,
+		);
 
 		return 0;
 	} else return 0;
