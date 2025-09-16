@@ -1,10 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Handler.Scroll is used by L.Map to enable mouse scroll wheel zoom on the map.
+ * window.L.Handler.Scroll is used by window.L.Map to enable mouse scroll wheel zoom on the map.
  */
 
 /* global app OtherViewCellCursorSection */
-L.Map.mergeOptions({
+window.L.Map.mergeOptions({
 	scrollHandler: true,
 	wheelDebounceTime: 40,
 	// Max idle time w.r.t ctrl+wheel events before invoking "zoomStepEnd".
@@ -13,20 +13,14 @@ L.Map.mergeOptions({
 	zoomLevelStepSize: 0.3,
 });
 
-L.Map.Scroll = L.Handler.extend({
-	_mouseOnlyPreventDefault: window.touch.mouseOnly(
-		L.DomEvent.preventDefault,
-	),
+window.L.Map.Scroll = window.L.Handler.extend({
+	_mouseOnlyPreventDefault: window.touch.mouseOnly(window.L.DomEvent.preventDefault),
 	addHooks: function () {
-		L.DomEvent.on(
-			this._map._container,
-			{
-				wheel: this._onWheelScroll,
-				mousewheel: this._onWheelScroll,
-				MozMousePixelScroll: this._mouseOnlyPreventDefault,
-			},
-			this,
-		);
+		window.L.DomEvent.on(this._map._container, {
+			wheel: this._onWheelScroll,
+			mousewheel: this._onWheelScroll,
+			MozMousePixelScroll: this._mouseOnlyPreventDefault
+		}, this);
 
 		this._delta = 0;
 		this._vertical = 1;
@@ -35,18 +29,14 @@ L.Map.Scroll = L.Handler.extend({
 	},
 
 	removeHooks: function () {
-		L.DomEvent.off(
-			this._map._container,
-			{
-				mousewheel: this._onWheelScroll,
-				MozMousePixelScroll: this._mouseOnlyPreventDefault,
-			},
-			this,
-		);
+		window.L.DomEvent.off(this._map._container, {
+			mousewheel: this._onWheelScroll,
+			MozMousePixelScroll: this._mouseOnlyPreventDefault
+		}, this);
 	},
 
 	_onWheelScroll: window.touch.mouseOnly(function (e) {
-		var delta = -1 * e.deltaY; // L.DomEvent.getWheelDelta(e);
+		var delta =  -1 * e.deltaY; // window.L.DomEvent.getWheelDelta(e);
 		var debounce = this._map.options.wheelDebounceTime;
 
 		this._delta = delta;
@@ -66,8 +56,9 @@ L.Map.Scroll = L.Handler.extend({
 			var minX = Math.round(rectangle[0] * app.twipsToPixels);
 			var maxX = minX + Math.round(rectangle[2] * app.twipsToPixels);
 			var viewBounds = this._map.getPixelBoundsCore();
-			var useMouseXCenter =
-				viewBounds.min.x >= 0 && viewBounds.max.x <= maxX;
+			var useMouseXCenter = viewBounds.min.x >= 0 && viewBounds.max.x <= maxX;
+
+			this._zoomCenter = new window.L.LatLng(mousePos.lat, useMouseXCenter ? mousePos.lng : viewCenter.lng);
 
 			this._zoomCenter = new L.LatLng(
 				mousePos.lat,
@@ -85,10 +76,10 @@ L.Map.Scroll = L.Handler.extend({
 
 		clearTimeout(this._timer);
 		if (e.ctrlKey) {
-			this._timer = setTimeout(L.bind(this._performZoom, this), left);
+			this._timer = setTimeout(window.L.bind(this._performZoom, this), left);
 		}
 
-		L.DomEvent.stop(e);
+		window.L.DomEvent.stop(e);
 	}),
 
 	_performZoom: function () {
@@ -172,10 +163,7 @@ L.Map.Scroll = L.Handler.extend({
 	_stopZoomAnimation: function () {
 		cancelAnimationFrame(this._zoomInterpolateRAF); // Already cancelled by now ?
 		var zoom = this._zoom;
-		var lastCenter = new L.LatLng(
-			this._zoomCenter.lat,
-			this._zoomCenter.lng,
-		);
+		var lastCenter = new window.L.LatLng(this._zoomCenter.lat, this._zoomCenter.lng);
 		var map = this._map;
 		map._docLayer.zoomStepEnd(
 			zoom,

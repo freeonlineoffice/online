@@ -1,9 +1,16 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.DocumentRepair.
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.Control.DocumentRepair.
  */
 /* global _ */
-L.Control.DocumentRepair = L.Control.extend({
+window.L.Control.DocumentRepair = window.L.Control.extend({
 	builder: null,
 	actions: null,
 	selected: null,
@@ -243,6 +250,6 @@ L.Control.DocumentRepair = L.Control.extend({
 	},
 });
 
-L.control.documentRepair = function (options) {
-	return new L.Control.DocumentRepair(options);
+window.L.control.documentRepair = function (options) {
+	return new window.L.Control.DocumentRepair(options);
 };

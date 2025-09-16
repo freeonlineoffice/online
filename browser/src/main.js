@@ -10,7 +10,7 @@
 
 /* global globalThis UIManager */
 /* global errorMessages accessToken accessTokenTTL noAuthHeader accessHeader createOnlineModule */
-/* global app $ L host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService LayoutingService */
+/* global app $ host idleTimeoutSecs outOfFocusTimeoutSecs _ LocaleService LayoutingService */
 /* global ServerConnectionService createEmscriptenModule */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
@@ -60,7 +60,7 @@ if (wopiSrc != '') {
 }
 
 var notWopiButIframe = global.loolParams.get('NotWOPIButIframe') != '';
-var map = L.map('map', {
+var map = window.L.map('map', {
 	server: host,
 	doc: docURL,
 	docParams: docParams,
@@ -81,8 +81,8 @@ var map = L.map('map', {
 
 map.uiManager = new UIManager();
 map.addControl(map.uiManager);
-if (!L.Browser.cypressTest)
-	map.tooltip = L.control.tooltip();
+if (!window.L.Browser.cypressTest)
+	map.tooltip = window.L.control.tooltip();
 
 map.uiManager.initializeBasicUI();
 
@@ -93,7 +93,7 @@ if (host === '' && !window.ThisIsAMobileApp) {
 	map.uiManager.showInfoModal('empty-host-url-modal', '', errorMessages.emptyhosturl, '', _('OK'), null, false);
 }
 
-L.Map.THIS = map;
+window.L.Map.THIS = map;
 app.map = map;
 app.idleHandler.map = map;
 

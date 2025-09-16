@@ -1,10 +1,11 @@
 /* -*- js-indent-level: 8 -*- */
 /* global app lool */
 /*
- * L.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
+ * window.L.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
  */
 
-L.Draggable = L.Evented.extend({
+window.L.Draggable = window.L.Evented.extend({
+
 	statics: {
 		START: ['touchstart', 'mousedown'],
 		END: {
@@ -35,7 +36,7 @@ L.Draggable = L.Evented.extend({
 
 	initialize: function (element, dragStartTarget, preventOutline, no3d) {
 
-		L.Evented.prototype.initialize.call(this);
+		window.L.Evented.prototype.initialize.call(this);
 
 		this._element = element;
 		this._dragStartTarget = dragStartTarget || element;
@@ -58,12 +59,7 @@ L.Draggable = L.Evented.extend({
 			return;
 		}
 
-		L.DomEvent.on(
-			this._dragStartTarget,
-			L.Draggable.START.join(' '),
-			this.noManualDrag(this._onDown),
-			this,
-		);
+		window.L.DomEvent.on(this._dragStartTarget, window.L.Draggable.START.join(' '), this.noManualDrag(this._onDown), this);
 
 		this._enabled = true;
 	},
@@ -72,13 +68,8 @@ L.Draggable = L.Evented.extend({
 		if (!this._enabled) {
 			return;
 		}
-
-		L.DomEvent.off(
-			this._dragStartTarget,
-			L.Draggable.START.join(' '),
-			this.noManualDrag(this._onDown),
-			this,
-		);
+=
+		window.L.DomEvent.off(this._dragStartTarget, window.L.Draggable.START.join(' '), this.noManualDrag(this._onDown), this);
 
 		this._enabled = false;
 		this._moved = false;
@@ -93,16 +84,16 @@ L.Draggable = L.Evented.extend({
 
 		// enable propagation of the mousedown event from map pane to parent elements in view mode
 		// see bug bccu1446
-		if (!L.DomUtil.hasClass(this._element, 'leaflet-map-pane')) {
-			L.DomEvent.stopPropagation(e);
+		if (!window.L.DomUtil.hasClass(this._element, 'leaflet-map-pane')) {
+			window.L.DomEvent.stopPropagation(e);
 		}
 
 		if (this._preventOutline) {
-			L.DomUtil.preventOutline(this._element);
+			window.L.DomUtil.preventOutline(this._element);
 		}
 
-		L.DomUtil.disableImageDrag();
-		L.DomUtil.disableTextSelection();
+		window.L.DomUtil.disableImageDrag();
+		window.L.DomUtil.disableTextSelection();
 
 		if (this._moving) {
 			return;
@@ -113,7 +104,7 @@ L.Draggable = L.Evented.extend({
 		var first = e.touches ? e.touches[0] : e;
 
 		this._startPoint = new lool.Point(first.clientX, first.clientY);
-		this._startPos = this._newPos = L.DomUtil.getPosition(this._element);
+		this._startPos = this._newPos = window.L.DomUtil.getPosition(this._element);
 		var startBoundingRect = this._element.getBoundingClientRect();
 		// Store offset between mouse selection position, and top left
 		// We don't use this internally, but it is needed for external
@@ -121,17 +112,9 @@ L.Draggable = L.Evented.extend({
 		// for scrolling during cursor dragging.
 		this.startOffset = this._startPoint.subtract(new lool.Point(startBoundingRect.left, startBoundingRect.top));
 
-		L.DomEvent.on(
-			document,
-			L.Draggable.MOVE[e.type],
-			this.noManualDrag(this._onMove),
-			this,
-		).on(
-			document,
-			L.Draggable.END[e.type],
-			this.noManualDrag(this._onUp),
-			this,
-		);
+		window.L.DomEvent
+		 .on(document, window.L.Draggable.MOVE[e.type], this.noManualDrag(this._onMove), this)
+		 .on(document, window.L.Draggable.END[e.type], this.noManualDrag(this._onUp), this);
 	},
 
 	_onMove: function (e) {
@@ -156,14 +139,8 @@ L.Draggable = L.Evented.extend({
 			// needed in order to avoid a jump when the document is dragged and the mouse pointer move
 			// from over the map into the html document element area which is not covered by tiles
 			// (resize-detector iframe)
-			if (
-				e.currentTarget &&
-				e.currentTarget.frameElement &&
-				L.DomUtil.hasClass(
-					e.currentTarget.frameElement,
-					'resize-detector',
-				)
-			) {
+			if (e.currentTarget && e.currentTarget.frameElement
+				&& window.L.DomUtil.hasClass(e.currentTarget.frameElement, 'resize-detector')) {
 				var rect = this._map._container.getBoundingClientRect(),
 				    correction = new lool.Point(rect.left, rect.top);
 				offset = offset.add(correction);
@@ -190,20 +167,18 @@ L.Draggable = L.Evented.extend({
 			return;
 		}
 
-		L.DomEvent.preventDefault(e);
+		window.L.DomEvent.preventDefault(e);
 
 		if (!this._moved) {
 			this.fire('dragstart', { originalEvent: e });
 
 			this._moved = true;
-			this._startPos = L.DomUtil.getPosition(this._element).subtract(
-				offset,
-			);
+			this._startPos = window.L.DomUtil.getPosition(this._element).subtract(offset);
 
-			L.DomUtil.addClass(document.body, 'leaflet-dragging');
+			window.L.DomUtil.addClass(document.body, 'leaflet-dragging');
 
 			this._lastTarget = e.target || e.srcElement;
-			L.DomUtil.addClass(this._lastTarget, 'leaflet-drag-target');
+			window.L.DomUtil.addClass(this._lastTarget, 'leaflet-drag-target');
 		}
 
 		this._newPos = this._startPos.add(offset);
@@ -225,34 +200,26 @@ L.Draggable = L.Evented.extend({
 	_updatePosition: function () {
 		var e = { originalEvent: this._lastEvent };
 		this.fire('predrag', e);
-		L.DomUtil.setPosition(this._element, this._newPos, this._no3d);
+		window.L.DomUtil.setPosition(this._element, this._newPos, this._no3d);
 		this.fire('drag', e);
 	},
 
 	_onUp: function (e) {
-		L.DomUtil.removeClass(document.body, 'leaflet-dragging');
+		window.L.DomUtil.removeClass(document.body, 'leaflet-dragging');
 
 		if (this._lastTarget) {
-			L.DomUtil.removeClass(this._lastTarget, 'leaflet-drag-target');
+			window.L.DomUtil.removeClass(this._lastTarget, 'leaflet-drag-target');
 			this._lastTarget = null;
 		}
 
-		for (var i in L.Draggable.MOVE) {
-			L.DomEvent.off(
-				document,
-				L.Draggable.MOVE[i],
-				this.noManualDrag(this._onMove),
-				this,
-			).off(
-				document,
-				L.Draggable.END[i],
-				this.noManualDrag(this._onUp),
-				this,
-			);
+		for (var i in window.L.Draggable.MOVE) {
+			window.L.DomEvent
+			 .off(document, window.L.Draggable.MOVE[i], this.noManualDrag(this._onMove), this)
+			 .off(document, window.L.Draggable.END[i], this.noManualDrag(this._onUp), this);
 		}
 
-		L.DomUtil.enableImageDrag();
-		L.DomUtil.enableTextSelection();
+		window.L.DomUtil.enableImageDrag();
+		window.L.DomUtil.enableTextSelection();
 
 		if (this._moved && this._moving) {
 			// ensure drag is not fired after dragend

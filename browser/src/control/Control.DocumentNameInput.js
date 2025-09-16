@@ -1,10 +1,18 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.DocumentNameInput
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.Control.DocumentNameInput
  */
 
 /* global $ _ */
-L.Control.DocumentNameInput = L.Control.extend({
+window.L.Control.DocumentNameInput = window.L.Control.extend({
+
 	onAdd: function (map) {
 		this.map = map;
 		if (window.mode.isMobile())
@@ -175,14 +183,10 @@ L.Control.DocumentNameInput = L.Control.extend({
 	onWopiProps: function (e) {
 		if (e.BaseFileName !== null) {
 			// set the document name into the name field
-			$('#document-name-input').val(
-				e.BreadcrumbDocName !== undefined
-					? e.BreadcrumbDocName
-					: e.BaseFileName,
-			);
-			var input = L.DomUtil.get('document-name-input');
+			$('#document-name-input').val(e.BreadcrumbDocName !== undefined ? e.BreadcrumbDocName : e.BaseFileName);
+			var input = window.L.DomUtil.get('document-name-input');
 			input.setAttribute('data-looltip', input.value);
-			L.control.attachTooltipEventListener(input, this.map);
+			window.L.control.attachTooltipEventListener(input, this.map);
 		}
 		if (!e.UserCanNotWriteRelative && !this.map.isReadOnlyMode()) {
 			// Save As allowed
@@ -228,6 +232,6 @@ L.Control.DocumentNameInput = L.Control.extend({
 	},
 });
 
-L.control.documentNameInput = function () {
-	return new L.Control.DocumentNameInput();
+window.L.control.documentNameInput = function () {
+	return new window.L.Control.DocumentNameInput();
 };

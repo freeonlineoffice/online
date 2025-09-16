@@ -1,13 +1,14 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Marker is used to display clickable/draggable icons on the map.
+ * window.L.Marker is used to display clickable/draggable icons on the map.
  */
 
-L.Marker = L.Layer.extend({
+window.L.Marker = window.L.Layer.extend({
+
 	options: {
 		pane: 'markerPane',
 
-		icon: new L.Icon.Default(),
+		icon: new window.L.Icon.Default(),
 		// title: '',
 		// alt: '',
 		interactive: true,
@@ -20,10 +21,11 @@ L.Marker = L.Layer.extend({
 	},
 
 	initialize: function (latlng, options) {
-		L.Layer.prototype.initialize.call(this);
 
-		L.setOptions(this, options);
-		this._latlng = L.latLng(latlng);
+		window.L.Layer.prototype.initialize.call(this);
+
+		window.L.setOptions(this, options);
+		this._latlng = window.L.latLng(latlng);
 		this.on('down', this.onDown);
 		this.on('up', this.onUp);
 	},
@@ -73,7 +75,7 @@ L.Marker = L.Layer.extend({
 
 	setLatLng: function (latlng) {
 		var oldLatLng = this._latlng;
-		this._latlng = L.latLng(latlng);
+		this._latlng = window.L.latLng(latlng);
 		this.update();
 		return this.fire('move', {
 			oldLatLng: oldLatLng,
@@ -97,11 +99,8 @@ L.Marker = L.Layer.extend({
 			return;
 		}
 
-		var posVis = L.Layer.getLayerPositionVisibility(
-			this._latlng,
-			this._icon.getBoundingClientRect(),
-			this._map,
-		);
+		var posVis = window.L.Layer.getLayerPositionVisibility(this._latlng,
+			this._icon.getBoundingClientRect(), this._map);
 
 		if (this._icon.style.visibility != posVis.visibility) {
 			this._icon.style.visibility = posVis.visibility;
@@ -137,7 +136,7 @@ L.Marker = L.Layer.extend({
 			}
 		}
 
-		L.DomUtil.addClass(icon, classToAdd);
+		window.L.DomUtil.addClass(icon, classToAdd);
 
 		if (options.keyboard) {
 			icon.tabIndex = '0';
@@ -162,7 +161,7 @@ L.Marker = L.Layer.extend({
 		}
 
 		if (newShadow) {
-			L.DomUtil.addClass(newShadow, classToAdd);
+			window.L.DomUtil.addClass(newShadow, classToAdd);
 		}
 		this._shadow = newShadow;
 
@@ -186,7 +185,7 @@ L.Marker = L.Layer.extend({
 			});
 		}
 
-		L.DomUtil.remove(this._icon);
+		window.L.DomUtil.remove(this._icon);
 		this.removeInteractiveTarget(this._icon);
 
 		this._icon = null;
@@ -194,16 +193,16 @@ L.Marker = L.Layer.extend({
 
 	_removeShadow: function () {
 		if (this._shadow) {
-			L.DomUtil.remove(this._shadow);
+			window.L.DomUtil.remove(this._shadow);
 		}
 		this._shadow = null;
 	},
 
 	_setPos: function (pos) {
-		L.DomUtil.setPosition(this._icon, pos);
+		window.L.DomUtil.setPosition(this._icon, pos);
 
 		if (this._shadow) {
-			L.DomUtil.setPosition(this._shadow, pos);
+			window.L.DomUtil.setPosition(this._shadow, pos);
 		}
 
 		this._zIndex = pos.y + this.options.zIndexOffset;
@@ -220,18 +219,18 @@ L.Marker = L.Layer.extend({
 			return;
 		}
 
-		L.DomUtil.addClass(this._icon, 'leaflet-interactive');
+		window.L.DomUtil.addClass(this._icon, 'leaflet-interactive');
 
 		this.addInteractiveTarget(this._icon);
 
-		if (L.Handler.MarkerDrag) {
+		if (window.L.Handler.MarkerDrag) {
 			var draggable = this.options.draggable;
 			if (this.dragging) {
 				draggable = this.dragging.enabled();
 				this.dragging.disable();
 			}
 
-			this.dragging = new L.Handler.MarkerDrag(this);
+			this.dragging = new window.L.Handler.MarkerDrag(this);
 
 			if (draggable) {
 				this.dragging.enable();
@@ -251,10 +250,10 @@ L.Marker = L.Layer.extend({
 	_updateOpacity: function () {
 		var opacity = this.options.opacity;
 
-		L.DomUtil.setOpacity(this._icon, opacity);
+		window.L.DomUtil.setOpacity(this._icon, opacity);
 
 		if (this._shadow) {
-			L.DomUtil.setOpacity(this._shadow, opacity);
+			window.L.DomUtil.setOpacity(this._shadow, opacity);
 		}
 	},
 
@@ -267,6 +266,6 @@ L.Marker = L.Layer.extend({
 	},
 });
 
-L.marker = function (latlng, options) {
-	return new L.Marker(latlng, options);
+window.L.marker = function (latlng, options) {
+	return new window.L.Marker(latlng, options);
 };

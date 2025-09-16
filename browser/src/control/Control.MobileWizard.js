@@ -1,12 +1,21 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.MobileWizard - main container can contain few MobileWizardWindows
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.MobileWizard - main container can contain few MobileWizardWindows
  */
 
 /* global app $ */
-L.Control.MobileWizard = L.Control.extend({
+window.L.Control.MobileWizard = window.L.Control.extend({
+
 	initialize: function (options) {
-		L.setOptions(this, options);
+		window.L.setOptions(this, options);
 	},
 
 	onAdd: function (map) {
@@ -164,11 +173,8 @@ L.Control.MobileWizard = L.Control.extend({
 			this.contents[this.contents.length - 1].goLevelUp();
 	},
 
-	_onResize: function () {
-		L.DomUtil.updateElementsOrientation([
-			'mobile-wizard',
-			'mobile-wizard-content',
-		]);
+	_onResize: function() {
+		window.L.DomUtil.updateElementsOrientation(['mobile-wizard', 'mobile-wizard-content']);
 	},
 
 	selectedTab: function (tabText) {
@@ -206,11 +212,9 @@ L.Control.MobileWizard = L.Control.extend({
 			if (existingWindow) {
 				existingWindow._onMobileWizard(data, callback);
 			} else {
-				var newWindow = L.control.mobileWizardWindow(
-					this,
-					'mobile-wizard-content-' + data.id,
-				);
-				for (var i in this.contents) this.contents[i].hideWindow();
+				var newWindow = window.L.control.mobileWizardWindow(this, 'mobile-wizard-content-' + data.id);
+				for (var i in this.contents)
+					this.contents[i].hideWindow();
 				this.contents.push(newWindow);
 				this.map.addControl(newWindow);
 				newWindow._onMobileWizard(data, callback);
@@ -261,6 +265,6 @@ L.Control.MobileWizard = L.Control.extend({
 	},
 });
 
-L.control.mobileWizard = function (options) {
-	return new L.Control.MobileWizard(options);
+window.L.control.mobileWizard = function (options) {
+	return new window.L.Control.MobileWizard(options);
 };

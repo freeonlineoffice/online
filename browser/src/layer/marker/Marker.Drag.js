@@ -1,9 +1,9 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Handler.MarkerDrag is used internally by L.Marker to make the markers draggable.
+ * window.L.Handler.MarkerDrag is used internally by window.L.Marker to make the markers draggable.
  */
 
-L.Handler.MarkerDrag = L.Handler.extend({
+window.L.Handler.MarkerDrag = window.L.Handler.extend({
 	initialize: function (marker) {
 		this._marker = marker;
 	},
@@ -12,7 +12,7 @@ L.Handler.MarkerDrag = L.Handler.extend({
 		var icon = this._marker._icon;
 
 		if (!this._draggable) {
-			this._draggable = new L.Draggable(icon, icon, true);
+			this._draggable = new window.L.Draggable(icon, icon, true);
 		}
 
 		this._draggable
@@ -28,7 +28,7 @@ L.Handler.MarkerDrag = L.Handler.extend({
 			)
 			.enable();
 
-		L.DomUtil.addClass(icon, 'leaflet-marker-draggable');
+		window.L.DomUtil.addClass(icon, 'leaflet-marker-draggable');
 	},
 
 	removeHooks: function () {
@@ -46,10 +46,7 @@ L.Handler.MarkerDrag = L.Handler.extend({
 			.disable();
 
 		if (this._marker._icon) {
-			L.DomUtil.removeClass(
-				this._marker._icon,
-				'leaflet-marker-draggable',
-			);
+			window.L.DomUtil.removeClass(this._marker._icon, 'leaflet-marker-draggable');
 		}
 	},
 
@@ -75,13 +72,13 @@ L.Handler.MarkerDrag = L.Handler.extend({
 
 	_onDrag: function (e) {
 		var marker = this._marker,
-			shadow = marker._shadow,
-			iconPos = L.DomUtil.getPosition(marker._icon),
-			latlng = marker._map.layerPointToLatLng(iconPos);
+		    shadow = marker._shadow,
+		    iconPos = window.L.DomUtil.getPosition(marker._icon),
+		    latlng = marker._map.layerPointToLatLng(iconPos);
 
 		// update shadow position
 		if (shadow) {
-			L.DomUtil.setPosition(shadow, iconPos);
+			window.L.DomUtil.setPosition(shadow, iconPos);
 		}
 
 		marker._latlng = latlng;

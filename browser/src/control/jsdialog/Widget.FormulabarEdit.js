@@ -93,18 +93,18 @@ function _sendSelection(edit, builder, id) {
 }
 
 function _appendText(cursorLayer, text, style) {
-	var span = L.DomUtil.create('span', style);
+	var span = window.L.DomUtil.create('span', style);
 	span.innerText = text;
 	cursorLayer.appendChild(span);
 	return span;
 }
 
 function _appendNewLine(cursorLayer) {
-	cursorLayer.appendChild(L.DomUtil.create('br', ''));
+	cursorLayer.appendChild(window.L.DomUtil.create('br', ''));
 }
 
 function _appendCursor(cursorLayer) {
-	var cursor = L.DomUtil.create('span', 'cursor');
+	var cursor = window.L.DomUtil.create('span', 'cursor');
 	cursorLayer.appendChild(cursor);
 	return cursor;
 }
@@ -163,7 +163,7 @@ function _onSelectionHandleDragEnd(
 
 			node = position.offsetNode;
 		} else {
-			const range = document.caretRangeFromPoint(newX, newY);			
+			const range = document.caretRangeFromPoint(newX, newY);
 
 			if (!range) {
 				resetSelection();
@@ -202,7 +202,7 @@ function _onSelectionHandleDragEnd(
 				break;
 			}
 		}
-		
+
 		let selection;
 		if (start) {
 			_setSelection(
@@ -343,7 +343,7 @@ function _setSelection(builder, container, wrapper, cursorLayer, handleLayer, te
 	const selectionStartPosition = selectionPositions[0];
 	const selectionEndPosition = selectionPositions[selectionPositions.length - 1];
 	const cursorLayerPosition = cursorLayer.getBoundingClientRect();
-	
+
 	startHandle.setPosition(new lool.SimplePoint(selectionStartPosition.left - cursorLayerPosition.left, selectionStartPosition.bottom - cursorLayerPosition.top));
 	startHandle.requestVisible(true);
 	startHandle.onDragEnd = _onSelectionHandleDragEnd(
@@ -383,17 +383,17 @@ function _setSelection(builder, container, wrapper, cursorLayer, handleLayer, te
 }
 
 function _formulabarEditControl(parentContainer, data, builder) {
-	var container = L.DomUtil.create('div', 'ui-custom-textarea ' + builder.options.cssClass, parentContainer);
-	var wrapper = L.DomUtil.create('div', 'ui-custom-textarea-overflow-wrapper ' + builder.options.cssClass, container);
+	var container = window.L.DomUtil.create('div', 'ui-custom-textarea ' + builder.options.cssClass, parentContainer);
+	var wrapper = window.L.DomUtil.create('div', 'ui-custom-textarea-overflow-wrapper ' + builder.options.cssClass, container);
 	container.id = data.id;
 
-	var textLayer = L.DomUtil.create('div', 'ui-custom-textarea-text-layer ' + builder.options.cssClass, wrapper);
+	var textLayer = window.L.DomUtil.create('div', 'ui-custom-textarea-text-layer ' + builder.options.cssClass, wrapper);
 
 	if (data.enabled !== false)
 		textLayer.setAttribute('contenteditable', 'true');
 
-	var cursorLayer = L.DomUtil.create('div', 'ui-custom-textarea-cursor-layer ' + builder.options.cssClass, wrapper);
-	var handleLayer = L.DomUtil.create('div', 'ui-custom-textarea-handle-layer ' + builder.options.cssClass, wrapper);
+	var cursorLayer = window.L.DomUtil.create('div', 'ui-custom-textarea-cursor-layer ' + builder.options.cssClass, wrapper);
+	var handleLayer = window.L.DomUtil.create('div', 'ui-custom-textarea-handle-layer ' + builder.options.cssClass, wrapper);
 
 	wrapper.addEventListener('scroll', () => {
 		requestAnimationFrame(() => {
@@ -421,17 +421,17 @@ function _formulabarEditControl(parentContainer, data, builder) {
 		_setSelection(builder, container, wrapper, cursorLayer, handleLayer, textLayer, text, startX, endX, startY, endY);
 	};
 
-	container.enable = function () {
-		L.DomUtil.removeClass(container, 'disabled');
+	container.enable = function() {
+		window.L.DomUtil.removeClass(container, 'disabled');
 		textLayer.setAttribute('contenteditable', 'true');
 	};
-	container.disable = function () {
-		L.DomUtil.addClass(container, 'disabled');
+	container.disable = function() {
+		window.L.DomUtil.addClass(container, 'disabled');
 		textLayer.setAttribute('contenteditable', 'false');
 	};
 
-	var textSelectionHandler = function (event) {
-		if (L.DomUtil.hasClass(container, 'disabled')) {
+	var textSelectionHandler = function(event) {
+		if (window.L.DomUtil.hasClass(container, 'disabled')) {
 			event.preventDefault();
 			return;
 		}
@@ -457,22 +457,23 @@ function _formulabarEditControl(parentContainer, data, builder) {
 		});
 		builder.callback('edit', 'grab_focus', container, null, builder);
 
-		cursorLayer
-			.querySelectorAll('.selection')
-			.forEach(function (element) {
-				L.DomUtil.addClass(element, 'hidden');
-			});
+		cursorLayer.querySelectorAll('.selection').forEach(function (element) {
+			window.L.DomUtil.addClass(element, 'hidden');
+		});
 
 		var cursor = cursorLayer.querySelector('.cursor');
-		if (cursor) L.DomUtil.addClass(cursor, 'hidden');
+		if (cursor)
+			window.L.DomUtil.addClass(cursor, 'hidden');
 	});
 
 	var text = builder._cleanText(data.text);
 	container.setText(text, [0, 0, 0, 0]);
 
-	if (data.enabled === false) L.DomUtil.addClass(container, 'disabled');
+	if (data.enabled === false)
+		window.L.DomUtil.addClass(container, 'disabled');
 
-	if (data.hidden) L.DomUtil.addClass(container, 'hidden');
+	if (data.hidden)
+		window.L.DomUtil.addClass(container, 'hidden');
 
 	return false;
 }

@@ -5,7 +5,7 @@
 
 /* global app JSDialog _ $ errorMessages Uint8Array brandProductName GraphicSelection TileManager SlideBitmapManager*/
 
-app.definitions.Socket = L.Class.extend({
+app.definitions.Socket = window.L.Class.extend({
 	ProtocolVersionNumber: '0.1',
 	ReconnectCount: 0,
 	WasShownLimitDialog: false,
@@ -79,10 +79,10 @@ app.definitions.Socket = L.Class.extend({
 			}
 		}
 
-		this.socket.onerror = L.bind(this._onSocketError, this);
-		this.socket.onclose = L.bind(this._onSocketClose, this);
-		this.socket.onopen = L.bind(this._onSocketOpen, this);
-		this.socket.onmessage = L.bind(this._slurpMessage, this);
+		this.socket.onerror = window.L.bind(this._onSocketError, this);
+		this.socket.onclose = window.L.bind(this._onSocketClose, this);
+		this.socket.onopen = window.L.bind(this._onSocketOpen, this);
+		this.socket.onmessage = window.L.bind(this._slurpMessage, this);
 		this.socket.binaryType = 'arraybuffer';
 		if (
 			map.options.docParams.access_token &&
@@ -90,12 +90,8 @@ app.definitions.Socket = L.Class.extend({
 		) {
 			var tokenExpiryWarning = 900 * 1000; // Warn when 15 minutes remain
 			clearTimeout(this._accessTokenExpireTimeout);
-			this._accessTokenExpireTimeout = setTimeout(
-				L.bind(this._sessionExpiredWarning, this),
-				parseInt(map.options.docParams.access_token_ttl) -
-					Date.now() -
-					tokenExpiryWarning,
-			);
+			this._accessTokenExpireTimeout = setTimeout(window.L.bind(this._sessionExpiredWarning, this),
+			                                            parseInt(map.options.docParams.access_token_ttl) - Date.now() - tokenExpiryWarning);
 		}
 
 		// process messages for early socket connection
@@ -143,10 +139,8 @@ app.definitions.Socket = L.Class.extend({
 		});
 
 		// If user still doesn't refresh the session, warn again periodically
-		this._accessTokenExpireTimeout = setTimeout(
-			L.bind(this._sessionExpiredWarning, this),
-			120 * 1000,
-		);
+		this._accessTokenExpireTimeout = setTimeout(window.L.bind(this._sessionExpiredWarning, this),
+		                                            120 * 1000);
 	},
 
 	setUnloading: function () {
@@ -528,7 +522,7 @@ app.definitions.Socket = L.Class.extend({
 						window.app.console.error(msg);
 
 						// When debugging let QA know something is up.
-						if (window.enableDebug || L.Browser.cypressTest)
+						if (window.enableDebug || window.L.Browser.cypressTest)
 							this._map.uiManager.showInfoModal(
 								'lool_alert',
 								'',
@@ -543,15 +537,8 @@ app.definitions.Socket = L.Class.extend({
 
 						// If we're cypress testing, fail the run. Cypress will fail anyway, but this way we may get
 						// a nice error in the logs rather than guessing that the run failed from our popup blocking input...
-						if (
-							L.Browser.cypressTest &&
-							window.parent !== window &&
-							e !== null
-						) {
-							console.log(
-								'Sending event error to Cypress...',
-								e,
-							);
+						if (window.L.Browser.cypressTest && window.parent !== window && e !== null) {
+							console.log("Sending event error to Cypress...", e);
 							window.parent.postMessage(e);
 						}
 					} finally {
@@ -660,15 +647,12 @@ app.definitions.Socket = L.Class.extend({
 		var data = e.imgBytes.subarray(e.imgIndex);
 		var prefix = '';
 		// FIXME: so we prepend the PNG pre-byte here having removed it in TileCache::appendBlob
-		if (data[0] != 0x89) prefix = String.fromCharCode(0x89);
-		img =
-			'data:image/png;base64,' +
-			window.btoa(this._strFromUint8(prefix, data));
-		if (
-			L.Browser.cypressTest &&
-			window.prefs.getBoolean('image_validation_test')
-		) {
-			if (!window.imgDatas) window.imgDatas = [];
+		if (data[0] != 0x89)
+			prefix = String.fromCharCode(0x89);
+		img = 'data:image/png;base64,' + window.btoa(this._strFromUint8(prefix,data));
+		if (window.L.Browser.cypressTest && window.prefs.getBoolean('image_validation_test')) {
+			if (!window.imgDatas)
+				window.imgDatas = [];
 			window.imgDatas.push(img);
 		}
 		return img;
@@ -2010,14 +1994,11 @@ app.definitions.Socket = L.Class.extend({
 				viewId: command.viewid,
 			};
 			if (command.type === 'text')
-				docLayer = new L.WriterTileLayer(options);
+				docLayer = new window.L.WriterTileLayer(options);
 			else if (command.type === 'spreadsheet')
-				docLayer = new L.CalcTileLayer(options);
-			else if (
-				command.type === 'presentation' ||
-				command.type === 'drawing'
-			)
-				docLayer = new L.ImpressTileLayer(options);
+				docLayer = new window.L.CalcTileLayer(options);
+			else if (command.type === 'presentation' || command.type === 'drawing')
+				docLayer = new window.L.ImpressTileLayer(options);
 
 			this._map._docLayer = docLayer;
 			this._map.addLayer(docLayer);

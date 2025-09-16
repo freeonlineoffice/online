@@ -297,7 +297,7 @@ class ColorPicker {
 			handlers: [
 				{
 					event: 'click',
-					handler: L.bind(this.onClickPseudoColor, this),
+					handler: window.L.bind(this.onClickPseudoColor, this),
 				},
 			],
 			children: [description, checked],
@@ -331,7 +331,7 @@ class ColorPicker {
 				handlers: [
 					{
 						event: 'click',
-						handler: L.bind(
+						handler: window.L.bind(
 							this.onClickBasicColorSample,
 							this,
 						),
@@ -370,7 +370,10 @@ class ColorPicker {
 				handlers: [
 					{
 						event: 'click',
-						handler: L.bind(this.onClickTintSample, this),
+						handler: window.L.bind(
+							this.onClickTintSample,
+							this,
+						),
 					},
 				],
 			};
@@ -395,7 +398,10 @@ class ColorPicker {
 				handlers: [
 					{
 						event: 'click',
-						handler: L.bind(this.onClickTintSample, this),
+						handler: window.L.bind(
+							this.onClickTintSample,
+							this,
+						),
 					},
 				],
 			};
@@ -411,7 +417,7 @@ class ColorPicker {
 	}
 
 	_createBasicColorSelectionMark() {
-		this._basicColorSelectionMark = L.DomUtil.create(
+		this._basicColorSelectionMark = window.L.DomUtil.create(
 			'div',
 			'colors-container-basic-color-mark',
 			null,
@@ -522,7 +528,7 @@ class ColorPicker {
 		if (sampleElem && sampleElem.firstChild) {
 			if (colorType === 'BASIC_COLOR') {
 				sampleElem.removeChild(sampleElem.firstChild);
-				L.DomUtil.removeClass(
+				window.L.DomUtil.removeClass(
 					sampleElem,
 					'colors-container-selected-basic-color',
 				);
@@ -546,7 +552,7 @@ class ColorPicker {
 		if (sampleElem) {
 			if (colorType === 'BASIC_COLOR') {
 				sampleElem.appendChild(this._basicColorSelectionMark);
-				L.DomUtil.addClass(
+				window.L.DomUtil.addClass(
 					sampleElem,
 					'colors-container-selected-basic-color',
 				);
@@ -602,7 +608,7 @@ class ColorPicker {
 	}
 
 	_updateNoColorControl(checked: boolean) {
-		var noColorElem = L.DomUtil.get(this._noColorControlId);
+		var noColorElem = window.L.DomUtil.get(this._noColorControlId);
 		if (noColorElem) {
 			if (noColorElem.checked !== checked) {
 				noColorElem.checked = checked;
@@ -610,7 +616,7 @@ class ColorPicker {
 					if (checked) {
 						noColorElem.innerHTML = '&#10004;';
 						// update value for the related menu entry
-						L.DomUtil.addClass(
+						window.L.DomUtil.addClass(
 							this._selectedColorElement,
 							'no-color-selected',
 						);
@@ -618,7 +624,7 @@ class ColorPicker {
 					} else {
 						noColorElem.replaceChildren();
 						// update value for the related menu entry
-						L.DomUtil.removeClass(
+						window.L.DomUtil.removeClass(
 							this._selectedColorElement,
 							'no-color-selected',
 						);
@@ -630,7 +636,7 @@ class ColorPicker {
 	}
 
 	_updateAutoColorControl(checked: boolean) {
-		var autoColorElem: HTMLInputElement = L.DomUtil.get(
+		var autoColorElem: HTMLInputElement = window.L.DomUtil.get(
 			this._autoColorControlId,
 		);
 		if (autoColorElem) {
@@ -640,7 +646,7 @@ class ColorPicker {
 					if (checked) {
 						autoColorElem.innerHTML = '&#10004;';
 						// update value for the related menu entry
-						L.DomUtil.addClass(
+						window.L.DomUtil.addClass(
 							this._selectedColorElement,
 							'auto-color-selected',
 						);
@@ -648,7 +654,7 @@ class ColorPicker {
 					} else {
 						autoColorElem.replaceChildren();
 						// update value for the related menu entry
-						L.DomUtil.removeClass(
+						window.L.DomUtil.removeClass(
 							this._selectedColorElement,
 							'auto-color-selected',
 						);
@@ -666,7 +672,7 @@ class ColorPicker {
 		} else if (type === 'TINT') {
 			sampleId = this._tintSampleIdTag + index;
 		}
-		return L.DomUtil.get(sampleId);
+		return window.L.DomUtil.get(sampleId);
 	}
 
 	_updateSelectedColorElement() {

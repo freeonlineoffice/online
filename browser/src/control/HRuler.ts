@@ -49,11 +49,14 @@ class HRuler extends Ruler {
 	_lastposition: number;
 	currentPositionInTwips: number | null;
 	currentTabStopIndex: number | null;
-	_map: ReturnType<typeof L.map>;
+	_map: ReturnType<typeof window.L.map>;
 
 	options: Options;
 
-	constructor(map: ReturnType<typeof L.map>, options: Partial<Options>) {
+	constructor(
+		map: ReturnType<typeof window.L.map>,
+		options: Partial<Options>,
+	) {
 		super(options);
 		this._map = map;
 		Object.assign(this.options, options);
@@ -66,13 +69,13 @@ class HRuler extends Ruler {
 		this._map.on('scrolllimits', this._updatePaintTimer, this);
 		this._map.on('moveend fixruleroffset', this._fixOffset, this);
 		this._map.on('updatepermission', this._changeInteractions, this);
-		L.DomUtil.addClass(this._map.getContainer(), 'hasruler');
+		window.L.DomUtil.addClass(this._map.getContainer(), 'hasruler');
 
 		const container: HTMLDivElement = this._initLayout();
 		const corner: HTMLElement =
 			this._map._controlCorners[this.options.position];
 
-		L.DomUtil.addClass(container, 'leaflet-control');
+		window.L.DomUtil.addClass(container, 'leaflet-control');
 
 		if (this.options.position.indexOf('bottom') !== -1) {
 			corner.insertBefore(container, corner.firstChild);
@@ -96,13 +99,13 @@ class HRuler extends Ruler {
 				this._rMarginDrag.style.cursor = 'w-resize';
 
 				if (!this.getWindowProperty<boolean>('ThisIsTheiOSApp')) {
-					L.DomEvent.on(
+					window.L.DomEvent.on(
 						this._rMarginDrag,
 						'mousedown',
 						this._initiateDrag,
 						this,
 					);
-					L.DomEvent.on(
+					window.L.DomEvent.on(
 						this._lMarginDrag,
 						'mousedown',
 						this._initiateDrag,
@@ -114,13 +117,13 @@ class HRuler extends Ruler {
 				this._rMarginDrag.style.cursor = 'default';
 
 				if (!this.getWindowProperty<boolean>('ThisIsTheiOSApp')) {
-					L.DomEvent.off(
+					window.L.DomEvent.off(
 						this._rMarginDrag,
 						'mousedown',
 						this._initiateDrag,
 						this,
 					);
-					L.DomEvent.off(
+					window.L.DomEvent.off(
 						this._lMarginDrag,
 						'mousedown',
 						this._initiateDrag,
@@ -153,7 +156,7 @@ class HRuler extends Ruler {
 		this._rFace.appendChild(this._pEndMarker);
 
 		// While one of the markers is being dragged, a vertical line should be visible in order to indicate the new position of the marker..
-		this._markerVerticalLine = L.DomUtil.create(
+		this._markerVerticalLine = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-indentation-marker-center',
 		);
@@ -256,7 +259,7 @@ class HRuler extends Ruler {
 			),
 		);
 
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._firstLineMarker,
 			'mousedown',
 			(window as typeof window & { touch: any }).touch.mouseOnly(
@@ -264,7 +267,7 @@ class HRuler extends Ruler {
 			),
 			this,
 		);
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._pStartMarker,
 			'mousedown',
 			(window as typeof window & { touch: any }).touch.mouseOnly(
@@ -272,7 +275,7 @@ class HRuler extends Ruler {
 			),
 			this,
 		);
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._pEndMarker,
 			'mousedown',
 			(window as typeof window & { touch: any }).touch.mouseOnly(
@@ -283,7 +286,7 @@ class HRuler extends Ruler {
 	}
 
 	_initLayout() {
-		this._rWrapper = L.DomUtil.create(
+		this._rWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler leaflet-bar leaflet-control leaflet-control-custom',
 		);
@@ -293,37 +296,37 @@ class HRuler extends Ruler {
 		// It is due to rulerupdate command that comes from LOK.
 		// If we delay its initialization, we can't calculate its margins and have to wait for another rulerupdate message to arrive.
 		if (!this.options.showruler) {
-			L.DomUtil.setStyle(this._rWrapper, 'display', 'none');
+			window.L.DomUtil.setStyle(this._rWrapper, 'display', 'none');
 		}
-		this._rFace = L.DomUtil.create(
+		this._rFace = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-face',
 			this._rWrapper,
 		);
-		this._rMarginWrapper = L.DomUtil.create(
+		this._rMarginWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-marginwrapper',
 			this._rFace,
 		);
 		// BP => Break Points
-		this._rBPWrapper = L.DomUtil.create(
+		this._rBPWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-breakwrapper',
 			this._rFace,
 		);
-		this._rBPContainer = L.DomUtil.create(
+		this._rBPContainer = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-breakcontainer',
 			this._rBPWrapper,
 		);
 
 		// Tab stops
-		this._rTSContainer = L.DomUtil.create(
+		this._rTSContainer = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-horizontal-tabstopcontainer',
 			this._rMarginWrapper,
 		);
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._rTSContainer,
 			'mousedown',
 			this._initiateTabstopDrag,
@@ -519,7 +522,7 @@ class HRuler extends Ruler {
 
 		var numCounter = -1 * Math.floor(lMargin / 1000);
 
-		L.DomUtil.removeChildNodes(this._rBPContainer);
+		window.L.DomUtil.removeChildNodes(this._rBPContainer);
 
 		// this.options.pageWidth is in mm100, so the code here makes one ruler division per
 		// centimetre.
@@ -528,7 +531,7 @@ class HRuler extends Ruler {
 		// least in the US. (The ruler unit to use doesn't seem to be stored in the document
 		// at least for .odt?)
 		for (var num = 0; num <= this.options.pageWidth / 1000 + 1; num++) {
-			var marker = L.DomUtil.create(
+			var marker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-maj',
 				this._rBPContainer,
@@ -546,7 +549,7 @@ class HRuler extends Ruler {
 
 		// The tabstops. Only draw user-created ones, with style RULER_TAB_LEFT,
 		// RULER_TAB_RIGHT, RULER_TAB_CENTER, and RULER_TAB_DECIMAL. See <svtools/ruler.hxx>.
-		L.DomUtil.removeChildNodes(this._rTSContainer);
+		window.L.DomUtil.removeChildNodes(this._rTSContainer);
 
 		var pxPerMm100 =
 			this._map._docLayer._docPixelSize.x /
@@ -574,7 +577,7 @@ class HRuler extends Ruler {
 					break;
 			}
 			if (markerClass != null) {
-				marker = L.DomUtil.create(
+				marker = window.L.DomUtil.create(
 					'div',
 					markerClass,
 					this._rTSContainer,
@@ -596,32 +599,32 @@ class HRuler extends Ruler {
 
 		if (!this.options.marginSet) {
 			this.options.marginSet = true;
-			this._lMarginMarker = L.DomUtil.create(
+			this._lMarginMarker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-margin lool-ruler-left',
 				this._rFace,
 			);
-			this._rMarginMarker = L.DomUtil.create(
+			this._rMarginMarker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-margin lool-ruler-right',
 				this._rFace,
 			);
-			this._lMarginDrag = L.DomUtil.create(
+			this._lMarginDrag = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-drag lool-ruler-left',
 				this._rMarginWrapper,
 			);
-			this._lToolTip = L.DomUtil.create(
+			this._lToolTip = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-ltooltip',
 				this._lMarginDrag,
 			);
-			this._rMarginDrag = L.DomUtil.create(
+			this._rMarginDrag = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-drag lool-ruler-right',
 				this._rMarginWrapper,
 			);
-			this._rToolTip = L.DomUtil.create(
+			this._rToolTip = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-rtooltip',
 				this._rMarginDrag,
@@ -696,13 +699,13 @@ class HRuler extends Ruler {
 		this._map.rulerActive = false;
 
 		if (e.type !== 'panend') {
-			L.DomEvent.off(
+			window.L.DomEvent.off(
 				this._rFace,
 				'mousemove',
 				this._moveIndentation,
 				this,
 			);
-			L.DomEvent.off(
+			window.L.DomEvent.off(
 				this._map,
 				'mouseup',
 				this._moveIndentationEnd,
@@ -781,13 +784,13 @@ class HRuler extends Ruler {
 			e.target.id.trim() === '' ? e.target.parentNode.id : e.target.id;
 
 		if (e.type !== 'panstart') {
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._rFace,
 				'mousemove',
 				this._moveIndentation,
 				this,
 			);
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._map,
 				'mouseup',
 				this._moveIndentationEnd,
@@ -817,16 +820,27 @@ class HRuler extends Ruler {
 		this._map.rulerActive = true;
 
 		var dragableElem = e.srcElement || e.target;
-		L.DomEvent.on(this._rFace, 'mousemove', this._moveMargin, this);
-		L.DomEvent.on(this._map, 'mouseup', this._endDrag, this);
+		window.L.DomEvent.on(
+			this._rFace,
+			'mousemove',
+			this._moveMargin,
+			this,
+		);
+		window.L.DomEvent.on(this._map, 'mouseup', this._endDrag, this);
 		this._initialposition = e.clientX;
 		this._lastposition = this._initialposition;
 
-		if (L.DomUtil.hasClass(dragableElem, 'lool-ruler-right')) {
-			L.DomUtil.addClass(this._rMarginDrag, 'leaflet-drag-moving');
+		if (window.L.DomUtil.hasClass(dragableElem, 'lool-ruler-right')) {
+			window.L.DomUtil.addClass(
+				this._rMarginDrag,
+				'leaflet-drag-moving',
+			);
 			this._rFace.style.cursor = 'w-resize';
 		} else {
-			L.DomUtil.addClass(this._lMarginDrag, 'leaflet-drag-moving');
+			window.L.DomUtil.addClass(
+				this._lMarginDrag,
+				'leaflet-drag-moving',
+			);
 			this._rFace.style.cursor = 'e-resize';
 		}
 	}
@@ -837,7 +851,12 @@ class HRuler extends Ruler {
 		this._lastposition = e.clientX;
 		var posChange = e.clientX - this._initialposition;
 		var unit = this.options.unit ? this.options.unit : ' cm';
-		if (L.DomUtil.hasClass(this._rMarginDrag, 'leaflet-drag-moving')) {
+		if (
+			window.L.DomUtil.hasClass(
+				this._rMarginDrag,
+				'leaflet-drag-moving',
+			)
+		) {
 			var rMargin =
 				this.options.pageWidth -
 				(this.options.leftOffset + this.options.margin2);
@@ -884,18 +903,34 @@ class HRuler extends Ruler {
 			marginType,
 			fact;
 
-		L.DomEvent.off(this._rFace, 'mousemove', this._moveMargin, this);
-		L.DomEvent.off(this._map, 'mouseup', this._endDrag, this);
+		window.L.DomEvent.off(
+			this._rFace,
+			'mousemove',
+			this._moveMargin,
+			this,
+		);
+		window.L.DomEvent.off(this._map, 'mouseup', this._endDrag, this);
 
-		if (L.DomUtil.hasClass(this._rMarginDrag, 'leaflet-drag-moving')) {
+		if (
+			window.L.DomUtil.hasClass(
+				this._rMarginDrag,
+				'leaflet-drag-moving',
+			)
+		) {
 			marginType = 'Margin2';
 			fact = -1;
-			L.DomUtil.removeClass(this._rMarginDrag, 'leaflet-drag-moving');
+			window.L.DomUtil.removeClass(
+				this._rMarginDrag,
+				'leaflet-drag-moving',
+			);
 			this._rToolTip.style.display = 'none';
 		} else {
 			marginType = 'Margin1';
 			fact = 1;
-			L.DomUtil.removeClass(this._lMarginDrag, 'leaflet-drag-moving');
+			window.L.DomUtil.removeClass(
+				this._lMarginDrag,
+				'leaflet-drag-moving',
+			);
 			this._lToolTip.style.display = 'none';
 		}
 
@@ -1014,19 +1049,19 @@ class HRuler extends Ruler {
 			!this.getWindowProperty<boolean>('ThisIsTheiOSApp') &&
 			event.pointerType !== 'touch'
 		) {
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._rTSContainer,
 				'mousemove',
 				this._moveTabstop,
 				this,
 			);
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._rTSContainer,
 				'mouseup',
 				this._endTabstopDrag,
 				this,
 			);
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._rTSContainer,
 				'mouseout',
 				this._endTabstopDrag,
@@ -1099,19 +1134,19 @@ class HRuler extends Ruler {
 			};
 			this._map.sendUnoCommand('.uno:ChangeTabStop', params);
 		}
-		L.DomEvent.off(
+		window.L.DomEvent.off(
 			this._rTSContainer,
 			'mousemove',
 			this._moveTabstop,
 			this,
 		);
-		L.DomEvent.off(
+		window.L.DomEvent.off(
 			this._rTSContainer,
 			'mouseup',
 			this._endTabstopDrag,
 			this,
 		);
-		L.DomEvent.off(
+		window.L.DomEvent.off(
 			this._rTSContainer,
 			'mouseout',
 			this._endTabstopDrag,

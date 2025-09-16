@@ -12,7 +12,7 @@
  * Free Online Office toolbar
  */
 
-/* global app $ _ _UNO JSDialog URLPopUpSection cool */
+/* global app $ _ _UNO JSDialog URLPopUpSection lool */
 /*eslint indent: [error, "tab", { "outerIIFEBody": 0 }]*/
 
 (function(global) {
@@ -618,7 +618,7 @@ function insertShapes(shapeType, grid = document.getElementsByClassName('inserts
 				col.className = 'col w2ui-icon ' + shape.img;
 				col.dataset.uno = shape.uno;
 				col.setAttribute('data-looltip', shape.text);
-				L.control.attachTooltipEventListener(col, map);
+				window.L.control.attachTooltipEventListener(col, map);
 				col.tabIndex = 0;
 				col.setAttribute('index', r + ':' + c);
 				row.appendChild(col);
@@ -781,7 +781,7 @@ function unoCmdToToolbarId(commandname)
 }
 
 function onInsertGraphic() {
-	var insertGraphic = L.DomUtil.get('insertgraphic');
+	var insertGraphic = window.L.DomUtil.get('insertgraphic');
 	if ('files' in insertGraphic) {
 		for (var i = 0; i < insertGraphic.files.length; i++) {
 			var file = insertGraphic.files[i];
@@ -796,7 +796,7 @@ function onInsertGraphic() {
 }
 
 function onInsertMultimedia() {
-	var insertMultimedia = L.DomUtil.get('insertmultimedia');
+	var insertMultimedia = window.L.DomUtil.get('insertmultimedia');
 	if ('files' in insertMultimedia) {
 		for (var i = 0; i < insertMultimedia.files.length; i++) {
 			var file = insertMultimedia.files[i];
@@ -811,7 +811,7 @@ function onInsertMultimedia() {
 }
 
 function onInsertBackground() {
-	var selectBackground = L.DomUtil.get('selectbackground');
+	var selectBackground = window.L.DomUtil.get('selectbackground');
 	if ('files' in selectBackground) {
 		for (var i = 0; i < selectBackground.files.length; i++) {
 			var file = selectBackground.files[i];
@@ -857,9 +857,9 @@ function processStateChangedCommand(commandName, state) {
 			color = '#' + Array(7 - color.length).join('0') + color;
 		}
 
-		div = L.DomUtil.get('fontcolorindicator');
+		div = window.L.DomUtil.get('fontcolorindicator');
 		if (div) {
-			L.DomUtil.setStyle(div, 'background', color);
+			window.L.DomUtil.setStyle(div, 'background', color);
 		}
 	}
 	else if (commandName === '.uno:BackgroundColor' || commandName === '.uno:CharBackColor') {
@@ -873,9 +873,9 @@ function processStateChangedCommand(commandName, state) {
 			color = '#' + Array(7 - color.length).join('0') + color;
 		}
 
-		div = L.DomUtil.get('backcolorindicator');
+		div = window.L.DomUtil.get('backcolorindicator');
 		if (div) {
-			L.DomUtil.setStyle(div, 'background', color);
+			window.L.DomUtil.setStyle(div, 'background', color);
 		}
 	}
 	else if (commandName === '.uno:ModifiedStatus') {
@@ -980,7 +980,7 @@ function onCommandResult(e) {
 	} else if (commandName === '.uno:OpenHyperlink') {
 		// allow to process other incoming messages first
 		setTimeout(function () {
-			map._docLayer.scrollToPos(new cool.SimplePoint(app.file.textCursor.rectangle.x1, app.file.textCursor.rectangle.y1));
+			map._docLayer.scrollToPos(new lool.SimplePoint(app.file.textCursor.rectangle.x1, app.file.textCursor.rectangle.y1));
 		}, 0);
 	}
 }
@@ -1051,7 +1051,7 @@ function setupToolbar(e) {
 	map = e;
 
 	map.on('search', function (e) {
-		var searchInput = L.DomUtil.get('search-input');
+		var searchInput = window.L.DomUtil.get('search-input');
 		var toolbar = window.mode.isMobile() ? app.map.mobileSearchBar: app.map.statusBar;
 		if (!toolbar) {
 			console.debug('Cannot find search bar');
@@ -1061,12 +1061,12 @@ function setupToolbar(e) {
 			toolbar.enableItem('searchprev', false);
 			toolbar.enableItem('searchnext', false);
 			toolbar.showItem('cancelsearch', false);
-			L.DomUtil.addClass(searchInput, 'search-not-found');
+			window.L.DomUtil.addClass(searchInput, 'search-not-found');
 			$('#findthis').addClass('search-not-found');
 			app.searchService.resetSelection();
 			setTimeout(function () {
 				$('#findthis').removeClass('search-not-found');
-				L.DomUtil.removeClass(searchInput, 'search-not-found');
+				window.L.DomUtil.removeClass(searchInput, 'search-not-found');
 			}, 800);
 		}
 	});
@@ -1079,9 +1079,9 @@ function setupToolbar(e) {
 				var strTwips = e.coordinates.match(/\d+/g);
 				var linkPosition;
 				if (strTwips.length > 7) {
-					linkPosition = new cool.SimplePoint(parseInt(strTwips[6]), parseInt(strTwips[7]));
+					linkPosition = new lool.SimplePoint(parseInt(strTwips[6]), parseInt(strTwips[7]));
 				}
-				URLPopUpSection.showURLPopUP(e.url, new cool.SimplePoint(parseInt(strTwips[6]), parseInt(strTwips[1])), linkPosition);
+				URLPopUpSection.showURLPopUP(e.url, new lool.SimplePoint(parseInt(strTwips[6]), parseInt(strTwips[1])), linkPosition);
 			} else {
 				map.fire('warn', {url: e.url, map: map, cmd: 'openlink'});
 			}
@@ -1092,19 +1092,19 @@ function setupToolbar(e) {
 	map.on('wopiprops', onWopiProps);
 	map.on('commandresult', onCommandResult);
 
-	if (map.options.wopi && L.Params.closeButtonEnabled && !window.mode.isMobile()) {
+	if (map.options.wopi && window.L.Params.closeButtonEnabled && !window.mode.isMobile()) {
 		$('#closebuttonwrapper').css('display', 'flex');
-		var button = L.DomUtil.get('closebutton');
+		var button = window.L.DomUtil.get('closebutton');
 		if (button) {
 			const closeButtonText = _('Close document');
 			button.setAttribute('aria-label', closeButtonText);
 			button.setAttribute('data-looltip', closeButtonText);
-			L.control.attachTooltipEventListener(button, map);
+			window.L.control.attachTooltipEventListener(button, map);
 		}
-	} else if (!L.Params.closeButtonEnabled) {
+	} else if (!window.L.Params.closeButtonEnabled) {
 		$('#closebuttonwrapper').hide();
 		$('#closebuttonwrapperseparator').hide();
-	} else if (L.Params.closeButtonEnabled && !window.mode.isMobile()) {
+	} else if (window.L.Params.closeButtonEnabled && !window.mode.isMobile()) {
 		$('#closebuttonwrapper').css('display', 'flex');
 	}
 

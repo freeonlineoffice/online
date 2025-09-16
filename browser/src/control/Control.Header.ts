@@ -14,55 +14,63 @@ namespace lool {
 		end: number;
 	}
 
-	export class Header extends CanvasSectionObject {
-		_map: any;
-		_textColor: string;
-		_backgroundColor: string;
-		_borderColor: string;
-		_borderWidth: number;
-		_cursor: string;
-		_hoverColor: string;
-		_selectionTextColor: string;
-		_selectionBackgroundGradient: string[];
-		_resizeCursor: string;
-		_lastMouseOverIndex: number;
-		_menuData: any;
-		_headerInfo: HeaderInfo;
-		_dragEntry: HeaderEntryData;
-		_mouseOverEntry: HeaderEntryData;
-		_prevMouseOverEntry: HeaderEntryData;
-		_startSelectionEntry: HeaderEntryData;
-		_lastSelectedIndex: number;
-		_hitResizeArea: boolean;
-		_menuItem: any;
-		_dragDistance: number[];
-		_isColumn: boolean;
-		cursor: string;
+	_initHeaderEntryStyles (className: string): void {
+		const baseElem = document.getElementsByTagName('body')[0];
+		const elem = window.L.DomUtil.create('div', className, baseElem);
+		this._textColor = window.L.DomUtil.getStyle(elem, 'color');
+		this._backgroundColor = window.L.DomUtil.getStyle(elem, 'background-color');
+		const fontFamily = window.L.DomUtil.getStyle(elem, 'font-family');
+		this.getFont = function() {
+			const selectedSize = this._getFontSize();
+			return selectedSize + 'px ' + fontFamily;
+		}.bind(this);
+		this._borderColor = window.L.DomUtil.getStyle(elem, 'border-top-color');
+		const borderWidth = window.L.DomUtil.getStyle(elem, 'border-top-width');
+		this._borderWidth = Math.round(parseFloat(borderWidth));
+		this._cursor = window.L.DomUtil.getStyle(elem, 'cursor');
+		window.L.DomUtil.remove(elem);
+	}
 
 		getFont: () => string;
 
-		constructor(name: string) {
-			super(name);
+	_initHeaderEntryHoverStyles (className: string): void {
+		const baseElem = document.getElementsByTagName('body')[0];
+		const elem = window.L.DomUtil.create('div', className, baseElem);
+		this._hoverColor = window.L.DomUtil.getStyle(elem, 'background-color');
+		window.L.DomUtil.remove(elem);
+	}
+
+	_initHeaderEntrySelectedStyles(className: string): void {
+		const baseElem = document.getElementsByTagName('body')[0];
+		const elem = window.L.DomUtil.create('div', className, baseElem);
+		this._selectionTextColor = window.L.DomUtil.getStyle(elem, 'color');
+
+		const selectionBackgroundGradient: string[] = [];
+		let gradientColors: string = window.L.DomUtil.getStyle(elem, 'background-image');
+		gradientColors = gradientColors.slice('linear-gradient('.length, -1);
+		while (gradientColors) {
+			const color = gradientColors.split(',', 3);
+			const colorJoin = color.join(','); // color = 'rgb(r, g, b)'
+			selectionBackgroundGradient.push(colorJoin);
+			gradientColors = gradientColors.substr(color.length); // remove last parsed color
+			gradientColors = gradientColors.substr(gradientColors.indexOf('r')); // remove ', ' stuff
 		}
 
-		_initHeaderEntryStyles(className: string): void {
+		if (selectionBackgroundGradient.length) {
+			this._selectionBackgroundGradient = selectionBackgroundGradient;
+		}
+		window.L.DomUtil.remove(elem);
+	}
+
+	_initHeaderEntryResizeStyles (className: string): void {
+		if (this.cursor) {
+			this._resizeCursor = this.cursor;
+		}
+		else {
 			const baseElem = document.getElementsByTagName('body')[0];
-			const elem = L.DomUtil.create('div', className, baseElem);
-			this._textColor = L.DomUtil.getStyle(elem, 'color');
-			this._backgroundColor = L.DomUtil.getStyle(
-				elem,
-				'background-color',
-			);
-			const fontFamily = L.DomUtil.getStyle(elem, 'font-family');
-			this.getFont = function () {
-				const selectedSize = this._getFontSize();
-				return selectedSize + 'px ' + fontFamily;
-			}.bind(this);
-			this._borderColor = L.DomUtil.getStyle(elem, 'border-top-color');
-			const borderWidth = L.DomUtil.getStyle(elem, 'border-top-width');
-			this._borderWidth = Math.round(parseFloat(borderWidth));
-			this._cursor = L.DomUtil.getStyle(elem, 'cursor');
-			L.DomUtil.remove(elem);
+			const elem = window.L.DomUtil.create('div', className, baseElem);
+			this._resizeCursor = window.L.DomUtil.getStyle(elem, 'cursor');
+			window.L.DomUtil.remove(elem);
 		}
 
 		_getFontSize(): number {

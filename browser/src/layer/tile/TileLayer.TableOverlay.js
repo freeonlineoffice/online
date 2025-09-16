@@ -5,7 +5,7 @@
 
 /* global app ShapeHandleAnchorSubSection lool TableInsertMarkerSection */
 
-L.CanvasTileLayer.include({
+window.L.CanvasTileLayer.include({
 	_initializeTableOverlay: function () {
 		this._tableColumnMarkers = [];
 		this._tableRowMarkers = [];
@@ -77,8 +77,8 @@ L.CanvasTileLayer.include({
 		if (markerType === 'column') className = 'table-column-resize-marker';
 		else className = 'table-row-resize-marker';
 
-		var marker = L.marker(new L.LatLng(0, 0), {
-			icon: L.divIcon({
+		var marker = window.L.marker(new window.L.LatLng(0, 0), {
+			icon: window.L.divIcon({
 				className: className,
 				iconSize: null,
 			}),
@@ -407,14 +407,15 @@ L.CanvasTileLayer.include({
 				height = this._convertTwipsToPixels(new lool.Point(0, endY - startY)).y - 2;
 			}
 
-			var selectionRectangle = L.marker(point1, {
-				icon: L.divIcon({
-					className: classNameMarker,
-					iconSize: [width, height],
-					iconAnchor: [0, 0],
-				}),
-				draggable: true,
-			});
+			var selectionRectangle = window.L.marker(point1,
+				{
+					icon: window.L.divIcon({
+						className: classNameMarker,
+						iconSize: [width, height],
+						iconAnchor: [0, 0],
+					}),
+					draggable: true,
+				});
 
 			selectionRectangle._start = { x: startX, y: startY };
 			selectionRectangle._end = { x: endX, y: endY };
@@ -546,13 +547,10 @@ L.CanvasTileLayer.include({
 		}
 		e.target._position = newPosition;
 
-		var bounds = new L.LatLngBounds(
-			e.target._topBorderPoint,
-			e.target._bottomBorderPoint,
-		);
+		var bounds = new window.L.LatLngBounds(e.target._topBorderPoint, e.target._bottomBorderPoint);
 
 		if (e.type === 'dragstart') {
-			this._rectangle = new L.Rectangle(bounds);
+			this._rectangle = new window.L.Rectangle(bounds);
 			this._map.addLayer(this._rectangle);
 		} else if (e.type === 'drag') {
 			this._rectangle.setBounds(bounds);

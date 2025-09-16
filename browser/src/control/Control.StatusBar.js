@@ -146,17 +146,17 @@ class StatusBar extends JSDialog.Toolbar {
 	}
 
 	onSearch(e) {
-		var searchInput = L.DomUtil.get('search-input');
+		var searchInput = window.L.DomUtil.get('search-input');
 		if (e.count === 0) {
 			this.enableItem('searchprev', false);
 			this.enableItem('searchnext', false);
 			this.showItem('cancelsearch', false);
-			L.DomUtil.addClass(searchInput, 'search-not-found');
+			window.L.DomUtil.addClass(searchInput, 'search-not-found');
 			$('#findthis').addClass('search-not-found');
 			app.searchService.resetSelection();
 			setTimeout(function () {
 				$('#findthis').removeClass('search-not-found');
-				L.DomUtil.removeClass(searchInput, 'search-not-found');
+				window.L.DomUtil.removeClass(searchInput, 'search-not-found');
 			}, 800);
 		}
 	}
@@ -642,32 +642,14 @@ class StatusBar extends JSDialog.Toolbar {
 		} else if (commandName === '.uno:LanguageStatus') {
 			var language = this.extractLanguageFromStatus(state);
 			this.updateLanguageItem(language);
-		} else if (commandName === '.uno:RowColSelCount') {
-			state = this.toLocalePattern(
-				'$1 rows, $2 columns selected',
-				'(\\d+) rows, (\\d+) columns selected',
-				state,
-				'$1',
-				'$2',
-			);
-			state = this.toLocalePattern(
-				'$1 of $2 records found',
-				'(\\d+) of (\\d+) records found',
-				state,
-				'$1',
-				'$2',
-			);
-			this.updateHtmlItem(
-				'RowColSelCount',
-				state ? state : _('Select multiple cells'),
-				!state,
-			);
-		} else if (commandName === '.uno:InsertMode') {
-			this.updateHtmlItem(
-				'InsertMode',
-				state ? L.Styles.insertMode[state].toLocaleString() : ' ',
-				!state,
-			);
+		}
+		else if (commandName === '.uno:RowColSelCount') {
+			state = this.toLocalePattern('$1 rows, $2 columns selected', '(\\d+) rows, (\\d+) columns selected', state, '$1', '$2');
+			state = this.toLocalePattern('$1 of $2 records found', '(\\d+) of (\\d+) records found', state, '$1', '$2');
+			this.updateHtmlItem('RowColSelCount', state ? state : _('Select multiple cells'), !state);
+		}
+		else if (commandName === '.uno:InsertMode') {
+			this.updateHtmlItem('InsertMode', state ? window.L.Styles.insertMode[state].toLocaleString() : ' ', !state);
 
 			$('#InsertMode').removeClass();
 			$('#InsertMode').addClass(
@@ -683,28 +665,17 @@ class StatusBar extends JSDialog.Toolbar {
 				this.map.hyperlinkUnderCursor = null;
 				URLPopUpSection.closeURLPopUp();
 			}
-		} else if (
-			commandName === '.uno:StatusSelectionMode' ||
-			commandName === '.uno:SelectionMode'
-		) {
-			$('#statusselectionmode-container').attr(
-				'default-state',
-				state === '0' || null,
-			);
-			this.updateHtmlItem(
-				'StatusSelectionMode',
-				state
-					? L.Styles.selectionMode[state].toLocaleString()
-					: _('Selection mode: inactive'),
-				!state,
-			);
-		} else if (commandName == '.uno:StateTableCell') {
-			this.updateHtmlItem(
-				'StateTableCell',
-				state ? this.localizeStateTableCell(state) : ' ',
-			);
-		} else if (commandName === '.uno:StatusBarFunc') {
-			if (app.map.isReadOnlyMode()) return;
+		}
+		else if (commandName === '.uno:StatusSelectionMode' || commandName === '.uno:SelectionMode') {
+			$('#statusselectionmode-container').attr('default-state', state === '0' || null);
+			this.updateHtmlItem('StatusSelectionMode', state ? window.L.Styles.selectionMode[state].toLocaleString() : _('Selection mode: inactive'), !state);
+		}
+		else if (commandName == '.uno:StateTableCell') {
+			this.updateHtmlItem('StateTableCell', state ? this.localizeStateTableCell(state) : ' ');
+		}
+		else if (commandName === '.uno:StatusBarFunc') {
+			if (app.map.isReadOnlyMode())
+				return;
 
 			// Check 'None' even when state is 0
 			if (state === '0') state = '1';

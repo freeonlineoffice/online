@@ -1,6 +1,14 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.NotebookbarWriter
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.NotebookbarWriter - definition of notebookbar content in Writer
  */
 
 /* global _ _UNO app JSDialog */
@@ -19,8 +27,9 @@ var viewTabName = 'View';
 var helpTabName = 'Help';
 var formulaTabName = 'Formula';
 
-L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
-	getTabs: function () {
+window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
+
+	getTabs: function() {
 		return [
 			{
 				text: _('File'),
@@ -172,8 +181,8 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 		return this.getNotebookbar(this.getTabsJSON(), selectedId);
 	},
 
-	getFileTab: function () {
-		var hasRevisionHistory = L.Params.revHistoryEnabled;
+	getFileTab: function() {
+		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 		var hasPrint = !this.map['wopi'].HidePrintOption;
 		var hasRepair = !this.map['wopi'].HideRepairOption;
 		var hasSaveAs = !this.map['wopi'].UserCanNotWriteRelative;
@@ -514,7 +523,7 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 		var hasFeedback = this.map.feedback;
 		var hasAccessibilitySupport = window.enableAccessibility;
 		var hasAccessibilityCheck = this.map.getDocType() === 'text';
-		var hasAbout = L.DomUtil.get('about-dialog') !== null;
+		var hasAbout = window.L.DomUtil.get('about-dialog') !== null;
 		var hasServerAudit = !!this.map.serverAuditDialog;
 
 		var content = [
@@ -5087,6 +5096,6 @@ L.Control.NotebookbarWriter = L.Control.Notebookbar.extend({
 	},
 });
 
-L.control.notebookbarWriter = function (options) {
-	return new L.Control.NotebookbarWriter(options);
+window.L.control.notebookbarWriter = function (options) {
+	return new window.L.Control.NotebookbarWriter(options);
 };

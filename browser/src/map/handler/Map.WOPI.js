@@ -4,7 +4,7 @@
  */
 
 /* global _ app _UNO JSDialog errorMessages URLPopUpSection */
-L.Map.WOPI = L.Handler.extend({
+window.L.Map.WOPI = window.L.Handler.extend({
 	// If the CheckFileInfo call fails on server side, we won't have any PostMessageOrigin.
 	// So use '*' because we still needs to send 'close' message to the parent frame which
 	// wouldn't be possible otherwise.
@@ -59,7 +59,7 @@ L.Map.WOPI = L.Handler.extend({
 		this._map.on('viewinfo', this._postLoaded, this);
 
 		this._map.on('wopiprops', this._setWopiProps, this);
-		L.DomEvent.on(window, 'message', this._postMessageListener, this);
+		window.L.DomEvent.on(window, 'message', this._postMessageListener, this);
 
 		this._map.on(
 			'updateviewslist',
@@ -106,7 +106,7 @@ L.Map.WOPI = L.Handler.extend({
 		this._map.off('viewinfo', this._postLoaded, this);
 
 		this._map.off('wopiprops', this._setWopiProps, this);
-		L.DomEvent.off(window, 'message', this._postMessageListener, this);
+		window.L.DomEvent.off(window, 'message', this._postMessageListener, this);
 
 		this._map.off('updateviewslist');
 	},
@@ -708,21 +708,18 @@ L.Map.WOPI = L.Handler.extend({
 					return;
 
 				preview.innerText = '';
-				if (
-					msg.Values.image &&
-					msg.Values.image.indexOf('data:') === 0
-				) {
-					var image = L.DomUtil.create('img', '', preview);
+				if (msg.Values.image && msg.Values.image.indexOf('data:') === 0) {
+					var image = window.L.DomUtil.create('img', '', preview);
 					image.src = msg.Values.image;
 					image.alt = msg.Values.title;
 					image.onload = function () {
 						URLPopUpSection.resetPosition();
 					};
 				} else {
-					L.DomUtil.addClass(preview, 'no-preview');
+					window.L.DomUtil.addClass(preview, 'no-preview');
 				}
 				if (msg.Values.title) {
-					var title = L.DomUtil.create('p', '', preview);
+					var title = window.L.DomUtil.create('p', '', preview);
 					title.innerText = msg.Values.title;
 					URLPopUpSection.resetPosition();
 				}
@@ -890,4 +887,4 @@ L.Map.WOPI = L.Handler.extend({
 });
 
 // This handler would only get 'enabled' by map if map.options.wopi = true
-L.Map.addInitHook('addHandler', 'wopi', L.Map.WOPI);
+window.L.Map.addInitHook('addHandler', 'wopi', window.L.Map.WOPI);

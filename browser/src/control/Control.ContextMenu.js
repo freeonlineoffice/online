@@ -4,7 +4,7 @@
  */
 
 /* global $ _ _UNO app GraphicSelection */
-L.Control.ContextMenu = L.Control.extend({
+window.L.Control.ContextMenu = window.L.Control.extend({
 	options: {
 		SEPARATOR: '---------',
 		/*
@@ -330,15 +330,10 @@ L.Control.ContextMenu = L.Control.extend({
 		}
 		if (window.mode.isMobile()) {
 			window.contextMenuWizard = true;
-			var menuData =
-				L.Control.JSDialogBuilder.getMenuStructureForMobileWizard(
-					contextMenu,
-					true,
-					'',
-				);
-			map.fire('mobilewizard', { data: menuData });
+			var menuData = window.L.Control.JSDialogBuilder.getMenuStructureForMobileWizard(contextMenu, true, '');
+			map.fire('mobilewizard', {data: menuData});
 		} else {
-			L.installContextMenu({
+			window.L.installContextMenu({
 				selector: '.leaflet-layer',
 				className: 'lool-font on-the-fly-context-menu',
 				trigger: 'none',
@@ -606,14 +601,15 @@ L.Control.ContextMenu = L.Control.extend({
 	},
 });
 
-L.control.contextMenu = function (options) {
-	return new L.Control.ContextMenu(options);
+window.L.control.contextMenu = function (options) {
+	return new window.L.Control.ContextMenu(options);
 };
 
 // Using 'click' and <a href='#' is vital for copy/paste security context.
-L.installContextMenu = function (options) {
-	var rewrite = function (items) {
-		if (items === undefined) return;
+window.L.installContextMenu = function(options) {
+	var rewrite = function(items) {
+		if (items === undefined)
+			return;
 		var keys = Object.keys(items);
 		for (var i = 0; i < keys.length; i++) {
 			var key = keys[i];

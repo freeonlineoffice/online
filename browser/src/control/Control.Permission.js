@@ -1,26 +1,30 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.EditView is used for switching between viewing and editing mode
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.Control.EditView is used for switching between viewing and editing mode
  */
 
 /* global app */
 
-L.Control.PermissionSwitch = L.Control.extend({
+window.L.Control.PermissionSwitch = window.L.Control.extend({
 	options: {
 		position: 'topleft',
 	},
 
 	onAdd: function () {
 		var partName = 'leaflet-control-editviewswitch',
-			container = L.DomUtil.create('label', partName + ' leaflet-bar');
+		    container = window.L.DomUtil.create('label', partName + ' leaflet-bar');
 
-		this._checkBox = L.DomUtil.create('input', 'editview-cb', container);
+		this._checkBox = window.L.DomUtil.create('input', 'editview-cb', container);
 		this._checkBox.type = 'checkbox';
-		L.DomEvent.on(this._checkBox, 'change', this._onChange, this);
-		app.events.on(
-			'updatepermission',
-			this._onUpdatePermission.bind(this),
-		);
+		window.L.DomEvent.on(this._checkBox, 'change', this._onChange, this);
+		app.events.on('updatepermission', this._onUpdatePermission.bind(this));
 		container.appendChild(document.createTextNode('Enable editing'));
 		return container;
 	},
@@ -48,6 +52,6 @@ L.Control.PermissionSwitch = L.Control.extend({
 	},
 });
 
-L.control.permissionSwitch = function (options) {
-	return new L.Control.PermissionSwitch(options);
+window.L.control.permissionSwitch = function (options) {
+	return new window.L.Control.PermissionSwitch(options);
 };

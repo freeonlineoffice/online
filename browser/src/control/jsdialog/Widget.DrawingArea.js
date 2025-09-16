@@ -23,21 +23,13 @@
 
 /* global JSDialog $ UNOKey UNOModifier */
 
-function _drawingAreaControl(parentContainer, data, builder) {
-	var container = L.DomUtil.create(
-		'div',
-		builder.options.cssClass + ' ui-drawing-area-container',
-		parentContainer,
-	);
+function _drawingAreaControl (parentContainer, data, builder) {
+	var container = window.L.DomUtil.create('div', builder.options.cssClass + ' ui-drawing-area-container', parentContainer);
 	container.id = data.id;
 
 	if (!data.image) return;
 
-	var image = L.DomUtil.create(
-		'img',
-		builder.options.cssClass + ' ui-drawing-area',
-		container,
-	);
+	var image = window.L.DomUtil.create('img', builder.options.cssClass + ' ui-drawing-area', container);
 	var imageId = data.id + '-img';
 	image.id = imageId;
 	image.src = data.image.replace(/\\/g, '');
@@ -52,7 +44,7 @@ function _drawingAreaControl(parentContainer, data, builder) {
 		image.setAttribute('data-looltip', data.text);
 
 		if (builder.map) {
-			L.control.attachTooltipEventListener(image, builder.map);
+			window.L.control.attachTooltipEventListener(image, builder.map);
 		}
 	} else if (data.aria && data.aria.label) {
 		image.setAttribute('aria-label', data.aria.label);
@@ -70,24 +62,12 @@ function _drawingAreaControl(parentContainer, data, builder) {
 	}
 
 	if (data.loading && data.loading === 'true') {
-		var loaderContainer = L.DomUtil.create(
-			'div',
-			'ui-drawing-area-loader-container',
-			container,
-		);
-		L.DomUtil.create('div', 'ui-drawing-area-loader', loaderContainer);
+		var loaderContainer = window.L.DomUtil.create('div', 'ui-drawing-area-loader-container', container);
+		window.L.DomUtil.create('div', 'ui-drawing-area-loader', loaderContainer);
 	}
 	if (data.placeholderText && data.placeholderText === 'true') {
-		var spanContainer = L.DomUtil.create(
-			'div',
-			'ui-drawing-area-placeholder-container',
-			container,
-		);
-		var span = L.DomUtil.create(
-			'span',
-			'ui-drawing-area-placeholder',
-			spanContainer,
-		);
+		var spanContainer = window.L.DomUtil.create('div', 'ui-drawing-area-placeholder-container', container);
+		var span = window.L.DomUtil.create('span', 'ui-drawing-area-placeholder', spanContainer);
 		span.innerText = data.text;
 	}
 
@@ -116,12 +96,9 @@ function _drawingAreaControl(parentContainer, data, builder) {
 	var moveTimer = null;
 	var moveFunc = null;
 
-	L.DomEvent.on(
-		image,
-		'dblclick',
-		function (e) {
-			var pos = getCoordinatesFromEvent(e);
-			var coordinates = pos[0] + ';' + pos[1];
+	window.L.DomEvent.on(image, 'dblclick', function(e) {
+		var pos = getCoordinatesFromEvent(e);
+		var coordinates = pos[0] + ';' + pos[1];
 
 			clearTimeout(moveTimer);
 			moveTimer = null;
@@ -137,12 +114,9 @@ function _drawingAreaControl(parentContainer, data, builder) {
 		this,
 	);
 
-	L.DomEvent.on(
-		image,
-		'click touchend',
-		function (e) {
-			var pos = getCoordinatesFromEvent(e);
-			var coordinates = pos[0] + ';' + pos[1];
+	window.L.DomEvent.on(image, 'click touchend', function(e) {
+		var pos = getCoordinatesFromEvent(e);
+		var coordinates = pos[0] + ';' + pos[1];
 
 			clearTimeout(moveTimer);
 			moveTimer = null;

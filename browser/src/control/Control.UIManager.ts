@@ -584,9 +584,8 @@ class UIManager extends window.L.Control {
 			$('#toolbar-wrapper').addClass('spreadsheet');
 
 			// remove unused elements
-			L.DomUtil.remove(L.DomUtil.get('presentation-controls-wrapper'));
-			const selectBackground =
-				document.getElementById('selectbackground');
+			window.L.DomUtil.remove(window.L.DomUtil.get('presentation-controls-wrapper'));
+			const selectBackground = document.getElementById('selectbackground');
 			if (selectBackground != null)
 				selectBackground.parentNode?.removeChild(selectBackground);
 
@@ -605,7 +604,7 @@ class UIManager extends window.L.Control {
 
 		if (this.map.isPresentationOrDrawing()) {
 			// remove unused elements
-			L.DomUtil.remove(L.DomUtil.get('spreadsheet-toolbar'));
+			window.L.DomUtil.remove(window.L.DomUtil.get('spreadsheet-toolbar'));
 			$('#presentation-controls-wrapper').show();
 			this.initializeRuler();
 			this.map.slideShowPresenter = new SlideShow.SlideShowPresenter(this.map, window.enableAccessibility);
@@ -614,10 +613,9 @@ class UIManager extends window.L.Control {
 
 		if (docType === 'text') {
 			// remove unused elements
-			L.DomUtil.remove(L.DomUtil.get('spreadsheet-toolbar'));
-			L.DomUtil.remove(L.DomUtil.get('presentation-controls-wrapper'));
-			const selectBackground =
-				document.getElementById('selectbackground');
+			window.L.DomUtil.remove(window.L.DomUtil.get('spreadsheet-toolbar'));
+			window.L.DomUtil.remove(window.L.DomUtil.get('presentation-controls-wrapper'));
+			const selectBackground = document.getElementById('selectbackground');
 			if (selectBackground != null)
 				selectBackground.parentNode?.removeChild(selectBackground);
 
@@ -816,13 +814,13 @@ class UIManager extends window.L.Control {
 	 */
 	createNotebookbarControl(docType: string): void {
 		if (docType === 'spreadsheet') {
-			var notebookbar = L.control.notebookbarCalc();
+			var notebookbar = window.L.control.notebookbarCalc();
 		} else if (docType === 'presentation') {
-			notebookbar = L.control.notebookbarImpress();
+			notebookbar = window.L.control.notebookbarImpress();
 		} else if (docType === 'drawing') {
-			notebookbar = L.control.notebookbarDraw();
+			notebookbar = window.L.control.notebookbarDraw();
 		} else {
-			notebookbar = L.control.notebookbarWriter();
+			notebookbar = window.L.control.notebookbarWriter();
 		}
 
 		this.notebookbar = notebookbar;
@@ -1667,7 +1665,7 @@ class UIManager extends window.L.Control {
 	 * @param text - Tooltip text.
 	 */
 	private _setTooltipText(element: any, text: string): void {
-		var dummyNode = L.DomUtil.create('div');
+		var dummyNode = window.L.DomUtil.create('div');
 		dummyNode.innerText = text;
 		element.tooltip('option', 'content', dummyNode.innerHTML);
 	}

@@ -1,16 +1,11 @@
 /* -*- js-indent-level: 8 -*- */
 /* global app */
 /*
- * L.PosAnimation fallback implementation that powers Leaflet pan animations
+ * window.L.PosAnimation fallback implementation that powers Leaflet pan animations
  * in browsers that don't support CSS3 Transitions.
  */
 
-L.PosAnimation = L.DomUtil.TRANSITION
-	? L.PosAnimation
-	: L.PosAnimation.extend({
-			run: function (el, newPos, duration, easeLinearity) {
-				// (HTMLElement, Point[, Number, Number])
-				this.stop();
+window.L.PosAnimation = window.L.DomUtil.TRANSITION ? window.L.PosAnimation : window.L.PosAnimation.extend({
 
 				this._el = el;
 				this._inProgress = true;
@@ -22,7 +17,9 @@ L.PosAnimation = L.DomUtil.TRANSITION
 				this._offset = newPos.subtract(this._startPos);
 				this._startTime = +new Date();
 
-				this.fire('start');
+		this._startPos = window.L.DomUtil.getPosition(el);
+		this._offset = newPos.subtract(this._startPos);
+		this._startTime = +new Date();
 
 				this._animate();
 			},
@@ -63,8 +60,9 @@ L.PosAnimation = L.DomUtil.TRANSITION
 				);
 				L.DomUtil.setPosition(this._el, pos);
 
-				this.fire('step');
-			},
+	_runFrame: function (progress) {
+		var pos = this._startPos.add(this._offset.multiplyBy(progress));
+		window.L.DomUtil.setPosition(this._el, pos);
 
 			_complete: function () {
 				app.util.cancelAnimFrame(this._animId);

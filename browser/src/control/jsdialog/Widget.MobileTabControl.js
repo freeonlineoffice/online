@@ -28,15 +28,8 @@ function _panelTabsHandler(
 			'mobile panelTabsHandler: setTabs will be used ignoring useSetTabs property',
 		);
 
-	var tabsContainer = L.DomUtil.create(
-		'div',
-		'ui-tabs ' + builder.options.cssClass + ' ui-widget',
-	);
-	var contentsContainer = L.DomUtil.create(
-		'div',
-		'ui-tabs-content ' + builder.options.cssClass + ' ui-widget',
-		parentContainer,
-	);
+	var tabsContainer = window.L.DomUtil.create('div', 'ui-tabs ' + builder.options.cssClass + ' ui-widget');
+	var contentsContainer = window.L.DomUtil.create('div', 'ui-tabs-content ' + builder.options.cssClass + ' ui-widget', parentContainer);
 
 	var tabIdx, item;
 	if (!isTabControl) {
@@ -54,30 +47,15 @@ function _panelTabsHandler(
 
 		var title = builder._cleanText(item.text);
 
-		var tab = L.DomUtil.create(
-			'div',
-			'ui-tab ' + builder.options.cssClass,
-			tabsContainer,
-		);
+		var tab = window.L.DomUtil.create('div', 'ui-tab ' + builder.options.cssClass, tabsContainer);
 		tab.id = title;
 		tabs[tabIdx] = tab;
 
-		var label = L.DomUtil.create(
-			'span',
-			'ui-tab-content ' + builder.options.cssClass + ' unolabel',
-			tab,
-		);
+		var label = window.L.DomUtil.create('span', 'ui-tab-content ' + builder.options.cssClass + ' unolabel', tab);
 		label.textContent = title;
 		labels[tabIdx] = title;
 
-		var contentDiv = L.DomUtil.create(
-			'div',
-			'ui-content level-' +
-				builder._currentDepth +
-				' ' +
-				builder.options.cssClass,
-			contentsContainer,
-		);
+		var contentDiv = window.L.DomUtil.create('div', 'ui-content level-' + builder._currentDepth + ' ' + builder.options.cssClass, contentsContainer);
 		contentDiv.title = title;
 
 		builder._currentDepth++;

@@ -13,7 +13,8 @@
 
 /* global app $ window brandProductName DocUtil GraphicSelection _ */
 
-L.Map.include({
+window.L.Map.include({
+
 	// a mapping of uno commands to more readable toolbar items
 	unoToolbarCommands: ['.uno:StyleApply', '.uno:CharFontName'],
 
@@ -926,7 +927,7 @@ L.Map.include({
 		);
 		app.layoutingService.appendLayoutingTask(() => {
 			const box = document.getElementById(id + '-box');
-			const innerDiv = L.DomUtil.create('div', '', null);
+			const innerDiv = window.L.DomUtil.create('div', '', null);
 			box.insertBefore(innerDiv, box.firstChild);
 			innerDiv.innerHTML = data;
 
@@ -986,11 +987,8 @@ L.Map.include({
 		if (this.hyperlinkUnderCursor && this.hyperlinkUnderCursor.text) {
 			text = this.hyperlinkUnderCursor.text;
 		} else if (this._clip && this._clip._selectionType == 'text') {
-			if (
-				map['stateChangeHandler'].getItemValue('.uno:Copy') ===
-				'enabled'
-			) {
-				if (L.Browser.clipboardApiAvailable) {
+			if (map['stateChangeHandler'].getItemValue('.uno:Copy') === 'enabled') {
+				if (window.L.Browser.clipboardApiAvailable) {
 					// Async copy, trigger fetching the text selection.
 					app.socket.sendMessage(
 						'gettextselection mimetype=text/html,text/plain;charset=utf-8',
@@ -1007,11 +1005,9 @@ L.Map.include({
 		return text;
 	},
 
-	cancelSearch: function () {
-		var toolbar = window.mode.isMobile()
-			? app.map.mobileSearchBar
-			: app.map.statusBar;
-		var searchInput = L.DomUtil.get('search-input');
+	cancelSearch: function() {
+		var toolbar = window.mode.isMobile() ? app.map.mobileSearchBar: app.map.statusBar;
+		var searchInput = window.L.DomUtil.get('search-input');
 		app.searchService.resetSelection();
 		if (toolbar) {
 			toolbar.showItem('cancelsearch', false);

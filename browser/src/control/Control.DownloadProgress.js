@@ -1,16 +1,23 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.DownloadProgress.
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.Control.DownloadProgress.
  */
 /* global _ $ JSDialog app */
-L.Control.DownloadProgress = L.Control.extend({
+window.L.Control.DownloadProgress = window.L.Control.extend({
 	options: {
 		snackbarTimeout: 20000,
 		userWarningKey: 'warnedAboutLargeCopy',
 	},
 
 	initialize: function (options) {
-		L.setOptions(this, options);
+		window.L.setOptions(this, options);
 	},
 
 	onAdd: function (map) {
@@ -185,7 +192,7 @@ L.Control.DownloadProgress = L.Control.extend({
 	_setupKeyboardShortcutForElement: function (eventTargetId, buttonId) {
 		var keyDownCallback = function (e) {
 			var modifierKeys = !e.altKey && !e.shiftKey;
-			if (L.Browser.mac) {
+			if (window.L.Browser.mac) {
 				modifierKeys = modifierKeys && e.metaKey && !e.ctrlKey;
 			} else {
 				modifierKeys = modifierKeys && e.ctrlKey && !e.metaKey;
@@ -383,6 +390,6 @@ L.Control.DownloadProgress = L.Control.extend({
 	},
 });
 
-L.control.downloadProgress = function (options) {
-	return new L.Control.DownloadProgress(options);
+window.L.control.downloadProgress = function (options) {
+	return new window.L.Control.DownloadProgress(options);
 };

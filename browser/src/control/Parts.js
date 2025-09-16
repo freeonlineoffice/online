@@ -6,7 +6,7 @@
 /* global app _ lool */
 /* global _ JSDialog app OtherViewCellCursorSection TileManager */
 
-L.Map.include({
+window.L.Map.include({
 	/*
 		@param {number} part - Target part
 		@param {boolean} external - Do we need to inform a core
@@ -683,10 +683,7 @@ L.Map.include({
 		for (let i = 0; i < app.impress.partList.length; i++) {
 			if (app.impress.partList[i].selected) {
 				app.impress.partList[i].visible = 0;
-				L.DomUtil.addClass(
-					this._docLayer._preview._previewTiles[i],
-					'hidden-slide',
-				);
+				window.L.DomUtil.addClass(this._docLayer._preview._previewTiles[i], 'hidden-slide');
 			}
 		}
 
@@ -698,10 +695,7 @@ L.Map.include({
 		for (let i = 0; i < app.impress.partList.length; i++) {
 			if (app.impress.partList[i].selected) {
 				app.impress.partList[i].visible = 1;
-				L.DomUtil.removeClass(
-					this._docLayer._preview._previewTiles[i],
-					'hidden-slide',
-				);
+				window.L.DomUtil.removeClass(this._docLayer._preview._previewTiles[i], 'hidden-slide');
 			}
 		}
 

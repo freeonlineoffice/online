@@ -1,16 +1,24 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Map.Feedback.
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.Map.Feedback.
  */
 
 /* global _ */
 
-L.Map.mergeOptions({
+window.L.Map.mergeOptions({
 	feedback: !window.ThisIsAMobileApp,
 	feedbackTimeout: 30000,
 });
 
-L.Map.Feedback = L.Handler.extend({
+window.L.Map.Feedback = window.L.Handler.extend({
+
 	addHooks: function () {
 		this.initialized = false;
 
@@ -18,11 +26,11 @@ L.Map.Feedback = L.Handler.extend({
 			this._map.on('updateviewslist', this.onUpdateList, this);
 		else this._map.on('docloaded', this.onDocLoaded, this);
 
-		L.DomEvent.on(window, 'message', this.onMessage, this);
+		window.L.DomEvent.on(window, 'message', this.onMessage, this);
 	},
 
 	removeHooks: function () {
-		L.DomEvent.off(window, 'message', this.onMessage, this);
+		window.L.DomEvent.off(window, 'message', this.onMessage, this);
 	},
 
 	removeIframe: function () {
@@ -58,37 +66,19 @@ L.Map.Feedback = L.Handler.extend({
 				laterDate.setTime(timeValue + 432000000);
 			}
 
-			if (
-				docCount > 15 &&
-				currentDate > laterDate &&
-				window.autoShowFeedback
-			)
-				setTimeout(
-					L.bind(this.onFeedback, this),
-					this._map.options.feedbackTimeout,
-				);
+			if (docCount > 15 && currentDate > laterDate && window.autoShowFeedback)
+				setTimeout(window.L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
 		}
 	},
 
 	onFeedback: function () {
-		if (
-			this._map.welcome &&
-			this._map.welcome.isVisible &&
-			this._map.welcome.isVisible()
-		) {
-			setTimeout(
-				L.bind(this.onFeedback, this),
-				this._map.options.feedbackTimeout,
-			);
+		if (this._map.welcome && this._map.welcome.isVisible && this._map.welcome.isVisible()) {
+			setTimeout(window.L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
 			return;
 		}
 
-		if (
-			this._map.welcome &&
-			this._map.welcome.isVisible &&
-			this._map.welcome.isVisible()
-		)
-			setTimeout(L.bind(this.onFeedback, this), 3000);
+		if (this._map.welcome && this._map.welcome.isVisible && this._map.welcome.isVisible())
+			setTimeout(window.L.bind(this.onFeedback, this), 3000);
 		else {
 			this.askForFeedbackDialog();
 		}
@@ -130,12 +120,7 @@ L.Map.Feedback = L.Handler.extend({
 			id: 'iframe-feedback',
 		};
 
-		this._iframeDialog = L.iframeDialog(
-			window.feedbackUrl,
-			params,
-			null,
-			options,
-		);
+		this._iframeDialog = window.L.iframeDialog(window.feedbackUrl, params, null, options);
 	},
 
 	onError: function () {
@@ -174,15 +159,12 @@ L.Map.Feedback = L.Handler.extend({
 			!this._iframeDialog.isVisible()
 		) {
 			this.removeIframe();
-			setTimeout(
-				L.bind(this.onFeedback, this),
-				this._map.options.feedbackTimeout,
-			);
+			setTimeout(window.L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
 		} else if (data.endsWith('close')) {
 			this.removeIframe();
 		}
 	},
 });
 if (window.feedbackUrl && window.prefs.canPersist) {
-	L.Map.addInitHook('addHandler', 'feedback', L.Map.Feedback);
+	window.L.Map.addInitHook('addHandler', 'feedback', window.L.Map.Feedback);
 }

@@ -38,10 +38,13 @@ class VRuler extends Ruler {
 	_initialposition: number;
 	_lastposition: number;
 
-	_map: ReturnType<typeof L.map>;
+	_map: ReturnType<typeof window.L.map>;
 	options: Options;
 
-	constructor(map: ReturnType<typeof L.map>, options: Partial<Options>) {
+	constructor(
+		map: ReturnType<typeof window.L.map>,
+		options: Partial<Options>,
+	) {
 		super(options);
 		Object.assign(this.options, options);
 		this._map = map;
@@ -63,13 +66,13 @@ class VRuler extends Ruler {
 		);
 		this._map.on('commandstatechanged', this.onCommandStateChanged, this);
 		this._map.on('rulerchanged', this._onRulerChanged, this);
-		L.DomUtil.addClass(this._map.getContainer(), 'hasruler');
+		window.L.DomUtil.addClass(this._map.getContainer(), 'hasruler');
 
 		const container: HTMLDivElement = this._initLayout();
 		const corner: HTMLElement =
 			this._map._controlCorners[this.options.position];
 
-		L.DomUtil.addClass(container, 'leaflet-control');
+		window.L.DomUtil.addClass(container, 'leaflet-control');
 
 		if (this.options.position.indexOf('bottom') !== -1) {
 			corner.insertBefore(container, corner.firstChild);
@@ -142,13 +145,13 @@ class VRuler extends Ruler {
 		this._rFace.appendChild(this._pVerticalEndMarker);
 
 		// While one of the markers is being dragged, a horizontal line should be visible in order to indicate the new position of the marker.
-		this._markerHorizontalLine = L.DomUtil.create(
+		this._markerHorizontalLine = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-horizontal-indentation-marker-center',
 		);
 		this._rFace.appendChild(this._markerHorizontalLine);
 
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._pVerticalStartMarker,
 			'mousedown',
 			(window as typeof window & { touch: any }).touch.mouseOnly(
@@ -156,7 +159,7 @@ class VRuler extends Ruler {
 			),
 			this,
 		);
-		L.DomEvent.on(
+		window.L.DomEvent.on(
 			this._pVerticalEndMarker,
 			'mousedown',
 			(window as typeof window & { touch: any }).touch.mouseOnly(
@@ -167,7 +170,7 @@ class VRuler extends Ruler {
 	}
 
 	_initLayout() {
-		this._rWrapper = L.DomUtil.create(
+		this._rWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler leaflet-bar leaflet-control leaflet-control-custom',
 		);
@@ -179,32 +182,32 @@ class VRuler extends Ruler {
 		// It is due to rulerupdate command that comes from LOK.
 		// If we delay its initialization, we can't calculate its margins and have to wait for another rulerupdate message to arrive.
 		if (!this.options.showruler) {
-			L.DomUtil.setStyle(this._rWrapper, 'display', 'none');
+			window.L.DomUtil.setStyle(this._rWrapper, 'display', 'none');
 		}
-		this._rFace = L.DomUtil.create(
+		this._rFace = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-face',
 			this._rWrapper,
 		);
-		this._rMarginWrapper = L.DomUtil.create(
+		this._rMarginWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-marginwrapper',
 			this._rFace,
 		);
 		// BP => Break Points
-		this._rBPWrapper = L.DomUtil.create(
+		this._rBPWrapper = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-breakwrapper',
 			this._rFace,
 		);
-		this._rBPContainer = L.DomUtil.create(
+		this._rBPContainer = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-breakcontainer',
 			this._rBPWrapper,
 		);
 
 		// Tab stops
-		this._rTSContainer = L.DomUtil.create(
+		this._rTSContainer = window.L.DomUtil.create(
 			'div',
 			'lool-ruler-tabstopcontainer',
 			this._rMarginWrapper,
@@ -333,7 +336,7 @@ class VRuler extends Ruler {
 
 		let numCounter: number = -1 * Math.floor(topMargin / 1000);
 
-		L.DomUtil.removeChildNodes(this._rBPContainer);
+		window.L.DomUtil.removeChildNodes(this._rBPContainer);
 
 		// this.options.pageWidth is in mm100, so the code here makes one ruler division per
 		// centimetre.
@@ -346,7 +349,7 @@ class VRuler extends Ruler {
 			num <= this.options.pageWidth / 1000 + 1;
 			num++
 		) {
-			const marker = L.DomUtil.create(
+			const marker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-maj',
 				this._rBPContainer,
@@ -363,22 +366,22 @@ class VRuler extends Ruler {
 
 		if (!this.options.marginSet) {
 			this.options.marginSet = true;
-			this._tMarginMarker = L.DomUtil.create(
+			this._tMarginMarker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-margin lool-ruler-left',
 				this._rFace,
 			);
-			this._bMarginMarker = L.DomUtil.create(
+			this._bMarginMarker = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-margin lool-ruler-right',
 				this._rFace,
 			);
-			this._tMarginDrag = L.DomUtil.create(
+			this._tMarginDrag = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-drag lool-ruler-left',
 				this._rMarginWrapper,
 			);
-			this._bMarginDrag = L.DomUtil.create(
+			this._bMarginDrag = window.L.DomUtil.create(
 				'div',
 				'lool-ruler-drag lool-ruler-right',
 				this._rMarginWrapper,
@@ -477,13 +480,13 @@ class VRuler extends Ruler {
 		this._map.rulerActive = false;
 
 		if (e.type !== 'panend') {
-			L.DomEvent.off(
+			window.L.DomEvent.off(
 				this._rFace,
 				'mousemove',
 				this._moveIndentation,
 				this,
 			);
-			L.DomEvent.off(
+			window.L.DomEvent.off(
 				this._map,
 				'mouseup',
 				this._moveIndentationEnd,
@@ -564,13 +567,13 @@ class VRuler extends Ruler {
 			e.target.id.trim() === '' ? e.target.parentNode.id : e.target.id;
 
 		if (e.type !== 'panstart') {
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._rFace,
 				'mousemove',
 				this._moveIndentation,
 				this,
 			);
-			L.DomEvent.on(
+			window.L.DomEvent.on(
 				this._map,
 				'mouseup',
 				this._moveIndentationEnd,

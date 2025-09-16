@@ -5,8 +5,8 @@
 
 /* global _ app */
 
-L.Map.include({
-	onChangeSignStatus: function (signstatus) {
+window.L.Map.include({
+	onChangeSignStatus: function(signstatus) {
 		// Have a non-empty status text by default, so a signatures -> no signatures
 		// transition updates the status bar.
 		var statusText = _('The document is not signed.');

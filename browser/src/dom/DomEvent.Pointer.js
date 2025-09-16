@@ -1,13 +1,14 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Extends L.DomEvent to provide touch support for Internet Explorer and Windows-based devices.
+ * Extends window.L.DomEvent to provide touch support for Internet Explorer and Windows-based devices.
  */
 
-L.extend(L.DomEvent, {
-	POINTER_DOWN: L.Browser.msPointer ? 'MSPointerDown' : 'pointerdown',
-	POINTER_MOVE: L.Browser.msPointer ? 'MSPointerMove' : 'pointermove',
-	POINTER_UP: L.Browser.msPointer ? 'MSPointerUp' : 'pointerup',
-	POINTER_CANCEL: L.Browser.msPointer ? 'MSPointerCancel' : 'pointercancel',
+window.L.extend(window.L.DomEvent, {
+
+	POINTER_DOWN:   window.L.Browser.msPointer ? 'MSPointerDown'   : 'pointerdown',
+	POINTER_MOVE:   window.L.Browser.msPointer ? 'MSPointerMove'   : 'pointermove',
+	POINTER_UP:     window.L.Browser.msPointer ? 'MSPointerUp'     : 'pointerup',
+	POINTER_CANCEL: window.L.Browser.msPointer ? 'MSPointerCancel' : 'pointercancel',
 
 	_pointers: {},
 	_pointersCount: 0,
@@ -43,8 +44,8 @@ L.extend(L.DomEvent, {
 	},
 
 	_addPointerStart: function (obj, handler, id) {
-		var onDown = L.bind(function (e) {
-			L.DomEvent.preventDefault(e);
+		var onDown = window.L.bind(function (e) {
+			window.L.DomEvent.preventDefault(e);
 
 			this._handlePointer(e, handler);
 		}, this);
@@ -54,29 +55,13 @@ L.extend(L.DomEvent, {
 
 		// need to keep track of what pointers and how many are active to provide e.touches emulation
 		if (!this._pointerDocListener) {
-			var pointerUp = L.bind(this._globalPointerUp, this);
+			var pointerUp = window.L.bind(this._globalPointerUp, this);
 
 			// we listen documentElement as any drags that end by moving the touch off the screen get fired there
-			document.documentElement.addEventListener(
-				this.POINTER_DOWN,
-				L.bind(this._globalPointerDown, this),
-				true,
-			);
-			document.documentElement.addEventListener(
-				this.POINTER_MOVE,
-				L.bind(this._globalPointerMove, this),
-				true,
-			);
-			document.documentElement.addEventListener(
-				this.POINTER_UP,
-				pointerUp,
-				true,
-			);
-			document.documentElement.addEventListener(
-				this.POINTER_CANCEL,
-				pointerUp,
-				true,
-			);
+			document.documentElement.addEventListener(this.POINTER_DOWN, window.L.bind(this._globalPointerDown, this), true);
+			document.documentElement.addEventListener(this.POINTER_MOVE, window.L.bind(this._globalPointerMove, this), true);
+			document.documentElement.addEventListener(this.POINTER_UP, pointerUp, true);
+			document.documentElement.addEventListener(this.POINTER_CANCEL, pointerUp, true);
 
 			this._pointerDocListener = true;
 		}
@@ -109,7 +94,7 @@ L.extend(L.DomEvent, {
 	},
 
 	_addPointerMove: function (obj, handler, id) {
-		var onMove = L.bind(function (e) {
+		var onMove = window.L.bind(function (e) {
 			// don't fire touch moves when mouse isn't down
 			if (
 				(e.pointerType === e.MSPOINTER_TYPE_MOUSE ||
@@ -127,7 +112,7 @@ L.extend(L.DomEvent, {
 	},
 
 	_addPointerEnd: function (obj, handler, id) {
-		var onUp = L.bind(function (e) {
+		var onUp = window.L.bind(function (e) {
 			this._handlePointer(e, handler);
 		}, this);
 

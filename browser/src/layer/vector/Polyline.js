@@ -1,10 +1,11 @@
 /* -*- js-indent-level: 8 -*- */
 /* global app lool */
 /*
- * L.Polyline implements polyline vector layer (a set of points connected with lines)
+ * window.L.Polyline implements polyline vector layer (a set of points connected with lines)
  */
 
-L.Polyline = L.Path.extend({
+window.L.Polyline = window.L.Path.extend({
+
 	options: {
 		// how much to simplify the polyline on each zoom level
 		// more = better performance and smoother look, less = more accurate
@@ -13,9 +14,10 @@ L.Polyline = L.Path.extend({
 	},
 
 	initialize: function (latlngs, options) {
-		L.Path.prototype.initialize.call(this);
 
-		L.setOptions(this, options);
+		window.L.Path.prototype.initialize.call(this);
+
+		window.L.setOptions(this, options);
 		this._setLatLngs(latlngs);
 	},
 
@@ -67,7 +69,7 @@ L.Polyline = L.Path.extend({
 	},
 
 	_setLatLngs: function (latlngs) {
-		this._bounds = new L.LatLngBounds();
+		this._bounds = new window.L.LatLngBounds();
 		this._latlngs = this._convertLatLngs(latlngs);
 	},
 
@@ -78,7 +80,7 @@ L.Polyline = L.Path.extend({
 
 		for (var i = 0, len = latlngs.length; i < len; i++) {
 			if (flat) {
-				result[i] = L.latLng(latlngs[i]);
+				result[i] = window.L.latLng(latlngs[i]);
 				this._bounds.extend(result[i]);
 			} else {
 				result[i] = this._convertLatLngs(latlngs[i]);
@@ -113,10 +115,10 @@ L.Polyline = L.Path.extend({
 
 	// recursively turns latlngs into a set of rings with projected coordinates
 	_projectLatlngs: function (latlngs, result) {
-		var flat = latlngs[0] instanceof L.LatLng,
-			len = latlngs.length,
-			i,
-			ring;
+
+		var flat = latlngs[0] instanceof window.L.LatLng,
+		    len = latlngs.length,
+		    i, ring;
 
 		if (flat) {
 			ring = [];
@@ -162,13 +164,7 @@ L.Polyline = L.Path.extend({
 			points = this._rings[i];
 
 			for (j = 0, len2 = points.length; j < len2 - 1; j++) {
-				segment = L.LineUtil.clipSegment(
-					points[j],
-					points[j + 1],
-					bounds,
-					j,
-					true,
-				);
+				segment = window.L.LineUtil.clipSegment(points[j], points[j + 1], bounds, j, true);
 
 				if (!segment) {
 					continue;
@@ -192,7 +188,7 @@ L.Polyline = L.Path.extend({
 			tolerance = this.options.smoothFactor;
 
 		for (var i = 0, len = parts.length; i < len; i++) {
-			parts[i] = L.LineUtil.simplify(parts[i], tolerance);
+			parts[i] = window.L.LineUtil.simplify(parts[i], tolerance);
 		}
 	},
 
@@ -211,6 +207,6 @@ L.Polyline = L.Path.extend({
 	},
 });
 
-L.polyline = function (latlngs, options) {
-	return new L.Polyline(latlngs, options);
+window.L.polyline = function (latlngs, options) {
+	return new window.L.Polyline(latlngs, options);
 };

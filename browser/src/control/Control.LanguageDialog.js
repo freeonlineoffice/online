@@ -1,10 +1,19 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.LanguageDialog used for spellchecking language
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.LanguageDialog used for spellchecking language
  */
 
 /* global _ app */
-L.Control.LanguageDialog = L.Control.extend({
+window.L.Control.LanguageDialog = window.L.Control.extend({
+
 	onAdd: function (map) {
 		this.map = map;
 		map.on('morelanguages', this._onLanguageDialog, this);
@@ -152,6 +161,6 @@ L.Control.LanguageDialog = L.Control.extend({
 	},
 });
 
-L.control.languageDialog = function (options) {
-	return new L.Control.LanguageDialog(options);
+window.L.control.languageDialog = function (options) {
+	return new window.L.Control.LanguageDialog(options);
 };

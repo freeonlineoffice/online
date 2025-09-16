@@ -1,10 +1,19 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.Notebookbar
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.Notebookbar - container for tabbed menu on the top of application
  */
 
 /* global $ _ _UNO JSDialog app */
-L.Control.Notebookbar = L.Control.extend({
+window.L.Control.Notebookbar = window.L.Control.extend({
+
 	_showNotebookbar: false,
 	_RTL: false,
 	_lastContext: null,
@@ -26,7 +35,7 @@ L.Control.Notebookbar = L.Control.extend({
 
 		if (document.documentElement.dir === 'rtl') this._RTL = true;
 
-		this.builder = new L.control.notebookbarBuilder({
+		this.builder = new window.L.control.notebookbarBuilder({
 			windowId: -2,
 			mobileWizard: this,
 			map: map,
@@ -41,12 +50,13 @@ L.Control.Notebookbar = L.Control.extend({
 		);
 
 		// remove old toolbar
-		var toolbar = L.DomUtil.get('toolbar-up');
-		if (toolbar) toolbar.outerHTML = '';
+		var toolbar = window.L.DomUtil.get('toolbar-up');
+		if (toolbar)
+			toolbar.outerHTML = '';
 
 		// create toolbar from template
 		$('#toolbar-logo').after(this.map.toolbarUpTemplate.cloneNode(true));
-		this.parentContainer = L.DomUtil.get('toolbar-up');
+		this.parentContainer = window.L.DomUtil.get('toolbar-up');
 
 		this.loadTab(this.getFullJSON(this.HOME_TAB_ID));
 
@@ -85,7 +95,7 @@ L.Control.Notebookbar = L.Control.extend({
 			.getElementById('document-container')
 			.classList.add('notebookbar-active');
 
-		var docLogoHeader = L.DomUtil.create('div', '');
+		var docLogoHeader = window.L.DomUtil.create('div', '');
 		docLogoHeader.id = 'document-header';
 
 		var iconClass = 'document-logo';
@@ -103,11 +113,11 @@ L.Control.Notebookbar = L.Control.extend({
 			iconClass += ' draw-icon-img';
 			iconTooltip = 'Draw';
 		}
-		var docLogo = L.DomUtil.create('div', iconClass, docLogoHeader);
+		var docLogo = window.L.DomUtil.create('div', iconClass, docLogoHeader);
 		$(docLogo).data('id', 'document-logo');
 		$(docLogo).data('type', 'action');
 		docLogo.setAttribute('data-looltip', iconTooltip);
-		L.control.attachTooltipEventListener(docLogo, this.map);
+		window.L.control.attachTooltipEventListener(docLogo, this.map);
 		$('.main-nav').prepend(docLogoHeader);
 		var isDarkMode = window.prefs.getBoolean('darkTheme');
 		if (!isDarkMode) $('#invertbackground').hide();
@@ -240,11 +250,7 @@ L.Control.Notebookbar = L.Control.extend({
 
 		this.clearNotebookbar();
 
-		this.container = L.DomUtil.create(
-			'div',
-			'notebookbar-scroll-wrapper',
-			this.parentContainer,
-		);
+		this.container = window.L.DomUtil.create('div', 'notebookbar-scroll-wrapper', this.parentContainer);
 
 		this.builder.build(this.container, [tabJSON]);
 
@@ -256,8 +262,8 @@ L.Control.Notebookbar = L.Control.extend({
 		JSDialog.RefreshScrollables();
 	},
 
-	setTabs: function (tabs) {
-		var container = L.DomUtil.create('div', 'notebookbar-tabs-container');
+	setTabs: function(tabs) {
+		var container = window.L.DomUtil.create('div', 'notebookbar-tabs-container');
 		container.appendChild(tabs);
 		for (let tab of tabs.children) {
 			if (tab.id.endsWith('-tab-label')) {
@@ -312,11 +318,8 @@ L.Control.Notebookbar = L.Control.extend({
 		];
 	},
 
-	createShortcutsBar: function () {
-		var shortcutsBar = L.DomUtil.create(
-			'div',
-			'notebookbar-shortcuts-bar',
-		);
+	createShortcutsBar: function() {
+		var shortcutsBar = window.L.DomUtil.create('div', 'notebookbar-shortcuts-bar');
 		$('#main-menu-state').after(shortcutsBar);
 
 		var shortcutsBarData = this.getShortcutsBarData();
@@ -734,10 +737,7 @@ L.Control.Notebookbar = L.Control.extend({
 	createOptionsSection: function (childrenArray) {
 		$('.notebookbar-options-section').remove();
 
-		var optionsSection = L.DomUtil.create(
-			'div',
-			'notebookbar-options-section',
-		);
+		var optionsSection = window.L.DomUtil.create('div', 'notebookbar-options-section');
 		$(optionsSection).insertBefore('#closebuttonwrapperseparator');
 
 		var builderOptions = {
@@ -747,7 +747,7 @@ L.Control.Notebookbar = L.Control.extend({
 			suffix: 'notebookbar',
 		};
 
-		var builder = new L.control.notebookbarBuilder(builderOptions);
+		var builder = new window.L.control.notebookbarBuilder(builderOptions);
 		if (childrenArray === undefined)
 			childrenArray = this.getOptionsSectionData();
 		builder.build(optionsSection, childrenArray);

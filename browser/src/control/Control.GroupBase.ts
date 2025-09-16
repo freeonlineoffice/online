@@ -66,23 +66,95 @@ namespace lool {
 		// override in subclasses
 		abstract update(): void;
 
-		// Create font for the group headers. Group headers are on the left side of corner header.
-		_createFont(): void {
-			const baseElem = document.getElementsByTagName('body')[0];
-			const elem = L.DomUtil.create(
-				'div',
-				'spreadsheet-header-row',
-				baseElem,
-			);
+	// Create font for the group headers. Group headers are on the left side of corner header.
+	_createFont(): void {
+		const baseElem = document.getElementsByTagName('body')[0];
+		const elem = window.L.DomUtil.create('div', 'spreadsheet-header-row', baseElem);
 
-			const fontFamily = L.DomUtil.getStyle(elem, 'font-family');
-			const fontSize = parseInt(L.DomUtil.getStyle(elem, 'font-size'));
-			this._getFont = function () {
-				return (
-					Math.round(fontSize * app.dpiScale) +
-					'px ' +
-					fontFamily
-				);
+		const fontFamily = window.L.DomUtil.getStyle(elem, 'font-family');
+		const fontSize = parseInt(window.L.DomUtil.getStyle(elem, 'font-size'));
+		this._getFont = function() {
+			return Math.round(fontSize * app.dpiScale) + 'px ' + fontFamily;
+		};
+		window.L.DomUtil.remove(elem);
+	}
+
+	public getColors(): { backgroundColor: string, borderColor: string, textColor?: string, strokeColor?: string } {
+		const baseElem = document.getElementsByTagName('body')[0];
+		const elem = window.L.DomUtil.create('div', 'spreadsheet-header-row', baseElem);
+		const isDark = window.prefs.getBoolean('darkTheme');
+
+		this.backgroundColor = window.L.DomUtil.getStyle(elem, 'background-color');
+		this.borderColor = this.backgroundColor;
+
+		this._textColor = window.L.DomUtil.getStyle(elem, 'color');
+		window.L.DomUtil.remove(elem);
+		return {
+			backgroundColor: this.backgroundColor,
+			borderColor: this.borderColor,
+			textColor: this._textColor,
+			strokeColor: isDark ? 'white' : 'black'
+		};
+	}
+
+	private _groupBaseColors(): void {
+		const colors = this.getColors();
+		this.backgroundColor = colors.backgroundColor;
+		this.borderColor = colors.borderColor;
+		this._textColor = colors.textColor;
+	}
+
+	// This returns the required width for the section.
+	_computeSectionWidth(): number {
+		return this._levelSpacing + (this._groupHeadSize + this._levelSpacing) * (this._groups.length + 1);
+	}
+
+	// This function puts data into a good shape for use of this class.
+	_collectGroupsData (groups: Array<GroupEntryStrings>): void {
+		let level: number, groupEntry: GroupEntry;
+
+		const lastGroupIndex = new Array(groups.length);
+		const firstChildGroupIndex = new Array(groups.length);
+		let lastLevel = -1;
+		for (let i = 0; i < groups.length; ++i) {
+			// a new group start
+			const groupData = groups[i];
+			level = parseInt(groupData.level) - 1;
+			if (!this._groups[level]) {
+				this._groups[level] = [];
+			}
+			let startPos = parseInt(groupData.startPos);
+			const endPos = parseInt(groupData.endPos);
+			const isHidden = !!parseInt(groupData.hidden);
+			if (!isHidden) {
+				let moved = false;
+				// if the first child is collapsed the parent head has to be top-aligned with the child
+				if (level < lastLevel && firstChildGroupIndex[lastLevel] !== undefined) {
+					const childGroupEntry = this._groups[lastLevel][firstChildGroupIndex[lastLevel]];
+					if (childGroupEntry.hidden) {
+						if (startPos > childGroupEntry.startPos && startPos < childGroupEntry.endPos) {
+							startPos = childGroupEntry.startPos;
+							moved = true;
+						}
+					}
+				}
+				// if 2 groups belonging to the same level are contiguous and the first group is collapsed,
+				// the second one has to be shifted as much as possible in order to avoid overlapping.
+				if (!moved && lastGroupIndex[level] !== undefined) {
+					const prevGroupEntry = this._groups[level][lastGroupIndex[level]];
+					if (prevGroupEntry.hidden) {
+						if (startPos <= prevGroupEntry.endPos) {
+							startPos = prevGroupEntry.endPos + this._groupHeadSize;
+						}
+					}
+				}
+			}
+			groupEntry = {
+				level: level,
+				index: parseInt(groupData.index),
+				startPos: startPos,
+				endPos: endPos,
+				hidden: isHidden
 			};
 			L.DomUtil.remove(elem);
 		}

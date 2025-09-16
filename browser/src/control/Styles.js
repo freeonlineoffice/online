@@ -3,7 +3,7 @@
  * Objects containing LO style mappings
  */
 
-L.Styles = {
+window.L.Styles = {
 	/* eslint no-dupe-keys:0 */
 	// Programming names -> UI names mapping
 	styleMappings: {

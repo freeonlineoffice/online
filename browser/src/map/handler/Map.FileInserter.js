@@ -1,15 +1,16 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Map.FileInserter is handling the fileInserter action
+ * window.L.Map.FileInserter is handling the fileInserter action
  */
 
 /* global app _ Uint8Array errorMessages */
 
-L.Map.mergeOptions({
-	fileInserter: true,
+window.L.Map.mergeOptions({
+	fileInserter: true
 });
 
-L.Map.FileInserter = L.Handler.extend({
+window.L.Map.FileInserter = window.L.Handler.extend({
+
 	initialize: function (map) {
 		this._map = map;
 		this._childId = null;
@@ -359,4 +360,4 @@ L.Map.FileInserter = L.Handler.extend({
 	},
 });
 
-L.Map.addInitHook('addHandler', 'fileInserter', L.Map.FileInserter);
+window.L.Map.addInitHook('addHandler', 'fileInserter', window.L.Map.FileInserter);

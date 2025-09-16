@@ -1,6 +1,13 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * L.TextInput is the hidden textarea, which handles text input events
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.TextInput is the hidden textarea, which handles text input events
  *
  * This is made significantly more difficult than expected by such a
  * mess of browser, and mobile IME quirks that it is not possible to
@@ -10,9 +17,10 @@
 
 /* global app _ */
 
-L.TextInput = L.Layer.extend({
-	initialize: function () {
-		L.Layer.prototype.initialize.call(this);
+window.L.TextInput = window.L.Layer.extend({
+	initialize: function() {
+
+		window.L.Layer.prototype.initialize.call(this);
 
 		this._className = 'TextInput';
 
@@ -57,8 +65,8 @@ L.TextInput = L.Layer.extend({
 		this._initLayout();
 
 		// Under-caret orange marker.
-		this._cursorHandler = L.marker(new L.LatLng(0, 0), {
-			icon: L.divIcon({
+		this._cursorHandler = window.L.marker(new window.L.LatLng(0, 0), {
+			icon: window.L.divIcon({
 				className: 'leaflet-cursor-handler',
 				iconSize: null,
 			}),
@@ -117,7 +125,7 @@ L.TextInput = L.Layer.extend({
 		}
 
 		app.events.on('updatepermission', this._onPermission.bind(this));
-		L.DomEvent.on(this._textArea, 'focus blur', this._onFocusBlur, this);
+		window.L.DomEvent.on(this._textArea, 'focus blur', this._onFocusBlur, this);
 
 		// Do not wait for a 'focus' event to attach events if the
 		// textarea/contenteditable is already focused (due to the autofocus
@@ -140,12 +148,7 @@ L.TextInput = L.Layer.extend({
 			window.postMobileMessage('FOCUSIFHWKBD');
 		}
 
-		L.DomEvent.on(
-			this._map.getContainer(),
-			'mousedown touchstart',
-			this._abortComposition,
-			this,
-		);
+		window.L.DomEvent.on(this._map.getContainer(), 'mousedown touchstart', this._abortComposition, this);
 	},
 
 	onRemove: function () {
@@ -160,13 +163,8 @@ L.TextInput = L.Layer.extend({
 		if (!this.hasAccessibilitySupport()) {
 			this._map.off('commandresult', this._onCommandResult, this);
 		}
-		L.DomEvent.off(this._textArea, 'focus blur', this._onFocusBlur, this);
-		L.DomEvent.off(
-			this._map.getContainer(),
-			'mousedown touchstart',
-			this._abortComposition,
-			this,
-		);
+		window.L.DomEvent.off(this._textArea, 'focus blur', this._onFocusBlur, this);
+		window.L.DomEvent.off(this._map.getContainer(), 'mousedown touchstart', this._abortComposition, this);
 
 		this._map.removeLayer(this._cursorHandler);
 	},
@@ -211,9 +209,7 @@ L.TextInput = L.Layer.extend({
 	_onFocusBlur: function (ev) {
 		this._fancyLog(ev.type, '');
 		this._statusLog('_onFocusBlur');
-		var onoff = (
-			ev.type === 'focus' ? L.DomEvent.on : L.DomEvent.off
-		).bind(L.DomEvent);
+		var onoff = (ev.type === 'focus' ? window.L.DomEvent.on : window.L.DomEvent.off).bind(window.L.DomEvent);
 
 		// Debug - connect first for saner logging.
 		onoff(
@@ -444,17 +440,13 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	_initLayout: function () {
-		this._container = L.DomUtil.create('div', 'clipboard-container');
+	_initLayout: function() {
+		this._container = window.L.DomUtil.create('div', 'clipboard-container');
 		this._container.id = 'doc-clipboard-container';
 		// The textarea allows the keyboard to pop up and so on.
 		// Note that the contents of the textarea are NOT deleted on each composed
 		// word, in order to make
-		this._textArea = L.DomUtil.create(
-			'div',
-			'clipboard',
-			this._container,
-		);
+		this._textArea = window.L.DomUtil.create('div', 'clipboard', this._container);
 		this._textArea.id = 'clipboard-area';
 		this._textArea.setAttribute('contenteditable', 'true');
 		this._textArea.setAttribute('autocapitalize', 'off');
@@ -463,11 +455,7 @@ L.TextInput = L.Layer.extend({
 		this._textArea.setAttribute('autocomplete', 'off');
 		this._textArea.setAttribute('spellcheck', 'false');
 
-		this._textAreaLabel = L.DomUtil.create(
-			'label',
-			'visuallyhidden',
-			this._container,
-		);
+		this._textAreaLabel = window.L.DomUtil.create('label', 'visuallyhidden', this._container);
 		this._textAreaLabel.setAttribute('for', 'clipboard-area');
 		this._textAreaLabel.innerHTML = 'clipboard area';
 		if (this.hasAccessibilitySupport()) {
@@ -483,7 +471,7 @@ L.TextInput = L.Layer.extend({
 		// Prevent autofocus
 		this._textArea.setAttribute('disabled', true);
 
-		if (L.Browser.cypressTest) {
+		if (window.L.Browser.cypressTest) {
 			var that = this;
 			this._textArea._hasAccessibilitySupport = function () {
 				return that.hasAccessibilitySupport();
@@ -529,12 +517,8 @@ L.TextInput = L.Layer.extend({
 			// Style for debugging
 			this._container.style.opacity = 0.5;
 			this._textArea.style.cssText = 'border:1px solid red !important';
-			this._textArea.style.width = L.Browser.cypressTest
-				? '1px'
-				: '120px';
-			this._textArea.style.height = L.Browser.cypressTest
-				? '1px'
-				: '50px';
+			this._textArea.style.width = window.L.Browser.cypressTest ? '1px' : '120px';
+			this._textArea.style.height = window.L.Browser.cypressTest ? '1px' : '50px';
 			this._textArea.style.overflow = 'display';
 
 			this._textArea.style.fontSize = '20px';
@@ -598,7 +582,7 @@ L.TextInput = L.Layer.extend({
 		}
 
 		// Move the hidden text area with the cursor
-		this._latlng = L.latLng(top);
+		this._latlng = window.L.latLng(top);
 		this.update();
 		// shape handlers hidden (if selected)
 		this._map.fire('handlerstatus', { hidden: true });
@@ -621,7 +605,7 @@ L.TextInput = L.Layer.extend({
 	_setPos: function (pos) {
 		// the offset is needed since we have to move away from the edited text
 		// or double clicks for selecting text doesn't work properly
-		if (L.Browser.cypressTest) {
+		if (window.L.Browser.cypressTest) {
 			// Some cypress tests require for the editable area to be as near as possible
 			// to the caret overlay when editing. In fact a synthetic mouse click on
 			// the editable area is performed in order to make it focused and ready for the input.
@@ -632,7 +616,7 @@ L.TextInput = L.Layer.extend({
 		} else {
 			pos.y += this._isDebugOn ? 50 : 200;
 		}
-		L.DomUtil.setPosition(this._container, pos);
+		window.L.DomUtil.setPosition(this._container, pos);
 	},
 
 	// Generic handle attached to most text area events, just for debugging purposes.
@@ -746,11 +730,7 @@ L.TextInput = L.Layer.extend({
 		}
 		// Firefox is not able to delete the <img> post space. Since no 'input' event is generated,
 		// we need to handle a <delete> at the end of the paragraph, here.
-		if (
-			L.Browser.gecko &&
-			this._isCursorAtEnd() &&
-			this._deleteHint === 'delete'
-		) {
+		if (window.L.Browser.gecko && this._isCursorAtEnd() && this._deleteHint === 'delete') {
 			if (this._map._debug.logKeyboardEvents) {
 				window.app.console.log('Sending delete');
 			}
@@ -1057,7 +1037,7 @@ L.TextInput = L.Layer.extend({
 	},
 
 	_handleKeyDownForPopup: function (ev, id) {
-		var popup = L.DomUtil.get(id);
+		var popup = window.L.DomUtil.get(id);
 		if (popup) {
 			const entries = document.querySelectorAll(
 				'#' + id + ' span.ui-treeview-cell',
@@ -1119,15 +1099,9 @@ L.TextInput = L.Layer.extend({
 		// with no selection in a text element with contenteditable='true'. Since no copy/cut event
 		// is emitted, Clipboard.copy/cut is never invoked. So we need to emit it manually.
 		// To be honest it seems a Firefox bug. We need to check if they fix it in later version.
-		if (
-			!this.hasAccessibilitySupport() &&
-			!L.Browser.win &&
-			L.Browser.gecko &&
-			L.Browser.geckoVersion >= '117.0' &&
-			L.Browser.geckoVersion <= '120.0' &&
-			ev.ctrlKey &&
-			window.getSelection().isCollapsed
-		) {
+		if (!this.hasAccessibilitySupport() && !window.L.Browser.win &&
+			window.L.Browser.gecko && window.L.Browser.geckoVersion >= '117.0' && window.L.Browser.geckoVersion <= '120.0' &&
+			ev.ctrlKey && window.getSelection().isCollapsed) {
 			if (ev.key === 'c') {
 				document.execCommand('copy');
 			} else if (ev.key === 'x') {
@@ -1136,14 +1110,9 @@ L.TextInput = L.Layer.extend({
 		}
 
 		if (this.hasAccessibilitySupport()) {
-			if (
-				(this._hasAnySelection &&
-					!this._isEditingInSelection &&
-					this._map.getDocType() !== 'spreadsheet') ||
-				(!this._hasAnySelection &&
-					this._map.getDocType() === 'presentation')
-			) {
-				if (!L.Browser.cypressTest) {
+			if ((this._hasAnySelection && !this._isEditingInSelection && this._map.getDocType() !== 'spreadsheet') ||
+				(!this._hasAnySelection && this._map.getDocType() === 'presentation')) {
+				if (!window.L.Browser.cypressTest) {
 					var allowedKeyEvent =
 						this._map.keyboard.allowedKeyCodeWhenNotEditing[
 							ev.keyCode
@@ -1493,8 +1462,8 @@ L.TextInput = L.Layer.extend({
 		}
 	},
 
-	_setAcceptInput: function (accept) {
-		if (L.Browser.cypressTest && this._textArea) {
+	_setAcceptInput: function(accept) {
+		if (window.L.Browser.cypressTest && this._textArea) {
 			// This is used to track whether we *intended*
 			// the keyboard to be visible or hidden.
 			// There is no way track the keyboard state
@@ -1836,6 +1805,6 @@ L.TextInput = L.Layer.extend({
 	},
 });
 
-L.textInput = function () {
-	return new L.TextInput();
+window.L.textInput = function() {
+	return new window.L.TextInput();
 };

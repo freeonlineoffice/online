@@ -1,12 +1,21 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.NotebookbarBuilder
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.NotebookbarBuilder - builder of native HTML widgets for tabbed menu
  */
 
 /* global $ _ JSDialog app GraphicSelection Menubar */
 
-L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
-	_customizeOptions: function () {
+window.L.Control.NotebookbarBuilder = window.L.Control.JSDialogBuilder.extend({
+
+	_customizeOptions: function() {
 		this.options.noLabelsForUnoButtons = true;
 		this.options.useInLineLabelsForUnoButtons = false;
 		this.options.cssClass = 'notebookbar';
@@ -186,17 +195,9 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 		// function inline.
 		if (window.ThisIsTheiOSApp && data.id === 'fontnamecombobox') {
 			// Fix issue #5838 Use unique IDs for font name combobox elements
-			var table = L.DomUtil.createWithId(
-				'div',
-				data.id,
-				parentContainer,
-			);
-			var row = L.DomUtil.create('div', 'notebookbar row', table);
-			var button = L.DomUtil.createWithId(
-				'button',
-				data.id + 'ios',
-				row,
-			);
+			var table = window.L.DomUtil.createWithId('div', data.id, parentContainer);
+			var row = window.L.DomUtil.create('div', 'notebookbar row', table);
+			var button = window.L.DomUtil.createWithId('button', data.id + 'ios', row);
 
 			$(table).addClass(
 				'select2 select2-container select2-container--default',
@@ -236,8 +237,8 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 		var tooltipCollapsed = _('Tap to expand');
 		var tooltipExpanded = _('Tap to collapse');
 		tabs[t].setAttribute('data-looltip', tooltipExpanded);
-		L.control.attachTooltipEventListener(tabs[t], builder.map);
-		return function (event) {
+		window.L.control.attachTooltipEventListener(tabs[t], builder.map);
+		return function(event) {
 			var tabIsSelected = $(tabs[t]).hasClass('selected');
 			var notebookbarIsCollapsed = builder.wizard.isCollapsed();
 
@@ -768,7 +769,7 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 		$(control.button).unbind('click');
 		$(control.label).unbind('click');
 		$(control.container).click(function () {
-			L.DomUtil.get('selectbackground').click();
+			window.L.DomUtil.get('selectbackground').click();
 		});
 		builder._preventDocumentLosingFocusOnClick(control.container);
 	},
@@ -877,16 +878,8 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 
 	build: function (parent, data, hasVerticalParent) {
 		if (hasVerticalParent === undefined) {
-			parent = L.DomUtil.create(
-				'div',
-				'root-container ' + this.options.cssClass,
-				parent,
-			);
-			parent = L.DomUtil.create(
-				'div',
-				'vertical ' + this.options.cssClass,
-				parent,
-			);
+			parent = window.L.DomUtil.create('div', 'root-container ' + this.options.cssClass, parent);
+			parent = window.L.DomUtil.create('div', 'vertical ' + this.options.cssClass, parent);
 		}
 
 		for (var childIndex in data) {
@@ -915,18 +908,14 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 				childData.children && childData.children.length > 1;
 			if (hasManyChildren) {
 				if (childData.id && childData.id.indexOf(' ') >= 0)
-					console.error(
-						'notebookbar: space in the id: "' +
-							childData.id +
-							'"',
-					);
-				var tableId = childData.id
-					? childData.id.replace(' ', '')
-					: '';
-				var table = L.DomUtil.createWithId('div', tableId, parent);
-				L.DomUtil.addClass(table, this.options.cssClass);
-				if (isVertical) L.DomUtil.addClass(table, 'vertical');
-				else L.DomUtil.addClass(table, 'horizontal');
+					console.error('notebookbar: space in the id: "' + childData.id + '"');
+				var tableId = childData.id ? childData.id.replace(' ', '') : '';
+				var table = window.L.DomUtil.createWithId('div', tableId, parent);
+				window.L.DomUtil.addClass(table, this.options.cssClass);
+				if (isVertical)
+					window.L.DomUtil.addClass(table, 'vertical');
+				else
+					window.L.DomUtil.addClass(table, 'horizontal');
 				var childObject = table;
 			} else {
 				childObject = parent;
@@ -992,8 +981,8 @@ L.Control.NotebookbarBuilder = L.Control.JSDialogBuilder.extend({
 	},
 });
 
-L.control.notebookbarBuilder = function (options) {
-	var builder = new L.Control.NotebookbarBuilder(options);
+window.L.control.notebookbarBuilder = function (options) {
+	var builder = new window.L.Control.NotebookbarBuilder(options);
 	builder._setup(options);
 	builder._overrideHandlers();
 	builder._customizeOptions();

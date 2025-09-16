@@ -1,12 +1,21 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.NotebookbarImpress
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.NotebookbarImpress - definition of notebookbar content in Impress
  */
 
 /* global _ _UNO app JSDialog */
 
-L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
-	getShortcutsBarData: function () {
+window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend({
+
+	getShortcutsBarData: function() {
 		return [
 			!this.map['wopi'].HideSaveOption
 				? {
@@ -241,7 +250,7 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 		var hasSave = !this.map['wopi'].HideSaveOption;
 		var hasSaveAs = !this.map['wopi'].UserCanNotWriteRelative;
 		var hasShare = this.map['wopi'].EnableShare;
-		var hasRevisionHistory = L.Params.revHistoryEnabled;
+		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 
 		if (hasSave) {
 			content.push({
@@ -4462,6 +4471,6 @@ L.Control.NotebookbarImpress = L.Control.NotebookbarWriter.extend({
 	},
 });
 
-L.control.notebookbarImpress = function (options) {
-	return new L.Control.NotebookbarImpress(options);
+window.L.control.notebookbarImpress = function (options) {
+	return new window.L.Control.NotebookbarImpress(options);
 };

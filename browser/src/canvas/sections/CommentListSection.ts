@@ -245,13 +245,10 @@ export class CommentSection extends CanvasSectionObject {
 				this.map.setPart(index);
 			}
 		}
-
-		public onAnnotationScrollUp(): void {
-			var index = this.findPreviousPartWithComment(
-				app.map._docLayer._selectedPart,
-			);
-			if (index >= 0) {
-				this.map.setPart(index);
+		else if (app.map._docLayer._docType === 'presentation') { // If there are comments but none of them are on the selected part.
+			if (!this.sectionProperties.scrollAnnotation) {
+				this.sectionProperties.scrollAnnotation = window.L.control.scrollannotation();
+				this.sectionProperties.scrollAnnotation.addTo(this.map);
 			}
 		}
 
@@ -314,8 +311,579 @@ export class CommentSection extends CanvasSectionObject {
 			return null;
 		}
 
-		public setCollapsed(): void {
-			if (this.isEditing()) {
+	public setCollapsed(): void {
+		if (this.isEditing()) {
+			return;
+		}
+
+		this.isCollapsed = true;
+		this.unselect();
+		for (var i: number = 0; i < this.sectionProperties.commentList.length; i++) {
+			if (this.sectionProperties.commentList[i].sectionProperties.data.id !== 'new')
+				this.sectionProperties.commentList[i].setCollapsed();
+			$(this.sectionProperties.commentList[i].sectionProperties.container).addClass('collapsed-comment');
+			if (this.sectionProperties.commentList[i].isRootComment())
+				this.collapseReplies(i, this.sectionProperties.commentList[i].sectionProperties.data.id);
+		}
+	}
+
+	public setExpanded(): void {
+		this.isCollapsed = false;
+		for (var i: number = 0; i < this.sectionProperties.commentList.length; i++) {
+			this.sectionProperties.commentList[i].setExpanded();
+			$(this.sectionProperties.commentList[i].sectionProperties.container).removeClass('collapsed-comment');
+		}
+	}
+
+	private calculateAvailableSpace() {
+		var availableSpace = (this.containerObject.getDocumentAnchorSection().size[0] - app.activeDocument.fileSize.pX) * 0.5;
+		availableSpace = Math.round(availableSpace / app.dpiScale);
+		return availableSpace;
+	}
+
+	public shouldCollapse (): boolean {
+		if (!this.containerObject.getDocumentAnchorSection() || app.map._docLayer._docType === 'spreadsheet' || (<any>window).mode.isMobile())
+			return false;
+		const availableSpace = this.calculateAvailableSpace();
+
+		return availableSpace < this.sectionProperties.commentWidth && availableSpace > this.sectionProperties.collapsedCommentWidth;
+	}
+
+	public hideAllComments (): void {
+		for (var i: number = 0; i < this.sectionProperties.commentList.length; i++) {
+			this.sectionProperties.commentList[i].hide();
+			var part = app.map._docLayer._selectedPart;
+			if (app.map._docLayer._docType === 'spreadsheet') {
+				// Change drawing order so they don't prevent each other from being shown.
+				if (parseInt(this.sectionProperties.commentList[i].sectionProperties.data.tab) === part) {
+					this.sectionProperties.commentList[i].drawingOrder = 2;
+				}
+				else {
+					this.sectionProperties.commentList[i].drawingOrder = 1;
+				}
+			}
+		}
+
+		if (app.map._docLayer._docType === 'spreadsheet')
+			this.containerObject.applyDrawingOrders();
+	}
+
+	// Mobile.
+	private getChildren(comment: any, array: Array<any>) {
+		for (var i = 0; i < comment.sectionProperties.children.length; i++) {
+			array.push(comment.sectionProperties.children[i]);
+			if (comment.sectionProperties.children[i].sectionProperties.children.length > 0)
+				this.getChildren(comment.sectionProperties.children[i], array);
+		}
+	}
+
+	// Mobile.
+	private getCommentListOneDimensionalArray() {
+		// 1 dimensional array of ordered comments.
+		var openArray = [];
+
+		for (var i = 0; i < this.sectionProperties.commentList.length; i++) {
+			if (this.sectionProperties.commentList[i].isRootComment()) {
+				openArray.push(this.sectionProperties.commentList[i]);
+				if (this.sectionProperties.commentList[i].sectionProperties.children.length > 0)
+					this.getChildren(this.sectionProperties.commentList[i], openArray);
+			}
+		}
+		return openArray;
+	}
+
+	private createCommentStructureWriter (menuStructure: any, threadOnly: any): void {
+		var rootComment, comment;
+		var commentList = this.getCommentListOneDimensionalArray();
+		var showResolved = this.sectionProperties.showResolved;
+
+		if (threadOnly) {
+			if (!threadOnly.sectionProperties.data.trackchange && threadOnly.sectionProperties.data.parent !== '0')
+				threadOnly = commentList[this.getIndexOf(threadOnly.sectionProperties.data.parent)];
+		}
+
+		for (var i = 0; i < commentList.length; i++) {
+			if (commentList[i].isRootComment() || commentList[i].sectionProperties.data.trackchange) {
+				var commentThread = [];
+				do {
+					comment = {
+						id: 'comment' + commentList[i].sectionProperties.data.id,
+						enable: true,
+						data: commentList[i].sectionProperties.data,
+						type: 'comment',
+						text: commentList[i].sectionProperties.data.text,
+						annotation: commentList[i],
+						children: []
+					};
+
+					if (showResolved || comment.data.resolved !== 'true') {
+						commentThread.unshift(comment);
+					}
+					i++;
+				} while (commentList[i] && commentList[i].sectionProperties.data.parent !== '0');
+				i--;
+
+				if (commentThread.length > 0)
+				{
+					rootComment = {
+						id: commentThread[commentThread.length - 1].id,
+						enable: true,
+						data: commentThread[commentThread.length - 1].data,
+						type: 'rootcomment',
+						text: commentThread[commentThread.length - 1].data.text,
+						annotation: commentThread[commentThread.length - 1].annotation,
+						children: commentThread
+					};
+
+					var matchingThread = threadOnly && threadOnly.sectionProperties.data.id === commentThread[0].data.id;
+					if (matchingThread)
+						menuStructure['children'] = commentThread;
+					else if (!threadOnly)
+						menuStructure['children'].push(rootComment);
+				}
+			}
+		}
+	}
+
+	public createCommentStructureImpress (menuStructure: any, threadOnly: any): void {
+		var rootComment;
+
+		for (var i in this.sectionProperties.commentList) {
+			var matchingThread = !threadOnly || (threadOnly && threadOnly.sectionProperties.data.id === this.sectionProperties.commentList[i].sectionProperties.data.id);
+			if (matchingThread && (this.sectionProperties.commentList[i].sectionProperties.partIndex === app.map._docLayer._selectedPart || app.file.fileBasedView)) {
+				rootComment = {
+					id: 'comment' + this.sectionProperties.commentList[i].sectionProperties.data.id,
+					enable: true,
+					data: this.sectionProperties.commentList[i].sectionProperties.data,
+					type: threadOnly ? 'comment' : 'rootcomment',
+					text: this.sectionProperties.commentList[i].sectionProperties.data.text,
+					annotation: this.sectionProperties.commentList[i],
+					children: []
+				};
+				menuStructure['children'].push(rootComment);
+			}
+		}
+	}
+
+	public createCommentStructureCalc (menuStructure: any, threadOnly: any): void {
+		var rootComment;
+		var commentList = this.sectionProperties.commentList;
+		var selectedTab = app.map._docLayer._selectedPart;
+
+		for (var i: number = 0; i < commentList.length; i++) {
+			var matchingThread = !threadOnly || (threadOnly && threadOnly.sectionProperties.data.id === commentList[i].sectionProperties.data.id);
+			if (parseInt(commentList[i].sectionProperties.data.tab) === selectedTab && matchingThread) {
+				rootComment = {
+					id: 'comment' + commentList[i].sectionProperties.data.id,
+					enable: true,
+					data: commentList[i].sectionProperties.data,
+					type: threadOnly ? 'comment' : 'rootcomment',
+					text: commentList[i].sectionProperties.data.text,
+					annotation: commentList[i],
+					children: []
+				};
+				menuStructure['children'].push(rootComment);
+			}
+		}
+	}
+
+	// threadOnly - takes annotation indicating which thread will be generated
+	public createCommentStructure (menuStructure: any, threadOnly: any): void {
+		if (app.map._docLayer._docType === 'text') {
+			this.createCommentStructureWriter(menuStructure, threadOnly);
+		}
+		else if (app.map._docLayer._docType === 'presentation' || app.map._docLayer._docType === 'drawing') {
+			this.createCommentStructureImpress(menuStructure, threadOnly);
+		}
+		else if (app.map._docLayer._docType === 'spreadsheet') {
+			this.createCommentStructureCalc(menuStructure, threadOnly);
+		}
+	}
+
+	public isMobileCommentActive (): boolean {
+		const newComment = document.getElementById(this.mobileCommentId);
+		if (!newComment)
+			return false;
+		return newComment.style.display !== 'none'
+	}
+
+	public getMobileCommentModalId (): string {
+		return this.mobileCommentModalId;
+	}
+
+	public newAnnotationMobile (comment: any, addCommentFn: any, isMod: any): void {
+		var commentData = comment.sectionProperties.data;
+
+		var callback = function(div: HTMLDivElement) {
+			if (div.textContent || div.innerHTML) {
+				var annotation = comment;
+
+				annotation.sectionProperties.data.text = div.textContent;
+				annotation.sectionProperties.data.html = div.innerHTML;
+				comment.text = div.textContent;
+
+				addCommentFn.call(annotation, annotation, comment);
+				if (!isMod)
+					this.containerObject.removeSection(annotation);
+			}
+			else {
+				this.cancel(comment);
+			}
+		}.bind(this);
+
+		let listId = 'mentionPopupList';
+		if (this.map.mention)
+			listId = this.map.mention.getPopupId() + 'List';
+		var json = this.map.uiManager._modalDialogJSON(this.mobileCommentId, '', true, [
+			{
+				id: 'input-modal-input',
+				type: 'multilineedit',
+				text: (commentData.text && isMod ? commentData.text: ''),
+				html: (commentData.html && isMod ? commentData.html: ''),
+				contenteditable: true
+			},
+			{
+				id: listId,
+				type: 'treelistbox',
+				text: '',
+				enabled: true,
+				singleclickactivate: false,
+				fireKeyEvents: true,
+				hideIfEmpty: true,
+				entries: [] as Array<TreeEntryJSON>,
+			},
+			{
+				id: '',
+				type: 'buttonbox',
+				text: '',
+				enabled: true,
+				children: [
+					{
+						id: 'response-cancel',
+						type: 'pushbutton',
+						text: _('Cancel'),
+					},
+					{
+						id: 'response-ok',
+						type: 'pushbutton',
+						text: _('Save'),
+						'has_default': true,
+					}
+				],
+				vertical: false,
+				layoutstyle: 'end'
+			},
+		]);
+
+		var cancelFunction = function() {
+			this.cancel(comment);
+			this.map.uiManager.closeModal(this.mobileCommentModalId);
+		}.bind(this);
+
+		const mentionListCallback = function(objectType: any, eventType: any, object: any, index: number) {
+				const mention = this.map.mention;
+				if (eventType === 'close')
+					mention.closeMentionPopup(false);
+				else if (eventType === 'select' || eventType === 'activate') {
+					const item = mention.getMentionUserData(index);
+					const replacement = '@' + mention.getPartialMention();
+					const uid = item.label ?? item.username
+					if (uid !== '' && item.profile !== '')
+						comment.autoCompleteMention(uid, item.profile, replacement)
+					mention.closeMentionPopup(false);
+				}
+		}.bind(this);
+
+		this.map.uiManager.showModal(json, [
+			{id: 'response-ok', func: function() {
+				if (typeof callback === 'function') {
+					var input = document.getElementById('input-modal-input') as HTMLDivElement;
+					callback(input);
+				}
+				this.map.uiManager.closeModal(this.mobileCommentModalId);
+			}.bind(this)},
+			{id: 'response-cancel', func: cancelFunction},
+			{id: '__POPOVER__', func: cancelFunction},
+			{id: '__DIALOG__', func: cancelFunction},
+			{id: listId, func: mentionListCallback}
+		]);
+
+		app.layoutingService.appendLayoutingTask(() => {
+			const multilineEditDiv = document.getElementById('input-modal-input');
+			multilineEditDiv.addEventListener('input', function(ev: any){
+				if (ev && app.map._docLayer._docType === 'text') {
+					// special handling for mentions
+					this.map?.mention.handleMentionInput(ev, comment.isNewPara());
+				}
+			}.bind(this));
+
+			const tagTd = 'td',
+			empty = '',
+			tagDiv = 'div';
+			const author = window.L.DomUtil.create('table', 'lool-annotation-table');
+			const tbody = window.L.DomUtil.create('tbody', empty, author);
+			const tr = window.L.DomUtil.create('tr', empty, tbody);
+			const tdImg = window.L.DomUtil.create(tagTd, 'lool-annotation-img', tr);
+			const tdAuthor = window.L.DomUtil.create(tagTd, 'lool-annotation-author', tr);
+			const imgAuthor = window.L.DomUtil.create('img', 'avatar-img', tdImg);
+			const user = this.map.getViewId(commentData.author);
+			app.LOUtil.setUserImage(imgAuthor, this.map, user);
+			imgAuthor.setAttribute('width', 32);
+			imgAuthor.setAttribute('height', 32);
+			const authorAvatarImg = imgAuthor;
+			const contentAuthor = window.L.DomUtil.create(tagDiv, 'lool-annotation-content-author', tdAuthor);
+			const contentDate = window.L.DomUtil.create(tagDiv, 'lool-annotation-date', tdAuthor);
+
+			$(contentAuthor).text(commentData.author);
+			$(authorAvatarImg).attr('src', commentData.avatar);
+			if (user >= 0) {
+				const color = app.LOUtil.rgbToHex(this.map.getViewColor(user));
+				$(authorAvatarImg).css('border-color', color);
+			}
+
+			if (commentData.dateTime) {
+				const d = new Date(commentData.dateTime.replace(/,.*/, 'Z'));
+				const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+				$(contentDate).text(isNaN(d.getTime()) ? comment.dateTime: d.toLocaleDateString((<any>String).locale, <any>dateOptions));
+			}
+
+			const newAnnotationDialog = document.getElementById(this.mobileCommentId);
+			$(newAnnotationDialog).css('width', '100%');
+			const dialogInput = newAnnotationDialog.children[0];
+			$(dialogInput).css('height', '30vh');
+			const parent = newAnnotationDialog.parentElement;
+			parent.insertBefore(author, parent.childNodes[0]);
+			document.getElementById('input-modal-input').focus();
+		});
+	}
+
+	public highlightComment (comment: any): void {
+		this.removeHighlighters();
+
+		var commentList = this.sectionProperties.commentList;
+
+		var lastChild: any = this.getLastChildIndexOf(comment.sectionProperties.data.id);
+
+		while (true && lastChild >= 0) {
+			commentList[lastChild].highlight();
+
+			if (commentList[lastChild].isRootComment())
+				break;
+
+			lastChild = this.getIndexOf(commentList[lastChild].sectionProperties.data.parent);
+		}
+	}
+
+	public removeHighlighters (): void {
+		var commentList = this.sectionProperties.commentList;
+		for (var i: number = 0; i < commentList.length; i++) {
+			if (commentList[i].sectionProperties.isHighlighted) {
+				commentList[i].removeHighlight();
+			}
+		}
+	}
+
+	public removeItem (id: any): void {
+		var annotation;
+		for (var i = 0; i < this.sectionProperties.commentList.length; i++) {
+			annotation = this.sectionProperties.commentList[i];
+			if (annotation.sectionProperties.data.id === id) {
+				this.containerObject.removeSection(annotation.name);
+				this.sectionProperties.commentList.splice(i, 1);
+				this.updateIdIndexMap();
+				break;
+			}
+		}
+		this.checkSize();
+	}
+
+	public click (annotation: any): void {
+		this.select(annotation);
+	}
+
+	public save (annotation: any): void {
+		var comment;
+		if (annotation.sectionProperties.data.id === 'new') {
+			comment = {
+				Author: {
+					type: 'string',
+					value: annotation.sectionProperties.data.author
+				},
+				// send if html exists, and it's writer send just html, otherwise text
+				... (app.map._docLayer._docType === 'text' &&
+				     annotation.sectionProperties.data.html) ?
+					{ Html: {
+						type: 'string',
+						value: annotation.sectionProperties.data.html
+					} } :
+					{ Text: {
+						type: 'string',
+						value: annotation.sectionProperties.data.text
+					} }
+			};
+			if (app.file.fileBasedView) {
+				this.map.setPart(app.map._docLayer._selectedPart, false);
+				this.map.sendUnoCommand('.uno:InsertAnnotation', comment, true /* force */);
+				this.map.setPart(0, false);
+			}
+			else {
+				this.map.sendUnoCommand('.uno:InsertAnnotation', comment, true /* force */);
+			}
+
+			// Object is later removed in onACKComment when newly inserted comment object is available
+			// It's to reduce the flicker when using comment autosave
+			if (!CommentSection.autoSavedComment)
+				this.removeItem(annotation.sectionProperties.data.id);
+		} else if (annotation.sectionProperties.data.trackchange) {
+			comment = {
+				ChangeTrackingId: {
+					type: 'long',
+					value: annotation.sectionProperties.data.index
+				},
+				Text: {
+					type: 'string',
+					value: annotation.sectionProperties.data.text
+				}
+			};
+			this.map.sendUnoCommand('.uno:CommentChangeTracking', comment, true /* force */);
+		} else {
+			comment = {
+				Id: {
+					type: 'string',
+					value: annotation.sectionProperties.data.id
+				},
+				Author: {
+					type: 'string',
+					value: annotation.sectionProperties.data.author
+				},
+				// send if html exists, and it's writer send just html, otherwise text
+				... (app.map._docLayer._docType === 'text' &&
+				     annotation.sectionProperties.data.html) ?
+					{ Html: {
+						type: 'string',
+						value: annotation.sectionProperties.data.html
+					} } :
+					{ Text: {
+						type: 'string',
+						value: annotation.sectionProperties.data.text
+					} }
+			};
+			this.map.sendUnoCommand('.uno:EditAnnotation', comment, true /* force */);
+		}
+		this.unselect();
+		this.map.focus();
+	}
+
+	public reply (annotation: any): void {
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
+			return;
+		}
+		if ((<any>window).mode.isMobile()) {
+			var avatar = undefined;
+			var author = this.map.getViewName(app.map._docLayer._viewId);
+			if (author in this.map._viewInfoByUserName) {
+				avatar = this.map._viewInfoByUserName[author].userextrainfo.avatar;
+			}
+
+			if (app.map._docLayer._docType === 'presentation' || app.map._docLayer._docType === 'drawing') {
+				this.newAnnotationMobile(annotation, annotation.onReplyClick, /* isMod */ false);
+			}
+			else {
+				var replyAnnotation = {
+					text: '',
+					textrange: '',
+					author: author,
+					dateTime: new Date().toDateString(),
+					id: annotation.sectionProperties.data.id,
+					avatar: avatar,
+					parent: annotation.sectionProperties.data.parent,
+					anchorPos: [annotation.sectionProperties.data.anchorPos[0], annotation.sectionProperties.data.anchorPos[1]],
+				};
+
+				const name = lool.Comment.makeName(replyAnnotation) + '-reply';
+				var replyAnnotationSection = new lool.Comment(name, replyAnnotation, replyAnnotation.id === 'new' ? {noMenu: true} : {}, this);
+
+				this.newAnnotationMobile(replyAnnotationSection, annotation.onReplyClick, /* isMod */ false);
+			}
+		}
+		else {
+			annotation.reply();
+			this.select(annotation, true);
+			annotation.focus();
+		}
+	}
+
+	public modify (annotation: any): void {
+		if (lool.Comment.isAnyEdit()) {
+			lool.CommentSection.showCommentEditingWarning();
+			return;
+		}
+		if ((<any>window).mode.isMobile()) {
+			this.newAnnotationMobile(annotation, function(annotation: any) {
+				this.save(annotation);
+			}.bind(this), /* isMod */ true);
+		}
+		else {
+			// Make sure that comment is not transitioning and comment menu is not open.
+			var tempFunction = function() {
+				setTimeout(function() {
+					if (annotation.sectionProperties.container && annotation.sectionProperties.contextMenu === true
+					) {
+						tempFunction();
+					}
+					else {
+						annotation.edit();
+						this.select(annotation, true);
+						annotation.focus();
+					}
+				}.bind(this), 1);
+			}.bind(this);
+			tempFunction();
+		}
+	}
+
+	private showCollapsedReplies(rootIndex: number) {
+		if (!this.sectionProperties.commentList.length)
+			return;
+		var lastIndex = this.getLastChildIndexOf(this.sectionProperties.commentList[rootIndex].sectionProperties.data.id);
+		var rootComment = this.sectionProperties.commentList[rootIndex];
+
+		while (rootIndex <= lastIndex) {
+			this.sectionProperties.commentList[rootIndex].sectionProperties.container.style.display = '';
+			this.sectionProperties.commentList[rootIndex].sectionProperties.container.style.visibility = '';
+			$(this.sectionProperties.commentList[rootIndex].sectionProperties.container).removeClass('collapsed-comment');
+			rootIndex++;
+		}
+		rootComment.updateThreadInfoIndicator();
+	}
+
+	private collapseReplies(rootIndex: number, rootId: number) {
+		var lastChild = this.getLastChildIndexOf(rootId);
+
+		$(this.sectionProperties.commentList[rootIndex].sectionProperties.container).addClass('collapsed-comment');
+		for (var i = lastChild; i > rootIndex; i--) {
+			this.sectionProperties.commentList[i].sectionProperties.container.style.display = 'none';
+			$(this.sectionProperties.commentList[i].sectionProperties.container).addClass('collapsed-comment');
+		}
+		this.sectionProperties.commentList[i].updateThreadInfoIndicator();
+	}
+
+	private cssToCorePixels(cssPixels: number) {
+		return cssPixels * app.dpiScale;
+	}
+
+	public select (annotation: Comment, force: boolean = false): void {
+		if (force
+			|| (annotation && !annotation.pendingInit && annotation !== this.sectionProperties.selectedComment
+			&& (annotation.sectionProperties.data.resolved !== 'true' || this.sectionProperties.showResolved)
+			)) {
+			// Select the root comment
+			var idx = this.getRootIndexOf(annotation.sectionProperties.data.id);
+
+			// no need to reselect comment, it will cause to scroll to root comment unnecessarily
+			if (this.sectionProperties.selectedComment === this.sectionProperties.commentList[idx]) {
+				this.update();
 				return;
 			}
 
@@ -1745,222 +2313,24 @@ export class CommentSection extends CanvasSectionObject {
 			}
 		}
 
-		private initializeContextMenus(): void {
-			var docLayer = app.map._docLayer;
-			L.installContextMenu({
-				selector: '.lool-annotation-menu',
-				trigger: 'none',
-				zIndex: 1500,
-				className: 'lool-font',
-				build: function ($trigger: any) {
-					const blockChangeFromDifferentAuthor =
-						this.map.isReadOnlyMode() &&
-						docLayer._docType === 'text' &&
-						this.map.getViewName(docLayer._viewId) !==
-							$trigger[0].annotation.sectionProperties.data
-								.author;
-					const isShownBig =
-						this.sectionProperties.showSelectedBigger &&
-						this.sectionProperties.selectedComment ===
-							this.sectionProperties.commentList[
-								this.getRootIndexOf(
-									$trigger[0].annotation
-										.sectionProperties.data.id,
-								)
-							];
-					return {
-						autoHide: true,
-						items: {
-							modify: blockChangeFromDifferentAuthor
-								? undefined
-								: {
-										name: _('Modify'),
-										callback: function (
-											key: any,
-											options: any,
-										) {
-											this.modify.call(
-												this,
-												options.$trigger[0]
-													.annotation,
-											);
-										}.bind(this),
-									},
-							reply:
-								docLayer._docType !== 'text' &&
-								docLayer._docType !== 'presentation'
-									? undefined
-									: {
-											name: _('Reply'),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.reply.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
-							remove: blockChangeFromDifferentAuthor
-								? undefined
-								: {
-										name: _('Remove'),
-										callback: function (
-											key: any,
-											options: any,
-										) {
-											this.remove.call(
-												this,
-												options.$trigger[0]
-													.annotation
-													.sectionProperties
-													.data.id,
-											);
-										}.bind(this),
-									},
-							removeThread:
-								docLayer._docType !== 'text' ||
-								!$trigger[0].annotation.isRootComment() ||
-								blockChangeFromDifferentAuthor
-									? undefined
-									: {
-											name: _('Remove Thread'),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.removeThread.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation
-														.sectionProperties
-														.data.id,
-												);
-											}.bind(this),
-										},
-							resolve:
-								docLayer._docType !== 'text'
-									? undefined
-									: {
-											name:
-												$trigger[0]
-													.annotation
-													.sectionProperties
-													.data
-													.resolved ===
-												'false'
-													? _('Resolve')
-													: _(
-															'Unresolve',
-														),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.resolve.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
-							resolveThread:
-								docLayer._docType !== 'text' ||
-								!$trigger[0].annotation.isRootComment()
-									? undefined
-									: {
-											name: this.isThreadResolved(
-												$trigger[0]
-													.annotation,
-											)
-												? _(
-														'Unresolve Thread',
-													)
-												: _(
-														'Resolve Thread',
-													),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.resolveThread.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
-							promote:
-								docLayer._docType !== 'text' ||
-								$trigger[0].annotation.isRootComment() ||
-								blockChangeFromDifferentAuthor
-									? undefined
-									: {
-											name: _(
-												'Promote to top comment',
-											),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.promote.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
-							showBigger:
-								docLayer._docType !== 'text' ||
-								(<any>window).mode.isMobile()
-									? undefined
-									: {
-											name: isShownBig
-												? _(
-														'Show on the side',
-													)
-												: _(
-														'Open in full view',
-													),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.toggleShowBigger.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
-							showInNavigator:
-								docLayer._docType !== 'text' ||
-								(<any>window).mode.isMobile()
-									? undefined
-									: {
-											name: _(
-												'Show in navigator',
-											),
-											callback: function (
-												key: any,
-												options: any,
-											) {
-												this.showInNavigator.call(
-													this,
-													options
-														.$trigger[0]
-														.annotation,
-												);
-											}.bind(this),
-										},
+	private initializeContextMenus (): void {
+		var docLayer = app.map._docLayer;
+		window.L.installContextMenu({
+			selector: '.lool-annotation-menu',
+			trigger: 'none',
+			zIndex: 1500,
+			className: 'lool-font',
+			build: function ($trigger: any) {
+				const blockChangeFromDifferentAuthor = this.map.isReadOnlyMode() && docLayer._docType === 'text' && this.map.getViewName(docLayer._viewId) !== $trigger[0].annotation.sectionProperties.data.author;
+				const isShownBig = this.sectionProperties.showSelectedBigger && this.sectionProperties.selectedComment === this.sectionProperties.commentList[this.getRootIndexOf($trigger[0].annotation.sectionProperties.data.id)];
+				return {
+					autoHide: true,
+					items: {
+						modify: blockChangeFromDifferentAuthor ? undefined : {
+							name: _('Modify'),
+							callback: function (key: any, options: any) {
+								this.modify.call(this, options.$trigger[0].annotation);
+							}.bind(this)
 						},
 					};
 				}.bind(this),
@@ -1979,22 +2349,27 @@ export class CommentSection extends CanvasSectionObject {
 						options.$trigger[0].annotation.sectionProperties.contextMenu = false;
 					},
 				},
-			});
-			L.installContextMenu({
-				selector: '.lool-annotation-menu-redline',
-				trigger: 'none',
-				zIndex: 1500,
-				className: 'lool-font',
-				items: {
-					modify: {
-						name: _('Comment'),
-						callback: function (key: any, options: any) {
-							this.modify.call(
-								this,
-								options.$trigger[0].annotation,
-							);
-						}.bind(this),
-					},
+				hide: function (options: any) {
+					options.$trigger[0].annotation.sectionProperties.contextMenu = false;
+				}
+			}
+		});
+		window.L.installContextMenu({
+			selector: '.lool-annotation-menu-redline',
+			trigger: 'none',
+			zIndex: 1500,
+			className: 'lool-font',
+			items: {
+				modify: {
+					name: _('Comment'),
+					callback: function (key: any, options: any) {
+						this.modify.call(this, options.$trigger[0].annotation);
+					}.bind(this)
+				}
+			},
+			events: {
+				show: function (options: any) {
+					options.$trigger[0].annotation.sectionProperties.contextMenu = true;
 				},
 				events: {
 					show: function (options: any) {
@@ -2124,10 +2499,129 @@ export class CommentSection extends CanvasSectionObject {
 				comment.setCollapsed();
 			else comment.setExpanded();
 
-			// check if we are the author
-			// then select it so it does not get lost in a long list of comments and replies.
-			const authorName = this.map.getViewName(
-				app.map._docLayer._viewId,
+		// check if we are the author
+		// then select it so it does not get lost in a long list of comments and replies.
+		const authorName = this.map.getViewName(app.map._docLayer._viewId);
+		const newComment = comment.sectionProperties.data.id === 'new';
+		if (!newComment && (authorName === comment.sectionProperties.data.author)) {
+			this.select(comment);
+		}
+
+		return comment;
+	}
+
+	public adjustRedLine (redline: any): boolean {
+		// All sane values ?
+		if (!redline.textRange) {
+			console.warn('Redline received has invalid textRange');
+			return false;
+		}
+
+		// transform change tracking index into an id
+		redline.id = 'change-' + redline.index;
+		redline.parent = '0'; // Redlines don't have parents, we need to specify this for consistency.
+		redline.anchorPos = this.stringToRectangles(redline.textRange)[0];
+		redline.anchorPix = this.numberArrayToCorePixFromTwips(redline.anchorPos, 0, 2);
+		redline.trackchange = true;
+		redline.text = redline.comment;
+		var rectangles = window.L.PolyUtil.rectanglesToPolygons(app.LOUtil.stringToRectangles(redline.textRange), app.map._docLayer);
+		if (rectangles.length > 0) {
+			redline.textSelected = window.L.polygon(rectangles, {
+				pointerEvents: 'all',
+				interactive: false,
+				fillOpacity: 0,
+				opacity: 0
+			});
+			redline.textSelected.addEventParent(this.map);
+			redline.textSelected.on('click', function() {
+				this.selectById(redline.id);
+			}, this);
+		}
+
+		return true;
+	}
+
+	public getComment (id: any): any {
+		const index = this.getIndexOf(id);
+		return index == -1 ? null : this.sectionProperties.commentList[index];
+	}
+
+	private checkIfCommentHasPreAssignedChildren(comment: CommentSection) {
+		for (var i = 0; i < this.sectionProperties.commentList.length; i++) {
+			var possibleChild: Comment = this.sectionProperties.commentList[i];
+			if (possibleChild.sectionProperties.possibleParentCommentId !== null) {
+				if (possibleChild.sectionProperties.possibleParentCommentId === comment.sectionProperties.data.id) {
+					if (!comment.sectionProperties.children.includes(possibleChild))
+						comment.sectionProperties.children.push(possibleChild);
+				}
+			}
+		}
+	}
+
+	// Adjust parent-child relationship, if required, after `comment` is added
+	public adjustParentAdd (comment: any): void {
+		if (comment.sectionProperties.data.parent === undefined)
+			comment.sectionProperties.data.parent = '0';
+
+		if (comment.sectionProperties.data.parent !== '0') {
+			var parentIdx = this.getIndexOf(comment.sectionProperties.data.parent);
+			if (parentIdx === -1) {
+				console.warn('adjustParentAdd: No parent comment to attach received comment to. ' +
+					'Parent comment ID sought is :' + comment.sectionProperties.data.parent + ' for current comment with ID : ' + comment.sectionProperties.data.id);
+				comment.sectionProperties.possibleParentCommentId = comment.sectionProperties.data.parent; // Save the proposed parentId so we can remember if such parent appears.
+				comment.setAsRootComment(); // Set this to default since there is no such parent at the moment.
+			}
+			else {
+				var parentComment = this.sectionProperties.commentList[parentIdx];
+				if (parentComment && !parentComment.sectionProperties.children.includes(comment))
+					parentComment.sectionProperties.children.unshift(comment);
+			}
+		}
+
+		// Check if any of the child comments targets the newly added comment as parent.
+		this.checkIfCommentHasPreAssignedChildren(comment);
+	}
+
+	// Adjust parent-child relationship, if required, after `comment` is removed
+	public adjustParentRemove (comment: any): void {
+		var parentIdx = this.getIndexOf(comment.getParentCommentId());
+
+		// If a child comment is removed.
+		var parentComment = this.sectionProperties.commentList[parentIdx];
+		if (parentComment) {
+			var index = parentComment.getIndexOfChild(comment);
+			if (index >= 0)
+				parentComment.removeChildByIndex(index); // Removed comment has a parent. Remove the comment also from its parent's list.
+		}
+
+		// If a parent comment is removed.
+		for (var i = 0; i < comment.getChildrenLength(); i++) { // Loop over removed comment's children.
+			var childComment = comment.getChildByIndex(i);
+			if (childComment)
+				childComment.setAsRootComment(); // The children have no parent comment any more.
+		}
+	}
+
+	public overWriteCommentChanges(obj: any, editComment: Comment) {
+		this.clearAutoSaveStatus();
+		editComment.onCancelClick(null);
+		this.onACKComment(obj);
+	}
+
+	public handleCommentConflict(obj: any, editComment: Comment) {
+		if (document.getElementById(this.map.uiManager.generateModalId('comments-update')))
+			return;
+
+		if (obj.comment.action === 'Remove' || obj.comment.action === 'RedlinedDeletion') {
+			JSDialog.showInfoModalWithOptions(
+				'comments-update', {
+				'title':_('Comments Updated'),
+				'messages': [_('Another user has removed this comment.')],
+				'buttons': [{'text': _('OK'),
+				'callback': () => {
+					this.overWriteCommentChanges(obj, editComment);
+				}}],
+				'withCancel': false}
 			);
 			const newComment = comment.sectionProperties.data.id === 'new';
 			if (

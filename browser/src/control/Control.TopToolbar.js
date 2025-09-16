@@ -53,7 +53,7 @@ class TopToolbar extends JSDialog.Toolbar {
 	}
 
 	reset() {
-		this.parentContainer = L.DomUtil.get('toolbar-up');
+		this.parentContainer = window.L.DomUtil.get('toolbar-up');
 
 		// In case it contains garbage
 		if (this.parentContainer) {
@@ -63,8 +63,8 @@ class TopToolbar extends JSDialog.Toolbar {
 
 		// Use original template as provided by server
 		$('#toolbar-logo').after(this.map.toolbarUpTemplate.cloneNode(true));
-		this.parentContainer = L.DomUtil.get('toolbar-up');
-		L.DomUtil.addClass(this.parentContainer, 'ui-toolbar');
+		this.parentContainer = window.L.DomUtil.get('toolbar-up');
+		window.L.DomUtil.addClass(this.parentContainer, 'ui-toolbar');
 	}
 
 	callback(objectType, eventType, object, data, builder) {
@@ -969,12 +969,9 @@ class TopToolbar extends JSDialog.Toolbar {
 						enabled: false,
 					});
 
-					L.Styles.impressLayout.forEach(function (layout) {
-						data = data.concat({
-							id: layout.id,
-							text: _(layout.text),
-						});
-					}, this);
+				window.L.Styles.impressLayout.forEach(function(layout) {
+					data = data.concat({id: layout.id, text: _(layout.text)});
+				}, this);
 
 					$('#styles-input').select2({
 						data: data,
@@ -1117,12 +1114,9 @@ class TopToolbar extends JSDialog.Toolbar {
 			if (commands && commands.length > 0) {
 				commands.forEach(function (command) {
 					var translated = command.text;
-					if (L.Styles.styleMappings[command.text]) {
+					if (window.L.Styles.styleMappings[command.text]) {
 						// if it's in English, translate it
-						translated =
-							L.Styles.styleMappings[
-								command.text
-							].toLocaleString();
+						translated = window.L.Styles.styleMappings[command.text].toLocaleString();
 					}
 					data = data.concat({
 						id: command.id,
@@ -1149,12 +1143,7 @@ class TopToolbar extends JSDialog.Toolbar {
 				});
 
 				topStyles.forEach(function (style) {
-					data = data.concat({
-						id: style,
-						text: L.Styles.styleMappings[
-							style
-						].toLocaleString(),
-					});
+					data = data.concat({id: style, text: window.L.Styles.styleMappings[style].toLocaleString()});
 				}, this);
 			}
 
@@ -1174,11 +1163,8 @@ class TopToolbar extends JSDialog.Toolbar {
 							' ' +
 							outlineLevel;
 					} else {
-						localeStyle = L.Styles.styleMappings[style];
-						localeStyle =
-							localeStyle === undefined
-								? style
-								: localeStyle.toLocaleString();
+						localeStyle = window.L.Styles.styleMappings[style];
+						localeStyle = localeStyle === undefined ? style : localeStyle.toLocaleString();
 					}
 
 					data = data.concat({ id: style, text: localeStyle });

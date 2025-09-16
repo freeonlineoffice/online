@@ -23,55 +23,26 @@ function distance(a, b) {
 
 /**
  * Drag handler
- * @class L.Path.Drag
- * @extends {L.Handler}
+ * @class window.L.Path.Drag
+ * @extends {window.L.Handler}
  */
-L.Handler.PathDrag = L.Handler.extend(
-	/** @lends  L.Path.Drag.prototype */ {
-		statics: {
-			DRAGGING_CLS: 'leaflet-path-draggable',
-		},
+window.L.Handler.PathDrag = window.L.Handler.extend(/** @lends  window.L.Path.Drag.prototype */ {
+
+	statics: {
+		DRAGGING_CLS: 'leaflet-path-draggable',
+	},
+
+
+	/**
+	* @param  {window.L.Path} path
+	* @constructor
+	*/
+	initialize: function(path) {
 
 		/**
-		 * @param  {L.Path} path
-		 * @constructor
-		 */
-		initialize: function (path) {
-			/**
-			 * @type {L.Path}
-			 */
-			this._path = path;
-
-			/**
-			 * @type {Array.<Number>}
-			 */
-			this._matrix = null;
-
-			/**
-			 * @type {L.Point}
-			 */
-			this._startPoint = null;
-
-			/**
-			 * @type {L.Point}
-			 */
-			this._dragStartPoint = null;
-
-			/**
-			 * @type {Boolean}
-			 */
-			this._mapDraggingWasEnabled = false;
-		},
-
-		noManualDrag: window.memo.decorator(function (f) {
-			if ('noManualDrag' in this._path) {
-				return this._path.noManualDrag
-					.bind(this._path)(f)
-					.bind(this._path);
-			} else {
-				return f;
-			}
-		}),
+		* @type {window.L.Path}
+		*/
+		this._path = path;
 
 		/**
 		 * Enable dragging
@@ -118,24 +89,92 @@ L.Handler.PathDrag = L.Handler.extend(
 
 			this._path._renderer.addContainerClass('leaflet-interactive');
 
-			L.DomEvent.on(
-				document,
-				MOVE[eventType],
-				this.noManualDrag(window.memo.bind(this._onDrag, this)),
-				this,
-			).on(
-				document,
-				END[eventType],
-				this.noManualDrag(window.memo.bind(this._onDragEnd, this)),
-				this,
-			);
+		this._path.options.className = this._path.options.className ?
+			(this._path.options.className + ' ' + window.L.Handler.PathDrag.DRAGGING_CLS) :
+			 window.L.Handler.PathDrag.DRAGGING_CLS;
 
-			if (this._path._map.dragging.enabled()) {
-				// I guess it's required because mousedown gets simulated with a delay
-				//this._path._map.dragging._draggable._onUp(evt);
+		this._path.addClass(window.L.Handler.PathDrag.DRAGGING_CLS);
+	},
 
-				this._path._map.dragging.disable();
-				this._mapDraggingWasEnabled = true;
+	/**
+	* Disable dragging
+	*/
+	removeHooks: function() {
+		this._path.off('mousedown', this._onDragStart, this);
+
+		this._path.options.className = this._path.options.className
+			.replace(new RegExp('\\s+' + window.L.Handler.PathDrag.DRAGGING_CLS), '');
+
+		this._path.removeClass(window.L.Handler.PathDrag.DRAGGING_CLS);
+
+		window.L.DomEvent.off(document, 'mousemove touchmove', this.noManualDrag(window.memo.bind(this._onDrag, this)),    this);
+		window.L.DomEvent.off(document, 'mouseup touchend',    this.noManualDrag(window.memo.bind(this._onDragEnd, this)), this);
+	},
+
+	/**
+	* @return {Boolean}
+	*/
+	moved: function() {
+		return this._path._dragMoved;
+	},
+
+	/**
+	* Start drag
+	* @param  {L.MouseEvent} evt
+	*/
+	_onDragStart: function(evt) {
+		var eventType = evt.originalEvent._simulated ? 'touchstart' : evt.originalEvent.type;
+
+		if (!MOVE[eventType])
+			return;
+
+		this._mouseDown = evt.originalEvent;
+		this._mapDraggingWasEnabled = false;
+		this._startPoint = evt.containerPoint.clone();
+		this._dragStartPoint = evt.containerPoint.clone();
+		this._matrix = [1, 0, 0, 1, 0, 0];
+		window.L.DomEvent.stop(evt.originalEvent);
+
+		this._path._renderer.addContainerClass('leaflet-interactive');
+
+		window.L.DomEvent
+		 .on(document, MOVE[eventType], this.noManualDrag(window.memo.bind(this._onDrag, this)),    this)
+		 .on(document, END[eventType],  this.noManualDrag(window.memo.bind(this._onDragEnd, this)), this);
+
+		if (this._path._map.dragging.enabled()) {
+			// I guess it's required because mousedown gets simulated with a delay
+			//this._path._map.dragging._draggable._onUp(evt);
+
+			this._path._map.dragging.disable();
+			this._mapDraggingWasEnabled = true;
+		}
+		this._path._dragMoved = false;
+
+		if (this._path._popup) { // that might be a case on touch devices as well
+			this._path._popup._close();
+		}
+
+		this._replaceCoordGetters(evt);
+	},
+
+	/**
+	* Dragging
+	* @param  {L.MouseEvent} evt
+	*/
+	_onDrag: function(evt) {
+		if (!this._startPoint)
+			return;
+
+		window.L.DomEvent.stop(evt);
+
+		var first = (evt.touches && evt.touches.length >= 1 ? evt.touches[0] : evt);
+		var containerPoint = this._path._map.mouseEventToContainerPoint(first);
+
+		// skip taps
+		if (evt.type === 'touchmove' && !this._path._dragMoved) {
+			var totalMouseDragDistance = this._dragStartPoint.distanceTo(containerPoint);
+			if (totalMouseDragDistance <= this._path._map.options.tapTolerance) {
+				return;
 			}
 			this._path._dragMoved = false;
 
@@ -156,12 +195,14 @@ L.Handler.PathDrag = L.Handler.extend(
 
 			L.DomEvent.stop(evt);
 
-			var first =
-				evt.touches && evt.touches.length >= 1
-					? evt.touches[0]
-					: evt;
-			var containerPoint =
-				this._path._map.mouseEventToContainerPoint(first);
+	/**
+	* Dragging stopped, apply
+	* @param  {L.MouseEvent} evt
+	*/
+	_onDragEnd: function(evt) {
+		window.L.DomEvent.stop(evt);
+		var containerPoint = this._path._map.mouseEventToContainerPoint(evt);
+		var moved = this.moved();
 
 		// apply matrix
 		if (moved) {
@@ -171,8 +212,8 @@ L.Handler.PathDrag = L.Handler.extend(
 			this._path._transform(null);
 		}
 
-		L.DomEvent.off(document, 'mousemove touchmove', this.noManualDrag(window.memo.bind(this._onDrag, this)),    this);
-		L.DomEvent.off(document, 'mouseup touchend',    this.noManualDrag(window.memo.bind(this._onDragEnd, this)), this);
+		window.L.DomEvent.off(document, 'mousemove touchmove', this.noManualDrag(window.memo.bind(this._onDrag, this)),    this);
+		window.L.DomEvent.off(document, 'mouseup touchend',    this.noManualDrag(window.memo.bind(this._onDragEnd, this)), this);
 
 		this._restoreCoordGetters();
 
@@ -186,7 +227,7 @@ L.Handler.PathDrag = L.Handler.extend(
 			var contains = this._path._containsPoint;
 			this._path._containsPoint = app.util.falseFn;
 			app.util.requestAnimFrame(function() {
-				L.DomEvent._skipped({ type: 'click' });
+				window.L.DomEvent._skipped({ type: 'click' });
 				this._path._containsPoint = contains;
 			}, this);
 		}
@@ -197,7 +238,7 @@ L.Handler.PathDrag = L.Handler.extend(
 		this._path._dragMoved = false;
 
 		if (this._mapDraggingWasEnabled) {
-			if (moved) L.DomEvent._fakeStop({ type: 'click' });
+			if (moved) window.L.DomEvent._fakeStop({ type: 'click' });
 			this._path._map.dragging.enable();
 		}
 
@@ -232,7 +273,7 @@ L.Handler.PathDrag = L.Handler.extend(
 			.subtract(transformation.untransform(lool.Point.toPoint(0, 0), scale));
 		var applyTransform = !dest;
 
-		path._bounds = new L.LatLngBounds();
+		path._bounds = new window.L.LatLngBounds();
 
 		// window.app.console.time('transform');
 		// all shifts are in-place
@@ -487,18 +528,18 @@ L.Handler.PathDrag = L.Handler.extend(
 );
 
 /**
- * @param  {L.Path} layer
- * @return {L.Path}
+ * @param  {window.L.Path} layer
+ * @return {window.L.Path}
  */
-L.Handler.PathDrag.makeDraggable = function (layer) {
-	layer.dragging = new L.Handler.PathDrag(layer);
+window.L.Handler.PathDrag.makeDraggable = function(layer) {
+	layer.dragging = new window.L.Handler.PathDrag(layer);
 	return layer;
 };
 
 /**
  * Also expose as a method
- * @return {L.Path}
+ * @return {window.L.Path}
  */
-L.Path.prototype.makeDraggable = function () {
-	return L.Handler.PathDrag.makeDraggable(this);
+window.L.Path.prototype.makeDraggable = function() {
+	return window.L.Handler.PathDrag.makeDraggable(this);
 };

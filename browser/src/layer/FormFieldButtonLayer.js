@@ -1,15 +1,24 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.FormFieldButton is used to interact with text based form fields.
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * window.L.FormFieldButton is used to interact with text based form fields.
  */
 /* global _ app $ lool */
-L.FormFieldButton = L.Layer.extend({
+window.L.FormFieldButton = window.L.Layer.extend({
+
 	options: {
 		pane: 'formfieldPane',
 	},
 
 	initialize: function (data) {
-		L.Layer.prototype.initialize.call(this);
+
+		window.L.Layer.prototype.initialize.call(this);
 
 		window.app.console.assert(data.type === 'drop-down');
 		this._buttonData = data;
@@ -23,11 +32,7 @@ L.FormFieldButton = L.Layer.extend({
 
 	_buildFormButton: function (map) {
 		// We use a container to have the frame and the drop-down button the same height
-		var container = L.DomUtil.create(
-			'div',
-			'form-field-button-container',
-			this.getPane('formfieldPane'),
-		);
+		var container = window.L.DomUtil.create('div', 'form-field-button-container', this.getPane('formfieldPane'));
 
 		// Calculate button area in layer point unot
 		var buttonArea = this._calculateButtonArea(map);
@@ -60,16 +65,9 @@ L.FormFieldButton = L.Layer.extend({
 		var buttonAreaTwips = [topLeftTwips, bottomRightTwips];
 
 		// Then convert to unit which can be used on the layer.
-		var buttonAreaLatLng = new L.LatLngBounds(
-			map._docLayer._twipsToLatLng(
-				buttonAreaTwips[0],
-				this._map.getZoom(),
-			),
-			map._docLayer._twipsToLatLng(
-				buttonAreaTwips[1],
-				this._map.getZoom(),
-			),
-		);
+		var buttonAreaLatLng = new window.L.LatLngBounds(
+			map._docLayer._twipsToLatLng(buttonAreaTwips[0], this._map.getZoom()),
+			map._docLayer._twipsToLatLng(buttonAreaTwips[1], this._map.getZoom()));
 
 		var buttonAreaLayer = new lool.Bounds(
 			map.latLngToLayerPoint(buttonAreaLatLng.getNorthWest()),
@@ -81,11 +79,7 @@ L.FormFieldButton = L.Layer.extend({
 
 	_buildButtonFrame: function (container, buttonArea) {
 		// Create a frame around the text area
-		var buttonFrame = L.DomUtil.create(
-			'div',
-			'form-field-frame',
-			container,
-		);
+		var buttonFrame = window.L.DomUtil.create('div', 'form-field-frame', container);
 
 		// Use a small padding between the text and the frame
 		var extraPadding = 2;
@@ -95,22 +89,18 @@ L.FormFieldButton = L.Layer.extend({
 		buttonFrame.style.width = frameWidth + 'px';
 
 		var framePos = new lool.Point(buttonArea.min.x - extraPadding, buttonArea.min.y - extraPadding);
-		L.DomUtil.setPosition(buttonFrame, framePos);
+		window.L.DomUtil.setPosition(buttonFrame, framePos);
 
 		return [framePos, frameWidth, frameHeight];
 	},
 
 	_buildDropDownButton: function(container, framePos, frameWidth) {
-		var button = L.DomUtil.create('button', 'form-field-button', container);
+		var button = window.L.DomUtil.create('button', 'form-field-button', container);
 		var buttonPos = new lool.Point(framePos.x + frameWidth, framePos.y);
-		L.DomUtil.setPosition(button, buttonPos);
+		window.L.DomUtil.setPosition(button, buttonPos);
 		button.style.width = container.style.height;
 
-		var image = L.DomUtil.create(
-			'img',
-			'form-field-button-image',
-			button,
-		);
+		var image = window.L.DomUtil.create('img', 'form-field-button-image', button);
 		image.setAttribute('alt', _('Unfold'));
 		app.LOUtil.setImage(image, 'unfold.svg', this.map);
 		button.addEventListener('click', this._onClickDropDown);
@@ -124,15 +114,11 @@ L.FormFieldButton = L.Layer.extend({
 		});
 	},
 
-	_buildDropDownList: function (framePos, frameWidth, frameHeight) {
-		var dropDownList = L.DomUtil.create(
-			'div',
-			'drop-down-field-list',
-			this.getPane('formfieldPane'),
-		);
+	_buildDropDownList: function(framePos, frameWidth, frameHeight) {
+		var dropDownList = window.L.DomUtil.create('div', 'drop-down-field-list', this.getPane('formfieldPane'));
 		$('.drop-down-field-list').hide();
-		L.DomUtil.setPosition(dropDownList, framePos);
-		dropDownList.style.minWidth = frameWidth + frameHeight + 'px';
+		window.L.DomUtil.setPosition(dropDownList, framePos);
+		dropDownList.style.minWidth = (frameWidth + frameHeight) + 'px';
 
 		var itemList = this._buttonData.params.items;
 		var selected = parseInt(this._buttonData.params.selected);
@@ -156,12 +142,8 @@ L.FormFieldButton = L.Layer.extend({
 		}
 	},
 
-	_buildListItem: function (parent, text, frameHeight, selected) {
-		var option = L.DomUtil.create(
-			'div',
-			'drop-down-field-list-item',
-			parent,
-		);
+	_buildListItem: function(parent, text, frameHeight, selected) {
+		var option = window.L.DomUtil.create('div', 'drop-down-field-list-item', parent);
 		option.innerHTML = text;
 		option.style.fontSize = frameHeight * 0.7 + 'px';
 

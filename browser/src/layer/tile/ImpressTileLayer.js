@@ -2,24 +2,22 @@
 /*
  * Impress tile layer is used to display a presentation document
  */
-/* global app $ L lool TileManager */
+/* global app $ lool TileManager */
 
-L.ImpressTileLayer = L.CanvasTileLayer.extend({
+window.L.ImpressTileLayer = window.L.CanvasTileLayer.extend({
+
 	initialize: function (options) {
-		L.CanvasTileLayer.prototype.initialize.call(this, options);
+		window.L.CanvasTileLayer.prototype.initialize.call(this, options);
 		// If this is mobile view, we we'll change the layout position of 'presentation-controls-wrapper'.
 		if (window.mode.isMobile()) {
 			this._putPCWOutsideFlex();
 		}
 
-		this._preview = L.control.partsPreview();
+		this._preview = window.L.control.partsPreview();
 
 		if (window.mode.isMobile()) {
-			this._addButton = L.control.mobileSlide();
-			L.DomUtil.addClass(
-				L.DomUtil.get('mobile-edit-button'),
-				'impress',
-			);
+			this._addButton = window.L.control.mobileSlide();
+			window.L.DomUtil.addClass(window.L.DomUtil.get('mobile-edit-button'), 'impress');
 		}
 		this._spaceBetweenParts = 300; // In twips. This is used when all parts of an Impress or Draw document is shown in one view (like a Writer file). This mode is used when document is read only.
 
@@ -148,16 +146,12 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	onResizeImpress: function () {
-		L.DomUtil.updateElementsOrientation([
-			'presentation-controls-wrapper',
-			'document-container',
-			'slide-sorter',
-		]);
+		window.L.DomUtil.updateElementsOrientation(['presentation-controls-wrapper', 'document-container', 'slide-sorter']);
 
 		var mobileEditButton = document.getElementById('mobile-edit-button');
 
 		if (window.mode.isMobile()) {
-			if (L.DomUtil.isPortrait()) {
+			if (window.L.DomUtil.isPortrait()) {
 				this._putPCWOutsideFlex();
 				if (mobileEditButton)
 					mobileEditButton.classList.add('portrait');
@@ -166,12 +160,11 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 				if (mobileEditButton)
 					mobileEditButton.classList.remove('portrait');
 			}
-		} else {
-			var container = L.DomUtil.get('main-document-content'); // consider height of document area to calculate estimated height for slide-sorter
-			var slideSorter = L.DomUtil.get('slide-sorter');
-			var navigationOptions = L.DomUtil.get(
-				'navigation-options-wrapper',
-			);
+		}
+		else {
+			var container = window.L.DomUtil.get('main-document-content');// consider height of document area to calculate estimated height for slide-sorter
+			var slideSorter = window.L.DomUtil.get('slide-sorter');
+			var navigationOptions = window.L.DomUtil.get('navigation-options-wrapper');
 			if (container && slideSorter && toolbar) {
 				$(slideSorter).height(
 					$(container).height() - $(navigationOptions).height(),
@@ -184,8 +177,8 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		clearTimeout(this._previewInvalidator);
 	},
 
-	_openMobileWizard: function (data) {
-		L.CanvasTileLayer.prototype._openMobileWizard.call(this, data);
+	_openMobileWizard: function(data) {
+		window.L.CanvasTileLayer.prototype._openMobileWizard.call(this, data);
 	},
 
 	onUpdateParts: function () {
@@ -221,10 +214,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 		if (values.comments) {
 			app.sectionContainer.getSectionWithName(app.CSections.CommentList.name).importComments(values.comments);
 		} else {
-			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
-				this,
-				textMsg,
-			);
+			window.L.CanvasTileLayer.prototype._onCommandValuesMsg.call(this, textMsg);
 		}
 	},
 
@@ -257,10 +247,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 
 			this._docType = statusJSON.type;
 			if (this._docType === 'drawing') {
-				L.DomUtil.addClass(
-					L.DomUtil.get('presentation-controls-wrapper'),
-					'drawing',
-				);
+				window.L.DomUtil.addClass(window.L.DomUtil.get('presentation-controls-wrapper'), 'drawing');
 			}
 			this._parts = statusJSON.partscount;
 			this._partHeightTwips = app.activeDocument.fileSize.y;
@@ -355,7 +342,7 @@ L.ImpressTileLayer = L.CanvasTileLayer.extend({
 	},
 
 	_invalidateAllPreviews: function () {
-		L.CanvasTileLayer.prototype._invalidateAllPreviews.call(this);
+		window.L.CanvasTileLayer.prototype._invalidateAllPreviews.call(this);
 		this._map.fire('invalidateparts');
 	},
 });

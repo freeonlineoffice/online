@@ -1,11 +1,20 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.NotebookbarCalc
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.NotebookbarCalc - definition of notebookbar content in Calc
  */
 
 /* global _ _UNO app */
-L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
-	getTabs: function () {
+window.L.Control.NotebookbarCalc = window.L.Control.NotebookbarWriter.extend({
+
+	getTabs: function() {
 		return [
 			{
 				id: 'File-tab-label',
@@ -171,7 +180,7 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 		var hasSave = !this.map['wopi'].HideSaveOption;
 		var hasSaveAs = !this.map['wopi'].UserCanNotWriteRelative;
 		var hasShare = this.map['wopi'].EnableShare;
-		var hasRevisionHistory = L.Params.revHistoryEnabled;
+		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 
 		if (hasSave) {
 			content.push({
@@ -5085,6 +5094,6 @@ L.Control.NotebookbarCalc = L.Control.NotebookbarWriter.extend({
 	},
 });
 
-L.control.notebookbarCalc = function (options) {
-	return new L.Control.NotebookbarCalc(options);
+window.L.control.notebookbarCalc = function (options) {
+	return new window.L.Control.NotebookbarCalc(options);
 };

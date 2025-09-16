@@ -1,11 +1,20 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * L.Control.NotebookbarDraw
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.NotebookbarDraw - definition of notebookbar content in Draw
  */
 
 /* global _ _UNO app */
-L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
-	getShortcutsBarData: function () {
+window.L.Control.NotebookbarDraw = window.L.Control.NotebookbarImpress.extend({
+
+	getShortcutsBarData: function() {
 		return [
 			!this.map['wopi'].HideSaveOption
 				? {
@@ -188,7 +197,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 		var hasSave = !this.map['wopi'].HideSaveOption;
 		var hasSaveAs = !this.map['wopi'].UserCanNotWriteRelative;
 		var hasShare = this.map['wopi'].EnableShare;
-		var hasRevisionHistory = L.Params.revHistoryEnabled;
+		var hasRevisionHistory = window.L.Params.revHistoryEnabled;
 
 		if (hasSave) {
 			content.push({
@@ -788,6 +797,67 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 				],
 				vertical: 'true',
 			},
+			{ type: 'separator', id: 'home-undoredo-break', orientation: 'vertical' },
+						{
+				'type': 'overflowgroup',
+				'id': 'home-clipboard',
+				'name':_('Clipboard'),
+				'accessibility': { focusBack: true, combination: 'V', de: null },
+				'children' : [
+					{
+						'id': 'home-paste:PasteMenu',
+						'type': 'menubutton',
+						'text': _UNO('.uno:Paste'),
+						'command': '.uno:Paste',
+						'accessibility': { focusBack: true, combination: 'V', de: null }
+					},
+					{
+						'type': 'container',
+						'children': [
+							{
+								'type': 'toolbox',
+								'children': [
+									{
+										'id': 'home-cut',
+										'type': 'customtoolitem',
+										'text': _UNO('.uno:Cut'),
+										'command': '.uno:Cut',
+										'accessibility': { focusBack: true, combination: 'X', de: null }
+									},
+									{
+										'id': 'home-format-paint-brush',
+										'type': 'toolitem',
+										'text': _UNO('.uno:FormatPaintbrush'),
+										'command': '.uno:FormatPaintbrush',
+										'accessibility': { focusBack: true, combination: 'FP', de: null }
+									}
+								]
+							},
+							{
+								'type': 'toolbox',
+								'children': [
+									{
+										'id': 'home-copy',
+										'type': 'customtoolitem',
+										'text': _UNO('.uno:Copy'),
+										'command': '.uno:Copy',
+										'accessibility': { focusBack: true, combination: 'C', de: null }
+									},
+									{
+										'id': 'home-set-default',
+										'type': 'toolitem',
+										'text': _UNO('.uno:SetDefault'),
+										'command': '.uno:SetDefault',
+										'accessibility': { focusBack: true, combination: 'SF', de: null }
+									}
+								]
+							}
+						],
+						'vertical': 'true'
+					},
+				]
+			},
+			{ type: 'separator', id: 'home-setdefault-break', orientation: 'vertical' },
 			{
 				type: 'separator',
 				id: 'home-undoredo-break',
@@ -802,7 +872,7 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 					combination: 'V',
 					de: null,
 				},
-				children: [
+				'children' : [
 					{
 						id: 'home-paste:PasteMenu',
 						type: 'menubutton',
@@ -1074,20 +1144,46 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 												},
 											},
 											{
-												id: 'home-color:ColorPickerMenu',
-												noLabel: true,
-												class: 'unospan-FontColor',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:Color',
-												),
-												command: '.uno:Color',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'FC',
-													de: null,
-												},
+												'id': 'home-color:ColorPickerMenu',
+												'noLabel': true,
+												'class': 'unospan-FontColor',
+												'type': 'toolitem',
+												'text': _UNO('.uno:Color'),
+												'command': '.uno:Color',
+												'accessibility': { focusBack: true, combination: 'FC', de: null }
+											}
+										]
+									}
+								],
+								'vertical': 'false'
+							}
+						],
+						'vertical': 'true'
+					},
+				]
+			},
+			{ type: 'separator', id: 'home-font-combobox', orientation: 'vertical'},
+			{
+				'type': 'overflowgroup',
+				'id': 'home-alignment',
+				'name':_('Alignment'),
+				'accessibility': { focusBack: true, combination: 'AT', de: null },
+				'children' : [
+					{
+						'type': 'container',
+						'children': [
+							{
+								'type': 'container',
+								'children': [
+									{
+										'type': 'toolbox',
+										'children': [
+											{
+												'id': 'home-cell-vertical-top',
+												'type': 'toolitem',
+												'text': _UNO('.uno:CellVertTop'),
+												'command': '.uno:CellVertTop',
+												'accessibility': { focusBack: true, combination: 'AT', de: null }
 											},
 										],
 									},
@@ -2751,6 +2847,6 @@ L.Control.NotebookbarDraw = L.Control.NotebookbarImpress.extend({
 	},
 });
 
-L.control.notebookbarDraw = function (options) {
-	return new L.Control.NotebookbarDraw(options);
+window.L.control.notebookbarDraw = function (options) {
+	return new window.L.Control.NotebookbarDraw(options);
 };

@@ -1,10 +1,10 @@
 /* -*- js-indent-level: 8 -*- */
-/* global app cool */
+/* global app lool */
 /*
- * L.DomUtil contains various utility functions for working with DOM.
+ * window.L.DomUtil contains various utility functions for working with DOM.
  */
 
-L.DomUtil = {
+window.L.DomUtil = {
 	get: function (id) {
 		return typeof id === 'string' ? document.getElementById(id) : id;
 	},
@@ -77,11 +77,8 @@ L.DomUtil = {
 		if (el.classList !== undefined) {
 			return el.classList.contains(name);
 		}
-		var className = L.DomUtil.getClass(el);
-		return (
-			className.length > 0 &&
-			new RegExp('(^|\\s)' + name + '(\\s|$)').test(className)
-		);
+		var className = window.L.DomUtil.getClass(el);
+		return className.length > 0 && new RegExp('(^|\\s)' + name + '(\\s|$)').test(className);
 	},
 
 	addClass: function (el, name) {
@@ -94,12 +91,9 @@ L.DomUtil = {
 			for (var i = 0, len = classes.length; i < len; i++) {
 				el.classList.add(classes[i]);
 			}
-		} else if (!L.DomUtil.hasClass(el, name)) {
-			var className = L.DomUtil.getClass(el);
-			L.DomUtil.setClass(
-				el,
-				(className ? className + ' ' : '') + name,
-			);
+		} else if (!window.L.DomUtil.hasClass(el, name)) {
+			var className = window.L.DomUtil.getClass(el);
+			window.L.DomUtil.setClass(el, (className ? className + ' ' : '') + name);
 		}
 	},
 
@@ -111,15 +105,7 @@ L.DomUtil = {
 		if (el.classList !== undefined) {
 			el.classList.remove(name);
 		} else {
-			L.DomUtil.setClass(
-				el,
-				app.util.trim(
-					(' ' + L.DomUtil.getClass(el) + ' ').replace(
-						' ' + name + ' ',
-						' ',
-					),
-				),
-			);
+			window.L.DomUtil.setClass(el, app.util.trim((' ' + window.L.DomUtil.getClass(el) + ' ').replace(' ' + name + ' ', ' ')));
 		}
 	},
 
@@ -148,7 +134,7 @@ L.DomUtil = {
 		if ('opacity' in el.style) {
 			el.style.opacity = value;
 		} else if ('filter' in el.style) {
-			L.DomUtil._setOpacityIE(el, value);
+			window.L.DomUtil._setOpacityIE(el, value);
 		}
 	},
 
@@ -190,16 +176,10 @@ L.DomUtil = {
 	},
 
 	setTransform: function (el, offset, scale) {
-		var pos = offset || new cool.Point(0, 0);
+		var pos = offset || new lool.Point(0, 0);
 
-		el.style[L.DomUtil.TRANSFORM] =
-			'translate3d(' +
-			pos.x +
-			'px,' +
-			pos.y +
-			'px' +
-			',0)' +
-			(scale ? ' scale(' + scale + ')' : '');
+		el.style[window.L.DomUtil.TRANSFORM] =
+			'translate3d(' + pos.x + 'px,' + pos.y + 'px' + ',0)' + (scale ? ' scale(' + scale + ')' : '');
 	},
 
 	setPosition: function (el, point, no3d) {
@@ -209,8 +189,8 @@ L.DomUtil = {
 		el._leaflet_pos = point;
 		/*eslint-enable */
 
-		if (L.Browser.any3d && !no3d) {
-			L.DomUtil.setTransform(el, point);
+		if (window.L.Browser.any3d && !no3d) {
+			window.L.DomUtil.setTransform(el, point);
 		} else {
 			el.style.left = point.x + 'px';
 			el.style.top = point.y + 'px';
@@ -235,16 +215,16 @@ L.DomUtil = {
 	updateElementsOrientation: function (elements) {
 		var remove = 'portrait';
 		var add = 'landscape';
-		if (L.DomUtil.isPortrait()) {
+		if (window.L.DomUtil.isPortrait()) {
 			remove = 'landscape';
 			add = 'portrait';
 		}
 
 		for (var i = 0; i < elements.length; ++i) {
 			var element = elements[i];
-			var domElement = L.DomUtil.get(element);
-			L.DomUtil.removeClass(domElement, remove);
-			L.DomUtil.addClass(domElement, add);
+			var domElement = window.L.DomUtil.get(element);
+			window.L.DomUtil.removeClass(domElement, remove);
+			window.L.DomUtil.addClass(domElement, add);
 		}
 	},
 };
@@ -252,60 +232,41 @@ L.DomUtil = {
 (function () {
 	// prefix style property names
 
-	L.DomUtil.TRANSFORM = L.DomUtil.testProp([
-		'transform',
-		'WebkitTransform',
-		'OTransform',
-		'MozTransform',
-		'msTransform',
-	]);
+	window.L.DomUtil.TRANSFORM = window.L.DomUtil.testProp(
+		['transform', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform']);
 
-	L.DomUtil.TRANSFORM_ORIGIN = L.DomUtil.testProp([
-		'transformOrigin',
-		'msTransformOrigin',
-		'WebkitTransformOrigin',
-	]);
+	window.L.DomUtil.TRANSFORM_ORIGIN = window.L.DomUtil.testProp(
+		['transformOrigin', 'msTransformOrigin', 'WebkitTransformOrigin']);
 
 	// webkitTransition comes first because some browser versions that drop vendor prefix don't do
 	// the same for the transitionend event, in particular the Android 4.1 stock browser
 
-	var transition = (L.DomUtil.TRANSITION = L.DomUtil.testProp([
-		'webkitTransition',
-		'transition',
-		'OTransition',
-		'MozTransition',
-		'msTransition',
-	]));
+	var transition = window.L.DomUtil.TRANSITION = window.L.DomUtil.testProp(
+		['webkitTransition', 'transition', 'OTransition', 'MozTransition', 'msTransition']);
 
-	L.DomUtil.TRANSITION_END =
-		transition === 'webkitTransition' || transition === 'OTransition'
-			? transition + 'End'
-			: 'transitionend';
+	window.L.DomUtil.TRANSITION_END =
+			transition === 'webkitTransition' || transition === 'OTransition' ? transition + 'End' : 'transitionend';
+
 
 	if ('onselectstart' in document) {
-		L.DomUtil.disableTextSelection = function () {
-			L.DomEvent.on(window, 'selectstart', L.DomEvent.preventDefault);
+		window.L.DomUtil.disableTextSelection = function () {
+			window.L.DomEvent.on(window, 'selectstart', window.L.DomEvent.preventDefault);
 		};
-		L.DomUtil.enableTextSelection = function () {
-			L.DomEvent.off(window, 'selectstart', L.DomEvent.preventDefault);
+		window.L.DomUtil.enableTextSelection = function () {
+			window.L.DomEvent.off(window, 'selectstart', window.L.DomEvent.preventDefault);
 		};
 	} else {
-		var userSelectProperty = L.DomUtil.testProp([
-			'userSelect',
-			'WebkitUserSelect',
-			'OUserSelect',
-			'MozUserSelect',
-			'msUserSelect',
-		]);
+		var userSelectProperty = window.L.DomUtil.testProp(
+			['userSelect', 'WebkitUserSelect', 'OUserSelect', 'MozUserSelect', 'msUserSelect']);
 
-		L.DomUtil.disableTextSelection = function () {
+		window.L.DomUtil.disableTextSelection = function () {
 			if (userSelectProperty) {
 				var style = document.documentElement.style;
 				this._userSelect = style[userSelectProperty];
 				style[userSelectProperty] = 'none';
 			}
 		};
-		L.DomUtil.enableTextSelection = function () {
+		window.L.DomUtil.enableTextSelection = function () {
 			if (userSelectProperty) {
 				document.documentElement.style[userSelectProperty] =
 					this._userSelect;
@@ -314,27 +275,25 @@ L.DomUtil = {
 		};
 	}
 
-	L.DomUtil.disableImageDrag = function () {
-		L.DomEvent.on(window, 'dragstart', L.DomEvent.preventDefault);
+	window.L.DomUtil.disableImageDrag = function () {
+		window.L.DomEvent.on(window, 'dragstart', window.L.DomEvent.preventDefault);
 	};
-	L.DomUtil.enableImageDrag = function () {
-		L.DomEvent.off(window, 'dragstart', L.DomEvent.preventDefault);
+	window.L.DomUtil.enableImageDrag = function () {
+		window.L.DomEvent.off(window, 'dragstart', window.L.DomEvent.preventDefault);
 	};
 
-	L.DomUtil.preventOutline = function (element) {
-		L.DomUtil.restoreOutline();
+	window.L.DomUtil.preventOutline = function (element) {
+		window.L.DomUtil.restoreOutline();
 		this._outlineElement = element;
 		this._outlineStyle = element.style.outline;
 		element.style.outline = 'none';
-		L.DomEvent.on(window, 'keydown', L.DomUtil.restoreOutline, this);
+		window.L.DomEvent.on(window, 'keydown', window.L.DomUtil.restoreOutline, this);
 	};
-	L.DomUtil.restoreOutline = function () {
-		if (!this._outlineElement) {
-			return;
-		}
+	window.L.DomUtil.restoreOutline = function () {
+		if (!this._outlineElement) { return; }
 		this._outlineElement.style.outline = this._outlineStyle;
 		delete this._outlineElement;
 		delete this._outlineStyle;
-		L.DomEvent.off(window, 'keydown', L.DomUtil.restoreOutline, this);
+		window.L.DomEvent.off(window, 'keydown', window.L.DomUtil.restoreOutline, this);
 	};
 })();

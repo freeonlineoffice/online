@@ -37,12 +37,9 @@ function _multiLineEditControl(parentContainer, data, builder, callback) {
 	else if (data.cursor && (data.cursor === 'false' || data.cursor === false))
 		controlType = 'p';
 
-	let edit = L.DomUtil.create(
-		controlType,
-		'ui-textarea ' + builder.options.cssClass,
-		parentContainer,
-	);
-	if (data.contenteditable) edit.setAttribute('contenteditable', 'true');
+	let edit = window.L.DomUtil.create(controlType, 'ui-textarea ' + builder.options.cssClass, parentContainer);
+	if (data.contenteditable)
+		edit.setAttribute('contenteditable', 'true');
 
 	if (controlType === 'textarea') edit.value = builder._cleanText(data.text);
 	else if (controlType === 'p') {
@@ -80,7 +77,8 @@ function _multiLineEditControl(parentContainer, data, builder, callback) {
 		_sendSimpleSelection(event.target, builder);
 	});
 
-	if (data.hidden) L.DomUtil.addClass(edit, 'hidden');
+	if (data.hidden)
+		window.L.DomUtil.addClass(edit, 'hidden');
 
 	return false;
 }

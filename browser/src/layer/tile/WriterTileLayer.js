@@ -11,7 +11,8 @@
  */
 
 /* global app GraphicSelection lool TileManager */
-L.WriterTileLayer = L.CanvasTileLayer.extend({
+window.L.WriterTileLayer = window.L.CanvasTileLayer.extend({
+
 	newAnnotation: function (commentData) {
 		const name = lool.Comment.makeName(commentData);
 		const comment = new lool.Comment(name, commentData, {}, app.sectionContainer.getSectionWithName(app.CSections.CommentList.name));
@@ -76,10 +77,7 @@ L.WriterTileLayer = L.CanvasTileLayer.extend({
 		} else if (this._map.zotero && values.sections) {
 			this._map.zotero.onFieldValue(values.sections);
 		} else {
-			L.CanvasTileLayer.prototype._onCommandValuesMsg.call(
-				this,
-				textMsg,
-			);
+			window.L.CanvasTileLayer.prototype._onCommandValuesMsg.call(this, textMsg);
 		}
 	},
 

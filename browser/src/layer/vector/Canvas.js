@@ -3,12 +3,13 @@
 /* global app lool */
 
 /*
- * L.Canvas handles Canvas vector layers rendering and mouse events handling. All Canvas-specific code goes here.
+ * window.L.Canvas handles Canvas vector layers rendering and mouse events handling. All Canvas-specific code goes here.
  */
 
-L.Canvas = L.Renderer.extend({
+window.L.Canvas = window.L.Renderer.extend({
+
 	onAdd: function () {
-		L.Renderer.prototype.onAdd.call(this);
+		window.L.Renderer.prototype.onAdd.call(this);
 
 		this._layers = this._layers || {};
 
@@ -19,25 +20,22 @@ L.Canvas = L.Renderer.extend({
 	_initContainer: function () {
 		var container = (this._container = document.createElement('canvas'));
 
-		L.DomEvent.on(container, 'mousemove', this._onMouseMove, this).on(
-			container,
-			'click dblclick mousedown mouseup contextmenu',
-			this._onClick,
-			this,
-		);
+		window.L.DomEvent
+			.on(container, 'mousemove', this._onMouseMove, this)
+			.on(container, 'click dblclick mousedown mouseup contextmenu', this._onClick, this);
 
 		this._ctx = container.getContext('2d');
 	},
 
 	_update: function () {
-		L.Renderer.prototype._update.call(this);
+		window.L.Renderer.prototype._update.call(this);
 
 		var b = this._bounds,
 			container = this._container,
 			size = b.getSize(),
 			m = window.app.dpiScale;
 
-		L.DomUtil.setPosition(container, b.min);
+		window.L.DomUtil.setPosition(container, b.min);
 
 		// set canvas size (also clearing it); use double size on retina
 		container.width = m * size.x;
@@ -208,7 +206,7 @@ L.Canvas = L.Renderer.extend({
 
 		for (var id in this._layers) {
 			if (this._layers[id]._containsPoint(point)) {
-				L.DomEvent._fakeStop(e);
+				window.L.DomEvent._fakeStop(e);
 				this._fireEvent(this._layers[id], e);
 			}
 		}
@@ -235,7 +233,7 @@ L.Canvas = L.Renderer.extend({
 		if (layer._containsPoint(point)) {
 			// if we just got inside the layer, fire mouseover
 			if (!layer._mouseInside) {
-				L.DomUtil.addClass(this._container, 'leaflet-interactive'); // change cursor
+				window.L.DomUtil.addClass(this._container, 'leaflet-interactive'); // change cursor
 				this._fireEvent(layer, e, 'mouseover');
 				layer._mouseInside = true;
 			}
@@ -243,7 +241,7 @@ L.Canvas = L.Renderer.extend({
 			this._fireEvent(layer, e);
 		} else if (layer._mouseInside) {
 			// if we're leaving the layer, fire mouseout
-			L.DomUtil.removeClass(this._container, 'leaflet-interactive');
+			window.L.DomUtil.removeClass(this._container, 'leaflet-interactive');
 			this._fireEvent(layer, e, 'mouseout');
 			layer._mouseInside = false;
 		}
@@ -259,22 +257,17 @@ L.Canvas = L.Renderer.extend({
 	_bringToBack: app.util.falseFn,
 });
 
-L.Browser.canvas = (function () {
+window.L.Browser.canvas = (function () {
 	return !!document.createElement('canvas').getContext;
 })();
 
-L.canvas = function (options) {
-	return L.Browser.canvas ? new L.Canvas(options) : null;
+window.L.canvas = function (options) {
+	return window.L.Browser.canvas ? new window.L.Canvas(options) : null;
 };
 
-L.Polyline.prototype._containsPoint = function (p, closed) {
-	var i,
-		j,
-		k,
-		len,
-		len2,
-		part,
-		w = this._clickTolerance();
+window.L.Polyline.prototype._containsPoint = function (p, closed) {
+	var i, j, k, len, len2, part,
+	    w = this._clickTolerance();
 
 	if (!this._pxBounds.contains(p)) {
 		return false;
@@ -289,9 +282,7 @@ L.Polyline.prototype._containsPoint = function (p, closed) {
 				continue;
 			}
 
-			if (
-				L.LineUtil.pointToSegmentDistance(p, part[k], part[j]) <= w
-			) {
+			if (window.L.LineUtil.pointToSegmentDistance(p, part[k], part[j]) <= w) {
 				return true;
 			}
 		}
@@ -299,7 +290,7 @@ L.Polyline.prototype._containsPoint = function (p, closed) {
 	return false;
 };
 
-L.Polygon.prototype._containsPoint = function (p) {
+window.L.Polygon.prototype._containsPoint = function (p) {
 	var inside = false,
 		part,
 		p1,
@@ -332,5 +323,5 @@ L.Polygon.prototype._containsPoint = function (p) {
 	}
 
 	// also check if it's on polygon stroke
-	return inside || L.Polyline.prototype._containsPoint.call(this, p, true);
+	return inside || window.L.Polyline.prototype._containsPoint.call(this, p, true);
 };

@@ -1,10 +1,18 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * L.Control.Zotero
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*
+ * window.L.Control.Zotero - bibliography dialogs implementation
  */
 
 /* global _ Promise app Set */
-L.Control.Zotero = L.Control.extend({
+window.L.Control.Zotero = window.L.Control.extend({
 	_cachedURL: [],
 	citations: {},
 	itemsPerPage: 15,
@@ -864,7 +872,7 @@ L.Control.Zotero = L.Control.extend({
 		for (var iterator = 0; iterator < items.length; ++iterator) {
 			if (items[iterator].data.itemType !== 'note') continue;
 
-			var dummyNode = L.DomUtil.create('div');
+			var dummyNode = window.L.DomUtil.create('div');
 			dummyNode.innerHTML = items[iterator].data.note;
 			var note = dummyNode.innerText.replaceAll('\n', ' ');
 
@@ -2593,6 +2601,6 @@ L.Control.Zotero = L.Control.extend({
 	},
 });
 
-L.control.zotero = function (map) {
-	return new L.Control.Zotero(map);
+window.L.control.zotero = function (map) {
+	return new window.L.Control.Zotero(map);
 };
