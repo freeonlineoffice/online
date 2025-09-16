@@ -747,7 +747,7 @@ class SlideShowPresenter {
 	}
 
 	private startTimer(loopAndRepeatDuration: number) {
-		console.debug('SlideShowPresenter.startTimer');
+		app.console.debug('SlideShowPresenter.startTimer');
 		const renderContext = this._slideRenderer._context;
 		const onTimeoutHandler = this._slideShowNavigator.goToFirstSlide.bind(
 			this._slideShowNavigator,
@@ -769,7 +769,7 @@ class SlideShowPresenter {
 		this.sendSlideShowFollowMessage('endpresentation');
 		this.checkDarkMode(false);
 
-		console.debug('SlideShowPresenter.endPresentation');
+		app.console.debug('SlideShowPresenter.endPresentation');
 		if (this._pauseTimer) this._pauseTimer.stopTimer();
 
 		const settings = this._presentationInfo;
@@ -791,7 +791,7 @@ class SlideShowPresenter {
 				? 'block'
 				: 'none';
 		} catch (error) {
-			console.error('Not able to Slideshow progress bar', error);
+			app.console.error('Not able to Slideshow progress bar', error);
 		}
 	}
 
@@ -975,7 +975,7 @@ class SlideShowPresenter {
 		}
 
 		if (app.impress.notesMode) {
-			console.debug(
+			app.console.debug(
 				'SlideShowPresenter._onPrepareScreen: notes mode is enabled, exiting',
 			);
 			// exit notes view mode and wait for status update notification
@@ -1158,14 +1158,16 @@ class SlideShowPresenter {
 
 	/// called as a response on getpresentationinfo
 	onSlideShowInfo(data: PresentationInfo) {
-		console.debug('SlideShow: received information about presentation');
+		app.console.debug(
+			'SlideShow: received information about presentation',
+		);
 		this._presentationInfo = data;
 
 		const numberOfSlides = this._getSlidesCount();
 		if (numberOfSlides === 0) return;
 
 		if (!this.getCanvas()) {
-			console.debug('onSlideShowInfo: no canvas available');
+			app.console.debug('onSlideShowInfo: no canvas available');
 			return;
 		}
 

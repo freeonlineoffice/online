@@ -137,7 +137,7 @@ class LayerDrawing {
 	}
 
 	public onCompressSlide(e: any) {
-		console.log(
+		app.console.log(
 			`CompressedCache: Storing compressed slide in LayerDrawing cache - slideHash: ${e.slideHash}, layers: ${e.layers.length}`,
 		);
 		this.compressedSlideCache.set(e.slideHash, e.layers);
@@ -184,7 +184,7 @@ class LayerDrawing {
 	}
 
 	public getAnimatedSlide(slideIndex: number): ImageBitmap {
-		console.debug(
+		app.console.debug(
 			'LayerDrawing.getAnimatedSlide: slide index: ' + slideIndex,
 		);
 		const slideHash = this.helper.getSlideHash(slideIndex);
@@ -300,7 +300,7 @@ class LayerDrawing {
 		slideHash: string,
 		targetElement: string,
 	): AnimatedShapeInfo {
-		console.debug(
+		app.console.debug(
 			`LayerDrawing.getAnimatedLayerInfo(${slideHash}, ${targetElement})`,
 		);
 		const layers = this.cachedDrawPages.get(slideHash);
@@ -374,7 +374,7 @@ class LayerDrawing {
 				this.offscreenCanvas,
 			);
 		} catch (error) {
-			console.log(
+			app.console.log(
 				'LayerDrawing: WebGl offscreen rendering not supported',
 			);
 			this.layerRenderer = new SlideShow.LayerRenderer2d(
@@ -390,7 +390,7 @@ class LayerDrawing {
 	) {
 		if (this.isDisposed()) return;
 
-		console.debug(
+		app.console.debug(
 			'LayerDrawing.requestSlideImpl: slide hash: ' +
 				slideHash +
 				', prefetching: ' +
@@ -410,7 +410,7 @@ class LayerDrawing {
 			slideHash === this.nextRequestedSlideHash ||
 			slideHash === this.nextPrefetchedSlideHash
 		) {
-			console.debug(
+			app.console.debug(
 				'LayerDrawing.requestSlideImpl: no need to fetch slide again',
 			);
 			return;
@@ -457,7 +457,7 @@ class LayerDrawing {
 		}
 
 		if (this.compressedSlideCache.has(slideHash)) {
-			console.log(
+			app.console.log(
 				'CompressedCache: fetching slides from CompressedCache, SlideHash :',
 				slideHash,
 			);
@@ -785,7 +785,7 @@ class LayerDrawing {
 					content.hash,
 				);
 				if (animatedElement) {
-					console.debug(
+					app.console.debug(
 						'LayerDrawing.drawDrawPageLayer: retrieved animatedElement',
 					);
 					if (animatedElement.isValid()) {
@@ -813,7 +813,7 @@ class LayerDrawing {
 			const index = slideInfo ? slideInfo.index : undefined;
 			this.requestedSlideHash = null;
 			this.prefetchedSlideHash = null;
-			console.debug(
+			app.console.debug(
 				'LayerDrawing.onSlideRenderingComplete: rendering failed for slide: ' +
 					index,
 			);
@@ -882,7 +882,7 @@ class LayerDrawing {
 	private prefetchCompressedSlide(slideHash: string) {
 		const slideInfo = this.getSlideInfo(slideHash);
 		if (!slideInfo) {
-			console.warn(`SlideInfo not found for hash: ${slideHash}`);
+			app.console.warn(`SlideInfo not found for hash: ${slideHash}`);
 			return;
 		}
 

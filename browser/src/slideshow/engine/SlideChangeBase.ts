@@ -55,7 +55,7 @@ function SlideChangeTemplate<T extends AGConstructor<any>>(BaseType: T) {
 			if (this.isFinished) return;
 			// end() can be invoked before last render() execution
 			if (this.requestAnimationFrameId !== null) {
-				console.debug(
+				app.console.debug(
 					'SlideChangeBase.end: render() not yet executed',
 				);
 				this.requestAnimationFrameId = null;
