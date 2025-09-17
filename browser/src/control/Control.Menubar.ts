@@ -85,12 +85,300 @@ class Menubar extends window.L.Control {
 			{ name: _UNO('.uno:InsertMenu') },
 			{ name: _UNO('.uno:ToolsMenu') },
 		],
-		text: [
-			{
-				name: _UNO('.uno:PickList', 'text'),
-				id: 'file',
-				type: 'menu',
-				menu: [
+		text:  [
+			{name: _UNO('.uno:PickList', 'text'), id: 'file', type: 'menu', menu: [
+				{name: _UNO('.uno:Save', 'text'), id: 'save', type: 'action'},
+				{name: _UNO('.uno:SaveAs', 'text'), id: 'saveas', type: window.prefs.get('saveAsMode') === 'group' ? 'menu' : 'action', menu: [
+					{name: _('ODF text document (.odt)'), id: 'saveas-odt', type: 'action'},
+					{name: _('Word 2003 Document (.doc)'), id: 'saveas-doc', type: 'action'},
+					{name: _('Word Document (.docx)'), id: 'saveas-docx', type: 'action'},
+					{name: _('Rich Text (.rtf)'), id: 'saveas-rtf', type: 'action'},
+				]},
+				{name: _('Export as'), id: 'exportas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: 'exportas-pdf', type: 'action'},
+					{name: _('EPUB (.epub)'), id: 'exportas-epub', type: 'action'}
+				]},
+				{name: _('Rename Document'), id: 'renamedocument', type: 'action'},
+				{name: _('Share...'), id:'shareas', type: 'action'},
+				{name: _('See revision history'), id: 'rev-history', type: 'action'},
+				{name: !window.ThisIsAMobileApp ? _('Download as') : _('Export as'), id: 'downloadas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf', type: 'action'},
+					{name: _('PDF Document (.pdf) as...'), id: 'exportpdf' , type: 'action'},
+					{name: _('ODF text document (.odt)'), id: 'downloadas-odt', type: 'action'},
+					{name: _('Word 2003 Document (.doc)'), id: 'downloadas-doc', type: 'action'},
+					{name: _('Word Document (.docx)'), id: 'downloadas-docx', type: 'action'},
+					{name: _('Rich Text (.rtf)'), id: 'downloadas-rtf', type: 'action'},
+					{name: _('EPUB (.epub)'), id: !window.ThisIsAMobileApp ? 'exportepub' : 'downloadas-epub', type: 'action'},
+					{name: _('HTML file (.html)'), id: 'downloadas-html', type: 'action'}]},
+				{name: _UNO('.uno:SetDocumentProperties', 'text'), uno: '.uno:SetDocumentProperties', id: 'properties'},
+				{name: _UNO('.uno:Signature', 'text'), uno: '.uno:Signature', id: 'signature'},
+				{name: _('Options'), id: 'settings-dialog', type: 'action', mobileapp: false},
+				{type: 'separator'},
+				{name: _UNO('.uno:Print', 'text'), id: 'print', type: 'action'},
+				{name: _('Close document'), id: 'closedocument', type: 'action'}
+			]},
+			{name: _UNO('.uno:EditMenu', 'text'), id: 'editmenu', type: 'menu', menu: [
+				{name: _UNO('.uno:Undo', 'text'), uno: '.uno:Undo'},
+				{name: _UNO('.uno:Redo', 'text'), uno: '.uno:Redo'},
+				{name: _('Repair'), id: 'repair',  type: 'action'},
+				{type: 'separator'},
+				{name: _UNO('.uno:Cut', 'text'), uno: '.uno:Cut'},
+				{name: _UNO('.uno:Copy', 'text'), uno: '.uno:Copy'},
+				{name: _UNO('.uno:Paste', 'text'), uno: '.uno:Paste'},
+				{name: _UNO('.uno:PasteSpecial', 'text'), uno: '.uno:PasteSpecial'},
+				{name: _UNO('.uno:SelectAll', 'text'), uno: '.uno:SelectAll'},
+				{type: 'separator'},
+				{uno: '.uno:SearchDialog'},
+				{type: 'separator'},
+				{name: _UNO('.uno:ChangesMenu', 'text'), id: 'changesmenu', type: 'menu', menu: [
+					{uno: '.uno:TrackChanges'},
+					{uno: '.uno:ShowTrackedChanges'},
+					{type: 'separator'},
+					{uno: '.uno:AcceptTrackedChanges'},
+					{uno: '.uno:AcceptTrackedChange'},
+					{uno: '.uno:AcceptTrackedChangeToNext'},
+					{type: 'action', id: 'acceptalltrackedchanges', uno: '.uno:AcceptAllTrackedChanges'},
+					{uno: '.uno:RejectTrackedChange'},
+					{uno: '.uno:RejectTrackedChangeToNext'},
+					{type: 'action', id: 'rejectalltrackedchanges', uno: '.uno:RejectAllTrackedChanges'},
+					{uno: '.uno:ReinstateTrackedChange'},
+					{uno: '.uno:PreviousTrackedChange'},
+					{uno: '.uno:NextTrackedChange'}
+				]},
+				{type: 'separator'},
+				{name: _UNO('.uno:GotoPage', 'text'), uno: '.uno:GotoPage'}
+			]},
+			{name: _UNO('.uno:ViewMenu', 'text'), id: 'view', type: 'menu',
+			 menu: (window.mode.isTablet() ? [
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[] : [
+					{name: _UNO('.uno:FullScreen', 'text'), id: 'fullscreen', type: 'action'},
+					{type: 'separator'},
+					{name: _UNO('.uno:ZoomPlus', 'text'), id: 'zoomin', type: 'action'},
+					{name: _UNO('.uno:ZoomMinus', 'text'), id: 'zoomout', type: 'action',},
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[]).concat([
+					{type: 'separator'},
+					{name: _('Toggle UI Mode'), id: 'toggleuimode', type: 'action'},
+					{name: _('Show Ruler'), id: 'showruler', type: 'action'},
+					{name: _('Show Status Bar'), id: 'showstatusbar', type: 'action'},
+					{name: _('Hide Menu Bar'), id: 'togglemenubar', type: 'action'},
+					{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+					{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
+					{uno: '.uno:SidebarDeck.PropertyDeck', id: 'view-sidebar-property-deck', name: _UNO('.uno:Sidebar')},
+					{uno: '.uno:SidebarDeck.StyleListDeck', name: _('Style list')},
+					{uno: '.uno:Navigator', id: 'navigator'},
+					{type: 'separator'},
+					{name: _UNO('.uno:ShowAnnotations', 'text'), id: 'showannotations', type: 'action'},
+					{name: _UNO('.uno:ShowResolvedAnnotations', 'text'), id: 'showresolved', type: 'action'},
+					{uno: '.uno:ControlCodes'},
+				])},
+			{name: _UNO('.uno:InsertMenu', 'text'), id: 'insert', type: 'menu', menu: [
+				{name: _('Local Image...'), id: 'insertgraphic', type: 'action'},
+				{name: _UNO('.uno:InsertGraphic', 'text'), id: 'insertgraphicremote', type: 'action'},
+				{name: _UNO('.uno:InsertAnnotation', 'text'), id: 'insertcomment', type: 'action'},
+				{uno: '.uno:InsertObjectChart'},
+				{name: _UNO('.uno:FontworkGalleryFloater'), uno: '.uno:FontworkGalleryFloater', id: 'fontworkgalleryfloater'},
+				{name: _UNO('.uno:DrawText'), uno: '.uno:DrawText'},
+				{name: _UNO('.uno:InsertFrame', 'text'), uno: '.uno:InsertFrame'},
+				{name: _UNO('.uno:VerticalText'), uno: '.uno:VerticalText'},
+				{type: 'separator'},
+				{uno: '.uno:InsertSection', id: 'insertsection'},
+				{uno: '.uno:PageNumberWizard', id: 'pagenumberwizard'},
+				{name: _UNO('.uno:InsertFieldCtrl', 'text'), type: 'menu', menu: [
+					{uno: '.uno:InsertPageNumberField'},
+					{uno: '.uno:InsertPageCountField'},
+					{uno: '.uno:InsertDateField'},
+					{uno: '.uno:InsertTimeField'},
+					{uno: '.uno:InsertTitleField'},
+					{uno: '.uno:InsertAuthorField'},
+					{uno: '.uno:InsertTopicField'},
+					{type: 'separator'},
+					{uno: '.uno:InsertField'},
+				]},
+				{name: _UNO('.uno:InsertHeaderFooterMenu', 'text'), type: 'menu', menu: [
+					{name: _UNO('.uno:InsertPageHeader', 'text'), type: 'menu', menu: [
+						{name: _('All'), disabled: true, id: 'insertheader', tag: '_ALL_', uno: '.uno:InsertPageHeader?'}]},
+					{name: _UNO('.uno:InsertPageFooter', 'text'), type: 'menu', menu: [
+						{name: _('All'), disabled: true, id: 'insertfooter', tag: '_ALL_', uno: '.uno:InsertPageFooter?'}]}
+				]},
+				{name: _UNO('.uno:InsertFootnote', 'text'), uno: '.uno:InsertFootnote'},
+				{name: _UNO('.uno:InsertEndnote', 'text'), uno: '.uno:InsertEndnote'},
+				{type: 'separator'},
+				{uno: '.uno:InsertPagebreak'},
+				{uno: '.uno:InsertBreak'},
+				{name: _UNO('.uno:InsertColumnBreak', 'spreadsheet'), uno: '.uno:InsertColumnBreak'},
+				{type: 'separator'},
+				{name: _UNO('.uno:HyperlinkDialog'), id: 'inserthyperlink', type: 'action'},
+				{name: _('Smart Picker'), id: 'remotelink', type: 'action'},
+				{name: _('AI Assistant'), id: 'remoteaicontent', type: 'action'},
+				{type: 'separator'},
+				{uno: '.uno:InsertQrCode'},
+				{uno: '.uno:InsertSymbol'},
+				{uno: '.uno:InsertObjectStarMath'},
+				{name: _UNO('.uno:FormattingMarkMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:InsertNonBreakingSpace'},
+					{uno: '.uno:InsertHardHyphen'},
+					{uno: '.uno:InsertSoftHyphen'},
+					{uno: '.uno:InsertZWSP'},
+					{uno: '.uno:InsertWJ'},
+					{uno: '.uno:InsertLRM'},
+					{uno: '.uno:InsertRLM'}]},
+			]},
+			{name: _UNO('.uno:FormatMenu', 'text'), id: 'format', type: 'menu', menu: [
+				{name: _UNO('.uno:FormatTextMenu', 'text'), type: 'menu', menu: [
+					{name: _UNO('.uno:Bold', 'text'), uno: '.uno:Bold'},
+					{name: _UNO('.uno:Italic', 'text'), uno: '.uno:Italic'},
+					{name: _UNO('.uno:Underline', 'text'), uno: '.uno:Underline'},
+					{name: _UNO('.uno:UnderlineDouble', 'text'), uno: '.uno:UnderlineDouble'},
+					{name: _UNO('.uno:Strikeout', 'text'), uno: '.uno:Strikeout'},
+					{uno: '.uno:Overline'},
+					{type: 'separator'},
+					{name: _UNO('.uno:SuperScript', 'text'), uno: '.uno:SuperScript'},
+					{name: _UNO('.uno:SubScript', 'text'), uno: '.uno:SubScript'},
+					{type: 'separator'},
+					{uno: '.uno:Shadowed'},
+					{uno: '.uno:OutlineFont'},
+					{type: 'separator'},
+					{uno: '.uno:Grow'},
+					{uno: '.uno:Shrink'},
+					{type: 'separator'},
+					{uno: '.uno:ChangeCaseToUpper'},
+					{uno: '.uno:ChangeCaseToLower'},
+					{uno: '.uno:ChangeCaseRotateCase'},
+					{type: 'separator'},
+					{uno: '.uno:ChangeCaseToSentenceCase'},
+					{uno: '.uno:ChangeCaseToTitleCase'},
+					{uno: '.uno:ChangeCaseToToggleCase'},
+					{type: 'separator'},
+					{uno: '.uno:SmallCaps'}]},
+				{name: _('Text orientation'), type: 'menu', menu: [
+					{uno: '.uno:ParaLeftToRight'},
+					{uno: '.uno:ParaRightToLeft'}]},
+				{name: _UNO('.uno:FormatSpacingMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:SpacePara1'},
+					{uno: '.uno:SpacePara15'},
+					{uno: '.uno:SpacePara2'},
+					{type: 'separator'},
+					{uno: '.uno:ParaspaceIncrease'},
+					{uno: '.uno:ParaspaceDecrease'},
+					{type: 'separator'},
+					{uno: '.uno:IncrementIndent'},
+					{uno: '.uno:DecrementIndent'}]},
+				{name: _UNO('.uno:TextAlign', 'text'), type: 'menu', menu: [
+					{name: _UNO('.uno:CommonAlignLeft', 'text'), uno: '.uno:CommonAlignLeft'},
+					{name: _UNO('.uno:CommonAlignHorizontalCenter', 'text'), uno: '.uno:CommonAlignHorizontalCenter'},
+					{name: _UNO('.uno:CommonAlignRight', 'text'), uno: '.uno:CommonAlignRight'},
+					{name: _UNO('.uno:CommonAlignJustified', 'text'), uno: '.uno:CommonAlignJustified'},
+					{type: 'separator'},
+					{uno: '.uno:CommonAlignTop'},
+					{uno: '.uno:CommonAlignVerticalCenter'},
+					{uno: '.uno:CommonAlignBottom'}]},
+				{name: _UNO('.uno:FormatBulletsMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:DefaultBullet'},
+					{uno: '.uno:DefaultNumbering'},
+					{type: 'separator'},
+					{uno: '.uno:DecrementLevel'},
+					{uno: '.uno:IncrementLevel'},
+					{uno: '.uno:DecrementSubLevels'},
+					{uno: '.uno:IncrementSubLevels'},
+					{type: 'separator'},
+					{uno: '.uno:MoveDown'},
+					{uno: '.uno:MoveUp'},
+					{uno: '.uno:MoveDownSubItems'},
+					{uno: '.uno:MoveUpSubItems'},
+					{type: 'separator'},
+					{uno: '.uno:InsertNeutralParagraph'},
+					{uno: '.uno:NumberingStart'},
+					{uno: '.uno:RemoveBullets'},
+					{type: 'separator'},
+					{uno: '.uno:JumpDownThisLevel'},
+					{uno: '.uno:JumpUpThisLevel'},
+					{uno: '.uno:ContinueNumbering'}]},
+				{type: 'separator'},
+				{uno: '.uno:FormatPaintbrush'},
+				{uno: '.uno:ResetAttributes'},
+				{type: 'separator'},
+				{uno: '.uno:FontDialog'},
+				{uno: '.uno:ParagraphDialog'},
+				{uno: '.uno:SidebarDeck.StyleListDeck'},
+				{uno: '.uno:OutlineBullet'},
+				{uno: '.uno:ThemeDialog'},
+				{type: 'separator'},
+				{uno: '.uno:PageDialog'},
+				{uno: '.uno:TitlePageDialog'},
+				{uno: '.uno:FormatColumns'},
+				{uno: '.uno:Watermark'},
+				{uno: '.uno:EditRegion'},
+				{type: 'separator'},
+				{uno: '.uno:TransformDialog'},
+				{uno: '.uno:FormatLine'},
+				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
+				{type: 'separator'},
+				{uno: '.uno:ChangeFont'},
+				{uno: '.uno:ChangeFontSize'},
+				{uno: '.uno:ChangeDistance'},
+				{uno: '.uno:ChangeAlignment'}
+			]},
+			{name: _('References'), id: 'references', type: 'menu', menu: [
+				{name: _UNO('.uno:IndexesMenu', 'text'), uno: '.uno:InsertMultiIndex'},
+				{uno: '.uno:InsertIndexesEntry'},
+				{name: _('Update Index'), uno: '.uno:UpdateCurIndex'},
+				{type: 'separator'},
+				{uno: '.uno:InsertFootnote'},
+				{uno: '.uno:InsertEndnote'},
+				{uno: '.uno:FootnoteDialog'},
+				{type: 'separator'},
+				{uno: '.uno:InsertBookmark'},
+				{uno: '.uno:InsertReferenceField'},
+				{id: 'zoteroseparator', type: 'separator', hidden: !window.zoteroEnabled},
+				{name: _('Add Citation'), id: 'zoteroaddeditcitation', type: 'action', hidden: !window.zoteroEnabled},
+				{name: _('Add Citation Note'), id: 'zoteroaddnote', type: 'action', hidden: !window.zoteroEnabled},
+				{name: _('Add Bibliography'), id: 'zoteroaddeditbibliography', type: 'action', hidden: !window.zoteroEnabled},
+				{id: 'zoteroseparator2', type: 'separator', hidden: !window.zoteroEnabled},
+				{name: _('Refresh Citations'), id: 'zoterorefresh', type: 'action', hidden: !window.zoteroEnabled},
+				{name: _('Unlink Citations'), id: 'zoterounlink', type: 'action', hidden: !window.zoteroEnabled},
+				{name: _('Citation Preferences'), id: 'zoterosetdocprefs', type: 'action', iosapp: false, hidden: !window.zoteroEnabled}]
+			},
+			{name: _UNO('.uno:TableMenu', 'text'), type: 'menu', id: 'table', menu: [
+				{uno: '.uno:InsertTable'},
+				{name: _UNO('.uno:TableInsertMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:InsertRowsBefore'},
+					{uno: '.uno:InsertRowsAfter'},
+					{type: 'separator'},
+					{uno: '.uno:InsertColumnsBefore'},
+					{uno: '.uno:InsertColumnsAfter'}]},
+				{name: _UNO('.uno:TableDeleteMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:DeleteRows'},
+					{uno: '.uno:DeleteColumns'},
+					{uno: '.uno:DeleteTable'}]},
+				{name: _UNO('.uno:TableSelectMenu', 'text'), type: 'menu', menu: [
+					{uno: '.uno:SelectTable'},
+					{uno: '.uno:EntireRow'},
+					{uno: '.uno:EntireColumn'},
+					{uno: '.uno:EntireCell'}]},
+				{uno: '.uno:SplitCell'},
+				{uno: '.uno:MergeCells'},
+				{type: 'separator'},
+				{uno: '.uno:Protect'},
+				{uno: '.uno:UnsetCellsReadOnly'},
+				{type: 'separator'},
+				{uno: '.uno:TableDialog'}
+			]},
+			{name: _UNO('.uno:FormatFormMenu', 'text'), id: 'form', type: 'menu', menu: [
+				{name: _('Insert Rich Text'), uno: '.uno:InsertContentControl'},
+				{name: _('Insert Checkbox'), uno: '.uno:InsertCheckboxContentControl'},
+				{name: _('Insert Dropdown'), uno: '.uno:InsertDropdownContentControl'},
+				{name: _('Insert Picture'), uno: '.uno:InsertPictureContentControl'},
+				{name: _('Insert Date'), uno: '.uno:InsertDateContentControl'},
+				{name: _('Properties'), uno: '.uno:ContentControlProperties'},
+			]},
+			{name: _UNO('.uno:ToolsMenu', 'text'), id: 'tools', type: 'menu', menu: [
+				{uno: '.uno:SpellingAndGrammarDialog'},
+				{uno: '.uno:SpellOnline'},
+				window.deeplEnabled ?
 					{
 						name: _UNO('.uno:Save', 'text'),
 						id: 'save',
@@ -1001,190 +1289,127 @@ class Menubar extends window.L.Control {
 		],
 
 		presentation: [
-			{
-				name: _UNO('.uno:PickList', 'presentation'),
-				id: 'file',
-				type: 'menu',
-				menu: [
-					{
-						name: _UNO('.uno:Save', 'presentation'),
-						id: 'save',
-						type: 'action',
-					},
-					{
-						name: _UNO('.uno:SaveAs', 'presentation'),
-						id: 'saveas',
-						type:
-							window.prefs.get('saveAsMode') === 'group'
-								? 'menu'
-								: 'action',
-						menu: [
-							{
-								name: _('ODF presentation (.odp)'),
-								id: 'saveas-odp',
-								type: 'action',
-							},
-							{
-								name: _(
-									'PowerPoint 2003 Presentation (.ppt)',
-								),
-								id: 'saveas-ppt',
-								type: 'action',
-							},
-							{
-								name: _(
-									'PowerPoint Presentation (.pptx)',
-								),
-								id: 'saveas-pptx',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Export as'),
-						id: 'exportas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: 'exportas-pdf',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Save Comments'),
-						id: 'savecomments',
-						type: 'action',
-					},
-					{ name: _('Share...'), id: 'shareas', type: 'action' },
-					{
-						name: _('See revision history'),
-						id: 'rev-history',
-						type: 'action',
-					},
-					{
-						name: !window.ThisIsAMobileApp
-							? _('Download as')
-							: _('Export as'),
-						id: 'downloadas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: !window.ThisIsAMobileApp
-									? 'exportdirectpdf'
-									: 'downloadas-pdf',
-								type: 'action',
-							},
-							{
-								name: _('PDF Document (.pdf) as...'),
-								id: 'exportpdf',
-								type: 'action',
-							},
-							{
-								name: _('ODF presentation (.odp)'),
-								id: 'downloadas-odp',
-								type: 'action',
-							},
-							{
-								name: _(
-									'PowerPoint 2003 Presentation (.ppt)',
-								),
-								id: 'downloadas-ppt',
-								type: 'action',
-							},
-							{
-								name: _(
-									'PowerPoint Presentation (.pptx)',
-								),
-								id: 'downloadas-pptx',
-								type: 'action',
-							},
-							{
-								name: _('HTML Document (.html)'),
-								id: 'downloadas-html',
-								type: 'action',
-							},
-							{
-								name: _('Shockwave Flash (.swf)'),
-								id: 'downloadas-swf',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Scalable Vector Graphics (.svg)',
-								),
-								id: 'downloadas-svg',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Current slide as Bitmap (.bmp)',
-								),
-								id: 'downloadas-bmp',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Current slide as Graphics Interchange Format (.gif)',
-								),
-								id: 'downloadas-gif',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Current slide as Portable Network Graphics (.png)',
-								),
-								id: 'downloadas-png',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Current slide as Tag Image File Format (.tiff)',
-								),
-								id: 'downloadas-tiff',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:SetDocumentProperties',
-							'presentation',
-						),
-						uno: '.uno:SetDocumentProperties',
-						id: 'properties',
-					},
-					{
-						name: _UNO('.uno:Signature', 'presentation'),
-						uno: '.uno:Signature',
-						id: 'signature',
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:Print', 'presentation'),
-						id: 'print',
-						type: 'menu',
-						menu: [
-							{
-								name: _('Full Page Slides'),
-								id: 'print',
-								type: 'action',
-							},
-							{
-								name: _('Notes Pages'),
-								id: 'print-notespages',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Close document'),
-						id: 'closedocument',
-						type: 'action',
-					},
-				],
+			{name: _UNO('.uno:PickList', 'presentation'), id: 'file', type: 'menu', menu: [
+				{name: _UNO('.uno:Save', 'presentation'), id: 'save', type: 'action'},
+				{name: _UNO('.uno:SaveAs', 'presentation'), id: 'saveas', type: window.prefs.get('saveAsMode') === 'group' ? 'menu' : 'action', menu: [
+					{name: _('ODF presentation (.odp)'), id: 'saveas-odp', type: 'action'},
+					{name: _('PowerPoint 2003 Presentation (.ppt)'), id: 'saveas-ppt', type: 'action'},
+					{name: _('PowerPoint Presentation (.pptx)'), id: 'saveas-pptx', type: 'action'},
+				]},
+				{name: _('Export as'), id: 'exportas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: 'exportas-pdf', type: 'action'}
+				]},
+				{name: _('Save Comments'), id: 'savecomments', type: 'action'},
+				{name: _('Share...'), id:'shareas', type: 'action'},
+				{name: _('See revision history'), id: 'rev-history', type: 'action'},
+				{name: !window.ThisIsAMobileApp ? _('Download as') : _('Export as'), id: 'downloadas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf', type: 'action'},
+					{name: _('PDF Document (.pdf) as...'), id: 'exportpdf' , type: 'action'},
+					{name: _('ODF presentation (.odp)'), id: 'downloadas-odp', type: 'action'},
+					{name: _('PowerPoint 2003 Presentation (.ppt)'), id: 'downloadas-ppt', type: 'action'},
+					{name: _('PowerPoint Presentation (.pptx)'), id: 'downloadas-pptx', type: 'action'},
+					{name: _('HTML Document (.html)'), id: 'downloadas-html', type: 'action'},
+					{name: _('Shockwave Flash (.swf)'), id: 'downloadas-swf', type: 'action'},
+					{name: _('Scalable Vector Graphics (.svg)'), id: 'downloadas-svg', type: 'action'},
+					{name: _('Current slide as Bitmap (.bmp)'), id: 'downloadas-bmp', type: 'action'},
+					{name: _('Current slide as Graphics Interchange Format (.gif)'), id: 'downloadas-gif', type: 'action'},
+					{name: _('Current slide as Portable Network Graphics (.png)'), id: 'downloadas-png', type: 'action'},
+					{name: _('Current slide as Tag Image File Format (.tiff)'), id: 'downloadas-tiff', type: 'action'},
+				]},
+				{name: _UNO('.uno:SetDocumentProperties', 'presentation'), uno: '.uno:SetDocumentProperties', id: 'properties'},
+				{name: _UNO('.uno:Signature', 'presentation'), uno: '.uno:Signature', id: 'signature'},
+				{name: _('Options'), id: 'settings-dialog', type: 'action', mobileapp: false},
+				{type: 'separator'},
+				{name: _UNO('.uno:Print', 'presentation'), id: 'print', type: 'menu', menu: [
+					{name: _('Full Page Slides'), id: 'print', type: 'action'},
+					{name: _('Notes Pages'), id: 'print-notespages' , type: 'action'},
+				]},
+				{name: _('Close document'), id: 'closedocument', type: 'action'}
+			]},
+			{name: _UNO('.uno:EditMenu', 'presentation'), id: 'editmenu', type: 'menu', menu: [
+				{name: _UNO('.uno:Undo', 'presentation'), uno: '.uno:Undo'},
+				{name: _UNO('.uno:Redo', 'presentation'), uno: '.uno:Redo'},
+				{name: _('Repair'), id: 'repair',  type: 'action'},
+				{type: 'separator'},
+				{name: _UNO('.uno:Cut', 'presentation'), uno: '.uno:Cut'},
+				{name: _UNO('.uno:Copy', 'presentation'), uno: '.uno:Copy'},
+				{name: _UNO('.uno:Paste', 'presentation'), uno: '.uno:Paste'},
+				{name: _UNO('.uno:PasteSpecial', 'presentation'), uno: '.uno:PasteSpecial'},
+				{name: _UNO('.uno:SelectAll', 'presentation'), uno: '.uno:SelectAll'},
+				{type: 'separator'},
+				{uno: '.uno:SearchDialog'}
+			]},
+			{name: _UNO('.uno:ViewMenu', 'presentation'), id: 'view', type: 'menu',
+			 menu: (window.mode.isTablet() ? [
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[] : [
+				   {name: _UNO('.uno:FullScreen', 'presentation'), id: 'fullscreen', type: 'action'},
+				   {type: 'separator'},
+				   {name: _UNO('.uno:ZoomPlus', 'presentation'), id: 'zoomin', type: 'action'},
+				   {name: _UNO('.uno:ZoomMinus', 'presentation'), id: 'zoomout', type: 'action'},
+				   {name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[]).concat([
+				   {type: 'separator'},
+				   {uno: '.uno:GridVisible', name: _UNO('.uno:GridVisible')},
+				   {uno: '.uno:GridUse', name: _UNO('.uno:GridUse')},
+				   {type: 'separator'},
+				   {name: _('Toggle UI Mode'), id: 'toggleuimode', type: 'action'},
+				   {name: _('Show Ruler'), id: 'showruler', type: 'action'},
+				   {name: _('Show Status Bar'), id: 'showstatusbar', type: 'action'},
+				   {name: _('Notes View'), id: 'notesmode', type: 'action'},
+				   {name: _('Hide Menu Bar'), id: 'togglemenubar', type: 'action'},
+				   {name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				   {name: _('Invert Background'), id: 'invertbackground', type: 'action'},
+				   {name: _('Master View'), uno: '.uno:SlideMasterPage'},
+				   {uno: '.uno:SidebarDeck.PropertyDeck', name: _UNO('.uno:Sidebar')},
+				   {uno: '.uno:Navigator', id: 'navigator'},
+				   {type: 'separator'},
+				   {uno: '.uno:ModifyPage'},
+				   {uno: '.uno:CustomAnimation'},
+				])},
+			{name: _UNO('.uno:InsertMenu', 'presentation'), id: 'insert', type: 'menu', menu: [
+				{name: _('Local Image...'), id: 'insertgraphic', type: 'action'},
+				{name: _UNO('.uno:InsertGraphic', 'presentation'), id: 'insertgraphicremote', type: 'action'},
+				{name: _('Local Multimedia...'), id: 'insertmultimedia', type: 'action'},
+				{name: _UNO('.uno:SelectBackground', 'presentation'), id: 'selectbackground', type: 'action'},
+				{name: _UNO('.uno:InsertAnnotation', 'presentation'), id: 'insertcomment', type: 'action'},
+				{uno: '.uno:InsertObjectChart'},
+				{name: _UNO('.uno:FontworkGalleryFloater'), uno: '.uno:FontworkGalleryFloater', id: 'fontworkgalleryfloater'},
+				{name: _UNO('.uno:Text', 'presentation'), id: 'inserttextbox', type: 'action'},
+				{name: _UNO('.uno:VerticalText'), uno: '.uno:VerticalText'},
+				{type: 'separator'},
+				{name: _UNO('.uno:HyperlinkDialog'), id: 'inserthyperlink', type: 'action'},
+				{name: _('Smart Picker'), id: 'remotelink', type: 'action'},
+				{name: _('AI Assistant'), id: 'remoteaicontent', type: 'action'},
+				{type: 'separator'},
+				{uno: '.uno:InsertSymbol'},
+				{type: 'separator'},
+				{uno: '.uno:HeaderAndFooter'},
+				{type: 'separator'},
+				{name: _UNO('.uno:InsertField', 'text'), id: 'insertfield', type: 'menu', menu: [
+					{uno: '.uno:InsertDateFieldFix'},
+					{uno: '.uno:InsertDateFieldVar'},
+					{uno: '.uno:InsertTimeFieldFix'},
+					{uno: '.uno:InsertTimeFieldVar'},
+					{type: 'separator'},
+					{name: _UNO('.uno:InsertSlideField', 'presentation'), uno: '.uno:InsertPageField'},
+					{name: _UNO('.uno:InsertSlideTitleField', 'presentation'), uno: '.uno:InsertPageTitleField'},
+					{name: _UNO('.uno:InsertSlidesField', 'presentation'), uno: '.uno:InsertPagesField'},
+				]},
+			]},
+			{name: _UNO('.uno:FormatMenu', 'presentation'), id: 'format', type: 'menu', menu: [
+				{uno: '.uno:FontDialog'},
+				{uno: '.uno:ParagraphDialog'},
+				{name: _UNO('.uno:SlideSetup', 'presentation'), uno: '.uno:PageSetup'},
+				{type: 'separator'},
+				{uno: '.uno:TransformDialog'},
+				{uno: '.uno:FormatLine'},
+				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
+				{type: 'separator'},
+				{uno: '.uno:OutlineBullet'},
+				{uno: '.uno:ThemeDialog'}]
 			},
 			{
 				name: _UNO('.uno:EditMenu', 'presentation'),
@@ -1646,95 +1871,100 @@ class Menubar extends window.L.Control {
 		],
 
 		drawing: [
-			{
-				name: _UNO('.uno:PickList', 'presentation'),
-				id: 'file',
-				type: 'menu',
-				menu: [
-					{
-						name: _UNO('.uno:Save', 'presentation'),
-						id: 'save',
-						type: 'action',
-					},
-					{
-						name: _UNO('.uno:SaveAs', 'presentation'),
-						id: 'saveas',
-						type: 'action',
-					},
-					{
-						name: _('Export as'),
-						id: 'exportas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: 'exportas-pdf',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Save Comments'),
-						id: 'savecomments',
-						type: 'action',
-					},
-					{ name: _('Share...'), id: 'shareas', type: 'action' },
-					{
-						name: _UNO('.uno:Print', 'presentation'),
-						id: 'print',
-						type: 'action',
-					},
-					{
-						name: _('See revision history'),
-						id: 'rev-history',
-						type: 'action',
-					},
-					{
-						name: !window.ThisIsAMobileApp
-							? _('Download as')
-							: _('Export as'),
-						id: 'downloadas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: !window.ThisIsAMobileApp
-									? 'exportdirectpdf'
-									: 'downloadas-pdf',
-								type: 'action',
-							},
-							{
-								name: _('PDF Document (.pdf) as...'),
-								id: 'exportpdf',
-								type: 'action',
-							},
-							{
-								name: _('ODF Drawing (.odg)'),
-								id: 'downloadas-odg',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:SetDocumentProperties',
-							'presentation',
-						),
-						uno: '.uno:SetDocumentProperties',
-						id: 'properties',
-					},
-					{
-						name: _UNO('.uno:Signature', 'presentation'),
-						uno: '.uno:Signature',
-						id: 'signature',
-					},
-					{ type: 'separator' },
-					{
-						name: _('Close document'),
-						id: 'closedocument',
-						type: 'action',
-					},
-				],
+			{name: _UNO('.uno:PickList', 'presentation'), id: 'file', type: 'menu', menu: [
+				{name: _UNO('.uno:Save', 'presentation'), id: 'save', type: 'action'},
+				{name: _UNO('.uno:SaveAs', 'presentation'), id: 'saveas', type: 'action'},
+				{name: _('Export as'), id: 'exportas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: 'exportas-pdf', type: 'action'}
+				]},
+				{name: _('Save Comments'), id: 'savecomments', type: 'action'},
+				{name: _('Share...'), id:'shareas', type: 'action'},
+				{name: _UNO('.uno:Print', 'presentation'), id: 'print', type: 'action'},
+				{name: _('See revision history'), id: 'rev-history', type: 'action'},
+				{name: !window.ThisIsAMobileApp ? _('Download as') : _('Export as'), id: 'downloadas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf', type: 'action'},
+					{name: _('PDF Document (.pdf) as...'), id: 'exportpdf' , type: 'action'},
+					{name: _('ODF Drawing (.odg)'), id: 'downloadas-odg', type: 'action'}
+				]},
+				{name: _UNO('.uno:SetDocumentProperties', 'presentation'), uno: '.uno:SetDocumentProperties', id: 'properties'},
+				{name: _UNO('.uno:Signature', 'presentation'), uno: '.uno:Signature', id: 'signature'},
+				{name: _('Options'), id: 'settings-dialog', type: 'action', mobileapp: false},
+				{type: 'separator'},
+				{name: _('Close document'), id: 'closedocument', type: 'action'}
+			]},
+			{name: _UNO('.uno:EditMenu', 'presentation'), id: 'editmenu', type: 'menu', menu: [
+				{name: _UNO('.uno:Undo', 'presentation'), uno: '.uno:Undo'},
+				{name: _UNO('.uno:Redo', 'presentation'), uno: '.uno:Redo'},
+				{name: _('Repair'), id: 'repair',  type: 'action'},
+				{type: 'separator'},
+				{name: _UNO('.uno:Cut', 'presentation'), uno: '.uno:Cut'},
+				{name: _UNO('.uno:Copy', 'presentation'), uno: '.uno:Copy'},
+				{name: _UNO('.uno:Paste', 'presentation'), uno: '.uno:Paste'},
+				{name: _UNO('.uno:PasteSpecial', 'presentation'), uno: '.uno:PasteSpecial'},
+				{name: _UNO('.uno:SelectAll', 'presentation'), uno: '.uno:SelectAll'},
+				{type: 'separator'},
+				{uno: '.uno:SearchDialog'}
+			]},
+			{name: _UNO('.uno:ViewMenu', 'presentation'), id: 'view', type: 'menu',
+			 menu: (window.mode.isTablet() ? [
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[] : [
+					{name: _UNO('.uno:FullScreen', 'presentation'), id: 'fullscreen', type: 'action'},
+					{type: 'separator'},
+					{name: _UNO('.uno:ZoomPlus', 'presentation'), id: 'zoomin', type: 'action'},
+					{name: _UNO('.uno:ZoomMinus', 'presentation'), id: 'zoomout', type: 'action'},
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[]).concat([
+					{type: 'separator'},
+					{uno: '.uno:GridVisible', name: _UNO('.uno:GridVisible')},
+					{uno: '.uno:GridUse', name: _UNO('.uno:GridUse')},
+					{type: 'separator'},
+					{name: _('Toggle UI Mode'), id: 'toggleuimode', type: 'action'},
+					{name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+					{name: _('Invert Background'), id: 'invertbackground', type: 'action'},
+					{uno: '.uno:SidebarDeck.PropertyDeck', name: _UNO('.uno:Sidebar')},
+					{uno: '.uno:Navigator', id: 'navigator'},
+					{name: _('Show Status Bar'), id: 'showstatusbar', type: 'action'},
+					{name: _('Hide Menu Bar'), id: 'togglemenubar', type: 'action'},
+				])},
+			{name: _UNO('.uno:InsertMenu', 'presentation'), id: 'insert', type: 'menu', menu: [
+				{name: _('Local Image...'), id: 'insertgraphic', type: 'action'},
+				{name: _UNO('.uno:InsertGraphic', 'presentation'), id: 'insertgraphicremote', type: 'action'},
+				{name: _UNO('.uno:SelectBackground', 'presentation'), id: 'selectbackground', type: 'action'},
+				{name: _UNO('.uno:InsertAnnotation', 'presentation'), id: 'insertcomment', type: 'action'},
+				{uno: '.uno:InsertObjectChart'},
+				{type: 'separator'},
+				{name: _UNO('.uno:HyperlinkDialog'), id: 'inserthyperlink', type: 'action'},
+				{name: _('Smart Picker'), id: 'remotelink', type: 'action'},
+				{name: _('AI Assistant'), id: 'remoteaicontent', type: 'action'},
+				{type: 'separator'},
+				{uno: '.uno:InsertSymbol'},
+				{type: 'separator'},
+				{name: _UNO('.uno:InsertField', 'text'), id: 'insertfield', type: 'menu', menu: [
+					{name: _UNO('.uno:InsertDateFieldFix', 'presentation'), uno: '.uno:InsertDateFieldFix'},
+					{name: _UNO('.uno:InsertDateFieldVar', 'presentation'), uno: '.uno:InsertDateFieldVar'},
+					{name: _UNO('.uno:InsertTimeFieldFix', 'presentation'), uno: '.uno:InsertTimeFieldFix'},
+					{name: _UNO('.uno:InsertTimeFieldVar', 'presentation'), uno: '.uno:InsertTimeFieldVar'},
+					{type: 'separator'},
+					{name: _UNO('.uno:InsertPageField', 'presentation'), uno: '.uno:InsertPageField'},
+					{name: _UNO('.uno:InsertPageTitleField', 'presentation'), uno: '.uno:InsertPageTitleField'},
+					{name: _UNO('.uno:InsertPagesField', 'presentation'), uno: '.uno:InsertPagesField'},
+				]},
+				{name: _UNO('.uno:InsertSignatureLine'), id: 'insert-signatureline', type: 'action'},
+			]},
+			{name: _UNO('.uno:FormatMenu', 'presentation'), id: 'format', type: 'menu', menu: [
+				{uno: '.uno:FontDialog'},
+				{uno: '.uno:ParagraphDialog'},
+				{name: _UNO('.uno:PageSetup', 'presentation'), uno: '.uno:PageSetup'},
+				{type: 'separator'},
+				{uno: '.uno:TransformDialog'},
+				{uno: '.uno:FormatLine'},
+				{uno: '.uno:FormatArea'},
+				{uno: '.uno:NameGroup'},
+				{uno: '.uno:ObjectTitleDescription'},
+				{type: 'separator'},
+				{uno: '.uno:OutlineBullet'},
+				{uno: '.uno:ThemeDialog'}]
 			},
 			{
 				name: _UNO('.uno:EditMenu', 'presentation'),
@@ -2211,961 +2441,294 @@ class Menubar extends window.L.Control {
 		],
 
 		spreadsheet: [
-			{
-				name: _UNO('.uno:PickList', 'spreadsheet'),
-				id: 'file',
-				type: 'menu',
-				menu: [
-					{
-						name: _UNO('.uno:Save', 'spreadsheet'),
-						id: 'save',
-						type: 'action',
-					},
-					{
-						name: _UNO('.uno:SaveAs', 'spreadsheet'),
-						id: 'saveas',
-						type:
-							window.prefs.get('saveAsMode') === 'group'
-								? 'menu'
-								: 'action',
-						menu: [
-							{
-								name: _('ODF spreadsheet (.ods)'),
-								id: 'saveas-ods',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Excel 2003 Spreadsheet (.xls)',
-								),
-								id: 'saveas-xls',
-								type: 'action',
-							},
-							{
-								name: _('Excel Spreadsheet (.xlsx)'),
-								id: 'saveas-xlsx',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Export as'),
-						id: 'exportas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: 'exportas-pdf',
-								type: 'action',
-							},
-						],
-					},
-					{ name: _('Share...'), id: 'shareas', type: 'action' },
-					{
-						name: _('See revision history'),
-						id: 'rev-history',
-						type: 'action',
-					},
-					{
-						name: !window.ThisIsAMobileApp
-							? _('Download as')
-							: _('Export as'),
-						id: 'downloadas',
-						type: 'menu',
-						menu: [
-							{
-								name: _('PDF Document (.pdf)'),
-								id: !window.ThisIsAMobileApp
-									? 'exportdirectpdf'
-									: 'downloadas-pdf',
-								type: 'action',
-							},
-							{
-								name: _('PDF Document (.pdf) as...'),
-								id: 'exportpdf',
-								type: 'action',
-							},
-							{
-								name: _('ODF spreadsheet (.ods)'),
-								id: 'downloadas-ods',
-								type: 'action',
-							},
-							{
-								name: _(
-									'Excel 2003 Spreadsheet (.xls)',
-								),
-								id: 'downloadas-xls',
-								type: 'action',
-							},
-							{
-								name: _('Excel Spreadsheet (.xlsx)'),
-								id: 'downloadas-xlsx',
-								type: 'action',
-							},
-							{
-								name: _('CSV file (.csv)'),
-								id: 'downloadas-csv',
-								type: 'action',
-							},
-							{
-								name: _('HTML file (.html)'),
-								id: 'downloadas-html',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:SetDocumentProperties',
-							'spreadsheet',
-						),
-						uno: '.uno:SetDocumentProperties',
-						id: 'properties',
-					},
-					{
-						name: _UNO('.uno:Signature', 'spreadsheet'),
-						uno: '.uno:Signature',
-						id: 'signature',
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:Print', 'spreadsheet'),
-						id: 'print',
-						type: 'menu',
-						menu: [
-							{
-								name: _('Active sheet'),
-								id: 'print-active-sheet',
-								type: 'action',
-							},
-							{
-								name: _('All Sheets'),
-								id: 'print-all-sheets',
-								type: 'action',
-							},
-						],
-					},
-					{
-						name: _('Close document'),
-						id: 'closedocument',
-						type: 'action',
-					},
-				],
-			},
-			{
-				name: _UNO('.uno:EditMenu', 'spreadsheet'),
-				id: 'editmenu',
-				type: 'menu',
-				menu: [
-					{ name: _UNO('.uno:Undo', 'text'), uno: '.uno:Undo' },
-					{ name: _UNO('.uno:Redo', 'text'), uno: '.uno:Redo' },
-					{ name: _('Repair'), id: 'repair', type: 'action' },
-					{ type: 'separator' },
-					{ name: _UNO('.uno:Cut', 'text'), uno: '.uno:Cut' },
-					{ name: _UNO('.uno:Copy', 'text'), uno: '.uno:Copy' },
-					{
-						name: _UNO('.uno:Paste', 'text'),
-						uno: '.uno:Paste',
-					},
-					{
-						name: _UNO('.uno:PasteSpecial', 'text'),
-						uno: '.uno:PasteSpecial',
-					},
-					{
-						name: _UNO('.uno:SelectAll', 'text'),
-						uno: '.uno:SelectAll',
-					},
-					{ type: 'separator' },
-					{ uno: '.uno:SearchDialog' },
-				],
-			},
-			{
-				name: _UNO('.uno:ViewMenu', 'spreadsheet'),
-				id: 'view',
-				type: 'menu',
-				menu: (window.mode.isTablet()
-					? ([
-							{
-								name: _('Reset zoom'),
-								id: 'zoomreset',
-								type: 'action',
-							},
-						] as MenuItem[])
-					: ([
-							{
-								name: _UNO(
-									'.uno:FullScreen',
-									'spreadsheet',
-								),
-								id: 'fullscreen',
-								type: 'action',
-							},
-							{ type: 'separator' },
-							{
-								name: _UNO('.uno:ZoomPlus', 'text'),
-								id: 'zoomin',
-								type: 'action',
-							},
-							{
-								name: _UNO('.uno:ZoomMinus', 'text'),
-								id: 'zoomout',
-								type: 'action',
-							},
-							{
-								name: _('Reset zoom'),
-								id: 'zoomreset',
-								type: 'action',
-							},
-						] as MenuItem[])
-				).concat([
-					{ type: 'separator' },
-					{
-						name: _('Toggle UI Mode'),
-						id: 'toggleuimode',
-						type: 'action',
-					},
-					{
-						name: _('Show Status Bar'),
-						id: 'showstatusbar',
-						type: 'action',
-					},
-					{
-						name: _('Hide Menu Bar'),
-						id: 'togglemenubar',
-						type: 'action',
-					},
-					{
-						name: _('Dark Mode'),
-						id: 'toggledarktheme',
-						type: 'action',
-					},
-					{
-						name: _('Invert Background'),
-						id: 'invertbackground',
-						type: 'action',
-					},
-					{
-						uno: '.uno:SidebarDeck.PropertyDeck',
-						name: _UNO('.uno:Sidebar'),
-					},
-					{ uno: '.uno:Navigator', id: 'navigator' },
-					{
-						uno: '.uno:SidebarDeck.StyleListDeck',
-						name: _('Style list'),
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO(
-							'.uno:ToggleSheetGrid',
-							'spreadsheet',
-							true,
-						),
-						uno: '.uno:ToggleSheetGrid',
-						id: 'sheetgrid',
-					},
-					{
-						name: _('Focus Cell'),
-						type: 'action',
-						id: 'columnrowhighlight',
-					},
-					{
-						name: _UNO(
-							'.uno:FreezePanes',
-							'spreadsheet',
-							true,
-						),
-						id: 'FreezePanes',
-						type: 'action',
-						uno: '.uno:FreezePanes',
-					},
-					{
-						name: _UNO(
-							'.uno:FreezeCellsMenu',
-							'spreadsheet',
-							true,
-						),
-						id: 'FreezeCellsMenu',
-						type: 'menu',
-						uno: '.uno:FreezeCellsMenu',
-						menu: [
-							{
-								name: _UNO(
-									'.uno:FreezePanesColumn',
-									'spreadsheet',
-									true,
-								),
-								id: 'FreezePanesColumn',
-								type: 'action',
-								uno: '.uno:FreezePanesColumn',
-							},
-							{
-								name: _UNO(
-									'.uno:FreezePanesRow',
-									'spreadsheet',
-									true,
-								),
-								id: 'FreezePanesRow',
-								type: 'action',
-								uno: '.uno:FreezePanesRow',
-							},
-						],
-					},
-				]),
-			},
-			{
-				name: _UNO('.uno:InsertMenu', 'spreadsheet'),
-				id: 'insert',
-				type: 'menu',
-				menu: [
-					{
-						name: _('Local Image...'),
-						id: 'insertgraphic',
-						type: 'action',
-					},
-					{
-						name: _UNO('.uno:InsertGraphic', 'spreadsheet'),
-						id: 'insertgraphicremote',
-						type: 'action',
-					},
-					{
-						name: _UNO(
-							'.uno:DataDataPilotRun',
-							'spreadsheet',
-						),
-						uno: '.uno:DataDataPilotRun',
-					},
-					{
-						name: _UNO('.uno:InsertSparkline', 'spreadsheet'),
-						uno: '.uno:InsertSparkline',
-					},
-					{
-						name: _UNO(
-							'.uno:InsertAnnotation',
-							'spreadsheet',
-						),
-						id: 'insertcomment',
-						type: 'action',
-					},
-					{ uno: '.uno:InsertObjectChart' },
-					{
-						name: _UNO('.uno:FontworkGalleryFloater'),
-						uno: '.uno:FontworkGalleryFloater',
-						id: 'fontworkgalleryfloater',
-					},
-					{ name: _UNO('.uno:DrawText'), uno: '.uno:DrawText' },
-					{
-						name: _UNO('.uno:VerticalText'),
-						uno: '.uno:VerticalText',
-					},
-					{ uno: '.uno:FunctionDialog' },
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:HyperlinkDialog'),
-						uno: '.uno:HyperlinkDialog',
-					},
-					{
-						name: _('Smart Picker'),
-						id: 'remotelink',
-						type: 'action',
-					},
-					{
-						name: _('AI Assistant'),
-						id: 'remoteaicontent',
-						type: 'action',
-					},
-					{ uno: '.uno:InsertSymbol' },
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:InsertField', 'text'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:InsertCurrentDate' },
-							{ uno: '.uno:InsertCurrentTime' },
-						],
-					},
-					{
-						uno: '.uno:EditHeaderAndFooter',
-					} /*todo: add to Control.Notebookbar.Calc.js (as Insert tab)*/,
-				],
-			},
-			{
-				name: _UNO('.uno:FormatMenu', 'spreadsheet'),
-				id: 'format',
-				type: 'menu',
-				menu: [
-					{
-						name: _UNO('.uno:FormatTextMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{
-								name: _UNO('.uno:Bold', 'spreadsheet'),
-								uno: '.uno:Bold',
-							},
-							{
-								name: _UNO(
-									'.uno:Italic',
-									'spreadsheet',
-								),
-								uno: '.uno:Italic',
-							},
-							{
-								name: _UNO(
-									'.uno:Underline',
-									'spreadsheet',
-								),
-								uno: '.uno:Underline',
-							},
-							{
-								name: _UNO(
-									'.uno:UnderlineDouble',
-									'spreadsheet',
-								),
-								uno: '.uno:UnderlineDouble',
-							},
-							{
-								name: _UNO(
-									'.uno:Strikeout',
-									'spreadsheet',
-								),
-								uno: '.uno:Strikeout',
-							},
-							{ uno: '.uno:Overline' },
-							{ type: 'separator' },
-							{
-								name: _UNO(
-									'.uno:SuperScript',
-									'spreadsheet',
-								),
-								uno: '.uno:SuperScript',
-							},
-							{
-								name: _UNO(
-									'.uno:SubScript',
-									'spreadsheet',
-								),
-								uno: '.uno:SubScript',
-							},
-							{ type: 'separator' },
-							{ uno: '.uno:Shadowed' },
-							{ uno: '.uno:OutlineFont' },
-							{ type: 'separator' },
-							{ uno: '.uno:WrapText' },
-							{ type: 'separator' },
-							{ uno: '.uno:ChangeCaseToUpper' },
-							{ uno: '.uno:ChangeCaseToLower' },
-							{ uno: '.uno:ChangeCaseRotateCase' },
-							{ type: 'separator' },
-							{ uno: '.uno:ChangeCaseToSentenceCase' },
-							{ uno: '.uno:ChangeCaseToTitleCase' },
-							{ uno: '.uno:ChangeCaseToToggleCase' },
-						],
-					},
-					{
-						name: _UNO('.uno:TextAlign', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:CommonAlignLeft' },
-							{ uno: '.uno:CommonAlignHorizontalCenter' },
-							{ uno: '.uno:CommonAlignRight' },
-							{ uno: '.uno:CommonAlignJustified' },
-							{ type: 'separator' },
-							{ uno: '.uno:CommonAlignTop' },
-							{ uno: '.uno:CommonAlignVerticalCenter' },
-							{ uno: '.uno:CommonAlignBottom' },
-							{ type: 'separator' },
-							{ uno: '.uno:ParaLeftToRight' },
-							{ uno: '.uno:ParaRightToLeft' },
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:NumberFormatMenu',
-							'spreadsheet',
-						),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:NumberFormatStandard' },
-							{ uno: '.uno:NumberFormatDecimal' },
-							{ uno: '.uno:NumberFormatPercent' },
-							{ uno: '.uno:NumberFormatCurrency' },
-							{ uno: '.uno:NumberFormatDate' },
-							{ uno: '.uno:NumberFormatTime' },
-							{ uno: '.uno:NumberFormatScientific' },
-							{ type: 'separator' },
-							{ uno: '.uno:NumberFormatThousands' },
-						],
-					},
-					{ type: 'separator' },
-					{ uno: '.uno:FormatPaintbrush' },
-					{ uno: '.uno:ResetAttributes' },
-					{
-						name: _UNO('.uno:PrintRangesMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:DefinePrintArea' },
-							{ uno: '.uno:AddPrintArea' },
-							{ uno: '.uno:EditPrintArea' },
-							{ uno: '.uno:DeletePrintArea' },
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:FormatSparklineMenu',
-							'spreadsheet',
-						),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:InsertSparkline' },
-							{ uno: '.uno:DeleteSparkline' },
-							{ uno: '.uno:DeleteSparklineGroup' },
-							{ uno: '.uno:EditSparklineGroup' },
-							{ uno: '.uno:EditSparkline' },
-							{ uno: '.uno:GroupSparklines' },
-							{ uno: '.uno:UngroupSparklines' },
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:ConditionalFormatMenu',
-							'spreadsheet',
-						),
-						type: 'menu',
-						menu: [
-							{
-								name: _('Highlight cells with...'),
-								type: 'menu',
-								menu: [
-									{
-										name: _(
-											'Values greater than...',
-										),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=2',
-									},
-									{
-										name: _(
-											'Values less than...',
-										),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=1',
-									},
-									{
-										name: _('Values equal to...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=0',
-									},
-									{
-										name: _('Values between...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=6',
-									},
-									{
-										name: _(
-											'Values duplicate...',
-										),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=8',
-									},
-									{
-										name: _('Containing text...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=23',
-									},
-									{ type: 'separator' },
-									{
-										name: _('More highlights...'),
-										uno: '.uno:ConditionalFormatDialog',
-									},
-								],
-							},
-							{
-								name: _('Top/Bottom Rules...'),
-								type: 'menu',
-								menu: [
-									{
-										name: _('Top N elements...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=11',
-									},
-									{
-										name: _('Top N percent...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=13',
-									},
-									{
-										name: _(
-											'Bottom N elements...',
-										),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=12',
-									},
-									{
-										name: _(
-											'Bottom N percent...',
-										),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=14',
-									},
-									{
-										name: _('Above Average...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=15',
-									},
-									{
-										name: _('Below Average...'),
-										uno: '.uno:ConditionalFormatEasy?FormatRule:short=16',
-									},
-									{ type: 'separator' },
-									{
-										name: _('More highlights...'),
-										uno: '.uno:ConditionalFormatDialog',
-									},
-								],
-							},
-							{ uno: '.uno:ColorScaleFormatDialog' },
-							{ uno: '.uno:DataBarFormatDialog' },
-							{ uno: '.uno:IconSetFormatDialog' },
-							{ uno: '.uno:CondDateFormatDialog' },
-							{ type: 'separator' },
-							{
-								uno: '.uno:ConditionalFormatManagerDialog',
-							},
-						],
-					},
-					{ type: 'separator' },
-					{ uno: '.uno:FormatCellDialog' },
-					{
-						name: _('Rows'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:RowHeight' },
-							{ uno: '.uno:SetOptimalRowHeight' },
-						],
-					},
-					{
-						name: _('Columns'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:ColumnWidth' },
-							{ uno: '.uno:SetOptimalColumnWidth' },
-						],
-					},
-					{ uno: '.uno:FontDialog' },
-					{ uno: '.uno:ParagraphDialog' },
-					{ uno: '.uno:SidebarDeck.StyleListDeck' },
-					{ uno: '.uno:PageFormatDialog' },
-					{ type: 'separator' },
-					{ uno: '.uno:TransformDialog' },
-					{ uno: '.uno:FormatLine' },
-					{ uno: '.uno:FormatArea' },
-					{ uno: '.uno:ThemeDialog' },
-				],
-			},
-			{
-				name: _UNO('.uno:SheetMenu', 'spreadsheet'),
-				id: 'sheet',
-				type: 'menu',
-				menu: [
-					{ uno: '.uno:InsertCell' },
-					{
-						name: _UNO('.uno:InsertRowsMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:InsertRowsBefore' },
-							{ uno: '.uno:InsertRowsAfter' },
-						],
-					},
-					{
-						name: _UNO(
-							'.uno:InsertColumnsMenu',
-							'spreadsheet',
-						),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:InsertColumnsBefore' },
-							{ uno: '.uno:InsertColumnsAfter' },
-						],
-					},
-					{ type: 'separator' },
-					{ uno: '.uno:DeleteCell' },
-					{ uno: '.uno:DeleteRows' },
-					{ uno: '.uno:DeleteColumns' },
-					{ uno: '.uno:SheetRightToLeft' },
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:JumpToTable', 'spreadsheet'),
-						uno: '.uno:JumpToTable',
-					},
-				],
-			},
-			{
-				name: _UNO('.uno:DataMenu', 'spreadsheet'),
-				id: 'data',
-				type: 'menu',
-				menu: [
-					{ uno: '.uno:DataSort' },
-					{ uno: '.uno:SortAscending' },
-					{ uno: '.uno:SortDescending' },
-					{ uno: '.uno:Validation' },
-					{ uno: '.uno:Calculate' },
-					{ uno: '.uno:ConvertFormulaToValue' },
-					{ type: 'separator' },
-					{ uno: '.uno:DataFilterAutoFilter' },
-					{
-						name: _UNO('.uno:FilterMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:DataFilterStandardFilter' },
-							{ uno: '.uno:DataFilterSpecialFilter' },
-							{ type: 'separator' },
-							{ uno: '.uno:DataFilterRemoveFilter' },
-							{ uno: '.uno:DataFilterHideAutoFilter' },
-						],
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:DataPilotMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{
-								name: _UNO(
-									'.uno:InsertPivotTable',
-									'spreadsheet',
-								),
-								uno: '.uno:DataDataPilotRun',
-							},
-							{
-								name: _UNO(
-									'.uno:RecalcPivotTable',
-									'spreadsheet',
-								),
-								uno: '.uno:RecalcPivotTable',
-							},
-							{
-								name: _UNO(
-									'.uno:DeletePivotTable',
-									'spreadsheet',
-								),
-								uno: '.uno:DeletePivotTable',
-							},
-						],
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:NamesMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{
-								name: _UNO(
-									'.uno:AddName',
-									'spreadsheet',
-								),
-								uno: '.uno:AddName',
-							},
-							{
-								name: _UNO(
-									'.uno:DefineName',
-									'spreadsheet',
-								),
-								uno: '.uno:DefineName',
-							},
-						],
-					},
-					{
-						name: _UNO('.uno:DefineDBName', 'spreadsheet'),
-						uno: '.uno:DefineDBName',
-					},
-					{
-						name: _UNO('.uno:SelectDB', 'spreadsheet'),
-						uno: '.uno:SelectDB',
-					},
-					{
-						name: _UNO('.uno:DataAreaRefresh', 'spreadsheet'),
-						uno: '.uno:DataAreaRefresh',
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO(
-							'.uno:GroupOutlineMenu',
-							'spreadsheet',
-						),
-						type: 'menu',
-						menu: [
-							{ uno: '.uno:Group' },
-							{ uno: '.uno:Ungroup' },
-							{ type: 'separator' },
-							{ uno: '.uno:ClearOutline' },
-							{ type: 'separator' },
-							{ uno: '.uno:HideDetail' },
-							{ uno: '.uno:ShowDetail' },
-						],
-					},
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:StatisticsMenu', 'spreadsheet'),
-						type: 'menu',
-						menu: [
-							{
-								name: _UNO(
-									'.uno:SamplingDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:SamplingDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:DescriptiveStatisticsDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:DescriptiveStatisticsDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:AnalysisOfVarianceDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:AnalysisOfVarianceDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:CorrelationDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:CorrelationDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:CovarianceDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:CovarianceDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:ExponentialSmoothingDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:ExponentialSmoothingDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:MovingAverageDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:MovingAverageDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:RegressionDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:RegressionDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:TTestDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:TTestDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:FTestDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:FTestDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:ZTestDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:ZTestDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:ChiSquareTestDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:ChiSquareTestDialog',
-							},
-							{
-								name: _UNO(
-									'.uno:FourierAnalysisDialog',
-									'spreadsheet',
-								),
-								uno: '.uno:FourierAnalysisDialog',
-							},
-						],
-					},
-				],
-			},
-			{
-				name: _UNO('.uno:ToolsMenu', 'spreadsheet'),
-				id: 'tools',
-				type: 'menu',
-				menu: [
-					{ uno: '.uno:SpellDialog' },
-					{ uno: '.uno:SpellOnline' },
-					{
-						name: _UNO('.uno:LanguageMenu'),
-						type: 'menu',
-						menu: [
-							{
-								name: _('None (Do not check spelling)'),
-								id: 'nonelanguage',
-								uno: '.uno:LanguageStatus?Language:string=Default_LANGUAGE_NONE',
-							},
-						],
-					},
-					{ uno: '.uno:GoalSeekDialog' },
-					{ uno: '.uno:Protect' },
-					{ type: 'separator' },
-					{
-						name: _UNO('.uno:RunMacro'),
-						id: 'runmacro',
-						uno: '.uno:RunMacro',
-					},
-				],
-			},
-			{
-				name: _UNO('.uno:HelpMenu', 'spreadsheet'),
-				id: 'help',
-				type: 'menu',
-				menu: [
-					{
-						name: _('Online Help'),
-						id: 'online-help',
-						type: 'action',
-						iosapp: false,
-					},
-					{
-						name: _('Keyboard shortcuts'),
-						id: 'keyboard-shortcuts',
-						type: 'action',
-						iosapp: false,
-					},
-					{
-						name: _('Report an issue'),
-						id: 'report-an-issue',
-						type: 'action',
-						iosapp: false,
-					},
-					{
-						name: _('Latest Updates'),
-						id: 'latestupdates',
-						type: 'action',
-						iosapp: false,
-					},
-					{
-						name: _('Send Feedback'),
-						id: 'feedback',
-						type: 'action',
-						mobileapp: false,
-					},
-					{
-						name: _('Server audit'),
-						id: 'serveraudit',
-						type: 'action',
-						mobileapp: false,
-					},
-					{ name: _('About'), id: 'about', type: 'action' },
-				],
-			},
-			{
-				name: _('Last modification'),
-				id: 'last-mod',
-				type: 'action',
-				tablet: false,
+			{name: _UNO('.uno:PickList', 'spreadsheet'), id: 'file', type: 'menu', menu: [
+				{name: _UNO('.uno:Save', 'spreadsheet'), id: 'save', type: 'action'},
+				{name: _UNO('.uno:SaveAs', 'spreadsheet'), id: 'saveas', type: window.prefs.get('saveAsMode') === 'group' ? 'menu' : 'action', menu: [
+					{name: _('ODF spreadsheet (.ods)'), id: 'saveas-ods', type: 'action'},
+					{name: _('Excel 2003 Spreadsheet (.xls)'), id: 'saveas-xls', type: 'action'},
+					{name: _('Excel Spreadsheet (.xlsx)'), id: 'saveas-xlsx', type: 'action'},
+				]},
+				{name: _('Export as'), id: 'exportas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: 'exportas-pdf', type: 'action'}
+				]},
+				{name: _('Share...'), id:'shareas', type: 'action'},
+				{name: _('See revision history'), id: 'rev-history', type: 'action'},
+				{name: !window.ThisIsAMobileApp ? _('Download as') : _('Export as'), id:'downloadas', type: 'menu', menu: [
+					{name: _('PDF Document (.pdf)'), id: !window.ThisIsAMobileApp ? 'exportdirectpdf' : 'downloadas-pdf', type: 'action'},
+					{name: _('PDF Document (.pdf) as...'), id: 'exportpdf' , type: 'action'},
+					{name: _('ODF spreadsheet (.ods)'), id: 'downloadas-ods', type: 'action'},
+					{name: _('Excel 2003 Spreadsheet (.xls)'), id: 'downloadas-xls', type: 'action'},
+					{name: _('Excel Spreadsheet (.xlsx)'), id: 'downloadas-xlsx', type: 'action'},
+					{name: _('CSV file (.csv)'), id: 'downloadas-csv', type: 'action'},
+					{name: _('HTML file (.html)'), id: 'downloadas-html', type: 'action'}]},
+				{name: _UNO('.uno:SetDocumentProperties', 'spreadsheet'), uno: '.uno:SetDocumentProperties', id: 'properties'},
+				{name: _UNO('.uno:Signature', 'spreadsheet'), uno: '.uno:Signature', id: 'signature'},
+				{name: _('Options'), id: 'settings-dialog', type: 'action', mobileapp: false},
+				{type: 'separator'},
+				{name: _UNO('.uno:Print', 'spreadsheet'), id: 'print', type: 'menu', menu: [
+					{name: _('Active sheet'), id: 'print-active-sheet', type: 'action'},
+					{name: _('All Sheets'), id: 'print-all-sheets', type: 'action'},
+				]},
+				{name: _('Close document'), id: 'closedocument', type: 'action'}
+			]},
+			{name: _UNO('.uno:EditMenu', 'spreadsheet'), id: 'editmenu', type: 'menu', menu: [
+				{name: _UNO('.uno:Undo', 'text'), uno: '.uno:Undo'},
+				{name: _UNO('.uno:Redo', 'text'), uno: '.uno:Redo'},
+				{name: _('Repair'), id: 'repair',  type: 'action'},
+				{type: 'separator'},
+				{name: _UNO('.uno:Cut', 'text'), uno: '.uno:Cut'},
+				{name: _UNO('.uno:Copy', 'text'), uno: '.uno:Copy'},
+				{name: _UNO('.uno:Paste', 'text'), uno: '.uno:Paste'},
+				{name: _UNO('.uno:PasteSpecial', 'text'), uno: '.uno:PasteSpecial'},
+				{name: _UNO('.uno:SelectAll', 'text'), uno: '.uno:SelectAll'},
+				{type: 'separator'},
+				{uno: '.uno:SearchDialog'}
+			]},
+			{name: _UNO('.uno:ViewMenu', 'spreadsheet'), id: 'view', type: 'menu',
+			 menu: (window.mode.isTablet() ? [
+					{name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[] : [
+				   {name: _UNO('.uno:FullScreen', 'spreadsheet'), id: 'fullscreen', type: 'action'},
+				   {type: 'separator'},
+				   {name: _UNO('.uno:ZoomPlus', 'text'), id: 'zoomin', type: 'action'},
+				   {name: _UNO('.uno:ZoomMinus', 'text'), id: 'zoomout', type: 'action',},
+				   {name: _('Reset zoom'), id: 'zoomreset', type: 'action'},
+				] as MenuItem[]).concat([
+				   {type: 'separator'},
+				   {name: _('Toggle UI Mode'), id: 'toggleuimode', type: 'action'},
+				   {name: _('Show Status Bar'), id: 'showstatusbar', type: 'action'},
+				   {name: _('Hide Menu Bar'), id: 'togglemenubar', type: 'action'},
+				   {name: _('Dark Mode'), id: 'toggledarktheme', type: 'action'},
+				   {name: _('Invert Background'), id: 'invertbackground', type: 'action'},
+				   {uno: '.uno:SidebarDeck.PropertyDeck', name: _UNO('.uno:Sidebar')},
+				   {uno: '.uno:Navigator', id: 'navigator'},
+				   {uno: '.uno:SidebarDeck.StyleListDeck', name: _('Style list')},
+				   {type: 'separator'},
+				   {name: _UNO('.uno:ToggleSheetGrid', 'spreadsheet', true), uno: '.uno:ToggleSheetGrid', id: 'sheetgrid'},
+				   {name: _('Focus Cell'), type:'action', id: 'columnrowhighlight'},
+				   {name: _UNO('.uno:FreezePanes', 'spreadsheet', true), id: 'FreezePanes', type: 'action', uno: '.uno:FreezePanes'},
+				   {name: _UNO('.uno:FreezeCellsMenu', 'spreadsheet', true), id: 'FreezeCellsMenu', type: 'menu', uno: '.uno:FreezeCellsMenu', menu: [
+					   {name: _UNO('.uno:FreezePanesColumn', 'spreadsheet', true), id: 'FreezePanesColumn', type: 'action', uno: '.uno:FreezePanesColumn'},
+					   {name: _UNO('.uno:FreezePanesRow', 'spreadsheet', true), id: 'FreezePanesRow', type: 'action', uno: '.uno:FreezePanesRow'}
+				   ]},
+				])},
+			{name: _UNO('.uno:InsertMenu', 'spreadsheet'), id: 'insert', type: 'menu', menu: [
+				{name: _('Local Image...'), id: 'insertgraphic', type: 'action'},
+				{name: _UNO('.uno:InsertGraphic', 'spreadsheet'), id: 'insertgraphicremote', type: 'action'},
+				{name: _UNO('.uno:DataDataPilotRun', 'spreadsheet'), uno: '.uno:DataDataPilotRun'},
+				{name: _UNO('.uno:InsertSparkline', 'spreadsheet'), uno: '.uno:InsertSparkline'},
+				{name: _UNO('.uno:InsertAnnotation', 'spreadsheet'), id: 'insertcomment', type: 'action'},
+				{uno: '.uno:InsertObjectChart'},
+				{name: _UNO('.uno:FontworkGalleryFloater'), uno: '.uno:FontworkGalleryFloater', id: 'fontworkgalleryfloater'},
+				{name: _UNO('.uno:DrawText'), uno: '.uno:DrawText'},
+				{name: _UNO('.uno:VerticalText'), uno: '.uno:VerticalText'},
+				{uno: '.uno:FunctionDialog'},
+				{type: 'separator'},
+				{name: _UNO('.uno:HyperlinkDialog'), uno: '.uno:HyperlinkDialog'},
+				{name: _('Smart Picker'), id: 'remotelink', type: 'action'},
+				{name: _('AI Assistant'), id: 'remoteaicontent', type: 'action'},
+				{uno: '.uno:InsertSymbol'},
+				{type: 'separator'},
+				{name: _UNO('.uno:InsertField', 'text'), type: 'menu', menu: [
+					{uno: '.uno:InsertCurrentDate'},
+					{uno: '.uno:InsertCurrentTime'}
+				]},
+				{uno: '.uno:EditHeaderAndFooter'} /*todo: add to Control.Notebookbar.Calc.js (as Insert tab)*/
+			]},
+			{name: _UNO('.uno:FormatMenu', 'spreadsheet'), id: 'format', type: 'menu', menu: [
+				{name: _UNO('.uno:FormatTextMenu', 'spreadsheet'), type: 'menu', menu: [
+					{name: _UNO('.uno:Bold', 'spreadsheet'), uno: '.uno:Bold'},
+					{name: _UNO('.uno:Italic', 'spreadsheet'), uno: '.uno:Italic'},
+					{name: _UNO('.uno:Underline', 'spreadsheet'), uno: '.uno:Underline'},
+					{name: _UNO('.uno:UnderlineDouble', 'spreadsheet'), uno: '.uno:UnderlineDouble'},
+					{name: _UNO('.uno:Strikeout', 'spreadsheet'), uno: '.uno:Strikeout'},
+					{uno: '.uno:Overline'},
+					{type: 'separator'},
+					{name: _UNO('.uno:SuperScript', 'spreadsheet'), uno: '.uno:SuperScript'},
+					{name: _UNO('.uno:SubScript', 'spreadsheet'), uno: '.uno:SubScript'},
+					{type: 'separator'},
+					{uno: '.uno:Shadowed'},
+					{uno: '.uno:OutlineFont'},
+					{type: 'separator'},
+					{uno: '.uno:WrapText'},
+					{type: 'separator'},
+					{uno: '.uno:ChangeCaseToUpper'},
+					{uno: '.uno:ChangeCaseToLower'},
+					{uno: '.uno:ChangeCaseRotateCase'},
+					{type: 'separator'},
+					{uno: '.uno:ChangeCaseToSentenceCase'},
+					{uno: '.uno:ChangeCaseToTitleCase'},
+					{uno: '.uno:ChangeCaseToToggleCase'}]},
+				{name: _UNO('.uno:TextAlign', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:CommonAlignLeft'},
+					{uno: '.uno:CommonAlignHorizontalCenter'},
+					{uno: '.uno:CommonAlignRight'},
+					{uno: '.uno:CommonAlignJustified'},
+					{type: 'separator'},
+					{uno: '.uno:CommonAlignTop'},
+					{uno: '.uno:CommonAlignVerticalCenter'},
+					{uno: '.uno:CommonAlignBottom'},
+					{type: 'separator'},
+					{uno: '.uno:ParaLeftToRight'},
+					{uno: '.uno:ParaRightToLeft'}]},
+				{name: _UNO('.uno:NumberFormatMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:NumberFormatStandard'},
+					{uno: '.uno:NumberFormatDecimal'},
+					{uno: '.uno:NumberFormatPercent'},
+					{uno: '.uno:NumberFormatCurrency'},
+					{uno: '.uno:NumberFormatDate'},
+					{uno: '.uno:NumberFormatTime'},
+					{uno: '.uno:NumberFormatScientific'},
+					{type: 'separator'},
+					{uno: '.uno:NumberFormatThousands'}]},
+				{type: 'separator'},
+				{uno: '.uno:FormatPaintbrush'},
+				{uno: '.uno:ResetAttributes'},
+				{name: _UNO('.uno:PrintRangesMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:DefinePrintArea'},
+					{uno: '.uno:AddPrintArea'},
+					{uno: '.uno:EditPrintArea'},
+					{uno: '.uno:DeletePrintArea'}]},
+				{name: _UNO('.uno:FormatSparklineMenu', 'spreadsheet'), type: 'menu', menu: [
+				    {uno: '.uno:InsertSparkline'},
+				    {uno: '.uno:DeleteSparkline'},
+				    {uno: '.uno:DeleteSparklineGroup'},
+				    {uno: '.uno:EditSparklineGroup'},
+				    {uno: '.uno:EditSparkline'},
+				    {uno: '.uno:GroupSparklines'},
+				    {uno: '.uno:UngroupSparklines'}
+				]},
+				{name: _UNO('.uno:ConditionalFormatMenu', 'spreadsheet'), type: 'menu', menu: [
+					{name: _('Highlight cells with...'), type: 'menu', menu: [
+						{name: _('Values greater than...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=2'},
+						{name: _('Values less than...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=1'},
+						{name: _('Values equal to...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=0'},
+						{name: _('Values between...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=6'},
+						{name: _('Values duplicate...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=8'},
+						{name: _('Containing text...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=23'},
+						{type: 'separator'},
+						{name: _('More highlights...'), uno: '.uno:ConditionalFormatDialog'},
+					]},
+					{name: _('Top/Bottom Rules...'), type: 'menu', menu: [
+						{name: _('Top N elements...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=11'},
+						{name: _('Top N percent...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=13'},
+						{name: _('Bottom N elements...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=12'},
+						{name: _('Bottom N percent...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=14'},
+						{name: _('Above Average...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=15'},
+						{name: _('Below Average...'), uno: '.uno:ConditionalFormatEasy?FormatRule:short=16'},
+						{type: 'separator'},
+						{name: _('More highlights...'), uno: '.uno:ConditionalFormatDialog'},
+					]},
+					{uno: '.uno:ColorScaleFormatDialog'},
+					{uno: '.uno:DataBarFormatDialog'},
+					{uno: '.uno:IconSetFormatDialog'},
+					{uno: '.uno:CondDateFormatDialog'},
+					{type: 'separator'},
+					{uno: '.uno:ConditionalFormatManagerDialog'}]},
+				{type: 'separator'},
+				{uno: '.uno:FormatCellDialog'},
+				{name: _('Rows'), type: 'menu', menu: [
+					{uno: '.uno:RowHeight'},
+					{uno: '.uno:SetOptimalRowHeight'}]},
+				{name: _('Columns'), type: 'menu', menu: [
+					{uno: '.uno:ColumnWidth'},
+					{uno: '.uno:SetOptimalColumnWidth'}]},
+				{uno: '.uno:FontDialog'},
+				{uno: '.uno:ParagraphDialog'},
+				{uno: '.uno:SidebarDeck.StyleListDeck'},
+				{uno: '.uno:PageFormatDialog'},
+				{type: 'separator'},
+				{uno: '.uno:TransformDialog'},
+				{uno: '.uno:FormatLine'},
+				{uno: '.uno:FormatArea'},
+				{uno: '.uno:ThemeDialog'}
+			]},
+			{name: _UNO('.uno:SheetMenu', 'spreadsheet'), id: 'sheet', type: 'menu', menu: [
+				{uno: '.uno:InsertCell'},
+				{name: _UNO('.uno:InsertRowsMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:InsertRowsBefore'},
+					{uno: '.uno:InsertRowsAfter'}]},
+				{name: _UNO('.uno:InsertColumnsMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:InsertColumnsBefore'},
+					{uno: '.uno:InsertColumnsAfter'}]},
+				{type: 'separator'},
+				{uno: '.uno:DeleteCell'},
+				{uno: '.uno:DeleteRows'},
+				{uno: '.uno:DeleteColumns'},
+				{uno: '.uno:SheetRightToLeft'},
+				{type: 'separator'},
+				{name:  _UNO('.uno:JumpToTable', 'spreadsheet'), uno: '.uno:JumpToTable'}
+			]},
+			{name: _UNO('.uno:DataMenu', 'spreadsheet'), id: 'data', type: 'menu', menu: [
+				{uno: '.uno:DataSort'},
+				{uno: '.uno:SortAscending'},
+				{uno: '.uno:SortDescending'},
+				{uno: '.uno:Validation'},
+				{uno: '.uno:Calculate'},
+				{uno: '.uno:ConvertFormulaToValue'},
+				{type: 'separator'},
+				{uno: '.uno:DataFilterAutoFilter'},
+				{name: _UNO('.uno:FilterMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:DataFilterStandardFilter'},
+					{uno: '.uno:DataFilterSpecialFilter'},
+					{type: 'separator'},
+					{uno: '.uno:DataFilterRemoveFilter'},
+					{uno: '.uno:DataFilterHideAutoFilter'}]},
+				{type: 'separator'},
+				{name: _UNO('.uno:DataPilotMenu', 'spreadsheet'), type: 'menu', menu: [
+					{name: _UNO('.uno:InsertPivotTable', 'spreadsheet'), uno: '.uno:DataDataPilotRun'},
+					{name: _UNO('.uno:RecalcPivotTable', 'spreadsheet'), uno: '.uno:RecalcPivotTable'},
+					{name: _UNO('.uno:DeletePivotTable', 'spreadsheet'), uno: '.uno:DeletePivotTable'}]},
+				{type: 'separator'},
+				{name: _UNO('.uno:NamesMenu', 'spreadsheet'), type: 'menu', menu: [
+					{name: _UNO('.uno:AddName', 'spreadsheet'), uno: '.uno:AddName'},
+					{name: _UNO('.uno:DefineName', 'spreadsheet'), uno: '.uno:DefineName'}]},
+				{name: _UNO('.uno:DefineDBName', 'spreadsheet'), uno: '.uno:DefineDBName'},
+				{name: _UNO('.uno:SelectDB', 'spreadsheet'), uno: '.uno:SelectDB'},
+				{name: _UNO('.uno:DataAreaRefresh', 'spreadsheet'), uno: '.uno:DataAreaRefresh'},
+				{type: 'separator'},
+				{name: _UNO('.uno:GroupOutlineMenu', 'spreadsheet'), type: 'menu', menu: [
+					{uno: '.uno:Group'},
+					{uno: '.uno:Ungroup'},
+					{type: 'separator'},
+					{uno: '.uno:ClearOutline'},
+					{type: 'separator'},
+					{uno: '.uno:HideDetail'},
+					{uno: '.uno:ShowDetail'}]},
+				{type: 'separator'},
+				{name: _UNO('.uno:StatisticsMenu', 'spreadsheet'), type: 'menu', menu: [
+					{name: _UNO('.uno:SamplingDialog', 'spreadsheet'), uno: '.uno:SamplingDialog'},
+					{name: _UNO('.uno:DescriptiveStatisticsDialog', 'spreadsheet'), uno: '.uno:DescriptiveStatisticsDialog'},
+					{name: _UNO('.uno:AnalysisOfVarianceDialog', 'spreadsheet'), uno: '.uno:AnalysisOfVarianceDialog'},
+					{name: _UNO('.uno:CorrelationDialog', 'spreadsheet'), uno: '.uno:CorrelationDialog'},
+					{name: _UNO('.uno:CovarianceDialog', 'spreadsheet'), uno: '.uno:CovarianceDialog'},
+					{name: _UNO('.uno:ExponentialSmoothingDialog', 'spreadsheet'), uno: '.uno:ExponentialSmoothingDialog'},
+					{name: _UNO('.uno:MovingAverageDialog', 'spreadsheet'), uno: '.uno:MovingAverageDialog'},
+					{name: _UNO('.uno:RegressionDialog', 'spreadsheet'), uno: '.uno:RegressionDialog'},
+					{name: _UNO('.uno:TTestDialog', 'spreadsheet'), uno: '.uno:TTestDialog'},
+					{name: _UNO('.uno:FTestDialog', 'spreadsheet'), uno: '.uno:FTestDialog'},
+					{name: _UNO('.uno:ZTestDialog', 'spreadsheet'), uno: '.uno:ZTestDialog'},
+					{name: _UNO('.uno:ChiSquareTestDialog', 'spreadsheet'), uno: '.uno:ChiSquareTestDialog'},
+					{name: _UNO('.uno:FourierAnalysisDialog', 'spreadsheet'), uno: '.uno:FourierAnalysisDialog'}]},
+			]},
+			{name: _UNO('.uno:ToolsMenu', 'spreadsheet'), id: 'tools', type: 'menu', menu: [
+				{uno: '.uno:SpellDialog'},
+				{uno: '.uno:SpellOnline'},
+				{name: _UNO('.uno:LanguageMenu'), type: 'menu', menu: [
+					{name: _('None (Do not check spelling)'), id: 'nonelanguage', uno: '.uno:LanguageStatus?Language:string=Default_LANGUAGE_NONE'}]},
+				{uno: '.uno:GoalSeekDialog'},
+				{uno: '.uno:Protect'},
+				{type: 'separator'},
+				{name: _UNO('.uno:RunMacro'), id: 'runmacro', uno: '.uno:RunMacro'}
+			]},
+			{name: _UNO('.uno:HelpMenu', 'spreadsheet'), id: 'help', type: 'menu', menu: [
+				{name: _('Online Help'), id: 'online-help', type: 'action', iosapp: false},
+				{name: _('Keyboard shortcuts'), id: 'keyboard-shortcuts', type: 'action', iosapp: false},
+				{name: _('Report an issue'), id: 'report-an-issue', type: 'action', iosapp: false},
+				{name: _('Latest Updates'), id: 'latestupdates', type: 'action', iosapp: false},
+				{name: _('Send Feedback'), id: 'feedback', type: 'action', mobileapp: false},
+				{name: _('Server audit'), id: 'serveraudit', type: 'action', mobileapp: false},
+				{name: _('About'), id: 'about', type: 'action'}]
 			},
 		],
 
@@ -5839,6 +5402,9 @@ class Menubar extends window.L.Control {
 			this._hiddenItems &&
 			$.inArray(menuItem.id, this._hiddenItems) !== -1
 		)
+			return false;
+
+		if (menuItem.id === 'settings-dialog' && !window.wopiSettingBaseUrl)
 			return false;
 
 		return true;
