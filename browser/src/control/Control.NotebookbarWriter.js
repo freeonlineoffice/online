@@ -540,12 +540,10 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 							combination: 'C',
 							de: null,
 						},
-					},
-				],
-			},
-			{
-				type: 'toolbox',
-				children: [
+					]
+				},
+				{ 'type': 'separator', 'id': 'help-reportissue-break', 'orientation': 'vertical' },
+				hasLatestUpdates ?
 					{
 						id: 'online-help',
 						type: 'bigtoolitem',
