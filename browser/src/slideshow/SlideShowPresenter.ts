@@ -88,6 +88,7 @@ interface SlideInfo {
 	nextSlideDuration: number;
 	transitionDirection: boolean;
 	transitionType: string | undefined;
+	transitionLabel: string | undefined;
 	transitionSubtype: string | undefined;
 	transitionFadeColor: string | undefined;
 	background: {

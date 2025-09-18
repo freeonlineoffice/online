@@ -394,6 +394,17 @@ class SlideShowHandler {
 		this.presenter._map.fire('transitionstart', {
 			slide: nNewSlideIndex,
 		});
+
+		const slideInfo = this.getSlideInfo(nNewSlideIndex);
+		if (slideInfo.transitionLabel) {
+			setTimeout(
+				this.addA11yString.bind(
+					this,
+					_('Transition Start: ') + slideInfo.transitionLabel,
+				),
+				500,
+			);
+		}
 	}
 
 	notifyTransitionEnd(nNewSlide: number, nOldSlide: number | undefined) {
@@ -405,6 +416,12 @@ class SlideShowHandler {
 				', this.bIsRewinding: ' +
 				this.bIsRewinding,
 		);
+
+		const slideInfo = this.getSlideInfo(nNewSlide);
+		if (slideInfo.transitionLabel) {
+			this.addA11yString(_('Transition End: '));
+		}
+
 		this.bIsTransitionRunning = false;
 		if (!this.presenter._checkAlreadyPresenting()) return;
 		if (this.bIsRewinding) {
