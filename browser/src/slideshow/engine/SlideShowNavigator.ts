@@ -219,6 +219,7 @@ class SlideShowNavigator {
 		this.isRewindingToPrevSlide = true;
 		this.displaySlide(prevSlide, true);
 		this.isRewindingToPrevSlide = false;
+		this.presenter.sendSlideShowFollowMessage('skipalleffect');
 	}
 
 	setLeaderSlide(info: any) {
@@ -236,7 +237,7 @@ class SlideShowNavigator {
 			this.slideShowHandler.rewindAllEffects();
 		else this.displaySlide(this.currentLeaderSlide, true);
 		for (let i = 0; i <= this.currentLeaderEffect; i++)
-			this.slideShowHandler.skipNextEffect();
+			if (!this.slideShowHandler.skipNextEffect()) break;
 	}
 
 	displaySlide(nNewSlide: number, bSkipTransition: boolean) {
