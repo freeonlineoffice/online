@@ -77,7 +77,7 @@ class FormulaBarSelectionHandle {
 			.enable();
 	}
 
-	setPosition(point: cool.SimplePoint) {
+	setPosition(point: lool.SimplePoint) {
 		let offsetX = 0;
 		if (this.side === 'start') {
 			offsetX = -this.width;

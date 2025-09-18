@@ -90,7 +90,9 @@ L.Map.Settings = L.Handler.extend({
 
 		this._iframeDialog = L.iframeDialog(this._url, params, null, options);
 
-		const cancelButton = document.getElementById('iframe-settings-cancel');
+		const cancelButton = document.getElementById(
+			'iframe-settings-cancel',
+		);
 		const saveButton = document.getElementById('iframe-settings-save');
 
 		L.DomEvent.on(
