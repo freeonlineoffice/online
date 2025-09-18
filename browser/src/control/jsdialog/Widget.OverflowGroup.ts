@@ -350,7 +350,7 @@ JSDialog.OverflowGroup = function (
 										);
 							}
 						: undefined,
-			} as any as WidgetJSON,
+			} as MenuButtonWidgetJSON,
 		],
 		false,
 	);
