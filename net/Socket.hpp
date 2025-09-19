@@ -430,8 +430,8 @@ protected:
     {
         if (id != _owner)
         {
-            LOG_TRC("Thread affinity set to " << Log::to_string(id) << " (was "
-                                              << Log::to_string(_owner) << ')');
+            LOG_TRC("Thread affinity of Socket set to " << Log::to_string(id) << " (was "
+                                                        << Log::to_string(_owner) << ')');
             _owner = id;
         }
     }
@@ -441,8 +441,8 @@ protected:
     {
         if (std::thread::id() != _owner)
         {
-            LOG_TRC("Resetting thread affinity while in transit (was " << Log::to_string(_owner)
-                                                                       << ')');
+            LOG_TRC("Resetting thread affinity of Socket while in transit (was "
+                    << Log::to_string(_owner) << ')');
             _owner = std::thread::id();
         }
     }
@@ -675,8 +675,8 @@ private:
     {
         if (id != _owner)
         {
-            LOG_TRC("Thread affinity set to " << Log::to_string(id) << " (was "
-                                              << Log::to_string(_owner) << ')');
+            LOG_TRC("Thread affinity of ProtocolHandlerInterface set to "
+                    << Log::to_string(id) << " (was " << Log::to_string(_owner) << ')');
             _owner = id;
         }
     }
@@ -685,8 +685,8 @@ private:
     {
         if (std::thread::id() != _owner)
         {
-            LOG_TRC("Resetting thread affinity while in transit (was " << Log::to_string(_owner)
-                                                                       << ')');
+            LOG_TRC("Resetting thread affinity of ProtocolHandlerInterface while in transit (was "
+                    << Log::to_string(_owner) << ')');
             _owner = std::thread::id();
         }
     }
