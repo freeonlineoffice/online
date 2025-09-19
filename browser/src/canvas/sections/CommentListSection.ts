@@ -57,33 +57,6 @@ window.L.Map.include({
 declare var JSDialog: any;
 
 namespace lool {
-	export class CommentSection extends CanvasSectionObject {
-		backgroundColor: string = app.sectionContainer.getClearColor();
-		expand: string[] = ['bottom'];
-		processingOrder: number = L.CSections.CommentList.processingOrder;
-		drawingOrder: number = L.CSections.CommentList.drawingOrder;
-		zIndex: number = L.CSections.CommentList.zIndex;
-		interactable: boolean = false;
-		sectionProperties: {
-			commentList: Array<Comment>;
-			selectedComment: Comment | null;
-			calcCurrentComment: Comment | null;
-			marginY: number;
-			offset: number;
-			width: number;
-			commentWidth: number;
-			collapsedMarginToTheEdge: number;
-			deflectionOfSelectedComment: number;
-			collapsedCommentWidth: number;
-			showSelectedBigger: boolean;
-			commentsAreListed: boolean;
-			[key: string]: any;
-			canvasContainerTop: number; // The top pixel of the document container. Added to positions of comments.
-			canvasContainerLeft: number;
-		};
-		disableLayoutAnimation: boolean = false;
-		mobileCommentId: string = 'new-annotation-dialog';
-		mobileCommentModalId: string;
 
 export class CommentSection extends CanvasSectionObject {
 	backgroundColor: string = app.sectionContainer.getClearColor();
