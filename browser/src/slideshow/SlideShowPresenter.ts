@@ -615,18 +615,34 @@ class SlideShowPresenter {
 		container.style.paddingLeft = '5px';
 	}
 
+	private _onA11yString(target: any) {
+		if (!target) {
+			return;
+		}
+
+		this._slideShowHandler.addA11yString(
+			target.getAttribute('aria-label'),
+		);
+	}
+
 	private _onPrevSlide = (e: Event) => {
+		e.stopPropagation();
+		this._onA11yString(e.target);
 		this._slideShowNavigator.rewindEffect();
 	};
 
 	private _onNextSlide = (e: Event) => {
+		e.stopPropagation();
+		this._onA11yString(e.target);
 		if (this._navigateSkipTransition)
 			this._slideShowNavigator.skipEffect();
 		else this._slideShowNavigator.dispatchEffect();
 	};
 
 	private _onQuit = (e: Event) => {
-		this.endPresentation(true);
+		e.stopPropagation();
+		this._onA11yString(e.target);
+		setTimeout(this.endPresentation.bind(this, true), 500);
 	};
 
 	_hideSlideControls() {
@@ -704,7 +720,8 @@ class SlideShowPresenter {
 		);
 		animationsImage.addEventListener(
 			'click',
-			function (this: SlideShowPresenter) {
+			function (this: SlideShowPresenter, e: Event) {
+				this._onA11yString(e.target);
 				this._navigateSkipTransition =
 					!this._navigateSkipTransition;
 				const slideshowAnimToggleText = this._navigateSkipTransition
@@ -745,6 +762,7 @@ class SlideShowPresenter {
 			);
 			FollowImg.addEventListener('click', (e: Event) => {
 				e.stopPropagation();
+				this._onA11yString(e.target);
 				this._slideShowNavigator.followLeaderSlide();
 			});
 		}
