@@ -48,8 +48,10 @@ class ServerAuditDialog {
 			this,
 		);
 
+		// Priorities: 1 - security, 10 - config, 20 - integration, 30 - general info ...
 		this.errorCodes = {
 			is_admin: {
+				priority: 20,
 				missing: [
 					_(
 						'The IsAdminUser property is not set by integration',
@@ -73,6 +75,7 @@ class ServerAuditDialog {
 				],
 			},
 			certwarning: {
+				priority: 1,
 				sslverifyfail: [
 					_(
 						'Your WOPI server is not secure: SSL verification failed',
@@ -87,6 +90,7 @@ class ServerAuditDialog {
 				],
 			},
 			postmessage: {
+				priority: 21,
 				ok: [
 					_('PostMessage API is initialized'),
 					'SDK: post-message-initialization',
@@ -99,6 +103,7 @@ class ServerAuditDialog {
 				],
 			},
 			hardwarewarning: {
+				priority: 10,
 				lowresources: [
 					_(
 						'Your server is configured with insufficient hardware resources, which may lead to poor performance.',
@@ -115,6 +120,7 @@ class ServerAuditDialog {
 				],
 			},
 			seccomp: {
+				priority: 3,
 				none: [
 					_(
 						'BPF filtering of potentially risky system calls (seccomp) is not enabled; a security hazard.',
@@ -129,6 +135,7 @@ class ServerAuditDialog {
 				],
 			},
 			bindmounted: {
+				priority: 11,
 				slow: [
 					_(
 						'Slow Kit jail setup with copying, cannot bind-mount.',
@@ -143,6 +150,7 @@ class ServerAuditDialog {
 				],
 			},
 			contained: {
+				priority: 2,
 				uncontained: [
 					_(
 						'Documents are not effectively contained: missing capabilities or namespaces.',
@@ -157,6 +165,7 @@ class ServerAuditDialog {
 				],
 			},
 			info_namespaces: {
+				priority: 30,
 				true: [_('Using namespaces.'), 'SDK: nocaps', ''],
 				false: [_('Not using namespaces'), 'SDK: nocaps', ''],
 			},
@@ -182,13 +191,23 @@ class ServerAuditDialog {
 		);
 	}
 
-	private getEntries(source: any): Array<TreeEntryJSON> {
+	private getEntries(sourceUnsorted: any): Array<TreeEntryJSON> {
 		const entries = new Array<TreeEntryJSON>();
 
-		if (!source) return entries;
+		if (!sourceUnsorted) return entries;
 
 		const errorIcon = { collapsed: 'serverauditerror.svg' };
 		const okIcon = { collapsed: 'serverauditok.svg' };
+
+		const source = sourceUnsorted.sort(
+			(x: AuditEntry, y: AuditEntry) =>
+				(this.errorCodes[x.code]
+					? this.errorCodes[x.code].priority
+					: 100) -
+				(this.errorCodes[y.code]
+					? this.errorCodes[y.code].priority
+					: 100),
+		);
 
 		source.forEach((entry: AuditEntry) => {
 			const found = this.errorCodes[entry.code];
