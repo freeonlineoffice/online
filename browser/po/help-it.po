@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 18:48+0200\n"
+"POT-Creation-Date: 2025-09-21 11:01+0200\n"
 "PO-Revision-Date: 2020-10-16 03:24+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/collabora-online/"
@@ -14,56 +14,56 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Translate Toolkit 2.5.0\n"
 
-#: html/lool-help.html%2Bdiv.h1:6-5
+#: html/lool-help.html%2Bdiv.h1:11-2
 msgid "Keyboard Shortcuts"
 msgstr "Scorciatoie della tastiera"
 
-#: html/lool-help.html%2Bdiv.div.h2:8-9
+#: html/lool-help.html%2Bdiv.div.h2:13-3
 msgid "General Keyboard Shortcuts"
 msgstr "Scorciatoie da tastiera generali"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:10-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:16-5
 msgid "Undo"
 msgstr "Annulla"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:10-69
+#: html/lool-help.html%2Bdiv.div.table.tr.td:17-5
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Z"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Z"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:11-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:23-5
 msgid "Redo"
 msgstr "Ripeti"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:11-69
+#: html/lool-help.html%2Bdiv.div.table.tr.td:24-5
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Y"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Y"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:12-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:30-5
 msgid "Cut"
 msgstr "Taglia"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:12-68
+#: html/lool-help.html%2Bdiv.div.table.tr.td:31-5
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>X"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>X"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:13-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:37-5
 msgid "Copy"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:13-69
+#: html/lool-help.html%2Bdiv.div.table.tr.td:38-5
 #, fuzzy
 msgid ""
-"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>,<br/"
-"><kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Insert"
+"Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>C</kbd>,<br "
+"/><kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Insert"
 msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:14-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:45-5
 msgid "Paste as unformatted text"
 msgstr "Incolla testo non formattato"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:14-90
+#: html/lool-help.html%2Bdiv.div.table.tr.td:46-5
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>V"
@@ -71,11 +71,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>V"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:15-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:53-5
 msgid "Paste special"
 msgstr "Incolla speciale"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:15-78
+#: html/lool-help.html%2Bdiv.div.table.tr.td:54-5
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Shift</kbd><span class=\"kbd--plus\">+</span><kbd>V"
@@ -83,19 +83,19 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>V"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:16-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:62-5
 msgid "Print (Download as PDF)"
 msgstr "Stampa (scarica come PDF)"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:16-88
+#: html/lool-help.html%2Bdiv.div.table.tr.td:63-5
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>P"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>P"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:17-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:69-5
 msgid "Display the Keyboard shortcuts help"
 msgstr "Mostra l'aiuto per le scorciatoie della tastiera"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:17-100
+#: html/lool-help.html%2Bdiv.div.table.tr.td:72-5
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>?"
@@ -103,11 +103,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>?"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:18-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:79-5
 msgid "Focus to notebookbar menu"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:18-90
+#: html/lool-help.html%2Bdiv.div.table.tr.td:80-5
 #, fuzzy
 msgid ""
 "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
@@ -116,91 +116,91 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>1"
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:19-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:87-5
 msgid "Focus to document from menu"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:19-92
+#: html/lool-help.html%2Bdiv.div.table.tr.td:88-5
 msgid "ESC"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:20-38
+#: html/lool-help.html%2Bdiv.div.table.tr.td:91-5
 msgid "Focus to selected comment's menu"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.table.tr.td:20-97
+#: html/lool-help.html%2Bdiv.div.table.tr.td:92-5
 #, fuzzy
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>C"
 msgstr "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:25-9
-#: html/lool-help.html%2Bdiv.div.div.h2:193-9
-#: html/lool-help.html%2Bdiv.div.div.h2:258-9
+#: html/lool-help.html%2Bdiv.div.div.h2:101-4
+#: html/lool-help.html%2Bdiv.div.div.h2:1192-4
+#: html/lool-help.html%2Bdiv.div.div.h2:1541-4
 msgid "Text formatting"
 msgstr "Formattazione del testo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:27-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:162-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:195-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:260-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:104-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1024-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1195-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1544-6
 msgid "Bold"
 msgstr "Grassetto"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:27-69
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:162-69
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:195-69
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:260-69
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:105-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1025-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1196-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1545-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>B"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>B"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:28-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:163-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:196-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:261-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:111-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1031-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1202-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1551-6
 msgid "Italic"
 msgstr "Corsivo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:28-71
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:163-71
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:196-71
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:261-71
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:112-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1032-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1203-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1552-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>I"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>I"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:29-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:164-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:197-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:262-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:118-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1038-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1209-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1558-6
 msgid "Underline"
 msgstr "Sottolineato"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:29-74
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:164-74
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:197-74
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:262-74
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:119-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1039-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1210-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1559-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>U"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>U"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:30-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:125-6
 msgid "Double Underline"
 msgstr "Doppia sottolineatura"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:30-81
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:169-74
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:126-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1076-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>D"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>D"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:31-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:165-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:198-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:263-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:132-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1045-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1216-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1565-6
 msgid "Strikethrough"
 msgstr "Barrato"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:31-78
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:165-78
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:198-78
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:263-78
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:133-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1046-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1217-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1566-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>5"
@@ -208,15 +208,15 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>5"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:32-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:199-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:264-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:140-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1224-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1573-6
 msgid "Superscript"
 msgstr "Apice"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:32-76
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:199-76
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:264-76
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:141-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1225-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1574-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>P"
@@ -224,15 +224,15 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>P"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:33-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:200-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:265-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:148-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1232-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1581-6
 msgid "Subscript"
 msgstr "Pedice"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:33-74
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:200-74
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:265-74
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:149-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1233-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1582-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>B"
@@ -240,197 +240,197 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>B"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:34-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:166-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:156-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1053-6
 msgid "Remove direct formatting"
 msgstr "Rimuovi formattazione diretta"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:34-89
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:166-89
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:157-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1054-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>M"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>M"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:38-9
-#: html/lool-help.html%2Bdiv.div.div.h2:205-9
-#: html/lool-help.html%2Bdiv.div.div.h2:270-9
+#: html/lool-help.html%2Bdiv.div.div.h2:165-4
+#: html/lool-help.html%2Bdiv.div.div.h2:1249-4
+#: html/lool-help.html%2Bdiv.div.div.h2:1598-4
 msgid "Paragraph formatting"
 msgstr "Formattazione paragrafo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:40-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:171-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:207-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:272-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:168-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1089-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1252-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1601-6
 msgid "Align Center"
 msgstr "Allinea al centro"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:40-77
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:171-77
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:207-77
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:272-77
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:169-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1090-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1253-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1602-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>E"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>E"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:41-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:172-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:208-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:273-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:175-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1096-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1259-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1608-6
 msgid "Align Left"
 msgstr "Allinea a sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:41-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:172-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:208-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:273-75
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:176-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1097-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1260-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1609-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>L"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>L"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:42-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:173-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:209-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:274-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:182-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1103-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1266-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1615-6
 msgid "Align Right"
 msgstr "Allinea a destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:42-76
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:173-76
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:209-76
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:274-76
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:183-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1104-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1267-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1616-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>R"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>R"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:43-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:174-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:210-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:275-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:189-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1110-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1273-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1622-6
 msgid "Justify"
 msgstr "Giustificato"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:43-72
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:174-72
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:210-72
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:275-72
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:190-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1111-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1274-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1623-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>J"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>J"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:44-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:196-6
 msgid "Apply Default paragraph style"
 msgstr "Applica lo stile di paragrafo Predefinito"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:44-94
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:197-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>0"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>0"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:45-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:203-6
 msgid "Apply Heading 1 paragraph style"
 msgstr "Applica lo stile di paragrafo Intestazione 1"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:45-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:206-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>1"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>1"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:46-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:212-6
 msgid "Apply Heading 2 paragraph style"
 msgstr "Applica lo stile di paragrafo Intestazione 2"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:46-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:215-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>2"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>2"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:47-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:221-6
 msgid "Apply Heading 3 paragraph style"
 msgstr "Applica lo stile di paragrafo Intestazione 3"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:47-96
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:175-89
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:224-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1118-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>3"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>3"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:48-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:230-6
 msgid "Apply Heading 4 paragraph style"
 msgstr "Applica lo stile di paragrafo Intestazione 4"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:48-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:233-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>4"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>4"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:49-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:239-6
 msgid "Apply Heading 5 paragraph style"
 msgstr "Applica lo stile di paragrafo Intestazione 5"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:49-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:242-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>5"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>5"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:53-9
+#: html/lool-help.html%2Bdiv.div.div.h2:250-4
 msgid "Text selection and navigation in document"
 msgstr "Selezione testo e navigazione nel documento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:55-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:170-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:201-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:218-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:266-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:283-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:255-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1082-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1240-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1302-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1589-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1651-6
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:55-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:95-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:170-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:201-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:218-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:252-84
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:266-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:283-75
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:317-91
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:256-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:525-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1083-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1241-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1303-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1531-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1590-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1652-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1880-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>A"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>A"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:56-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:219-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:284-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:262-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1309-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1658-6
 msgid "Move cursor to the left"
 msgstr "Sposta il cursore a sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:56-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:219-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:284-88
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:263-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1310-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1659-6
 msgid "Arrow Left"
 msgstr "Freccia sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:57-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:220-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:285-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:266-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1313-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1662-6
 msgid "Move cursor with selection to the left"
 msgstr "Sposta il cursore con la selezione a sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:57-103
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:220-103
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:285-103
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:269-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1316-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1665-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Left"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:58-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:221-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:286-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:275-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1322-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1671-6
 msgid "Go to beginning of a word"
 msgstr "Vai all'inizio di una parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:58-90
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:221-90
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:286-90
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:276-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1323-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1672-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Left"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:59-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:222-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:287-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:282-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1329-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1678-6
 msgid "Select to the left word by word"
 msgstr "Seleziona a sinistra parola per parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:59-96
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:222-96
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:287-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:285-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1332-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1681-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Arrow Left"
@@ -438,51 +438,51 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Freccia sinistra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:60-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:223-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:288-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:292-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1339-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1688-6
 msgid "Move cursor to the right"
 msgstr "Sposta il cursore a destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:60-89
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:223-89
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:288-89
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:293-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1340-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1689-6
 msgid "Arrow Right"
 msgstr "Freccia destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:61-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:224-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:289-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:296-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1343-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1692-6
 msgid "Move cursor with selection to the right"
 msgstr "Sposta il cursore con la selezione a destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:61-104
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:224-104
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:289-104
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:299-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1346-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1695-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Right"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:62-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:225-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:290-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:305-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1352-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1701-6
 msgid "Go to start of the next word"
 msgstr "Vai all'inizio della prossima parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:62-93
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:225-93
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:290-93
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:306-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1353-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1702-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Right"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:63-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:226-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:291-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:312-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1359-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1708-6
 msgid "Select to the right word by word"
 msgstr "Seleziona a destra parola per parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:63-97
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:226-97
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:291-97
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:315-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1362-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1711-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Arrow Right"
@@ -490,51 +490,51 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Freccia destra"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:64-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:227-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:292-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:322-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1369-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1718-6
 msgid "Move cursor up one line"
 msgstr "Sposta il cursore su di una riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:64-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:227-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:292-88
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:323-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1370-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1719-6
 msgid "Arrow Up"
 msgstr "Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:65-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:228-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:293-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:326-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1373-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1722-6
 msgid "Select lines in upwards direction"
 msgstr "Seleziona righe verso l'alto"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:65-98
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:228-98
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:293-98
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:329-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1376-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1725-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Up"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:66-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:229-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:294-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:335-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1382-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1731-6
 msgid "Move cursor to beginning of the previous paragraph"
 msgstr "Sposta il cursore all'inizio del paragrafo precedente"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:66-115
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:229-115
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:294-115
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:338-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1385-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1734-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Up"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:67-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:230-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:295-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:344-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1391-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1740-6
 msgid "Select to beginning of paragraph"
 msgstr "Seleziona all'inizio del paragrafo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:67-97
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:230-97
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:295-97
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:347-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1394-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1743-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Arrow Up"
@@ -542,51 +542,51 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:68-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:231-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:296-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:354-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1401-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1750-6
 msgid "Move cursor down one line"
 msgstr "Sposta il cursore giù di una riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:68-90
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:231-90
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:296-90
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:355-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1402-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1751-6
 msgid "Arrow Down"
 msgstr "Freccia giù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:69-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:232-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:297-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:358-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1405-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1754-6
 msgid "Select lines in downwards direction"
 msgstr "Seleziona righe verso il basso"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:69-100
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:232-100
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:297-100
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:361-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1408-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1757-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Down"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia giù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:70-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:233-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:298-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:367-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1414-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1763-6
 msgid "Move cursor to beginning of the next paragraph"
 msgstr "Sposta il cursore all'inizio del paragrafo successivo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:70-111
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:233-111
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:298-111
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:370-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1417-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1766-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Down"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia giù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:71-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:234-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:299-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:376-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1423-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1772-6
 msgid "Select to end of paragraph"
 msgstr "Seleziona fino alla fine del paragrafo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:71-91
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:234-91
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:299-91
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:377-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1424-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1773-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Arrow Down"
@@ -594,53 +594,53 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Freccia giù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:72-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:235-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:300-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:384-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1431-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1780-6
 msgid "Go to beginning of line"
 msgstr "Vai all'inizio della riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:72-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:136-119
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:235-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:300-88
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:385-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:801-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1432-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1781-6
 msgid "Home"
 msgstr "Inizio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:73-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:236-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:301-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:388-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1435-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1784-6
 msgid "Go and select to the beginning of a line"
 msgstr "Vai e seleziona fino all'inizio della riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:73-105
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:138-138
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:236-105
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:301-105
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:391-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:815-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1438-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1787-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Home"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Inizio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:74-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:237-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:302-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:397-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1444-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1793-6
 msgid "Go to start of document"
 msgstr "Vai all'inizio del documento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:74-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:96-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:134-118
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:237-88
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:302-88
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:398-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:537-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:781-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1445-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1794-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Home"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Inizio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:75-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:404-6
 msgid "Go and select text to start of document"
 msgstr "Vai e seleziona il testo fino all'inizio del documento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:75-104
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:238-103
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:303-103
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:407-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1454-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1803-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Home"
@@ -648,53 +648,53 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Inizio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:76-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:239-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:304-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:414-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1461-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1810-6
 msgid "Go to end of line"
 msgstr "Vai alla fine della riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:76-82
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:137-118
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:239-82
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:304-82
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:415-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:808-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1462-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1811-6
 msgid "End"
 msgstr "Fine"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:77-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:240-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:305-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:418-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1465-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1814-6
 msgid "Go and select to the end of a line"
 msgstr "Vai e seleziona fino alla fine della riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:77-99
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:139-137
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:240-99
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:305-99
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:421-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:825-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1468-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1817-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>End"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Fine"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:78-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:241-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:306-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:427-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1474-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1823-6
 msgid "Go to end of document"
 msgstr "Vai alla fine del documento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:78-86
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:97-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:135-131
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:241-86
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:306-86
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:428-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:550-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:791-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1475-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1824-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>End"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Fine"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:79-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:434-6
 msgid "Go and select text to end of document"
 msgstr "Vai e seleziona il testo fino alla fine del documento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:79-102
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:242-101
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:307-101
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:437-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1484-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1833-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>End"
@@ -702,75 +702,75 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Fine"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:80-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:444-6
 msgid "Move the view up one page"
 msgstr "Sposta la vista su di una pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:80-90
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:445-6
 msgid "PageUp"
 msgstr "PagSu"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:81-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:448-6
 msgid "Switch cursor between text and header"
 msgstr "Alterna il cursore tra il testo e la riga d'intestazione"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:81-102
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:451-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>PageUp"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>PagSu"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:82-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:457-6
 msgid "Extend the selection up one page"
 msgstr "Estendi la selezione su di una pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:82-97
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:460-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>PageUp"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagSu"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:83-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:466-6
 msgid "Move the view down one page"
 msgstr "Sposta la vista giù di una pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:83-92
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:467-6
 msgid "PageDown"
 msgstr "PagGiù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:84-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:470-6
 msgid "Switch cursor between text and footer"
 msgstr "Alterna il cursore tra il testo e il piè di pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:84-102
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:473-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>PageDown"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>PagGiù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:85-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:479-6
 msgid "Extend the selection down one page"
 msgstr "Estendi la selezione giù di una pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:85-99
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:482-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>PageDown"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagGiù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:86-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:488-6
 msgid "Delete to beginning of word"
 msgstr "Elimina fino all'inizio della parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:86-92
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:489-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Backspace"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Backspace"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:87-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:495-6
 msgid "Delete to end of word"
 msgstr "Elimina fino alla fine della parola"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:87-86
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:496-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Del"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:88-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:502-6
 msgid "Delete to beginning of sentence"
 msgstr "Elimina fino all'inizio della frase"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:88-96
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:505-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Backspace"
@@ -778,11 +778,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Backspace"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:89-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:512-6
 msgid "Delete to end of sentence"
 msgstr "Elimina fino alla fine della frase"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:89-90
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:513-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Del"
@@ -790,11 +790,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:93-9
+#: html/lool-help.html%2Bdiv.div.div.h2:522-4
 msgid "Shortcut Keys for Tables"
 msgstr "Tasti di scelta rapida per le tabelle"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:95-125
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:529-6
 msgid ""
 "If the active cell is empty: selects the whole table. Otherwise: selects the "
 "contents of the active cell. Pressing again selects the entire table."
@@ -803,7 +803,7 @@ msgstr ""
 "seleziona il contenuto della cella attiva. Premuto ancora seleziona l'intera "
 "tabella."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:96-128
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:541-6
 msgid ""
 "If the active cell is empty: goes to the beginning of the table. Otherwise: "
 "first press goes to beginning of the active cell, second press goes to "
@@ -813,7 +813,7 @@ msgstr ""
 "prima volta va all'inizio della cella attiva, la seconda volta all'inizio "
 "della tabella corrente e la terza volta all'inizio del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:97-127
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:554-6
 msgid ""
 "If the active cell is empty: goes to the end of the table. Otherwise: first "
 "press goes to the end of the active cell, second press goes to the end of "
@@ -823,11 +823,11 @@ msgstr ""
 "volta va alla fine della cella attiva, la seconda alla fine della tabella "
 "corrente e la terza volta alla fine del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:98-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:563-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Tab"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Tab"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:98-127
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:567-6
 #, fuzzy
 msgid ""
 "Inserts a tab stop (only in tables). Depending on the Window Manager in use, "
@@ -838,18 +838,18 @@ msgstr ""
 "finestre in uso, potrebbe essere usato Alt</kbd><span class=\"kbd--plus\""
 ">+</span><kbd>Tab."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:99-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:575-6
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow Keys"
 msgstr "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Tasti freccia"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:99-133
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:579-6
 msgid ""
 "Increases/decreases the size of the column/row on the right/bottom cell edge"
 msgstr ""
 "Aumenta/diminuisce le dimensioni della colonna/riga nel margine in basso a "
 "destra della cella"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:100-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:585-6
 msgid ""
 "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Arrow Keys"
@@ -857,13 +857,13 @@ msgstr ""
 "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Tasti freccia"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:100-181
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:590-6
 msgid "Increase/decrease the size of the column/row on the left/top cell edge"
 msgstr ""
 "Aumenta/diminuisce la dimensione della colonna/riga sul margine in alto a "
 "sinistra della cella"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:101-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:596-6
 msgid ""
 "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Arrow Keys"
@@ -871,12 +871,12 @@ msgstr ""
 "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Tasti freccia"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:101-180
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:102-228
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:601-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:612-6
 msgid "Like Alt, but only the active cell is modified"
 msgstr "Come Alt, ma si applica solo alla cella attiva"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:102-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:606-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Arrow "
@@ -886,11 +886,11 @@ msgstr ""
 "plus\">+</span><kbd>Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Tasti "
 "freccia"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:103-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:617-6
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Insert"
 msgstr "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Ins"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:103-129
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:621-6
 #, fuzzy
 msgid ""
 "3 seconds in Insert mode, Arrow Key inserts row/column, <kbd>Ctrl</kbd><span "
@@ -900,11 +900,11 @@ msgstr ""
 "colonna, Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>tasto freccia "
 "inserisce una cella"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:104-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:629-6
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Del"
 msgstr "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:104-126
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:633-6
 #, fuzzy
 msgid ""
 "3 seconds in Delete mode, Arrow key deletes row/column, <kbd>Ctrl</kbd><span "
@@ -915,7 +915,7 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>tasto freccia unisce celle "
 "adiacenti"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:105-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:642-6
 msgid ""
 "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Del"
@@ -923,7 +923,7 @@ msgstr ""
 "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:105-197
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:648-7
 msgid ""
 "If no whole cell is selected, the text from the cursor to the end of the "
 "current sentence is deleted. If the cursor is at the end of a cell, and no "
@@ -933,7 +933,7 @@ msgstr ""
 "frase. Se il cursore è alla fine di una cella, e nessuna cella è "
 "selezionata, elimina il contenuto della cella successiva."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:106-1
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:655-7
 msgid ""
 "If no whole cell is selected and the cursor is at the end of the table, the "
 "paragraph following the table will be deleted, unless it is the last "
@@ -943,7 +943,7 @@ msgstr ""
 "elimina il paragrafo successivo alla tabella, a meno che non sia l'ultimo "
 "paragrafo del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:107-1
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td.p:661-7
 msgid ""
 "If one or more cells are selected, the whole rows containing the selection "
 "will be deleted. If all rows are selected completely or partially, the "
@@ -953,15 +953,15 @@ msgstr ""
 "contengono le parti selezionate. Se tutte le righe vengono selezionate "
 "completamente o in parte, sarà eliminata l'intera tabella."
 
-#: html/lool-help.html%2Bdiv.div.div.h2:112-9
+#: html/lool-help.html%2Bdiv.div.div.h2:673-4
 msgid "Word processor functions"
 msgstr "Funzioni elaboratore di testi"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:114-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:676-6
 msgid "Insert footnote"
 msgstr "Inserisci nota a piè di pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:114-80
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:677-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>F"
@@ -969,11 +969,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>F"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:115-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:684-6
 msgid "Insert endnote"
 msgstr "Inserisci nota di chiusura"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:115-79
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:685-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>D"
@@ -981,13 +981,13 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>D"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:116-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:167-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:692-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1060-6
 msgid "Insert comment"
 msgstr "Inserisci commento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:116-79
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:167-79
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:693-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1061-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>C"
@@ -995,19 +995,19 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>C"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:118-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:701-6
 msgid "Insert soft hyphen"
 msgstr "Inserisci trattino opzionale"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:118-83
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:702-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>-"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>-"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:119-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:708-6
 msgid "Insert non-breaking hyphen"
 msgstr "Inserisci trattino non divisibile"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:119-91
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:709-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>-"
@@ -1015,11 +1015,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>-"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:121-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:717-6
 msgid "Insert non-breaking space"
 msgstr "Inserisci spazio non divisibile"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:121-90
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:718-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Space"
@@ -1027,29 +1027,29 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Spazio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:122-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:725-6
 msgid "Insert line break"
 msgstr "Inserisci interruzione di riga"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:122-82
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:726-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Enter"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:123-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:732-6
 msgid "Manual page break"
 msgstr "Interruzione manuale di pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:123-82
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:251-98
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:316-105
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:733-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1524-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1873-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Enter"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:124-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:739-6
 msgid "Column break (in multicolumnar text)"
 msgstr "Interruzione di colonna (in testo a più colonne)"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:124-101
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:742-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>Enter"
@@ -1057,19 +1057,19 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:125-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:749-6
 msgid ""
 "Insert new paragraph directly before or after a section, or before a table"
 msgstr ""
 "Inserisce un nuovo paragrafo direttamente prima o dopo una sezione o una "
 "tabella"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:125-139
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:126-175
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:753-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:764-6
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Enter"
 msgstr "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:126-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:759-6
 msgid ""
 "Insert new paragraph without numbering inside a list. Does not work when the "
 "cursor is at the end of the list."
@@ -1077,111 +1077,111 @@ msgstr ""
 "Inserisce un nuovo paragrafo senza numerazione all'interno di un elenco. Non "
 "funziona quando il cursore si trova alla fine dell'elenco."
 
-#: html/lool-help.html%2Bdiv.div.div.h2:132-9
+#: html/lool-help.html%2Bdiv.div.div.h2:774-4
 msgid "Navigating in Spreadsheets"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:134-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:777-6
 msgid "Moves the cursor to the first cell in the sheet (A1)."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:135-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:787-6
 msgid "Moves the cursor to the last cell on the sheet that contains data."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:136-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:797-6
 msgid "Moves the cursor to the first cell of the current row."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:137-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:804-6
 msgid "Moves the cursor to the last cell of the current row."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:138-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:811-6
 msgid ""
 "Selects cells from the current cell to the first cell of the current row."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:139-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:821-6
 msgid ""
 "Selects cells from the current cell to the last cell of the current row."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:140-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:831-6
 msgid ""
 "Selects cells from the current cell up to one page in the current column or "
 "extends the existing selection one page up."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:140-184
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:836-6
 #, fuzzy
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Page Up"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagSu"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:141-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:842-6
 msgid ""
 "Selects cells from the current cell down to one page in the current column "
 "or extends the existing selection one page down."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:141-188
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:847-6
 #, fuzzy
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Page Down"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagGiù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:142-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:853-6
 msgid ""
 "Moves the cursor to the left edge of the current data range. If the column "
 "to the left of the cell that contains the cursor is empty, the cursor moves "
 "to the next column to the left that contains data"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:142-265
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:860-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Left Arrow"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:143-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:866-6
 msgid ""
 "Moves the cursor to the right edge of the current data range. If the column "
 "to the right of the cell that contains the cursor is empty, the cursor moves "
 "to the next column to the right that contains data."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:143-269
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:873-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Right Arrow"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:144-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:879-6
 msgid ""
 "Moves the cursor to the top edge of the current data range. If the row above "
 "the cell that contains the cursor is empty, the cursor moves up to the next "
 "row that contains data."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:144-241
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:885-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Up Arrow"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:145-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:891-6
 msgid ""
 "Moves the cursor to the bottom edge of the current data range. If the row "
 "below the cell that contains the cursor is empty, the cursor moves down to "
 "the next row that contains data."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:145-246
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:897-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Down Arrow"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:146-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:903-6
 msgid "Go to next sheet."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:146-82
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:904-6
 #, fuzzy
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
@@ -1190,11 +1190,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>D"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:147-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:911-6
 msgid "Go to previous sheet."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:147-86
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:912-6
 #, fuzzy
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
@@ -1203,7 +1203,7 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Alt</kbd><span class=\"kbd--"
 "plus\">+</span><kbd>5"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:148-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:919-6
 msgid ""
 "Selects all cells containing data from the current cell to the end of the "
 "continuous range of data cells, in the direction of the arrow pressed. If "
@@ -1211,7 +1211,7 @@ msgid ""
 "selected."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:148-292
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:926-6
 #, fuzzy
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
@@ -1220,32 +1220,32 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Freccia su"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:149-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:933-6
 msgid "Moves one sheet to the left."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:149-93
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:934-6
 #, fuzzy
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Page Up"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagSu"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:150-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:940-6
 msgid "Moves one screen page to the right."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:150-100
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:943-6
 #, fuzzy
 msgid "Alt</kbd><span class=\"kbd--plus\">+</span><kbd>Page Down"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>PagGiù"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:151-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:949-6
 msgid ""
 "Adds the previous sheet to the current selection of sheets. If all the "
 "sheets in a spreadsheet are selected, this shortcut key combination only "
 "selects the previous sheet. Makes the previous sheet the current sheet."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:151-280
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:956-6
 #, fuzzy
 msgid ""
 "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\"kbd"
@@ -1254,14 +1254,14 @@ msgstr ""
 "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:152-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:963-6
 msgid ""
 "Adds the next sheet to the current selection of sheets. If all the sheets in "
 "a spreadsheet are selected, this shortcut key combination only selects the "
 "next sheet. Makes the next sheet the current sheet."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:152-268
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:970-6
 #, fuzzy
 msgid ""
 "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\"kbd"
@@ -1270,72 +1270,72 @@ msgstr ""
 "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Ctrl</kbd><span class=\""
 "kbd--plus\">+</span><kbd>Canc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:153-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:977-6
 msgid ""
 "where (*) is the multiplication sign on the numeric key pad. Selects the "
 "data range that contains the cursor. A range is a contiguous cell range that "
 "contains data and is bounded by empty row and columns."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:153-269
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:984-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>*"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Z"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:154-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:990-6
 msgid ""
 "where (/) is the division sign on the numeric key pad. Selects the matrix "
 "formula range that contains the cursor."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:154-178
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:995-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>/"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Z"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:155-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1001-6
 msgid "Insert cells (as in menu Insert - Cells)"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:155-105
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1004-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Plus key"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>P"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:156-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1010-6
 msgid "Delete cells (as in menu Edit - Delete Cells)"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:156-110
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1013-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Minus key"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Invio"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:160-9
+#: html/lool-help.html%2Bdiv.div.div.h2:1021-4
 msgid "Cell formatting"
 msgstr "Formattazione cella"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:168-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1068-6
 msgid "Display comment"
 msgstr "Visualizza commento"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:168-80
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1069-6
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>F1"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>F1"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:169-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1075-6
 msgid "Fill Down"
 msgstr "Compila verso il basso"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:175-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1117-6
 msgid "Set Optimal Column Width"
 msgstr "Imposta larghezza ottimale della colonna"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:176-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1124-6
 msgid "Two decimal places, thousands separator"
 msgstr "Due posizioni dopo la virgola, separatore delle migliaia"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:176-104
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1127-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>1"
@@ -1343,11 +1343,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>1"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:177-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1134-6
 msgid "Standard exponential format"
 msgstr "Formato esponenziale standard"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:177-92
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1135-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>2"
@@ -1355,11 +1355,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>2"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:178-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1142-6
 msgid "Standard date format"
 msgstr "Formato data standard"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:178-85
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1143-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>3"
@@ -1367,11 +1367,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>3"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:179-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1150-6
 msgid "Standard currency format"
 msgstr "Formato valuta standard"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:179-89
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1151-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>4"
@@ -1379,11 +1379,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>4"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:180-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1158-6
 msgid "Standard percentage format (two decimal places)"
 msgstr "Formato percentuale standard (con 2 decimali)"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:180-112
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1161-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>5"
@@ -1391,11 +1391,11 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>5"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:181-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1168-6
 msgid "Standard format"
 msgstr "Formato standard"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:181-80
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1169-6
 msgid ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class=\"kbd"
 "--plus\">+</span><kbd>6"
@@ -1403,64 +1403,64 @@ msgstr ""
 "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span class=\""
 "kbd--plus\">+</span><kbd>6"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:185-9
+#: html/lool-help.html%2Bdiv.div.div.h2:1178-4
 msgid "Insert"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:187-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1181-6
 msgid "Insert date"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:187-76
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1182-6
 #, fuzzy
 msgid "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>;</kbd> or <kbd>,"
 msgstr "Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Z"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:211-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:276-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1280-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1629-6
 msgid "Demote list item (list item has to be selected)"
 msgstr "Al livello inferiore (l'elemento della lista deve essere selezionato)"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:211-112
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:249-119
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:276-112
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:314-119
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1283-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1508-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1632-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1857-6
 msgid "Tab"
 msgstr "Tab"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:212-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:277-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1286-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1635-6
 msgid "Promote list item (list item has to be selected)"
 msgstr "Al livello superiore (l'elemento della lista deve essere selezionato)"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:212-113
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:250-127
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:277-113
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:315-127
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1289-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1515-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1638-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1864-6
 msgid "Shift</kbd><span class=\"kbd--plus\">+</span><kbd>Tab"
 msgstr "Maiusc</kbd><span class=\"kbd--plus\">+</span><kbd>Tab"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:216-9
-#: html/lool-help.html%2Bdiv.div.div.h2:281-9
+#: html/lool-help.html%2Bdiv.div.div.h2:1297-4
+#: html/lool-help.html%2Bdiv.div.div.h2:1646-4
 msgid "Text selection and navigation in a textbox"
 msgstr "Selezione del testo e navigazione in una casella di testo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:238-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:303-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1451-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1800-6
 msgid "Go and select text to start of textbox"
 msgstr "Vai e seleziona il testo fino all'inizio della casella di testo"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:242-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:307-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1481-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1830-6
 msgid "Go and select text to end of textbox"
 msgstr "Vai e seleziona il testo fino alla fine della casella di testo"
 
-#: html/lool-help.html%2Bdiv.div.div.h2:246-9
+#: html/lool-help.html%2Bdiv.div.div.h2:1493-4
 msgid "Slide keyboard shortcuts"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:248-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:313-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1496-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1845-6
 msgid ""
 "Escape current mode, i.e. from edit mode switch to object selection mode, "
 "from object selection mode switch to view mode."
@@ -1468,168 +1468,167 @@ msgstr ""
 "Commuta la modalità corrente, ad esempio dalla modalità modifica passa alla "
 "modalità selezione oggetto, da questa alla modalità visualizzazione."
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:248-186
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:313-186
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1501-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1850-6
 msgid "Esc"
 msgstr "Esc"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:249-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:314-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1504-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1853-6
 msgid "Select objects in the order in which they were created"
 msgstr "Seleziona gli oggetti nell'ordine in cui sono stati creati"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:250-38
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:315-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1511-6
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1860-6
 msgid "Select objects in the reverse order in which they were created"
 msgstr ""
 "Seleziona gli oggetti nell'ordine inverso a quello in cui sono stati creati"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:251-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1521-6
 #, fuzzy
 msgid "Move to next text object on slide"
 msgstr ""
 "Sposta al prossimo oggetto di testo sulla diapositiva / pagina di disegno"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:252-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1530-6
 msgid "Select all in slide"
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.h2:311-9
+#: html/lool-help.html%2Bdiv.div.div.h2:1842-4
 #, fuzzy
 msgid "Draw page keyboard shortcuts"
 msgstr "Scorciatoie di tastiera per diapositive e pagine di disegno"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:316-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1870-6
 #, fuzzy
 msgid "Move to next text object on drawing page"
 msgstr ""
 "Sposta al prossimo oggetto di testo sulla diapositiva / pagina di disegno"
 
-#: html/lool-help.html%2Bdiv.div.div.table.tr.td:317-38
+#: html/lool-help.html%2Bdiv.div.div.table.tr.td:1879-6
 #, fuzzy
 msgid "Select all in drawing page"
 msgstr "Seleziona tutto nella diapositiva / pagina di disegno"
 
-#: html/lool-help.html%2Bdiv.h1:323-5
+#: html/lool-help.html%2Bdiv.h1:1890-2
 #, fuzzy
 msgid "<span class=\"productname\">{productname}</span> Help"
 msgstr "Guida di <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.p:324-5
-#: html/lool-help.html%2Bdiv.div.h3:360-5
+#: html/lool-help.html%2Bdiv.p:1893-2
+#: html/lool-help.html%2Bdiv.div.h3:2028-3
 msgid "Collaborative editing"
 msgstr "Modifica collaborativa"
 
-#: html/lool-help.html%2Bdiv.p:325-5
-#: html/lool-help.html%2Bdiv.div.h3:371-5
+#: html/lool-help.html%2Bdiv.p:1898-2
+#: html/lool-help.html%2Bdiv.div.h3:2060-3
 #, fuzzy
 msgid "<span class=\"productname\">{productname}</span> user interface"
 msgstr "Interfaccia utente di <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.p:326-5
-#: html/lool-help.html%2Bdiv.div.h3:409-5
+#: html/lool-help.html%2Bdiv.p:1903-2
+#: html/lool-help.html%2Bdiv.div.h3:2166-3
 msgid "Opening, closing, saving, printing and downloading documents"
 msgstr "Aprire, chiudere, salvare, stampare e scaricare documenti"
 
-#: html/lool-help.html%2Bdiv.p:327-5
-#: html/lool-help.html%2Bdiv.div.h3:419-5
+#: html/lool-help.html%2Bdiv.p:1908-2
+#: html/lool-help.html%2Bdiv.div.h3:2216-3
 msgid "Editing documents"
 msgstr "Modificare documenti"
 
-#: html/lool-help.html%2Bdiv.p:328-5
-#: html/lool-help.html%2Bdiv.div.p:334-9
-#: html/lool-help.html%2Bdiv.div.p:349-9
-#: html/lool-help.html%2Bdiv.div.h3:450-3
-#: html/lool-help.html%2Bdiv.div.div.h3:515-5
-#: html/lool-help.html%2Bdiv.div.div.h3:636-5
+#: html/lool-help.html%2Bdiv.p:1913-2
+#: html/lool-help.html%2Bdiv.div.p:1939-3
+#: html/lool-help.html%2Bdiv.div.p:1999-3
+#: html/lool-help.html%2Bdiv.div.h3:2338-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2543-4
+#: html/lool-help.html%2Bdiv.div.div.h3:2921-4
 msgid "Advanced features"
 msgstr "Funzionalità avanzate"
 
-#: html/lool-help.html%2Bdiv.div.p:330-9
-#: html/lool-help.html%2Bdiv.div.h2:489-5
+#: html/lool-help.html%2Bdiv.div.p:1919-3
+#: html/lool-help.html%2Bdiv.div.h2:2468-3
 #, fuzzy
 msgid "<span class=\"productname\">{productname}</span> spreadsheets"
 msgstr "Fogli elettronici <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.div.p:331-9
-#: html/lool-help.html%2Bdiv.div.div.h3:492-5
+#: html/lool-help.html%2Bdiv.div.p:1924-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2473-4
 msgid "Editing spreadsheets"
 msgstr "Modificare un foglio di calcolo"
 
-#: html/lool-help.html%2Bdiv.div.p:332-9
-#: html/lool-help.html%2Bdiv.div.div.h3:497-5
-#: html/lool-help.html%2Bdiv.div.div.div.div:501-5
+#: html/lool-help.html%2Bdiv.div.p:1929-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2492-4
 msgid "Formulas"
 msgstr "Formule"
 
-#: html/lool-help.html%2Bdiv.div.p:333-9
-#: html/lool-help.html%2Bdiv.div.div.h3:507-5
+#: html/lool-help.html%2Bdiv.div.p:1934-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2523-4
 msgid "Formatting spreadsheets"
 msgstr "Formattare un foglio elettronico"
 
-#: html/lool-help.html%2Bdiv.div.p:335-9
-#: html/lool-help.html%2Bdiv.div.div.h3:782-5
+#: html/lool-help.html%2Bdiv.div.p:1944-3
+#: html/lool-help.html%2Bdiv.div.div.h3:3386-4
 msgid "Spreadsheets"
 msgstr "Fogli di calcolo"
 
-#: html/lool-help.html%2Bdiv.div.p:338-9
-#: html/lool-help.html%2Bdiv.div.h2:558-5
+#: html/lool-help.html%2Bdiv.div.p:1951-3
+#: html/lool-help.html%2Bdiv.div.h2:2701-3
 #, fuzzy
 msgid "<span class=\"productname\">{productname}</span> text documents"
 msgstr "Documenti di testo <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.div.p:339-9
-#: html/lool-help.html%2Bdiv.div.div.h3:561-5
+#: html/lool-help.html%2Bdiv.div.p:1957-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2706-4
 msgid "Editing text documents"
 msgstr "Modificare un documento di testo"
 
-#: html/lool-help.html%2Bdiv.div.p:340-9
-#: html/lool-help.html%2Bdiv.div.div.h3:566-5
+#: html/lool-help.html%2Bdiv.div.p:1962-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2724-4
 msgid "Context menus"
 msgstr "Menu di contesto"
 
-#: html/lool-help.html%2Bdiv.div.p:341-9
-#: html/lool-help.html%2Bdiv.div.div.h3:584-5
+#: html/lool-help.html%2Bdiv.div.p:1967-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2786-4
 msgid "Advanced text document editor features"
 msgstr "Funzionalità di editor avanzate per i documenti di testo"
 
-#: html/lool-help.html%2Bdiv.div.p:342-9
-#: html/lool-help.html%2Bdiv.div.div.h3:700-5
+#: html/lool-help.html%2Bdiv.div.p:1972-3
+#: html/lool-help.html%2Bdiv.div.div.h3:3104-4
 msgid "Text documents"
 msgstr "Documenti di testo"
 
-#: html/lool-help.html%2Bdiv.div.p:345-9
-#: html/lool-help.html%2Bdiv.div.h2:612-5
+#: html/lool-help.html%2Bdiv.div.p:1979-3
+#: html/lool-help.html%2Bdiv.div.h2:2866-3
 #, fuzzy
 msgid "<span class=\"productname\">{productname}</span> presentations"
 msgstr "Presentazioni <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.div.p:346-9
-#: html/lool-help.html%2Bdiv.div.div.h3:615-5
+#: html/lool-help.html%2Bdiv.div.p:1984-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2871-4
 msgid "Editing presentations"
 msgstr "Modificare una presentazione"
 
-#: html/lool-help.html%2Bdiv.div.p:347-9
-#: html/lool-help.html%2Bdiv.div.div.h3:620-5
+#: html/lool-help.html%2Bdiv.div.p:1989-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2887-4
 msgid "Slide show"
 msgstr "Presentazione"
 
-#: html/lool-help.html%2Bdiv.div.p:348-9
-#: html/lool-help.html%2Bdiv.div.div.h3:628-5
+#: html/lool-help.html%2Bdiv.div.p:1994-3
+#: html/lool-help.html%2Bdiv.div.div.h3:2906-4
 msgid "Slide pane"
 msgstr "Riquadro diapositive"
 
-#: html/lool-help.html%2Bdiv.div.p:350-9
-#: html/lool-help.html%2Bdiv.div.div.h3:822-5
+#: html/lool-help.html%2Bdiv.div.p:2004-3
+#: html/lool-help.html%2Bdiv.div.div.h3:3507-4
 msgid "Presentations"
 msgstr "Presentazioni"
 
-#: html/lool-help.html%2Bdiv.p:352-5
-#: html/lool-help.html%2Bdiv.div.h2:649-5
+#: html/lool-help.html%2Bdiv.p:2010-2
+#: html/lool-help.html%2Bdiv.div.h2:2969-3
 msgid "Frequently Asked Questions"
 msgstr "Domande frequenti"
 
-#: html/lool-help.html%2Bdiv.div.p:355-5
+#: html/lool-help.html%2Bdiv.div.p:2017-3
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> allows you to create and "
@@ -1642,7 +1641,7 @@ msgstr ""
 "semplice e intuitivo: documenti di testo, fogli elettronici e presentazioni. "
 "Puoi lavorare da solo, o in collaborazione se fai parte di un team."
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:363-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2032-6
 msgid ""
 "Each user gets assigned a color. The cursor of each user will be shown in "
 "the assigned color. Note: you will see your cursor as black, blinking "
@@ -1652,7 +1651,7 @@ msgstr ""
 "mostrato del colore assegnato. Nota: vedrai il tuo cursore di colore nero e "
 "lampeggiante, mentre gli altri utenti ti visualizzeranno colorato."
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:364-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2041-6
 msgid ""
 "You can jump to the cursor of a user by clicking on the name (or avatar) of "
 "the user. It is possible to follow the editor."
@@ -1660,7 +1659,7 @@ msgstr ""
 "Puoi passare al cursore di un utente facendo clic sul nome (o l'avatar) "
 "dell'utente. È possibile seguire l'editor."
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:365-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2048-6
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> notifies you with a small "
@@ -1669,7 +1668,7 @@ msgstr ""
 "<span class=\"productname\">%productName</span> ti notifica in modo discreto "
 "nel piè di pagina quando un nuovo utente accede o esce."
 
-#: html/lool-help.html%2Bdiv.div.div.p:372-30
+#: html/lool-help.html%2Bdiv.div.div.p:2064-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> uses modern browser "
@@ -1682,7 +1681,7 @@ msgstr ""
 "di visualizzazione, inclusi i piccoli schermi dei dispositivi mobili. "
 "L'interfaccia si compone di:"
 
-#: html/lool-help.html%2Bdiv.div.div.p:374-5
+#: html/lool-help.html%2Bdiv.div.div.p:2072-4
 msgid ""
 "<span class=\"def\">The document area:</span> The application area shows the "
 "document contents, either spreadsheets, presentations or text documents."
@@ -1690,16 +1689,16 @@ msgstr ""
 "<span class=\"def\">L'area del documento:</span> l'area dell'applicazione "
 "mostra il contenuto, foglio di calcolo, presentazione o testo, del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.p:377-5
+#: html/lool-help.html%2Bdiv.div.div.p:2079-4
 msgid ""
 "<span class=\"def\">The menu bar:</span> The main menu is placed on the top "
 "and includes many options, commands for printing, editing, viewing and other "
 "advanced commands. You can hide the menu bar clicking on the <span class"
-"=\"w2ui-icon fold icon-size\" ></span> icon on the far right. Click on the <"
-"span class=\"w2ui-icon unfold icon-size\" ></span> icon to show the menu."
+"=\"w2ui-icon fold icon-size\"></span> icon on the far right. Click on the <"
+"span class=\"w2ui-icon unfold icon-size\"></span> icon to show the menu."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.p:380-5
+#: html/lool-help.html%2Bdiv.div.div.p:2091-4
 msgid ""
 "<span class=\"def\">Context menus:</span> On clicking with the right mouse "
 "button, a menu appears with commands associated with the underlying object."
@@ -1708,7 +1707,7 @@ msgstr ""
 "viene richiamato un menu contenente comandi associati all'oggetto "
 "soggiacente."
 
-#: html/lool-help.html%2Bdiv.div.div.p:383-5
+#: html/lool-help.html%2Bdiv.div.div.p:2098-4
 msgid ""
 "<span class=\"def\">The toolbar:</span> The toolbar contains the most used "
 "options for daily editing. Toolbar buttons are dynamic, meaning that their "
@@ -1719,7 +1718,7 @@ msgstr ""
 "degli strumenti sono dinamici, il che significa che il loro stato (attivo o "
 "disattivo) dipende da vari fattori."
 
-#: html/lool-help.html%2Bdiv.div.div.p:386-5
+#: html/lool-help.html%2Bdiv.div.div.p:2106-4
 msgid ""
 "<span class=\"def\">The status bar:</span> The status bar is shown in the "
 "bottom, and contains several useful options and features."
@@ -1727,7 +1726,7 @@ msgstr ""
 "<span class=\"def\">La barra di stato:</span> viene mostrata nella parte "
 "inferiore e contiene varie opzioni e utili funzionalità."
 
-#: html/lool-help.html%2Bdiv.div.div.p:390-5
+#: html/lool-help.html%2Bdiv.div.div.p:2116-4
 msgid ""
 "<span class=\"def\">The search bar:</span> Searching starts automatically "
 "when content is inserted in the search box, and the document window "
@@ -1740,19 +1739,19 @@ msgstr ""
 "La ricerca non distingue maiuscole e minuscole. Sono presenti tre pulsanti "
 "accanto alla casella di ricerca:"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:392-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2124-9
 msgid "Search backwards"
 msgstr "Trova precedente"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:393-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2125-9
 msgid "Search forward"
 msgstr "Trova successivo"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:394-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2127-6
 msgid "Cancel the search (appears only when a text has been searched)"
 msgstr "Annulla la ricerca (appare solo quando viene trovato un testo)"
 
-#: html/lool-help.html%2Bdiv.div.div.p:398-5
+#: html/lool-help.html%2Bdiv.div.div.p:2135-4
 msgid ""
 "<span class=\"def\">The zoom bar:</span> At the right of the status bar, "
 "there is a set of buttons that allow you to zoom to 100%, zoom out and zoom "
@@ -1765,7 +1764,7 @@ msgstr ""
 "documento, non riguarda l'interfaccia. L'attuale livello di ingrandimento "
 "viene mostrato in quest'area."
 
-#: html/lool-help.html%2Bdiv.div.div.p:399-5
+#: html/lool-help.html%2Bdiv.div.div.p:2142-4
 msgid ""
 "Text, charts, shapes and svg images will stay sharp, when zooming in, you "
 "will only see pixels appear at inserted images, such as jpg’s or png’s."
@@ -1774,13 +1773,13 @@ msgstr ""
 "nitidi, e sarà possibile osservare la comparsa di pixel solo nelle immagini "
 "inserite, tipo jpg o png."
 
-#: html/lool-help.html%2Bdiv.div.div.p:400-5
+#: html/lool-help.html%2Bdiv.div.div.p:2147-4
 msgid "Using the browser zoom affects the document and user interface areas."
 msgstr ""
 "L'uso dello zoom del browser coinvolge entrambe le aree del documento e "
 "dell'interfaccia utente."
 
-#: html/lool-help.html%2Bdiv.div.div.p:403-5
+#: html/lool-help.html%2Bdiv.div.div.p:2153-4
 msgid ""
 "<span class=\"def\">The information bar:</span> At the right of the search "
 "bar, a set of information on the document is displayed. The actual "
@@ -1790,7 +1789,7 @@ msgstr ""
 "barra di ricerca è presente un gruppo di informazioni riguardanti il "
 "documento. L'informazione dipende ovviamente dalla natura del documento."
 
-#: html/lool-help.html%2Bdiv.div.p:410-5
+#: html/lool-help.html%2Bdiv.div.p:2169-3
 #, fuzzy
 msgid ""
 "Your documents are stored and managed in the cloud storage that is "
@@ -1799,7 +1798,7 @@ msgstr ""
 "I tuoi documenti sono memorizzati e gestiti nel deposito cloud integrato con "
 "<span class=\"productname\">%productName</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.p:411-30
+#: html/lool-help.html%2Bdiv.div.div.p:2175-4
 #, fuzzy
 msgid ""
 "To download a document download it from the <span class=\"productname\""
@@ -1812,7 +1811,7 @@ msgstr ""
 "formati di scaricamento disponibili dipendono dall'applicazione. Tutte le "
 "applicazioni esportano i documenti nel formato PDF."
 
-#: html/lool-help.html%2Bdiv.div.div.p:412-30
+#: html/lool-help.html%2Bdiv.div.div.p:2184-4
 #, fuzzy
 msgid ""
 "To open document, click on the file to open the <span class=\"productname\""
@@ -1821,7 +1820,7 @@ msgstr ""
 "Per aprire un documento, fai clic sul file: si aprirà il modulo di <span "
 "class=\"productname\">%productName</span> associato al formato del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.p:413-30
+#: html/lool-help.html%2Bdiv.div.div.p:2191-4
 #, fuzzy
 msgid ""
 "Documents in <span class=\"productname\">{productname}</span> save "
@@ -1834,7 +1833,7 @@ msgstr ""
 "forzare il salvataggio utilizzando il comando <span class=\"ui\">Salva</span>"
 " del menu <span class=\"ui\">File</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.p:414-30
+#: html/lool-help.html%2Bdiv.div.div.p:2201-4
 msgid ""
 "Depending on the capabilities of your browser the print window may appear or "
 "a “Download PDF export?” popup shows. You can print this PDF in your "
@@ -1844,13 +1843,13 @@ msgstr ""
 "stampa oppure la richiesta “Scaricare l'esportazione PDF?”. Puoi stampare "
 "questo PDF nel tuo lettore PDF preferito."
 
-#: html/lool-help.html%2Bdiv.div.div.p:415-30
+#: html/lool-help.html%2Bdiv.div.div.p:2208-4
 msgid ""
 "When closing a document, it is automatically saved if it has been changed."
 msgstr ""
 "Quando chiudi un documento modificato, questo viene automaticamente salvato."
 
-#: html/lool-help.html%2Bdiv.div.p:420-5
+#: html/lool-help.html%2Bdiv.div.p:2217-3
 msgid ""
 "Document editing should be familiar to everyone that has used an office "
 "application before, but here are some distinctive features:"
@@ -1859,11 +1858,11 @@ msgstr ""
 "utilizzato in precedenza un'applicazione per ufficio, ma con alcune "
 "differenze:"
 
-#: html/lool-help.html%2Bdiv.div.div.h4:422-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2223-4
 msgid "Copy and Paste"
 msgstr "Copia e Incolla"
 
-#: html/lool-help.html%2Bdiv.div.div.p:423-5
+#: html/lool-help.html%2Bdiv.div.div.p:2224-4
 #, fuzzy
 msgid ""
 "Rich content copy/cut and paste is supported, not only within a given "
@@ -1893,7 +1892,7 @@ msgstr ""
 "richiesto il doppio tap e l'uso del tocco prolungato per accedere alle "
 "funzioni copia/taglia/incolla tramite menu di contesto."
 
-#: html/lool-help.html%2Bdiv.div.div.p:424-5
+#: html/lool-help.html%2Bdiv.div.div.p:2242-4
 msgid ""
 "To copy larger pieces of content to other applications on your device, users "
 "need to press the <span class=\"ui\">Start download</span> button, and then "
@@ -1911,11 +1910,11 @@ msgstr ""
 "solo per esportare il contenuto da incollare in applicazioni esterne. Questo "
 "passaggio converte anche gli oggetti complessi in immagini statiche."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:427-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2255-4
 msgid "Document repair"
 msgstr "Ripara documento"
 
-#: html/lool-help.html%2Bdiv.div.div.p:428-5
+#: html/lool-help.html%2Bdiv.div.div.p:2256-4
 msgid ""
 "When multiple people edit the same document concurrently, it is possible for "
 "their changes to conflict and this can cause some confusion. The Document "
@@ -1928,7 +1927,7 @@ msgstr ""
 "modifiche eseguite dagli altri editor e riportare il documento a uno stato "
 "precedente."
 
-#: html/lool-help.html%2Bdiv.div.div.p:429-5
+#: html/lool-help.html%2Bdiv.div.div.p:2263-4
 msgid ""
 "To jump back to the selected state, select it with the mouse and hit <span "
 "class=\"ui\">Jump to state</span>."
@@ -1936,12 +1935,7 @@ msgstr ""
 "Per tornare indietro allo stato selezionato, selezionalo col mouse e premi <"
 "span class=\"ui\">Passa allo stato</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div:430-5
-#, fuzzy
-msgid "document repair"
-msgstr "Ripara documento"
-
-#: html/lool-help.html%2Bdiv.div.div.p:431-5
+#: html/lool-help.html%2Bdiv.div.div.p:2273-4
 msgid ""
 "This is particularly useful – say when a colleague inadvertently selected "
 "all text in the document with <kbd>Ctrl</kbd><span class=\"kbd--plus\""
@@ -1953,11 +1947,11 @@ msgstr ""
 "<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>A</kbd> e digitandovi "
 "sopra – durante una modifica in contemporanea."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:434-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2282-4
 msgid "Inactive document"
 msgstr "Documento inattivo"
 
-#: html/lool-help.html%2Bdiv.div.div.p:435-5
+#: html/lool-help.html%2Bdiv.div.div.p:2283-4
 #, fuzzy
 msgid ""
 "When <span class=\"productname\">{productname}</span> detects that there has "
@@ -1971,12 +1965,7 @@ msgstr ""
 "compare il messaggio “Documento inattivo – fai clic per riprendere le "
 "modifiche”."
 
-#: html/lool-help.html%2Bdiv.div.div.div:436-5
-#, fuzzy
-msgid "inactive document"
-msgstr "Documento inattivo"
-
-#: html/lool-help.html%2Bdiv.div.div.p:437-5
+#: html/lool-help.html%2Bdiv.div.div.p:2297-4
 msgid ""
 "To continue editing, click on the document and the layover and message "
 "disappear. Any changes that may have been made by other users – while "
@@ -1986,11 +1975,11 @@ msgstr ""
 "messaggio scompariranno. Qualsiasi modifica fatta dagli altri utenti - che "
 "in quel momento ci stanno lavorando - sarà ricaricata."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:440-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2305-4
 msgid "Pasting"
 msgstr "Incollare"
 
-#: html/lool-help.html%2Bdiv.div.div.p:441-5
+#: html/lool-help.html%2Bdiv.div.div.p:2306-4
 msgid ""
 "When you paste content copied from within the same document, the format and "
 "elements are maintained. If you copy from another document, in another tab "
@@ -2002,7 +1991,7 @@ msgstr ""
 "un'altra scheda della finestra del browser, o dall'esterno del browser, il "
 "contenuto incollato conserverà la formattazione."
 
-#: html/lool-help.html%2Bdiv.div.div.p:442-5
+#: html/lool-help.html%2Bdiv.div.div.p:2313-4
 msgid ""
 "You can paste as unformatted text with the keyboard shortcut: "
 "<kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Shift</kbd><span class="
@@ -2012,7 +2001,7 @@ msgstr ""
 " <kbd>Ctrl</kbd><span class=\"kbd--plus\">+</span><kbd>Maiusc</kbd><span "
 "class=\"kbd--plus\">+</span><kbd>V</kbd>"
 
-#: html/lool-help.html%2Bdiv.div.div.p:443-5
+#: html/lool-help.html%2Bdiv.div.div.p:2319-4
 msgid ""
 "When you paste text from within the document, formatting will be respected. "
 "You can also paste objects, such as images, if they are copied from the "
@@ -2022,7 +2011,7 @@ msgstr ""
 "preservata. Puoi incollare anche oggetti, come le immagini, se esse vengono "
 "copiate dal documento su cui stai lavorando."
 
-#: html/lool-help.html%2Bdiv.div.div.p:444-5
+#: html/lool-help.html%2Bdiv.div.div.p:2325-4
 #, fuzzy
 msgid ""
 "When you paste text from outside of the document (another browser window or "
@@ -2031,7 +2020,7 @@ msgstr ""
 "Quando incolli dall'esterno del documento (un'altra finestra del browser o "
 "un'applicazione desktop), il testo sarà incollato come testo formattato."
 
-#: html/lool-help.html%2Bdiv.div.div.p:445-5
+#: html/lool-help.html%2Bdiv.div.div.p:2330-4
 msgid ""
 "When you have internal cut or copied content, you can paste this content "
 "using the context menu."
@@ -2039,11 +2028,11 @@ msgstr ""
 "Quando copi o tagli internamente del contenuto, puoi incollarlo tramite il "
 "menu di contesto."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:452-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2340-4
 msgid "Adding charts"
 msgstr "Aggiungere grafici"
 
-#: html/lool-help.html%2Bdiv.div.div.p:453-5
+#: html/lool-help.html%2Bdiv.div.div.p:2341-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> supports inserting and "
@@ -2052,7 +2041,7 @@ msgstr ""
 "<span class=\"productname\">%productName</span> supporta l'inserimento e la "
 "visualizzazione di grafici nei documenti. Per aggiungere un grafico:"
 
-#: html/lool-help.html%2Bdiv.div.div.ol.li.p:455-11
+#: html/lool-help.html%2Bdiv.div.div.ol.li.p:2348-6
 msgid ""
 "Select a table in text document, a range in a spreadsheet or a table in a "
 "presentation."
@@ -2060,7 +2049,7 @@ msgstr ""
 "Selezionate una tabella nel documento di testo, un intervallo di celle in un "
 "foglio elettronico o una tabella in una presentazione."
 
-#: html/lool-help.html%2Bdiv.div.div.ol.li.p:457-9
+#: html/lool-help.html%2Bdiv.div.div.ol.li.p:2354-6
 msgid ""
 "Choose <span class=\"ui\">Insert</span> → <span class=\"ui\">Charts</span>. "
 "Customize your chart on the sidebar:"
@@ -2068,17 +2057,13 @@ msgstr ""
 "Scegliete <span class=\"ui\">Inserisci</span> → <span class=\"ui\""
 ">Grafico</span>. Personalizza il tuo grafico nella barra laterale:"
 
-#: html/lool-help.html%2Bdiv.div.div.ol.div:459-7
-msgid "chart"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.ol.li.p:460-11
+#: html/lool-help.html%2Bdiv.div.div.ol.li.p:2367-6
 msgid "If no table or range was selected, a prototype chart is displayed."
 msgstr ""
 "Se non è stata selezionata alcuna tabella o alcun intervallo, sarà "
 "visualizzato un prototipo di grafico."
 
-#: html/lool-help.html%2Bdiv.div.div.p:464-28
+#: html/lool-help.html%2Bdiv.div.div.p:2378-4
 msgid ""
 "<span class=\"def\">Chart editing:</span> Double click the chart to select. "
 "Use context menus to add chart elements such as title, axis, and other. "
@@ -2091,7 +2076,7 @@ msgstr ""
 "span class=\"ui\">Tipo di grafico</span> per modificare rispettivamente i "
 "dati del grafico e selezionare il tipo di grafico."
 
-#: html/lool-help.html%2Bdiv.div.div.p:465-28
+#: html/lool-help.html%2Bdiv.div.div.p:2388-4
 msgid ""
 "<span class=\"def\">Chart formatting:</span> The same context menu brings "
 "you to chart data table and chart type selection."
@@ -2100,7 +2085,7 @@ msgstr ""
 "contesto ti permette di accedere alla tabella dei dati e alla selezione del "
 "tipo di grafico."
 
-#: html/lool-help.html%2Bdiv.div.div.p:466-28
+#: html/lool-help.html%2Bdiv.div.div.p:2395-4
 msgid ""
 "<span class=\"def\">Data series formatting:</span> Open the context menu and "
 "choose <span class=\"ui\">Format data series</span>."
@@ -2108,11 +2093,11 @@ msgstr ""
 "<span class=\"def\">Formattazione della serie di dati:</span> apri il menu "
 "di contesto e scegli <span class=\"ui\">Formatta serie di dati</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:468-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2402-4
 msgid "Handling images"
 msgstr "Gestione delle immagini"
 
-#: html/lool-help.html%2Bdiv.div.div.p:469-5
+#: html/lool-help.html%2Bdiv.div.div.p:2403-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> inserts images in the text "
@@ -2123,7 +2108,7 @@ msgstr ""
 "documento di testo dal tuo computer locale o dal tuo cloud personale. Le "
 "immagini inserite vengono sempre incorporate nel documento."
 
-#: html/lool-help.html%2Bdiv.div.div.p:470-5
+#: html/lool-help.html%2Bdiv.div.div.p:2409-4
 msgid ""
 "<span class=\"def\">Insert image:</span> Clicking on the <span class=\"ui\">"
 "Insert image</span> icon allows you to choose an image from the cloud "
@@ -2133,7 +2118,7 @@ msgstr ""
 "class=\"ui\">Inserisci immagine</span> per scegliere un'immagine dalle "
 "cartelle e condivisioni del tuo cloud."
 
-#: html/lool-help.html%2Bdiv.div.div.p:471-5
+#: html/lool-help.html%2Bdiv.div.div.p:2414-4
 msgid ""
 "<span class=\"def\">Insert local image:</span> opens the browser file picker "
 "to upload the image from your local computer and insert it into the document."
@@ -2142,7 +2127,7 @@ msgstr ""
 "scelta file per caricare l'immagine dal tuo computer locale e inserirla "
 "all'interno del tuo documento."
 
-#: html/lool-help.html%2Bdiv.div.div.p:472-5
+#: html/lool-help.html%2Bdiv.div.div.p:2419-4
 msgid ""
 "Images can be resized, rotated and anchored. Text can be wrapped around the "
 "image. Select the image and open the context menu. Use the images handles to "
@@ -2152,11 +2137,11 @@ msgstr ""
 "scorrere attorno all'immagine. Seleziona l'immagine e apri il menu di "
 "contesto. Usa le maniglie per ridimensionare l'immagine col mouse."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:475-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2427-4
 msgid "Comments in documents"
 msgstr "Commenti nei documenti"
 
-#: html/lool-help.html%2Bdiv.div.div.p:476-5
+#: html/lool-help.html%2Bdiv.div.div.p:2428-4
 #, fuzzy
 msgid ""
 "Insert comments in <span class=\"productname\">{productname}</span> in "
@@ -2168,21 +2153,17 @@ msgstr ""
 "visualizzati sulla destra e recano il nome del creatore e la data di "
 "creazione."
 
-#: html/lool-help.html%2Bdiv.div.div.div:477-5
-msgid "comment"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.p:478-5
+#: html/lool-help.html%2Bdiv.div.div.p:2437-4
 msgid ""
 "Click on the submenu (<span class=\"lool-annotation-menu icon-size\" "
 "></span>) icon to reply, move and delete comments."
 msgstr ""
 
-#: html/lool-help.html%2Bdiv.div.div.h4:481-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2445-4
 msgid "Spellchecking"
 msgstr "Controllo ortografico"
 
-#: html/lool-help.html%2Bdiv.div.div.p:482-5
+#: html/lool-help.html%2Bdiv.div.div.p:2446-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> can check spelling in text "
@@ -2196,12 +2177,7 @@ msgstr ""
 "Fai clic col pulsante destro del mouse per aprire il menu di contesto "
 "contenente i suggerimenti per la correzione della parola errata."
 
-#: html/lool-help.html%2Bdiv.div.div.div:483-5
-#, fuzzy
-msgid "spellchecking"
-msgstr "Controllo ortografico"
-
-#: html/lool-help.html%2Bdiv.div.div.p:484-5
+#: html/lool-help.html%2Bdiv.div.div.p:2459-4
 msgid ""
 "To systematically spell-check the whole document use the <span class=\"ui\""
 ">Tools</span> menu’s <span class=\"ui\">Spelling</span> option."
@@ -2210,7 +2186,7 @@ msgstr ""
 "documento, usa l'opzione <span class=\"ui\">Controllo ortografico</span> "
 "presente nel menu <span class=\"ui\">Strumenti</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:493-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2475-5
 msgid ""
 "You edit an online spreadsheet in the same way you edit a desktop "
 "spreadsheet. Operations like entering data, selecting ranges, columns, rows "
@@ -2232,32 +2208,32 @@ msgstr ""
 "<kbd>Invio</kbd> sposterà il fuoco nella cella sottostante per un più rapido "
 "inserimento dei dati."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:499-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2494-5
 msgid ""
 "Formulas are entered in the formula bar. Enter '=' and insert the formula."
 msgstr ""
 "Le formule vengono inserite nella barra di calcolo. Digitate '=' e inserite "
 "la formula."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:500-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2498-5
 msgid "All spreadsheets functions and mathematical rules applies."
 msgstr ""
 "Valgono tutte le regole matematiche e le funzioni dei fogli elettronici."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:502-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2508-5
 #, fuzzy
 msgid ""
 "The formula language should be extremely familiar to any spreadsheet user, "
 "and is specified in great detail in the <a href=\"https://www.oasis-open.org/"
 "committees/download.php/16826/openformula-spec-20060221.html\" target=\""
-"_blank\" rel=\"noopener noreferrer\">OASIS OpenFormula specification</a>."
+"_blank\" rel=\"noopener noreferrer\" >OASIS OpenFormula specification</a>."
 msgstr ""
 "Il linguaggio delle formule dovrebbe essere familiare a qualsiasi utente che "
 "utilizzi fogli elettronici, ed è specificato in modo molto dettagliato nelle "
 "<a href=\"https://www.oasis-open.org/committees/download.php/16826/"
 "openformula-spec-20060221.html\">specifiche di OASIS OpenFormula</a>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:509-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2525-5
 msgid ""
 "<span class=\"def\">Direct formatting:</span> You can format spreadsheets "
 "cells, columns, rows and sheets by formatting directly from the menus, "
@@ -2275,7 +2251,7 @@ msgstr ""
 "consente di formattare in modo complesso e personalizzato i numeri, oltre il "
 "carattere, i bordi, lo sfondo, la protezione delle celle e altro ancora."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:516-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2545-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Sorting data:</span> You can sort a list of numbers or "
@@ -2288,7 +2264,7 @@ msgstr ""
 "productname\">%productName</span> rileva automaticamente le intestazioni e "
 "le colonne contigue per estendere la selezione."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:517-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2554-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Filtering data:</span> Filters and advanced filters "
@@ -2301,7 +2277,7 @@ msgstr ""
 "dati. Nei fogli elettronici <span class=\"productname\">%productName</span> "
 "ci sono varie possibilità di applicazione dei filtri."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:520-10
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2563-7
 msgid ""
 "One use for the <span class=\"ui\">AutoFilter</span> function is to quickly "
 "restrict the display to records with identical entries in a data field."
@@ -2310,11 +2286,7 @@ msgstr ""
 "visualizzare rapidamente solo quei record che contengono la stessa voce in "
 "un campo di dati."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.div:521-10
-msgid "filter"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:523-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2577-7
 msgid ""
 "In the <span class=\"ui\">Standard Filter</span> dialog, you can also define "
 "ranges which contain the values in particular data fields. You can use the "
@@ -2326,7 +2298,7 @@ msgstr ""
 "Utilizzando il filtro standard puoi collegare fino a tre condizioni con "
 "l'operatore logico E oppure O."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:524-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2588-7
 msgid ""
 "The <span class=\"ui\">Advanced Filter</span> allows up to a total of eight "
 "filter conditions. With advanced filters you enter the conditions directly "
@@ -2336,7 +2308,7 @@ msgstr ""
 "specificare in totale fino a otto condizioni di filtro. Mediante l'uso di "
 "filtri speciali puoi inserire le condizioni direttamente nel foglio."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:528-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2599-5
 msgid ""
 "<span class=\"def\">Outlining:</span> You can create an outline of your data "
 "and group rows and columns together so that you can collapse and expand the "
@@ -2347,7 +2319,7 @@ msgstr ""
 "gruppi con un singolo clic, rendendo semplice la rappresentazione gerarchica "
 "dei dati."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:532-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2611-5
 msgid ""
 "<span class=\"def\">Data validation:</span> For each cell, you can define "
 "entries to be valid. Invalid entries to a cell will be rejected. To enable "
@@ -2357,7 +2329,7 @@ msgstr ""
 "i valori validi. I valori che non soddisfano i criteri saranno rifiutati. "
 "Per abilitare la convalida dei dati:"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:535-9
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2619-7
 msgid ""
 "Choose <span class=\"ui\">Validity</span> from the <span class=\"ui\""
 ">Data</span> menu. The <span class=\"ui\">Validity</span> dialog opens."
@@ -2366,12 +2338,7 @@ msgstr ""
 ">Dati</span>. Si apre la finestra di dialogo <span class=\"ui\""
 ">Validità</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.div:537-7
-#: html/lool-help.html%2Bdiv.div.div.div.ol.div:542-7
-msgid "data validate"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:538-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2633-7
 msgid ""
 "Select the validity criterion in the <span class=\"ui\">Allow</span> drop-"
 "box list. Depending on the criterion, more options shows. Fill the required "
@@ -2381,7 +2348,7 @@ msgstr ""
 ">Permetti</span>. A seconda del criterio scelto saranno mostrate altre "
 "opzioni. Compila con i dati richiesti."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:540-9
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2641-7
 msgid ""
 "Use the <span class=\"ui\">Input Help</span> and <span class=\"ui\">Error "
 "Alert</span> tabs to enhance the user interactions. Click <span class=\"ui\""
@@ -2391,7 +2358,7 @@ msgstr ""
 "class=\"ui\">Messaggio di errore</span> per migliorare l'interazione con "
 "l'utente. Fai clic su <span class=\"ui\">OK</span> per chiudere la finestra."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:543-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:2657-7
 msgid ""
 "To remove the validity of the cell, open the dialog and set the <span class="
 "\"ui\">Allow</span> list to “All values”."
@@ -2399,7 +2366,7 @@ msgstr ""
 "Per rimuovere la validità della cella, apri la finestra di dialogo e imposta "
 "il parametro <span class=\"ui\">Permetti</span> a “Ogni valore”."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:547-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2667-5
 msgid ""
 "<span class=\"def\">Comments:</span> In a spreadsheet you can insert one "
 "comment per cell. When you select <span class=\"ui\">Insert comment</span>, "
@@ -2414,7 +2381,7 @@ msgstr ""
 "superiore destro. Passa sopra il mouse sulla cella per visualizzare il "
 "commento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:551-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2681-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Conditional formatting:</span> <span class=\""
@@ -2430,7 +2397,7 @@ msgstr ""
 "barra degli strumenti. Seleziona il gruppo di simboli da applicare "
 "all'intervallo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:562-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2708-5
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> edits text documents in the "
@@ -2451,7 +2418,7 @@ msgstr ""
 "testi desktop. Usa la tastiera, i menu e le barre degli strumenti per "
 "interagire col documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:567-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2726-5
 msgid ""
 "Context menus are available on clicking the right mouse button. The commands "
 "available in the context menu are related - not extensively - to the "
@@ -2461,11 +2428,11 @@ msgstr ""
 "mouse. I comandi disponibili in questi menu sono collegati, non in modo "
 "esclusivo, all'oggetto soggiacente all'interno del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.h3:571-5
+#: html/lool-help.html%2Bdiv.div.div.h3:2736-4
 msgid "Formatting text"
 msgstr "Formattazione del testo"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:573-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2738-5
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> supports modern techniques "
@@ -2487,7 +2454,7 @@ msgstr ""
 "saranno modificati, evitandoti così l'impegno di dover formattare "
 "singolarmente più paragrafi."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:574-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2751-5
 msgid ""
 "In contrast, direct formatting applies formatting to selected excerpts of "
 "the document contents. On a long document, direct formatting must be applied "
@@ -2500,7 +2467,7 @@ msgstr ""
 "e rende la formattazione del testo un compito lungo e soggetto a errori e "
 "ritardi."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:576-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2760-5
 msgid ""
 "<span class=\"def\">Direct formatting:</span> You can format text document "
 "objects by formatting directly from the menus, toolbar or context menus. "
@@ -2511,7 +2478,7 @@ msgstr ""
 "degli strumenti o i menu di contesto. La formattazione diretta si applica "
 "solo all'oggetto correntemente selezionato."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:578-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2768-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Style formatting:</span> <span class=\"productname\""
@@ -2525,11 +2492,11 @@ msgstr ""
 "stile scegli il menu <span class=\"ui\">Modifica</span> → <span class=\"ui\">"
 "Modifica stile</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:586-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:2790-5
 msgid "Handling Tables"
 msgstr "Gestione delle tabelle"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:587-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2791-5
 msgid ""
 "Insert tables with proper icon in the toolbar. Select the initial number of "
 "rows and columns. Add rows and columns with the cell context menu. Merge "
@@ -2542,7 +2509,7 @@ msgstr ""
 ">Tabella</span>. Lo stile di paragrafo predefinito all'interno delle celle è "
 "“Contenuto tabella”."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:591-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2803-5
 msgid ""
 "<span class=\"def\">Formatting cells:</span> Click in the cell or range of "
 "cells and choose menu <span class=\"ui\">Table</span> → <span class=\"ui\""
@@ -2553,11 +2520,11 @@ msgstr ""
 "span class=\"ui\">Proprietà</span>. Regola la tabella nella finestra di "
 "dialogo delle proprietà."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:594-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:2812-5
 msgid "Track changes"
 msgstr "Revisioni"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:595-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2813-5
 #, fuzzy
 msgid ""
 "When you turn on Track Changes, <span class=\"productname\""
@@ -2568,13 +2535,7 @@ msgstr ""
 "registra le modifiche fatte al documento. Seleziona di nuovo l'opzione per "
 "disattivarle."
 
-#: html/lool-help.html%2Bdiv.div.div.div.div:596-5
-#: html/lool-help.html%2Bdiv.div.div.div.div:730-5
-#, fuzzy
-msgid "track changes"
-msgstr "Revisioni"
-
-#: html/lool-help.html%2Bdiv.div.div.div.p:597-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2825-5
 msgid ""
 "Changes made by different people are shown in different colors and each "
 "tracked change can be accepted or rejected, using the box the appears on the "
@@ -2584,11 +2545,11 @@ msgstr ""
 "ciascuna revisione può essere accettata o rifiutata tramite il riquadro che "
 "appare sulla destra. In esso puoi anche aggiungere un commento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:600-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:2833-5
 msgid "Other advanced features"
 msgstr "Altre funzionalità avanzate"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:601-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2834-5
 msgid ""
 "<span class=\"def\">Comments:</span> Comments are inserted in the text and "
 "displayed on the right side of the screen."
@@ -2596,7 +2557,7 @@ msgstr ""
 "<span class=\"def\">Commenti:</span> i commenti vengono inseriti nel testo e "
 "visualizzati nella parte destra dello schermo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:602-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2839-5
 msgid ""
 "<span class=\"def\">Formatting marks:</span> Paragraph, page and unbreakable "
 "spaces are shown as marks to assisting text alignment, editing and "
@@ -2606,7 +2567,7 @@ msgstr ""
 "di pagina e non divisibili vengono mostrati come segni di assistenza "
 "all'allineamento, la modifica e la formattazione del testo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:603-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2844-5
 msgid ""
 "<span class=\"def\">Fields:</span> A basic set of fields is available to "
 "insert in the document."
@@ -2614,7 +2575,7 @@ msgstr ""
 "<span class=\"def\">Campi:</span> è disponibile un gruppo di campi di base "
 "da inserire all'interno del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:604-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2848-5
 msgid ""
 "<span class=\"def\">Alphabetical index:</span> Existing alphabetical index "
 "can be updated with new entries."
@@ -2622,7 +2583,7 @@ msgstr ""
 "<span class=\"def\">Indice alfabetico:</span> gli indici alfabetici "
 "esistenti possono essere aggiornati con le nuovi voci."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:605-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2852-5
 msgid ""
 "<span class=\"def\">Page header and footer:</span> Headers and footers are "
 "available for the existing page style applied in the document at the cursor "
@@ -2632,7 +2593,7 @@ msgstr ""
 "disponibili le intestazioni e i piè di pagina per lo stile di pagina "
 "esistente applicato nel documento alla posizione del cursore."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:606-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2857-5
 msgid ""
 "<span class=\"def\">Footnotes and endnotes:</span> Footnotes and endnotes "
 "are supported."
@@ -2640,7 +2601,7 @@ msgstr ""
 "<span class=\"def\">Note a piè di pagina e note di chiusura:</span> sono "
 "supportate le note a piè di pagina e di chiusura."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:616-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2873-5
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> Impress edits presentations "
@@ -2658,7 +2619,7 @@ msgstr ""
 "tastiera, i menu e le barre degli strumenti per eseguire azioni all'interno "
 "del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:622-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2889-5
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> displays presentation slide "
@@ -2671,7 +2632,7 @@ msgstr ""
 "oggetti. Scegli la presentazione dal menu o fai clic sulla barra degli "
 "strumenti del pannello della diapositiva in basso a sinistra."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:623-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2896-5
 #, fuzzy
 msgid ""
 "To exit a <span class=\"productname\">{productname}</span> slide show, press "
@@ -2681,7 +2642,7 @@ msgstr ""
 ">%productName</span> e tornare nel modo modifica premi il tasto "
 "<kbd>Esc</kbd>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:630-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2908-5
 msgid ""
 "Click on any slide thumbnail in the pane to switch to this slide to view or "
 "edit it."
@@ -2689,7 +2650,7 @@ msgstr ""
 "Fai clic su una qualsiasi miniatura presente nel pannello per passare "
 "visualizzare o modificare la relativa diapositiva."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:631-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2912-5
 msgid ""
 "Use the slide pane toolbar in the bottom to start the slideshow, add slide, "
 "duplicate or delete the current slide."
@@ -2698,7 +2659,7 @@ msgstr ""
 "presentazione, aggiungere una diapositiva, duplicare o eliminare la "
 "diapositiva attiva."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:638-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:2923-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Slide layouts:</span> <span class=\"productname\""
@@ -2709,7 +2670,7 @@ msgstr ""
 ">%productName</span> Impress ti permette di cambiare il layout della "
 "diapositiva. Seleziona il layout desiderato nell'elenco dei layout a tendina."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:641-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2934-5
 msgid ""
 "<span class=\"def\">Master slide:</span> Select the master slide associated "
 "to the current slide. Format and arrange slide elements in the master slide."
@@ -2718,7 +2679,7 @@ msgstr ""
 "schema associata alla diapositiva corrente. Formatta e disponi gli elementi "
 "nella diapositiva schema."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:642-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2941-5
 #, fuzzy
 msgid ""
 "<span class=\"def\">Slide transitions:</span> <span class=\"productname\""
@@ -2732,7 +2693,7 @@ msgstr ""
 "fanno parte delle proprietà della diapositiva, usa la barra laterale per "
 "impostare la transizione mentre ti trovi nel modo modifica."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:643-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2951-5
 msgid ""
 "<span class=\"def\">Object animation:</span> Individual object in the slide "
 "can have animation. Use the side bar to configure the slide transition for a "
@@ -2742,7 +2703,7 @@ msgstr ""
 "singoli oggetti all'interno della diapositiva. Usa la barra laterale per "
 "configurare la transizione per un singolo oggetto o un gruppo di oggetti."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:644-30
+#: html/lool-help.html%2Bdiv.div.div.div.p:2959-5
 msgid ""
 "<span class=\"def\">Tables:</span> Insert tables in the presentation. Use "
 "the sidebar to select the table theme."
@@ -2750,7 +2711,7 @@ msgstr ""
 "<span class=\"def\">Tabelle:</span> inserisci tabelle nella presentazione. "
 "Usa la barra laterale per scegliere il tema della tabella."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:651-5
+#: html/lool-help.html%2Bdiv.div.div.h4:2971-4
 #, fuzzy
 msgid ""
 "What are the documents file formats supported by <span class=\"productname\""
@@ -2759,7 +2720,7 @@ msgstr ""
 "Quali formati di documento sono supportati da <span class=\"productname\""
 ">%productName</span>?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:652-5
+#: html/lool-help.html%2Bdiv.div.div.p:2975-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> supports both reading and "
@@ -2768,41 +2729,41 @@ msgstr ""
 "<span class=\"productname\">%productName</span> supporta i seguenti formati "
 "di file, sia in lettura sia in scrittura:"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:654-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2981-6
 msgid ""
 "Text documents: Microsoft formats DOC, DOCX, RTF. OpenDocument Format ODT"
 msgstr ""
 "Documenti di testo: formati Microsoft DOC, DOCX, RTF, formato OpenDocument "
 "ODT"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:655-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2987-6
 msgid "Spreadsheets: Microsoft formats XLS, XLSX, OpenDocument Format ODS"
 msgstr ""
 "Fogli elettronici: formati Microsoft XLS, XLSX, formato OpenDocument ODS"
 
-#: html/lool-help.html%2Bdiv.div.div.ul.li.p:656-11
+#: html/lool-help.html%2Bdiv.div.div.ul.li.p:2993-6
 msgid "Presentations: Microsoft formats PPT, PPTX, OpenDocument Format ODP"
 msgstr "Presentazioni: formati Microsoft PPT, PPTX, formato OpenDocument ODP"
 
-#: html/lool-help.html%2Bdiv.div.div.h4:660-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3001-4
 msgid "How do I save a document with another name?"
 msgstr "Come salvo un documento con un altro nome?"
 
-#: html/lool-help.html%2Bdiv.div.div.ol.li.p:662-11
+#: html/lool-help.html%2Bdiv.div.div.ol.li.p:3004-6
 msgid "Hover the mouse on the document name in the menu bar."
 msgstr "Passa il mouse sul nome del documento nella barra dei menu."
 
-#: html/lool-help.html%2Bdiv.div.div.ol.li.p:663-11
+#: html/lool-help.html%2Bdiv.div.div.ol.li.p:3010-6
 msgid "Type the new file name in the text box and press <kbd>Enter</kbd>."
 msgstr ""
 "Digita il nome nuovo del file nel riquadro di testo e premi <kbd>Invio</kbd>."
 
-#: html/lool-help.html%2Bdiv.div.div.p:665-5
+#: html/lool-help.html%2Bdiv.div.div.p:3016-4
 msgid "A copy of the document is saved with the new name in the same folder."
 msgstr ""
 "Sarà salvata una copia del documento col nuovo nome nella stessa cartella."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:668-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3022-4
 #, fuzzy
 msgid ""
 "How can I quit <span class=\"productname\">{productname}</span> without "
@@ -2811,7 +2772,7 @@ msgstr ""
 "Come posso uscire da <span class=\"productname\">%productName</span> senza "
 "salvare le modifiche che ho fatto?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:669-5
+#: html/lool-help.html%2Bdiv.div.div.p:3027-4
 #, fuzzy
 msgid ""
 "<span class=\"productname\">{productname}</span> saves the document in the "
@@ -2825,7 +2786,7 @@ msgstr ""
 "class=\"ui\">Vedi la cronologia delle revisioni</span> nel menu <span class="
 "\"ui\">File</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:672-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3037-4
 #, fuzzy
 msgid ""
 "Can <span class=\"productname\">{productname}</span> open a password-"
@@ -2834,7 +2795,7 @@ msgstr ""
 "<span class=\"productname\">%productName</span> è in grado di aprire un "
 "documento protetto da password?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:673-5
+#: html/lool-help.html%2Bdiv.div.div.p:3041-4
 #, fuzzy
 msgid ""
 "Yes. <span class=\"productname\">{productname}</span> opens password-"
@@ -2845,11 +2806,11 @@ msgstr ""
 "protetti da password, ma devi fornire la password nella finestra di "
 "richiesta password durante l'apertura del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:676-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3048-4
 msgid "How can I check spelling in my language?"
 msgstr "Come posso eseguire il controllo ortografico nella mia lingua?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:677-5
+#: html/lool-help.html%2Bdiv.div.div.p:3049-4
 msgid ""
 "Choose menu <span class=\"ui\">Tools</span> → <span class=\"ui\""
 ">Languages</span> and select the language for the whole document. Optionally "
@@ -2859,11 +2820,11 @@ msgstr ""
 ">Lingue</span> e seleziona la lingua per l'intero documento. Come opzione, "
 "puoi impostare la lingua per il testo selezionato e per il paragrafo attivo."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:680-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3057-4
 msgid "How can I remove the red wavy lines in my document?"
 msgstr "Come posso rimuovere le linee ondulate rosse dal mio documento?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:681-5
+#: html/lool-help.html%2Bdiv.div.div.p:3058-4
 msgid ""
 "Choose menu <span class=\"ui\">Tools</span> and uncheck <span class=\"ui\">"
 "Automatic Spell Checking</span>."
@@ -2871,12 +2832,12 @@ msgstr ""
 "Scegli il menu <span class=\"ui\">Strumenti</span> e disattiva <span class=\""
 "ui\">Controllo ortografico automatico</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:684-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3064-4
 msgid "What is the blue wavy underline in some words in the text?"
 msgstr ""
 "Cosa significa la sottolineatura ondulata blu in alcune parole del testo?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:685-5
+#: html/lool-help.html%2Bdiv.div.div.p:3067-4
 msgid ""
 "Grammar errors in the text is marked with the blue wavy underline. Click on "
 "the underlined text with the right mouse button to open a menu with "
@@ -2889,12 +2850,12 @@ msgstr ""
 "regole di grammatica violate. Scegli il suggerimento corretto per cambiare "
 "il testo."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:688-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3076-4
 #, fuzzy
 msgid "Is there a thesaurus?"
 msgstr "Esiste un dizionario dei sinonimi?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:689-5
+#: html/lool-help.html%2Bdiv.div.div.p:3077-4
 msgid ""
 "Yes. Click in the word you want and choose <span class=\"ui\">Tools</span> → "
 "<span class=\"ui\">Thesaurus</span>. A dialog opens with many suggestions "
@@ -2904,7 +2865,7 @@ msgstr ""
 "span class=\"ui\">Sinonimi</span>. Si apre una finestra di dialogo "
 "contenente suggerimenti alternativi."
 
-#: html/lool-help.html%2Bdiv.div.div.h4:693-5
+#: html/lool-help.html%2Bdiv.div.div.h4:3088-4
 msgid ""
 "What are the blue <span class=\"blue\">¶</span> symbol and how can I remove "
 "from my text document?"
@@ -2912,7 +2873,7 @@ msgstr ""
 "Cos'è il simbolo blu <span class=\"blue\">¶</span> e come posso rimuoverlo "
 "dal mio documento di testo?"
 
-#: html/lool-help.html%2Bdiv.div.div.p:694-5
+#: html/lool-help.html%2Bdiv.div.div.p:3092-4
 msgid ""
 "The <span class=\"blue\">¶</span> symbol is a formatting mark. It is used to "
 "help text alignment and editing and is not printed. To toggle it in the "
@@ -2925,11 +2886,11 @@ msgstr ""
 "class=\"ui\">Visualizza</span> → <span class=\"ui\">Segni di "
 "formattazione</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:702-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3106-5
 msgid "How do I get a word count of my document?"
 msgstr "Come posso conteggiare le parole contenute nel mio documento?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:703-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3107-5
 msgid ""
 "Word count is available in <span class=\"ui\">Tools</span> → <span class=\""
 "ui\">Word count</span>. A dialog shows word counts for selection and for the "
@@ -2940,11 +2901,7 @@ msgstr ""
 "di dialogo mostra i conteggi delle parole sia per la selezione, sia per "
 "l'intero documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.div:704-5
-msgid "word count"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.p:705-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3119-5
 msgid ""
 "Word count is also displayed in the status bar. If no text is selected the "
 "word count is for the whole document. Otherwise the word count is for the "
@@ -2954,14 +2911,14 @@ msgstr ""
 "selezionato alcun testo, il conteggio è relativo all'intero documento. "
 "Altrimenti si riferisce al testo selezionato."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:708-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3127-5
 msgid ""
 "How can I insert a currency, copyright or trademark symbol in the document?"
 msgstr ""
 "Come posso inserire un simbolo di valuta, di copyright o di un marchio "
 "registrato nel documento?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:709-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3131-5
 msgid ""
 "You can insert these special characters in the document using the <span "
 "class=\"ui\">Special Character</span> dialog."
@@ -2969,12 +2926,12 @@ msgstr ""
 "Puoi inserire questi speciali caratteri utilizzando la finestra di dialogo <"
 "span class=\"ui\">Carattere speciale</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:711-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3138-7
 msgid "Place the cursor in the position to insert the character."
 msgstr ""
 "Posiziona il cursore nella posizione dove deve essere inserito il carattere."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:713-9
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3144-7
 msgid ""
 "Choose <span class=\"ui\">Insert</span> → <span class=\"ui\">Special "
 "Characters </span> or click the corresponding icon in the toolbar. A dialog "
@@ -2984,11 +2941,7 @@ msgstr ""
 "speciale</span> o fai clic sulla corrispondente icona nella barra degli "
 "strumenti. Si apre una finestra di dialogo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.div:715-7
-msgid "Special Characters"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:716-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3158-7
 msgid ""
 "You can either browse the characters displayed with the drop lists or type a "
 "search key in the <span class=\"ui\">Search</span> box. If you know the "
@@ -3000,7 +2953,7 @@ msgstr ""
 ". Digita il codice numerico Unicode del carattere speciale, se lo conosci, "
 "nelle caselle a destra."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:717-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3168-7
 msgid ""
 "Press <span class=\"ui\">Insert</span> button. To close the dialog, press <"
 "span class=\"ui\">Cancel</span>."
@@ -3008,11 +2961,11 @@ msgstr ""
 "Premi il pulsante <span class=\"ui\">Inserisci</span>. Per chiudere la "
 "finestra premi <span class=\"ui\">Annulla</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:721-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3177-5
 msgid "Why can't I delete text? It just gets a strike-through?"
 msgstr "Perché non posso eliminare il testo? Perché viene solo barrato?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:722-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3180-5
 msgid ""
 "You have the Track Changes feature enabled for the document. Track Changes "
 "records all changes in the text and shows the editions for later revision. "
@@ -3027,31 +2980,31 @@ msgstr ""
 ">Modifica</span> → <span class=\"ui\">Revisioni</span> → <span class=\"ui\""
 ">Registra</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:723-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3189-5
 msgid "With track changes enabled your document is shown the following manner:"
 msgstr "Con la revisione attivata il documento presenta il seguente aspetto:"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:725-11
+#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:3195-7
 msgid "Deletions are marked with colored strike-through characters."
 msgstr "Le cancellazioni sono indicate da caratteri barrati colorati."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:726-11
+#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:3201-7
 msgid "Additions are marked with colored underlined characters."
 msgstr "Le aggiunte sono indicate da caratteri sottolineati colorati."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:727-11
+#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:3207-7
 msgid "All changes are marked with a vertical bar in the right margin."
 msgstr ""
 "Tutte le modifiche sono indicate da una barra verticale al margine destro "
 "della pagina."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:728-11
+#: html/lool-help.html%2Bdiv.div.div.div.ul.li.p:3213-7
 msgid "Changes are displayed as comment in the right of the document area."
 msgstr ""
 "Le modifiche vengono visualizzate come commento nella destra dell'area del "
 "documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:731-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3225-5
 msgid ""
 "The color assigned to the changes depends on the user that changes the "
 "document."
@@ -3059,7 +3012,7 @@ msgstr ""
 "Il colore assegnato alle modifiche dipende dall'utente che lavora sul "
 "documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:732-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3229-5
 msgid ""
 "To display or hide track changes choose <span class=\"ui\">Edit</span> → <"
 "span class=\"ui\">Track Changes </span> → <span class=\"ui\">Show</span>. "
@@ -3072,7 +3025,7 @@ msgstr ""
 "disattivata, stai ancora registrando le modifiche e potresti lasciare "
 "inavvertitamente del testo indesiderato all'interno del documento."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:733-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3238-5
 msgid ""
 "Changes can be accepted or rejected. To accept or reject changes, click on "
 "the corresponding icons in the comment box on the right of the document. "
@@ -3094,11 +3047,11 @@ msgstr ""
 "mostra un elenco di tutte le revisioni. Usa i pulsanti della finestra in "
 "base alle tue necessità."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:737-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3258-5
 msgid "How do I set the margins of the document?"
 msgstr "Come posso impostare i margini del documento?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:738-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3259-5
 msgid ""
 "Using the ruler drag the leftmost edge of the ruler to adjust the left "
 "margin, or the rightmost for the right margin."
@@ -3107,11 +3060,11 @@ msgstr ""
 "del righello per regolare il margine sinistro, oppure quelle che si trovano "
 "nell'estremo bordo destro per regolare il margine destro."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:739-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3264-5
 msgid "Using the page style"
 msgstr "Uso dello stile di pagina"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:741-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3267-7
 msgid ""
 "Choose <span class=\"ui\">Format</span> → <span class=\"ui\">Page</span> and "
 "select the <span class=\"ui\">Page</span> tab"
@@ -3119,17 +3072,17 @@ msgstr ""
 "Scegli <span class=\"ui\">Formato</span> → <span class=\"ui\">Pagina</span> "
 "e seleziona la scheda <span class=\"ui\">Pagina</span>"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:742-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3273-10
 msgid "Set the page margins in the dialog."
 msgstr "Imposta i margini della pagina nella finestra di dialogo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:747-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3280-5
 msgid "How do I change the page orientation to landscape inside my document"
 msgstr ""
 "Come posso cambiare l'orientazione della pagina in orizzontale nel mio "
 "documento?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:749-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3286-7
 msgid ""
 "Place the cursor at the place where the page orientation is to change. Add "
 "an empty paragraph."
@@ -3137,7 +3090,7 @@ msgstr ""
 "Posiziona il cursore nel punto in cui vuoi cambiare l'orientazione della "
 "pagina. Aggiungi un paragrafo vuoto."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:750-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3293-7
 msgid ""
 "Choose <span class=\"ui\">Format</span> → <span class=\"ui\">Paragraph</span>"
 ", <span class=\"ui\">Text Flow </span> tab"
@@ -3145,7 +3098,7 @@ msgstr ""
 "Scegli <span class=\"ui\">Formato</span> → <span class=\"ui\""
 ">Paragrafo</span>, scheda <span class=\"ui\">Flusso di testo</span>"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:751-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3300-7
 msgid ""
 "In the <span class=\"ui\">Breaks</span> area, mark Insert, Type: Page Break, "
 "Position: Before."
@@ -3153,15 +3106,15 @@ msgstr ""
 "Nell'area <span class=\"ui\">Interruzioni</span> attiva l'opzione Inserisci, "
 "Tipo: Pagina, Posizione: Prima."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:752-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3306-10
 msgid "Select Landscape in “With Page Style”"
 msgstr "Seleziona Orizzontale nell'opzione «Con stile di pagina»"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:753-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3308-7
 msgid "Select if you want to change page numbering."
 msgstr "Attiva la casella se vuoi cambiare il numero di pagina."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:755-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3313-5
 msgid ""
 "To return to portrait orientation, repeat the procedure, choosing Portrait "
 "in “With page style”."
@@ -3169,43 +3122,43 @@ msgstr ""
 "Per tornare all'orientazione verticale, ripeti la procedura scegliendo "
 "Verticale nell'opzione “Con stile di pagina”."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:758-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3319-5
 msgid "How can I make the new text look like other existing text?"
 msgstr ""
 "Come posso far sì che il nuovo testo sia uguale all'altro testo esistente?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:759-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3323-5
 msgid "Directly:"
 msgstr "In modo diretto:"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:761-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3326-7
 msgid "Select the text with the existing format"
 msgstr "Seleziona il testo col formato esistente"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:762-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3329-7
 #, fuzzy
 msgid ""
 "Click on the clone formatting icon <img class=\"icon-size\" alt=\"\" src=\""
-"images/lc_formatpaintbrush.svg\"/>. The mouse pointer turns to a paint "
+"images/lc_formatpaintbrush.svg\" />. The mouse pointer turns to a paint "
 "bucket."
 msgstr ""
 "Fai clic sull'icona Clona formattazione <img style=\""
 "height:0.6cm;width:0.6cm;\" alt=\"\" src=\"images/lc_formatpaintbrush.svg\">"
 ". Il puntatore del mouse si trasforma in un secchiello di vernice."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:763-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3340-7
 msgid "Select the text you want to apply the new format."
 msgstr "Seleziona il testo a cui vuoi applicare il nuovo formato."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:767-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3348-5
 msgid "Applying a paragraph style:"
 msgstr "Applicazione di uno stile di paragrafo:"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:769-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3351-7
 msgid "Place the cursor at the paragraph to be formatted"
 msgstr "Posiziona il cursore nel paragrafo da formattare"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:770-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3357-7
 msgid ""
 "Select the style to apply in the style dropdown list. The paragraph displays "
 "the styles attributes."
@@ -3213,14 +3166,14 @@ msgstr ""
 "Seleziona lo stile da applicare nell'elenco a tendina degli stili. Il "
 "paragrafo visualizza gli attributi di stile."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:774-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3366-5
 msgid ""
 "Why did the text I just typed change automatically? How can I revert it?"
 msgstr ""
 "Perché il testo che ho appena scritto cambia automaticamente? Come posso "
 "ripristinarlo?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:775-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3370-5
 msgid ""
 "You have the AutoCorrection enabled. AutoCorrection changes the text just "
 "typed into an internal table of corresponding text. In most cases, "
@@ -3236,11 +3189,11 @@ msgstr ""
 "span class=\"ui\">Correzione automatica</span> → <span class=\"ui\">Durante "
 "la digitazione</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:784-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3388-5
 msgid "How can I select data to print?"
 msgstr "Come seleziono i dati da stampare?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:785-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3389-5
 msgid ""
 "Insert column and row breaks in the spreadsheet to narrow the print range "
 "and print the document to download. On printing the PDF, select the pages of "
@@ -3250,11 +3203,11 @@ msgstr ""
 "restringere l'area di celle e stampare il documento da scaricare. Nella "
 "stampa in PDF, seleziona le pagine interessate."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:788-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3397-5
 msgid "How can I import CSV data?"
 msgstr "Come posso importare i dati CSV?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:790-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3400-7
 msgid ""
 "Load your CSV data in some native tool to your platform, select and copy it "
 "to the clipboard"
@@ -3262,16 +3215,16 @@ msgstr ""
 "Carica i tuoi dati CSV in qualche strumento nativo nella tua piattaforma, "
 "poi seleziona e copia negli appunti"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:791-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3407-7
 #, fuzzy
 msgid ""
-"Activate the <span class=\"productname\">{productname}</span> spreadsheet "
+"Activate the <span class=\"productname\" >{productname}</span> spreadsheet "
 "window."
 msgstr ""
 "Attiva la finestra del foglio elettronico <span class=\"productname\""
 ">%productName</span>."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:793-9
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3416-7
 msgid ""
 "Paste from the browser <span class=\"ui\">Edit</span> → <span class=\"ui\""
 ">Paste</span> or press <kbd>Ctrl</kbd><span class=\"kbd--plus\""
@@ -3284,18 +3237,14 @@ msgstr ""
 "Importazione testo</span> che ti consente di descrivere l'esatto formato dei "
 "dati CSV."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.div:795-7
-msgid "import"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:796-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3435-7
 msgid ""
 "Select the character set, language and separator options for the CSV file."
 msgstr ""
 "Seleziona le opzioni per il set di caratteri, la lingua e il separatore per "
 "il file CSV."
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:798-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3441-5
 msgid ""
 "The CSV data is loaded into the selected cell where you pasted, according to "
 "these settings."
@@ -3303,39 +3252,39 @@ msgstr ""
 "I dati CSV vengono caricati nella cella selezionata in cui hai incollato, in "
 "base a queste impostazioni."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:801-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3447-5
 msgid "How can I copy the formatting of existing cells to new ones?"
 msgstr "Come posso copiare la formattazione delle celle esistenti nelle nuove?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:802-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3451-5
 msgid "This is easy to do using the Paintbrush tool in the toolbar."
 msgstr "È facile da fare con lo strumento Clona nella barra degli strumenti."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:804-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3457-7
 msgid "Format the source cell with the font, color background and more."
 msgstr ""
 "Formatta la cella di partenza con il tipo di carattere, il colore di sfondo "
 "e altro ancora."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:805-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3463-7
 #, fuzzy
 msgid ""
 "Click on the clone formatting icon <img class=\"icon-size\" src=\"images/"
-"lc_formatpaintbrush.svg\"/>. The mouse pointer turns to a paint bucket."
+"lc_formatpaintbrush.svg\" />. The mouse pointer turns to a paint bucket."
 msgstr ""
 "Fai clic sull'icona Clona formattazione <img style=\""
 "height:0.6cm;width:0.6cm;\" alt=\"\" src=\"images/lc_formatpaintbrush.svg\">"
 ". Il puntatore del mouse si trasforma in un secchiello di vernice."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:806-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3473-7
 msgid "Select the cells you want to format. Release the mouse button."
 msgstr "Seleziona le celle da formattare. Rilascia il pulsante del mouse."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:810-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3481-5
 msgid "What is “Clear Direct Formatting” icon?"
 msgstr "Che cosa significa l'icona “Cancella formattazione diretta”?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:811-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3482-5
 msgid ""
 "Direct formatting is formatting applied directly to the selected contents of "
 "a paragraph or a spreadsheet cell, and overlaps its assigned style "
@@ -3351,11 +3300,11 @@ msgstr ""
 ">Formato</span> → <span class=\"ui\">Cancella formattazione diretta</span> "
 "oppure usa il pulsante nella barra degli strumenti."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:814-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3494-5
 msgid "How do I rename a sheet?"
 msgstr "Come posso rinominare un foglio?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.p:815-5
+#: html/lool-help.html%2Bdiv.div.div.div.p:3495-5
 msgid ""
 "Rename a sheet in the spreadsheet document using the context menu (using the "
 "right mouse button) over the sheet tab in the bottom. Enter the new sheet "
@@ -3365,40 +3314,41 @@ msgstr ""
 "contesto (pulsante destro del mouse) nella linguetta del foglio, in basso. "
 "Digita il nuovo nome del foglio nella finestra di dialogo che appare."
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:824-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3509-5
 msgid "How can I run my slide show?"
 msgstr "Come posso avviare la mia presentazione?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:826-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3512-7
 #, fuzzy
 msgid ""
-"Open the presentation in <span class=\"productname\">{productname}</span>"
+"Open the presentation in <span class=\"productname\" >{productname}</span>"
 msgstr ""
 "Apri la presentazione in <span class=\"productname\">%productName</span>"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p.img:827-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3520-7
 #, fuzzy
 msgid ""
-"Either choose <span class=\"ui\">Slide Show</span> → <span class=\"ui\">Full "
-"Screen Presentation</span> or click on the left-most icon in the bottom of "
-"the slide panel: <img class=\"icon-size\" alt=\"\" src=\"images/lc_dia.svg\">"
+"Either choose <span class=\"ui\">Slide Show</span> → <span class=\"ui\" >"
+"Full Screen Presentation</span> or click on the left-most icon in the bottom "
+"of the slide panel: <img class=\"icon-size\" alt=\"\" src=\"images/lc_dia."
+"svg\" />"
 msgstr ""
 "Scegli <span class=\"ui\">Presentazione</span> → <span class=\"ui\">"
 "Presentazione a schermo intero</span> oppure fai clic sull'ultima icona in "
 "basso a sinistra del pannello delle diapositive: <img style=\""
 "height:0.6cm;width:0.6cm;\" alt=\"\" src=\"images/lc_dia.svg\">"
 
-#: html/lool-help.html%2Bdiv.div.div.div.h4:831-5
+#: html/lool-help.html%2Bdiv.div.div.div.h4:3538-5
 msgid "How can I change the line, area and position of a shape in my slides?"
 msgstr ""
 "Come posso cambiare la linea, l'area e la posizione di una forma all'interno "
 "delle mie diapositive?"
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:833-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3544-7
 msgid "Select the shape in your slide. A set of handles shows."
 msgstr "Seleziona la forma nella diapositiva. Appare un gruppo di maniglie."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:835-9
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3550-7
 msgid ""
 "Choose <span class=\"ui\">Format</span> → <span class=\"ui\">Line</span> (or "
 "<span class=\"ui\">Area</span>, or <span class=\"ui\">Position and "
@@ -3408,13 +3358,25 @@ msgstr ""
 "oppure <span class=\"ui\">Area</span> o <span class=\"ui\">Posizione e "
 "dimensione</span>). Si apre una finestra di dialogo."
 
-#: html/lool-help.html%2Bdiv.div.div.div.ol.div:837-7
-msgid "Position and Size"
-msgstr ""
-
-#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:838-11
+#: html/lool-help.html%2Bdiv.div.div.div.ol.li.p:3565-7
 msgid "Set the properties of the element of the object."
 msgstr "Imposta qui le proprietà dell'elemento dell'oggetto."
+
+#, fuzzy
+#~ msgid "document repair"
+#~ msgstr "Ripara documento"
+
+#, fuzzy
+#~ msgid "inactive document"
+#~ msgstr "Documento inattivo"
+
+#, fuzzy
+#~ msgid "spellchecking"
+#~ msgstr "Controllo ortografico"
+
+#, fuzzy
+#~ msgid "track changes"
+#~ msgstr "Revisioni"
 
 #, fuzzy
 #~ msgid ""
