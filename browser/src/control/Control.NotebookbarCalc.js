@@ -1141,102 +1141,14 @@ window.L.Control.NotebookbarCalc = window.L.Control.NotebookbarWriter.extend({
 								type: 'container',
 								children: [
 									{
-										id: 'WeldedToolbar', // has to match core .ui file toolbox id!
-										type: 'toolbox',
-										children: [
-											{
-												id: 'home-number-format-currency',
-												type: 'toolitem',
-												dropdown: true,
-												text: _UNO(
-													'.uno:NumberFormatCurrency',
-													'spreadsheet',
-												),
-												command: '.uno:NumberFormatCurrency',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'P',
-													de: null,
-												},
-											},
-										],
-									},
-									{
-										id: 'home-number-format-percent-decimal',
-										type: 'toolbox',
-										children: [
-											{
-												id: 'home-number-format-percent',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:NumberFormatPercent',
-													'spreadsheet',
-												),
-												command: '.uno:NumberFormatPercent',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'AN',
-													de: null,
-												},
-											},
-											{
-												id: 'home-number-format-decimal',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:NumberFormatDecimal',
-													'spreadsheet',
-												),
-												command: '.uno:NumberFormatDecimal',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'K',
-													de: null,
-												},
-											},
-										],
-									},
-									{
-										id: 'second2',
-										type: 'toolbox',
-										children: [
-											{
-												id: 'home-number-format-increment-decimals',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:NumberFormatIncDecimals',
-													'spreadsheet',
-												),
-												command: '.uno:NumberFormatIncDecimals',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'0',
-													de: null,
-												},
-											},
-											{
-												id: 'home-number-format-decrement-decimals',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:NumberFormatDecDecimals',
-													'spreadsheet',
-												),
-												command: '.uno:NumberFormatDecDecimals',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'9',
-													de: null,
-												},
-											},
-										],
-									},
-								],
-								vertical: 'false',
-							},
+										'id': 'home-search-dialog',
+										'type': 'toolitem',
+										'text': _('Replace'),
+										'command': '.uno:SearchDialog?InitialFocusReplace:bool=true',
+										'accessibility': { focusBack: false, 	combination: 'FD',	de: null }
+									}
+								]
+							}
 						],
 						vertical: 'true',
 					},

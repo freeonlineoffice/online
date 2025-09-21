@@ -1721,22 +1721,14 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 								type: 'toolbox',
 								children: [
 									{
-										id: 'home-connector-tool-box:InsertConnectorsMenu',
-										type: 'menubutton',
-										noLabel: true,
-										text: _UNO(
-											'.uno:ConnectorToolbox',
-											'presentation',
-										),
-										command: '.uno:ConnectorToolbox',
-										accessibility: {
-											focusBack: true,
-											combination: 'TC',
-											de: null,
-										},
-									},
-								],
-							},
+										'id': 'home-search-dialog',
+										'type': 'toolitem',
+										'text': _('Replace'),
+										'command': '.uno:SearchDialog?InitialFocusReplace:bool=true',
+										'accessibility': { focusBack: false, 	combination: 'FD',	de: null }
+									}
+								]
+							}
 						],
 						vertical: 'true',
 					},

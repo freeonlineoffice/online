@@ -1214,128 +1214,31 @@ window.L.Control.NotebookbarDraw = window.L.Control.NotebookbarImpress.extend({
 						type: 'container',
 						children: [
 							{
-								type: 'container',
-								children: [
-									{
-										type: 'toolbox',
-										children: [
-											{
-												id: 'home-cell-vertical-top',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:CellVertTop',
-												),
-												command: '.uno:CellVertTop',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'AT',
-													de: null,
-												},
-											},
-											{
-												id: 'home-cell-vertical-center',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:CellVertCenter',
-												),
-												command: '.uno:CellVertCenter',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'AC',
-													de: null,
-												},
-											},
-											{
-												id: 'home-cell-vertical-bottom',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:CellVertBottom',
-												),
-												command: '.uno:CellVertBottom',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'AB',
-													de: null,
-												},
-											},
-										],
-									},
-								],
-								vertical: 'false',
-							},
-							{
-								type: 'container',
-								children: [
-									{
-										id: 'SectionBottom13',
-										type: 'toolbox',
-										children: [
-											{
-												id: 'home-left-para',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:LeftPara',
-												),
-												command: '.uno:LeftPara',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'PL',
-													de: null,
-												},
-											},
-											{
-												id: 'home-center-para',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:CenterPara',
-												),
-												command: '.uno:CenterPara',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'PC',
-													de: null,
-												},
-											},
-											{
-												id: 'home-right-para',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:RightPara',
-												),
-												command: '.uno:RightPara',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'PR',
-													de: null,
-												},
-											},
-											{
-												id: 'home-justify-para',
-												type: 'toolitem',
-												text: _UNO(
-													'.uno:JustifyPara',
-												),
-												command: '.uno:JustifyPara',
-												accessibility: {
-													focusBack: true,
-													combination:
-														'PJ',
-													de: null,
-												},
-											},
-										],
-									},
-								],
-								vertical: 'false',
-							},
-						],
-						vertical: 'true',
+								'type': 'toolbox',
+								'children': [
+										{
+											'id': 'home-search',
+											'class': 'unoSearch',
+											'type': 'customtoolitem',
+											'text': _('Search'),
+											'accessibility': { focusBack: false,	combination: 'SS',	de: 'SS' }
+										}
+									]
+								},
+								{
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-search-dialog',
+											'type': 'toolitem',
+											'text': _('Replace'),
+											'command': '.uno:SearchDialog?InitialFocusReplace:bool=true',
+											'accessibility': { focusBack: false, 	combination: 'FD',	de: null }
+										}
+									]
+								}
+							],
+						'vertical': 'true'
 					},
 				],
 			},
