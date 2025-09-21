@@ -21,34 +21,30 @@ enum SidebarType {
 	Navigator = 'navigator',
 	QuickFind = 'quickfind',
 }
-abstract class SidebarBase {
+abstract class SidebarBase extends JSDialogComponent {
 	type: SidebarType;
 
-	map: any;
-
-	container: HTMLDivElement;
 	documentContainer: HTMLDivElement;
 	wrapper: HTMLElement;
-	builder: JSBuilder;
 
 	constructor(map: any, type: SidebarType) {
+		super(map, 'Sidebar', type);
 		this.type = type;
 		this.onAdd(map);
 	}
 
-	onAdd(map: any) {
-		this.map = map;
-
-		app.events.on('resize', this.onResize.bind(this));
-
+	protected createBuilder() {
 		this.builder = new window.L.control.jsDialogBuilder({
 			mobileWizard: this,
-			map: map,
+			map: this.map,
 			cssClass: `jsdialog sidebar`, // use sidebar css for now, maybe have seperate css for navigator later
 			useScrollAnimation: false, // icon views cause jump on sidebar open
 			suffix: 'sidebar',
 			callback: this.callback.bind(this),
 		});
+	}
+
+	protected setupContainer(parentContainer?: HTMLElement) {
 		if (!this.container) {
 			this.container = window.L.DomUtil.createWithId(
 				'div',
@@ -60,14 +56,20 @@ abstract class SidebarBase {
 		this.documentContainer = document.querySelector(
 			'#document-container',
 		);
+	}
 
-		this.map.on('jsdialogupdate', this.onJSUpdate, this);
-		this.map.on('jsdialogaction', this.onJSAction, this);
+	onAdd(map: any) {
+		this.map = map;
+		this.createBuilder();
+		this.setupContainer(undefined);
+
+		app.events.on('resize', this.onResize.bind(this));
+
+		this.registerMessageHandlers();
 	}
 
 	onRemove() {
-		this.map.off('jsdialogupdate', this.onJSUpdate, this);
-		this.map.off('jsdialogaction', this.onJSAction, this);
+		this.unregisterMessageHandlers();
 	}
 
 	isVisible(): boolean {
@@ -86,39 +88,21 @@ abstract class SidebarBase {
 		this.map.uiManager.setDocTypePref('Show' + upperCaseType, false);
 	}
 
-	onJSUpdate(e: FireEvent) {
-		var data = e.data;
-
-		if (data.jsontype !== this.type) return;
-
-		if (!this.container) return;
-
-		if (!this.builder) return;
-
+	protected onJSUpdate(e: FireEvent) {
 		// reduce unwanted warnings in console
-		if (data.control.id === 'addonimage') {
+		if (e?.data?.control.id === 'addonimage') {
 			window.app.console.log(
-				'Ignored update for control: ' + data.control.id,
+				'Ignored update for control: ' + e.data.control.id,
 			);
 			return;
 		}
 
-		this.builder.updateWidget(this.container, data.control);
+		super.onJSUpdate(e);
 	}
 
-	onJSAction(e: FireEvent) {
-		var data = e.data;
-
-		if (data.jsontype !== this.type) return;
-
-		if (!this.builder) return;
-
-		if (!this.container) return;
-
-		var innerData = data.data;
-		if (!innerData) return;
-
-		var controlId = innerData.control_id;
+	protected onJSAction(e: FireEvent) {
+		const innerData = e?.data?.data;
+		const controlId = innerData?.control_id;
 
 		// Panels share the same name for main containers, do not execute actions for them
 		// if panel has to be shown or hidden, full update will appear
@@ -137,8 +121,9 @@ abstract class SidebarBase {
 			return;
 		}
 
-		this.builder.executeAction(this.container, innerData);
+		super.onJSAction(e);
 	}
+
 	markNavigatorTreeView(data: WidgetJSON): boolean {
 		if (!data) return false;
 
