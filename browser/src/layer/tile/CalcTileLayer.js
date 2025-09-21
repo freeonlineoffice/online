@@ -627,8 +627,8 @@ window.L.CalcTileLayer = window.L.CanvasTileLayer.extend({
 			if (width < mapSize.x || height < mapSize.y) {
 				width = Math.max(width, mapSize.x);
 				height = Math.max(height, mapSize.y);
-				var topLeft = this._map.unproject(new cool.Point(0, 0));
-				var bottomRight = this._map.unproject(new cool.Point(width, height));
+				var topLeft = this._map.unproject(new lool.Point(0, 0));
+				var bottomRight = this._map.unproject(new lool.Point(width, height));
 				this._map.setMaxBounds(new window.L.LatLngBounds(topLeft, bottomRight));
 				this._docPixelSize = {x: width, y: height};
 				this._map.fire('scrolllimits', {x: width, y: height});

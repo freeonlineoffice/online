@@ -12,22 +12,22 @@ window.L.Draggable = window.L.Evented.extend({
 			mousedown: 'mouseup',
 			touchstart: 'touchend',
 			pointerdown: 'touchend',
-			MSPointerDown: 'touchend',
+			MSPointerDown: 'touchend'
 		},
 		MOVE: {
 			mousedown: 'mousemove',
 			touchstart: 'touchmove',
 			pointerdown: 'touchmove',
-			MSPointerDown: 'touchmove',
-		},
+			MSPointerDown: 'touchmove'
+		}
 	},
 
-	_manualDrag: function () {
+	_manualDrag: function() {
 		return false;
 	},
 
-	noManualDrag: window.memo.decorator(function (f) {
-		return function (e) {
+	noManualDrag: window.memo.decorator(function(f) {
+		return function(e) {
 			if (!this._manualDrag(e)) {
 				return f.apply(this, arguments);
 			}
@@ -55,9 +55,7 @@ window.L.Draggable = window.L.Evented.extend({
 	},
 
 	enable: function () {
-		if (this._enabled) {
-			return;
-		}
+		if (this._enabled) { return; }
 
 		window.L.DomEvent.on(this._dragStartTarget, window.L.Draggable.START.join(' '), this.noManualDrag(this._onDown), this);
 
@@ -65,10 +63,8 @@ window.L.Draggable = window.L.Evented.extend({
 	},
 
 	disable: function () {
-		if (!this._enabled) {
-			return;
-		}
-=
+		if (!this._enabled) { return; }
+
 		window.L.DomEvent.off(this._dragStartTarget, window.L.Draggable.START.join(' '), this.noManualDrag(this._onDown), this);
 
 		this._enabled = false;
@@ -78,9 +74,7 @@ window.L.Draggable = window.L.Evented.extend({
 	_onDown: function (e) {
 		this._moved = false;
 
-		if (e.shiftKey || (e.which !== 1 && e.button !== 0 && !e.touches)) {
-			return;
-		}
+		if (e.shiftKey || ((e.which !== 1) && (e.button !== 0) && !e.touches)) { return; }
 
 		// enable propagation of the mousedown event from map pane to parent elements in view mode
 		// see bug bccu1446
@@ -95,9 +89,7 @@ window.L.Draggable = window.L.Evented.extend({
 		window.L.DomUtil.disableImageDrag();
 		window.L.DomUtil.disableTextSelection();
 
-		if (this._moving) {
-			return;
-		}
+		if (this._moving) { return; }
 
 		this.fire('down');
 
@@ -156,21 +148,13 @@ window.L.Draggable = window.L.Evented.extend({
 				offset.y = 0;
 			}
 		}
-		if (!offset.x && !offset.y) {
-			return;
-		}
-		if (
-			window.touch.isTouchEvent(e) &&
-			Math.abs(offset.x) + Math.abs(offset.y) < 3 &&
-			!e.autoscroll
-		) {
-			return;
-		}
+		if (!offset.x && !offset.y) { return; }
+		if (window.touch.isTouchEvent(e) && Math.abs(offset.x) + Math.abs(offset.y) < 3 && !e.autoscroll) { return; }
 
 		window.L.DomEvent.preventDefault(e);
 
 		if (!this._moved) {
-			this.fire('dragstart', { originalEvent: e });
+			this.fire('dragstart', {originalEvent: e});
 
 			this._moved = true;
 			this._startPos = window.L.DomUtil.getPosition(this._element).subtract(offset);
@@ -183,22 +167,21 @@ window.L.Draggable = window.L.Evented.extend({
 
 		this._newPos = this._startPos.add(offset);
 
-		if (this._freezeY) this._newPos.y = this._startPos.y;
-		if (this._freezeX) this._newPos.x = this._startPos.x;
+		if (this._freezeY)
+			this._newPos.y = this._startPos.y;
+		if (this._freezeX)
+			this._newPos.x = this._startPos.x;
 
 		this._moving = true;
 
 		app.util.cancelAnimFrame(this._animRequest);
 		this._lastEvent = e;
 
-		this._animRequest = app.util.requestAnimFrame(
-			this._updatePosition,
-			this,
-		);
+		this._animRequest = app.util.requestAnimFrame(this._updatePosition, this);
 	},
 
 	_updatePosition: function () {
-		var e = { originalEvent: this._lastEvent };
+		var e = {originalEvent: this._lastEvent};
 		this.fire('predrag', e);
 		window.L.DomUtil.setPosition(this._element, this._newPos, this._no3d);
 		this.fire('drag', e);
@@ -227,13 +210,13 @@ window.L.Draggable = window.L.Evented.extend({
 
 			this.fire('dragend', {
 				originalEvent: e,
-				distance: this._newPos.distanceTo(this._startPos),
+				distance: this._newPos.distanceTo(this._startPos)
 			});
 		} else {
-			this.fire('up', { originalEvent: e });
+			this.fire('up', {originalEvent: e});
 		}
 
 		this._moving = false;
 		this._startPoint = undefined;
-	},
+	}
 });

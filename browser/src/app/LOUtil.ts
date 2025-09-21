@@ -1,9 +1,8 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /* global app */
+
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -113,7 +112,7 @@ class LOUtil {
 			parseInt(numbers[1]),
 		);
 		const bottomRight = topLeft.add(
-			cool.Point.toPoint(parseInt(numbers[2]), parseInt(numbers[3])),
+			lool.Point.toPoint(parseInt(numbers[2]), parseInt(numbers[3])),
 		);
 		return lool.Bounds.toBounds(topLeft, bottomRight);
 	}
@@ -131,9 +130,9 @@ class LOUtil {
 					parseInt(matches[itMatch + 2]),
 					parseInt(matches[itMatch + 3]),
 				);
-				const topRight = topLeft.add(cool.Point.toPoint(size.x, 0));
+				const topRight = topLeft.add(lool.Point.toPoint(size.x, 0));
 				const bottomLeft = topLeft.add(
-					cool.Point.toPoint(0, size.y),
+					lool.Point.toPoint(0, size.y),
 				);
 				const bottomRight = topLeft.add(size);
 				rectangles.push([

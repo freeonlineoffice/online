@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -59,10 +57,10 @@ class ViewLayoutBase {
 
 		var splitPos = app.map._docLayer._splitPanesContext
 			? app.map._docLayer._splitPanesContext.getSplitPos()
-			: new cool.Point(0, 0);
+			: new lool.Point(0, 0);
 
 		var visibleArea = app.map.getPixelBounds();
-		visibleArea = new cool.Bounds(
+		visibleArea = new lool.Bounds(
 			app.map._docLayer._pixelsToTwips(visibleArea.min),
 			app.map._docLayer._pixelsToTwips(visibleArea.max),
 		);

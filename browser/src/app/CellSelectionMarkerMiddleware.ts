@@ -1,6 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -44,11 +42,11 @@ class CellSelectionMarkers {
 				? app.map._docLayer._cellSelectionArea.clone()
 				: app.calc.cellCursorRectangle.clone();
 
-			const posStart = new cool.SimplePoint(
+			const posStart = new lool.SimplePoint(
 				cellRectangle.x1,
 				cellRectangle.y1,
 			);
-			const posEnd = new cool.SimplePoint(
+			const posEnd = new lool.SimplePoint(
 				cellRectangle.x2,
 				cellRectangle.y2,
 			);

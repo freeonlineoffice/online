@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -486,7 +484,11 @@ class TileManager {
 
 	private static visibleTilesReady(): boolean {
 		for (const tile of this.tiles.values()) {
-			if (tile.distanceFromView === 0 && tile.lastPendingId && !tile.isReady())
+			if (
+				tile.distanceFromView === 0 &&
+				tile.lastPendingId &&
+				!tile.isReady()
+			)
 				return false;
 		}
 		return true;
@@ -534,16 +536,6 @@ class TileManager {
 				imageData.buffer,
 				imageData.byteOffset,
 				imageData.byteLength,
-			);
-			const image = new ImageData(
-				clampedData,
-				this.tileSize,
-				this.tileSize,
-			);
-			bitmaps.push(
-				createImageBitmap(image, {
-					premultiplyAlpha: 'none',
-				}),
 			);
 			deltas.push(delta);
 		} else {

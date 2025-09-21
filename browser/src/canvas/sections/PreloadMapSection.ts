@@ -1,7 +1,5 @@
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -42,7 +40,7 @@ class PreloadMapSection extends CanvasSectionObject {
 
 		var canvas = this.context;
 
-		var tileRange = new cool.Bounds(viewRange.min, viewRange.max);
+		var tileRange = new lool.Bounds(viewRange.min, viewRange.max);
 
 		// stop annoying jitter as the view fits different numbers of tiles.
 		var viewWidth = Math.floor(
@@ -87,7 +85,7 @@ class PreloadMapSection extends CanvasSectionObject {
 		var preParts = (numParts - 1) / 2;
 		var partBounds = new Array(numParts);
 		for (var i = 0; i < partBounds.length; ++i) {
-			partBounds[i] = new cool.Bounds(tileRange.min, tileRange.max);
+			partBounds[i] = new lool.Bounds(tileRange.min, tileRange.max);
 			partBounds[i].part = part + i - preParts;
 		}
 

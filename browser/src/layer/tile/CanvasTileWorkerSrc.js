@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,7 +9,7 @@
 
 /* eslint-disable no-inner-declarations */
 /* eslint no-unused-vars: ["warn", { "argsIgnorePattern": "^_" }] */
-/* global importScripts Uint8Array cool */
+/* global importScripts Uint8Array lool */
 
 if ('undefined' === typeof window) {
 	self.L = {};
@@ -44,7 +42,7 @@ if ('undefined' === typeof window) {
 					let imageData = null;
 					if (tile.isKeyframe) {
 						imageData = new Uint8Array(tileByteSize);
-						keyframeDeltaSize = cool.CanvasTileUtils.unrle(
+						keyframeDeltaSize = lool.CanvasTileUtils.unrle(
 							deltas,
 							e.data.tileSize,
 							e.data.tileSize,
@@ -63,7 +61,7 @@ if ('undefined' === typeof window) {
 						continue;
 					}
 
-					cool.CanvasTileUtils.updateImageFromDeltas(
+					lool.CanvasTileUtils.updateImageFromDeltas(
 						imageData,
 						deltas,
 						keyframeDeltaSize,

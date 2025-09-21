@@ -12,7 +12,7 @@
  * Control.Mention
  */
 
-/* global app cool */
+/* global app lool */
 
 interface MentionUserData {
 	username: string;

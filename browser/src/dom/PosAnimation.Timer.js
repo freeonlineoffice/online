@@ -7,71 +7,63 @@
 
 window.L.PosAnimation = window.L.DomUtil.TRANSITION ? window.L.PosAnimation : window.L.PosAnimation.extend({
 
-				this._el = el;
-				this._inProgress = true;
-				this._duration = duration || 0.25;
-				this._easeOutPower =
-					1 / Math.max(easeLinearity || 0.5, 0.2);
+	run: function (el, newPos, duration, easeLinearity) { // (HTMLElement, Point[, Number, Number])
+		this.stop();
 
-				this._startPos = L.DomUtil.getPosition(el);
-				this._offset = newPos.subtract(this._startPos);
-				this._startTime = +new Date();
+		this._el = el;
+		this._inProgress = true;
+		this._duration = duration || 0.25;
+		this._easeOutPower = 1 / Math.max(easeLinearity || 0.5, 0.2);
 
 		this._startPos = window.L.DomUtil.getPosition(el);
 		this._offset = newPos.subtract(this._startPos);
 		this._startTime = +new Date();
 
-				this._animate();
-			},
+		this.fire('start');
 
-			stop: function () {
-				if (!this._inProgress) {
-					return;
-				}
+		this._animate();
+	},
 
-				this._step();
-				this._complete();
-			},
+	stop: function () {
+		if (!this._inProgress) { return; }
 
-			_animate: function () {
-				// animation loop
-				this._animId = app.util.requestAnimFrame(
-					this._animate,
-					this,
-				);
-				this._step();
-			},
+		this._step();
+		this._complete();
+	},
 
-			_step: function () {
-				var elapsed = +new Date() - this._startTime,
-					duration = this._duration * 1000;
+	_animate: function () {
+		// animation loop
+		this._animId = app.util.requestAnimFrame(this._animate, this);
+		this._step();
+	},
 
-				if (elapsed < duration) {
-					this._runFrame(this._easeOut(elapsed / duration));
-				} else {
-					this._runFrame(1);
-					this._complete();
-				}
-			},
+	_step: function () {
+		var elapsed = (+new Date()) - this._startTime,
+		    duration = this._duration * 1000;
 
-			_runFrame: function (progress) {
-				var pos = this._startPos.add(
-					this._offset.multiplyBy(progress),
-				);
-				L.DomUtil.setPosition(this._el, pos);
+		if (elapsed < duration) {
+			this._runFrame(this._easeOut(elapsed / duration));
+		} else {
+			this._runFrame(1);
+			this._complete();
+		}
+	},
 
 	_runFrame: function (progress) {
 		var pos = this._startPos.add(this._offset.multiplyBy(progress));
 		window.L.DomUtil.setPosition(this._el, pos);
 
-			_complete: function () {
-				app.util.cancelAnimFrame(this._animId);
+		this.fire('step');
+	},
 
-				this._inProgress = false;
-				this.fire('end');
-			},
+	_complete: function () {
+		app.util.cancelAnimFrame(this._animId);
 
-			_easeOut: function (t) {
-				return 1 - Math.pow(1 - t, this._easeOutPower);
-			},
-		});
+		this._inProgress = false;
+		this.fire('end');
+	},
+
+	_easeOut: function (t) {
+		return 1 - Math.pow(1 - t, this._easeOutPower);
+	}
+});

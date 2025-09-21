@@ -23,16 +23,8 @@ var previousTouchType = null;
 function updateTransformation(target) {
 	if (target !== null && target !== undefined) {
 		var value = [
-			'translate3d(' +
-				target.transformation.translate.x +
-				'px, ' +
-				target.transformation.translate.y +
-				'px, 0)',
-			'scale(' +
-				target.transformation.scale +
-				', ' +
-				target.transformation.scale +
-				')',
+			'translate3d(' + target.transformation.translate.x + 'px, ' + target.transformation.translate.y + 'px, 0)',
+			'scale(' + target.transformation.scale + ', ' + target.transformation.scale + ')'
 		];
 
 		value = value.join(' ');
@@ -52,10 +44,7 @@ var zoomTargets = [];
 
 function findZoomTarget(id) {
 	for (var item in zoomTargets) {
-		if (
-			zoomTargets[item].key === id ||
-			zoomTargets[item].titlebar.id === id
-		) {
+		if (zoomTargets[item].key === id || zoomTargets[item].titlebar.id === id) {
 			return zoomTargets[item];
 		}
 	}
@@ -64,10 +53,7 @@ function findZoomTarget(id) {
 
 function removeZoomTarget(id) {
 	for (var item in zoomTargets) {
-		if (
-			zoomTargets[item].key === id ||
-			zoomTargets[item].titlebar.id === id
-		) {
+		if (zoomTargets[item].key === id || zoomTargets[item].titlebar.id === id) {
 			delete zoomTargets[item];
 		}
 	}
@@ -81,12 +67,13 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 	dialogIdPrefix: 'lokdialog-',
 
-	hasDialogInMobilePanelOpened: function () {
+	hasDialogInMobilePanelOpened: function() {
 		return window.mobileDialogId !== undefined;
 	},
 
 	onPan: function (ev) {
-		if (!draggedObject) return;
+		if (!draggedObject)
+			return;
 
 		var id = toZoomTargetId(draggedObject.id);
 		var target = findZoomTarget(id);
@@ -96,13 +83,10 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			var newY = target.initialState.startY + ev.deltaY;
 
 			// Don't allow to put dialog outside the view
-			if (
-				window.mode.isDesktop() &&
-				(newX < -target.width / 2 ||
-					newY < -target.height / 2 ||
-					newX > window.innerWidth - target.width / 2 ||
-					newY > window.innerHeight - target.height / 2)
-			) {
+			if (window.mode.isDesktop() &&
+				(newX < -target.width/2 || newY < -target.height/2
+				|| newX > window.innerWidth - target.width/2
+				|| newY > window.innerHeight - target.height/2)) {
 				var dialog = $('.lokdialog_container');
 				var left = parseFloat(dialog.css('left'));
 				var top = parseFloat(dialog.css('top'));
@@ -112,12 +96,12 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 			target.transformation.translate = {
 				x: newX,
-				y: newY,
+				y: newY
 			};
 
 			target.transformation.translate = {
 				x: newX,
-				y: newY,
+				y: newY
 			};
 
 			updateTransformation(target);
@@ -130,13 +114,11 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 		if (target) {
 			if (ev.type == 'pinchstart') {
-				target.initialState.initScale =
-					target.transformation.scale || 1;
+				target.initialState.initScale = target.transformation.scale || 1;
 			}
 
 			if (target.initialState.initScale * ev.scale > 0.4) {
-				target.transformation.scale =
-					target.initialState.initScale * ev.scale;
+				target.transformation.scale = target.initialState.initScale * ev.scale;
 			}
 
 			updateTransformation(target);
@@ -157,56 +139,49 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 	_dialogs: {},
 
-	hasOpenedDialog: function () {
+	hasOpenedDialog: function() {
 		return Object.keys(this._dialogs).length > 0;
 	},
 
-	getCurrentDialogContainer: function () {
+	getCurrentDialogContainer: function() {
 		if (this._currentId)
-			return document.getElementById(
-				this._dialogs[this._currentId].strId,
-			);
-		else return null;
+			return document.getElementById(this._dialogs[this._currentId].strId);
+		else
+			return null;
 	},
 
 	// method used to warn user about dialog modality
-	blinkOpenDialog: function () {
+	blinkOpenDialog: function() {
 		$('.lokdialog_container').addClass('lokblink');
 		setTimeout(function () {
 			$('.lokdialog_container').removeClass('lokblink');
 		}, 600);
 	},
 
-	_docLoaded: function (e) {
+	_docLoaded: function(e) {
 		if (!e.status) {
 			$('.lokdialog_container:not(.jsdialog-container)').remove();
 			$('.lokdialogchild-canvas').remove();
 		}
 	},
 
-	_getParentId: function (id) {
+	_getParentId: function(id) {
 		id = parseInt(id);
 		for (var winId in this._dialogs) {
-			if (
-				this._dialogs[winId].childid &&
-				this._dialogs[winId].childid === id
-			) {
+			if (this._dialogs[winId].childid && this._dialogs[winId].childid === id) {
 				return winId;
 			}
 		}
 		return null;
 	},
 
-	_isOpen: function (id) {
-		return (
-			id in this._dialogs &&
-			this._dialogs[id] &&
-			$('#' + this._toStrId(id)).length > 0
-		);
+	_isOpen: function(id) {
+		return (id in this._dialogs) && this._dialogs[id] &&
+			$('#' + this._toStrId(id)).length > 0;
 	},
 
-	isCursorVisible: function (id) {
-		return id in this._dialogs && this._dialogs[id].cursorVisible;
+	isCursorVisible: function(id) {
+		return (id in this._dialogs) && this._dialogs[id].cursorVisible;
 	},
 
 	_isSelectionHandle: function(el) {
@@ -215,49 +190,47 @@ window.L.Control.LokDialog = window.L.Control.extend({
 	},
 
 	// Given a prefixed dialog id like 'lokdialog-323', gives a raw id, 323.
-	_toIntId: function (id) {
-		if (typeof id === 'string')
+	_toIntId: function(id) {
+		if (typeof(id) === 'string')
 			return parseInt(id.replace(this.dialogIdPrefix, ''));
 		return id;
 	},
 
 	// Converts a raw dialog id like 432, to 'lokdialog-432'.
-	_toStrId: function (id) {
+	_toStrId: function(id) {
 		return this.dialogIdPrefix + id;
 	},
 
 	// Create a rectangle string of form "x,y,width,height"
 	// if params are missing, assumes 0,0,dialog width, dialog height
-	_createRectStr: function (id, x, y, width, height) {
-		if (!width && id !== null) width = this._dialogs[parseInt(id)].width;
-		if (!width || width <= 0) return null;
+	_createRectStr: function(id, x, y, width, height) {
+		if (!width && id !== null)
+			width = this._dialogs[parseInt(id)].width;
+		if (!width || width <= 0)
+			return null;
 		if (!height && id !== null)
 			height = this._dialogs[parseInt(id)].height;
-		if (!height || height <= 0) return null;
-		if (!x) x = 0;
-		if (!y) y = 0;
+		if (!height || height <= 0)
+			return null;
+		if (!x)
+			x = 0;
+		if (!y)
+			y = 0;
 
 		// pre-multiplied by the scale factor
-		return [
-			x * app.roundedDpiScale,
-			y * app.roundedDpiScale,
-			width * app.roundedDpiScale,
-			height * app.roundedDpiScale,
-		].join(',');
+		return [x * app.roundedDpiScale, y * app.roundedDpiScale, width * app.roundedDpiScale, height * app.roundedDpiScale].join(',');
 	},
 
-	_sendPaintWindowRect: function (id, x, y, width, height) {
-		this._sendPaintWindow(
-			id,
-			this._createRectStr(id, x, y, width, height),
-		);
+	_sendPaintWindowRect: function(id, x, y, width, height) {
+		this._sendPaintWindow(id, this._createRectStr(id, x, y, width, height));
 	},
 
 	// TODO: Extract to tool in Debug.js
-	_debugPaintWindow: function (id, rectangle) {
+	_debugPaintWindow: function(id, rectangle) {
 		var strId = this._toStrId(id);
 		var canvas = document.getElementById(strId + '-canvas');
-		if (!canvas) return; // no window to paint to
+		if (!canvas)
+			return; // no window to paint to
 		var ctx = canvas.getContext('2d');
 		ctx.beginPath();
 		var rect = rectangle.split(',');
@@ -266,26 +239,22 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		ctx.fill();
 	},
 
-	_sendPaintWindow: function (id, rectangle) {
-		if (!rectangle) return; // Don't request rendering an empty area.
+	_sendPaintWindow: function(id, rectangle) {
+		if (!rectangle)
+			return; // Don't request rendering an empty area.
 
 		rectangle = rectangle.replace(/ /g, '');
-		if (!rectangle) return; // Don't request rendering an empty area.
+		if (!rectangle)
+			return; // Don't request rendering an empty area.
 
 		//window.app.console.log('_sendPaintWindow: rectangle: ' + rectangle + ', dpiscale: ' + dpiscale);
-		app.socket.sendMessage(
-			'paintwindow ' +
-				id +
-				' rectangle=' +
-				rectangle +
-				' dpiscale=' +
-				app.roundedDpiScale,
-		);
+		app.socket.sendMessage('paintwindow ' + id + ' rectangle=' + rectangle + ' dpiscale=' + app.roundedDpiScale);
 
-		if (this._map._debug.debugOn) this._debugPaintWindow(id, rectangle);
+		if (this._map._debug.debugOn)
+			this._debugPaintWindow(id, rectangle);
 	},
 
-	_sendCloseWindow: function (id) {
+	_sendCloseWindow: function(id) {
 		app.socket.sendMessage('windowcommand ' + id + ' close');
 		// CSV and Macro Security Warning Dialogs are shown before the document load
 		// In that state the document is not really loaded and closing or cancelling it
@@ -295,27 +264,21 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 	},
 
-	_isRectangleValid: function (rect) {
+	_isRectangleValid: function(rect) {
 		rect = rect.split(',');
-		return (
-			!isNaN(parseInt(rect[0])) &&
-			!isNaN(parseInt(rect[1])) &&
-			parseInt(rect[2]) >= 0 &&
-			parseInt(rect[3]) >= 0
-		);
+		return (!isNaN(parseInt(rect[0])) && !isNaN(parseInt(rect[1])) &&
+				parseInt(rect[2]) >= 0 && parseInt(rect[3]) >= 0);
 	},
 
-	_onDialogMsg: function (e) {
+	_onDialogMsg: function(e) {
 		// window.app.console.log('onDialogMsg: id: ' + e.id + ', winType: ' + e.winType + ', action: ' + e.action + ', size: ' + e.size + ', rectangle: ' + e.rectangle);
-		if (
-			e.winType != undefined &&
-			e.winType !== 'dialog' &&
-			e.winType !== 'calc-input-win' &&
-			e.winType !== 'child' &&
-			e.winType !== 'deck' &&
-			e.winType !== 'tooltip' &&
-			e.winType !== 'dropdown'
-		) {
+		if (e.winType != undefined &&
+		    e.winType !== 'dialog' &&
+		    e.winType !== 'calc-input-win' &&
+		    e.winType !== 'child' &&
+		    e.winType !== 'deck' &&
+		    e.winType !== 'tooltip' &&
+		    e.winType !== 'dropdown') {
 			return;
 		}
 
@@ -337,43 +300,29 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 
 		if (e.title && typeof brandProductName !== 'undefined') {
-			e.title = e.title.replace(
-				'Free Online Office',
-				brandProductName,
-			);
+			e.title = e.title.replace('Collabora Office', brandProductName);
 		}
 
 		if (e.action === 'created') {
-			if (
-				(e.winType === 'dialog' || e.winType === 'dropdown') &&
-				!window.mode.isMobile()
-			) {
+			if ((e.winType === 'dialog' || e.winType === 'dropdown') && !window.mode.isMobile()) {
 				// When left/top are invalid, the dialog shows in the center.
-				this._launchDialog(
-					e.id,
-					left,
-					top,
-					width,
-					height,
-					e.title,
-					null,
-					e.unique_id,
-				);
+				this._launchDialog(e.id, left, top, width, height, e.title, null, e.unique_id);
 			} else if (e.winType === 'child' || e.winType === 'tooltip') {
 				var parentId = parseInt(e.parentId);
-				if (!this._isOpen(parentId)) return;
+				if (!this._isOpen(parentId))
+					return;
 
 				// In case of tooltips, do not remove the previous popup
 				// only if that's also a tooltip.
-				if (
-					e.winType === 'tooltip' &&
-					this._dialogs[parentId].childid !== undefined &&
-					this._dialogs[parentId].childistooltip !== true
-				)
+				if (e.winType === 'tooltip' &&
+				    this._dialogs[parentId].childid !== undefined &&
+				    this._dialogs[parentId].childistooltip !== true)
 					return;
 
-				if (!left) left = 0;
-				if (!top) top = 0;
+				if (!left)
+					left = 0;
+				if (!top)
+					top = 0;
 				this._removeDialogChild(parentId);
 
 				this._dialogs[parentId].childid = e.id;
@@ -384,12 +333,10 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 				if (e.winType === 'tooltip')
 					this._dialogs[parentId].childistooltip = true;
-				else this._dialogs[parentId].childistooltip = false;
+				else
+					this._dialogs[parentId].childistooltip = false;
 				this._createDialogChild(e.id, parentId, top, left);
-				this._sendPaintWindow(
-					e.id,
-					this._createRectStr(null, 0, 0, width, height),
-				);
+				this._sendPaintWindow(e.id, this._createRectStr(null, 0, 0, width, height));
 			}
 		}
 
@@ -403,18 +350,15 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 
 		// We don't want dialogs on smartphones, only calc input window is allowed
-		if (window.mode.isMobile()) return;
+		if (window.mode.isMobile())
+			return;
 
 		if (e.action === 'invalidate') {
 			this.wasInvalidated = true;
 			var parent = this._getParentId(e.id);
 			var rectangle = e.rectangle;
-			if (parent) {
-				// this is a floating window
-				if (
-					e.rectangle &&
-					this._dialogs[parent].childistooltip === true
-				) {
+			if (parent) { // this is a floating window
+				if (e.rectangle && this._dialogs[parent].childistooltip === true) {
 					// resize tooltips on invalidation
 					this._removeDialogChild(parent);
 					left = this._dialogs[parent].childx;
@@ -426,15 +370,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 					this._createDialogChild(e.id, parent, top, left);
 				}
 
-				rectangle = this._createRectStr(
-					null,
-					0,
-					0,
-					this._dialogs[parent].childwidth,
-					this._dialogs[parent].childheight,
-				);
-			} else if (rectangle) {
-				// this is the actual dialog
+				rectangle = this._createRectStr(null, 0, 0, this._dialogs[parent].childwidth, this._dialogs[parent].childheight);
+			} else if (rectangle) { // this is the actual dialog
 				if (this._isRectangleValid(rectangle)) {
 					rectangle = e.rectangle.split(',');
 					x = parseInt(rectangle[0]);
@@ -442,13 +379,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 					width = parseInt(rectangle[2]);
 					height = parseInt(rectangle[3]);
 
-					rectangle = this._createRectStr(
-						null,
-						x,
-						y,
-						width,
-						height,
-					);
+					rectangle = this._createRectStr(null, x, y, width, height);
 				} else {
 					return;
 				}
@@ -500,12 +431,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 				if (e.endHandleVisible) {
 					endHandleVisible = e.endHandleVisible === 'true';
 				}
-				this._updateTextSelection(
-					e.id,
-					rectangles,
-					startHandleVisible,
-					endHandleVisible,
-				);
+				this._updateTextSelection(e.id, rectangles, startHandleVisible, endHandleVisible);
 			}
 		} else if (e.action === 'title_changed') {
 			if (e.title && this._dialogs[parseInt(e.id)]) {
@@ -515,34 +441,29 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		} else if (e.action === 'cursor_visible') {
 			// cursor_visible implies focus has changed, but can
 			// be misleading when it flips back on forth on typing!
-			var visible = e.visible === 'true';
+			var visible = (e.visible === 'true');
 			this._dialogs[e.id].cursorVisible = visible;
 			if (visible) {
-				$('#' + strId + '-cursor').css({ display: 'block' });
-				this._map.fire('changefocuswidget', {
-					winId: e.id,
-					dialog: this,
-					acceptInput: true,
-				}); // Us.
-			} else {
-				$('#' + strId + '-cursor').css({ display: 'none' });
+				$('#' + strId + '-cursor').css({display: 'block'});
+				this._map.fire('changefocuswidget', {winId: e.id, dialog: this, acceptInput: true}); // Us.
+			}
+			else {
+				$('#' + strId + '-cursor').css({display: 'none'});
 			}
 		} else if (e.action === 'close') {
 			parent = this._getParentId(e.id);
-			if (parent) this._onDialogChildClose(parent);
-			else this._onDialogClose(e.id, false);
+			if (parent)
+				this._onDialogChildClose(parent);
+			else
+				this._onDialogClose(e.id, false);
 		} else if (e.action === 'hide') {
-			$('#' + strId)
-				.parent()
-				.css({ display: 'none' });
+			$('#' + strId).parent().css({display: 'none'});
 		} else if (e.action === 'show') {
-			$('#' + strId)
-				.parent()
-				.css({ display: 'block' });
+			$('#' + strId).parent().css({display: 'block'});
 		}
 	},
 
-	_updateDialogCursor: function (dlgId, x, y, height) {
+	_updateDialogCursor: function(dlgId, x, y, height) {
 		var strId = this._toStrId(dlgId);
 		var dialogCursor = window.L.DomUtil.get(strId + '-cursor');
 		var cursorVisible = this.isCursorVisible(dlgId);
@@ -555,10 +476,11 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		// Make sure the keyboard is visible if there is a cursor.
 		// But don't hide the keyboard otherwise.
 		// At least the formula-input hides the cursor after each key input.
-		if (cursorVisible) this._map.focus(true);
+		if (cursorVisible)
+			this._map.focus(true);
 	},
 
-	_createDialogCursor: function (dialogId) {
+	_createDialogCursor: function(dialogId) {
 		var id = this._toIntId(dialogId);
 		this._dialogs[id].cursor = window.L.DomUtil.create('div', 'leaflet-cursor-container', window.L.DomUtil.get(dialogId));
 		var cursor = window.L.DomUtil.create('div', 'leaflet-cursor lokdialog-cursor', this._dialogs[id].cursor);
@@ -566,12 +488,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		window.L.DomUtil.addClass(cursor, 'blinking-cursor');
 	},
 
-	_updateTextSelection: function (
-		dlgId,
-		rectangles,
-		startHandleVisible,
-		endHandleVisible,
-	) {
+	_updateTextSelection: function(dlgId, rectangles, startHandleVisible, endHandleVisible) {
 		var strId = this._toIntId(dlgId);
 		var selections = this._dialogs[strId].textSelection.rectangles;
 		window.L.DomUtil.empty(selections);
@@ -590,7 +507,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			handles.end = null;
 		}
 
-		if (!handles.start && !handles.end) handles.draggingStopped = true;
+		if (!handles.start && !handles.end)
+			handles.draggingStopped = true;
 
 		if (!rectangles || rectangles.length < 1) {
 			return;
@@ -640,7 +558,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 
 		if (endHandle && handles.draggingStopped) {
-			if (!handles.end) handles.end = handles.appendChild(endHandle);
+			if (!handles.end)
+				handles.end = handles.appendChild(endHandle);
 			// window.app.console.log('lokdialog: _updateTextSelection: endPos: x: ' + endPos.x + ', y: ' + endPos.y);
 			endHandle.pos = endPos;
 			window.L.DomUtil.setStyle(endHandle, 'left',  endPos.x + 'px');
@@ -648,14 +567,14 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 	},
 
-	focus: function (dlgId, acceptInput) {
+	focus: function(dlgId, acceptInput) {
 		this._map.setWinId(dlgId);
 		if (dlgId in this._dialogs) {
 			this._map.focus(acceptInput);
 		}
 	},
 
-	_setCanvasWidthHeight: function (canvas, width, height) {
+	_setCanvasWidthHeight: function(canvas, width, height) {
 		var newWidth = width * app.roundedDpiScale;
 		var changed = false;
 		if (canvas.width != newWidth) {
@@ -673,18 +592,9 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		return changed;
 	},
 
-	_launchDialog: function (
-		id,
-		leftTwips,
-		topTwips,
-		width,
-		height,
-		title,
-		type,
-		uniqueId,
-	) {
+	_launchDialog: function(id, leftTwips, topTwips, width, height, title, type, uniqueId) {
 		if (window.ThisIsTheiOSApp && app.map.mobileTopBar)
-			app.map.mobileTopBar.enableItem('closemobile', false);
+				app.map.mobileTopBar.enableItem('closemobile', false);
 		this.onCloseCurrentPopUp();
 		var dialogContainer = window.L.DomUtil.create('div', 'lokdialog', document.body);
 		window.L.DomUtil.setStyle(dialogContainer, 'padding', '0px');
@@ -693,14 +603,16 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 		var strId = this._toStrId(id);
 		dialogContainer.id = strId;
-		if (uniqueId) dialogContainer.dataset.uniqueId = uniqueId;
+		if (uniqueId)
+			dialogContainer.dataset.uniqueId = uniqueId;
 
 		var dialogCanvas = window.L.DomUtil.create('canvas', 'lokdialog_canvas', dialogContainer);
 		this._setCanvasWidthHeight(dialogCanvas, width, height);
 		dialogCanvas.id = strId + '-canvas';
 
 		var dialogClass = 'lokdialog_container';
-		if (!title) dialogClass += ' lokdialog_notitle';
+		if (!title)
+			dialogClass += ' lokdialog_notitle';
 
 		var that = this;
 		var size = $(window).width();
@@ -715,9 +627,9 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			draggable: false,
 			resizable: false,
 			dialogClass: dialogClass,
-			close: function () {
+			close: function() {
 				that._onDialogClose(id, true);
-			},
+			}
 		});
 
 		if (leftTwips != null && topTwips != null) {
@@ -731,14 +643,11 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			var top = pixels.y + panePos.y - origin.y;
 
 			if (left >= 0 && top >= 0) {
-				$(dialogContainer).dialog('option', 'position', {
-					my: 'left top',
-					at: 'left+' + left + ' top+' + top,
-					of:
-						type === 'dropdown'
-							? '#map'
-							: '#document-container',
-				});
+				$(dialogContainer).dialog('option', 'position',
+							  { my: 'left top',
+							    at: 'left+' + left + ' top+' + top,
+							    of: type === 'dropdown' ? '#map' :
+							    '#document-container' });
 			}
 		}
 
@@ -760,25 +669,23 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			width: width,
 			height: height,
 			cursor: null,
-			title: title,
+			title: title
 		};
 
 		// don't make 'TAB' focus on this button; we want to cycle focus in the lok dialog with each TAB
-		$('.lokdialog_container button.ui-dialog-titlebar-close')
-			.attr('tabindex', '-1')
-			.blur();
+		$('.lokdialog_container button.ui-dialog-titlebar-close').attr('tabindex', '-1').blur();
 
 		this._createDialogCursor(strId);
-		this._setupWindowEvents(id, dialogCanvas /*, dlgInput*/);
+		this._setupWindowEvents(id, dialogCanvas/*, dlgInput*/);
 		this._setupGestures(dialogContainer, id, dialogCanvas);
 
 		this._currentId = id;
 		this._sendPaintWindow(id, this._createRectStr(id));
 	},
 
-	_postLaunch: function (id, panelContainer, panelCanvas) {
+	_postLaunch: function(id, panelContainer, panelCanvas) {
 		if (window.mode.isDesktop()) {
-			this._setupWindowEvents(id, panelCanvas /*, dlgInput*/);
+			this._setupWindowEvents(id, panelCanvas/*, dlgInput*/);
 		}
 
 		// Render window.
@@ -795,35 +702,27 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		window.L.DomEvent.on(canvas, 'mousedown mouseup', function(e) {
 			window.L.DomEvent.preventDefault(e);
 
-				if (this._map.uiManager.isUIBlocked()) return;
+			if (this._map.uiManager.isUIBlocked())
+				return;
 
-				if (canvas.lastDraggedHandle)
-					canvas.lastDraggedHandle = null;
+			if (canvas.lastDraggedHandle)
+				canvas.lastDraggedHandle = null;
 
-				var buttons = 0;
-				if (this._map['mouse']) {
-					buttons |=
-						e.button === this._map['mouse'].JSButtons.left
-							? this._map['mouse'].LOButtons.left
-							: 0;
-					buttons |=
-						e.button === this._map['mouse'].JSButtons.middle
-							? this._map['mouse'].LOButtons.middle
-							: 0;
-					buttons |=
-						e.button === this._map['mouse'].JSButtons.right
-							? this._map['mouse'].LOButtons.right
-							: 0;
-				} else {
-					buttons = 1;
-				}
+			var buttons = 0;
+			if (this._map['mouse']) {
+				buttons |= e.button === this._map['mouse'].JSButtons.left ? this._map['mouse'].LOButtons.left : 0;
+				buttons |= e.button === this._map['mouse'].JSButtons.middle ? this._map['mouse'].LOButtons.middle : 0;
+				buttons |= e.button === this._map['mouse'].JSButtons.right ? this._map['mouse'].LOButtons.right : 0;
+			} else {
+				buttons = 1;
+			}
 
-				var modifier = 0;
-				var shift = e.shiftKey ? UNOModifier.SHIFT : 0;
-				var ctrl = e.ctrlKey ? UNOModifier.CTRL : 0;
-				var alt = e.altKey ? UNOModifier.ALT : 0;
-				var cmd = e.metaKey ? UNOModifier.CTRLMAC : 0;
-				modifier = shift | ctrl | alt | cmd;
+			var modifier = 0;
+			var shift = e.shiftKey ? UNOModifier.SHIFT : 0;
+			var ctrl = e.ctrlKey ? UNOModifier.CTRL : 0;
+			var alt = e.altKey ? UNOModifier.ALT : 0;
+			var cmd = e.metaKey ? UNOModifier.CTRLMAC : 0;
+			modifier = shift | ctrl | alt | cmd;
 
 			// 'mousedown' -> 'buttondown'
 			var lokEventType = e.type.replace('mouse', 'button');
@@ -840,15 +739,10 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		});
 	},
 
-	_setupGestures: function (dialogContainer, id, canvas) {
+	_setupGestures: function(dialogContainer, id, canvas) {
 		var targetId = toZoomTargetId(canvas.id);
-		var zoomTarget = $('#' + targetId)
-			.parent()
-			.get(0);
-		var titlebar = $('#' + targetId)
-			.prev()
-			.children()
-			.get(0);
+		var zoomTarget = $('#' + targetId).parent().get(0);
+		var titlebar = $('#' + targetId).prev().children().get(0);
 
 		var ratio = 1.0;
 		var width = this._dialogs[id].width;
@@ -856,10 +750,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		var offsetX = 0;
 		var offsetY = 0;
 
-		if (
-			(window.mode.isMobile() || window.mode.isTablet()) &&
-			width > window.screen.width
-		) {
+		if ((window.mode.isMobile() || window.mode.isTablet()) && width > window.screen.width) {
 			ratio = window.screen.width / (width + 40);
 			offsetX = -(width - window.screen.width) / 2;
 			offsetY = -(height - window.screen.height) / 2;
@@ -868,7 +759,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		var state = {
 			startX: offsetX,
 			startY: offsetY,
-			initScale: ratio,
+			initScale: ratio
 		};
 		var transformation = {
 			translate: { x: offsetX, y: offsetY },
@@ -876,17 +767,13 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			angle: 0,
 			rx: 0,
 			ry: 0,
-			rz: 0,
+			rz: 0
 		};
 
 		// on mobile, force the positioning to the top, so that it is not
 		// covered by the virtual keyboard
 		if (window.mode.isMobile()) {
-			$(dialogContainer).dialog('option', 'position', {
-				my: 'center top',
-				at: 'center top',
-				of: '#document-container',
-			});
+			$(dialogContainer).dialog('option', 'position', { my: 'center top', at: 'center top', of: '#document-container' });
 			transformation.origin = 'center top';
 			transformation.translate.y = 0;
 		}
@@ -894,27 +781,17 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		if (findZoomTarget(targetId) != null) {
 			removeZoomTarget(targetId);
 		}
-		zoomTargets.push({
-			key: targetId,
-			value: zoomTarget,
-			titlebar: titlebar,
-			transformation: transformation,
-			initialState: state,
-			width: width,
-			height: height,
-		});
+		zoomTargets.push({key: targetId, value: zoomTarget, titlebar: titlebar, transformation: transformation, initialState: state, width:width, height: height});
 
 		var that = this;
 		var hammerTitlebar = new Hammer(titlebar);
 		hammerTitlebar.add(new Hammer.Pan({ threshold: 20, pointers: 0 }));
-		hammerTitlebar
-			.add(new Hammer.Pinch({ threshold: 0 }))
-			.recognizeWith([hammerTitlebar.get('pan')]);
+		hammerTitlebar.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([hammerTitlebar.get('pan')]);
 
 		hammerTitlebar.on('panstart', this.onPan);
 		hammerTitlebar.on('panmove', this.onPan);
 		hammerTitlebar.on('pinchstart pinchmove', this.onPinch);
-		hammerTitlebar.on('hammer.input', function (ev) {
+		hammerTitlebar.on('hammer.input', function(ev) {
 			if (ev.isFirst) {
 				draggedObject = ev.target;
 			}
@@ -923,10 +800,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 				var id = toZoomTargetId(draggedObject.id);
 				var target = findZoomTarget(id);
 				if (target) {
-					target.initialState.startX =
-						target.transformation.translate.x;
-					target.initialState.startY =
-						target.transformation.translate.y;
+					target.initialState.startX = target.transformation.translate.x;
+					target.initialState.startY = target.transformation.translate.y;
 				}
 				draggedObject = null;
 			}
@@ -934,18 +809,17 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 		var hammerContent = new Hammer(canvas);
 		hammerContent.add(new Hammer.Pan({ threshold: 20, pointers: 0 }));
-		hammerContent
-			.add(new Hammer.Pinch({ threshold: 0 }))
-			.recognizeWith([hammerContent.get('pan')]);
+		hammerContent.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([hammerContent.get('pan')]);
 
 		hammerContent.on('panstart', this.onPan);
 		hammerContent.on('panmove', this.onPan);
 		hammerContent.on('pinchstart pinchmove', this.onPinch);
-		hammerContent.on('hammer.input', function (ev) {
+		hammerContent.on('hammer.input', function(ev) {
 			if (ev.isFirst) {
 				that.wasInvalidated = false;
 				draggedObject = ev.target;
-			} else if (that.wasInvalidated) {
+			}
+			else if (that.wasInvalidated) {
 				draggedObject = null;
 				that.wasInvalidated = false;
 				return;
@@ -955,10 +829,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 				var id = toZoomTargetId(draggedObject.id);
 				var target = findZoomTarget(id);
 				if (target) {
-					target.initialState.startX =
-						target.transformation.translate.x;
-					target.initialState.startY =
-						target.transformation.translate.y;
+					target.initialState.startX = target.transformation.translate.x;
+					target.initialState.startY = target.transformation.translate.y;
 				}
 				draggedObject = null;
 			}
@@ -967,68 +839,40 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		updateTransformation(findZoomTarget(targetId));
 	},
 
-	_postWindowMouseEvent: function (
-		type,
-		winid,
-		x,
-		y,
-		count,
-		buttons,
-		modifier,
-	) {
-		app.socket.sendMessage(
-			'windowmouse id=' +
-				winid +
-				' type=' +
-				type +
-				' x=' +
-				x +
-				' y=' +
-				y +
-				' count=' +
-				count +
-				' buttons=' +
-				buttons +
-				' modifier=' +
-				modifier,
-		);
+	_postWindowMouseEvent: function(type, winid, x, y, count, buttons, modifier) {
+		app.socket.sendMessage('windowmouse id=' + winid +  ' type=' + type +
+		                              ' x=' + x + ' y=' + y + ' count=' + count +
+		                              ' buttons=' + buttons + ' modifier=' + modifier);
 	},
 
-	_postWindowGestureEvent: function (winid, type, x, y, offset) {
+	_postWindowGestureEvent: function(winid, type, x, y, offset) {
 		// window.app.console.log('x ' + x + ' y ' + y + ' o ' + offset);
-		app.socket.sendMessage(
-			'windowgesture id=' +
-				winid +
-				' type=' +
-				type +
-				' x=' +
-				x +
-				' y=' +
-				y +
-				' offset=' +
-				offset,
-		);
+		app.socket.sendMessage('windowgesture id=' + winid +  ' type=' + type +
+		                              ' x=' + x + ' y=' + y + ' offset=' + offset);
 	},
 
-	_closeChildWindows: function (dialogId) {
+	_closeChildWindows: function(dialogId) {
 		// child windows - with greater id number
 		var that = this;
 		var foundCurrent = false;
 
-		Object.keys(this._dialogs).forEach(function (id) {
-			if (foundCurrent) that._onDialogClose(id, true);
+		Object.keys(this._dialogs).forEach(function(id) {
+			if (foundCurrent)
+				that._onDialogClose(id, true);
 
-			if (id == dialogId) foundCurrent = true;
+			if (id == dialogId)
+				foundCurrent = true;
 		});
 	},
 
-	_onDialogClose: function (dialogId, notifyBackend) {
+	_onDialogClose: function(dialogId, notifyBackend) {
 		this._closeChildWindows(dialogId);
 
 		if (window.ThisIsTheiOSApp && app.map.mobileTopBar)
 			app.map.mobileTopBar.enableItem('closemobile', true);
 
-		if (notifyBackend) this._sendCloseWindow(dialogId);
+		if (notifyBackend)
+			this._sendCloseWindow(dialogId);
 		$('#' + this._toStrId(dialogId)).remove();
 
 		// focus the main document
@@ -1041,7 +885,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		removeZoomTarget(this._toStrId(dialogId));
 	},
 
-	_onClosePopups: function () {
+	_onClosePopups: function() {
 		for (var dialogId in this._dialogs) {
 			this._onDialogClose(dialogId, true);
 		}
@@ -1050,22 +894,17 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		}
 	},
 
-	onCloseCurrentPopUp: function () {
+	onCloseCurrentPopUp: function() {
 		// for title-less dialog only (context menu, pop-up)
-		if (
-			this._currentId &&
-			this._isOpen(this._currentId) &&
-			!this._dialogs[this._currentId].title
-		)
+		if (this._currentId && this._isOpen(this._currentId) &&
+			!this._dialogs[this._currentId].title)
 			this._onDialogClose(this._currentId, true);
 	},
 
-	_onEditorGotFocus: function () {
+	_onEditorGotFocus: function() {
 		// We need to lose focus on any dialogs currently with focus.
 		for (var winId in this._dialogs) {
-			$('#' + this._dialogs[winId].strId + '-cursor').css({
-				display: 'none',
-			});
+			$('#' + this._dialogs[winId].strId + '-cursor').css({display: 'none'});
 		}
 	},
 
@@ -1076,14 +915,16 @@ window.L.Control.LokDialog = window.L.Control.extend({
 			this._onEditorGotFocus();
 		} else {
 			this.focus(e.winId, e.acceptInput);
-			if (this._map.formulabar) this._map.onFormulaBarFocus();
+			if (this._map.formulabar)
+				this._map.onFormulaBarFocus();
 		}
 	},
 
-	_paintDialog: function (parentId, rectangle, img) {
+	_paintDialog: function(parentId, rectangle, img) {
 		var strId = this._toStrId(parentId);
 		var canvas = document.getElementById(strId + '-canvas');
-		if (!canvas) return; // no window to paint to
+		if (!canvas)
+			return; // no window to paint to
 
 		this._dialogs[parentId].isPainting = true;
 		var ctx = canvas.getContext('2d');
@@ -1102,15 +943,13 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		ctx.drawImage(img, x, y);
 
 		// if dialog is hidden, show it
-		if (container) $(container).parent().show();
+		if (container)
+			$(container).parent().show();
 
 		if (parentId in that._dialogs) {
 			// We might have closed the dialog by the time we render.
 			that._dialogs[parentId].isPainting = false;
-			that._map.fire('changefocuswidget', {
-				winId: parentId,
-				dialog: that,
-			});
+			that._map.fire('changefocuswidget', {winId: parentId, dialog: that});
 		}
 	},
 
@@ -1127,7 +966,7 @@ window.L.Control.LokDialog = window.L.Control.extend({
 
 	// Dialog Child Methods
 
-	_paintDialogChild: function (parentId, img) {
+	_paintDialogChild: function(parentId, img) {
 		var strId = this._toStrId(parentId);
 		var canvas = window.L.DomUtil.get(strId + '-floating');
 		if (!canvas)
@@ -1154,27 +993,23 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		// while requesting rendering the image. Here we
 		// set the canvas to have the actual size, while
 		// the image is rendered with the HiDPI scale.
-		this._setCanvasWidthHeight(
-			canvas,
-			this._dialogs[parentId].childwidth,
-			this._dialogs[parentId].childheight,
-		);
+		this._setCanvasWidthHeight(canvas, this._dialogs[parentId].childwidth,
+			this._dialogs[parentId].childheight);
 
 		var ctx = canvas.getContext('2d');
 		ctx.drawImage(img, 0, 0);
 		$(canvas).show();
 	},
 
-	_onDialogChildClose: function (dialogId) {
+	_onDialogChildClose: function(dialogId) {
 		$('#' + this._toStrId(dialogId) + '-floating').remove();
 
 		// Remove any extra height allocated for the parent container (only for floating dialogs).
 		var canvas = document.getElementById(dialogId + '-canvas');
 		if (!canvas) {
-			canvas = document.getElementById(
-				this._toStrId(dialogId) + '-canvas',
-			);
-			if (!canvas) return;
+			canvas = document.getElementById(this._toStrId(dialogId) + '-canvas');
+			if (!canvas)
+				return;
 		}
 		var canvasHeight = canvas.height;
 		$('#' + dialogId).height(canvasHeight + 'px');
@@ -1184,14 +1019,14 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		this._dialogs[dialogId].childy = undefined;
 	},
 
-	_removeDialogChild: function (id) {
+	_removeDialogChild: function(id) {
 		$('#' + this._toStrId(id) + '-floating').remove();
 		this._dialogs[id].childid = undefined;
 		this._dialogs[id].childx = undefined;
 		this._dialogs[id].childy = undefined;
 	},
 
-	_createDialogChild: function (childId, parentId, top, left) {
+	_createDialogChild: function(childId, parentId, top, left) {
 		var strId = this._toStrId(parentId);
 		var dialogContainer = window.L.DomUtil.get(strId);
 		var floatingCanvas = window.L.DomUtil.create('canvas', 'lokdialogchild-canvas', dialogContainer);
@@ -1246,21 +1081,16 @@ window.L.Control.LokDialog = window.L.Control.extend({
 						this._postWindowMouseEvent('buttondown', childId, firstTouchPositionX, firstTouchPositionY, 1, 1, 0);
 						this._postWindowMouseEvent('buttonup', childId, firstTouchPositionX, firstTouchPositionY, 1, 1, 0);
 					}
-					firstTouchPositionX = null;
-					firstTouchPositionY = null;
-				} else if (e.type === 'touchmove') {
-					this._postWindowGestureEvent(
-						childId,
-						'panUpdate',
-						firstTouchPositionX,
-						firstTouchPositionY,
-						firstTouchPositionY - touchY,
-					);
 				}
-				previousTouchType = e.type;
-			},
-			this,
-		);
+				firstTouchPositionX = null;
+				firstTouchPositionY = null;
+			}
+			else if (e.type === 'touchmove')
+			{
+				this._postWindowGestureEvent(childId, 'panUpdate', firstTouchPositionX, firstTouchPositionY, firstTouchPositionY - touchY);
+			}
+			previousTouchType = e.type;
+		}, this);
 
 		window.L.DomEvent.on(canvas, 'mousedown mouseup', function(e) {
 			var buttons = 0;
@@ -1280,7 +1110,8 @@ window.L.Control.LokDialog = window.L.Control.extend({
 		window.L.DomEvent.on(canvas, 'contextmenu', function() {
 			return false;
 		});
-	},
+	}
+
 });
 
 window.L.control.lokDialog = function (options) {

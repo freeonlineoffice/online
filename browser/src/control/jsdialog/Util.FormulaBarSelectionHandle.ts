@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -29,8 +27,8 @@ class FormulaBarSelectionHandle {
 
 	private draggable: any;
 
-	onDrag?: (point: cool.Point) => void;
-	onDragEnd?: (event: cool.Point) => void;
+	onDrag?: (point: lool.Point) => void;
+	onDragEnd?: (event: lool.Point) => void;
 
 	/**
 	 * @param selectionLayer The layer that the formulabar's custom selections are placed in - we'll display relative to this element
@@ -74,7 +72,7 @@ class FormulaBarSelectionHandle {
 			offsetX = -this.width;
 		}
 
-		const lPoint = new cool.Point(point.x + offsetX, point.y); // "what you're doing is gross and horrible Skyler and I hate it", "yeah well, Draggable doesn't work with SimplePoints so ig we both have to deal..."
+		const lPoint = new lool.Point(point.x + offsetX, point.y); // "what you're doing is gross and horrible Skyler and I hate it", "yeah well, Draggable doesn't work with SimplePoints so ig we both have to deal..."
 		// also for some reason the twips value is correct here? I'm not going to fix what ain't...
 		window.L.DomUtil.setPosition(this.element, lPoint, true);
 		// Not using 3d transforms since as we're doing weird relative position hacks to get here :)

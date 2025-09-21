@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -42,9 +40,9 @@ class MultiPageViewLayout extends ViewLayoutBase {
 
 		app.socket.sendMessage(visibleAreaCommand);
 
-		return new cool.Bounds(
-			new cool.Point(visibleArea.pX1, visibleArea.pY1),
-			new cool.Point(visibleArea.pX2, visibleArea.pY2),
+		return new lool.Bounds(
+			new lool.Point(visibleArea.pX1, visibleArea.pY1),
+			new lool.Point(visibleArea.pX2, visibleArea.pY2),
 		);
 	}
 

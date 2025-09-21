@@ -15,16 +15,6 @@
 /* global $ app */
 
 namespace lool {
-	export class CornerHeader extends CanvasSectionObject {
-		anchor: any = [
-			[L.CSections.ColumnGroup.name, 'bottom', 'top'],
-			[L.CSections.RowGroup.name, 'right', 'left'],
-		];
-		size: number[] = [48 * app.dpiScale, 19 * app.dpiScale]; // These values are static.
-		processingOrder: number = L.CSections.CornerHeader.processingOrder;
-		drawingOrder: number = L.CSections.CornerHeader.drawingOrder;
-		zIndex: number = L.CSections.CornerHeader.zIndex;
-		sectionProperties: any = { cursor: 'pointer' };
 
 export class CornerHeader extends CanvasSectionObject {
 	anchor: any = [[app.CSections.ColumnGroup.name, 'bottom', 'top'], [app.CSections.RowGroup.name, 'right', 'left']];
@@ -34,36 +24,35 @@ export class CornerHeader extends CanvasSectionObject {
 	zIndex: number = app.CSections.CornerHeader.zIndex;
 	sectionProperties: any = { cursor: 'pointer' }
 
-		constructor() {
-			super(L.CSections.CornerHeader.name);
-		}
+	_map: any;
+	_textColor: string;
 
 	constructor() { super(app.CSections.CornerHeader.name); }
 
 	onInitialize():void {
 		this._map = window.L.Map.THIS;
 
-		onClick(): void {
-			this._map.wholeRowSelected = true;
-			this._map.wholeColumnSelected = true;
-			this._map.sendUnoCommand('.uno:SelectAll');
-			// Row and column selections trigger updatecursor: message
-			// and eventually _updateCursorAndOverlay function is triggered and focus will be at the map
-			// thus the keyboard shortcuts like delete will work again.
-			// selecting whole page does not trigger that and the focus will be lost.
-			const docLayer = this._map._docLayer;
-			if (docLayer) docLayer._updateCursorAndOverlay();
-		}
+		this._map.on('darkmodechanged', this._initCornerHeaderStyle, this);
+		this._initCornerHeaderStyle();
+	}
 
-		onMouseEnter(): void {
-			this.containerObject.getCanvasStyle().cursor =
-				this.sectionProperties.cursor;
-			$.contextMenu('destroy', '#document-canvas');
-		}
+	onClick(): void {
+		this._map.wholeRowSelected = true;
+		this._map.wholeColumnSelected = true;
+		this._map.sendUnoCommand('.uno:SelectAll');
+		// Row and column selections trigger updatecursor: message
+		// and eventually _updateCursorAndOverlay function is triggered and focus will be at the map
+		// thus the keyboard shortcuts like delete will work again.
+		// selecting whole page does not trigger that and the focus will be lost.
+		const docLayer = this._map._docLayer;
+		if (docLayer)
+			docLayer._updateCursorAndOverlay();
+	}
 
-		onMouseLeave(): void {
-			this.containerObject.getCanvasStyle().cursor = 'default';
-		}
+	onMouseEnter(): void {
+		this.containerObject.getCanvasStyle().cursor = this.sectionProperties.cursor;
+		$.contextMenu('destroy', '#document-canvas');
+	}
 
 	onMouseLeave(): void {
 		this.containerObject.getCanvasStyle().cursor = 'default';

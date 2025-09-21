@@ -132,16 +132,16 @@ interface Window {
 		activeDocument: null | DocumentBase;
 		definitions: any;
 		dpiScale: number;
-		canvasSize: null | cool.SimplePoint;
+		canvasSize: null | lool.SimplePoint;
 		viewId: null | number;
 		isAdminUser: null | boolean;
 		calc: {
-			cellAddress: null | cool.SimplePoint;
+			cellAddress: null | lool.SimplePoint;
 			cellCursorVisible: boolean;
-			cellCursorRectangle: null | cool.SimpleRectangle;
+			cellCursorRectangle: null | lool.SimpleRectangle;
 			decimalSeparator: null | string; // Current cell's decimal separator.
 			otherCellCursors: any;
-			splitCoordinate: null | cool.SimplePoint;
+			splitCoordinate: null | lool.SimplePoint;
 			partHashes: null | Array<any>; // hashes used to distinguish parts (we use sheet name)
 			autoFilterCell: any; // The cell of the current autofilter popup.
 			pivotTableFilterCell: any; // The cell of the current pivot table filter popup.
@@ -177,13 +177,12 @@ interface Window {
 		// file defined in: src/docstate.ts
 		file: {
 			editComment: boolean;
-			allowManageRedlines: boolean;
 			readOnly: boolean;
 			permission: string;
 			disableSidebar: boolean;
 			textCursor: {
 				visible: boolean;
-				rectangle: null | cool.SimpleRectangle;
+				rectangle: null | lool.SimpleRectangle;
 			};
 			fileBasedView: boolean;
 			writer: {
@@ -198,7 +197,7 @@ interface Window {
 			viewId: number;
 		};
 		tile: {
-			size: null | cool.SimplePoint;
+			size: null | lool.SimplePoint;
 		};
 		socket: any;
 		languages: Array<string>;

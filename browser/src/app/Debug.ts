@@ -2,8 +2,6 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -1383,11 +1381,11 @@ class DebugManager {
 
 		const signX = this._docLayer.isCalcRTL() ? -1 : 1;
 
-		const absTopLeftTwips = cool.Point.toPoint(
+		const absTopLeftTwips = lool.Point.toPoint(
 			rectangleArray[0] * signX,
 			rectangleArray[1],
 		);
-		const absBottomRightTwips = cool.Point.toPoint(
+		const absBottomRightTwips = lool.Point.toPoint(
 			(rectangleArray[0] + rectangleArray[2]) * signX,
 			rectangleArray[1] + rectangleArray[3],
 		);
