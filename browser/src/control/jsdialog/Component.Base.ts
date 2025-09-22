@@ -54,6 +54,8 @@ abstract class JSDialogComponent {
 
 		if (data.jsontype !== this.allowedJsonType) return false;
 
+		if (this.model) this.model.widgetUpdate(data);
+
 		if (!this.container) return false;
 
 		if (!this.builder) return false;
@@ -67,7 +69,6 @@ abstract class JSDialogComponent {
 				: data.control.id,
 		);
 
-		this.model.widgetUpdate(data);
 		this.builder.updateWidget(this.container, data.control);
 
 		return true;
@@ -78,6 +79,8 @@ abstract class JSDialogComponent {
 		var data = e.data;
 
 		if (data.jsontype !== this.allowedJsonType) return false;
+
+		if (this.model) this.model.widgetAction(data);
 
 		if (!this.builder) return false;
 
@@ -92,7 +95,6 @@ abstract class JSDialogComponent {
 				: data.data.control_id,
 		);
 
-		this.model.widgetAction(data);
 		this.builder.executeAction(this.container, data.data);
 
 		return true;
