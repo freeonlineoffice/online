@@ -634,13 +634,11 @@ class SlideShowPresenter {
 
 	private _onPrevSlide = (e: Event) => {
 		e.stopPropagation();
-		this._onA11yString(e.target);
 		this._slideShowNavigator.rewindEffect();
 	};
 
 	private _onNextSlide = (e: Event) => {
 		e.stopPropagation();
-		this._onA11yString(e.target);
 		if (this._navigateSkipTransition)
 			this._slideShowNavigator.skipEffect();
 		else this._slideShowNavigator.dispatchEffect();
@@ -648,8 +646,7 @@ class SlideShowPresenter {
 
 	private _onQuit = (e: Event) => {
 		e.stopPropagation();
-		this._onA11yString(e.target);
-		setTimeout(this.endPresentation.bind(this, true), 500);
+		this.endPresentation(true);
 	};
 
 	_hideSlideControls() {
