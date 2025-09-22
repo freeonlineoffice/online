@@ -605,6 +605,7 @@ class SlideShowPresenter {
 			'slideshow-nav-container',
 			parent,
 		);
+		slideNavContainer.tabIndex = -1;
 		this._configureSlideNavStyles(slideNavContainer);
 		this._initializeSlideNavWidget(slideNavContainer);
 		return slideNavContainer;
