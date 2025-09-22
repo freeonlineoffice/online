@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 11:01+0200\n"
+"POT-Creation-Date: 2025-09-22 20:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -288,7 +288,7 @@ msgstr ""
 #: src/control/Control.DocumentRepair.js:75
 #: src/control/Control.ESignatureDialog.ts:136
 #: src/control/Control.LanguageDialog.js:121
-#: src/control/Control.ServerAuditDialog.ts:261
+#: src/control/Control.ServerAuditDialog.ts:343
 #: src/control/Control.Tabs.js:493 src/control/Control.Tabs.js:511
 #: src/control/Control.Zotero.js:418 src/control/Control.Zotero.js:465
 #: src/control/Parts.js:605 src/control/Permission.js:100
@@ -299,10 +299,10 @@ msgstr ""
 #: src/map/Clipboard.js:1541 src/map/handler/Map.Feedback.js:90
 #: src/map/handler/Map.SlideShow.js:62 src/map/handler/Map.SlideShow.js:184
 #: src/map/handler/Map.SlideShow.js:371 src/map/handler/Map.SlideShow.js:387
-#: src/map/handler/Map.WOPI.js:774 src/slideshow/SlideShowPresenter.ts:1070
-#: src/slideshow/SlideShowPresenter.ts:1085
-#: src/slideshow/SlideShowPresenter.ts:1100
-#: src/slideshow/SlideShowPresenter.ts:1123
+#: src/map/handler/Map.WOPI.js:774 src/slideshow/SlideShowPresenter.ts:1094
+#: src/slideshow/SlideShowPresenter.ts:1109
+#: src/slideshow/SlideShowPresenter.ts:1124
+#: src/slideshow/SlideShowPresenter.ts:1147
 msgid "OK"
 msgstr ""
 
@@ -1529,8 +1529,8 @@ msgstr ""
 #: src/control/Control.Menubar.ts:418 src/control/Control.Menubar.ts:595
 #: src/control/Control.Menubar.ts:734 src/control/Control.Menubar.ts:1027
 #: src/control/Control.NotebookbarWriter.js:492
-#: src/control/Control.ServerAuditDialog.ts:212
-#: src/control/Control.ServerAuditDialog.ts:213
+#: src/control/Control.ServerAuditDialog.ts:294
+#: src/control/Control.ServerAuditDialog.ts:295
 msgid "Server audit"
 msgstr ""
 
@@ -1976,7 +1976,7 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:164
 #: src/control/Control.NotebookbarImpress.js:214
 #: src/control/Control.NotebookbarWriter.js:106
-#: src/control/Control.ServerAuditDialog.ts:235
+#: src/control/Control.ServerAuditDialog.ts:317
 msgid "Help"
 msgstr ""
 
@@ -2595,63 +2595,102 @@ msgstr ""
 msgid "Scroll down annotations"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:55
+#: src/control/Control.ServerAuditDialog.ts:57
 msgid "The IsAdminUser property is not set by integration"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:62
+#: src/control/Control.ServerAuditDialog.ts:64
 msgid ""
 "Used deprecated is_admin field, integration should use IsAdminUser property "
 "instead"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:69
+#: src/control/Control.ServerAuditDialog.ts:71
 msgid "The IsAdminUser user property is set by integration"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:78
+#: src/control/Control.ServerAuditDialog.ts:81
 msgid "Your WOPI server is not secure: SSL verification failed"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:84
+#: src/control/Control.ServerAuditDialog.ts:87
 msgid "No problems with SSL verification detected"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:91
+#: src/control/Control.ServerAuditDialog.ts:95
 msgid "PostMessage API is initialized"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:96
+#: src/control/Control.ServerAuditDialog.ts:100
 msgid "Integrator is not ready for PostMessage calls"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:104
+#: src/control/Control.ServerAuditDialog.ts:109
 msgid ""
 "Your server is configured with insufficient hardware resources, which may "
 "lead to poor performance."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:111
+#: src/control/Control.ServerAuditDialog.ts:116
 msgid "Hardware resources are sufficient for optimal performance"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:232
+#: src/control/Control.ServerAuditDialog.ts:126
+msgid ""
+"BPF filtering of potentially risky system calls (seccomp) is not enabled; a "
+"security hazard."
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:132
+msgid "system call security filtering enabled"
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:141
+msgid "Slow Kit jail setup with copying, cannot bind-mount."
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:147
+msgid "Fast kit jail bind mounting enabled"
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:156
+msgid ""
+"Documents are not effectively contained: missing capabilities or namespaces."
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:162
+msgid "Each document is securely contained"
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:169
+msgid "Using namespaces."
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:170
+msgid "Not using namespaces"
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:242
+msgid "Document container started in"
+msgstr ""
+
+#: src/control/Control.ServerAuditDialog.ts:314
 msgid "Status"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:244
+#: src/control/Control.ServerAuditDialog.ts:326
 msgid "No issues found"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:250
+#: src/control/Control.ServerAuditDialog.ts:332
 msgid "Alerts:"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:298
+#: src/control/Control.ServerAuditDialog.ts:386
 msgid "Check security warnings of your server"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:299
+#: src/control/Control.ServerAuditDialog.ts:387
 msgid "OPEN"
 msgstr ""
 
@@ -2907,13 +2946,13 @@ msgstr ""
 
 #: src/control/Control.Zotero.js:304 src/control/Control.Zotero.js:514
 #: src/slideshow/PresenterConsole.js:31
-#: src/slideshow/SlideShowPresenter.ts:665
+#: src/slideshow/SlideShowPresenter.ts:687
 msgid "Previous"
 msgstr ""
 
 #: src/control/Control.Zotero.js:317 src/control/Control.Zotero.js:529
 #: src/slideshow/PresenterConsole.js:32
-#: src/slideshow/SlideShowPresenter.ts:681
+#: src/slideshow/SlideShowPresenter.ts:703
 msgid "Next"
 msgstr ""
 
@@ -4170,17 +4209,17 @@ msgid "Print dialog"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:59
-#: src/slideshow/SlideShowPresenter.ts:1067
+#: src/slideshow/SlideShowPresenter.ts:1091
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:179
-#: src/slideshow/SlideShowPresenter.ts:1095
+#: src/slideshow/SlideShowPresenter.ts:1119
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:181
-#: src/slideshow/SlideShowPresenter.ts:1097
+#: src/slideshow/SlideShowPresenter.ts:1121
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -4188,17 +4227,17 @@ msgid ""
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:191
-#: src/slideshow/SlideShowPresenter.ts:882
+#: src/slideshow/SlideShowPresenter.ts:906
 msgid "Windowed Presentation: "
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:229
-#: src/slideshow/SlideShowPresenter.ts:925
+#: src/slideshow/SlideShowPresenter.ts:949
 msgid "Presenting in window"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:230
-#: src/slideshow/SlideShowPresenter.ts:926
+#: src/slideshow/SlideShowPresenter.ts:950
 msgid "Close Presentation"
 msgstr ""
 
@@ -4211,22 +4250,22 @@ msgid "End Presentation"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:368
-#: src/slideshow/SlideShowPresenter.ts:1082
+#: src/slideshow/SlideShowPresenter.ts:1106
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:369
-#: src/slideshow/SlideShowPresenter.ts:1083
+#: src/slideshow/SlideShowPresenter.ts:1107
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:384
-#: src/slideshow/SlideShowPresenter.ts:1120
+#: src/slideshow/SlideShowPresenter.ts:1144
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:385
-#: src/slideshow/SlideShowPresenter.ts:1121
+#: src/slideshow/SlideShowPresenter.ts:1145
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
@@ -4308,24 +4347,24 @@ msgid "Repeat in {0} seconds"
 msgstr ""
 
 #: src/slideshow/PresenterConsole.js:1488
-#: src/slideshow/SlideShowPresenter.ts:553
+#: src/slideshow/SlideShowPresenter.ts:559
 msgid "Click to exit presentation..."
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:657
+#: src/slideshow/SlideShowPresenter.ts:679
 msgid "End Show"
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:693
-#: src/slideshow/SlideShowPresenter.ts:712
+#: src/slideshow/SlideShowPresenter.ts:715
+#: src/slideshow/SlideShowPresenter.ts:735
 msgid "Disable Animations"
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:711
+#: src/slideshow/SlideShowPresenter.ts:734
 msgid "Enable Animations"
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:734
+#: src/slideshow/SlideShowPresenter.ts:757
 msgid "Follow Presentation"
 msgstr ""
 
