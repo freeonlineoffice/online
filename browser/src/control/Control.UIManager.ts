@@ -644,6 +644,7 @@ class UIManager extends window.L.Control {
 			(isDesktop || window.mode.isTablet())
 		) {
 			JSDialog.PresentationBar(this.map);
+			this.map.transitionsSidebar = JSDialog.ImpressTransitionsPanel(this.map);
 		}
 		if (
 			(window.mode.isTablet() || window.mode.isDesktop()) &&
