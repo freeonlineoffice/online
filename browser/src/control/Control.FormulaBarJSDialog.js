@@ -12,7 +12,7 @@
  * JSDialog.FormulaBar - implementation of formulabar toolbar
  */
 
-/* global JSDialog _ _UNO UNOKey */
+/* global JSDialog _ _UNO UNOKey WindowId */
 
 const EXPAND_FORMULA_BAR_TEXT = _('Expand Formula Bar');
 const FUNCTION_WIZARD_TEXT = _('Function Wizard');
@@ -30,6 +30,7 @@ class FormulaBar {
 			{
 				mobileWizard: this,
 				map: this.map,
+				windowId: WindowId.Formulabar,
 				cssClass: 'formulabar jsdialog',
 				callback: this.callback.bind(this),
 				suffix: 'formulabar',
