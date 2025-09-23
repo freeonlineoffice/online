@@ -2078,4 +2078,7 @@ if test -n "$poco_known_buggy"; then
     AC_MSG_WARN([Your version of POCO has known bugs: see dev-notes/dependency-issues.md])
 fi
 
+# Remove emconfigure artifacts that Autoconf fails to remove by itself:
+rm -f a.wasm
+
 dnl vim:set shiftwidth=4 softtabstop=4 expandtab:
