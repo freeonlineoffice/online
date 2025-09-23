@@ -23,6 +23,7 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 		maxHeight: window.mode.isDesktop() ? 180: (window.mode.isTablet() ? 120: 60)
 	},
 	partsFocused: false,
+	contextMenuCopyActive: false,
 
 	initialize: function (container, preview, options) {
 		window.L.setOptions(this, options);
@@ -299,7 +300,7 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 						isHtmlName: true,
 						callback: function() {
 							that.copiedSlide = e;
-							that._map._clip._execCopyCutPaste('CopySlide');
+							that._map._clip._execCopyCutPaste('copy', '.uno:CopySlide');
 						},
 						visible: function() {
 							return true;
@@ -309,7 +310,7 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 						name: app.IconUtil.createMenuItemLink(_('Paste'), 'Paste'),
 						isHtmlName: true,
 						callback: function() {
-							that._map._clip._execCopyCutPaste('Paste')
+							that._map._clip._execCopyCutPaste('paste', ".uno:Paste")
 						},
 					},
 					newslide: {
