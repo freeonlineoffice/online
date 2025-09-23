@@ -80,13 +80,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		this.context.beginPath();
 		if (this.sectionProperties.cropModeEnabled) this.drawCropHandles();
 		else
-			this.context.arc(
-				this.size[0] * 0.5,
-				this.size[1] * 0.5,
-				this.size[0] * 0.5,
-				0,
-				Math.PI * 2,
-			);
+			this.context.rect(0, 0, this.size[0], this.size[1]);
 		this.context.closePath();
 		this.context.fill();
 		this.context.stroke();
