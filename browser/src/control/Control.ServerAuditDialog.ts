@@ -29,7 +29,8 @@ class ClientAuditor {
 	}
 
 	private static checkProxyProtocol(entries: Array<AuditEntry>) {
-		if (window.socketProxy) entries.push({ code: 'proxy', status: 'slow' });
+		if (window.socketProxy)
+			entries.push({ code: 'proxy', status: 'slow' });
 		else entries.push({ code: 'proxy', status: 'ok' });
 	}
 
@@ -137,7 +138,9 @@ class ServerAuditDialog {
 			proxy: {
 				priority: 12,
 				slow: [
-					_('Poorly performing proxying of all network requests.'),
+					_(
+						'Poorly performing proxying of all network requests.',
+					),
 					'',
 					'',
 				],
