@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,20 +16,8 @@
 class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 	static tableAnchorIconSize = [20, 20]; // CSS pixels.
 
-	constructor(
-		parentHandlerSection: ShapeHandlesSection,
-		sectionName: string,
-		size: number[],
-		documentPosition: lool.SimplePoint,
-		ownInfo: any,
-	) {
-		super(
-			sectionName,
-			size[0],
-			size[1],
-			documentPosition,
-			'anchor-marker',
-		);
+	constructor (parentHandlerSection: ShapeHandlesSection | null, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
+        super(sectionName, size[0], size[1], documentPosition, 'anchor-marker');
 
 		this.getHTMLObject().style.opacity = 1;
 		this.getHTMLObject().remove();

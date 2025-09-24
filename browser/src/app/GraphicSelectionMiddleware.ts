@@ -2,8 +2,6 @@
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -226,8 +224,10 @@ class GraphicSelection {
 				this.rectangle.pX1,
 				this.rectangle.pY1,
 			);
+
 			extraInfo.hasTableSelection =
-				app.map._docLayer.hasTableSelection(); // scaleSouthAndEastOnly
+				app.activeDocument.tableMiddleware.hasTableSelection(); // scaleSouthAndEastOnly
+
 			this.handlesSection.refreshInfo(this.extraInfo);
 			this.handlesSection.setShowSection(true);
 			app.sectionContainer.requestReDraw();

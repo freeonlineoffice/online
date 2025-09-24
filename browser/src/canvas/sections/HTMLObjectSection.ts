@@ -46,7 +46,7 @@ class HTMLObjectSection extends CanvasSectionObject {
 				objectHeight + 'px';
 
 		if (extraClass)
-			this.sectionProperties.objectDiv.classList.add(extraClass);
+			this.sectionProperties.objectDiv.className += ' ' + extraClass;
 
 		// canvas-container and canvas overlap entirely. We can append the html object to canvas-container.
 		document
