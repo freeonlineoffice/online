@@ -756,11 +756,8 @@ window.L.Clipboard = window.L.Class.extend({
 		this._beforeSelectImpl();
 	},
 
-	_beforeSelectImpl: function () {
-		if (
-			this._map.getDocType() === 'presentation' &&
-			this._map._docLayer._preview.partsFocused
-		)
+	_beforeSelectImpl: function() {
+		if (this._selectionType === 'slide')
 			return;
 
 		// We need some spaces in there ...
@@ -1328,9 +1325,8 @@ window.L.Clipboard = window.L.Class.extend({
 	},
 
 	_doCopyCut: function(ev, unoName) {
-		if (this._map.getDocType() === 'presentation' && this._map._docLayer._preview.partsFocused) {
+		if (this._selectionType === 'slide')
 			unoName = 'CopySlide';
-		}
 		window.app.console.log(unoName);
 
 		if (this._isAnyInputFieldSelected(unoName === 'Copy')) return;

@@ -214,7 +214,6 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 				}
 			} else {
 				this._setPart(e);
-				this.partsFocused = true;
 				if (!window.mode.isDesktop()) {
 					// needed so on-screen keyboard doesn't pop up when switching slides,
 					// but would cause PgUp/Down to not work on desktop in slide sorter
@@ -234,6 +233,7 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 		};
 
 		img.onblur = function () {
+			that._map._clip.clearSelection();
 			that.partsFocused = false;
 		};
 
@@ -303,6 +303,8 @@ window.L.Control.PartsPreview = window.L.Control.extend({
 						isHtmlName: true,
 						callback: function() {
 							that.copiedSlide = e;
+							that._map._clip.clearSelection();
+							that._map._clip.setTextSelectionType('slide');
 							that._map._clip._execCopyCutPaste('copy', '.uno:CopySlide');
 						},
 						visible: function() {
