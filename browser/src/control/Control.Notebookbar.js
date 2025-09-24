@@ -121,7 +121,13 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 		window.L.control.attachTooltipEventListener(docLogo, this.map);
 		$('.main-nav').prepend(docLogoHeader);
 		var isDarkMode = window.prefs.getBoolean('darkTheme');
-		if (!isDarkMode) $('#invertbackground').hide();
+		if (!isDarkMode)
+			$('#invertbackground').hide();
+
+		if (!this.map.serverAuditDialog) {
+			this.hideItem('server-audit');
+			this.hideItem('help-serveraudit-break');
+		}
 	},
 
 	resetInCore: function () {
@@ -754,18 +760,33 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 		builder.build(optionsSection, childrenArray);
 	},
 
+	// dynamically show/hide items
+
 	hideItem: function(itemId) {
 		app.console.debug('Notebookbar: hide item: ' + itemId);
 
-		if (!this.hiddenItems.includes(itemId))
+		if (!this.hiddenItems.includes(itemId)) {
 			this.hiddenItems.push(itemId);
+			this.showItemImpl(itemId, false);
+		}
+	},
 
+	showItem: function(itemId) {
+		app.console.debug('Notebookbar: show item: ' + itemId);
+
+		if (this.hiddenItems.includes(itemId)) {
+			this.hiddenItems.splice(this.hiddenItems.indexOf(itemId), 1);
+			this.showItemImpl(itemId, true);
+		}
+	},
+
+	showItemImpl: function(itemId, show) {
 		app.map.fire('jsdialogaction', { data: {
 				jsontype: 'notebookbar',
 				action: 'action',
 				data: {
 					control_id: itemId,
-					action_type: 'hide'
+					action_type: show ? 'show' : 'hide'
 				}
 			}
 		});
