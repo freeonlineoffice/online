@@ -845,7 +845,7 @@ class UIManager extends window.L.Control {
 	}
 
 	/**
-	 * Refreshes the notebookbar.
+	 * Refreshes the notebookbar. WARNING: if we got core updates for JSDialog widgets, they will be lost.
 	 */
 	refreshNotebookbar(): void {
 		var selectedTab =
@@ -1536,7 +1536,7 @@ class UIManager extends window.L.Control {
 	}
 
 	/**
-	 * Refreshes the UI.
+	 * Refreshes the UI. WARNING: if we got core updates for JSDialog widgets, they will be lost.
 	 */
 	refreshUI(): void {
 		if (this.notebookbar && !this.map._shouldStartReadOnly())
