@@ -1445,29 +1445,47 @@ function getInitializerClass() {
 		this.id = global.proxySocketCounter++;
 		this.msgInflight = 0;
 		this.openInflight = 0;
-		this.inSerial = 0;
-		this.outSerial = 0;
+		this.inSerial = 0; // monotonic serial of the last processed received message
+		this.outSerial = 0; // monotonic serial of the next message to send.
 		this.minPollMs = 25; // Anything less than ~25 ms can overwhelm the HTTP server.
 		this.maxPollMs = 500; // We can probably go as much as 1-2 seconds without ill-effect.
 		this.curPollMs = this.minPollMs; // The current poll period.
 		this.minIdlePollsToThrottle = 3; // This many 'no data' responses and we throttle.
 		this.throttleFactor = 1.15; // How rapidly to throttle. 15% takes 4s to go from 25 to 500ms.
 		this.lastDataTimestamp = performance.now(); // The last time we got any data.
-		this.onclose = function () {};
-		this.onerror = function () {};
-		this.onmessage = function () {};
+		this.serialQueue = new Map();
+		this.onclose = function() {
+		};
+		this.onerror = function() {
+		};
+		this.onmessage = function() {
+		};
 
 		this.decoder = new TextDecoder();
 		this.doSlice = function (bytes, start, end) {
 			return bytes.slice(start, end);
 		};
+		this.processBufferedMessages = function (expectedSerial) {
+			while (this.serialQueue.has(expectedSerial)) {
+				let bufferedMessage = this.serialQueue.get(expectedSerial);
+				this.inSerial = bufferedMessage.serial;
 
-		this.decode = function (bytes, start, end) {
-			return this.decoder.decode(this.doSlice(bytes, start, end));
-		};
-		this.parseIncomingArray = function (arr) {
-			//global.app.console.debug('proxy: parse incoming array of length ' + arr.length);
-			for (var i = 0; i < arr.length; ++i) {
+				try {
+					this.onmessage({ data: bufferedMessage.data });
+				} catch (e) {
+					global.app.console.error(e);
+					global.app.console.warn(`Failed processing a ProxySocket message (due to ${e}), ignoring`);
+					// It's better to ignore any failures rather than to lose the rest of the messages in this packet
+				}
+
+				this.serialQueue.delete(expectedSerial);
+				expectedSerial++;
+			}
+		},
+		this.parseIncomingArray = function(arr) {
+			// global.app.console.debug('proxy: parse incoming array of length ' + arr.length);
+			for (var i = 0; i < arr.length; ++i)
+			{
 				var left = arr.length - i;
 				if (left < 4) {
 					//global.app.console.debug('no data left');
@@ -1517,24 +1535,11 @@ function getInitializerClass() {
 				if (type == 'T') data = this.decode(arr, i, i + size);
 				else data = this.doSlice(arr, i, i + size);
 
-				if (serial !== that.inSerial + 1) {
-					global.app.console.debug(
-						'Error: serial mismatch ' +
-							serial +
-							' vs. ' +
-							(that.inSerial + 1),
-					);
-				}
-				that.inSerial = serial;
-				try {
-					this.onmessage({ data: data });
-				} catch (e) {
-					global.app.console.error(e);
-					global.app.console.warn(
-						`Failed processing a ProxySocket message (due to ${e}), ignoring`,
-					);
-					// It's better to ignore any failures rather than to lose the rest of the messages in this packet
-				}
+				this.serialQueue.set(serial, {
+					'data': data,
+					'serial': serial
+				});
+				this.processBufferedMessages(serial);
 
 				i += size; // skip trailing '\n' in loop-increment
 			}
