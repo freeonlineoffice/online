@@ -863,7 +863,7 @@ $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist: $(LOOL_JS_DST)
 	$(QUIET_CMP) if cmp -s $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist; then rm $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp; else mv $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist; fi
 
 $(INTERMEDIATE_DIR)/LOOL_JS.m4: $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist
-	$(foreach file,$(NODE_MODULES_JS) $(LOOL_LIBS_JS) $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)), $(shell echo -n $(file), >> $(INTERMEDIATE_DIR)/COOL_JS.m4.tmp))
+	$(foreach file,$(NODE_MODULES_JS) $(LOOL_LIBS_JS) $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)), $(shell echo -n $(file), >> $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp))
 	@truncate $(if $(filter Darwin,$(shell uname -s)),-s -1,--size=-1) $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp
 	@mv $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4
 
