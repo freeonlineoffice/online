@@ -167,26 +167,18 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 				},
 			},
 			{
-				id: 'Shape-tab-label',
-				text: 'Shape',
-				name: 'Shape',
-				context: 'Draw|DrawLine|3DObject|MultiObject|DrawFontwork',
-				accessibility: {
-					focusBack: false,
-					combination: 'D',
-					de: null,
-				},
+				'id': 'Shape-tab-label',
+				'text': _('Shape'),
+				'name': 'Shape',
+				'context': 'Draw|DrawLine|3DObject|MultiObject|DrawFontwork',
+				'accessibility': { focusBack: false, combination: 'D', de: null }
 			},
 			{
-				id: 'Picture-tab-label',
-				text: 'Picture',
-				name: 'Picture',
-				context: 'Graphic',
-				accessibility: {
-					focusBack: false,
-					combination: 'I',
-					de: null,
-				},
+				'id': 'Picture-tab-label',
+				'text': _('Picture'),
+				'name': 'Picture',
+				'context': 'Graphic',
+				'accessibility': { focusBack: false, combination: 'I', de: null }
 			},
 			{
 				id: 'MasterPage-tab-label',
