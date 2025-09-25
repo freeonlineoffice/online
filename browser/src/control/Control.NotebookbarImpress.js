@@ -770,128 +770,20 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 						type: 'toolbox',
 						children: [
 							{
-								id: 'showruler',
-								class: 'unoshowruler',
-								type: 'customtoolitem',
-								text: _('Ruler'),
-								accessibility: {
-									focusBack: true,
-									combination: 'R',
-									de: 'L',
-								},
-							},
-						],
-					},
-					{
-						type: 'toolbox',
-						children: [
-							{
-								id: 'showstatusbar',
-								class: 'unoshowstatusbar',
-								type: 'customtoolitem',
-								text: _('Status Bar'),
-								accessibility: {
-									focusBack: true,
-									combination: 'SB',
-									de: null,
-								},
-							},
-						],
-					},
-				],
-				vertical: 'true',
-			},
-			{
-				id: 'collapsenotebookbar',
-				class: 'unocollapsenotebookbar',
-				type: 'bigcustomtoolitem',
-				text: _('Collapse Tabs'),
-				accessibility: {
-					focusBack: true,
-					combination: 'CT',
-					de: null,
-				},
-			},
-			{
-				type: 'separator',
-				id: 'view-collapsenotebookbar-break',
-				orientation: 'vertical',
-			},
-			{
-				type: 'overflowgroup',
-				id: 'view-slide-view',
-				name: _('Slide Views'),
-				accessibility: {
-					focusBack: true,
-					combination: 'NV',
-					de: null,
-				},
-				children: [
-					{
-						id: 'notesmode',
-						class: 'notesmode',
-						type: 'bigcustomtoolitem',
-						text: _('Notes View'),
-						accessibility: {
-							focusBack: false,
-							combination: 'NV',
-						},
-					},
-					{
-						id: 'view-master-view',
-						type: 'bigtoolitem',
-						text: _('Master View'),
-						command: '.uno:SlideMasterPage',
-						accessibility: {
-							focusBack: true,
-							combination: 'MP',
-							de: null,
-						},
-					},
-				],
-			},
-			{
-				type: 'separator',
-				id: 'view-masterview-break',
-				orientation: 'vertical',
-			},
-			{
-				type: 'overflowgroup',
-				id: 'view-grid',
-				name: _('Grid'),
-				accessibility: {
-					focusBack: true,
-					combination: 'GV',
-					de: null,
-				},
-				children: [
-					{
-						type: 'toolbox',
-						children: [
-							{
-								id: 'home-grid-visible',
-								type: 'toolitem',
-								text: _('Show Grid'),
-								command: '.uno:GridVisible',
-								accessibility: {
-									focusBack: true,
-									combination: 'GV',
-									de: null,
-								},
+								'id': 'home-grid-visible',
+								'type': 'bigtoolitem',
+								'text': _('Show Grid'),
+								'command': '.uno:GridVisible',
+								'accessibility': { focusBack: true, combination: 'GV', de: null }
 							},
 							{
-								id: 'home-grid-use',
-								type: 'toolitem',
-								text: _('Snap to Grid'),
-								command: '.uno:GridUse',
-								accessibility: {
-									focusBack: true,
-									combination: 'GU',
-									de: null,
-								},
-							},
+								'id': 'home-grid-use',
+								'type': 'bigtoolitem',
+								'text': _('Snap to Grid'),
+								'command': '.uno:GridUse',
+								'accessibility': { focusBack: true, combination: 'GU', de: null }
+							}
 						],
-						vertical: 'true',
 					},
 				],
 			},
