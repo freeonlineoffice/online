@@ -1501,22 +1501,11 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 						'accessibility': { focusBack: true,	combination: 'X',	de:	null }
 					},
 					{
-						'type': 'container',
-						'children': [
-							{
-								'type': 'toolbox',
-								'children': [
-									{
-										'id': 'insert-insert-vertical-text',
-										'type': 'toolitem',
-										'text': _UNO('.uno:VerticalText', 'text'),
-										'command': '.uno:VerticalText',
-										'accessibility': { focusBack: false,	combination: 'VT',	de:	null }
-									}
-								]
-							}
-						],
-						'vertical': 'true'
+						'id': 'insert-insert-vertical-text',
+						'type': 'bigtoolitem',
+						'text': _UNO('.uno:VerticalText', 'text'),
+						'command': '.uno:VerticalText',
+						'accessibility': { focusBack: false,	combination: 'VT',	de:	null },
 					},
 				]
 			},
@@ -1582,22 +1571,11 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 						'vertical': 'true'
 					},
 					{
-						'type': 'container',
-						'children': [
-							{
-								'type': 'toolbox',
-								'children': [
-									{
-										'id': 'insert-QrCode',
-										'type': 'toolitem',
-										'text': _UNO('.uno:InsertQrCode', 'text'),
-										'command': '.uno:InsertQrCode',
-										'accessibility': { focusBack: false,	combination: 'IQ',	de: null }
-									},
-								]
-							}
-						],
-						'vertical': 'true'
+						'id': 'insert-QrCode',
+						'type': 'bigtoolitem',
+						'text': _UNO('.uno:InsertQrCode', 'text'),
+						'command': '.uno:InsertQrCode',
+						'accessibility': { focusBack: false,	combination: 'IQ',	de: null },
 					},
 				]
 			},

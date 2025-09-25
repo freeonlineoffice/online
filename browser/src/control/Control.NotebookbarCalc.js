@@ -2787,21 +2787,14 @@ window.L.Control.NotebookbarCalc = window.L.Control.NotebookbarWriter.extend({
 								type: 'toolbox',
 								children: [
 									{
-										id: 'insert-vertical-text',
-										type: 'toolitem',
-										text: _UNO(
-											'.uno:VerticalText',
-											'spreadsheet',
-										),
-										command: '.uno:VerticalText',
-										accessibility: {
-											focusBack: true,
-											combination: 'IV',
-											de: null,
-										},
-									},
-								],
-							},
+										'id': 'insert-vertical-text',
+										'type': app.LOUtil.isFileODF(this.map) ? 'toolitem' : 'bigtoolitem',
+										'text': _UNO('.uno:VerticalText', 'spreadsheet'),
+										'command': '.uno:VerticalText',
+										'accessibility': { focusBack: true,	combination: 'IV', de: null }
+									}
+								]
+							}
 						],
 						vertical: 'true',
 					},
