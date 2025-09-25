@@ -30,11 +30,7 @@ else if (wopiSrc !== '' && accessHeader !== '') {
 	wopiParams = { 'access_header': accessHeader };
 }
 
-if (window.ThisIsTheEmscriptenApp)
-	// Temporary hack
-	var filePath = 'file:///sample.docx';
-else
-	var filePath = global.loolParams.get('file_path');
+var filePath = global.loolParams.get('file_path');
 
 app.localeService = new LocaleService();
 app.setPermission(global.loolParams.get('permission') || 'edit');
