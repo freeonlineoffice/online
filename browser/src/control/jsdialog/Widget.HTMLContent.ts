@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -64,26 +62,29 @@ function getStatusbarItemElement(
 	title: string,
 	text: string,
 	builder: any,
+	renderAsButton = false,
 ) {
-	const div = document.createElement('div');
-	div.id = id;
-	div.className = 'jsdialog ui-badge';
-	div.textContent = text;
-	div.setAttribute('data-looltip', title);
-	window.L.control.attachTooltipEventListener(div, builder.map);
+	const element = document.createElement(renderAsButton ? 'button' : 'div');
+	element.id = id;
+	element.className =
+		'jsdialog ui-badge' + (renderAsButton ? ' unobutton' : '');
+	element.textContent = text;
+	element.setAttribute('data-looltip', title);
+	window.L.control.attachTooltipEventListener(element, builder.map);
 
-	return div;
+	return element;
 }
 
 function getPageNumberElements(text: string, builder: any) {
-	const element = getStatusbarItemElement(
+	const button = getStatusbarItemElement(
 		'StatePageNumber',
 		_('Number of Pages. Click to open the Go to Page dialog box.'),
 		text,
 		builder,
+		true,
 	);
-	element.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
-	return element;
+	button.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
+	return button;
 }
 
 function getWordCountElements(text: string, builder: any) {
@@ -96,14 +97,15 @@ function getWordCountElements(text: string, builder: any) {
 }
 
 function getStatusDocPosElements(text: string, builder: any) {
-	const element = getStatusbarItemElement(
+	const button = getStatusbarItemElement(
 		'StatusDocPos',
 		_('Number of Sheets'),
 		text,
 		builder,
+		true,
 	);
-	element.onclick = () => app.map.sendUnoCommand('.uno:JumpToTable');
-	return element;
+	button.onclick = () => app.map.sendUnoCommand('.uno:JumpToTable');
+	return button;
 }
 
 function getInsertModeElements(text: string, builder: any) {
@@ -143,25 +145,27 @@ function getStateTableCellElements(text: string, builder: any) {
 }
 
 function getSlideStatusElements(text: string, builder: any) {
-	const element = getStatusbarItemElement(
+	const button = getStatusbarItemElement(
 		'SlideStatus',
 		_('Number of Slides'),
 		text,
 		builder,
+		true,
 	);
-	element.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
-	return element;
+	button.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
+	return button;
 }
 
 function getPageStatusElements(text: string, builder: any) {
-	const element = getStatusbarItemElement(
+	const button = getStatusbarItemElement(
 		'PageStatus',
 		_('Number of Pages'),
 		text,
 		builder,
+		true,
 	);
-	element.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
-	return element;
+	button.onclick = () => app.map.sendUnoCommand('.uno:GotoPage');
+	return button;
 }
 
 function getDocumentStatusElements(text: string, builder: any) {
