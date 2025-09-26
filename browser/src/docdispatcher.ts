@@ -665,7 +665,7 @@ class Dispatcher {
 		};
 
 		this.actionsMap['transitiondeck'] = () => {
-			app.map.transitionsSidebar.openTransitionSidebar();
+			app.map.sidebarFromNotebookbar.openTransitionSidebar();
 		};
 	}
 
