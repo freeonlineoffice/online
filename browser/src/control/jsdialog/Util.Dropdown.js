@@ -146,7 +146,7 @@ JSDialog.OpenDropdown = function (
 				targetEntries && pos !== null ? targetEntries[pos] : null;
 
 			if (eventType === 'selected' || eventType === 'showsubmenu') {
-				if (entry.items) {
+				if (entry && entry.items) {
 					if (lastSubMenuOpened) {
 						var submenu =
 							JSDialog.GetDropdown(lastSubMenuOpened);
@@ -189,7 +189,7 @@ JSDialog.OpenDropdown = function (
 						if (focusables && focusables.length)
 							focusables[0].focus();
 					});
-				} else if (eventType === 'selected' && entry.uno) {
+				} else if (eventType === 'selected' && entry && entry.uno) {
 					var uno = (entry.uno.indexOf('.uno:') === 0) ? entry.uno : '.uno:' + entry.uno;
 					window.L.Map.THIS.sendUnoCommand(uno);
 					JSDialog.CloseDropdown(id);
