@@ -1491,36 +1491,15 @@ class CanvasSectionContainer {
 
 		if (e.button === 0 && !this.touchEventInProgress) {
 			this.positionOnMouseUp = this.convertPositionToCanvasLocale(e);
-
+			var section: CanvasSectionObject;
 			if (!this.draggingSomething) {
-				var section: CanvasSectionObject =
-					this.findSectionContainingPoint(
-						this.positionOnMouseUp,
-					);
-				if (section) {
-					this.propagateOnMouseUp(
-						section,
-						this.convertPositionToSectionLocale(
-							section,
-							this.positionOnMouseUp,
-						),
-						e,
-					);
-				}
-			} else {
-				var section: CanvasSectionObject = this.getSectionWithName(
-					this.sectionOnMouseDown,
-				);
-				if (section) {
-					this.propagateOnMouseUp(
-						section,
-						this.convertPositionToSectionLocale(
-							section,
-							this.positionOnMouseUp,
-						),
-						e,
-					);
-				}
+				section = this.findSectionContainingPoint(this.positionOnMouseUp);
+			}
+			else {
+				section = this.getSectionWithName(this.sectionOnMouseDown);
+			}
+			if (section) {
+				this.propagateOnMouseUp(section, this.convertPositionToSectionLocale(section, this.positionOnMouseUp), e);
 			}
 		}
 
@@ -1720,33 +1699,15 @@ class CanvasSectionContainer {
 		this.stopLongPress();
 		if (!this.multiTouch) {
 			this.positionOnMouseUp = this.convertPositionToCanvasLocale(e);
+			var section: CanvasSectionObject;
 			if (!this.draggingSomething) {
-				var section: CanvasSectionObject =
-					this.findSectionContainingPoint(
-						this.positionOnMouseUp,
-					);
-				if (section)
-					this.propagateOnMouseUp(
-						section,
-						this.convertPositionToSectionLocale(
-							section,
-							this.positionOnMouseUp,
-						),
-						<MouseEvent>(<any>e),
-					);
-			} else {
-				var section: CanvasSectionObject = this.getSectionWithName(
-					this.sectionOnMouseDown,
-				);
-				if (section)
-					this.propagateOnMouseUp(
-						section,
-						this.convertPositionToSectionLocale(
-							section,
-							this.positionOnMouseUp,
-						),
-						<MouseEvent>(<any>e),
-					);
+				section = this.findSectionContainingPoint(this.positionOnMouseUp);
+			}
+			else {
+				section = this.getSectionWithName(this.sectionOnMouseDown);
+			}
+			if (section) {
+				this.propagateOnMouseUp(section, this.convertPositionToSectionLocale(section, this.positionOnMouseUp), <MouseEvent><any>e);
 			}
 		} else if (e.touches.length === 0) {
 			this.multiTouch = false;
