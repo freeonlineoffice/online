@@ -21,7 +21,6 @@
 int loolwsd_server_socket_fd = -1;
 
 static std::string fileURL;
-static LOOLWSD *loolwsd = nullptr;
 static int fakeClientFd;
 static int closeNotificationPipeForForwardingThread[2] = {-1, -1};
 
@@ -262,7 +261,7 @@ int main(int argc, char* argv_main[])
                 fileURL = docURL;
             }
 
-            loolwsd = new LOOLWSD();
+            LOOLWSD *loolwsd = new LOOLWSD();
             loolwsd->run(1, argv);
             delete loolwsd;
         })
