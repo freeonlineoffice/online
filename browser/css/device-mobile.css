@@ -177,7 +177,7 @@ textarea.lool-annotation-textarea {
 	z-index: auto !important;
 	flex-direction: column;
 }
-#toolbar-wrapper.mobile #formulabar-row {
+.main-nav:not(.readonly) #toolbar-wrapper.mobile #formulabar-row {
 	z-index: 11;
 }
 .toolbar-row {
