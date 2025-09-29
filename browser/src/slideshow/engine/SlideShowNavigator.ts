@@ -233,8 +233,16 @@ class SlideShowNavigator {
 		this.currentLeaderSlide = info.currentSlide;
 	}
 
+	getLeaderSlide(): number {
+		return this.currentLeaderSlide;
+	}
+
 	setLeaderEffect(info: any) {
 		this.currentLeaderEffect = info.currentEffect;
+	}
+
+	getLeaderEffect(): number {
+		return this.currentLeaderEffect;
 	}
 
 	followLeaderSlide() {
@@ -243,11 +251,14 @@ class SlideShowNavigator {
 		if (this.currentLeaderSlide === this.currentSlide)
 			this.slideShowHandler.rewindAllEffects();
 		else this.displaySlide(this.currentLeaderSlide, true);
-		for (let i = 0; i <= this.currentLeaderEffect; i++)
-			if (!this.slideShowHandler.skipNextEffect()) break;
+		this.slideShowHandler.skipNEffects(this.currentLeaderEffect);
 	}
 
-	displaySlide(nNewSlide: number, bSkipTransition: boolean) {
+	displaySlide(
+		nNewSlide: number,
+		bSkipTransition: boolean,
+		nStartEffect: number = undefined,
+	) {
 		this.presenter.sendSlideShowFollowMessage(
 			'displayslide ' + JSON.stringify({ currentSlide: nNewSlide }),
 		);
@@ -334,6 +345,7 @@ class SlideShowNavigator {
 				this.currentSlide,
 				this.prevSlide,
 				bSkipTransition,
+				nStartEffect,
 			);
 			if (this.isRewindingToPrevSlide) {
 				this.slideShowHandler.skipAllEffects();
@@ -342,7 +354,11 @@ class SlideShowNavigator {
 		});
 	}
 
-	startPresentation(nStartSlide: number, bSkipTransition: boolean) {
+	startPresentation(
+		nStartSlide: number,
+		bSkipTransition: boolean,
+		nStartEffect: number = undefined,
+	) {
 		NAVDBG.print(
 			'SlideShowNavigator.startPresentation: current index: ' +
 				this.currentSlide +
@@ -353,7 +369,7 @@ class SlideShowNavigator {
 		this.isRewindingToPrevSlide = false;
 		this.currentSlide = undefined;
 		this.prevSlide = undefined;
-		this.displaySlide(nStartSlide, bSkipTransition);
+		this.displaySlide(nStartSlide, bSkipTransition, nStartEffect);
 	}
 
 	endPresentation(force: boolean = false) {

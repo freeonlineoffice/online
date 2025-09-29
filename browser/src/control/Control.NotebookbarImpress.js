@@ -590,15 +590,51 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 				},
 			},
 			{
-				id: 'slide-presentation-currentslide',
-				type: 'bigcustomtoolitem',
-				text: _('From Current Slide'),
-				command: 'presentation-currentslide',
-				accessibility: {
-					focusBack: true,
-					combination: 'FC',
-					de: null,
-				},
+				'id': 'slide-presentation-currentslide',
+				'type': 'bigcustomtoolitem',
+				'text':  _('From Current Slide'),
+				'command': 'presentation-currentslide',
+				'accessibility': { focusBack: true, combination: 'FC', de: null }
+			},
+			{ type: 'separator', id: 'slide-show-presentation', orientation: 'vertical' },
+			!window.ThisIsAMobileApp ?
+				{
+					'id': 'slide-presentation-in-window',
+					'type': 'bigcustomtoolitem',
+					'text': _('Present in Window'),
+					'command': 'presentinwindow',
+					'accessibility': { focusBack: true, combination: 'PW', de: null }
+				} : {},
+			!window.ThisIsAMobileApp && window.canvasSlideshowEnabled ?
+			  {
+					'id': 'slide-presentation-in-console',
+					'type': 'bigcustomtoolitem',
+					'text': _('Presenter Console'),
+					'command': 'presenterconsole',
+					'accessibility': { focusBack: true, combination: 'PW', de: null }
+				}: {},
+			!window.ThisIsAMobileApp && app.isExperimentalMode() ?
+				{
+					'id': 'slide-presentation-follow-me',
+					'type': 'bigcustomtoolitem',
+					'text': _('Start Follow-me Presentation'),
+					'command': 'followmepresentation',
+					'accessibility': { focusBack: true, combination: 'PW', de: null }
+				} : {},
+			!window.ThisIsAMobileApp && app.isExperimentalMode() ?
+				{
+					'id': 'slide-presentation-follow',
+					'type': 'bigcustomtoolitem',
+					'text': _('Follow Presentation'),
+					'command': 'followpresentation',
+					'accessibility': { focusBack: true, combination: 'PW', de: null }
+				} : {},
+			{ type: 'separator', id: 'slide-zoomin-break', orientation: 'vertical' },
+			{
+				'id': 'showslide',
+				'type': 'bigcustomtoolitem',
+				'text': _UNO('.uno:ShowSlide', 'presentation'),
+				'accessibility': { focusBack: true, combination: 'SS', de: null }
 			},
 			{
 				type: 'separator',
