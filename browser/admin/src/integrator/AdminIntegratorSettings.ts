@@ -25,6 +25,7 @@ interface Window {
 	iframeType?: string;
 	cssVars?: string;
 	serviceRoot?: string;
+	versionHash?: string;
 }
 
 interface ConfigItem {
@@ -294,6 +295,7 @@ class SettingIframe {
 			}
 		}
 		window.serviceRoot = element.dataset.serviceRoot;
+		window.versionHash = element.dataset.versionHash;
 	}
 
 	private validateJsonFile(file: File): Promise<any> {
@@ -1173,7 +1175,7 @@ class SettingIframe {
 		optionDiv.className = 'toggle-option';
 
 		const image = document.createElement('img');
-		image.src = `images/${imageSrc}`;
+		image.src = `${window.serviceRoot}/browser/${window.versionHash}/admin/images/${imageSrc}`;
 		image.alt = imageAlt;
 		image.className = `toggle-image ${isSelected ? 'selected' : ''}`;
 		optionDiv.appendChild(image);
