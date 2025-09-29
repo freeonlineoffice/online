@@ -74,13 +74,9 @@ class HTMLObjectSection extends CanvasSectionObject {
 		let leftAddition = 0;
 		let topAddition = 0;
 
-		if (this.sectionProperties.objectDiv.parentNode.id === 'map') {
-			const clientRectMap = document
-				.getElementById('map')
-				.getBoundingClientRect();
-			const clientRectCanvas = document
-				.getElementById('canvas-container')
-				.getBoundingClientRect();
+		if (this.sectionProperties.objectDiv.parentNode && this.sectionProperties.objectDiv.parentNode.id === 'map') {
+			const clientRectMap = document.getElementById('map').getBoundingClientRect();
+			const clientRectCanvas = document.getElementById('canvas-container').getBoundingClientRect();
 
 			leftAddition = clientRectMap.width - clientRectCanvas.width;
 			topAddition = clientRectMap.height - clientRectCanvas.height;
