@@ -20,8 +20,6 @@
 
 int loolwsd_server_socket_fd = -1;
 
-const char* user_name;
-
 static std::string fileURL;
 static LOOLWSD *loolwsd = nullptr;
 static int fakeClientFd;

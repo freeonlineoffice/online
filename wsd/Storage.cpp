@@ -52,8 +52,6 @@
 #include "androidapp.hpp"
 #elif defined(GTKAPP)
 #include "gtk.hpp"
-#elif WASMAPP
-#include "wasmapp.hpp"
 #endif // IOS
 
 #if ENABLE_LOCAL_FILESYSTEM
@@ -293,7 +291,7 @@ std::unique_ptr<LocalStorage::LocalFileInfo> LocalStorage::getLocalFileInfo()
     const std::string userId = std::to_string(LastLocalStorageId++);
     std::string userNameString;
 
-#if MOBILEAPP
+#if MOBILEAPP && !WASMAPP
     if (user_name != nullptr)
         userNameString = std::string(user_name);
 #endif
