@@ -17,7 +17,7 @@ class MobileSearchBar extends Toolbar {
 		super(map, 'MobileSearchBar', 'toolbar-search');
 	}
 
-	getToolItems(): Array<ToolbarItem> {
+	getToolItems(): Array<ToolItemWidgetJSON> {
 		return [
 			{
 				type: 'customtoolitem',
@@ -56,7 +56,7 @@ class MobileSearchBar extends Toolbar {
 	}
 
 	create() {
-		var items = this.getToolItems();
+		const items = this.getToolItems();
 		this.builder.build(this.parentContainer, items, undefined);
 	}
 }
