@@ -1,6 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -13,7 +11,7 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		name: string,
 		objectWidth: number,
 		objectHeight: number,
-		documentPosition: cool.SimplePoint,
+		documentPosition: lool.SimplePoint,
 		extraClass: string,
 		markerType: string,
 		index: number,
@@ -142,7 +140,7 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		}
 	}
 
-	public onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 
 		// Calculate on mouse enter so we don't need to recaulculate on every mouse move.
@@ -153,13 +151,13 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		this.getHTMLObject()?.classList.add('hovered');
 	}
 
-	public onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 		this.sectionProperties.dragStartPosition = null;
 		this.getHTMLObject()?.classList.remove('hovered');
 	}
 
-	public onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 		this.sectionProperties.dragStartPosition = point;
 		if ((<any>window).mode.isMobile() || (<any>window).mode.isTablet()) {
@@ -168,13 +166,24 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		}
 	}
 
-	private onDragEndColumn() {
-		const offset =
-			Math.round(
-				this.position[0] -
-					this.sectionProperties.initialPosition[0],
-			) * app.pixelsToTwips;
+	private getParametersForRow() {
+		let index: number, type: string;
+		if (
+			this.sectionProperties.index ===
+			app.activeDocument.tableMiddleware.tableResizeRowMarkers.length -
+				1
+		) {
+			type = 'row-right';
+			index = 0;
+		} else {
+			type = 'row-middle';
+			index = this.sectionProperties.index;
+		}
 
+		return { index: index, type: type };
+	}
+
+	private getParametersForColumn() {
 		let index: number, type: string;
 		if (this.sectionProperties.index === 0) {
 			type = 'column-left';
@@ -192,55 +201,39 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 			index = this.sectionProperties.index - 1;
 		}
 
-		const params = {
-			BorderType: {
-				type: 'string',
-				value: type,
-			},
-			Index: {
-				type: 'uint16',
-				value: index,
-			},
-			Offset: {
-				type: 'int32',
-				value: offset,
-			},
-		};
-
-		app.map.sendUnoCommand(
-			'.uno:TableChangeCurrentBorderPosition',
-			params,
-		);
+		return { index: index, type: type };
 	}
 
-	private onDragEndRow() {
-		const offset =
-			Math.round(
-				this.position[1] -
-					this.sectionProperties.initialPosition[1],
-			) * app.pixelsToTwips;
+	private onDragEnd(markerType: string) {
+		let offset;
 
-		let index: number, type: string;
-		if (
-			this.sectionProperties.index ===
-			app.activeDocument.tableMiddleware.tableResizeRowMarkers.length -
-				1
-		) {
-			type = 'row-right';
-			index = 0;
+		if (markerType === 'column') {
+			offset =
+				Math.round(
+					this.position[0] -
+						this.sectionProperties.initialPosition[0],
+				) * app.pixelsToTwips;
 		} else {
-			type = 'row-middle';
-			index = this.sectionProperties.index;
+			offset =
+				Math.round(
+					this.position[1] -
+						this.sectionProperties.initialPosition[1],
+				) * app.pixelsToTwips;
 		}
 
-		const params = {
+		let parameters;
+		if (markerType === 'column')
+			parameters = this.getParametersForColumn();
+		else parameters = this.getParametersForRow();
+
+		const commandArguments = {
 			BorderType: {
 				type: 'string',
-				value: type,
+				value: parameters.type,
 			},
 			Index: {
 				type: 'uint16',
-				value: index,
+				value: parameters.index,
 			},
 			Offset: {
 				type: 'int32',
@@ -250,11 +243,11 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 
 		app.map.sendUnoCommand(
 			'.uno:TableChangeCurrentBorderPosition',
-			params,
+			commandArguments,
 		);
 	}
 
-	public onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 		this.sectionProperties.dragStartPosition = null;
 
@@ -262,13 +255,11 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 			this.containerObject.isDraggingSomething() &&
 			this.containerObject.targetSection === this.name
 		) {
-			if (this.sectionProperties.markerType === 'column')
-				this.onDragEndColumn();
-			else this.onDragEndRow();
+			this.onDragEnd(this.sectionProperties.markerType);
 		}
 	}
 
-	private columnDrag(point: cool.SimplePoint) {
+	private columnDrag(point: lool.SimplePoint) {
 		const dragDistance = [];
 		dragDistance.push(
 			point.pX - this.sectionProperties.dragStartPosition.pX,
@@ -290,7 +281,7 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		}
 	}
 
-	private rowDrag(point: cool.SimplePoint) {
+	private rowDrag(point: lool.SimplePoint) {
 		const dragDistance = [];
 		dragDistance.push(
 			point.pX - this.sectionProperties.dragStartPosition.pX,
@@ -313,7 +304,7 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 	}
 
 	public onMouseMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: Array<number>,
 		e: MouseEvent,
 	): void {

@@ -129,5 +129,3 @@ class HTMLObjectSection extends CanvasSectionObject {
 		this.sectionProperties.objectDiv.remove();
 	}
 }
-
-app.definitions.htmlObjectSection = HTMLObjectSection;

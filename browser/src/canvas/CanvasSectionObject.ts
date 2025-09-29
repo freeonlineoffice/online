@@ -90,69 +90,24 @@ class CanvasSectionObject {
 		return this.showSection;
 	}
 
-	onDocumentObjectVisibilityChange(): void {
-		return;
-	}
-	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
-		return;
-	}
-	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
-		return;
-	}
-	onClick(point: lool.SimplePoint, e: MouseEvent): void {
-		return;
-	}
-	onDoubleClick(point: lool.SimplePoint, e: MouseEvent): void {
-		return;
-	}
-	onContextMenu(e?: MouseEvent): void {
-		return;
-	}
-	onMouseWheel(
-		point: lool.SimplePoint,
-		delta: Array<number>,
-		e: WheelEvent,
-	): void {
-		return;
-	}
-	onMultiTouchStart(e: TouchEvent): void {
-		return;
-	}
-	onMultiTouchMove(
-		point: lool.SimplePoint,
-		dragDistance: number,
-		e: TouchEvent,
-	): void {
-		return;
-	}
-	onMultiTouchEnd(e: TouchEvent): void {
-		return;
-	}
-	onResize(): void {
-		return;
-	}
-	onDraw(frameCount?: number, elapsedTime?: number): void {
-		return;
-	}
-	onDrawArea(
-		area?: lool.Bounds,
-		paneTopLeft?: lool.Point,
-		canvasContext?: CanvasRenderingContext2D,
-	): void {
-		return;
-	} // area is the area to be painted using canvasContext.
-	onAnimate(frameCount: number, elapsedTime: number): void {
-		return;
-	}
-	onAnimationEnded(frameCount: number, elapsedTime: number): void {
-		return;
-	} // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
-	onNewDocumentTopLeft(): void {
-		return;
-	}
-	onRemove(): void {
-		return;
-	} // This Function is called right before section is removed.
+	onDocumentObjectVisibilityChange(): void { return; }
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onDoubleClick(point: lool.SimplePoint, e: MouseEvent): void { return; }
+	onContextMenu(e?: MouseEvent): void { return; }
+	onMouseWheel(point: lool.SimplePoint, delta: Array<number>, e: WheelEvent): void { return; }
+	onMultiTouchStart(e: TouchEvent): void { return; }
+	onMultiTouchMove(point: lool.SimplePoint, dragDistance: number, e: TouchEvent): void { return; }
+	onMultiTouchEnd(e: TouchEvent): void { return; }
+	onResize(): void { return; }
+	onDraw(frameCount?: number, elapsedTime?: number): void { return; }
+	onDrawArea(area?: lool.Bounds, paneTopLeft?: lool.Point, canvasContext?: CanvasRenderingContext2D): void { return; } // area is the area to be painted using canvasContext.
+	onAnimate(frameCount: number, elapsedTime: number): void { return; }
+	onAnimationEnded(frameCount: number, elapsedTime: number): void { return; } // frameCount, elapsedTime. Sections that will use animation, have to have this function defined.
+	onNewDocumentTopLeft(): void { return; }
+	onRemove(): void { return; } // This Function is called right before section is removed.
+	getHTMLObject(): HTMLElement { return; } // Implemented in HTMLObjectSection.
 
 	setDrawingOrder(drawingOrder: number): void {
 		this.drawingOrder = drawingOrder;
@@ -204,11 +159,15 @@ class CanvasSectionObject {
 
 	// Move the HTML object of an HTMLObjectSection into map element. For avoiding z-index (event handling order) issues.
 	moveHTMLObjectToMapElement(): void {
-		if (this instanceof HTMLObjectSection) {
-			this.getHTMLObject().style.opacity = 1;
-			this.getHTMLObject().remove();
-			document.getElementById('map').appendChild(this.getHTMLObject());
-		}
+		const element: any = this.getHTMLObject() as any;
+
+		if (!element)
+			return;
+
+		// Linting sees opacity as a string property, but it is integer. Use any for now.
+		element.style.opacity = 1;
+		this.getHTMLObject().remove();
+		document.getElementById('map').appendChild(this.getHTMLObject());
 	}
 
 	startAnimating(options: any): boolean {
