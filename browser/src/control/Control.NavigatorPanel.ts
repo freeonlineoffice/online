@@ -152,6 +152,8 @@ class NavigatorPanel extends SidebarBase {
 			}.bind(this),
 		);
 
+		const contentDivs = [];
+
 		// build tabs if we are in an environment that supports them
 		// e.g. in writer we have navigator and quickfind tabs
 		// in impress/draw we have navigator and slide sorter tabs
@@ -190,6 +192,7 @@ class NavigatorPanel extends SidebarBase {
 						'aria-labelledby',
 						'tab-slide-sorter',
 					);
+					contentDivs.push(this.presentationControlsWrapper);
 				}
 				navigationTabs.push(slideSorterTab);
 			}
@@ -213,6 +216,7 @@ class NavigatorPanel extends SidebarBase {
 					'aria-labelledby',
 					'tab-navigator',
 				);
+				contentDivs.push(this.navigatorDockWrapper);
 			}
 			navigationTabs.push(navigatorTab);
 
@@ -237,6 +241,7 @@ class NavigatorPanel extends SidebarBase {
 						'aria-labelledby',
 						'tab-quick-find',
 					);
+					contentDivs.push(this.quickFindWrapper);
 				}
 				navigationTabs.push(quickFindTab);
 			}
@@ -264,6 +269,9 @@ class NavigatorPanel extends SidebarBase {
 						}.bind(this),
 					);
 				});
+
+				// Initialize keyboard navigation
+				JSDialog.KeyboardTabNavigation(navigationTabs, contentDivs);
 			}
 		}
 
@@ -388,12 +396,20 @@ class NavigatorPanel extends SidebarBase {
 		// Remove 'selected' class from all tabs
 		this.navigationPanel
 			.querySelectorAll('.navigation-tabs .tab')
-			.forEach((t) => t.classList.remove('selected'));
+			.forEach((t) => {
+				t.classList.remove('selected');
+				t.setAttribute('aria-selected', 'false');
+				t.setAttribute('tabindex', '-1');
+			});
 
 		// Add 'selected' class to the clicked tab
 		// In Calc we don't have tabs so far
 		const tab = this.navigationPanel.querySelector('#' + tabId);
-		tab?.classList.add('selected');
+		if (tab) {
+			tab.classList.add('selected');
+			tab.setAttribute('aria-selected', 'true');
+			tab.removeAttribute('tabindex');
+		}
 
 		// Toggle visibility based on tabId
 		if (tabId === 'tab-slide-sorter') {
