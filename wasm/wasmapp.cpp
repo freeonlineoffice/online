@@ -16,6 +16,7 @@
 
 #include <emscripten/fetch.h>
 
+#include <cassert>
 #include <cstdlib>
 
 int loolwsd_server_socket_fd = -1;
@@ -145,11 +146,7 @@ int main(int argc, char* argv_main[])
 {
     std::cout << "================ Here is main()" << std::endl;
 
-    if (argc < 2)
-    {
-        std::cout << "Error: expected argument with document URL not found" << std::endl;
-        return 1;
-    }
+    assert(argc == 3);
 
     Log::initialize("WASM", "error", false, false, {});
     Util::setThreadName("main");
@@ -171,15 +168,14 @@ int main(int argc, char* argv_main[])
         {
             Util::setThreadName("LOOLWSD::run");
 
-            const std::string docURL = std::string(argv_main[1]);
-            const std::string encodedWOPI = std::string(argv_main[2]);
-            const std::string isWOPI = std::string(argv_main[3]);
+            const std::string docKind = std::string(argv_main[1]);
+            const std::string docDesc = std::string(argv_main[2]);
 
-            if (isWOPI == "true")
+            if (docKind == "server")
             {
-                std::string url = "/wasm/" + encodedWOPI;
+                std::string url = "/wasm/" + docDesc;
 
-                printf("isWOPI is %s: Fetching from url %s\n", isWOPI.c_str(), url.c_str());
+                printf("Fetching from url %s\n", url.c_str());
 
                 emscripten_fetch_attr_t attr;
                 emscripten_fetch_attr_init(&attr);
@@ -206,9 +202,13 @@ int main(int argc, char* argv_main[])
                 }
                 emscripten_fetch_close(fetch);
             }
+            else if (docKind == "local")
+            {
+                fileURL = docDesc;
+            }
             else
             {
-                fileURL = docURL;
+                assert(false);
             }
 
             LOOLWSD *loolwsd = new LOOLWSD();
