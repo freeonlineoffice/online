@@ -144,7 +144,11 @@ class Sidebar extends SidebarBase {
 				}
 
 				this.model.fullUpdate(sidebarData as JSDialogJSON);
-				this.builder.build(this.container, [this.model.getSnapshot()], false);
+				this.builder.build(
+					this.container,
+					[this.model.getSnapshot()],
+					false,
+				);
 
 				if (!this.isVisible()) {
 					$('#sidebar-dock-wrapper').addClass('visible');

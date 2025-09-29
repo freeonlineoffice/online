@@ -823,8 +823,7 @@ class UIManager extends window.L.Control {
 			notebookbar = window.L.control.notebookbarWriter();
 		}
 
-		this.notebookbar = notebookbar;
-		this.map.addControl(notebookbar);
+		this.notebookbar = JSDialog.NotebookbarBase(this.map, notebookbar);
 		this.map.fire('a11ystatechanged');
 		app.UI.notebookbarAccessibility.initialize();
 	}
@@ -913,7 +912,7 @@ class UIManager extends window.L.Control {
 	 */
 	removeNotebookbarUI(): void {
 		if (this.notebookbar) {
-			this.map.removeControl(this.notebookbar);
+			this.notebookbar.onRemove();
 			this.notebookbar = null;
 		}
 		$('#map').removeClass('notebookbar-opened');

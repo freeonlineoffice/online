@@ -52,11 +52,11 @@ abstract class JSDialogComponent {
 	protected onJSUpdate(e: any) {
 		var data = e.data;
 
-		if (data.jsontype !== this.allowedJsonType) return;
+		if (data.jsontype !== this.allowedJsonType) return false;
 
-		if (!this.container) return;
+		if (!this.container) return false;
 
-		if (!this.builder) return;
+		if (!this.builder) return false;
 
 		app.console.debug(
 			'Component ' +
@@ -77,11 +77,11 @@ abstract class JSDialogComponent {
 	protected onJSAction(e: any) {
 		var data = e.data;
 
-		if (data.jsontype !== this.allowedJsonType) return;
+		if (data.jsontype !== this.allowedJsonType) return false;
 
-		if (!this.builder) return;
+		if (!this.builder) return false;
 
-		if (!this.container) return;
+		if (!this.container) return false;
 
 		app.console.debug(
 			'Component ' +
@@ -97,4 +97,27 @@ abstract class JSDialogComponent {
 
 		return true;
 	}
+
+	// tabs related - JSBuilder might want to put tabs into component
+
+	public getTabs(): any[] {
+		return [];
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	public setTabs(tabs: any[]) {}
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	public showTabs() {}
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	public hideTabs() {}
+
+	// customization
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	public showItem(id: string, show?: boolean) {}
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	public hideItem(id: string) {}
 }
