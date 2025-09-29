@@ -2508,6 +2508,8 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			hasImage = false;
 		}
 
+		const itemsToSyncWithContainer = [];
+
 		if (data.command || data.postmessage === true) {
 			var id = data.id
 				? data.id
@@ -2536,7 +2538,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			button = window.L.DomUtil.create('button', 'ui-content unobutton', div);
 			button.id = buttonId;
 
-			JSDialog.SynchronizeDisabledState(div, [button]);
+			itemsToSyncWithContainer.push(button);
 
 			builder._addAriaLabel(button, data, builder);
 
@@ -2733,6 +2735,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 					);
 				};
 			}
+			itemsToSyncWithContainer.push(arrowbackground);
 		}
 
 		if (arrowbackground) {
@@ -2762,7 +2765,8 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			}
 		}
 
-		div._onDropDown = function (open) {
+		JSDialog.SynchronizeDisabledState(div, itemsToSyncWithContainer);
+		div._onDropDown = function(open) {
 			// Only set aria-expanded on the button if the arrow is not interactive
 			if (!isArrowInteractive)
 				button.setAttribute('aria-expanded', open);
