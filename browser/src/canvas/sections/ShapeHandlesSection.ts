@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -262,15 +260,6 @@ class ShapeHandlesSection extends CanvasSectionObject {
 				}
 			}
 		}
-	}
-
-	public static moveHTMLObjectToMapElement(
-		htmlObjectSection: HTMLObjectSection,
-	) {
-		htmlObjectSection.getHTMLObject().remove();
-		document
-			.getElementById('map')
-			.appendChild(htmlObjectSection.getHTMLObject());
 	}
 
 	getShapeWidth(twips = true) {
