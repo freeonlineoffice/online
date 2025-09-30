@@ -263,7 +263,7 @@ JSDialog.iconView = function (
 				container.scrollTop = offsetTop;
 			}
 		} else if (position != -1)
-			console.warn(
+			app.console.warn(
 				'not found entry: "' +
 					position +
 					'" in: "' +

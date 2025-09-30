@@ -299,17 +299,9 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			'Trying to send command without valid id',
 		);
 
-		window.app.console.debug(
-			"control: '" +
-				objectType +
-				"' id:'" +
-				object.id +
-				"' event: '" +
-				eventType +
-				"' state: '" +
-				data +
-				"'",
-		);
+		if (JSDialog.verbose) {
+			window.app.console.debug('control: \'' + objectType + '\' id:\'' + object.id + '\' event: \'' + eventType + '\' state: \'' + data + '\'');
+		}
 
 		// if user does action - enter following own cursor mode
 		var viewId =
