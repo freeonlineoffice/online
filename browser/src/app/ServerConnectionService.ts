@@ -72,7 +72,8 @@ class ServerConnectionService {
 			app.console.debug(
 				'ServerConnectionService: reload UI for zotero',
 			);
-			app.map.uiManager.refreshUI();
+			// app.map.uiManager.refreshUI();
+			// TODO: show zotero items
 		}
 
 		// initialize notebookbar in core
