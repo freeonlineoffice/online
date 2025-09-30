@@ -88,9 +88,8 @@
  * /lool/<encoded-document-URI+options>/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
  *       |--------documentURI---------|            |-------WOPISrc------|        |--------------compat--------------|
  *                            |options|                                               |sessionId| |command| |serial|
- *       |---------------------------LegacyDocumentURI---------------------------|
  *
- * Alternatively, the LegacyDocumentURI (encoded) could be hexified, as follows:
+ * Alternatively, the documentURI (encoded) could be hexified, as follows:
  * /lool/0x123456789/ws?WOPISrc=<encoded-document-URI>&compat=/ws[/<sessionId>/<command>/<serial>]
  */
 class RequestDetails
@@ -102,7 +101,6 @@ public:
     {
         Type,
         DocumentURI,
-        LegacyDocumentURI, ///< Legacy, to be removed.
         WOPISrc,
         Compat,
         SessionId,
@@ -182,10 +180,6 @@ public:
 
         return std::string();
     }
-
-    // matches the WOPISrc if used. For load balancing
-    // must be 2nd element in the path after /lool/<here>
-    std::string getLegacyDocumentURI() const { return getField(Field::LegacyDocumentURI); }
 
     /// The DocumentURI, decoded. Doesn't contain WOPISrc or any other appendages.
     std::string getDocumentURI() const { return getField(Field::DocumentURI); }
