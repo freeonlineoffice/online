@@ -48,34 +48,36 @@ enum Platform {
 type shortcutCallback = () => void;
 
 class ShortcutDescriptor {
-	docType: string; // if undefined then all apps match
-	eventType: string | readonly string[];
-	modifier: Mod;
-	keyCode: number | readonly number[] | null;
-	key: string | null;
-	unoAction: string;
-	dispatchAction: string;
-	viewType: ViewType;
-	preventDefault: boolean;
-	platform: Platform;
+    docType: string; // if undefined then all apps match
+    eventType: string | readonly string[];
+    modifier: Mod;
+    keyCode: number | readonly number[] | null;
+    key: string | null;
+    unoAction: string;
+    dispatchAction: string;
+    dispatchData: any;
+    viewType: ViewType;
+    preventDefault: boolean;
+    platform: Platform;
 
-	constructor({
-		docType = null,
-		eventType,
-		modifier = Mod.NONE,
-		keyCode = null,
-		key = null,
-		unoAction = null,
-		dispatchAction = null,
-		viewType = null,
-		preventDefault = true,
-		platform = null,
-	}: {
-		/** The type of document to register this keybind in. If omitted, the keybind will be registered for all document types */
-		docType?: 'text' | 'presentation' | 'drawing' | 'spreadsheet';
-		/** The event type or types to register this keybind for. Generally you probably want this to be 'keydown' */
-		eventType: string | readonly string[];
-		/** A bitfield of modifiers you want to be active. For example, Mod.CTRL | Mod.SHIFT would mean that *both* control and shift would need to be held while pressing the keybind.
+    constructor({
+        docType = null,
+        eventType,
+        modifier = Mod.NONE,
+        keyCode = null,
+        key = null,
+        unoAction = null,
+        dispatchAction = null,
+        dispatchData = null,
+        viewType = null,
+        preventDefault = true,
+        platform = null,
+    }: {
+        /** The type of document to register this keybind in. If omitted, the keybind will be registered for all document types */
+        docType?: 'text' | 'presentation' | 'drawing' | 'spreadsheet',
+        /** The event type or types to register this keybind for. Generally you probably want this to be 'keydown' */
+        eventType: string | readonly string[],
+        /** A bitfield of modifiers you want to be active. For example, Mod.CTRL | Mod.SHIFT would mean that *both* control and shift would need to be held while pressing the keybind.
 
         On Mac, command is seen as Mod.CTRL and there is a separate Mod.MACCTRL to read control
 
@@ -108,8 +110,10 @@ class ShortcutDescriptor {
         If both the unoAction and dispatchAction are provided, only the unoAction will trigger. The dispatchAction will be ignored.
 
         If ommitted, no action will be dispatched when this keybind is pressed */
-		dispatchAction?: string;
-		/** The view type (Edit or ReadOnly) to restrict this keybind to
+        dispatchAction?: string,
+        /** The optional data to pass to the sipatcher if dispatchAction is used*/
+        dispatchData?: any,
+        /** The view type (Edit or ReadOnly) to restrict this keybind to
 
         If ommitted, the keybind will be active in both Edit and ReadOnly view types */
 		viewType?: ViewType;
@@ -139,17 +143,18 @@ class ShortcutDescriptor {
 			'registering a keyboard shortcut without specifying either a key or a keyCode - this will result in an untriggerable shortcut',
 		);
 
-		this.docType = docType;
-		this.eventType = eventType;
-		this.modifier = modifier;
-		this.keyCode = keyCode;
-		this.key = key;
-		this.unoAction = unoAction;
-		this.dispatchAction = dispatchAction;
-		this.viewType = viewType;
-		this.preventDefault = preventDefault;
-		this.platform = platform;
-	}
+        this.docType = docType;
+        this.eventType = eventType;
+        this.modifier = modifier;
+        this.keyCode = keyCode;
+        this.key = key;
+        this.unoAction = unoAction;
+        this.dispatchAction = dispatchAction;
+        this.dispatchData = dispatchData;
+        this.viewType = viewType;
+        this.preventDefault = preventDefault;
+        this.platform = platform;
+    }
 }
 
 class KeyboardShortcuts {
@@ -241,15 +246,15 @@ class KeyboardShortcuts {
 			platform,
 		);
 
-		if (shortcut) {
-			let action = 'disabled';
-			if (shortcut.unoAction) {
-				action = shortcut.unoAction;
-				this.map.sendUnoCommand(action);
-			} else if (shortcut.dispatchAction) {
-				action = shortcut.dispatchAction;
-				app.dispatcher.dispatch(action);
-			}
+        if (shortcut) {
+            let action = 'disabled';
+            if (shortcut.unoAction) {
+                action = shortcut.unoAction;
+                this.map.sendUnoCommand(action);
+            } else if (shortcut.dispatchAction) {
+                action = shortcut.dispatchAction;
+                app.dispatcher.dispatch(action, shortcut.dispatchData);
+            }
 
 			if (shortcut.preventDefault) {
 				event.preventDefault();
@@ -342,23 +347,11 @@ keyboardShortcuts.definitions.set(
         Disable multi-sheet selection shortcuts in Calc.
         Disable F2 in Writer, formula bar is unsupported, and messes with further input.
     */
-		new ShortcutDescriptor({
-			eventType: 'keydown',
-			key: 'F1',
-			dispatchAction: 'showhelp',
-		}),
-		new ShortcutDescriptor({
-			eventType: 'keydown',
-			modifier: Mod.ALT,
-			key: 'F1',
-			dispatchAction: 'focustonotebookbar',
-		}),
-		new ShortcutDescriptor({
-			eventType: 'keydown',
-			modifier: Mod.CTRL,
-			key: 'f',
-			dispatchAction: 'home-search',
-		}),
+    new ShortcutDescriptor({ eventType: 'keydown', key: 'F1', dispatchAction: 'showhelp' }),
+    new ShortcutDescriptor({ eventType: 'keydown', modifier: Mod.ALT, key: 'F1', dispatchAction: 'focustonotebookbar' }),
+    new ShortcutDescriptor({ eventType: 'keydown', modifier: Mod.CTRL, key: 'f', dispatchAction: 'home-search' }),
+    new ShortcutDescriptor({ eventType: 'keydown', modifier: Mod.CTRL, key: 'p', dispatchAction: 'print' }),
+    new ShortcutDescriptor({ eventType: 'keydown', modifier: Mod.CTRL, key: 's', dispatchAction: 'save', dispatchData: 'keyboard' }),
 
 		// Calc.
 		new ShortcutDescriptor({
@@ -681,4 +674,4 @@ keyboardShortcuts.definitions.set(
 	),
 );
 
-(window as any).KeyboardShortcuts = keyboardShortcuts;
+window.KeyboardShortcuts = keyboardShortcuts;

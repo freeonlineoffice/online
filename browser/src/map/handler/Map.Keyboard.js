@@ -502,24 +502,6 @@ window.L.Map.Keyboard = window.L.Handler.extend({
 			} else {
 				this._map._docLayer._preview.partsFocused = false;
 			}
-		} else if (this._isCtrlKey(ev) && ev.keyCode === this.keyCodes.S) {
-			// Save only when not read-only and when HideSaveOption is false.
-			if (
-				!this._map.isReadOnlyMode() &&
-				!this._map['wopi'].HideSaveOption
-			) {
-				this._map.fire('postMessage', {
-					msgId: 'UI_Save',
-					args: { source: 'keyboard' },
-				});
-				if (!this._map._disableDefaultAction['UI_Save']) {
-					this._map.save(
-						false /* An explicit save should terminate cell edit */,
-						false /* An explicit save should save it again */,
-					);
-				}
-			}
-			ev.preventDefault();
 		}
 	},
 
@@ -1020,6 +1002,36 @@ window.L.Map.Keyboard = window.L.Handler.extend({
 			case this.keyCodes.PERIOD: // .
 				app.socket.sendMessage('uno .uno:SuperScript');
 				return true;
+			}
+			return false;
+		case this.keyCodes.C[DEFAULT]: // 'C'
+		case this.keyCodes.X[DEFAULT]: // 'X'
+		case this.keyCodes.C[MAC]: // 'c' Since keydown+c as different value in mac so i had to update the mapping in keyCodes
+		case this.keyCodes.X[MAC]: // 'x' same reason as above
+		case this.keyCodes.LEFTWINDOWKEY[MAC]: // Left Cmd (Safari)
+		case this.keyCodes.RIGHTWINDOWKEY[MAC]: // Right Cmd (Safari)
+			// we prepare for a copy or cut event
+			// slide operations are handled differently avoid changing focus
+			var slidePreviewFocused = this._map._docLayer._preview && this._map._docLayer._preview.partsFocused;
+			if (!slidePreviewFocused)
+				this._map.focus();
+			// Not sure if the commented code is still used, so I didn't remove it.
+			// Anyhow, by when editable area is populated with the focused paragraph
+			// we can't select its content or on next editing the content is overwritten.
+			// this._map._textInput.select();
+			return true;
+		case this.keyCodes.V[DEFAULT]: // v
+		case this.keyCodes.V[MAC]: // v (Safari) needs a separate mapping in keyCodes
+			return true;
+		case this.keyCodes.F1: // f1
+			app.socket.sendMessage('uno .uno:NoteVisible');
+			return true;
+		case this.keyCodes.COMMA: // ,
+			app.socket.sendMessage('uno .uno:SubScript');
+			return true;
+		case this.keyCodes.PERIOD: // .
+			app.socket.sendMessage('uno .uno:SuperScript');
+			return true;
 		}
 		if (
 			e.type === 'keypress' &&
