@@ -41,7 +41,12 @@ class ServerConnectionService {
 
 		let zoteroPlugin = app.map.zotero;
 		const zoteroAPIKey = viewSetting.zoteroAPIKey;
-		if (window.zoteroEnabled && zoteroAPIKey && !zoteroPlugin) {
+		if (
+			window.zoteroEnabled &&
+			zoteroAPIKey &&
+			!zoteroPlugin &&
+			!window.mode.isMobile()
+		) {
 			app.console.debug(
 				'ServerConnectionService: initialize Zotero plugin',
 			);
@@ -66,25 +71,31 @@ class ServerConnectionService {
 	public onFirstTileReceived() {
 		app.console.debug('ServerConnectionService: onFirstTileReceived');
 
-		// show zotero items if needed
-		const zoteroItems = [
-			'zoteroaddeditbibliography',
-			'zoterocontaineradd',
-			'zoterocontainerrefresh',
-			'zoteroSetDocPrefs',
-			'references-zoterosetdocprefs-break',
-		];
-		const isWriter = app.map?._docLayer?.isWriter();
-		if (isWriter && window.zoteroEnabled && app.map.zotero) {
-			app.console.debug('ServerConnectionService: show UI for zotero');
-			zoteroItems.forEach((id: string) =>
-				app.map.uiManager.notebookbar.showItem(id),
-			);
-		} else {
-			app.console.debug('ServerConnectionService: hide UI for zotero');
-			zoteroItems.forEach((id: string) =>
-				app.map.uiManager.notebookbar.hideItem(id),
-			);
+		if (!window.mode.isMobile()) {
+			// show zotero items if needed
+			const zoteroItems = [
+				'zoteroaddeditbibliography',
+				'zoterocontaineradd',
+				'zoterocontainerrefresh',
+				'zoteroSetDocPrefs',
+				'references-zoterosetdocprefs-break',
+			];
+			const isWriter = app.map?._docLayer?.isWriter();
+			if (isWriter && window.zoteroEnabled && app.map.zotero) {
+				app.console.debug(
+					'ServerConnectionService: show UI for zotero',
+				);
+				zoteroItems.forEach((id: string) =>
+					app.map.uiManager.notebookbar.showItem(id),
+				);
+			} else {
+				app.console.debug(
+					'ServerConnectionService: hide UI for zotero',
+				);
+				zoteroItems.forEach((id: string) =>
+					app.map.uiManager.notebookbar.hideItem(id),
+				);
+			}
 		}
 
 		// initialize notebookbar in core
