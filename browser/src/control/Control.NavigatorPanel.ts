@@ -295,8 +295,6 @@ class NavigatorPanel extends SidebarBase {
 			// TODO: remove jQuery animation
 			$('#navigator-dock-wrapper').show(200);
 			app.showNavigator = true;
-			// this will update the indentation marks for elements like ruler
-			app.map.fire('fixruleroffset');
 			if (
 				app.map.isPresentationOrDrawing() &&
 				!this.isNavigationPanelVisible()
@@ -376,6 +374,8 @@ class NavigatorPanel extends SidebarBase {
 		app.layoutingService.appendLayoutingTask(() => {
 			this.navigationPanel.classList.add('visible');
 			this.floatingNavIcon.classList.remove('visible');
+			// this will update the indentation marks for elements like ruler
+			app.map.fire('fixruleroffset');
 		});
 	}
 

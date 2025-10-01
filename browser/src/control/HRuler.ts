@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -418,9 +416,7 @@ class HRuler extends Ruler {
 		this.options.rightParagraphIndent *= pxPerMm100;
 
 		// Get navigatiosidebar width only when navigation sidebar is visible
-		const navigationsidebarWidth = app.showNavigator
-			? this._getNavigationSidebarWidth()
-			: 0;
+		const navigationsidebarWidth = this._getNavigationSidebarWidth();
 
 		// rTSContainer is the reference element.
 		const pStartPosition =
@@ -436,17 +432,14 @@ class HRuler extends Ruler {
 		// We calculated the positions. Now we should move them to left in order to make their sharp edge point to the right direction..
 		this._firstLineMarker.style.left =
 			fLinePosition -
-			this._getNavigationSidebarWidth() -
 			this._firstLineMarker.getBoundingClientRect().width / 2.0 +
 			'px';
 		this._pStartMarker.style.left =
 			pStartPosition -
-			this._getNavigationSidebarWidth() -
 			this._pStartMarker.getBoundingClientRect().width / 2.0 +
 			'px';
 		this._pEndMarker.style.left =
 			pEndPosition -
-			this._getNavigationSidebarWidth() -
 			this._pEndMarker.getBoundingClientRect().width / 2.0 +
 			'px';
 
@@ -851,7 +844,8 @@ class HRuler extends Ruler {
 				element.getBoundingClientRect().left) *
 			0.5;
 		this._markerVerticalLine.style.left =
-			String(newLeft + halfWidth) + 'px';
+			String(newLeft + halfWidth + this._getNavigationSidebarWidth()) +
+			'px';
 	}
 
 	_moveIndentationEnd(e: Event) {
