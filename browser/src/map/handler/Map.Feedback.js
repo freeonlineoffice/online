@@ -102,18 +102,15 @@ window.L.Map.Feedback = window.L.Handler.extend({
 		wopiHostId = wopiHostId ? wopiHostId.innerText : '';
 		var proxyPrefixEnabled = window.socketProxy ? 'True' : 'False';
 
-		var cssVar = getComputedStyle(
-			document.documentElement,
-		).getPropertyValue('--co-primary-element');
-		var params = [
-			{ mobile: window.mode.isMobile() },
-			{ cssvar: cssVar },
-			{ wsdhash: window.app.socket.WSDServer.Hash },
-			{ lokit_hash: lokitHash },
-			{ wopi_host_id: wopiHostId },
-			{ proxy_prefix_enabled: proxyPrefixEnabled },
-			{ doc_type: this._map.getDocType() },
-		];
+		var cssVar = getComputedStyle(document.documentElement).getPropertyValue('--co-primary-element');
+		var params = [{ mobile : window.mode.isMobile() },
+			      { cssvar : cssVar},
+			      { wsdhash : window.app.socket.WSDServer.Hash },
+			      { 'version_number' : window.app.socket.WSDServer.Version },
+			      { 'lokit_hash' : lokitHash },
+			      { 'wopi_host_id' : wopiHostId },
+			      { 'proxy_prefix_enabled' : proxyPrefixEnabled },
+			      { 'doc_type': this._map.getDocType()}];
 
 		var options = {
 			prefix: 'iframe-dialog',
