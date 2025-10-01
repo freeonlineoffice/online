@@ -411,19 +411,14 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 		}
 
 		if (!this.map['wopi'].HidePrintOption) {
-			content.push({
-				id: 'file-print:PrintOptions',
-				type: 'exportmenubutton',
-				text: _UNO('.uno:Print', 'presentation'),
-				command: '.uno:Print',
-				applyCallback: function () {
-					app.map.print();
-				},
-				accessibility: {
-					focusBack: true,
-					combination: 'PF',
-					de: null,
-				},
+			content.push(
+			{
+				'id': 'file-print:PrintOptions',
+				'type': 'exportmenubutton',
+				'text': _UNO('.uno:Print', 'presentation'),
+				'command': '.uno:Print',
+				'applyCallback': 'print',
+				'accessibility': { focusBack: true, combination: 'PF', de: null }
 			});
 		}
 
@@ -882,15 +877,12 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 				},
 				children: [
 					{
-						id: 'home-paste:PasteMenu',
-						type: 'menubutton',
-						text: _UNO('.uno:Paste'),
-						command: '.uno:Paste',
-						accessibility: {
-							focusBack: true,
-							combination: 'V',
-							de: null,
-						},
+						'id': 'home-create-slide:NewSlideLayoutMenu',
+						'type': 'menubutton',
+						'applyCallback': '.uno:InsertPage',
+						'text': _('New'),
+						'command': '.uno:InsertPage',
+						'accessibility': { focusBack: true, combination: 'CS', de: null }
 					},
 					{
 						type: 'container',
