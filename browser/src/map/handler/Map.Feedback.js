@@ -147,14 +147,7 @@ window.L.Map.Feedback = window.L.Handler.extend({
 		} else if (data == 'feedback-submit') {
 			window.prefs.set('WSDFeedbackEnabled', false);
 			window.prefs.remove('WSDFeedbackCount');
-			var that = this;
-			setTimeout(function () {
-				that._iframeDialog.remove();
-			}, 400);
-		} else if (
-			data == 'iframe-feedback-load' &&
-			!this._iframeDialog.isVisible()
-		) {
+		} else if (data == 'iframe-feedback-load' && !this._iframeDialog.isVisible()) {
 			this.removeIframe();
 			setTimeout(window.L.bind(this.onFeedback, this), this._map.options.feedbackTimeout);
 		} else if (data.endsWith('close')) {
