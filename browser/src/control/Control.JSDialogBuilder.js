@@ -1516,7 +1516,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			}
 		}
 
-		if (data.tabs && data.parent.id === 'NotebookBar') {
+		if (data.tabs && data.isNotebookbar) {
 			let that = this;
 			contentDivs.forEach(function (tabPage) {
 				tabPage.addEventListener(
@@ -2414,13 +2414,6 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 		}
 	},
 
-	// make a class identifier from parent's id by walking up the tree
-	_getParentId: function (it) {
-		while (it.parent && !it.id) it = it.parent;
-		if (it && it.id) return '-' + it.id;
-		else return '';
-	},
-
 	_addAriaLabel(element, data, builder) {
 		if (data.aria) element.setAttribute('aria-label', data.aria.label);
 		else if (data.text)
@@ -2464,14 +2457,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 
 		var controls = {};
 
-		let div = this._createIdentifiable(
-			'div',
-			'unotoolbutton ' +
-				builder.options.cssClass +
-				' ui-content unospan',
-			parentContainer,
-			data,
-		);
+		let div = window.L.DomUtil.create('div', 'unotoolbutton ' + builder.options.cssClass + ' ui-content unospan', parentContainer, data);
 
 		controls['container'] = div;
 		div.tabIndex = -1;
@@ -3200,17 +3186,6 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 		);
 	},
 
-	// link each node to its parent, should do one recursive descent
-	_parentize: function (data, parent) {
-		if (data.parent) return;
-		if (data.children !== undefined) {
-			for (var idx in data.children) {
-				this._parentize(data.children[idx], data);
-			}
-		}
-		data.parent = parent;
-	},
-
 	// executes actions like changing the selection without rebuilding the widget
 	executeAction: function (container, data) {
 		app.layoutingService.appendLayoutingTask(() => {
@@ -3556,7 +3531,6 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 					? true
 					: false;
 
-			this._parentize(childData);
 			var processChildren = true;
 
 			if (

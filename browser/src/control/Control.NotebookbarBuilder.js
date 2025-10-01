@@ -298,7 +298,8 @@ window.L.Control.NotebookbarBuilder = window.L.Control.JSDialogBuilder.extend({
 		);
 	},
 
-	_overriddenTabPageHandler: function (parentContainer, data, builder) {
+	_overriddenTabPageHandler: function(parentContainer, data, builder) {
+		data.isNotebookbar = true;
 		var result = builder._tabPageHandler(parentContainer, data, builder);
 
 		var tabPage = parentContainer.lastChild;
@@ -892,7 +893,6 @@ window.L.Control.NotebookbarBuilder = window.L.Control.JSDialogBuilder.extend({
 					? true
 					: false;
 
-			this._parentize(childData);
 			var processChildren = true;
 
 			if (
