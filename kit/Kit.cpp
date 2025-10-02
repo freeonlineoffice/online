@@ -3556,6 +3556,7 @@ void lokit_main(
             }
 
 #ifndef __FreeBSD__
+#if HAVE_LIBCAP
             if (usingMountNamespace)
             {
                 // create another namespace, map back to original uid/gid after mount
@@ -3582,6 +3583,7 @@ void lokit_main(
 
             assert(origuid == geteuid());
             assert(origgid == getegid());
+#endif
 #endif
 
             if (!bindMount)
