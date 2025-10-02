@@ -350,18 +350,12 @@ window.L.Control.NotebookbarCalc = window.L.Control.NotebookbarWriter.extend({
 
 		if (!this.map['wopi'].HidePrintOption) {
 			content.push({
-				id: 'Data-Print:Print',
-				type: 'menubutton',
-				text: _UNO('.uno:Print', 'spreadsheet'),
-				command: '.uno:Print',
-				applyCallback: function () {
-					app.map.print();
-				},
-				accessibility: {
-					focusBack: true,
-					combination: 'PT',
-					de: null,
-				},
+				'id': 'Data-Print:Print',
+				'type': 'menubutton',
+				'text': _UNO('.uno:Print', 'spreadsheet'),
+				'command': '.uno:Print',
+				'applyCallback': 'print',
+				'accessibility': { focusBack: true,	combination: 'PT', de: null }
 			});
 		}
 
@@ -557,8 +551,483 @@ window.L.Control.NotebookbarCalc = window.L.Control.NotebookbarWriter.extend({
 						},
 					},
 					{
-						type: 'container',
-						children: [
+					'type': 'container',
+					'children': [
+						{
+							'type': 'toolbox',
+							'children': [
+								{
+									'id': 'home-cut',
+									'type': 'customtoolitem',
+									'text': _UNO('.uno:Cut', true),
+									'command': '.uno:Cut',
+									'accessibility': { focusBack: true,	combination: 'X', de: null }
+								},
+								{
+									'id': 'home-format-paint-brush',
+									'type': 'toolitem',
+									'text': _UNO('.uno:FormatPaintbrush'),
+									'command': '.uno:FormatPaintbrush',
+									'accessibility': { focusBack: true,	combination: 'FP', de: null }
+								}
+							]
+						},
+						{
+							'type': 'toolbox',
+							'children': [
+								{
+									'id': 'home-copy',
+									'type': 'customtoolitem',
+									'text': _UNO('.uno:Copy', true),
+									'command': '.uno:Copy',
+									'accessibility': { focusBack: true,	combination: 'C', de: null }
+								},
+								{
+									'id': 'home-reset-attributes',
+									'type': 'toolitem',
+									'text': _UNO('.uno:ResetAttributes'),
+									'command': '.uno:ResetAttributes',
+									'accessibility': { focusBack: true,	combination: 'E', de: null }
+								}
+							]
+						}
+					],
+					'vertical': 'true'
+					}
+				]
+			},
+			{ type: 'separator', id: 'home-resertattributes-break', orientation: 'vertical' },
+			{
+				'type': 'overflowgroup',
+				'id': 'home-font',
+				'name': _('Font'),
+				'accessibility': { focusBack: true,	combination: 'FF', de: null },
+				'more': {
+					'command':'.uno:CellTextDlg',
+					'accessibility': { focusBack: true,	combination: 'MF', de: null },
+				},
+				'children': [
+				{
+					'id': 'Home-Section-Format',
+					'type': 'container',
+					'children': [
+						{
+							'id': 'box76',
+							'type': 'container',
+							'children': [
+								{
+									'id': 'fontnamecombobox',
+									'type': 'combobox',
+									'text': 'Carlito',
+									'entries': [
+										'Carlito'
+									],
+									'selectedCount': '1',
+									'selectedEntries': [
+										'71'
+									],
+									'command': '.uno:CharFontName',
+									'accessibility': { focusBack: true,	combination: 'FF', de: null }
+								},
+								{
+									'id': 'fontsizecombobox',
+									'type': 'combobox',
+									'text': '10 pt',
+									'entries': [
+										'10 pt'
+									],
+									'selectedCount': '1',
+									'selectedEntries': [
+										'4'
+									],
+									'command': '.uno:FontHeight',
+									'accessibility': { focusBack: true,	combination: 'FS', de: null }
+								},
+								{
+									'id': 'home-grow',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Grow'),
+									'command': '.uno:Grow',
+									'accessibility': { focusBack: true,	combination: 'FG', de: null }
+								},
+								{
+									'id': 'home-shrink',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Shrink'),
+									'command': '.uno:Shrink',
+									'accessibility': { focusBack: true,	combination: 'FK', de: null }
+								}
+							],
+							'vertical': 'false'
+						},
+						{
+							'id': 'GroupB11',
+							'type': 'container',
+							'children': [
+								{
+									'id': 'home-bold',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Bold'),
+									'command': '.uno:Bold',
+									'accessibility': { focusBack: true,	combination: '1', de: null }
+								},
+								{
+									'id': 'home-italic',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Italic'),
+									'command': '.uno:Italic',
+									'accessibility': { focusBack: true,	combination: '2', de: null }
+								},
+								{
+									'id': 'home-underline',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Underline'),
+									'command': '.uno:Underline',
+									'accessibility': { focusBack: true,	combination: '3', de: null }
+								},
+								{
+									'id': 'home-strikeout',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Strikeout'),
+									'command': '.uno:Strikeout',
+									'accessibility': { focusBack: true,	combination: '4', de: null }
+								},
+								{
+									'id': 'home-subscript',
+									'type': 'toolitem',
+									'text': _UNO('.uno:SubScript'),
+									'command': '.uno:SubScript',
+									'accessibility': { focusBack: true,	combination: '5', de: null }
+								},
+								{
+									'id': 'home-superscript',
+									'type': 'toolitem',
+									'text': _UNO('.uno:SuperScript'),
+									'command': '.uno:SuperScript',
+									'accessibility': { focusBack: true,	combination: '6', de: null }
+								},
+								{
+									'id': 'home-set-border-style:BorderStyleMenu',
+									'type': 'menubutton',
+									'noLabel': true,
+									'text': _UNO('.uno:SetBorderStyle'),
+									'command': '.uno:SetBorderStyle',
+									'applyCallback': 'defaultborderstyle',
+									'accessibility': { focusBack: true,	combination: 'B', de: null }
+								},
+								{
+									'id': 'home-background-color:ColorPickerMenu',
+									'noLabel': true,
+									'class': 'unospan-BackgroundColor',
+									'type': 'toolitem',
+									'text': _UNO('.uno:BackgroundColor'),
+									'command': '.uno:BackgroundColor',
+									'accessibility': { focusBack: true,	combination: 'H', de: null }
+								},
+								{
+									'id': 'home-color:ColorPickerMenu',
+									'noLabel': true,
+									'class': 'unospan-FontColor',
+									'type': 'toolitem',
+									'text': _UNO('.uno:Color'),
+									'command': '.uno:Color',
+									'accessibility': { focusBack: true,	combination: 'FC', de: null }
+								}
+							],
+							'vertical': 'false'
+						}
+					],
+					'vertical': 'true'
+				}
+			]
+			},
+			{ type: 'separator', id: 'home-fontcombobox-break', orientation: 'vertical' },
+			{
+				'type': 'overflowgroup',
+				'id': 'home-alignment',
+				'name': _('Alignment'),
+				'accessibility': { focusBack: true,	combination: 'AT', de: null },
+				'more': {
+					'command':'.uno:Hyphenate',
+					'accessibility': { focusBack: true,	combination: 'MA', de: null },
+				},
+				'children' : [
+				{
+					'id': 'Home-Section-Align',
+					'type': 'container',
+					'children': [
+						{
+							'id': 'GroupB15',
+							'type': 'container',
+							'children': [
+								{
+									'id': 'first6',
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-align-top',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignTop', 'spreadsheet'),
+											'command': '.uno:AlignTop',
+											'accessibility': { focusBack: true,	combination: 'AT', de: null }
+										},
+										{
+											'id': 'home-align-vertical-center',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignVCenter', 'spreadsheet'),
+											'command': '.uno:AlignVCenter',
+											'accessibility': { focusBack: true,	combination: 'AM', de: null }
+										},
+										{
+											'id': 'home-align-bottom',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignBottom', 'spreadsheet'),
+											'command': '.uno:AlignBottom',
+											'accessibility': { focusBack: true,	combination: 'AB', de: null }
+										},
+										{
+											'id': 'home-increment-indent',
+											'type': 'toolitem',
+											'text': _UNO('.uno:IncrementIndent'),
+											'command': '.uno:IncrementIndent',
+											'accessibility': { focusBack: true,	combination: '7', de: null }
+										},
+										{
+											'id': 'home-decrement-indent',
+											'type': 'toolitem',
+											'text': _UNO('.uno:DecrementIndent'),
+											'command': '.uno:DecrementIndent',
+											'accessibility': { focusBack: true,	combination: '8', de: null }
+										},
+										{
+											'id': 'home-para-left-to-right',
+											'type': 'toolitem',
+											'text': _UNO('.uno:ParaLeftToRight'),
+											'command': '.uno:ParaLeftToRight',
+											'accessibility': { focusBack: true,	combination: 'RL', de: null }
+										}
+									]
+								}
+							],
+							'vertical': 'false'
+						},
+						{
+							'id': 'GroupB16',
+							'type': 'container',
+							'children': [
+								{
+									'id': 'second6',
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-align-left',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignLeft', 'spreadsheet'),
+											'command': '.uno:AlignLeft',
+											'accessibility': { focusBack: true,	combination: 'AL', de: null }
+										},
+										{
+											'id': 'home-align-horizontal-center',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignHorizontalCenter', 'spreadsheet'),
+											'command': '.uno:AlignHorizontalCenter',
+											'accessibility': { focusBack: true,	combination: 'AC', de: null }
+										},
+										{
+											'id': 'home-align-right',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignRight', 'spreadsheet'),
+											'command': '.uno:AlignRight',
+											'accessibility': { focusBack: true,	combination: 'AR', de: null }
+										},
+										{
+											'id': 'home-align-block',
+											'type': 'toolitem',
+											'text': _UNO('.uno:AlignBlock', 'spreadsheet'),
+											'command': '.uno:AlignBlock',
+											'accessibility': { focusBack: true,	combination: 'AO', de: null }
+										},
+										{
+											'id': 'home-wrap-text',
+											'type': 'toolitem',
+											'text': _UNO('.uno:WrapText', 'spreadsheet'),
+											'command': '.uno:WrapText',
+											'accessibility': { focusBack: true,	combination: 'W', de: null }
+										},
+										{
+											'id': 'home-para-right-to-left',
+											'type': 'toolitem',
+											'text': _UNO('.uno:ParaRightToLeft'),
+											'command': '.uno:ParaRightToLeft',
+											'accessibility': { focusBack: true,	combination: 'RR', de: null }
+										}
+									]
+								}
+							],
+							'vertical': 'false'
+						}
+					],
+					'vertical': 'true'
+				},
+				{
+					'id': 'home-merge-cells',
+					'type': 'bigtoolitem',
+					'text': _('Merge & Center'),
+					'command': '.uno:ToggleMergeCells',
+					'accessibility': { focusBack: true, combination: 'MC', de: null }
+				}
+			]
+		},
+			{ type: 'separator', id: 'home-pararighttoleft-break', orientation: 'vertical' },
+			{
+				'type': 'overflowgroup',
+				'id': 'home-number-format',
+				'name': _('Number'),
+				'accessibility': { focusBack: true,	combination: 'N', de: null },
+				'more': {
+					'command':'.uno:FormatCellDialog',
+					'accessibility': { focusBack: true, combination: 'MN', de: null }
+				},
+				'children' : [
+				{
+					'id': 'Home-Section-Number',
+					'type': 'container',
+					'children': [
+						{
+							'id': 'numbertype',
+							'type': 'listbox',
+							'entries': [
+								_('General'),
+								_('Number'),
+								_('Percent'),
+								_('Currency'),
+								_('Date'),
+								_('Time'),
+								_('Scientific'),
+								_('Fraction'),
+								_('Boolean Value'),
+								_('Text')
+							],
+							'selectedCount': '1',
+							'selectedEntries': [
+								'0'
+							],
+							'accessibility': { focusBack: true,	combination: 'N', de: null }
+						},
+						{
+							'id': 'GroupB22',
+							'type': 'container',
+							'children': [
+								{
+									'id': 'WeldedToolbar', // has to match core .ui file toolbox id!
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-number-format-currency',
+											'type': 'toolitem',
+											'dropdown': true,
+											'text': _UNO('.uno:NumberFormatCurrency', 'spreadsheet'),
+											'command': '.uno:NumberFormatCurrency',
+											'accessibility': { focusBack: true,	combination: 'P', de: null }
+										}
+									]
+								},
+								{
+									'id': 'home-number-format-percent-decimal',
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-number-format-percent',
+											'type': 'toolitem',
+											'text': _UNO('.uno:NumberFormatPercent', 'spreadsheet'),
+											'command': '.uno:NumberFormatPercent',
+											'accessibility': { focusBack: true,	combination: 'AN', de: null }
+										},
+										{
+											'id': 'home-number-format-decimal',
+											'type': 'toolitem',
+											'text': _UNO('.uno:NumberFormatDecimal', 'spreadsheet'),
+											'command': '.uno:NumberFormatDecimal',
+											'accessibility': { focusBack: true,	combination: 'K', de: null }
+										}
+									]
+								},
+								{
+									'id': 'second2',
+									'type': 'toolbox',
+									'children': [
+										{
+											'id': 'home-number-format-increment-decimals',
+											'type': 'toolitem',
+											'text': _UNO('.uno:NumberFormatIncDecimals', 'spreadsheet'),
+											'command': '.uno:NumberFormatIncDecimals',
+											'accessibility': { focusBack: true,	combination: '0', de: null }
+										},
+										{
+											'id': 'home-number-format-decrement-decimals',
+											'type': 'toolitem',
+											'text': _UNO('.uno:NumberFormatDecDecimals', 'spreadsheet'),
+											'command': '.uno:NumberFormatDecDecimals',
+											'accessibility': { focusBack: true,	combination: '9', de: null }
+										}
+									]
+								}
+							],
+							'vertical': 'false'
+						}
+					],
+					'vertical': 'true'
+				}
+			]
+		},
+			{ type: 'separator', id: 'home-numberformatdecrementdecimals-break', orientation: 'vertical' },
+			{
+				'type': 'overflowgroup',
+				'id': 'home-insert-table',
+				'name': _('Cells'),
+				'accessibility': { focusBack: true,	combination: 'RB', de: null },
+				'children' : [
+				{
+					'id': 'Home-Section-Cell1',
+					'type': 'container',
+					'children': [
+						{
+							'id': 'LineA10',
+							'type': 'toolbox',
+							'children': [
+								{
+									'id': 'home-insert-rows-before',
+									'type': 'toolitem',
+									'text': _UNO('.uno:InsertRowsBefore', 'spreadsheet', true),
+									'command': '.uno:InsertRowsBefore',
+									'accessibility': { focusBack: true,	combination: 'RB', de: null }
+								},
+								{
+									'id': 'home-insert-rows-after',
+									'type': 'toolitem',
+									'text': _UNO('.uno:InsertRowsAfter', 'spreadsheet', true),
+									'command': '.uno:InsertRowsAfter',
+									'accessibility': { focusBack: true,	combination: 'RA', de: null }
+								},
+								{
+									'id': 'home-delete-rows',
+									'type': 'toolitem',
+									'text': _UNO('.uno:DeleteRows', 'spreadsheet'),
+									'command': '.uno:DeleteRows',
+									'accessibility': { focusBack: true,	combination: 'RD', de: null }
+								},
+								{
+									'id': 'home-row-operations',
+									'type': 'toolitem',
+									'text': _UNO('.uno:RowOperations', 'spreadsheet'),
+									'command': '.uno:RowOperations'
+								}
+							]
+					},
+					{
+						'id': 'LineB11',
+						'type': 'toolbox',
+						'children': [
 							{
 								type: 'toolbox',
 								children: [

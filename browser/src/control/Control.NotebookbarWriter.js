@@ -1101,9 +1101,7 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 						'type': 'menubutton',
 						'text': _UNO('.uno:FormatBulletsMenu', 'text'),
 						'command': '.uno:FormatBulletsMenu',
-						'applyCallback':function () {
-							app.map.sendUnoCommand('.uno:DefaultNumbering') // this will make this as split button
-						},
+						'applyCallback': '.uno:DefaultNumbering',
 						'accessibility': { focusBack: false, combination: 'FB', de: null }
 					},
 					{
@@ -2239,7 +2237,7 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 						'id': 'review-insert-annotation:AnnotationMenu',
 						'type': 'menubutton',
 						'text': _UNO('.uno:InsertAnnotation'),
-						'applyCallback': () => { app.map.insertComment() },
+						'applyCallback': 'insertcomment',
 						'command': '.uno:InsertAnnotation',
 						'accessibility': { focusBack: false, combination: 'C', de: 'N' }
 					},
@@ -2314,13 +2312,7 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 						'id': 'review-track-changes:RecordTrackedChangesMenu',
 						'type': 'menubutton',
 						'text': _UNO('.uno:TrackChanges', 'text'),
-						'applyCallback':function () { // this will make this as split button
-							const TrackChangesCurrentState = app.map['stateChangeHandler'].getItemValue('.uno:TrackChanges');
-							if (TrackChangesCurrentState  === 'true' || TrackChangesCurrentState === true)
-								app.map.sendUnoCommand('.uno:TrackChanges?TrackChanges:bool=false')
-							else
-								app.map.sendUnoCommand('.uno:TrackChangesInAllViews')
-						},
+						'applyCallback': 'toggletracking',
 						'command': '.uno:TrackChanges',
 						'accessibility': { focusBack: true, combination: 'TC', de: null }
 					},
