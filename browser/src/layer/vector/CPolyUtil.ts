@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -23,38 +21,40 @@ namespace CPolyUtil {
 		   Machine Intelligence and Pattern Recognition. Vol. 6. North-Holland, 1988. 97-104.
 		   http://www.science.smith.edu/~jorourke/Papers/OrthoConnect.pdf
 		*/
-		var eps = 20;
-		// Glue rectangles if the space between them is less then eps
-		for (var i = 0; i < rectangles.length - 1; i++) {
-			for (var j = i + 1; j < rectangles.length; j++) {
-				for (var k = 0; k < rectangles[i].length; k++) {
-					for (var l = 0; l < rectangles[j].length; l++) {
-						if (
-							Math.abs(
-								rectangles[i][k].x - rectangles[j][l].x,
-							) < eps
-						) {
-							rectangles[j][l].x = rectangles[i][k].x;
-						}
-						if (
-							Math.abs(
-								rectangles[i][k].y - rectangles[j][l].y,
-							) < eps
-						) {
-							rectangles[j][l].y = rectangles[i][k].y;
-						}
-					}
-				}
+		// Helper function for sorted array insert.
+		function sortedIndex(array: Array<lool.Point>, value: lool.Point, compare: (a: lool.Point, b: lool.Point) => number) : number {
+			let low = 0;
+			let high = array.length;
+			while (low < high) {
+				const mid = (low + high) >>> 1;
+				if (compare(value, array[mid]) > 0) low = mid + 1;
+				else high = mid;
+			}
+			return low;
+		}
+
+		// Glue rectangles if the space between them is less than eps
+		const eps = 20;
+		const pointsX = new Array<lool.Point>();
+		const pointsY = new Array<lool.Point>();
+		for (let i = 0; i < rectangles.length; i++) {
+			for (let j = 0; j < rectangles[i].length; j++) {
+				pointsX.splice(sortedIndex(pointsX, rectangles[i][j], (a, b) => a.x - b.x), 0, rectangles[i][j]);
+				pointsY.splice(sortedIndex(pointsY, rectangles[i][j], (a, b) => a.y - b.y), 0, rectangles[i][j]);
 			}
 		}
 
-		var points = new Set<lool.Point>();
-		for (i = 0; i < rectangles.length; i++) {
-			for (j = 0; j < rectangles[i].length; j++) {
-				if (!points.delete(rectangles[i][j])) {
-					points.add(rectangles[i][j]);
-				}
-			}
+		let lastPointX = 0;
+		let lastPointY = 0;
+		for (let i = 1; i < pointsX.length; ++i) {
+			if (Math.abs(pointsX[lastPointX].x - pointsX[i].x) < eps)
+				pointsX[i].x = pointsX[lastPointX].x;
+			else
+				lastPointX = i;
+			if (Math.abs(pointsY[lastPointY].y - pointsY[i].y) < eps)
+				pointsY[i].y = pointsY[lastPointY].y;
+			else
+				lastPointY = i;
 		}
 
 		// lool.Point comparison function for sorting a list of CPoints w.r.t x-coordinate.
@@ -81,6 +81,12 @@ namespace CPolyUtil {
 			}
 		}
 
+		// Collect points and horizontal and vertical edges.
+		const points = new Set<lool.Point>();
+		for (const point of pointsX)
+			if (!points.delete(point))
+				points.add(point);
+
 		var sortX = Array.from(points.values()).sort(xThenY);
 		var sortY = Array.from(points.values()).sort(yThenX);
 
@@ -88,7 +94,7 @@ namespace CPolyUtil {
 		var edgesV = new Map<lool.Point, lool.Point>();
 
 		var len = points.size;
-		i = 0;
+		let i = 0;
 		while (i < len) {
 			var currY = sortY[i].y;
 			while (i < len && sortY[i].y === currY) {
