@@ -298,9 +298,9 @@ JSDialog.OverflowGroup = function (
 
 	// first toolitem in the group
 	const firstItem = findFirstToolitem(data.children);
-	console.assert(
+	app.console.debug(
 		firstItem,
-		'First toolitem inside overflow group not found',
+		'OverflowGroup: First toolitem inside overflow group not found',
 	);
 
 	// placeholder menu for a dropdown
