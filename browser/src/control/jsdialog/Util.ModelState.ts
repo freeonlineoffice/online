@@ -21,7 +21,8 @@ class JSDialogModelState {
 
 	constructor(componentName: string) {
 		app.console.debug(
-			'JSDialogModelState: created new for component: ' + componentName,
+			'JSDialogModelState: created new for component: ' +
+				componentName,
 		);
 		this.componentName = componentName;
 		this.model = null;
@@ -30,7 +31,8 @@ class JSDialogModelState {
 	/// replaces complete state of a model
 	public fullUpdate(data: JSDialogJSON) {
 		app.console.debug(
-			'JSDialogModelState: set model for component: ' + this.componentName,
+			'JSDialogModelState: set model for component: ' +
+				this.componentName,
 		);
 
 		this.model = data;
@@ -78,7 +80,8 @@ class JSDialogModelState {
 		if (found) {
 			if (JSDialog.verbose) {
 				app.console.debug(
-					'JSDialogModelState: widgetAction ' + data.data.control_id,
+					'JSDialogModelState: widgetAction ' +
+						data.data.control_id,
 				);
 			}
 		}
@@ -88,14 +91,17 @@ class JSDialogModelState {
 	public getById(widgetId: string): WidgetJSON | null {
 		if (!this.model) {
 			app.console.debug(
-				'JSDialogModelState: model missing in component: ' + this.componentName,
+				'JSDialogModelState: model missing in component: ' +
+					this.componentName,
 			);
 			return null;
 		}
 
 		const found = JSDialogModelState.findWidgetById(widgetId, this.model);
 		if (!found)
-			app.console.debug('JSDialogModelState: not found id: ' + widgetId);
+			app.console.debug(
+				'JSDialogModelState: not found id: ' + widgetId,
+			);
 		return found;
 	}
 
@@ -107,7 +113,10 @@ class JSDialogModelState {
 			return model;
 		} else if (model.children) {
 			for (const i in model.children) {
-				const found = JSDialogModelState.findWidgetById(id, model.children[i]);
+				const found = JSDialogModelState.findWidgetById(
+					id,
+					model.children[i],
+				);
 				if (found) return found;
 			}
 		}
