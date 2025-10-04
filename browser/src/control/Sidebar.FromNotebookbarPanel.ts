@@ -58,7 +58,11 @@ class SidebarFromNotebookbarPanel extends Sidebar {
 		) as HTMLDivElement;
 	}
 
-	protected openSidebar(id: string, title: string, content: Array<WidgetJSON>) {
+	protected openSidebar(
+		id: string,
+		title: string,
+		content: Array<WidgetJSON>,
+	) {
 		app.map.fire('customsidebar', {
 			data: {
 				id: WindowId.Notebookbar,
