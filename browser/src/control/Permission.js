@@ -266,7 +266,10 @@ window.L.Map.include({
 			this._textInput.setSwitchedToEditMode();
 		}
 
-		app.events.fire('updatepermission', { perm: perm });
+		if (app.map['stateChangeHandler'].getItemValue('EditDoc') === 'false')
+			app.map.sendUnoCommand('.uno:EditDoc?Editable:bool=true');
+
+		app.events.fire('updatepermission', {perm : perm});
 
 		if (this._docLayer._docType === 'text') {
 			this.setZoom(10);
