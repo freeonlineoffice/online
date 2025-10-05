@@ -408,7 +408,11 @@ class Xcu {
 		const saveButton = document.createElement('button');
 		saveButton.type = 'button';
 		saveButton.id = 'document-settings-save-button';
-		saveButton.classList.add('button', 'button-primary', 'button--text-only');
+		saveButton.classList.add(
+			'button',
+			'button-primary',
+			'button--text-only',
+		);
 		saveButton.title = _('Save Document settings');
 
 		const wrapperSpan = document.createElement('span');
