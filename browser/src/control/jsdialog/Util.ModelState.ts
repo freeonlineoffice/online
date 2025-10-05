@@ -40,7 +40,9 @@ class JSDialogModelState {
 
 		// try fallback
 		try {
-			app.console.debug('JSDialogModelState: fallback copy by JSON.parse');
+			app.console.debug(
+				'JSDialogModelState: fallback copy by JSON.parse',
+			);
 			return JSON.parse(JSON.stringify(obj));
 		} catch (e) {
 			app.console.debug(
@@ -49,7 +51,9 @@ class JSDialogModelState {
 		}
 
 		try {
-			app.console.debug('JSDialogModelState: fallback copy by Object.assign');
+			app.console.debug(
+				'JSDialogModelState: fallback copy by Object.assign',
+			);
 			return Object.assign({}, obj);
 		} catch (e) {
 			app.console.debug('JSDialogModelState: ' + e);

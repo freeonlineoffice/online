@@ -220,8 +220,14 @@ class SlideShowPresenter {
 		this.setFollower(true);
 		switch (info.type) {
 			case 'newfollowmepresentation':
-				this._map.uiManager.showButton('slide-presentation-follow-me', false);
-				this._map.uiManager.showButton('slide-presentation-follow', true);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow-me',
+					false,
+				);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow',
+					true,
+				);
 				this._onStartInWindow({
 					startSlideNumber:
 						this._slideShowNavigator.getLeaderSlide() === -1
@@ -260,16 +266,28 @@ class SlideShowPresenter {
 			case 'endpresentation':
 				this.setLeader(false);
 				this.setFollower(false);
-				this._map.uiManager.showButton('slide-presentation-follow-me', true);
-				this._map.uiManager.showButton('slide-presentation-follow', false);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow-me',
+					true,
+				);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow',
+					false,
+				);
 				if (!this.isFollowing()) return;
 				this.setFollowing(false);
 				this.endPresentation(true);
 
 				break;
 			case 'slideshowfollowon':
-				this._map.uiManager.showButton('slide-presentation-follow-me', false);
-				this._map.uiManager.showButton('slide-presentation-follow', true);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow-me',
+					false,
+				);
+				this._map.uiManager.showButton(
+					'slide-presentation-follow',
+					true,
+				);
 				break;
 		}
 	}

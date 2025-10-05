@@ -150,7 +150,10 @@ class Sidebar extends SidebarBase {
 				);
 
 				if (!this.isVisible()) {
-					if ((this.builder as any).windowId === WindowId.Sidebar)
+					if (
+						(this.builder as any).windowId ===
+						WindowId.Sidebar
+					)
 						$('#sidebar-dock-wrapper').addClass('coreBased');
 					$('#sidebar-dock-wrapper').addClass('visible');
 
