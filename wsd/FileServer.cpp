@@ -1623,7 +1623,7 @@ void FileServerRequestHandler::replaceServiceRoot(const HTTPRequest& request,
     LOG_DBG("Preprocessing file: " << relPath);
     std::string preprocess = *getUncompressedFile(relPath);
     Poco::replaceInPlace(preprocess, std::string("%SERVICE_ROOT%"), responseRoot);
-    Poco::replaceInPlace(preprocess, std::string("%VERSION%"), Util::getCoolVersionHash());
+    Poco::replaceInPlace(preprocess, std::string("%VERSION%"), Util::getLoolVersionHash());
     httpResponse.setBody(preprocess, "text/javascript");
     socket->send(httpResponse);
     LOG_TRC("Sent file: " << relPath << ": " << preprocess);
@@ -2396,7 +2396,7 @@ void FileServerRequestHandler::preprocessIntegratorAdminFile(const HTTPRequest& 
     Poco::replaceInPlace(adminFile, IFRAME_TYPE, urv[IFRAME_TYPE]);
     Poco::replaceInPlace(adminFile, CSS_VARS, cssVarsToStyle(urv[CSS_VARS]));
     Poco::replaceInPlace(adminFile, UI_THEME, urv[UI_THEME]);
-    Poco::replaceInPlace(adminFile, VERSION, Util::getCoolVersionHash());
+    Poco::replaceInPlace(adminFile, VERSION, Util::getLoolVersionHash());
 #if ENABLE_DEBUG
     const bool enableDebug = true;
 #else
