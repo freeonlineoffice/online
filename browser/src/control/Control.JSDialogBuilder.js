@@ -1208,6 +1208,11 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 		if (tabTooltip === undefined) {
 			tabTooltip = '';
 		}
+
+		var contentDivs = [];
+		var isMultiTabJSON = false;
+		var singleTabId = null;
+
 		if (data.tabs) {
 			var tabs = 0;
 			for (
@@ -1221,7 +1226,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 				)
 					tabs++;
 			}
-			var isMultiTabJSON = tabs > 1;
+			isMultiTabJSON = tabs > 1;
 
 			var tabWidgetRootContainer = window.L.DomUtil.create('div', 'ui-tabs-root ' + builder.options.cssClass, parentContainer);
 			tabWidgetRootContainer.id = data.id;
@@ -1232,9 +1237,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 			var contentsContainer = window.L.DomUtil.create('div', 'ui-tabs-content ' + builder.options.cssClass, tabWidgetRootContainer);
 
 			var tabs = [];
-			var contentDivs = [];
 			var tabIds = [];
-			var singleTabId = null;
 			for (var tabIdx = 0; tabIdx < data.tabs.length; tabIdx++) {
 				var item = data.tabs[tabIdx];
 
@@ -1500,7 +1503,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 				builder.build(contentDivs[tabId], [tab], false, false);
 				tabId++;
 			}
-		} else {
+		} else if (singleTabId != null) {
 			for (var tabIdx = 0; tabIdx < data.children.length; tabIdx++) {
 				var tab = data.children[tabIdx];
 
