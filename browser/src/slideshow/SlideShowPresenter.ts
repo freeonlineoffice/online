@@ -220,6 +220,7 @@ class SlideShowPresenter {
 		this.setFollower(true);
 		switch (info.type) {
 			case 'newfollowmepresentation':
+				this.setFollowing(true);
 				this._map.uiManager.showButton(
 					'slide-presentation-follow-me',
 					false,
