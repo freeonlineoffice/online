@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 20:33+0200\n"
+"POT-Creation-Date: 2025-10-07 21:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,7 +225,7 @@ msgstr ""
 #: src/control/Control.AlertDialog.js:32 src/control/Control.AlertDialog.js:44
 #: src/control/Control.AlertDialog.js:129
 #: src/control/Control.AlertDialog.js:148 src/control/Control.Zotero.js:228
-#: src/core/Socket.js:531 src/core/Socket.js:1470 src/core/Socket.js:1481
+#: src/core/Socket.js:492 src/core/Socket.js:1428 src/core/Socket.js:1439
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:139-7
 msgid "Close"
 msgstr ""
@@ -293,16 +293,16 @@ msgstr ""
 #: src/control/Control.Zotero.js:418 src/control/Control.Zotero.js:465
 #: src/control/Parts.js:605 src/control/Permission.js:100
 #: src/control/Permission.js:121 src/control/Permission.js:185
-#: src/control/Toolbar.js:922 src/core/Socket.js:879 src/core/Socket.js:1432
-#: src/core/Socket.js:1537 src/core/Socket.js:1758 src/core/Socket.js:1768
+#: src/control/Toolbar.js:922 src/core/Socket.js:837 src/core/Socket.js:1390
+#: src/core/Socket.js:1495 src/core/Socket.js:1710 src/core/Socket.js:1714
 #: src/docdispatcher.ts:590 src/main.js:86 src/main.js:89 src/main.js:129
 #: src/map/Clipboard.js:1533 src/map/handler/Map.Feedback.js:90
 #: src/map/handler/Map.SlideShow.js:62 src/map/handler/Map.SlideShow.js:184
 #: src/map/handler/Map.SlideShow.js:371 src/map/handler/Map.SlideShow.js:387
-#: src/map/handler/Map.WOPI.js:774 src/slideshow/SlideShowPresenter.ts:1111
-#: src/slideshow/SlideShowPresenter.ts:1126
-#: src/slideshow/SlideShowPresenter.ts:1141
-#: src/slideshow/SlideShowPresenter.ts:1164
+#: src/map/handler/Map.WOPI.js:774 src/slideshow/SlideShowPresenter.ts:1130
+#: src/slideshow/SlideShowPresenter.ts:1145
+#: src/slideshow/SlideShowPresenter.ts:1160
+#: src/slideshow/SlideShowPresenter.ts:1183
 msgid "OK"
 msgstr ""
 
@@ -317,7 +317,7 @@ msgstr ""
 #: src/control/Control.MobileTopBar.ts:107
 #: src/control/Control.UIManager.ts:1953 src/control/Control.UIManager.ts:2049
 #: src/control/Control.UIManager.ts:2220 src/control/Control.UIManager.ts:2411
-#: src/control/Control.Zotero.js:413 src/core/Socket.js:1796
+#: src/control/Control.Zotero.js:413 src/core/Socket.js:1735
 msgid "Cancel"
 msgstr ""
 
@@ -473,9 +473,9 @@ msgid "Show in navigator"
 msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1249
-#: src/control/Control.JSDialogBuilder.js:2338
-#: src/layer/tile/CanvasTileLayer.js:4119
-#: src/layer/tile/CanvasTileLayer.js:4130
+#: src/control/Control.JSDialogBuilder.js:2180
+#: src/layer/tile/CanvasTileLayer.js:4118
+#: src/layer/tile/CanvasTileLayer.js:4129
 msgid "Comment"
 msgstr ""
 
@@ -494,7 +494,7 @@ msgid ""
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1485 src/core/Socket.js:1800
+#: src/canvas/sections/CommentListSection.ts:1485 src/core/Socket.js:1739
 msgid "Overwrite"
 msgstr ""
 
@@ -537,7 +537,7 @@ msgstr ""
 msgid "Resolved"
 msgstr ""
 
-#: src/canvas/sections/ShapeHandlesSection.ts:721
+#: src/canvas/sections/ShapeHandlesSection.ts:617
 msgid "Document contains unsupported media"
 msgstr ""
 
@@ -1121,32 +1121,32 @@ msgstr ""
 msgid "Fixed size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1776
+#: src/control/Control.JSDialogBuilder.js:1618
 msgid "From"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1779
+#: src/control/Control.JSDialogBuilder.js:1621
 msgid "To"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1782
+#: src/control/Control.JSDialogBuilder.js:1624
 msgid "Color"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:1880
+#: src/control/Control.JSDialogBuilder.js:1722
 msgid "Select range"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2027
+#: src/control/Control.JSDialogBuilder.js:1869
 #: src/control/Control.NotebookbarBuilder.js:162
 msgid "Font Name"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2029 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1871 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2031
+#: src/control/Control.JSDialogBuilder.js:1873
 #: src/control/Control.NotebookbarCalc.js:933
 #: src/control/Control.NotebookbarCalc.js:2563
 #: src/control/Control.NotebookbarDraw.js:2578
@@ -1156,33 +1156,33 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2323
+#: src/control/Control.JSDialogBuilder.js:2165
 msgid "reply"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2325
+#: src/control/Control.JSDialogBuilder.js:2167
 msgid "replies"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2412
+#: src/control/Control.JSDialogBuilder.js:2254
 msgid "Insert Comment"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2730
+#: src/control/Control.JSDialogBuilder.js:2572
 msgid "Open {name}"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3129
+#: src/control/Control.JSDialogBuilder.js:2971
 #: src/control/Control.Menubar.ts:929
 msgid "Rows"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3130
+#: src/control/Control.JSDialogBuilder.js:2972
 #: src/control/Control.Menubar.ts:932
 msgid "Columns"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:3162
+#: src/control/Control.JSDialogBuilder.js:3004
 msgid "Insert Table"
 msgstr ""
 
@@ -2435,7 +2435,7 @@ msgid "Start Follow-me Presentation"
 msgstr ""
 
 #: src/control/Control.NotebookbarImpress.js:628
-#: src/slideshow/SlideShowPresenter.ts:774
+#: src/slideshow/SlideShowPresenter.ts:793
 msgid "Follow Presentation"
 msgstr ""
 
@@ -2480,7 +2480,7 @@ msgid "Spacing & Color"
 msgstr ""
 
 #: src/control/Control.NotebookbarImpress.js:1948
-#: src/control/Control.NavigatorPanel.ts:176
+#: src/control/Control.NavigatorPanel.ts:179
 #: src/slideshow/PresenterConsole.js:34
 msgid "Slides"
 msgstr ""
@@ -2742,19 +2742,19 @@ msgstr ""
 msgid "Close Navigation"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:187
+#: src/control/Control.NavigatorPanel.ts:207
 msgid "Outline"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:198
+#: src/control/Control.NavigatorPanel.ts:231
 msgid "Results"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:229
+#: src/control/Control.NavigatorPanel.ts:294
 msgid "Navigator"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:417
+#: src/control/Control.NavigatorPanel.ts:490
 msgid "Search..."
 msgstr ""
 
@@ -2960,19 +2960,19 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:290 src/core/Socket.js:1689
+#: src/control/Control.Zotero.js:290 src/core/Socket.js:1647
 msgid "Loading..."
 msgstr ""
 
 #: src/control/Control.Zotero.js:304 src/control/Control.Zotero.js:514
 #: src/slideshow/PresenterConsole.js:31
-#: src/slideshow/SlideShowPresenter.ts:704
+#: src/slideshow/SlideShowPresenter.ts:723
 msgid "Previous"
 msgstr ""
 
 #: src/control/Control.Zotero.js:317 src/control/Control.Zotero.js:529
 #: src/slideshow/PresenterConsole.js:32
-#: src/slideshow/SlideShowPresenter.ts:720
+#: src/slideshow/SlideShowPresenter.ts:739
 msgid "Next"
 msgstr ""
 
@@ -3188,19 +3188,19 @@ msgstr ""
 msgid "Bottom Margin"
 msgstr ""
 
-#: src/control/HRuler.ts:612 src/control/HRuler.ts:791
+#: src/control/HRuler.ts:605 src/control/HRuler.ts:784
 msgid "Left Margin"
 msgstr ""
 
-#: src/control/HRuler.ts:613 src/control/HRuler.ts:792
+#: src/control/HRuler.ts:606 src/control/HRuler.ts:785
 msgid "Right Margin"
 msgstr ""
 
-#: src/control/HRuler.ts:1143
+#: src/control/HRuler.ts:1137
 msgid "Insert tabstop"
 msgstr ""
 
-#: src/control/HRuler.ts:1150
+#: src/control/HRuler.ts:1144
 msgid "Delete tabstop"
 msgstr ""
 
@@ -3672,167 +3672,167 @@ msgstr ""
 msgid "More options for {1}"
 msgstr ""
 
-#: src/core/Socket.js:67
+#: src/core/Socket.js:47
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr ""
 
-#: src/core/Socket.js:836
+#: src/core/Socket.js:794
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr ""
 
-#: src/core/Socket.js:839
+#: src/core/Socket.js:797
 msgid "Server is now reachable..."
 msgstr ""
 
-#: src/core/Socket.js:847
+#: src/core/Socket.js:805
 msgid "RELOAD"
 msgstr ""
 
-#: src/core/Socket.js:876
+#: src/core/Socket.js:834
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:886
+#: src/core/Socket.js:844
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:898
+#: src/core/Socket.js:856
 msgid "LOOLWSD version:"
 msgstr ""
 
-#: src/core/Socket.js:935
+#: src/core/Socket.js:893
 msgid "Served by:"
 msgstr ""
 
-#: src/core/Socket.js:948
+#: src/core/Socket.js:906
 msgid "Unsupported server version."
 msgstr ""
 
-#: src/core/Socket.js:953
+#: src/core/Socket.js:911
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:1102
+#: src/core/Socket.js:1060
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:1132
+#: src/core/Socket.js:1090
 msgid "Session terminated by document owner"
 msgstr ""
 
-#: src/core/Socket.js:1141
+#: src/core/Socket.js:1099
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr ""
 
-#: src/core/Socket.js:1147
+#: src/core/Socket.js:1105
 msgid "Oops, there is a problem connecting the document"
 msgstr ""
 
-#: src/core/Socket.js:1151
+#: src/core/Socket.js:1109
 msgid "Server is down, restarting automatically. Please wait."
 msgstr ""
 
-#: src/core/Socket.js:1181
+#: src/core/Socket.js:1139
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
 msgstr ""
 
-#: src/core/Socket.js:1190
+#: src/core/Socket.js:1148
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
 msgstr ""
 
-#: src/core/Socket.js:1199
+#: src/core/Socket.js:1157
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:1363
+#: src/core/Socket.js:1321
 msgid "Document requires password to view."
 msgstr ""
 
-#: src/core/Socket.js:1365
+#: src/core/Socket.js:1323
 msgid "Document requires password to modify."
 msgstr ""
 
-#: src/core/Socket.js:1367
+#: src/core/Socket.js:1325
 msgid "Hit Cancel to open in view-only mode."
 msgstr ""
 
-#: src/core/Socket.js:1371
+#: src/core/Socket.js:1329
 msgid "Wrong password provided. Please try again."
 msgstr ""
 
-#: src/core/Socket.js:1426
+#: src/core/Socket.js:1384
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1467 src/core/Socket.js:1478
+#: src/core/Socket.js:1425 src/core/Socket.js:1436
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1526
+#: src/core/Socket.js:1484
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1528
+#: src/core/Socket.js:1486
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1553
+#: src/core/Socket.js:1511
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1557
+#: src/core/Socket.js:1515
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1690
+#: src/core/Socket.js:1648
 msgid "Connecting..."
 msgstr ""
 
-#: src/core/Socket.js:1707
+#: src/core/Socket.js:1665
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1754
+#: src/core/Socket.js:1710
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1755
+#: src/core/Socket.js:1710
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1799
+#: src/core/Socket.js:1738
 msgid "Discard"
 msgstr ""
 
-#: src/core/Socket.js:1819
+#: src/core/Socket.js:1758
 msgid "Save to new file"
 msgstr ""
 
-#: src/core/Socket.js:1836
+#: src/core/Socket.js:1775
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:1838
+#: src/core/Socket.js:1777
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
 msgstr ""
 
-#: src/core/Socket.js:2156
+#: src/core/Socket.js:2085
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr ""
 
-#: src/core/Socket.js:2178
+#: src/core/Socket.js:2107
 msgid "Reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:2193
+#: src/core/Socket.js:2117
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -4120,15 +4120,15 @@ msgstr ""
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1883
+#: src/layer/tile/CanvasTileLayer.js:1882
 msgid "Functions"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:2199
+#: src/layer/tile/CanvasTileLayer.js:2198
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4147
+#: src/layer/tile/CanvasTileLayer.js:4146
 msgid "No Comments"
 msgstr ""
 
@@ -4225,17 +4225,17 @@ msgid "Print dialog"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:59
-#: src/slideshow/SlideShowPresenter.ts:1108
+#: src/slideshow/SlideShowPresenter.ts:1127
 msgid "Empty Slide Show"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:179
-#: src/slideshow/SlideShowPresenter.ts:1136
+#: src/slideshow/SlideShowPresenter.ts:1155
 msgid "Windowed Presentation Blocked"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:181
-#: src/slideshow/SlideShowPresenter.ts:1138
+#: src/slideshow/SlideShowPresenter.ts:1157
 msgid ""
 "Presentation was blocked. Please allow pop-ups in your browser. This lets "
 "slide shows to be displayed in separated windows, allowing for easy screen "
@@ -4243,17 +4243,17 @@ msgid ""
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:191
-#: src/slideshow/SlideShowPresenter.ts:923
+#: src/slideshow/SlideShowPresenter.ts:942
 msgid "Windowed Presentation: "
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:229
-#: src/slideshow/SlideShowPresenter.ts:966
+#: src/slideshow/SlideShowPresenter.ts:985
 msgid "Presenting in window"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:230
-#: src/slideshow/SlideShowPresenter.ts:967
+#: src/slideshow/SlideShowPresenter.ts:986
 msgid "Close Presentation"
 msgstr ""
 
@@ -4266,22 +4266,22 @@ msgid "End Presentation"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:368
-#: src/slideshow/SlideShowPresenter.ts:1123
+#: src/slideshow/SlideShowPresenter.ts:1142
 msgid "Already presenting"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:369
-#: src/slideshow/SlideShowPresenter.ts:1124
+#: src/slideshow/SlideShowPresenter.ts:1143
 msgid "You are already presenting this document"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:384
-#: src/slideshow/SlideShowPresenter.ts:1161
+#: src/slideshow/SlideShowPresenter.ts:1180
 msgid "Presentation disabled"
 msgstr ""
 
 #: src/map/handler/Map.SlideShow.js:385
-#: src/slideshow/SlideShowPresenter.ts:1162
+#: src/slideshow/SlideShowPresenter.ts:1181
 msgid "Presentation mode has been disabled for this document"
 msgstr ""
 
@@ -4363,20 +4363,20 @@ msgid "Repeat in {0} seconds"
 msgstr ""
 
 #: src/slideshow/PresenterConsole.js:1492
-#: src/slideshow/SlideShowPresenter.ts:578
+#: src/slideshow/SlideShowPresenter.ts:597
 msgid "Click to exit presentation..."
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:696
+#: src/slideshow/SlideShowPresenter.ts:715
 msgid "End Show"
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:732
-#: src/slideshow/SlideShowPresenter.ts:752
+#: src/slideshow/SlideShowPresenter.ts:751
+#: src/slideshow/SlideShowPresenter.ts:771
 msgid "Disable Animations"
 msgstr ""
 
-#: src/slideshow/SlideShowPresenter.ts:751
+#: src/slideshow/SlideShowPresenter.ts:770
 msgid "Enable Animations"
 msgstr ""
 
