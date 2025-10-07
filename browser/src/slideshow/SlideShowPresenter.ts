@@ -844,6 +844,8 @@ class SlideShowPresenter {
 	endPresentation(force: boolean) {
 		this.sendSlideShowFollowMessage('endpresentation');
 		this.checkDarkMode(false);
+		this.setLeader(false);
+		this.setFollowing(false);
 
 		app.console.debug('SlideShowPresenter.endPresentation');
 		if (this._pauseTimer) this._pauseTimer.stopTimer();
