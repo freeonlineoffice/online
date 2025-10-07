@@ -13,7 +13,7 @@ class TableSelectMarkerSection extends HTMLObjectSection {
 		name: string,
 		objectWidth: number,
 		objectHeight: number,
-		documentPosition: cool.SimplePoint,
+		documentPosition: lool.SimplePoint,
 		extraClass: string,
 		markerType: string,
 		showSection: boolean = true,
@@ -35,19 +35,19 @@ class TableSelectMarkerSection extends HTMLObjectSection {
 		this.sectionProperties.contextMenuActivated = false;
 	}
 
-	public onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		this.getHTMLObject()?.classList.add('hovered');
 	}
 
-	public onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		this.getHTMLObject()?.classList.remove('hovered');
 	}
 
-	public onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 	}
 
-	public onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 
 		if (this.sectionProperties.contextMenuActivated === true) {
@@ -74,7 +74,7 @@ class TableSelectMarkerSection extends HTMLObjectSection {
 		this.sectionProperties.contextMenuActivated = true;
 	}
 
-	public onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		this.stopPropagating(e);
 		if (this.sectionProperties.markerType === 'column') {
 			const x1 = Math.round(

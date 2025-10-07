@@ -155,7 +155,7 @@ class TableMiddleware {
 	}
 
 	private addResizeMarker(markerType: string, x: number, y: number) {
-		const position = new cool.SimplePoint(x, y);
+		const position = new lool.SimplePoint(x, y);
 
 		const index =
 			markerType === 'column'
@@ -281,7 +281,7 @@ class TableMiddleware {
 		width: number,
 		height: number,
 	) {
-		const position = new cool.SimplePoint(x, y);
+		const position = new lool.SimplePoint(x, y);
 
 		const marker = new TableSelectMarkerSection(
 			'marker-' + String(TableMiddleware.markerid++),
@@ -451,7 +451,7 @@ class TableMiddleware {
 			null,
 			'table-anchor',
 			anchorSize,
-			new cool.SimplePoint(x, y),
+			new lool.SimplePoint(x, y),
 			null,
 		);
 		app.sectionContainer.addSection(this.tableAnchorSection);
@@ -527,7 +527,7 @@ class TableMiddleware {
 
 		const insertColumnMarkerSection = new TableInsertMarkerSection(
 			'column',
-			new cool.SimplePoint(insertColumnX, insertColumnY),
+			new lool.SimplePoint(insertColumnX, insertColumnY),
 		);
 		insertColumnMarkerSection.setMarkerSize(
 			insertColumnWidth,
@@ -553,7 +553,7 @@ class TableMiddleware {
 
 		const insertRowMarkerSection = new TableInsertMarkerSection(
 			'row',
-			new cool.SimplePoint(insertRowX, insertRowY),
+			new lool.SimplePoint(insertRowX, insertRowY),
 		);
 		insertRowMarkerSection.setMarkerSize(insertRowWidth, insertRowHeight);
 		app.sectionContainer.addSection(insertRowMarkerSection);
