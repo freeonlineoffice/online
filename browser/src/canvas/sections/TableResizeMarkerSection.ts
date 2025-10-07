@@ -38,7 +38,9 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		this.sectionProperties.initialPosition = this.position.slice();
 
 		this.moveHTMLObjectToMapElement();
-		this.mirrorEventsFromSourceToCanvasSectionContainer(this.getHTMLObject());
+		this.mirrorEventsFromSourceToCanvasSectionContainer(
+			this.getHTMLObject(),
+		);
 	}
 
 	private calculateLeftMostAndRightMostAvailableX() {
