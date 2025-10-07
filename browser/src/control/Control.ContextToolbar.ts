@@ -123,9 +123,14 @@ class ContextToolbar extends JSDialogComponent {
 
 			window.L.DomUtil.removeClass(this.container, 'hidden');
 			app.layoutingService.appendLayoutingTask(() => {
-				const contextualMenu = this.container.getBoundingClientRect();
+				const contextualMenu =
+					this.container.getBoundingClientRect();
 				if (contextualMenu.width + pos.x > window.innerWidth) {
-					pos.x -= contextualMenu.width + pos.x - window.innerWidth + 5;
+					pos.x -=
+						contextualMenu.width +
+						pos.x -
+						window.innerWidth +
+						5;
 				}
 				this.container.style.top = pos.y + 'px';
 				this.container.style.left = pos.x + 'px';
