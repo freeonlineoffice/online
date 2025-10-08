@@ -1279,7 +1279,11 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 			app.definitions.otherViewGraphicSelectionSection.updateVisibilities();
 			app.definitions.otherViewCursorSection.updateVisibilities();
 			this.updateAllTextViewSelection();
-		} else if (textMsg.startsWith('textselection:')) {
+		}
+		else if (textMsg.startsWith('partstatus:')) {
+			this._onStatusMsg(textMsg);
+		}
+		else if (textMsg.startsWith('textselection:')) {
 			this._onTextSelectionMsg(textMsg);
 		} else if (textMsg.startsWith('textselectioncontent:')) {
 			let textMsgContent = textMsg.substr(22);
@@ -4766,11 +4770,8 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 		return this._cssPixelsToTwips(pixels);
 	},
 
-	_updateMaxBounds: function (sizeChanged) {
-		if (
-			app.activeDocument.fileSize.x === 0 ||
-			app.activeDocument.fileSize.y === 0
-		) {
+	_updateMaxBounds: function (sizeChanged, allPages = true) {
+		if (app.activeDocument.fileSize.x === 0 || app.activeDocument.fileSize.y === 0) {
 			return;
 		}
 
@@ -4784,8 +4785,9 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 			this._map.setMaxBounds(new window.L.LatLngBounds(topLeft, this._map.unproject(scrollPixelLimits)));
 		}
 
-		this._docPixelSize = { x: docPixelLimits.x, y: docPixelLimits.y };
-		this._map.fire('scrolllimits', {});
+		this._docPixelSize = {x: docPixelLimits.x, y: docPixelLimits.y};
+		if (allPages) this._map.fire('scrolllimits', {});
+		else this._map.fire('scrolllimit', {})
 	},
 
 	// Used with filebasedview.
