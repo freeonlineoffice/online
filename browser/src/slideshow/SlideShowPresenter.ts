@@ -253,9 +253,8 @@ class SlideShowPresenter {
 					this._slideShowNavigator.followVideo(info);
 				break;
 			case 'displayslide':
-				info.currentEffect = -1;
 				this._slideShowNavigator.setLeaderSlide(info);
-				this._slideShowNavigator.setLeaderEffect(info);
+				this._slideShowNavigator.resetLeaderEffect();
 				break;
 			case 'effect':
 				this._slideShowNavigator.setLeaderEffect(info);
@@ -267,6 +266,8 @@ class SlideShowPresenter {
 			case 'endpresentation':
 				this.setLeader(false);
 				this.setFollower(false);
+				this._slideShowNavigator.resetLeaderEffect();
+				this._slideShowNavigator.resetLeaderSlide();
 				this._map.uiManager.showButton(
 					'slide-presentation-follow-me',
 					true,
