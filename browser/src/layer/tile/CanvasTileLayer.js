@@ -3060,12 +3060,6 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 				this._cellSelectionArea,
 			);
 
-			const rectArray = this._getTextSelectionRectangles(textMsg);
-			const rectangles = rectArray.map(function (rect) {
-				return rect.getPointArray();
-			});
-			const pointSet = this._convertToPointSet(rectangles);
-			this._cellCSelections.setPointSet(pointSet);
 			CellSelectionMarkers.update();
 		} else {
 			this._cellSelectionArea = null;
@@ -3074,7 +3068,6 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 					null,
 				);
 			this._cellSelections = Array(0);
-			this._cellCSelections.clear();
 			this._map.wholeColumnSelected = false; // Message related to whole column/row selection should be on the way, we should update the variables now.
 			this._map.wholeRowSelected = false;
 			if (this._refreshRowColumnHeaders)
@@ -3183,8 +3176,6 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 		this._onUpdateCursor(calledFromSetPartHandler);
 		// hide the text selection
 		this._textCSelections.clear();
-		// hide the cell selection
-		this._cellCSelections.clear();
 		// hide the ole selection
 		this._oleCSelections.clear();
 
@@ -3195,9 +3186,7 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 
 	containsSelection: function (latlng) {
 		var corepxPoint = this._map.project(latlng);
-		return this._textCSelections.empty()
-			? this._cellCSelections.contains(corepxPoint)
-			: this._textCSelections.contains(corepxPoint);
+		return this._textCSelections.contains(corepxPoint);
 	},
 
 	_clearReferences: function () {
@@ -4482,33 +4471,10 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 		}
 
 		this._getToolbarCommandsValues();
-		this._textCSelections = new CSelections(
-			undefined,
-			this._canvasOverlay,
-			this._selectionsDataDiv,
-			this._map,
-			false /* isView */,
-			undefined,
-			'text',
-		);
-		this._cellCSelections = new CSelections(
-			undefined,
-			this._canvasOverlay,
-			this._selectionsDataDiv,
-			this._map,
-			false /* isView */,
-			undefined,
-			'cell',
-		);
-		this._oleCSelections = new CSelections(
-			undefined,
-			this._canvasOverlay,
-			this._selectionsDataDiv,
-			this._map,
-			false /* isView */,
-			undefined,
-			'ole',
-		);
+		this._textCSelections = new CSelections(undefined, this._canvasOverlay,
+			this._selectionsDataDiv, this._map, false /* isView */, undefined, 'text');
+		this._oleCSelections = new CSelections(undefined, this._canvasOverlay,
+			this._selectionsDataDiv, this._map, false /* isView */, undefined, 'ole');
 		this._references = new CReferences(this._canvasOverlay);
 		this._referencesAll = [];
 
@@ -4600,10 +4566,6 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 		this._tileZoom = null;
 		TileManager.clearPreFetch();
 		clearTimeout(this._previewInvalidator);
-
-		if (!this._cellCSelections.empty()) {
-			this._cellCSelections.clear();
-		}
 
 		if (!this._textCSelections.empty()) {
 			this._textCSelections.clear();
