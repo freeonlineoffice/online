@@ -1,71 +1,65 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, minimum-scale=1"
-		/>
-		<title>Online</title>
-		<style>
-			html,
-			body,
-			iframe {
-				margin: 0px;
-				padding: 0px;
-				border: none;
-			}
-		</style>
-	</head>
-	<body>
-		<form
-			id="form"
-			action
-			enctype="multipart/form-data"
-			target="loolframe"
-			method="post"
-		>
-			<input name="access_token" value="test" type="hidden" />
-		</form>
-		<iframe
-			id="loolframe"
-			name="loolframe"
-			style="width: 100%; height: 100%; position: absolute"
-			title="Free Online Office"
-			allow="fullscreen"
-		>
-		</iframe>
-		<script>
-			function constructWopiUrl() {
-				var localServer =
-					window.location.protocol + '//' + window.location.host;
-				var localUrl = localServer + window.location.pathname + '?';
-				localUrl = localUrl.replace('debug.html', 'lool.html');
-				var params = new URLSearchParams(window.location.search);
-				var wopiSrc = params.get('WOPISrc');
-				if (wopiSrc) {
-					params.delete('WOPISrc');
-					wopiSrc = encodeURIComponent(wopiSrc);
-				} else {
-					var filePath = params.get('file_path').substr(1);
-					params.delete('file_path');
-					var wopiSrc =
-						localServer +
-						'/wopi/files/' +
-						encodeURIComponent(filePath);
-				}
-				return (
-					localUrl +
-					'WOPISrc=' +
-					wopiSrc +
-					'&' +
-					params.toString()
-				);
-			}
-			var form = document.getElementById('form');
-			form.action = constructWopiUrl();
-			form.submit();
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Online</title>
+    <style>
+        html, body, iframe
+        {
+            margin: 0px;
+            padding: 0px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" action enctype="multipart/form-data" target="loolframe" method="post">
+         <input name="access_token" value="test" type="hidden"/>
+    </form>
+    <iframe id="loolframe" name= "loolframe" style="width:100%;height:100%;position:absolute;" title="Free Online Office" allow="fullscreen">
+    </iframe>
+    <script>
+        function constructWopiUrl() {
+            let localServer = window.location.protocol + "//" + window.location.host;
+            let localUrl = localServer + window.location.pathname + "?";
+            let params = new URLSearchParams(window.location.search);
+            let req = params.get('req');
+            params.delete('req');
+            if (req)
+              req = req.replace('debug.html', 'lool.html')
+            else
+              localUrl = localUrl.replace('debug.html', 'lool.html');
+            var wopiSrc = params.get('WOPISrc');
+            if (wopiSrc)
+            {
+                params.delete('WOPISrc');
+                wopiSrc = encodeURIComponent(wopiSrc);
+            }
+            else
+            {
+                let filePath = params.get('file_path').substr(1);
+                params.delete('file_path');
+                const wopiPort = params.get('wopiPort');
+                wopiSrc = localServer;
+                params.delete('wopiPort');
+                if (wopiPort)
+                  wopiSrc += ':' + wopiPort;
+                wopiSrc += "/wopi/files/" + encodeURIComponent(filePath);
+            }
+            if (req)
+              localUrl += 'req=' + req + '&';
+
+            localUrl += "WOPISrc=" + wopiSrc;
+            let remainingParams = params.toString()
+            if (remainingParams)
+              localUrl = localUrl + '&' + params.toString();
+            return localUrl
+          }
+        var form = document.getElementById("form");
+        form.action = constructWopiUrl();
+        form.submit();
 
 			// TODO: share code between debug.html and framed.doc.html
 			window.addEventListener('message', receivePostMessage);
