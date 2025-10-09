@@ -653,7 +653,10 @@ window.L.CalcTileLayer = window.L.CanvasTileLayer.extend({
 						info[i]['ranges'];
 			}
 
-			if (firstSelectedPart) this._switchSplitPanesContext();
+			if (firstSelectedPart)
+				this._switchSplitPanesContext();
+
+			this._map.fire('statusupdated');
 		} else {
 			this._adjustCanvasSectionsForLayoutChange();
 		}
