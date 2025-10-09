@@ -320,9 +320,11 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 		this.map.saveState = new app.definitions.saveState(this.map);
 	},
 
-	reloadShortcutsBar: function () {
-		$('.notebookbar-shortcuts-bar').remove();
-		this.createShortcutsBar();
+	reloadShortcutsBar: function() {
+		app.layoutingService.appendLayoutingTask(() => {
+			$('.notebookbar-shortcuts-bar').remove();
+			this.createShortcutsBar();
+		});
 	},
 
 	insertButtonToShortcuts: function (button) {
