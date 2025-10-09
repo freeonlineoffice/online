@@ -874,7 +874,7 @@ $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist: $(LOOL_JS_DST)
 
 $(INTERMEDIATE_DIR)/LOOL_JS.m4: $(INTERMEDIATE_DIR)/LOOL_JS.m4.jslist
 	$(foreach file,$(NODE_MODULES_JS) $(LOOL_LIBS_JS) $(patsubst %.ts,%.js,$(LOOL_JS_WEBORDER)), $(shell echo -n $(file), >> $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp))
-	@truncate $(if $(filter Darwin,$(shell uname -s)),-s -1,--size=-1) $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp
+	@truncate $(if $(filter Darwin FreeBSD,$(shell uname -s)),-s -1,--size=-1) $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp
 	@mv $(INTERMEDIATE_DIR)/LOOL_JS.m4.tmp $(INTERMEDIATE_DIR)/LOOL_JS.m4
 
 $(DIST_FOLDER)/lool.html: $(srcdir)/html/lool.html.m4 \
