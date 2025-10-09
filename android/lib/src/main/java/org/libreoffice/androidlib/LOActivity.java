@@ -27,6 +27,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.graphics.Insets;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -44,6 +45,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.MimeTypeMap;
@@ -86,6 +88,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -378,7 +381,27 @@ public class LOActivity extends AppCompatActivity {
             isDocEditable = false;
         if (mTempFile != null)
         {
-            mWebView = (LOWebView) findViewById(R.id.browser);
+            mWebView = (COWebView) findViewById(R.id.browser);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                mWebView.setOnApplyWindowInsetsListener((v, windowInsets) -> {
+                    Insets insets = windowInsets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime() | (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE ? WindowInsets.Type.systemOverlays() : 0));
+
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                    mlp.leftMargin = insets.left;
+                    mlp.topMargin = insets.top;
+                    mlp.rightMargin = insets.right;
+                    mlp.bottomMargin = insets.bottom;
+                    v.setLayoutParams(mlp);
+
+                    return WindowInsets.CONSUMED;
+                });
+
+                boolean lightMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES) == 0;
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView()).setAppearanceLightStatusBars(lightMode);
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView()).setAppearanceLightNavigationBars(lightMode);
+            }
+
             mMobileSocket = mWebView.getWebViewClient().getMobileSocket();
 
             WebSettings webSettings = mWebView.getSettings();
