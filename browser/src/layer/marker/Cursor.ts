@@ -89,7 +89,9 @@ class Cursor {
 			if (this.map._docLayer._docType === 'presentation') {
 				$('.leaflet-interactive').css('cursor', 'text');
 			} else {
-				$('.leaflet-pane.leaflet-map-pane').css('cursor', 'text');
+				const canvas = document.getElementById('document-canvas');
+				if (canvas.style.cursor !== 'text')
+					canvas.style.cursor = 'text';
 			}
 		}
 	}
@@ -110,7 +112,7 @@ class Cursor {
 		if (this.map._docLayer._docType === 'presentation') {
 			$('.leaflet-interactive').css('cursor', '');
 		} else {
-			$('.leaflet-pane.leaflet-map-pane').css('cursor', '');
+			$('#document-canvas').css('cursor', '');
 		}
 		if (this.container && this.domAttached) {
 			this.map.getCursorOverlayContainer().removeChild(this.container);

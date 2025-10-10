@@ -1,6 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -31,6 +29,7 @@ class TableInsertMarkerSection extends HTMLObjectSection {
 	public onMouseEnter() {
 		this.sectionProperties.mouseEntered = true;
 		this.getHTMLObject()?.classList.add('hovered');
+		this.context.canvas.style.cursor = 'pointer';
 	}
 
 	public onMouseLeave() {
@@ -38,18 +37,12 @@ class TableInsertMarkerSection extends HTMLObjectSection {
 		this.getHTMLObject()?.classList.remove('hovered');
 	}
 
-	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
-		e.preventDefault();
-		this.stopPropagating();
-		e.stopPropagation();
-	}
-
 	public onClick(point: lool.SimplePoint, e: MouseEvent): void {
-		e.preventDefault();
-		this.stopPropagating();
-		e.stopPropagation();
-
-		this.handleClick();
+		if (this.sectionProperties.markerType === 'column') {
+			app.socket.sendMessage('uno .uno:InsertColumnsAfter');
+		} else {
+			app.socket.sendMessage('uno .uno:InsertRowsAfter');
+		}
 	}
 
 	public getMarkerType(): string {
@@ -62,14 +55,6 @@ class TableInsertMarkerSection extends HTMLObjectSection {
 		if (container) {
 			container.style.width = `${width}px`;
 			container.style.height = `${height}px`;
-		}
-	}
-
-	private handleClick(): void {
-		if (this.sectionProperties.markerType === 'column') {
-			app.socket.sendMessage('uno .uno:InsertColumnsAfter');
-		} else {
-			app.socket.sendMessage('uno .uno:InsertRowsAfter');
 		}
 	}
 }

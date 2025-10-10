@@ -315,8 +315,6 @@ window.L.Map.TouchGesture = window.L.Handler.extend({
 		if (!this._map.touchGesture.enabled()) {
 			this._map.touchGesture.enable();
 		}
-
-		window.IgnorePanning = undefined;
 	},
 
 	_onPress: function (e) {
@@ -674,8 +672,6 @@ window.L.Map.TouchGesture = window.L.Handler.extend({
 	_onPanStart: function (e) {
 		if (this._map.uiManager.isUIBlocked()) return;
 
-		if (window.IgnorePanning) return;
-
 		app.util.cancelAnimFrame(this.autoscrollAnimReq);
 		var point = e.pointers[0],
 			containerPoint = this._map.mouseEventToContainerPoint(point),
@@ -740,12 +736,7 @@ window.L.Map.TouchGesture = window.L.Handler.extend({
 	_onPan: function (e) {
 		if (this._map.uiManager.isUIBlocked()) return;
 
-		if (window.IgnorePanning) return;
-
-		if (
-			this._inSwipeAction &&
-			Math.abs(e.velocity) < this._hammer.get('swipe').options.velocity
-		) {
+		if (this._inSwipeAction &&  Math.abs(e.velocity) < this._hammer.get('swipe').options.velocity) {
 			this._cancelAutoscrollRAF();
 		}
 
@@ -768,8 +759,6 @@ window.L.Map.TouchGesture = window.L.Handler.extend({
 
 	_onPanEnd: function (e) {
 		if (this._map.uiManager.isUIBlocked()) return;
-
-		if (window.IgnorePanning) return;
 
 		var point = e.pointers[0],
 			containerPoint = this._map.mouseEventToContainerPoint(point),
@@ -893,8 +882,6 @@ window.L.Map.TouchGesture = window.L.Handler.extend({
 
 	_onSwipe: function (e) {
 		if (this._map.uiManager.isUIBlocked()) return;
-
-		if (window.IgnorePanning) return;
 
 		let velocityX = this._map._docLayer.isCalcRTL() ? -e.velocityX : e.velocityX;
 		let pointVelocity = new lool.Point(velocityX, e.velocityY);

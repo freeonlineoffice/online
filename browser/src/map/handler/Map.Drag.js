@@ -52,9 +52,9 @@ window.L.Map.Drag = window.L.Handler.extend({
 	},
 
 	_onDrag: function (e) {
-		if (window.IgnorePanning) return;
-
-		this._map.fire('move', e).fire('drag', e);
+		this._map
+		    .fire('move', e)
+		    .fire('drag', e);
 	},
 
 	_onPreDrag: function () {

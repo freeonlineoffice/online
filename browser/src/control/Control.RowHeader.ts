@@ -10,10 +10,9 @@
 /*
  */
 
-/* global _UNO app UNOModifier */
+/* global _UNO app */
 
 declare var _UNO: any;
-declare var UNOModifier: any;
 
 namespace lool {
 
@@ -193,10 +192,10 @@ export class RowHeader extends lool.Header {
 
 		let modifier = 0;
 		if (e.shiftKey) {
-			modifier += UNOModifier.SHIFT;
+			modifier += app.UNOModifier.SHIFT;
 		}
 		if (e.ctrlKey) {
-			modifier += UNOModifier.CTRL;
+			modifier += app.UNOModifier.CTRL;
 		}
 
 		this._selectRow(row, modifier);

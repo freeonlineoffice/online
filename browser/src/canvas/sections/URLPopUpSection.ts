@@ -48,7 +48,8 @@ class URLPopUpSection extends HTMLObjectSection {
 			});
 
 		this.sectionProperties.documentPosition = documentPosition.clone();
-	}
+		this.getHTMLObject().style.pointerEvents = '';
+    }
 
 	getPopUpWidth(): number {
 		return this.getHTMLObject().getBoundingClientRect().width;

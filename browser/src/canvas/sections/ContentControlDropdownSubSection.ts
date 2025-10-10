@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -132,14 +130,6 @@ class ContentControlDropdownSubSection extends HTMLObjectSection {
 		json.posy = (this.myTopLeft[1] + this.size[1]) / app.dpiScale;
 
 		return json;
-	}
-
-	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
-		app.map.dontHandleMouse = true;
-	}
-
-	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
-		app.map.dontHandleMouse = false;
 	}
 
 	public containsPoint(point: number[]) {

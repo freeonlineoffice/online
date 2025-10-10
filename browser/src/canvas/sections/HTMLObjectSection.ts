@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -57,6 +55,9 @@ class HTMLObjectSection extends CanvasSectionObject {
 			this.sectionProperties.objectDiv.style.display = 'none';
 			this.showSection = false;
 		}
+
+		// This one is important for canvas section container. This property lets the events pass through the object and find canvas.
+		this.sectionProperties.objectDiv.style.pointerEvents = 'none';
 	}
 
 	onInitialize(): void {
@@ -71,23 +72,8 @@ class HTMLObjectSection extends CanvasSectionObject {
 	}
 
 	adjustHTMLObjectPosition() {
-		let leftAddition = 0;
-		let topAddition = 0;
-
-		if (this.sectionProperties.objectDiv.parentNode && this.sectionProperties.objectDiv.parentNode.id === 'map') {
-			const clientRectMap = document.getElementById('map').getBoundingClientRect();
-			const clientRectCanvas = document.getElementById('canvas-container').getBoundingClientRect();
-
-			leftAddition = clientRectMap.width - clientRectCanvas.width;
-			topAddition = clientRectMap.height - clientRectCanvas.height;
-		}
-
-		const left =
-			Math.round((this.myTopLeft[0] + leftAddition) / app.dpiScale) +
-			'px';
-		const top =
-			Math.round((this.myTopLeft[1] + topAddition) / app.dpiScale) +
-			'px';
+		const left = Math.round(this.myTopLeft[0] / app.dpiScale) + 'px';
+		const top = Math.round(this.myTopLeft[1] / app.dpiScale) + 'px';
 
 		if (this.sectionProperties.objectDiv.style.left !== left)
 			this.sectionProperties.objectDiv.style.left = left;

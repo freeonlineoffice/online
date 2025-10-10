@@ -1,7 +1,5 @@
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -30,12 +28,7 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 		this.sectionProperties.parentHandlerSection = parentHandlerSection;
 		this.sectionProperties.ownInfo = ownInfo;
 		this.sectionProperties.mouseIsInside = false;
-		this.sectionProperties.previousCursorStyle = null;
 		this.sectionProperties.lastDraggingDistance = null;
-		this.sectionProperties.mapPane = <HTMLElement>(
-			document.querySelectorAll('.leaflet-map-pane')[0]
-		);
-		this.sectionProperties.previousCursorStyle = null;
 		this.sectionProperties.cursorStyle = 'pointer';
 
 		app.events.on(
@@ -78,17 +71,7 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 	}
 
 	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
-		app.map.dontHandleMouse = true;
-		this.sectionProperties.previousCursorStyle =
-			this.sectionProperties.mapPane.style.cursor;
-		this.sectionProperties.mapPane.style.cursor =
-			this.sectionProperties.cursorStyle;
-	}
-
-	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
-		app.map.dontHandleMouse = false;
-		this.sectionProperties.mapPane.style.cursor =
-			this.sectionProperties.previousCursorStyle;
+		this.context.canvas.style.cursor = this.sectionProperties.cursorStyle;
 	}
 
 	onDraw(frameCount?: number, elapsedTime?: number): void {
@@ -127,10 +110,6 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 		return initialAngle - newAngle;
 	}
 
-	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
-		(window as any).IgnorePanning = true;
-	}
-
 	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.containerObject.isDraggingSomething()) {
 			if (this.sectionProperties.lastDraggingDistance) {
@@ -158,8 +137,6 @@ class ShapeHandleRotationSubSection extends CanvasSectionObject {
 			}
 			this.sectionProperties.parentHandlerSection.hideSVG();
 		}
-
-		(window as any).IgnorePanning = false;
 	}
 
 	onMouseMove(position: lool.SimplePoint, distance: number[]) {

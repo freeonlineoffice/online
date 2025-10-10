@@ -19,16 +19,13 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 	constructor (parentHandlerSection: ShapeHandlesSection | null, sectionName: string, size: number[], documentPosition: lool.SimplePoint, ownInfo: any) {
         super(sectionName, size[0], size[1], documentPosition, 'anchor-marker');
 
-		this.moveHTMLObjectToMapElement();
-		this.mirrorEventsFromSourceToCanvasSectionContainer(this.getHTMLObject());
-
-		this.sectionProperties.parentHandlerSection = parentHandlerSection;
+        this.sectionProperties.parentHandlerSection = parentHandlerSection;
 		this.sectionProperties.ownInfo = ownInfo;
-		this.sectionProperties.mouseIsInside = false;
 	}
 
 	onMouseEnter() {
 		this.backgroundColor = 'grey';
+		this.context.canvas.style.cursor = 'grab';
 		this.containerObject.requestReDraw();
 	}
 
@@ -123,17 +120,8 @@ class ShapeHandleAnchorSubSection extends HTMLObjectSection {
 				}
 				initialPosition = this.sectionProperties.initialPosition;
 			}
-			svg.style.left =
-				(dragDistance[0] + initialPosition[0]) / app.dpiScale +
-				'px';
-			svg.style.top =
-				(dragDistance[1] + initialPosition[1]) / app.dpiScale +
-				'px';
-
-			this.stopPropagating();
-			e.stopPropagation();
+			svg.style.left = (dragDistance[0] + initialPosition[0]) / app.dpiScale + 'px';
+			svg.style.top = (dragDistance[1] + initialPosition[1]) / app.dpiScale + 'px';
 		}
 	}
 }
-
-app.definitions.shapeHandleAnchorSubSection = ShapeHandleAnchorSubSection;

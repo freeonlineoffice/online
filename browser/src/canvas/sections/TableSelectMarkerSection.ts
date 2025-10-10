@@ -1,6 +1,4 @@
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -28,15 +26,12 @@ class TableSelectMarkerSection extends HTMLObjectSection {
 		);
 
 		this.sectionProperties.markerType = markerType;
-		this.moveHTMLObjectToMapElement();
-		this.mirrorEventsFromSourceToCanvasSectionContainer(
-			this.getHTMLObject(),
-		);
 		this.sectionProperties.contextMenuActivated = false;
 	}
 
 	public onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		this.getHTMLObject()?.classList.add('hovered');
+		this.context.canvas.style.cursor = 'pointer';
 	}
 
 	public onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
@@ -67,7 +62,7 @@ class TableSelectMarkerSection extends HTMLObjectSection {
 		}
 	}
 
-	onContextMenu(e?: MouseEvent): void {
+	onContextMenu(point: lool.SimplePoint, e: MouseEvent): void {
 		const x = (this.position[0] + this.size[0]) * 0.5 * app.pixelsToTwips;
 		const y = (this.position[1] + this.size[1]) * 0.5 * app.pixelsToTwips;
 		app.map._docLayer._postMouseEvent('buttondown', x, y, 1, 4, 0);

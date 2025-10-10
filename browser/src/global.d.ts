@@ -180,6 +180,9 @@ interface ErrorMessages {
 interface Window {
 	// app defined in: js/bundle.js
 	app: {
+		UNOModifier: any;
+		JSButtons: any;
+		LOButtons: any;
 		CSections: any;
 		activeDocument: null | DocumentBase;
 		definitions: any;

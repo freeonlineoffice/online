@@ -1,7 +1,5 @@
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -36,13 +34,9 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		this.sectionProperties.parentHandlerSection = parentHandlerSection;
 		this.sectionProperties.ownInfo = ownInfo;
 		this.sectionProperties.mousePointerType = null;
-		this.sectionProperties.previousCursorStyle = null;
 
 		this.sectionProperties.initialAngle = null; // Initial angle of the point (handle) to the center in radians.
 		this.sectionProperties.distanceToCenter = null; // Distance to center.
-		this.sectionProperties.mapPane = <HTMLElement>(
-			document.querySelectorAll('.leaflet-map-pane')[0]
-		);
 		this.sectionProperties.cropModeEnabled = cropModeEnabled;
 		this.sectionProperties.cropCursor =
 			'url(' +
@@ -194,27 +188,10 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 	}
 
 	onMouseEnter(point: lool.SimplePoint, e: MouseEvent) {
-		app.map.dontHandleMouse = true;
-		e.stopPropagation();
-		this.stopPropagating();
-		this.sectionProperties.previousCursorStyle =
-			this.sectionProperties.mapPane.style.cursor;
 		if (this.sectionProperties.cropModeEnabled)
-			this.sectionProperties.mapPane.style.cursor =
-				this.sectionProperties.cropCursor;
+			this.context.canvas.style.cursor = this.sectionProperties.cropCursor;
 		else
-			this.sectionProperties.mapPane.style.cursor =
-				this.sectionProperties.mousePointerType;
-		this.containerObject.requestReDraw();
-	}
-
-	onMouseLeave(point: lool.SimplePoint, e: MouseEvent) {
-		app.map.dontHandleMouse = false;
-		e.stopPropagation();
-		this.stopPropagating();
-		this.sectionProperties.mapPane.style.cursor =
-			this.sectionProperties.previousCursorStyle;
-		this.containerObject.requestReDraw();
+			this.context.canvas.style.cursor = this.sectionProperties.mousePointerType;
 	}
 
 	private overrideHandle(kind: string): [string, number, number] {
@@ -292,8 +269,6 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 			app.map.sendUnoCommand('.uno:MoveShapeHandle', parameters);
 			parentHandlerSection.hideSVG();
 		}
-
-		(window as any).IgnorePanning = false;
 	}
 
 	adjustSVGProperties(shapeRecProps: any) {
@@ -527,7 +502,6 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 		e: MouseEvent,
 	) {
 		if (this.containerObject.isDraggingSomething()) {
-			(window as any).IgnorePanning = true;
 			this.stopPropagating();
 			e.stopPropagation();
 			this.sectionProperties.parentHandlerSection.sectionProperties.svg.style.opacity = 0.5;
@@ -542,7 +516,7 @@ class ShapeHandleScalingSubSection extends CanvasSectionObject {
 
 			this.containerObject.requestReDraw();
 			this.sectionProperties.parentHandlerSection.showSVG();
-		} else (window as any).IgnorePanning = false;
+		}
 	}
 }
 

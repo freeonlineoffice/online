@@ -324,10 +324,6 @@ export abstract class GroupBase extends CanvasSectionObject {
 			this.context.canvas.style.cursor = 'default';
 	}
 
-	onMouseLeave(): void {
-		this.context.canvas.style.cursor = 'default';
-	}
-
 	_updateOutlineState(group: Partial<GroupEntry>): void {
 		return;
 	}

@@ -3,11 +3,7 @@
  * window.L.CanvasTileLayer is a layer with canvas based rendering.
  */
 
-/*
-	global app JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon
-	Cursor CCellSelection PathGroupType UNOKey UNOModifier lool OtherViewCellCursorSection TileManager SplitSection
-	TextSelections CellSelectionMarkers URLPopUpSection CalcValidityDropDown DocumentBase CellCursorSection FormFieldButton
-*/
+/* global app JSDialog CanvasSectionContainer GraphicSelection CanvasOverlay CDarkOverlay CursorHeaderSection $ _ CPointSet CPolyUtil CPolygon Cursor CCellSelection PathGroupType UNOKey lool OtherViewCellCursorSection TileManager SplitSection TextSelections CellSelectionMarkers URLPopUpSection CalcValidityDropDown DocumentBase CellCursorSection FormFieldButton */
 
 function clamp(num, min, max) {
 	return Math.min(Math.max(num, min), max);
@@ -214,9 +210,6 @@ window.L.TileSectionManager = window.L.Class.extend({
 		this._splitPos = splitPanesContext ?
 			splitPanesContext.getSplitPos() : new lool.Point(0, 0);
 		this._updatesRunning = false;
-		this._mirrorEventsFromSourceToCanvasSectionContainer(
-			document.getElementById('map'),
-		);
 
 		var canvasContainer = document.getElementById('document-container');
 		var that = this;
@@ -227,87 +220,6 @@ window.L.TileSectionManager = window.L.Class.extend({
 
 		this._zoomAtDocEdgeX = true;
 		this._zoomAtDocEdgeY = true;
-	},
-
-	// Map and TilesSection overlap entirely. Map is above tiles section. In order to handle events in tiles section, we need to mirror them from map.
-	_mirrorEventsFromSourceToCanvasSectionContainer: function (sourceElement) {
-		sourceElement.addEventListener(
-			'mousedown',
-			function (e) {
-				app.sectionContainer.onMouseDown(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'click',
-			function (e) {
-				app.sectionContainer.onClick(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'dblclick',
-			function (e) {
-				app.sectionContainer.onDoubleClick(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'contextmenu',
-			function (e) {
-				app.sectionContainer.onContextMenu(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'wheel',
-			function (e) {
-				app.sectionContainer.onMouseWheel(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'mouseleave',
-			function (e) {
-				app.sectionContainer.onMouseLeave(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'mouseenter',
-			function (e) {
-				app.sectionContainer.onMouseEnter(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'touchstart',
-			function (e) {
-				app.sectionContainer.onTouchStart(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'touchmove',
-			function (e) {
-				app.sectionContainer.onTouchMove(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'touchend',
-			function (e) {
-				app.sectionContainer.onTouchEnd(e);
-			},
-			true,
-		);
-		sourceElement.addEventListener(
-			'touchcancel',
-			function (e) {
-				app.sectionContainer.onTouchCancel(e);
-			},
-			true,
-		);
 	},
 
 	getSplitPos: function () {
@@ -2216,12 +2128,6 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 			return;
 		}
 
-		var grid = document.querySelector('.leaflet-map-pane');
-		if (this.isCalc() && grid.style.cursor != 'text' && this._cellCursorSection.sectionProperties.mouseInside) {
-			grid.classList.remove('spreadsheet-cursor');
-			grid.style.cursor = 'text';
-		}
-
 		// tells who trigerred cursor invalidation, but recCursors is still "ours"
 		var modifierViewId = parseInt(obj.viewId);
 		var weAreModifier = modifierViewId === this._viewId;
@@ -3332,24 +3238,24 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 			// functions when possible. Note that the Cmd modifier comes here as CTRL.
 
 			// Cmd+UpArrow -> Ctrl+Home
-			if (unoKeyCode == UNOKey.UP + UNOModifier.CTRL)
-				unoKeyCode = UNOKey.HOME + UNOModifier.CTRL;
+			if (unoKeyCode == UNOKey.UP + app.UNOModifier.CTRL)
+				unoKeyCode = UNOKey.HOME + app.UNOModifier.CTRL;
 			// Cmd+DownArrow -> Ctrl+End
-			else if (unoKeyCode == UNOKey.DOWN + UNOModifier.CTRL)
-				unoKeyCode = UNOKey.END + UNOModifier.CTRL;
+			else if (unoKeyCode == UNOKey.DOWN + app.UNOModifier.CTRL)
+				unoKeyCode = UNOKey.END + app.UNOModifier.CTRL;
 			// Cmd+LeftArrow -> Home
-			else if (unoKeyCode == UNOKey.LEFT + UNOModifier.CTRL)
+			else if (unoKeyCode == UNOKey.LEFT + app.UNOModifier.CTRL)
 				unoKeyCode = UNOKey.HOME;
 			// Cmd+RightArrow -> End
-			else if (unoKeyCode == UNOKey.RIGHT + UNOModifier.CTRL)
+			else if (unoKeyCode == UNOKey.RIGHT + app.UNOModifier.CTRL)
 				unoKeyCode = UNOKey.END;
 			// Option+LeftArrow -> Ctrl+LeftArrow
-			else if (unoKeyCode == UNOKey.LEFT + UNOModifier.ALT)
-				unoKeyCode = UNOKey.LEFT + UNOModifier.CTRL;
+			else if (unoKeyCode == UNOKey.LEFT + app.UNOModifier.ALT)
+				unoKeyCode = UNOKey.LEFT + app.UNOModifier.CTRL;
 			// Option+RightArrow -> Ctrl+RightArrow (Not entirely equivalent, should go
 			// to end of word (or next), LO goes to beginning of next word.)
-			else if (unoKeyCode == UNOKey.RIGHT + UNOModifier.ALT)
-				unoKeyCode = UNOKey.RIGHT + UNOModifier.CTRL;
+			else if (unoKeyCode == UNOKey.RIGHT + app.UNOModifier.ALT)
+				unoKeyCode = UNOKey.RIGHT + app.UNOModifier.CTRL;
 		}
 
 		var completeEvent = app.socket.createCompleteTraceEvent(
@@ -3363,12 +3269,15 @@ window.L.CanvasTileLayer = window.L.Layer.extend({
 				type: type,
 			});
 		var winId = this._map.getWinId();
-		if (this.isCalc() && type === 'input' && winId === 0) {
-			if (unoKeyCode === UNOKey.SPACE + UNOModifier.CTRL) {
-				// Select whole column.
+		if (
+			this.isCalc() &&
+			type === 'input' &&
+			winId === 0
+		) {
+			if (unoKeyCode === UNOKey.SPACE + app.UNOModifier.CTRL) { // Select whole column.
 				this._map.wholeColumnSelected = true;
-			} else if (unoKeyCode === UNOKey.SPACE + UNOModifier.SHIFT) {
-				// Select whole row.
+			}
+			else if (unoKeyCode === UNOKey.SPACE + app.UNOModifier.SHIFT) { // Select whole row.
 				this._map.wholeRowSelected = true;
 			}
 		}

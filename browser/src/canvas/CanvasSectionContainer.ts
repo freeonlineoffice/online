@@ -228,6 +228,8 @@ class CanvasSectionContainer {
 		this.canvas.ontouchmove = this.onTouchMove.bind(this);
 		this.canvas.ontouchend = this.onTouchEnd.bind(this);
 		this.canvas.ontouchcancel = this.onTouchCancel.bind(this);
+		this.canvas.ondrop = this.onDrop.bind(this);
+		this.canvas.ondragover = this.onDragOver.bind(this);
 
 		// Some explanation first.
 		// When the user uses the mouse wheel for scrolling, different browsers use different technics for calculating the deltaY and deltaX values.
@@ -1030,16 +1032,15 @@ class CanvasSectionContainer {
 		}
 	}
 
-	private propagateOnContextMenu(
-		section: CanvasSectionObject,
-		e: MouseEvent,
-	) {
+	private propagateOnContextMenu(section: CanvasSectionObject, position: Array<number>, e: MouseEvent) {
 		this.targetSection = section.name;
 
 		var propagate: boolean = true;
+		const windowPosition: lool.SimplePoint = position ? lool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
 		for (var j: number = 0; j < this.windowSectionList.length; j++) {
 			var windowSection = this.windowSectionList[j];
-			if (windowSection.interactable) windowSection.onContextMenu(e);
+			if (windowSection.interactable)
+				windowSection.onContextMenu(windowPosition, e);
 
 			if (this.lowestPropagatedBoundSection === windowSection.name)
 				propagate = false; // Window sections can not stop the propagation of the event for other window sections.
@@ -1052,7 +1053,7 @@ class CanvasSectionContainer {
 				i--
 			) {
 				if (section.boundsList[i].interactable)
-					section.boundsList[i].onContextMenu(e);
+					section.boundsList[i].onContextMenu(lool.SimplePoint.fromCorePixels([position[0], position[1]]), e);
 
 				if (
 					section.boundsList[i].name ===
@@ -1227,6 +1228,31 @@ class CanvasSectionContainer {
 					section.boundsList[i].name ===
 					this.lowestPropagatedBoundSection
 				)
+					break; // Stop propagation.
+			}
+		}
+	}
+
+	private propagateOnDrop(section: CanvasSectionObject, position: number[], e: DragEvent) {
+		this.targetSection = section.name;
+
+		var propagate: boolean = true;
+		const windowPosition: lool.SimplePoint = position ? lool.SimplePoint.fromCorePixels([position[0] + section.myTopLeft[0], position[1] + section.myTopLeft[1]]): null;
+		for (var j: number = 0; j < this.windowSectionList.length; j++) {
+			var windowSection = this.windowSectionList[j];
+			if (windowSection.interactable)
+				windowSection.onDrop(windowPosition, e);
+
+			if (this.lowestPropagatedBoundSection === windowSection.name)
+				propagate = false; // Window sections can not stop the propagation of the event for other window sections.
+		}
+
+		if (propagate) {
+			for (var i: number = section.boundsList.length - 1; i > -1; i--) {
+				if (section.boundsList[i].interactable)
+					section.boundsList[i].onDrop((position ? lool.SimplePoint.fromCorePixels([position[0], position[1]]): null), e);
+
+				if (section.boundsList[i].name === this.lowestPropagatedBoundSection)
 					break; // Stop propagation.
 			}
 		}
@@ -1478,7 +1504,7 @@ class CanvasSectionContainer {
 				this.findSectionContainingPoint(this.mousePosition);
 			if (section) {
 				this.stopLongPress();
-				this.propagateOnContextMenu(section, e);
+				this.propagateOnContextMenu(section, this.convertPositionToSectionLocale(section, this.mousePosition), e);
 			}
 		}
 	}
@@ -1539,7 +1565,7 @@ class CanvasSectionContainer {
 		var section: CanvasSectionObject =
 			this.findSectionContainingPoint(mousePosition);
 		if (section) {
-			this.propagateOnContextMenu(section, e);
+			this.propagateOnContextMenu(section, this.convertPositionToSectionLocale(section, mousePosition), e);
 		}
 		if (this.isLongPressActive()) {
 			// LongPress triggers context menu.
@@ -1751,10 +1777,28 @@ class CanvasSectionContainer {
 		this.stopLongPress();
 	}
 
-	public onResize(newWidth: number, newHeight: number) {
-		var container: HTMLElement = <HTMLElement>this.canvas.parentNode;
-		var cRect: ClientRect = container.getBoundingClientRect();
-		if (!newWidth) newWidth = cRect.right - cRect.left;
+	private onDragOver(e: DragEvent) {
+		// This is necessary to prevent window from taking the dropped object.
+		e.preventDefault();
+	}
+
+	private onDrop(e: DragEvent) {
+		e.preventDefault();
+
+		const point = this.convertPositionToCanvasLocale(e);
+		const target = this.findSectionContainingPoint(point);
+
+		if (target)
+			this.propagateOnDrop(target, this.convertPositionToSectionLocale(target, point), e);
+
+		this.clearMousePositions();
+	}
+
+	public onResize (newWidth: number, newHeight: number) {
+		var container: HTMLElement = <HTMLElement> this.canvas.parentNode;
+		var cRect: ClientRect =	container.getBoundingClientRect();
+		if (!newWidth)
+			newWidth = cRect.right - cRect.left;
 
 		if (!newHeight) newHeight = cRect.bottom - cRect.top;
 
@@ -1977,10 +2021,7 @@ class CanvasSectionContainer {
 			document.getElementById('test-div-' + section.name)
 		);
 
-		if (
-			(!section.documentObject || section.isVisible) &&
-			section.isSectionShown()
-		) {
+		if ((!section.documentObject || section.isVisible) && section.isSectionShown() && section.myTopLeft) {
 			if (!element) {
 				element = document.createElement('div');
 				element.id = 'test-div-' + section.name;
@@ -2403,7 +2444,11 @@ class CanvasSectionContainer {
 		//this.drawSectionBorders();
 	}
 
-	public doesSectionExist(name: string): boolean {
+	public isMouseInside(): boolean {
+		return this.mouseIsInside;
+	}
+
+	public doesSectionExist (name: string): boolean {
 		if (name && typeof name === 'string') {
 			return this.sectionsByName.has(name);
 		} else {

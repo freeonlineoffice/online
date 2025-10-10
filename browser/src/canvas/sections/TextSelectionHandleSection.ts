@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* global Proxy _ */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -32,13 +30,8 @@ class TextSelectionHandle extends HTMLObjectSection {
 	}
 
 	onDrag(point: lool.SimplePoint) {
-		(<any>window).IgnorePanning = true;
-		const candidateX = Math.round(
-			(this.myTopLeft[0] + point.pX) / app.dpiScale,
-		);
-		const candidateY = Math.round(
-			(this.myTopLeft[1] + point.pY) / app.dpiScale,
-		);
+		const candidateX = Math.round((this.myTopLeft[0] + point.pX) / app.dpiScale);
+		const candidateY = Math.round((this.myTopLeft[1] + point.pY) / app.dpiScale);
 
 		this.sectionProperties.objectDiv.style.left = candidateX + 'px';
 		this.sectionProperties.objectDiv.style.top = candidateY + 'px';
@@ -64,8 +57,6 @@ class TextSelectionHandle extends HTMLObjectSection {
 	}
 
 	onDragEnd(point: lool.SimplePoint) {
-		(<any>window).IgnorePanning = undefined;
-
 		let x = this.position[0] + point.pX;
 		const y = this.position[1] + point.pY;
 		this.setPosition(x, y);
