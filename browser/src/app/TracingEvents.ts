@@ -25,7 +25,8 @@ class TraceEvents {
 	public setLogging(enabled: boolean) {
 		this.recordingToggle = enabled;
 		this.socket.sendMessage(
-			'traceeventrecording ' + (this.recordingToggle ? 'start' : 'stop'),
+			'traceeventrecording ' +
+				(this.recordingToggle ? 'start' : 'stop'),
 		);
 
 		// Just as a test, uncomment this to toggle SAL_WARN and
