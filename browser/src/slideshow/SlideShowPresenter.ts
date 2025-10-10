@@ -99,6 +99,7 @@ interface SlideInfo {
 	next: string;
 	prev: string;
 	indexInSlideShow?: number;
+	uniqueID: number;
 }
 
 interface PresentationInfo {
