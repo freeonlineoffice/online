@@ -1714,6 +1714,12 @@ menuDefinitions.set('Print', [
 	{ text: _('All Sheets'), action: 'print-all-sheets' },
 ] as Array<MenuDefinition>);
 
+menuDefinitions.set('SheetListMenu', [
+	{ type: 'separator' },
+	{ type: 'separator' },
+	// dynamically updated in Control.SheetsBar
+] as Array<MenuDefinition>);
+
 menuDefinitions.set('MenuRowHeight', [
 	{ text: _UNO('.uno:RowHeight', 'spreadsheet'), uno: '.uno:RowHeight' },
 	{
