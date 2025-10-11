@@ -387,6 +387,25 @@ void resetTerminationFlags()
         errno = onrre; // Restore.
     }
 
+    void signalLogActivity()
+    {
+        signalLog("Recent activity:\n");
+        signalLog(ActivityHeader.c_str());
+        size_t startIndex = ActivityStringIndex;
+        for (size_t i = 0; i < ActivityStrings.size(); ++i)
+        {
+            size_t idx = (startIndex + i) % ActivityStrings.size();
+            const char *str = ActivityStrings[idx];
+            if (str && str[0] != '\0')
+            {
+                // no plausible impl. will heap allocate in c_str.
+                signalLog("\t");
+                signalLog(str);
+                signalLog("\n");
+            }
+        }
+    }
+
     static
     void handleFatalSignal(const int signal, siginfo_t *info, void * /* uctxt */)
     {
@@ -425,20 +444,7 @@ void resetTerminationFlags()
         }
         signalLog("\n");
 
-        signalLog("Recent activity:\n");
-        signalLog(ActivityHeader.c_str());
-        for (size_t i = 0; i < ActivityStrings.size(); ++i)
-        {
-            size_t idx = (ActivityStringIndex + i) % ActivityStrings.size();
-            const char *str = ActivityStrings[idx];
-            if (str && str[0] != '\0')
-            {
-                // no plausible impl. will heap allocate in c_str.
-                signalLog("\t");
-                signalLog(str);
-                signalLog("\n");
-            }
-        }
+        signalLogActivity();
 
         struct sigaction action;
 
