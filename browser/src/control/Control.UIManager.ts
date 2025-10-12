@@ -427,6 +427,8 @@ class UIManager extends window.L.Control {
 	 * Initializes basic UI components.
 	 */
 	initializeBasicUI(): void {
+		app.console.debug('UIManager: initialize basic UI');
+
 		this.initializeMenubarAndTopToolbar();
 
 		if (window.mode.isMobile()) {
@@ -530,6 +532,8 @@ class UIManager extends window.L.Control {
 		this.map.on('hidebusy', (e: any) => {
 			fadeoutBusyPopup();
 		});
+
+		app.serverConnectionService.onBasicUI();
 	}
 
 	/**
@@ -537,6 +541,8 @@ class UIManager extends window.L.Control {
 	 * @param docType - Document type (e.g. 'spreadsheet', 'presentation', 'text').
 	 */
 	initializeSpecializedUI(docType: string): void {
+		app.console.debug('UIManager: initialize specialized UI for: ' + docType);
+
 		var isDesktop = window.mode.isDesktop();
 		var currentMode = this.getCurrentMode();
 		var enableNotebookbar =
@@ -670,6 +676,8 @@ class UIManager extends window.L.Control {
 			}
 		});
 		this.map.contextToolbar = new ContextToolbar(this.map);
+
+		app.serverConnectionService.onSpecializedUI(docType);
 	}
 
 	/**

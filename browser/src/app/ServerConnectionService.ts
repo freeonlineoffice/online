@@ -29,6 +29,10 @@ class ServerConnectionService {
 
 	// below methods should be sorted in expected order of execution to help understand the init
 
+	public onBasicUI() {
+		app.console.debug('ServerConnectionService: onBasicUI');
+	}
+
 	public onViewSetting(viewSetting: ViewSetting) {
 		app.console.debug('ServerConnectionService: onViewSetting');
 
@@ -66,6 +70,14 @@ class ServerConnectionService {
 			);
 			app.map.lockAccessibilityOn();
 		}
+	}
+
+	public onSpecializedUI(docType: string) {
+		app.console.debug('ServerConnectionService: onSpecializedUI - ' + docType);
+	}
+
+	public onDocumentLoaded() {
+		app.console.debug('ServerConnectionService: onDocumentLoaded');
 	}
 
 	public onFirstTileReceived() {
