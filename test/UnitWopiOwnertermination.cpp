@@ -15,6 +15,8 @@
 
 #include <Poco/Net/HTTPRequest.h>
 
+using namespace std::literals;
+
 /// This tests the rejection logic and messages that
 /// happen when a document is connected to while
 /// it is being unloaded.
@@ -35,7 +37,7 @@ public:
         , _phase(Phase::Start)
         , _loadedIndex(0)
     {
-        setTimeout(std::chrono::minutes(1));
+        setTimeout(1min);
     }
 
     std::unique_ptr<http::Response>

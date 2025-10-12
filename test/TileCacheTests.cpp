@@ -33,6 +33,7 @@
 #include <test.hpp>
 #include <KitPidHelpers.hpp>
 
+using namespace std::literals;
 using namespace helpers;
 
 namespace CPPUNIT_NS
@@ -278,7 +279,7 @@ void TileCacheTests::testSimpleCombine()
     LOK_ASSERT_MESSAGE("did not receive a tile: message as expected", !tile1b.empty());
 
     sendTextFrame(socket1, "tilecombine nviewid=0 part=0 width=256 height=256 tileposx=0,3840 tileposy=0,0 oldwid=42,42 tilewidth=3840 tileheight=3840");
-    tile1a = getResponseMessage(socket1, "delta:", testname + "1 ", std::chrono::seconds(10));
+    tile1a = getResponseMessage(socket1, "delta:", testname + "1 ", 10s);
     //  TST_LOG("Response is: " + HexUtil::dumpHex(tile1a) << "\n");
     // no content in an update delta: - so ends with a '\n'
     LOK_ASSERT_MESSAGE("did not receive an update delta: message as expected", !tile1a.empty() && tile1a.back() == '\n');
@@ -308,9 +309,9 @@ void TileCacheTests::testSimpleCombine()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileSubscription()
@@ -404,9 +405,9 @@ void TileCacheTests::testTileSubscription()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testSize()
@@ -482,15 +483,14 @@ void TileCacheTests::testDisconnectMultiView()
         }
 
         // Should never get more than 4 tiles on socket2.
-        getResponseString(socket2, "tile:", "disconnectMultiView-2 ",
-                          std::chrono::milliseconds(500));
+        getResponseString(socket2, "tile:", "disconnectMultiView-2 ", 500ms);
 
         socket2->asyncShutdown();
 
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                           socket1->waitForDisconnection(std::chrono::seconds(5)));
+                           socket1->waitForDisconnection(5s));
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                           socket2->waitForDisconnection(std::chrono::seconds(5)));
+                           socket2->waitForDisconnection(5s));
     }
 }
 
@@ -569,9 +569,9 @@ void TileCacheTests::testUnresponsiveClient()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testImpressTiles()
@@ -590,7 +590,7 @@ void TileCacheTests::testImpressTiles()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -610,7 +610,7 @@ void TileCacheTests::testClientPartImpress()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -630,7 +630,7 @@ void TileCacheTests::testClientPartCalc()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -702,7 +702,7 @@ void TileCacheTests::testTilesRenderedJustOnce()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTilesRenderedJustOnceMultiClient()
@@ -810,13 +810,13 @@ void TileCacheTests::testTilesRenderedJustOnceMultiClient()
     socket4->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 3",
-                       socket3->waitForDisconnection(std::chrono::seconds(5)));
+                       socket3->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 4",
-                       socket4->waitForDisconnection(std::chrono::seconds(5)));
+                       socket4->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testSimultaneousTilesRenderedJustOnce()
@@ -859,9 +859,9 @@ void TileCacheTests::testSimultaneousTilesRenderedJustOnce()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testLoad12ods()
@@ -889,7 +889,7 @@ void TileCacheTests::testLoad12ods()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -987,7 +987,7 @@ void TileCacheTests::testTileInvalidateWriter()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileInvalidateWriterPage()
@@ -1020,7 +1020,7 @@ void TileCacheTests::testTileInvalidateWriterPage()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 // This isn't yet used
@@ -1109,7 +1109,7 @@ void TileCacheTests::testWriterAnyKey()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileInvalidateCalc()
@@ -1135,7 +1135,7 @@ void TileCacheTests::testTileInvalidateCalc()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileInvalidatePartCalc()
@@ -1181,9 +1181,9 @@ void TileCacheTests::testTileInvalidatePartCalc()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileInvalidatePartImpress()
@@ -1230,9 +1230,9 @@ void TileCacheTests::testTileInvalidatePartImpress()
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::checkTiles(std::shared_ptr<http::WebSocketSession>& socket,
@@ -1416,7 +1416,7 @@ void TileCacheTests::testTileRequestByInvalidation()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileRequestByZoom()
@@ -1447,7 +1447,7 @@ void TileCacheTests::testTileRequestByZoom()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileWireIDHandling()
@@ -1471,8 +1471,7 @@ void TileCacheTests::testTileWireIDHandling()
 
     // For the first input wsd will send all invalidated tiles
     LOK_ASSERT_MESSAGE("Expected at least two tiles.",
-                       countMessages(socket, "tile:", testname, std::chrono::milliseconds(500))
-                           > 1);
+                       countMessages(socket, "tile:", testname, 500ms) > 1);
 
     // Let WSD know we got these so it wouldn't stop sending us modified tiles automatically.
     sendTextFrame(socket, "tileprocessed tile=0:0:0:3840:3840:0", testname);
@@ -1484,8 +1483,7 @@ void TileCacheTests::testTileWireIDHandling()
     assertResponseString(socket, "invalidatetiles:", testname);
 
     // For the second input wsd will send one tile, since some of them are identical.
-    const int arrivedTiles
-        = countMessages(socket, "delta:", testname, std::chrono::milliseconds(500));
+    const int arrivedTiles = countMessages(socket, "delta:", testname, 500ms);
     if (arrivedTiles == 1)
         return;
 
@@ -1498,12 +1496,11 @@ void TileCacheTests::testTileWireIDHandling()
     assertResponseString(socket, "invalidatetiles:", testname);
 
     LOK_ASSERT_MESSAGE("Expected exactly one tile.",
-                       countMessages(socket, "delta:", testname, std::chrono::milliseconds(500))
-                           == 1);
+                       countMessages(socket, "delta:", testname, 500ms) == 1);
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileProcessed()
@@ -1521,7 +1518,7 @@ void TileCacheTests::testTileProcessed()
     sendTextFrame(socket, "clientzoom tilepixelwidth=256 tilepixelheight=256 tiletwipwidth=3200 tiletwipheight=3200");
 
     for (int i = 0; i < 100; ++i)
-        getResponseMessage(socket, "spinandwait:", testname, std::chrono::milliseconds(10));
+        getResponseMessage(socket, "spinandwait:", testname, 10ms);
 
     // Request a lots of tiles ~25 ie. more than wsd can send back at once.
     sendTextFrame(socket, "tilecombine nviewid=0 part=0 width=256 height=256 tileposx=0,3200,6400,9600,12800,0,3200,6400,9600,12800,0,3200,6400,9600,12800,0,3200,6400,9600,12800,0,3200,6400,9600,12800 tileposy=0,0,0,0,0,3200,3200,3200,3200,3200,6400,6400,6400,6400,6400,9600,9600,9600,9600,9600,12800,12800,12800,12800,12800 tilewidth=3200 tileheight=3200");
@@ -1559,7 +1556,7 @@ void TileCacheTests::testTileProcessed()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileInvalidatedOutside()
@@ -1604,7 +1601,7 @@ void TileCacheTests::testTileInvalidatedOutside()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testTileBeingRenderedHandling()
@@ -1630,8 +1627,7 @@ void TileCacheTests::testTileBeingRenderedHandling()
 
     // For the first input wsd will send all invalidated tiles
     LOK_ASSERT_MESSAGE("Expected at least two tiles.",
-                       countMessages(socket, "tile:", testname, std::chrono::milliseconds(500))
-                           > 1);
+                       countMessages(socket, "tile:", testname, 500ms) > 1);
 
     // For the later inputs wsd will send one tile, since other ones are identical
     for(int i = 0; i < 5; ++i)
@@ -1642,8 +1638,7 @@ void TileCacheTests::testTileBeingRenderedHandling()
         sendChar(socket, 'y', skNone, testname);
         assertResponseString(socket, "invalidatetiles:", testname);
 
-        const int arrivedTiles
-            = countMessages(socket, "delta:", testname, std::chrono::milliseconds(500));
+        const int arrivedTiles = countMessages(socket, "delta:", testname, 500ms);
         if (arrivedTiles != 1)
         {
             // Or, at most 2. The reason is that sometimes we get line antialiasing differences that
@@ -1656,15 +1651,14 @@ void TileCacheTests::testTileBeingRenderedHandling()
             sendChar(socket, 'z', skNone, testname);
             assertResponseString(socket, "invalidatetiles:", testname);
 
-            LOK_ASSERT_MESSAGE(
-                "Expected exactly one tile.",
-                countMessages(socket, "delta:", testname, std::chrono::milliseconds(500)) == 1);
+            LOK_ASSERT_MESSAGE("Expected exactly one tile.",
+                               countMessages(socket, "delta:", testname, 500ms) == 1);
         }
     }
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                        socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testWireIDFilteringOnWSDSide()
@@ -1695,7 +1689,7 @@ void TileCacheTests::testWireIDFilteringOnWSDSide()
 
     // For the first input wsd will send all invalidated tiles
     LOK_ASSERT_MESSAGE("Expected at least two tiles.",
-                       countMessages(socket1, "tile:", testname, std::chrono::seconds(1)) > 1);
+                       countMessages(socket1, "tile:", testname, 1s) > 1);
 
     // Let WSD know we got these so it wouldn't stop sending us modified tiles automatically.
     sendTextFrame(socket1, "tileprocessed tile=0:0:0:3840:3840:0", testname);
@@ -1707,7 +1701,7 @@ void TileCacheTests::testWireIDFilteringOnWSDSide()
     assertResponseString(socket1, "invalidatetiles:", testname);
 
     // For the second input wsd will send one tile, since some of them are identical.
-    const int arrivedTiles = countMessages(socket1, "tile:", testname, std::chrono::seconds(1));
+    const int arrivedTiles = countMessages(socket1, "tile:", testname, 1s);
     if (arrivedTiles == 1)
         return;
 
@@ -1720,27 +1714,26 @@ void TileCacheTests::testWireIDFilteringOnWSDSide()
     assertResponseString(socket1, "invalidatetiles:", testname);
 
     LOK_ASSERT_MESSAGE("Expected exactly one tile.",
-                       countMessages(socket1, "delta:", testname, std::chrono::seconds(1)) == 1);
+                       countMessages(socket1, "delta:", testname, 1s) == 1);
 
     //2. Now request the same tiles by the other client (e.g. scroll to the same view)
 
     sendTextFrame(socket2, "tilecombine nviewid=0 part=0 width=256 height=256 tileposx=0,3840,7680 tileposy=0,0,0 tilewidth=3840 tileheight=3840");
 
     // We expect three tiles sent to the second client
-    LOK_ASSERT_EQUAL(3, countMessages(socket2, "tile:", testname, std::chrono::seconds(1)));
+    LOK_ASSERT_EQUAL(3, countMessages(socket2, "tile:", testname, 1s));
 
     // wsd should not send tiles messages for the first client
-    const std::vector<char> tile
-        = getResponseMessage(socket1, "tile:", testname, std::chrono::seconds(1));
+    const std::vector<char> tile = getResponseMessage(socket1, "tile:", testname, 1s);
     LOK_ASSERT_MESSAGE("Not expected tile message arrived!", tile.empty());
 
     socket1->asyncShutdown();
     socket2->asyncShutdown();
 
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                       socket1->waitForDisconnection(std::chrono::seconds(5)));
+                       socket1->waitForDisconnection(5s));
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                       socket2->waitForDisconnection(std::chrono::seconds(5)));
+                       socket2->waitForDisconnection(5s));
 }
 
 void TileCacheTests::testLimitTileVersionsOnFly()
@@ -1765,8 +1758,7 @@ void TileCacheTests::testLimitTileVersionsOnFly()
     bool getTileResp = false;
     do
     {
-        const std::string tile
-            = getResponseString(socket, "tile:", testname, std::chrono::milliseconds(1000));
+        const std::string tile = getResponseString(socket, "tile:", testname, 1000ms);
         getTileResp = !tile.empty();
     } while(getTileResp);
 
@@ -1776,8 +1768,7 @@ void TileCacheTests::testLimitTileVersionsOnFly()
     // Handle all tiles sent by wsd
     do
     {
-        const std::string tile
-            = getResponseString(socket, "tile:", testname, std::chrono::milliseconds(1000));
+        const std::string tile = getResponseString(socket, "tile:", testname, 1000ms);
         getTileResp = !tile.empty();
     } while(getTileResp);
 
@@ -1785,8 +1776,7 @@ void TileCacheTests::testLimitTileVersionsOnFly()
     // two versions of the same tile were already sent.
     sendChar(socket, 'x', skNone, testname);
 
-    const std::vector<char> tile1
-        = getResponseMessage(socket, "tile:", testname, std::chrono::milliseconds(1000));
+    const std::vector<char> tile1 = getResponseMessage(socket, "tile:", testname, 1000ms);
     LOK_ASSERT_MESSAGE("Not expected tile message arrived!", tile1.empty());
 
     // When the next tileprocessed message arrive with correct tileID
@@ -1797,8 +1787,7 @@ void TileCacheTests::testLimitTileVersionsOnFly()
     bool gotTile = false;
     do
     {
-        const std::vector<char> tile
-            = getResponseMessage(socket, "tile:", testname, std::chrono::milliseconds(1000));
+        const std::vector<char> tile = getResponseMessage(socket, "tile:", testname, 1000ms);
         gotTile = !tile.empty();
         if(gotTile)
             ++arrivedTiles;
@@ -1808,7 +1797,7 @@ void TileCacheTests::testLimitTileVersionsOnFly()
 
     socket->asyncShutdown();
     LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                       socket->waitForDisconnection(std::chrono::seconds(5)));
+                       socket->waitForDisconnection(5s));
 }
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TileCacheTests);

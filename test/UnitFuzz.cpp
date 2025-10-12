@@ -33,7 +33,7 @@ public:
     {
         std::cerr << "\n\nYour WSD process is being randomly fuzzed\n\n\n";
         setHasKitHooks();
-        setTimeout(std::chrono::hours(1));
+        setTimeout(1h);
     }
 
     std::string corruptString(const std::string &str)
@@ -123,7 +123,7 @@ public:
     UnitKitFuzz() : UnitKit("fuzz")
     {
         std::cerr << "\n\nYour Kit process has fuzzing hooks\n\n\n";
-        setTimeout(std::chrono::hours(1));
+        setTimeout(1h);
     }
     virtual bool filterKitMessage(WebSocketHandler *, std::string & /* message */) override
     {

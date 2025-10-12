@@ -26,6 +26,8 @@
 #include <string>
 #include <thread>
 
+using namespace std::literals;
+
 /// Save torture testcase.
 class UnitSaveTorture : public UnitWSD
 {
@@ -109,8 +111,9 @@ namespace {
         wsSession->sendMessage(std::string("key type=up char=0 key=1280"));
     }
 
-    bool waitForModifiedStatus(const std::string& name, const std::shared_ptr<http::WebSocketSession> &wsSession,
-                               std::chrono::seconds timeout = std::chrono::seconds(10))
+    bool waitForModifiedStatus(const std::string& name,
+                               const std::shared_ptr<http::WebSocketSession>& wsSession,
+                               std::chrono::seconds timeout = 10s)
     {
         const auto testname = __func__;
 
@@ -161,14 +164,14 @@ void UnitSaveTorture::testModified()
     {
         TST_LOG("modify document");
         modifyDocument(wsSession);
-        LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, std::chrono::seconds(3)), true);
+        LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, 3s), true);
 
         std::string args = "{ \"Modified\": { \"type\": \"boolean\", \"value\": \"false\" } }";
         TST_LOG("post force modified command: .uno:Modified " << args);
         wsSession->sendMessage(std::string("uno .uno:Modified ") + args);
 
         TST_LOG("wait for confirmation of (non-)modification:");
-        LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, std::chrono::seconds(3)), false);
+        LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, 3s), false);
     }
 
     poll->joinThread();
@@ -207,7 +210,7 @@ void UnitSaveTorture::testTileCombineRace()
     // Check the save succeeded & kit didn't crash
     while (!SigUtil::getShutdownRequestFlag())
     {
-        std::chrono::seconds timeout = std::chrono::seconds(10);
+        std::chrono::seconds timeout = 10s;
         auto message = wsSession->waitForMessage("unocommandresult:", timeout, name);
         LOK_ASSERT(message.size() > 0);
         bool success;
@@ -225,7 +228,7 @@ void UnitSaveTorture::testBgSaveCrash()
 {
     std::string name = "testBgSaveCrash";
     std::string docName = "empty.ods";
-    std::chrono::seconds timeout = std::chrono::seconds(10);
+    std::chrono::seconds timeout = 10s;
 
     std::string documentPath, documentURL;
     helpers::getDocumentPathAndURL(docName, documentPath, documentURL, name);
@@ -287,7 +290,7 @@ void UnitSaveTorture::testBgSaveCrash()
 void UnitSaveTorture::saveTortureOne(
     const std::string& name, const std::string& docName)
 {
-    auto timeout = std::chrono::seconds(10);
+    auto timeout = 10s;
 
     std::string documentPath, documentURL;
     helpers::getDocumentPathAndURL(docName, documentPath, documentURL, name);
@@ -340,7 +343,7 @@ void UnitSaveTorture::saveTortureOne(
             TST_LOG("Modify after saving starts");
             modifyDocument(wsSession);
 
-            LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, std::chrono::seconds(10)), true);
+            LOK_ASSERT_EQUAL(waitForModifiedStatus(name, wsSession, 10s), true);
         }
 
         TST_LOG("Allow saving to continue");
@@ -433,12 +436,12 @@ class UnitKitSaveTorture : public UnitKit
         while (stampExists(name))
         {
             TST_LOG("stamp exists " << name);
-            if (std::chrono::steady_clock::now() - start > std::chrono::seconds(10))
+            if (std::chrono::steady_clock::now() - start > 10s)
             {
                 LOK_ASSERT_FAIL("Timed out while waiting for stamp file " << name << " to go");
                 return;
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(100ms);
         }
         TST_LOG("stamp removed " << name);
     }

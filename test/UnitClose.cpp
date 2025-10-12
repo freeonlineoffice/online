@@ -20,6 +20,8 @@
 #include <Unit.hpp>
 #include <helpers.hpp>
 
+using namespace std::literals;
+
 namespace
 {
 std::string getFontList(const std::string& message, const std::string& testname)
@@ -66,7 +68,7 @@ UnitBase::TestResult UnitClose::testCloseAfterClose()
 
         // 5 seconds timeout
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
 
         // Verify that we get back a close frame.
         LOK_ASSERT_EQUAL(static_cast<int>(Poco::Net::WebSocket::FRAME_OP_CLOSE),

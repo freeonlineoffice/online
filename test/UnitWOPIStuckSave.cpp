@@ -19,6 +19,8 @@
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Util/LayeredConfiguration.h>
 
+using namespace std::literals;
+
 /// Test saving with simulated failing.
 /// We modify the document and close.
 /// The document must then be saved, but
@@ -35,7 +37,7 @@ public:
         , _phase(Phase::Load)
     {
         // We need more time to retry saving.
-        setTimeout(std::chrono::seconds(200));
+        setTimeout(200s);
     }
 
     void configure(Poco::Util::LayeredConfiguration& config) override

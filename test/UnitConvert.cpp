@@ -23,6 +23,8 @@
 #include <Poco/Net/StringPartSource.h>
 #include <Poco/Util/LayeredConfiguration.h>
 
+using namespace std::literals;
+
 // Inside the WSD process
 class UnitConvert : public UnitWSD
 {
@@ -35,7 +37,7 @@ public:
         , _workerStarted(false)
     {
         setHasKitHooks();
-        setTimeout(std::chrono::hours(1));
+        setTimeout(1h);
     }
 
     ~UnitConvert()
@@ -113,7 +115,7 @@ public:
     UnitKitConvert()
         : UnitKit("UnitKitConvert")
     {
-        setTimeout(std::chrono::hours(1));
+        setTimeout(1h);
     }
 };
 

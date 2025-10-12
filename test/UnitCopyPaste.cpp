@@ -30,6 +30,7 @@
 
 #include <sstream>
 
+using namespace std::literals;
 using namespace Poco::Net;
 
 // Inside the WSD process
@@ -402,9 +403,9 @@ public:
         socket->asyncShutdown();
 
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                           socket2->waitForDisconnection(std::chrono::seconds(5)));
+                           socket2->waitForDisconnection(5s));
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 0",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
 
     void postCloseTest()

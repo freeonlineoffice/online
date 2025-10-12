@@ -35,6 +35,7 @@
 #include <helpers.hpp>
 #include <KitPidHelpers.hpp>
 
+using namespace std::literals;
 using namespace helpers;
 
 // The default is KIT_PID_TIMEOUT_MS, but we may have to wait for loolforkit to restart, which
@@ -124,7 +125,7 @@ void HTTPCrashTest::testBarren()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -142,7 +143,7 @@ void HTTPCrashTest::testCrashKit()
             = loadDocAndGetSession(_socketPoll, "empty.odt", _uri, testname);
 
         TST_LOG("Allowing time for kit to connect to wsd to get cleanly killed");
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(1s);
 
         TST_LOG("Killing loolkit instances.");
         helpers::killAllKitProcesses(testname);
@@ -158,7 +159,7 @@ void HTTPCrashTest::testCrashKit()
         socket->asyncShutdown();
 
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -176,7 +177,7 @@ void HTTPCrashTest::testRecoverAfterKitCrash()
             = loadDocAndGetSession(_socketPoll, "empty.odt", _uri, testname);
 
         TST_LOG("Allowing time for kit to connect to wsd to get cleanly killed");
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(1s);
 
         TST_LOG("Killing loolkit instances.");
         killDocKitProcesses(testname);
@@ -192,9 +193,9 @@ void HTTPCrashTest::testRecoverAfterKitCrash()
         socket1->asyncShutdown();
 
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 2",
-                           socket2->waitForDisconnection(std::chrono::seconds(5)));
+                           socket2->waitForDisconnection(5s));
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket 1",
-                           socket1->waitForDisconnection(std::chrono::seconds(5)));
+                           socket1->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
@@ -212,7 +213,7 @@ void HTTPCrashTest::testCrashForkit()
             = loadDocAndGetSession(_socketPoll, "empty.odt", _uri, testname);
 
         TST_LOG("Allowing time for kit to connect to wsd to get cleanly killed");
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(1s);
 
         TST_LOG("Killing forkit.");
         helpers::killPid(testname, getForKitPid());
@@ -224,7 +225,7 @@ void HTTPCrashTest::testCrashForkit()
         // respond close frame
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                           socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
 
         TST_LOG("Killing loolkit.");
         helpers::killAllKitProcesses(testname);
@@ -239,7 +240,7 @@ void HTTPCrashTest::testCrashForkit()
 
         socket->asyncShutdown();
         LOK_ASSERT_MESSAGE("Expected successful disconnection of the WebSocket",
-                socket->waitForDisconnection(std::chrono::seconds(5)));
+                           socket->waitForDisconnection(5s));
     }
     catch (const Poco::Exception& exc)
     {
