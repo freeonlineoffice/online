@@ -39,7 +39,8 @@ window.L.Map.WOPI = window.L.Handler.extend({
 	_appLoadedConditions: {
 		docloaded: false,
 		updatepermission: false,
-		viewinfo: false /* Whether view information has already arrived */,
+		viewinfo: false, /* Whether view information has already arrived */
+		initializedui: false,
 	},
 
 	_appLoaded: false,
@@ -57,6 +58,7 @@ window.L.Map.WOPI = window.L.Handler.extend({
 		app.events.on('updatepermission', this._postLoaded.bind(this));
 		// This indicates that 'viewinfo' message has already arrived
 		this._map.on('viewinfo', this._postLoaded, this);
+		this._map.on('initializedui', this._postLoaded, this);
 
 		this._map.on('wopiprops', this._setWopiProps, this);
 		window.L.DomEvent.on(window, 'message', this._postMessageListener, this);
@@ -239,7 +241,7 @@ window.L.Map.WOPI = window.L.Handler.extend({
 	},
 
 	_postLoaded: function(e) {
-		app.console.debug('PostMessage: _postLoaded');
+		app.console.debug('PostMessage: _postLoaded - ' + e.type);
 
 		if (this._appLoaded) {
 			return;
@@ -260,7 +262,7 @@ window.L.Map.WOPI = window.L.Handler.extend({
 		}
 
 		this._appLoaded = true;
-		this.sendDocumentLodaded();
+		this.sendDocumentLoaded();
 	},
 
 	// Naturally we set a CSP to catch badness, but check here as well.
