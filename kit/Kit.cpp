@@ -239,6 +239,8 @@ public:
     {
         _saveCompleted = true;
         _watchdogCV.notify_all();
+        if (_watchdogThread.joinable())
+            _watchdogThread.join();
     }
 
 private:
@@ -256,7 +258,7 @@ void Document::shutdownBackgroundWatchdog()
         BgSaveWatchdog->complete();
 }
 
-#endif
+#endif // !MOBILEAPP
 
 namespace
 {
