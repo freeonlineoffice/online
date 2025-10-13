@@ -109,6 +109,8 @@ public:
     };
 
 private:
+    STATE_ENUM(Method, unknown, GET, HEAD);
+
     StringVector _pathSegs;
     std::map<std::string, std::string> _params;
     std::map<Field, std::string> _fields;
@@ -116,11 +118,12 @@ private:
     std::string _uriString;
     std::string _proxyPrefix;
     std::string _hostUntrusted;
-    bool _isGet : 1;
-    bool _isHead : 1;
+    Method _method;
     bool _isProxy : 1;
     bool _isWebSocket : 1;
     bool _closeConnection : 1;
+
+    static Method stringToMethod(std::string const & method);
 
     void dehexify();
     void processURI();
@@ -241,15 +244,15 @@ public:
     }
     bool isGet() const
     {
-        return _isGet;
+        return _method == Method::GET;
     }
     bool isGet(const char *path) const
     {
-        return _isGet && _uriString == path;
+        return _method == Method::GET && _uriString == path;
     }
     bool isGetOrHead(const char *path) const
     {
-        return (_isGet || _isHead) && _uriString == path;
+        return (_method == Method::GET || _method == Method::HEAD) && _uriString == path;
     }
 
     bool equals(std::size_t index, const std::string_view string) const
@@ -290,9 +293,7 @@ public:
 
     bool operator==(const RequestDetails& rhs) const
     {
-        if (_isGet != rhs._isGet)
-            return false;
-        if (_isHead != rhs._isHead)
+        if (_method != rhs._method)
             return false;
         if (_isProxy != rhs._isProxy)
             return false;
@@ -315,8 +316,8 @@ public:
     std::string toString() const
     {
         std::ostringstream oss;
-        oss << _uriString << ' ' << (_isGet?"G":"")
-            << (_isHead?"H":"") << (_isProxy?"Proxy":"")
+        oss << _uriString << ' ' << nameShort(_method)
+            << (_isProxy?"Proxy":"")
             << (_isWebSocket?"WebSocket":"");
         oss << ", host: " << _hostUntrusted;
         oss << ", path: " << _pathSegs.size();
