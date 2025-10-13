@@ -139,15 +139,25 @@ class NavigatorPanel extends SidebarBase {
 		);
 		this.closeNavButton.setAttribute('tabindex', '0');
 
-		this.closeNavButton.addEventListener(
-			'click',
-			function () {
-				this.closeNavigation();
-				if (app.showNavigator) {
-					app.map.sendUnoCommand('.uno:Navigator');
+		const clickFunction = function () {
+			this.closeNavigation();
+			if (app.showNavigator) {
+				app.map.sendUnoCommand('.uno:Navigator');
+			}
+			app.map.focus();
+		}.bind(this);
+
+		this.closeNavButton.addEventListener('click', clickFunction);
+
+		this.navigationPanel.addEventListener(
+			'keydown',
+			function (e: KeyboardEvent) {
+				if (e.code === 'Escape') {
+					clickFunction();
+					e.preventDefault();
+					e.stopPropagation();
 				}
-				app.map.focus();
-			}.bind(this),
+			},
 		);
 
 		const contentDivs = [];
