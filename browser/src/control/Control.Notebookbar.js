@@ -48,19 +48,12 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 	},
 
 	// on show
-	create: function() {
+	create: function(container) {
 		var docType = this._map.getDocType();
 
 		if (document.documentElement.dir === 'rtl') this._RTL = true;
 
-		// remove old toolbar
-		var toolbar = window.L.DomUtil.get('toolbar-up');
-		if (toolbar)
-			toolbar.outerHTML = '';
-
-		// create toolbar from template
-		$('#toolbar-logo').after(this.map.toolbarUpTemplate.cloneNode(true));
-		this.parentContainer = window.L.DomUtil.get('toolbar-up');
+		this.container = container;
 
 		this.loadTab();
 
@@ -139,6 +132,7 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 			this.floatingNavIcon.classList.remove('hasnotebookbar');
 		$('.main-nav #document-header').remove();
 		this.clearNotebookbar();
+		$(this.container).remove();
 	},
 
 	onUpdatePermission: function(e) {
@@ -205,15 +199,12 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 		$('.root-container.notebookbar').remove();
 		$('.notebookbar-tabs-container').remove();
 		$('.notebookbar-shortcuts-bar').remove();
-		$(this.container).remove();
 	},
 
 	loadTab: function() {
 		app.console.debug('Notebookbar: loadTab');
 
 		this.clearNotebookbar();
-
-		this.container = window.L.DomUtil.create('div', 'notebookbar-scroll-wrapper', this.parentContainer);
 
 		this.builder.build(this.container, [this.model.getSnapshot()]);
 
@@ -456,10 +447,14 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 	showButton: function (id, show) {
 		if (!id) return;
 
-		this.builder.executeAction(this.parentContainer, {
-			control_id: id,
-			control: { id: id },
-			action_type: show ? 'show' : 'hide',
+		this.builder.executeAction(this.container, {
+			id: this.builder.windowId,
+			action: 'action',
+			jsontype: 'notebookbar',
+			data: {
+				control_id: id,
+				action_type: show ? 'show' : 'hide',
+			}
 		});
 
 		JSDialog.RefreshScrollables();
