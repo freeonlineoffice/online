@@ -146,6 +146,13 @@ class SlideShowPresenter {
 	private _isFollower: boolean = false;
 	private _isFollowing: boolean = false;
 
+	private showFollow(me: boolean) {
+		if (app.isExperimentalMode()) {
+			this._map.uiManager.showButton('slide-presentation-follow', !me);
+			this._map.uiManager.showButton('slide-presentation-follow-me', me);
+		}
+	}
+
 	constructor(map: any, enableA11y: boolean) {
 		this._cypressSVGPresentationTest =
 			window.L.Browser.cypressTest || 'Cypress' in window;
@@ -153,7 +160,7 @@ class SlideShowPresenter {
 		this._enableA11y = enableA11y;
 		this._init();
 		this.addHooks();
-		this._map.uiManager.showButton('slide-presentation-follow', false);
+		this.showFollow(true);
 	}
 
 	addHooks() {
@@ -221,14 +228,7 @@ class SlideShowPresenter {
 		switch (info.type) {
 			case 'newfollowmepresentation':
 				this.setFollowing(true);
-				this._map.uiManager.showButton(
-					'slide-presentation-follow-me',
-					false,
-				);
-				this._map.uiManager.showButton(
-					'slide-presentation-follow',
-					true,
-				);
+				this.showFollow(false);
 				this._onStartInWindow({
 					startSlideNumber:
 						this._slideShowNavigator.getLeaderSlide() === -1
@@ -268,28 +268,14 @@ class SlideShowPresenter {
 				this.setFollower(false);
 				this._slideShowNavigator.resetLeaderEffect();
 				this._slideShowNavigator.resetLeaderSlide();
-				this._map.uiManager.showButton(
-					'slide-presentation-follow-me',
-					true,
-				);
-				this._map.uiManager.showButton(
-					'slide-presentation-follow',
-					false,
-				);
+				this.showFollow(true);
 				if (!this.isFollowing()) return;
 				this.setFollowing(false);
 				this.endPresentation(true);
 
 				break;
 			case 'slideshowfollowon':
-				this._map.uiManager.showButton(
-					'slide-presentation-follow-me',
-					false,
-				);
-				this._map.uiManager.showButton(
-					'slide-presentation-follow',
-					true,
-				);
+				this.showFollow(false);
 				break;
 		}
 	}
