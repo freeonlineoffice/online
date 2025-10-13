@@ -90,7 +90,8 @@ class TreeViewControl {
 		this._rows = new Map<string, HTMLElement>();
 		if (data.labelledBy)
 			this._container.setAttribute('aria-labelledby', data.labelledBy);
-		if (data.ignoreFocus !== undefined) this._ignoreFocus = data.ignoreFocus;
+		if (data.ignoreFocus !== undefined)
+			this._ignoreFocus = data.ignoreFocus;
 	}
 
 	get Container() {
