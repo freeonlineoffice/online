@@ -1767,6 +1767,15 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
         }
 
 
+#if ENABLE_FEATURE_RESTRICTION
+        sendRestrictionInfo();
+#endif
+        if (docBroker->getIsFollowmeSlideShowOn())
+        {
+            sendTextFrame("slideshowfollow displayslide {\"currentSlide\": " + std::to_string(docBroker->getLeaderSlide()) +"}");
+            sendTextFrame("slideshowfollow effect {\"currentEffect\": " + std::to_string(docBroker->getLeaderEffect()) +"}");
+            sendTextFrame("slideshowfollow slideshowfollowon");
+        }
 
         return forwardToChild(oss.str(), docBroker);;
     }
