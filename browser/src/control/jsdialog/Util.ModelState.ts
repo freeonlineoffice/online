@@ -145,6 +145,9 @@ class JSDialogModelState {
 						data.data.control_id,
 				);
 			}
+
+			if (data.data.action_type === 'show') found.visible = true;
+			else if (data.data.action_type === 'hide') found.visible = false;
 		}
 	}
 
