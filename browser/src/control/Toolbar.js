@@ -490,7 +490,7 @@ window.L.Map.include({
 			if (val && (json === undefined || json === null)) {
 				// because it is toggle, state has to be the opposite
 				var state = !(val === 'true');
-				window.prefs.set('SpellOnline', state);
+				window.prefs.set('spellOnline', state);
 			}
 		}
 

@@ -2354,7 +2354,7 @@ function getInitializerClass() {
 				if (global.deviceFormFactor) {
 					msg += ' deviceFormFactor=' + global.deviceFormFactor;
 				}
-				var spellOnline = window.prefs.get('SpellOnline');
+				var spellOnline = window.prefs.get('spellOnline');
 				if (spellOnline) {
 					msg += ' spellOnline=' + spellOnline;
 				}
