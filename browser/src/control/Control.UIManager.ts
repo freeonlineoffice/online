@@ -1144,7 +1144,7 @@ class UIManager extends window.L.Control {
 			found = this.showButtonInClassicToolbar(buttonId, show);
 
 		if (this.notebookbar) {
-			this.notebookbar.reloadShortcutsBar();
+			if (this.getCurrentMode() === 'notebookbar') this.notebookbar.reloadShortcutsBar();
 			found = show ? this.notebookbar.showItem(buttonId) : this.notebookbar.hideItem(buttonId);
 		}
 
@@ -1222,7 +1222,7 @@ class UIManager extends window.L.Control {
 		}
 
 		if (this.notebookbar) {
-			this.notebookbar.reloadShortcutsBar();
+			if (this.getCurrentMode() === 'notebookbar') this.notebookbar.reloadShortcutsBar();
 			found ||= this.notebookbar.showNotebookbarCommand(command, show);
 		}
 
