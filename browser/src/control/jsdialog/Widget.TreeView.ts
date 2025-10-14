@@ -964,14 +964,20 @@ class TreeViewControl {
 				preventDef = true;
 			} else if (event.key === 'ArrowLeft') {
 				// Always collapse if expanded
-				if (expander && !window.L.DomUtil.hasClass(tr, 'collapsed')) {
+				if (
+					expander &&
+					!window.L.DomUtil.hasClass(tr, 'collapsed')
+				) {
 					expander.click();
 					tr.focus();
 					preventDef = true;
 				}
 			} else if (event.key === 'ArrowRight') {
 				// Always expand if collapsed
-				if (expander && window.L.DomUtil.hasClass(tr, 'collapsed')) {
+				if (
+					expander &&
+					window.L.DomUtil.hasClass(tr, 'collapsed')
+				) {
 					expander.click();
 					tr.focus();
 					preventDef = true;
@@ -1393,7 +1399,8 @@ class TreeViewControl {
 			app.layoutingService.appendLayoutingTask(() => {
 				const activeElement = document.activeElement as HTMLElement;
 				const isFocusInTreeView =
-					activeElement && this._container.contains(activeElement);
+					activeElement &&
+					this._container.contains(activeElement);
 
 				if (!isFocusInTreeView) {
 					const listElements = this._container.querySelectorAll(

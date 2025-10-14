@@ -73,7 +73,9 @@ class ServerConnectionService {
 	}
 
 	public onSpecializedUI(docType: string) {
-		app.console.debug('ServerConnectionService: onSpecializedUI - ' + docType);
+		app.console.debug(
+			'ServerConnectionService: onSpecializedUI - ' + docType,
+		);
 		app.map.fire('initializedui');
 	}
 

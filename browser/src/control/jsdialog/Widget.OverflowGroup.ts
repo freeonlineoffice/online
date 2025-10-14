@@ -208,7 +208,9 @@ function setupOverflowMenu(
 						hiddenItems.querySelectorAll(':scope > *');
 					if (hiddenItemsChildren.length === 0) {
 						app.console.debug(
-							'overflow manager: no items to migrate for "' + dropdownId + '"',
+							'overflow manager: no items to migrate for "' +
+								dropdownId +
+								'"',
 						);
 						return;
 					}
@@ -223,60 +225,94 @@ function setupOverflowMenu(
 					menu?.classList.add('ui-overflow-group-popup');
 
 					migrateItems(hiddenItems, menu);
-					menu.addEventListener('keydown', function (e: KeyboardEvent) {
-						let key;
-						if (e.key === 'Tab') {
-							key = e.shiftKey ? 'ArrowLeft' : 'ArrowRight';
-						} else {
-							key = e.key;
-						}
-
-						if (
-							['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)
-						) {
-							var currentElement = e.target as HTMLElement;
-							const isElementOfTypeInput =
-								currentElement.tagName === 'INPUT' ||
-								currentElement.tagName === 'TEXTAREA';
+					menu.addEventListener(
+						'keydown',
+						function (e: KeyboardEvent) {
+							let key;
+							if (e.key === 'Tab') {
+								key = e.shiftKey
+									? 'ArrowLeft'
+									: 'ArrowRight';
+							} else {
+								key = e.key;
+							}
 
 							if (
-								!isElementOfTypeInput ||
-								(isElementOfTypeInput && e.key === 'Tab')
+								[
+									'ArrowUp',
+									'ArrowDown',
+									'ArrowLeft',
+									'ArrowRight',
+								].includes(key)
 							) {
-								const elementToFocus = JSDialog.FindNextElementInContainer(
-									menu,
-									currentElement,
-									key,
-								);
-								if (elementToFocus) {
-									elementToFocus.focus();
-								} else {
-									// When ray-casting reaches container boundaries
-									const focusables = Array.from(
-										menu.querySelectorAll('[tabindex="-1"]:not([disabled])'),
-									);
-									if (focusables.length) {
-										let targetIndex;
-										if (key === 'ArrowRight' || key === 'ArrowDown') {
-											// Moving forward but hit boundary - cycle to first
-											targetIndex = 0;
-										} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
-											// Moving backward but hit boundary - cycle to last
-											targetIndex = focusables.length - 1;
-										}
+								var currentElement =
+									e.target as HTMLElement;
+								const isElementOfTypeInput =
+									currentElement.tagName ===
+										'INPUT' ||
+									currentElement.tagName ===
+										'TEXTAREA';
 
-										if (targetIndex !== undefined) {
-											(focusables[targetIndex] as HTMLElement).focus();
+								if (
+									!isElementOfTypeInput ||
+									(isElementOfTypeInput &&
+										e.key === 'Tab')
+								) {
+									const elementToFocus =
+										JSDialog.FindNextElementInContainer(
+											menu,
+											currentElement,
+											key,
+										);
+									if (elementToFocus) {
+										elementToFocus.focus();
+									} else {
+										// When ray-casting reaches container boundaries
+										const focusables = Array.from(
+											menu.querySelectorAll(
+												'[tabindex="-1"]:not([disabled])',
+											),
+										);
+										if (focusables.length) {
+											let targetIndex;
+											if (
+												key ===
+													'ArrowRight' ||
+												key === 'ArrowDown'
+											) {
+												// Moving forward but hit boundary - cycle to first
+												targetIndex = 0;
+											} else if (
+												key ===
+													'ArrowLeft' ||
+												key === 'ArrowUp'
+											) {
+												// Moving backward but hit boundary - cycle to last
+												targetIndex =
+													focusables.length -
+													1;
+											}
+
+											if (
+												targetIndex !==
+												undefined
+											) {
+												(
+													focusables[
+														targetIndex
+													] as HTMLElement
+												).focus();
+											}
 										}
 									}
+									// If we handled the event here, stop propagation and prevent default
+									// to avoid reaching to global notebookbar keyboard handling
+									e.stopPropagation();
+									e.preventDefault();
 								}
-								// If we handled the event here, stop propagation and prevent default
-								// to avoid reaching to global notebookbar keyboard handling
-								e.stopPropagation();
-								e.preventDefault();
 							}
-						}
-					});
+						},
+					);
 				});
 			});
 		} else {

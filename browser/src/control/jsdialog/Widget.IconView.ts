@@ -137,7 +137,13 @@ function _iconViewEntry(
 				this.setAttribute('aria-selected', 'false');
 			});
 
-			builder.callback('iconview', 'select', parentData, entry.row, builder);
+			builder.callback(
+				'iconview',
+				'select',
+				parentData,
+				entry.row,
+				builder,
+			);
 			if (singleClick) {
 				builder.callback(
 					'iconview',
@@ -155,7 +161,13 @@ function _iconViewEntry(
 				this.setAttribute('aria-selected', 'false');
 			});
 
-			builder.callback('iconview', 'select', parentData, entry.row, builder);
+			builder.callback(
+				'iconview',
+				'select',
+				parentData,
+				entry.row,
+				builder,
+			);
 			$(entryContainer).addClass('selected');
 			entryContainer.setAttribute('aria-selected', 'true');
 

@@ -66,7 +66,8 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 		} else {
 			this.sectionProperties.leftMost =
 				previous.position[0] +
-				app.activeDocument.tableMiddleware.resizeMarkerMaxApproximation;
+				app.activeDocument.tableMiddleware
+					.resizeMarkerMaxApproximation;
 		}
 
 		if (!next) {
@@ -100,11 +101,13 @@ class TableResizeMarkerSection extends HTMLObjectSection {
 			// First row marker.
 			this.sectionProperties.topMost =
 				app.activeDocument.tableMiddleware.getTableTopY() +
-				app.activeDocument.tableMiddleware.resizeMarkerMaxApproximation;
+				app.activeDocument.tableMiddleware
+					.resizeMarkerMaxApproximation;
 		} else {
 			this.sectionProperties.topMost =
 				previous.position[1] +
-				app.activeDocument.tableMiddleware.resizeMarkerMaxApproximation;
+				app.activeDocument.tableMiddleware
+					.resizeMarkerMaxApproximation;
 		}
 
 		if (!next) {

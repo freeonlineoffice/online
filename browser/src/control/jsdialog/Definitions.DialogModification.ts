@@ -23,43 +23,49 @@ const dialogModifications = new Map<string, DialogModificationCallback>();
 dialogModifications.set('FindReplaceDialog', function (instance: any) {
 	if (!instance.container) return;
 
-	instance.container.addEventListener('keydown', function (e: KeyboardEvent) {
-		if (e.code !== 'Enter') return; // Only handle Enter key
+	instance.container.addEventListener(
+		'keydown',
+		function (e: KeyboardEvent) {
+			if (e.code !== 'Enter') return; // Only handle Enter key
 
-		const activeElement = document.activeElement as HTMLElement;
-		if (!activeElement) return;
+			const activeElement = document.activeElement as HTMLElement;
+			if (!activeElement) return;
 
-		if (activeElement.tagName === 'INPUT') {
-			const inputElement = activeElement as HTMLInputElement;
-			if (inputElement.type === 'text') {
-				const activeId = inputElement.id;
-				let pushButtonWrapperId: string | null = null;
+			if (activeElement.tagName === 'INPUT') {
+				const inputElement = activeElement as HTMLInputElement;
+				if (inputElement.type === 'text') {
+					const activeId = inputElement.id;
+					let pushButtonWrapperId: string | null = null;
 
-				if (activeId.includes('searchterm')) {
-					pushButtonWrapperId = e.shiftKey ? 'backsearch' : 'search';
-				} else if (activeId.includes('replaceterm')) {
-					pushButtonWrapperId = 'replace';
-				}
-
-				if (pushButtonWrapperId) {
-					const pushButtonWrapper = instance.container.querySelector(
-						`#${pushButtonWrapperId}`,
-					);
-					/* Pushbutton wrapper always has a single child: button */
-					const button = pushButtonWrapper
-						? (pushButtonWrapper.firstChild as HTMLButtonElement)
-						: null;
-					if (button && !button.disabled) {
-						button.click();
-						e.preventDefault();
+					if (activeId.includes('searchterm')) {
+						pushButtonWrapperId = e.shiftKey
+							? 'backsearch'
+							: 'search';
+					} else if (activeId.includes('replaceterm')) {
+						pushButtonWrapperId = 'replace';
 					}
+
+					if (pushButtonWrapperId) {
+						const pushButtonWrapper =
+							instance.container.querySelector(
+								`#${pushButtonWrapperId}`,
+							);
+						/* Pushbutton wrapper always has a single child: button */
+						const button = pushButtonWrapper
+							? (pushButtonWrapper.firstChild as HTMLButtonElement)
+							: null;
+						if (button && !button.disabled) {
+							button.click();
+							e.preventDefault();
+						}
+					}
+				} else if (inputElement.type === 'checkbox') {
+					inputElement.click();
+					e.preventDefault();
 				}
-			} else if (inputElement.type === 'checkbox') {
-				inputElement.click();
-				e.preventDefault();
 			}
-		}
-	});
+		},
+	);
 });
 
 JSDialog.getDialogModificationCallback = function (

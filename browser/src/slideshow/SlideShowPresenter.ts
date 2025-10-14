@@ -149,7 +149,10 @@ class SlideShowPresenter {
 	private showFollow(me: boolean) {
 		if (app.isExperimentalMode()) {
 			this._map.uiManager.showButton('slide-presentation-follow', !me);
-			this._map.uiManager.showButton('slide-presentation-follow-me', me);
+			this._map.uiManager.showButton(
+				'slide-presentation-follow-me',
+				me,
+			);
 		}
 	}
 

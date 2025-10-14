@@ -1245,8 +1245,8 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 								}
 							}
 						}
-					}.bind(that),
-				);
+					}
+				}.bind(that));
 			});
 		}
 
