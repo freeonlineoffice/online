@@ -16,7 +16,11 @@ class DocumentBase {
 	protected _fileSize: lool.SimplePoint;
 
 	constructor() {
-		this.activeView = new ViewLayoutBase();
+		if (app.map._docLayer._docType === 'text') {
+			this.activeView = new ViewLayoutWriter();
+		} else {
+			this.activeView = new ViewLayoutBase();
+		}
 		this._fileSize = new lool.SimplePoint(0, 0);
 		this.tableMiddleware = new TableMiddleware();
 
