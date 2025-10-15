@@ -3908,7 +3908,9 @@ int LOOLWSD::innerMain()
         // Unit test timeout
         if (UnitWSD::isUnitTesting() && !SigUtil::getShutdownRequestFlag())
         {
-            UnitWSD::get().checkTimeout(timeSinceStartMs);
+            if (auto const unit = UnitWSD::getMaybeNull()) {
+                unit->checkTimeout(timeSinceStartMs);
+            }
         }
 
 #if !MOBILEAPP

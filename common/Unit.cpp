@@ -644,6 +644,11 @@ UnitWSD& UnitWSD::get()
     return *globalWSD;
 }
 
+UnitWSD* UnitWSD::getMaybeNull()
+{
+    return GlobalWSD;
+}
+
 void UnitWSD::onExitTest(TestResult result, const std::string&)
 {
     if (haveMoreTests())
