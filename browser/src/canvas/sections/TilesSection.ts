@@ -64,7 +64,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	paintWithPanes (tile: any, ctx: any, async: boolean): void {
+	private paintWithPanes (tile: any, ctx: any, async: boolean): void {
 		var tileTopLeft = tile.coords.getPos();
 		var tileBounds = new lool.Bounds(tileTopLeft, tileTopLeft.add(new lool.Point(TileManager.tileSize, TileManager.tileSize)));
 
@@ -145,7 +145,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	drawTileInPane (tile: any, tileBounds: any, paneBounds: any, paneOffset: any, canvasCtx: CanvasRenderingContext2D, clearBackground: boolean): void {
+	private drawTileInPane (tile: any, tileBounds: any, paneBounds: any, paneOffset: any, canvasCtx: CanvasRenderingContext2D, clearBackground: boolean): void {
 		// intersect - to avoid state thrash through clipping
 		var crop = new lool.Bounds(tileBounds.min, tileBounds.max);
 		crop.min.x = Math.max(paneBounds.min.x, tileBounds.min.x);
@@ -192,7 +192,7 @@ export class TilesSection extends CanvasSectionObject {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	paintSimple (tile: any, ctx: any, async: boolean): void {
+	private paintSimple (tile: any, ctx: any, async: boolean): void {
 		ctx.viewBounds.round();
 		var offset = new lool.Point(tile.coords.getPos().x - ctx.viewBounds.min.x, tile.coords.getPos().y - ctx.viewBounds.min.y);
 
