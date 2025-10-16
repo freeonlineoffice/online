@@ -11,12 +11,12 @@
 
 #include <config.h>
 
-#include <wsd/COOLWSD.hpp>
+#include <wsd/LOOLWSD.hpp>
 #include <wsd/TraceFile.hpp>
 
 #include <string>
 
-void COOLWSD::dumpNewSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri, const std::string& path)
+void LOOLWSD::dumpNewSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri, const std::string& path)
 {
     if (TraceDumper)
     {
@@ -31,7 +31,7 @@ void COOLWSD::dumpNewSessionTrace(const std::string& id, const std::string& sess
     }
 }
 
-void COOLWSD::dumpEndSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri)
+void LOOLWSD::dumpEndSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri)
 {
     if (TraceDumper)
     {
@@ -46,7 +46,7 @@ void COOLWSD::dumpEndSessionTrace(const std::string& id, const std::string& sess
     }
 }
 
-void COOLWSD::dumpEventTrace(const std::string& id, const std::string& sessionId, const std::string& data)
+void LOOLWSD::dumpEventTrace(const std::string& id, const std::string& sessionId, const std::string& data)
 {
     if (TraceDumper)
     {
@@ -54,7 +54,7 @@ void COOLWSD::dumpEventTrace(const std::string& id, const std::string& sessionId
     }
 }
 
-void COOLWSD::dumpIncomingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
+void LOOLWSD::dumpIncomingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
 {
     if (TraceDumper)
     {
@@ -62,7 +62,7 @@ void COOLWSD::dumpIncomingTrace(const std::string& id, const std::string& sessio
     }
 }
 
-void COOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
+void LOOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
 {
     if (TraceDumper)
     {

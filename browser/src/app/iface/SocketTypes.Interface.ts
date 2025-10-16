@@ -30,7 +30,7 @@ interface CompleteTraceEvent {
 	abort(): void;
 }
 
-interface CoolHTMLImageElement extends HTMLImageElement {
+interface LoolHTMLImageElement extends HTMLImageElement {
 	completeTraceEvent?: CompleteTraceEvent;
 
 	rawData?: Uint8Array;
@@ -43,7 +43,7 @@ interface SlurpMessageEvent extends MessageEvent {
 	imgIndex?: number;
 	textMsg: string;
 	isComplete(): boolean;
-	image?: CoolHTMLImageElement;
+	image?: LoolHTMLImageElement;
 	imageIsComplete?: boolean;
 	callback?: DefCallBack;
 	reason?: string;

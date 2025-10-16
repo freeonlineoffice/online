@@ -82,7 +82,7 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 
 		desktopHelper.insertComment();
 
-		cy.cGet('.cool-annotation-content-wrapper').click();
+		cy.cGet('.lool-annotation-content-wrapper').click();
 
 		cy.cGet('body').type('{ctrl}p');
 

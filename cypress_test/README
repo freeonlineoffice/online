@@ -218,7 +218,7 @@ Limitations:
 Running tests with php-proxy
 ----------------------------
 
-You can tests with proxy.php which uses ProxyProtocol in coolwsd. It is primarily used in richdocumentscode - https://github.com/CollaboraOnline/richdocumentscode
+You can tests with proxy.php which uses ProxyProtocol in loolwsd. It is primarily used in richdocumentscode - https://github.com/CollaboraOnline/richdocumentscode
 
 make check-php-proxy
 

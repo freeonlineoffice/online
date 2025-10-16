@@ -50,7 +50,7 @@ interface DocLayerInterface {
 	removeAllViews(): void;
 	_resetClientVisArea(): void;
 
-	_onMessage(textMsg: string, img?: CoolHTMLImageElement): void;
+	_onMessage(textMsg: string, img?: LoolHTMLImageElement): void;
 	_resetCanonicalIdStatus(): void;
 	_resetViewId(): void;
 	_resetDocumentInfo(): void;
