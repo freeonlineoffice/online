@@ -20,122 +20,34 @@ window.L.Control.ContextMenu = window.L.Control.extend({
 			 * in following list is just for reference and ease of locating uno command
 			 * from context menu structure.
 			 */
-			general: [
-				'Cut',
-				'Copy',
-				'Paste',
-				'PasteSpecial',
-				'Delete',
-				'FormatPaintbrush',
-				'ResetAttributes',
-				'NumberingStart',
-				'ContinueNumbering',
-				'IncrementLevel',
-				'DecrementLevel',
-				'OpenHyperlinkOnCursor',
-				'InsertHyperlink',
-				'EditHyperlink',
-				'CopyHyperlinkLocation',
-				'RemoveHyperlink',
-				'AnchorMenu',
-				'SetAnchorToPage',
-				'SetAnchorToPara',
-				'SetAnchorAtChar',
-				'SetAnchorToChar',
-				'SetAnchorToFrame',
-				'Crop',
-				'WrapMenu',
-				'WrapOff',
-				'WrapOn',
-				'WrapIdeal',
-				'WrapLeft',
-				'WrapRight',
-				'WrapThrough',
-				'WrapThroughTransparencyToggle',
-				'WrapContour',
-				'WrapAnchorOnly',
-				'ConvertMenu',
-				'ChangeBezier',
-				'DistributeHorzCenter',
-				'DistributeHorzDistance',
-				'DistributeHorzLeft',
-				'DistributeHorzRight',
-				'DistributeVertBottom',
-				'DistributeVertCenter',
-				'DistributeVertDistance',
-				'DistributeVertTop',
-				'ArrangeFrameMenu',
-				'ArrangeMenu',
-				'BringToFront',
-				'ObjectForwardOne',
-				'ObjectBackOne',
-				'SendToBack',
-				'RotateMenu',
-				'RotateLeft',
-				'RotateRight',
-				'TransformDialog',
-				'FormatLine',
-				'FormatArea',
-				'FormatChartArea',
-				'InsertTitles',
-				'InsertRemoveAxes',
-				'DeleteLegend',
-				'DiagramType',
-				'DataRanges',
-				'DiagramData',
-				'View3D',
-				'FormatWall',
-				'FormatFloor',
-				'FormatLegend',
-				'FormatTitle',
-				'FormatDataSeries',
-				'FormatAxis',
-				'FormatMajorGrid',
-				'FormatMinorGrid',
-				'FormatDataLabels',
-				'FormatDataLabel',
-				'FormatDataPoint',
-				'FormatMeanValue',
-				'FormatXErrorBars',
-				'FormatYErrorBars',
-				'FormatTrendline',
-				'FormatTrendlineEquation',
-				'FormatSelection',
-				'FormatStockLoss',
-				'FormatStockGain',
-				'InsertDataLabel',
-				'InsertDataLabels',
-				'DeleteDataLabel',
-				'DeleteDataLabels',
-				'ResetDataPoint',
-				'InsertTrendline',
-				'InsertMeanValue',
-				'InsertXErrorBars',
-				'InsertYErrorBars',
-				'ResetAllDataPoints',
-				'DeleteAxis',
-				'InsertAxisTitle',
-				'InsertMinorGrid',
-				'InsertMajorGrid',
-				'InsertAxis',
-				'DeleteMajorGrid',
-				'DeleteMinorGrid',
-				'SpellCheckIgnoreAll',
-				'LanguageStatus',
-				'SpellCheckApplySuggestion',
-				'PageDialog',
-				'CompressGraphic',
-				'GraphicDialog',
-				'InsertCaptionDialog',
-				'AnimationEffects',
-				'ExecuteAnimationEffect',
-				'NextTrackedChange',
-				'PreviousTrackedChange',
-				'RejectTrackedChange',
-				'AcceptTrackedChange',
-				'ReinstateTrackedChange',
-				'InsertAnnotation',
-			],
+			general: ['Cut', 'Copy', 'Paste', 'PasteSpecial', 'Delete',
+					  'FormatPaintbrush', 'ResetAttributes',
+					  'NumberingStart', 'ContinueNumbering', 'IncrementLevel', 'DecrementLevel',
+					  'OpenHyperlinkOnCursor', 'InsertHyperlink', 'EditHyperlink', 'CopyHyperlinkLocation', 'RemoveHyperlink',
+					  'AnchorMenu', 'SetAnchorToPage', 'SetAnchorToPara', 'SetAnchorAtChar',
+					  'SetAnchorToChar', 'SetAnchorToFrame', 'Crop',
+					  'WrapMenu', 'WrapOff', 'WrapOn', 'WrapIdeal', 'WrapLeft', 'WrapRight', 'WrapThrough',
+					  'WrapThroughTransparencyToggle', 'WrapContour', 'WrapAnchorOnly',
+					  'ConvertMenu', 'ChangeBezier',
+					  'DistributeHorzCenter', 'DistributeHorzDistance','DistributeHorzLeft','DistributeHorzRight',
+					  'DistributeVertBottom', 'DistributeVertCenter', 'DistributeVertDistance', 'DistributeVertTop',
+					  'ArrangeFrameMenu', 'ArrangeMenu', 'BringToFront', 'ObjectForwardOne', 'ObjectBackOne', 'SendToBack',
+					  'RotateMenu', 'RotateLeft', 'RotateRight', 'TransformDialog', 'FormatLine', 'FormatArea',
+					  'FormatChartArea', 'InsertTitles', 'InsertRemoveAxes',
+					  'DeleteLegend', 'DiagramType', 'DataRanges', 'DiagramData', 'View3D',
+					  'FormatWall', 'FormatFloor', 'FormatLegend', 'FormatTitle', 'FormatDataSeries',
+					  'FormatAxis', 'FormatMajorGrid', 'FormatMinorGrid', 'FormatDataLabels',
+					  'FormatDataLabel', 'FormatDataPoint', 'FormatMeanValue', 'FormatXErrorBars', 'FormatYErrorBars',
+					  'FormatTrendline', 'FormatTrendlineEquation', 'FormatSelection', 'FormatStockLoss',
+					  'FormatStockGain', 'InsertDataLabel', 'InsertDataLabels' , 'DeleteDataLabel', 'DeleteDataLabels', 'ResetDataPoint',
+					  'InsertTrendline', 'InsertMeanValue', 'InsertXErrorBars' , 'InsertYErrorBars', 'ResetAllDataPoints' , 'DeleteAxis',
+					  'InsertAxisTitle', 'InsertMinorGrid', 'InsertMajorGrid' , 'InsertAxis', 'DeleteMajorGrid' , 'DeleteMinorGrid',
+					  'SpellCheckIgnoreAll', 'LanguageStatus', 'SpellCheckApplySuggestion', 'PageDialog',
+					  'CompressGraphic', 'GraphicDialog', 'InsertCaptionDialog',
+					  'AnimationEffects', 'ExecuteAnimationEffect',
+					  'InsertAnnotation'],
+
+			tracking: ['NextTrackedChange', 'PreviousTrackedChange', 'RejectTrackedChange', 'AcceptTrackedChange', 'ReinstateTrackedChange'],
 
 			text: [
 				'TableInsertMenu',
@@ -478,35 +390,13 @@ window.L.Control.ContextMenu = window.L.Control.extend({
 				// We use a special character dialog in spelling context menu with a parameter
 				if (commandName === 'FontDialog' && !hasParam) continue;
 
-				if (
-					commandName !== 'None' &&
-					this.options.whitelist.general.indexOf(commandName) ===
-						-1 &&
-					!(
-						docType === 'text' &&
-						this.options.whitelist.text.indexOf(
-							commandName,
-						) !== -1
-					) &&
-					!(
-						docType === 'spreadsheet' &&
-						this.options.whitelist.spreadsheet.indexOf(
-							commandName,
-						) !== -1
-					) &&
-					!(
-						docType === 'presentation' &&
-						this.options.whitelist.presentation.indexOf(
-							commandName,
-						) !== -1
-					) &&
-					!(
-						docType === 'drawing' &&
-						this.options.whitelist.drawing.indexOf(
-							commandName,
-						) !== -1
-					)
-				) {
+				if (commandName !== 'None' &&
+					this.options.whitelist.general.indexOf(commandName) === -1 &&
+					(this._map['wopi'].HideChangeTrackingControls || this.options.whitelist.tracking.indexOf(commandName) === -1) &&
+					!(docType === 'text' && this.options.whitelist.text.indexOf(commandName) !== -1) &&
+					!(docType === 'spreadsheet' && this.options.whitelist.spreadsheet.indexOf(commandName) !== -1) &&
+					!(docType === 'presentation' && this.options.whitelist.presentation.indexOf(commandName) !== -1) &&
+					!(docType === 'drawing' && this.options.whitelist.drawing.indexOf(commandName) !== -1)) {
 					continue;
 				}
 

@@ -2720,7 +2720,8 @@ window.L.Control.NotebookbarImpress = window.L.Control.NotebookbarWriter.extend(
 		return this.getTabPage('MasterPage', content);
 	},
 
-	getReviewTab: function () {
+	getReviewTab: function() {
+		// Note: when adding track changes elements, consider this._map['wopi'].HideChangeTrackingControls
 		var content = [
 			{
 				id: 'review-spell-dialog',

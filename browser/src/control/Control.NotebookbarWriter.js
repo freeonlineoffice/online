@@ -2167,6 +2167,7 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 	},
 
 	getReviewTab: function() {
+		var hideChangeTrackingControls = this._map['wopi'].HideChangeTrackingControls;
 		var content = [
 			{
 				'id': 'review-spelling-and-grammar-dialog',
@@ -2301,8 +2302,8 @@ window.L.Control.NotebookbarWriter = window.L.Control.Notebookbar.extend({
 					},
 				]
 			},
-			{ type: 'separator', id: 'review-deletecomment-break', orientation: 'vertical' },
-			{
+			hideChangeTrackingControls ? {} : { type: 'separator', id: 'review-deletecomment-break', orientation: 'vertical' },
+			hideChangeTrackingControls ? {} : {
 				'type': 'overflowgroup',
 				'id': 'review-tracking',
 				'name':_('Tracking'),
