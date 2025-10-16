@@ -62,6 +62,7 @@ cmake_list= \
             ../wsd/ClientRequestDispatcher.cpp \
             ../wsd/RequestDetails.cpp \
             ../wsd/RequestVettingStation.cpp \
+            ../wsd/SlideCache.cpp \
             ../wsd/Storage.cpp \
             ../wsd/TileCache.cpp \
             ../wsd/loolwsd-fork.cpp

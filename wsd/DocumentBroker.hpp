@@ -32,6 +32,7 @@
 #include "net/WebSocketHandler.hpp"
 #include "Storage.hpp"
 #include "ServerAuditUtil.hpp"
+#include "SlideCache.hpp"
 
 #include "common/SigUtil.hpp"
 #include "common/Session.hpp"
@@ -51,6 +52,7 @@ class LockContext;
 class PresetsInstallTask;
 class TileCache;
 class Message;
+class SlideLayerCacheMap;
 
 namespace Poco {
     namespace JSON {
@@ -419,6 +421,17 @@ public:
     {
         // Remove from cache.
         _tileCache->invalidateTiles(tiles, canonicalViewId);
+        //Tiles invalidate also mean slidelayers are also invalid now
+        // slides modified so need to rerender on request
+        invalidateSlideLayerCache();
+    }
+
+    void invalidateSlideLayerCache()
+    {
+        // TODO:
+        // Currently can't detect which slide was modified and
+        // based on our key choice can't remove just cache for particular slide
+        _slideLayerCache.erase_all();
     }
 
     void handleTileRequest(const StringVector &tokens, bool forceKeyframe,
@@ -427,6 +440,8 @@ public:
                                    const std::shared_ptr<ClientSession>& session);
     void sendRequestedTiles(const std::shared_ptr<ClientSession>& session);
     void sendTileCombine(const TileCombined& tileCombined);
+
+    void handleGetSlideRequest(const StringVector& tokens, std::shared_ptr<ClientSession> session);
 
     enum ClipboardRequest : std::uint8_t {
         CLIP_REQUEST_SET,
@@ -692,6 +707,7 @@ private:
     void handleTileResponse(const std::shared_ptr<Message>& message);
     void handleDialogPaintResponse(const std::vector<char>& payload, bool child);
     void handleTileCombinedResponse(const std::shared_ptr<Message>& message);
+    void handleSlideLayerResponse(const std::shared_ptr<Message>& message);
     void handleDialogRequest(const std::string& dialogCmd);
 
     /// Invoked to issue a save before renaming the document filename.
@@ -1803,6 +1819,9 @@ private:
     std::unique_ptr<Quarantine> _quarantine;
 
     std::unique_ptr<TileCache> _tileCache;
+
+    /// Cached slide layer for slideshow
+    SlideLayerCacheMap _slideLayerCache;
 
     std::unique_ptr<LockContext> _lockCtx;
 
