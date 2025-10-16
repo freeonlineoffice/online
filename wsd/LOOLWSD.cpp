@@ -2263,60 +2263,6 @@ void LOOLWSD::initializeSSL()
 #endif
 }
 
-void LOOLWSD::dumpNewSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri, const std::string& path)
-{
-    if (TraceDumper)
-    {
-        try
-        {
-            TraceDumper->newSession(id, sessionId, uri, path);
-        }
-        catch (const std::exception& exc)
-        {
-            LOG_ERR("Exception in tracer newSession: " << exc.what());
-        }
-    }
-}
-
-void LOOLWSD::dumpEndSessionTrace(const std::string& id, const std::string& sessionId, const std::string& uri)
-{
-    if (TraceDumper)
-    {
-        try
-        {
-            TraceDumper->endSession(id, sessionId, uri);
-        }
-        catch (const std::exception& exc)
-        {
-            LOG_ERR("Exception in tracer newSession: " << exc.what());
-        }
-    }
-}
-
-void LOOLWSD::dumpEventTrace(const std::string& id, const std::string& sessionId, const std::string& data)
-{
-    if (TraceDumper)
-    {
-        TraceDumper->writeEvent(id, sessionId, data);
-    }
-}
-
-void LOOLWSD::dumpIncomingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
-{
-    if (TraceDumper)
-    {
-        TraceDumper->writeIncoming(id, sessionId, data);
-    }
-}
-
-void LOOLWSD::dumpOutgoingTrace(const std::string& id, const std::string& sessionId, const std::string& data)
-{
-    if (TraceDumper)
-    {
-        TraceDumper->writeOutgoing(id, sessionId, data);
-    }
-}
-
 void LOOLWSD::defineOptions(Poco::Util::OptionSet& optionSet)
 {
     if constexpr (Util::isMobileApp())

@@ -1,6 +1,4 @@
 #
-# Copyright the Collabora Online contributors.
-#
 # SPDX-License-Identifier: MPL-2.0
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -61,6 +59,7 @@ online_SOURCES = \
 	../wsd/ClientSession.cpp \
 	../wsd/DocumentBroker.cpp \
 	../wsd/LOOLWSD.cpp \
+	../wsd/dumpWsdState.cpp \
 	../wsd/ClientRequestDispatcher.cpp \
 	../wsd/RequestDetails.cpp \
 	../wsd/RequestVettingStation.cpp \
