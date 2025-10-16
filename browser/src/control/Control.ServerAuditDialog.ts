@@ -97,7 +97,7 @@ class ServerAuditDialog {
 					'',
 				],
 				ok: [
-					_('system call security filtering enabled'),
+					_('System call security filtering enabled'),
 					'SDK: seccomp',
 					'',
 				],
@@ -144,7 +144,7 @@ class ServerAuditDialog {
 					'',
 					'',
 				],
-				ok: [_('direct network connection'), '', ''],
+				ok: [_('Direct network connection'), '', ''],
 			},
 
 			is_admin: {
