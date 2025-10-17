@@ -187,7 +187,7 @@ class ServerAuditDialog {
 
 			info_namespaces: {
 				priority: 30,
-				true: [_('Using namespaces.'), 'SDK: nocaps', ''],
+				true: [_('Using namespaces'), 'SDK: nocaps', ''],
 				false: [_('Not using namespaces'), 'SDK: nocaps', ''],
 			},
 		};
