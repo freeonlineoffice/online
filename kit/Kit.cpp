@@ -3779,7 +3779,13 @@ void lokit_main(
                     "You are running in a significantly less secure mode.");
         }
         else
+        {
+#if DISABLE_SECCOMP == 0
             hasSeccomp = true;
+#else
+            hasSeccomp = false;
+#endif
+        }
 
         rlimit rlim = { 0, 0 };
         if (getrlimit(RLIMIT_AS, &rlim) == 0)
