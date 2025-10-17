@@ -61,6 +61,7 @@
 #include <string>
 #include <sys/types.h>
 #include <sysexits.h>
+#include <utility>
 
 using namespace std::literals;
 using namespace LOOLProtocol;
@@ -259,9 +260,9 @@ void DocumentBroker::setupTransfer(SocketDisposition &disposition,
 }
 
 void DocumentBroker::setupTransfer(SocketPoll& from, const std::weak_ptr<StreamSocket>& socket,
-                                   const SocketDisposition::MoveFunction& transferFn)
+                                   SocketDisposition::MoveFunction transferFn)
 {
-    from.transferSocketTo(socket, getPoll(), transferFn, nullptr);
+    from.transferSocketTo(socket, getPoll(), std::move(transferFn), nullptr);
 }
 
 static std::chrono::seconds getLimitLoadSecs()
