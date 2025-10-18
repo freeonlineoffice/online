@@ -3515,8 +3515,7 @@ bool ChildSession::sendProgressFrame(const char* id, const std::string& jsonProp
 void ChildSession::loKitCallback(const int type, const std::string& payload)
 {
     const char* const typeName = lokCallbackTypeToString(type);
-    LOG_TRC("ChildSession::loKitCallback [" << getName() << "]: " << typeName << " [" << payload
-                                            << ']');
+    LOG_TRC("ChildSession::loKitCallback: " << typeName << " [" << payload << ']');
 
     if (!Util::isMobileApp() && UnitKit::get().filterLoKitCallback(type, payload))
         return;
@@ -3654,7 +3653,13 @@ void ChildSession::loKitCallback(const int type, const std::string& payload)
         else if (payload.find(".uno:ModifiedStatus") != std::string::npos)
         {
             if (!_docManager->trackDocModifiedState(payload))
+            {
+                LOG_TRC("Forwarding " << payload << " after tracking modified state");
                 sendTextFrame("statechanged: " + payload);
+            }
+            else
+                LOG_TRC("Ignoring " << payload << " after tracking modified state");
+
             if (payload == ".uno:ModifiedStatus=true") {
                 _docManager->getSlideLayerCache().erase_all();
             }
