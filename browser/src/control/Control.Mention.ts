@@ -33,7 +33,7 @@ class Mention extends AutoCompletePopup {
 	cursorPosAtStart: Point;
 
 	constructor(map: any) {
-		super('mentionPopup', map);
+		super(AutoCompleteDialogId.Mention, map);
 	}
 
 	onAdd() {
