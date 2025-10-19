@@ -3164,6 +3164,7 @@ void DocumentBroker::handleUploadToStorageFailed(const StorageBase::UploadResult
         // Since we've failed to get a response, we cannot know if the
         // Storage has been updated. As such, we need to re-sync the
         // document's last modified timestamp.
+        endActivity(); // Probably in Activity::Upload.
         startActivity(DocumentState::Activity::SyncFileTimestamp);
 
         reportUploadToStorageFailed();
