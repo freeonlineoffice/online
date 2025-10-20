@@ -91,7 +91,7 @@ browser/jsconfig.json
 browser/admin/jsconfig.json
 browser/dist
 browser/compilets
-browser/typescript_js
+browser/typescript_js/admin/src/ModalDialogCreator.js
 browser/makelocalizationtemplates.sh
 browser/make_po_files.sh
 browser/.eslintrc.js
