@@ -9,7 +9,8 @@
 
 var assert = require('assert').strict;
 
-describe('Bounds parse() tests', function () {
+describe('CBounds', function () {
+
 	describe('Bounds.parse() call with an empty string argument', function () {
 		it('should return undefined', function () {
 			assert.equal(lool.Bounds.parse(''), undefined);

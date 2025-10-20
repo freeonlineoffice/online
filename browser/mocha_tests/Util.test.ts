@@ -9,7 +9,8 @@
 
 var assert = require('assert');
 
-describe('Util static members tests', function () {
+describe('Util', function () {
+
 	describe('stamp()', function () {
 		const obj1 = { _leaflet_id: -1 };
 		const obj2 = { _leaflet_id: -1 };

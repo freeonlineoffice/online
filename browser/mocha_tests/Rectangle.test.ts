@@ -7,6 +7,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+describe('Rectangle', function() {
+
 var assert = require('assert').strict;
 
 interface ExpectedRectangle {
@@ -409,4 +411,7 @@ describe('coordinate API tests', function () {
 			});
 		}); // describe(coord + '-coordinate API tests'
 	}); // coords.forEach
-}); // root describe
+
+}); // describe('coordinate API tests', function () {
+
+}); // root describe.

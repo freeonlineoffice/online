@@ -9,7 +9,8 @@
 
 var assert = require('assert').strict;
 
-describe('LOUtil static class members', function () {
+describe('LOUtil', function () {
+
 	describe('stringToBounds()', function () {
 		it('parse from string with separaters and whitespaces', function () {
 			const bounds = LOUtil.stringToBounds('1, 2, \n3,    \t4 ');

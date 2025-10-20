@@ -9,7 +9,8 @@
 
 var assert = require('assert');
 
-describe('CPointSet empty() tests', function () {
+describe('CPointSet', function () {
+
 	describe('new CPointSet()', function () {
 		it('should be empty', function () {
 			assert.ok(new CPointSet().empty());

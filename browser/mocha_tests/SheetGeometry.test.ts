@@ -7,6 +7,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+describe('SheetGeometry', function() {
+
 var assert = require('assert').strict;
 
 describe('SheetGeometry public methods tests', function () {
@@ -276,3 +278,5 @@ function testsForPart(
 		);
 	});
 }
+
+}); // root describe
