@@ -199,8 +199,10 @@ class ServerAuditDialog {
 
 		// Sort errors to the top
 		allEntries.sort((a, b) => {
-			const aIsError = a.columns[0].collapsed === 'serverauditerror.svg';
-			const bIsError = b.columns[0].collapsed === 'serverauditerror.svg';
+			const aIsError =
+				a.columns[0].collapsed === 'serverauditerror.svg';
+			const bIsError =
+				b.columns[0].collapsed === 'serverauditerror.svg';
 			if (aIsError !== bIsError) return aIsError ? -1 : 1;
 			return 0; // keep internal order, already sorted by priority
 		});
@@ -265,10 +267,9 @@ class ServerAuditDialog {
 						columns: [
 							good ? okIcon : errorIcon,
 							{
-								text: _('Document container started in {1} ms').replace(
-									'{1}',
-									entry.status,
-								),
+								text: _(
+									'Document container started in {1} ms',
+								).replace('{1}', entry.status),
 							},
 							{ text: '' },
 						],
