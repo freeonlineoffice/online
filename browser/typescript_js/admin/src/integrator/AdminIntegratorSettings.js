@@ -1388,7 +1388,13 @@ var SettingIframe = /** @class */ (function () {
     };
     SettingIframe.prototype.getFilename = function (uri, removeExtension) {
         if (removeExtension === void 0) { removeExtension = true; }
-        var filename = uri.substring(uri.lastIndexOf('/') + 1);
+        var url = new URL(uri, window.location.origin);
+        var filename = url.searchParams.get('file_name');
+        if (!filename) {
+            // Remove query parameters from url
+            uri = uri.split('?')[0];
+            filename = uri.substring(uri.lastIndexOf('/') + 1);
+        }
         if (removeExtension) {
             filename = filename.replace(/\.[^.]+$/, '');
         }
