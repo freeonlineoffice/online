@@ -351,10 +351,9 @@ window.L.Control.JSDialog = window.L.Control.extend({
 		defaultButton.style.display = 'none';
 		defaultButton.onclick = function () {
 			if (instance.defaultButtonId) {
-				var button = instance.form.querySelector(
-					'#' + instance.defaultButtonId,
-				);
-				if (button) button.click();
+				const button = instance.form.querySelector('#' + instance.defaultButtonId + ' button');
+				if (button)
+					button.click();
 			}
 		};
 
