@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 13:54+0200\n"
+"POT-Creation-Date: 2025-10-21 21:14+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
@@ -140,8 +140,10 @@ msgstr "Prosessorgraf"
 msgid "Network Graph"
 msgstr "Nettverksgraf"
 
-#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:512
-#: src/canvas/sections/CommentSection.ts:176
+#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:527
+#: src/canvas/sections/CommentSection.ts:182
+#: src/canvas/sections/CommentSection.ts:485
+#: src/canvas/sections/CommentSection.ts:1239
 #: src/control/Control.Notebookbar.js:263
 #: src/control/Control.NotebookbarDraw.js:27
 #: src/control/Control.NotebookbarDraw.js:210
@@ -224,11 +226,11 @@ msgstr "Angi loggnivåer"
 msgid "Log Levels"
 msgstr "Loggnivåer"
 
-#: admin/admin.strings.js:63 src/canvas/sections/CommentListSection.ts:164
+#: admin/admin.strings.js:63 src/canvas/sections/CommentListSection.ts:165
 #: src/control/Control.AlertDialog.js:32 src/control/Control.AlertDialog.js:44
 #: src/control/Control.AlertDialog.js:129
 #: src/control/Control.AlertDialog.js:148 src/control/Control.Zotero.js:228
-#: src/core/Socket.js:492 src/core/Socket.js:1428 src/core/Socket.js:1439
+#: src/core/Socket.js:480 src/core/Socket.js:1416 src/core/Socket.js:1427
 #: welcome/welcome.html%2Bhtml.body.div.div.div.div.div:139-7
 msgid "Close"
 msgstr "Steng"
@@ -286,21 +288,21 @@ msgstr ""
 #: admin/src/AdminClusterOverview.js:647 admin/src/AdminSocketBase.js:61
 #: admin/src/AdminSocketBase.js:74 admin/src/AdminSocketOverview.js:109
 #: admin/src/AdminSocketOverview.js:525 admin/src/AdminSocketSettings.js:45
-#: src/canvas/sections/CommentListSection.ts:1472
+#: src/canvas/sections/CommentListSection.ts:1487
 #: src/control/Control.AboutDialog.ts:159
 #: src/control/Control.AlertDialog.js:68
 #: src/control/Control.DocumentRepair.js:75
 #: src/control/Control.ESignatureDialog.ts:136
 #: src/control/Control.LanguageDialog.js:121
-#: src/control/Control.ServerAuditDialog.ts:364
+#: src/control/Control.ServerAuditDialog.ts:374
 #: src/control/Control.Tabs.js:493 src/control/Control.Tabs.js:511
 #: src/control/Control.Zotero.js:418 src/control/Control.Zotero.js:465
 #: src/control/Parts.js:608 src/control/Permission.js:100
 #: src/control/Permission.js:121 src/control/Permission.js:185
-#: src/control/Toolbar.js:922 src/core/Socket.js:837 src/core/Socket.js:1390
-#: src/core/Socket.js:1495 src/core/Socket.js:1710 src/core/Socket.js:1714
+#: src/control/Toolbar.js:917 src/core/Socket.js:825 src/core/Socket.js:1378
+#: src/core/Socket.js:1483 src/core/Socket.js:1698 src/core/Socket.js:1702
 #: src/docdispatcher.ts:593 src/main.js:86 src/main.js:89 src/main.js:130
-#: src/map/Clipboard.js:1533 src/map/handler/Map.Feedback.js:90
+#: src/map/Clipboard.js:1525 src/map/handler/Map.Feedback.js:90
 #: src/map/handler/Map.SlideShow.js:62 src/map/handler/Map.SlideShow.js:184
 #: src/map/handler/Map.SlideShow.js:371 src/map/handler/Map.SlideShow.js:387
 #: src/map/handler/Map.WOPI.js:783 src/slideshow/SlideShowPresenter.ts:1127
@@ -312,16 +314,18 @@ msgstr "OK"
 
 #: admin/src/AdminClusterOverview.js:648 admin/src/AdminSocketOverview.js:110
 #: admin/src/AdminSocketOverview.js:526 admin/src/AdminSocketSettings.js:46
-#: src/canvas/sections/CommentListSection.ts:507
-#: src/canvas/sections/CommentSection.ts:175
-#: src/canvas/sections/CommentSection.ts:178
+#: src/canvas/sections/CommentListSection.ts:522
+#: src/canvas/sections/CommentSection.ts:181
+#: src/canvas/sections/CommentSection.ts:184
+#: src/canvas/sections/CommentSection.ts:1240
+#: src/canvas/sections/CommentSection.ts:1245
 #: src/control/Control.DocumentRepair.js:69
-#: src/control/Control.DownloadProgress.js:97
+#: src/control/Control.DownloadProgress.js:95
 #: src/control/Control.LanguageDialog.js:115
 #: src/control/Control.MobileTopBar.ts:107
-#: src/control/Control.UIManager.ts:1973 src/control/Control.UIManager.ts:2069
-#: src/control/Control.UIManager.ts:2240 src/control/Control.UIManager.ts:2431
-#: src/control/Control.Zotero.js:413 src/core/Socket.js:1735
+#: src/control/Control.UIManager.ts:1970 src/control/Control.UIManager.ts:2066
+#: src/control/Control.UIManager.ts:2237 src/control/Control.UIManager.ts:2428
+#: src/control/Control.Zotero.js:413 src/core/Socket.js:1723
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -419,96 +423,93 @@ msgstr ""
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:163
+#: src/canvas/sections/CommentListSection.ts:164
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:164
+#: src/canvas/sections/CommentListSection.ts:165
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1173
+#: src/canvas/sections/CommentListSection.ts:1188
 msgid "Modify"
 msgstr "Endre"
 
-#: src/canvas/sections/CommentListSection.ts:1179
-#: src/canvas/sections/CommentSection.ts:179
+#: src/canvas/sections/CommentListSection.ts:1194
+#: src/canvas/sections/CommentSection.ts:185
+#: src/canvas/sections/CommentSection.ts:489
+#: src/canvas/sections/CommentSection.ts:1244
 msgid "Reply"
 msgstr "Svar"
 
-#: src/canvas/sections/CommentListSection.ts:1185
+#: src/canvas/sections/CommentListSection.ts:1200
 msgid "Remove"
 msgstr "Slett"
 
-#: src/canvas/sections/CommentListSection.ts:1191
+#: src/canvas/sections/CommentListSection.ts:1206
 msgid "Remove Thread"
 msgstr "Fjern tråd"
 
-#: src/canvas/sections/CommentListSection.ts:1197
+#: src/canvas/sections/CommentListSection.ts:1212
 msgid "Resolve"
 msgstr "Løs"
 
-#: src/canvas/sections/CommentListSection.ts:1197
+#: src/canvas/sections/CommentListSection.ts:1212
 msgid "Unresolve"
 msgstr "Opphev løst status"
 
-#: src/canvas/sections/CommentListSection.ts:1203
+#: src/canvas/sections/CommentListSection.ts:1218
 msgid "Unresolve Thread"
 msgstr "Opphev løst status for tråd"
 
-#: src/canvas/sections/CommentListSection.ts:1203
+#: src/canvas/sections/CommentListSection.ts:1218
 msgid "Resolve Thread"
 msgstr "Løs tråd"
 
-#: src/canvas/sections/CommentListSection.ts:1209
+#: src/canvas/sections/CommentListSection.ts:1224
 msgid "Promote to top comment"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1215
+#: src/canvas/sections/CommentListSection.ts:1230
 msgid "Show on the side"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1215
+#: src/canvas/sections/CommentListSection.ts:1230
 msgid "Open in full view"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1221
+#: src/canvas/sections/CommentListSection.ts:1236
 msgid "Show in navigator"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1249
-#: src/control/Control.JSDialogBuilder.js:1998
-#: src/layer/tile/CanvasTileLayer.js:4111
-#: src/layer/tile/CanvasTileLayer.js:4122
+#: src/canvas/sections/CommentListSection.ts:1264
+#: src/control/Control.JSDialogBuilder.js:1999
+#: src/layer/tile/CanvasTileLayer.js:4117
+#: src/layer/tile/CanvasTileLayer.js:4128
 msgid "Comment"
 msgstr "Kommentar"
 
-#: src/canvas/sections/CommentListSection.ts:1470
-#: src/canvas/sections/CommentListSection.ts:1483
+#: src/canvas/sections/CommentListSection.ts:1485
+#: src/canvas/sections/CommentListSection.ts:1498
 msgid "Comments Updated"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1471
+#: src/canvas/sections/CommentListSection.ts:1486
 msgid "Another user has removed this comment."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1484
+#: src/canvas/sections/CommentListSection.ts:1499
 msgid ""
 "Another user has updated the comment. Would you like to overwrite those "
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1485 src/core/Socket.js:1739
+#: src/canvas/sections/CommentListSection.ts:1500 src/core/Socket.js:1727
 msgid "Overwrite"
 msgstr "Overskriv"
 
-#: src/canvas/sections/CommentListSection.ts:1486
+#: src/canvas/sections/CommentListSection.ts:1501
 msgid "Update"
-msgstr ""
-
-#: src/canvas/sections/CommentListSection.ts:1587
-#: src/canvas/sections/CommentListSection.ts:1661
-msgid "Autosaved"
 msgstr ""
 
 #: src/canvas/sections/CommentSection.ts:43
@@ -523,23 +524,36 @@ msgstr ""
 msgid "Open menu"
 msgstr "Åpne meny"
 
-#: src/canvas/sections/CommentSection.ts:333
+#: src/canvas/sections/CommentSection.ts:338
 msgid "Press Ctrl + Enter to post"
 msgstr ""
 
-#: src/canvas/sections/CommentSection.ts:397
-#: src/canvas/sections/CommentSection.ts:398
+#: src/canvas/sections/CommentSection.ts:402
+#: src/canvas/sections/CommentSection.ts:403
 msgid "Accept change"
 msgstr "Godta endring"
 
-#: src/canvas/sections/CommentSection.ts:404
-#: src/canvas/sections/CommentSection.ts:405
+#: src/canvas/sections/CommentSection.ts:409
+#: src/canvas/sections/CommentSection.ts:410
 msgid "Reject change"
 msgstr "Avvis endring"
 
-#: src/canvas/sections/CommentSection.ts:428
+#: src/canvas/sections/CommentSection.ts:434
 msgid "Resolved"
 msgstr "Løst"
+
+#: src/canvas/sections/CommentSection.ts:1156
+#: src/canvas/sections/CommentSection.ts:1161
+#: src/control/Control.SaveState.ts:56
+#, fuzzy
+msgid "Saved"
+msgstr "Lagre"
+
+#: src/canvas/sections/CommentSection.ts:1157
+#: src/canvas/sections/CommentSection.ts:1162
+#: src/control/Control.ContextMenu.js:311 src/docdispatcher.ts:590
+msgid "Delete"
+msgstr "Slett"
 
 #: src/canvas/sections/ShapeHandlesSection.ts:617
 msgid "Document contains unsupported media"
@@ -623,7 +637,7 @@ msgid ""
 "administrator."
 msgstr ""
 
-#: src/control/Control.AlertDialog.js:109 src/map/Clipboard.js:1534
+#: src/control/Control.AlertDialog.js:109 src/map/Clipboard.js:1526
 msgid "Don’t show this again"
 msgstr ""
 
@@ -636,19 +650,15 @@ msgstr "Serveren fikk en %0 feil under kjøring av %1 kommandoen."
 msgid "Unlock"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:399 src/docdispatcher.ts:590
-msgid "Delete"
-msgstr "Slett"
-
-#: src/control/Control.ContextMenu.js:434
+#: src/control/Control.ContextMenu.js:346
 msgid "Paste Special"
 msgstr "Lim inn spesial"
 
-#: src/control/Control.ContextMenu.js:445
+#: src/control/Control.ContextMenu.js:357
 msgid "Copy Cells"
 msgstr ""
 
-#: src/control/Control.ContextMenu.js:454
+#: src/control/Control.ContextMenu.js:366
 msgid "Fill Series"
 msgstr ""
 
@@ -712,30 +722,30 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:96
+#: src/control/Control.DownloadProgress.js:94
 msgid "Downloading clipboard content"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:111
-#: src/control/Control.DownloadProgress.js:166
+#: src/control/Control.DownloadProgress.js:109
+#: src/control/Control.DownloadProgress.js:164
 #: src/control/Control.PartsPreview.js:303
 msgid "Copy"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:157
+#: src/control/Control.DownloadProgress.js:155
 msgid "Download completed and ready to be copied to clipboard."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:163
+#: src/control/Control.DownloadProgress.js:161
 msgid ""
 "From now on clipboard notifications will discreetly appear at the bottom."
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:332
+#: src/control/Control.DownloadProgress.js:330
 msgid "Content copied to clipboard"
 msgstr ""
 
-#: src/control/Control.DownloadProgress.js:364
+#: src/control/Control.DownloadProgress.js:362
 msgid "Download failed"
 msgstr ""
 
@@ -1091,7 +1101,7 @@ msgstr "Inaktivt dokument, vennligst klikk for å fortsette redigering"
 msgid "Idle document - please tap to reload and resume editing"
 msgstr "Inaktivt dokument, vennligst klikk for å fortsette redigering"
 
-#: src/control/Control.JSDialog.js:363
+#: src/control/Control.JSDialog.js:366
 msgid "Close dialog"
 msgstr ""
 
@@ -1143,18 +1153,18 @@ msgstr "Farge"
 msgid "Select range"
 msgstr "Velg område"
 
-#: src/control/Control.JSDialogBuilder.js:1657
+#: src/control/Control.JSDialogBuilder.js:1658
 #: src/control/Control.NotebookbarBuilder.js:162
 msgid "Font Name"
 msgstr "Fontnavn"
 
-#: src/control/Control.JSDialogBuilder.js:1659 src/control/Toolbar.js:132
+#: src/control/Control.JSDialogBuilder.js:1660 src/control/Toolbar.js:132
 msgid "Font Size"
 msgstr "Fontstørrelse"
 
-#: src/control/Control.JSDialogBuilder.js:1661
+#: src/control/Control.JSDialogBuilder.js:1662
 #: src/control/Control.NotebookbarCalc.js:933
-#: src/control/Control.NotebookbarCalc.js:2556
+#: src/control/Control.NotebookbarCalc.js:2557
 #: src/control/Control.NotebookbarDraw.js:2587
 #: src/control/Control.NotebookbarImpress.js:1793
 #: src/control/Control.NotebookbarWriter.js:1059
@@ -1162,34 +1172,34 @@ msgstr "Fontstørrelse"
 msgid "Style"
 msgstr "Stil"
 
-#: src/control/Control.JSDialogBuilder.js:1983
+#: src/control/Control.JSDialogBuilder.js:1984
 #, fuzzy
 msgid "reply"
 msgstr "Svar"
 
-#: src/control/Control.JSDialogBuilder.js:1985
+#: src/control/Control.JSDialogBuilder.js:1986
 msgid "replies"
 msgstr "Svar"
 
-#: src/control/Control.JSDialogBuilder.js:2072
+#: src/control/Control.JSDialogBuilder.js:2073
 msgid "Insert Comment"
 msgstr "Sett inn kommentar"
 
-#: src/control/Control.JSDialogBuilder.js:2397
+#: src/control/Control.JSDialogBuilder.js:2398
 msgid "Open {name}"
 msgstr ""
 
-#: src/control/Control.JSDialogBuilder.js:2796
+#: src/control/Control.JSDialogBuilder.js:2797
 #: src/control/Control.Menubar.ts:929
 msgid "Rows"
 msgstr "Rader"
 
-#: src/control/Control.JSDialogBuilder.js:2797
+#: src/control/Control.JSDialogBuilder.js:2798
 #: src/control/Control.Menubar.ts:932
 msgid "Columns"
 msgstr "Kolonner"
 
-#: src/control/Control.JSDialogBuilder.js:2829
+#: src/control/Control.JSDialogBuilder.js:2830
 #, fuzzy
 msgid "Insert Table"
 msgstr "Sett inn tabell"
@@ -1395,7 +1405,7 @@ msgid "Invert Background"
 msgstr ""
 
 #: src/control/Control.Menubar.ts:172 src/control/Control.Menubar.ts:804
-#: src/control/Control.NotebookbarCalc.js:2583
+#: src/control/Control.NotebookbarCalc.js:2584
 #: src/control/Control.NotebookbarWriter.js:952
 #: src/control/Control.NotebookbarWriter.js:1086
 msgid "Style list"
@@ -1541,8 +1551,8 @@ msgstr ""
 #: src/control/Control.Menubar.ts:418 src/control/Control.Menubar.ts:597
 #: src/control/Control.Menubar.ts:736 src/control/Control.Menubar.ts:1029
 #: src/control/Control.NotebookbarWriter.js:492
-#: src/control/Control.ServerAuditDialog.ts:315
-#: src/control/Control.ServerAuditDialog.ts:316
+#: src/control/Control.ServerAuditDialog.ts:325
+#: src/control/Control.ServerAuditDialog.ts:326
 msgid "Server audit"
 msgstr ""
 
@@ -1787,8 +1797,8 @@ msgstr ""
 #: src/control/Control.NotebookbarImpress.js:1753
 #: src/control/Control.NotebookbarWriter.js:1014
 #: src/control/Control.NotebookbarWriter.js:1027
-#: src/control/Control.Zotero.js:259 src/control/Toolbar.js:707
-#: src/control/Toolbar.js:708
+#: src/control/Control.Zotero.js:259 src/control/Toolbar.js:702
+#: src/control/Toolbar.js:703
 msgid "Search"
 msgstr "Søk"
 
@@ -1927,10 +1937,10 @@ msgstr "Hjem"
 #: src/control/Control.NotebookbarDraw.js:81
 #: src/control/Control.NotebookbarDraw.js:1627
 #: src/control/Control.NotebookbarImpress.js:109
-#: src/control/Control.NotebookbarImpress.js:2859
+#: src/control/Control.NotebookbarImpress.js:2860
 #: src/control/Control.NotebookbarWriter.js:48
 #: src/control/Control.NotebookbarWriter.js:963
-#: src/control/Control.NotebookbarWriter.js:2429
+#: src/control/Control.NotebookbarWriter.js:2430
 #, fuzzy
 msgid "Insert"
 msgstr "~Sett inn"
@@ -1991,7 +2001,7 @@ msgstr "Visninger"
 
 #: src/control/Control.NotebookbarCalc.js:90
 #: src/control/Control.NotebookbarCalc.js:1676
-#: src/control/Control.NotebookbarCalc.js:2644
+#: src/control/Control.NotebookbarCalc.js:2645
 msgid "Sparkline"
 msgstr ""
 
@@ -1999,7 +2009,7 @@ msgstr ""
 #: src/control/Control.NotebookbarDraw.js:164
 #: src/control/Control.NotebookbarImpress.js:207
 #: src/control/Control.NotebookbarWriter.js:106
-#: src/control/Control.ServerAuditDialog.ts:338
+#: src/control/Control.ServerAuditDialog.ts:348
 #, fuzzy
 msgid "Help"
 msgstr "Hjelp"
@@ -2208,28 +2218,28 @@ msgid "Delete Columns"
 msgstr "Slett Kolonner"
 
 #: src/control/Control.NotebookbarCalc.js:1257
-#: src/control/Control.NotebookbarCalc.js:2806
-#: src/control/Control.NotebookbarCalc.js:3163
+#: src/control/Control.NotebookbarCalc.js:2807
+#: src/control/Control.NotebookbarCalc.js:3164
 #: src/control/Control.NotebookbarDraw.js:1884
-#: src/control/Control.NotebookbarImpress.js:3331
-#: src/control/Control.NotebookbarImpress.js:3643
-#: src/control/Control.NotebookbarImpress.js:4101
+#: src/control/Control.NotebookbarImpress.js:3332
+#: src/control/Control.NotebookbarImpress.js:3644
+#: src/control/Control.NotebookbarImpress.js:4102
 #: src/control/Control.NotebookbarWriter.js:2035
-#: src/control/Control.NotebookbarWriter.js:2891
-#: src/control/Control.NotebookbarWriter.js:3214
+#: src/control/Control.NotebookbarWriter.js:2892
+#: src/control/Control.NotebookbarWriter.js:3215
 msgid "Align"
 msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1327
-#: src/control/Control.NotebookbarCalc.js:2873
-#: src/control/Control.NotebookbarCalc.js:3230
+#: src/control/Control.NotebookbarCalc.js:2874
+#: src/control/Control.NotebookbarCalc.js:3231
 #: src/control/Control.NotebookbarDraw.js:1991
-#: src/control/Control.NotebookbarImpress.js:3438
-#: src/control/Control.NotebookbarImpress.js:3750
-#: src/control/Control.NotebookbarImpress.js:4208
+#: src/control/Control.NotebookbarImpress.js:3439
+#: src/control/Control.NotebookbarImpress.js:3751
+#: src/control/Control.NotebookbarImpress.js:4209
 #: src/control/Control.NotebookbarWriter.js:2106
-#: src/control/Control.NotebookbarWriter.js:2950
-#: src/control/Control.NotebookbarWriter.js:3273
+#: src/control/Control.NotebookbarWriter.js:2951
+#: src/control/Control.NotebookbarWriter.js:3274
 msgid "Arrange"
 msgstr ""
 
@@ -2272,12 +2282,12 @@ msgstr ""
 
 #: src/control/Control.NotebookbarCalc.js:1585
 #: src/control/Control.NotebookbarCalc.js:2317
-#: src/control/Control.NotebookbarCalc.js:2926
-#: src/control/Control.NotebookbarCalc.js:3283
-#: src/control/Control.NotebookbarImpress.js:3833
-#: src/control/Control.NotebookbarImpress.js:4291
-#: src/control/Control.NotebookbarWriter.js:2999
-#: src/control/Control.NotebookbarWriter.js:3322
+#: src/control/Control.NotebookbarCalc.js:2927
+#: src/control/Control.NotebookbarCalc.js:3284
+#: src/control/Control.NotebookbarImpress.js:3834
+#: src/control/Control.NotebookbarImpress.js:4292
+#: src/control/Control.NotebookbarWriter.js:3000
+#: src/control/Control.NotebookbarWriter.js:3323
 msgid "Group"
 msgstr ""
 
@@ -2364,28 +2374,28 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2488
-#: src/control/Control.NotebookbarImpress.js:2799
-#: src/control/Control.NotebookbarWriter.js:2233
+#: src/control/Control.NotebookbarCalc.js:2489
+#: src/control/Control.NotebookbarImpress.js:2800
+#: src/control/Control.NotebookbarWriter.js:2234
 #, fuzzy
 msgid "Comments"
 msgstr "Kommentar"
 
-#: src/control/Control.NotebookbarCalc.js:2593
+#: src/control/Control.NotebookbarCalc.js:2594
 msgid "Format Cells"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2739
-#: src/control/Control.NotebookbarCalc.js:3096
+#: src/control/Control.NotebookbarCalc.js:2740
+#: src/control/Control.NotebookbarCalc.js:3097
 #: src/control/Control.NotebookbarWriter.js:1937
-#: src/control/Control.NotebookbarWriter.js:2836
-#: src/control/Control.NotebookbarWriter.js:3159
+#: src/control/Control.NotebookbarWriter.js:2837
+#: src/control/Control.NotebookbarWriter.js:3160
 msgid "Wrap"
 msgstr ""
 
-#: src/control/Control.NotebookbarCalc.js:2978
-#: src/control/Control.NotebookbarImpress.js:3917
-#: src/control/Control.NotebookbarWriter.js:3045
+#: src/control/Control.NotebookbarCalc.js:2979
+#: src/control/Control.NotebookbarImpress.js:3918
+#: src/control/Control.NotebookbarWriter.js:3046
 msgid "Image Controls"
 msgstr ""
 
@@ -2416,9 +2426,9 @@ msgstr ""
 
 #: src/control/Control.NotebookbarDraw.js:1262
 #: src/control/Control.NotebookbarImpress.js:1305
-#: src/control/Control.NotebookbarImpress.js:3142
+#: src/control/Control.NotebookbarImpress.js:3143
 #: src/control/Control.NotebookbarWriter.js:791
-#: src/control/Control.NotebookbarWriter.js:2602
+#: src/control/Control.NotebookbarWriter.js:2603
 msgid "Paragraph"
 msgstr ""
 
@@ -2525,16 +2535,16 @@ msgstr ""
 msgid "Background Image"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:2976
+#: src/control/Control.NotebookbarImpress.js:2977
 msgid "Merge & Split"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:3037
-#: src/control/Control.NotebookbarWriter.js:2552
+#: src/control/Control.NotebookbarImpress.js:3038
+#: src/control/Control.NotebookbarWriter.js:2553
 msgid "Select"
 msgstr ""
 
-#: src/control/Control.NotebookbarImpress.js:3966
+#: src/control/Control.NotebookbarImpress.js:3967
 msgid "Effects"
 msgstr ""
 
@@ -2592,15 +2602,15 @@ msgstr ""
 msgid "Dropdown"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2308
+#: src/control/Control.NotebookbarWriter.js:2309
 msgid "Tracking"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2490
+#: src/control/Control.NotebookbarWriter.js:2491
 msgid "Split"
 msgstr ""
 
-#: src/control/Control.NotebookbarWriter.js:2674
+#: src/control/Control.NotebookbarWriter.js:2675
 msgid "Number Format"
 msgstr ""
 
@@ -2624,11 +2634,6 @@ msgstr ""
 msgid "Saving"
 msgstr ""
 
-#: src/control/Control.SaveState.ts:56
-#, fuzzy
-msgid "Saved"
-msgstr "Lagre"
-
 #: src/control/Control.Scroll.Annotation.js:17
 msgid "Scroll up annotations"
 msgstr "Rull opp i merknader"
@@ -2637,111 +2642,111 @@ msgstr "Rull opp i merknader"
 msgid "Scroll down annotations"
 msgstr "Rull ned i merknader"
 
-#: src/control/Control.ServerAuditDialog.ts:64
+#: src/control/Control.ServerAuditDialog.ts:62
 msgid "Your WOPI server is not secure: SSL verification failed"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:70
+#: src/control/Control.ServerAuditDialog.ts:68
 msgid "No problems with SSL verification detected"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:79
+#: src/control/Control.ServerAuditDialog.ts:77
 msgid ""
 "Documents are not effectively contained: missing capabilities or namespaces."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:85
+#: src/control/Control.ServerAuditDialog.ts:83
 msgid "Each document is securely contained"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:94
+#: src/control/Control.ServerAuditDialog.ts:92
 msgid ""
 "BPF filtering of potentially risky system calls (seccomp) is not enabled; a "
 "security hazard."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:100
+#: src/control/Control.ServerAuditDialog.ts:98
 msgid "System call security filtering enabled"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:110
+#: src/control/Control.ServerAuditDialog.ts:108
 msgid ""
 "Your server is configured with insufficient hardware resources, which may "
 "lead to poor performance."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:117
+#: src/control/Control.ServerAuditDialog.ts:115
 msgid "Hardware resources are sufficient for optimal performance"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:127
+#: src/control/Control.ServerAuditDialog.ts:125
 msgid "Slow Kit jail setup with copying, cannot bind-mount."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:133
+#: src/control/Control.ServerAuditDialog.ts:131
 msgid "Fast kit jail bind mounting enabled"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:142
+#: src/control/Control.ServerAuditDialog.ts:140
 msgid "Poorly performing proxying of all network requests."
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:147
+#: src/control/Control.ServerAuditDialog.ts:145
 msgid "Direct network connection"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:154
+#: src/control/Control.ServerAuditDialog.ts:152
 msgid "The IsAdminUser property is not set by integration"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:161
+#: src/control/Control.ServerAuditDialog.ts:159
 msgid ""
 "Used deprecated is_admin field, integration should use IsAdminUser property "
 "instead"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:168
+#: src/control/Control.ServerAuditDialog.ts:166
 msgid "The IsAdminUser user property is set by integration"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:177
+#: src/control/Control.ServerAuditDialog.ts:175
 msgid "PostMessage API is initialized"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:182
+#: src/control/Control.ServerAuditDialog.ts:180
 msgid "Integrator is not ready for PostMessage calls"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:190
-msgid "Using namespaces."
+#: src/control/Control.ServerAuditDialog.ts:188
+msgid "Using namespaces"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:191
+#: src/control/Control.ServerAuditDialog.ts:189
 msgid "Not using namespaces"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:263
-msgid "Document container started in"
+#: src/control/Control.ServerAuditDialog.ts:271
+msgid "Document container started in {1} ms"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:335
+#: src/control/Control.ServerAuditDialog.ts:345
 #, fuzzy
 msgid "Status"
 msgstr "Status:"
 
-#: src/control/Control.ServerAuditDialog.ts:347
+#: src/control/Control.ServerAuditDialog.ts:357
 msgid "No issues found"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:353
+#: src/control/Control.ServerAuditDialog.ts:363
 msgid "Alerts:"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:407
+#: src/control/Control.ServerAuditDialog.ts:417
 msgid "Check warnings of your server"
 msgstr ""
 
-#: src/control/Control.ServerAuditDialog.ts:408
+#: src/control/Control.ServerAuditDialog.ts:418
 msgid "OPEN"
 msgstr ""
 
@@ -2789,7 +2794,7 @@ msgstr ""
 msgid "Navigator"
 msgstr ""
 
-#: src/control/Control.NavigatorPanel.ts:498
+#: src/control/Control.NavigatorPanel.ts:494
 msgid "Search..."
 msgstr ""
 
@@ -2921,7 +2926,7 @@ msgstr "Sett inn former"
 msgid "Insert connectors"
 msgstr "Sett inn bindeledd"
 
-#: src/control/Control.TopToolbar.js:799 src/control/Control.UIManager.ts:1269
+#: src/control/Control.TopToolbar.js:799 src/control/Control.UIManager.ts:1266
 msgid "Hide Menu"
 msgstr ""
 
@@ -2929,7 +2934,7 @@ msgstr ""
 msgid "Enter new name"
 msgstr ""
 
-#: src/control/Control.UIManager.ts:1293
+#: src/control/Control.UIManager.ts:1290
 msgid "Show Menu"
 msgstr ""
 
@@ -3001,7 +3006,7 @@ msgid ""
 "API. It may cause some problems while editing citations or bibliography."
 msgstr ""
 
-#: src/control/Control.Zotero.js:290 src/core/Socket.js:1647
+#: src/control/Control.Zotero.js:290 src/core/Socket.js:1635
 msgid "Loading..."
 msgstr "Laster …"
 
@@ -3727,63 +3732,63 @@ msgstr ""
 msgid "Oops, there is a problem connecting to {productname}: "
 msgstr "Oops, problem med å koble dokumentet til %productName: "
 
-#: src/core/Socket.js:794
+#: src/core/Socket.js:782
 msgid "Server is now reachable. We have to refresh the page now."
 msgstr ""
 
-#: src/core/Socket.js:797
+#: src/core/Socket.js:785
 msgid "Server is now reachable..."
 msgstr ""
 
-#: src/core/Socket.js:805
+#: src/core/Socket.js:793
 msgid "RELOAD"
 msgstr ""
 
-#: src/core/Socket.js:834
+#: src/core/Socket.js:822
 msgid "Cluster configuration warning"
 msgstr ""
 
-#: src/core/Socket.js:844
+#: src/core/Socket.js:832
 msgid "Wrong server, reconnecting..."
 msgstr ""
 
-#: src/core/Socket.js:856
+#: src/core/Socket.js:844
 msgid "LOOLWSD version:"
 msgstr ""
 
-#: src/core/Socket.js:893
+#: src/core/Socket.js:881
 msgid "Served by:"
 msgstr "Servert av:"
 
-#: src/core/Socket.js:906
+#: src/core/Socket.js:894
 msgid "Unsupported server version."
 msgstr "Denne serverversjonen støttes ikke"
 
-#: src/core/Socket.js:911
+#: src/core/Socket.js:899
 msgid "LOKit version:"
 msgstr ""
 
-#: src/core/Socket.js:1060
+#: src/core/Socket.js:1048
 msgid "Document is getting migrated"
 msgstr ""
 
-#: src/core/Socket.js:1090
+#: src/core/Socket.js:1078
 msgid "Session terminated by document owner"
 msgstr "Sesjonen er avsluttet av dokumenteier."
 
-#: src/core/Socket.js:1099
+#: src/core/Socket.js:1087
 msgid "Server is shutting down for maintenance (auto-saving)"
 msgstr "Serveren tas ned for vedlikehold (autolagring)"
 
-#: src/core/Socket.js:1105
+#: src/core/Socket.js:1093
 msgid "Oops, there is a problem connecting the document"
 msgstr "Oops, problem med å koble til dokumentet"
 
-#: src/core/Socket.js:1109
+#: src/core/Socket.js:1097
 msgid "Server is down, restarting automatically. Please wait."
 msgstr "Tjeneren er nede. Vent mens den starter på nytt automatisk."
 
-#: src/core/Socket.js:1139
+#: src/core/Socket.js:1127
 msgid ""
 "Document has changed in storage. Loading the new document. Your version is "
 "available as revision."
@@ -3791,7 +3796,7 @@ msgstr ""
 "Dokumentet har blitt endret på serveren. Laster det nye dokumentet. Din "
 "versjon er tilgjengelig som en revisjon."
 
-#: src/core/Socket.js:1148
+#: src/core/Socket.js:1136
 msgid ""
 "Restoring older revision. Any unsaved changes will be available in version "
 "history"
@@ -3799,79 +3804,79 @@ msgstr ""
 "Gjenoppretter en eldre versjon. Alle endringer som ikke er lagret er "
 "tilgjengelige i versjonsloggen"
 
-#: src/core/Socket.js:1157
+#: src/core/Socket.js:1145
 msgid "Reloading the document after rename"
 msgstr ""
 
-#: src/core/Socket.js:1321
+#: src/core/Socket.js:1309
 msgid "Document requires password to view."
 msgstr "Passord kreves for å se dokumentet."
 
-#: src/core/Socket.js:1323
+#: src/core/Socket.js:1311
 msgid "Document requires password to modify."
 msgstr "Passord kreves for å endre dokumentet."
 
-#: src/core/Socket.js:1325
+#: src/core/Socket.js:1313
 msgid "Hit Cancel to open in view-only mode."
 msgstr "Trykk avbryt for å åpne som skrivebeskyttet."
 
-#: src/core/Socket.js:1329
+#: src/core/Socket.js:1317
 msgid "Wrong password provided. Please try again."
 msgstr "Feil passord. Prøv igjen:"
 
-#: src/core/Socket.js:1384
+#: src/core/Socket.js:1372
 msgid "Only the document owner can change the password."
 msgstr ""
 
-#: src/core/Socket.js:1425 src/core/Socket.js:1436
+#: src/core/Socket.js:1413 src/core/Socket.js:1424
 msgid "Missing Fonts"
 msgstr ""
 
-#: src/core/Socket.js:1484
+#: src/core/Socket.js:1472
 msgid "Someone"
 msgstr ""
 
-#: src/core/Socket.js:1486
+#: src/core/Socket.js:1474
 msgid "{username} saved this document as {filename}. Do you want to join?"
 msgstr ""
 
-#: src/core/Socket.js:1511
+#: src/core/Socket.js:1499
 msgid "The document is being renamed and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1515
+#: src/core/Socket.js:1503
 msgid "The document is switching to Offline mode and will reload shortly"
 msgstr ""
 
-#: src/core/Socket.js:1648
+#: src/core/Socket.js:1636
 msgid "Connecting..."
 msgstr "Kobler til …"
 
-#: src/core/Socket.js:1665
+#: src/core/Socket.js:1653
 msgid "Server is shutting down"
 msgstr ""
 
-#: src/core/Socket.js:1710
+#: src/core/Socket.js:1698
 msgid "Exported to storage"
 msgstr ""
 
-#: src/core/Socket.js:1710
+#: src/core/Socket.js:1698
 msgid "Successfully exported: "
 msgstr ""
 
-#: src/core/Socket.js:1738
+#: src/core/Socket.js:1726
 msgid "Discard"
 msgstr "Forkast"
 
-#: src/core/Socket.js:1758
+#: src/core/Socket.js:1746
 msgid "Save to new file"
 msgstr "Lagre til ny fil"
 
-#: src/core/Socket.js:1775
+#: src/core/Socket.js:1763
 msgid "Document has been changed"
 msgstr ""
 
-#: src/core/Socket.js:1777
+#: src/core/Socket.js:1765
 msgid ""
 "Document has been changed in storage. What would you like to do with your "
 "unsaved changes?"
@@ -3879,18 +3884,18 @@ msgstr ""
 "Dokumentet i lageret er endret. Hva vil du gjøre med endringene som ikke er "
 "lagret?"
 
-#: src/core/Socket.js:2085
+#: src/core/Socket.js:2073
 msgid ""
 "Well, this is embarrassing, we cannot connect to your document. Please try "
 "again."
 msgstr "Vi kan ikke koble til ditt dokument nå. Prøv å koble til på nytt."
 
-#: src/core/Socket.js:2107
+#: src/core/Socket.js:2095
 #, fuzzy
 msgid "Reconnecting..."
 msgstr "Kobler til …"
 
-#: src/core/Socket.js:2117
+#: src/core/Socket.js:2105
 msgid "The server has been disconnected."
 msgstr ""
 
@@ -4206,15 +4211,15 @@ msgstr ""
 msgid "the View menu"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:1886
+#: src/layer/tile/CanvasTileLayer.js:1890
 msgid "Functions"
 msgstr "Funksjoner"
 
-#: src/layer/tile/CanvasTileLayer.js:2202
+#: src/layer/tile/CanvasTileLayer.js:2206
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4139
+#: src/layer/tile/CanvasTileLayer.js:4145
 msgid "No Comments"
 msgstr "Ingen kommentarer"
 
@@ -4237,17 +4242,17 @@ msgstr ""
 msgid "warning: copy/paste request timed out"
 msgstr ""
 
-#: src/map/Clipboard.js:393
+#: src/map/Clipboard.js:371
 msgid "Failed to download clipboard, please re-copy"
 msgstr "Kunne ikke laste ned utklippstavlen. Kopier på nytt"
 
-#: src/map/Clipboard.js:1561
+#: src/map/Clipboard.js:1553
 msgid ""
 "Your browser has very limited access to the clipboard, so please use the "
 "paste buttons on your on-screen keyboard instead."
 msgstr ""
 
-#: src/map/Clipboard.js:1625
+#: src/map/Clipboard.js:1617
 #, fuzzy
 msgid ""
 "A download due to a large copy/paste operation has already started. Please, "
@@ -4257,23 +4262,23 @@ msgstr ""
 "allerede startet. Vent til den gjeldende nedlastingen er ferdig, eller "
 "avbryt den før du starter en ny</p>"
 
-#: src/map/Clipboard.js:1653
+#: src/map/Clipboard.js:1645
 msgid "Paste from this document"
 msgstr ""
 
-#: src/map/Clipboard.js:1654
+#: src/map/Clipboard.js:1646
 msgid "Cancel paste special"
 msgstr ""
 
-#: src/map/Clipboard.js:1683
+#: src/map/Clipboard.js:1675
 msgid "Your browser has very limited access to the clipboard"
 msgstr ""
 
-#: src/map/Clipboard.js:1690
+#: src/map/Clipboard.js:1682
 msgid "Please use following combination to see more options:"
 msgstr ""
 
-#: src/map/Clipboard.js:1709
+#: src/map/Clipboard.js:1701
 msgid "Close popup to ignore paste special"
 msgstr ""
 
