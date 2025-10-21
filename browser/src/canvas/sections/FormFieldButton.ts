@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -14,7 +12,12 @@
 
 class FormFieldButton extends HTMLObjectSection {
 	constructor(buttonData: any) {
-		super(app.CSections.FormFieldButton.name, 1, 1, new cool.SimplePoint(0, 0));
+		super(
+			app.CSections.FormFieldButton.name,
+			1,
+			1,
+			new lool.SimplePoint(0, 0),
+		);
 
 		window.app.console.assert(buttonData.type === 'drop-down');
 		this.sectionProperties.buttonData = buttonData;
@@ -23,10 +26,9 @@ class FormFieldButton extends HTMLObjectSection {
 		this.sectionProperties.buttonFrame = null;
 		this.sectionProperties.frameWidth = 0;
 		this.sectionProperties.frameHeight = 0;
-		this.sectionProperties.extraPadding = cool.SimplePoint.fromCorePixels([
-			2 * app.dpiScale,
-			2 * app.dpiScale,
-		]);
+		this.sectionProperties.extraPadding = lool.SimplePoint.fromCorePixels(
+			[2 * app.dpiScale, 2 * app.dpiScale],
+		);
 		this.sectionProperties.framePosition = null;
 		this.sectionProperties.dropDownButton = null;
 		this.sectionProperties.dropDownButtonImage = null;
@@ -46,8 +48,9 @@ class FormFieldButton extends HTMLObjectSection {
 	}
 
 	private fetchPositionAndSize() {
-		var strTwips = this.sectionProperties.buttonData.textArea.match(/\d+/g);
-		this.sectionProperties.textRectangle = new cool.SimpleRectangle(
+		var strTwips =
+			this.sectionProperties.buttonData.textArea.match(/\d+/g);
+		this.sectionProperties.textRectangle = new lool.SimpleRectangle(
 			parseInt(strTwips[0]),
 			parseInt(strTwips[1]),
 			parseInt(strTwips[2]),
@@ -80,10 +83,11 @@ class FormFieldButton extends HTMLObjectSection {
 			this.sectionProperties.frameHeight +
 			'px';
 
-		this.sectionProperties.mainContainerSize = cool.SimplePoint.fromCorePixels([
-			width * app.dpiScale,
-			height * app.dpiScale,
-		]);
+		this.sectionProperties.mainContainerSize =
+			lool.SimplePoint.fromCorePixels([
+				width * app.dpiScale,
+				height * app.dpiScale,
+			]);
 	}
 
 	private createButtonContainer() {
@@ -95,13 +99,18 @@ class FormFieldButton extends HTMLObjectSection {
 	}
 
 	private createButton() {
-		this.sectionProperties.dropDownButton = document.createElement('button');
+		this.sectionProperties.dropDownButton =
+			document.createElement('button');
 		this.sectionProperties.dropDownButton.className = 'form-field-button';
 
-		this.sectionProperties.dropDownButtonImage = document.createElement('img');
+		this.sectionProperties.dropDownButtonImage =
+			document.createElement('img');
 		this.sectionProperties.dropDownButtonImage.className =
 			'form-field-button-image';
-		this.sectionProperties.dropDownButtonImage.setAttribute('alt', _('Unfold'));
+		this.sectionProperties.dropDownButtonImage.setAttribute(
+			'alt',
+			_('Unfold'),
+		);
 		this.sectionProperties.dropDownButtonImage.src =
 			app.LOUtil.getImageURL('unfold.svg');
 		this.sectionProperties.dropDownButtonImage.onclick =
@@ -118,7 +127,10 @@ class FormFieldButton extends HTMLObjectSection {
 			this.sectionProperties.mainContainerSize.cY * 0.7 + 'px';
 		optionElement.dataset.optionIndex = index.toString();
 
-		optionElement.addEventListener('click', this.onListItemSelect.bind(this));
+		optionElement.addEventListener(
+			'click',
+			this.onListItemSelect.bind(this),
+		);
 
 		// Stop propagation to the main document
 		optionElement.addEventListener('mouseup', function (event) {
@@ -136,7 +148,8 @@ class FormFieldButton extends HTMLObjectSection {
 
 	private createDropDownList() {
 		this.sectionProperties.dropDownList = document.createElement('div');
-		this.sectionProperties.dropDownList.className = 'drop-down-field-list';
+		this.sectionProperties.dropDownList.className =
+			'drop-down-field-list';
 		this.sectionProperties.dropDownList.style.display = 'none';
 		this.sectionProperties.selectedItem = parseInt(
 			this.sectionProperties.buttonData.params.selected,
@@ -147,7 +160,10 @@ class FormFieldButton extends HTMLObjectSection {
 			i < this.sectionProperties.buttonData.params.items.length;
 			i++
 		) {
-			this.buildListItem(i, this.sectionProperties.buttonData.params.items[i]);
+			this.buildListItem(
+				i,
+				this.sectionProperties.buttonData.params.items[i],
+			);
 		}
 
 		if (this.sectionProperties.buttonData.params.items.length === 0)
@@ -201,7 +217,8 @@ class FormFieldButton extends HTMLObjectSection {
 		).style.display = 'none';
 		event.stopPropagation();
 
-		if (this.sectionProperties.buttonData.params.items.length === 0) return;
+		if (this.sectionProperties.buttonData.params.items.length === 0)
+			return;
 
 		const selectedItem = document.querySelector(
 			'.drop-down-field-list-item.selected',
@@ -235,11 +252,11 @@ class FormFieldButton extends HTMLObjectSection {
 		event.stopPropagation();
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.mouseEntered = true;
 	}
 
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.mouseEntered = false;
 	}
 

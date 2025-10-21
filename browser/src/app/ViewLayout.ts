@@ -156,7 +156,9 @@ class ViewLayoutBase {
 
 			this.scrollProperties.xOffset += splitPos.x;
 			this.scrollProperties.horizontalScrollLength =
-				result - splitPos.x - this.scrollProperties.horizontalScrollRightOffset;
+				result -
+				splitPos.x -
+				this.scrollProperties.horizontalScrollRightOffset;
 		} else {
 			this.scrollProperties.horizontalScrollLength =
 				result - this.scrollProperties.horizontalScrollRightOffset;
@@ -279,7 +281,9 @@ class ViewLayoutBase {
 			} else {
 				if (endPosition < 0)
 					pX =
-						(scrollProps.startX - scrollProps.xOffset + control) *
+						(scrollProps.startX -
+							scrollProps.xOffset +
+							control) *
 						-1 *
 						scrollProps.horizontalScrollRatio;
 

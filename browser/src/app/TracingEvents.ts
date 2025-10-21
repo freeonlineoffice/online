@@ -77,7 +77,14 @@ class TraceEvents {
 			// this refers to the current TraceEvents object.
 			this.decrementAsyncPseudoThread();
 			if (result.active) {
-				this.send(name, 'F', undefined, result.args, result.id, result.tid);
+				this.send(
+					name,
+					'F',
+					undefined,
+					result.args,
+					result.id,
+					result.tid,
+				);
 				result.active = false;
 			}
 		};
@@ -117,7 +124,10 @@ class TraceEvents {
 		);
 	}
 
-	public createComplete(name: string, args?: any): CompleteTraceEvent | null {
+	public createComplete(
+		name: string,
+		args?: any,
+	): CompleteTraceEvent | null {
 		if (!this.recordingToggle) return null;
 
 		const result: CompleteTraceEvent = {
@@ -152,7 +162,9 @@ class TraceEvents {
 	}
 
 	// something we can grok quickly in the trace viewer
-	public createCompleteFromEvent(textMsg?: string): CompleteTraceEvent | null {
+	public createCompleteFromEvent(
+		textMsg?: string,
+	): CompleteTraceEvent | null {
 		if (!this.recordingToggle) return null;
 
 		let pretty: string;

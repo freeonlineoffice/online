@@ -1,7 +1,5 @@
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -20,7 +18,11 @@ class ViewLayoutWriter extends ViewLayoutBase {
 
 	constructor() {
 		super();
-		app.map.on('zoomlevelschange', this.adjustDocumentMarginsForComments, this);
+		app.map.on(
+			'zoomlevelschange',
+			this.adjustDocumentMarginsForComments,
+			this,
+		);
 		app.map.on('resize', this.adjustDocumentMarginsForComments, this);
 
 		/*
@@ -43,13 +45,15 @@ class ViewLayoutWriter extends ViewLayoutBase {
 	private getCommentAndDocumentSpacingInfo(): DocumentSpacingInfo {
 		const commentSection = app.sectionContainer.getSectionWithName(
 			app.CSections.CommentList.name,
-		) as cool.CommentSection;
+		) as lool.CommentSection;
 
 		return {
 			spaceOnDocumentRight: commentSection.calculateAvailableSpace(),
-			commentSectionWidth: commentSection.sectionProperties.commentWidth,
+			commentSectionWidth:
+				commentSection.sectionProperties.commentWidth,
 			spaceOnDocumentLeft:
-				((commentSection.containerObject.getDocumentAnchorSection().size[0] -
+				((commentSection.containerObject.getDocumentAnchorSection()
+					.size[0] -
 					app.activeDocument.fileSize.pX) *
 					0.5) /
 				app.dpiScale,
@@ -59,15 +63,20 @@ class ViewLayoutWriter extends ViewLayoutBase {
 	public documentCanMoveLeft() {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
 		return (
-			spacingInfo.spaceOnDocumentRight < spacingInfo.commentSectionWidth &&
-			spacingInfo.commentSectionWidth - spacingInfo.spaceOnDocumentRight <
+			spacingInfo.spaceOnDocumentRight <
+				spacingInfo.commentSectionWidth &&
+			spacingInfo.commentSectionWidth -
+				spacingInfo.spaceOnDocumentRight <
 				spacingInfo.spaceOnDocumentLeft
 		);
 	}
 
 	private documentMoveLeftByOffset(): number {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
-		return spacingInfo.commentSectionWidth - spacingInfo.spaceOnDocumentRight;
+		return (
+			spacingInfo.commentSectionWidth -
+			spacingInfo.spaceOnDocumentRight
+		);
 	}
 
 	private adjustDocumentMarginsForComments() {
