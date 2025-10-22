@@ -4685,13 +4685,15 @@ void DocumentBroker::handleSlideLayerResponse(const std::shared_ptr<Message>& me
 }
 
 /// lookup in global clipboard cache and send response, send error if missing if @sendError
-bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> &socket,
-                                            const std::string &tag, bool sendError)
+bool DocumentBroker::handlePersistentClipboardRequest(ClipboardRequest type,
+                                                      const std::shared_ptr<StreamSocket> &socket,
+                                                      const std::string &tag, bool sendError)
 {
     LOG_TRC("Clipboard request " << tag << " not for a live session - check cache.");
 #if !MOBILEAPP
-    std::shared_ptr<FileUtil::OwnedFile> clipFile =
-        LOOLWSD::SavedClipboards->getClipboard(tag);
+    std::shared_ptr<FileUtil::OwnedFile> clipFile;
+    if (type != ClipboardRequest::CLIP_REQUEST_SET)
+        clipFile = LOOLWSD::SavedClipboards->getClipboard(tag);
     if (clipFile)
     {
         auto session = std::make_shared<http::ServerSession>();
@@ -4715,6 +4717,8 @@ bool DocumentBroker::lookupSendClipboardTag(const std::shared_ptr<StreamSocket> 
         LOG_INF("Found and queued clipboard response for send of size " << FileUtil::Stat(clipFile->_file).size());
         return true;
     }
+#else
+    (void)type;
 #endif
 
     if (!sendError)
@@ -4757,7 +4761,7 @@ void DocumentBroker::handleClipboardRequest(ClipboardRequest type, const std::sh
         return;
     }
 
-    if (!lookupSendClipboardTag(socket, tag, true))
+    if (!handlePersistentClipboardRequest(type, socket, tag, true))
         LOG_ERR("Could not find matching session to handle clipboard request for " << viewId << " tag: " << tag);
 }
 
