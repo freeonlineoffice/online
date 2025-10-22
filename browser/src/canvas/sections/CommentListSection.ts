@@ -256,7 +256,7 @@ export class CommentSection extends CanvasSectionObject {
 	}
 
 	public setCollapsed(): void {
-		if (this.isEditing()) {
+		if (this.sectionProperties.show != true || this.isEditing()) {
 			return;
 		}
 
@@ -1950,7 +1950,7 @@ export class CommentSection extends CanvasSectionObject {
 			}
 
 			lastY += (subList[i].getCommentHeight(relayout) * app.dpiScale);
-			if (!subList[i].isEdit())
+			if (this.sectionProperties.show != false && !subList[i].isEdit())
 				subList[i].show();
 		}
 		return lastY;
