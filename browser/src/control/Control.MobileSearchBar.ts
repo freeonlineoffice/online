@@ -22,7 +22,7 @@ class MobileSearchBar extends Toolbar {
 			{
 				type: 'customtoolitem',
 				id: 'hidesearchbar',
-				w2icon: 'unfold',
+				w2icon: 'prevrecord',
 				text: _('Hide the search bar'),
 			},
 			{
