@@ -43,7 +43,9 @@ class SidebarFromNotebookbarPanel extends Sidebar {
 		this.models.set(id, new JSDialogModelState(name));
 		this.models
 			.get(id)
-			?.fullUpdate(this.convertToModel(name, notebookbarTab.getContent()));
+			?.fullUpdate(
+				this.convertToModel(name, notebookbarTab.getContent()),
+			);
 	}
 
 	constructor(map: any) {
@@ -106,7 +108,9 @@ class SidebarFromNotebookbarPanel extends Sidebar {
 		this.openSidebar(
 			NotebookbarBasedSidebarId.Transitions,
 			_('Transitions'),
-			this.models.get(NotebookbarBasedSidebarId.Transitions)?.getSnapshot(),
+			this.models
+				.get(NotebookbarBasedSidebarId.Transitions)
+				?.getSnapshot(),
 		);
 	}
 
@@ -119,7 +123,9 @@ class SidebarFromNotebookbarPanel extends Sidebar {
 		this.openSidebar(
 			NotebookbarBasedSidebarId.Animations,
 			_('Animations'),
-			this.models.get(NotebookbarBasedSidebarId.Animations)?.getSnapshot(),
+			this.models
+				.get(NotebookbarBasedSidebarId.Animations)
+				?.getSnapshot(),
 		);
 	}
 
