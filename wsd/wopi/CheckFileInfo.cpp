@@ -1,7 +1,5 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; fill-column: 100 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -95,15 +93,13 @@ bool CheckFileInfo::checkFileInfo(int redirectLimit)
         if (Log::isEnabled(failed ? Log::Level::ERR : Log::Level::TRC))
         {
             std::ostringstream oss;
-            oss << "WOPI::CheckFileInfo " << (failed ? "failed" : "returned") << " for URI ["
-                << uriAnonym << "]: " << httpResponse->statusLine().statusCode() << ' '
-                << httpResponse->statusLine().reasonPhrase()
-                << ". Headers: " << httpResponse->header()
-                << (failed ? "\tBody: [" + LOOLProtocol::getAbbreviatedMessage(wopiResponse) + ']'
-                           : std::string());
+            oss << "WOPI::CheckFileInfo returned" << httpResponse->statusLine().statusCode() << ' '
+                << httpResponse->statusLine().reasonPhrase() << " for URI [" << uriAnonym
+                << "]. Headers: " << httpResponse->header();
 
             if (failed)
             {
+                oss << "\tBody: [" << LOOLProtocol::getAbbreviatedMessage(wopiResponse) << ']';
                 LOG_ERR(oss.str());
             }
             else
