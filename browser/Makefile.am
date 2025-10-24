@@ -827,6 +827,7 @@ build-lool: \
 	$(DIST_FOLDER)/device-mobile.css \
 	$(DIST_FOLDER)/device-tablet.css \
 	$(DIST_FOLDER)/device-desktop.css \
+	$(DIST_FOLDER)/progressbar.css \
 	$(DIST_FOLDER)/bundle.js \
 	$(DIST_FOLDER)/lool.html \
 	$(WASM_FILES)
