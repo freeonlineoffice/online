@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-21 21:14+0200\n"
+"POT-Creation-Date: 2025-10-25 23:10+0200\n"
 "PO-Revision-Date: 2022-04-12 07:41+0000\n"
 "Last-Translator: Andras Timar <andras.timar@collabora.com>\n"
 "Language-Team: Welsh <https://hosted.weblate.org/projects/collabora-online/"
@@ -301,7 +301,7 @@ msgstr ""
 #: src/control/Permission.js:121 src/control/Permission.js:185
 #: src/control/Toolbar.js:917 src/core/Socket.js:825 src/core/Socket.js:1378
 #: src/core/Socket.js:1483 src/core/Socket.js:1698 src/core/Socket.js:1702
-#: src/docdispatcher.ts:593 src/main.js:86 src/main.js:89 src/main.js:130
+#: src/docdispatcher.ts:595 src/main.js:86 src/main.js:89 src/main.js:130
 #: src/map/Clipboard.js:1525 src/map/handler/Map.Feedback.js:90
 #: src/map/handler/Map.SlideShow.js:62 src/map/handler/Map.SlideShow.js:184
 #: src/map/handler/Map.SlideShow.js:371 src/map/handler/Map.SlideShow.js:387
@@ -484,8 +484,8 @@ msgstr ""
 
 #: src/canvas/sections/CommentListSection.ts:1264
 #: src/control/Control.JSDialogBuilder.js:1999
-#: src/layer/tile/CanvasTileLayer.js:4117
-#: src/layer/tile/CanvasTileLayer.js:4128
+#: src/layer/tile/CanvasTileLayer.js:4133
+#: src/layer/tile/CanvasTileLayer.js:4144
 msgid "Comment"
 msgstr "Sylw"
 
@@ -551,7 +551,7 @@ msgstr "Cadw"
 
 #: src/canvas/sections/CommentSection.ts:1157
 #: src/canvas/sections/CommentSection.ts:1162
-#: src/control/Control.ContextMenu.js:311 src/docdispatcher.ts:590
+#: src/control/Control.ContextMenu.js:311 src/docdispatcher.ts:592
 msgid "Delete"
 msgstr "Dileu:"
 
@@ -1846,7 +1846,7 @@ msgstr ""
 msgid "Finish electronic signing"
 msgstr ""
 
-#: src/control/Control.Menubar.ts:2406
+#: src/control/Control.Menubar.ts:2399
 msgid "file type icon"
 msgstr ""
 
@@ -3898,11 +3898,11 @@ msgstr "Cysylltu..."
 msgid "The server has been disconnected."
 msgstr ""
 
-#: src/docdispatcher.ts:583
+#: src/docdispatcher.ts:585
 msgid "Are you sure you want to delete this slide?"
 msgstr "Ydych chi'n siŵr eich bod eisiau dileu'r sleid hwn?"
 
-#: src/docdispatcher.ts:586
+#: src/docdispatcher.ts:588
 msgid "Are you sure you want to delete this page?"
 msgstr "Ydych chi'n siŵr eich bod eisiau dileu'r dudalen hon?"
 
@@ -4217,7 +4217,7 @@ msgstr "Swyddogaeth"
 msgid "Named Range"
 msgstr ""
 
-#: src/layer/tile/CanvasTileLayer.js:4145
+#: src/layer/tile/CanvasTileLayer.js:4161
 #, fuzzy
 msgid "No Comments"
 msgstr "Cadw Sylwadau"
@@ -4314,11 +4314,11 @@ msgstr ""
 "Nid oes modd llwytho ffeil o fath: %0 i weinydd gan nad oes gan fod y ffeil "
 "yn wag"
 
-#: src/map/handler/Map.FileInserter.js:252
+#: src/map/handler/Map.FileInserter.js:235
 msgid "Uploading..."
 msgstr "Yn llwytho..."
 
-#: src/map/handler/Map.FileInserter.js:308
+#: src/map/handler/Map.FileInserter.js:291
 #, fuzzy
 msgid "Uploading file to server failed with status: {0}"
 msgstr "Methodd llwytho ffeil i weinydd gyda statws: %0"
