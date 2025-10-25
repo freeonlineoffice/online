@@ -149,6 +149,7 @@ class SettingIframe {
 	private wordbook;
 	private xcuEditor;
 	private _viewSetting;
+	private xcuInitializationAttempted = false;
 	private _viewSettingLabels = {
 		accessibilityState: _('Accessibility'),
 		zoteroAPIKey: 'Zotero',
@@ -1689,11 +1690,21 @@ class SettingIframe {
 		} else {
 			// If user doesn't have any xcu file, we generate with default settings...
 			try {
-				this.xcuEditor = new (window as any).Xcu('documentView.xcu', null);
-				await this.xcuEditor.generateXcuAndUpload();
-				return await this.fetchAndPopulateSharedConfigs();
+				if (!this.xcuInitializationAttempted) {
+					this.xcuInitializationAttempted = true;
+					this.xcuEditor = new (window as any).Xcu('documentView.xcu', null);
+					await this.xcuEditor.generateXcuAndUpload();
+					return await this.fetchAndPopulateSharedConfigs();
+				} else {
+					document.getElementById('xcu-section')?.remove();
+					console.warn('XCU file not found and automatic creation failed.');
+				}
 			} catch (error) {
-				console.error('Something went wrong while generating xcu file');
+				console.error(
+					'Something went wrong while generating or uploading xcu file:',
+					error,
+				);
+				document.getElementById('xcu-section')?.remove();
 			}
 		}
 
