@@ -18,7 +18,8 @@ class GraphicSelection {
 	public static handlesSection: ShapeHandlesSection = null;
 	public static chartContextToolbarSelectStyle: ChartContextButtonSection =
 		null;
-	public static chartContextToolbarSaveStyle: ChartContextButtonSection = null;
+	public static chartContextToolbarSaveStyle: ChartContextButtonSection =
+		null;
 
 	public static hasActiveSelection() {
 		return this.rectangle !== null;
