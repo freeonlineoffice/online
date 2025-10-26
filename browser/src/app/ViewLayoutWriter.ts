@@ -39,7 +39,8 @@ class ViewLayoutWriter extends ViewLayoutBase {
 
 		return {
 			spaceOnDocumentRight: commentSection.calculateAvailableSpace(),
-			commentSectionWidth: commentSection.sectionProperties.commentWidth,
+			commentSectionWidth:
+				commentSection.sectionProperties.commentWidth,
 			spaceOnDocumentLeft: commentSection.calculateAvailableSpace(),
 		} as DocumentSpacingInfo;
 	}
