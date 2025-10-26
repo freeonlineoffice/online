@@ -66,7 +66,7 @@ class ViewLayoutWriter extends ViewLayoutBase {
 	private adjustDocumentMarginsForComments() {
 		const commentSection = app.sectionContainer.getSectionWithName(
 			app.CSections.CommentList.name,
-		) as cool.CommentSection;
+		) as lool.CommentSection;
 
 		if (commentSection.sectionProperties.show != true) {
 			if (this.documentScrollOffset == 0) return;
