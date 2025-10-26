@@ -1,7 +1,6 @@
 /* global describe it cy require beforeEach */
 
 var helper = require('../../common/helper');
-var { selectZoomLevel } = require('../../common/desktop_helper');
 var desktopHelper = require('../../common/desktop_helper');
 
 describe(['tagdesktop'], 'Annotation Tests', function() {
@@ -10,8 +9,8 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 		cy.viewport(1400, 600);
 		helper.setupAndLoadDocument('writer/annotation.odt');
 		desktopHelper.switchUIToNotebookbar();
-		cy.cGet('#optionscontainer div[id$="SidebarDeck.PropertyDeck"]').click(); // Hide sidebar.
-		selectZoomLevel('50', false);
+		desktopHelper.sidebarToggle();
+		desktopHelper.selectZoomLevel('50', false);
 	});
 
 	it('Insert', function() {
@@ -73,7 +72,7 @@ describe(['tagdesktop'], 'Annotation Tests', function() {
 		cy.cGet('#comment-container-2').should('exist');
 		cy.cGet('#comment-annotation-menu-2').click();
 		cy.cGet('body').contains('.context-menu-item', 'Resolve').click();
-		cy.cGet('.cool-annotation-content-resolved').should('exist');
+		cy.cGet('.lool-annotation-content-resolved').should('exist');
 
 		/* scenario 1:
 		 *   - hide all comments -> all hidden
@@ -155,7 +154,7 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 	beforeEach(function() {
 		newFilePath = helper.setupAndLoadDocument('writer/annotation.odt');
 		desktopHelper.switchUIToNotebookbar();
-		cy.cGet('#optionscontainer div[id$="SidebarDeck.PropertyDeck"]').click(); // Hide sidebar.
+		desktopHelper.sidebarToggle();
 	});
 
 	it('Insert', function() {
@@ -204,7 +203,7 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 	});
 
 	it('Autosave Collapse', function() {
-		selectZoomLevel('100', false);
+		desktopHelper.selectZoomLevel('100', false);
 		desktopHelper.insertComment(undefined, false);
 		cy.cGet('#map').focus();
 		helper.typeIntoDocument('{home}');
@@ -225,7 +224,7 @@ describe(['tagdesktop'], 'Collapsed Annotation Tests', function() {
 		cy.cGet('.lool-annotation-info-collapsed').should('be.not.visible');
 
 		helper.reloadDocument(newFilePath);
-		cy.cGet('#optionscontainer div[id$="SidebarDeck.PropertyDeck"]').click(); // show sidebar.
+		desktopHelper.sidebarToggle();
 		cy.cGet('.lool-annotation-img').click();
 		cy.cGet('.lool-annotation-content-wrapper').should('exist');
 		cy.cGet('#annotation-content-area-1').should('have.text','some text0');
@@ -242,8 +241,8 @@ describe(['tagdesktop'], 'Annotation Autosave Tests', function() {
 		newFilePath = helper.setupAndLoadDocument('writer/annotation.odt');
 		desktopHelper.switchUIToNotebookbar();
 		// TODO: skip sidebar detection on reload
-		//cy.cGet('#optionscontainer div[id$="SidebarDeck.PropertyDeck"]').click(); // Hide sidebar.
-		selectZoomLevel('50', false);
+		// desktopHelper.sidebarToggle();
+		desktopHelper.selectZoomLevel('50', false);
 	});
 
 	it('Insert autosave', function() {
@@ -431,9 +430,9 @@ describe(['tagdesktop'], 'Annotation with @mention', function() {
 	beforeEach(function() {
 		cy.viewport(1400, 600);
 		helper.setupAndLoadDocument('writer/annotation.odt');
-		cy.cGet('#optionscontainer div[id$="SidebarDeck.PropertyDeck"]').click(); // Hide sidebar.
 		desktopHelper.switchUIToNotebookbar();
-		selectZoomLevel('50', false);
+		desktopHelper.sidebarToggle();
+		desktopHelper.selectZoomLevel('50', false);
 	});
 
 	it('Insert comment with mention', function() {
