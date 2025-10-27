@@ -831,15 +831,15 @@ body {
 	background: url('images/lc_rejecttrackedchange.svg') no-repeat center !important;
 }
 
-.lool-annotation-menu,
-.lool-annotation-menu-redline {
-	background: url('images/submenu.svg') no-repeat center/contain !important;
+.lool-annotation-menu, .lool-annotation-menu-redline {
+	background: url('images/lc_more.svg') no-repeat center/contain !important;
 }
 
-.lool-annotation-menu:hover,
-.lool-annotation-menu-redline:hover,
-.lool-redline-accept-button:hover,
-.lool-redline-reject-button:hover {
+[data-theme='dark'] .lool-annotation-menu, .lool-annotation-menu-redline {
+	background: url('images/dark/lc_more.svg') no-repeat center/contain !important;
+}
+
+.lool-annotation-menu:hover, .lool-annotation-menu-redline:hover, .lool-redline-accept-button:hover, .lool-redline-reject-button:hover {
 	border: 1px solid var(--color-border-darker);
 }
 
