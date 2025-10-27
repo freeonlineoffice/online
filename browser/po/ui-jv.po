@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-25 23:10+0200\n"
+"POT-Creation-Date: 2025-10-27 18:30+0100\n"
 "PO-Revision-Date: 2020-01-26 05:49+0000\n"
 "Last-Translator: Budi Aryo <venera.android.phone@gmail.com>\n"
 "Language-Team: Javanese <https://weblate.documentfoundation.org/projects/"
@@ -144,7 +144,7 @@ msgstr ""
 msgid "Network Graph"
 msgstr ""
 
-#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:527
+#: admin/admin.strings.js:36 src/canvas/sections/CommentListSection.ts:526
 #: src/canvas/sections/CommentSection.ts:182
 #: src/canvas/sections/CommentSection.ts:485
 #: src/canvas/sections/CommentSection.ts:1239
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Log Levels"
 msgstr ""
 
-#: admin/admin.strings.js:63 src/canvas/sections/CommentListSection.ts:165
+#: admin/admin.strings.js:63 src/canvas/sections/CommentListSection.ts:167
 #: src/control/Control.AlertDialog.js:32 src/control/Control.AlertDialog.js:44
 #: src/control/Control.AlertDialog.js:129
 #: src/control/Control.AlertDialog.js:148 src/control/Control.Zotero.js:228
@@ -292,7 +292,7 @@ msgstr ""
 #: admin/src/AdminClusterOverview.js:647 admin/src/AdminSocketBase.js:61
 #: admin/src/AdminSocketBase.js:74 admin/src/AdminSocketOverview.js:109
 #: admin/src/AdminSocketOverview.js:525 admin/src/AdminSocketSettings.js:45
-#: src/canvas/sections/CommentListSection.ts:1487
+#: src/canvas/sections/CommentListSection.ts:1486
 #: src/control/Control.AboutDialog.ts:159
 #: src/control/Control.AlertDialog.js:68
 #: src/control/Control.DocumentRepair.js:75
@@ -318,7 +318,7 @@ msgstr ""
 
 #: admin/src/AdminClusterOverview.js:648 admin/src/AdminSocketOverview.js:110
 #: admin/src/AdminSocketOverview.js:526 admin/src/AdminSocketSettings.js:46
-#: src/canvas/sections/CommentListSection.ts:522
+#: src/canvas/sections/CommentListSection.ts:521
 #: src/canvas/sections/CommentSection.ts:181
 #: src/canvas/sections/CommentSection.ts:184
 #: src/canvas/sections/CommentSection.ts:1240
@@ -427,92 +427,92 @@ msgstr ""
 msgid "Failed to get RouteToken from controller"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:164
+#: src/canvas/sections/CommentListSection.ts:166
 msgid "A comment is being edited"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:165
+#: src/canvas/sections/CommentListSection.ts:167
 msgid "Please save or discard the comment currently being edited."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1188
+#: src/canvas/sections/CommentListSection.ts:1187
 msgid "Modify"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1194
+#: src/canvas/sections/CommentListSection.ts:1193
 #: src/canvas/sections/CommentSection.ts:185
 #: src/canvas/sections/CommentSection.ts:489
 #: src/canvas/sections/CommentSection.ts:1244
 msgid "Reply"
 msgstr "Ulangi"
 
-#: src/canvas/sections/CommentListSection.ts:1200
+#: src/canvas/sections/CommentListSection.ts:1199
 msgid "Remove"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1206
+#: src/canvas/sections/CommentListSection.ts:1205
 msgid "Remove Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1212
+#: src/canvas/sections/CommentListSection.ts:1211
 msgid "Resolve"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1212
+#: src/canvas/sections/CommentListSection.ts:1211
 msgid "Unresolve"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1218
+#: src/canvas/sections/CommentListSection.ts:1217
 msgid "Unresolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1218
+#: src/canvas/sections/CommentListSection.ts:1217
 msgid "Resolve Thread"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1224
+#: src/canvas/sections/CommentListSection.ts:1223
 msgid "Promote to top comment"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1230
+#: src/canvas/sections/CommentListSection.ts:1229
 msgid "Show on the side"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1230
+#: src/canvas/sections/CommentListSection.ts:1229
 msgid "Open in full view"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1236
+#: src/canvas/sections/CommentListSection.ts:1235
 msgid "Show in navigator"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1264
+#: src/canvas/sections/CommentListSection.ts:1263
 #: src/control/Control.JSDialogBuilder.js:1999
 #: src/layer/tile/CanvasTileLayer.js:4133
 #: src/layer/tile/CanvasTileLayer.js:4144
 msgid "Comment"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1485
-#: src/canvas/sections/CommentListSection.ts:1498
+#: src/canvas/sections/CommentListSection.ts:1484
+#: src/canvas/sections/CommentListSection.ts:1497
 msgid "Comments Updated"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1486
+#: src/canvas/sections/CommentListSection.ts:1485
 msgid "Another user has removed this comment."
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1499
+#: src/canvas/sections/CommentListSection.ts:1498
 msgid ""
 "Another user has updated the comment. Would you like to overwrite those "
 "changes?"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1500 src/core/Socket.js:1727
+#: src/canvas/sections/CommentListSection.ts:1499 src/core/Socket.js:1727
 msgid "Overwrite"
 msgstr ""
 
-#: src/canvas/sections/CommentListSection.ts:1501
+#: src/canvas/sections/CommentListSection.ts:1500
 msgid "Update"
 msgstr ""
 
