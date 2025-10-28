@@ -436,8 +436,10 @@ class SlideShowNavigator {
 			const width = canvas.clientWidth;
 			const height = canvas.clientHeight;
 
-			const x = (aEvent.offsetX / width) * this.theMetaPres.getDocWidth();
-			const y = (aEvent.offsetY / height) * this.theMetaPres.getDocHeight();
+			const x =
+				(aEvent.offsetX / width) * this.theMetaPres.getDocWidth();
+			const y =
+				(aEvent.offsetY / height) * this.theMetaPres.getDocHeight();
 
 			const shape = slideInfo.interactions.find((shape) =>
 				hitTest(shape.bounds, x, y),
@@ -504,8 +506,12 @@ class SlideShowNavigator {
 					const width = canvas.clientWidth;
 					const height = canvas.clientHeight;
 
-					const x = (aEvent.offsetX / width) * this.theMetaPres.getDocWidth();
-					const y = (aEvent.offsetY / height) * this.theMetaPres.getDocHeight();
+					const x =
+						(aEvent.offsetX / width) *
+						this.theMetaPres.getDocWidth();
+					const y =
+						(aEvent.offsetY / height) *
+						this.theMetaPres.getDocHeight();
 
 					aEventMultiplexer.notifyMouseMove({ x: x, y: y });
 					return;

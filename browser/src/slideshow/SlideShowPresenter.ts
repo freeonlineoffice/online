@@ -304,7 +304,8 @@ class SlideShowPresenter {
 
 		if (event.relativeX !== undefined && event.relativeY !== undefined) {
 			const x = event.relativeX * this._metaPresentation.getDocWidth();
-			const y = event.relativeY * this._metaPresentation.getDocHeight();
+			const y =
+				event.relativeY * this._metaPresentation.getDocHeight();
 
 			const clickedVideo = slideInfo.videos.find((videoInfo) =>
 				this.isPointInVideoArea(videoInfo, x, y),
