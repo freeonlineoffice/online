@@ -7,11 +7,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-interface DocumentSpacingInfo {
-	spaceOnDocumentLeft: number;
-	spaceOnDocumentRight: number;
+type DocumentSpacingInfo = {
+	documentMarginsWidth: number;
 	commentSectionWidth: number;
-}
+};
 
 class ViewLayoutWriter extends ViewLayoutBase {
 	public readonly type: string = 'ViewLayoutWriter';
@@ -38,30 +37,23 @@ class ViewLayoutWriter extends ViewLayoutBase {
 		) as lool.CommentSection;
 
 		return {
-			spaceOnDocumentRight: commentSection.calculateAvailableSpace(),
-			commentSectionWidth:
-				commentSection.sectionProperties.commentWidth,
-			spaceOnDocumentLeft: commentSection.calculateAvailableSpace(),
+			documentMarginsWidth: commentSection.calculateAvailableSpace(),
+			commentSectionWidth: commentSection.sectionProperties.commentWidth,
 		} as DocumentSpacingInfo;
 	}
 
 	public documentCanMoveLeft() {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
 		return (
-			spacingInfo.spaceOnDocumentRight <
-				spacingInfo.commentSectionWidth &&
-			spacingInfo.commentSectionWidth -
-				spacingInfo.spaceOnDocumentRight <
-				spacingInfo.spaceOnDocumentLeft
+			spacingInfo.documentMarginsWidth < spacingInfo.commentSectionWidth &&
+			spacingInfo.commentSectionWidth - spacingInfo.documentMarginsWidth <
+				spacingInfo.documentMarginsWidth
 		);
 	}
 
 	private documentMoveLeftByOffset(): number {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
-		return (
-			spacingInfo.commentSectionWidth -
-			spacingInfo.spaceOnDocumentRight
-		);
+		return spacingInfo.commentSectionWidth - spacingInfo.documentMarginsWidth;
 	}
 
 	private adjustDocumentMarginsForComments() {
