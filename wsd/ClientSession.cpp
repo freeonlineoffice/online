@@ -1534,7 +1534,7 @@ void ClientSession::uploadViewSettingsToWopiHost()
         uriObject.addQueryParameter("fileId", filePath);
         auth.authorizeURI(uriObject);
 
-        const std::string uriAnonym = COOLWSD::anonymizeUrl(uriObject.toString());
+        const std::string uriAnonym = LOOLWSD::anonymizeUrl(uriObject.toString());
 
         auto httpRequest = StorageConnectionManager::createHttpRequest(uriObject, auth);
         httpRequest.setVerb(http::Request::VERB_POST);
@@ -1563,7 +1563,7 @@ void ClientSession::uploadViewSettingsToWopiHost()
         LOG_DBG("Uploading viewsetting json [" << jsonStream.str() << "] to wopiHost[" << uriAnonym
                                                << ']');
         httpSession->setFinishedHandler(std::move(finishedCallback));
-        httpSession->asyncRequest(httpRequest, COOLWSD::getWebServerPoll());
+        httpSession->asyncRequest(httpRequest, LOOLWSD::getWebServerPoll());
     }
     catch (const std::exception& e)
     {
