@@ -443,11 +443,12 @@ window.L.Map.WOPI = window.L.Handler.extend({
 			/* id is optional */
 			if (msg.Values) {
 				switch (msg.Values.id) {
-					case 'Navigator':
-					case 'ModifyPage':
-					case 'CustomAnimation':
-						this._map.sendUnoCommand(`.uno:${msg.Values.id}`);
-						return;
+				case 'Navigator':
+				case 'ModifyPage':
+				case 'CustomAnimation':
+				case 'MasterSlidesPanel':
+					this._map.sendUnoCommand(`.uno:${msg.Values.id}`);
+					return;
 				}
 			}
 			this._map.sendUnoCommand('.uno:SidebarDeck.PropertyDeck');
