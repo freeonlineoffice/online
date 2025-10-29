@@ -75,7 +75,10 @@ class ViewLayoutWriter extends ViewLayoutBase {
 			app.CSections.CommentList.name,
 		) as lool.CommentSection;
 
-		if (commentSection.sectionProperties.show != true) {
+		if (
+			commentSection.sectionProperties.show != true ||
+			commentSection.sectionProperties.commentList.length == 0
+		) {
 			if (this.documentScrollOffset == 0) return;
 			this.scrollHorizontal(-this.documentScrollOffset, true);
 			this.documentScrollOffset = 0;
