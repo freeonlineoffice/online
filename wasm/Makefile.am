@@ -111,6 +111,8 @@ endif
 # required)":
 online_LDFLAGS += $(if $(filter -g,$(CXXFLAGS)),-Wno-limited-postlink-optimizations)
 
+all_local =
+
 if ENABLE_DEBUG
 
 online_LDFLAGS += \
@@ -121,7 +123,7 @@ online_LDFLAGS += \
 
 online.wasm.debug.wasm: | online$(EXEEXT)
 
-all-local: online.wasm.debug.wasm.dwp
+all_local += online.wasm.debug.wasm.dwp
 
 endif
 
@@ -142,7 +144,9 @@ emscripten-module.js: emscripten-module.js.m4
 		-DENABLE_WASM_ZETAJS=$(ENABLE_WASM_ZETAJS) \
 		-DENABLE_WASM_ZETAJS_EXAMPLE=$(ENABLE_WASM_ZETAJS_EXAMPLE) $< >$@
 
-all-local: emscripten-module.js
+all_local += emscripten-module.js
+
+all-local: $(all_local)
 
 clean-local:
 	rm -f \
