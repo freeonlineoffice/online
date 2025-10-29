@@ -1383,6 +1383,7 @@ export class CommentSection extends CanvasSectionObject {
 			this.select(comment);
 		}
 
+		app.map.fire('insertannotation');
 		return comment;
 	}
 
