@@ -24,6 +24,7 @@ class ViewLayoutWriter extends ViewLayoutBase {
 			this,
 		);
 		app.map.on('resize', this.adjustDocumentMarginsForComments, this);
+		app.map.on('deleteannotation', this.adjustDocumentMarginsForComments, this);
 		app.map.on(
 			'showannotationschanged',
 			this.adjustDocumentMarginsOnAnnotationToggle,
