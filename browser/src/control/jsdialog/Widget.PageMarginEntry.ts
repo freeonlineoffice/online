@@ -1,8 +1,6 @@
 // @ts-strict-ignore
 /* -*- js-indent-level: 8 -*- */
 /*
- * Copyright the Collabora Online contributors.
- *
  * SPDX-License-Identifier: MPL-2.0
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -40,7 +38,7 @@ function createPageMarginEntryWidget(data: any, builder: any): HTMLElement {
 	container.setAttribute('aria-label', _('Page margin options'));
 
 	const lang = window.loolParams.get('lang') || 'en-US';
-	const useImperial = lang === 'en-US';
+	const useImperial = lang === 'en-US' || lang === 'en'; // we need to consider both short form as some user can user lang=en-US using document URL
 	const inchToCm = 2.54;
 
 	function formatLocalized(valueInInches: number): string {
