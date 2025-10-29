@@ -39,7 +39,7 @@ function createPageMarginEntryWidget(data: any, builder: any): HTMLElement {
 	container.setAttribute('role', 'listbox');
 	container.setAttribute('aria-label', _('Page margin options'));
 
-	const lang = window.coolParams.get('lang') || 'en-US';
+	const lang = window.loolParams.get('lang') || 'en-US';
 	const useImperial = lang === 'en-US';
 	const inchToCm = 2.54;
 
