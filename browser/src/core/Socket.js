@@ -1191,14 +1191,14 @@ app.definitions.Socket = class Socket extends SocketBase {
 			}
 
 			return;
-		} else if (
-			(textMsg.startsWith('error:') &&
-				(command.errorCmd === 'storage' ||
-					command.errorCmd === 'saveas')) ||
-			command.errorCmd === 'downloadas' ||
-			command.errorCmd === 'exportas'
-		) {
-			if (command.errorCmd === 'saveas') {
+		}
+		else if (textMsg.startsWith('error:')
+			&& (command.errorCmd === 'storage'
+			|| command.errorCmd === 'saveas')
+			|| command.errorCmd === 'downloadas'
+			|| command.errorCmd === 'exportas')  {
+
+			if (command.errorCmd !== 'storage') {
 				this._map.fire('postMessage', {
 					msgId: 'Action_Save_Resp',
 					args: {
@@ -1672,7 +1672,7 @@ app.definitions.Socket = class Socket extends SocketBase {
 			app.serverConnectionService.onViewSetting(settingJSON);
 		}
 
-		if (textMsg.startsWith('downloadas:')) {
+		if (textMsg.startsWith('downloadas:') || textMsg.startsWith('exportas:')) {
 			var postMessageObj = {
 				success: true,
 				result: 'exportas',
