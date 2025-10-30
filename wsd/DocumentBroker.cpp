@@ -285,6 +285,13 @@ void DocumentBroker::assertCorrectThread(const char* filename, int line) const
     _poll->assertCorrectThread(filename, line);
 }
 
+void DocumentBroker::clearCaches()
+{
+    if (_tileCache)
+        _tileCache->clear();
+    _slideLayerCache.erase_all();
+}
+
 // The inner heart of the DocumentBroker - our poll loop.
 void DocumentBroker::pollThread()
 {
@@ -856,8 +863,7 @@ void DocumentBroker::pollThread()
     LOOLWSD::doHousekeeping();
 #endif
 
-    if (_tileCache)
-        _tileCache->clear();
+    clearCaches();
 
     LOG_INF("Finished docBroker polling thread for docKey [" << _docKey << ']');
 }
@@ -4465,6 +4471,10 @@ bool DocumentBroker::handleInput(const std::shared_ptr<Message>& message)
                     LOOLWSD::writeTraceEventRecording(message->data().data() + firstLine.size() + 1,
                                                       message->size() - firstLine.size() - 1);
             }
+        }
+        else if (message->firstTokenMatches("memorytrimmed:"))
+        {
+            clearCaches();
         }
 #if ENABLE_DEBUG
         else if (message->firstTokenMatches("unitresult:"))
