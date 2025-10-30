@@ -98,8 +98,8 @@ UnitBase::TestResult UnitBadDocLoad::testBadDocLoadFail()
         std::string errorKind;
         LOOLProtocol::getTokenString(tokens[1], "cmd", errorCommand);
         LOOLProtocol::getTokenString(tokens[2], "kind", errorKind);
-        LOK_ASSERT_EQUAL(std::string("load"), errorCommand);
-        LOK_ASSERT_EQUAL(std::string("faileddocloading"), errorKind);
+        LOK_ASSERT_EQUAL_STR("load", errorCommand);
+        LOK_ASSERT_EQUAL_STR("faileddocloading", errorKind);
     }
     catch (const Poco::Exception& exc)
     {

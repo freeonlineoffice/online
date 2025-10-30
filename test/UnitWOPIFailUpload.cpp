@@ -265,9 +265,9 @@ public:
             TRANSITION_STATE(_phase, Phase::Done);
 
             // We requested the save.
-            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
+            LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsAutosave"));
 
-            LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
+            LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsModifiedByUser"));
 
             // File unknown/User unauthorized.
             return std::make_unique<http::Response>(http::StatusCode::NotFound);
@@ -544,20 +544,24 @@ public:
         LOK_ASSERT_MESSAGE("Too many PutFile attempts", getCountPutFile() <= 3);
 
         // The document is modified.
-        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
+        LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsModifiedByUser"));
+        LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsModifiedByUser"));
 
         // Triggered manually or during closing, not auto-save.
-        LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
+        LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsAutosave"));
+        LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsAutosave"));
 
         if (getCountPutFile() < 3)
         {
             // Certainly not exiting yet.
-            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsExitSave"));
         }
         else
         {
             // Only on the last (third) attempt we exit.
-            LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsExitSave"));
         }
 
         LOK_ASSERT_MESSAGE("Unexpected phase", _phase == Phase::WaitModifiedStatus ||
@@ -674,9 +678,11 @@ public:
     std::unique_ptr<http::Response>
     assertPutFileRequest(const Poco::Net::HTTPRequest& request) override
     {
-        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsModifiedByUser"));
+        LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsModifiedByUser"));
+        LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsModifiedByUser"));
 
-        LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsAutosave"));
+        LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsAutosave"));
+        LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsAutosave"));
 
         // We save twice. First right after loading, unmodified.
         if (_phase == Phase::WaitFirstPutFile)
@@ -684,7 +690,8 @@ public:
             TST_LOG("assertPutFileRequest: First PutFile, which will fail");
 
             // Certainly not exiting yet.
-            LOK_ASSERT_EQUAL(std::string("false"), request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL_STR("false", request.get("X-LOOL-WOPI-IsExitSave"));
+            LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsExitSave"));
 
             // Fail with error.
             TST_LOG("Returning 500 to simulate PutFile failure");
@@ -696,7 +703,8 @@ public:
         LOK_ASSERT_STATE(_phase, Phase::WaitSecondPutFile);
 
         // Triggered while closing.
-        LOK_ASSERT_EQUAL(std::string("true"), request.get("X-LOOL-WOPI-IsExitSave"));
+        LOK_ASSERT_EQUAL_STR("true", request.get("X-LOOL-WOPI-IsExitSave"));
+        LOK_ASSERT_EQUAL(false, request.has("X-LOOL-WOPI-IsExitSave"));
 
         return nullptr;
     }

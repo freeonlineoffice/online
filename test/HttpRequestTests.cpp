@@ -261,12 +261,10 @@ void HttpRequestTests::testGoodResponse()
         LOK_ASSERT_EQUAL(http::StatusCode::OK, httpResponse->statusLine().statusCode());
         LOK_ASSERT(httpResponse->statusLine().statusCategory() ==
                    http::StatusLine::StatusCodeClass::Successful);
-        LOK_ASSERT_EQUAL(std::string("HTTP/1.1"), httpResponse->statusLine().httpVersion());
-        LOK_ASSERT_EQUAL(std::string("OK"), httpResponse->statusLine().reasonPhrase());
-        LOK_ASSERT_EQUAL(std::string("text/html;charset=utf-8"),
-                         httpResponse->header().getContentType());
-        LOK_ASSERT_EQUAL(std::string("Wed, 02 Jun 2021 02:30:52 GMT"),
-                         httpResponse->header().get("Date"));
+        LOK_ASSERT_EQUAL_STR("HTTP/1.1", httpResponse->statusLine().httpVersion());
+        LOK_ASSERT_EQUAL_STR("OK", httpResponse->statusLine().reasonPhrase());
+        LOK_ASSERT_EQUAL_STR("text/html;charset=utf-8", httpResponse->header().getContentType());
+        LOK_ASSERT_EQUAL_STR("Wed, 02 Jun 2021 02:30:52 GMT", httpResponse->header().get("Date"));
 
         LOK_ASSERT_EQUAL(std::string(), httpResponse->getBody());
     }
@@ -366,8 +364,8 @@ void HttpRequestTests::testSimpleGetSync()
         LOK_ASSERT_EQUAL(http::StatusCode::OK, httpResponse->statusLine().statusCode());
         LOK_ASSERT(httpResponse->statusLine().statusCategory()
                    == http::StatusLine::StatusCodeClass::Successful);
-        LOK_ASSERT_EQUAL(std::string("HTTP/1.1"), httpResponse->statusLine().httpVersion());
-        LOK_ASSERT_EQUAL(std::string("OK"), httpResponse->statusLine().reasonPhrase());
+        LOK_ASSERT_EQUAL_STR("HTTP/1.1", httpResponse->statusLine().httpVersion());
+        LOK_ASSERT_EQUAL_STR("OK", httpResponse->statusLine().reasonPhrase());
 
         LOK_ASSERT_EQUAL(pocoResponse.second, httpResponse->getBody());
         LOK_ASSERT_EQUAL(body, httpResponse->getBody());
@@ -402,8 +400,8 @@ void HttpRequestTests::testChunkedGetSync()
         LOK_ASSERT_EQUAL(http::StatusCode::OK, httpResponse->statusLine().statusCode());
         LOK_ASSERT(httpResponse->statusLine().statusCategory()
                    == http::StatusLine::StatusCodeClass::Successful);
-        LOK_ASSERT_EQUAL(std::string("HTTP/1.1"), httpResponse->statusLine().httpVersion());
-        LOK_ASSERT_EQUAL(std::string("OK"), httpResponse->statusLine().reasonPhrase());
+        LOK_ASSERT_EQUAL_STR("HTTP/1.1", httpResponse->statusLine().httpVersion());
+        LOK_ASSERT_EQUAL_STR("OK", httpResponse->statusLine().reasonPhrase());
 
         LOK_ASSERT_EQUAL(pocoResponse.second, httpResponse->getBody());
         LOK_ASSERT_EQUAL(body, httpResponse->getBody());
@@ -438,8 +436,8 @@ void HttpRequestTests::testChunkedGetSync_External()
         LOK_ASSERT_EQUAL(http::StatusCode::OK, httpResponse->statusLine().statusCode());
         LOK_ASSERT(httpResponse->statusLine().statusCategory()
                    == http::StatusLine::StatusCodeClass::Successful);
-        LOK_ASSERT_EQUAL(std::string("HTTP/1.1"), httpResponse->statusLine().httpVersion());
-        LOK_ASSERT_EQUAL(std::string("OK"), httpResponse->statusLine().reasonPhrase());
+        LOK_ASSERT_EQUAL_STR("HTTP/1.1", httpResponse->statusLine().httpVersion());
+        LOK_ASSERT_EQUAL_STR("OK", httpResponse->statusLine().reasonPhrase());
 
         LOK_ASSERT_EQUAL(pocoResponse.second, httpResponse->getBody());
     }
@@ -812,10 +810,9 @@ void HttpRequestTests::testPost()
         LOK_ASSERT_EQUAL(http::StatusCode::OK, httpResponse->statusLine().statusCode());
         LOK_ASSERT(httpResponse->statusLine().statusCategory() ==
                    http::StatusLine::StatusCodeClass::Successful);
-        LOK_ASSERT_EQUAL(std::string("HTTP/1.1"), httpResponse->statusLine().httpVersion());
-        LOK_ASSERT_EQUAL(std::string("OK"), httpResponse->statusLine().reasonPhrase());
-        LOK_ASSERT_EQUAL(std::string("text/html;charset=utf-8"),
-                         httpResponse->header().getContentType());
+        LOK_ASSERT_EQUAL_STR("HTTP/1.1", httpResponse->statusLine().httpVersion());
+        LOK_ASSERT_EQUAL_STR("OK", httpResponse->statusLine().reasonPhrase());
+        LOK_ASSERT_EQUAL_STR("text/html;charset=utf-8", httpResponse->header().getContentType());
 
         LOK_ASSERT_EQUAL_STR(data, httpResponse->getBody());
     }
