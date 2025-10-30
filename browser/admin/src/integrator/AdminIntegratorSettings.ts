@@ -1448,10 +1448,13 @@ class SettingIframe {
 				continue;
 			}
 
-			const value = data[key] ?? (typeof data[key] === 'boolean' ? false : '');
+			const value =
+				data[key] ?? (typeof data[key] === 'boolean' ? false : '');
 
 			if (typeof value === 'boolean') {
-				fieldset.appendChild(this.createViewSettingCheckbox(key, data, label));
+				fieldset.appendChild(
+					this.createViewSettingCheckbox(key, data, label),
+				);
 			} else if (typeof value === 'string') {
 				// Add Zotero section with description
 				if (key === 'zoteroAPIKey') {
@@ -1461,21 +1464,29 @@ class SettingIframe {
 							'To use Zotero specify your API key here. You can create your API key in your ',
 						),
 					);
-					zoteroDescription.className = 'view-setting-description';
+					zoteroDescription.className =
+						'view-setting-description';
 
 					const zoteroAccountLink = document.createElement('a');
-					zoteroAccountLink.href = 'https://www.zotero.org/settings/keys';
+					zoteroAccountLink.href =
+						'https://www.zotero.org/settings/keys';
 					zoteroAccountLink.target = '_blank';
-					zoteroAccountLink.textContent = _('Zotero account API settings');
+					zoteroAccountLink.textContent = _(
+						'Zotero account API settings',
+					);
 
 					zoteroDescription.appendChild(zoteroAccountLink);
 
 					fieldset.appendChild(zoteroDescription);
-					fieldset.appendChild(this.createViewSettingsTextBox(key, data, true));
+					fieldset.appendChild(
+						this.createViewSettingsTextBox(key, data, true),
+					);
 				}
 				// Add Document Signing section with description (only once for first field)
 				else if (key === 'signatureCert') {
-					fieldset.appendChild(this.createHeading(_('Document Signing')));
+					fieldset.appendChild(
+						this.createHeading(_('Document Signing')),
+					);
 					const signingDesc = document.createElement('p');
 					signingDesc.className = 'view-setting-description';
 					signingDesc.textContent = _(
@@ -1483,13 +1494,23 @@ class SettingIframe {
 					);
 					fieldset.appendChild(signingDesc);
 					fieldset.appendChild(
-						this.createViewSettingsTextBox(key, data, false, true),
+						this.createViewSettingsTextBox(
+							key,
+							data,
+							false,
+							true,
+						),
 					);
 				}
 				// Add remaining signature fields with smaller labels
 				else if (key === 'signatureKey' || key === 'signatureCa') {
 					fieldset.appendChild(
-						this.createViewSettingsTextBox(key, data, false, true),
+						this.createViewSettingsTextBox(
+							key,
+							data,
+							false,
+							true,
+						),
 					);
 				}
 			}
@@ -1611,8 +1632,12 @@ class SettingIframe {
 				if (fetchContent) {
 					const loadedSettings = JSON.parse(fetchContent);
 					// Merge with default values to ensure all fields are present
-					const defaultViewSetting = this.getDefaultViewSettings();
-					const mergedSettings = { ...defaultViewSetting, ...loadedSettings };
+					const defaultViewSetting =
+						this.getDefaultViewSettings();
+					const mergedSettings = {
+						...defaultViewSetting,
+						...loadedSettings,
+					};
 					this.generateViewSettingUI(mergedSettings);
 				}
 			} else {
