@@ -87,6 +87,9 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		this.sectionProperties.pickedIndexY = 0; // Which corner of shape is closest to snap point when moving the shape.
 		this.sectionProperties.mathObjectBorderColor = 'red'; // Border color for Math objects.
 		this.sectionProperties.lastTapTime = 0;
+		this.sectionProperties.viewedRectangleOnMouseDown = new lool.SimpleRectangle(0, 0, 0, 0);
+		this.sectionProperties.initialPosition = this.position.slice();
+		this.sectionProperties.positionOnMouseDown = new lool.SimplePoint(0, 0);
 
 		// These are for snapping the objects to the same level with others' boundaries.
 		this.sectionProperties.closestX = null;
@@ -690,9 +693,8 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		data = this.removeTagFromHTML(data, ' style="', '"');
 
 		this.sectionProperties.svg = document.createElement('svg');
-		document
-			.getElementById('canvas-container')
-			.appendChild(this.sectionProperties.svg);
+		this.sectionProperties.svg.style.pointerEvents = 'none';
+		document.getElementById('canvas-container').appendChild(this.sectionProperties.svg);
 
 		this.sectionProperties.svg.innerHTML = data;
 		this.sectionProperties.svg.style.position = 'absolute';
@@ -990,6 +992,14 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		this.sectionProperties.lastDragDistance = [0, 0];
 	}
 
+	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
+		this.sectionProperties.viewedRectangleOnMouseDown = app.activeDocument.activeView.viewedRectangle.clone();
+		this.sectionProperties.initialPosition = this.position.slice();
+		this.sectionProperties.positionOnMouseDown = point.clone();
+		this.sectionProperties.positionOnMouseDown.pX += this.position[0];
+		this.sectionProperties.positionOnMouseDown.pY += this.position[1];
+	}
+
 	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (this.sectionProperties.svg)
 			this.sectionProperties.svg.style.opacity = 1;
@@ -997,7 +1007,21 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		this.hideSVG();
 
 		if (this.containerObject.isDraggingSomething()) {
-			this.sendTransformCommand(point);
+			app.map.fire('scrollvelocity', { vx: 0, vy: 0 });
+
+			if (app.map._docLayer._docType !== 'spreadsheet') {
+				point.x += app.activeDocument.activeView.viewedRectangle.x1 - this.sectionProperties.viewedRectangleOnMouseDown.x1;
+				point.y += app.activeDocument.activeView.viewedRectangle.y1 - this.sectionProperties.viewedRectangleOnMouseDown.y1;
+				this.sendTransformCommand(point);
+			}
+			else {
+				const lastPosition = lool.SimplePoint.fromCorePixels([this.position[0] + point.pX, this.position[1] + point.pY]);
+
+				// Send mouse down and up events.
+				app.map._docLayer._postMouseEvent('buttondown', this.sectionProperties.positionOnMouseDown.x, this.sectionProperties.positionOnMouseDown.y, 1, 1, 0);
+				app.map._docLayer._postMouseEvent('move', lastPosition.x, lastPosition.y, 1, 1, 0);
+				app.map._docLayer._postMouseEvent('buttonup', lastPosition.x, lastPosition.y, 1, 1, 0);
+			}
 		}
 	}
 
@@ -1277,6 +1301,15 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		}
 
 		if (this.containerObject.isDraggingSomething() && canDrag) {
+			if (!app.activeDocument.activeView.viewedRectangle.equals(this.sectionProperties.viewedRectangleOnMouseDown.toArray())) {
+				const diff = new lool.SimplePoint(
+					app.activeDocument.activeView.viewedRectangle.x1 - this.sectionProperties.viewedRectangleOnMouseDown.x1,
+					app.activeDocument.activeView.viewedRectangle.y1 - this.sectionProperties.viewedRectangleOnMouseDown.y1
+				);
+
+				this.setPosition(this.sectionProperties.initialPosition[0] + diff.pX, this.sectionProperties.initialPosition[1] + diff.pY);
+			}
+
 			if (this.sectionProperties.svg) {
 				this.sectionProperties.svg.style.left =
 					String(
@@ -1301,6 +1334,13 @@ class ShapeHandlesSection extends CanvasSectionObject {
 			);
 
 			this.showSVG();
+
+			if (!this.containerObject.isMouseInside()) {
+				position.pX += this.myTopLeft[0];
+				position.pY += this.myTopLeft[1];
+				app.map.fire('handleautoscroll', { pos: { x: position.cX, y: position.cY }, map: app.map });
+			}
+			else app.map.fire('scrollvelocity', { vx: 0, vy: 0 });
 		}
 	}
 
