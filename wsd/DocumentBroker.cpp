@@ -1732,7 +1732,7 @@ static std::string extractViewSettings(const std::string& viewSettingsPath,
                 {
                     LOG_INF("Migrating signature field [" << viewSettingKey << "] from user private info");
                     viewSettings->set(viewSettingKey, migratedValue);
-                    value = migratedValue;
+                    value = std::move(migratedValue);
                     return true;
                 }
             }
