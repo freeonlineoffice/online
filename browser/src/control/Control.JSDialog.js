@@ -812,21 +812,13 @@ window.L.Control.JSDialog = window.L.Control.extend({
 
 		if (app.calc.autoFilterCell) {
 			// This is an AutoFilterDialog. We have the row and column indexes. Get cell rectangle with this info.
-			cellRectangle =
-				app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
-					app.calc.autoFilterCell.column,
-					app.calc.autoFilterCell.row,
-					app.getScale(),
-				);
-		} else if (app.calc.pivotTableFilterCell) {
+			cellRectangle = app.map._docLayer.sheetGeometry.getCellSimpleRectangle(app.calc.autoFilterCell.column, app.calc.autoFilterCell.row);
+		}
+		else if (app.calc.pivotTableFilterCell) {
 			// This is a pivot table filter dialog. We have the row and column indexes. Get cell rectangle with this info.
-			cellRectangle =
-				app.map._docLayer.sheetGeometry.getCellSimpleRectangle(
-					app.calc.pivotTableFilterCell.column,
-					app.calc.pivotTableFilterCell.row,
-					app.getScale(),
-				);
-		} else {
+			cellRectangle = app.map._docLayer.sheetGeometry.getCellSimpleRectangle(app.calc.pivotTableFilterCell.column, app.calc.pivotTableFilterCell.row);
+		}
+		else {
 			// This is a Cell DropDown. We will use current cell's rectangle.
 			cellRectangle = app.calc.cellCursorRectangle.clone();
 		}
