@@ -32,7 +32,7 @@ class SelectionRectangle extends CanvasSectionObject {
 	}
 
 	public onMouseMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: Array<number>,
 		e: MouseEvent,
 	) {
@@ -47,12 +47,12 @@ class SelectionRectangle extends CanvasSectionObject {
 		}
 	}
 
-	public onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.positionOnMouseDown = null;
 		this.sectionProperties.selectionSize = null;
 	}
 
-	public onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	public onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		this.sectionProperties.positionOnMouseDown = point;
 	}
 
