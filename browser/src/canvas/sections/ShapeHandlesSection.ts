@@ -71,7 +71,6 @@ class ShapeHandlesSection extends CanvasSectionObject {
 		this.sectionProperties.handles = [];
 		this.sectionProperties.subSections = [];
 		this.sectionProperties.activeHandleIndex = null;
-		this.sectionProperties.mouseIsInside = false;
 		this.sectionProperties.handleWidth = 12 * app.dpiScale;
 		this.sectionProperties.handleHeight = 12 * app.dpiScale;
 		this.sectionProperties.anchorWidth = 20 * app.dpiScale;
@@ -930,11 +929,6 @@ class ShapeHandlesSection extends CanvasSectionObject {
 
 	onMouseEnter() {
 		this.context.canvas.style.cursor = 'move';
-		this.sectionProperties.mouseIsInside = true;
-	}
-
-	onMouseLeave() {
-		this.sectionProperties.mouseIsInside = false;
 	}
 
 	adjustSnapTransformCoordinate(x: number, y: number) {
