@@ -256,7 +256,7 @@ class SettingIframe {
 	init(): void {
 		this.initWindowVariables();
 		this.insertConfigSections();
-		void this.fetchAndPopulateSharedConfigs();
+		this.fetchAndPopulateSharedConfigs();
 		this.wordbook = (window as any).WordBook;
 	}
 
