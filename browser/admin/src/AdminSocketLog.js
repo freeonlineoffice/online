@@ -1,15 +1,22 @@
 /* -*- js-indent-level: 8 -*- */
 /*
-	Socket to be intialized on opening the log page in Admin console
-*/
-/* global Admin $ AdminSocketBase */
+ * SPDX-License-Identifier: MPL-2.0
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+/*
+ * Socket to be intialized on opening the log page in Admin console
+ */
+
+/* global Admin AdminSocketBase */
+
 var AdminSocketLog = AdminSocketBase.extend({
 	_logLines: '',
 
 	constructor: function (host) {
 		this.base(host);
-		// There is a "$" is never used error. Let's get rid of this. This is vanilla script and has not more lines than the one with JQuery.
-		$('#form-channel-list').id;
 	},
 
 	refreshLog: function () {
