@@ -21,7 +21,7 @@ class CursorHandler extends HTMLObjectSection {
 			app.CSections.CursorHandler.name,
 			CursorHandler.objectWidth,
 			CursorHandler.objectHeight,
-			new cool.SimplePoint(0, 0),
+			new lool.SimplePoint(0, 0),
 			'cursor-handler',
 			false,
 		);
@@ -37,7 +37,7 @@ class CursorHandler extends HTMLObjectSection {
 	}
 
 	onMouseMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: Array<number>,
 		e: MouseEvent,
 	): void {
@@ -59,7 +59,7 @@ class CursorHandler extends HTMLObjectSection {
 		}
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		if (
 			this.containerObject.isDraggingSomething() &&
 			this.containerObject.targetSection === this.name

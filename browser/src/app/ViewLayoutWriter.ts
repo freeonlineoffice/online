@@ -101,7 +101,7 @@ class ViewLayoutWriter extends ViewLayoutBase {
 	private unselectSelectedCommentIfAny() {
 		const commentSection = app.sectionContainer.getSectionWithName(
 			app.CSections.CommentList.name,
-		) as cool.CommentSection;
+		) as lool.CommentSection;
 
 		if (
 			commentSection.sectionProperties.selectedComment &&
