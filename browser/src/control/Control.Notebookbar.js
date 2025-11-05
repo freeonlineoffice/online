@@ -88,8 +88,9 @@ window.L.Control.Notebookbar = window.L.Control.extend({
 			.getElementById('document-container')
 			.classList.add('notebookbar-active');
 
-		var docLogoHeader = window.L.DomUtil.create('div', '');
-		docLogoHeader.id = 'document-header';
+		if (!window.logoURL || window.logoURL != "none") {
+			var docLogoHeader = window.L.DomUtil.create('div', '');
+			docLogoHeader.id = 'document-header';
 
 		var iconClass = 'document-logo';
 		var iconTooltip;
