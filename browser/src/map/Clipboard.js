@@ -1261,11 +1261,16 @@ window.L.Clipboard = window.L.Class.extend({
 				);
 				return;
 			}
-			this._navigatorClipboardGetTypeCallback(
-				clipboardContent,
-				blob,
-				'text/plain',
-			);
+			this._navigatorClipboardGetTypeCallback(clipboardContent, blob, 'text/plain');
+		} else if (clipboardContent.types.includes('image/png')) {
+			let blob;
+			try {
+				blob = await clipboardContent.getType('image/png');
+			} catch (error) {
+				window.app.console.log('clipboardContent.getType(image/png) failed: ' + error.message);
+				return;
+			}
+			this._navigatorClipboardGetTypeCallback(clipboardContent, blob, 'image/png');
 		} else {
 			window.app.console.log(
 				'navigator.clipboard has no text/html or text/plain',
