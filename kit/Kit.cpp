@@ -1598,10 +1598,9 @@ bool Document::forkToSave(const std::function<void()>& childSave, int viewId)
 
         Util::sleepFromEnvIfSet("KitBackgroundSave", "SLEEPBACKGROUNDFORDEBUGGER");
 
-#if !MOBILEAPP
         assert(!BgSaveWatchdog && "Unexpected to have BackgroundSaveWatchdog instance");
-        BgSaveWatchdog = std::make_unique<BackgroundSaveWatchdog>(_mobileAppDocId, Util::getThreadId());
-#endif
+        BgSaveWatchdog =
+            std::make_unique<BackgroundSaveWatchdog>(_mobileAppDocId, Util::getThreadId());
 
         UnitKit::get().postBackgroundSaveFork();
 
@@ -1693,7 +1692,7 @@ void Document::reapZombieChildren()
     }
 }
 
-#endif
+#endif // !MOBILEAPP
 
 namespace
 {
