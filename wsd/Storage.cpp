@@ -359,9 +359,8 @@ std::string LocalStorage::downloadStorageFileToLocal(const Authorization& /*auth
             && link(publicFilePath.c_str(), getRootFilePath().c_str()) == -1)
         {
             // Failed
-            LOG_INF("link(\"" << LOOLWSD::anonymizeUrl(publicFilePath) << "\", \""
-                              << getRootFilePathAnonym() << "\") failed. Will copy. Linking error: "
-                              << Util::symbolicErrno(errno) << ' ' << strerror(errno));
+            LOG_INF_SYS("link(\"" << LOOLWSD::anonymizeUrl(publicFilePath) << "\", \""
+                                  << getRootFilePathAnonym() << "\") failed. Will copy");
         }
     }
 
