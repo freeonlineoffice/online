@@ -1526,7 +1526,7 @@ std::string LocalServerSocket::bind()
         return std::string(&addrunix.sun_path[1]);
     }
 
-    LOG_SYS_ERRNO(last_errno, "Failed to bind to Unix socket at [" << &addrunix.sun_path[1] << ']');
+    LOG_ERR_ERRNO(last_errno, "Failed to bind to Unix socket at [" << &addrunix.sun_path[1] << ']');
     return std::string();
 }
 
