@@ -18,10 +18,22 @@ class ViewLayoutWriter extends ViewLayoutBase {
 
 	constructor() {
 		super();
-		app.map.on('zoomlevelschange', this.documentZoomOrResizeCallback, this);
+		app.map.on(
+			'zoomlevelschange',
+			this.documentZoomOrResizeCallback,
+			this,
+		);
 		app.map.on('resize', this.documentZoomOrResizeCallback, this);
-		app.map.on('deleteannotation', this.annotationOperationsCallback, this);
-		app.map.on('insertannotation', this.annotationOperationsCallback, this);
+		app.map.on(
+			'deleteannotation',
+			this.annotationOperationsCallback,
+			this,
+		);
+		app.map.on(
+			'insertannotation',
+			this.annotationOperationsCallback,
+			this,
+		);
 		app.map.on(
 			'showannotationschanged',
 			this.annotationOperationsCallback,
@@ -36,13 +48,16 @@ class ViewLayoutWriter extends ViewLayoutBase {
 
 		return {
 			documentMarginsWidth: commentSection.calculateAvailableSpace(),
-			commentSectionWidth: commentSection.sectionProperties.commentWidth,
+			commentSectionWidth:
+				commentSection.sectionProperties.commentWidth,
 		} as DocumentSpacingInfo;
 	}
 
 	private documentCanMoveLeft(ignoreDocumentScrollOffset: boolean) {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
-		const offset = ignoreDocumentScrollOffset ? 0 : this.documentScrollOffset;
+		const offset = ignoreDocumentScrollOffset
+			? 0
+			: this.documentScrollOffset;
 
 		const commentsWiderThanRightMargin =
 			spacingInfo.documentMarginsWidth + offset <
@@ -63,7 +78,8 @@ class ViewLayoutWriter extends ViewLayoutBase {
 	public viewHasEnoughSpaceToShowFullWidthComments() {
 		const spacingInfo = this.getCommentAndDocumentSpacingInfo();
 		return (
-			spacingInfo.documentMarginsWidth * 2 >= spacingInfo.commentSectionWidth
+			spacingInfo.documentMarginsWidth * 2 >=
+			spacingInfo.commentSectionWidth
 		);
 	}
 
