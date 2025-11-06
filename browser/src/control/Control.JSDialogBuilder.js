@@ -3002,14 +3002,16 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 		control.id = '';
 
 		buildFunc.bind(this)(temporaryParent, [data], false);
-		var backupGridSpan = control.style.gridColumn;
+		var backupGridColSpan = control.style.gridColumn;
+		var backupGridRowSpan = control.style.gridRow;
 
 		control.replaceWith(temporaryParent.firstChild);
 
 		var newControl = container.querySelector("[id='" + elementId + "']");
 		if (newControl) {
 			newControl.scrollTop = scrollTop;
-			newControl.style.gridColumn = backupGridSpan;
+			newControl.style.gridColumn = backupGridColSpan;
+			newControl.style.gridRow = backupGridRowSpan;
 
 			// todo: is that needed? should be in widget impl?
 			if (
@@ -3034,8 +3036,40 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 		});
 	},
 
-	postProcess: function (parent, data) {
-		if (!parent || !data || !data.id || data.id === '') return;
+	// Helper to compose the grid style for the row or column with span
+	_composeGridStyle: function(pos, size) {
+		let span, grid;
+		if (size) {
+			span = 'span ' + parseInt(size);
+		}
+		if (pos) {
+			grid = parseInt(pos) + 1;
+		}
+		if (span) {
+			if (grid) {
+				return grid + ' / ' + span;
+			}
+			return span;
+		}
+		return grid;
+	},
+
+	// Helper to set the grid styles for the row and column with span
+	_setGridStyles: function(control, data) {
+		let gridColumn = this._composeGridStyle(data.left, data.width);
+		if (gridColumn) {
+			control.style.gridColumn = gridColumn;
+		}
+
+		let gridRow = this._composeGridStyle(data.top, data.height);
+		if (gridRow) {
+			control.style.gridRow = gridRow;
+		}
+	},
+
+	postProcess: function(parent, data) {
+		if (!parent || !data || !data.id || data.id === '')
+			return;
 
 		var control = parent.querySelector("[id='" + data.id + "']");
 		if (data.visible === 'false' || data.visible === false) {
@@ -3045,8 +3079,8 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 				window.L.DomUtil.addClass(parent, 'hidden');
 		}
 
-		if (control && data.width) {
-			control.style.gridColumn = 'span ' + parseInt(data.width);
+		if (control) {
+			this._setGridStyles(control, data);
 		}
 
 		// natural tab-order when using keyboard navigation
@@ -3191,10 +3225,7 @@ window.L.Control.JSDialogBuilder = window.L.Control.extend({
 				$(table).addClass('ui-grid-cell');
 
 				// if 'table' has no id - postprocess won't work...
-				if (childData.width) {
-					table.style.gridColumn =
-						'span ' + parseInt(childData.width);
-				}
+				this._setGridStyles(table, childData);
 
 				var childObject = table;
 
