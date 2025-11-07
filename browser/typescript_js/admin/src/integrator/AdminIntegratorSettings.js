@@ -142,9 +142,13 @@ var defaultBrowserSetting = {
 var SettingIframe = /** @class */ (function () {
     function SettingIframe() {
         var _this = this;
+        this.xcuInitializationAttempted = false;
         this._viewSettingLabels = {
             accessibilityState: _('Accessibility'),
             zoteroAPIKey: 'Zotero',
+            signatureCert: _('Signature Certificate'),
+            signatureKey: _('Signature Key'),
+            signatureCa: _('Signature CA'),
         };
         this.settingLabels = {
             darkTheme: _('Dark Mode'),
@@ -239,7 +243,7 @@ var SettingIframe = /** @class */ (function () {
     SettingIframe.prototype.init = function () {
         this.initWindowVariables();
         this.insertConfigSections();
-        void this.fetchAndPopulateSharedConfigs();
+        this.fetchAndPopulateSharedConfigs();
         this.wordbook = window.WordBook;
     };
     SettingIframe.prototype.uploadXcuFile = function (filename, content) {
@@ -507,6 +511,21 @@ var SettingIframe = /** @class */ (function () {
             onChangeHandler(inputEl);
         });
         return inputEl;
+    };
+    SettingIframe.prototype.createTextArea = function (id, placeholder, text, onChangeHandler) {
+        if (placeholder === void 0) { placeholder = ''; }
+        if (text === void 0) { text = ''; }
+        if (onChangeHandler === void 0) { onChangeHandler = function (textarea) { }; }
+        var textareaEl = document.createElement('textarea');
+        textareaEl.id = id;
+        textareaEl.value = text.replace(/\\n/g, '\n');
+        textareaEl.placeholder = placeholder;
+        textareaEl.classList.add('dic-input-container', 'signature-textarea');
+        textareaEl.rows = 6;
+        textareaEl.addEventListener('change', function () {
+            onChangeHandler(textareaEl);
+        });
+        return textareaEl;
     };
     SettingIframe.prototype.createButton = function (id, text) {
         var buttonEl = document.createElement('button');
@@ -1107,6 +1126,7 @@ var SettingIframe = /** @class */ (function () {
         return extraActionsDiv;
     };
     SettingIframe.prototype.generateViewSettingUI = function (data) {
+        var _a;
         this._viewSetting = data;
         var settingsContainer = document.getElementById('allConfigSection');
         if (!settingsContainer) {
@@ -1128,16 +1148,52 @@ var SettingIframe = /** @class */ (function () {
         fieldset.classList.add('view-settings-fieldset');
         divContainer.appendChild(fieldset);
         fieldset.appendChild(this.createLegend(_('Option')));
-        for (var key in data) {
+        var allViewSettingsKeys = [
+            'accessibilityState',
+            'zoteroAPIKey',
+            'signatureCert',
+            'signatureKey',
+            'signatureCa',
+        ];
+        for (var _i = 0, allViewSettingsKeys_1 = allViewSettingsKeys; _i < allViewSettingsKeys_1.length; _i++) {
+            var key = allViewSettingsKeys_1[_i];
             var label = this._viewSettingLabels[key];
             if (!label) {
                 continue;
             }
-            if (typeof data[key] === 'boolean') {
+            var value = (_a = data[key]) !== null && _a !== void 0 ? _a : (typeof data[key] === 'boolean' ? false : '');
+            if (typeof value === 'boolean') {
                 fieldset.appendChild(this.createViewSettingCheckbox(key, data, label));
             }
-            else if (typeof data[key] === 'string') {
-                fieldset.appendChild(this.createViewSettingsTextBox(key, data));
+            else if (typeof value === 'string') {
+                // Add Zotero section with description
+                if (key === 'zoteroAPIKey') {
+                    fieldset.appendChild(this.createHeading('Zotero'));
+                    var zoteroDescription = this.createParagraph(_('To use Zotero specify your API key here. You can create your API key in your '));
+                    zoteroDescription.className =
+                        'view-setting-description';
+                    var zoteroAccountLink = document.createElement('a');
+                    zoteroAccountLink.href =
+                        'https://www.zotero.org/settings/keys';
+                    zoteroAccountLink.target = '_blank';
+                    zoteroAccountLink.textContent = _('Zotero account API settings');
+                    zoteroDescription.appendChild(zoteroAccountLink);
+                    fieldset.appendChild(zoteroDescription);
+                    fieldset.appendChild(this.createViewSettingsTextBox(key, data, true));
+                }
+                // Add Document Signing section with description (only once for first field)
+                else if (key === 'signatureCert') {
+                    fieldset.appendChild(this.createHeading(_('Document Signing')));
+                    var signingDesc = document.createElement('p');
+                    signingDesc.className = 'view-setting-description';
+                    signingDesc.textContent = _('To use document signing, specify your signing certificate, key and CA chain here.');
+                    fieldset.appendChild(signingDesc);
+                    fieldset.appendChild(this.createViewSettingsTextBox(key, data, false, true));
+                }
+                // Add remaining signature fields with smaller labels
+                else if (key === 'signatureKey' || key === 'signatureCa') {
+                    fieldset.appendChild(this.createViewSettingsTextBox(key, data, false, true));
+                }
             }
         }
         viewContainer.appendChild(this.createViewSettingActions());
@@ -1148,13 +1204,12 @@ var SettingIframe = /** @class */ (function () {
         legend.textContent = text;
         return legend;
     };
-    SettingIframe.prototype.createViewSettingsTextBox = function (key, data) {
+    SettingIframe.prototype.createViewSettingsTextBox = function (key, data, skipHeading, isSmallHeading) {
+        if (skipHeading === void 0) { skipHeading = false; }
+        if (isSmallHeading === void 0) { isSmallHeading = false; }
         var text = data[key];
-        var result = document.createElement('div');
-        if (key === 'zoteroAPIKey') {
-            result = this.createZoteroConfig(text, data);
-        }
-        return result;
+        var label = this._viewSettingLabels[key] || key;
+        return this.createInputField(key, label, text, data, skipHeading, isSmallHeading);
     };
     SettingIframe.prototype.createViewSettingCheckbox = function (key, data, label) {
         var _this = this;
@@ -1180,53 +1235,16 @@ var SettingIframe = /** @class */ (function () {
     };
     SettingIframe.prototype.createViewSettingActions = function () {
         var _this = this;
-        var actionsContainer = document.createElement('div');
-        actionsContainer.classList.add('xcu-editor-actions');
-        var resetButton = this.createButtonWithIcon('xcu-reset-button', 'reset', // Use icon key
-        _('Reset to default View settings'), ['button--vue-secondary', 'xcu-reset-icon'], function (button) { return __awaiter(_this, void 0, void 0, function () {
-            var confirmed, defaultViewSetting;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        confirmed = window.confirm(_('Are you sure you want to reset View Settings?'));
-                        if (!confirmed) {
-                            return [2 /*return*/];
-                        }
-                        button.disabled = true;
-                        defaultViewSetting = {
-                            accessibilityState: false,
-                            zoteroAPIKey: '',
-                        };
-                        return [4 /*yield*/, this.uploadViewSettingFile('viewsetting.json', JSON.stringify(defaultViewSetting))];
-                    case 1:
-                        _a.sent();
-                        button.disabled = false;
-                        return [2 /*return*/];
-                }
-            });
-        }); }, true);
-        actionsContainer.appendChild(resetButton);
-        var saveButton = this.createButtonWithText('xcu-save-button', _('Save'), _('Save View Settings'), ['button-primary'], function (button) { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        button.disabled = true;
-                        return [4 /*yield*/, this.uploadViewSettingFile('viewsetting.json', JSON.stringify(this._viewSetting))];
-                    case 1:
-                        _a.sent();
-                        button.disabled = false;
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        actionsContainer.appendChild(saveButton);
-        return actionsContainer;
+        return this.createSettingsActions('viewsettings', 'View Settings', 'viewsetting.json', function () { return _this.getDefaultViewSettings(); }, function () { return _this._viewSetting; }, function (settings) {
+            return _this.uploadViewSettingFile('viewsetting.json', JSON.stringify(settings));
+        });
     };
     SettingIframe.prototype.populateSharedConfigUI = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var browserSettingButton, xcuSettingButton, fileId, fetchContent, defaultViewSetting, fileId, browserSettingContent, settingsContainer, fileId, xcuFileContent, existingXcuSection, xcuContainer;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var browserSettingButton, xcuSettingButton, fileId, fetchContent, loadedSettings, defaultViewSetting, mergedSettings, defaultViewSetting, fileId, browserSettingContent, settingsContainer, fileId, xcuFileContent, existingXcuSection, xcuContainer, error_6;
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         browserSettingButton = document.getElementById('uploadBrowserSettingsButton');
                         if (browserSettingButton) {
@@ -1251,33 +1269,34 @@ var SettingIframe = /** @class */ (function () {
                         fileId = data.viewsetting[0].uri;
                         return [4 /*yield*/, this.fetchSettingFile(fileId)];
                     case 1:
-                        fetchContent = _a.sent();
-                        if (fetchContent)
-                            this.generateViewSettingUI(JSON.parse(fetchContent));
+                        fetchContent = _c.sent();
+                        if (fetchContent) {
+                            loadedSettings = JSON.parse(fetchContent);
+                            defaultViewSetting = this.getDefaultViewSettings();
+                            mergedSettings = __assign(__assign({}, defaultViewSetting), loadedSettings);
+                            this.generateViewSettingUI(mergedSettings);
+                        }
                         return [3 /*break*/, 3];
                     case 2:
-                        defaultViewSetting = {
-                            accessibilityState: false,
-                            zoteroAPIKey: '',
-                        };
+                        defaultViewSetting = this.getDefaultViewSettings();
                         this.generateViewSettingUI(defaultViewSetting);
-                        _a.label = 3;
+                        _c.label = 3;
                     case 3:
                         if (!(data.browsersetting && data.browsersetting.length > 0)) return [3 /*break*/, 5];
                         fileId = data.browsersetting[0].uri;
                         return [4 /*yield*/, this.fetchSettingFile(fileId)];
                     case 4:
-                        browserSettingContent = _a.sent();
+                        browserSettingContent = _c.sent();
                         this.browserSettingOptions = browserSettingContent
                             ? this.mergeWithDefault(defaultBrowserSetting, JSON.parse(browserSettingContent))
                             : defaultBrowserSetting;
                         return [3 /*break*/, 6];
                     case 5:
                         this.browserSettingOptions = defaultBrowserSetting;
-                        _a.label = 6;
+                        _c.label = 6;
                     case 6:
                         this.createBrowserSettingForm(document.getElementById('allConfigSection'));
-                        _a.label = 7;
+                        _c.label = 7;
                     case 7:
                         settingsContainer = document.getElementById('allConfigSection');
                         if (!settingsContainer)
@@ -1286,7 +1305,7 @@ var SettingIframe = /** @class */ (function () {
                         fileId = data.xcu[0].uri;
                         return [4 /*yield*/, this.fetchSettingFile(fileId)];
                     case 8:
-                        xcuFileContent = _a.sent();
+                        xcuFileContent = _c.sent();
                         this.xcuEditor = new window.Xcu(this.getFilename(fileId, false), xcuFileContent);
                         existingXcuSection = document.getElementById('xcu-section');
                         if (existingXcuSection) {
@@ -1296,14 +1315,28 @@ var SettingIframe = /** @class */ (function () {
                         xcuContainer.id = 'xcu-section';
                         xcuContainer.classList.add('section');
                         settingsContainer.appendChild(this.xcuEditor.createXcuEditorUI(xcuContainer));
-                        return [3 /*break*/, 11];
+                        return [3 /*break*/, 15];
                     case 9:
-                        // If user doesn't have any xcu file, we generate with default settings...
+                        _c.trys.push([9, 14, , 15]);
+                        if (!!this.xcuInitializationAttempted) return [3 /*break*/, 12];
+                        this.xcuInitializationAttempted = true;
                         this.xcuEditor = new window.Xcu('documentView.xcu', null);
-                        this.xcuEditor.generateXcuAndUpload();
+                        return [4 /*yield*/, this.xcuEditor.generateXcuAndUpload()];
+                    case 10:
+                        _c.sent();
                         return [4 /*yield*/, this.fetchAndPopulateSharedConfigs()];
-                    case 10: return [2 /*return*/, _a.sent()];
-                    case 11:
+                    case 11: return [2 /*return*/, _c.sent()];
+                    case 12:
+                        (_a = document.getElementById('xcu-section')) === null || _a === void 0 ? void 0 : _a.remove();
+                        console.warn('XCU file not found and automatic creation failed.');
+                        _c.label = 13;
+                    case 13: return [3 /*break*/, 15];
+                    case 14:
+                        error_6 = _c.sent();
+                        console.error('Something went wrong while generating or uploading xcu file:', error_6);
+                        (_b = document.getElementById('xcu-section')) === null || _b === void 0 ? void 0 : _b.remove();
+                        return [3 /*break*/, 15];
+                    case 15:
                         if (data.autotext)
                             this.populateList('autotextList', data.autotext, '/autotext');
                         if (data.wordbook)
@@ -1340,17 +1373,91 @@ var SettingIframe = /** @class */ (function () {
         }
         return result;
     };
-    SettingIframe.prototype.createZoteroConfig = function (APIKey, data) {
-        if (APIKey === void 0) { APIKey = ''; }
-        var zoteroContainer = document.createElement('div');
-        zoteroContainer.id = 'zoterocontainer';
-        zoteroContainer.classList.add('section');
-        zoteroContainer.appendChild(this.createHeading('Zotero'));
-        var zotero = this.createTextInput('zotero', _('Enter Zotero API Key'), APIKey, function (input) {
-            data['zoteroAPIKey'] = input.value;
-        });
-        zoteroContainer.appendChild(zotero);
-        return zoteroContainer;
+    SettingIframe.prototype.createInputField = function (key, label, value, data, skipHeading, isSmallHeading) {
+        if (value === void 0) { value = ''; }
+        if (skipHeading === void 0) { skipHeading = false; }
+        if (isSmallHeading === void 0) { isSmallHeading = false; }
+        var container = document.createElement('div');
+        container.id = "".concat(key, "container");
+        container.classList.add('view-input-container');
+        // Add heading unless skipped
+        if (!skipHeading) {
+            var heading = this.createHeading(label);
+            if (isSmallHeading) {
+                heading.classList.add('view-setting-small-label');
+            }
+            container.appendChild(heading);
+        }
+        var isSignatureField = [
+            'signatureCert',
+            'signatureKey',
+            'signatureCa',
+        ].includes(key);
+        if (isSignatureField) {
+            var textarea = this.createTextArea(key, _("Enter ".concat(label)), value, function (textareaElement) {
+                data[key] = textareaElement.value;
+            });
+            container.appendChild(textarea);
+        }
+        else {
+            var input = this.createTextInput(key, _("Enter ".concat(label)), value, function (inputElement) {
+                data[key] = inputElement.value;
+            });
+            container.appendChild(input);
+        }
+        return container;
+    };
+    SettingIframe.prototype.createSettingsActions = function (prefix, settingsName, filename, getDefaultSettings, getCurrentSettings, uploadSettings) {
+        var _this = this;
+        var actionsContainer = document.createElement('div');
+        actionsContainer.classList.add('xcu-editor-actions');
+        var resetButton = this.createButtonWithIcon("".concat(prefix, "-reset-button"), 'reset', _("Reset to default ".concat(settingsName)), ['button--vue-secondary', "".concat(prefix, "-reset-icon")], function (button) { return __awaiter(_this, void 0, void 0, function () {
+            var confirmed, defaultSettings;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        confirmed = window.confirm(_("Are you sure you want to reset ".concat(settingsName, "?")));
+                        if (!confirmed) {
+                            return [2 /*return*/];
+                        }
+                        button.disabled = true;
+                        defaultSettings = getDefaultSettings();
+                        return [4 /*yield*/, uploadSettings(defaultSettings)];
+                    case 1:
+                        _a.sent();
+                        button.disabled = false;
+                        return [2 /*return*/];
+                }
+            });
+        }); }, true);
+        actionsContainer.appendChild(resetButton);
+        var saveButton = this.createButtonWithText("".concat(prefix, "-save-button"), _('Save'), _("Save ".concat(settingsName)), ['button-primary'], function (button) { return __awaiter(_this, void 0, void 0, function () {
+            var currentSettings;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        button.disabled = true;
+                        currentSettings = getCurrentSettings();
+                        console.log("".concat(settingsName, " - Current settings being saved:"), currentSettings);
+                        return [4 /*yield*/, uploadSettings(currentSettings)];
+                    case 1:
+                        _a.sent();
+                        button.disabled = false;
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        actionsContainer.appendChild(saveButton);
+        return actionsContainer;
+    };
+    SettingIframe.prototype.getDefaultViewSettings = function () {
+        return {
+            accessibilityState: false,
+            zoteroAPIKey: '',
+            signatureCert: '',
+            signatureKey: '',
+            signatureCa: '',
+        };
     };
     SettingIframe.prototype.getConfigType = function () {
         return this.isAdmin() ? 'systemconfig' : 'userconfig';
