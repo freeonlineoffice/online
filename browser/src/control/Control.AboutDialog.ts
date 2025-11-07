@@ -262,10 +262,19 @@ class AboutDialog {
 			'LOOLWSD version',
 			this.getVersionInfoFromClass?.('loolwsd-version'),
 		);
-		addLine('LOKit version', this.getVersionInfoFromClass?.('lokit-version'));
+		addLine(
+			'LOKit version',
+			this.getVersionInfoFromClass?.('lokit-version'),
+		);
 		addLine('Served by', document.getElementById('os-info')?.innerText);
-		addLine('Server ID', document.getElementById('loolwsd-id')?.innerText);
-		addLine('WOPI host', document.getElementById('wopi-host-id')?.innerText);
+		addLine(
+			'Server ID',
+			document.getElementById('loolwsd-id')?.innerText,
+		);
+		addLine(
+			'WOPI host',
+			document.getElementById('wopi-host-id')?.innerText,
+		);
 
 		text = text.replace(/\u00A0/g, ' ');
 
