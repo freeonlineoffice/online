@@ -24,10 +24,10 @@ class MouseControl extends CanvasSectionObject {
 
 	mouseMoveTimer: any | null = null;
 	clickTimer: any | null = null;
-	currentPosition: cool.SimplePoint = new cool.SimplePoint(0, 0);
+	currentPosition: lool.SimplePoint = new lool.SimplePoint(0, 0);
 	clickCount: number = 0;
-	positionOnMouseDown: cool.SimplePoint | null = null;
-	localPositionOnMouseDown: cool.SimplePoint | null = null;
+	positionOnMouseDown: lool.SimplePoint | null = null;
+	localPositionOnMouseDown: lool.SimplePoint | null = null;
 	mouseDownSent: boolean = false;
 
 	inSwipeAction: boolean = false;
@@ -35,7 +35,7 @@ class MouseControl extends CanvasSectionObject {
 	swipeTimeStamp: number = 0;
 	amplitude: number[] = [0, 0];
 	touchstart: number = 0;
-	previousViewedRectangle: cool.SimpleRectangle | null = null; // To check if we hit the borders of document.
+	previousViewedRectangle: lool.SimpleRectangle | null = null; // To check if we hit the borders of document.
 
 	pinchStartCenter: any;
 	zoom: any;
@@ -60,13 +60,14 @@ class MouseControl extends CanvasSectionObject {
 	private readButtons(e: MouseEvent) {
 		let buttons = 0;
 		buttons |= e.button === app.JSButtons.left ? app.LOButtons.left : 0;
-		buttons |= e.button === app.JSButtons.middle ? app.LOButtons.middle : 0;
+		buttons |=
+			e.button === app.JSButtons.middle ? app.LOButtons.middle : 0;
 		buttons |= e.button === app.JSButtons.right ? app.LOButtons.right : 0;
 
 		return buttons;
 	}
 
-	public onContextMenu(point: cool.SimplePoint, e: MouseEvent): void {
+	public onContextMenu(point: lool.SimplePoint, e: MouseEvent): void {
 		// We need this to prevent native context menu.
 		e.preventDefault();
 
@@ -90,7 +91,8 @@ class MouseControl extends CanvasSectionObject {
 
 	// Gets the mouse position on browser page in CSS pixels.
 	public getMousePagePosition() {
-		const boundingClientRectangle = this.context.canvas.getBoundingClientRect();
+		const boundingClientRectangle =
+			this.context.canvas.getBoundingClientRect();
 		const pagePosition = this.currentPosition.clone();
 		pagePosition.pX -=
 			app.activeDocument.activeView.viewedRectangle.pX1 -
@@ -105,11 +107,11 @@ class MouseControl extends CanvasSectionObject {
 	}
 
 	// This useful when a section handles the event but wants to set the document mouse position.
-	public setMousePosition(point: cool.SimplePoint) {
+	public setMousePosition(point: lool.SimplePoint) {
 		this.currentPosition = point.clone();
 	}
 
-	private refreshPosition(point: cool.SimplePoint) {
+	private refreshPosition(point: lool.SimplePoint) {
 		this.currentPosition.pX =
 			app.activeDocument.activeView.viewedRectangle.pX1 + point.pX;
 		this.currentPosition.pY =
@@ -142,18 +144,26 @@ class MouseControl extends CanvasSectionObject {
 			if (textCursor) {
 				const change =
 					this.context.canvas.style.cursor !== 'text' ||
-					this.context.canvas.classList.contains('spreadsheet-cursor');
+					this.context.canvas.classList.contains(
+						'spreadsheet-cursor',
+					);
 				if (change) {
-					this.context.canvas.classList.remove('spreadsheet-cursor');
+					this.context.canvas.classList.remove(
+						'spreadsheet-cursor',
+					);
 					this.context.canvas.style.cursor = 'text';
 				}
 			} else {
 				const change =
 					this.context.canvas.style.cursor !== '' ||
-					!this.context.canvas.classList.contains('spreadsheet-cursor');
+					!this.context.canvas.classList.contains(
+						'spreadsheet-cursor',
+					);
 				if (change) {
 					this.context.canvas.style.cursor = '';
-					this.context.canvas.classList.add('spreadsheet-cursor');
+					this.context.canvas.classList.add(
+						'spreadsheet-cursor',
+					);
 				}
 			}
 		}
@@ -176,8 +186,10 @@ class MouseControl extends CanvasSectionObject {
 
 			if (Math.abs(delta[0]) > 0.2 || Math.abs(delta[1]) > 0.2) {
 				app.activeDocument.activeView.scrollTo(
-					app.activeDocument.activeView.viewedRectangle.pX1 + delta[0],
-					app.activeDocument.activeView.viewedRectangle.pY1 + delta[1],
+					app.activeDocument.activeView.viewedRectangle.pX1 +
+						delta[0],
+					app.activeDocument.activeView.viewedRectangle.pY1 +
+						delta[1],
 				);
 				app.sectionContainer.requestReDraw();
 
@@ -218,10 +230,14 @@ class MouseControl extends CanvasSectionObject {
 			this.inSwipeAction = true;
 		}
 
-		this.amplitude = [this.swipeVelocity[0] * 0.1, this.swipeVelocity[1] * 0.1];
+		this.amplitude = [
+			this.swipeVelocity[0] * 0.1,
+			this.swipeVelocity[1] * 0.1,
+		];
 		this.swipeTimeStamp = Date.now();
 
-		const animatingSection = this.containerObject.getAnimatingSectionName();
+		const animatingSection =
+			this.containerObject.getAnimatingSectionName();
 
 		if (!animatingSection) this.startAnimating({ defer: true });
 
@@ -229,7 +245,7 @@ class MouseControl extends CanvasSectionObject {
 	}
 
 	public onMouseMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: Array<number>,
 		e: MouseEvent,
 	): void {
@@ -294,7 +310,7 @@ class MouseControl extends CanvasSectionObject {
 		app.idleHandler.notifyActive();
 	}
 
-	onMouseDown(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseDown(point: lool.SimplePoint, e: MouseEvent): void {
 		this.refreshPosition(point);
 		this.positionOnMouseDown = this.currentPosition.clone();
 
@@ -305,7 +321,7 @@ class MouseControl extends CanvasSectionObject {
 		}
 	}
 
-	onMouseUp(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseUp(point: lool.SimplePoint, e: MouseEvent): void {
 		this.refreshPosition(point);
 
 		if (this.mouseDownSent) {
@@ -321,13 +337,16 @@ class MouseControl extends CanvasSectionObject {
 			app.map.fire('scrollvelocity', { vx: 0, vy: 0 });
 		} else if (e.type === 'touchend' && this.localPositionOnMouseDown) {
 			// For swipe action.
-			const diff = new cool.SimplePoint(
+			const diff = new lool.SimplePoint(
 				this.localPositionOnMouseDown.x - point.x,
 				this.localPositionOnMouseDown.y - point.y,
 			);
 			const timeDiff = Date.now() - this.touchstart;
 
-			if (timeDiff < 200 && (Math.abs(diff.cX) > 5 || Math.abs(diff.cY) > 5))
+			if (
+				timeDiff < 200 &&
+				(Math.abs(diff.cX) > 5 || Math.abs(diff.cY) > 5)
+			)
 				this.swipe({ velocityX: diff.pX, velocityY: diff.pY });
 			else if (this.inSwipeAction) this.cancelSwipe();
 
@@ -340,14 +359,14 @@ class MouseControl extends CanvasSectionObject {
 		if (this.containerObject.isDraggingSomething()) app.map.focus();
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent): void {
 		if (app.map._docLayer._docType === 'spreadsheet') {
 			this.context.canvas.classList.add('spreadsheet-cursor');
 		}
 		this.context.canvas.style.cursor = '';
 	}
 
-	onMouseLeave(point: cool.SimplePoint, e: MouseEvent): void {
+	onMouseLeave(point: lool.SimplePoint, e: MouseEvent): void {
 		// Normally, we don't change the cursor style on mouse leave.
 		// That is responsibility of the new target section.
 		// But this is a class name and we need to remove it.
@@ -369,14 +388,15 @@ class MouseControl extends CanvasSectionObject {
 		} else return false;
 	}
 
-	onClick(point: cool.SimplePoint, e: MouseEvent): void {
+	onClick(point: lool.SimplePoint, e: MouseEvent): void {
 		app.map.fire('closepopups');
 		app.map.fire('editorgotfocus');
 
 		this.refreshPosition(point);
 		this.clickCount++;
 
-		if (!(<any>window).mode.isDesktop()) app.map.fire('closemobilewizard');
+		if (!(<any>window).mode.isDesktop())
+			app.map.fire('closemobilewizard');
 
 		let buttons = this.readButtons(e);
 		let modifier = this.readModifier(e);
@@ -384,7 +404,10 @@ class MouseControl extends CanvasSectionObject {
 
 		// Turn ctrl-left-click into right-click for browsers on macOS
 		if (window.L.Browser.mac) {
-			if (modifier == app.UNOModifier.CTRL && buttons == app.LOButtons.left) {
+			if (
+				modifier == app.UNOModifier.CTRL &&
+				buttons == app.LOButtons.left
+			) {
 				modifier = 0;
 				buttons = app.LOButtons.right;
 			}
@@ -471,7 +494,7 @@ class MouseControl extends CanvasSectionObject {
 	}
 
 	onMultiTouchMove(
-		point: cool.SimplePoint,
+		point: lool.SimplePoint,
 		dragDistance: number,
 		e: TouchEvent,
 	): void {
@@ -482,7 +505,8 @@ class MouseControl extends CanvasSectionObject {
 			(e.touches[0].clientY + e.touches[1].clientY) * 0.5,
 		);
 
-		if (!this.pinchStartCenter || isNaN(centerX) || isNaN(centerY)) return;
+		if (!this.pinchStartCenter || isNaN(centerX) || isNaN(centerY))
+			return;
 
 		// we need to invert the offset or the map is moved in the opposite direction
 		var offset = {
@@ -538,7 +562,7 @@ class MouseControl extends CanvasSectionObject {
 		}
 	}
 
-	onDrop(position: cool.SimplePoint, e: DragEvent): void {
+	onDrop(position: lool.SimplePoint, e: DragEvent): void {
 		this.refreshPosition(position);
 
 		const buttons = this.readButtons(e);
