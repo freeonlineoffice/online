@@ -1692,12 +1692,17 @@ class SettingIframe {
 			try {
 				if (!this.xcuInitializationAttempted) {
 					this.xcuInitializationAttempted = true;
-					this.xcuEditor = new (window as any).Xcu('documentView.xcu', null);
+					this.xcuEditor = new (window as any).Xcu(
+						'documentView.xcu',
+						null,
+					);
 					await this.xcuEditor.generateXcuAndUpload();
 					return await this.fetchAndPopulateSharedConfigs();
 				} else {
 					document.getElementById('xcu-section')?.remove();
-					console.warn('XCU file not found and automatic creation failed.');
+					console.warn(
+						'XCU file not found and automatic creation failed.',
+					);
 				}
 			} catch (error) {
 				console.error(
