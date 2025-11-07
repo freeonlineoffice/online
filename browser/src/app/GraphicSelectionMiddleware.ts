@@ -260,7 +260,8 @@ class GraphicSelection {
 				app.map._cacheSVG[extraInfo.id] = undefined;
 			else this.handlesSection.setSVG(textMsg);
 
-			if (!app.file.textCursor.visible) this.handlesSection.interactable = true;
+			if (!app.file.textCursor.visible)
+				this.handlesSection.interactable = true;
 		}
 	}
 
@@ -456,7 +457,8 @@ class GraphicSelection {
 	*/
 	public static onTextCursorVisibility(event: any) {
 		if (this.hasActiveSelection()) {
-			if (event.detail.visible) this.handlesSection.interactable = false;
+			if (event.detail.visible)
+				this.handlesSection.interactable = false;
 			else this.handlesSection.interactable = true;
 		}
 	}

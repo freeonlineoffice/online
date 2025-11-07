@@ -96,10 +96,14 @@ class ServerCommand {
 				this.selectedPart = parseInt(tokens[i].substring(8));
 			} else if (tokens[i].substring(0, 3) === 'id=') {
 				// remove newline characters
-				this.id = tokens[i].substring(3).replace(/(\r\n|\n|\r)/gm, '');
+				this.id = tokens[i]
+					.substring(3)
+					.replace(/(\r\n|\n|\r)/gm, '');
 			} else if (tokens[i].substring(0, 5) === 'type=') {
 				// remove newline characters
-				this.type = tokens[i].substring(5).replace(/(\r\n|\n|\r)/gm, '');
+				this.type = tokens[i]
+					.substring(5)
+					.replace(/(\r\n|\n|\r)/gm, '');
 			} else if (tokens[i].substring(0, 4) === 'cmd=') {
 				this.errorCmd = tokens[i].substring(4);
 			} else if (tokens[i].substring(0, 5) === 'code=') {
@@ -144,10 +148,14 @@ class ServerCommand {
 				this.rectangle = tokens[i].substring(10);
 			} else if (tokens[i].substring(0, 12) === 'hiddenparts=') {
 				const hiddenparts = tokens[i].substring(12).split(',');
-				this.hiddenparts = hiddenparts.map((item: string) => parseInt(item));
+				this.hiddenparts = hiddenparts.map((item: string) =>
+					parseInt(item),
+				);
 			} else if (tokens[i].startsWith('rtlparts=')) {
 				const rtlParts = tokens[i].substring(9).split(',');
-				this.rtlParts = rtlParts.map((item: string) => parseInt(item));
+				this.rtlParts = rtlParts.map((item: string) =>
+					parseInt(item),
+				);
 			} else if (tokens[i].startsWith('protectedparts=')) {
 				const protectedParts = tokens[i].substring(15).split(',');
 				this.protectedParts = protectedParts.map((item: string) =>
@@ -160,7 +168,9 @@ class ServerCommand {
 			} else if (tokens[i].substring(0, 9) === 'username=') {
 				this.username = tokens[i].substring(9);
 			} else if (tokens[i].startsWith('pagerectangles=')) {
-				const pageRectangleList = tokens[i].substring(15).split(';');
+				const pageRectangleList = tokens[i]
+					.substring(15)
+					.split(';');
 				this.pageRectangleList = pageRectangleList.map(function (
 					rect: string,
 				): number[] {
@@ -182,10 +192,13 @@ class ServerCommand {
 		}
 		if (this.tileWidth && this.tileHeight && map._docLayer) {
 			const defaultZoom = map.options.zoom;
-			const scale = this.tileWidth / map._docLayer.options.tileWidthTwips;
+			const scale =
+				this.tileWidth / map._docLayer.options.tileWidthTwips;
 			// scale = 1.2 ^ (defaultZoom - zoom)
 			// zoom = defaultZoom -log(scale) / log(1.2)
-			this.zoom = Math.round(defaultZoom - Math.log(scale) / Math.log(1.2));
+			this.zoom = Math.round(
+				defaultZoom - Math.log(scale) / Math.log(1.2),
+			);
 		}
 	}
 }

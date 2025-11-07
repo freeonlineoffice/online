@@ -52,8 +52,10 @@ class CursorHandler extends HTMLObjectSection {
 				this.sectionProperties.lastPosition = this.position.slice();
 			else {
 				this.setPosition(
-					this.sectionProperties.lastPosition[0] + dragDistance[0],
-					this.sectionProperties.lastPosition[1] + dragDistance[1],
+					this.sectionProperties.lastPosition[0] +
+						dragDistance[0],
+					this.sectionProperties.lastPosition[1] +
+						dragDistance[1],
 				);
 			}
 		}

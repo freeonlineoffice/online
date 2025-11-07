@@ -145,12 +145,16 @@ class SocketBase {
 			// With the MobileSocket we definitely do - this is load-bearing for opening password protected documents
 		} else {
 			try {
-				this.socket = window.createWebSocket(this.getWebSocketBaseURI(map));
+				this.socket = window.createWebSocket(
+					this.getWebSocketBaseURI(map),
+				);
 				window.socket = this.socket;
 			} catch (e) {
 				this._map.fire('error', {
 					msg:
-						_('Oops, there is a problem connecting to {productname}: ').replace(
+						_(
+							'Oops, there is a problem connecting to {productname}: ',
+						).replace(
 							'{productname}',
 							typeof brandProductName !== 'undefined'
 								? brandProductName
