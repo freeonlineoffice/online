@@ -58,7 +58,7 @@ class ShapeHandleCustomSubSection extends CanvasSectionObject {
 		);
 	}
 
-	onMouseEnter(point: cool.SimplePoint, e: MouseEvent) {
+	onMouseEnter(point: lool.SimplePoint, e: MouseEvent) {
 		this.context.canvas.style.cursor = this.sectionProperties.mousePointerType;
 	}
 
