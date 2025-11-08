@@ -246,7 +246,8 @@ public:
 
     void saveTileAndNotify(const TileDesc& tile, const char* data, size_t size);
 
-    enum StreamType : std::uint8_t {
+    enum StreamType : std::uint8_t
+    {
         Font,
         Style,
         CmdValues,
