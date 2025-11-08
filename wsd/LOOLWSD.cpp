@@ -118,9 +118,10 @@ int ClientPortNumber = 0;
 /// UDS address for kits to connect to.
 std::string MasterLocation;
 
+std::string LOOLWSD::BuyProductUrl;
 std::string LOOLWSD::LatestVersion;
 std::mutex LOOLWSD::FetchUpdateMutex;
-std::shared_ptr<http::Session> FetchHttpSession;
+std::mutex LOOLWSD::RemoteConfigMutex;
 #endif
 
 /// The DocBrokers container; used from elsewhere as well.
@@ -150,9 +151,17 @@ std::map<std::string, std::chrono::steady_clock::time_point> LastSubForKitBroker
 Poco::AutoPtr<Poco::Util::XMLConfiguration> KitXmlConfig;
 std::string LoggableConfigEntries;
 
-#if ENABLE_DEBUG && !MOBILEAPP
+#if !MOBILEAPP
+
+/// Funky latency simulation basic delay (ms)
+std::size_t SimulatedLatencyMs = 0;
+std::shared_ptr<http::Session> FetchHttpSession;
+
+#if ENABLE_DEBUG
 std::chrono::milliseconds careerSpanMs(std::chrono::milliseconds::zero());
 #endif
+
+#endif // !MOBILEAPP
 
 /// The timeout for a child to spawn, initially high, then reset to the default.
 std::atomic<std::chrono::milliseconds> ChildSpawnTimeoutMs =
@@ -167,11 +176,6 @@ std::unordered_set<std::string> LOOLWSD::EditFileExtensions;
 
 // Or can this be retrieved in some other way?
 int LOOLWSD::prisonerServerSocketFD;
-
-#else // MOBILEAPP
-
-/// Funky latency simulation basic delay (ms)
-static std::size_t SimulatedLatencyMs = 0;
 
 #endif // !MOBILEAPP
 
