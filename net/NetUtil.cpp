@@ -183,7 +183,7 @@ public:
     }
 };
 
-HostEntry syncResolveDNS(const std::string& addressToCheck)
+static HostEntry syncResolveDNS(const std::string& addressToCheck)
 {
 #if !MOBILEAPP
     // Where we have async DNS then use it for the sync DNS use cases too
@@ -219,7 +219,7 @@ HostEntry syncResolveDNS(const std::string& addressToCheck)
 
 typedef std::unique_ptr<sockaddr, void (*)(void*)> sockaddr_ptr;
 
-sockaddr_ptr dupAddrWithPort(const sockaddr* addr, socklen_t addrLen, uint16_t port)
+static sockaddr_ptr dupAddrWithPort(const sockaddr* addr, socklen_t addrLen, uint16_t port)
 {
     sockaddr_ptr newAddr((sockaddr*)malloc(addrLen), free);
     memcpy(newAddr.get(), addr, addrLen);
