@@ -422,7 +422,7 @@ SubForKitMap::iterator dropSubForKit(SubForKitMap::iterator it)
 
 /// Remove dead and idle DocBrokers.
 /// The client of idle document should've greyed-out long ago.
-void cleanupDocBrokers()
+void COOLWSD::cleanupDocBrokers()
 {
     Util::assertIsLocked(DocBrokersMutex);
 
@@ -2677,7 +2677,7 @@ void PrisonPoll::wakeupHook()
     std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex, std::defer_lock);
     if (docBrokersLock.try_lock())
     {
-        cleanupDocBrokers();
+        COOLWSD::cleanupDocBrokers();
         SigUtil::checkForwardSigUsr2(forwardSigUsr2);
     }
 }

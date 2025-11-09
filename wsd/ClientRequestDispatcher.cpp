@@ -73,8 +73,6 @@ std::unordered_map<std::string, std::shared_ptr<RequestVettingStation>>
 extern std::map<std::string, std::shared_ptr<DocumentBroker>> DocBrokers;
 extern std::mutex DocBrokersMutex;
 
-extern void cleanupDocBrokers();
-
 namespace
 {
 
@@ -122,7 +120,7 @@ findOrCreateDocBroker(DocumentBroker::ChildType type, const std::string& uri,
 
     std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex);
 
-    cleanupDocBrokers();
+    COOLWSD::cleanupDocBrokers();
 
     if (SigUtil::getShutdownRequestFlag())
     {
@@ -2206,7 +2204,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
                 filter, encodedTransformJSON);
             handler.takeFile();
 
-            cleanupDocBrokers();
+            COOLWSD::cleanupDocBrokers();
 
             DocBrokers.emplace(docKey, docBroker);
             LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey
@@ -2216,7 +2214,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             {
                 LOG_WRN("Failed to create Client Session with id [" << _id << "] on docKey ["
                                                                     << docKey << "].");
-                cleanupDocBrokers();
+                COOLWSD::cleanupDocBrokers();
             }
         }
         else
@@ -2406,7 +2404,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             fromPath, uriPublic, docKey, handler.getSearchResultContent());
         handler.takeFile();
 
-        cleanupDocBrokers();
+        COOLWSD::cleanupDocBrokers();
 
         DocBrokers.emplace(docKey, docBroker);
         LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey << "].");
@@ -2415,7 +2413,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
         {
             LOG_WRN("Failed to create Client Session with id [" << _id << "] on docKey [" << docKey
                                                                 << "].");
-            cleanupDocBrokers();
+            COOLWSD::cleanupDocBrokers();
         }
 
         return false;
