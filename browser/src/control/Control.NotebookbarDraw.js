@@ -605,6 +605,45 @@ window.L.Control.NotebookbarDraw = window.L.Control.NotebookbarImpress.extend({
 						],
 						vertical: 'true',
 					},
+				]
+			},
+			{ type: 'separator', id: 'view-zoomin-break', orientation: 'vertical' },
+			{
+				'id': 'toggleuimode',
+				'class': 'unotoggleuimode',
+				'type': 'bigcustomtoolitem',
+				'text': _('Compact view'),
+				'accessibility': { focusBack: true, combination: 'UI', de: null }
+			},
+			{
+				'type': 'container',
+				'children': [
+					{
+						'type': 'toolbox',
+						'children': [
+							{
+								'id': 'showruler',
+								'class': 'unoshowruler',
+								'type': 'checkbox',
+								'command': 'showruler',
+								'text': _('Ruler'),
+								'accessibility': { focusBack: true, combination: 'R', de: 'L' }
+							}
+						]
+					},
+					{
+						'type': 'toolbox',
+						'children': [
+							{
+								'id': 'showstatusbar',
+								'class': 'unoshowstatusbar',
+								'type': 'checkbox',
+								'command': 'showstatusbar',
+								'text': _('Status Bar'),
+								'accessibility': { focusBack: true, combination: 'SB', de: null }
+							}
+						]
+					}
 				],
 			},
 			{
