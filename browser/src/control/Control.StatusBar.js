@@ -412,21 +412,24 @@ class StatusBar extends JSDialog.Toolbar {
 		JSDialog.RefreshScrollables();
 	}
 
+
+	initialize() {
+		const showStatusbar = this.map.uiManager.getBooleanDocTypePref('ShowStatusbar', true);
+
+		if (showStatusbar)
+			this.map.uiManager.showStatusBar();
+		else
+			this.map.uiManager.hideStatusBar(true);
+	}
+
 	onDocLayerInit() {
-		var showStatusbar = this.map.uiManager.getBooleanDocTypePref(
-			'ShowStatusbar',
-			true,
-		);
-		if (showStatusbar) this.map.uiManager.showStatusBar();
-		else this.map.uiManager.hideStatusBar(true);
+		this.initialize();
 
-		var docType = this.map.getDocType();
-
-		switch (docType) {
-			case 'spreadsheet':
-				this.showItem('prev', false);
-				this.showItem('next', false);
-				this.showItem('prevnextbreak', false);
+		switch (this.map.getDocType()) {
+		case 'spreadsheet':
+			this.showItem('prev', false);
+			this.showItem('next', false);
+			this.showItem('prevnextbreak', false);
 
 				if (!window.mode.isMobile()) {
 					this.showItem('statusdocpos-container', true);
