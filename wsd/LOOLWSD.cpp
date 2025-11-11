@@ -118,10 +118,8 @@ int ClientPortNumber = 0;
 /// UDS address for kits to connect to.
 std::string MasterLocation;
 
-std::string LOOLWSD::BuyProductUrl;
 std::string LOOLWSD::LatestVersion;
 std::mutex LOOLWSD::FetchUpdateMutex;
-std::mutex LOOLWSD::RemoteConfigMutex;
 #endif
 
 /// The DocBrokers container; used from elsewhere as well.
