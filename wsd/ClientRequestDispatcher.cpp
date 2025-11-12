@@ -120,7 +120,7 @@ findOrCreateDocBroker(DocumentBroker::ChildType type, const std::string& uri,
 
     std::unique_lock<std::mutex> docBrokersLock(DocBrokersMutex);
 
-    COOLWSD::cleanupDocBrokers();
+    LOOLWSD::cleanupDocBrokers();
 
     if (SigUtil::getShutdownRequestFlag())
     {
@@ -2204,7 +2204,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
                 filter, encodedTransformJSON);
             handler.takeFile();
 
-            COOLWSD::cleanupDocBrokers();
+            LOOLWSD::cleanupDocBrokers();
 
             DocBrokers.emplace(docKey, docBroker);
             LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey
@@ -2214,7 +2214,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             {
                 LOG_WRN("Failed to create Client Session with id [" << _id << "] on docKey ["
                                                                     << docKey << "].");
-                COOLWSD::cleanupDocBrokers();
+                LOOLWSD::cleanupDocBrokers();
             }
         }
         else
@@ -2404,7 +2404,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
             fromPath, uriPublic, docKey, handler.getSearchResultContent());
         handler.takeFile();
 
-        COOLWSD::cleanupDocBrokers();
+        LOOLWSD::cleanupDocBrokers();
 
         DocBrokers.emplace(docKey, docBroker);
         LOG_TRC("Have " << DocBrokers.size() << " DocBrokers after inserting [" << docKey << "].");
@@ -2413,7 +2413,7 @@ bool ClientRequestDispatcher::handlePostRequest(const RequestDetails& requestDet
         {
             LOG_WRN("Failed to create Client Session with id [" << _id << "] on docKey [" << docKey
                                                                 << "].");
-            COOLWSD::cleanupDocBrokers();
+            LOOLWSD::cleanupDocBrokers();
         }
 
         return false;
