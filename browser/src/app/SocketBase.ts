@@ -231,7 +231,9 @@ class SocketBase {
 		clearTimeout(this._accessTokenExpireTimeout);
 		let expirymsg = window.errorMessages.sessionexpiry;
 		if (
-			parseInt(this._map.options.docParams.access_token_ttl as string) -
+			parseInt(
+				this._map.options.docParams.access_token_ttl as string,
+			) -
 				Date.now() <=
 			0
 		) {
@@ -247,8 +249,13 @@ class SocketBase {
 			hour: '2-digit',
 			minute: '2-digit',
 		};
-		const timerepr = dateTime.toLocaleDateString(String.locale, dateOptions);
-		this._map.fire('warn', { msg: expirymsg.replace('{time}', timerepr) });
+		const timerepr = dateTime.toLocaleDateString(
+			String.locale,
+			dateOptions,
+		);
+		this._map.fire('warn', {
+			msg: expirymsg.replace('{time}', timerepr),
+		});
 
 		// If user still doesn't refresh the session, warn again periodically
 		this._accessTokenExpireTimeout = setTimeout(
