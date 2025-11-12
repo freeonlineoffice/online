@@ -156,6 +156,7 @@ test_base_sources = \
 	UtilTests.cpp \
 	WopiProofTests.cpp \
 	UriTests.cpp \
+	TestGlobals.cpp \
 	$(wsd_sources)
 
 common_sources = \
@@ -195,6 +196,7 @@ unittest_CPPFLAGS = -I$(top_srcdir) -DBUILDING_TESTS -DSTANDALONE_CPPUNIT -g
 unittest_SOURCES = \
 	$(test_base_sources) \
 	$(common_sources) \
+	../common/Globals.cpp \
 	../wsd/TestStubs.cpp \
 	test.cpp
 
