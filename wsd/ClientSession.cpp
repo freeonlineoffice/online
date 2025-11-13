@@ -1823,6 +1823,12 @@ bool ClientSession::loadDocument(const char* /*buffer*/, int /*length*/,
         {
             oss << " infilterOptions=" << getInFilterOption();
         }
+        else if (!docBroker->getTemplateOptionUriJailed().empty())
+        {
+            std::string options = "{\"TemplateURL\":{\"type\":\"string\",\"value\":\"" +
+                                  docBroker->getTemplateOptionUriJailed() + "\"}}";
+            oss << " infilterOptions=" << options;
+        }
 
 
 #if ENABLE_FEATURE_RESTRICTION
